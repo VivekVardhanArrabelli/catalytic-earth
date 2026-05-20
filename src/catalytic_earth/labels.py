@@ -26698,6 +26698,30 @@ def build_epk_heteromeric_candidate_source_validation_review(
                     "external_hard_negative_reaudit_not_real_scorer",
                 ],
             )
+        if (
+            (
+                "mek1" in source_text
+                or "mitogen-activated protein kinase kinase 1" in source_text
+                or "q02750" in source_text
+            )
+            and (
+                "erk1" in source_text
+                or "mitogen-activated protein kinase 3" in source_text
+                or "p27361" in source_text
+            )
+        ):
+            return (
+                "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+                "mek1_erk1",
+                [
+                    "source_context_supports_mek1_erk1_complex_but_role_direction_or_phosphosite_state_needs_manual_review"
+                ],
+                [
+                    "kinase_substrate_role_direction_needs_phosphosite_source_review",
+                    "acceptor_phosphorylation_state_not_adjudicated",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            )
         if "kaic" in source_text:
             return (
                 "rejected_non_epk_substrate_cocomplex_or_designed_clock_protein_review_only",
@@ -26897,6 +26921,302 @@ def build_epk_heteromeric_candidate_source_validation_review(
                 "Source-validated heteromeric candidates remain review-only "
                 "controls until scorer, threshold, external re-audit, and "
                 "registry gates exist."
+            )
+        ],
+    }
+
+
+def build_epk_ligand_specific_active_query_extension_audit(
+    *,
+    epk_ligand_specific_active_query_candidate_scouts: list[dict[str, Any]],
+    epk_ligand_specific_active_query_source_validation_reviews: list[dict[str, Any]],
+    known_source_valid_positive_pdb_ids: list[str] | None = None,
+    prior_counterexample_pdb_ids: list[str] | None = None,
+) -> dict[str, Any]:
+    """Aggregate extended active-query scouts into one review-only decision."""
+
+    known_positive_ids = set(
+        _sorted_strings(
+            known_source_valid_positive_pdb_ids
+            or [
+                "1IR3",
+                "1O6K",
+                "1O6L",
+                "2PHK",
+                "5HVK",
+                "6Z3R",
+                "8OXM",
+                "8OXO",
+            ]
+        )
+    )
+    prior_counterexample_ids = set(
+        _sorted_strings(
+            prior_counterexample_pdb_ids
+            or [
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7M0T",
+                "7M0W",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "8ZN6",
+                "9L3M",
+                "9L3U",
+            ]
+        )
+    )
+
+    validation_rows_by_pdb: dict[str, dict[str, Any]] = {}
+    validation_status_counts: Counter[str] = Counter()
+    for review in epk_ligand_specific_active_query_source_validation_reviews:
+        for row in review.get("rows", []) or []:
+            if not isinstance(row, dict):
+                continue
+            pdb_id = str(row.get("pdb_id") or "").upper()
+            if not pdb_id:
+                continue
+            validation_rows_by_pdb[pdb_id] = row
+            validation_status_counts[str(row.get("source_validation_status") or "")] += 1
+
+    rows: list[dict[str, Any]] = []
+    scout_status_counts: Counter[str] = Counter()
+    reviewed_pdb_ids: list[str] = []
+    topology_hit_pdb_ids: list[str] = []
+    same_author_chain_pdb_ids: list[str] = []
+    source_query_values: list[str] = []
+    target_fingerprint_id = "epk_atp_gamma_phosphoryl_transfer"
+
+    def _text_blob(validation_row: dict[str, Any]) -> str:
+        pieces: list[str] = []
+        for key in ("structure_title",):
+            value = validation_row.get(key)
+            if value not in {None, "", ".", "?"}:
+                pieces.append(str(value))
+        for key in ("keywords", "entity_descriptions", "source_validation_evidence"):
+            values = validation_row.get(key, [])
+            if isinstance(values, list):
+                pieces.extend(str(value) for value in values)
+        accessions = validation_row.get("chain_accessions", {})
+        if isinstance(accessions, dict):
+            for value in accessions.values():
+                if isinstance(value, list):
+                    pieces.extend(str(item) for item in value)
+        return " ".join(pieces).lower()
+
+    for scout in epk_ligand_specific_active_query_candidate_scouts:
+        scout_meta = scout.get("metadata", {})
+        if isinstance(scout_meta, dict):
+            source_query = str(scout_meta.get("source_query") or "")
+            if source_query:
+                source_query_values.append(source_query)
+            target_fingerprint_id = str(
+                scout_meta.get("target_fingerprint_id") or target_fingerprint_id
+            )
+        else:
+            source_query = ""
+        for scout_row in scout.get("rows", []) or []:
+            if not isinstance(scout_row, dict):
+                continue
+            pdb_id = str(scout_row.get("pdb_id") or "").upper()
+            if not pdb_id:
+                continue
+            reviewed_pdb_ids.append(pdb_id)
+            candidate_status = str(scout_row.get("candidate_status") or "")
+            scout_status_counts[candidate_status] += 1
+            hits = [
+                hit
+                for hit in scout_row.get("heteromeric_candidate_hits", []) or []
+                if isinstance(hit, dict)
+            ]
+            topology_hit = bool(hits)
+            if topology_hit:
+                topology_hit_pdb_ids.append(pdb_id)
+            has_same_author_chain_hit = any(
+                str(hit.get("candidate_chain_name") or "")
+                and str(hit.get("candidate_chain_name") or "")
+                == str(hit.get("gamma_associated_polymer_chain_name") or "")
+                for hit in hits
+            )
+            if has_same_author_chain_hit:
+                same_author_chain_pdb_ids.append(pdb_id)
+            validation_row = validation_rows_by_pdb.get(pdb_id, {})
+            source_text = _text_blob(validation_row)
+            known_context = "unreviewed_or_no_topology_hit"
+            if topology_hit and pdb_id in known_positive_ids:
+                known_context = "known_source_valid_positive_repeat"
+            elif topology_hit and pdb_id in prior_counterexample_ids:
+                known_context = "prior_counterexample_repeat"
+            elif topology_hit:
+                known_context = "new_topology_hit_needs_source_adjudication"
+
+            rows.append(
+                {
+                    "row_type": "ligand_specific_active_query_extension_structure",
+                    "pdb_id": pdb_id,
+                    "source_query": source_query,
+                    "review_only": True,
+                    "target_family_id": "epk",
+                    "target_fingerprint_id_if_future_gated": target_fingerprint_id,
+                    "candidate_status": candidate_status,
+                    "heteromeric_candidate_hit_count": len(hits),
+                    "heteromeric_candidate_hits": hits[:10],
+                    "topology_hit": topology_hit,
+                    "known_context": known_context,
+                    "source_validation_status": validation_row.get(
+                        "source_validation_status"
+                    ),
+                    "source_pair_id": validation_row.get("source_pair_id"),
+                    "source_validated_positive_like": bool(
+                        validation_row.get("source_validated_positive_like")
+                    ),
+                    "structure_title": validation_row.get("structure_title"),
+                    "same_author_chain_topology_artifact_risk": (
+                        has_same_author_chain_hit
+                    ),
+                    "mek_erk_role_direction_blocker": (
+                        "mek1" in source_text and "erk1" in source_text
+                    )
+                    or ("q02750" in source_text and "p27361" in source_text),
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                }
+            )
+
+    topology_hit_ids = _sorted_strings(topology_hit_pdb_ids)
+    known_positive_repeat_ids = [
+        pdb_id for pdb_id in topology_hit_ids if pdb_id in known_positive_ids
+    ]
+    prior_counterexample_repeat_ids = [
+        pdb_id for pdb_id in topology_hit_ids if pdb_id in prior_counterexample_ids
+    ]
+    new_topology_hit_ids = [
+        pdb_id
+        for pdb_id in topology_hit_ids
+        if pdb_id not in known_positive_ids and pdb_id not in prior_counterexample_ids
+    ]
+    source_validated_ids = _sorted_strings(
+        row["pdb_id"]
+        for row in rows
+        if bool(row.get("source_validated_positive_like"))
+    )
+    source_validated_new_ids = [
+        pdb_id for pdb_id in source_validated_ids if pdb_id not in known_positive_ids
+    ]
+    mek_erk_blocker_ids = _sorted_strings(
+        row["pdb_id"] for row in rows if row.get("mek_erk_role_direction_blocker")
+    )
+    same_author_chain_ids = _sorted_strings(same_author_chain_pdb_ids)
+    blocked_new_topology_ids = [
+        pdb_id for pdb_id in new_topology_hit_ids if pdb_id not in source_validated_new_ids
+    ]
+    status = "closed_no_new_clean_broad_protein_substrate_positive_review_only"
+    if source_validated_new_ids:
+        status = "source_valid_new_positive_found_review_only"
+    elif mek_erk_blocker_ids:
+        status = "blocked_review_only_mek_erk_role_direction_and_acceptor_state_unresolved"
+
+    blocker_not_removed = [
+        "no_new_clean_broad_protein_substrate_positive",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+    ]
+    if mek_erk_blocker_ids:
+        blocker_not_removed.append("mek_erk_role_direction_and_acceptor_state_unresolved")
+    if same_author_chain_ids:
+        blocker_not_removed.append("same_author_chain_entity_mapping_artifact_risk")
+
+    return {
+        "metadata": {
+            "method": "epk_ligand_specific_active_query_extension_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "candidate_scout_artifact_count": len(
+                epk_ligand_specific_active_query_candidate_scouts
+            ),
+            "source_validation_review_artifact_count": len(
+                epk_ligand_specific_active_query_source_validation_reviews
+            ),
+            "source_queries": _sorted_strings(source_query_values),
+            "reviewed_structure_count": len(reviewed_pdb_ids),
+            "unique_reviewed_structure_count": len(_sorted_strings(reviewed_pdb_ids)),
+            "candidate_status_counts": dict(sorted(scout_status_counts.items())),
+            "source_validation_status_counts": dict(
+                sorted(validation_status_counts.items())
+            ),
+            "heteromeric_topology_hit_count": len(topology_hit_ids),
+            "heteromeric_topology_hit_pdb_ids": topology_hit_ids,
+            "known_positive_repeat_hit_count": len(known_positive_repeat_ids),
+            "known_positive_repeat_hit_pdb_ids": known_positive_repeat_ids,
+            "prior_counterexample_repeat_hit_count": len(
+                prior_counterexample_repeat_ids
+            ),
+            "prior_counterexample_repeat_hit_pdb_ids": (
+                prior_counterexample_repeat_ids
+            ),
+            "new_topology_hit_count": len(new_topology_hit_ids),
+            "new_topology_hit_pdb_ids": new_topology_hit_ids,
+            "blocked_new_topology_hit_count": len(blocked_new_topology_ids),
+            "blocked_new_topology_hit_pdb_ids": blocked_new_topology_ids,
+            "source_validated_candidate_count": len(source_validated_ids),
+            "source_validated_candidate_pdb_ids": source_validated_ids,
+            "source_validated_new_candidate_count": len(source_validated_new_ids),
+            "source_validated_new_candidate_pdb_ids": source_validated_new_ids,
+            "mek_erk_role_direction_blocker_count": len(mek_erk_blocker_ids),
+            "mek_erk_role_direction_blocker_pdb_ids": mek_erk_blocker_ids,
+            "same_author_chain_topology_artifact_risk_count": len(
+                same_author_chain_ids
+            ),
+            "same_author_chain_topology_artifact_risk_pdb_ids": (
+                same_author_chain_ids
+            ),
+            "active_query_extension_status": status,
+            "ready_to_measure_gamma_acceptor_distance": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "active_query_extended_beyond_first_100",
+            "blocker_not_removed": blocker_not_removed,
+            "review_only_rule": (
+                "This audit aggregates bounded ligand-specific active-query "
+                "scouts. It records repeated positives, repeated counterexamples, "
+                "and new blocked topology hits; it is not an ePK score, external "
+                "hard-negative re-audit, registry edit, or label import."
+            ),
+            "next_actions": [
+                "source-review MEK1/ERK1 role direction and phosphoacceptor state before treating those rows as broad protein-substrate positives",
+                "treat same-author-chain/entity-mismatch hits as counter-axis risk before any scorer calibration",
+                "continue broader source search only if it can add source-authoritative protein-substrate positives beyond known repeats",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("known_context") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Extended active-query hits remain review-only and fail closed "
+                "until source authority, role direction, thresholds, and external "
+                "hard-negative scored re-audit gates exist."
             )
         ],
     }

@@ -205,6 +205,17 @@ all 100 structures fetch, 96 have no heteromeric gamma-to-acceptor topology
 hits, `7ZE5`, `2JJ2`, and `4HPU` are blocked source-context counterexamples,
 and `1IR3` is already current peptide-substrate support rather than new broad
 protein-substrate evidence.
+The active-query extension now covers the rest of that ANP query plus targeted
+MEK1/ERK1, co-complex-text, AMP-PNP, ATP, and ADP/product-state stress routes.
+`artifacts/v3_epk_multi_query_active_site_terminal_audit_1025.json` aggregates
+784 reviewed query placements and 630 unique structures. It accepts 0 new
+positives: the only source-valid repeats are already-known `1IR3`, `5HVK`,
+and `6Z3R`, known counterexamples recur, and the eleven new topology hits
+fail closed.
+MEK1/ERK1 rows (`9UUR`, `9UUX`, `9UW4`) are blocked on role direction and
+phosphoacceptor state; RNA transferase, AAA+/translocase, and transporter
+hits expose same-author-chain topology risk. Broad protein-substrate support
+therefore remains missing.
 
 ## Time Calibration Rule
 

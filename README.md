@@ -1421,6 +1421,17 @@ stress-checks the measured source-valid heteromeric positives `6Z3R`, `8OXM`,
 and `8OXO`. All three measured positives are short peptide-mode acceptors, not
 broad folded-protein positives, so the blocker shifts from the single `7B56`
 false hit to missing source-valid broad protein-substrate support.
+The active-query extension
+`artifacts/v3_epk_multi_query_active_site_terminal_audit_1025.json` then
+stress-tests the remaining ANP active-query surface plus targeted MEK1/ERK1,
+co-complex-text, AMP-PNP, ATP, and ADP/product-state routes. Across 784
+reviewed query placements and 630 unique structures, it accepts 0 new
+positives. Known positives `1IR3`, `5HVK`, and `6Z3R` recur, known
+counterexamples recur, and all eleven new topology hits fail closed.
+MEK1/ERK1 rows (`9UUR`, `9UUX`,
+and `9UW4`) need role-direction and phosphoacceptor-state source review, while
+RNA transferase, AAA+/translocase, and transporter hits expose same-author-chain
+topology risk. The result is negative evidence, not a score or label gate.
 The
 preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`

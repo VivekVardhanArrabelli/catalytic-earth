@@ -102,6 +102,7 @@ from .labels import (
     build_epk_heteromeric_candidate_source_validation_review,
     build_epk_heteromeric_chain_topology_signal_audit,
     build_epk_heteromeric_positive_coverage_candidate_scout,
+    build_epk_ligand_specific_active_query_extension_audit,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_heteromeric_source_valid_control_rerun,
     build_epk_heteromeric_source_free_role_rule_probe,
@@ -7132,6 +7133,34 @@ def cmd_build_epk_heteromeric_candidate_source_validation_review(
         "Wrote ePK heteromeric candidate source-validation review to "
         f"{args.out} (accepted="
         f"{review['metadata']['source_validated_new_candidate_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_ligand_specific_active_query_extension_audit(
+    args: argparse.Namespace,
+) -> int:
+    scouts: list[dict[str, Any]] = []
+    for scout_path in args.epk_ligand_specific_active_query_candidate_scout:
+        with Path(scout_path).open("r", encoding="utf-8") as handle:
+            scouts.append(json.load(handle))
+    reviews: list[dict[str, Any]] = []
+    for review_path in args.epk_ligand_specific_active_query_source_validation_review:
+        with Path(review_path).open("r", encoding="utf-8") as handle:
+            reviews.append(json.load(handle))
+    audit = build_epk_ligand_specific_active_query_extension_audit(
+        epk_ligand_specific_active_query_candidate_scouts=scouts,
+        epk_ligand_specific_active_query_source_validation_reviews=reviews,
+        known_source_valid_positive_pdb_ids=_split_csv(
+            args.known_source_valid_positive_pdb_ids
+        ),
+        prior_counterexample_pdb_ids=_split_csv(args.prior_counterexample_pdb_ids),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK ligand-specific active-query extension audit to "
+        f"{args.out} (status="
+        f"{audit['metadata']['active_query_extension_status']})"
     )
     return 0
 
@@ -16932,6 +16961,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_heteromeric_source_validation.set_defaults(
         func=cmd_build_epk_heteromeric_candidate_source_validation_review
+    )
+
+    epk_active_query_extension = subparsers.add_parser(
+        "build-epk-ligand-specific-active-query-extension-audit",
+        help=(
+            "aggregate extended ligand-specific active-query scouts into a "
+            "review-only terminal decision"
+        ),
+    )
+    epk_active_query_extension.add_argument(
+        "--epk-ligand-specific-active-query-candidate-scout",
+        action="append",
+        required=True,
+        help="repeatable active-query candidate scout artifact",
+    )
+    epk_active_query_extension.add_argument(
+        "--epk-ligand-specific-active-query-source-validation-review",
+        action="append",
+        required=True,
+        help="repeatable source-validation review artifact for active-query hits",
+    )
+    epk_active_query_extension.add_argument(
+        "--known-source-valid-positive-pdb-ids",
+        default="1IR3,1O6K,1O6L,2PHK,5HVK,6Z3R,8OXM,8OXO",
+    )
+    epk_active_query_extension.add_argument(
+        "--prior-counterexample-pdb-ids",
+        default=(
+            "2JJ2,4HPU,7B56,7M0T,7M0W,7T55,7T56,7T57,7ZDT,"
+            "7ZDU,7ZE5,8ZN6,9L3M,9L3U"
+        ),
+    )
+    epk_active_query_extension.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_ligand_specific_active_query_extension_audit_1025.json"
+        ),
+    )
+    epk_active_query_extension.set_defaults(
+        func=cmd_build_epk_ligand_specific_active_query_extension_audit
     )
 
     epk_heteromeric_distance_sample = subparsers.add_parser(

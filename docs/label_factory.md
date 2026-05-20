@@ -828,6 +828,22 @@ all 100 structures; 96 have no heteromeric gamma-to-acceptor topology hit,
 `1IR3` is already current peptide-substrate support rather than new broad
 protein-substrate evidence. No new positive source, score, registry edit, or
 label gate opens.
+The next active-query extension now exhausts the remaining RCSB full-text
+`protein kinase substrate ANP magnesium` surface through row 228 and adds
+targeted MEK1/ERK1, co-complex-text, AMP-PNP, ATP, and ADP/product-state
+stress routes. The aggregate terminal audit
+`artifacts/v3_epk_multi_query_active_site_terminal_audit_1025.json` covers
+784 reviewed query placements and 630 unique structures. It finds 27 topology
+hits, but 0 accepted new positives: `1IR3`, `5HVK`, and `6Z3R` are known
+source-valid repeats, eight hits are known counterexamples, and eleven new
+topology hits (`1TFW`, `2DRA`, `2Q66`, `2ZH6`, `6BBN`, `7CAG`, `8BMS`,
+`9BJI`, `9UUR`, `9UUX`, and `9UW4`) fail closed. The new counterevidence is
+specific: RNA transferase,
+AAA+/translocase, and transporter hits expose same-author-chain/entity-mapping
+risk, while MEK1/ERK1 hits (`9UUR`, `9UUX`, and `9UW4`) are blocked until
+role direction and phosphoacceptor state are source-reviewed. No distance
+measurement, threshold, external scored re-audit, registry edit, or label gate
+opens.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

@@ -96,6 +96,72 @@ class LeakageClosureTests(unittest.TestCase):
             ]
         )
 
+    def test_mek_erk_source_validation_fails_closed_for_phosphosite_state(
+        self,
+    ) -> None:
+        scout = {
+            "metadata": {
+                "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+            },
+            "rows": [
+                {
+                    "pdb_id": "9UUR",
+                    "candidate_status": (
+                        "heteromeric_candidate_source_validation_pending_review_only"
+                    ),
+                    "heteromeric_candidate_hit_count": 1,
+                    "heteromeric_candidate_hits": [
+                        {
+                            "candidate_chain_name": "B",
+                            "candidate_residue_code": "TYR",
+                            "candidate_auth_seq_id": "204",
+                            "gamma_associated_polymer_chain_name": "A",
+                            "nearest_gamma_distance_angstrom": 4.181,
+                        }
+                    ],
+                }
+            ],
+        }
+        cif_text = "\n".join(
+            [
+                "data_9UUR",
+                "loop_",
+                "_struct.title",
+                "'The complex of human pMEK1 and uERK1 (ANP)'",
+                "#",
+                "loop_",
+                "_entity.id",
+                "_entity.pdbx_description",
+                "1 'Dual specificity mitogen-activated protein kinase kinase 1'",
+                "2 'Mitogen-activated protein kinase 3'",
+                "#",
+                "loop_",
+                "_struct_ref_seq.pdbx_db_accession",
+                "_struct_ref_seq.pdbx_strand_id",
+                "Q02750 A",
+                "P27361 B",
+                "#",
+            ]
+        )
+
+        review = build_epk_heteromeric_candidate_source_validation_review(
+            epk_heteromeric_positive_coverage_candidate_scout=scout,
+            cif_text_by_pdb={"9UUR": cif_text},
+        )
+        row = review["rows"][0]
+        self.assertEqual(
+            row["source_validation_status"],
+            "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+        )
+        self.assertEqual(row["source_pair_id"], "mek1_erk1")
+        self.assertFalse(row["source_validated_positive_like"])
+        self.assertIn(
+            "acceptor_phosphorylation_state_not_adjudicated",
+            row["remaining_blockers"],
+        )
+        self.assertFalse(review["metadata"]["ready_to_run_epk_scorer"])
+
     def test_next_tranche_pre_registration_is_frozen_before_selection(self) -> None:
         artifact = _load_json(
             ROOT

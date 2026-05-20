@@ -1,0 +1,332 @@
+{
+  "metadata": {
+    "ambiguous_candidate_count": 2,
+    "blocker_not_removed": [
+      "source_free_role_direction_not_generalized_to_scoring",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "heteromeric_candidate_source_validation_review_executed",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "epk_heteromeric_candidate_source_validation_review",
+    "minimum_positive_coverage_met_review_only": false,
+    "next_actions": [
+      "rerun the heteromeric topology audit with source-validated candidates separated from ambiguous and rejected rows",
+      "treat BRAF/MEK kinase-kinase hits as ambiguous until role direction is source-reviewed",
+      "keep threshold selection and external hard-negative scoring closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "rejected_candidate_count": 0,
+    "review_only": true,
+    "review_only_rule": "This artifact source-reviews heteromeric topology leads. Accepted rows are positive-like review controls only; they are not countable labels, ePK scores, or held-out performance evidence.",
+    "reviewed_candidate_count": 5,
+    "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_validated_new_candidate_count": 0,
+    "source_validated_new_candidate_pdb_ids": [],
+    "source_validated_unique_pair_count": 0,
+    "source_validated_unique_pair_ids": [],
+    "source_validation_status_counts": {
+      "blocked_ambiguous_kinase_kinase_role_direction_review_only": 2,
+      "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only": 3
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "467",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.81
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P15056"
+        ],
+        "B": [
+          "Q02750"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "BRAF, MEK1, TRANSFERASE",
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.81,
+      "pdb_id": "7M0T",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "kinase_kinase_role_direction_needs_manual_source_review",
+        "protein_substrate_acceptor_source_mapping_not_reviewed"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "structure_title_supports_braf_mek1_complex_but_role_direction_is_ambiguous"
+      ],
+      "source_validation_status": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "structure_title": "Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP and Selumetinib",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "467",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.993
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P15056"
+        ],
+        "B": [
+          "Q02750"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "MAGNESIUM ION",
+        "N-[(2S)-2,3-dihydroxypropyl]-3-[(2-fluoro-4-iodophenyl)amino]pyridine-4-carboxamide",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Serine/threonine-protein kinase B-raf"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "BRAF, MEK1, TRANSFERASE",
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.993,
+      "pdb_id": "7M0W",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "kinase_kinase_role_direction_needs_manual_source_review",
+        "protein_substrate_acceptor_source_mapping_not_reviewed"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "structure_title_supports_braf_mek1_complex_but_role_direction_is_ambiguous"
+      ],
+      "source_validation_status": "blocked_ambiguous_kinase_kinase_role_direction_review_only",
+      "structure_title": "Crystal structure of the BRAF:MEK1 kinases in complex with AMPPNP and Pimasertib",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.181
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "Q02750"
+        ],
+        "B": [
+          "P27361"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "Dual specificity mitogen-activated protein kinase kinase 1",
+        "MAGNESIUM ION",
+        "Mitogen-activated protein kinase 3",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "MEK1. ERK1, Complex, Kinase, MAPK pathway, TRANSFERASE",
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 4.181,
+      "pdb_id": "9UUR",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "acceptor_phosphorylation_state_not_adjudicated",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "kinase_substrate_role_direction_needs_phosphosite_source_review"
+      ],
+      "review_only": true,
+      "source_pair_id": "mek1_erk1",
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "source_context_supports_mek1_erk1_complex_but_role_direction_or_phosphosite_state_needs_manual_review"
+      ],
+      "source_validation_status": "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+      "structure_title": "The complex of human pMEK1 and uERK1 (ANP)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.968
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "Q02750"
+        ],
+        "B": [
+          "P27361"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "MEK1. ERK1, Complex, Kinase, MAPK pathway, TRANSFERASE",
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 3.968,
+      "pdb_id": "9UUX",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "acceptor_phosphorylation_state_not_adjudicated",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "kinase_substrate_role_direction_needs_phosphosite_source_review"
+      ],
+      "review_only": true,
+      "source_pair_id": "mek1_erk1",
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "source_context_supports_mek1_erk1_complex_but_role_direction_or_phosphosite_state_needs_manual_review"
+      ],
+      "source_validation_status": "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+      "structure_title": "The complex of human pMEK1 and ERK1 pT202 (ANP)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "194",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.194
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "Q02750"
+        ],
+        "B": [
+          "P27361"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 1,
+      "keywords": [
+        "MEK1. ERK1, Complex, Kinase, MAPK pathway, TRANSFERASE",
+        "TRANSFERASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 4.194,
+      "pdb_id": "9UW4",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "acceptor_phosphorylation_state_not_adjudicated",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "kinase_substrate_role_direction_needs_phosphosite_source_review"
+      ],
+      "review_only": true,
+      "source_pair_id": "mek1_erk1",
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "source_context_supports_mek1_erk1_complex_but_role_direction_or_phosphosite_state_needs_manual_review"
+      ],
+      "source_validation_status": "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+      "structure_title": "The complex of human pMEK1 and uERK1 (ANP)(from pY204ERK1)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Source-validated heteromeric candidates remain review-only controls until scorer, threshold, external re-audit, and registry gates exist."
+  ]
+}

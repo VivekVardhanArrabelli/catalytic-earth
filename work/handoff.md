@@ -50,6 +50,74 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T06:49:30Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+external hard-negative production score, or `removal_allowed=true` occurred.
+SSH deploy-key fetch/pull/ls-remote/dry-run push hygiene passed at startup,
+and startup checks passed: 642 unit tests plus `catalytic_earth.cli validate`
+with 682 labels and 8 production fingerprints.
+
+This run added a small review-only aggregate builder,
+`build-epk-ligand-specific-active-query-extension-audit`, and tightened the
+heteromeric source validator so MEK1/ERK1 co-complex rows fail closed under a
+specific role-direction/phosphoacceptor-state blocker instead of generic
+insufficient context. The targeted regression covers that blocker and the new
+aggregate CLI.
+
+The fast-science source expansion result is negative but useful.
+`artifacts/v3_epk_ligand_specific_active_query_extension_audit_1025.json`
+extends the prior RCSB full-text `protein kinase substrate ANP magnesium`
+active-query scout from rows 100-228. It fetches 129 additional structures and
+finds 9 heteromeric topology hits: known source-valid repeats `5HVK`/`6Z3R`,
+known counterexamples `7B56`/`7M0T`/`7M0W`, and four new blocked hits
+(`6BBN`, `9UUR`, `9UUX`, `9UW4`). The new MEK1/ERK1 hits are blocked pending
+role-direction and phosphoacceptor-state source review; `6BBN` is a
+KIF2A/tubulin motor context with same-author-chain topology risk.
+
+Follow-on bounded routes also fail closed:
+`artifacts/v3_epk_mek_erk_targeted_extension_audit_1025.json` covers all 32
+`MEK1 ERK1 ANP magnesium` hits and accepts 0 new positives;
+`artifacts/v3_epk_substrate_cocomplex_text_extension_audit_1025.json` covers
+the six `kinase substrate co-complex ANP magnesium` hits and only repeats
+known counterexample `2JJ2`;
+`artifacts/v3_epk_amp_pnp_protein_query_extension_audit_1025.json` covers 67
+broader AMP-PNP protein-query rows and only repeats known counterexamples
+`4HPU`/`7ZE5`; `artifacts/v3_epk_adp_product_query_extension_audit_1025.json`
+covers the first 100 ADP/product-state rows with 0 topology hits.
+`artifacts/v3_epk_atp_protein_query_extension_audit_1025.json` covers the
+first 450 `protein kinase substrate ATP magnesium` rows. It finds known
+positive repeat `1IR3`, known counterexamples, and seven new blocked topology
+hits (`1TFW`, `2DRA`, `2Q66`, `2ZH6`, `7CAG`, `8BMS`, `9BJI`), all RNA
+transferase, AAA+/translocase, or transporter contexts rather than clean
+protein-substrate ePK evidence.
+
+The roll-up terminal audit
+`artifacts/v3_epk_multi_query_active_site_terminal_audit_1025.json` now covers
+784 reviewed query placements and 630 unique structures. It records 27
+heteromeric topology hits, 3 known positive repeats (`1IR3`, `5HVK`, `6Z3R`),
+8 known counterexample repeats, 11 new blocked topology hits, and 0 accepted
+new positives. Its status is
+`blocked_review_only_mek_erk_role_direction_and_acceptor_state_unresolved`;
+same-author-chain/entity-mapping risk covers 15 hits.
+
+Evidence-based confidence call: confidence is higher that these active-query
+routes are not yielding a clean broad protein-substrate ePK positive and that
+same-author-chain topology needs to stay a hard counter-axis for broad text
+queries. Confidence remains low that MEK1/ERK1 can be admitted without
+source-authoritative role direction plus phosphoacceptor state. Next useful
+experiment: source-review MEK1/ERK1 with explicit residue/phosphosite evidence
+or switch to a curated kinase-substrate complex source; do not threshold ePK
+or promote a fingerprint from the current query-derived surface.
+
+Wrap-up verification passed with 644 unit tests, `catalytic_earth.cli
+validate`, `compileall`, targeted CLI/leakage tests (253 tests),
+JSON validation for the new artifacts, artifact migration dry-run/local-file
+guard at 108 rows with `removal_allowed=0`, label invariants at 682 total
+labels (212 seed fingerprints, 470 out-of-scope, and the three imported
+UniProt hard negatives unchanged), and `git diff --check`.
+
 As of the 2026-05-20T05:48:13Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

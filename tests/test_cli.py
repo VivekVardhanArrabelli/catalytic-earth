@@ -14139,6 +14139,167 @@ ATOM 2 O OG SER D 3 3.0 0.0 0.0 OG SER D 3
             self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "1000")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
+    def test_build_epk_ligand_specific_active_query_extension_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            scout = root / "scout.json"
+            review = root / "review.json"
+            out = root / "extension.json"
+            scout.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_positive_coverage_candidate_scout"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "source_query": "test active query rows100-119",
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "5HVK",
+                                "candidate_status": (
+                                    "heteromeric_candidate_source_validation_pending_review_only"
+                                ),
+                                "heteromeric_candidate_hit_count": 1,
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "D",
+                                        "gamma_associated_polymer_chain_name": "C",
+                                        "nearest_gamma_distance_angstrom": 4.2,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "9UUR",
+                                "candidate_status": (
+                                    "heteromeric_candidate_source_validation_pending_review_only"
+                                ),
+                                "heteromeric_candidate_hit_count": 1,
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "B",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 4.1,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "9UW4",
+                                "candidate_status": (
+                                    "heteromeric_candidate_source_validation_pending_review_only"
+                                ),
+                                "heteromeric_candidate_hit_count": 1,
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "A",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 4.2,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "1ABC",
+                                "candidate_status": (
+                                    "no_heteromeric_candidate_hit_review_only"
+                                ),
+                                "heteromeric_candidate_hit_count": 0,
+                                "heteromeric_candidate_hits": [],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_candidate_source_validation_review"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9UUR",
+                                "source_validation_status": (
+                                    "blocked_source_context_insufficient_review_only"
+                                ),
+                                "source_validated_positive_like": False,
+                                "structure_title": (
+                                    "The complex of human pMEK1 and uERK1 (ANP)"
+                                ),
+                                "entity_descriptions": [
+                                    "Dual specificity mitogen-activated protein kinase kinase 1",
+                                    "Mitogen-activated protein kinase 3",
+                                ],
+                                "chain_accessions": {
+                                    "A": ["Q02750"],
+                                    "B": ["P27361"],
+                                },
+                            },
+                            {
+                                "pdb_id": "9UW4",
+                                "source_validation_status": (
+                                    "blocked_source_context_insufficient_review_only"
+                                ),
+                                "source_validated_positive_like": False,
+                                "structure_title": (
+                                    "The complex of human pMEK1 and uERK1 (ANP)"
+                                ),
+                                "chain_accessions": {
+                                    "A": ["Q02750"],
+                                    "B": ["P27361"],
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-ligand-specific-active-query-extension-audit",
+                    "--epk-ligand-specific-active-query-candidate-scout",
+                    str(scout),
+                    "--epk-ligand-specific-active-query-source-validation-review",
+                    str(review),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["active_query_extension_status"],
+                "blocked_review_only_mek_erk_role_direction_and_acceptor_state_unresolved",
+            )
+            self.assertEqual(metadata["reviewed_structure_count"], 4)
+            self.assertEqual(metadata["known_positive_repeat_hit_pdb_ids"], ["5HVK"])
+            self.assertEqual(metadata["new_topology_hit_pdb_ids"], ["9UUR", "9UW4"])
+            self.assertEqual(
+                metadata["mek_erk_role_direction_blocker_pdb_ids"],
+                ["9UUR", "9UW4"],
+            )
+            self.assertEqual(
+                metadata["same_author_chain_topology_artifact_risk_pdb_ids"],
+                ["9UW4"],
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
 
 if __name__ == "__main__":
     unittest.main()
