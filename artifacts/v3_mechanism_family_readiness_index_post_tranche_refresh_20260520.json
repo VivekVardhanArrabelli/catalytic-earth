@@ -1,0 +1,225 @@
+{
+  "closed_review_tranches": [
+    {
+      "baseline_artifact": "artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json",
+      "decision_artifact": "artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json",
+      "family_id": "glycoside_hydrolase",
+      "frozen_row_count": 15,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "source_free_axis_ready_count": 0,
+      "status": "closed_review_only_no_go",
+      "terminal_decision_counts": {
+        "ambiguous": 2,
+        "mechanism_match": 10,
+        "needs_review": 1,
+        "terminal_rejection": 2
+      }
+    },
+    {
+      "baseline_artifact": "artifacts/v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json",
+      "decision_artifact": "artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json",
+      "family_id": "schiff_base_lyase",
+      "frozen_row_count": 15,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "source_free_axis_ready_count": 0,
+      "status": "closed_review_only_no_go",
+      "terminal_decision_counts": {
+        "mechanism_match": 14,
+        "needs_review": 1
+      }
+    },
+    {
+      "baseline_artifact": "artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json",
+      "decision_artifact": "artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json",
+      "family_id": "dna_glycosylase_lyase",
+      "frozen_row_count": 11,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "source_free_axis_ready_count": 0,
+      "status": "closed_review_only_no_go",
+        "terminal_decision_counts": {
+          "mechanism_match": 5,
+          "needs_review": 1,
+          "out_of_scope": 5
+        }
+      },
+      {
+        "baseline_artifact": "artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json",
+        "decision_artifact": "artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json",
+        "family_id": "sdr_akr_nadp_redox_boundary",
+        "frozen_row_count": 14,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "ready_to_expand_positive_fingerprint_universe": false,
+        "source_free_axis_ready_count": 0,
+        "status": "closed_review_only_no_go",
+        "terminal_decision_counts": {
+          "ambiguous": 4,
+          "mechanism_match": 8,
+          "needs_review": 2
+        }
+      },
+      {
+        "baseline_artifact": "artifacts/v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520.json",
+        "decision_artifact": "artifacts/v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520.json",
+        "family_id": "sugar_phosphate_isomerase",
+        "frozen_row_count": 11,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "ready_to_expand_positive_fingerprint_universe": false,
+        "source_free_axis_ready_count": 0,
+        "status": "closed_review_only_no_go",
+        "terminal_decision_counts": {
+          "mechanism_match": 6,
+          "needs_review": 1,
+          "out_of_scope": 4
+        }
+      }
+    ],
+  "metadata": {
+    "artifact_id": "v3_mechanism_family_readiness_index_post_tranche_refresh_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "closed_review_tranche_count": 5,
+    "created_at": "2026-05-20T19:30:18Z",
+    "curated_label_registry_edited": false,
+    "family_packet_count": 6,
+    "fingerprint_registry_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "mechanism_family_readiness_index_post_tranche_refresh",
+    "next_recommended_tranche_frozen": false,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "remaining_packet_only_family_count": 0,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_index": "artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json"
+  },
+  "recommended_next_main_loop_experiment": {
+    "decision_to_start_now": false,
+    "id": "new_source_complete_external_minicampaign_or_new_family_readiness_packet",
+    "next_step": "prefer a genuinely new source-complete external mini-campaign; if blocked, choose a new non-ePK family packet outside the completed six-family queue",
+    "preregistration_artifact": null,
+    "promotion_gates_remain_closed": [
+      "production fingerprint edit",
+      "label import",
+      "threshold calibration",
+      "factory gate extension"
+    ],
+    "reason": "Glycoside, Schiff-base, DNA-lyase, SDR/AKR redox, and sugar-phosphate-isomerase tranches now have review-only terminal decisions and 0 source-free-axis-ready families.",
+    "selection_freeze_required_before_scoring": true,
+    "status": "queue_exhausted_pending_new_source"
+  },
+  "remaining_packet_only_families": [],
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json",
+      "sha256": "1967d294893b225a7dc8ddd932e46f6f49403028219a5267df16e31e8ef79b1c"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_glycoside_hydrolase_family_readiness_packet_20260520.json",
+      "sha256": "cf084582021d96aaa6d4ba8e171f6516b7a2ee0bb41d765f21b3967e86ffe57e"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json",
+      "sha256": "f5c3645d219e7830e498e430dcfede68fc3f95df3b304b66fabcac6012bc8cde"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json",
+      "sha256": "52cd969c919f752c4a120cd1820bbf1a40d67cf6aa8d81967ebc7b0e776f1a9d"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json",
+      "sha256": "b9cc5a186d88c48cda4f1cc1526e5d6fa24affaccd9045d6339fd6dcc25c51be"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json",
+      "sha256": "a965f1ac3ca83fc05f6cad01c5d782b8d2a9a5f4135d23daad8e325f7779093e"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json",
+      "sha256": "8a2d2afffb8f1bf1010987f7e630596861306a666e56161967ba828d15140a9f"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json",
+      "sha256": "096066b807e2c363177407b4a65c166c8e706202309bd3211d298ec50878a9cb"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json",
+      "sha256": "e74a5102ed56d6a9d39b1e147c4821e11f5c07a56c73518af9799ca3ad7e1f8b"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json",
+      "sha256": "075f0fde75e44618dd897b83c0f59bdbd22b66cd8101761619c603cbff61485f"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json",
+      "sha256": "809f32b22979137fd7eec11f02085a5ce964bdb2a45246be5d99154631da8aa3"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json",
+      "sha256": "aea7cee0aeb7ccfd9df04159eb0b7f3bd4a14f01776d010cf892fbd1b43c93e0"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json",
+      "sha256": "9849447c897dfe324558428be8d2f4a31aa9ff529ef18e0b99641745c2c6ed5e"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_sdr_akr_nadp_control_tranche_preregistration_20260520.json",
+      "sha256": "de41ce460ffea6f47f3bd986b8dc69925068ffb4f96f040331479742e25f85df"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json",
+      "sha256": "b79b50e689a790725368f689bdfd733d40c82d82077fce8c28585745a77bdbcb"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json",
+      "sha256": "70edceda915de556bc9fd46dda3dc8d3ffeec802da895017da9b071143b0e563"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_sugar_phosphate_isomerase_control_tranche_preregistration_20260520.json",
+      "sha256": "2302ed79cb1773b4f5fecb0e905dedcc686bd82ae7d50a0a83038614fc31b25e"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520.json",
+      "sha256": "1393f6b43344d7f4a5cd18ac2c8b4dc099ddda07aa0e20541083d124a6342ae7"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520.json",
+      "sha256": "d4819d104b47f5a6256a85215d3bac09b2798fd80aa37e92e7f3a97137847bd6"
+    }
+  ],
+  "synthesis_conclusion": {
+    "closed_tranches_are_terminal_review_only": true,
+    "do_not_promote_any_family_now": true,
+    "next_queue_state": "six_family_small_win_queue_closed_select_new_source_or_family",
+    "source_free_axis_ready_family_count": 0
+  }
+}

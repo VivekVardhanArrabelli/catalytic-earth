@@ -81,6 +81,116 @@ follow-up is research-lane-only legacy ANP/PB terminal-atom auditing or a
 chemcomp ATP terminal-gamma tranche; neither belongs on the main-loop critical
 path until it resolves a preregistered blocker.
 
+As of the same 2026-05-20T19:05:55Z automation run,
+`artifacts/v3_source_complete_external_minicampaign_blocker_review_20260520.json`
+records that the current source-complete post-P06744 external surface is not a
+clean new prospective mini-campaign: all six source-complete rows already have
+bounded sequence, current-countable Foldseek, and terminal decision outcomes,
+and all six are review-only terminal rejections by current-countable
+structural duplicate signal. The artifact therefore closes that reuse path
+without import and requires genuinely new external sourcing for the next
+prospective campaign.
+
+The fallback small win is
+`artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json`.
+It freezes 15 review-only rows before any new tranche scoring: Q9BXD5 as the
+single external Schiff-base lyase positive-like row, five current
+`heme_peroxidase_oxidase` controls, five current `plp_dependent_enzyme`
+controls, two current `ser_his_acid_hydrolase` controls, and two current
+`metal_dependent_hydrolase` controls. The artifact documents selection before
+outcome scoring, uses existing source/control artifacts only for provenance,
+and does not run new geometry axes, thresholds, inverse-gate scores,
+production-fingerprint scoring, registry edits, or label imports.
+`artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json`
+then closes that exact frozen row set with review-only terminal decisions: 14
+current controls remain `mechanism_match` rows for their existing context, and
+Q9BXD5 stays `needs_review` because its Schiff-base evidence is source-traced
+rather than source-free and broader duplicate/factory blockers remain open.
+`artifacts/v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json`
+adds the no-claim baseline diagnostic for the same frozen tranche. EC/name
+keyword routing finds Q9BXD5 but also over-admits the PLP current-control
+`m_csa:186`; it cannot detect the source-free-axis gap or duplicate/factory
+blockers. Q9BXD5 has bounded current-reference sequence no-signal and ESM
+sidecar context, but the ESM signal remains a representation holdout and
+Foldseek current-countable screening is not available for Q9BXD5 in this
+tranche.
+
+Evidence-based confidence call: confidence is high that no prospective
+source-complete external mini-campaign can be honestly claimed from the current
+post-P06744 surface because the rows are already terminally decided. Confidence
+is moderate-to-high that the frozen Schiff-base tranche is the right next
+non-ePK experiment because it directly tests the observed Q9BXD5 heme-collapse
+failure mode against heme, PLP, and hydrolase controls while keeping all
+promotion gates closed. Confidence is high that Schiff-base lyase is still a
+no-go production fingerprint because the source-free Schiff-base axis-ready
+count is 0.
+
+The same run also stages and closes the next ranked non-ePK fallback tranche
+for DNA glycosylase/lyase.
+`artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json`
+freezes 11 rows before scoring: P06746 as the single external DNA Pol X/5'-dRP
+lyase positive-like row, five current `flavin_dehydrogenase_reductase`
+controls, and five current out-of-scope controls.
+`artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json`
+then records review-only terminal decisions for that exact set: P06746 remains
+`needs_review`, five flavin controls remain `mechanism_match`, and five
+out-of-scope controls remain `out_of_scope`. The source-free DNA-lyase geometry
+axis-ready count is 0, so no production fingerprint, threshold, registry edit,
+or label import is authorized.
+`artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json`
+adds the no-claim baseline diagnostic: EC/name keyword routing finds only
+P06746 and cannot detect source-free geometry or duplicate/factory blockers;
+sequence and ESM sidecar evidence is available only for P06746, and no
+Foldseek current-countable screen is available for P06746 in this tranche.
+`artifacts/v3_mechanism_family_readiness_index_post_tranche_refresh_20260520.json`
+rolls up the family queue after these tranche decisions: glycoside hydrolase,
+Schiff-base lyase, and DNA glycosylase/lyase are closed as terminal
+review-only no-go tranches with 0 source-free-axis-ready families. SDR/AKR and
+sugar-phosphate isomerase remain packet-only no-go families; the recommended
+next non-ePK queue item is a frozen SDR/AKR/NAD(P) control tranche if no
+source-complete external campaign is available.
+That recommended queue item is now frozen in
+`artifacts/v3_sdr_akr_nadp_control_tranche_preregistration_20260520.json`:
+14 rows total, including O14756 SDR, C9JRZ8 AKR, four clean SDR-like EC 1.1.1
+abstention controls, four current flavin controls, and four current heme
+controls. The artifact is preregistration only and does not run NAD(P) axes,
+thresholds, inverse-gate scores, production scoring, registry edits, or label
+imports. `artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json`
+now closes those exact frozen rows as review-only terminal evidence: O14756
+and C9JRZ8 remain `needs_review`, four external SDR-like abstention controls
+are `ambiguous`, and eight current redox controls remain `mechanism_match`.
+The source-free SDR/AKR/NAD(P) axis-ready count is 0, so no production
+fingerprint expansion, threshold, registry edit, or label import is
+authorized. The no-claim companion
+`artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json`
+records that EC/name routing over-admits broad redox controls, bounded
+sequence/ESM context is diagnostic only, and Foldseek current-countable
+screening was not available for the external positive-like rows in this
+tranche.
+
+Updated confidence call: confidence is high that the current non-ePK family
+queue has produced terminal small wins rather than production candidates:
+glycoside hydrolase, Schiff-base lyase, DNA glycosylase/lyase, and SDR/AKR
+all remain review-only no-go surfaces with 0 source-free-axis-ready families.
+The sugar-phosphate-isomerase fallback is now frozen in
+`artifacts/v3_sugar_phosphate_isomerase_control_tranche_preregistration_20260520.json`:
+11 rows total, including P34949 as the positive-like row, four current
+`flavin_dehydrogenase_reductase` controls, two current
+`flavin_monooxygenase` controls, and four current out-of-scope controls. It is
+preregistration only.
+`artifacts/v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520.json`
+then closes the same frozen rows as review-only terminal evidence: P34949 is
+`needs_review`, six current flavin controls remain `mechanism_match`, and four
+current controls remain `out_of_scope`. The source-free sugar-phosphate axis
+ready count is 0.
+`artifacts/v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520.json`
+adds the matching no-claim baseline diagnostic: EC/name routing finds only
+P34949 but cannot detect the source-free geometry or duplicate/factory
+blockers, and Foldseek current-countable screening is unavailable in this
+tranche. The six-family non-ePK small-win queue is now exhausted as terminal
+review-only no-go evidence; the next main-loop choice should be genuinely new
+external sourcing or a new family packet outside this queue.
+
 As of the 2026-05-20T18:04:27Z automation run,
 `artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json`
 freezes a second prospective external mini-campaign before scoring. This

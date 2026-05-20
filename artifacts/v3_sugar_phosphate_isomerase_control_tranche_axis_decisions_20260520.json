@@ -1,0 +1,214 @@
+{
+  "axis_policy": {
+    "allowed_review_only_axes": [
+      "source-traced Arg295 and pocket-composition evidence from the readiness packet",
+      "existing flavin-ligand absence/presence contrast",
+      "existing current 8-fingerprint retrieval context",
+      "existing duplicate/import blockers from review-only source artifacts"
+    ],
+    "forbidden_predictive_uses": [
+      "protein name as positive score",
+      "EC/Rhea/InterPro text as positive score",
+      "new threshold calibration",
+      "external hard-negative import decision",
+      "registry mutation"
+    ],
+    "source_free_positive_axis_ready": false
+  },
+  "metadata": {
+    "artifact_id": "v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T19:43:44Z",
+    "curated_label_registry_edited": false,
+    "current_control_count": 10,
+    "current_control_mechanism_match_count": 6,
+    "experiment_id": "sugar_phosphate_isomerase_vs_flavin_control_tranche_v1_review_only",
+    "external_candidate_count": 1,
+    "family_id": "sugar_phosphate_isomerase",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 11,
+    "git_history_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "sugar_phosphate_isomerase_control_tranche_review_only_axis_decisions",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_sugar_phosphate_axis_ready_count": 0,
+    "source_traced_positive_like_count": 1,
+    "terminal_decision_counts": {
+      "mechanism_match": 6,
+      "needs_review": 1,
+      "out_of_scope": 4
+    }
+  },
+  "next_experiment": {
+    "decision_to_start_now": false,
+    "id": "new_source_complete_external_minicampaign_or_new_family_packet",
+    "preconditions": [
+      "new external candidate selection must be frozen before outcome scoring",
+      "source-free local pocket or substrate geometry axes must be preregistered before positive claims",
+      "broader duplicate screening and full gates remain required before any import"
+    ]
+  },
+  "rows": [
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "duplicate_and_import_axis": {
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "remaining_import_blockers": [
+          "source_free_sugar_phosphate_geometry_axis_missing",
+          "broader_duplicate_screening_unresolved",
+          "human_expert_deferred",
+          "full_label_factory_gate_not_run",
+          "review_decision_not_terminal"
+        ],
+        "sequence_duplicate_screen_status": "no_near_duplicate_signal"
+      },
+      "flavin_contrast_axis": {
+        "flavin_ligand_context_absent": true,
+        "flavin_role_hint_match_count": 0,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.185
+      },
+      "freeze_rank": 1,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P34949",
+      "row_role": "external_sugar_phosphate_isomerase_positive_like_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "source_traced_sugar_phosphate_axis": {
+        "direct_local_sugar_phosphate_geometry_ready": false,
+        "source_active_site_arg_positions": [
+          295
+        ],
+        "source_free_position_policy_ready": false,
+        "status": "source_traced_basic_active_site_and_pocket_context_present_not_source_free"
+      },
+      "terminal_decision": "needs_review",
+      "terminal_reason": "source-traced sugar-phosphate evidence and absent flavin context repair one weak-flavin collapse, but source-free geometry, broader duplicate screening, terminal review, and gates remain unresolved"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 2,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:3",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 3,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:6",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 4,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:20",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 5,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:68",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": "flavin_monooxygenase",
+      "freeze_rank": 6,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:131",
+      "row_role": "current_flavin_monooxygenase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": "flavin_monooxygenase",
+      "freeze_rank": 7,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:132",
+      "row_role": "current_flavin_monooxygenase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": null,
+      "freeze_rank": 8,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:1",
+      "row_role": "current_out_of_scope_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current out-of-scope control remains outside the production fingerprint universe and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": null,
+      "freeze_rank": 9,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:2",
+      "row_role": "current_out_of_scope_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current out-of-scope control remains outside the production fingerprint universe and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": null,
+      "freeze_rank": 10,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:4",
+      "row_role": "current_out_of_scope_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current out-of-scope control remains outside the production fingerprint universe and is not sugar-phosphate-isomerase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "expected_fingerprint_id": null,
+      "freeze_rank": 11,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:7",
+      "row_role": "current_out_of_scope_control",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current out-of-scope control remains outside the production fingerprint universe and is not sugar-phosphate-isomerase positive evidence"
+    }
+  ],
+  "synthesis_conclusion": {
+    "closed_tranche_is_terminal_review_only": true,
+    "overall": "sugar_phosphate_isomerase_remains_review_only_and_not_production_ready",
+    "source_free_axis_ready_family_count": 0
+  }
+}

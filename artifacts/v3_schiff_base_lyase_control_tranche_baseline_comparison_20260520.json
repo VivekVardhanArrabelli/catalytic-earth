@@ -1,0 +1,249 @@
+{
+  "caveats": [
+    "Keyword/name routing is review context only and can over-admit PLP lyase controls while missing source-free axis blockers.",
+    "Sequence and ESM evidence exists only for Q9BXD5 from prior pilot surfaces and cannot score the current controls as an external-candidate benchmark.",
+    "No Foldseek current-countable screen was run for Q9BXD5 in this tranche; broader duplicate screening remains required.",
+    "The artifact compares diagnostics, not production performance."
+  ],
+  "metadata": {
+    "artifact_id": "v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520",
+    "artifact_migration_files_edited": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T19:24:38Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 15,
+    "method": "schiff_base_lyase_control_tranche_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_artifacts": {
+      "axis_decisions": "artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json",
+      "schiff_control": "artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json",
+      "schiff_import_safety": "artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json",
+      "tranche_freeze": "artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json"
+    },
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "bounded_sequence_nearest_neighbor": {
+      "available_external_row_count": 1,
+      "current_control_row_count_not_evaluated_by_external_sequence_screen": 14,
+      "limitations": [
+        "only Q9BXD5 has the external pilot bounded sequence-screen status in this artifact",
+        "sequence no-signal does not remove broader duplicate/factory blockers"
+      ],
+      "near_duplicate_signal_count": 0,
+      "q9bxd5_sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+    },
+    "ec_keyword_name_proxy": {
+      "detects_duplicate_or_factory_blockers": false,
+      "detects_source_free_axis_gap": false,
+      "evaluated_row_count": 15,
+      "false_target_like_current_control_rows": [
+        "m_csa:186"
+      ],
+      "keyword_set": [
+        "schiff",
+        "aldolase",
+        "lyase"
+      ],
+      "keyword_status_counts": {
+        "no_target_keyword_hit": 13,
+        "target_keyword_hit": 2
+      },
+      "missed_needs_review_rows": [],
+      "rows": [
+        {
+          "keyword_hits": [
+            "aldolase",
+            "lyase"
+          ],
+          "keyword_proxy_calls_target": true,
+          "row_id": "uniprot:Q9BXD5",
+          "row_role": "external_schiff_base_lyase_positive_like_candidate",
+          "terminal_decision": "needs_review"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:37",
+          "row_role": "current_heme_peroxidase_oxidase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:124",
+          "row_role": "current_heme_peroxidase_oxidase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:133",
+          "row_role": "current_heme_peroxidase_oxidase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:208",
+          "row_role": "current_heme_peroxidase_oxidase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:239",
+          "row_role": "current_heme_peroxidase_oxidase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:66",
+          "row_role": "current_plp_dependent_enzyme_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:147",
+          "row_role": "current_plp_dependent_enzyme_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [
+            "lyase"
+          ],
+          "keyword_proxy_calls_target": true,
+          "row_id": "m_csa:186",
+          "row_role": "current_plp_dependent_enzyme_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:195",
+          "row_role": "current_plp_dependent_enzyme_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:205",
+          "row_role": "current_plp_dependent_enzyme_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:5",
+          "row_role": "current_ser_his_acid_hydrolase_non_lyase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:94",
+          "row_role": "current_ser_his_acid_hydrolase_non_lyase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:11",
+          "row_role": "current_metal_dependent_hydrolase_non_lyase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:15",
+          "row_role": "current_metal_dependent_hydrolase_non_lyase_control",
+          "terminal_decision": "mechanism_match"
+        }
+      ]
+    },
+    "esm_sidecar_representation": {
+      "available_external_row_count": 1,
+      "baseline_backend": "esm2_t6_8m_ur50d",
+      "baseline_nearest_reference_accession": "P11708",
+      "baseline_top_embedding_cosine": 0.8619,
+      "comparison_backend": "esm2_t30_150m_ur50d",
+      "comparison_nearest_reference_accession": "P11708",
+      "comparison_top_embedding_cosine": 0.9649,
+      "representation_holdout_status": "representation_near_duplicate_holdout",
+      "superiority_claim_supported": false
+    },
+    "foldseek_current_countable_sidecar": {
+      "available_for_q9bxd5_in_this_tranche": false,
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "current_controls_have_selected_structures": 14,
+      "superiority_claim_supported": false
+    },
+    "review_only_axis_triage": {
+      "evaluated_row_count": 15,
+      "import_ready_candidate_count": 0,
+      "source_free_schiff_base_axis_ready_count": 0,
+      "terminal_decision_counts": {
+        "mechanism_match": 14,
+        "needs_review": 1
+      }
+    }
+  },
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json",
+      "sha256": "8a2d2afffb8f1bf1010987f7e630596861306a666e56161967ba828d15140a9f"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json",
+      "sha256": "096066b807e2c363177407b4a65c166c8e706202309bd3211d298ec50878a9cb"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json",
+      "sha256": "63fbdfee69409ca553b1291b527d73ef1213fb0bd98888f68afa53bb32551125"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json",
+      "sha256": "ac524a525ba27ab937eecdcb9b90045e45e61102d5f063ad8989a5311167c382"
+    }
+  ],
+  "synthesis_conclusion": {
+    "main_result": "baselines_are_diagnostic_only_and_do_not_make_schiff_base_lyase_production_ready",
+    "next_step": "complete review-only source-free axis design and broader duplicate screening before any future scoring claim",
+    "superiority_claim": "not_made"
+  },
+  "task_definition": {
+    "baseline_claim_scope": "diagnostic_only_no_superiority_claim",
+    "frozen_rows": [
+      "uniprot:Q9BXD5",
+      "m_csa:37",
+      "m_csa:124",
+      "m_csa:133",
+      "m_csa:208",
+      "m_csa:239",
+      "m_csa:66",
+      "m_csa:147",
+      "m_csa:186",
+      "m_csa:195",
+      "m_csa:205",
+      "m_csa:5",
+      "m_csa:94",
+      "m_csa:11",
+      "m_csa:15"
+    ],
+    "positive_claim_allowed": false,
+    "target_family": "schiff_base_lyase",
+    "task_id": "review_only_schiff_base_lyase_control_tranche_v1"
+  }
+}

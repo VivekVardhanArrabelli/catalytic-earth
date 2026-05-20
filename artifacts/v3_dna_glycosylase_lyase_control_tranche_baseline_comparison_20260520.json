@@ -1,0 +1,220 @@
+{
+  "caveats": [
+    "Keyword/name routing is review context only and cannot detect source-free geometry blockers.",
+    "Sequence and ESM evidence exists only for P06746 from prior pilot surfaces and cannot score the current controls as an external-candidate benchmark.",
+    "No Foldseek current-countable screen was run for P06746 in this tranche; broader duplicate screening remains required.",
+    "The artifact compares diagnostics, not production performance."
+  ],
+  "metadata": {
+    "artifact_id": "v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520",
+    "artifact_migration_files_edited": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T19:28:29Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 11,
+    "method": "dna_glycosylase_lyase_control_tranche_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_artifacts": {
+      "axis_decisions": "artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json",
+      "dna_import_safety": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json",
+      "dna_repair_control": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json",
+      "tranche_freeze": "artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json"
+    },
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "bounded_sequence_nearest_neighbor": {
+      "available_external_row_count": 1,
+      "current_control_row_count_not_evaluated_by_external_sequence_screen": 10,
+      "limitations": [
+        "only P06746 has the external pilot bounded sequence-screen status in this artifact",
+        "sequence no-signal does not remove broader duplicate/factory blockers"
+      ],
+      "near_duplicate_signal_count": 0,
+      "p06746_sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+    },
+    "ec_keyword_name_proxy": {
+      "detects_duplicate_or_factory_blockers": false,
+      "detects_source_free_geometry_axis_gap": false,
+      "evaluated_row_count": 11,
+      "false_target_like_control_rows": [],
+      "keyword_set": [
+        "dna",
+        "glycosylase",
+        "5-drp",
+        "5'-drp",
+        "ap lyase",
+        "lyase"
+      ],
+      "keyword_status_counts": {
+        "no_target_keyword_hit": 10,
+        "target_keyword_hit": 1
+      },
+      "missed_needs_review_rows": [],
+      "rows": [
+        {
+          "keyword_hits": [
+            "5'-drp",
+            "ap lyase",
+            "dna",
+            "lyase"
+          ],
+          "keyword_proxy_calls_target": true,
+          "row_id": "uniprot:P06746",
+          "row_role": "external_dna_glycosylase_lyase_positive_like_candidate",
+          "terminal_decision": "needs_review"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:3",
+          "row_role": "current_flavin_dehydrogenase_reductase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:6",
+          "row_role": "current_flavin_dehydrogenase_reductase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:20",
+          "row_role": "current_flavin_dehydrogenase_reductase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:68",
+          "row_role": "current_flavin_dehydrogenase_reductase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:102",
+          "row_role": "current_flavin_dehydrogenase_reductase_control",
+          "terminal_decision": "mechanism_match"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:1",
+          "row_role": "current_out_of_scope_representation_control",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:2",
+          "row_role": "current_out_of_scope_representation_control",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:4",
+          "row_role": "current_out_of_scope_representation_control",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:7",
+          "row_role": "current_out_of_scope_representation_control",
+          "terminal_decision": "out_of_scope"
+        },
+        {
+          "keyword_hits": [],
+          "keyword_proxy_calls_target": false,
+          "row_id": "m_csa:8",
+          "row_role": "current_out_of_scope_representation_control",
+          "terminal_decision": "out_of_scope"
+        }
+      ]
+    },
+    "esm_sidecar_representation": {
+      "available_external_row_count": 1,
+      "baseline_backend": "esm2_t6_8m_ur50d",
+      "baseline_nearest_reference_accession": "P31116",
+      "baseline_top_embedding_cosine": 0.9275,
+      "comparison_backend": "esm2_t30_150m_ur50d",
+      "comparison_nearest_reference_accession": "P31116",
+      "comparison_top_embedding_cosine": 0.9604,
+      "current_reference_axis_match_count": 0,
+      "current_reference_contrast_count": 3,
+      "superiority_claim_supported": false
+    },
+    "foldseek_current_countable_sidecar": {
+      "available_for_p06746_in_this_tranche": false,
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "current_controls_have_selected_structures": 10,
+      "superiority_claim_supported": false
+    },
+    "review_only_axis_triage": {
+      "evaluated_row_count": 11,
+      "import_ready_candidate_count": 0,
+      "source_free_dna_lyase_axis_ready_count": 0,
+      "terminal_decision_counts": {
+        "mechanism_match": 5,
+        "needs_review": 1,
+        "out_of_scope": 5
+      }
+    }
+  },
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json",
+      "sha256": "809f32b22979137fd7eec11f02085a5ce964bdb2a45246be5d99154631da8aa3"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json",
+      "sha256": "aea7cee0aeb7ccfd9df04159eb0b7f3bd4a14f01776d010cf892fbd1b43c93e0"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json",
+      "sha256": "b129090d126bd1dd698d6dd37ed0b3cef07ac2336a00e7656c5c76b0509a8db3"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json",
+      "sha256": "ddf7f7b8ff9faa2e992428beed9e61a04f81c3c2208c7f3fecc69229947b58cd"
+    }
+  ],
+  "synthesis_conclusion": {
+    "main_result": "baselines_are_diagnostic_only_and_do_not_make_dna_glycosylase_lyase_production_ready",
+    "next_step": "complete review-only source-free geometry axis design and broader duplicate screening before any future scoring claim",
+    "superiority_claim": "not_made"
+  },
+  "task_definition": {
+    "baseline_claim_scope": "diagnostic_only_no_superiority_claim",
+    "frozen_rows": [
+      "uniprot:P06746",
+      "m_csa:3",
+      "m_csa:6",
+      "m_csa:20",
+      "m_csa:68",
+      "m_csa:102",
+      "m_csa:1",
+      "m_csa:2",
+      "m_csa:4",
+      "m_csa:7",
+      "m_csa:8"
+    ],
+    "positive_claim_allowed": false,
+    "target_family": "dna_glycosylase_lyase",
+    "task_id": "review_only_dna_glycosylase_lyase_control_tranche_v1"
+  }
+}

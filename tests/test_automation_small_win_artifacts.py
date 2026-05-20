@@ -809,6 +809,533 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertTrue(all(not row["ready_for_label_import"] for row in rows.values()))
         self.assertTrue(conclusion["do_not_promote_any_family_now"])
 
+    def test_source_complete_external_surface_is_not_reused_as_prospective(self) -> None:
+        review = _load_json(
+            ARTIFACTS
+            / "v3_source_complete_external_minicampaign_blocker_review_20260520.json"
+        )
+        metadata = review["metadata"]
+        decision = review["decision"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertFalse(decision["can_reuse_as_new_prospective_external_minicampaign"])
+        self.assertEqual(metadata["source_complete_surface_candidate_count"], 6)
+        self.assertEqual(metadata["source_complete_sequence_no_signal_count"], 6)
+        self.assertEqual(metadata["source_complete_terminal_rejection_count"], 6)
+        self.assertEqual(
+            metadata["terminal_decision_status_counts"],
+            {"rejected_current_countable_structural_duplicate_signal": 6},
+        )
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertTrue(
+            all(
+                row["terminal_decision"]
+                == "rejected_current_countable_structural_duplicate_signal"
+                for row in review["rows"]
+            )
+        )
+
+    def test_schiff_base_control_tranche_is_frozen_before_scoring(self) -> None:
+        tranche = _load_json(
+            ARTIFACTS
+            / "v3_schiff_base_lyase_control_tranche_preregistration_20260520.json"
+        )
+        metadata = tranche["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 15)
+        self.assertEqual(metadata["external_candidate_count"], 1)
+        self.assertEqual(metadata["current_control_count"], 14)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(
+            metadata["control_role_counts"],
+            {
+                "current_heme_peroxidase_oxidase_control": 5,
+                "current_metal_dependent_hydrolase_non_lyase_control": 2,
+                "current_plp_dependent_enzyme_control": 5,
+                "current_ser_his_acid_hydrolase_non_lyase_control": 2,
+                "external_schiff_base_lyase_positive_like_candidate": 1,
+            },
+        )
+
+        rows = tranche["rows"]
+        self.assertEqual(rows[0]["row_id"], "uniprot:Q9BXD5")
+        self.assertEqual(
+            rows[0]["row_role"],
+            "external_schiff_base_lyase_positive_like_candidate",
+        )
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_in_this_preregistration" for row in rows)
+        )
+        self.assertIn("frozen", tranche["next_step"].lower())
+
+    def test_schiff_base_control_tranche_decisions_stay_review_only(self) -> None:
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json"
+        )
+        metadata = decisions["metadata"]
+        conclusion = decisions["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 15)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"mechanism_match": 14, "needs_review": 1},
+        )
+        self.assertEqual(metadata["source_free_schiff_base_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = decisions["rows"]
+        q9bxd5 = next(row for row in rows if row["row_id"] == "uniprot:Q9BXD5")
+        self.assertEqual(q9bxd5["terminal_decision"], "needs_review")
+        self.assertFalse(
+            q9bxd5["source_traced_schiff_base_axis"][
+                "source_free_position_policy_ready"
+            ]
+        )
+        self.assertTrue(q9bxd5["heme_plp_cofactor_axis"]["heme_ligand_context_absent"])
+        self.assertTrue(
+            all(row["selection_frozen_before_axis_scoring"] for row in rows)
+        )
+        self.assertEqual(
+            conclusion["overall"],
+            "schiff_base_lyase_remains_review_only_and_not_production_ready",
+        )
+
+    def test_schiff_base_baseline_comparison_makes_no_claim(self) -> None:
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json"
+        )
+        metadata = comparison["metadata"]
+        metrics = comparison["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["frozen_row_count"], 15)
+        self.assertFalse(comparison["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["terminal_decision_counts"],
+            {"mechanism_match": 14, "needs_review": 1},
+        )
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["source_free_schiff_base_axis_ready_count"],
+            0,
+        )
+        self.assertEqual(
+            metrics["ec_keyword_name_proxy"]["keyword_status_counts"],
+            {"no_target_keyword_hit": 13, "target_keyword_hit": 2},
+        )
+        self.assertFalse(metrics["ec_keyword_name_proxy"]["detects_source_free_axis_gap"])
+        self.assertEqual(
+            metrics["bounded_sequence_nearest_neighbor"][
+                "q9bxd5_sequence_import_safety_status"
+            ],
+            "bounded_current_reference_no_near_duplicate_signal",
+        )
+        self.assertFalse(
+            metrics["esm_sidecar_representation"]["superiority_claim_supported"]
+        )
+        self.assertFalse(
+            metrics["foldseek_current_countable_sidecar"]["available_for_q9bxd5_in_this_tranche"]
+        )
+
+    def test_dna_glycosylase_control_tranche_is_frozen_before_scoring(self) -> None:
+        tranche = _load_json(
+            ARTIFACTS
+            / "v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json"
+        )
+        metadata = tranche["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 11)
+        self.assertEqual(metadata["external_candidate_count"], 1)
+        self.assertEqual(metadata["current_control_count"], 10)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(
+            metadata["control_role_counts"],
+            {
+                "current_flavin_dehydrogenase_reductase_control": 5,
+                "current_out_of_scope_representation_control": 5,
+                "external_dna_glycosylase_lyase_positive_like_candidate": 1,
+            },
+        )
+        self.assertEqual(tranche["rows"][0]["row_id"], "uniprot:P06746")
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_in_this_preregistration" for row in tranche["rows"])
+        )
+
+    def test_dna_glycosylase_control_tranche_decisions_stay_review_only(self) -> None:
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json"
+        )
+        metadata = decisions["metadata"]
+        conclusion = decisions["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 11)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"mechanism_match": 5, "needs_review": 1, "out_of_scope": 5},
+        )
+        self.assertEqual(metadata["source_free_dna_lyase_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        p06746 = next(row for row in decisions["rows"] if row["row_id"] == "uniprot:P06746")
+        self.assertEqual(p06746["terminal_decision"], "needs_review")
+        self.assertFalse(
+            p06746["source_traced_dna_lyase_axis"]["source_free_geometry_axis_ready"]
+        )
+        self.assertEqual(
+            p06746["source_traced_dna_lyase_axis"]["source_active_site_lys_positions"],
+            [72],
+        )
+        self.assertEqual(
+            conclusion["overall"],
+            "dna_glycosylase_lyase_remains_review_only_and_not_production_ready",
+        )
+
+    def test_dna_glycosylase_baseline_comparison_makes_no_claim(self) -> None:
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json"
+        )
+        metadata = comparison["metadata"]
+        metrics = comparison["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["frozen_row_count"], 11)
+        self.assertFalse(comparison["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["terminal_decision_counts"],
+            {"mechanism_match": 5, "needs_review": 1, "out_of_scope": 5},
+        )
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["source_free_dna_lyase_axis_ready_count"],
+            0,
+        )
+        self.assertEqual(
+            metrics["ec_keyword_name_proxy"]["keyword_status_counts"],
+            {"no_target_keyword_hit": 10, "target_keyword_hit": 1},
+        )
+        self.assertFalse(
+            metrics["ec_keyword_name_proxy"]["detects_source_free_geometry_axis_gap"]
+        )
+        self.assertEqual(
+            metrics["bounded_sequence_nearest_neighbor"][
+                "p06746_sequence_import_safety_status"
+            ],
+            "bounded_current_reference_no_near_duplicate_signal",
+        )
+        self.assertFalse(
+            metrics["esm_sidecar_representation"]["superiority_claim_supported"]
+        )
+        self.assertFalse(
+            metrics["foldseek_current_countable_sidecar"]["available_for_p06746_in_this_tranche"]
+        )
+
+    def test_post_tranche_family_index_keeps_all_families_no_go(self) -> None:
+        index = _load_json(
+            ARTIFACTS
+            / "v3_mechanism_family_readiness_index_post_tranche_refresh_20260520.json"
+        )
+        metadata = index["metadata"]
+        conclusion = index["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["family_packet_count"], 6)
+        self.assertEqual(metadata["closed_review_tranche_count"], 5)
+        self.assertEqual(metadata["remaining_packet_only_family_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["next_recommended_tranche_frozen"])
+
+        closed = {row["family_id"]: row for row in index["closed_review_tranches"]}
+        self.assertEqual(
+            set(closed),
+            {
+                "glycoside_hydrolase",
+                "schiff_base_lyase",
+                "dna_glycosylase_lyase",
+                "sdr_akr_nadp_redox_boundary",
+                "sugar_phosphate_isomerase",
+            },
+        )
+        self.assertTrue(
+            all(row["source_free_axis_ready_count"] == 0 for row in closed.values())
+        )
+        remaining = {row["family_id"] for row in index["remaining_packet_only_families"]}
+        self.assertEqual(remaining, set())
+        self.assertEqual(
+            index["recommended_next_main_loop_experiment"]["id"],
+            "new_source_complete_external_minicampaign_or_new_family_readiness_packet",
+        )
+        self.assertEqual(
+            index["recommended_next_main_loop_experiment"]["status"],
+            "queue_exhausted_pending_new_source",
+        )
+        self.assertTrue(conclusion["do_not_promote_any_family_now"])
+
+    def test_sdr_akr_control_tranche_is_frozen_before_scoring(self) -> None:
+        tranche = _load_json(
+            ARTIFACTS / "v3_sdr_akr_nadp_control_tranche_preregistration_20260520.json"
+        )
+        metadata = tranche["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertEqual(metadata["external_candidate_count"], 6)
+        self.assertEqual(metadata["current_control_count"], 8)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(
+            metadata["control_role_counts"],
+            {
+                "current_flavin_redox_control": 4,
+                "current_heme_redox_control": 4,
+                "external_akr_nadp_positive_like_candidate": 1,
+                "external_sdr_ec_1_1_1_clean_abstention_control": 4,
+                "external_sdr_positive_like_candidate": 1,
+            },
+        )
+        self.assertEqual(tranche["rows"][0]["row_id"], "uniprot:O14756")
+        self.assertEqual(tranche["rows"][1]["row_id"], "uniprot:C9JRZ8")
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_in_this_preregistration" for row in tranche["rows"])
+        )
+
+    def test_sugar_phosphate_control_tranche_decisions_stay_review_only(self) -> None:
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520.json"
+        )
+        metadata = decisions["metadata"]
+        conclusion = decisions["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 11)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"mechanism_match": 6, "needs_review": 1, "out_of_scope": 4},
+        )
+        self.assertEqual(metadata["source_free_sugar_phosphate_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in decisions["rows"]}
+        self.assertEqual(rows["uniprot:P34949"]["terminal_decision"], "needs_review")
+        self.assertFalse(
+            rows["uniprot:P34949"]["source_traced_sugar_phosphate_axis"][
+                "source_free_position_policy_ready"
+            ]
+        )
+        self.assertTrue(rows["uniprot:P34949"]["flavin_contrast_axis"]["flavin_ligand_context_absent"])
+        self.assertTrue(all(row["selection_frozen_before_axis_scoring"] for row in rows.values()))
+        self.assertEqual(
+            conclusion["overall"],
+            "sugar_phosphate_isomerase_remains_review_only_and_not_production_ready",
+        )
+
+    def test_sugar_phosphate_baseline_comparison_makes_no_claim(self) -> None:
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520.json"
+        )
+        metadata = comparison["metadata"]
+        metrics = comparison["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["frozen_row_count"], 11)
+        self.assertFalse(comparison["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["terminal_decision_counts"],
+            {"mechanism_match": 6, "needs_review": 1, "out_of_scope": 4},
+        )
+        self.assertEqual(
+            metrics["review_only_axis_triage"][
+                "source_free_sugar_phosphate_axis_ready_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            metrics["ec_keyword_name_proxy"]["keyword_status_counts"],
+            {"no_target_keyword_hit": 10, "target_keyword_hit": 1},
+        )
+        self.assertFalse(
+            metrics["ec_keyword_name_proxy"]["detects_source_free_axis_gap"]
+        )
+        self.assertFalse(
+            metrics["foldseek_current_countable_sidecar"][
+                "available_for_p34949_in_this_tranche"
+            ]
+        )
+
+    def test_sdr_akr_control_tranche_decisions_stay_review_only(self) -> None:
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json"
+        )
+        metadata = decisions["metadata"]
+        conclusion = decisions["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"ambiguous": 4, "mechanism_match": 8, "needs_review": 2},
+        )
+        self.assertEqual(metadata["source_free_sdr_akr_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in decisions["rows"]}
+        self.assertEqual(rows["uniprot:O14756"]["terminal_decision"], "needs_review")
+        self.assertEqual(rows["uniprot:C9JRZ8"]["terminal_decision"], "needs_review")
+        self.assertFalse(
+            rows["uniprot:O14756"]["source_traced_sdr_axis"][
+                "source_free_position_policy_ready"
+            ]
+        )
+        self.assertFalse(
+            rows["uniprot:C9JRZ8"]["source_traced_akr_axis"][
+                "source_free_position_policy_ready"
+            ]
+        )
+        self.assertTrue(all(row["selection_frozen_before_axis_scoring"] for row in rows.values()))
+        self.assertEqual(
+            conclusion["overall"],
+            "sdr_akr_nadp_redox_boundary_remains_review_only_and_not_production_ready",
+        )
+
+    def test_sdr_akr_baseline_comparison_makes_no_claim(self) -> None:
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json"
+        )
+        metadata = comparison["metadata"]
+        metrics = comparison["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertFalse(comparison["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["terminal_decision_counts"],
+            {"ambiguous": 4, "mechanism_match": 8, "needs_review": 2},
+        )
+        self.assertEqual(
+            metrics["review_only_axis_triage"]["source_free_sdr_akr_axis_ready_count"],
+            0,
+        )
+        self.assertEqual(
+            metrics["ec_keyword_name_proxy"]["keyword_status_counts"],
+            {"no_target_keyword_hit": 3, "target_keyword_hit": 11},
+        )
+        self.assertFalse(
+            metrics["ec_keyword_name_proxy"]["detects_source_free_axis_gap"]
+        )
+        self.assertEqual(
+            metrics["bounded_sequence_nearest_neighbor"][
+                "o14756_sequence_import_safety_status"
+            ],
+            "bounded_current_reference_no_near_duplicate_signal",
+        )
+        self.assertFalse(
+            metrics["foldseek_current_countable_sidecar"][
+                "available_for_external_positive_like_rows_in_this_tranche"
+            ]
+        )
+
+    def test_sugar_phosphate_control_tranche_is_frozen_before_scoring(self) -> None:
+        tranche = _load_json(
+            ARTIFACTS
+            / "v3_sugar_phosphate_isomerase_control_tranche_preregistration_20260520.json"
+        )
+        metadata = tranche["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 11)
+        self.assertEqual(metadata["external_candidate_count"], 1)
+        self.assertEqual(metadata["current_control_count"], 10)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(
+            metadata["control_role_counts"],
+            {
+                "current_flavin_dehydrogenase_reductase_control": 4,
+                "current_flavin_monooxygenase_control": 2,
+                "current_out_of_scope_control": 4,
+                "external_sugar_phosphate_isomerase_positive_like_candidate": 1,
+            },
+        )
+        self.assertEqual(tranche["rows"][0]["row_id"], "uniprot:P34949")
+        self.assertEqual(
+            {row["row_id"] for row in tranche["rows"] if row["row_role"].startswith("current_")},
+            {
+                "m_csa:1",
+                "m_csa:2",
+                "m_csa:3",
+                "m_csa:4",
+                "m_csa:6",
+                "m_csa:7",
+                "m_csa:20",
+                "m_csa:68",
+                "m_csa:131",
+                "m_csa:132",
+            },
+        )
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_in_this_preregistration" for row in tranche["rows"])
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

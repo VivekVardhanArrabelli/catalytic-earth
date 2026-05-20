@@ -1,0 +1,88 @@
+{
+  "baseline_caveat": "This benchmark is a review-only diagnostic over the frozen sugar-phosphate-isomerase tranche. It does not make a production superiority claim and does not authorize label import, threshold selection, or fingerprint expansion.",
+  "metadata": {
+    "artifact_id": "v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T19:43:44Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 11,
+    "method": "sugar_phosphate_isomerase_control_tranche_no_claim_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "bounded_sequence_nearest_neighbor": {
+      "p34949_sequence_duplicate_screen_status": "no_near_duplicate_signal",
+      "superiority_claim_supported": false
+    },
+    "deterministic_kmer_proxy": {
+      "computed_in_this_artifact": false,
+      "interpretation": "No new k-mer proxy is used as a positive score.",
+      "superiority_claim_supported": false
+    },
+    "ec_keyword_name_proxy": {
+      "detects_source_free_axis_gap": false,
+      "keyword_status_counts": {
+        "no_target_keyword_hit": 10,
+        "target_keyword_hit": 1
+      },
+      "supports_import_decision": false,
+      "target_external_rows_hit": 1
+    },
+    "esm_sidecar_representation": {
+      "available_for_positive_like_rows_as_context": [],
+      "directly_compared_against_all_current_controls": false,
+      "superiority_claim_supported": false
+    },
+    "foldseek_current_countable_sidecar": {
+      "available_for_p34949_in_this_tranche": false,
+      "reason": "frozen sugar-phosphate review tranche did not materialize coordinate sidecars or run current-countable Foldseek screening",
+      "superiority_claim_supported": false
+    },
+    "review_only_axis_triage": {
+      "source_free_sugar_phosphate_axis_ready_count": 0,
+      "terminal_decision_counts": {
+        "mechanism_match": 6,
+        "needs_review": 1,
+        "out_of_scope": 4
+      }
+    }
+  },
+  "rows_frozen_before_scoring": [
+    "uniprot:P34949",
+    "m_csa:3",
+    "m_csa:6",
+    "m_csa:20",
+    "m_csa:68",
+    "m_csa:131",
+    "m_csa:132",
+    "m_csa:1",
+    "m_csa:2",
+    "m_csa:4",
+    "m_csa:7"
+  ],
+  "synthesis_conclusion": {
+    "do_not_claim_baseline_superiority": true,
+    "overall": "ec_keyword_and_sequence_context_are_diagnostic_only_for_sugar_phosphate_isomerase",
+    "production_scoring_remains_closed": true
+  },
+  "task_definition": {
+    "allowed_decisions": [
+      "mechanism_match",
+      "out_of_scope",
+      "ambiguous",
+      "needs_review",
+      "terminal_rejection"
+    ],
+    "positive_claim_allowed": false,
+    "task": "Compare review-only sugar-phosphate axis triage against simple EC/name, sequence, ESM-context, and Foldseek-availability baselines over the frozen 11-row tranche."
+  }
+}

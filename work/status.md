@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 223
-- Measured elapsed time: 6851.6 minutes (114.19 hours)
+- Entries: 226
+- Measured elapsed time: 6892.7 minutes (114.88 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,8 +14,8 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 85.3 measured minutes (1.42 hours)
-- post-infra-science: 1621.5 measured minutes (27.03 hours)
+- ops: 93.0 measured minutes (1.55 hours)
+- post-infra-science: 1654.9 measured minutes (27.58 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,43 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2600
-- Evidence references logged: 2112
+- Artifact references logged: 2622
+- Evidence references logged: 2131
 
 ## Recent Entries
-
-### 2026-05-20T16:07:10.750132+00:00 - post-infra-science
-
-- Task: ePK research-lane synthesis integration
-- Time mode: measured
-- Measured minutes: 6.167
-- Started: 2026-05-20T16:00:50Z
-- Ended: 2026-05-20T16:07:00Z
-- Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 686-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, four ePK sibling research lanes read from sibling worktrees and origin research branches, 35 lane JSON/JSONL files validated with 0 errors, ePK remains review-only and production activation no-go, targeted small-win artifact tests passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
-
-### 2026-05-20T16:21:03.279937+00:00 - post-infra-science
-
-- Task: Non-ePK family readiness packets and glycoside tranche freeze
-- Time mode: measured
-- Measured minutes: 13.8
-- Started: 2026-05-20T16:07:00Z
-- Ended: 2026-05-20T16:20:48Z
-- Artifacts: artifacts/v3_akr_family_readiness_packet_20260520.json, artifacts/v3_glycoside_hydrolase_family_readiness_packet_20260520.json, artifacts/v3_sugar_phosphate_isomerase_readiness_packet_20260520.json, artifacts/v3_mechanism_family_readiness_index_20260520.json, artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: AKR packet keeps C9JRZ8 review-only needs_review and no-go for production fingerprint expansion, glycoside hydrolase packet keeps Q6NSJ0 review-only and no-go while documenting metal-hydrolase collapse risk, sugar-phosphate isomerase packet keeps P34949 review-only and no-go while documenting weak flavin top1 scope risk, readiness index prioritizes glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only, 15-row glycoside hydrolase control tranche frozen before scoring, focused artifact tests passed, full 692-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and three external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
-
-### 2026-05-20T17:10:02.023049+00:00 - post-infra-science
-
-- Task: Refresh ePK research-lane synthesis
-- Time mode: measured
-- Measured minutes: 7.183
-- Started: 2026-05-20T17:02:50Z
-- Ended: 2026-05-20T17:10:01Z
-- Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 692-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, four sibling ePK research lanes read from worktrees and origin research branches, 54 JSON files and 4 JSONL ledgers validated with 0 errors, ePK remains review-only and production activation no-go, targeted synthesis test passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ### 2026-05-20T17:16:23.980051+00:00 - post-infra-science
 
@@ -119,6 +86,39 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 700-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, 107 ePK lane JSON files and 4 JSONL ledgers validated with 0 errors, ePK remains review-only and production activation no-go, targeted synthesis test passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
+
+### 2026-05-20T19:49:09.571418+00:00 - post-infra-science
+
+- Task: Non-ePK control tranche terminal small wins
+- Time mode: measured
+- Measured minutes: 33.433
+- Started: 2026-05-20T19:13:00Z
+- Ended: 2026-05-20T19:46:26Z
+- Artifacts: artifacts/v3_source_complete_external_minicampaign_blocker_review_20260520.json, artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json, artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json, artifacts/v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json, artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json, artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json, artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json, artifacts/v3_sdr_akr_nadp_control_tranche_preregistration_20260520.json, artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json, artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json, artifacts/v3_sugar_phosphate_isomerase_control_tranche_preregistration_20260520.json, artifacts/v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520.json, artifacts/v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520.json, artifacts/v3_mechanism_family_readiness_index_post_tranche_refresh_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: source-complete post-P06744 surface rejected as already terminally decided, Schiff-base lyase frozen tranche closed with 14 mechanism_match and Q9BXD5 needs_review, DNA glycosylase lyase frozen tranche closed with 5 mechanism_match 5 out_of_scope and P06746 needs_review, SDR/AKR frozen tranche closed with 8 mechanism_match 4 ambiguous and 2 needs_review, sugar-phosphate-isomerase frozen tranche closed with 6 mechanism_match 4 out_of_scope and P34949 needs_review, all five closed non-ePK tranches have 0 source-free-axis-ready families, no registry edit no label import no production fingerprint expansion
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
+
+### 2026-05-20T19:49:17.503329+00:00 - ops
+
+- Task: Final validation for non-ePK tranche run
+- Time mode: measured
+- Measured minutes: 2.05
+- Started: 2026-05-20T19:46:26Z
+- Ended: 2026-05-20T19:48:29Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: full 714-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and three external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation; safety rails preserved.
+
+### 2026-05-20T19:54:53.875623+00:00 - ops
+
+- Task: Post-status validation rerun
+- Time mode: measured
+- Measured minutes: 5.6
+- Started: 2026-05-20T19:49:00Z
+- Ended: 2026-05-20T19:54:36Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: post-status full 714-test unit discovery passed, post-status validate passed with 682 labels and 8 fingerprints, post-status artifact migration dry-run passed with removal_allowed=0, all artifacts JSON validation passed, git diff --check passed
+- Notes: Recorded after regenerating status so the final work log reflects the last verification pass.
 
 ## Expectation Updates
 
@@ -298,6 +298,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T17:20:38.990082+00:00: Small-win run is ready to commit and push with ePK still review-only and glycoside hydrolase still no-go for production.
 - 2026-05-20T18:22:16.234314+00:00: Next main-loop work should use source-complete external rows or freeze one Schiff-base/DNA-lyase control tranche before scoring; ePK remains research-lane-only.
 - 2026-05-20T19:12:53.814979+00:00: Commit the ePK integration, then return the main loop to source-complete external rows or a frozen non-ePK control tranche.
+- 2026-05-20T19:49:09.571418+00:00: The previous fallback queue no longer has an unscored family tranche; all six families are terminal review-only no-go surfaces.
+- 2026-05-20T19:49:17.503329+00:00: Small-win tranche run is ready to commit and push; next work should avoid reopening the closed six-family queue unless new evidence appears.
 
 ## Scope Adjustments
 
@@ -419,3 +421,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T17:19:03.090362+00:00: Modern baseline comparison now exists for the glycoside tranche without authorizing production scoring or import.
 - 2026-05-20T18:22:16.234314+00:00: Main loop added a source-gap terminal mini-campaign plus two non-ePK readiness packets; no registry import or production fingerprint path opened.
 - 2026-05-20T19:12:53.814979+00:00: Fresh ePK lane output adds review-only peptide positives and product-state controls but preserves the no-go production decision.
+- 2026-05-20T19:49:09.571418+00:00: Six-family non-ePK small-win queue is now closed as review-only no-go evidence; next main loop should source a genuinely new external mini-campaign or choose a new family packet.

@@ -157,6 +157,14 @@ is the matching no-claim baseline artifact. EC/keyword lane routing is
 diagnostic only and would over-admit all 18 rows; k-mer, ESM, Foldseek, and
 geometry/retrieval comparisons are not valid performance evidence on this
 pre-scoring source-gap surface.
+Current source-complete external mini-campaign scope:
+`artifacts/v3_source_complete_external_minicampaign_blocker_review_20260520.json`
+records that the current source-complete post-P06744 rows cannot be reused as
+a fresh prospective mini-campaign because all six already have bounded
+sequence, current-countable structural, and terminal decision outcomes. They
+are all terminal review-only rejections by current-countable structural
+duplicate signal, with 0 import-ready rows. A future prospective campaign needs
+genuinely new external sourcing or a different frozen surface before scoring.
 Current Schiff-base lyase readiness scope:
 `artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json` is review-only
 and not a production fingerprint. It uses Q9BXD5 as the only positive-like row,
@@ -165,6 +173,23 @@ against a weak `heme_peroxidase_oxidase` top1, and representation/broader
 duplicate blockers still active. The next admissible step is a frozen
 Schiff-base lyase versus heme/PLP control tranche; no threshold, registry edit,
 label import, or production scorer is authorized.
+`artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json`
+now freezes that tranche before scoring: one external Q9BXD5 positive-like row,
+five current heme controls, five current PLP controls, two current ser-his
+hydrolase controls, and two current metal-hydrolase controls. It does not run
+new axes or authorize promotion; the next step is review-only axis decisions
+over exactly those 15 rows.
+`artifacts/v3_schiff_base_lyase_control_tranche_axis_decisions_20260520.json`
+closes the frozen tranche as review-only terminal evidence. The decisions are
+14 current-control `mechanism_match` rows and Q9BXD5 as `needs_review`; the
+source-free Schiff-base axis-ready count is 0, so no production fingerprint
+expansion, threshold, registry edit, or label import is authorized.
+`artifacts/v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json`
+is the matching no-superiority baseline diagnostic. EC/name keyword routing
+hits Q9BXD5 but also a PLP current-control lyase row and misses the actual
+source-free-axis blocker; sequence and ESM context is available only for
+Q9BXD5, and Foldseek current-countable screening is still unavailable for that
+row in this tranche.
 Current DNA glycosylase/lyase readiness scope:
 `artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json` is
 review-only and not a production fingerprint. It uses P06746 as the only
@@ -173,9 +198,49 @@ context and current-reference contrasts that lack the same axis. The packet
 keeps the representation-conflict and broader duplicate blockers open, so the
 next admissible step is a frozen DNA glycosylase/lyase versus flavin/out-of-
 scope control tranche before any source-free geometry scoring.
+`artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json`
+freezes that tranche before scoring: one external P06746 positive-like row,
+five current flavin controls, and five current out-of-scope controls.
+`artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json`
+closes the frozen rows as review-only terminal evidence: P06746 is
+`needs_review`, five flavin controls are `mechanism_match`, and five current
+controls remain `out_of_scope`. The source-free DNA-lyase geometry axis-ready
+count is 0, so production promotion remains closed.
+`artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json`
+is the matching no-superiority baseline diagnostic. EC/name keyword routing
+finds only P06746, sequence and ESM context exists only for P06746, and
+Foldseek current-countable screening is still unavailable for that row in this
+tranche.
 `artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json` now folds
 Schiff-base lyase and DNA glycosylase/lyase into the non-ePK readiness index.
 All six indexed families remain no-go for production promotion.
+`artifacts/v3_mechanism_family_readiness_index_post_tranche_refresh_20260520.json`
+records the current family queue after terminal tranche work: glycoside,
+Schiff-base, DNA-lyase, SDR/AKR, and sugar-phosphate-isomerase tranches are
+closed review-only no-go surfaces. The six-family non-ePK small-win queue is
+therefore exhausted; if the next run cannot start a clean source-complete
+external campaign, choose a new family packet outside this completed queue.
+`artifacts/v3_sdr_akr_nadp_control_tranche_preregistration_20260520.json`
+freezes that SDR/AKR/NAD(P) tranche before scoring: O14756, C9JRZ8, four clean
+SDR-like EC 1.1.1 abstention controls, four current flavin controls, and four
+current heme controls. It is preregistration only.
+`artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json` then
+closes those 14 rows as review-only evidence: O14756 and C9JRZ8 remain
+`needs_review`, four external SDR-like abstention controls are `ambiguous`,
+and eight current redox controls remain `mechanism_match`. The source-free
+SDR/AKR axis-ready count is 0. The matching
+`artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json`
+is diagnostic only and makes no superiority claim.
+`artifacts/v3_sugar_phosphate_isomerase_control_tranche_preregistration_20260520.json`
+freezes the sugar-phosphate-isomerase versus flavin/current-control tranche
+before scoring: P34949, four current flavin-dehydrogenase/reductase controls,
+two current flavin-monooxygenase controls, and four current out-of-scope
+controls. `artifacts/v3_sugar_phosphate_isomerase_control_tranche_axis_decisions_20260520.json`
+closes those rows as review-only evidence: P34949 remains `needs_review`, six
+flavin controls are `mechanism_match`, and four current controls are
+`out_of_scope`. The source-free sugar-phosphate axis-ready count is 0. The
+matching `artifacts/v3_sugar_phosphate_isomerase_control_tranche_baseline_comparison_20260520.json`
+is diagnostic only and makes no superiority claim.
 MEK1/ERK1 source review now provides two
 source-authoritative broad protein-substrate review controls (`9UUR` and
 `9UUX`) and rejects same-chain `9UW4`, but the broad-role stress test shows a

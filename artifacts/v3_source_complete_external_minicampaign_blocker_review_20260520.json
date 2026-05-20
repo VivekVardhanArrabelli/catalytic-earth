@@ -1,0 +1,168 @@
+{
+  "decision": {
+    "can_reuse_as_new_prospective_external_minicampaign": false,
+    "new_external_sourcing_required_for_future_prospective_campaign": true,
+    "next_main_loop_action": "freeze_a_new_non_epk_control_tranche_before_scoring",
+    "reason": "all six source-complete post-P06744 rows are already terminal review-only rejections from current-countable structural duplicate signal"
+  },
+  "metadata": {
+    "artifact_id": "v3_source_complete_external_minicampaign_blocker_review_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T19:16:30Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "source_complete_external_minicampaign_blocker_review",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "reason_candidate_selection_is_not_prospective": "source_complete_rows_from_the_current_post_p06744_surface_already_have_sequence_structural_and_terminal_decision_outcomes",
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "post_p06744_backend_sequence_search": "artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.json",
+      "post_p06744_current_countable_structural_screen": "artifacts/v3_external_hard_negative_post_p06744_current_countable_structural_screen_1025.json",
+      "post_p06744_sourcing": "artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json",
+      "post_p06744_terminal_decisions": "artifacts/v3_external_hard_negative_post_p06744_terminal_decisions_1025.json"
+    },
+    "source_complete_sequence_no_signal_count": 6,
+    "source_complete_surface_candidate_count": 6,
+    "source_complete_terminal_rejection_count": 6,
+    "terminal_decision_status_counts": {
+      "rejected_current_countable_structural_duplicate_signal": 6
+    }
+  },
+  "rows": [
+    {
+      "accession": "P09104",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 7,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "lane_id": "external_source:lyase",
+      "nearest_current_countable_entry_ids": [
+        "m_csa:311"
+      ],
+      "nearest_current_countable_tm_score": 0.9818,
+      "protein_name": null,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P09104",
+      "terminal_decision": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "P13929",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 6,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "lane_id": "external_source:lyase",
+      "nearest_current_countable_entry_ids": [
+        "m_csa:311"
+      ],
+      "nearest_current_countable_tm_score": 0.9818,
+      "protein_name": null,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P13929",
+      "terminal_decision": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "P23921",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_current_countable_entry_ids": [
+        "m_csa:735"
+      ],
+      "nearest_current_countable_tm_score": 0.7661,
+      "protein_name": null,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P23921",
+      "terminal_decision": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "P26439",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 11,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "nearest_current_countable_entry_ids": [
+        "m_csa:557"
+      ],
+      "nearest_current_countable_tm_score": 0.8169,
+      "protein_name": null,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P26439",
+      "terminal_decision": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "Q15084",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "lane_id": "external_source:isomerase",
+      "nearest_current_countable_entry_ids": [
+        "m_csa:191"
+      ],
+      "nearest_current_countable_tm_score": 0.8371,
+      "protein_name": null,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q15084",
+      "terminal_decision": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    },
+    {
+      "accession": "Q96JJ7",
+      "backend_sequence_search_status": "no_near_duplicate_signal",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 2,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "lane_id": "external_source:isomerase",
+      "nearest_current_countable_entry_ids": [
+        "m_csa:191"
+      ],
+      "nearest_current_countable_tm_score": 0.7849,
+      "protein_name": null,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q96JJ7",
+      "terminal_decision": "rejected_current_countable_structural_duplicate_signal",
+      "terminal_reason": "bounded current-countable Foldseek screen found high-TM selected-structure duplicate risk"
+    }
+  ],
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json",
+      "sha256": "70aa9a7cbbaaebbab72a13bc9f259795967216b0239822eed5d2b135d437bb38"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_hard_negative_post_p06744_backend_sequence_search_1025.json",
+      "sha256": "f7c27675f80e81f52167db5d93b166765f49eb00ada0ce50945e555cae40e91c"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_hard_negative_post_p06744_current_countable_structural_screen_1025.json",
+      "sha256": "7a896c7588c74c6776bb0266dd05588c4054c9787ae76109bad6f4c853de0b85"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_hard_negative_post_p06744_terminal_decisions_1025.json",
+      "sha256": "af50f11d921f568b4a8f1eb8bd973c18558167b99bc5a18381979460ebb8301b"
+    }
+  ]
+}

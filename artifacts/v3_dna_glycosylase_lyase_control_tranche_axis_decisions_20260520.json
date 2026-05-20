@@ -1,0 +1,405 @@
+{
+  "axis_policy": {
+    "allowed_review_only_axes": [
+      "source-traced catalytic Lys environment for P06746",
+      "existing flavin/cofactor contrast",
+      "existing 1000-slice retrieval context for current controls",
+      "existing duplicate/import blockers"
+    ],
+    "forbidden_predictive_uses": [
+      "protein name as positive score",
+      "EC/Rhea text as positive score",
+      "new threshold calibration",
+      "external hard-negative import decision",
+      "registry mutation"
+    ],
+    "source_free_positive_axis_ready": false
+  },
+  "metadata": {
+    "artifact_id": "v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T19:26:55Z",
+    "curated_label_registry_edited": false,
+    "current_control_count": 10,
+    "experiment_id": "dna_glycosylase_lyase_vs_flavin_out_of_scope_control_tranche_v1_review_only",
+    "external_candidate_count": 1,
+    "family_id": "dna_glycosylase_lyase",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 11,
+    "git_history_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "dna_glycosylase_lyase_control_tranche_review_only_axis_decisions",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_dna_lyase_axis_ready_count": 0,
+    "source_traced_positive_like_count": 1,
+    "terminal_decision_counts": {
+      "mechanism_match": 5,
+      "needs_review": 1,
+      "out_of_scope": 5
+    }
+  },
+  "next_experiment": {
+    "decision_to_start_now": false,
+    "id": "dna_glycosylase_lyase_source_free_geometry_axis_design_v1_review_only",
+    "preconditions": [
+      "define source-free catalytic Lys and DNA/AP pocket geometry axis before seeing new external outcomes",
+      "complete broader duplicate screening for P06746 or fresh external positives",
+      "keep current controls frozen or preregister a new tranche before scoring"
+    ]
+  },
+  "rows": [
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "duplicate_and_import_axis": {
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "remaining_import_blockers": [
+          "broader_duplicate_screening_required",
+          "broader_duplicate_screening_unresolved",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_passed",
+          "full_label_factory_gate_not_run",
+          "heuristic_control_not_scored",
+          "review_decision_not_terminal"
+        ],
+        "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+      },
+      "freeze_rank": 1,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P06746",
+      "row_role": "external_dna_glycosylase_lyase_positive_like_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "source_traced_dna_lyase_axis": {
+        "active_site_lys_local_windows": [
+          {
+            "local_acidic_residue_count": 3,
+            "local_basic_residue_count": 7,
+            "position": 72,
+            "residue": "K",
+            "window_end": 84,
+            "window_sequence": "KKLPGVGTKIAEKIDEFLATGKLRK",
+            "window_start": 60
+          }
+        ],
+        "current_reference_dna_pol_x_lyase_axis_match_count": 0,
+        "source_active_site_lys_positions": [
+          72
+        ],
+        "source_free_geometry_axis_ready": false,
+        "status": "source_traced_catalytic_lys_present_not_source_free_geometry"
+      },
+      "terminal_decision": "needs_review",
+      "terminal_reason": "source-traced catalytic Lys axis repairs representation conflict, but source-free geometry axis, broader duplicate screening, terminal review, heuristic scoring, and factory gates remain unresolved"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "NAD(P)H dehydrogenase (quinone)",
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 2,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "seed_fingerprint",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.7506
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:3",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selected_structure_id": "1D4A",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "glutathione-disulfide reductase",
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 3,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "seed_fingerprint",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.7453
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:6",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selected_structure_id": "2GH5",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "fumarate reductase (quinol)",
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 4,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "seed_fingerprint",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.7527
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:20",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selected_structure_id": "1QJD",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "isovaleryl-CoA dehydrogenase",
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 5,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "seed_fingerprint",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.722
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:68",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selected_structure_id": "1IVH",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "L-lactate dehydrogenase (cytochrome)",
+      "expected_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "freeze_rank": 6,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "seed_fingerprint",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.7537
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:102",
+      "row_role": "current_flavin_dehydrogenase_reductase_control",
+      "selected_structure_id": "1FCB",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "glutamate racemase",
+      "expected_fingerprint_id": null,
+      "freeze_rank": 7,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "out_of_scope",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.3913
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:1",
+      "row_role": "current_out_of_scope_representation_control",
+      "selected_structure_id": "1B73",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "beta-lactamase (Class A)",
+      "expected_fingerprint_id": null,
+      "freeze_rank": 8,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "out_of_scope",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.3705
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:2",
+      "row_role": "current_out_of_scope_representation_control",
+      "selected_structure_id": "1BTL",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "nitrite reductase (copper type)",
+      "expected_fingerprint_id": null,
+      "freeze_rank": 9,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "out_of_scope",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.3963
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:4",
+      "row_role": "current_out_of_scope_representation_control",
+      "selected_structure_id": "1NIA",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "isocitrate dehydrogenase (NADP+)",
+      "expected_fingerprint_id": null,
+      "freeze_rank": 10,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "out_of_scope",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.3545
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:7",
+      "row_role": "current_out_of_scope_representation_control",
+      "selected_structure_id": "5ICD",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "dna_lyase_target_axis": {
+        "source_free_dna_lyase_axis_ready": false,
+        "status": "current_control_not_target_dna_lyase_positive"
+      },
+      "entry_name": "nicotinate-nucleotide diphosphorylase (carboxylating) (type II)",
+      "expected_fingerprint_id": null,
+      "freeze_rank": 11,
+      "geometry_status": "ok",
+      "label_type_at_freeze": "out_of_scope",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_score": 0.3413
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:8",
+      "row_role": "current_out_of_scope_representation_control",
+      "selected_structure_id": "1QPR",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "out_of_scope",
+      "terminal_reason": "current control remains matched to its existing registry status and is not DNA glycosylase/lyase positive evidence"
+    }
+  ],
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json",
+      "sha256": "809f32b22979137fd7eec11f02085a5ce964bdb2a45246be5d99154631da8aa3"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json",
+      "sha256": "b129090d126bd1dd698d6dd37ed0b3cef07ac2336a00e7656c5c76b0509a8db3"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json",
+      "sha256": "ddf7f7b8ff9faa2e992428beed9e61a04f81c3c2208c7f3fecc69229947b58cd"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_geometry_features_1000.json",
+      "sha256": "9c57e16535a7a66a4892fdea3d2a8d83087f6b0ede31f1135fb2ad64585f0e55"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_geometry_retrieval_1000.json",
+      "sha256": "bf1119e915492e25b2a1c4494d987ddfc81cf64ff43ef83f498a91d83c392ddd"
+    }
+  ],
+  "synthesis_conclusion": {
+    "control_result": "10_current_controls_remain_mechanism_or_out_of_scope_matches",
+    "overall": "dna_glycosylase_lyase_remains_review_only_and_not_production_ready",
+    "positive_like_row_status": "P06746_needs_review_source_traced_not_source_free",
+    "production_activation_decision": "no_go",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "terminal_decision_summary": {
+      "mechanism_match": 5,
+      "needs_review": 1,
+      "out_of_scope": 5
+    }
+  }
+}

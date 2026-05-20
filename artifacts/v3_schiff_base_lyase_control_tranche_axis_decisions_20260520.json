@@ -1,0 +1,539 @@
+{
+  "axis_policy": {
+    "allowed_review_only_axes": [
+      "source-traced Tyr/Lys active-site spacing for Q9BXD5",
+      "existing heme/PLP/cofactor context",
+      "existing 1000-slice retrieval context for current controls",
+      "existing duplicate/import blockers"
+    ],
+    "forbidden_predictive_uses": [
+      "protein name as positive score",
+      "EC/Rhea text as positive score",
+      "new threshold calibration",
+      "external hard-negative import decision",
+      "registry mutation"
+    ],
+    "source_free_positive_axis_ready": false
+  },
+  "metadata": {
+    "artifact_id": "v3_schiff_base_lyase_control_tranche_axis_decisions_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T19:19:07Z",
+    "curated_label_registry_edited": false,
+    "current_control_count": 14,
+    "current_control_mechanism_match_count": 14,
+    "experiment_id": "schiff_base_lyase_vs_heme_plp_control_tranche_v1_review_only",
+    "external_candidate_count": 1,
+    "family_id": "schiff_base_lyase",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 15,
+    "git_history_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "schiff_base_lyase_control_tranche_review_only_axis_decisions",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_schiff_base_axis_ready_count": 0,
+    "source_traced_positive_like_count": 1,
+    "terminal_decision_counts": {
+      "mechanism_match": 14,
+      "needs_review": 1
+    }
+  },
+  "next_experiment": {
+    "decision_to_start_now": false,
+    "id": "schiff_base_lyase_source_free_axis_design_v1_review_only",
+    "preconditions": [
+      "define source-free Lys/base geometry axis before seeing new external outcomes",
+      "complete broader duplicate screening for Q9BXD5 or fresh external positives",
+      "keep current controls frozen or preregister a new tranche before scoring"
+    ]
+  },
+  "rows": [
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "duplicate_and_import_axis": {
+        "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+        "remaining_import_blockers": [
+          "broader_duplicate_screening_required",
+          "broader_duplicate_screening_unresolved",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_passed",
+          "full_label_factory_gate_not_run",
+          "representation_near_duplicate_holdout",
+          "review_decision_not_terminal"
+        ],
+        "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal"
+      },
+      "freeze_rank": 1,
+      "heme_plp_cofactor_axis": {
+        "heme_ligand_context_absent": true,
+        "heme_or_electron_role_hint_match_count": 0,
+        "plp_context_status": "not_detected_in_current_control_artifact",
+        "status": "weak_heme_top1_with_absent_heme_counterevidence",
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.3646
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9BXD5",
+      "row_role": "external_schiff_base_lyase_positive_like_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "source_traced_schiff_base_axis": {
+        "source_active_site_lys_positions": [
+          173
+        ],
+        "source_active_site_tyr_positions": [
+          143
+        ],
+        "source_free_position_policy_ready": false,
+        "status": "source_traced_tyr_lys_pair_present_not_source_free",
+        "tyr_lys_spacing_values": [
+          30
+        ]
+      },
+      "terminal_decision": "needs_review",
+      "terminal_reason": "source-traced Schiff-base scope evidence repairs weak heme collapse, but source-free axis, broader duplicate screening, terminal review, and factory gates remain unresolved"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "prostaglandin-endoperoxide synthase",
+      "expected_fingerprint_id": "heme_peroxidase_oxidase",
+      "freeze_rank": 2,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.7237
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:37",
+      "row_role": "current_heme_peroxidase_oxidase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_heme_context_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "5COX",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "cytochrome-c oxidase (AA3 type)",
+      "expected_fingerprint_id": "heme_peroxidase_oxidase",
+      "freeze_rank": 3,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.6667,
+        "top1_score": 0.7597
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:124",
+      "row_role": "current_heme_peroxidase_oxidase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_heme_context_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1V54",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "camphor 5-monooxygenase",
+      "expected_fingerprint_id": "heme_peroxidase_oxidase",
+      "freeze_rank": 4,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.7082
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:133",
+      "row_role": "current_heme_peroxidase_oxidase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_heme_context_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1YRC",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "ubiquinol-cytochrome-c reductase",
+      "expected_fingerprint_id": "heme_peroxidase_oxidase",
+      "freeze_rank": 5,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.6557
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:208",
+      "row_role": "current_heme_peroxidase_oxidase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_heme_context_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1EZV",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "peroxidase",
+      "expected_fingerprint_id": "heme_peroxidase_oxidase",
+      "freeze_rank": 6,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.718
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:239",
+      "row_role": "current_heme_peroxidase_oxidase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_heme_context_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "7ATJ",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "D-alanine transaminase",
+      "expected_fingerprint_id": "plp_dependent_enzyme",
+      "freeze_rank": 7,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "plp_dependent_enzyme",
+        "top1_plp_ligand_anchor_score": 1.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.7235
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:66",
+      "row_role": "current_plp_dependent_enzyme_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_plp_or_plp_anchor_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1DAA",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "serine hydroxymethyltransferase",
+      "expected_fingerprint_id": "plp_dependent_enzyme",
+      "freeze_rank": 8,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "plp_dependent_enzyme",
+        "top1_plp_ligand_anchor_score": 1.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.7119
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:147",
+      "row_role": "current_plp_dependent_enzyme_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_plp_or_plp_anchor_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1LS3",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "L-serine ammonia-lyase",
+      "expected_fingerprint_id": "plp_dependent_enzyme",
+      "freeze_rank": 9,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "plp_dependent_enzyme",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.5964
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:186",
+      "row_role": "current_plp_dependent_enzyme_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_plp_or_plp_anchor_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1PWH",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "glutamate-1-semialdehyde 2,1-aminomutase",
+      "expected_fingerprint_id": "plp_dependent_enzyme",
+      "freeze_rank": 10,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "plp_dependent_enzyme",
+        "top1_plp_ligand_anchor_score": 1.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.7067
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:195",
+      "row_role": "current_plp_dependent_enzyme_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_plp_or_plp_anchor_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "2GSA",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "Glycogen phosphorylase",
+      "expected_fingerprint_id": "plp_dependent_enzyme",
+      "freeze_rank": 11,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "plp_dependent_enzyme",
+        "top1_plp_ligand_anchor_score": 1.0,
+        "top1_role_match_fraction": 0.0,
+        "top1_score": 0.6255
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:205",
+      "row_role": "current_plp_dependent_enzyme_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_plp_or_plp_anchor_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1GPB",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "carboxypeptidase D",
+      "expected_fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 12,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.6667,
+        "top1_score": 0.8877
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:5",
+      "row_role": "current_ser_his_acid_hydrolase_non_lyase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_hydrolase_non_lyase_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1WHS",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "1-alkyl-2-acetylglycerophosphocholine esterase",
+      "expected_fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 13,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.6667,
+        "top1_score": 0.8774
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:94",
+      "row_role": "current_ser_his_acid_hydrolase_non_lyase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_hydrolase_non_lyase_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1WAB",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "deoxyribonuclease IV (phage-T4-induced)",
+      "expected_fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 14,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.58
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:11",
+      "row_role": "current_metal_dependent_hydrolase_non_lyase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_hydrolase_non_lyase_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1QUM",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_name": "beta-lactamase (Class B1)",
+      "expected_fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 15,
+      "geometry_status": "ok",
+      "prior_retrieval_axis": {
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_context_score": 1.0,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_plp_ligand_anchor_score": 0.0,
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.5777
+      },
+      "ready_for_label_import": false,
+      "row_id": "m_csa:15",
+      "row_role": "current_metal_dependent_hydrolase_non_lyase_control",
+      "schiff_base_target_axis": {
+        "cofactor_contrast_status": "current_hydrolase_non_lyase_control",
+        "source_free_schiff_base_axis_ready": false,
+        "status": "current_control_not_target_schiff_base_positive"
+      },
+      "selected_structure_id": "1ZNB",
+      "selection_frozen_before_axis_scoring": true,
+      "terminal_decision": "mechanism_match",
+      "terminal_reason": "current control remains matched to its existing production fingerprint or current-family role; it is not Schiff-base lyase positive evidence"
+    }
+  ],
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_schiff_base_lyase_control_tranche_preregistration_20260520.json",
+      "sha256": "69374cb7da91581ad714af4599df2fb2709509aa4fa9e67d1d4a285c961c768e"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json",
+      "sha256": "ac524a525ba27ab937eecdcb9b90045e45e61102d5f063ad8989a5311167c382"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json",
+      "sha256": "63fbdfee69409ca553b1291b527d73ef1213fb0bd98888f68afa53bb32551125"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_geometry_features_1000.json",
+      "sha256": "9c57e16535a7a66a4892fdea3d2a8d83087f6b0ede31f1135fb2ad64585f0e55"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_geometry_retrieval_1000.json",
+      "sha256": "bf1119e915492e25b2a1c4494d987ddfc81cf64ff43ef83f498a91d83c392ddd"
+    }
+  ],
+  "synthesis_conclusion": {
+    "control_result": "14_current_controls_remain_mechanism_matches_to_existing_context",
+    "overall": "schiff_base_lyase_remains_review_only_and_not_production_ready",
+    "positive_like_row_status": "Q9BXD5_needs_review_source_traced_not_source_free",
+    "production_activation_decision": "no_go",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "terminal_decision_summary": {
+      "mechanism_match": 14,
+      "needs_review": 1
+    }
+  }
+}
