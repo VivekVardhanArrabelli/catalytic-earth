@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "artifact_id": "v3_epk_subagent_synthesis_20260520",
+    "created_at": "2026-05-20T12:58:49Z",
+    "method": "main_loop_subagent_packet_integration",
+    "automation_id": "catalytic-earth-work-loop",
+    "review_only": true,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "countable_label_candidate_count": 0,
+    "epk_score_computed": false,
+    "threshold_calibrated": false,
+    "external_hard_negative_reaudit_scored": false,
+    "ready_for_production_scoring": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "git_history_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "input_packet_validation": [
+    {
+      "path": "artifacts/subagents/epk_substrate_role_axis_review_20260520.json",
+      "sha256": "a208e8febacc0520f67f5db4c3ac0070bb8e63f094f2d86a619f4931dd81ec9f",
+      "json_valid": true,
+      "metadata_decision": "blocked_current_evidence_no_source_free_substrate_role_identity_axis_ready_for_frozen_policy"
+    },
+    {
+      "path": "artifacts/subagents/epk_external_stress_tranche_review_20260520.json",
+      "sha256": "3f06df003cc259d838fc1734b38212997316639544f9ad9ba50d47daa937c7ef",
+      "json_valid": true,
+      "metadata_decision": "run_this_tranche_now_as_review_only_stress_regression_and_diagnostic_only"
+    },
+    {
+      "path": "artifacts/subagents/epk_ligand_state_policy_freeze_review_20260520.json",
+      "sha256": "2ac746cc5c0ed8629479c59f93c1b4f66acd4ac3298e45511096aa1801e06494",
+      "json_valid": true,
+      "metadata_decision": "frozen_review_only_for_future_fresh_tranche_not_activated"
+    },
+    {
+      "path": "artifacts/subagents/epk_sibling_counterfamily_stress_review_20260520.json",
+      "sha256": "3e48e0f715b07a87ae8f95b92a9ce978f4bf75c9e041c1e5de400449fe9a288b",
+      "json_valid": true,
+      "metadata_decision": "no_go"
+    }
+  ],
+  "markdown_companions": [
+    {
+      "path": "work/subagents/epk_substrate_role_axis_review_20260520.md",
+      "sha256": "612491ca14248bf3aabe394aee62b05a5ea9837332e3c9a75166242728693e59"
+    },
+    {
+      "path": "work/subagents/epk_external_stress_tranche_review_20260520.md",
+      "sha256": "0fd9336ea1adfca34f6cc90d4a1ade0c470c55f674beb44c9292a2b4bfb20256"
+    },
+    {
+      "path": "work/subagents/epk_ligand_state_policy_freeze_review_20260520.md",
+      "sha256": "c3b507efe9af9005e43b83db0133102033f1fc6f579130b64c6d8f729aac14d3"
+    },
+    {
+      "path": "work/subagents/epk_sibling_counterfamily_stress_review_20260520.md",
+      "sha256": "4637244f1be5e683a81fe9704b1887450ade3b766e4b22074fb41fb88f796373"
+    }
+  ],
+  "synthesis_conclusion": {
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "substrate_role_axis": "not_freeze_ready",
+    "ligand_state_policy": "freeze_as_review_only_future_tranche_policy_only",
+    "sibling_controls": "sufficient_to_block_distance_only_thresholding_but_insufficient_for_frozen_production_policy",
+    "external_stress_tranche": "diagnostic_or_regression_only_not_clean_performance_evidence",
+    "production_fingerprint_universe_decision": "preserve_current_8_fingerprint_universe",
+    "main_loop_decision": "do_not_continue_epk_as_default_main_loop_task_after_this_integration"
+  },
+  "subagent_findings": [
+    {
+      "subagent": "A",
+      "lane": "substrate_role_axis",
+      "decision": "blocked",
+      "finding": "A review-only composite can retain named current positives and reject named false hits, but it is assembled from narrow peptide identity, bounded role, weak residue-position substrate-mode, and source-context-dependent evidence.",
+      "blockers": [
+        "no source-free general substrate identity axis",
+        "relaxed polymer and protein-role rules false-hit pdb:7B56",
+        "topology-only role inference is unsafe for kinase/substrate direction",
+        "fresh stress evidence is topology-confounded or unresolved",
+        "no calibrated scorer or real external hard-negative scored re-audit exists"
+      ],
+      "recommended_next_experiment": "epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only"
+    },
+    {
+      "subagent": "B",
+      "lane": "ligand_state_policy",
+      "decision": "freeze_review_only_policy_for_future_tranche",
+      "finding": "ATP, ANP, and pre-frozen AMP-PNP aliases may be predictive only in a future frozen review-only tranche when terminal-gamma geometry, local metal context, catalytic-site locality, and source-free acceptor or role features co-materialize in the same structure.",
+      "blockers": [
+        "policy is not implemented as a production scorer",
+        "activation requires a fresh post-freeze tranche",
+        "ADP, product-state, substrate-analog, split-state, source-reviewed, and post-hoc repair evidence remain review-only",
+        "real external hard-negative scored re-audit and threshold calibration are missing"
+      ],
+      "policy_id": "epk_ligand_state_evidence_policy_v0_20260520"
+    },
+    {
+      "subagent": "C",
+      "lane": "sibling_counterfamily_stress",
+      "decision": "production_no_go",
+      "finding": "Current sibling controls falsify distance-only and nearest-oxygen thresholds, but the control panel is uneven and not sufficient for frozen production activation.",
+      "represented_sibling_controls": [
+        "ndk",
+        "pfkb",
+        "pfka",
+        "atp_grasp"
+      ],
+      "undercovered_sibling_controls": [
+        "askha",
+        "dnk",
+        "ghkl",
+        "ghmp"
+      ],
+      "blockers": [
+        "ATP-grasp coverage is thin",
+        "ASKHA, dNK, GHKL, and GHMP need active-state gamma/metal mini-panels",
+        "passing surfaces remain review-only and uncalibrated",
+        "real external hard-negative scored re-audit is missing"
+      ]
+    },
+    {
+      "subagent": "D",
+      "lane": "external_stress_tranche",
+      "decision": "diagnostic_only",
+      "finding": "The eight-row packet freezes one primary future stress probe, pdb:4EKK, plus seven regression-context counterexamples. The packet is useful for review-only stress regression but cannot support clean held-out performance claims.",
+      "primary_fresh_nonrepeat_candidate_ids": [
+        "pdb:4EKK"
+      ],
+      "regression_context_candidate_ids": [
+        "pdb:7ZE5",
+        "pdb:7B56",
+        "pdb:7ZDT",
+        "pdb:2JJ2",
+        "pdb:4HPU",
+        "pdb:9L3U",
+        "pdb:7T55"
+      ],
+      "blockers": [
+        "no new scorer was run",
+        "candidate-specific outcomes are already partly known",
+        "thresholds and role rules cannot be tuned on these rows",
+        "no import-ready or countable row exists"
+      ]
+    }
+  ],
+  "terminal_decisions": [
+    {
+      "decision_id": "epk_production_activation_20260520",
+      "decision": "terminal_rejection_for_current_evidence",
+      "reason": "Substrate-role identity, sibling controls, threshold calibration, and real external scored re-audit are all unresolved."
+    },
+    {
+      "decision_id": "epk_ligand_state_policy_20260520",
+      "decision": "freeze_for_future_review_only_prospective_tranches",
+      "reason": "The conservative ligand-state boundary is useful only when applied prospectively after freeze and with source context excluded from predictive inputs."
+    },
+    {
+      "decision_id": "epk_external_stress_20260520",
+      "decision": "needs_review_diagnostic_only",
+      "reason": "The packet contains one primary review-only probe plus regression rows, not clean held-out evidence."
+    }
+  ],
+  "blocked_or_forbidden_claims": [
+    "do not edit data/registries/mechanism_fingerprints.json for ePK",
+    "do not edit production label registries or import ePK labels",
+    "do not claim an ePK scorer exists",
+    "do not claim a selected ePK threshold exists",
+    "do not claim a real external hard-negative scored re-audit has run",
+    "do not use source review, structure titles, UniProt prose, EC/Rhea identifiers, labels, or expert rationale as predictive features",
+    "do not use the 4EKK packet or regression-context rows as clean held-out performance evidence",
+    "do not activate analog/product-state policy",
+    "do not perform artifact migration upload, deletion, externalization, Git LFS migration, history rewrite, or removal authorization"
+  ],
+  "recommended_main_loop_next_actions": [
+    {
+      "rank": 1,
+      "action": "pivot_main_loop_to_visible_small_wins_after_committing_this_synthesis",
+      "target": "prospective external mini-campaign or modern baseline comparison",
+      "reason": "The ePK packets produce a decision rather than a production-ready next implementation."
+    },
+    {
+      "rank": 2,
+      "action": "if_epk_is_reopened_run_only_one_preregistered_review_only_experiment",
+      "target": "epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only",
+      "reason": "This is the only bounded ePK follow-up directly supported by the substrate-role packet."
+    },
+    {
+      "rank": 3,
+      "action": "for_any_future_epk_production_work_collect_missing_control_panels_first",
+      "target": "ASKHA, dNK, GHKL, GHMP, expanded ATP-grasp, scored external hard negatives",
+      "reason": "Sibling-control breadth and external scoring are production blockers."
+    }
+  ],
+  "baseline_invariants_preserved": {
+    "expected_curated_label_count": 682,
+    "expected_seed_fingerprint_count": 212,
+    "expected_out_of_scope_count": 470,
+    "expected_external_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "expected_external_seed_fingerprint_count": 0,
+    "expected_production_fingerprint_count": 8
+  }
+}

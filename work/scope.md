@@ -10,7 +10,16 @@ validated enzyme discoveries. The real autonomous contribution is narrowing the
 search space and producing auditable hypotheses that expert labs can test.
 
 Current ePK scope: the lane is still review-only and blocked from production
-fingerprint expansion. MEK1/ERK1 source review now provides two
+fingerprint expansion. The 2026-05-20 subagent synthesis makes that a terminal
+current-evidence decision rather than another open audit lane:
+substrate-role/source-free substrate identity is not freeze-ready,
+ligand-state evidence can be frozen only for future review-only prospective
+tranches, sibling controls block distance-only thresholds but are insufficient
+for production breadth, and the external stress tranche is diagnostic rather
+than clean performance evidence. The main loop should pivot away from ePK as
+the default task and toward prospective external mini-campaigns, modern
+baseline comparisons, terminal decisions, and family-readiness packets.
+MEK1/ERK1 source review now provides two
 source-authoritative broad protein-substrate review controls (`9UUR` and
 `9UUX`) and rejects same-chain `9UW4`, but the broad-role stress test shows a
 naive different-chain/distance rule false-hits eight nonpositive topology rows.

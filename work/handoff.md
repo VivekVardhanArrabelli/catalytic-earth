@@ -50,6 +50,37 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T12:55:46Z automation run, the completed ePK subagent
+packets are integrated as review-only synthesis in
+`artifacts/v3_epk_subagent_synthesis_20260520.json`. All four JSON packets
+under `artifacts/subagents/` validate. The synthesis keeps ePK out of
+production: no ePK score, threshold calibration, real external hard-negative
+scored re-audit, registry edit, label import, artifact migration, upload,
+removal, Git LFS migration, history rewrite, or `removal_allowed=true`
+occurred.
+
+The integrated conclusion is a no-go for current ePK production activation.
+Substrate-role/substrate-identity is not freeze-ready; it still depends on
+narrow peptide identity, bounded topology/role rules, source-context labels,
+and weak residue-position heuristics. The ligand-state policy can be frozen
+only as `epk_ligand_state_evidence_policy_v0_20260520` for future
+review-only prospective tranches selected after the freeze, not activated for
+current scoring. Sibling controls are enough to block distance-only threshold
+selection but insufficient for a frozen production policy because ATP-grasp is
+thin and ASKHA, dNK, GHKL, and GHMP are under-covered. The external stress
+packet is diagnostic only: `4EKK` is the single primary future review-only
+probe, while `7ZE5`, `7B56`, `7ZDT`, `2JJ2`, `4HPU`, `9L3U`, and `7T55` are
+regression-context counterexamples, not clean held-out performance evidence.
+
+Evidence-based confidence call: confidence is high that ePK should remain
+review-only after synthesis because all four independent packets converge on
+blocked production gates. Confidence is moderate that a future ligand-state
+policy can be useful if it is applied only after a prospective freeze with
+source context excluded from predictive features. Confidence is low that more
+main-loop ePK audit/control churn will produce the next visible win; the main
+loop should pivot to prospective external mini-campaign or modern baseline
+comparison after this synthesis commit.
+
 As of the 2026-05-20T11:55:15Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
