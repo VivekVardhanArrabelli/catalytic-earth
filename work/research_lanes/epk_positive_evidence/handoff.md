@@ -86,6 +86,10 @@ than reverted.
 - The worktree began with staged deletions plus untracked re-creations for
   lane-only files from the previous run. Do not revert those; stage lane paths
   coherently during wrap.
+- Local branch ref advancement via `git update-ref` failed with `HEAD.lock:
+  Operation not permitted`, so wrap commits were created with `commit-tree` and
+  pushed directly to `origin/research/epk-positive-evidence`. A temporary final
+  index verified that the lane worktree matches the pushed tree.
 - Production claims, threshold calibration, label import, registry edits,
   fingerprint changes, and production helper fallback remain forbidden.
 
