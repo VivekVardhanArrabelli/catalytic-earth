@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "artifact_id": "v3_atp_family_readiness_index_post_pfkb_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "closed_review_only_no_go_count": 4,
+    "created_at": "2026-05-20T22:39:42Z",
+    "curated_label_registry_edited": false,
+    "family_count": 9,
+    "fingerprint_registry_edited": false,
+    "method": "atp_family_readiness_index_review_only",
+    "packet_not_started_count": 3,
+    "packet_ready_not_frozen_count": 1,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "research_lane_only_count": 1,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_askha_vs_atp_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_ghkl_family_readiness_packet_20260520.json",
+      "artifacts/v3_epk_counterexample_push_synthesis_20260520.json",
+      "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+      "artifacts/v3_dnk_family_readiness_packet_20260520.json",
+      "artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_pfkb_family_readiness_packet_20260520.json"
+    ]
+  },
+  "recommended_next_main_loop_items": [
+    {
+      "family_id": "pfkb",
+      "next_action": "freeze PfkB-vs-neighbor-ATP-family control tranche before any scoring"
+    },
+    {
+      "next_action": "continue non-ePK small wins before any ATP-family production scoring",
+      "small_win_ladder": "prospective_external_or_modern_baseline_comparison"
+    }
+  ],
+  "rows": [
+    {
+      "boundary_row_count": 4,
+      "countable_positive_seed_count": 0,
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "prior_decision_action_counts": {
+        "accept_label": 3,
+        "reject_label": 1
+      },
+      "production_readiness_status": "closed_review_only_no_go",
+      "readiness_artifact": "artifacts/v3_askha_family_readiness_packet_20260520.json",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "preserve terminal tranche evidence; do not promote fingerprint",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "baseline_artifact": "artifacts/v3_askha_vs_atp_family_control_tranche_baseline_comparison_20260520.json",
+        "decision_artifact": "artifacts/v3_askha_vs_atp_family_control_tranche_axis_decisions_20260520.json",
+        "preregistration_artifact": "artifacts/v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json",
+        "status": "closed_review_only_no_go"
+      }
+    },
+    {
+      "boundary_row_count": 2,
+      "countable_positive_seed_count": 0,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "prior_decision_action_counts": {
+        "reject_label": 2
+      },
+      "production_readiness_status": "closed_review_only_no_go",
+      "readiness_artifact": "artifacts/v3_atp_grasp_family_readiness_packet_20260520.json",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "preserve terminal tranche evidence; do not promote fingerprint",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "baseline_artifact": "artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json",
+        "decision_artifact": "artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+        "preregistration_artifact": "artifacts/v3_atp_grasp_vs_neighbor_family_control_tranche_preregistration_20260520.json",
+        "status": "closed_review_only_no_go"
+      }
+    },
+    {
+      "boundary_row_count": 2,
+      "countable_positive_seed_count": 0,
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "prior_decision_action_counts": {
+        "reject_label": 2
+      },
+      "production_readiness_status": "closed_review_only_no_go",
+      "readiness_artifact": "artifacts/v3_dnk_family_readiness_packet_20260520.json",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "preserve terminal tranche evidence; do not promote fingerprint",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "status": "closed_review_only_no_go",
+        "preregistration_artifact": "artifacts/v3_dnk_vs_neighbor_family_control_tranche_preregistration_20260520.json",
+        "decision_artifact": "artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+        "baseline_artifact": "artifacts/v3_dnk_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json"
+      }
+    },
+    {
+      "boundary_row_count": 5,
+      "countable_positive_seed_count": 0,
+      "family_id": "epk",
+      "family_name": "ePK-fold protein and ePK-like kinases",
+      "prior_decision_action_counts": {
+        "accept_label": 1,
+        "reject_label": 4
+      },
+      "production_readiness_status": "research_lane_only_no_go",
+      "readiness_artifact": "artifacts/v3_epk_research_lane_synthesis_20260520.json",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "defer to research lane only; do not resume ePK as main-loop default",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "status": "not_frozen"
+      }
+    },
+    {
+      "boundary_row_count": 2,
+      "countable_positive_seed_count": 0,
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "prior_decision_action_counts": {
+        "reject_label": 2
+      },
+      "production_readiness_status": "closed_review_only_no_go",
+      "readiness_artifact": "artifacts/v3_ghkl_family_readiness_packet_20260520.json",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "preserve terminal tranche evidence; do not promote fingerprint",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "baseline_artifact": "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json",
+        "decision_artifact": "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+        "preregistration_artifact": "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_preregistration_20260520.json",
+        "status": "closed_review_only_no_go"
+      }
+    },
+    {
+      "boundary_row_count": 1,
+      "countable_positive_seed_count": 0,
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "prior_decision_action_counts": {
+        "accept_label": 1
+      },
+      "production_readiness_status": "packet_not_started_review_only",
+      "readiness_artifact": null,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "produce ghmp readiness packet before any scoring",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "status": "not_frozen"
+      }
+    },
+    {
+      "boundary_row_count": 1,
+      "countable_positive_seed_count": 0,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "prior_decision_action_counts": {
+        "reject_label": 1
+      },
+      "production_readiness_status": "packet_not_started_review_only",
+      "readiness_artifact": null,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "produce ndk readiness packet before any scoring",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "status": "not_frozen"
+      }
+    },
+    {
+      "boundary_row_count": 1,
+      "countable_positive_seed_count": 0,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "prior_decision_action_counts": {
+        "reject_label": 1
+      },
+      "production_readiness_status": "packet_not_started_review_only",
+      "readiness_artifact": null,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "produce pfka readiness packet before any scoring",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "status": "not_frozen"
+      }
+    },
+    {
+      "boundary_row_count": 2,
+      "countable_positive_seed_count": 0,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "prior_decision_action_counts": {
+        "accept_label": 2
+      },
+      "production_readiness_status": "readiness_packet_no_go",
+      "readiness_artifact": "artifacts/v3_pfkb_family_readiness_packet_20260520.json",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_step": "freeze PfkB-vs-neighbor-ATP-family control tranche before any scoring",
+      "source_free_axis_ready_count": 0,
+      "tranche_status": {
+        "status": "not_frozen"
+      }
+    }
+  ],
+  "safety_summary": {
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "registry_or_fingerprint_edit_performed": false
+  },
+  "synthesis_conclusion": {
+    "overall": "pfkb_packet_is_review_only_and_not_production_ready",
+    "decision": "do_not_promote_pfkb_production_fingerprint",
+    "reason": "PfkB has two non-countable expert-supported boundary rows, 0 countable positive seeds, 0 source-free-axis-ready rows, and no calibrated threshold or external hard-negative re-audit."
+  }
+}

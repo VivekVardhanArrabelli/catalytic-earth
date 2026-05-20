@@ -1,0 +1,416 @@
+{
+  "caveats": [
+    "A 5-mer Jaccard nearest-neighbor is a crude deterministic baseline, not a duplicate-screen replacement.",
+    "Near-neighbor alerts cannot make an uncovered glycosyltransferase lane import-ready or countable.",
+    "The candidate set remains unscored by current production geometry because terminal pre-scoring lane rejection applies."
+  ],
+  "metadata": {
+    "artifact_id": "v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520",
+    "artifact_upload_or_removal_performed": false,
+    "candidate_count": 20,
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T22:22:15Z",
+    "curated_label_registry_edited": false,
+    "external_fasta": "artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_external_20260520.fasta",
+    "external_fasta_sha256": "eb3eebc6e99f2cebc209884b3cd4bb236a314dfd106624db71adc22cda61e9f1",
+    "fingerprint_registry_edited": false,
+    "kmer_k": 5,
+    "method": "deterministic_5mer_nearest_current_reference_diagnostic",
+    "near_neighbor_alert_count": 1,
+    "near_neighbor_alert_threshold_jaccard": 0.35,
+    "ready_for_label_import": false,
+    "reference_fasta": "artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta",
+    "reference_sequence_count": 737,
+    "review_only": true,
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/stream?query=%28accession%3AP16442+OR+accession%3AQ9Y2G5+OR+accession%3AQ9NPZ5+OR+accession%3AQ9Y231+OR+accession%3AO43909+OR+accession%3AQ8NBL1+OR+accession%3AQ9P2W7+OR+accession%3AQ04446+OR+accession%3AO15294+OR+accession%3AP05655+OR+accession%3AQ01401+OR+accession%3AQ8WR51+OR+accession%3AQ9M156+OR+accession%3AQ9LNE6+OR+accession%3AP14769+OR+accession%3AP37653+OR+accession%3AQ09324+OR+accession%3AQ941L0+OR+accession%3AO09008+OR+accession%3AQ9ES89%29&format=fasta",
+    "superiority_claim_permitted": false,
+    "terminal_decision_changed_by_sequence_baseline": false
+  },
+  "rows": [
+    {
+      "accession": "P16442",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0259,
+        "query_5mer_count": 350,
+        "reference_5mer_count": 364,
+        "reference_accession": "ref__P14769",
+        "reference_header": "ref__P14769",
+        "reference_length": 368,
+        "shared_5mer_count": 18
+      },
+      "primary_ec": "2.4.1.37",
+      "query_header": "sp|P16442|BGAT_HUMAN Histo-blood group ABO system transferase OS=Homo sapiens OX=9606 GN=ABO PE=1 SV=2",
+      "row_id": "uniprot:P16442",
+      "sequence_length": 354,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9Y2G5",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0026,
+        "query_5mer_count": 425,
+        "reference_5mer_count": 752,
+        "reference_accession": "ref__P10688",
+        "reference_header": "ref__P10688",
+        "reference_length": 756,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.221",
+      "query_header": "sp|Q9Y2G5|OFUT2_HUMAN GDP-fucose protein O-fucosyltransferase 2 OS=Homo sapiens OX=9606 GN=POFUT2 PE=1 SV=3",
+      "row_id": "uniprot:Q9Y2G5",
+      "sequence_length": 429,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9NPZ5",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0043,
+        "query_5mer_count": 319,
+        "reference_5mer_count": 378,
+        "reference_accession": "ref__Q08169",
+        "reference_header": "ref__Q08169",
+        "reference_length": 382,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.135",
+      "query_header": "sp|Q9NPZ5|B3GA2_HUMAN Galactosylgalactosylxylosylprotein 3-beta-glucuronosyltransferase 2 OS=Homo sapiens OX=9606 GN=B3GAT2 PE=1 SV=2",
+      "row_id": "uniprot:Q9NPZ5",
+      "sequence_length": 323,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9Y231",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.003,
+        "query_5mer_count": 355,
+        "reference_5mer_count": 634,
+        "reference_accession": "ref__P69327",
+        "reference_header": "ref__P69327",
+        "reference_length": 640,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.152",
+      "query_header": "sp|Q9Y231|FUT9_HUMAN 4-galactosyl-N-acetylglucosaminide 3-alpha-L-fucosyltransferase 9 OS=Homo sapiens OX=9606 GN=FUT9 PE=1 SV=2",
+      "row_id": "uniprot:Q9Y231",
+      "sequence_length": 359,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "O43909",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0026,
+        "query_5mer_count": 915,
+        "reference_5mer_count": 251,
+        "reference_accession": "ref__P00733",
+        "reference_header": "ref__P00733",
+        "reference_length": 255,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.223",
+      "query_header": "sp|O43909|EXTL3_HUMAN Exostosin-like 3 OS=Homo sapiens OX=9606 GN=EXTL3 PE=1 SV=1",
+      "row_id": "uniprot:O43909",
+      "sequence_length": 919,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q8NBL1",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0026,
+        "query_5mer_count": 388,
+        "reference_5mer_count": 371,
+        "reference_accession": "ref__P00327",
+        "reference_header": "ref__P00327",
+        "reference_length": 375,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.4.1.376",
+      "query_header": "sp|Q8NBL1|PGLT1_HUMAN Protein O-glucosyltransferase 1 OS=Homo sapiens OX=9606 GN=POGLUT1 PE=1 SV=1",
+      "row_id": "uniprot:Q8NBL1",
+      "sequence_length": 392,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9P2W7",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0046,
+        "query_5mer_count": 330,
+        "reference_5mer_count": 320,
+        "reference_accession": "ref__P00803",
+        "reference_header": "ref__P00803",
+        "reference_length": 324,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.135",
+      "query_header": "sp|Q9P2W7|B3GA1_HUMAN Galactosylgalactosylxylosylprotein 3-beta-glucuronosyltransferase 1 OS=Homo sapiens OX=9606 GN=B3GAT1 PE=1 SV=2",
+      "row_id": "uniprot:Q9P2W7",
+      "sequence_length": 334,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q04446",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0031,
+        "query_5mer_count": 698,
+        "reference_5mer_count": 281,
+        "reference_accession": "ref__Q75WN8",
+        "reference_header": "ref__Q75WN8",
+        "reference_length": 285,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.18",
+      "query_header": "sp|Q04446|GLGB_HUMAN 1,4-alpha-glucan-branching enzyme OS=Homo sapiens OX=9606 GN=GBE1 PE=1 SV=3",
+      "row_id": "uniprot:Q04446",
+      "sequence_length": 702,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "O15294",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0026,
+        "query_5mer_count": 1032,
+        "reference_5mer_count": 536,
+        "reference_accession": "ref__P22259",
+        "reference_header": "ref__P22259",
+        "reference_length": 540,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.4.1.255",
+      "query_header": "sp|O15294|OGT1_HUMAN UDP-N-acetylglucosamine--peptide N-acetylglucosaminyltransferase 110 kDa subunit OS=Homo sapiens OX=9606 GN=OGT PE=1 SV=3",
+      "row_id": "uniprot:O15294",
+      "sequence_length": 1046,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P05655",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 469,
+        "reference_5mer_count": 285,
+        "reference_accession": "ref__P0AGE9",
+        "reference_header": "ref__P0AGE9",
+        "reference_length": 289,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.4.1.10",
+      "query_header": "sp|P05655|LSC_BACSU Levansucrase OS=Bacillus subtilis (strain 168) OX=224308 GN=sacB PE=1 SV=1",
+      "row_id": "uniprot:P05655",
+      "sequence_length": 473,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q01401",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 816,
+        "reference_5mer_count": 310,
+        "reference_accession": "ref__Q7SIG4",
+        "reference_header": "ref__Q7SIG4",
+        "reference_length": 314,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.18",
+      "query_header": "sp|Q01401|GLGB_ORYSJ 1,4-alpha-glucan-branching enzyme, chloroplastic/amyloplastic OS=Oryza sativa subsp. japonica OX=39947 GN=SBE1 PE=1 SV=2",
+      "row_id": "uniprot:Q01401",
+      "sequence_length": 820,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q8WR51",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0024,
+        "query_5mer_count": 420,
+        "reference_5mer_count": 409,
+        "reference_accession": "ref__Q05514",
+        "reference_header": "ref__Q05514",
+        "reference_length": 413,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.4.1.221",
+      "query_header": "sp|Q8WR51|OFUT2_CAEEL GDP-fucose protein O-fucosyltransferase 2 OS=Caenorhabditis elegans OX=6239 GN=pad-2 PE=1 SV=1",
+      "row_id": "uniprot:Q8WR51",
+      "sequence_length": 424,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9M156",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0033,
+        "query_5mer_count": 476,
+        "reference_5mer_count": 434,
+        "reference_accession": "ref__P14900",
+        "reference_header": "ref__P14900",
+        "reference_length": 438,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.-",
+      "query_header": "sp|Q9M156|U72B1_ARATH UDP-glycosyltransferase 72B1 OS=Arabidopsis thaliana OX=3702 GN=UGT72B1 PE=1 SV=1",
+      "row_id": "uniprot:Q9M156",
+      "sequence_length": 480,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9LNE6",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0037,
+        "query_5mer_count": 431,
+        "reference_5mer_count": 393,
+        "reference_accession": "ref__P0AB77",
+        "reference_header": "ref__P0AB77",
+        "reference_length": 398,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.-",
+      "query_header": "sp|Q9LNE6|U89C1_ARATH Flavonol 7-O-rhamnosyltransferase OS=Arabidopsis thaliana OX=3702 GN=UGT89C1 PE=1 SV=1",
+      "row_id": "uniprot:Q9LNE6",
+      "sequence_length": 435,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P14769",
+      "near_neighbor_alert": true,
+      "nearest_current_reference": {
+        "jaccard_5mer": 1.0,
+        "query_5mer_count": 364,
+        "reference_5mer_count": 364,
+        "reference_accession": "ref__P14769",
+        "reference_header": "ref__P14769",
+        "reference_length": 368,
+        "shared_5mer_count": 364
+      },
+      "primary_ec": "2.4.1.87",
+      "query_header": "sp|P14769|GGTA1_BOVIN N-acetyllactosaminide alpha-1,3-galactosyltransferase OS=Bos taurus OX=9913 GN=GGTA1 PE=1 SV=1",
+      "row_id": "uniprot:P14769",
+      "sequence_length": 368,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P37653",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0023,
+        "query_5mer_count": 868,
+        "reference_5mer_count": 428,
+        "reference_accession": "ref__P10760",
+        "reference_header": "ref__P10760",
+        "reference_length": 432,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.4.1.12",
+      "query_header": "sp|P37653|BCSA_ECOLI Cellulose synthase catalytic subunit [UDP-forming] OS=Escherichia coli (strain K12) OX=83333 GN=bcsA PE=1 SV=3",
+      "row_id": "uniprot:P37653",
+      "sequence_length": 872,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q09324",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.003,
+        "query_5mer_count": 424,
+        "reference_5mer_count": 239,
+        "reference_accession": "ref__P03007",
+        "reference_header": "ref__P03007",
+        "reference_length": 243,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.4.1.102",
+      "query_header": "sp|Q09324|GCNT1_MOUSE Beta-1,3-galactosyl-O-glycosyl-glycoprotein beta-1,6-N-acetylglucosaminyltransferase OS=Mus musculus OX=10090 GN=Gcnt1 PE=1 SV=2",
+      "row_id": "uniprot:Q09324",
+      "sequence_length": 428,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q941L0",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0028,
+        "query_5mer_count": 1060,
+        "reference_5mer_count": 382,
+        "reference_accession": "ref__P00935",
+        "reference_header": "ref__P00935",
+        "reference_length": 386,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.4.1.12",
+      "query_header": "sp|Q941L0|CESA3_ARATH Cellulose synthase A catalytic subunit 3 [UDP-forming] OS=Arabidopsis thaliana OX=3702 GN=CESA3 PE=1 SV=2",
+      "row_id": "uniprot:Q941L0",
+      "sequence_length": 1065,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "O09008",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0038,
+        "query_5mer_count": 317,
+        "reference_5mer_count": 217,
+        "reference_accession": "ref__P71447",
+        "reference_header": "ref__P71447",
+        "reference_length": 221,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.4.1.222",
+      "query_header": "sp|O09008|MFNG_MOUSE Beta-1,3-N-acetylglucosaminyltransferase manic fringe OS=Mus musculus OX=10090 GN=Mfng PE=1 SV=1",
+      "row_id": "uniprot:O09008",
+      "sequence_length": 321,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9ES89",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0043,
+        "query_5mer_count": 326,
+        "reference_5mer_count": 146,
+        "reference_accession": "ref__P61823",
+        "reference_header": "ref__P61823",
+        "reference_length": 150,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.4.1.223",
+      "query_header": "sp|Q9ES89|EXTL2_MOUSE Exostosin-like 2 OS=Mus musculus OX=10090 GN=Extl2 PE=1 SV=1",
+      "row_id": "uniprot:Q9ES89",
+      "sequence_length": 330,
+      "source_terminal_decision": "terminal_rejection_uncovered_mechanism_lane",
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    }
+  ],
+  "task_definition": {
+    "decision_scope": "diagnostic only; uncovered mechanism-lane terminal rejection remains decisive",
+    "task": "deterministic sequence nearest-neighbor diagnostic for the pre-scoring glycosyltransferase mini-campaign"
+  }
+}

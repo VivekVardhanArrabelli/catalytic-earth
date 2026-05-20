@@ -76,6 +76,66 @@ substrate-role identity should stop at source-reviewed adjudication rather than
 more feature probing. Main-loop work should return to visible non-ePK small
 wins after this integration commit.
 
+The same run adds two non-ePK small wins after committing that ePK synthesis.
+`artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json`
+fills the missing deterministic 5-mer nearest-current-reference diagnostic for
+the frozen glycosyltransferase mini-campaign: 20/20 rows were checked against
+737 current references, one crude near-neighbor alert was found, and the
+terminal uncovered-lane rejection is unchanged. The matching baseline artifact
+now records that sequence context without making a superiority or import claim.
+
+`artifacts/v3_ghkl_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+then freezes the next ATP-family readiness experiment before axis scoring:
+two GHKL boundary rows, two current hydrolase controls, two ATP-grasp controls,
+one ASKHA, one GHMP, one NDK, and one PfkB countercontrol. The decision packet
+`artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+closes it as review-only terminal evidence: two hydrolase controls remain
+`mechanism_match`, six neighboring ATP-family rows are `out_of_scope`, and the
+two GHKL boundary rows are `terminal_rejection` because prior expert review
+rejected those current label candidates and no source-free GHKL fold/acceptor
+axis is ready. `artifacts/v3_atp_family_readiness_index_post_ghkl_20260520.json`
+keeps ASKHA, ATP-grasp, and GHKL closed as no-go tranches and recommends a
+future dNK packet only as review-only small-win work.
+`artifacts/v3_dnk_family_readiness_packet_20260520.json` then packages that
+next ATP-family packet without production scoring: `m_csa:588` thymidine
+kinase and `m_csa:615` deoxyguanosine kinase remain non-countable
+expert-rejected mismatch lanes with current `metal_dependent_hydrolase` top1
+collapse, 0 countable positive seeds, 0 source-free-axis-ready rows, no
+calibrated threshold, and no external hard-negative re-audit. The packet
+records review-only deoxynucleoside 5-prime-hydroxyl transfer context and the
+`m_csa:615` DTP gamma-to-hydroxyl measurement, but this does not create a
+scorer or import claim.
+`artifacts/v3_atp_family_readiness_index_post_dnk_packet_20260520.json` marks
+dNK as `readiness_packet_no_go`; the only bounded next dNK step is a frozen
+dNK-vs-neighbor-ATP-family control tranche before any scoring.
+`artifacts/v3_dnk_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+freezes that tranche in the same run: two dNK boundary rows, two current
+hydrolase controls, one NDK, one PfkA, one PfkB, one GHMP, one ASKHA, and one
+ATP-grasp countercontrol. The decision packet
+`artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+closes it as review-only terminal evidence: two hydrolase controls remain
+`mechanism_match`, six neighboring ATP-family rows are `out_of_scope`, and the
+two dNK boundary rows are `terminal_rejection` because prior expert review
+rejected those current label candidates and no source-free dNK fold/substrate
+axis is ready. `artifacts/v3_atp_family_readiness_index_post_dnk_tranche_20260520.json`
+now keeps ASKHA, ATP-grasp, GHKL, and dNK closed as review-only no-go tranches
+and recommends PfkB only as a future review-only packet.
+`artifacts/v3_pfkb_family_readiness_packet_20260520.json` packages that PfkB
+packet next: `m_csa:663` ribokinase and `m_csa:670`
+hydroxymethylpyrimidine kinase remain non-countable PfkB/ribokinase boundary
+rows with hydrolase top1 collapse, close cross-family guardrail blockers, 0
+countable positive seeds, and 0 source-free-axis-ready rows.
+`artifacts/v3_atp_family_readiness_index_post_pfkb_packet_20260520.json` marks
+PfkB as `readiness_packet_no_go`; the only bounded PfkB next step is a frozen
+PfkB-vs-neighbor-ATP-family tranche before any scoring.
+`artifacts/v3_main_loop_small_win_register_post_atp_readiness_20260520.json`
+rolls up the run's post-ePK small wins: glycosyltransferase sequence baseline
+diagnostic preserves the terminal uncovered-lane rejection, GHKL and dNK are
+closed review-only no-go tranches, PfkB is packet-only no-go, and ePK remains
+research-lane-only. No registry edit, label
+import, threshold, production scoring, fingerprint expansion, artifact
+migration, upload, or removal was performed.
+
 As of the 2026-05-20T21:08:55Z automation run,
 `artifacts/v3_epk_counterexample_push_synthesis_20260520.json` integrates the
 fresh ePK positive-evidence research-lane push that landed after the prior
@@ -163,6 +223,11 @@ lane: glycosyltransferase chemistry is outside the current 8 production
 fingerprints and covered import-counterevidence lanes, so 0 rows were scored
 or import-gated. `artifacts/v3_glycosyltransferase_minicampaign_baseline_comparison_20260520.json`
 keeps EC/keyword routing diagnostic only and makes no superiority claim.
+`artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json`
+now adds the deterministic 5-mer nearest-current-reference check for the same
+20 frozen rows against 737 current references. It reports one crude
+near-neighbor alert, but the terminal decision is unchanged because sequence
+neighboring cannot remove the uncovered glycosyltransferase-lane blocker.
 
 As of the 2026-05-20T20:17:20Z automation run,
 `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`

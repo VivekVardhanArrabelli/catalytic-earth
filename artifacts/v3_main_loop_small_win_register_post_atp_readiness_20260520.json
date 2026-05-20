@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "artifact_id": "v3_main_loop_small_win_register_post_atp_readiness_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T22:42:27Z",
+    "method": "main_loop_small_win_register_post_atp_readiness",
+    "review_only": true,
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_artifacts": [
+      "artifacts/v3_epk_late_research_lane_synthesis_20260520.json",
+      "artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+      "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_pfkb_family_readiness_packet_20260520.json",
+      "artifacts/v3_atp_family_readiness_index_post_pfkb_packet_20260520.json"
+    ]
+  },
+  "rows": [
+    {
+      "item_id": "late_epk_research_lane_synthesis",
+      "small_win_ladder_slot": "research_lane_integration",
+      "decision_status": "research_lane_only_no_go",
+      "terminal_decision": "no_production_activation",
+      "primary_artifact": "artifacts/v3_epk_late_research_lane_synthesis_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "keep ePK out of the main-loop critical path unless a separate research lane runs the exact substrate-role blocker decision probe"
+    },
+    {
+      "item_id": "glycosyltransferase_sequence_baseline_diagnostic",
+      "small_win_ladder_slot": "modern_baseline_comparison",
+      "decision_status": "terminal_uncovered_lane_rejection_unchanged",
+      "terminal_decision": "terminal_rejection",
+      "primary_artifact": "artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+      "supporting_artifact": "artifacts/v3_glycosyltransferase_minicampaign_baseline_comparison_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "preserve the terminal glycosyltransferase lane blocker; do not treat sequence-neighbor context as import evidence"
+    },
+    {
+      "item_id": "ghkl_control_tranche",
+      "small_win_ladder_slot": "family_readiness_terminal_decision",
+      "decision_status": "closed_review_only_no_go",
+      "terminal_decision_counts": {
+        "mechanism_match": 2,
+        "out_of_scope": 6,
+        "terminal_rejection": 2
+      },
+      "primary_artifact": "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "preserve terminal GHKL no-go evidence"
+    },
+    {
+      "item_id": "dnk_control_tranche",
+      "small_win_ladder_slot": "family_readiness_terminal_decision",
+      "decision_status": "closed_review_only_no_go",
+      "terminal_decision_counts": {
+        "mechanism_match": 2,
+        "out_of_scope": 6,
+        "terminal_rejection": 2
+      },
+      "primary_artifact": "artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "preserve terminal dNK no-go evidence"
+    },
+    {
+      "item_id": "pfkb_readiness_packet",
+      "small_win_ladder_slot": "family_readiness_packet",
+      "decision_status": "readiness_packet_no_go",
+      "terminal_decision": "not_terminal_tranche_yet",
+      "primary_artifact": "artifacts/v3_pfkb_family_readiness_packet_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "freeze PfkB-vs-neighbor ATP-family tranche before any scoring"
+    }
+  ],
+  "rollup": {
+    "closed_review_only_no_go_family_count": 4,
+    "packet_ready_not_frozen_family_count": 1,
+    "external_minicampaign_terminal_rejection_preserved": true,
+    "epk_production_no_go_preserved": true,
+    "registry_label_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_or_3_performed": false
+  },
+  "recommended_next_main_loop_items": [
+    {
+      "item_id": "pfkb_control_tranche",
+      "next_action": "freeze PfkB-vs-neighbor ATP-family tranche before any scoring"
+    },
+    {
+      "item_id": "modern_baseline_comparison",
+      "next_action": "continue no-claim baseline comparisons on already frozen external mini-campaigns"
+    },
+    {
+      "item_id": "prospective_external_minicampaign",
+      "next_action": "choose a new 10-30 row external set only if selection can be frozen before scoring"
+    }
+  ]
+}

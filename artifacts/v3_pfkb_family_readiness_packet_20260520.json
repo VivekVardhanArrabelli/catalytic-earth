@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "artifact_id": "v3_pfkb_family_readiness_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T22:39:42Z",
+    "method": "pfkb_review_only_family_readiness_packet",
+    "family_id": "pfkb",
+    "family_name": "PfkB/ribokinase-family kinases",
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "review_only": true,
+    "production_fingerprint_count": 8,
+    "countable_label_candidate_count": 0,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_family_propagation_guardrails_900_preview_batch.json",
+      "artifacts/v3_geometry_retrieval_1025.json",
+      "artifacts/v3_atp_family_readiness_index_post_dnk_tranche_20260520.json"
+    ]
+  },
+  "family_readiness": {
+    "current_decision": "do_not_promote_production_fingerprint",
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "PfkB/ribokinase-family kinases phosphorylate small-molecule hydroxyl acceptors in a ribokinase-like fold; this packet separates them from PfkA, ASKHA, dNK/NDK, GHMP, GHKL, ATP-grasp, and ePK boundary lanes.",
+    "expert_supported_boundary_count": 2,
+    "positive_like_boundary_row_count": 2,
+    "countable_positive_seed_count": 0,
+    "source_free_axis_ready_count": 0,
+    "positive_like_boundary_rows": [
+      {
+        "entry_id": "m_csa:663",
+        "entry_name": "ribokinase",
+        "pdb_id": "1RK2",
+        "support_level": "expert_review_supported_family_boundary",
+        "decision_action": "accept_label",
+        "decision_label_type": "out_of_scope",
+        "countable_label_candidate": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2601,
+        "top2_fingerprint_id": "plp_dependent_enzyme",
+        "top2_score": 0.2594,
+        "local_ligand_codes": [
+          "ADP",
+          "RIB"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "RIB",
+          "MG",
+          "ALF"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "nearby_residue_count": 35,
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "close_cross_family_top1_top2",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review"
+      },
+      {
+        "entry_id": "m_csa:670",
+        "entry_name": "hydroxymethylpyrimidine kinase",
+        "pdb_id": "1JXH",
+        "support_level": "expert_review_supported_family_boundary",
+        "decision_action": "accept_label",
+        "decision_label_type": "out_of_scope",
+        "countable_label_candidate": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3474,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.303,
+        "local_ligand_codes": [
+          "SO4"
+        ],
+        "structure_ligand_codes": [
+          "SO4"
+        ],
+        "structure_cofactor_families": [],
+        "nearby_residue_count": 47,
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "close_cross_family_top1_top2",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review"
+      }
+    ]
+  },
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps two expert-supported PfkB/ribokinase boundary rows: ribokinase and hydroxymethylpyrimidine kinase.",
+      "Both rows carry ATP/phosphoryl-transfer mechanism text and remain non-countable review-only mismatch lanes rather than seed labels.",
+      "m_csa:663 has local ADP/ribose context and structure-level metal-ion context; m_csa:670 has sulfate/product-like selected context only.",
+      "Family propagation guardrails block both rows because hydrolase top1 collapse and close cross-family scores are not source-free PfkB evidence."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free PfkB/ribokinase fold axis exists in production code.",
+      "No small-molecule hydroxyl acceptor identity policy has been calibrated for PfkB.",
+      "No PfkB threshold, external hard-negative re-audit, or countable positive seed set exists.",
+      "Both rows remain current-review boundary evidence and cannot be imported or used to expand the fingerprint universe without a separate gated cycle."
+    ],
+    "expected_local_evidence_axes": [
+      "local ATP/ADP or transition-state nucleotide context plus divalent-metal support",
+      "ribose or hydroxymethylpyrimidine small-molecule hydroxyl acceptor identity",
+      "PfkB/ribokinase fold context separated from PfkA and ASKHA sugar kinases",
+      "negative hydrolase, dNK/NDK, GHMP, GHKL, ATP-grasp, and ePK counteraxes"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "family_id": "metal_dependent_hydrolase",
+      "control_role": "current top1 collapse boundary for PfkB mismatch rows"
+    },
+    {
+      "family_id": "pfka",
+      "control_role": "PfkA-fold phosphofructokinase sibling counterfamily"
+    },
+    {
+      "family_id": "askha",
+      "control_role": "actin-like sugar/acetate kinase counterfamily"
+    },
+    {
+      "family_id": "dnk",
+      "control_role": "deoxynucleoside hydroxyl-acceptor kinase counterfamily"
+    },
+    {
+      "family_id": "ndk",
+      "control_role": "phosphohistidine/nucleoside-diphosphate exchange counterfamily"
+    },
+    {
+      "family_id": "ghmp",
+      "control_role": "GHMP small-molecule kinase counterfamily"
+    },
+    {
+      "family_id": "atp_grasp",
+      "control_role": "ATP-coupled ligase counterfamily"
+    },
+    {
+      "family_id": "ghkl",
+      "control_role": "Bergerat/GHKL histidine-kinase counterfamily"
+    },
+    {
+      "family_id": "epk",
+      "control_role": "protein-substrate kinase counterfamily; research-lane only"
+    }
+  ],
+  "likely_failure_modes": [
+    {
+      "id": "hydrolase_top1_close_neighbor_collapse",
+      "description": "PfkB boundary rows still route through metal-dependent hydrolase top1 and close non-PfkB top2 scores in review-only guardrails."
+    },
+    {
+      "id": "pfka_askha_sugar_kinase_confusion",
+      "description": "Sugar-kinase wording alone can merge PfkB with PfkA or ASKHA without source-free fold and acceptor evidence."
+    },
+    {
+      "id": "selected_ligand_state_gap",
+      "description": "Selected structures do not provide a uniform ATP/Mg/reactant state across both PfkB boundary rows."
+    },
+    {
+      "id": "unlabeled_candidate_requires_direct_review",
+      "description": "The PfkB rows are not countable seed labels and still require direct review before any label or fingerprint expansion."
+    }
+  ],
+  "next_experiment": {
+    "experiment_id": "pfkb_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "decision_to_start_now": false,
+    "selection_freeze_required_before_scoring": true,
+    "recommended_row_count": "10-14",
+    "reason_not_started": "readiness packet first; no production gates are open and the row set must be frozen before any axis scoring",
+    "preregistered_axes_to_freeze": [
+      "local nucleotide plus metal state",
+      "small-molecule hydroxyl acceptor identity",
+      "PfkB/ribokinase fold/family context",
+      "negative PfkA, ASKHA, dNK/NDK, GHMP, GHKL, ATP-grasp, ePK, and hydrolase counteraxes",
+      "duplicate/current-neighbor checks before any import claim"
+    ],
+    "row_plan": [
+      "2 PfkB positive-like boundary rows from the family expansion artifact",
+      "2 current metal-hydrolase controls",
+      "2 PfkA/ASKHA sugar kinase controls",
+      "2 dNK/NDK nucleoside kinase controls",
+      "2 GHMP/GHKL/ATP-grasp neighboring ATP-family controls",
+      "optional ePK context only as review-only counteraxis evidence"
+    ]
+  },
+  "safety_summary": {
+    "registry_or_fingerprint_edit_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false
+  }
+}

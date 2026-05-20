@@ -1,0 +1,216 @@
+{
+  "metadata": {
+    "artifact_id": "v3_dnk_family_readiness_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T22:33:10Z",
+    "method": "dnk_review_only_family_readiness_packet",
+    "family_id": "dnk",
+    "family_name": "Deoxynucleoside kinases",
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "review_only": true,
+    "production_fingerprint_count": 8,
+    "countable_label_candidate_count": 0,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_geometry_score_margins_1025.json",
+      "artifacts/v3_epk_negative_control_gamma_distance_distribution_1025.json",
+      "artifacts/v3_atp_family_readiness_index_post_ghkl_20260520.json"
+    ]
+  },
+  "family_readiness": {
+    "current_decision": "do_not_promote_production_fingerprint",
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "dNK-fold deoxynucleoside kinases phosphorylate deoxynucleoside 5-prime hydroxyl acceptors and must stay separated from NDK phosphohistidine exchange and generic ATP/Mg kinase context.",
+    "expert_supported_boundary_count": 2,
+    "positive_like_boundary_row_count": 2,
+    "countable_positive_seed_count": 0,
+    "source_free_axis_ready_count": 0,
+    "positive_like_boundary_rows": [
+      {
+        "entry_id": "m_csa:588",
+        "entry_name": "thymidine kinase",
+        "pdb_id": "1KIM",
+        "support_level": "expert_review_supported_family_boundary",
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "countable_label_candidate": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4073,
+        "cofactor_evidence_level": "role_inferred",
+        "local_ligand_codes": [
+          "SO4",
+          "THM"
+        ],
+        "structure_ligand_codes": [
+          "SO4",
+          "THM"
+        ],
+        "gamma_capable_nucleotide_codes": [],
+        "nearest_gamma_to_hydroxyl_distance_angstrom": null,
+        "resolved_residue_count": 7,
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ]
+      },
+      {
+        "entry_id": "m_csa:615",
+        "entry_name": "deoxyguanosine kinase",
+        "pdb_id": "2OCP",
+        "support_level": "expert_review_supported_family_boundary",
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "countable_label_candidate": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3789,
+        "cofactor_evidence_level": "absent",
+        "local_ligand_codes": [
+          "DTP"
+        ],
+        "structure_ligand_codes": [
+          "DTP"
+        ],
+        "gamma_capable_nucleotide_codes": [
+          "DTP"
+        ],
+        "nearest_gamma_to_hydroxyl_distance_angstrom": 3.232,
+        "resolved_residue_count": 2,
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ]
+      }
+    ]
+  },
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps two expert-supported dNK boundary rows: thymidine kinase and deoxyguanosine kinase.",
+      "Both rows have mechanism text for deoxynucleoside 5-prime hydroxyl activation and ATP or nucleotide phosphoryl transfer, but both remain non-countable expert-rejected mismatch lanes.",
+      "m_csa:615 has review-only selected-structure DTP gamma-to-hydroxyl geometry measured at 3.232 Angstrom in the negative-control distribution; that measurement is not a calibrated production axis.",
+      "Current retrieval assigns metal-dependent hydrolase top1 below the 0.4115 floor for both rows, preserving hydrolase-collapse and threshold-boundary risk."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free dNK fold or deoxynucleoside 5-prime hydroxyl acceptor axis exists in production code.",
+      "No dNK-specific threshold or production score has been calibrated.",
+      "No external hard-negative re-audit has been run for a dNK positive fingerprint universe.",
+      "No countable dNK seed labels exist in the current registry.",
+      "Selected structures do not provide a complete shared ATP/Mg state across both boundary rows; m_csa:615 has only two resolved catalytic residues in the current context."
+    ],
+    "expected_local_evidence_axes": [
+      "local ATP or dNTP gamma-capable nucleotide state plus divalent-metal context",
+      "deoxynucleoside 5-prime hydroxyl acceptor identity separated from protein, sugar-phosphate, carboxylate, and phosphohistidine acceptors",
+      "dNK fold or family context separated from NDK, PfkA/PfkB, GHMP, ASKHA, ATP-grasp, GHKL, and ePK",
+      "negative hydrolase metal-ligand and generic ATPase axes"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "family_id": "metal_dependent_hydrolase",
+      "control_role": "current top1 collapse boundary for dNK mismatch rows"
+    },
+    {
+      "family_id": "ndk",
+      "control_role": "phosphohistidine/nucleoside-diphosphate exchange counterfamily"
+    },
+    {
+      "family_id": "pfkb",
+      "control_role": "ribokinase-family small-molecule kinase counterfamily"
+    },
+    {
+      "family_id": "pfka",
+      "control_role": "PfkA-fold sugar-phosphate kinase counterfamily"
+    },
+    {
+      "family_id": "ghmp",
+      "control_role": "GHMP small-molecule kinase counterfamily"
+    },
+    {
+      "family_id": "askha",
+      "control_role": "actin-like sugar/acetate kinase counterfamily"
+    },
+    {
+      "family_id": "atp_grasp",
+      "control_role": "ATP-coupled ligase counterfamily"
+    },
+    {
+      "family_id": "ghkl",
+      "control_role": "Bergerat/GHKL histidine-kinase counterfamily"
+    },
+    {
+      "family_id": "epk",
+      "control_role": "protein-substrate kinase counterfamily; research-lane only"
+    }
+  ],
+  "likely_failure_modes": [
+    {
+      "id": "hydrolase_top1_threshold_boundary",
+      "description": "dNK boundary rows still collapse to metal-dependent hydrolase top1 near or below the calibrated abstention floor."
+    },
+    {
+      "id": "generic_nucleotide_gamma_leakage",
+      "description": "A gamma-capable nucleotide near a hydroxyl acceptor can also occur in neighboring kinase and ATPase families without dNK substrate identity."
+    },
+    {
+      "id": "dnk_ndk_substrate_confusion",
+      "description": "dNK substrate-hydroxyl phosphorylation must not be merged with NDK phosphohistidine exchange or nucleotide-diphosphate shuttling."
+    },
+    {
+      "id": "selected_structure_state_gap",
+      "description": "The two boundary rows do not share a complete ATP/Mg selected-structure state, and one row has sparse resolved-residue support."
+    }
+  ],
+  "next_experiment": {
+    "experiment_id": "dnk_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "decision_to_start_now": false,
+    "selection_freeze_required_before_scoring": true,
+    "recommended_row_count": "10-14",
+    "reason_not_started": "readiness packet first; no production gates are open and the row set must be frozen before any axis scoring",
+    "preregistered_axes_to_freeze": [
+      "local gamma-capable nucleotide plus metal state",
+      "deoxynucleoside 5-prime hydroxyl acceptor identity",
+      "dNK fold/family context",
+      "negative NDK phosphohistidine and neighboring ATP-family counteraxes",
+      "duplicate/current-neighbor checks before any import claim"
+    ],
+    "row_plan": [
+      "2 dNK positive-like boundary rows from the family expansion artifact",
+      "2 current metal-hydrolase controls that absorb dNK-like rows",
+      "2 NDK phosphohistidine/nucleoside-diphosphate controls",
+      "2 PfkB/PfkA or GHMP small-molecule kinase controls",
+      "2 ASKHA/ATP-grasp/GHKL controls",
+      "optional ePK context only as review-only counteraxis evidence"
+    ]
+  },
+  "safety_summary": {
+    "registry_or_fingerprint_edit_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false
+  }
+}

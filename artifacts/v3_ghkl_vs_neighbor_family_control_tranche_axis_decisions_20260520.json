@@ -1,0 +1,550 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_id": "v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T22:28:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 10,
+    "ghkl_positive_like_axis_ready_count": 0,
+    "import_ready_candidate_count": 0,
+    "method": "ghkl_vs_neighbor_family_control_tranche_review_only_axis_decisions",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "atp_family_expansion": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "geometry_retrieval": "artifacts/v3_geometry_retrieval_1025.json",
+      "ghkl_readiness_packet": "artifacts/v3_ghkl_family_readiness_packet_20260520.json",
+      "tranche_freeze": "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_preregistration_20260520.json"
+    },
+    "source_free_ghkl_axis_ready_count": 0,
+    "terminal_decision_counts": {
+      "mechanism_match": 2,
+      "out_of_scope": 6,
+      "terminal_rejection": 2
+    }
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "ghkl",
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ACP",
+          "MG"
+        ],
+        "pdb_id": "1I58",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ACP",
+          "MG",
+          "ACT",
+          "ADP"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2704
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "protein histidine kinase (CheA)",
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "freeze_rank": 1,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:327",
+      "row_role": "ghkl_positive_like_boundary",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": true,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": true,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "expert review rejected this current label candidate and the source-free GHKL fold/acceptor axis is absent."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "ghkl",
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ADP",
+          "MG"
+        ],
+        "pdb_id": "1JM6",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ADP",
+          "MG"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4004
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "freeze_rank": 2,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:603",
+      "row_role": "ghkl_positive_like_boundary",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": true,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": true,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "expert review rejected this current label candidate and the source-free GHKL fold/acceptor axis is absent."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": true,
+        "family_id": "metal_dependent_hydrolase",
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "pdb_id": "1ZNB",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ZN",
+          "NA"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5777
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "beta-lactamase (Class B1)",
+      "family_id": "metal_dependent_hydrolase",
+      "family_name": "metal-dependent hydrolase production controls",
+      "freeze_rank": 3,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": true,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production metal-dependent hydrolase control remains a mechanism match for the existing 8-fingerprint universe."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": true,
+        "family_id": "metal_dependent_hydrolase",
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "pdb_id": "1BC2",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ZN",
+          "SO4"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5929
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "beta-lactamase (Class B1)",
+      "family_id": "metal_dependent_hydrolase",
+      "family_name": "metal-dependent hydrolase production controls",
+      "freeze_rank": 4,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": true,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production metal-dependent hydrolase control remains a mechanism match for the existing 8-fingerprint universe."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "atp_grasp",
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "PHY"
+        ],
+        "pdb_id": "1E4E",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "PHY",
+          "MG",
+          "ADP",
+          "SO4",
+          "GOL"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3649
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "freeze_rank": 5,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:310",
+      "row_role": "atp_grasp_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": true,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": true,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "atp_grasp ATP-family countercontrol is out of scope for a GHKL-specific axis and cannot support GHKL threshold calibration."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "atp_grasp",
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "SO4",
+          "ADP",
+          "GSH",
+          "MG"
+        ],
+        "pdb_id": "2HGS",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "SO4",
+          "ADP",
+          "GSH",
+          "MG"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3949
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "freeze_rank": 6,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:498",
+      "row_role": "atp_grasp_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": false,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": true,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "atp_grasp ATP-family countercontrol is out of scope for a GHKL-specific axis and cannot support GHKL threshold calibration."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "askha",
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "GLC"
+        ],
+        "pdb_id": "3IDH",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "GLC",
+          "K"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5769
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "glucokinase",
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "freeze_rank": 7,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:592",
+      "row_role": "askha_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": false,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "askha ATP-family countercontrol is out of scope for a GHKL-specific axis and cannot support GHKL threshold calibration."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "ghmp",
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "CDM"
+        ],
+        "pdb_id": "1OJ4",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "CDM",
+          "ANP",
+          "MSE",
+          "CL"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3581
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "freeze_rank": 8,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:654",
+      "row_role": "ghmp_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": false,
+        "local_metal_context": false,
+        "local_nucleotide_or_product_state_context": true,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "ghmp ATP-family countercontrol is out of scope for a GHKL-specific axis and cannot support GHKL threshold calibration."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "ndk",
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1DEK",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "DGP",
+          "OCS",
+          "MG"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4066
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "family_id": "ndk",
+      "family_name": "Nucleotide diphosphate kinases",
+      "freeze_rank": 9,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:637",
+      "row_role": "ndk_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": true,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": false,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "ndk ATP-family countercontrol is out of scope for a GHKL-specific axis and cannot support GHKL threshold calibration."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfkb",
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [
+          "ADP",
+          "RIB"
+        ],
+        "pdb_id": "1RK2",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ADP",
+          "RIB",
+          "MG",
+          "ALF"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2601
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current M-CSA review rows in this tranche",
+        "status": "not_run_not_import_surface_current_m_csa_review_context"
+      },
+      "entry_name": "ribokinase",
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "freeze_rank": 10,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:663",
+      "row_role": "pfkb_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_ghkl_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_histidine_or_protein_acceptor_context": false,
+        "local_metal_context": true,
+        "local_nucleotide_or_product_state_context": true,
+        "source_free_acceptor_identity_policy_ready": false,
+        "source_free_bergerat_fold_policy_ready": false,
+        "structure_level_metal_context": true
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "pfkb ATP-family countercontrol is out of scope for a GHKL-specific axis and cannot support GHKL threshold calibration."
+    }
+  ],
+  "synthesis_conclusion": {
+    "next_main_loop_step": "produce NDK readiness packet or continue prospective external/baseline small wins",
+    "overall": "ghkl_remains_review_only_and_not_production_ready",
+    "production_activation_decision": "no_go",
+    "reason": "Both GHKL boundary rows are expert-rejected current label candidates and the source-free Bergerat/GHKL fold plus acceptor identity axis is absent; neighbor ATP-family controls remain out of scope and hydrolase controls remain existing mechanism matches."
+  }
+}

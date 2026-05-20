@@ -16,6 +16,8 @@
     "ready_to_expand_positive_fingerprint_universe": false,
     "removal_allowed_set_true": false,
     "review_only": true,
+    "sequence_baseline_diagnostic_artifact": "artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+    "sequence_baseline_diagnostic_sha256": "b939aa35ebdf36d97f3386f2f8995d21aa31edc5ee9571c29513d665959defd2",
     "source_artifacts": {
       "decisions": "artifacts/v3_prospective_external_glycosyltransferase_minicampaign_decision_packet_20260520.json",
       "freeze": "artifacts/v3_prospective_external_glycosyltransferase_minicampaign_freeze_20260520.json"
@@ -29,9 +31,14 @@
       "superiority_claim_supported": false
     },
     "deterministic_kmer_nearest_neighbor": {
-      "computed_in_this_artifact": false,
-      "reason": "sequence proxy cannot make an uncovered production-fingerprint lane import-ready",
-      "superiority_claim_supported": false
+      "caveat": "Diagnostic only; sequence-neighbor evidence does not remove the uncovered glycosyltransferase mechanism-lane blocker.",
+      "computed_row_count": 20,
+      "near_neighbor_alert_count": 1,
+      "near_neighbor_alert_threshold_jaccard": 0.35,
+      "reference_sequence_count": 737,
+      "row_count": 20,
+      "superiority_claim_supported": false,
+      "terminal_decision_changed_by_sequence_baseline": false
     },
     "ec_keyword_lane_router": {
       "detects_source_free_geometry_or_import_gates": false,

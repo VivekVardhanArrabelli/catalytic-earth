@@ -1,0 +1,152 @@
+{
+  "metadata": {
+    "artifact_id": "v3_dnk_vs_neighbor_family_control_tranche_baseline_comparison_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T22:36:18Z",
+    "method": "dnk_vs_neighbor_family_control_tranche_no_claim_baseline_comparison",
+    "review_only": true,
+    "candidate_selection_before_outcome_scoring": true,
+    "frozen_row_count": 10,
+    "superiority_claim_permitted": false,
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_artifacts": {
+      "tranche_freeze": "artifacts/v3_dnk_vs_neighbor_family_control_tranche_preregistration_20260520.json",
+      "axis_decisions": "artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "geometry_retrieval": "artifacts/v3_geometry_score_margins_1025.json"
+    }
+  },
+  "task_definition": {
+    "task_id": "dnk_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "task": "Compare frozen dNK boundary rows against current hydrolase controls and neighboring ATP-family countercontrols without production claims.",
+    "positive_claim_allowed": false,
+    "superiority_claim_allowed": false
+  },
+  "metrics": {
+    "review_only_terminal_axis_decisions": {
+      "row_count": 10,
+      "terminal_decision_counts": {
+        "mechanism_match": 2,
+        "out_of_scope": 6,
+        "terminal_rejection": 2
+      },
+      "source_free_dnk_axis_ready_count": 0,
+      "import_ready_candidate_count": 0
+    },
+    "current_8_fingerprint_geometry_retrieval": {
+      "row_count": 10,
+      "top1_fingerprint_counts": {
+        "metal_dependent_hydrolase": 10
+      },
+      "non_abstention_count_at_0_4115": 3,
+      "text_or_label_fields_used_for_score_count": 0,
+      "superiority_claim_supported": false,
+      "caveat": "Current geometry retrieval is diagnostic; it routes dNK and ATP-family boundary rows through metal-dependent hydrolase collapse and cannot define a dNK fingerprint."
+    },
+    "ec_keyword_family_router": {
+      "dnk_boundary_rows_detected_by_family_context": 2,
+      "neighbor_atp_family_overadmit_count": 6,
+      "detects_source_free_dnk_axis": false,
+      "supports_import_decision": false
+    },
+    "deterministic_kmer_proxy": {
+      "computed_in_this_artifact": false,
+      "reason": "current M-CSA review rows are not an external import surface; sequence neighbors cannot create a source-free dNK axis",
+      "superiority_claim_supported": false
+    }
+  },
+  "rows": [
+    {
+      "row_id": "m_csa:588",
+      "row_role": "dnk_positive_like_boundary",
+      "terminal_decision": "terminal_rejection",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4073
+    },
+    {
+      "row_id": "m_csa:615",
+      "row_role": "dnk_positive_like_boundary",
+      "terminal_decision": "terminal_rejection",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3789
+    },
+    {
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "terminal_decision": "mechanism_match",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5777
+    },
+    {
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "terminal_decision": "mechanism_match",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5929
+    },
+    {
+      "row_id": "m_csa:637",
+      "row_role": "ndk_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4066
+    },
+    {
+      "row_id": "m_csa:365",
+      "row_role": "pfka_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3999
+    },
+    {
+      "row_id": "m_csa:663",
+      "row_role": "pfkb_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2601
+    },
+    {
+      "row_id": "m_csa:654",
+      "row_role": "ghmp_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3581
+    },
+    {
+      "row_id": "m_csa:592",
+      "row_role": "askha_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5769
+    },
+    {
+      "row_id": "m_csa:310",
+      "row_role": "atp_grasp_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_dnk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3649
+    }
+  ],
+  "caveats": [
+    "This is a review-only family-readiness control tranche, not a production scorer.",
+    "No source-free dNK fold or deoxynucleoside substrate identity policy is accepted.",
+    "No registry edit, label import, threshold calibration, or fingerprint expansion is authorized."
+  ]
+}

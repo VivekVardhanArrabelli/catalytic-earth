@@ -1,0 +1,152 @@
+{
+  "caveats": [
+    "This is a review-only family-readiness control tranche, not a production scorer.",
+    "No source-free Bergerat/GHKL fold or acceptor identity policy is accepted.",
+    "No registry edit, label import, threshold calibration, or fingerprint expansion is authorized."
+  ],
+  "metadata": {
+    "artifact_id": "v3_ghkl_vs_neighbor_family_control_tranche_baseline_comparison_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-20T22:28:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 10,
+    "method": "ghkl_vs_neighbor_family_control_tranche_no_claim_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "axis_decisions": "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "geometry_retrieval": "artifacts/v3_geometry_retrieval_1025.json",
+      "tranche_freeze": "artifacts/v3_ghkl_vs_neighbor_family_control_tranche_preregistration_20260520.json"
+    },
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "current_8_fingerprint_geometry_retrieval": {
+      "caveat": "Current geometry retrieval is diagnostic; it routes GHKL and ATP-family boundary rows mostly through metal-dependent hydrolase collapse and cannot define a GHKL fingerprint.",
+      "non_abstention_count_at_0_4115": 3,
+      "row_count": 10,
+      "superiority_claim_supported": false,
+      "text_or_label_fields_used_for_score_count": 0,
+      "top1_fingerprint_counts": {
+        "metal_dependent_hydrolase": 10
+      }
+    },
+    "deterministic_kmer_proxy": {
+      "computed_in_this_artifact": false,
+      "reason": "current M-CSA review rows are not an external import surface; sequence neighbors cannot create a source-free GHKL axis",
+      "superiority_claim_supported": false
+    },
+    "ec_keyword_family_router": {
+      "detects_source_free_ghkl_axis": false,
+      "ghkl_boundary_rows_detected_by_family_context": 2,
+      "neighbor_atp_family_overadmit_count": 6,
+      "supports_import_decision": false
+    },
+    "review_only_terminal_axis_decisions": {
+      "import_ready_candidate_count": 0,
+      "row_count": 10,
+      "source_free_ghkl_axis_ready_count": 0,
+      "terminal_decision_counts": {
+        "mechanism_match": 2,
+        "out_of_scope": 6,
+        "terminal_rejection": 2
+      }
+    }
+  },
+  "rows": [
+    {
+      "row_id": "m_csa:327",
+      "row_role": "ghkl_positive_like_boundary",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "terminal_rejection",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2704
+    },
+    {
+      "row_id": "m_csa:603",
+      "row_role": "ghkl_positive_like_boundary",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "terminal_rejection",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4004
+    },
+    {
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "mechanism_match",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5777
+    },
+    {
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "mechanism_match",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5929
+    },
+    {
+      "row_id": "m_csa:310",
+      "row_role": "atp_grasp_countercontrol",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3649
+    },
+    {
+      "row_id": "m_csa:498",
+      "row_role": "atp_grasp_countercontrol",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3949
+    },
+    {
+      "row_id": "m_csa:592",
+      "row_role": "askha_countercontrol",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5769
+    },
+    {
+      "row_id": "m_csa:654",
+      "row_role": "ghmp_countercontrol",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3581
+    },
+    {
+      "row_id": "m_csa:637",
+      "row_role": "ndk_countercontrol",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4066
+    },
+    {
+      "row_id": "m_csa:663",
+      "row_role": "pfkb_countercontrol",
+      "source_free_ghkl_axis_ready": false,
+      "terminal_decision": "out_of_scope",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2601
+    }
+  ],
+  "task_definition": {
+    "positive_claim_allowed": false,
+    "superiority_claim_allowed": false,
+    "task": "Compare frozen GHKL boundary rows against current hydrolase controls and neighboring ATP-family countercontrols without production claims.",
+    "task_id": "ghkl_vs_neighbor_atp_family_control_tranche_v1_review_only"
+  }
+}
