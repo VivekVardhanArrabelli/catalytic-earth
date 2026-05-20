@@ -2,8 +2,9 @@
 
 Last updated: 2026-05-20T20:11:27Z
 
-Pushed commit: pending primary artifact commit; this handoff will be updated
-with the pushed commit after staging and commit.
+Pushed commit: `47f355422204754e0b1f1f8e346174f456b36968` (primary run
+artifact commit). Final branch HEAD after this handoff-reference update is
+reported in the automation summary.
 
 ## Current Outcome
 
