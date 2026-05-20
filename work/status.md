@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 213
-- Measured elapsed time: 6743.1 minutes (112.38 hours)
+- Entries: 214
+- Measured elapsed time: 6759.5 minutes (112.66 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1514.0 measured minutes (25.23 hours)
+- post-infra-science: 1530.4 measured minutes (25.51 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2521
-- Evidence references logged: 2008
+- Artifact references logged: 2533
+- Evidence references logged: 2025
 
 ## Recent Entries
-
-### 2026-05-20T06:36:57.763104+00:00 - post-infra-science
-
-- Task: ePK midlength counteraxis and active-query scout
-- Time mode: measured
-- Measured minutes: 48.417
-- Started: 2026-05-20T05:48:13Z
-- Ended: 2026-05-20T06:36:38Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_midlength_protein_role_counteraxis_audit_1025.json, artifacts/v3_epk_ligand_specific_active_query_candidate_scout_1025.json, artifacts/v3_epk_ligand_specific_active_query_candidate_scout_round2_1025.json, artifacts/v3_epk_ligand_specific_active_query_candidate_scout_round3_1025.json, artifacts/v3_epk_ligand_specific_active_query_candidate_scout_round4_1025.json, artifacts/v3_epk_ligand_specific_active_query_candidate_scout_round5_1025.json, artifacts/v3_epk_ligand_specific_active_query_source_validation_review_round3_1025.json, artifacts/v3_epk_ligand_specific_active_query_source_validation_review_round4_1025.json, artifacts/v3_epk_ligand_specific_active_query_source_validation_review_round5_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 638-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, midlength counteraxis blocks 7B56 with 0 residual protein-role false hits, source-valid measured candidates 6Z3R 8OXM 8OXO are short peptide-mode not broad protein-mode, active-query first 100 fetched with 96 no topology hits and 0 accepted new source-valid candidates, 7ZE5 2JJ2 4HPU are source-context counterexamples, 1IR3 is current peptide-substrate support not new broad protein-substrate evidence, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 642-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ### 2026-05-20T07:35:18.172497+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_subagent_synthesis_20260520.json, artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json, artifacts/v3_prospective_external_minicampaign_backend_sequence_search_20260520.json, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, artifacts/v3_modern_baseline_comparison_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: startup 680-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, ePK subagent synthesis integrated and pushed in commit 45dec98, prospective external mini-campaign froze 12 rows across 3 lanes before scoring, MMseqs2 backend sequence search found 11 no-signal rows and one exact-reference holdout P07237, local Foldseek binary unavailable so structural screen incomplete and 11 rows are needs_review, inverse gate configured with 8 fingerprints at threshold 0.4115 but scored 0 rows due no structurally screened survivors, modern baseline comparison makes no superiority claim, focused artifact tests passed, full 683-test unit discovery passed, validate passed, artifact migration dry-run local-file guard passed with removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external hard negatives unchanged, compileall passed, git diff --check passed
 - Notes: No Phase 2 or 3 artifact migration, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
+
+### 2026-05-20T14:14:08.715044+00:00 - post-infra-science
+
+- Task: SDR readiness packet and mini-campaign sequence baseline
+- Time mode: measured
+- Measured minutes: 16.45
+- Started: 2026-05-20T13:57:21Z
+- Ended: 2026-05-20T14:13:48Z
+- Artifacts: artifacts/v3_sdr_family_readiness_packet_20260520.json, artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 683-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, subagent JSON packets validated, SDR readiness packet keeps O14756 review-only and no-go for production fingerprint expansion, SDR packet records 36 clean SDR abstentions and AKR/NADP counterfamily requirements, mini-campaign sequence baseline records P07237 terminal rejection and P31040 k-mer review-priority caveat, Foldseek restored at /private/tmp/catalytic-foldseek-env/bin/foldseek but candidate coordinate sidecars missing keep 11 rows needs_review, inverse gate scored 0 rows because no candidate cleared structural screening, focused artifact tests passed, final 685-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -288,6 +288,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T11:24:52.078372+00:00: 4EKK is useful source-mapped ePK review evidence, but production remains blocked by source-context dependence, uncalibrated substrate-mode logic, external scored re-audit, and local disk capacity before broader source-review recovery.
 - 2026-05-20T12:19:46.938589+00:00: Folded protein-substrate sourcing is still negative under the current source-free substrate-mode surface; next work needs a fresh bounded tranche with stronger source-free substrate identity or pair-specific source mapping kept outside predictive scoring.
 - 2026-05-20T13:17:20.692201+00:00: Next external mini-campaign blocker is restoring or configuring Foldseek before current-countable structural screen and inverse-gate scoring can produce import decisions
+- 2026-05-20T14:14:08.715044+00:00: Next mini-campaign work should materialize the 11 candidate coordinate sidecars before rerunning Foldseek; next SDR work should freeze a 10-20 row SDR/AKR control tranche before scoring.
 
 ## Scope Adjustments
 
@@ -400,3 +401,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-18T05:26:10.455344+00:00: ePK is ready for draft fingerprint specification but not positive-universe expansion; external hard negatives require scored ePK re-audit before any future counting claim.
 - 2026-05-18T06:29:09.711385+00:00: ePK now has a review-only draft spec and local evidence audit but remains blocked from positive-universe expansion until scorer threshold external re-audit terminal review and factory gates pass.
 - 2026-05-20T13:17:20.692201+00:00: ePK remains review-only; main loop pivoted to external mini-campaign and baseline comparison small wins
+- 2026-05-20T14:14:08.715044+00:00: Main loop now has a non-ePK SDR readiness packet and a mini-campaign sequence baseline; Foldseek binary is restored but candidate coordinate sidecars are the active external-screen blocker.

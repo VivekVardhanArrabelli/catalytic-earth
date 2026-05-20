@@ -60,13 +60,15 @@ external pool, prior new-candidate surfaces, prior terminal duplicate rejects,
 the three imported external out-of-scope labels, and the explicit P22830
 deferral. Backend MMseqs2 sequence search completed: 11 rows have no current
 reference near-duplicate signal and `P07237` is an exact-reference terminal
-rejection. Current-countable structural screening did not run because the local
-Foldseek binary `/private/tmp/catalytic-foldseek-env/bin/foldseek` is absent;
-therefore the 11 sequence-clean rows are terminal `needs_review` rather than
-out-of-scope or import-ready. The current 8-fingerprint inverse gate was
-configured at the calibrated `0.4115` abstention threshold, but scored 0 rows
-because no row cleared structural duplicate screening. No external row became
-countable or import-ready.
+rejection. The current automation restored Foldseek at
+`/private/tmp/catalytic-foldseek-env/bin/foldseek` and reran the
+current-countable structural-screen artifact, but all 11 sequence-clean rows
+still lack external coordinate sidecars, so the structural screen remains
+incomplete and those rows stay terminal `needs_review` rather than out-of-scope
+or import-ready. The current 8-fingerprint inverse gate was configured at the
+calibrated `0.4115` abstention threshold, but scored 0 rows because no row
+cleared structural duplicate screening. No external row became countable or
+import-ready.
 
 The modern-baseline comparison is in
 `artifacts/v3_modern_baseline_comparison_20260520.json`. It compares the
@@ -82,6 +84,43 @@ mini-campaign rows. A focused regression test in
 `tests/test_automation_small_win_artifacts.py` pins the review-only status,
 zero-import outcome, Foldseek blocker, 8-fingerprint/threshold metadata, and
 no-superiority baseline caveat.
+
+As of the 2026-05-20T13:57:21Z automation run, the first fallback
+mechanism-family readiness packet is now staged for SDR/NAD(P) redox in
+`artifacts/v3_sdr_family_readiness_packet_20260520.json`. It synthesizes the
+existing O14756 SDR repair-control row, SDR import-safety adjudication, the
+36-row SDR EC 1.1.1 consistency check, AKR/NADP sibling-control artifacts, and
+the modern baseline comparison into a review-only go/no-go packet. The decision
+is a no-go for production fingerprint expansion: O14756 is the only direct
+positive-like SDR row, its post-repair status is still `needs_review`, and the
+broader duplicate screen, post-repair terminal review, and full factory gate
+remain unresolved. The packet also keeps source-traced active-site overlap,
+Rhea/InterPro context, EC labels, protein names, and UniProt prose out of
+predictive use until a source-free local axis is preregistered.
+
+Evidence-based confidence call: confidence is high that the current SDR packet
+is useful as a family-readiness small win and not a production fingerprint,
+because it identifies concrete positives, cofactors, counterfamilies,
+active-site evidence, failure modes, and one next experiment while preserving 0
+label imports and 0 registry edits. Confidence is moderate that SDR is a
+better next non-ePK experiment than another ePK audit, because the existing
+O14756/AKR artifacts already define a bounded SDR-vs-AKR control tranche.
+Confidence is low that current EC 1.1.1 or representation evidence alone can
+support a claim: the 36-row consistency surface is clean abstention context,
+not positive SDR calibration.
+
+The same run also adds a sequence-baseline diagnostic for the frozen
+mini-campaign in
+`artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`.
+It compares the already frozen 12 rows against the bounded MMseqs2
+current-reference search and a deterministic 5-mer nearest-neighbor baseline
+from the committed FASTA sidecars. The diagnostic agrees with the existing
+terminal surface: 1 exact-reference terminal rejection (`P07237`) and 11
+`needs_review` rows while candidate coordinate sidecars remain missing. It adds
+one useful review-priority caveat: `P31040` remains below the MMseqs2
+near-duplicate threshold but has a high deterministic k-mer neighbor signal to
+`Q9YHT1`, so it should not be treated as clean import evidence without
+structural and UniRef screens.
 
 As of the 2026-05-20T12:55:46Z automation run, the completed ePK subagent
 packets are integrated as review-only synthesis in

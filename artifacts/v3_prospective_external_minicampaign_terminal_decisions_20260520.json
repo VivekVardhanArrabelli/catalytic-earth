@@ -17,7 +17,7 @@
     "blocker_removed": "new_candidate_terminal_decisions_recorded_after_current_countable_structural_screen",
     "candidate_count": 11,
     "countable_label_candidate_count": 0,
-    "created_at": "2026-05-20T13:08:49Z",
+    "created_at": "2026-05-20T14:10:30Z",
     "exact_reference_holdout_accessions": [
       "P07237"
     ],
@@ -35,7 +35,7 @@
     "sequence_no_signal_candidate_count": 11,
     "slice_id": 1025,
     "source_backend_sequence_search_method": "external_source_backend_sequence_search",
-    "source_current_countable_structural_screen_foldseek_status": "foldseek_unavailable",
+    "source_current_countable_structural_screen_foldseek_status": "external_coordinate_sidecars_missing",
     "source_current_countable_structural_screen_method": "external_hard_negative_new_candidate_current_countable_structural_screen",
     "source_new_candidate_screen_selection_method": "external_hard_negative_new_candidate_screen_selection",
     "source_new_candidate_sourcing_method": "external_hard_negative_post_p06744_sourcing",

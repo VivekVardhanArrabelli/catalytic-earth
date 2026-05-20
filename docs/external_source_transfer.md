@@ -268,6 +268,20 @@ import.
   all-vs-all Foldseek cache, and the current-countable Foldseek screen rejects
   all six as structural duplicate signals. The terminal decision artifact
   records 0 import-ready rows and 0 countable candidates.
+- `artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json`
+  records the first post-ePK-synthesis prospective mini-campaign as a frozen
+  12-row, three-lane review-only decision packet. MMseqs2 finds 11 bounded
+  current-reference no-signal rows and one exact-reference holdout (`P07237`),
+  and Foldseek is restored locally. The current-countable structural screen is
+  still incomplete because all 11 non-holdout candidate coordinate sidecars are
+  missing, so those rows remain `needs_review`.
+- `artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`
+  compares that same frozen set against the bounded MMseqs2 result and a
+  deterministic 5-mer nearest-neighbor baseline from committed FASTA sidecars.
+  It keeps the same 1 terminal rejection and 11 `needs_review` decisions,
+  flags `P31040` as a review-priority sequence-neighbor caveat, and authorizes
+  no import, superiority claim, registry edit, or production fingerprint
+  change.
 
 ## Immediate Pilot Direction
 
@@ -400,6 +414,13 @@ Priority blockers:
   post-repair `needs_review`, with 0 import-ready/countable rows, because
   broader duplicate screening, a post-repair review decision, and the full
   factory gate are still unresolved.
+- `artifacts/v3_sdr_family_readiness_packet_20260520.json` synthesizes the
+  O14756 SDR repair-control row, SDR import-safety adjudication, SDR EC 1.1.1
+  consistency check, AKR/NADP sibling controls, and modern baseline context into
+  a simpler-family readiness packet. It is a review-only no-go for production
+  fingerprint expansion: one positive-like row is insufficient, source-context
+  active-site evidence is not a frozen predictive axis, EC 1.1.1 is too broad,
+  and duplicate/review/factory blockers remain unresolved.
 - `artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json`
   starts the next repair lane for `Q6NSJ0` as review-only non-text control
   evidence. It uses source-traced acidic active-site residues, active-site

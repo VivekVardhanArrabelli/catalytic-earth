@@ -22,15 +22,33 @@ baseline comparisons, terminal decisions, and family-readiness packets.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, and terminal review-only decisions. One exact-reference holdout is
-rejected; the other 11 rows are `needs_review` because local Foldseek is absent
-and current-countable structural duplicate screening could not run. The current
-8-fingerprint inverse gate remains configured at `0.4115`, but no candidate is
-eligible for scoring until structural screening is restored. The modern
+rejected; the other 11 rows are `needs_review` because Foldseek is now restored
+but the candidate coordinate sidecars are still missing, so current-countable
+structural duplicate screening remains incomplete. The current 8-fingerprint
+inverse gate remains configured at `0.4115`, but no candidate is eligible for
+scoring until candidate coordinates are materialized and structural screening
+completes. The modern
 baseline comparison is also review-only: geometry abstains on all 12 mapped
 controls, EC/keyword lanes are routing context only, k-mer and ESM-2 are
 sequence-neighbor controls, and Foldseek context comes from the existing all-30
 sidecar rather than the new mini-campaign. No superiority claim, label import,
 or production fingerprint change is in scope.
+Current SDR family-readiness scope: the SDR/NAD(P) packet in
+`artifacts/v3_sdr_family_readiness_packet_20260520.json` is review-only and
+not a production fingerprint. It uses O14756 as the only direct positive-like
+SDR row, the 36/36 clean-abstention SDR EC 1.1.1 consistency surface as stress
+context, and AKR/NADP plus current flavin/heme fingerprints as counterfamily
+controls. It does not authorize a registry edit, label import, threshold, or
+production scorer. The next admissible SDR step is one preregistered
+review-only tranche that freezes 10-20 SDR/AKR/flavin/heme control rows before
+any source-free local-axis scoring.
+Current mini-campaign sequence-baseline scope: the sequence diagnostic in
+`artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`
+is a review-only baseline, not a replacement for Foldseek or factory gates. It
+keeps the same 1 terminal rejection and 11 `needs_review` decisions, while
+marking `P31040` as a review-priority sequence-neighbor caveat under the
+deterministic 5-mer baseline. No superiority claim or import decision is in
+scope.
 MEK1/ERK1 source review now provides two
 source-authoritative broad protein-substrate review controls (`9UUR` and
 `9UUX`) and rejects same-chain `9UW4`, but the broad-role stress test shows a

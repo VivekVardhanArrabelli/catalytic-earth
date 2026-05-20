@@ -1,35 +1,40 @@
 {
   "metadata": {
+    "abstain_threshold": 0.4115,
     "artifact_id": "v3_prospective_external_minicampaign_decision_packet_20260520",
-    "created_at": "2026-05-20T13:09:30Z",
-    "method": "prospective_external_minicampaign_decision_packet",
-    "review_only": true,
-    "candidate_selection_before_outcome_scoring": true,
-    "selection_artifact": "artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json",
-    "selection_artifact_created_at": "2026-05-20T13:07:45Z",
+    "artifact_migration_files_edited": false,
     "candidate_count": 12,
+    "candidate_selection_before_outcome_scoring": true,
+    "coordinate_sidecar_missing_count": 11,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T14:11:11Z",
+    "curated_label_registry_edited": false,
+    "current_countable_structural_screen_status": "external_coordinate_sidecars_missing",
+    "current_countable_structural_screen_status_counts": {
+      "current_countable_structural_screen_not_completed": 11
+    },
+    "exact_reference_holdout_count": 1,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_available": true,
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "git_history_edited": false,
+    "import_ready_candidate_count": 0,
+    "inverse_gate_candidate_count": 0,
+    "inverse_gate_scored_candidate_count": 0,
     "lane_count": 3,
     "lane_counts": {
       "external_source:isomerase": 4,
       "external_source:lyase": 4,
       "external_source:oxidoreductase_long_tail": 4
     },
+    "main_result": "12 candidates frozen; 11 no-signal sequence rows and one exact-reference terminal rejection; Foldseek is restored but all 11 non-holdout rows still need review because external candidate coordinate sidecars are missing",
+    "method": "prospective_external_minicampaign_decision_packet",
+    "next_blocker": "materialize_or_commit_candidate_coordinate_sidecars_then_rerun_current_countable_structural_screen_before_inverse_gate_import_claims",
     "normalized_terminal_decision_counts": {
       "needs_review": 11,
       "terminal_rejection": 1
     },
-    "terminal_decision_status_counts": {
-      "needs_review_current_countable_structural_screen_incomplete": 11,
-      "terminal_rejection_exact_reference_holdout": 1
-    },
-    "sequence_no_signal_candidate_count": 11,
-    "exact_reference_holdout_count": 1,
-    "current_countable_structural_screen_status": "foldseek_unavailable",
-    "structurally_screened_candidate_count": 0,
-    "inverse_gate_candidate_count": 0,
-    "inverse_gate_scored_candidate_count": 0,
-    "abstain_threshold": 0.4115,
-    "threshold_policy_version": "external_hard_negative_threshold_policy_v1_2026_05_17",
     "production_fingerprint_count": 8,
     "production_fingerprint_ids": [
       "ser_his_acid_hydrolase",
@@ -42,89 +47,124 @@
       "heme_peroxidase_oxidase"
     ],
     "ready_for_label_import": false,
-    "import_ready_candidate_count": 0,
-    "countable_label_candidate_count": 0,
-    "curated_label_registry_edited": false,
-    "fingerprint_registry_edited": false,
-    "artifact_migration_files_edited": false,
-    "git_history_edited": false,
-    "main_result": "12 candidates frozen; 11 no-signal sequence rows and one exact-reference terminal rejection; all non-holdout rows need review because current-countable structural screen did not run without Foldseek",
-    "next_blocker": "restore_or_configure_foldseek_binary_then_rerun_current_countable_structural_screen_before_inverse_gate_import_claims",
+    "review_only": true,
+    "selection_artifact": "artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json",
+    "selection_artifact_created_at": "2026-05-20T13:07:45Z",
+    "sequence_no_signal_candidate_count": 11,
     "source_artifacts": {
-      "candidate_freeze": "artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json",
       "backend_sequence_search": "artifacts/v3_prospective_external_minicampaign_backend_sequence_search_20260520.json",
+      "candidate_freeze": "artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json",
       "current_countable_structural_screen": "artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json",
       "inverse_gate_scores": "artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json",
       "terminal_decisions": "artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json"
-    }
+    },
+    "structurally_screened_candidate_count": 0,
+    "terminal_decision_status_counts": {
+      "needs_review_current_countable_structural_screen_incomplete": 11,
+      "terminal_rejection_exact_reference_holdout": 1
+    },
+    "threshold_policy_version": "external_hard_negative_threshold_policy_v1_2026_05_17"
   },
   "rows": [
     {
       "accession": "P28330",
+      "candidate_priority_rank": 1,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
+        ]
+      },
       "entry_id": "uniprot:P28330",
       "lane_id": "external_source:oxidoreductase_long_tail",
-      "candidate_priority_rank": 1,
       "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
       "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
         "active_site_feature_count": 1,
         "catalytic_activity_count": 17,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
         "specific_ec_numbers": [
           "1.3.8.7",
           "1.3.8.8"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
+        ]
       },
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "current_countable_structural_screen_not_completed",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted"
+      ],
       "review_only_context": {
-        "protein_name": "Long-chain specific acyl-CoA dehydrogenase, mitochondrial (LCAD) (EC 1.3.8.8) (Medium-chain acyl-CoA dehydrogenase, mitochondrial) (EC 1.3.8.7)",
+        "alphafold_ids": [
+          "P28330"
+        ],
         "pdb_ids": [
           "8W0T",
           "8W0U",
           "8W0Z"
         ],
-        "alphafold_ids": [
-          "P28330"
+        "protein_name": "Long-chain specific acyl-CoA dehydrogenase, mitochondrial (LCAD) (EC 1.3.8.8) (Medium-chain acyl-CoA dehydrogenase, mitochondrial) (EC 1.3.8.7)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "P30838",
+      "candidate_priority_rank": 2,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:P30838",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 2,
+        "catalytic_activity_count": 2,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "1.2.1.5"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "P30838",
-      "entry_id": "uniprot:P30838",
-      "lane_id": "external_source:oxidoreductase_long_tail",
-      "candidate_priority_rank": 2,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 2,
-        "catalytic_activity_count": 2,
-        "specific_ec_numbers": [
-          "1.2.1.5"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "Aldehyde dehydrogenase, dimeric NADP-preferring (EC 1.2.1.5) (ALDHIII) (Aldehyde dehydrogenase 3) (Aldehyde dehydrogenase family 3 member A1)",
+        "alphafold_ids": [
+          "P30838"
+        ],
         "pdb_ids": [
           "3SZA",
           "3SZB",
@@ -133,121 +173,169 @@
           "4L2O",
           "8BB8"
         ],
-        "alphafold_ids": [
-          "P30838"
+        "protein_name": "Aldehyde dehydrogenase, dimeric NADP-preferring (EC 1.2.1.5) (ALDHIII) (Aldehyde dehydrogenase 3) (Aldehyde dehydrogenase family 3 member A1)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "P31040",
+      "candidate_priority_rank": 3,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:P31040",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 1,
+        "catalytic_activity_count": 3,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "1.3.5.1"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "P31040",
-      "entry_id": "uniprot:P31040",
-      "lane_id": "external_source:oxidoreductase_long_tail",
-      "candidate_priority_rank": 3,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 1,
-        "catalytic_activity_count": 3,
-        "specific_ec_numbers": [
-          "1.3.5.1"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial (EC 1.3.5.1) (Flavoprotein subunit of complex II) (Fp) (Malate dehydrogenase [quinone] flavoprotein subunit) (EC 1.1.5.-)",
+        "alphafold_ids": [
+          "P31040"
+        ],
         "pdb_ids": [
           "6VAX",
           "8DYD",
           "8DYE",
           "8GS8"
         ],
-        "alphafold_ids": [
-          "P31040"
+        "protein_name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial (EC 1.3.5.1) (Flavoprotein subunit of complex II) (Fp) (Malate dehydrogenase [quinone] flavoprotein subunit) (EC 1.1.5.-)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "P36959",
+      "candidate_priority_rank": 4,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:P36959",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 2,
+        "catalytic_activity_count": 1,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "1.7.1.7"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "P36959",
-      "entry_id": "uniprot:P36959",
-      "lane_id": "external_source:oxidoreductase_long_tail",
-      "candidate_priority_rank": 4,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 2,
-        "catalytic_activity_count": 1,
-        "specific_ec_numbers": [
-          "1.7.1.7"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "GMP reductase 1 (GMPR 1) (EC 1.7.1.7) (Guanosine 5'-monophosphate oxidoreductase 1) (Guanosine monophosphate reductase 1)",
+        "alphafold_ids": [
+          "P36959"
+        ],
         "pdb_ids": [
           "2BLE",
           "2BWG"
         ],
-        "alphafold_ids": [
-          "P36959"
+        "protein_name": "GMP reductase 1 (GMPR 1) (EC 1.7.1.7) (Guanosine 5'-monophosphate oxidoreductase 1) (Guanosine monophosphate reductase 1)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "P54098",
+      "candidate_priority_rank": 15,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:P54098",
+      "lane_id": "external_source:lyase",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 1,
+        "catalytic_activity_count": 3,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "2.7.7.7"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "P54098",
-      "entry_id": "uniprot:P54098",
-      "lane_id": "external_source:lyase",
-      "candidate_priority_rank": 15,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 1,
-        "catalytic_activity_count": 3,
-        "specific_ec_numbers": [
-          "2.7.7.7"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "DNA polymerase subunit gamma-1 (EC 2.7.7.7) (3'-5' exodeoxyribonuclease) (EC 3.1.11.-) (5'-deoxyribose-phosphate lyase) (EC 4.2.99.-) (Mitochondrial DNA polymerase catalytic subunit) (PolG-alpha)",
+        "alphafold_ids": [
+          "P54098"
+        ],
         "pdb_ids": [
           "3IKM",
           "4ZTU",
@@ -282,80 +370,112 @@
           "9IC1",
           "9IC3"
         ],
-        "alphafold_ids": [
-          "P54098"
+        "protein_name": "DNA polymerase subunit gamma-1 (EC 2.7.7.7) (3'-5' exodeoxyribonuclease) (EC 3.1.11.-) (5'-deoxyribose-phosphate lyase) (EC 4.2.99.-) (Mitochondrial DNA polymerase catalytic subunit) (PolG-alpha)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "Q8TAT5",
+      "candidate_priority_rank": 16,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:Q8TAT5",
+      "lane_id": "external_source:lyase",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 1,
+        "catalytic_activity_count": 1,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "4.2.99.18"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "Q8TAT5",
-      "entry_id": "uniprot:Q8TAT5",
-      "lane_id": "external_source:lyase",
-      "candidate_priority_rank": 16,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 1,
-        "catalytic_activity_count": 1,
-        "specific_ec_numbers": [
-          "4.2.99.18"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "Endonuclease 8-like 3 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase FPG2) (DNA glycosylase/AP lyase Neil3) (Endonuclease VIII-like 3) (Nei-like protein 3)",
+        "alphafold_ids": [
+          "Q8TAT5"
+        ],
         "pdb_ids": [
           "7JL5",
           "7TMY"
         ],
-        "alphafold_ids": [
-          "Q8TAT5"
+        "protein_name": "Endonuclease 8-like 3 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase FPG2) (DNA glycosylase/AP lyase Neil3) (Endonuclease VIII-like 3) (Nei-like protein 3)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "P0A6L4",
+      "candidate_priority_rank": 17,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:P0A6L4",
+      "lane_id": "external_source:lyase",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 2,
+        "catalytic_activity_count": 1,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "4.1.3.3"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "P0A6L4",
-      "entry_id": "uniprot:P0A6L4",
-      "lane_id": "external_source:lyase",
-      "candidate_priority_rank": 17,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 2,
-        "catalytic_activity_count": 1,
-        "specific_ec_numbers": [
-          "4.1.3.3"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "N-acetylneuraminate lyase (AcNeu lyase) (NAL) (Neu5Ac lyase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (NALase) (Sialate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+        "alphafold_ids": [
+          "P0A6L4"
+        ],
         "pdb_ids": [
           "1FDY",
           "1FDZ",
@@ -381,80 +501,106 @@
           "4BWL",
           "4UUI"
         ],
-        "alphafold_ids": [
-          "P0A6L4"
-        ]
+        "protein_name": "N-acetylneuraminate lyase (AcNeu lyase) (NAL) (Neu5Ac lyase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (NALase) (Sialate lyase) (Sialic acid aldolase) (Sialic acid lyase)"
       },
-      "remaining_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "full_label_factory_gate_not_run",
-        "terminal_review_decision_not_accepted"
-      ]
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
     },
     {
       "accession": "P28240",
+      "candidate_priority_rank": 18,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
+        ]
+      },
       "entry_id": "uniprot:P28240",
       "lane_id": "external_source:lyase",
-      "candidate_priority_rank": 18,
       "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
       "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
         "active_site_feature_count": 1,
         "catalytic_activity_count": 2,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
         "specific_ec_numbers": [
           "4.1.3.1",
           "4.1.3.30"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
-      "review_only_context": {
-        "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Methylisocitrate lyase) (MICA) (EC 4.1.3.30) (Threo-D(S)-isocitrate glyoxylate-lyase)",
-        "pdb_ids": [
-          "7EBC"
-        ],
-        "alphafold_ids": [
-          "P28240"
         ]
       },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
+      ],
+      "review_only_context": {
+        "alphafold_ids": [
+          "P28240"
+        ],
+        "pdb_ids": [
+          "7EBC"
+        ],
+        "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Methylisocitrate lyase) (MICA) (EC 4.1.3.30) (Threo-D(S)-isocitrate glyoxylate-lyase)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
     },
     {
       "accession": "P07237",
+      "candidate_priority_rank": 38,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "not_applicable_exact_reference_holdout",
+        "current_countable_structural_screen_status": "not_applicable_exact_reference_holdout",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "sequence_holdout_control_not_resolved"
+        ]
+      },
       "entry_id": "uniprot:P07237",
       "lane_id": "external_source:isomerase",
-      "candidate_priority_rank": 38,
       "normalized_terminal_decision": "terminal_rejection",
-      "terminal_decision_status": "terminal_rejection_exact_reference_holdout",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
       "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
         "active_site_feature_count": 4,
         "catalytic_activity_count": 1,
+        "current_countable_structural_screen_status": "not_applicable_exact_reference_holdout",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "exact_reference_holdout",
         "specific_ec_numbers": [
           "5.3.4.1"
-        ],
-        "sequence_search_status": "exact_reference_holdout",
-        "current_countable_structural_screen_status": "not_applicable_exact_reference_holdout",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
+        ]
       },
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "sequence_exact_reference_holdout"
+      ],
       "review_only_context": {
-        "protein_name": "Protein disulfide-isomerase (PDI) (EC 5.3.4.1) (Cellular thyroid hormone-binding protein) (Prolyl 4-hydroxylase subunit beta) (p55)",
+        "alphafold_ids": [
+          "P07237"
+        ],
         "pdb_ids": [
           "1BJX",
           "1MEK",
@@ -471,39 +617,54 @@
           "8EOJ",
           "8GDY"
         ],
-        "alphafold_ids": [
-          "P07237"
-        ]
+        "protein_name": "Protein disulfide-isomerase (PDI) (EC 5.3.4.1) (Cellular thyroid hormone-binding protein) (Prolyl 4-hydroxylase subunit beta) (p55)"
       },
-      "remaining_blockers": [
-        "sequence_exact_reference_holdout"
-      ]
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_decision_status": "terminal_rejection_exact_reference_holdout"
     },
     {
       "accession": "P30101",
+      "candidate_priority_rank": 39,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
+        ]
+      },
       "entry_id": "uniprot:P30101",
       "lane_id": "external_source:isomerase",
-      "candidate_priority_rank": 39,
       "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
       "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
         "active_site_feature_count": 4,
         "catalytic_activity_count": 1,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
         "specific_ec_numbers": [
           "5.3.4.1"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
+        ]
       },
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "current_countable_structural_screen_not_completed",
+        "full_label_factory_gate_not_run",
+        "terminal_review_decision_not_accepted"
+      ],
       "review_only_context": {
-        "protein_name": "Protein disulfide-isomerase A3 (EC 5.3.4.1) (58 kDa glucose-regulated protein) (58 kDa microsomal protein) (p58) (Disulfide isomerase ER-60) (Endoplasmic reticulum resident protein 57) (ER protein 57) (ERp57) (Endoplasmic reticulum resident protein 60) (ER protein 60) (ERp60)",
+        "alphafold_ids": [
+          "P30101"
+        ],
         "pdb_ids": [
           "2ALB",
           "2DMM",
@@ -513,42 +674,58 @@
           "7QNG",
           "7QPD"
         ],
-        "alphafold_ids": [
-          "P30101"
+        "protein_name": "Protein disulfide-isomerase A3 (EC 5.3.4.1) (58 kDa glucose-regulated protein) (58 kDa microsomal protein) (p58) (Disulfide isomerase ER-60) (Endoplasmic reticulum resident protein 57) (ER protein 57) (ERp57) (Endoplasmic reticulum resident protein 60) (ER protein 60) (ERp60)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "P14174",
+      "candidate_priority_rank": 40,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:P14174",
+      "lane_id": "external_source:isomerase",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 1,
+        "catalytic_activity_count": 2,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "5.3.2.1",
+          "5.3.3.12"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "P14174",
-      "entry_id": "uniprot:P14174",
-      "lane_id": "external_source:isomerase",
-      "candidate_priority_rank": 40,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 1,
-        "catalytic_activity_count": 2,
-        "specific_ec_numbers": [
-          "5.3.2.1",
-          "5.3.3.12"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "Macrophage migration inhibitory factor (MIF) (EC 5.3.2.1) (Glycosylation-inhibiting factor) (GIF) (L-dopachrome isomerase) (L-dopachrome tautomerase) (EC 5.3.3.12) (Phenylpyruvate tautomerase)",
+        "alphafold_ids": [
+          "P14174"
+        ],
         "pdb_ids": [
           "1CA7",
           "1CGQ",
@@ -663,41 +840,57 @@
           "9BNQ",
           "9BNR"
         ],
-        "alphafold_ids": [
-          "P14174"
+        "protein_name": "Macrophage migration inhibitory factor (MIF) (EC 5.3.2.1) (Glycosylation-inhibiting factor) (GIF) (L-dopachrome isomerase) (L-dopachrome tautomerase) (EC 5.3.3.12) (Phenylpyruvate tautomerase)"
+      },
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
+    },
+    {
+      "accession": "Q9BZE2",
+      "candidate_priority_rank": 41,
+      "countable_label_candidate": false,
+      "current_countable_structural_screen": {
+        "coordinate_status": "coordinate_sidecar_missing",
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "foldseek_run_status": "external_coordinate_sidecars_missing",
+        "nearest_current_countable_hit": null,
+        "remaining_import_blockers": [
+          "current_countable_structural_screen_not_completed",
+          "external_coordinate_sidecar_missing",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
         ]
       },
+      "entry_id": "uniprot:Q9BZE2",
+      "lane_id": "external_source:isomerase",
+      "normalized_terminal_decision": "needs_review",
+      "predictive_or_import_evidence": {
+        "active_site_feature_count": 1,
+        "catalytic_activity_count": 1,
+        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring",
+        "inverse_gate_scored": false,
+        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
+        "sequence_search_status": "no_near_duplicate_signal",
+        "specific_ec_numbers": [
+          "5.4.99.45"
+        ]
+      },
+      "ready_for_label_import": false,
       "remaining_blockers": [
         "current_countable_structural_screen_not_completed",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted"
-      ]
-    },
-    {
-      "accession": "Q9BZE2",
-      "entry_id": "uniprot:Q9BZE2",
-      "lane_id": "external_source:isomerase",
-      "candidate_priority_rank": 41,
-      "normalized_terminal_decision": "needs_review",
-      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
-      "target_label_type": "out_of_scope",
-      "target_fingerprint_id": null,
-      "ready_for_label_import": false,
-      "countable_label_candidate": false,
-      "predictive_or_import_evidence": {
-        "selection_basis": "pre-score lane-balanced post-P06744 external hard-negative sourcing with prior pools, terminal rejects, imports, and P22830 deferral excluded",
-        "active_site_feature_count": 1,
-        "catalytic_activity_count": 1,
-        "specific_ec_numbers": [
-          "5.4.99.45"
-        ],
-        "sequence_search_status": "no_near_duplicate_signal",
-        "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
-        "inverse_gate_scored": false,
-        "inverse_gate_blocker": "no_structurally_screened_no_duplicate_rows_available_for_8_fingerprint_scoring"
-      },
+      ],
       "review_only_context": {
-        "protein_name": "tRNA pseudouridine(38/39) synthase (EC 5.4.99.45) (tRNA pseudouridine synthase 3) (tRNA pseudouridylate synthase 3) (tRNA-uridine isomerase 3)",
+        "alphafold_ids": [
+          "Q9BZE2"
+        ],
         "pdb_ids": [
           "8OKD",
           "9ENB",
@@ -706,15 +899,14 @@
           "9ENF",
           "9F9Q"
         ],
-        "alphafold_ids": [
-          "Q9BZE2"
-        ]
+        "protein_name": "tRNA pseudouridine(38/39) synthase (EC 5.4.99.45) (tRNA pseudouridine synthase 3) (tRNA pseudouridylate synthase 3) (tRNA-uridine isomerase 3)"
       },
-      "remaining_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "full_label_factory_gate_not_run",
-        "terminal_review_decision_not_accepted"
-      ]
+      "target_fingerprint_id": null,
+      "target_label_type": "out_of_scope",
+      "terminal_confidence": "low",
+      "terminal_decision_status": "needs_review_current_countable_structural_screen_incomplete",
+      "terminal_import_attempt_status": "import_blocked",
+      "terminal_reason": "current-countable structural screen did not produce a completed row-level decision"
     }
   ],
   "warnings": [
