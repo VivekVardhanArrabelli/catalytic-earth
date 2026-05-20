@@ -1,91 +1,130 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T12:03:32-0500
+Last updated: 2026-05-20T14:29:58-0500
 
-Primary outcome: `blocker_not_cleared_biology_ambiguity`
+Primary outcome: `blocker_not_cleared_data_scarcity`
 
 `production_claim_allowed=false`
 
 `labels_or_fingerprints_changed=false`
 
+Run note: `git fetch origin` failed at start because the sandbox could not
+write `FETCH_HEAD` inside the parent repository worktree metadata. Remote tip
+was checked with `git ls-remote` and matched local `HEAD` at run start. The run
+continued only in the isolated `research/epk-substrate-role-identity` worktree.
+
 ## What Was Tested
 
-Built a 22-row review-only diagnostic tranche in
-`artifacts/research_lanes/epk_substrate_role_identity/epk_substrate_role_identity_tranche_20260520.json`.
-All rows materialized from RCSB PDB files in memory; no raw coordinate files
-were written.
+Two review-only terminal-index experiments are now present in this lane.
 
-Rows included requested review-only positives:
-`5HVK`, `6Z3R`, `9UUR`, `9UUX`, `1QMZ`, `3QHR`, `3QHW`, `3X2U`, `3X2V`,
-`3X2W`, and `4IAC`.
+First, `epk_folded_nterminal_auth_terminal_stress_v1_review_only` added a
+30-row stress artifact:
 
-Rows included requested counterexamples/pressure controls:
-`2JJ2`, `7ZE5`, `7B56`, `9UW4`, `3R5F`, `5C1O`, `6U1D`, `6U1E`, `5TT6`,
-`6NOO`, and `9NBW`.
+`artifacts/research_lanes/epk_substrate_role_identity/epk_folded_nterminal_auth_terminal_stress_20260520.json`
 
-Predictive inputs were limited to structure-derived features: ligand state,
-terminal gamma-equivalent availability, nearest hydroxyl geometry, nearest
-nonpolymer oxygen, chain topology, own-chain nucleotide/metal context, polymer
-chain/entity counts, chain length, residue ordinal, Tyr/N-terminal-STY mode,
-local atom count, and co-materialization. PDB title, UniProt prose, EC/Rhea,
-paper/source text, mechanism labels, curated substrate names, post-hoc source
-repair, and candidate-specific threshold tuning were explicitly forbidden.
+It introduced these source-free coordinate-derived features:
+
+- integer author residue number from coordinate records
+- resolved 1-based residue ordinal in the candidate acceptor chain
+- `auth_seq_id - resolved_ordinal`
+- `auth-terminal-like N-terminal STY` guard:
+  `abs(auth_seq_id - resolved_ordinal) <= 5`
+- `internal-fragment-like N-terminal STY` flag when resolved N-terminal STY
+  numbering is inconsistent with a true chain N terminus
+
+Second, this run executed the handoff's next requested probe,
+`epk_folded_nterminal_auth_terminal_guard_generalization_v2_review_only`.
+
+Artifact:
+
+`artifacts/research_lanes/epk_substrate_role_identity/epk_auth_terminal_guard_generalization_v2_20260520.json`
+
+The new frozen diagnostic set has 24 non-overlap rows from prior review
+artifacts: five positive-like rows (`1IR3`, `2PHK`, `4EKK`, `1L0O`, `3TM0`)
+and 19 sibling/topology/transporter controls. All 24 PDB coordinate files
+fetched successfully in memory. No raw coordinate files were written.
+
+The full requested enrichment for independent true folded N-terminal substrate
+positives was not possible: prior lane artifacts repeatedly identify `5HVK` as
+the only source-valid heteromeric folded N-terminal protein-substrate positive.
+The non-overlap positives available for this run are current protein-substrate,
+exact-source/context-ambiguous, product-state, or ligand-analog rows rather
+than independent folded auth-terminal positives.
+
+Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
+EC/Rhea, paper/source text, mechanism labels, curated substrate names,
+post-hoc source repair, candidate-specific threshold tuning, production label
+imports, and production threshold calibration.
 
 ## Evidence
 
-Rule evaluation is in
-`artifacts/research_lanes/epk_substrate_role_identity/epk_substrate_role_identity_rule_eval_20260520.json`.
+Over the prior 30-row terminal-index stress set:
 
-Strict source-free rule:
-`strict_cross_chain_terminal_or_peptide_no_acceptor_ligand_v1`
+- Baseline strict rule: TP=11, FP=1, TN=14, FN=4.
+- `strict_auth_terminal_guard_v1`: TP=11, FP=0, TN=15, FN=4.
+- The guard removed the decisive `7B56` false positive by classifying its
+  resolved N-terminal Ser 822/ordinal 1 as internal-fragment-like
+  (`auth_seq_id - resolved_ordinal = 821`).
+- Permissive nearest-hydroxyl rule: TP=13, FP=15, TN=0, FN=2.
 
-Confusion matrix: TP=7, FP=1, TN=10, FN=4.
+Over the new 24-row non-overlap generalization set:
 
-It retained `5HVK`, `6Z3R`, `1QMZ`, `3X2U`, `3X2V`, `3X2W`, and `4IAC`, and
-blocked most ATPase/ATP-grasp/transporter controls. It still false-hit `7B56`
-because a midlength folded/polymer chain with N-terminal Ser and no own-chain
-nucleotide/metal context looks source-free-compatible with a true folded
-substrate. It missed `9UUR`/`9UUX` by topology or acceptor-context ambiguity
-and missed `3QHR`/`3QHW` because only ADP/product-state ligand atoms were
-present.
+- Baseline strict rule: TP=3, FP=0, TN=19, FN=2.
+- `strict_auth_terminal_guard_v1`: TP=3, FP=0, TN=19, FN=2.
+- Permissive nearest-hydroxyl rule: TP=4, FP=12, TN=7, FN=1.
+- Independent folded auth-terminal true-positive coverage: 0/5 positive-like
+  rows.
 
-Permissive nearest-hydroxyl rule:
-`permissive_nearest_hydroxyl_6a_v1`
+The guard made no difference on the non-overlap set because no independent
+true positive supplied a folded, auth-terminal-like N-terminal STY candidate.
+The retained positives were all short-peptide-like in coordinate context:
+`1IR3` chain length 6, `2PHK` chain length 7, and `4EKK` chain length 10.
+`4EKK` also remains source-context ambiguous in prior broad review and is not
+clean folded N-terminal guard evidence. False negatives were `1L0O`
+(ADP/product-state) and `3TM0` (ligand-analog/topology ambiguity).
 
-Confusion matrix: TP=9, FP=11, TN=0, FN=2.
+## Interpretation
 
-It recovered most active-gamma positives but every counterexample with a
-nearby Ser/Thr/Tyr hydroxyl became a false hit. This directly confirms that
-distance-only or nearest-hydroxyl evidence is not a substrate-role identity
-rule.
+The terminal-index guard is useful review-only counterevidence for one mimic
+class: resolved N-terminal Ser/Thr/Tyr candidates that are actually internal
+fragments under coordinate residue numbering. It provides a source-free
+explanation for why `7B56` should not be generalized as a true folded substrate
+positive.
 
-## Blocker Classification
+The blocker is still not cleared. The guard has not generalized beyond `5HVK`
+because this lane still lacks independent folded N-terminal protein-substrate
+positives with auth-terminal-like numbering. It also does not solve
+non-terminal folded protein acceptors, product/analog states, topology
+ambiguity, or acceptor-role ambiguity.
 
-The blocker is not cleared. The primary failure is biological role ambiguity,
-not a missing implementation detail. ATP-dependent sibling families, ATPases,
-transporters, kinase-kinase arrangements, product-state structures, and folded
-protein substrate complexes can all co-materialize gamma-proximal hydroxyls.
-Local topology, residue class, N-terminal position, chain length, and own-chain
-ligand context are useful pressure features but do not uniquely identify the
-true kinase substrate phosphoacceptor.
+Comparable ePK substrate-role blockers in this repo have not been cleared by
+structure-only nearest-atom, topology, residue-class, or terminal-position
+rules. Usable progress remains hybrid: source-reviewed evidence can label and
+audit rows, while source text stays excluded from predictive features.
 
-Comparable project blockers have not been cleared by structure-only
-nearest-atom rules. Prior usable ePK progress required source-reviewed hybrid
-evidence as evaluation/support context, while keeping that evidence out of
-predictive features.
+## Current Decision
+
+`strict_auth_terminal_guard_v1` should remain a review-only counteraxis for
+`7B56`-style internal-fragment mimics. It is not a general source-free
+substrate-role identity rule and does not authorize production readiness,
+label imports, fingerprint edits, threshold calibration, or held-out
+performance claims.
 
 ## Exact Next Experiment
 
-Run
-`epk_fresh_nonconfounded_folded_nterminal_substrate_vs_midlength_mimic_stress_v1_review_only`.
+Run a different source-free feature family rather than another terminal-index
+generalization probe. Recommended next query:
 
-Freeze 20-30 PDB IDs before feature extraction: fresh non-overlap folded or
-midlength kinase-substrate co-complex candidates with active gamma-capable
-ligands, plus matched `7B56`-like midlength N-terminal-STY mimics, ATP-grasp
-controls, ATPase/transporter controls, and ADP/product-state positives. Compute
-the same source-free features before source validation. Test a prespecified
-variant that removes midlength N-terminal-STY acceptance unless an additional
-source-free folded-substrate role asymmetry feature is found. Success requires
-retaining true folded N-terminal substrate positives while rejecting `7B56`-like
-midlength mimics and all sibling controls, with no threshold tuning or registry
-edits.
+`epk_reciprocal_cross_chain_entity_asymmetry_or_burial_probe_v1_review_only`
+
+Use the existing positive/control rows and test one frozen feature family:
+
+- reciprocal cross-chain/entity asymmetry between nucleotide-bearing chain and
+  acceptor chain, or
+- cheap residue burial/local solvent exposure around candidate hydroxyl atoms.
+
+Compare against the existing strict, guarded strict, and permissive rules.
+Success requires improving non-terminal folded protein/product-state ambiguity
+without reintroducing `7B56`-style or sibling-family false positives. If the
+feature only explains one row class, keep it as review-only counterevidence,
+not a production rule.
