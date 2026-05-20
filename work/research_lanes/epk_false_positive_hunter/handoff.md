@@ -1,71 +1,81 @@
 # ePK false-positive hunter handoff
 
-- Last updated: 2026-05-20T21:11:08Z
-- Started: 2026-05-20T20:22:29Z
-- Ended: 2026-05-20T21:11:08Z
-- Measured minutes: 48.65
+- Last updated: 2026-05-20T22:11:22Z
+- Started: 2026-05-20T21:23:00Z
+- Ended: 2026-05-20T22:11:22Z
+- Measured minutes: 48.37
 - Primary outcome: counterexample_found
-- Pushed commit: blocked; git add failed creating /Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-false-positive/index.lock: Operation not permitted.
+- Pushed commit: blocked for final ledger/handoff update; last observed pushed HEAD before this update was `6ed3ae4`. Final `git add` failed creating linked-worktree `index.lock`: Operation not permitted.
 - Rule under attack: `epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0` plus `epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0` and `build_epk_heteromeric_positive_coverage_candidate_scout`.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
 
 ## Search Surface
 
-Executed an auth/label gamma-chain collision stress and ORC/Cdc6 replication-initiation expansion:
+Executed source-free ORC/Cdc6/MCM/AAA+ guard stress and repair-variant sweeps against actual materializer output:
 
-- Component surface: 24 fixed ATP-like/Mg RCSB component slices over ATP, ANP, ACP, DTP, AGS, and A3P plus 12 seed/pressure IDs; 960 unique IDs planned, 904 reviewed after retry, 56 unresolved transient DNS fetch failures.
-- Targeted ORC/Cdc6 full-text surface: 45 reviewed, 0 fetch errors.
-- Targeted ORC/MCM full-text surface: 8 reviewed, 0 fetch errors.
-- Broader replication-initiation full-text surface: 70 reviewed, 58 transient DNS fetch failures.
-- Summed reviewed rows/surface observations: 1027; unique reviewed IDs at least 968.
-- No raw coordinate files were written; CIFs were fetched in memory and reduced to compact chain/entity/distance evidence.
+- Fixed controls: prior six ORC/Cdc6/MCM counterexamples plus known ePK positives `1IR3`, `1O6K`, `1O6L`, `2PHK`, `3TM0`, `5HVK`, `6Z3R`, `8OXM`, `8OXO`, `9UUR`, `9UUX`.
+- ORC/MCM profile: 82 reviewed, 0 fetch errors.
+- ORC motor-module profile: 62 reviewed, 0 fetch errors.
+- ORC CDK-keyword profile: 43 reviewed, 0 fetch errors.
+- Broad ATPase profile: 103 reviewed plus 60 retry rows; fetch errors resolved on retry, but `walker_a_oligomer` and `p_loop_oligomer` search slices returned JSON decode errors.
+- Transport/motor profile: initial 173-ID fetch outage, then 173 retry rows reviewed with 0 fetch errors.
+- Summed review observations: 523. CIFs were fetched in memory only; no raw coordinate files were written.
 
 ## Result
 
-Counterexamples found. The current review-only materializer emitted topology-clear non-ePK substrate-mode candidate rows for six DNA replication complexes:
+Counterexamples found. Actual materializer topology-clear non-ePK substrate-mode rows now cover 13 ORC/OCCM/MCM replication complexes:
 
-- 7JGR, 7JGS, 7JK2, 7JK3, 7JK4: Drosophila ORC/Cdc6 DNA-bound structures. Actual materializer hits include TYR162 chain D near ATP PG chain A and TYR698 chain A near ATP PG chain G; neither pair is same-chain or reciprocal.
-- 9BCX: S. cerevisiae ORC-Cdc6-Mcm2-7-DNA complex. Actual materializer hit: TYR232 chain E near ATP PG chain B; not same-chain or reciprocal.
+- `5UJ7`, `5UJM`: human ORC ATPase motor module rows; TYR174 near ATP PG chain A; neither same-chain nor reciprocal.
+- `6RQC`: MCM loading intermediate; TYR232 chain D near ATP PG chain A; topology-clear.
+- `7JGR`, `7JGS`, `7JK2`, `7JK3`, `7JK4`: prior Drosophila ORC/Cdc6 rows, reconfirmed.
+- `7JPO`: human ORC-O1AAA row; TYR174 chain D near ATP PG chain A; topology-clear.
+- `7TJF`, `7TJH`: S. cerevisiae ORC/ORC-Cdc6 rows; TYR232 chain D near ATP PG chain A; topology-clear.
+- `9BCX`: prior S. cerevisiae ORC-Cdc6-Mcm2-7-DNA row, reconfirmed.
+- `9GJW`: OCCM maturation intermediate; TYR232 chain D near ATP PG chain A; topology-clear and missed by Mg-site guards because no terminal ATP PG had Mg within 4.5 A.
 
-These are non-ePK by title/keywords/entity context. Entity descriptions checked include Origin recognition complex subunits, Cell division control protein, DNA replication licensing factor MCM3, and ORC subunits.
+## Guard Stress Findings
 
-## Evidence For
-
-- Actual materializer topology-clear non-ePK counterexample IDs: 7JGR, 7JGS, 7JK2, 7JK3, 7JK4, 9BCX.
-- Drosophila ORC/Cdc6 ATP PG to Tyr OH distances: 5.322-5.885 A, with nearest Mg 3.230-4.035 A.
-- 9BCX ATP PG to TYR232 OH distance: 5.621 A, nearest Mg 4.153 A.
-- Same-chain topology: false for all six. Reciprocal cross-chain topology: false for all six.
-- Auth-only gamma mapping does not eliminate these rows; this is broader than only the auth/label collision hypothesis.
+- Strict Mg-site multisite guard `v0` blocks the prior six but misses `5UJ7`, `5UJM`, and `9GJW` on targeted ORC/OCCM surfaces.
+- Relaxed Mg-site guards `v1`/`v2` cover `5UJ7` and `5UJM` but still miss `9GJW`.
+- Too-broad two-site-only guard `v3` loses known ePK positives `8OXM` and `8OXO`.
+- ATP-terminal oligomer guard `v4_oligomeric_atp_terminals_no_mg_required` blocks the bounded ORC/OCCM false positives without losing bounded ePK positives in the current sweeps, but this is still only review-only bounded evidence.
+- `9I3I` is a likely ORC/MCM context confound but was not counted because the local probable-ePK heuristic flags a deposited `CDK` keyword; next run should adjudicate this explicitly.
 
 ## Evidence Against / Boundaries
 
-- Previous same-chain pressure IDs 1N56, 2DRA, 2Q66, 2ZH6, 7Z3N, and 7Z3O remained same-chain topology blocked.
-- ORC/MCM expansion added no new ID beyond 9BCX.
-- Broader replication-initiation expansion added no IDs beyond the six counterexamples, but retained 58 transient DNS fetch failures.
-- This remains review-only research evidence; no production score, threshold, label import, registry edit, or fingerprint edit was made.
+- The current review-only materializer remains broken for non-ePK ORC/OCCM/MCM discovery under topology-clear Tyr substrate-mode hits.
+- Broad ATPase and transport/motor retry surfaces did not add non-ORC topology-clear non-ePK residuals, but the broad Walker/P-loop query slices had search API JSON decode failures and remain unresolved.
+- The `v4` guard has not been stressed on component-level ATP/ADP/no-Mg surfaces or broad kinase-dimer positives; it must not be promoted to production or calibration.
 
 ## Blockers
 
-- `git fetch origin` and `git pull --ff-only` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
-- `git add` failed creating linked-worktree `index.lock`: Operation not permitted, so commit/push remain blocked.
-- Some broad-surface RCSB fetches had transient DNS failures; the primary counterexample evidence was confirmed on zero-fetch-error targeted ORC/Cdc6 and ORC/MCM surfaces.
+- Normal `git fetch origin` / `git pull --ff-only` paths failed writing linked-worktree `FETCH_HEAD`; `git fetch --no-write-fetch-head origin` succeeded and HEAD matched origin at start.
+- During the run the branch advanced to pushed commits `65ceca5` and `6ed3ae4`; final wrap commit/push was attempted after this handoff update and blocked by linked-worktree `index.lock`: Operation not permitted.
+- `walker_a_oligomer` and `p_loop_oligomer` broad ATPase search slices returned non-JSON responses.
 
 ## Next Query
 
-Test a source-free ORC/Cdc6/MCM/AAA+ replication-initiation counteraxis against the six counterexamples and known ePK positives: require a bounded guard that blocks ORC/MCM replication ATPase topology-clear Tyr hits without importing labels, changing registries/fingerprints, calibrating thresholds, or claiming production scoring.
+Stress `v4_oligomeric_atp_terminals_no_mg_required` on component-level ATP/ADP/no-Mg structures and kinase-dimer positives, and manually adjudicate ORC/MCM CDK-keyword cases such as `9I3I`. Keep production labels, threshold calibration, registry/fingerprint edits, production scoring, and artifact migrations forbidden.
 
 Production claims, label changes, threshold calibration, registry/fingerprint edits, and artifact migrations remain forbidden.
 
 ## Files Changed
 
-- `artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_stress_20260520_202229Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_stress_retry_fetch_errors_20260520_202229Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_orc_cdc6_cluster_20260520_202229Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_orc_mcm_cluster_20260520_202229Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_replication_initiation_cluster_20260520_202229Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_counterexample_summary_20260520_202229Z.json`
-- `tools/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_stress.py`
+- `tools/research_lanes/epk_false_positive_hunter/orc_mcm_multisite_guard_stress.py`
+- `tools/research_lanes/epk_false_positive_hunter/orc_mcm_guard_variant_sweep.py`
+- `artifacts/research_lanes/epk_false_positive_hunter/orc_mcm_multisite_guard_stress_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/orc_mcm_guard_variant_sweep_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/orc_motor_module_multisite_guard_stress_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/orc_motor_module_guard_variant_sweep_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/orc_cdk_keyword_multisite_guard_stress_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/orc_cdk_keyword_guard_variant_sweep_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_multisite_guard_stress_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_multisite_guard_retry_fetch_errors_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_guard_variant_sweep_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_guard_variant_retry_fetch_errors_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/transport_motor_multisite_guard_stress_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/transport_motor_multisite_guard_retry_fetch_errors_20260520_212300Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/transport_motor_guard_variant_retry_fetch_errors_20260520_212300Z.json`
 - `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
 - `work/research_lanes/epk_false_positive_hunter/handoff.md`
-- Pre-existing dirty lane files from earlier blocked wraps were retained and not reverted.
