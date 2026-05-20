@@ -117,6 +117,45 @@
       "source_free_identity_ready_review_only": true
     },
     {
+      "blocker": "relaxed_polymer_rule_false_hits_source_context_counterexample",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "relaxed_polymer_rule_false_hits_keep_general_identity_closed",
+      "decision_axis": "general_substrate_identity_gap_audit",
+      "feature_admissible_for_production_scoring": false,
+      "general_substrate_identity_ready_count": 0,
+      "nonpositive_relaxed_polymer_false_hit_count": 1,
+      "nonpositive_relaxed_polymer_false_hit_pdb_ids": [
+        "7B56"
+      ],
+      "relaxed_polymer_identity_status": "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit",
+      "review_only": true,
+      "source_valid_relaxed_polymer_hit_count": 2,
+      "source_valid_relaxed_polymer_hit_pdb_ids": [
+        "1O6K",
+        "1O6L"
+      ]
+    },
+    {
+      "blocker": "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "blocks_relaxed_false_hit_in_source_expansion_subset_but_not_production_admissible",
+      "decision_axis": "length_band_substrate_identity_counteraxis_audit",
+      "feature_admissible_for_production_scoring": false,
+      "length_band_identity_status": "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
+      "nonpositive_length_band_false_hit_count": 0,
+      "nonpositive_length_band_false_hit_pdb_ids": [],
+      "nonpositive_relaxed_false_hit_blocked_by_length_band_count": 1,
+      "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids": [
+        "7B56"
+      ],
+      "positive_like_length_band_hit_count": 2,
+      "positive_like_length_band_hit_pdb_ids": [
+        "1O6K",
+        "1O6L"
+      ],
+      "review_only": true
+    },
+    {
       "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
       "candidate_threshold_angstrom": 6.0,
       "control_false_non_abstention_count": 0,
@@ -190,6 +229,17 @@
       "pfkb"
     ],
     "fingerprint_registry_edited": false,
+    "general_substrate_identity_ready_count": 0,
+    "general_substrate_identity_relaxed_polymer_false_hit_count": 1,
+    "general_substrate_identity_relaxed_polymer_false_hit_pdb_ids": [
+      "7B56"
+    ],
+    "general_substrate_identity_relaxed_polymer_hit_count": 2,
+    "general_substrate_identity_relaxed_polymer_hit_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "general_substrate_identity_relaxed_polymer_status": "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit",
     "heteromeric_peptide_acceptor_identity_axis_narrow": true,
     "heteromeric_peptide_acceptor_identity_nonaccepted_false_hit_count": 0,
     "heteromeric_peptide_acceptor_identity_passes_current_review_controls": true,
@@ -207,6 +257,18 @@
       "1O6L"
     ],
     "heteromeric_source_expansion_peptide_role_nonpositive_false_hit_count": 0,
+    "length_band_substrate_identity_blocked_relaxed_false_hit_count": 1,
+    "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids": [
+      "7B56"
+    ],
+    "length_band_substrate_identity_false_hit_count": 0,
+    "length_band_substrate_identity_false_hit_pdb_ids": [],
+    "length_band_substrate_identity_positive_hit_count": 2,
+    "length_band_substrate_identity_positive_hit_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "length_band_substrate_identity_status": "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
     "method": "epk_counteraxis_sufficiency_decision",
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
@@ -234,6 +296,8 @@
       "external_epk_specific_axes_not_materialized",
       "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
       "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
+      "relaxed_polymer_rule_false_hits_source_context_counterexample",
+      "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
       "unified_substrate_identity_rule_not_calibrated_for_production",
       "label_factory_gate_not_extended_for_epk"
     ],

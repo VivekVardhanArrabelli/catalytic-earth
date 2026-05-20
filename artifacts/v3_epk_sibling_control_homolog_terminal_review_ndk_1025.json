@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "homolog_histidine_axis_is_counterevidence_not_epk_positive_evidence",
+      "negative_control_distribution_not_calibrated",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "homolog_mapping_and_distance_measurement_completed",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measured_homolog_pdb_ids": [
+      "1WKL",
+      "3Q86",
+      "9OAN",
+      "9PFY"
+    ],
+    "measured_homolog_structure_count": 4,
+    "measurement_ready_homolog_pdb_ids": [
+      "1WKL",
+      "3Q86",
+      "9OAN",
+      "9PFY"
+    ],
+    "measurement_ready_homolog_structure_count": 4,
+    "method": "epk_sibling_control_homolog_terminal_review",
+    "negative_control_distance_distribution_ready": false,
+    "next_actions": [
+      "treat measured homolog histidine distances as threshold-blocking counterevidence",
+      "do not reopen NDK homolog mapping unless a new source or gate changes",
+      "continue ePK substrate identity work before production scoring"
+    ],
+    "observed_homolog_histidine_distance_max_angstrom": 3.339,
+    "observed_homolog_histidine_distance_min_angstrom": 2.899,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "reviewed_homolog_pdb_ids": [
+      "1WKL",
+      "3Q86",
+      "9OAN",
+      "9PFY"
+    ],
+    "reviewed_homolog_structure_count": 4,
+    "reviewed_sibling_family_id": "ndk",
+    "reviewed_sibling_family_name": "Nucleoside diphosphate kinases",
+    "selected_threshold_angstrom": null,
+    "source_epk_sibling_control_homolog_gamma_distance_sample_method": "epk_sibling_control_homolog_gamma_distance_sample",
+    "source_epk_sibling_control_homolog_mapping_review_method": "epk_sibling_control_homolog_mapping_review",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "terminal_review_status": "terminal_review_only_all_homologs_measured_histidine_axis_blocks_threshold",
+    "terminal_review_status_counts": {
+      "terminal_measured_histidine_counteraxis_review_only": 4
+    },
+    "threshold_calibrated": false,
+    "threshold_selection_status": "blocked_homolog_histidine_axis_requires_counterevidence_rule",
+    "unresolved_homolog_pdb_ids": [],
+    "unresolved_homolog_structure_count": 0
+  },
+  "rows": [
+    {
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "distance_measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "mapping_review_status": "homolog_mapping_ready_for_distance_measurement_review_only",
+      "measurement_ready_for_negative_control": true,
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.251,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.24,
+      "pdb_id": "1WKL",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "homolog_control_is_histidine_axis_not_epk_hydroxyl_acceptor",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "row_type": "sibling_control_homolog_terminal_review",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_review_status": "terminal_measured_histidine_counteraxis_review_only"
+    },
+    {
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "distance_measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "mapping_review_status": "homolog_mapping_ready_for_distance_measurement_review_only",
+      "measurement_ready_for_negative_control": true,
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 2.899,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 3.487,
+      "pdb_id": "3Q86",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "homolog_control_is_histidine_axis_not_epk_hydroxyl_acceptor",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "row_type": "sibling_control_homolog_terminal_review",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_review_status": "terminal_measured_histidine_counteraxis_review_only"
+    },
+    {
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "distance_measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "mapping_review_status": "homolog_mapping_ready_for_distance_measurement_review_only",
+      "measurement_ready_for_negative_control": true,
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.339,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.12,
+      "pdb_id": "9OAN",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "homolog_control_is_histidine_axis_not_epk_hydroxyl_acceptor",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "row_type": "sibling_control_homolog_terminal_review",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_review_status": "terminal_measured_histidine_counteraxis_review_only"
+    },
+    {
+      "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+      "countable_label_candidate": false,
+      "distance_measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_to_mapped_histidine_distance_measured": true,
+      "mapping_review_status": "homolog_mapping_ready_for_distance_measurement_review_only",
+      "measurement_ready_for_negative_control": true,
+      "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.005,
+      "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.829,
+      "pdb_id": "9PFY",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "homolog_control_is_histidine_axis_not_epk_hydroxyl_acceptor",
+        "negative_control_distribution_not_calibrated",
+        "epk_score_not_computed",
+        "external_hard_negative_reaudit_not_run"
+      ],
+      "review_only": true,
+      "row_type": "sibling_control_homolog_terminal_review",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_review_status": "terminal_measured_histidine_counteraxis_review_only"
+    }
+  ],
+  "warnings": [
+    "Sibling homolog terminal review is negative-control evidence only and must not be used as positive ePK fingerprint support."
+  ]
+}

@@ -359,6 +359,10 @@ phosphohistidine counter-axis. All four structures are measured, with nearest
 PG-to-mapped-His distances from 2.899 to 3.339 Angstrom, and the artifact
 keeps threshold selection blocked because this is not a hydroxyl-acceptor
 axis.
+`artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json`
+summarizes the loop as terminal for current evidence: all four NDK homologs
+(`1WKL`, `3Q86`, `9OAN`, and `9PFY`) are mapped and measured, and the result
+remains histidine-axis counterevidence rather than positive ePK support.
 `artifacts/v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json`,
 `artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json`, and
 `artifacts/v3_epk_sibling_control_homolog_source_plan_atp_grasp_1025.json`
@@ -769,12 +773,28 @@ source-validation counterexamples (`2JJ2`, `4HPU`, `7B56`, `7T55`, `7T56`,
 adds source-free counterevidence for the blocked hits: non-peptide-like
 acceptor chains, local nucleotide/metal acceptor context, same-chain
 acceptor/gamma context, or gamma-chain topology inconsistent with a peptide
-acceptor role. The next broad-stress tranche is preregistered in
+acceptor role.
+`artifacts/v3_epk_general_substrate_identity_gap_audit_1025.json` deliberately
+relaxes that rule to a generic polymer-acceptor identity check. The relaxed
+rule still hits `1O6K`/`1O6L`, but it also false-hits blocked control `7B56`;
+therefore source-free general substrate identity remains unavailable and
+threshold selection stays closed.
+`artifacts/v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json`
+adds a bounded counter-axis that keeps `1O6K`/`1O6L`, blocks the relaxed-rule
+`7B56` false hit, and has 0 current length-band false hits, but it remains
+source-expansion scoped and not production-admissible. The paired
+`artifacts/v3_epk_length_band_external_hard_negative_review_1025.json` records
+0 length-band non-abstentions for `uniprot:P06744`, `uniprot:P78549`, and
+`uniprot:Q3LXA3` as an abstention diagnostic, not a scored external re-audit.
+The next broad-stress tranche is
+preregistered in
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`.
 The downstream counteraxis sufficiency decision carries the unified rule,
-unified prototype, and broad-stress audit as review-only decision rows but
-keeps `do_not_select_threshold` because threshold calibration, a real scored
-external re-audit, and registry/factory extension are still closed.
+unified prototype, broad-stress audit, relaxed-polymer gap audit, and
+length-band repair audit as review-only decision rows but keeps
+`do_not_select_threshold` because threshold
+calibration, a real scored external re-audit, and registry/factory extension
+are still closed.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

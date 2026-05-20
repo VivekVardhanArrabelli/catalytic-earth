@@ -169,8 +169,15 @@ heteromeric topology hits, and 11 source-validation counterexamples (`2JJ2`,
 with explicit source-free counterevidence: non-peptide-like acceptor chains,
 local nucleotide/metal acceptor context, same-chain acceptor/gamma context, or
 gamma-chain topology inconsistent with a peptide acceptor role. The
-counteraxis sufficiency decision records the unified rule, prototype, and
-broad-stress rows while preserving `do_not_select_threshold`.
+relaxed polymer-substrate generalization now fails closed: dropping the
+peptide-chain limit retains `1O6K`/`1O6L` but false-hits blocked `7B56`, so
+general substrate-identity readiness remains 0. A bounded length-band
+counter-axis blocks that `7B56` false hit while retaining `1O6K`/`1O6L`, and
+the three imported external hard negatives still abstain under that diagnostic,
+but the rule is source-expansion scoped and not a real scored re-audit. The
+counteraxis sufficiency decision records the unified rule, prototype,
+broad-stress rows, relaxed polymer gap audit, and length-band repair audit
+while preserving `do_not_select_threshold`.
 
 ## Time Calibration Rule
 
@@ -576,7 +583,10 @@ Current expectation:
   counter-axis evidence with nearest PG-to-His distances from 2.899 to
   3.339 Angstrom. This reinforces that gamma-distance-only ePK thresholding is
   unsafe unless a future scorer distinguishes hydroxyl acceptors from
-  phosphohistidine transfer. PfkB, PfkA, and ATP-grasp now have bounded
+  phosphohistidine transfer. The NDK homolog terminal review now marks
+  `1WKL`, `3Q86`, `9OAN`, and `9PFY` all mapped and measured, closing that
+  recovery queue as negative-control evidence for current gates. PfkB, PfkA,
+  and ATP-grasp now have bounded
   homolog source queues with 9, 5, and 2 gamma-plus-metal candidates,
   respectively. Follow-on mapping reviews fail those queues closed under the
   current histidine-centric mapper: PfkB maps nucleotide-site context in 4

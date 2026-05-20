@@ -6984,6 +6984,50 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             0,
         )
         self.assertEqual(
+            metadata["source_epk_general_substrate_identity_gap_audit_method"],
+            "epk_general_substrate_identity_gap_audit",
+        )
+        self.assertEqual(
+            metadata["general_substrate_identity_relaxed_polymer_status"],
+            "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit",
+        )
+        self.assertEqual(
+            metadata["general_substrate_identity_relaxed_polymer_false_hit_pdb_ids"],
+            ["7B56"],
+        )
+        self.assertEqual(
+            metadata[
+                "source_epk_length_band_substrate_identity_counteraxis_audit_method"
+            ],
+            "epk_length_band_substrate_identity_counteraxis_audit",
+        )
+        self.assertEqual(
+            metadata["length_band_substrate_identity_status"],
+            "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
+        )
+        self.assertEqual(metadata["length_band_substrate_identity_false_hit_count"], 0)
+        self.assertEqual(
+            metadata[
+                "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids"
+            ],
+            ["7B56"],
+        )
+        self.assertEqual(
+            metadata["source_epk_length_band_external_hard_negative_review_method"],
+            "epk_length_band_external_hard_negative_review",
+        )
+        self.assertEqual(
+            metadata["length_band_external_hard_negative_review_status"],
+            "passes_review_only_length_band_external_hard_negative_abstention",
+        )
+        self.assertEqual(
+            metadata["length_band_external_hard_negative_non_abstention_count"],
+            0,
+        )
+        self.assertTrue(
+            metadata["length_band_external_hard_negative_not_real_scored_reaudit"]
+        )
+        self.assertEqual(
             metadata["source_epk_unified_review_only_scoring_prototype_method"],
             "epk_unified_review_only_scoring_prototype",
         )
@@ -7631,6 +7675,47 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
                 row["measurement_blockers"],
             )
 
+    def test_epk_ndk_homolog_terminal_review_stays_review_only(self) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_sibling_control_homolog_terminal_review"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+        self.assertEqual(
+            metadata["terminal_review_status"],
+            "terminal_review_only_all_homologs_measured_histidine_axis_blocks_threshold",
+        )
+        self.assertEqual(
+            metadata["reviewed_homolog_pdb_ids"], ["1WKL", "3Q86", "9OAN", "9PFY"]
+        )
+        self.assertEqual(metadata["measurement_ready_homolog_structure_count"], 4)
+        self.assertEqual(metadata["measured_homolog_structure_count"], 4)
+        self.assertEqual(metadata["unresolved_homolog_structure_count"], 0)
+        self.assertFalse(metadata["negative_control_distance_distribution_ready"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        statuses = {row["pdb_id"]: row["terminal_review_status"] for row in review["rows"]}
+        self.assertEqual(
+            set(statuses.values()),
+            {"terminal_measured_histidine_counteraxis_review_only"},
+        )
+        for row in review["rows"]:
+            self.assertTrue(row["measurement_ready_for_negative_control"])
+            self.assertTrue(row["gamma_to_mapped_histidine_distance_measured"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_remaining_homolog_source_plans_stay_review_only(self) -> None:
         expectations = {
             "pfkb": {
@@ -8190,6 +8275,118 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         self.assertFalse(metadata["curated_label_registry_edited"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
 
+    def test_epk_general_substrate_identity_gap_audit_fails_closed(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_general_substrate_identity_gap_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_general_substrate_identity_gap_audit"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["relaxed_polymer_identity_status"],
+            "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit",
+        )
+        self.assertEqual(
+            metadata["source_valid_relaxed_polymer_hit_pdb_ids"],
+            ["1O6K", "1O6L"],
+        )
+        self.assertEqual(
+            metadata["nonpositive_relaxed_polymer_false_hit_pdb_ids"],
+            ["7B56"],
+        )
+        self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_length_band_substrate_identity_counteraxis_is_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_length_band_substrate_identity_counteraxis_audit",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["length_band_identity_status"],
+            "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
+        )
+        self.assertEqual(
+            metadata["positive_like_length_band_hit_pdb_ids"],
+            ["1O6K", "1O6L"],
+        )
+        self.assertEqual(metadata["nonpositive_length_band_false_hit_count"], 0)
+        self.assertEqual(
+            metadata[
+                "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids"
+            ],
+            ["7B56"],
+        )
+        self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_length_band_external_hard_negative_review_is_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_length_band_external_hard_negative_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_length_band_external_hard_negative_review"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["length_band_external_hard_negative_review_status"],
+            "passes_review_only_length_band_external_hard_negative_abstention",
+        )
+        self.assertEqual(
+            metadata["expected_external_hard_negative_entry_ids"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(metadata["external_hard_negative_review_row_count"], 3)
+        self.assertEqual(
+            metadata["length_band_external_hard_negative_non_abstention_count"],
+            0,
+        )
+        self.assertTrue(metadata["not_a_real_scored_reaudit"])
+        self.assertFalse(metadata["clean_heldout_performance_claim_permitted"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        for row in review["rows"]:
+            self.assertFalse(row["length_band_feature_non_abstention"])
+            self.assertFalse(row["countable_label_candidate"])
+
     def test_epk_unified_prototype_next_broad_stress_preregistration_closed(
         self,
     ) -> None:
@@ -8249,6 +8446,9 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         for artifact_name in [
             "v3_epk_unified_review_only_scoring_prototype_1025.json",
             "v3_epk_unified_prototype_broad_stress_audit_1025.json",
+            "v3_epk_general_substrate_identity_gap_audit_1025.json",
+            "v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json",
+            "v3_epk_length_band_external_hard_negative_review_1025.json",
             "v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json",
         ]:
             artifact = _load_json(ROOT / "artifacts" / artifact_name)
@@ -8408,6 +8608,26 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         self.assertEqual(
             axes["heteromeric_source_expansion_peptide_role_axis"]["blocker"],
             "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
+        )
+        self.assertEqual(
+            axes["general_substrate_identity_gap_audit"]["decision"],
+            "relaxed_polymer_rule_false_hits_keep_general_identity_closed",
+        )
+        self.assertEqual(
+            axes["general_substrate_identity_gap_audit"][
+                "nonpositive_relaxed_polymer_false_hit_pdb_ids"
+            ],
+            ["7B56"],
+        )
+        self.assertEqual(
+            axes["length_band_substrate_identity_counteraxis_audit"]["decision"],
+            "blocks_relaxed_false_hit_in_source_expansion_subset_but_not_production_admissible",
+        )
+        self.assertEqual(
+            axes["length_band_substrate_identity_counteraxis_audit"][
+                "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids"
+            ],
+            ["7B56"],
         )
         self.assertEqual(
             axes["unified_review_only_scoring_prototype"]["decision"],

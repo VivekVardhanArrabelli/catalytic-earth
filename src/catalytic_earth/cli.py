@@ -95,6 +95,7 @@ from .labels import (
     build_epk_family_specific_homolog_mapping_review,
     build_epk_family_specific_mapping_template_review,
     build_epk_family_specific_mapping_template_validation_review,
+    build_epk_general_substrate_identity_gap_audit,
     build_epk_gamma_geometry_feasibility_plan,
     build_epk_gamma_geometry_measurement_sample,
     build_epk_gamma_threshold_control_plan,
@@ -114,6 +115,7 @@ from .labels import (
     build_epk_heteromeric_peptide_broader_stress_audit,
     build_epk_heteromeric_peptide_external_hard_negative_probe,
     build_epk_heteromeric_source_expansion_peptide_role_axis_audit,
+    build_epk_length_band_substrate_identity_counteraxis_audit,
     build_epk_substrate_mode_gap_audit,
     build_epk_unified_substrate_identity_rule_probe,
     build_epk_unified_prototype_next_broad_stress_preregistration,
@@ -122,6 +124,7 @@ from .labels import (
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
+    build_epk_length_band_external_hard_negative_review,
     build_epk_local_evidence_audit,
     build_epk_local_chain_topology_acceptor_replacement_rule,
     build_epk_ligand_analog_policy_blocker_decision,
@@ -146,6 +149,7 @@ from .labels import (
     build_epk_protein_substrate_source_repair_terminal_decision,
     build_epk_review_only_external_hard_negative_score_probe,
     build_epk_review_only_scoring_prototype,
+    build_epk_sibling_control_homolog_terminal_review,
     build_epk_sibling_control_homolog_gamma_distance_sample,
     build_epk_sibling_control_homolog_mapping_review,
     build_epk_sibling_control_homolog_source_plan,
@@ -5951,6 +5955,33 @@ def cmd_build_epk_sibling_control_homolog_gamma_distance_sample(
     return 0
 
 
+def cmd_build_epk_sibling_control_homolog_terminal_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_sibling_control_homolog_mapping_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_mapping_review = json.load(handle)
+    with Path(args.epk_sibling_control_homolog_gamma_distance_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_sibling_control_homolog_gamma_distance_sample = json.load(handle)
+    review = build_epk_sibling_control_homolog_terminal_review(
+        epk_sibling_control_homolog_mapping_review=(
+            epk_sibling_control_homolog_mapping_review
+        ),
+        epk_sibling_control_homolog_gamma_distance_sample=(
+            epk_sibling_control_homolog_gamma_distance_sample
+        ),
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK sibling-control homolog terminal review to "
+        f"{args.out} (status={review['metadata']['terminal_review_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_review_only_scoring_prototype(args: argparse.Namespace) -> int:
     with Path(args.epk_text_free_local_axis_prototype).open(
         "r", encoding="utf-8"
@@ -7594,6 +7625,89 @@ def cmd_build_epk_unified_substrate_identity_rule_probe(
     return 0
 
 
+def cmd_build_epk_general_substrate_identity_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(
+        args.epk_heteromeric_source_expansion_peptide_role_axis_audit
+    ).open("r", encoding="utf-8") as handle:
+        epk_heteromeric_source_expansion_peptide_role_axis_audit = json.load(
+            handle
+        )
+    epk_unified_substrate_identity_rule_probe = None
+    if args.epk_unified_substrate_identity_rule_probe:
+        with Path(args.epk_unified_substrate_identity_rule_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_unified_substrate_identity_rule_probe = json.load(handle)
+    audit = build_epk_general_substrate_identity_gap_audit(
+        epk_heteromeric_source_expansion_peptide_role_axis_audit=(
+            epk_heteromeric_source_expansion_peptide_role_axis_audit
+        ),
+        epk_unified_substrate_identity_rule_probe=(
+            epk_unified_substrate_identity_rule_probe
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK general substrate-identity gap audit to "
+        f"{args.out} (status={audit['metadata']['relaxed_polymer_identity_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_length_band_substrate_identity_counteraxis_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_general_substrate_identity_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_general_substrate_identity_gap_audit = json.load(handle)
+    audit = build_epk_length_band_substrate_identity_counteraxis_audit(
+        epk_general_substrate_identity_gap_audit=(
+            epk_general_substrate_identity_gap_audit
+        ),
+        max_short_acceptor_residues=args.max_short_acceptor_residues,
+        min_large_acceptor_residues=args.min_large_acceptor_residues,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK length-band substrate-identity counteraxis audit to "
+        f"{args.out} (status={audit['metadata']['length_band_identity_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_length_band_external_hard_negative_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_length_band_substrate_identity_counteraxis_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_length_band_substrate_identity_counteraxis_audit = json.load(handle)
+    with Path(args.epk_review_only_external_hard_negative_score_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_external_hard_negative_score_probe = json.load(handle)
+    review = build_epk_length_band_external_hard_negative_review(
+        epk_length_band_substrate_identity_counteraxis_audit=(
+            epk_length_band_substrate_identity_counteraxis_audit
+        ),
+        epk_review_only_external_hard_negative_score_probe=(
+            epk_review_only_external_hard_negative_score_probe
+        ),
+        imported_external_entry_ids=_split_csv(args.imported_external_entry_ids),
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK length-band external hard-negative review to "
+        f"{args.out} (status="
+        f"{review['metadata']['length_band_external_hard_negative_review_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_unified_review_only_scoring_prototype(
     args: argparse.Namespace,
 ) -> int:
@@ -8323,6 +8437,24 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_unified_substrate_identity_rule_probe = json.load(handle)
+    epk_general_substrate_identity_gap_audit = None
+    if args.epk_general_substrate_identity_gap_audit:
+        with Path(args.epk_general_substrate_identity_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_general_substrate_identity_gap_audit = json.load(handle)
+    epk_length_band_substrate_identity_counteraxis_audit = None
+    if args.epk_length_band_substrate_identity_counteraxis_audit:
+        with Path(
+            args.epk_length_band_substrate_identity_counteraxis_audit
+        ).open("r", encoding="utf-8") as handle:
+            epk_length_band_substrate_identity_counteraxis_audit = json.load(handle)
+    epk_length_band_external_hard_negative_review = None
+    if args.epk_length_band_external_hard_negative_review:
+        with Path(args.epk_length_band_external_hard_negative_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_length_band_external_hard_negative_review = json.load(handle)
     epk_unified_review_only_scoring_prototype = None
     if args.epk_unified_review_only_scoring_prototype:
         with Path(args.epk_unified_review_only_scoring_prototype).open(
@@ -8509,6 +8641,15 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_substrate_mode_gap_audit=epk_substrate_mode_gap_audit,
         epk_unified_substrate_identity_rule_probe=(
             epk_unified_substrate_identity_rule_probe
+        ),
+        epk_general_substrate_identity_gap_audit=(
+            epk_general_substrate_identity_gap_audit
+        ),
+        epk_length_band_substrate_identity_counteraxis_audit=(
+            epk_length_band_substrate_identity_counteraxis_audit
+        ),
+        epk_length_band_external_hard_negative_review=(
+            epk_length_band_external_hard_negative_review
         ),
         epk_unified_review_only_scoring_prototype=(
             epk_unified_review_only_scoring_prototype
@@ -15544,6 +15685,35 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_sibling_control_homolog_gamma_distance_sample
     )
 
+    epk_homolog_terminal_review = subparsers.add_parser(
+        "build-epk-sibling-control-homolog-terminal-review",
+        help="summarize terminal review status for sibling-control homolog distances",
+    )
+    epk_homolog_terminal_review.add_argument(
+        "--epk-sibling-control-homolog-mapping-review",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json"
+        ),
+    )
+    epk_homolog_terminal_review.add_argument(
+        "--epk-sibling-control-homolog-gamma-distance-sample",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json"
+        ),
+    )
+    epk_homolog_terminal_review.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json"
+        ),
+    )
+    epk_homolog_terminal_review.set_defaults(
+        func=cmd_build_epk_sibling_control_homolog_terminal_review
+    )
+
     epk_scoring_prototype = subparsers.add_parser(
         "build-epk-review-only-scoring-prototype",
         help="evaluate a fail-closed review-only ePK prototype surface",
@@ -17206,6 +17376,105 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_unified_substrate_identity_rule_probe
     )
 
+    epk_general_substrate_identity = subparsers.add_parser(
+        "build-epk-general-substrate-identity-gap-audit",
+        help=(
+            "fail closed a relaxed polymer-substrate identity rule against "
+            "source-expansion controls"
+        ),
+    )
+    epk_general_substrate_identity.add_argument(
+        "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json"
+        ),
+    )
+    epk_general_substrate_identity.add_argument(
+        "--epk-unified-substrate-identity-rule-probe",
+        default="artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json",
+    )
+    epk_general_substrate_identity.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_general_substrate_identity.add_argument(
+        "--out",
+        default="artifacts/v3_epk_general_substrate_identity_gap_audit_1025.json",
+    )
+    epk_general_substrate_identity.set_defaults(
+        func=cmd_build_epk_general_substrate_identity_gap_audit
+    )
+
+    epk_length_band_substrate_identity = subparsers.add_parser(
+        "build-epk-length-band-substrate-identity-counteraxis-audit",
+        help=(
+            "test a review-only acceptor length-band counteraxis against the "
+            "relaxed polymer substrate identity false hit"
+        ),
+    )
+    epk_length_band_substrate_identity.add_argument(
+        "--epk-general-substrate-identity-gap-audit",
+        default="artifacts/v3_epk_general_substrate_identity_gap_audit_1025.json",
+    )
+    epk_length_band_substrate_identity.add_argument(
+        "--max-short-acceptor-residues",
+        type=int,
+        default=40,
+    )
+    epk_length_band_substrate_identity.add_argument(
+        "--min-large-acceptor-residues",
+        type=int,
+        default=120,
+    )
+    epk_length_band_substrate_identity.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_length_band_substrate_identity.set_defaults(
+        func=cmd_build_epk_length_band_substrate_identity_counteraxis_audit
+    )
+
+    epk_length_band_external = subparsers.add_parser(
+        "build-epk-length-band-external-hard-negative-review",
+        help=(
+            "check imported external hard negatives against the review-only "
+            "length-band substrate identity counteraxis"
+        ),
+    )
+    epk_length_band_external.add_argument(
+        "--epk-length-band-substrate-identity-counteraxis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_length_band_external.add_argument(
+        "--epk-review-only-external-hard-negative-score-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_review_only_external_hard_negative_score_probe_1025.json"
+        ),
+    )
+    epk_length_band_external.add_argument(
+        "--imported-external-entry-ids",
+        default="uniprot:P06744,uniprot:P78549,uniprot:Q3LXA3",
+    )
+    epk_length_band_external.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_length_band_external_hard_negative_review_1025.json"
+        ),
+    )
+    epk_length_band_external.set_defaults(
+        func=cmd_build_epk_length_band_external_hard_negative_review
+    )
+
     epk_unified_scoring_prototype = subparsers.add_parser(
         "build-epk-unified-review-only-scoring-prototype",
         help="score the unified ePK substrate-identity surface in review-only mode",
@@ -17772,6 +18041,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-unified-substrate-identity-rule-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-general-substrate-identity-gap-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-length-band-substrate-identity-counteraxis-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-length-band-external-hard-negative-review",
         default=None,
     )
     epk_precount_gate_status.add_argument(

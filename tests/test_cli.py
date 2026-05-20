@@ -5532,6 +5532,320 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
             )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
+    def test_build_epk_general_substrate_identity_gap_audit_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_expansion = root / "source_expansion.json"
+            unified = root / "unified.json"
+            out = root / "general_identity.json"
+            source_expansion.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_source_expansion_peptide_role_axis_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "source_expansion_peptide_role_positive_candidate"
+                                ),
+                                "pdb_id": "1O6K",
+                                "source_pair_id": "pkb_gsk3",
+                                "source_validated_positive_like": True,
+                                "candidate_acceptor_residue_code": "SER",
+                                "candidate_acceptor_chain_name": "C",
+                                "gamma_associated_polymer_chain_name": "A",
+                                "nearest_gamma_distance_angstrom": 3.5,
+                                "acceptor_chain_residue_count": 10,
+                                "gamma_chain_residue_count": 317,
+                                "peptide_like_acceptor_chain": True,
+                                "acceptor_chain_lacks_local_nucleotide_or_metal": True,
+                                "gamma_chain_has_local_nucleotide_or_metal": True,
+                                "gamma_chain_is_larger_polymer": True,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": (
+                                    "source_expansion_peptide_role_nonpositive_control"
+                                ),
+                                "pdb_id": "7B56",
+                                "source_validated_positive_like": False,
+                                "source_validation_status_review_context": (
+                                    "blocked_source_context_insufficient_review_only"
+                                ),
+                                "candidate_acceptor_residue_code": "SER",
+                                "candidate_acceptor_chain_name": "A",
+                                "gamma_associated_polymer_chain_name": "B",
+                                "nearest_gamma_distance_angstrom": 3.9,
+                                "acceptor_chain_residue_count": 68,
+                                "gamma_chain_residue_count": 303,
+                                "peptide_like_acceptor_chain": False,
+                                "acceptor_chain_lacks_local_nucleotide_or_metal": True,
+                                "gamma_chain_has_local_nucleotide_or_metal": True,
+                                "gamma_chain_is_larger_polymer": True,
+                                "text_free_inputs_only": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            unified.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_unified_substrate_identity_rule_probe",
+                            "positive_hit_count": 8,
+                            "positive_hit_pdb_ids": ["1O6K"],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-general-substrate-identity-gap-audit",
+                    "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+                    str(source_expansion),
+                    "--epk-unified-substrate-identity-rule-probe",
+                    str(unified),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_general_substrate_identity_gap_audit"
+            )
+            self.assertEqual(
+                metadata["relaxed_polymer_identity_status"],
+                "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit",
+            )
+            self.assertEqual(metadata["source_valid_relaxed_polymer_hit_count"], 1)
+            self.assertEqual(
+                metadata["nonpositive_relaxed_polymer_false_hit_pdb_ids"],
+                ["7B56"],
+            )
+            self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+
+    def test_build_epk_length_band_substrate_identity_counteraxis_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            general = root / "general_identity.json"
+            out = root / "length_band.json"
+            general.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_general_substrate_identity_gap_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "relaxed_polymer_identity_status": (
+                                "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "general_substrate_identity_relaxed_polymer_positive_candidate"
+                                ),
+                                "pdb_id": "1O6K",
+                                "source_pair_id": "pkb_gsk3",
+                                "source_validated_positive_like": True,
+                                "candidate_acceptor_residue_code": "SER",
+                                "candidate_acceptor_chain_name": "C",
+                                "gamma_associated_polymer_chain_name": "A",
+                                "nearest_gamma_distance_angstrom": 3.5,
+                                "acceptor_chain_residue_count": 10,
+                                "gamma_chain_residue_count": 317,
+                                "relaxed_polymer_acceptor_identity_rule_hit": True,
+                            },
+                            {
+                                "row_type": (
+                                    "general_substrate_identity_relaxed_polymer_nonpositive_control"
+                                ),
+                                "pdb_id": "7B56",
+                                "source_validated_positive_like": False,
+                                "source_validation_status_review_context": (
+                                    "blocked_source_context_insufficient_review_only"
+                                ),
+                                "candidate_acceptor_residue_code": "SER",
+                                "candidate_acceptor_chain_name": "A",
+                                "gamma_associated_polymer_chain_name": "B",
+                                "nearest_gamma_distance_angstrom": 3.9,
+                                "acceptor_chain_residue_count": 68,
+                                "gamma_chain_residue_count": 303,
+                                "relaxed_polymer_acceptor_identity_rule_hit": True,
+                            },
+                            {
+                                "row_type": (
+                                    "general_substrate_identity_relaxed_polymer_nonpositive_control"
+                                ),
+                                "pdb_id": "2JJ2",
+                                "source_validated_positive_like": False,
+                                "acceptor_chain_residue_count": 479,
+                                "gamma_chain_residue_count": 466,
+                                "relaxed_polymer_acceptor_identity_rule_hit": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-length-band-substrate-identity-counteraxis-audit",
+                    "--epk-general-substrate-identity-gap-audit",
+                    str(general),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_length_band_substrate_identity_counteraxis_audit",
+            )
+            self.assertEqual(
+                metadata["length_band_identity_status"],
+                "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
+            )
+            self.assertEqual(metadata["positive_like_length_band_hit_count"], 1)
+            self.assertEqual(metadata["nonpositive_length_band_false_hit_count"], 0)
+            self.assertEqual(
+                metadata[
+                    "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids"
+                ],
+                ["7B56"],
+            )
+            self.assertEqual(metadata["general_substrate_identity_ready_count"], 0)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+
+    def test_build_epk_length_band_external_hard_negative_review_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            length_band = root / "length_band.json"
+            external = root / "external_probe.json"
+            out = root / "length_band_external.json"
+            length_band.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_length_band_substrate_identity_counteraxis_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "length_band_identity_status": (
+                                "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only"
+                            ),
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            external.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_review_only_external_hard_negative_score_probe"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "expected_external_hard_negative_entry_ids": [
+                                "uniprot:P06744",
+                                "uniprot:P78549",
+                                "uniprot:Q3LXA3",
+                            ],
+                        },
+                        "rows": [
+                            {
+                                "row_type": "imported_external_hard_negative_score_probe",
+                                "entry_id": entry_id,
+                                "review_only_probe_score": 0.0,
+                                "review_only_score_probe_non_abstention": False,
+                            }
+                            for entry_id in [
+                                "uniprot:P06744",
+                                "uniprot:P78549",
+                                "uniprot:Q3LXA3",
+                            ]
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-length-band-external-hard-negative-review",
+                    "--epk-length-band-substrate-identity-counteraxis-audit",
+                    str(length_band),
+                    "--epk-review-only-external-hard-negative-score-probe",
+                    str(external),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_length_band_external_hard_negative_review"
+            )
+            self.assertEqual(
+                metadata["length_band_external_hard_negative_review_status"],
+                "passes_review_only_length_band_external_hard_negative_abstention",
+            )
+            self.assertEqual(
+                metadata["length_band_external_hard_negative_non_abstention_count"],
+                0,
+            )
+            self.assertEqual(metadata["external_hard_negative_review_row_count"], 3)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+
     def test_build_epk_unified_review_only_scoring_prototype_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -8169,6 +8483,115 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
             )
             self.assertEqual(row["candidate_threshold_hits_angstrom"], [4.0, 6.0, 8.0])
             self.assertFalse(row["countable_label_candidate"])
+
+    def test_build_epk_sibling_control_homolog_terminal_review_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            mapping_review = root / "homolog_mapping_review.json"
+            distance_sample = root / "homolog_distance_sample.json"
+            out = root / "homolog_terminal_review.json"
+            mapping_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_sibling_control_homolog_mapping_review",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "reviewed_sibling_family_id": "ndk",
+                            "reviewed_sibling_family_name": (
+                                "Nucleoside diphosphate kinases"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9PFY",
+                                "family_id": "ndk",
+                                "homolog_mapping_status": (
+                                    "homolog_mapping_ready_for_distance_measurement_review_only"
+                                ),
+                                "measurement_ready_for_negative_control": True,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            distance_sample.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_sibling_control_homolog_gamma_distance_sample"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "reviewed_sibling_family_id": "ndk",
+                            "reviewed_sibling_family_name": (
+                                "Nucleoside diphosphate kinases"
+                            ),
+                            "threshold_selection_status": (
+                                "blocked_homolog_histidine_axis_requires_counterevidence_rule"
+                            ),
+                            "observed_homolog_histidine_distance_min_angstrom": 3.0,
+                            "observed_homolog_histidine_distance_max_angstrom": 3.0,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9PFY",
+                                "family_id": "ndk",
+                                "measurement_status": (
+                                    "homolog_gamma_to_mapped_histidine_distance_measured_review_only"
+                                ),
+                                "gamma_to_mapped_histidine_distance_measured": True,
+                                "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.0,
+                                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 6.5,
+                                "control_use_status": (
+                                    "homolog_histidine_axis_counterevidence_review_only_not_calibration"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-sibling-control-homolog-terminal-review",
+                    "--epk-sibling-control-homolog-mapping-review",
+                    str(mapping_review),
+                    "--epk-sibling-control-homolog-gamma-distance-sample",
+                    str(distance_sample),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            review = json.loads(out.read_text(encoding="utf-8"))
+            metadata = review["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_sibling_control_homolog_terminal_review"
+            )
+            self.assertEqual(metadata["reviewed_sibling_family_id"], "ndk")
+            self.assertEqual(
+                metadata["terminal_review_status"],
+                "terminal_review_only_all_homologs_measured_histidine_axis_blocks_threshold",
+            )
+            self.assertEqual(metadata["measured_homolog_pdb_ids"], ["9PFY"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
 
     def test_build_epk_review_only_scoring_prototype_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

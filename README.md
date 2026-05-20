@@ -949,6 +949,13 @@ distances (2.899-3.339 Angstrom), while the artifact explicitly treats the
 axis as phosphohistidine-site evidence rather than a hydroxyl-acceptor
 threshold. It does not calibrate a threshold, score ePK, run external
 hard-negative re-audit, edit registries, or import labels.
+`artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json`
+now records that the NDK homolog queue is terminal for the current evidence:
+`1WKL`, `3Q86`, `9OAN`, and `9PFY` are all mapped and measured, and the
+terminal status is
+`terminal_review_only_all_homologs_measured_histidine_axis_blocks_threshold`.
+That closes the requested NDK mapping/recovery loop as negative-control
+histidine-axis evidence only.
 The next source pass opens mapping-pending homolog queues for the remaining
 missing sibling families:
 `artifacts/v3_epk_sibling_control_homolog_source_plan_pfkb_1025.json` finds
@@ -1379,7 +1386,24 @@ remain source-valid positives. Eleven source-context counterexamples (`2JJ2`,
 attaches source-free counterevidence for those blocked hits: non-peptide-like
 acceptor chains, local nucleotide/metal acceptor context, same-chain
 acceptor/gamma context, or a gamma-associated chain that is not larger than
-the putative acceptor. The preregistration artifact
+the putative acceptor.
+`artifacts/v3_epk_general_substrate_identity_gap_audit_1025.json` then tests
+the obvious relaxed generalization: drop the peptide-chain limit and require
+only a polymer acceptor chain lacking local nucleotide/metal context opposite a
+larger nucleotide/metal-carrying gamma chain. It keeps `1O6K`/`1O6L`, but
+false-hits the blocked `7B56` CaMKII/autoinhibitory-peptide context, so
+general substrate-identity readiness remains 0 and the ePK lane stays
+fail-closed. `artifacts/v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json`
+adds a bounded repair counter-axis: the acceptor chain must fall in either a
+short peptide-like band or a large folded-substrate band. It keeps
+`1O6K`/`1O6L`, blocks the relaxed-rule false hit `7B56`, and has 0
+length-band false hits on the current source-expansion subset, but it remains
+review-only and source-expansion scoped rather than a general substrate
+identity rule. The paired
+`artifacts/v3_epk_length_band_external_hard_negative_review_1025.json` records
+0 length-band non-abstentions for the three imported external hard negatives,
+explicitly not as a scored re-audit or held-out performance claim. The
+preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`
 keeps those counterexamples in the next review-only stress plan.
 
@@ -1389,9 +1413,9 @@ split-state repair scan, the
 external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.
 The downstream counteraxis sufficiency decision now carries the unified
-substrate-identity row as a current-control pass, but keeps
-`do_not_select_threshold` because the rule is not calibrated for production
-scoring or a real external hard-negative scored re-audit.
+substrate-identity, relaxed-polymer gap, and length-band repair rows, but
+keeps `do_not_select_threshold` because the repaired rule is not calibrated
+for production scoring or a real external hard-negative scored re-audit.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

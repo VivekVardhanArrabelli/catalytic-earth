@@ -6,7 +6,7 @@ from collections import Counter, defaultdict
 from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from .fingerprints import load_fingerprints
 from .ontology import fingerprint_family, load_mechanism_ontology
@@ -16481,6 +16481,60 @@ def build_epk_counteraxis_sufficiency_decision(
             "unified_substrate_identity_ready_review_only"
         )
     )
+    general_substrate_identity_status = str(
+        precount_meta.get("general_substrate_identity_relaxed_polymer_status") or ""
+    )
+    general_substrate_identity_hit_count = int(
+        precount_meta.get("general_substrate_identity_relaxed_polymer_hit_count") or 0
+    )
+    general_substrate_identity_hit_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "general_substrate_identity_relaxed_polymer_hit_pdb_ids", []
+        )
+    )
+    general_substrate_identity_false_hit_count = int(
+        precount_meta.get(
+            "general_substrate_identity_relaxed_polymer_false_hit_count"
+        )
+        or 0
+    )
+    general_substrate_identity_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "general_substrate_identity_relaxed_polymer_false_hit_pdb_ids", []
+        )
+    )
+    general_substrate_identity_ready_count = int(
+        precount_meta.get("general_substrate_identity_ready_count") or 0
+    )
+    general_substrate_identity_primary_blocker = str(
+        precount_meta.get("general_substrate_identity_primary_blocker") or ""
+    )
+    length_band_identity_status = str(
+        precount_meta.get("length_band_substrate_identity_status") or ""
+    )
+    length_band_identity_hit_count = int(
+        precount_meta.get("length_band_substrate_identity_positive_hit_count") or 0
+    )
+    length_band_identity_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("length_band_substrate_identity_positive_hit_pdb_ids", [])
+    )
+    length_band_identity_false_hit_count = int(
+        precount_meta.get("length_band_substrate_identity_false_hit_count") or 0
+    )
+    length_band_identity_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("length_band_substrate_identity_false_hit_pdb_ids", [])
+    )
+    length_band_identity_blocked_false_hit_count = int(
+        precount_meta.get(
+            "length_band_substrate_identity_blocked_relaxed_false_hit_count"
+        )
+        or 0
+    )
+    length_band_identity_blocked_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids", []
+        )
+    )
     unified_scoring_passes_current_controls = bool(
         precount_meta.get("unified_review_only_scoring_passes_current_controls")
     )
@@ -16709,6 +16763,73 @@ def build_epk_counteraxis_sufficiency_decision(
             "blocker": "unified_substrate_identity_rule_not_calibrated_for_production",
         },
         {
+            "decision_axis": "general_substrate_identity_gap_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "relaxed_polymer_identity_status": general_substrate_identity_status,
+            "source_valid_relaxed_polymer_hit_count": (
+                general_substrate_identity_hit_count
+            ),
+            "source_valid_relaxed_polymer_hit_pdb_ids": (
+                general_substrate_identity_hit_pdb_ids
+            ),
+            "nonpositive_relaxed_polymer_false_hit_count": (
+                general_substrate_identity_false_hit_count
+            ),
+            "nonpositive_relaxed_polymer_false_hit_pdb_ids": (
+                general_substrate_identity_false_hit_pdb_ids
+            ),
+            "general_substrate_identity_ready_count": (
+                general_substrate_identity_ready_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "relaxed_polymer_rule_false_hits_keep_general_identity_closed"
+                if general_substrate_identity_false_hit_count
+                else "missing_general_substrate_identity_gap_audit"
+                if not general_substrate_identity_status
+                else "relaxed_polymer_rule_reviewed_but_not_production_admissible"
+            ),
+            "blocker": (
+                general_substrate_identity_primary_blocker
+                or "general_source_free_substrate_identity_axis_missing"
+            ),
+        },
+        {
+            "decision_axis": "length_band_substrate_identity_counteraxis_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "length_band_identity_status": length_band_identity_status,
+            "positive_like_length_band_hit_count": (
+                length_band_identity_hit_count
+            ),
+            "positive_like_length_band_hit_pdb_ids": (
+                length_band_identity_hit_pdb_ids
+            ),
+            "nonpositive_length_band_false_hit_count": (
+                length_band_identity_false_hit_count
+            ),
+            "nonpositive_length_band_false_hit_pdb_ids": (
+                length_band_identity_false_hit_pdb_ids
+            ),
+            "nonpositive_relaxed_false_hit_blocked_by_length_band_count": (
+                length_band_identity_blocked_false_hit_count
+            ),
+            "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids": (
+                length_band_identity_blocked_false_hit_pdb_ids
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "blocks_relaxed_false_hit_in_source_expansion_subset_but_not_production_admissible"
+                if length_band_identity_blocked_false_hit_count
+                and not length_band_identity_false_hit_count
+                else "missing_or_failing_length_band_counteraxis_audit"
+            ),
+            "blocker": (
+                "length_band_counteraxis_source_expansion_only_not_general_epk_identity"
+            ),
+        },
+        {
             "decision_axis": "unified_review_only_scoring_prototype",
             "review_only": True,
             "candidate_threshold_angstrom": candidate_threshold,
@@ -16861,6 +16982,45 @@ def build_epk_counteraxis_sufficiency_decision(
             "unified_substrate_identity_ready_review_only": (
                 unified_identity_ready_review_only
             ),
+            "general_substrate_identity_relaxed_polymer_status": (
+                general_substrate_identity_status
+            ),
+            "general_substrate_identity_relaxed_polymer_hit_count": (
+                general_substrate_identity_hit_count
+            ),
+            "general_substrate_identity_relaxed_polymer_hit_pdb_ids": (
+                general_substrate_identity_hit_pdb_ids
+            ),
+            "general_substrate_identity_relaxed_polymer_false_hit_count": (
+                general_substrate_identity_false_hit_count
+            ),
+            "general_substrate_identity_relaxed_polymer_false_hit_pdb_ids": (
+                general_substrate_identity_false_hit_pdb_ids
+            ),
+            "general_substrate_identity_ready_count": (
+                general_substrate_identity_ready_count
+            ),
+            "length_band_substrate_identity_status": (
+                length_band_identity_status
+            ),
+            "length_band_substrate_identity_positive_hit_count": (
+                length_band_identity_hit_count
+            ),
+            "length_band_substrate_identity_positive_hit_pdb_ids": (
+                length_band_identity_hit_pdb_ids
+            ),
+            "length_band_substrate_identity_false_hit_count": (
+                length_band_identity_false_hit_count
+            ),
+            "length_band_substrate_identity_false_hit_pdb_ids": (
+                length_band_identity_false_hit_pdb_ids
+            ),
+            "length_band_substrate_identity_blocked_relaxed_false_hit_count": (
+                length_band_identity_blocked_false_hit_count
+            ),
+            "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids": (
+                length_band_identity_blocked_false_hit_pdb_ids
+            ),
             "unified_review_only_scoring_passes_current_controls": (
                 unified_scoring_passes_current_controls
             ),
@@ -16905,6 +17065,8 @@ def build_epk_counteraxis_sufficiency_decision(
                 "external_epk_specific_axes_not_materialized",
                 "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
                 "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
+                "relaxed_polymer_rule_false_hits_source_context_counterexample",
+                "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
                 "unified_substrate_identity_rule_not_calibrated_for_production",
                 "label_factory_gate_not_extended_for_epk",
             ],
@@ -30418,6 +30580,948 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
     }
 
 
+def build_epk_general_substrate_identity_gap_audit(
+    *,
+    epk_heteromeric_source_expansion_peptide_role_axis_audit: dict[str, Any],
+    epk_unified_substrate_identity_rule_probe: dict[str, Any] | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Test whether relaxing peptide identity to generic polymer identity fails."""
+
+    source_meta = epk_heteromeric_source_expansion_peptide_role_axis_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    unified_meta = (
+        epk_unified_substrate_identity_rule_probe.get("metadata", {})
+        if isinstance(epk_unified_substrate_identity_rule_probe, dict)
+        else {}
+    )
+    if not isinstance(unified_meta, dict):
+        unified_meta = {}
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or unified_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(candidate_threshold_angstrom)
+    except (TypeError, ValueError):
+        threshold = 6.0
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    positive_hit_pdb_ids: list[str] = []
+    positive_miss_pdb_ids: list[str] = []
+    nonpositive_false_hit_pdb_ids: list[str] = []
+    nonpositive_blocked_pdb_ids: list[str] = []
+    false_hit_context_counts: Counter[str] = Counter()
+
+    source_rows = [
+        row
+        for row in epk_heteromeric_source_expansion_peptide_role_axis_audit.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict)
+        and row.get("row_type")
+        in {
+            "source_expansion_peptide_role_positive_candidate",
+            "source_expansion_peptide_role_nonpositive_control",
+        }
+    ]
+    for source_row in source_rows:
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        source_valid = bool(source_row.get("source_validated_positive_like"))
+        acceptor_lacks_local_ligand = bool(
+            source_row.get("acceptor_chain_lacks_local_nucleotide_or_metal")
+        )
+        gamma_has_local_ligand = bool(
+            source_row.get("gamma_chain_has_local_nucleotide_or_metal")
+        )
+        gamma_larger = bool(source_row.get("gamma_chain_is_larger_polymer"))
+        peptide_like = bool(source_row.get("peptide_like_acceptor_chain"))
+        same_chain = (
+            source_row.get("candidate_acceptor_chain_name")
+            and source_row.get("gamma_associated_polymer_chain_name")
+            and source_row.get("candidate_acceptor_chain_name")
+            == source_row.get("gamma_associated_polymer_chain_name")
+        )
+        relaxed_rule_hit = (
+            acceptor_lacks_local_ligand and gamma_has_local_ligand and gamma_larger
+        )
+        counterevidence_reasons: list[str] = []
+        if not acceptor_lacks_local_ligand:
+            counterevidence_reasons.append(
+                "acceptor_chain_has_local_nucleotide_or_metal"
+            )
+        if not gamma_has_local_ligand:
+            counterevidence_reasons.append(
+                "gamma_chain_lacks_local_nucleotide_or_metal"
+            )
+        if not gamma_larger:
+            counterevidence_reasons.append(
+                "acceptor_and_gamma_on_same_chain"
+                if same_chain
+                else "gamma_chain_not_larger_than_acceptor_chain"
+            )
+        if source_valid and relaxed_rule_hit:
+            decision = "positive_like_relaxed_polymer_identity_hit_review_only"
+            positive_hit_pdb_ids.append(pdb_id)
+        elif source_valid:
+            decision = "positive_like_relaxed_polymer_identity_miss_review_only"
+            positive_miss_pdb_ids.append(pdb_id)
+        elif relaxed_rule_hit:
+            decision = "nonpositive_relaxed_polymer_identity_false_hit"
+            nonpositive_false_hit_pdb_ids.append(pdb_id)
+            if not peptide_like:
+                false_hit_context_counts[
+                    "false_hit_acceptor_chain_not_peptide_like"
+                ] += 1
+            if source_row.get("source_validation_status_review_context"):
+                false_hit_context_counts[
+                    str(source_row["source_validation_status_review_context"])
+                ] += 1
+        else:
+            decision = "nonpositive_blocked_by_relaxed_polymer_counterevidence"
+            nonpositive_blocked_pdb_ids.append(pdb_id)
+        status_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": (
+                    "general_substrate_identity_relaxed_polymer_positive_candidate"
+                    if source_valid
+                    else "general_substrate_identity_relaxed_polymer_nonpositive_control"
+                ),
+                "pdb_id": pdb_id,
+                "source_pair_id": source_row.get("source_pair_id"),
+                "source_validation_status_review_context": source_row.get(
+                    "source_validation_status_review_context"
+                ),
+                "source_validated_positive_like": source_valid,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_threshold_angstrom": threshold,
+                "candidate_acceptor_residue_code": source_row.get(
+                    "candidate_acceptor_residue_code"
+                ),
+                "candidate_acceptor_chain_name": source_row.get(
+                    "candidate_acceptor_chain_name"
+                ),
+                "candidate_acceptor_auth_seq_id": source_row.get(
+                    "candidate_acceptor_auth_seq_id"
+                ),
+                "gamma_associated_polymer_chain_name": source_row.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "nearest_gamma_distance_angstrom": source_row.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                "acceptor_chain_residue_count": source_row.get(
+                    "acceptor_chain_residue_count"
+                ),
+                "gamma_chain_residue_count": source_row.get(
+                    "gamma_chain_residue_count"
+                ),
+                "peptide_like_acceptor_chain": peptide_like,
+                "acceptor_chain_lacks_local_nucleotide_or_metal": (
+                    acceptor_lacks_local_ligand
+                ),
+                "gamma_chain_has_local_nucleotide_or_metal": gamma_has_local_ligand,
+                "gamma_chain_is_larger_polymer": gamma_larger,
+                "relaxed_polymer_acceptor_identity_rule_hit": relaxed_rule_hit,
+                "relaxed_polymer_acceptor_identity_decision": decision,
+                "relaxed_polymer_counterevidence_reasons": (
+                    _sorted_strings(counterevidence_reasons)
+                ),
+                "production_scoring_admissible": False,
+                "remaining_blockers": [
+                    "relaxed_polymer_identity_false_hits_broad_stress_counterexample"
+                    if relaxed_rule_hit and not source_valid
+                    else "relaxed_polymer_identity_not_validated_as_general_substrate_identity",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    positive_hit_pdb_ids = _sorted_strings(positive_hit_pdb_ids)
+    positive_miss_pdb_ids = _sorted_strings(positive_miss_pdb_ids)
+    nonpositive_false_hit_pdb_ids = _sorted_strings(nonpositive_false_hit_pdb_ids)
+    nonpositive_blocked_pdb_ids = _sorted_strings(nonpositive_blocked_pdb_ids)
+    if not positive_hit_pdb_ids and not positive_miss_pdb_ids:
+        status = "blocked_review_only_no_source_valid_rows_for_relaxed_polymer_rule"
+    elif nonpositive_false_hit_pdb_ids:
+        status = "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit"
+    elif positive_miss_pdb_ids:
+        status = "blocked_review_only_relaxed_polymer_rule_misses_positive_rows"
+    else:
+        status = "passes_review_only_relaxed_polymer_rule_but_not_production_admissible"
+
+    return {
+        "metadata": {
+            "method": "epk_general_substrate_identity_gap_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "rule_id": "epk_relaxed_polymer_acceptor_identity_rule_v0_review_only",
+            "source_epk_heteromeric_source_expansion_peptide_role_axis_audit_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_unified_substrate_identity_rule_probe_method": (
+                unified_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": threshold,
+            "source_expansion_reviewed_row_count": len(source_rows),
+            "relaxed_polymer_identity_status": status,
+            "relaxed_polymer_identity_decision_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "relaxed_polymer_identity_passes_review_controls": status
+            == "passes_review_only_relaxed_polymer_rule_but_not_production_admissible",
+            "source_valid_relaxed_polymer_hit_count": len(positive_hit_pdb_ids),
+            "source_valid_relaxed_polymer_hit_pdb_ids": positive_hit_pdb_ids,
+            "source_valid_relaxed_polymer_miss_count": len(positive_miss_pdb_ids),
+            "source_valid_relaxed_polymer_miss_pdb_ids": positive_miss_pdb_ids,
+            "nonpositive_relaxed_polymer_false_hit_count": len(
+                nonpositive_false_hit_pdb_ids
+            ),
+            "nonpositive_relaxed_polymer_false_hit_pdb_ids": (
+                nonpositive_false_hit_pdb_ids
+            ),
+            "nonpositive_relaxed_polymer_blocked_count": len(
+                nonpositive_blocked_pdb_ids
+            ),
+            "nonpositive_relaxed_polymer_blocked_pdb_ids": (
+                nonpositive_blocked_pdb_ids
+            ),
+            "false_hit_context_counts": dict(sorted(false_hit_context_counts.items())),
+            "current_unified_positive_hit_count": unified_meta.get(
+                "positive_hit_count"
+            ),
+            "current_unified_positive_hit_pdb_ids": unified_meta.get(
+                "positive_hit_pdb_ids", []
+            ),
+            "source_free_general_substrate_identity_ready": False,
+            "general_substrate_identity_ready_count": 0,
+            "general_substrate_identity_primary_blocker": (
+                "relaxed_polymer_rule_false_hits_source_context_counterexample"
+                if nonpositive_false_hit_pdb_ids
+                else "relaxed_polymer_rule_not_validated_for_general_identity"
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "relaxed_polymer_substrate_identity_rule_evaluated",
+            "blocker_not_removed": [
+                "relaxed_polymer_acceptor_identity_false_hits_nonpositive_control",
+                "general_source_free_substrate_identity_axis_missing",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit deliberately relaxes the prior peptide-like "
+                "acceptor role rule into a generic polymer-acceptor rule: the "
+                "candidate hydroxyl must lie on an acceptor polymer without "
+                "local nucleotide/metal context, while the gamma-associated "
+                "polymer is larger and carries local nucleotide/metal context. "
+                "Source validation is used only to label positive-like and "
+                "nonpositive review rows."
+            ),
+            "next_actions": [
+                "do not promote the relaxed polymer rule because it false-hits 7B56",
+                "seek a source-free protein-substrate role discriminator beyond polymer size and local ligand asymmetry",
+                "keep ePK thresholding and external scored re-audit closed",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The relaxed polymer substrate identity rule is a negative "
+                "review-only result and must not be used as a production ePK "
+                "feature."
+            )
+        ],
+    }
+
+
+def build_epk_length_band_substrate_identity_counteraxis_audit(
+    *,
+    epk_general_substrate_identity_gap_audit: dict[str, Any],
+    max_short_acceptor_residues: int = 40,
+    min_large_acceptor_residues: int = 120,
+) -> dict[str, Any]:
+    """Add a bounded length-band counteraxis to the relaxed polymer rule."""
+
+    source_meta = epk_general_substrate_identity_gap_audit.get("metadata", {})
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    def _optional_int(value: Any) -> int | None:
+        try:
+            if value in {None, "", ".", "?"}:
+                return None
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    try:
+        short_max = int(max_short_acceptor_residues)
+    except (TypeError, ValueError):
+        short_max = 40
+    try:
+        large_min = int(min_large_acceptor_residues)
+    except (TypeError, ValueError):
+        large_min = 120
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    positive_hit_pdb_ids: list[str] = []
+    positive_miss_pdb_ids: list[str] = []
+    nonpositive_false_hit_pdb_ids: list[str] = []
+    relaxed_false_hit_blocked_pdb_ids: list[str] = []
+    nonpositive_blocked_before_length_pdb_ids: list[str] = []
+
+    source_rows = [
+        row
+        for row in epk_general_substrate_identity_gap_audit.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("row_type")
+        in {
+            "general_substrate_identity_relaxed_polymer_positive_candidate",
+            "general_substrate_identity_relaxed_polymer_nonpositive_control",
+        }
+    ]
+    for source_row in source_rows:
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        source_valid = bool(source_row.get("source_validated_positive_like"))
+        base_rule_hit = bool(
+            source_row.get("relaxed_polymer_acceptor_identity_rule_hit")
+        )
+        acceptor_count = _optional_int(source_row.get("acceptor_chain_residue_count"))
+        short_acceptor_band_hit = (
+            acceptor_count is not None and acceptor_count <= short_max
+        )
+        large_acceptor_band_hit = (
+            acceptor_count is not None and acceptor_count >= large_min
+        )
+        length_band_rule_hit = base_rule_hit and (
+            short_acceptor_band_hit or large_acceptor_band_hit
+        )
+        counterevidence_reasons = list(
+            source_row.get("relaxed_polymer_counterevidence_reasons", []) or []
+        )
+        if base_rule_hit and not length_band_rule_hit:
+            if acceptor_count is None:
+                counterevidence_reasons.append("acceptor_chain_length_missing")
+            else:
+                counterevidence_reasons.append(
+                    "acceptor_chain_length_in_intermediate_false_hit_band"
+                )
+
+        if source_valid and length_band_rule_hit:
+            decision = "positive_like_length_band_identity_hit_review_only"
+            positive_hit_pdb_ids.append(pdb_id)
+        elif source_valid:
+            decision = "positive_like_length_band_identity_miss_review_only"
+            positive_miss_pdb_ids.append(pdb_id)
+        elif length_band_rule_hit:
+            decision = "nonpositive_length_band_identity_false_hit"
+            nonpositive_false_hit_pdb_ids.append(pdb_id)
+        elif base_rule_hit:
+            decision = "nonpositive_relaxed_false_hit_blocked_by_length_band"
+            relaxed_false_hit_blocked_pdb_ids.append(pdb_id)
+        else:
+            decision = "nonpositive_blocked_before_length_band_identity_rule"
+            nonpositive_blocked_before_length_pdb_ids.append(pdb_id)
+        status_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": (
+                    "length_band_substrate_identity_positive_candidate"
+                    if source_valid
+                    else "length_band_substrate_identity_nonpositive_control"
+                ),
+                "pdb_id": pdb_id,
+                "source_pair_id": source_row.get("source_pair_id"),
+                "source_validation_status_review_context": source_row.get(
+                    "source_validation_status_review_context"
+                ),
+                "source_validated_positive_like": source_valid,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "candidate_acceptor_residue_code": source_row.get(
+                    "candidate_acceptor_residue_code"
+                ),
+                "candidate_acceptor_chain_name": source_row.get(
+                    "candidate_acceptor_chain_name"
+                ),
+                "candidate_acceptor_auth_seq_id": source_row.get(
+                    "candidate_acceptor_auth_seq_id"
+                ),
+                "gamma_associated_polymer_chain_name": source_row.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "nearest_gamma_distance_angstrom": source_row.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                "acceptor_chain_residue_count": acceptor_count,
+                "gamma_chain_residue_count": source_row.get(
+                    "gamma_chain_residue_count"
+                ),
+                "relaxed_polymer_acceptor_identity_rule_hit": base_rule_hit,
+                "short_acceptor_length_band_hit": short_acceptor_band_hit,
+                "large_acceptor_length_band_hit": large_acceptor_band_hit,
+                "length_band_polymer_acceptor_identity_rule_hit": (
+                    length_band_rule_hit
+                ),
+                "length_band_identity_decision": decision,
+                "length_band_counterevidence_reasons": _sorted_strings(
+                    counterevidence_reasons
+                ),
+                "production_scoring_admissible": False,
+                "remaining_blockers": [
+                    "length_band_identity_rule_source_expansion_only_not_calibrated",
+                    "general_source_free_substrate_identity_axis_missing",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    positive_hit_pdb_ids = _sorted_strings(positive_hit_pdb_ids)
+    positive_miss_pdb_ids = _sorted_strings(positive_miss_pdb_ids)
+    nonpositive_false_hit_pdb_ids = _sorted_strings(nonpositive_false_hit_pdb_ids)
+    relaxed_false_hit_blocked_pdb_ids = _sorted_strings(
+        relaxed_false_hit_blocked_pdb_ids
+    )
+    nonpositive_blocked_before_length_pdb_ids = _sorted_strings(
+        nonpositive_blocked_before_length_pdb_ids
+    )
+    if not positive_hit_pdb_ids and not positive_miss_pdb_ids:
+        status = "blocked_review_only_no_positive_rows_for_length_band_rule"
+    elif nonpositive_false_hit_pdb_ids:
+        status = "fails_closed_length_band_rule_has_nonpositive_false_hit"
+    elif positive_miss_pdb_ids:
+        status = "blocked_review_only_length_band_rule_misses_positive_rows"
+    elif relaxed_false_hit_blocked_pdb_ids:
+        status = (
+            "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only"
+        )
+    else:
+        status = "passes_source_expansion_subset_length_band_review_only"
+
+    return {
+        "metadata": {
+            "method": "epk_length_band_substrate_identity_counteraxis_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "rule_id": (
+                "epk_length_band_polymer_acceptor_identity_counteraxis_v0_review_only"
+            ),
+            "source_epk_general_substrate_identity_gap_audit_method": (
+                source_meta.get("method")
+            ),
+            "source_relaxed_polymer_identity_status": (
+                source_meta.get("relaxed_polymer_identity_status")
+            ),
+            "max_short_acceptor_residues": short_max,
+            "min_large_acceptor_residues": large_min,
+            "reviewed_row_count": len(source_rows),
+            "length_band_identity_status": status,
+            "length_band_identity_decision_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "length_band_identity_passes_current_source_expansion_controls": (
+                status
+                in {
+                    "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
+                    "passes_source_expansion_subset_length_band_review_only",
+                }
+            ),
+            "positive_like_length_band_hit_count": len(positive_hit_pdb_ids),
+            "positive_like_length_band_hit_pdb_ids": positive_hit_pdb_ids,
+            "positive_like_length_band_miss_count": len(positive_miss_pdb_ids),
+            "positive_like_length_band_miss_pdb_ids": positive_miss_pdb_ids,
+            "nonpositive_length_band_false_hit_count": len(
+                nonpositive_false_hit_pdb_ids
+            ),
+            "nonpositive_length_band_false_hit_pdb_ids": (
+                nonpositive_false_hit_pdb_ids
+            ),
+            "nonpositive_relaxed_false_hit_blocked_by_length_band_count": len(
+                relaxed_false_hit_blocked_pdb_ids
+            ),
+            "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids": (
+                relaxed_false_hit_blocked_pdb_ids
+            ),
+            "nonpositive_blocked_before_length_band_count": len(
+                nonpositive_blocked_before_length_pdb_ids
+            ),
+            "nonpositive_blocked_before_length_band_pdb_ids": (
+                nonpositive_blocked_before_length_pdb_ids
+            ),
+            "source_free_general_substrate_identity_ready": False,
+            "general_substrate_identity_ready_count": 0,
+            "general_substrate_identity_primary_blocker": (
+                "length_band_counteraxis_source_expansion_only_not_general_epk_identity"
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": (
+                "relaxed_polymer_false_hit_blocked_in_source_expansion_subset"
+                if relaxed_false_hit_blocked_pdb_ids and not nonpositive_false_hit_pdb_ids
+                else "length_band_counteraxis_evaluated"
+            ),
+            "blocker_not_removed": [
+                "length_band_acceptor_identity_rule_not_broadly_calibrated",
+                "general_source_free_substrate_identity_axis_missing",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit adds a bounded source-free counteraxis to the "
+                "relaxed polymer rule: a hit must still satisfy local "
+                "ligand asymmetry and polymer-size asymmetry, and the "
+                "acceptor chain length must fall in a short peptide-like band "
+                "or a large folded-substrate band. The rule is evaluated only "
+                "against current source-expansion review rows."
+            ),
+            "next_actions": [
+                "treat the length-band pass as a bounded counterexample repair, not a scorer",
+                "stress the intermediate-length exclusion against new source-valid positives before thresholding",
+                "keep production ePK gates and external scored re-audit closed",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The length-band substrate identity counteraxis is review-only "
+                "and source-expansion scoped; it must not be promoted to a "
+                "production ePK feature without broader gated controls."
+            )
+        ],
+    }
+
+
+def build_epk_sibling_control_homolog_terminal_review(
+    *,
+    epk_sibling_control_homolog_mapping_review: dict[str, Any],
+    epk_sibling_control_homolog_gamma_distance_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Summarize terminal review status for sibling homolog controls."""
+
+    mapping_meta = epk_sibling_control_homolog_mapping_review.get("metadata", {})
+    if not isinstance(mapping_meta, dict):
+        mapping_meta = {}
+    distance_meta = epk_sibling_control_homolog_gamma_distance_sample.get(
+        "metadata", {}
+    )
+    if not isinstance(distance_meta, dict):
+        distance_meta = {}
+    family_id = str(
+        mapping_meta.get("reviewed_sibling_family_id")
+        or distance_meta.get("reviewed_sibling_family_id")
+        or "unknown"
+    )
+    family_name = str(
+        mapping_meta.get("reviewed_sibling_family_name")
+        or distance_meta.get("reviewed_sibling_family_name")
+        or family_id
+    )
+    target_fingerprint_id = str(
+        mapping_meta.get("target_fingerprint_id")
+        or distance_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    mapping_rows_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row
+        for row in epk_sibling_control_homolog_mapping_review.get("rows", []) or []
+        if isinstance(row, dict) and row.get("pdb_id")
+    }
+    distance_rows_by_pdb = {
+        str(row.get("pdb_id") or "").upper(): row
+        for row in epk_sibling_control_homolog_gamma_distance_sample.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("pdb_id")
+    }
+    pdb_ids = _sorted_strings(
+        set(mapping_rows_by_pdb) | set(distance_rows_by_pdb)
+    )
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    mapping_ready_pdb_ids: list[str] = []
+    measured_pdb_ids: list[str] = []
+    unresolved_pdb_ids: list[str] = []
+    for pdb_id in pdb_ids:
+        mapping_row = mapping_rows_by_pdb.get(pdb_id, {})
+        distance_row = distance_rows_by_pdb.get(pdb_id, {})
+        mapping_ready = bool(
+            mapping_row.get("measurement_ready_for_negative_control")
+        )
+        distance_measured = bool(
+            distance_row.get("gamma_to_mapped_histidine_distance_measured")
+        )
+        if mapping_ready:
+            mapping_ready_pdb_ids.append(pdb_id)
+        if distance_measured:
+            measured_pdb_ids.append(pdb_id)
+
+        if mapping_ready and distance_measured:
+            terminal_status = "terminal_measured_histidine_counteraxis_review_only"
+        elif mapping_ready:
+            terminal_status = "terminal_pending_distance_measurement_review_only"
+            unresolved_pdb_ids.append(pdb_id)
+        else:
+            terminal_status = "terminal_mapping_not_ready_review_only"
+            unresolved_pdb_ids.append(pdb_id)
+        status_counts[terminal_status] += 1
+
+        rows.append(
+            {
+                "row_type": "sibling_control_homolog_terminal_review",
+                "pdb_id": pdb_id,
+                "family_id": family_id,
+                "family_name": family_name,
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "mapping_review_status": mapping_row.get(
+                    "homolog_mapping_status"
+                ),
+                "measurement_ready_for_negative_control": mapping_ready,
+                "distance_measurement_status": distance_row.get(
+                    "measurement_status"
+                ),
+                "gamma_to_mapped_histidine_distance_measured": (
+                    distance_measured
+                ),
+                "nearest_gamma_to_mapped_histidine_distance_angstrom": (
+                    distance_row.get(
+                        "nearest_gamma_to_mapped_histidine_distance_angstrom"
+                    )
+                ),
+                "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": (
+                    distance_row.get(
+                        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"
+                    )
+                ),
+                "control_use_status": distance_row.get("control_use_status"),
+                "terminal_review_status": terminal_status,
+                "remaining_blockers": [
+                    "homolog_control_is_histidine_axis_not_epk_hydroxyl_acceptor",
+                    "negative_control_distribution_not_calibrated",
+                    "epk_score_not_computed",
+                    "external_hard_negative_reaudit_not_run",
+                ],
+            }
+        )
+
+    mapping_ready_pdb_ids = _sorted_strings(mapping_ready_pdb_ids)
+    measured_pdb_ids = _sorted_strings(measured_pdb_ids)
+    unresolved_pdb_ids = _sorted_strings(unresolved_pdb_ids)
+    if pdb_ids and len(measured_pdb_ids) == len(pdb_ids):
+        status = (
+            "terminal_review_only_all_homologs_measured_histidine_axis_blocks_threshold"
+        )
+    elif unresolved_pdb_ids:
+        status = "terminal_review_only_homologs_unresolved"
+    else:
+        status = "terminal_review_only_no_homolog_rows"
+
+    return {
+        "metadata": {
+            "method": "epk_sibling_control_homolog_terminal_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "reviewed_sibling_family_id": family_id,
+            "reviewed_sibling_family_name": family_name,
+            "source_epk_sibling_control_homolog_mapping_review_method": (
+                mapping_meta.get("method")
+            ),
+            "source_epk_sibling_control_homolog_gamma_distance_sample_method": (
+                distance_meta.get("method")
+            ),
+            "terminal_review_status": status,
+            "terminal_review_status_counts": dict(sorted(status_counts.items())),
+            "reviewed_homolog_structure_count": len(pdb_ids),
+            "reviewed_homolog_pdb_ids": pdb_ids,
+            "measurement_ready_homolog_structure_count": len(
+                mapping_ready_pdb_ids
+            ),
+            "measurement_ready_homolog_pdb_ids": mapping_ready_pdb_ids,
+            "measured_homolog_structure_count": len(measured_pdb_ids),
+            "measured_homolog_pdb_ids": measured_pdb_ids,
+            "unresolved_homolog_structure_count": len(unresolved_pdb_ids),
+            "unresolved_homolog_pdb_ids": unresolved_pdb_ids,
+            "threshold_selection_status": distance_meta.get(
+                "threshold_selection_status"
+            ),
+            "observed_homolog_histidine_distance_min_angstrom": distance_meta.get(
+                "observed_homolog_histidine_distance_min_angstrom"
+            ),
+            "observed_homolog_histidine_distance_max_angstrom": distance_meta.get(
+                "observed_homolog_histidine_distance_max_angstrom"
+            ),
+            "negative_control_distance_distribution_ready": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": (
+                "homolog_mapping_and_distance_measurement_completed"
+                if status
+                == "terminal_review_only_all_homologs_measured_histidine_axis_blocks_threshold"
+                else "none"
+            ),
+            "blocker_not_removed": [
+                "homolog_histidine_axis_is_counterevidence_not_epk_positive_evidence",
+                "negative_control_distribution_not_calibrated",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_actions": [
+                "treat measured homolog histidine distances as threshold-blocking counterevidence",
+                "do not reopen NDK homolog mapping unless a new source or gate changes",
+                "continue ePK substrate identity work before production scoring",
+            ],
+        },
+        "rows": sorted(rows, key=lambda row: str(row.get("pdb_id") or "")),
+        "warnings": [
+            (
+                "Sibling homolog terminal review is negative-control evidence "
+                "only and must not be used as positive ePK fingerprint support."
+            )
+        ],
+    }
+
+
+def build_epk_length_band_external_hard_negative_review(
+    *,
+    epk_length_band_substrate_identity_counteraxis_audit: dict[str, Any],
+    epk_review_only_external_hard_negative_score_probe: dict[str, Any],
+    imported_external_entry_ids: Sequence[str] | None = None,
+) -> dict[str, Any]:
+    """Check imported external hard negatives against the length-band audit."""
+
+    length_meta = epk_length_band_substrate_identity_counteraxis_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(length_meta, dict):
+        length_meta = {}
+    external_meta = epk_review_only_external_hard_negative_score_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(external_meta, dict):
+        external_meta = {}
+    target_fingerprint_id = str(
+        length_meta.get("target_fingerprint_id")
+        or external_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    expected_entry_ids = _sorted_strings(
+        imported_external_entry_ids
+        or external_meta.get("expected_external_hard_negative_entry_ids", [])
+        or []
+    )
+    external_rows_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in epk_review_only_external_hard_negative_score_probe.get(
+            "rows", []
+        )
+        or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    if not expected_entry_ids:
+        expected_entry_ids = _sorted_strings(external_rows_by_entry)
+
+    rows: list[dict[str, Any]] = []
+    non_abstention_entry_ids: list[str] = []
+    missing_entry_ids: list[str] = []
+    for entry_id in expected_entry_ids:
+        source_row = external_rows_by_entry.get(entry_id, {})
+        missing = entry_id not in external_rows_by_entry
+        if missing:
+            missing_entry_ids.append(entry_id)
+        length_band_non_abstention = False
+        if length_band_non_abstention:
+            non_abstention_entry_ids.append(entry_id)
+        rows.append(
+            {
+                "row_type": "length_band_imported_external_hard_negative_review",
+                "entry_id": entry_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "countable_label_candidate": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "source_external_probe_missing": missing,
+                "source_review_only_probe_score": source_row.get(
+                    "review_only_probe_score"
+                ),
+                "source_review_only_probe_non_abstention": bool(
+                    source_row.get("review_only_score_probe_non_abstention")
+                ),
+                "length_band_feature_non_abstention": (
+                    length_band_non_abstention
+                ),
+                "length_band_review_decision": (
+                    "abstain_no_source_expansion_substrate_context_review_only"
+                ),
+                "remaining_blockers": [
+                    "length_band_counteraxis_not_real_external_score",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    non_abstention_entry_ids = _sorted_strings(non_abstention_entry_ids)
+    missing_entry_ids = _sorted_strings(missing_entry_ids)
+    status = (
+        "passes_review_only_length_band_external_hard_negative_abstention"
+        if rows and not non_abstention_entry_ids and not missing_entry_ids
+        else "blocked_review_only_missing_external_hard_negative_rows"
+        if missing_entry_ids
+        else "fails_closed_length_band_external_hard_negative_non_abstention"
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_length_band_external_hard_negative_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_length_band_substrate_identity_counteraxis_audit_method": (
+                length_meta.get("method")
+            ),
+            "source_epk_review_only_external_hard_negative_score_probe_method": (
+                external_meta.get("method")
+            ),
+            "length_band_external_hard_negative_review_status": status,
+            "expected_external_hard_negative_entry_ids": expected_entry_ids,
+            "external_hard_negative_review_row_count": len(rows),
+            "missing_external_hard_negative_count": len(missing_entry_ids),
+            "missing_external_hard_negative_entry_ids": missing_entry_ids,
+            "length_band_external_hard_negative_non_abstention_count": len(
+                non_abstention_entry_ids
+            ),
+            "length_band_external_hard_negative_non_abstention_entry_ids": (
+                non_abstention_entry_ids
+            ),
+            "length_band_external_hard_negative_review_passed": (
+                status
+                == "passes_review_only_length_band_external_hard_negative_abstention"
+            ),
+            "not_a_real_scored_reaudit": True,
+            "clean_heldout_performance_claim_permitted": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "Imported external hard negatives are evaluated only for "
+                "fail-closed non-abstention under the length-band counteraxis. "
+                "Because the length-band audit is source-expansion-row scoped "
+                "and not a calibrated ePK scorer, all imported external hard "
+                "negatives must abstain."
+            ),
+            "next_actions": [
+                "keep this as diagnostic abstention evidence, not held-out performance",
+                "run a real external hard-negative scored re-audit only after an ePK scorer is calibrated",
+                "preserve the three imported external hard negatives under their out-of-scope contract",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "The length-band external hard-negative review is an abstention "
+                "diagnostic only; it is not a scored external re-audit."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -32132,6 +33236,10 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_substrate_mode_gap_audit: dict[str, Any] | None = None,
     epk_unified_substrate_identity_rule_probe: dict[str, Any] | None = None,
+    epk_general_substrate_identity_gap_audit: dict[str, Any] | None = None,
+    epk_length_band_substrate_identity_counteraxis_audit: dict[str, Any]
+    | None = None,
+    epk_length_band_external_hard_negative_review: dict[str, Any] | None = None,
     epk_unified_review_only_scoring_prototype: dict[str, Any] | None = None,
     epk_unified_prototype_broad_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
@@ -32648,6 +33756,27 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(unified_substrate_identity_meta, dict):
         unified_substrate_identity_meta = {}
+    general_substrate_identity_meta = (
+        epk_general_substrate_identity_gap_audit.get("metadata", {})
+        if isinstance(epk_general_substrate_identity_gap_audit, dict)
+        else {}
+    )
+    if not isinstance(general_substrate_identity_meta, dict):
+        general_substrate_identity_meta = {}
+    length_band_substrate_identity_meta = (
+        epk_length_band_substrate_identity_counteraxis_audit.get("metadata", {})
+        if isinstance(epk_length_band_substrate_identity_counteraxis_audit, dict)
+        else {}
+    )
+    if not isinstance(length_band_substrate_identity_meta, dict):
+        length_band_substrate_identity_meta = {}
+    length_band_external_hard_negative_meta = (
+        epk_length_band_external_hard_negative_review.get("metadata", {})
+        if isinstance(epk_length_band_external_hard_negative_review, dict)
+        else {}
+    )
+    if not isinstance(length_band_external_hard_negative_meta, dict):
+        length_band_external_hard_negative_meta = {}
     unified_scoring_meta = (
         epk_unified_review_only_scoring_prototype.get("metadata", {})
         if isinstance(epk_unified_review_only_scoring_prototype, dict)
@@ -35005,6 +36134,244 @@ def build_epk_precount_gate_status(
                     "unified_source_free_substrate_identity_ready_review_only": (
                         unified_substrate_identity_meta.get(
                             "unified_source_free_substrate_identity_ready_review_only"
+                        )
+                    ),
+                },
+            }
+        )
+    if general_substrate_identity_meta:
+        gate_checks.append(
+            {
+                "gate_id": "general_substrate_identity_gap_audit",
+                "passed": general_substrate_identity_meta.get(
+                    "relaxed_polymer_identity_status"
+                )
+                == "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit"
+                and int(
+                    general_substrate_identity_meta.get(
+                        "nonpositive_relaxed_polymer_false_hit_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    general_substrate_identity_meta.get(
+                        "general_substrate_identity_ready_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    general_substrate_identity_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    general_substrate_identity_meta.get("epk_score_computed")
+                )
+                and not bool(
+                    general_substrate_identity_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": general_substrate_identity_meta.get("method"),
+                    "rule_id": general_substrate_identity_meta.get("rule_id"),
+                    "relaxed_polymer_identity_status": (
+                        general_substrate_identity_meta.get(
+                            "relaxed_polymer_identity_status"
+                        )
+                    ),
+                    "source_valid_relaxed_polymer_hit_count": (
+                        general_substrate_identity_meta.get(
+                            "source_valid_relaxed_polymer_hit_count"
+                        )
+                    ),
+                    "source_valid_relaxed_polymer_hit_pdb_ids": (
+                        general_substrate_identity_meta.get(
+                            "source_valid_relaxed_polymer_hit_pdb_ids", []
+                        )
+                    ),
+                    "nonpositive_relaxed_polymer_false_hit_count": (
+                        general_substrate_identity_meta.get(
+                            "nonpositive_relaxed_polymer_false_hit_count"
+                        )
+                    ),
+                    "nonpositive_relaxed_polymer_false_hit_pdb_ids": (
+                        general_substrate_identity_meta.get(
+                            "nonpositive_relaxed_polymer_false_hit_pdb_ids", []
+                        )
+                    ),
+                    "general_substrate_identity_primary_blocker": (
+                        general_substrate_identity_meta.get(
+                            "general_substrate_identity_primary_blocker"
+                        )
+                    ),
+                    "source_free_general_substrate_identity_ready": bool(
+                        general_substrate_identity_meta.get(
+                            "source_free_general_substrate_identity_ready"
+                        )
+                    ),
+                },
+            }
+        )
+    if length_band_substrate_identity_meta:
+        gate_checks.append(
+            {
+                "gate_id": "length_band_substrate_identity_counteraxis_audit",
+                "passed": length_band_substrate_identity_meta.get(
+                    "length_band_identity_status"
+                )
+                == (
+                    "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only"
+                )
+                and int(
+                    length_band_substrate_identity_meta.get(
+                        "positive_like_length_band_hit_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    length_band_substrate_identity_meta.get(
+                        "nonpositive_length_band_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    length_band_substrate_identity_meta.get(
+                        "nonpositive_relaxed_false_hit_blocked_by_length_band_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    length_band_substrate_identity_meta.get(
+                        "general_substrate_identity_ready_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    length_band_substrate_identity_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    length_band_substrate_identity_meta.get("epk_score_computed")
+                )
+                and not bool(
+                    length_band_substrate_identity_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": length_band_substrate_identity_meta.get(
+                        "method"
+                    ),
+                    "rule_id": length_band_substrate_identity_meta.get(
+                        "rule_id"
+                    ),
+                    "length_band_identity_status": (
+                        length_band_substrate_identity_meta.get(
+                            "length_band_identity_status"
+                        )
+                    ),
+                    "positive_like_length_band_hit_count": (
+                        length_band_substrate_identity_meta.get(
+                            "positive_like_length_band_hit_count"
+                        )
+                    ),
+                    "positive_like_length_band_hit_pdb_ids": (
+                        length_band_substrate_identity_meta.get(
+                            "positive_like_length_band_hit_pdb_ids", []
+                        )
+                    ),
+                    "nonpositive_length_band_false_hit_count": (
+                        length_band_substrate_identity_meta.get(
+                            "nonpositive_length_band_false_hit_count"
+                        )
+                    ),
+                    "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids": (
+                        length_band_substrate_identity_meta.get(
+                            "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "general_substrate_identity_primary_blocker": (
+                        length_band_substrate_identity_meta.get(
+                            "general_substrate_identity_primary_blocker"
+                        )
+                    ),
+                },
+            }
+        )
+    if length_band_external_hard_negative_meta:
+        gate_checks.append(
+            {
+                "gate_id": "length_band_external_hard_negative_review",
+                "passed": length_band_external_hard_negative_meta.get(
+                    "length_band_external_hard_negative_review_status"
+                )
+                == "passes_review_only_length_band_external_hard_negative_abstention"
+                and int(
+                    length_band_external_hard_negative_meta.get(
+                        "length_band_external_hard_negative_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    length_band_external_hard_negative_meta.get(
+                        "missing_external_hard_negative_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    length_band_external_hard_negative_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    length_band_external_hard_negative_meta.get(
+                        "epk_score_computed"
+                    )
+                )
+                and not bool(
+                    length_band_external_hard_negative_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": length_band_external_hard_negative_meta.get(
+                        "method"
+                    ),
+                    "length_band_external_hard_negative_review_status": (
+                        length_band_external_hard_negative_meta.get(
+                            "length_band_external_hard_negative_review_status"
+                        )
+                    ),
+                    "expected_external_hard_negative_entry_ids": (
+                        length_band_external_hard_negative_meta.get(
+                            "expected_external_hard_negative_entry_ids", []
+                        )
+                    ),
+                    "length_band_external_hard_negative_non_abstention_count": (
+                        length_band_external_hard_negative_meta.get(
+                            "length_band_external_hard_negative_non_abstention_count"
+                        )
+                    ),
+                    "not_a_real_scored_reaudit": bool(
+                        length_band_external_hard_negative_meta.get(
+                            "not_a_real_scored_reaudit"
                         )
                     ),
                 },
@@ -37464,6 +38831,123 @@ def build_epk_precount_gate_status(
             "unified_substrate_identity_ligand_analog_excluded_positive_count": (
                 unified_substrate_identity_meta.get(
                     "ligand_analog_excluded_positive_count"
+                )
+            ),
+            "source_epk_general_substrate_identity_gap_audit_method": (
+                general_substrate_identity_meta.get("method")
+            ),
+            "general_substrate_identity_relaxed_polymer_status": (
+                general_substrate_identity_meta.get(
+                    "relaxed_polymer_identity_status"
+                )
+            ),
+            "general_substrate_identity_relaxed_polymer_rule_id": (
+                general_substrate_identity_meta.get("rule_id")
+            ),
+            "general_substrate_identity_relaxed_polymer_hit_count": (
+                general_substrate_identity_meta.get(
+                    "source_valid_relaxed_polymer_hit_count"
+                )
+            ),
+            "general_substrate_identity_relaxed_polymer_hit_pdb_ids": (
+                general_substrate_identity_meta.get(
+                    "source_valid_relaxed_polymer_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "general_substrate_identity_relaxed_polymer_false_hit_count": (
+                general_substrate_identity_meta.get(
+                    "nonpositive_relaxed_polymer_false_hit_count"
+                )
+            ),
+            "general_substrate_identity_relaxed_polymer_false_hit_pdb_ids": (
+                general_substrate_identity_meta.get(
+                    "nonpositive_relaxed_polymer_false_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "general_substrate_identity_ready_count": (
+                general_substrate_identity_meta.get(
+                    "general_substrate_identity_ready_count"
+                )
+            ),
+            "general_substrate_identity_primary_blocker": (
+                general_substrate_identity_meta.get(
+                    "general_substrate_identity_primary_blocker"
+                )
+            ),
+            "source_epk_length_band_substrate_identity_counteraxis_audit_method": (
+                length_band_substrate_identity_meta.get("method")
+            ),
+            "length_band_substrate_identity_status": (
+                length_band_substrate_identity_meta.get(
+                    "length_band_identity_status"
+                )
+            ),
+            "length_band_substrate_identity_rule_id": (
+                length_band_substrate_identity_meta.get("rule_id")
+            ),
+            "length_band_substrate_identity_positive_hit_count": (
+                length_band_substrate_identity_meta.get(
+                    "positive_like_length_band_hit_count"
+                )
+            ),
+            "length_band_substrate_identity_positive_hit_pdb_ids": (
+                length_band_substrate_identity_meta.get(
+                    "positive_like_length_band_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "length_band_substrate_identity_false_hit_count": (
+                length_band_substrate_identity_meta.get(
+                    "nonpositive_length_band_false_hit_count"
+                )
+            ),
+            "length_band_substrate_identity_false_hit_pdb_ids": (
+                length_band_substrate_identity_meta.get(
+                    "nonpositive_length_band_false_hit_pdb_ids",
+                    [],
+                )
+            ),
+            "length_band_substrate_identity_blocked_relaxed_false_hit_count": (
+                length_band_substrate_identity_meta.get(
+                    "nonpositive_relaxed_false_hit_blocked_by_length_band_count"
+                )
+            ),
+            "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids": (
+                length_band_substrate_identity_meta.get(
+                    "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids",
+                    [],
+                )
+            ),
+            "source_epk_length_band_external_hard_negative_review_method": (
+                length_band_external_hard_negative_meta.get("method")
+            ),
+            "length_band_external_hard_negative_review_status": (
+                length_band_external_hard_negative_meta.get(
+                    "length_band_external_hard_negative_review_status"
+                )
+            ),
+            "length_band_external_hard_negative_expected_entry_ids": (
+                length_band_external_hard_negative_meta.get(
+                    "expected_external_hard_negative_entry_ids",
+                    [],
+                )
+            ),
+            "length_band_external_hard_negative_non_abstention_count": (
+                length_band_external_hard_negative_meta.get(
+                    "length_band_external_hard_negative_non_abstention_count"
+                )
+            ),
+            "length_band_external_hard_negative_non_abstention_entry_ids": (
+                length_band_external_hard_negative_meta.get(
+                    "length_band_external_hard_negative_non_abstention_entry_ids",
+                    [],
+                )
+            ),
+            "length_band_external_hard_negative_not_real_scored_reaudit": bool(
+                length_band_external_hard_negative_meta.get(
+                    "not_a_real_scored_reaudit"
                 )
             ),
             "source_epk_unified_review_only_scoring_prototype_method": (

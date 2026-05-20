@@ -50,6 +50,63 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T03:45:18Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 624 unit tests plus
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+
+`artifacts/v3_epk_general_substrate_identity_gap_audit_1025.json` tests the
+obvious next source-free generalization from the peptide-role rule: accept any
+polymer hydroxyl chain lacking local nucleotide/metal context opposite a
+larger nucleotide/metal-carrying gamma chain, without the short-peptide limit.
+That relaxed rule keeps the two source-valid PKB/GSK3 positives (`1O6K` and
+`1O6L`) but false-hits the blocked `7B56` CaMKII/autoinhibitory-peptide
+context. The new artifact is therefore a negative review-only result:
+`relaxed_polymer_identity_status=fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit`,
+`general_substrate_identity_ready_count=0`, no ePK score, no threshold, and no
+external scored re-audit.
+
+`artifacts/v3_epk_length_band_substrate_identity_counteraxis_audit_1025.json`
+adds one concrete counter-axis to that failed rule: the polymer acceptor must
+fall in a short peptide-like band or a large folded-substrate band. This
+review-only patch keeps `1O6K`/`1O6L`, blocks the relaxed-rule false hit
+`7B56`, and has 0 nonpositive length-band false hits on the current
+source-expansion subset. It remains source-expansion scoped and not calibrated
+for general ePK substrate identity. The paired
+`artifacts/v3_epk_length_band_external_hard_negative_review_1025.json` keeps
+the three imported external hard negatives (`uniprot:P06744`,
+`uniprot:P78549`, and `uniprot:Q3LXA3`) at 0 length-band non-abstentions, but
+explicitly records that this is not a real scored re-audit or held-out
+performance claim.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` and
+`artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` now carry that
+gap audit plus the length-band counter-axis. The pre-count gate remains
+`blocked_review_only`, and the counteraxis decision remains
+`do_not_select_threshold`; the new length-band row is useful only as bounded
+counterexample repair and names source-expansion-only calibration as the
+remaining blocker.
+
+`artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json`
+closes the current NDK homolog recovery queue for this run. `1WKL`, `3Q86`,
+`9OAN`, and `9PFY` are all mapping-ready and measured, with the terminal
+status
+`terminal_review_only_all_homologs_measured_histidine_axis_blocks_threshold`.
+This is negative-control histidine-axis evidence only and does not reopen NDK
+mapping unless a new source or gate changes.
+
+Evidence-based confidence call: confidence is higher that a simple
+polymer-size/local-ligand relaxation is unsafe for ePK substrate identity
+because `7B56` is a concrete broad-stress false hit; confidence is moderate
+that an acceptor length-band counter-axis is a useful stress-test repair, but
+low that it is general enough for production. Production ePK scoring still
+needs a source-free protein-substrate role discriminator or qualitatively new
+positive source evidence, followed by calibrated controls and a real external
+hard-negative scored re-audit.
+
 As of the 2026-05-20T02:43:53Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

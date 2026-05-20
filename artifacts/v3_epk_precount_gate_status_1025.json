@@ -636,6 +636,60 @@
     },
     {
       "evidence": {
+        "general_substrate_identity_primary_blocker": "relaxed_polymer_rule_false_hits_source_context_counterexample",
+        "nonpositive_relaxed_polymer_false_hit_count": 1,
+        "nonpositive_relaxed_polymer_false_hit_pdb_ids": [
+          "7B56"
+        ],
+        "relaxed_polymer_identity_status": "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit",
+        "rule_id": "epk_relaxed_polymer_acceptor_identity_rule_v0_review_only",
+        "source_free_general_substrate_identity_ready": false,
+        "source_method": "epk_general_substrate_identity_gap_audit",
+        "source_valid_relaxed_polymer_hit_count": 2,
+        "source_valid_relaxed_polymer_hit_pdb_ids": [
+          "1O6K",
+          "1O6L"
+        ]
+      },
+      "gate_id": "general_substrate_identity_gap_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "general_substrate_identity_primary_blocker": "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
+        "length_band_identity_status": "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
+        "nonpositive_length_band_false_hit_count": 0,
+        "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids": [
+          "7B56"
+        ],
+        "positive_like_length_band_hit_count": 2,
+        "positive_like_length_band_hit_pdb_ids": [
+          "1O6K",
+          "1O6L"
+        ],
+        "rule_id": "epk_length_band_polymer_acceptor_identity_counteraxis_v0_review_only",
+        "source_method": "epk_length_band_substrate_identity_counteraxis_audit"
+      },
+      "gate_id": "length_band_substrate_identity_counteraxis_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "expected_external_hard_negative_entry_ids": [
+          "uniprot:P06744",
+          "uniprot:P78549",
+          "uniprot:Q3LXA3"
+        ],
+        "length_band_external_hard_negative_non_abstention_count": 0,
+        "length_band_external_hard_negative_review_status": "passes_review_only_length_band_external_hard_negative_abstention",
+        "not_a_real_scored_reaudit": true,
+        "source_method": "epk_length_band_external_hard_negative_review"
+      },
+      "gate_id": "length_band_external_hard_negative_review",
+      "passed": true
+    },
+    {
+      "evidence": {
         "current_control_false_non_abstention_count": 0,
         "imported_external_hard_negative_non_abstention_count": 0,
         "positive_like_full_score_count": 8,
@@ -951,6 +1005,19 @@
     "gamma_measured_or_reviewed_row_count": 3,
     "gamma_measured_row_count": 2,
     "gamma_threshold_control_plan_ready": true,
+    "general_substrate_identity_primary_blocker": "relaxed_polymer_rule_false_hits_source_context_counterexample",
+    "general_substrate_identity_ready_count": 0,
+    "general_substrate_identity_relaxed_polymer_false_hit_count": 1,
+    "general_substrate_identity_relaxed_polymer_false_hit_pdb_ids": [
+      "7B56"
+    ],
+    "general_substrate_identity_relaxed_polymer_hit_count": 2,
+    "general_substrate_identity_relaxed_polymer_hit_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "general_substrate_identity_relaxed_polymer_rule_id": "epk_relaxed_polymer_acceptor_identity_rule_v0_review_only",
+    "general_substrate_identity_relaxed_polymer_status": "fails_closed_relaxed_polymer_rule_has_nonpositive_false_hit",
     "heteromeric_acceptor_counteraxis_accepted_lost_count": 0,
     "heteromeric_acceptor_counteraxis_blocked_nonaccepted_hit_count": 3,
     "heteromeric_acceptor_counteraxis_blocked_nonaccepted_pdb_ids": [
@@ -1122,6 +1189,28 @@
     "heteromeric_text_free_production_admissible_positive_like_count": 0,
     "heteromeric_text_free_role_assignment_ready_count": 0,
     "heteromeric_text_free_source_authority_dependent_positive_like_count": 4,
+    "length_band_external_hard_negative_expected_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "length_band_external_hard_negative_non_abstention_count": 0,
+    "length_band_external_hard_negative_non_abstention_entry_ids": [],
+    "length_band_external_hard_negative_not_real_scored_reaudit": true,
+    "length_band_external_hard_negative_review_status": "passes_review_only_length_band_external_hard_negative_abstention",
+    "length_band_substrate_identity_blocked_relaxed_false_hit_count": 1,
+    "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids": [
+      "7B56"
+    ],
+    "length_band_substrate_identity_false_hit_count": 0,
+    "length_band_substrate_identity_false_hit_pdb_ids": [],
+    "length_band_substrate_identity_positive_hit_count": 2,
+    "length_band_substrate_identity_positive_hit_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "length_band_substrate_identity_rule_id": "epk_length_band_polymer_acceptor_identity_counteraxis_v0_review_only",
+    "length_band_substrate_identity_status": "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
     "ligand_analog_dependency_count": 1,
     "ligand_analog_dependency_entry_ids": [
       "m_csa:640"
@@ -1368,6 +1457,7 @@
     ],
     "source_epk_family_specific_mapping_template_validation_review_method": "epk_family_specific_mapping_template_validation_review",
     "source_epk_gamma_threshold_control_plan_method": "epk_gamma_threshold_control_plan",
+    "source_epk_general_substrate_identity_gap_audit_method": "epk_general_substrate_identity_gap_audit",
     "source_epk_heteromeric_acceptor_chain_counteraxis_audit_method": "epk_heteromeric_acceptor_chain_counteraxis_audit",
     "source_epk_heteromeric_acceptor_identity_gap_audit_method": "epk_heteromeric_acceptor_identity_gap_audit",
     "source_epk_heteromeric_acceptor_identity_rule_probe_method": "epk_heteromeric_acceptor_identity_rule_probe",
@@ -1384,6 +1474,8 @@
     "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": "epk_heteromeric_source_valid_candidate_gamma_distance_sample",
     "source_epk_heteromeric_source_valid_control_rerun_method": "epk_heteromeric_source_valid_control_rerun",
     "source_epk_heteromeric_text_free_axis_gap_audit_method": "epk_heteromeric_text_free_axis_gap_audit",
+    "source_epk_length_band_external_hard_negative_review_method": "epk_length_band_external_hard_negative_review",
+    "source_epk_length_band_substrate_identity_counteraxis_audit_method": "epk_length_band_substrate_identity_counteraxis_audit",
     "source_epk_ligand_analog_policy_blocker_decision_method": "epk_ligand_analog_policy_blocker_decision",
     "source_epk_ligand_specific_5hvk_control_rerun_queue_method": "epk_ligand_specific_5hvk_control_rerun_queue",
     "source_epk_ligand_specific_5hvk_prototype_control_rerun_method": "epk_ligand_specific_5hvk_prototype_control_rerun",

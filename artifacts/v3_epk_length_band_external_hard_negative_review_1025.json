@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "clean_heldout_performance_claim_permitted": false,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "expected_external_hard_negative_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_hard_negative_reaudit_scored": false,
+    "external_hard_negative_review_row_count": 3,
+    "fingerprint_registry_edited": false,
+    "length_band_external_hard_negative_non_abstention_count": 0,
+    "length_band_external_hard_negative_non_abstention_entry_ids": [],
+    "length_band_external_hard_negative_review_passed": true,
+    "length_band_external_hard_negative_review_status": "passes_review_only_length_band_external_hard_negative_abstention",
+    "method": "epk_length_band_external_hard_negative_review",
+    "missing_external_hard_negative_count": 0,
+    "missing_external_hard_negative_entry_ids": [],
+    "next_actions": [
+      "keep this as diagnostic abstention evidence, not held-out performance",
+      "run a real external hard-negative scored re-audit only after an ePK scorer is calibrated",
+      "preserve the three imported external hard negatives under their out-of-scope contract"
+    ],
+    "not_a_real_scored_reaudit": true,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "Imported external hard negatives are evaluated only for fail-closed non-abstention under the length-band counteraxis. Because the length-band audit is source-expansion-row scoped and not a calibrated ePK scorer, all imported external hard negatives must abstain.",
+    "selected_threshold_angstrom": null,
+    "source_epk_length_band_substrate_identity_counteraxis_audit_method": "epk_length_band_substrate_identity_counteraxis_audit",
+    "source_epk_review_only_external_hard_negative_score_probe_method": "epk_review_only_external_hard_negative_score_probe",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06744",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "length_band_feature_non_abstention": false,
+      "length_band_review_decision": "abstain_no_source_expansion_substrate_context_review_only",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "length_band_counteraxis_not_real_external_score",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "length_band_imported_external_hard_negative_review",
+      "source_external_probe_missing": false,
+      "source_review_only_probe_non_abstention": false,
+      "source_review_only_probe_score": 0.0,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78549",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "length_band_feature_non_abstention": false,
+      "length_band_review_decision": "abstain_no_source_expansion_substrate_context_review_only",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "length_band_counteraxis_not_real_external_score",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "length_band_imported_external_hard_negative_review",
+      "source_external_probe_missing": false,
+      "source_review_only_probe_non_abstention": false,
+      "source_review_only_probe_score": 0.0,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "length_band_feature_non_abstention": false,
+      "length_band_review_decision": "abstain_no_source_expansion_substrate_context_review_only",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "length_band_counteraxis_not_real_external_score",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "threshold_not_calibrated_against_negative_controls",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "length_band_imported_external_hard_negative_review",
+      "source_external_probe_missing": false,
+      "source_review_only_probe_non_abstention": false,
+      "source_review_only_probe_score": 0.0,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true
+    }
+  ],
+  "warnings": [
+    "The length-band external hard-negative review is an abstention diagnostic only; it is not a scored external re-audit."
+  ]
+}
