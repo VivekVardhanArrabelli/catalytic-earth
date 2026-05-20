@@ -27,6 +27,13 @@ same-chain topology-confounded; the next useful evidence is a fresh
 non-topology-confounded kinase-substrate tranche. The existing ePK scout cache
 does not already contain that tranche: the 10 remaining unreviewed topology-hit
 PDBs outside the current/fresh surfaces are all same-chain topology-confounded.
+A fresh AMP-PNP substrate-query tranche now supplies one source-mapped
+measurement-ready review row, `4EKK`, mapping AKT1/GSK3B source evidence to
+GSK3B Ser9 with a 3.228 Angstrom gamma-to-acceptor distance. It stays
+review-only because the support is source context rather than a source-free
+substrate-identity axis. Broader AMP-PNP scout/source-validation passes add
+counterevidence (`7ZE5`) and incomplete recovery work for rows 41-80 and
+81-92 after local disk exhaustion blocked final source-review artifact writes.
 No threshold, scorer, registry edit, or label import is authorized. The
 chain/ligand acceptor disambiguation experiment now
 keeps 3/3 current ePK positives, blocks 20/20 current sibling controls with 0

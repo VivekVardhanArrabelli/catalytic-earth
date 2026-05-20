@@ -1462,6 +1462,19 @@ non-topology-confounded kinase-substrate tranche, not thresholding.
 confirms the already materialized ePK scout cache does not contain that next
 clean tranche: the 10 unreviewed topology-hit PDBs outside the current/fresh
 surfaces are all same-chain topology-confounded.
+The fresh AMP-PNP substrate-query follow-up now adds one source-mapped
+review-only row. `artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_1025.json`
+maps `4EKK` to an AKT1/GSK3B co-complex: GSK3B `P49841` Ser7 in the structure
+maps to UniProt Ser9, the UniProt phosphosite names AKT/PKB support, and the
+nearest AMP-PNP gamma-to-acceptor distance is 3.228 Angstrom. This is useful
+measurement-ready review evidence, but it is not source-free, not calibrated,
+not a score, and not label-import evidence. Broader AMP-PNP scouts also add
+counterevidence: the first-40 surface finds only `7ZE5`, which is rejected by
+substrate mode and generic source validation as a transporter context; rows
+41-80 and 81-92 were scouted and source-validated, but final source-review
+writes for those two surfaces were blocked by local disk exhaustion. The
+review-only external hard-negative score probe still reports 0 non-abstentions
+for `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`.
 The
 preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`

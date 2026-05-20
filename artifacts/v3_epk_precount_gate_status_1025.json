@@ -891,6 +891,21 @@
     },
     {
       "evidence": {
+        "next_tranche_source_review_status": "adds_source_mapped_non_topology_substrate_mode_row_review_only",
+        "non_topology_confounded_candidate_pdb_ids": [
+          "4EKK"
+        ],
+        "source_context_used_as_review_evidence_only": true,
+        "source_mapped_measurement_ready_pdb_ids": [
+          "4EKK"
+        ],
+        "source_method": "epk_substrate_mode_next_tranche_source_review"
+      },
+      "gate_id": "epk_substrate_mode_next_tranche_source_review",
+      "passed": true
+    },
+    {
+      "evidence": {
         "current_control_false_non_abstention_count": 0,
         "imported_external_hard_negative_non_abstention_count": 0,
         "positive_like_full_score_count": 8,
@@ -1051,7 +1066,7 @@
         "sibling_control_homolog_source_ready_structure_count": 0,
         "sibling_control_repair_ready_structure_count": 0,
         "sibling_control_repair_ready_structure_count_total": 0,
-        "sibling_control_repair_review_family_id": "pfkb",
+        "sibling_control_repair_review_family_id": "pfka",
         "sibling_control_repair_review_family_ids": [
           "atp_grasp",
           "ndk",
@@ -1710,7 +1725,7 @@
       "pfka",
       "pfkb"
     ],
-    "negative_control_repair_review_family_id": "pfkb",
+    "negative_control_repair_review_family_id": "pfka",
     "negative_control_repair_review_family_ids": [
       "atp_grasp",
       "ndk",
@@ -1724,8 +1739,7 @@
       "blocked_review_only": 4
     },
     "negative_control_repair_review_unresolved_entry_ids": [
-      "m_csa:663",
-      "m_csa:670"
+      "m_csa:365"
     ],
     "negative_control_repair_review_unresolved_entry_ids_all": [
       "m_csa:310",
@@ -1746,7 +1760,7 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
-      "source a new bounded non-topology-confounded kinase-substrate tranche; existing ePK scouts do not contain one",
+      "stress the source-mapped 4EKK-like substrate-mode tranche row against fresh non-topology controls before scorer calibration",
       "rerun protein-substrate role and acceptor-identity controls with source-reviewed MEK1/ERK1 rows while keeping thresholds closed",
       "use 9L3M and 9L3U as broad-sourcing counterexamples before any ePK threshold calibration",
       "treat the unified review-only scorer as current-control clean but keep threshold selection and real external scored re-audit closed",
@@ -1883,6 +1897,7 @@
     "source_epk_source_free_protein_substrate_role_discriminator_stress_audit_method": "epk_source_free_protein_substrate_role_discriminator_stress_audit",
     "source_epk_substrate_acceptor_counteraxis_prototype_method": "epk_substrate_acceptor_counteraxis_prototype",
     "source_epk_substrate_mode_gap_audit_method": "epk_substrate_mode_gap_audit",
+    "source_epk_substrate_mode_next_tranche_source_review_method": "epk_substrate_mode_next_tranche_source_review",
     "source_epk_text_free_acceptor_feature_gap_audit_method": "epk_text_free_acceptor_feature_gap_audit",
     "source_epk_unified_prototype_broad_stress_audit_method": "epk_unified_prototype_broad_stress_audit",
     "source_epk_unified_review_only_scoring_prototype_method": "epk_unified_review_only_scoring_prototype",
@@ -1921,6 +1936,16 @@
     "substrate_mode_gap_protein_substrate_positive_like_count": 3,
     "substrate_mode_gap_status": "passes_review_only_modes_but_unified_substrate_identity_missing",
     "substrate_mode_gap_unified_source_free_identity_ready": false,
+    "substrate_mode_next_tranche_non_topology_count": 1,
+    "substrate_mode_next_tranche_non_topology_pdb_ids": [
+      "4EKK"
+    ],
+    "substrate_mode_next_tranche_source_context_review_only": true,
+    "substrate_mode_next_tranche_source_mapped_ready_count": 1,
+    "substrate_mode_next_tranche_source_mapped_ready_pdb_ids": [
+      "4EKK"
+    ],
+    "substrate_mode_next_tranche_source_review_status": "adds_source_mapped_non_topology_substrate_mode_row_review_only",
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "text_free_acceptor_candidate_feature_id": "nearest_gamma_to_oxygen_within_candidate_cutoff_v0",

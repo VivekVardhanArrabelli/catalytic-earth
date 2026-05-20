@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 210
-- Measured elapsed time: 6666.9 minutes (111.11 hours)
+- Entries: 211
+- Measured elapsed time: 6698.2 minutes (111.64 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1437.8 measured minutes (23.96 hours)
+- post-infra-science: 1469.0 measured minutes (24.48 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2455
-- Evidence references logged: 1962
+- Artifact references logged: 2479
+- Evidence references logged: 1978
 
 ## Recent Entries
-
-### 2026-05-20T03:33:14.995937+00:00 - post-infra-science
-
-- Task: ePK broad-stress counterevidence tranche
-- Time mode: measured
-- Measured minutes: 48.867
-- Started: 2026-05-20T02:43:53Z
-- Ended: 2026-05-20T03:32:45Z
-- Artifacts: src/catalytic_earth/labels.py, tests/test_leakage_closure.py, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_amp_pnp_peptide_1025.json, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_protein_substrate_anp_1025.json, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_1025.json, artifacts/v3_epk_unified_next_broad_stress_source_validation_review_amp_pnp_peptide_1025.json, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_amp_pnp_peptide_round2_1025.json, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_protein_substrate_anp_round2_1025.json, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_round2_1025.json, artifacts/v3_epk_unified_next_broad_stress_source_validation_review_amp_pnp_peptide_round2_1025.json, artifacts/v3_epk_unified_next_broad_stress_source_validation_review_broad_text_atp_round2_1025.json, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_protein_substrate_anp_round3_1025.json, artifacts/v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_round3_1025.json, artifacts/v3_epk_unified_next_broad_stress_source_validation_review_protein_substrate_anp_round3_1025.json, artifacts/v3_epk_unified_next_broad_stress_source_validation_review_broad_text_atp_round3_1025.json, artifacts/v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json, artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json, artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json, artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/artifact_storage.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 624-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, broad stress now covers 299 outside-query candidates with 13 topology hits and 11 blocked counterexamples, peptide-role counterevidence blocks all 11 nonpositive hits while retaining 1O6K and 1O6L, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 624-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed 0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ### 2026-05-20T04:34:07.290642+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json, artifacts/v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json, artifacts/v3_epk_mek_erk_substrate_mode_existing_scout_gap_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 665-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, substrate-mode counteraxis retained five positives and blocked residual false hits 2JJ2 4HPU 7B56 7ZDT, fresh MEK ERK stress found 7M0T 7M0W 9UW4 had zero substrate-mode rule hits but all topology-confounded, existing scout gap audit found ten remaining unreviewed topology hits all same-chain topology-confounded, pre-count remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 674-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 283 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true.
+
+### 2026-05-20T11:24:52.078372+00:00 - post-infra-science
+
+- Task: ePK 4EKK source-mapped substrate-mode tranche
+- Time mode: measured
+- Measured minutes: 31.267
+- Started: 2026-05-20T10:53:16Z
+- Ended: 2026-05-20T11:24:32Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_fresh_stress_amp_pnp_1025.json, artifacts/v3_epk_unified_prototype_broad_stress_with_next_tranche_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_broad40_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_broad40_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_broad40_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_broad41_80_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_broad41_80_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_broad81_92_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_broad81_92_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 674-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, 4EKK maps to GSK3B P49841 Ser9 with AKT PKB phosphosite support and 3.228 Angstrom gamma distance, broad40 AMP-PNP scout rejects 7ZE5 as non-topology counterexample blocked by substrate-mode/source context, review-only external hard-negative score probe remains 0 non-abstentions, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 676-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 285 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, JSON validation passed, git diff --check passed, local ENOSPC blocked final broad41-80 and broad81-92 source-review writes
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true. Stopped expansion early because local disk reached ENOSPC.
 
 ## Expectation Updates
 
@@ -285,6 +285,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T07:35:18.172497+00:00: Broad active-query routes now look negative for clean ePK protein-substrate sourcing; next progress needs MEK ERK source-authority review or a curated kinase-substrate source rather than thresholding current query hits.
 - 2026-05-20T08:39:33.652171+00:00: MEK ERK now provides two source-authoritative review controls but broad protein-role geometry is unsafe; source-free substrate identity or source adjudication for 7CAG and 8BMS is the next blocker before scorer calibration.
 - 2026-05-20T09:40:52.064773+00:00: MEK ERK residual false hits are now closed in a bounded source-free topology probe, but broader stress leaves four false hits; the next useful ePK work needs an additional source-free acceptor or substrate-identity axis before thresholding.
+- 2026-05-20T11:24:52.078372+00:00: 4EKK is useful source-mapped ePK review evidence, but production remains blocked by source-context dependence, uncalibrated substrate-mode logic, external scored re-audit, and local disk capacity before broader source-review recovery.
 
 ## Scope Adjustments
 

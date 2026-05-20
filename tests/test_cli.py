@@ -15363,6 +15363,175 @@ _struct_ref_seq.pdbx_auth_seq_align_end
             self.assertEqual(metadata["non_topology_confounded_candidate_count"], 0)
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
+    def test_build_epk_substrate_mode_next_tranche_source_review_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            substrate = root / "substrate_mode_counteraxis.json"
+            scout = root / "next_scout.json"
+            validation = root / "next_validation.json"
+            uniprot_records = root / "uniprot_records.json"
+            cif_dir = root / "cifs"
+            cif_dir.mkdir()
+            out = root / "next_source_review.json"
+            substrate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_threshold_angstrom": 6.0,
+                            "max_n_terminal_acceptor_auth_seq_id": 25,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scout.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                            "source_query": "unit-test AMP-PNP tranche",
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "4EKK",
+                                "candidate_status": (
+                                    "heteromeric_candidate_source_validation_pending_review_only"
+                                ),
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "SER",
+                                        "candidate_auth_seq_id": "7",
+                                        "candidate_chain_name": "C",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 3.257,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            validation.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_candidate_source_validation_review"
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "4EKK",
+                                "source_validation_status": (
+                                    "blocked_source_context_insufficient_review_only"
+                                ),
+                                "chain_accessions": {
+                                    "A": ["P31749"],
+                                    "C": ["P49841"],
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            uniprot_records.write_text(
+                json.dumps(
+                    {
+                        "P31749": {
+                            "accession": "P31749",
+                            "catalytic_activity_comments": [
+                                {
+                                    "reaction": (
+                                        "ATP + L-seryl-[protein] = ADP + "
+                                        "O-phospho-L-seryl-[protein]"
+                                    )
+                                }
+                            ],
+                        },
+                        "P49841": {
+                            "accession": "P49841",
+                            "modified_residue_features": [
+                                {
+                                    "feature_type": "Modified residue",
+                                    "begin": "9",
+                                    "description": "Phosphoserine; by PKB/AKT1",
+                                    "evidence": [],
+                                }
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "4EKK.cif").write_text(
+                """
+data_4EKK
+loop_
+_struct.entry_id
+_struct.title
+4EKK 'Akt1 with AMP-PNP'
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_seq_align_beg_ins_code
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_seq_align_end_ins_code
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.pdbx_db_align_beg_ins_code
+_struct_ref_seq.db_align_end
+_struct_ref_seq.pdbx_db_align_end_ins_code
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_end
+1 1 4EKK A 5 ? 341 ? P31749 144 ? 480 ? 144 480
+2 2 4EKK C 1 ? 10 ? P49841 3 ? 12 ? 1 10
+""",
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-substrate-mode-next-tranche-source-review",
+                    "--epk-mek-erk-substrate-mode-counteraxis-audit",
+                    str(substrate),
+                    "--epk-next-tranche-candidate-scout",
+                    str(scout),
+                    "--epk-next-tranche-source-validation-review",
+                    str(validation),
+                    "--uniprot-records-by-accession",
+                    str(uniprot_records),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            metadata = json.loads(out.read_text(encoding="utf-8"))["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_substrate_mode_next_tranche_source_review"
+            )
+            self.assertEqual(metadata["source_mapped_measurement_ready_pdb_ids"], ["4EKK"])
+            self.assertEqual(metadata["source_mapped_measurement_ready_count"], 1)
+            self.assertTrue(metadata["source_context_used_as_review_evidence_only"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "fresh_nonrepeat_controls_all_topology_confounded",
+      "no_new_clean_source_valid_positive_coverage",
+      "substrate_mode_rule_not_calibrated",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "fresh_nonrepeat_mek_erk_tranche_has_no_substrate_mode_rule_hits",
+    "candidate_threshold_angstrom": 6.0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "fresh_nonrepeat_rule_hit_unresolved_review_only": 1
+    },
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "fresh_nonrepeat_candidate_count": 1,
+    "fresh_nonrepeat_candidate_pdb_ids": [
+      "4EKK"
+    ],
+    "fresh_nonrepeat_missing_primary_hydroxyl_count": 0,
+    "fresh_nonrepeat_missing_primary_hydroxyl_pdb_ids": [],
+    "fresh_nonrepeat_rejected_by_substrate_mode_count": 0,
+    "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids": [],
+    "fresh_nonrepeat_rule_hit_count": 1,
+    "fresh_nonrepeat_rule_hit_pdb_ids": [
+      "4EKK"
+    ],
+    "fresh_nonrepeat_topology_ambiguous_count": 0,
+    "fresh_nonrepeat_topology_ambiguous_pdb_ids": [],
+    "fresh_stress_topology_confounded": false,
+    "max_n_terminal_acceptor_auth_seq_id": 25,
+    "method": "epk_mek_erk_substrate_mode_fresh_stress_audit",
+    "next_actions": [
+      "find a fresh non-topology-confounded MEK/ERK or kinase-substrate tranche",
+      "replace residue-position substrate mode with stronger source-free substrate identity evidence",
+      "keep ePK thresholding and external hard-negative scoring closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "repeat_current_surface_candidate_count": 0,
+    "repeat_current_surface_candidate_pdb_ids": [],
+    "repeat_current_surface_rule_hit_count": 0,
+    "repeat_current_surface_rule_hit_pdb_ids": [],
+    "review_only": true,
+    "review_only_rule": "This artifact applies the MEK/ERK substrate-mode heuristic to a targeted outside-query tranche. Source review labels fresh controls only; the rule remains review-only, topology-confounded, and not admissible for scoring or registry edits.",
+    "reviewed_candidate_count": 1,
+    "rule_id": "epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0",
+    "selected_threshold_angstrom": null,
+    "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+    "source_epk_mek_erk_targeted_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_epk_mek_erk_targeted_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_free_predictive_feature_materialized": true,
+    "substrate_mode_axis_weak_current_stress_only": true,
+    "substrate_mode_fresh_stress_status": "fails_closed_fresh_substrate_mode_stress_residual_hits",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fresh_nonrepeat_candidate": true,
+      "fresh_stress_decision": "fresh_nonrepeat_rule_hit_unresolved_review_only",
+      "max_n_terminal_acceptor_auth_seq_id": 25,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": true,
+      "nearest_gamma_distance_angstrom": 3.228,
+      "pdb_id": "4EKK",
+      "primary_candidate_acceptor_auth_seq_id": "7",
+      "primary_candidate_acceptor_chain_name": "D",
+      "primary_candidate_acceptor_residue_code": "SER",
+      "primary_gamma_associated_polymer_chain_name": "B",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "fresh_controls_all_topology_confounded",
+        "substrate_mode_rule_not_calibrated",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "repeat_from_current_stress_surface": false,
+      "review_only": true,
+      "row_type": "mek_erk_substrate_mode_fresh_stress_row",
+      "same_auth_chain_topology_ambiguity": false,
+      "source_context_used_for_failure_label_only": true,
+      "source_pair_id": null,
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "substrate_mode_counteraxis_rule_hit": true,
+      "substrate_mode_counterevidence_reasons": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "text_free_inputs_only": true,
+      "tyrosine_acceptor_mode_hit": false
+    }
+  ],
+  "warnings": [
+    "Fresh MEK/ERK substrate-mode stress is review-only and topology-confounded; it cannot support threshold selection, production scoring, registry edits, or label import."
+  ]
+}

@@ -113,6 +113,7 @@ from .labels import (
     build_epk_mek_erk_substrate_mode_counteraxis_audit,
     build_epk_mek_erk_substrate_mode_existing_scout_gap_audit,
     build_epk_mek_erk_substrate_mode_fresh_stress_audit,
+    build_epk_substrate_mode_next_tranche_source_review,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_heteromeric_source_valid_control_rerun,
     build_epk_heteromeric_source_free_role_rule_probe,
@@ -7472,6 +7473,53 @@ def cmd_build_epk_mek_erk_substrate_mode_existing_scout_gap_audit(
     return 0
 
 
+def cmd_build_epk_substrate_mode_next_tranche_source_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_substrate_mode_counteraxis_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_substrate_mode_counteraxis_audit = json.load(handle)
+    with Path(args.epk_next_tranche_candidate_scout).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_next_tranche_candidate_scout = json.load(handle)
+    epk_next_tranche_source_validation_review = None
+    if args.epk_next_tranche_source_validation_review:
+        with Path(args.epk_next_tranche_source_validation_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_next_tranche_source_validation_review = json.load(handle)
+    uniprot_records_by_accession = None
+    if args.uniprot_records_by_accession:
+        with Path(args.uniprot_records_by_accession).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            uniprot_records_by_accession = json.load(handle)
+    review = build_epk_substrate_mode_next_tranche_source_review(
+        epk_mek_erk_substrate_mode_counteraxis_audit=(
+            epk_mek_erk_substrate_mode_counteraxis_audit
+        ),
+        epk_next_tranche_candidate_scout=epk_next_tranche_candidate_scout,
+        epk_next_tranche_source_validation_review=(
+            epk_next_tranche_source_validation_review
+        ),
+        uniprot_records_by_accession=uniprot_records_by_accession,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        max_n_terminal_acceptor_auth_seq_id=(
+            args.max_n_terminal_acceptor_auth_seq_id
+        ),
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK substrate-mode next-tranche source review to "
+        f"{args.out} (ready="
+        f"{review['metadata']['source_mapped_measurement_ready_count']})"
+    )
+    return 0
+
+
 def cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     args: argparse.Namespace,
 ) -> int:
@@ -8971,6 +9019,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_mek_erk_substrate_mode_existing_scout_gap_audit = json.load(handle)
+    epk_substrate_mode_next_tranche_source_review = None
+    if args.epk_substrate_mode_next_tranche_source_review:
+        with Path(args.epk_substrate_mode_next_tranche_source_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_substrate_mode_next_tranche_source_review = json.load(handle)
     epk_unified_review_only_scoring_prototype = None
     if args.epk_unified_review_only_scoring_prototype:
         with Path(args.epk_unified_review_only_scoring_prototype).open(
@@ -9199,6 +9253,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_mek_erk_substrate_mode_existing_scout_gap_audit=(
             epk_mek_erk_substrate_mode_existing_scout_gap_audit
+        ),
+        epk_substrate_mode_next_tranche_source_review=(
+            epk_substrate_mode_next_tranche_source_review
         ),
         epk_unified_review_only_scoring_prototype=(
             epk_unified_review_only_scoring_prototype
@@ -17720,6 +17777,62 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_mek_erk_substrate_mode_existing_scout_gap_audit
     )
 
+    epk_substrate_mode_next_tranche_source_review = subparsers.add_parser(
+        "build-epk-substrate-mode-next-tranche-source-review",
+        help=(
+            "source-map a fresh non-topology-confounded substrate-mode "
+            "candidate tranche"
+        ),
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--epk-mek-erk-substrate-mode-counteraxis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--epk-next-tranche-candidate-scout",
+        default=(
+            "artifacts/"
+            "v3_epk_substrate_mode_next_tranche_candidate_scout_1025.json"
+        ),
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--epk-next-tranche-source-validation-review",
+        default=None,
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--uniprot-records-by-accession",
+        default=None,
+        help="optional JSON mapping accessions to normalized UniProt records",
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--max-n-terminal-acceptor-auth-seq-id",
+        type=int,
+        default=25,
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_substrate_mode_next_tranche_source_review.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_substrate_mode_next_tranche_source_review_1025.json"
+        ),
+    )
+    epk_substrate_mode_next_tranche_source_review.set_defaults(
+        func=cmd_build_epk_substrate_mode_next_tranche_source_review
+    )
+
     epk_heteromeric_distance_sample = subparsers.add_parser(
         "build-epk-heteromeric-source-valid-candidate-gamma-distance-sample",
         help="measure source-valid heteromeric review-lead gamma distances",
@@ -19139,6 +19252,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-mek-erk-substrate-mode-existing-scout-gap-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-substrate-mode-next-tranche-source-review",
         default=None,
     )
     epk_precount_gate_status.add_argument(

@@ -405,6 +405,24 @@
       ]
     },
     {
+      "blocker": "next_tranche_source_review_not_source_free_or_calibrated_scoring_axis",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "source_mapped_tranche_row_added_but_source_review_only_not_calibrated",
+      "decision_axis": "epk_substrate_mode_next_tranche_source_review",
+      "feature_admissible_for_production_scoring": false,
+      "next_tranche_source_review_status": "adds_source_mapped_non_topology_substrate_mode_row_review_only",
+      "non_topology_confounded_candidate_count": 1,
+      "non_topology_confounded_candidate_pdb_ids": [
+        "4EKK"
+      ],
+      "review_only": true,
+      "source_context_used_as_review_evidence_only": true,
+      "source_mapped_measurement_ready_count": 1,
+      "source_mapped_measurement_ready_pdb_ids": [
+        "4EKK"
+      ]
+    },
+    {
       "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
       "candidate_threshold_angstrom": 6.0,
       "control_false_non_abstention_count": 0,
@@ -613,6 +631,7 @@
     ],
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
+      "stress source-mapped substrate-mode tranche rows against fresh non-topology controls before scorer calibration",
       "use source-reviewed MEK1/ERK1 rows only after source-free role and acceptor controls are rerun",
       "repair MEK1/ERK1 broad-role false hits with a source-free counter-axis before scorer calibration",
       "stress the topology-ambiguity feature against broader MEK/ERK false-hit controls",
@@ -650,6 +669,7 @@
       "review_context_counteraxis_not_source_free_or_residual_false_hits",
       "mek_erk_residual_source_adjudication_not_source_free",
       "topology_ambiguity_counteraxis_bounded_not_calibrated",
+      "next_tranche_source_review_not_source_free_or_calibrated_scoring_axis",
       "unified_substrate_identity_rule_not_calibrated_for_production",
       "label_factory_gate_not_extended_for_epk"
     ],
@@ -662,6 +682,16 @@
     "selected_threshold_angstrom": null,
     "source_epk_precount_gate_status_method": "epk_precount_gate_status",
     "source_epk_review_only_scoring_prototype_method": "epk_review_only_scoring_prototype",
+    "substrate_mode_next_tranche_non_topology_count": 1,
+    "substrate_mode_next_tranche_non_topology_pdb_ids": [
+      "4EKK"
+    ],
+    "substrate_mode_next_tranche_source_context_review_only": true,
+    "substrate_mode_next_tranche_source_mapped_ready_count": 1,
+    "substrate_mode_next_tranche_source_mapped_ready_pdb_ids": [
+      "4EKK"
+    ],
+    "substrate_mode_next_tranche_source_review_status": "adds_source_mapped_non_topology_substrate_mode_row_review_only",
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "threshold_calibrated": false,

@@ -877,6 +877,18 @@ threshold or scorer work. The existing-scout gap audit confirms that the
 current materialized ePK scout cache cannot supply that tranche: the 10
 unreviewed topology-hit PDBs outside the current/fresh surfaces are all
 same-chain topology-confounded.
+The next AMP-PNP substrate-query pass now supplies one fresh source-mapped
+review row but keeps production gates closed.
+`artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_1025.json`
+marks `4EKK` measurement-ready in review-only mode by mapping the GSK3B
+candidate acceptor to UniProt `P49841` Ser9 with AKT/PKB phosphosite support
+and a 3.228 Angstrom gamma-to-acceptor distance. The same row remains
+source-reviewed context, not a source-free predictive feature. A broader
+first-40 AMP-PNP surface provides a useful counterexample: `7ZE5` is
+non-topology-confounded but rejected by the substrate-mode rule and source
+context. Rows 41-80 and 81-92 were scouted and source-validated, but their
+final source-review outputs were blocked by local disk exhaustion; treat those
+as incomplete recovery items, not as terminal science decisions.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

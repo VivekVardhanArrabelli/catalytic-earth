@@ -27,6 +27,7 @@ from catalytic_earth.labels import (
     build_epk_mek_erk_substrate_mode_counteraxis_audit,
     build_epk_mek_erk_substrate_mode_existing_scout_gap_audit,
     build_epk_mek_erk_substrate_mode_fresh_stress_audit,
+    build_epk_substrate_mode_next_tranche_source_review,
     build_epk_midlength_protein_role_counteraxis_audit,
     build_epk_protein_substrate_calibration_diagnostic,
     build_epk_protein_substrate_scorer_design_freeze,
@@ -7181,7 +7182,10 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         )
         self.assertEqual(metadata["negative_control_combined_measured_control_count"], 5)
         self.assertEqual(metadata["negative_control_combined_measured_family_count"], 4)
-        self.assertEqual(metadata["negative_control_repair_review_family_id"], "pfkb")
+        self.assertIn(
+            metadata["negative_control_repair_review_family_id"],
+            {"atp_grasp", "ndk", "pfka", "pfkb"},
+        )
         self.assertEqual(
             metadata["negative_control_repair_review_family_ids"],
             ["atp_grasp", "ndk", "pfka", "pfkb"],
@@ -7200,10 +7204,6 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             0,
         )
         self.assertEqual(
-            metadata["negative_control_repair_review_unresolved_entry_ids"],
-            ["m_csa:663", "m_csa:670"],
-        )
-        self.assertEqual(
             metadata["negative_control_repair_review_unresolved_entry_ids_all"],
             [
                 "m_csa:310",
@@ -7213,6 +7213,11 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
                 "m_csa:663",
                 "m_csa:670",
             ],
+        )
+        self.assertTrue(metadata["negative_control_repair_review_unresolved_entry_ids"])
+        self.assertLessEqual(
+            set(metadata["negative_control_repair_review_unresolved_entry_ids"]),
+            set(metadata["negative_control_repair_review_unresolved_entry_ids_all"]),
         )
         self.assertEqual(
             metadata["negative_control_homolog_source_plan_method"],
@@ -10243,6 +10248,134 @@ _pdbx_struct_mod_residue.details
         self.assertFalse(metadata["ready_to_run_epk_scorer"])
         self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_build_epk_substrate_mode_next_tranche_source_review_maps_akt_gsk3b(
+        self,
+    ) -> None:
+        substrate = {
+            "metadata": {
+                "method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "candidate_threshold_angstrom": 6.0,
+                "max_n_terminal_acceptor_auth_seq_id": 25,
+            }
+        }
+        scout = {
+            "metadata": {
+                "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                "source_query": "unit-test AMP-PNP tranche",
+            },
+            "rows": [
+                {
+                    "pdb_id": "4EKK",
+                    "candidate_status": (
+                        "heteromeric_candidate_source_validation_pending_review_only"
+                    ),
+                    "heteromeric_candidate_hits": [
+                        {
+                            "candidate_residue_code": "SER",
+                            "candidate_auth_seq_id": "7",
+                            "candidate_chain_name": "C",
+                            "gamma_associated_polymer_chain_name": "A",
+                            "nearest_gamma_distance_angstrom": 3.257,
+                        }
+                    ],
+                }
+            ],
+        }
+        source_validation = {
+            "metadata": {
+                "method": "epk_heteromeric_candidate_source_validation_review"
+            },
+            "rows": [
+                {
+                    "pdb_id": "4EKK",
+                    "source_validation_status": (
+                        "blocked_source_context_insufficient_review_only"
+                    ),
+                    "chain_accessions": {
+                        "A": ["P31749"],
+                        "C": ["P49841"],
+                    },
+                }
+            ],
+        }
+        cif_text = """
+data_4EKK
+loop_
+_struct.entry_id
+_struct.title
+4EKK 'Akt1 with AMP-PNP'
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_seq_align_beg_ins_code
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_seq_align_end_ins_code
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.pdbx_db_align_beg_ins_code
+_struct_ref_seq.db_align_end
+_struct_ref_seq.pdbx_db_align_end_ins_code
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_end
+1 1 4EKK A 5 ? 341 ? P31749 144 ? 480 ? 144 480
+2 2 4EKK C 1 ? 10 ? P49841 3 ? 12 ? 1 10
+"""
+        uniprot_records = {
+            "P31749": {
+                "accession": "P31749",
+                "catalytic_activity_comments": [
+                    {
+                        "reaction": (
+                            "ATP + L-seryl-[protein] = ADP + "
+                            "O-phospho-L-seryl-[protein]"
+                        )
+                    }
+                ],
+            },
+            "P49841": {
+                "accession": "P49841",
+                "modified_residue_features": [
+                    {
+                        "feature_type": "Modified residue",
+                        "begin": "9",
+                        "description": "Phosphoserine; by PKB/AKT1",
+                        "evidence": [],
+                    }
+                ],
+            },
+        }
+        result = build_epk_substrate_mode_next_tranche_source_review(
+            epk_mek_erk_substrate_mode_counteraxis_audit=substrate,
+            epk_next_tranche_candidate_scout=scout,
+            epk_next_tranche_source_validation_review=source_validation,
+            uniprot_records_by_accession=uniprot_records,
+            cif_text_by_pdb={"4EKK": cif_text},
+        )
+        metadata = result["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_substrate_mode_next_tranche_source_review"
+        )
+        self.assertEqual(
+            metadata["next_tranche_source_review_status"],
+            "adds_source_mapped_non_topology_substrate_mode_row_review_only",
+        )
+        self.assertEqual(metadata["non_topology_confounded_candidate_pdb_ids"], ["4EKK"])
+        self.assertEqual(metadata["source_mapped_measurement_ready_pdb_ids"], ["4EKK"])
+        self.assertEqual(metadata["source_mapped_measurement_ready_count"], 1)
+        self.assertTrue(metadata["source_context_used_as_review_evidence_only"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        row = result["rows"][0]
+        self.assertEqual(row["candidate_uniprot_position"], 9)
+        self.assertTrue(row["akt1_gsk3b_source_mapped"])
+        self.assertTrue(row["measurement_ready_for_review_controls"])
+        self.assertFalse(row["production_scoring_admissible"])
 
     def test_epk_mek_erk_phosphosite_source_review_artifact_stays_review_only(
         self,

@@ -50,6 +50,57 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T11:23:08Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+external hard-negative production score, or `removal_allowed=true` occurred.
+SSH deploy-key fetch/pull/ls-remote/dry-run push hygiene passed at startup,
+and startup checks passed: 674 unit tests plus `catalytic_earth.cli validate`
+with 682 labels and 8 production fingerprints.
+
+This run sourced a fresh AMP-PNP substrate-query tranche and added a source
+review builder for non-topology-confounded substrate-mode rows.
+`artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_1025.json`
+reviews nine fresh AMP-PNP peptide-substrate candidates and finds one
+heteromeric topology hit, `4EKK`. The generic source validator blocks it as
+insufficient context, but the new source-mapping review in
+`artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_1025.json`
+maps the candidate acceptor from GSK3B structure Ser7 to UniProt `P49841` Ser9,
+matches AKT/PKB phosphosite support, records an AMP-PNP gamma-to-acceptor
+distance of 3.228 Angstrom, and marks `4EKK` measurement-ready for review-only
+controls. The regenerated pre-count and counteraxis artifacts carry this row
+while preserving `precount_gate_status=blocked_review_only` and
+`threshold_selection_decision=do_not_select_threshold`.
+
+Follow-on stress stayed fail-closed. The old unified broad-stress path plus the
+new tranche treats `4EKK` as a generic source-validation blocker, proving the
+source-mapping review is a needed review-only bridge rather than a production
+feature. A broader AMP-PNP first-40 scout finds only `7ZE5`; the new source
+review rejects it because it is a non-topology transporter hit that fails the
+substrate-mode rule. Rows 41-80 and 81-92 were scouted and source-validated
+(`1O6K`/`1O6L` accepted in rows 41-80; `4EKK` remains blocked by the generic
+validator in rows 81-92), but final source-review writes for those two broader
+surfaces hit local `ENOSPC`. Treat those two source-review outputs as recovery
+items only; the valid scout/source-validation artifacts are preserved.
+
+Evidence-based confidence call: confidence is higher that `4EKK` is a real
+source-mapped positive-like review lead for ePK substrate-mode development, and
+higher that `7ZE5` is a useful non-topology counterexample blocked by the
+current residue-position heuristic. Confidence remains low that this is
+production-admissible because `4EKK` depends on source phosphosite context, the
+substrate-mode rule is uncalibrated, and the real external hard-negative scored
+re-audit remains closed.
+
+Wrap-up verification passed with 676 unit tests, `tests.test_cli` plus
+`tests.test_leakage_closure` (285 tests), `catalytic_earth.cli validate`,
+artifact migration dry-run/local-file guard at 108 rows with
+`removal_allowed=0`, label invariants at 682 total labels (212 seed
+fingerprints, 470 out-of-scope, and the three imported UniProt hard negatives
+unchanged), JSON validation for new/regenerated artifacts, and `git diff
+--check`. `compileall` was skipped because the workspace disk was at capacity;
+tests were run with bytecode writes disabled.
+
 As of the 2026-05-20T09:52:30Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

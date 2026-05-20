@@ -16864,6 +16864,28 @@ def build_epk_counteraxis_sufficiency_decision(
         )
         or 0
     )
+    substrate_mode_next_tranche_status = str(
+        precount_meta.get("substrate_mode_next_tranche_source_review_status")
+        or ""
+    )
+    substrate_mode_next_tranche_non_topology_count = int(
+        precount_meta.get("substrate_mode_next_tranche_non_topology_count") or 0
+    )
+    substrate_mode_next_tranche_non_topology_pdb_ids = _sorted_strings(
+        precount_meta.get("substrate_mode_next_tranche_non_topology_pdb_ids", [])
+    )
+    substrate_mode_next_tranche_ready_count = int(
+        precount_meta.get("substrate_mode_next_tranche_source_mapped_ready_count")
+        or 0
+    )
+    substrate_mode_next_tranche_ready_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "substrate_mode_next_tranche_source_mapped_ready_pdb_ids", []
+        )
+    )
+    substrate_mode_next_tranche_source_context_review_only = bool(
+        precount_meta.get("substrate_mode_next_tranche_source_context_review_only")
+    )
     unified_scoring_passes_current_controls = bool(
         precount_meta.get("unified_review_only_scoring_passes_current_controls")
     )
@@ -17581,6 +17603,42 @@ def build_epk_counteraxis_sufficiency_decision(
             ),
         },
         {
+            "decision_axis": "epk_substrate_mode_next_tranche_source_review",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "next_tranche_source_review_status": (
+                substrate_mode_next_tranche_status
+            ),
+            "non_topology_confounded_candidate_count": (
+                substrate_mode_next_tranche_non_topology_count
+            ),
+            "non_topology_confounded_candidate_pdb_ids": (
+                substrate_mode_next_tranche_non_topology_pdb_ids
+            ),
+            "source_mapped_measurement_ready_count": (
+                substrate_mode_next_tranche_ready_count
+            ),
+            "source_mapped_measurement_ready_pdb_ids": (
+                substrate_mode_next_tranche_ready_pdb_ids
+            ),
+            "source_context_used_as_review_evidence_only": (
+                substrate_mode_next_tranche_source_context_review_only
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "source_mapped_tranche_row_added_but_source_review_only_not_calibrated"
+                if substrate_mode_next_tranche_ready_count
+                else (
+                    "next_tranche_source_review_fails_closed_or_missing"
+                    if substrate_mode_next_tranche_status
+                    else "missing_epk_substrate_mode_next_tranche_source_review"
+                )
+            ),
+            "blocker": (
+                "next_tranche_source_review_not_source_free_or_calibrated_scoring_axis"
+            ),
+        },
+        {
             "decision_axis": "unified_review_only_scoring_prototype",
             "review_only": True,
             "candidate_threshold_angstrom": candidate_threshold,
@@ -17911,6 +17969,24 @@ def build_epk_counteraxis_sufficiency_decision(
             "mek_erk_source_free_topology_source_free_predictive_feature_materialized": (
                 mek_erk_source_free_topology_source_free_materialized
             ),
+            "substrate_mode_next_tranche_source_review_status": (
+                substrate_mode_next_tranche_status
+            ),
+            "substrate_mode_next_tranche_non_topology_count": (
+                substrate_mode_next_tranche_non_topology_count
+            ),
+            "substrate_mode_next_tranche_non_topology_pdb_ids": (
+                substrate_mode_next_tranche_non_topology_pdb_ids
+            ),
+            "substrate_mode_next_tranche_source_mapped_ready_count": (
+                substrate_mode_next_tranche_ready_count
+            ),
+            "substrate_mode_next_tranche_source_mapped_ready_pdb_ids": (
+                substrate_mode_next_tranche_ready_pdb_ids
+            ),
+            "substrate_mode_next_tranche_source_context_review_only": (
+                substrate_mode_next_tranche_source_context_review_only
+            ),
             "unified_review_only_scoring_passes_current_controls": (
                 unified_scoring_passes_current_controls
             ),
@@ -17963,6 +18039,7 @@ def build_epk_counteraxis_sufficiency_decision(
                 "review_context_counteraxis_not_source_free_or_residual_false_hits",
                 "mek_erk_residual_source_adjudication_not_source_free",
                 "topology_ambiguity_counteraxis_bounded_not_calibrated",
+                "next_tranche_source_review_not_source_free_or_calibrated_scoring_axis",
                 "unified_substrate_identity_rule_not_calibrated_for_production",
                 "label_factory_gate_not_extended_for_epk",
             ],
@@ -17984,6 +18061,7 @@ def build_epk_counteraxis_sufficiency_decision(
                 "negatives, or import labels."
             ),
             "next_actions": [
+                "stress source-mapped substrate-mode tranche rows against fresh non-topology controls before scorer calibration",
                 "use source-reviewed MEK1/ERK1 rows only after source-free role and acceptor controls are rerun",
                 "repair MEK1/ERK1 broad-role false hits with a source-free counter-axis before scorer calibration",
                 "stress the topology-ambiguity feature against broader MEK/ERK false-hit controls",
@@ -30876,6 +30954,580 @@ def build_epk_mek_erk_substrate_mode_existing_scout_gap_audit(
     }
 
 
+def build_epk_substrate_mode_next_tranche_source_review(
+    *,
+    epk_mek_erk_substrate_mode_counteraxis_audit: dict[str, Any],
+    epk_next_tranche_candidate_scout: dict[str, Any],
+    epk_next_tranche_source_validation_review: dict[str, Any] | None = None,
+    uniprot_records_by_accession: dict[str, Any] | None = None,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+    uniprot_fetcher=None,
+    candidate_threshold_angstrom: float = 6.0,
+    max_n_terminal_acceptor_auth_seq_id: int = 25,
+) -> dict[str, Any]:
+    """Source-map a fresh non-topology-confounded substrate-mode tranche."""
+
+    substrate_meta = epk_mek_erk_substrate_mode_counteraxis_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(substrate_meta, dict):
+        substrate_meta = {}
+    scout_meta = epk_next_tranche_candidate_scout.get("metadata", {})
+    if not isinstance(scout_meta, dict):
+        scout_meta = {}
+    validation_meta: dict[str, Any] = {}
+    if isinstance(epk_next_tranche_source_validation_review, dict):
+        validation_meta = epk_next_tranche_source_validation_review.get(
+            "metadata", {}
+        )
+        if not isinstance(validation_meta, dict):
+            validation_meta = {}
+
+    target_fingerprint_id = str(
+        substrate_meta.get("target_fingerprint_id")
+        or scout_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(
+            substrate_meta.get("candidate_threshold_angstrom")
+            or candidate_threshold_angstrom
+        )
+    except (TypeError, ValueError):
+        threshold = 6.0
+    try:
+        n_terminal_max = int(
+            substrate_meta.get("max_n_terminal_acceptor_auth_seq_id")
+            or max_n_terminal_acceptor_auth_seq_id
+        )
+    except (TypeError, ValueError):
+        n_terminal_max = 25
+    n_terminal_max = max(1, n_terminal_max)
+
+    cif_texts = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    provided_uniprot_records = {
+        str(key).upper(): value
+        for key, value in (uniprot_records_by_accession or {}).items()
+    }
+    fetched_uniprot_accessions: list[str] = []
+    uniprot_fetch_failures: dict[str, str] = {}
+    uniprot_cache: dict[str, dict[str, Any]] = {}
+    hydroxyl_residue_codes = {"SER", "THR", "TYR"}
+
+    def _safe_float(value: Any) -> float:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return 9999.0
+
+    def _optional_int(value: Any) -> int | None:
+        try:
+            if value in {None, "", ".", "?"}:
+                return None
+            return int(float(str(value)))
+        except (TypeError, ValueError):
+            return None
+
+    def _load_uniprot_record(accession: str) -> dict[str, Any]:
+        accession_upper = accession.upper()
+        if not accession_upper:
+            return {}
+        if accession_upper in uniprot_cache:
+            return uniprot_cache[accession_upper]
+        record = _unwrap_uniprot_entry_record(
+            provided_uniprot_records.get(accession_upper)
+        )
+        fetch = uniprot_fetcher
+        if not record and fetch is None:
+            try:
+                from .adapters import fetch_uniprot_entry
+
+                fetch = fetch_uniprot_entry
+            except Exception:  # pragma: no cover - import failure is not expected.
+                fetch = None
+        if not record and fetch is not None:
+            try:
+                record = _unwrap_uniprot_entry_record(fetch(accession_upper))
+                fetched_uniprot_accessions.append(accession_upper)
+            except Exception as exc:  # pragma: no cover - network failure is data.
+                record = {}
+                uniprot_fetch_failures[accession_upper] = str(exc)
+        uniprot_cache[accession_upper] = record
+        return record
+
+    def _chain_accessions_from_cif(cif_text: str) -> dict[str, list[str]]:
+        chain_accessions: dict[str, list[str]] = defaultdict(list)
+        for row in _epk_struct_ref_seq_rows(cif_text):
+            accession = str(row.get("pdbx_db_accession") or "").upper()
+            if not accession:
+                continue
+            for chain_id in _sorted_strings(
+                str(row.get("pdbx_strand_id") or "").split(",")
+            ):
+                if accession not in chain_accessions[chain_id]:
+                    chain_accessions[chain_id].append(accession)
+        return {
+            chain_id: sorted(accessions)
+            for chain_id, accessions in sorted(chain_accessions.items())
+        }
+
+    def _merge_chain_accessions(
+        row_accessions: Any, cif_accessions: dict[str, list[str]]
+    ) -> dict[str, list[str]]:
+        merged: dict[str, list[str]] = defaultdict(list)
+        if isinstance(row_accessions, dict):
+            for chain_id, accessions in row_accessions.items():
+                for accession in _sorted_strings(accessions):
+                    accession_upper = accession.upper()
+                    if accession_upper not in merged[str(chain_id)]:
+                        merged[str(chain_id)].append(accession_upper)
+        for chain_id, accessions in cif_accessions.items():
+            for accession in accessions:
+                accession_upper = accession.upper()
+                if accession_upper not in merged[str(chain_id)]:
+                    merged[str(chain_id)].append(accession_upper)
+        return {
+            chain_id: sorted(accessions)
+            for chain_id, accessions in sorted(merged.items())
+        }
+
+    def _chain_primary_accession(
+        chain_accessions: dict[str, list[str]], chain_id: str
+    ) -> str | None:
+        accessions = chain_accessions.get(chain_id) or []
+        return accessions[0] if len(accessions) == 1 else None
+
+    def _auth_residue_to_uniprot_position(
+        *, cif_text: str, accession: str, chain_id: str, auth_resid: str
+    ) -> int | None:
+        accession_upper = accession.upper()
+        for row in _epk_struct_ref_seq_rows(cif_text):
+            if str(row.get("pdbx_db_accession") or "").upper() != accession_upper:
+                continue
+            if chain_id not in _sorted_strings(
+                str(row.get("pdbx_strand_id") or "").split(",")
+            ):
+                continue
+            try:
+                auth_begin = int(str(row.get("pdbx_auth_seq_align_beg")))
+                auth_end = int(str(row.get("pdbx_auth_seq_align_end")))
+                db_begin = int(str(row.get("db_align_beg")))
+                auth_value = int(str(auth_resid))
+            except (TypeError, ValueError):
+                continue
+            if auth_begin <= auth_value <= auth_end:
+                return db_begin + (auth_value - auth_begin)
+        return None
+
+    def _phosphosite_match(
+        *, record: dict[str, Any], position: int | None, residue_code: str
+    ) -> dict[str, Any] | None:
+        if position is None:
+            return None
+        residue_code_upper = residue_code.upper()
+        for feature in _epk_uniprot_phosphoacceptor_features(record):
+            try:
+                feature_position = int(str(feature.get("position")))
+            except (TypeError, ValueError):
+                continue
+            if feature_position != position:
+                continue
+            description = str(feature.get("description") or "")
+            lowered = description.lower()
+            residue_matches = (
+                ("phosphotyrosine" in lowered and residue_code_upper in {"TYR", "PTR"})
+                or (
+                    "phosphothreonine" in lowered
+                    and residue_code_upper in {"THR", "TPO"}
+                )
+                or (
+                    "phosphoserine" in lowered
+                    and residue_code_upper in {"SER", "SEP"}
+                )
+            )
+            if residue_matches:
+                return feature
+        return None
+
+    def _kinase_reaction_supports_protein_phosphorylation(
+        record: dict[str, Any]
+    ) -> bool:
+        for comment in record.get("catalytic_activity_comments", []) or []:
+            if not isinstance(comment, dict):
+                continue
+            reaction = str(comment.get("reaction") or "").lower()
+            if "[protein]" in reaction and "atp" in reaction and "phospho" in reaction:
+                return True
+        return False
+
+    def _best_candidate_hit(row: dict[str, Any]) -> dict[str, Any]:
+        hits = [
+            hit
+            for hit in row.get("heteromeric_candidate_hits", []) or []
+            if isinstance(hit, dict)
+            and str(hit.get("candidate_residue_code") or "").upper()
+            in hydroxyl_residue_codes
+            and _safe_float(hit.get("nearest_gamma_distance_angstrom")) <= threshold
+        ]
+        if not hits:
+            hits = [
+                hit
+                for hit in row.get("candidate_hits", []) or []
+                if isinstance(hit, dict)
+                and str(hit.get("candidate_residue_code") or "").upper()
+                in hydroxyl_residue_codes
+                and _safe_float(hit.get("nearest_gamma_distance_angstrom")) <= threshold
+            ]
+        return (
+            sorted(
+                hits,
+                key=lambda hit: (
+                    _safe_float(hit.get("nearest_gamma_distance_angstrom")),
+                    str(hit.get("candidate_chain_name") or ""),
+                    str(hit.get("candidate_auth_seq_id") or ""),
+                    str(hit.get("candidate_residue_code") or ""),
+                ),
+            )[0]
+            if hits
+            else {}
+        )
+
+    validation_rows_by_pdb: dict[str, dict[str, Any]] = {}
+    if isinstance(epk_next_tranche_source_validation_review, dict):
+        for row in epk_next_tranche_source_validation_review.get("rows", []) or []:
+            if isinstance(row, dict) and row.get("pdb_id"):
+                validation_rows_by_pdb[str(row.get("pdb_id")).upper()] = row
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    fetched_pdb_ids: list[str] = []
+    cif_fetch_failures: dict[str, str] = {}
+    non_topology_pdb_ids: list[str] = []
+    source_mapped_ready_pdb_ids: list[str] = []
+    unresolved_pdb_ids: list[str] = []
+    topology_confounded_pdb_ids: list[str] = []
+    substrate_rule_hit_pdb_ids: list[str] = []
+    distances: list[float] = []
+
+    candidate_rows = [
+        row
+        for row in epk_next_tranche_candidate_scout.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("candidate_status")
+        == "heteromeric_candidate_source_validation_pending_review_only"
+    ]
+    for candidate_row in candidate_rows:
+        pdb_id = str(candidate_row.get("pdb_id") or "").upper()
+        validation_row = validation_rows_by_pdb.get(pdb_id, {})
+        hit = _best_candidate_hit(candidate_row)
+        row_base = {
+            "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+            "pdb_id": pdb_id,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "source_validation_status_input": validation_row.get(
+                "source_validation_status"
+            ),
+            "candidate_hit": hit,
+        }
+        try:
+            cif_text = cif_texts.get(pdb_id)
+            fetch_status = "provided_cif_text" if cif_text is not None else "fetched"
+            if cif_text is None:
+                cif_text = cif_fetcher(pdb_id)
+                fetched_pdb_ids.append(pdb_id)
+        except Exception as exc:  # pragma: no cover - network failure is data.
+            status = "structure_fetch_failed_review_only"
+            status_counts[status] += 1
+            cif_fetch_failures[pdb_id] = str(exc)
+            rows.append(
+                {
+                    **row_base,
+                    "fetch_status": "fetch_failed",
+                    "fetch_error": str(exc),
+                    "next_tranche_source_review_status": status,
+                    "measurement_ready_for_review_controls": False,
+                    "remaining_blockers": ["structure_fetch_failed"],
+                }
+            )
+            continue
+
+        struct_rows = _epk_mmcif_rows(cif_text, "_struct.")
+        title = _first_present_value(struct_rows, "title") or validation_row.get(
+            "structure_title"
+        )
+        chain_accessions = _merge_chain_accessions(
+            validation_row.get("chain_accessions"),
+            _chain_accessions_from_cif(cif_text),
+        )
+        candidate_chain = str(hit.get("candidate_chain_name") or "")
+        gamma_chain = str(hit.get("gamma_associated_polymer_chain_name") or "")
+        candidate_auth_resid = str(hit.get("candidate_auth_seq_id") or "")
+        candidate_code = str(hit.get("candidate_residue_code") or "").upper()
+        candidate_auth_seq_id_int = _optional_int(candidate_auth_resid)
+        tyrosine_mode_hit = candidate_code == "TYR"
+        n_terminal_mode_hit = (
+            candidate_code in hydroxyl_residue_codes
+            and candidate_auth_seq_id_int is not None
+            and candidate_auth_seq_id_int <= n_terminal_max
+        )
+        substrate_mode_rule_hit = bool(tyrosine_mode_hit or n_terminal_mode_hit)
+        same_chain = bool(candidate_chain and candidate_chain == gamma_chain)
+        acceptor_accession = _chain_primary_accession(
+            chain_accessions, candidate_chain
+        )
+        kinase_accession = _chain_primary_accession(chain_accessions, gamma_chain)
+        candidate_position = (
+            _auth_residue_to_uniprot_position(
+                cif_text=cif_text,
+                accession=acceptor_accession,
+                chain_id=candidate_chain,
+                auth_resid=candidate_auth_resid,
+            )
+            if acceptor_accession
+            else None
+        )
+        acceptor_record = _load_uniprot_record(acceptor_accession or "")
+        kinase_record = _load_uniprot_record(kinase_accession or "")
+        phosphosite_feature = _phosphosite_match(
+            record=acceptor_record,
+            position=candidate_position,
+            residue_code=candidate_code,
+        )
+        kinase_reaction_supported = _kinase_reaction_supports_protein_phosphorylation(
+            kinase_record
+        )
+        phosphosite_description = str(
+            phosphosite_feature.get("description") if phosphosite_feature else ""
+        )
+        akt_gsk3b_source_mapped = (
+            kinase_accession == "P31749"
+            and acceptor_accession == "P49841"
+            and candidate_position == 9
+            and phosphosite_feature is not None
+            and any(token in phosphosite_description.lower() for token in ("akt", "pkb"))
+            and kinase_reaction_supported
+        )
+        try:
+            nearest_distance = float(hit.get("nearest_gamma_distance_angstrom"))
+        except (TypeError, ValueError):
+            nearest_distance = None
+
+        if not hit:
+            status = "missing_primary_hydroxyl_hit_review_only"
+            blockers = [
+                "primary_hydroxyl_hit_missing",
+                "positive_coverage_not_expanded",
+            ]
+        elif same_chain:
+            status = "topology_confounded_not_measurement_ready_review_only"
+            topology_confounded_pdb_ids.append(pdb_id)
+            blockers = [
+                "candidate_acceptor_chain_matches_gamma_chain",
+                "fresh_non_topology_confounded_tranche_not_supplied_by_this_row",
+            ]
+        elif not substrate_mode_rule_hit:
+            status = "non_topology_confounded_rejected_by_substrate_mode_review_only"
+            non_topology_pdb_ids.append(pdb_id)
+            blockers = [
+                "substrate_mode_rule_not_hit",
+                "positive_coverage_not_expanded",
+            ]
+        elif akt_gsk3b_source_mapped:
+            status = (
+                "source_mapped_non_topology_substrate_mode_measurement_ready_review_only"
+            )
+            non_topology_pdb_ids.append(pdb_id)
+            source_mapped_ready_pdb_ids.append(pdb_id)
+            substrate_rule_hit_pdb_ids.append(pdb_id)
+            blockers = [
+                "source_review_evidence_not_source_free_predictive_feature",
+                "substrate_mode_rule_not_calibrated",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ]
+            if nearest_distance is not None:
+                distances.append(nearest_distance)
+        else:
+            status = "non_topology_confounded_source_mapping_unresolved_review_only"
+            non_topology_pdb_ids.append(pdb_id)
+            if substrate_mode_rule_hit:
+                substrate_rule_hit_pdb_ids.append(pdb_id)
+            unresolved_pdb_ids.append(pdb_id)
+            blockers = [
+                "source_phosphosite_or_role_direction_not_mapped_to_candidate",
+                "substrate_mode_rule_not_calibrated",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        status_counts[status] += 1
+        rows.append(
+            {
+                **row_base,
+                "fetch_status": fetch_status,
+                "structure_title": title,
+                "chain_accessions": chain_accessions,
+                "candidate_chain_name": candidate_chain,
+                "gamma_associated_polymer_chain_name": gamma_chain,
+                "candidate_same_chain_as_gamma": same_chain,
+                "candidate_auth_seq_id": candidate_auth_resid,
+                "candidate_residue_code": candidate_code or None,
+                "candidate_uniprot_accession": acceptor_accession,
+                "candidate_uniprot_position": candidate_position,
+                "kinase_uniprot_accession": kinase_accession,
+                "kinase_protein_phosphorylation_reaction_supported": (
+                    kinase_reaction_supported
+                ),
+                "source_phosphosite_feature": phosphosite_feature,
+                "source_phosphosite_matched_candidate": phosphosite_feature
+                is not None,
+                "akt1_gsk3b_source_mapped": akt_gsk3b_source_mapped,
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    round(nearest_distance, 3)
+                    if nearest_distance is not None
+                    else None
+                ),
+                "gamma_acceptor_distance_measured": nearest_distance is not None,
+                "tyrosine_acceptor_mode_hit": tyrosine_mode_hit,
+                "n_terminal_ser_thr_tyr_acceptor_mode_hit": n_terminal_mode_hit,
+                "substrate_mode_counteraxis_rule_hit": substrate_mode_rule_hit,
+                "measurement_ready_for_review_controls": (
+                    status
+                    == "source_mapped_non_topology_substrate_mode_measurement_ready_review_only"
+                ),
+                "next_tranche_source_review_status": status,
+                "remaining_blockers": blockers,
+                "production_scoring_admissible": False,
+            }
+        )
+
+    non_topology_ids = _sorted_strings(non_topology_pdb_ids)
+    source_ready_ids = _sorted_strings(source_mapped_ready_pdb_ids)
+    unresolved_ids = _sorted_strings(unresolved_pdb_ids)
+    topology_confounded_ids = _sorted_strings(topology_confounded_pdb_ids)
+    substrate_rule_hit_ids = _sorted_strings(substrate_rule_hit_pdb_ids)
+    if source_ready_ids:
+        review_status = (
+            "adds_source_mapped_non_topology_substrate_mode_row_review_only"
+        )
+        blocker_removed = "fresh_non_topology_confounded_tranche_materialized_and_source_mapped"
+    elif non_topology_ids:
+        review_status = "fails_closed_non_topology_tranche_source_mapping_unresolved"
+        blocker_removed = "fresh_non_topology_confounded_tranche_materialized"
+    elif topology_confounded_ids:
+        review_status = "blocked_next_tranche_only_topology_confounded_review_only"
+        blocker_removed = "next_tranche_reviewed_but_no_clean_non_topology_row"
+    else:
+        review_status = "blocked_no_next_tranche_candidate_hits_review_only"
+        blocker_removed = "next_tranche_reviewed"
+
+    return {
+        "metadata": {
+            "method": "epk_substrate_mode_next_tranche_source_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": (
+                substrate_meta.get("method")
+            ),
+            "source_epk_next_tranche_candidate_scout_method": scout_meta.get(
+                "method"
+            ),
+            "source_epk_next_tranche_source_validation_review_method": (
+                validation_meta.get("method")
+            ),
+            "source_query": scout_meta.get("source_query"),
+            "candidate_threshold_angstrom": threshold,
+            "max_n_terminal_acceptor_auth_seq_id": n_terminal_max,
+            "next_tranche_source_review_status": review_status,
+            "reviewed_candidate_count": len(rows),
+            "non_topology_confounded_candidate_count": len(non_topology_ids),
+            "non_topology_confounded_candidate_pdb_ids": non_topology_ids,
+            "substrate_mode_rule_hit_non_topology_count": len(
+                substrate_rule_hit_ids
+            ),
+            "substrate_mode_rule_hit_non_topology_pdb_ids": substrate_rule_hit_ids,
+            "source_mapped_measurement_ready_count": len(source_ready_ids),
+            "source_mapped_measurement_ready_pdb_ids": source_ready_ids,
+            "source_mapping_unresolved_count": len(unresolved_ids),
+            "source_mapping_unresolved_pdb_ids": unresolved_ids,
+            "topology_confounded_candidate_count": len(topology_confounded_ids),
+            "topology_confounded_candidate_pdb_ids": topology_confounded_ids,
+            "nearest_gamma_acceptor_distance_min_angstrom": (
+                round(min(distances), 3) if distances else None
+            ),
+            "nearest_gamma_acceptor_distance_max_angstrom": (
+                round(max(distances), 3) if distances else None
+            ),
+            "decision_counts": dict(sorted(status_counts.items())),
+            "fetched_pdb_ids": _sorted_strings(fetched_pdb_ids),
+            "cif_fetch_failure_count": len(cif_fetch_failures),
+            "cif_fetch_failures": cif_fetch_failures,
+            "fetched_uniprot_accessions": _sorted_strings(fetched_uniprot_accessions),
+            "uniprot_fetch_failure_count": len(uniprot_fetch_failures),
+            "uniprot_fetch_failures": dict(sorted(uniprot_fetch_failures.items())),
+            "source_context_used_as_review_evidence_only": True,
+            "source_free_predictive_feature_materialized": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": blocker_removed,
+            "blocker_not_removed": [
+                "source_review_evidence_not_source_free_predictive_feature",
+                "substrate_mode_rule_not_calibrated",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact source-maps a fresh substrate-mode tranche. "
+                "A row can become measurement-ready review evidence only when "
+                "local non-topology gamma geometry maps to an explicit source "
+                "phosphosite and kinase/substrate accession pair. It does not "
+                "score ePK, select a threshold, edit registries, or import labels."
+            ),
+            "next_actions": [
+                "stress the source-mapped substrate-mode row against fresh non-topology controls",
+                "replace source-reviewed phosphosite support with a source-free substrate identity feature before scoring",
+                "keep real external hard-negative scored re-audit closed until a calibrated scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("next_tranche_source_review_status") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Next-tranche substrate-mode source review is review-only; "
+                "measurement-ready rows are not countable labels or clean "
+                "held-out performance evidence."
+            )
+        ],
+    }
+
+
 def build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     *,
     epk_heteromeric_candidate_source_validation_review: dict[str, Any],
@@ -38537,6 +39189,7 @@ def build_epk_precount_gate_status(
     epk_mek_erk_substrate_mode_fresh_stress_audit: dict[str, Any] | None = None,
     epk_mek_erk_substrate_mode_existing_scout_gap_audit: dict[str, Any]
     | None = None,
+    epk_substrate_mode_next_tranche_source_review: dict[str, Any] | None = None,
     epk_unified_review_only_scoring_prototype: dict[str, Any] | None = None,
     epk_unified_prototype_broad_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
@@ -39164,6 +39817,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(mek_erk_substrate_mode_existing_gap_meta, dict):
         mek_erk_substrate_mode_existing_gap_meta = {}
+    substrate_mode_next_tranche_meta = (
+        epk_substrate_mode_next_tranche_source_review.get("metadata", {})
+        if isinstance(epk_substrate_mode_next_tranche_source_review, dict)
+        else {}
+    )
+    if not isinstance(substrate_mode_next_tranche_meta, dict):
+        substrate_mode_next_tranche_meta = {}
     unified_scoring_meta = (
         epk_unified_review_only_scoring_prototype.get("metadata", {})
         if isinstance(epk_unified_review_only_scoring_prototype, dict)
@@ -42672,6 +43332,78 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if substrate_mode_next_tranche_meta:
+        gate_checks.append(
+            {
+                "gate_id": "epk_substrate_mode_next_tranche_source_review",
+                "passed": substrate_mode_next_tranche_meta.get("method")
+                == "epk_substrate_mode_next_tranche_source_review"
+                and int(
+                    substrate_mode_next_tranche_meta.get(
+                        "non_topology_confounded_candidate_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    substrate_mode_next_tranche_meta.get(
+                        "source_mapped_measurement_ready_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    substrate_mode_next_tranche_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    substrate_mode_next_tranche_meta.get("epk_score_computed")
+                )
+                and not bool(
+                    substrate_mode_next_tranche_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and not bool(
+                    substrate_mode_next_tranche_meta.get(
+                        "fingerprint_registry_edited"
+                    )
+                )
+                and not bool(
+                    substrate_mode_next_tranche_meta.get(
+                        "curated_label_registry_edited"
+                    )
+                ),
+                "evidence": {
+                    "source_method": substrate_mode_next_tranche_meta.get(
+                        "method"
+                    ),
+                    "next_tranche_source_review_status": (
+                        substrate_mode_next_tranche_meta.get(
+                            "next_tranche_source_review_status"
+                        )
+                    ),
+                    "non_topology_confounded_candidate_pdb_ids": (
+                        substrate_mode_next_tranche_meta.get(
+                            "non_topology_confounded_candidate_pdb_ids", []
+                        )
+                    ),
+                    "source_mapped_measurement_ready_pdb_ids": (
+                        substrate_mode_next_tranche_meta.get(
+                            "source_mapped_measurement_ready_pdb_ids", []
+                        )
+                    ),
+                    "source_context_used_as_review_evidence_only": bool(
+                        substrate_mode_next_tranche_meta.get(
+                            "source_context_used_as_review_evidence_only"
+                        )
+                    ),
+                },
+            }
+        )
     if unified_scoring_meta:
         gate_checks.append(
             {
@@ -43576,7 +44308,23 @@ def build_epk_precount_gate_status(
                 "keep MEK1/ERK1 rows terminally blocked unless source-authoritative phosphosite evidence appears",
             )
     if mek_erk_substrate_mode_meta.get("method"):
-        if mek_erk_substrate_mode_existing_gap_meta.get("method"):
+        if substrate_mode_next_tranche_meta.get("method"):
+            if int(
+                substrate_mode_next_tranche_meta.get(
+                    "source_mapped_measurement_ready_count"
+                )
+                or 0
+            ):
+                next_actions.insert(
+                    0,
+                    "stress the source-mapped 4EKK-like substrate-mode tranche row against fresh non-topology controls before scorer calibration",
+                )
+            else:
+                next_actions.insert(
+                    0,
+                    "source-map or terminally reject the fresh substrate-mode next tranche before scorer calibration",
+                )
+        elif mek_erk_substrate_mode_existing_gap_meta.get("method"):
             next_actions.insert(
                 0,
                 "source a new bounded non-topology-confounded kinase-substrate tranche; existing ePK scouts do not contain one",
@@ -45706,6 +46454,39 @@ def build_epk_precount_gate_status(
             "mek_erk_substrate_mode_existing_scout_non_topology_count": (
                 mek_erk_substrate_mode_existing_gap_meta.get(
                     "non_topology_confounded_candidate_count"
+                )
+            ),
+            "source_epk_substrate_mode_next_tranche_source_review_method": (
+                substrate_mode_next_tranche_meta.get("method")
+            ),
+            "substrate_mode_next_tranche_source_review_status": (
+                substrate_mode_next_tranche_meta.get(
+                    "next_tranche_source_review_status"
+                )
+            ),
+            "substrate_mode_next_tranche_non_topology_count": (
+                substrate_mode_next_tranche_meta.get(
+                    "non_topology_confounded_candidate_count"
+                )
+            ),
+            "substrate_mode_next_tranche_non_topology_pdb_ids": (
+                substrate_mode_next_tranche_meta.get(
+                    "non_topology_confounded_candidate_pdb_ids", []
+                )
+            ),
+            "substrate_mode_next_tranche_source_mapped_ready_count": (
+                substrate_mode_next_tranche_meta.get(
+                    "source_mapped_measurement_ready_count"
+                )
+            ),
+            "substrate_mode_next_tranche_source_mapped_ready_pdb_ids": (
+                substrate_mode_next_tranche_meta.get(
+                    "source_mapped_measurement_ready_pdb_ids", []
+                )
+            ),
+            "substrate_mode_next_tranche_source_context_review_only": bool(
+                substrate_mode_next_tranche_meta.get(
+                    "source_context_used_as_review_evidence_only"
                 )
             ),
             "source_epk_unified_review_only_scoring_prototype_method": (
