@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "artifact_id": "v3_epk_fresh_research_lane_push_synthesis_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T20:41:00Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_remote_commits_since_latest_main_synthesis": 4,
+    "json_validation_error_count": 0,
+    "latest_main_synthesis_artifact": "artifacts/v3_epk_research_lane_synthesis_20260520.json",
+    "latest_main_synthesis_commit": "15289f9e097aa8e75683fb3667b522c6f6dd4234",
+    "latest_main_synthesis_sha256": "459be97b7ff7908a66a4598ded01abc86c79bb9a6901cb4b42db45290b3673ce",
+    "method": "epk_fresh_research_lane_push_synthesis",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_claim_allowed": false,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true
+  },
+  "fresh_remote_commits": [
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "commit": "47f355422204754e0b1f1f8e346174f456b36968",
+      "summary": "Add ePK legacy ANP PB evidence audit",
+      "synthesis_status": "already_reflected_in_latest_main_synthesis"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "commit": "c3c48ce",
+      "summary": "Record ePK positive handoff commit reference",
+      "synthesis_status": "handoff_only_no_decision_change"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "commit": "b52c965799f0316c9cfc4d63ed90b0027c43d4c0",
+      "summary": "Record ePK positive local ref blocker",
+      "synthesis_status": "handoff_only_no_decision_change"
+    },
+    {
+      "branch": "origin/research/epk-substrate-role-identity",
+      "commit": "2b6d9f8",
+      "summary": "Research ePK reciprocal entity context",
+      "synthesis_status": "new_review_only_counterexample_integrated"
+    }
+  ],
+  "input_validation": [
+    {
+      "json_valid": true,
+      "name": "substrate_role_identity_reciprocal_entity_context_probe",
+      "path": "origin/research/epk-substrate-role-identity:artifacts/research_lanes/epk_substrate_role_identity/epk_reciprocal_entity_context_probe_v1_20260520.json",
+      "sha256": "43116246e129d75f098f3e9c80c640c2a11609e1ac51947730d5307ef56723f1"
+    },
+    {
+      "json_valid": true,
+      "name": "policy_harness_late_dirty_output_receipt",
+      "path": "artifacts/v3_epk_policy_harness_late_dirty_output_receipt_20260520.json",
+      "sha256": "82b82b8a5a8b439f0b875773b93cd70a076f428fe46e40dedf0ae2b7c8f924d2"
+    }
+  ],
+  "lane_findings": [
+    {
+      "decision_change": false,
+      "handoff_sha256": "5ed30610e0dc9786f3a0b4d4773e6381d80cbdbf6d4025abb399d9bc196b6c2a",
+      "lane_id": "epk_positive_evidence",
+      "primary_outcome": "evidence_for_review_only_peptide_positive_no_clean_folded_positive",
+      "summary": "The fresh handoff commits only record the already synthesized 9IZ0 peptide lead, legacy ANP/PB audit, and linked-worktree push blockers. They do not add a clean folded-protein positive or production-ready evidence.",
+      "use_in_main_loop": false
+    },
+    {
+      "artifact_sha256": "43116246e129d75f098f3e9c80c640c2a11609e1ac51947730d5307ef56723f1",
+      "decision_change": true,
+      "handoff_sha256": "707877ca41125d83f7275a60bcb88917e6aefb14fc219876862766fd91a6af2f",
+      "lane_id": "epk_substrate_role_identity",
+      "primary_outcome": "counterexample_found",
+      "summary": "A 54-row reciprocal entity-context probe found that the source-free folded-Tyr rescue that recovers 9UUR and 9UUX also admits 9UW4 as a false positive. The auth-terminal strict guard remains cleaner but still misses six positives.",
+      "use_in_main_loop": false
+    },
+    {
+      "decision_change": false,
+      "lane_id": "epk_policy_harness",
+      "primary_outcome": "late_dirty_outputs_validated_no_decision_change",
+      "summary": "Fifteen late dirty policy-harness JSON outputs after the latest main synthesis stayed review-only with abstentions or bounded search-surface exhaustion. They require future full resynthesis if still present or pushed.",
+      "use_in_main_loop": false
+    }
+  ],
+  "substrate_role_identity_probe_summary": {
+    "baseline_strict_rule": {
+      "false_negative_count": 6,
+      "false_positive_count": 1,
+      "true_negative_count": 33,
+      "true_positive_count": 14
+    },
+    "folded_tyr_rescue_counterexample": "9UW4",
+    "reciprocal_asymmetric_guarded_strict_v1": {
+      "false_negative_count": 6,
+      "false_positive_count": 0,
+      "true_negative_count": 34,
+      "true_positive_count": 14
+    },
+    "reciprocal_folded_tyr_rescue_v1": {
+      "false_negative_count": 4,
+      "false_positive_count": 1,
+      "true_negative_count": 33,
+      "true_positive_count": 16
+    },
+    "rescue_positives": [
+      "9UUR",
+      "9UUX"
+    ]
+  },
+  "synthesis_conclusion": {
+    "main_loop_decision": "do_not_resume_epk_as_default_main_loop_task",
+    "next_exact_research_lane_experiment": "epk_local_burial_solvent_exposure_probe_v1_review_only",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "production_activation_decision": "no_go",
+    "reason": "Fresh remote and dirty lane evidence adds another source-free substrate-role counterexample and late fail-closed policy stress, but no production scorer, threshold, clean folded positive, external hard-negative production re-audit, label import, registry edit, or fingerprint edit."
+  }
+}

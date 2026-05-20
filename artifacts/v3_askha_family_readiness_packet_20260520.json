@@ -1,0 +1,217 @@
+{
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps four expert-supported ASKHA boundary rows: glucokinase, acetate kinase, hexokinase type II, and hexokinase type I.",
+      "All four ASKHA rows are non-countable reaction/substrate mismatch lanes with metal-hydrolase top1 collapse or hydrolase-boundary context.",
+      "Sibling-control synthesis records expanded ATP-family controls and weak-rule counterexamples that make generic ATP/Mg distance insufficient."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free ASKHA fold/substrate axis exists in production code.",
+      "No ASKHA threshold or production score has been calibrated.",
+      "No external hard-negative re-audit has been run for an ASKHA positive fingerprint universe.",
+      "No countable ASKHA seed labels exist in the current registry."
+    ],
+    "expected_local_evidence_axes": [
+      "ATP or gamma-capable nucleotide local to catalytic site",
+      "Mg/Mn metal context around phosphoryl transfer center",
+      "ASKHA/actin-like kinase fold or family context",
+      "sugar hydroxyl or acetate/carboxylate acceptor identity",
+      "separation from hydrolase metal-ligand and ser-his acid dyad axes"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "control_role": "current top1 collapse boundary for ASKHA mismatch rows",
+      "family_id": "metal_dependent_hydrolase"
+    },
+    {
+      "control_role": "hydrolase acid/base false-boundary control",
+      "family_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "control_role": "ATP-coupled ligase/phosphointermediate counterfamily",
+      "family_id": "atp_grasp"
+    },
+    {
+      "control_role": "PfkA-fold sugar-phosphate kinase counterfamily",
+      "family_id": "pfka"
+    },
+    {
+      "control_role": "PfkB/ribokinase counterfamily",
+      "family_id": "pfkb"
+    },
+    {
+      "control_role": "GHMP ATP-dependent kinase counterfamily",
+      "family_id": "ghmp"
+    },
+    {
+      "control_role": "Bergerat/GHKL histidine-kinase counterfamily",
+      "family_id": "ghkl"
+    },
+    {
+      "control_role": "phosphohistidine nucleotide exchange counterfamily",
+      "family_id": "ndk"
+    },
+    {
+      "control_role": "protein-substrate kinase counterfamily; review-lane only",
+      "family_id": "epk"
+    }
+  ],
+  "family_readiness": {
+    "countable_positive_seed_count": 0,
+    "current_decision": "do_not_promote_production_fingerprint",
+    "expert_supported_boundary_count": 4,
+    "positive_like_boundary_row_count": 4,
+    "positive_like_boundary_rows": [
+      {
+        "countable_label_candidate": false,
+        "decision_action": "accept_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:592",
+        "entry_name": "glucokinase",
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "countable_label_candidate": false,
+        "decision_action": "accept_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:643",
+        "entry_name": "acetate kinase",
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "countable_label_candidate": false,
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:651",
+        "entry_name": "hexokinase (type II)",
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ],
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "countable_label_candidate": false,
+        "decision_action": "accept_label",
+        "decision_label_type": "out_of_scope",
+        "entry_id": "m_csa:696",
+        "entry_name": "hexokinase (type I)",
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "support_level": "expert_review_supported_family_boundary",
+        "top1_fingerprint_id": "metal_dependent_hydrolase"
+      }
+    ],
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "Actin-like/ASKHA kinases including hexokinase/glucokinase and acetate kinase lanes with ATP gamma-phosphoryl transfer to sugar hydroxyls or carboxylates.",
+    "source_free_axis_ready_count": 0
+  },
+  "likely_failure_modes": [
+    {
+      "description": "ASKHA ATP-phosphoryl transfer rows currently collapse to metal-dependent hydrolase top1 in boundary artifacts.",
+      "id": "hydrolase_top1_collapse"
+    },
+    {
+      "description": "ATP/Mg wording or proximity alone cannot separate ASKHA from ATP-grasp, PfkA/PfkB, GHMP, GHKL, NDK, or ePK contexts.",
+      "id": "generic_atp_wording_leakage"
+    },
+    {
+      "description": "Sugar hydroxyl and acetate/carboxylate acceptor identity is not represented by a production source-free axis.",
+      "id": "small_molecule_acceptor_identity_gap"
+    },
+    {
+      "description": "Expert-supported ontology boundary rows are routing evidence only and cannot become countable labels without factory gates.",
+      "id": "single_family_boundary_not_countable"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_askha_family_readiness_packet_20260520",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T20:20:31Z",
+    "curated_label_registry_edited": false,
+    "family_id": "askha",
+    "family_name": "ASKHA sugar and acetate kinases",
+    "fingerprint_registry_edited": false,
+    "method": "askha_review_only_family_readiness_packet",
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_epk_research_lane_synthesis_20260520.json"
+    ]
+  },
+  "next_experiment": {
+    "decision_to_start_now": false,
+    "experiment_id": "askha_vs_atp_family_control_tranche_v1_review_only",
+    "preregistered_axes_to_freeze": [
+      "local ATP/gamma-capable nucleotide plus Mg/Mn",
+      "ASKHA family/fold evidence from source-free structure or predeclared family context",
+      "sugar hydroxyl or acetate/carboxylate acceptor context",
+      "negative metal-hydrolase and ser-his acid dyad axes",
+      "counterfamily route for ATP-grasp/Pfk/GHMP/GHKL/NDK/ePK contexts"
+    ],
+    "reason_not_started": "packet first; a tranche must be frozen before any new axis scoring and no production gates are open",
+    "recommended_row_count": "12-18",
+    "row_plan": [
+      "4 ASKHA positive-like boundary rows from the family expansion artifact",
+      "4 current metal/ser-his hydrolase controls that previously absorb ASKHA-like rows",
+      "2 ATP-grasp controls",
+      "2 PfkA/PfkB/GHMP sugar-phosphate controls",
+      "optional 2 GHKL/NDK phosphohistidine controls if source-free axes are available"
+    ],
+    "selection_freeze_required_before_scoring": true
+  },
+  "sibling_control_context": {
+    "expanded_rows_reviewed": 452,
+    "gamma_metal_controls": 64,
+    "review_only_source": "artifacts/v3_epk_research_lane_synthesis_20260520.json",
+    "strict_product_control_blocked_count": 15,
+    "use_policy": "falsification and counteraxis design only; not positive ASKHA scoring evidence",
+    "weak_rule_counterexample_count": 47
+  }
+}

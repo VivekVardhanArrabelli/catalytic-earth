@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "artifact_id": "v3_main_loop_small_win_decision_register_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T20:30:00Z",
+    "curated_label_registry_edited": false,
+    "decision_count": 7,
+    "fingerprint_registry_edited": false,
+    "method": "main_loop_small_win_decision_register",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true
+  },
+  "rows": [
+    {
+      "decision_id": "epk_research_lane_synthesis_refresh",
+      "decision_status": "terminal_main_loop_no_go_for_production_activation",
+      "evidence_summary": "Four sibling research lanes validated 143 JSON files and 4 JSONL ledgers with 0 parse errors; no clean folded-protein ePK positive, no production threshold, no registry edit, and fail-closed policy stress.",
+      "next_action": "Do not resume ePK as the main-loop default; only a future research lane may design a source-free substrate-role extractor.",
+      "ready_for_label_import": false,
+      "source_artifact": "artifacts/v3_epk_research_lane_synthesis_20260520.json",
+      "source_sha256": "459be97b7ff7908a66a4598ded01abc86c79bb9a6901cb4b42db45290b3673ce"
+    },
+    {
+      "decision_id": "epk_policy_harness_late_dirty_receipt",
+      "decision_status": "no_decision_change_dirty_lane_outputs_validated",
+      "evidence_summary": "Fifteen late dirty policy-harness JSON outputs were validated after the main ePK synthesis; ANP and AMP-PNP stresses abstained or exhausted without counterexamples, labels, fingerprints, or thresholds.",
+      "next_action": "Carry into the next full ePK research-lane synthesis only if the lane publishes or the main loop needs a research addendum; do not resume ePK by default.",
+      "ready_for_label_import": false,
+      "source_artifact": "artifacts/v3_epk_policy_harness_late_dirty_output_receipt_20260520.json",
+      "source_sha256": "82b82b8a5a8b439f0b875773b93cd70a076f428fe46e40dedf0ae2b7c8f924d2"
+    },
+    {
+      "decision_id": "epk_fresh_research_lane_push_synthesis",
+      "decision_status": "fresh_remote_pushes_integrated_no_production_change",
+      "evidence_summary": "Fresh ePK positive handoff commits and a substrate-role identity push were synthesized; reciprocal entity context found 9UW4 as a folded-Tyr rescue counterexample.",
+      "next_action": "Keep ePK research-lane-only; the exact next experiment is epk_local_burial_solvent_exposure_probe_v1_review_only.",
+      "ready_for_label_import": false,
+      "source_artifact": "artifacts/v3_epk_fresh_research_lane_push_synthesis_20260520.json",
+      "source_sha256": "c8ea75b11bee8e9fd639442a58700cd0ead3735a16b0552beef160dcd517c4c8"
+    },
+    {
+      "decision_id": "methyltransferase_external_minicampaign",
+      "decision_status": "terminal_review_only_rejections_preserved",
+      "evidence_summary": "A 20-row Swiss-Prot EC 2.1.1.x surface was frozen before scoring and closed as 20/20 terminal rejections by uncovered mechanism lane.",
+      "next_action": "Preserve as a prospective terminal-failure win; do not import labels or score the uncovered methyltransferase lane under the current 8 fingerprints.",
+      "ready_for_label_import": false,
+      "source_artifact": "artifacts/v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json",
+      "source_sha256": "d3235fb79094b0f2d14532b754c5eadae97184bf7697afaf400a1c34f267a3bd"
+    },
+    {
+      "decision_id": "methyltransferase_baseline_comparison",
+      "decision_status": "diagnostic_no_superiority_claim",
+      "evidence_summary": "EC/keyword routes all 20 frozen rows as methyltransferases; deterministic 5-mer sequence baseline checks 20 rows against 737 current references and changes no terminal decision.",
+      "next_action": "Keep baseline evidence diagnostic only because the pre-scoring uncovered-lane blocker controls the outcome.",
+      "ready_for_label_import": false,
+      "source_artifacts": [
+        {
+          "path": "artifacts/v3_methyltransferase_minicampaign_baseline_comparison_20260520.json",
+          "sha256": "5beb8450be8427ec3c902eba670cd81aeaefb6ed32bd15378c0ea7eef5445ecc"
+        },
+        {
+          "path": "artifacts/v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+          "sha256": "10b328333152a028c6a4142e02de294948604eccc2451297c41417916ffc0b0d"
+        }
+      ]
+    },
+    {
+      "decision_id": "askha_family_readiness",
+      "decision_status": "review_only_not_fingerprint_ready",
+      "evidence_summary": "ASKHA has four expert-supported boundary rows but 0 countable positive seeds, 0 source-free-axis-ready rows, and hydrolase-top1 collapse risk.",
+      "next_action": "Use the packet only to define the next frozen review-only ASKHA-vs-ATP-family control tranche.",
+      "ready_for_label_import": false,
+      "source_artifact": "artifacts/v3_askha_family_readiness_packet_20260520.json",
+      "source_sha256": "ba7cd69c307db9451101db298d7f5576a4d50d6c80c7e6bfdb63ee20468ff5a2"
+    },
+    {
+      "decision_id": "askha_control_tranche_preregistration",
+      "decision_status": "frozen_before_scoring",
+      "evidence_summary": "Four ASKHA rows, four current hydrolase controls, and six ATP-family countercontrols are frozen before any new geometry, sequence, Foldseek, inverse-gate, or production-fingerprint scoring.",
+      "next_action": "Compute only the preregistered local axes and duplicate screens before terminal decisions; no import or production scoring is open.",
+      "ready_for_label_import": false,
+      "source_artifact": "artifacts/v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json",
+      "source_sha256": "3fc757ca24e92534e8a8bd3d7771d9581b7221d7c376b20f1c74dcf440e753d5"
+    }
+  ],
+  "safety_summary": {
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "external_imported_out_of_scope_labels_changed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "registry_or_fingerprint_edit_performed": false
+  },
+  "synthesis_conclusion": {
+    "overall": "visible_small_wins_closed_without_production_mutation",
+    "recommended_next_main_loop_task": "compute_askha_preregistered_axes_or_start_next_prospective_external_surface",
+    "superiority_claim_permitted": false
+  }
+}

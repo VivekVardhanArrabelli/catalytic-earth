@@ -194,6 +194,84 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             all(row["coordinate_digest_sha256"] for row in materialization["rows"])
         )
 
+    def test_methyltransferase_minicampaign_is_terminal_pre_scoring(self) -> None:
+        freeze = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json"
+        )
+        baseline = _load_json(
+            ARTIFACTS
+            / "v3_methyltransferase_minicampaign_baseline_comparison_20260520.json"
+        )
+        sequence = _load_json(
+            ARTIFACTS
+            / "v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json"
+        )
+
+        self.assertTrue(freeze["metadata"]["review_only"])
+        self.assertTrue(
+            freeze["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(freeze["metadata"]["candidate_count"], 20)
+        self.assertEqual(freeze["metadata"]["production_fingerprint_count"], 8)
+        self.assertFalse(freeze["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_at_freeze" for row in freeze["rows"])
+        )
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_count"], 20)
+        self.assertEqual(
+            metadata["normalized_terminal_decision_counts"],
+            {"terminal_rejection": 20},
+        )
+        self.assertEqual(metadata["scored_candidate_count"], 0)
+        self.assertEqual(metadata["inverse_gate_scored_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertTrue(
+            all(
+                row["terminal_decision"]
+                == "terminal_rejection_uncovered_mechanism_lane"
+                for row in decisions["rows"]
+            )
+        )
+
+        self.assertFalse(baseline["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(baseline["metadata"]["frozen_row_count"], 20)
+        self.assertEqual(
+            baseline["metrics"]["ec_keyword_lane_router"][
+                "methyltransferase_keyword_or_ec_hits"
+            ],
+            20,
+        )
+        self.assertEqual(
+            baseline["metrics"]["current_geometry_retrieval_triage"]["scored_row_count"],
+            0,
+        )
+        self.assertEqual(
+            baseline["metrics"]["deterministic_kmer_nearest_neighbor"]["computed_row_count"],
+            20,
+        )
+        self.assertFalse(
+            baseline["metrics"]["deterministic_kmer_nearest_neighbor"][
+                "terminal_decision_changed_by_sequence_baseline"
+            ]
+        )
+        self.assertTrue(sequence["metadata"]["review_only"])
+        self.assertEqual(sequence["metadata"]["candidate_count"], 20)
+        self.assertEqual(sequence["metadata"]["reference_sequence_count"], 737)
+        self.assertFalse(
+            sequence["metadata"]["terminal_decision_changed_by_sequence_baseline"]
+        )
+        self.assertFalse(sequence["metadata"]["ready_for_label_import"])
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]
@@ -269,6 +347,200 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             any(mode["id"] == "single_positive_like_row" for mode in packet["likely_failure_modes"])
         )
         self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+
+    def test_askha_family_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_askha_family_readiness_packet_20260520.json"
+        )
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            readiness["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(readiness["positive_like_boundary_row_count"], 4)
+        self.assertEqual(readiness["countable_positive_seed_count"], 0)
+        self.assertEqual(readiness["source_free_axis_ready_count"], 0)
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+        self.assertFalse(packet["next_experiment"]["decision_to_start_now"])
+        self.assertGreaterEqual(
+            packet["sibling_control_context"]["weak_rule_counterexample_count"],
+            47,
+        )
+
+    def test_askha_control_tranche_preregistration_freezes_rows(self) -> None:
+        prereg = _load_json(
+            ARTIFACTS
+            / "v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json"
+        )
+        metadata = prereg["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertEqual(metadata["askha_boundary_row_count"], 4)
+        self.assertEqual(metadata["current_hydrolase_control_count"], 4)
+        self.assertEqual(metadata["atp_family_control_count"], 6)
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        roles = {}
+        row_ids = set()
+        for row in prereg["rows"]:
+            roles[row["row_role"]] = roles.get(row["row_role"], 0) + 1
+            row_ids.add(row["row_id"])
+            self.assertEqual(row["score_status"], "not_scored_in_this_preregistration")
+            self.assertFalse(row["ready_for_label_import_at_freeze"])
+        self.assertEqual(
+            roles,
+            {
+                "askha_positive_like_boundary": 4,
+                "current_production_hydrolase_control": 4,
+                "atp_family_countercontrol": 6,
+            },
+        )
+        self.assertEqual(
+            {"m_csa:592", "m_csa:643", "m_csa:651", "m_csa:696"},
+            {
+                row["row_id"]
+                for row in prereg["rows"]
+                if row["row_role"] == "askha_positive_like_boundary"
+            },
+        )
+        self.assertIn("m_csa:310", row_ids)
+        self.assertIn("m_csa:637", row_ids)
+        self.assertIn(
+            "No new geometry",
+            prereg["frozen_before_scoring_statement"],
+        )
+
+    def test_main_loop_small_win_decision_register_is_review_only(self) -> None:
+        register = _load_json(
+            ARTIFACTS / "v3_main_loop_small_win_decision_register_20260520.json"
+        )
+        metadata = register["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["decision_count"], 7)
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["decision_id"]: row for row in register["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "epk_research_lane_synthesis_refresh",
+                "epk_policy_harness_late_dirty_receipt",
+                "epk_fresh_research_lane_push_synthesis",
+                "methyltransferase_external_minicampaign",
+                "methyltransferase_baseline_comparison",
+                "askha_family_readiness",
+                "askha_control_tranche_preregistration",
+            },
+        )
+        self.assertEqual(
+            rows["methyltransferase_external_minicampaign"]["decision_status"],
+            "terminal_review_only_rejections_preserved",
+        )
+        self.assertEqual(
+            rows["askha_control_tranche_preregistration"]["decision_status"],
+            "frozen_before_scoring",
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in register["rows"])
+        )
+        self.assertEqual(
+            register["synthesis_conclusion"]["overall"],
+            "visible_small_wins_closed_without_production_mutation",
+        )
+        self.assertFalse(
+            register["synthesis_conclusion"]["superiority_claim_permitted"]
+        )
+
+    def test_epk_policy_harness_late_dirty_receipt_is_non_decisional(self) -> None:
+        receipt = _load_json(
+            ARTIFACTS / "v3_epk_policy_harness_late_dirty_output_receipt_20260520.json"
+        )
+        metadata = receipt["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["source_outputs_committed_or_pushed"])
+        self.assertFalse(metadata["decision_change_from_latest_main_synthesis"])
+        self.assertEqual(metadata["late_dirty_json_file_count"], 15)
+        self.assertEqual(metadata["json_validation_error_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        self.assertEqual(len(receipt["late_dirty_files"]), 15)
+        self.assertTrue(all(row["json_valid"] for row in receipt["late_dirty_files"]))
+        findings = {row["finding_id"]: row for row in receipt["findings"]}
+        self.assertEqual(
+            findings["cross_ligand_sibling_control_contract_stress"][
+                "decision_counts"
+            ],
+            {"review_only_abstain": 8},
+        )
+        self.assertEqual(
+            receipt["synthesis_conclusion"]["main_loop_decision"],
+            "no_decision_change_do_not_resume_epk_as_default_task",
+        )
+        self.assertEqual(
+            receipt["synthesis_conclusion"]["production_activation_decision"],
+            "no_go",
+        )
+
+    def test_epk_fresh_research_lane_push_synthesis_stays_no_go(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_fresh_research_lane_push_synthesis_20260520.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["fresh_remote_commits_since_latest_main_synthesis"], 4)
+        self.assertEqual(metadata["json_validation_error_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        lanes = {row["lane_id"]: row for row in synthesis["lane_findings"]}
+        self.assertEqual(
+            lanes["epk_substrate_role_identity"]["primary_outcome"],
+            "counterexample_found",
+        )
+        self.assertEqual(
+            synthesis["substrate_role_identity_probe_summary"][
+                "folded_tyr_rescue_counterexample"
+            ],
+            "9UW4",
+        )
+        self.assertEqual(
+            conclusion["overall"],
+            "epk_remains_review_only_and_not_production_ready",
+        )
+        self.assertEqual(conclusion["production_activation_decision"], "no_go")
+        self.assertEqual(
+            conclusion["next_exact_research_lane_experiment"],
+            "epk_local_burial_solvent_exposure_probe_v1_review_only",
+        )
 
     def test_glycoside_hydrolase_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(

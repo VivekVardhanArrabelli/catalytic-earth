@@ -306,6 +306,23 @@ import.
   outcomes; all six are review-only rejections by current-countable structural
   duplicate signal. Future prospective external work therefore needs genuinely
   new sourcing or a different frozen surface before scoring.
+- `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
+  freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
+  rows selected before outcome scoring from a live UniProt query, requiring
+  catalytic-activity text, active-site annotation, and at least one PDB
+  cross-reference. The decision packet,
+  `artifacts/v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json`,
+  records all 20 as terminal review-only rejections by uncovered mechanism
+  lane, with 0 current-fingerprint scores, 0 inverse-gate rows, 0 sequence or
+  Foldseek screens, 0 import-ready rows, and 0 countable candidates. The
+  baseline companion,
+  `artifacts/v3_methyltransferase_minicampaign_baseline_comparison_20260520.json`,
+  makes no superiority claim: EC/keyword routing detects methyltransferase
+  context, and
+  `artifacts/v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json`
+  adds a deterministic 5-mer nearest-current-reference check with two crude
+  near-neighbor alerts across 20 rows. Geometry, ESM, and Foldseek remain
+  unrun because the pre-scoring lane blocker is decisive.
 - `artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json`,
   `artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json`, and
   `artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json` package

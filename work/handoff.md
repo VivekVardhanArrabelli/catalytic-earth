@@ -50,6 +50,88 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T20:17:20Z automation run,
+`artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
+freezes a genuinely new 20-row Swiss-Prot EC 2.1.1.x methyltransferase surface
+before outcome scoring. The freeze required reviewed UniProt rows with
+catalytic-activity text, active-site annotation, and at least one PDB
+cross-reference, excluded imported external hard negatives and prior external
+candidate pools, capped selection at two rows per primary EC number, and did
+not use current-fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM,
+or ePK evidence for selection.
+
+`artifacts/v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json`
+then closes the exact frozen set as 20/20 review-only terminal rejections by
+`terminal_rejection_uncovered_mechanism_lane`. The current 8-fingerprint
+universe and `0.4115` abstention floor are recorded, but 0 rows were scored
+because SAM/one-carbon methyltransferase chemistry is outside the current
+production fingerprint universe and outside covered external hard-negative
+counterevidence lanes. `artifacts/v3_methyltransferase_minicampaign_baseline_comparison_20260520.json`
+adds the no-claim baseline diagnostic: EC/keyword routing detects the
+methyltransferase lane, while geometry, deterministic k-mer, ESM, and Foldseek
+are intentionally unrun because the terminal pre-scoring lane blocker is
+decisive.
+`artifacts/v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json`
+adds the deterministic 5-mer nearest-current-reference check for the same 20
+frozen rows against 737 current reference sequences. It reports two crude
+near-neighbor alerts, but the terminal decision is unchanged because sequence
+neighboring cannot remove the uncovered methyltransferase-lane blocker.
+
+Evidence-based confidence call: confidence is high that this is a real
+prospective small win rather than a recycled terminal tranche: selection was
+documented before decisions, terminal failures were preserved, and import
+evidence is separated from review-only UniProt context. Confidence is high that
+no label import, registry edit, or production fingerprint expansion is
+authorized by this mini-campaign.
+
+The same run adds
+`artifacts/v3_askha_family_readiness_packet_20260520.json` as the next
+non-ePK family-readiness packet outside the exhausted six-family queue. ASKHA
+has four expert-supported boundary rows from the ATP/phosphoryl-transfer family
+expansion (`m_csa:592`, `m_csa:643`, `m_csa:651`, and `m_csa:696`), but 0
+countable positive seeds and 0 source-free-axis-ready rows. The packet records
+ATP/Mg and sugar/carboxylate acceptor evidence needs, hydrolase top1 collapse,
+ATP-family counterfamilies, and a frozen ASKHA-vs-ATP-family control tranche
+as the next exact review-only experiment. No scoring, threshold, registry edit,
+or label import is authorized.
+
+`artifacts/v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json`
+now freezes that exact next experiment before any outcome scoring. The tranche
+contains 14 review-only rows: four ASKHA boundary rows, four current
+production hydrolase controls, and six ATP-family countercontrols spanning
+ATP-grasp, GHMP, PfkB, GHKL, and NDK. It is a preregistration only: it opens no
+production scoring, label import, registry edit, or fingerprint expansion, and
+the next work must compute only the preregistered local axes and duplicate
+screens before terminal decisions.
+
+Late in the same run, the policy-harness sibling worktree contained 15 newer
+dirty JSON outputs after the latest main ePK synthesis. They were validated in
+`artifacts/v3_epk_policy_harness_late_dirty_output_receipt_20260520.json` as a
+receipt rather than a new full synthesis: ANP/AMP-PNP surfaces and
+cross-ligand sibling-control stresses all stayed review-only, with abstentions
+or bounded search-surface exhaustion, 0 expectation mismatches, and no
+production claim. This does not change the ePK decision; it only tells the next
+main run that a full resynthesis should include these lane outputs if they are
+still present or pushed.
+
+`artifacts/v3_epk_fresh_research_lane_push_synthesis_20260520.json` also
+integrates fresh remote ePK lane pushes after the latest main synthesis. The
+positive-evidence branch adds handoff-only commits for the already synthesized
+9IZ0/legacy-ANP-PB work. The newer substrate-role-identity lane is more
+decisive: a 54-row reciprocal entity-context probe found that a source-free
+folded-Tyr rescue recovers `9UUR`/`9UUX` but also admits `9UW4` as a false
+positive. ePK therefore stays no-go and research-lane-only; the exact next
+research experiment, if continued outside the main loop, is
+`epk_local_burial_solvent_exposure_probe_v1_review_only`.
+
+`artifacts/v3_main_loop_small_win_decision_register_20260520.json` collects the
+current run's terminal choices into one review-only register: refreshed ePK
+no-go, the late ePK policy-harness receipt, fresh remote ePK lane push
+synthesis, methyltransferase terminal rejections, methyltransferase diagnostic
+baselines, ASKHA readiness no-promotion, and the ASKHA control-tranche freeze.
+It is intended as the next run's decision map, not as evidence for label import
+or production scoring.
+
 As of the 2026-05-20T20:12:12Z automation run,
 `artifacts/v3_epk_research_lane_synthesis_20260520.json` has been refreshed
 from the four sibling ePK research-lane worktrees after a fresh fetch of main.

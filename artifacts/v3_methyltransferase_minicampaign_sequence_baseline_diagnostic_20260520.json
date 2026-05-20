@@ -1,0 +1,392 @@
+{
+  "caveats": [
+    "A 5-mer Jaccard nearest-neighbor is a crude deterministic baseline, not a duplicate-screen replacement.",
+    "Near-neighbor alerts cannot make an uncovered methyltransferase lane import-ready or countable.",
+    "The candidate set remains unscored by current production geometry because terminal pre-scoring lane rejection applies."
+  ],
+  "metadata": {
+    "artifact_id": "v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520",
+    "candidate_count": 20,
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T20:22:17Z",
+    "external_fasta": "artifacts/v3_methyltransferase_minicampaign_sequence_baseline_external_20260520.fasta",
+    "external_fasta_sha256": "9cd40e61501361181c2675cc2915f5b1407af239cbe3bff4f5ba39a4dcff928c",
+    "kmer_k": 5,
+    "method": "deterministic_5mer_nearest_current_reference_diagnostic",
+    "near_neighbor_alert_count": 2,
+    "near_neighbor_alert_threshold_jaccard": 0.35,
+    "ready_for_label_import": false,
+    "reference_fasta": "artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta",
+    "reference_sequence_count": 737,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "terminal_decision_changed_by_sequence_baseline": false
+  },
+  "rows": [
+    {
+      "accession": "O14744",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0023,
+        "query_5mer_count": 633,
+        "reference_5mer_count": 229,
+        "reference_accession": "ref__Q58MU6",
+        "reference_header": "ref__Q58MU6",
+        "reference_length": 233,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.320",
+      "query_header": "sp|O14744|ANM5_HUMAN Protein arginine N-methyltransferase 5 OS=Homo sapiens OX=9606 GN=PRMT5 PE=1 SV=4",
+      "row_id": "uniprot:O14744",
+      "sequence_length": 637,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P16455",
+      "near_neighbor_alert": true,
+      "nearest_current_reference": {
+        "jaccard_5mer": 1.0,
+        "query_5mer_count": 203,
+        "reference_5mer_count": 203,
+        "reference_accession": "ref__P16455",
+        "reference_header": "ref__P16455",
+        "reference_length": 207,
+        "shared_5mer_count": 203
+      },
+      "primary_ec": "2.1.1.63",
+      "query_header": "sp|P16455|MGMT_HUMAN Methylated-DNA--protein-cysteine methyltransferase OS=Homo sapiens OX=9606 GN=MGMT PE=1 SV=1",
+      "row_id": "uniprot:P16455",
+      "sequence_length": 207,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q8IY81",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0045,
+        "query_5mer_count": 834,
+        "reference_5mer_count": 286,
+        "reference_accession": "ref__P52700",
+        "reference_header": "ref__P52700",
+        "reference_length": 290,
+        "shared_5mer_count": 5
+      },
+      "primary_ec": "2.1.1.-",
+      "query_header": "sp|Q8IY81|SPB1_HUMAN pre-rRNA 2'-O-ribose RNA methyltransferase FTSJ3 OS=Homo sapiens OX=9606 GN=FTSJ3 PE=1 SV=2",
+      "row_id": "uniprot:Q8IY81",
+      "sequence_length": 847,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q96P11",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.004,
+        "query_5mer_count": 425,
+        "reference_5mer_count": 325,
+        "reference_accession": "ref__P00963",
+        "reference_header": "ref__P00963",
+        "reference_length": 330,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.1.1.-",
+      "query_header": "sp|Q96P11|NSUN5_HUMAN 28S rRNA (cytosine-C(5))-methyltransferase OS=Homo sapiens OX=9606 GN=NSUN5 PE=1 SV=2",
+      "row_id": "uniprot:Q96P11",
+      "sequence_length": 429,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9UET6",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0033,
+        "query_5mer_count": 325,
+        "reference_5mer_count": 286,
+        "reference_accession": "ref__P52700",
+        "reference_header": "ref__P52700",
+        "reference_length": 290,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.205",
+      "query_header": "sp|Q9UET6|TRM7_HUMAN tRNA (cytidine(32)/guanosine(34)-2'-O)-methyltransferase OS=Homo sapiens OX=9606 GN=FTSJ1 PE=1 SV=2",
+      "row_id": "uniprot:Q9UET6",
+      "sequence_length": 329,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "O14717",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.003,
+        "query_5mer_count": 387,
+        "reference_5mer_count": 278,
+        "reference_accession": "ref__P29241",
+        "reference_header": "ref__P29241",
+        "reference_length": 282,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.204",
+      "query_header": "sp|O14717|TRDMT_HUMAN tRNA (cytosine(38)-C(5))-methyltransferase OS=Homo sapiens OX=9606 GN=TRDMT1 PE=1 SV=1",
+      "row_id": "uniprot:O14717",
+      "sequence_length": 391,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q99873",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 367,
+        "reference_5mer_count": 383,
+        "reference_accession": "ref__P00518",
+        "reference_header": "ref__P00518",
+        "reference_length": 387,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.319",
+      "query_header": "sp|Q99873|ANM1_HUMAN Protein arginine N-methyltransferase 1 OS=Homo sapiens OX=9606 GN=PRMT1 PE=1 SV=3",
+      "row_id": "uniprot:Q99873",
+      "sequence_length": 371,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P26358",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.002,
+        "query_5mer_count": 1602,
+        "reference_5mer_count": 871,
+        "reference_accession": "ref__Q05086",
+        "reference_header": "ref__Q05086",
+        "reference_length": 875,
+        "shared_5mer_count": 5
+      },
+      "primary_ec": "2.1.1.37",
+      "query_header": "sp|P26358|DNMT1_HUMAN DNA (cytosine-5)-methyltransferase 1 OS=Homo sapiens OX=9606 GN=DNMT1 PE=1 SV=2",
+      "row_id": "uniprot:P26358",
+      "sequence_length": 1616,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q8N1G2",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0033,
+        "query_5mer_count": 831,
+        "reference_5mer_count": 701,
+        "reference_accession": "ref__P16753",
+        "reference_header": "ref__P16753",
+        "reference_length": 708,
+        "shared_5mer_count": 5
+      },
+      "primary_ec": "2.1.1.57",
+      "query_header": "sp|Q8N1G2|CMTR1_HUMAN Cap-specific mRNA (nucleoside-2'-O-)-methyltransferase 1 OS=Homo sapiens OX=9606 GN=CMTR1 PE=1 SV=1",
+      "row_id": "uniprot:Q8N1G2",
+      "sequence_length": 835,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q9UBC3",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 849,
+        "reference_5mer_count": 251,
+        "reference_accession": "ref__P00733",
+        "reference_header": "ref__P00733",
+        "reference_length": 255,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.1.1.37",
+      "query_header": "sp|Q9UBC3|DNM3B_HUMAN DNA (cytosine-5)-methyltransferase 3B OS=Homo sapiens OX=9606 GN=DNMT3B PE=1 SV=1",
+      "row_id": "uniprot:Q9UBC3",
+      "sequence_length": 853,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P04818",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0316,
+        "query_5mer_count": 309,
+        "reference_5mer_count": 312,
+        "reference_accession": "ref__P00469",
+        "reference_header": "ref__P00469",
+        "reference_length": 316,
+        "shared_5mer_count": 19
+      },
+      "primary_ec": "2.1.1.45",
+      "query_header": "sp|P04818|TYSY_HUMAN Thymidylate synthase OS=Homo sapiens OX=9606 GN=TYMS PE=1 SV=3",
+      "row_id": "uniprot:P04818",
+      "sequence_length": 313,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P06134",
+      "near_neighbor_alert": true,
+      "nearest_current_reference": {
+        "jaccard_5mer": 1.0,
+        "query_5mer_count": 350,
+        "reference_5mer_count": 350,
+        "reference_accession": "ref__P06134",
+        "reference_header": "ref__P06134",
+        "reference_length": 354,
+        "shared_5mer_count": 350
+      },
+      "primary_ec": "2.1.1.63",
+      "query_header": "sp|P06134|ADA_ECOLI Bifunctional transcriptional activator/DNA repair enzyme Ada OS=Escherichia coli (strain K12) OX=83333 GN=ada PE=1 SV=2",
+      "row_id": "uniprot:P06134",
+      "sequence_length": 354,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P0A884",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0476,
+        "query_5mer_count": 260,
+        "reference_5mer_count": 312,
+        "reference_accession": "ref__P00469",
+        "reference_header": "ref__P00469",
+        "reference_length": 316,
+        "shared_5mer_count": 26
+      },
+      "primary_ec": "2.1.1.45",
+      "query_header": "sp|P0A884|TYSY_ECOLI Thymidylate synthase OS=Escherichia coli (strain K12) OX=83333 GN=thyA PE=1 SV=1",
+      "row_id": "uniprot:P0A884",
+      "sequence_length": 264,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P0A8I5",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0046,
+        "query_5mer_count": 235,
+        "reference_5mer_count": 203,
+        "reference_accession": "ref__P16455",
+        "reference_header": "ref__P16455",
+        "reference_length": 207,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.33",
+      "query_header": "sp|P0A8I5|TRMB_ECOLI tRNA (guanine-N(7)-)-methyltransferase OS=Escherichia coli (strain K12) OX=83333 GN=trmB PE=1 SV=1",
+      "row_id": "uniprot:P0A8I5",
+      "sequence_length": 239,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P0C0R7",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0046,
+        "query_5mer_count": 205,
+        "reference_5mer_count": 232,
+        "reference_accession": "ref__P0AEG6",
+        "reference_header": "ref__P0AEG6",
+        "reference_length": 236,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.166",
+      "query_header": "sp|P0C0R7|RLME_ECOLI Ribosomal RNA large subunit methyltransferase E OS=Escherichia coli (strain K12) OX=83333 GN=rlmE PE=1 SV=1",
+      "row_id": "uniprot:P0C0R7",
+      "sequence_length": 209,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q12400",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.004,
+        "query_5mer_count": 289,
+        "reference_5mer_count": 464,
+        "reference_accession": "ref__P15273",
+        "reference_header": "ref__P15273",
+        "reference_length": 468,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.1.1.221",
+      "query_header": "sp|Q12400|TRM10_YEAST tRNA (guanine(9)-N1)-methyltransferase OS=Saccharomyces cerevisiae (strain ATCC 204508 / S288c) OX=559292 GN=TRM10 PE=1 SV=1",
+      "row_id": "uniprot:Q12400",
+      "sequence_length": 293,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q27869",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0043,
+        "query_5mer_count": 222,
+        "reference_5mer_count": 244,
+        "reference_accession": "ref__P00940",
+        "reference_header": "ref__P00940",
+        "reference_length": 248,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.77",
+      "query_header": "sp|Q27869|PIMT_DROME Protein-L-isoaspartate(D-aspartate) O-methyltransferase OS=Drosophila melanogaster OX=7227 GN=Pcmt PE=1 SV=2",
+      "row_id": "uniprot:Q27869",
+      "sequence_length": 226,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "Q63009",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 349,
+        "reference_5mer_count": 383,
+        "reference_accession": "ref__P00518",
+        "reference_header": "ref__P00518",
+        "reference_length": 387,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.319",
+      "query_header": "sp|Q63009|ANM1_RAT Protein arginine N-methyltransferase 1 OS=Rattus norvegicus OX=10116 GN=Prmt1 PE=1 SV=1",
+      "row_id": "uniprot:Q63009",
+      "sequence_length": 353,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "O50008",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.003,
+        "query_5mer_count": 761,
+        "reference_5mer_count": 255,
+        "reference_accession": "ref__P0A6L0",
+        "reference_header": "ref__P0A6L0",
+        "reference_length": 259,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.1.1.14",
+      "query_header": "sp|O50008|METE1_ARATH 5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase 1 OS=Arabidopsis thaliana OX=3702 GN=MS1 PE=1 SV=1",
+      "row_id": "uniprot:O50008",
+      "sequence_length": 765,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    },
+    {
+      "accession": "P0A9H7",
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.003,
+        "query_5mer_count": 378,
+        "reference_5mer_count": 281,
+        "reference_accession": "ref__P9WJJ7",
+        "reference_header": "ref__P9WJJ7",
+        "reference_length": 285,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.1.1.79",
+      "query_header": "sp|P0A9H7|CFA_ECOLI Cyclopropane-fatty-acyl-phospholipid synthase OS=Escherichia coli (strain K12) OX=83333 GN=cfa PE=1 SV=2",
+      "row_id": "uniprot:P0A9H7",
+      "sequence_length": 382,
+      "terminal_decision_relevance": "diagnostic_only_terminal_uncovered_lane_decision_unchanged"
+    }
+  ],
+  "task_definition": {
+    "decision_scope": "diagnostic only; uncovered mechanism-lane terminal rejection remains decisive",
+    "task": "deterministic sequence nearest-neighbor diagnostic for the pre-scoring methyltransferase mini-campaign"
+  }
+}

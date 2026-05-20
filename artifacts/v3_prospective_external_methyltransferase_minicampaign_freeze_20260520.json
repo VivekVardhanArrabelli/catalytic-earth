@@ -1,0 +1,656 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_id": "v3_prospective_external_methyltransferase_minicampaign_freeze_20260520",
+    "candidate_count": 20,
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T20:17:20Z",
+    "curated_label_registry_edited": false,
+    "epk_used_for_production": false,
+    "excluded_prior_external_accession_count": 385,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_methyltransferase_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "production_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "raw_query_row_count_reviewed": 500,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selection_rules": [
+      "UniProtKB/Swiss-Prot reviewed rows matching EC 2.1.1.x",
+      "require UniProt catalytic activity text and active-site annotation before selection",
+      "require at least one PDB cross-reference before selection",
+      "exclude imported external hard negatives and prior external candidate pools read by this run",
+      "cap at 20 rows, at most two rows per primary EC number",
+      "do not use current 8-fingerprint scores, sequence-neighbor outcomes, Foldseek outcomes, ESM outcomes, or ePK evidence for selection"
+    ],
+    "source_fields": [
+      "accession",
+      "id",
+      "protein_name",
+      "gene_names",
+      "organism_name",
+      "ec",
+      "xref_pdb",
+      "cc_catalytic_activity",
+      "ft_act_site"
+    ],
+    "source_query": "(reviewed:true) AND (ec:2.1.1.*)",
+    "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A2.1.1.%2A%29&fields=accession%2Cid%2Cprotein_name%2Cgene_names%2Corganism_name%2Cec%2Cxref_pdb%2Ccc_catalytic_activity%2Cft_act_site&format=tsv&size=500"
+  },
+  "rows": [
+    {
+      "accession": "O14744",
+      "active_site_source_text": "ACT_SITE 435; /note=\"Proton donor/acceptor\"; /evidence=\"ECO:0000305|PubMed:23071334\"; ACT_SITE 444; /note=\"Proton donor/acceptor\"; /evidence=\"ECO:0000305|PubMed:23071334\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=L-arginyl-[protein] + 2 S-adenosyl-L-methionine = N(omega),N(omega)'-dimethyl-L-arginyl-[protein] + 2 S-adenosyl-L-homocysteine + 2 H(+); Xref=Rhea:RHEA:48108, Rhea:RHEA-COMP:10532, Rhea:RHEA-COMP:11992, ChEBI:CHEBI:15378, ChEBI:CHEBI:29965, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:88221; EC=2.1.1.320; Evidence={ECO:0000269|PubMed:19011621, ECO:0000269|PubMed:21081503, ECO:0000269|PubMed:23071334};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.320"
+      ],
+      "gene_names": "PRMT5 HRMT1L5 IBP72 JBP1 SKB1",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 83,
+      "pdb_ids": [
+        "4GQB",
+        "4X60",
+        "4X61",
+        "4X63",
+        "5C9Z",
+        "5EMJ",
+        "5EMK",
+        "5EML",
+        "5EMM",
+        "5FA5",
+        "6CKC",
+        "6K1S"
+      ],
+      "pre_outcome_selection_rank": 1,
+      "primary_ec": "2.1.1.320",
+      "protein_name": "Protein arginine N-methyltransferase 5 (PRMT5) (EC 2.1.1.320) (72 kDa ICln-binding protein) (Histone-arginine N-methyltransferase PRMT5) (Jak-binding protein 1) (Shk1 kinase-binding protein 1 homolog) (SKB1 homolog) (SKB1Hs) [Cleaved into: Protein arginine N-methyltransferase 5, N-terminally processed]",
+      "query_result_rank": 1,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O14744",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "ANM5_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P16455",
+      "active_site_source_text": "ACT_SITE 145; /note=\"Nucleophile; methyl group acceptor\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=a 6-O-methyl-2'-deoxyguanosine in DNA + L-cysteinyl-[protein] = S-methyl-L-cysteinyl-[protein] + a 2'-deoxyguanosine in DNA; Xref=Rhea:RHEA:24000, Rhea:RHEA-COMP:10131, Rhea:RHEA-COMP:10132, Rhea:RHEA-COMP:11367, Rhea:RHEA-COMP:11368, ChEBI:CHEBI:29950, ChEBI:CHEBI:82612, ChEBI:CHEBI:85445, ChEBI:CHEBI:85448; EC=2.1.1.63; Evidence={ECO:0000255|PROSITE-ProRule:PRU10017}; CATALYTIC ACTIVITY: Reaction=a 4-O-methyl-thymidine in DNA + L-cysteinyl-[protein] = a thymidine in DNA + S-methyl-L-cysteinyl-[protein]; Xref=Rhea:RHEA:53428, Rhea:RHEA-COMP:10131, Rhea:RHEA-COMP:10132, Rhea:RHEA-COMP:13555, Rhea:RHEA-COMP:13556, ChEBI:CHEBI:29950, ChEBI:CHEBI:82612, ChEBI:CHEBI:137386, ChEBI:CHEBI:137387; EC=2.1.1.63; Evidence={ECO:0000255|PROSITE-ProRule:PRU10017};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.63"
+      ],
+      "gene_names": "MGMT",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 12,
+      "pdb_ids": [
+        "1EH6",
+        "1EH7",
+        "1EH8",
+        "1QNT",
+        "1T38",
+        "1T39",
+        "1YFH",
+        "8RGG",
+        "8RGH",
+        "8RTY",
+        "8RU2",
+        "9DI0"
+      ],
+      "pre_outcome_selection_rank": 2,
+      "primary_ec": "2.1.1.63",
+      "protein_name": "Methylated-DNA--protein-cysteine methyltransferase (EC 2.1.1.63) (6-O-methylguanine-DNA methyltransferase) (MGMT) (O-6-methylguanine-DNA-alkyltransferase)",
+      "query_result_rank": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P16455",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "MGMT_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q8IY81",
+      "active_site_source_text": "ACT_SITE 157; /note=\"Proton acceptor\"; /evidence=\"ECO:0000255|HAMAP-Rule:MF_03163, ECO:0000269|PubMed:30626973\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=a ribonucleotide in rRNA + S-adenosyl-L-methionine = a 2'-O-methylribonucleotide in rRNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:48628, Rhea:RHEA-COMP:12164, Rhea:RHEA-COMP:12165, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:90675, ChEBI:CHEBI:90676; Evidence={ECO:0000255|HAMAP-Rule:MF_03163}; CATALYTIC ACTIVITY: Reaction=a ribonucleotide in RNA + S-adenosyl-L-methionine = a 2'-O-methylribonucleotide in RNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:58956, Rhea:RHEA-COMP:15261, Rhea:RHEA-COMP:15262, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:90675, ChEBI:CHEBI:90676; Evidence={ECO:0000269|PubMed:30626973}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:58957; Evidence={ECO:0000269|PubMed:30626973};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.-"
+      ],
+      "gene_names": "FTSJ3 SB92",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 11,
+      "pdb_ids": [
+        "8FKP",
+        "8FKQ",
+        "8FKR",
+        "8FKS",
+        "8FKT",
+        "8FKU",
+        "8FKV",
+        "8FKW",
+        "8FKX",
+        "8FKY",
+        "8IR1"
+      ],
+      "pre_outcome_selection_rank": 3,
+      "primary_ec": "2.1.1.-",
+      "protein_name": "pre-rRNA 2'-O-ribose RNA methyltransferase FTSJ3 (EC 2.1.1.-) (Protein ftsJ homolog 3) (Putative rRNA methyltransferase 3)",
+      "query_result_rank": 15,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q8IY81",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "SPB1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q96P11",
+      "active_site_source_text": "ACT_SITE 359; /note=\"Nucleophile\"; /evidence=\"ECO:0000255|PROSITE-ProRule:PRU01023, ECO:0000305|PubMed:31722427\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=cytidine(3782) in 28S rRNA + S-adenosyl-L-methionine = 5-methylcytidine(3782) in 28S rRNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:47784, Rhea:RHEA-COMP:11913, Rhea:RHEA-COMP:11914, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:74483, ChEBI:CHEBI:82748; Evidence={ECO:0000269|PubMed:31428936, ECO:0000269|PubMed:31722427}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:47785; Evidence={ECO:0000269|PubMed:31428936, ECO:0000269|PubMed:31722427};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.-"
+      ],
+      "gene_names": "NSUN5 NSUN5A WBSCR20 WBSCR20A",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 1,
+      "pdb_ids": [
+        "2B9E"
+      ],
+      "pre_outcome_selection_rank": 4,
+      "primary_ec": "2.1.1.-",
+      "protein_name": "28S rRNA (cytosine-C(5))-methyltransferase (EC 2.1.1.-) (NOL1-related protein) (NOL1R) (NOL1/NOP2/Sun domain family member 5) (Williams-Beuren syndrome chromosomal region 20A protein)",
+      "query_result_rank": 21,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q96P11",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "NSUN5_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q9UET6",
+      "active_site_source_text": "ACT_SITE 156; /note=\"Proton acceptor\"; /evidence=\"ECO:0000255|HAMAP-Rule:MF_03162\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=cytidine(32)/guanosine(34) in tRNA + 2 S-adenosyl-L-methionine = 2'-O-methylcytidine(32)/2'-O-methylguanosine(34) in tRNA + 2 S-adenosyl-L-homocysteine + 2 H(+); Xref=Rhea:RHEA:42396, Rhea:RHEA-COMP:10246, Rhea:RHEA-COMP:10247, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:74269, ChEBI:CHEBI:74445, ChEBI:CHEBI:74495, ChEBI:CHEBI:82748; EC=2.1.1.205; Evidence={ECO:0000255|HAMAP-Rule:MF_03162, ECO:0000269|PubMed:32558197, ECO:0000269|PubMed:33771871, ECO:0000305|PubMed:36720500};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.205"
+      ],
+      "gene_names": "FTSJ1 JM23",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 1,
+      "pdb_ids": [
+        "8Y2O"
+      ],
+      "pre_outcome_selection_rank": 5,
+      "primary_ec": "2.1.1.205",
+      "protein_name": "tRNA (cytidine(32)/guanosine(34)-2'-O)-methyltransferase (EC 2.1.1.205) (2'-O-ribose RNA methyltransferase TRM7 homolog) (Protein ftsJ homolog 1)",
+      "query_result_rank": 66,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9UET6",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "TRM7_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O14717",
+      "active_site_source_text": "ACT_SITE 79; /evidence=\"ECO:0000255|PROSITE-ProRule:PRU01016\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=cytidine(38) in tRNA + S-adenosyl-L-methionine = 5-methylcytidine(38) in tRNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:42956, Rhea:RHEA-COMP:10299, Rhea:RHEA-COMP:10300, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:74483, ChEBI:CHEBI:82748; EC=2.1.1.204; Evidence={ECO:0000269|PubMed:16424344}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:42957; Evidence={ECO:0000269|PubMed:16424344};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.204"
+      ],
+      "gene_names": "TRDMT1 DNMT2",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 2,
+      "pdb_ids": [
+        "1G55",
+        "9HGM"
+      ],
+      "pre_outcome_selection_rank": 6,
+      "primary_ec": "2.1.1.204",
+      "protein_name": "tRNA (cytosine(38)-C(5))-methyltransferase (EC 2.1.1.204) (DNA (cytosine-5)-methyltransferase-like protein 2) (Dnmt2) (DNA methyltransferase homolog HsaIIP) (DNA MTase homolog HsaIIP) (M.HsaIIP) (PuMet)",
+      "query_result_rank": 69,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O14717",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "TRDMT_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q99873",
+      "active_site_source_text": "ACT_SITE 162; /evidence=\"ECO:0000250|UniProtKB:Q63009\"; ACT_SITE 171; /evidence=\"ECO:0000250|UniProtKB:Q63009\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=L-arginyl-[protein] + 2 S-adenosyl-L-methionine = N(omega),N(omega)-dimethyl-L-arginyl-[protein] + 2 S-adenosyl-L-homocysteine + 2 H(+); Xref=Rhea:RHEA:48096, Rhea:RHEA-COMP:10532, Rhea:RHEA-COMP:11991, ChEBI:CHEBI:15378, ChEBI:CHEBI:29965, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:61897; EC=2.1.1.319; Evidence={ECO:0000269|PubMed:11387442, ECO:0000269|PubMed:11448779, ECO:0000269|PubMed:15741314, ECO:0000269|PubMed:22095282, ECO:0000269|PubMed:26575292, ECO:0000269|PubMed:27642082, ECO:0000269|PubMed:28040436, ECO:0000269|PubMed:31257072, ECO:0000269|PubMed:38006878}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:48097; Evidence={ECO:0000269|PubMed:15741314, ECO:0000269|PubMed:31257072, ECO:0000269|PubMed:38006878, ECO:0000305|PubMed:22095282}; CATALYTIC ACTIVITY: Reaction=L-arginyl-[protein] + S-adenosyl-L-methionine = N(omega)-methyl-L-arginyl-[protein] + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:48100, Rhea:RHEA-COMP:10532, Rhea:RHEA-COMP:11990, ChEBI:CHEBI:15378, ChEBI:CHEBI:29965, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:65280; Evidence={ECO:0000269|PubMed:11448779}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:48101; Evidence={ECO:0000305|PubMed:11448779}; CATALYTIC ACTIVITY: Reaction=N(omega)-methyl-L-arginyl-[protein] + S-adenosyl-L-methionine = N(omega),N(omega)-dimethyl-L-arginyl-[protein] + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:48104, Rhea:RHEA-COMP:11990, Rhea:RHEA-COMP:11991, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:61897, ChEBI:CHEBI:65280; Evidence={ECO:0000269|PubMed:22095282, ECO:0000269|PubMed:26575292}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:48105; Evidence={ECO:0000305|PubMed:22095282};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.319"
+      ],
+      "gene_names": "PRMT1 HMT2 HRMT1L2 IR1B4",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 7,
+      "pdb_ids": [
+        "6NT2",
+        "8Z2Z",
+        "8Z7H",
+        "8Z7O",
+        "9BH4",
+        "9BHD",
+        "9BHG"
+      ],
+      "pre_outcome_selection_rank": 7,
+      "primary_ec": "2.1.1.319",
+      "protein_name": "Protein arginine N-methyltransferase 1 (EC 2.1.1.319) (Histone-arginine N-methyltransferase PRMT1) (Interferon receptor 1-bound protein 4)",
+      "query_result_rank": 92,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q99873",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "ANM1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P26358",
+      "active_site_source_text": "ACT_SITE 1226; /evidence=\"ECO:0000269|PubMed:19450230\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=a 2'-deoxycytidine in DNA + S-adenosyl-L-methionine = a 5-methyl-2'-deoxycytidine in DNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:13681, Rhea:RHEA-COMP:11369, Rhea:RHEA-COMP:11370, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:85452, ChEBI:CHEBI:85454; EC=2.1.1.37; Evidence={ECO:0000255|PROSITE-ProRule:PRU10018, ECO:0000269|PubMed:21745816, ECO:0000269|PubMed:26070743};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.37"
+      ],
+      "gene_names": "DNMT1 AIM CXXC9 DNMT",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 25,
+      "pdb_ids": [
+        "3EPZ",
+        "3PTA",
+        "3SWR",
+        "4WXX",
+        "4YOC",
+        "4Z96",
+        "4Z97",
+        "5WVO",
+        "5YDR",
+        "6K3A",
+        "6L1F",
+        "6X9I"
+      ],
+      "pre_outcome_selection_rank": 8,
+      "primary_ec": "2.1.1.37",
+      "protein_name": "DNA (cytosine-5)-methyltransferase 1 (Dnmt1) (EC 2.1.1.37) (CXXC-type zinc finger protein 9) (DNA methyltransferase HsaI) (DNA MTase HsaI) (M.HsaI) (MCMT)",
+      "query_result_rank": 108,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P26358",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "DNMT1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q8N1G2",
+      "active_site_source_text": "ACT_SITE 239; /evidence=\"ECO:0000305|PubMed:21310715\"; ACT_SITE 364; /evidence=\"ECO:0000305|PubMed:21310715\"; ACT_SITE 404; /note=\"Proton acceptor\"; /evidence=\"ECO:0000305|PubMed:21310715\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=a 5'-end (N(7)-methyl 5'-triphosphoguanosine)-ribonucleoside in mRNA + S-adenosyl-L-methionine = a 5'-end (N(7)-methyl 5'-triphosphoguanosine)-(2'-O-methyl-ribonucleoside) in mRNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:67020, Rhea:RHEA-COMP:17167, Rhea:RHEA-COMP:17168, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:156461, ChEBI:CHEBI:167609; EC=2.1.1.57; Evidence={ECO:0000269|PubMed:21310715};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.57"
+      ],
+      "gene_names": "CMTR1 FTSJD2 KIAA0082 MTR1",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 6,
+      "pdb_ids": [
+        "4N48",
+        "4N49",
+        "4N4A",
+        "8P4E",
+        "8P4F",
+        "8W8F"
+      ],
+      "pre_outcome_selection_rank": 9,
+      "primary_ec": "2.1.1.57",
+      "protein_name": "Cap-specific mRNA (nucleoside-2'-O-)-methyltransferase 1 (EC 2.1.1.57) (Cap methyltransferase 1) (Cap1 2'O-ribose methyltransferase 1) (MTr1) (hMTr1) (FtsJ methyltransferase domain-containing protein 2) (Interferon-stimulated gene 95 kDa protein) (ISG95)",
+      "query_result_rank": 114,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q8N1G2",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "CMTR1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q9UBC3",
+      "active_site_source_text": "ACT_SITE 651; /evidence=\"ECO:0000255|PROSITE-ProRule:PRU01016, ECO:0000255|PROSITE-ProRule:PRU10018\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=a 2'-deoxycytidine in DNA + S-adenosyl-L-methionine = a 5-methyl-2'-deoxycytidine in DNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:13681, Rhea:RHEA-COMP:11369, Rhea:RHEA-COMP:11370, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:85452, ChEBI:CHEBI:85454; EC=2.1.1.37; Evidence={ECO:0000255|PROSITE-ProRule:PRU10018};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.37"
+      ],
+      "gene_names": "DNMT3B",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 33,
+      "pdb_ids": [
+        "3FLG",
+        "3QKJ",
+        "5CIU",
+        "5NR3",
+        "5NRR",
+        "5NRS",
+        "5NRV",
+        "5NV0",
+        "5NV2",
+        "5NV7",
+        "5NVO",
+        "6KDA"
+      ],
+      "pre_outcome_selection_rank": 10,
+      "primary_ec": "2.1.1.37",
+      "protein_name": "DNA (cytosine-5)-methyltransferase 3B (Dnmt3b) (EC 2.1.1.37) (DNA methyltransferase HsaIIIB) (DNA MTase HsaIIIB) (M.HsaIIIB)",
+      "query_result_rank": 134,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9UBC3",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "DNM3B_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P04818",
+      "active_site_source_text": "ACT_SITE 195; /note=\"Nucleophile\"; /evidence=\"ECO:0000250|UniProtKB:P0A884\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=dUMP + (6R)-5,10-methylene-5,6,7,8-tetrahydrofolate = 7,8-dihydrofolate + dTMP; Xref=Rhea:RHEA:12104, ChEBI:CHEBI:15636, ChEBI:CHEBI:57451, ChEBI:CHEBI:63528, ChEBI:CHEBI:246422; EC=2.1.1.45; Evidence={ECO:0000269|PubMed:11278511}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:12105; Evidence={ECO:0000305|PubMed:11278511};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.45"
+      ],
+      "gene_names": "TYMS TS OK/SW-cl.29",
+      "organism": "Homo sapiens (Human)",
+      "pdb_id_count": 61,
+      "pdb_ids": [
+        "1HVY",
+        "1HW3",
+        "1HW4",
+        "1HZW",
+        "1I00",
+        "1JU6",
+        "1JUJ",
+        "1YPV",
+        "2ONB",
+        "2RD8",
+        "2RDA",
+        "3EAW"
+      ],
+      "pre_outcome_selection_rank": 11,
+      "primary_ec": "2.1.1.45",
+      "protein_name": "Thymidylate synthase (TS) (TSase) (EC 2.1.1.45)",
+      "query_result_rank": 140,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P04818",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "TYSY_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P06134",
+      "active_site_source_text": "ACT_SITE 38; /note=\"Nucleophile; methyl group acceptor from methylphosphotriester\"; /evidence=\"ECO:0000255|PROSITE-ProRule:PRU10017, ECO:0000269|PubMed:16452614\"; ACT_SITE 321; /note=\"Nucleophile; methyl group acceptor from either O6-methylguanine or O4-methylthymine\"; /evidence=\"ECO:0000255|PROSITE-ProRule:PRU10017, ECO:0000269|PubMed:16209950\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=(2'-deoxyribonucleoside 5'-methylphosphotriester)-DNA + L-cysteinyl-[protein] = 2'-deoxyribonucleotide-DNA + S-methyl-L-cysteinyl-[protein] + H(+); Xref=Rhea:RHEA:56324, Rhea:RHEA-COMP:10131, Rhea:RHEA-COMP:10132, Rhea:RHEA-COMP:14462, Rhea:RHEA-COMP:14463, ChEBI:CHEBI:15378, ChEBI:CHEBI:29950, ChEBI:CHEBI:82612, ChEBI:CHEBI:140284, ChEBI:CHEBI:140286; EC=2.1.1.n11; Evidence={ECO:0000269|PubMed:2987862}; CATALYTIC ACTIVITY: Reaction=a 6-O-methyl-2'-deoxyguanosine in DNA + L-cysteinyl-[protein] = S-methyl-L-cysteinyl-[protein] + a 2'-deoxyguanosine in DNA; Xref=Rhea:RHEA:24000, Rhea:RHEA-COMP:10131, Rhea:RHEA-COMP:10132, Rhea:RHEA-COMP:11367, Rhea:RHEA-COMP:11368, ChEBI:CHEBI:29950, ChEBI:CHEBI:82612, ChEBI:CHEBI:85445, ChEBI:CHEBI:85448; EC=2.1.1.63; Evidence={ECO:0000255|PROSITE-ProRule:PRU10017, ECO:0000269|PubMed:2987862}; CATALYTIC ACTIVITY: Reaction=a 4-O-methyl-thymidine in DNA + L-cysteinyl-[protein] = a thymidine in DNA + S-methyl-L-cysteinyl-[protein]; Xref=Rhea:RHEA:53428, Rhea:RHEA-COMP:10131, Rhea:RHEA-COMP:10132, Rhea:RHEA-COMP:13555, Rhea:RHEA-COMP:13556, ChEBI:CHEBI:29950, ChEBI:CHEBI:82612, ChEBI:CHEBI:137386, ChEBI:CHEBI:137387; EC=2.1.1.63; Evidence={ECO:0000255|PROSITE-ProRule:PRU10017, ECO:0000269|PubMed:2987862};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.63",
+        "2.1.1.n11"
+      ],
+      "gene_names": "ada b2213 JW2201",
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_id_count": 6,
+      "pdb_ids": [
+        "1ADN",
+        "1EYF",
+        "1SFE",
+        "1U8B",
+        "1WPK",
+        "1ZGW"
+      ],
+      "pre_outcome_selection_rank": 12,
+      "primary_ec": "2.1.1.63",
+      "protein_name": "Bifunctional transcriptional activator/DNA repair enzyme Ada (Regulatory protein of adaptive response) [Includes: Methylphosphotriester-DNA--protein-cysteine S-methyltransferase (EC 2.1.1.n11) (Methylphosphotriester-DNA methyltransferase); Methylated-DNA--protein-cysteine methyltransferase (EC 2.1.1.63) (O6-methylguanine-DNA alkyltransferase)]",
+      "query_result_rank": 183,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P06134",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "ADA_ECOLI",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P0A884",
+      "active_site_source_text": "ACT_SITE 146; /note=\"Nucleophile\"; /evidence=\"ECO:0000255|HAMAP-Rule:MF_00008, ECO:0000269|PubMed:2223754, ECO:0000269|PubMed:8973201, ECO:0000269|PubMed:9416600\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=dUMP + (6R)-5,10-methylene-5,6,7,8-tetrahydrofolate = 7,8-dihydrofolate + dTMP; Xref=Rhea:RHEA:12104, ChEBI:CHEBI:15636, ChEBI:CHEBI:57451, ChEBI:CHEBI:63528, ChEBI:CHEBI:246422; EC=2.1.1.45; Evidence={ECO:0000255|HAMAP-Rule:MF_00008, ECO:0000269|PubMed:2223754, ECO:0000269|PubMed:3286637, ECO:0000269|PubMed:9826509};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.45"
+      ],
+      "gene_names": "thyA b2827 JW2795",
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_id_count": 67,
+      "pdb_ids": [
+        "1AIQ",
+        "1AJM",
+        "1AN5",
+        "1AOB",
+        "1AXW",
+        "1BDU",
+        "1BID",
+        "1BJG",
+        "1BQ1",
+        "1BQ2",
+        "1DDU",
+        "1DNA"
+      ],
+      "pre_outcome_selection_rank": 13,
+      "primary_ec": "2.1.1.45",
+      "protein_name": "Thymidylate synthase (TS) (TSase) (EC 2.1.1.45)",
+      "query_result_rank": 184,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0A884",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "TYSY_ECOLI",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P0A8I5",
+      "active_site_source_text": "ACT_SITE 144; /evidence=\"ECO:0000250|UniProtKB:Q12009\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=guanosine(46) in tRNA + S-adenosyl-L-methionine = N(7)-methylguanosine(46) in tRNA + S-adenosyl-L-homocysteine; Xref=Rhea:RHEA:42708, Rhea:RHEA-COMP:10188, Rhea:RHEA-COMP:10189, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:74269, ChEBI:CHEBI:74480; EC=2.1.1.33; Evidence={ECO:0000255|HAMAP-Rule:MF_01057, ECO:0000269|PubMed:12730187};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.33"
+      ],
+      "gene_names": "trmB trmI yggH b2960 JW2927",
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_id_count": 3,
+      "pdb_ids": [
+        "3DXX",
+        "3DXY",
+        "3DXZ"
+      ],
+      "pre_outcome_selection_rank": 14,
+      "primary_ec": "2.1.1.33",
+      "protein_name": "tRNA (guanine-N(7)-)-methyltransferase (EC 2.1.1.33) (tRNA (guanine(46)-N(7))-methyltransferase) (tRNA(m7G46)-methyltransferase)",
+      "query_result_rank": 185,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0A8I5",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "TRMB_ECOLI",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P0C0R7",
+      "active_site_source_text": "ACT_SITE 164; /note=\"Proton acceptor\"; /evidence=\"ECO:0000269|PubMed:12181314\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=uridine(2552) in 23S rRNA + S-adenosyl-L-methionine = 2'-O-methyluridine(2552) in 23S rRNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:42720, Rhea:RHEA-COMP:10202, Rhea:RHEA-COMP:10203, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:65315, ChEBI:CHEBI:74478; EC=2.1.1.166; Evidence={ECO:0000269|PubMed:10748051};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.166"
+      ],
+      "gene_names": "rlmE ftsJ mrsF rrmJ b3179 JW3146",
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_id_count": 2,
+      "pdb_ids": [
+        "1EIZ",
+        "1EJ0"
+      ],
+      "pre_outcome_selection_rank": 15,
+      "primary_ec": "2.1.1.166",
+      "protein_name": "Ribosomal RNA large subunit methyltransferase E (EC 2.1.1.166) (23S rRNA Um2552 methyltransferase) (Cell division protein FtsJ) (rRNA (uridine-2'-O-)-methyltransferase)",
+      "query_result_rank": 188,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0C0R7",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "RLME_ECOLI",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q12400",
+      "active_site_source_text": "ACT_SITE 210; /note=\"Proton acceptor\"; /evidence=\"ECO:0000269|PubMed:24081582\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=guanosine(9) in tRNA + S-adenosyl-L-methionine = N(1)-methylguanosine(9) in tRNA + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:43156, Rhea:RHEA-COMP:10367, Rhea:RHEA-COMP:10368, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:73542, ChEBI:CHEBI:74269; EC=2.1.1.221; Evidence={ECO:0000269|PubMed:12702816, ECO:0000269|PubMed:23793893};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.221"
+      ],
+      "gene_names": "TRM10 YOL093W O0926",
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "pdb_id_count": 1,
+      "pdb_ids": [
+        "4JWJ"
+      ],
+      "pre_outcome_selection_rank": 16,
+      "primary_ec": "2.1.1.221",
+      "protein_name": "tRNA (guanine(9)-N1)-methyltransferase (EC 2.1.1.221) (tRNA methyltransferase 10) (tRNA(m1G9)-methyltransferase) (tRNA(m1G9)MTase)",
+      "query_result_rank": 214,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q12400",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "TRM10_YEAST",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q27869",
+      "active_site_source_text": "ACT_SITE 60; /evidence=\"ECO:0000269|PubMed:14596598\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=[protein]-L-isoaspartate + S-adenosyl-L-methionine = [protein]-L-isoaspartate alpha-methyl ester + S-adenosyl-L-homocysteine; Xref=Rhea:RHEA:12705, Rhea:RHEA-COMP:12143, Rhea:RHEA-COMP:12144, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:90596, ChEBI:CHEBI:90598; EC=2.1.1.77; Evidence={ECO:0000269|PubMed:14596598}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:12706; Evidence={ECO:0000305|PubMed:14596598};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.77"
+      ],
+      "gene_names": "Pcmt PIAM CG2152",
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "pdb_id_count": 1,
+      "pdb_ids": [
+        "1R18"
+      ],
+      "pre_outcome_selection_rank": 17,
+      "primary_ec": "2.1.1.77",
+      "protein_name": "Protein-L-isoaspartate(D-aspartate) O-methyltransferase (PIMT) (EC 2.1.1.77) (L-isoaspartyl protein carboxyl methyltransferase) (Protein L-isoaspartyl/D-aspartyl methyltransferase) (Protein-beta-aspartate methyltransferase) (dPIMT)",
+      "query_result_rank": 216,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q27869",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "PIMT_DROME",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "Q63009",
+      "active_site_source_text": "ACT_SITE 144; /evidence=\"ECO:0000269|PubMed:12737817\"; ACT_SITE 153; /evidence=\"ECO:0000269|PubMed:12737817\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=L-arginyl-[protein] + 2 S-adenosyl-L-methionine = N(omega),N(omega)-dimethyl-L-arginyl-[protein] + 2 S-adenosyl-L-homocysteine + 2 H(+); Xref=Rhea:RHEA:48096, Rhea:RHEA-COMP:10532, Rhea:RHEA-COMP:11991, ChEBI:CHEBI:15378, ChEBI:CHEBI:29965, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:61897; EC=2.1.1.319; Evidence={ECO:0000269|PubMed:19405910}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:48097; Evidence={ECO:0000305|PubMed:19405910}; CATALYTIC ACTIVITY: Reaction=L-arginyl-[protein] + S-adenosyl-L-methionine = N(omega)-methyl-L-arginyl-[protein] + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:48100, Rhea:RHEA-COMP:10532, Rhea:RHEA-COMP:11990, ChEBI:CHEBI:15378, ChEBI:CHEBI:29965, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:65280; Evidence={ECO:0000269|PubMed:19405910}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:48101; Evidence={ECO:0000305|PubMed:19405910}; CATALYTIC ACTIVITY: Reaction=N(omega)-methyl-L-arginyl-[protein] + S-adenosyl-L-methionine = N(omega),N(omega)-dimethyl-L-arginyl-[protein] + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:48104, Rhea:RHEA-COMP:11990, Rhea:RHEA-COMP:11991, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:61897, ChEBI:CHEBI:65280; Evidence={ECO:0000269|PubMed:19405910}; PhysiologicalDirection=left-to-right; Xref=Rhea:RHEA:48105; Evidence={ECO:0000305|PubMed:19405910};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.319"
+      ],
+      "gene_names": "Prmt1 Hrmt1l2",
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_id_count": 4,
+      "pdb_ids": [
+        "1OR8",
+        "1ORH",
+        "1ORI",
+        "3Q7E"
+      ],
+      "pre_outcome_selection_rank": 18,
+      "primary_ec": "2.1.1.319",
+      "protein_name": "Protein arginine N-methyltransferase 1 (EC 2.1.1.319) (Histone-arginine N-methyltransferase PRMT1)",
+      "query_result_rank": 228,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q63009",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "ANM1_RAT",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O50008",
+      "active_site_source_text": "ACT_SITE 701; /note=\"Proton donor\"; /evidence=\"ECO:0000250|UniProtKB:P82610\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=5-methyltetrahydropteroyltri-L-glutamate + L-homocysteine = tetrahydropteroyltri-L-glutamate + L-methionine; Xref=Rhea:RHEA:21196, ChEBI:CHEBI:57844, ChEBI:CHEBI:58140, ChEBI:CHEBI:58199, ChEBI:CHEBI:58207; EC=2.1.1.14; Evidence={ECO:0000269|PubMed:15024005};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.14"
+      ],
+      "gene_names": "MS1 CIMS At5g17920 MPI7.9",
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_id_count": 4,
+      "pdb_ids": [
+        "1U1H",
+        "1U1J",
+        "1U1U",
+        "1U22"
+      ],
+      "pre_outcome_selection_rank": 19,
+      "primary_ec": "2.1.1.14",
+      "protein_name": "5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase 1 (EC 2.1.1.14) (Cobalamin-independent methionine synthase 1) (AtMS1) (Vitamin-B12-independent methionine synthase 1)",
+      "query_result_rank": 275,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O50008",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "METE1_ARATH",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "P0A9H7",
+      "active_site_source_text": "ACT_SITE 354; /evidence=\"ECO:0000305|PubMed:1445840\"",
+      "catalytic_activity_source_text": "CATALYTIC ACTIVITY: Reaction=a 1-acyl-2-(9Z)-enoyl-sn-glycero-3-phospholipid + S-adenosyl-L-methionine = a 1-acyl-2-(9-cyclopronane)-acyl-sn-glycero-3-phospholipid + S-adenosyl-L-homocysteine + H(+); Xref=Rhea:RHEA:11988, ChEBI:CHEBI:15378, ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:76593, ChEBI:CHEBI:76594; EC=2.1.1.79; Evidence={ECO:0000269|PubMed:1445840, ECO:0000269|PubMed:30057024};",
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.79"
+      ],
+      "gene_names": "cfa cdfA b1661 JW1653",
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_id_count": 1,
+      "pdb_ids": [
+        "6BQC"
+      ],
+      "pre_outcome_selection_rank": 20,
+      "primary_ec": "2.1.1.79",
+      "protein_name": "Cyclopropane-fatty-acyl-phospholipid synthase (CFA synthase) (Cyclopropane fatty acid synthase) (EC 2.1.1.79)",
+      "query_result_rank": 278,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0A9H7",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.1.1.x row with UniProt catalytic activity, active-site annotation, and at least one PDB cross-reference; deterministic cap max two rows per primary EC.",
+      "uniprot_entry_name": "CFA_ECOLI",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    }
+  ]
+}

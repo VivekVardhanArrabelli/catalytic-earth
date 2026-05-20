@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "artifact_id": "v3_epk_policy_harness_late_dirty_output_receipt_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T20:36:00Z",
+    "curated_label_registry_edited": false,
+    "decision_change_from_latest_main_synthesis": false,
+    "fingerprint_registry_edited": false,
+    "json_validation_error_count": 0,
+    "late_dirty_json_file_count": 15,
+    "latest_main_synthesis_artifact": "artifacts/v3_epk_research_lane_synthesis_20260520.json",
+    "latest_main_synthesis_sha256": "459be97b7ff7908a66a4598ded01abc86c79bb9a6901cb4b42db45290b3673ce",
+    "method": "epk_policy_harness_late_dirty_output_receipt",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_claim_allowed": false,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "sibling_worktree": "../catalytic-earth-epk-policy-harness",
+    "source_lane_id": "epk_policy_harness",
+    "source_outputs_committed_or_pushed": false
+  },
+  "findings": [
+    {
+      "finding_id": "anp_terminal_gamma_chemcomp_surface",
+      "candidate_count_reviewed": 12,
+      "decision_counts": {
+        "review_only_abstain": 6
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "policy_frozen_review_only",
+      "summary": "Fresh ANP chemcomp terminal-gamma surface remained review-only; six tranche rows abstained and no counterexample was recorded."
+    },
+    {
+      "finding_id": "amp_pnp_fulltext_surface",
+      "candidate_count_reviewed": 12,
+      "decision_counts": {
+        "review_only_abstain": 6
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "search_surface_exhausted",
+      "summary": "AMP-PNP spelling surface produced no usable production signal; six tranche rows abstained and the bounded surface was exhausted."
+    },
+    {
+      "finding_id": "amppnp_alias_fulltext_surface",
+      "candidate_count_reviewed": 10,
+      "decision_counts": {
+        "review_only_abstain": 6
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "search_surface_exhausted",
+      "summary": "AMPPNP alias surface likewise exhausted as review-only, with six abstentions and zero expected-decision mismatches."
+    },
+    {
+      "finding_id": "cross_ligand_sibling_control_contract_stress",
+      "decision_counts": {
+        "review_only_abstain": 8
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "policy_frozen_review_only",
+      "summary": "Two late cross-ligand sibling-control contract stresses each produced four abstentions; no labels or fingerprints changed."
+    }
+  ],
+  "late_dirty_files": [
+    {
+      "created_at": "2026-05-20T20:27:56Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T202756Z.json",
+      "sha256": "2fe8410d6d0585054046fb4a6cbffbe93da055fbe7c57b98cf8a61a3e5413927"
+    },
+    {
+      "created_at": "2026-05-20T20:28:49+00:00",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T202756Z_result.json",
+      "primary_outcome": "policy_frozen_review_only",
+      "sha256": "658b02d9bda4b039065857ffbc728e5c0a156f554c7fee297515e848f8bcfb68"
+    },
+    {
+      "created_at": "2026-05-20T20:27:56Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T202756Z_tranche.json",
+      "sha256": "9a7c730ed3546afe2974e091d8459baa80fb57cd8368f86ab26940e790a877c0"
+    },
+    {
+      "created_at": "2026-05-20T20:29:14Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T202914Z.json",
+      "sha256": "8fbf01f7859e0cd94f31452132f1dbe83631bcf827c31781f8bf09297ceea62b"
+    },
+    {
+      "created_at": "2026-05-20T20:32:49+00:00",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T202914Z_result.json",
+      "primary_outcome": "policy_frozen_review_only",
+      "sha256": "20d59b5b94e6a2b710e4a17778d1f62b2ffac2451b4df5c8a41cf75446c92193"
+    },
+    {
+      "created_at": "2026-05-20T20:29:14Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T202914Z_tranche.json",
+      "sha256": "69d30c00e915ac51f0520f87afc20c93aa3cb45fa9ec1f090ace008656a20847"
+    },
+    {
+      "created_at": "2026-05-20T20:27:56Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "sha256": "ffe1751a7df62294ed8e34e008a3425df39166b4c10c0177445f162e7e5d1562"
+    },
+    {
+      "created_at": "2026-05-20T20:28:36+00:00",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z_result.json",
+      "primary_outcome": "search_surface_exhausted",
+      "sha256": "66589be74d02db54980c0970939d90dbf72b4b9025b416cd19836080c2f2d295"
+    },
+    {
+      "created_at": "2026-05-20T20:27:56Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z_tranche.json",
+      "sha256": "3eb8662d6d40d67c38074cbeed8644e08b27e1fa06154567e453ba7e03280612"
+    },
+    {
+      "created_at": "2026-05-20T20:29:14Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z.json",
+      "sha256": "fc5bf2b91e2d6d4070f2bceb7e5266245a98d71ba695be9127d78efa2db1f12c"
+    },
+    {
+      "created_at": "2026-05-20T20:29:40+00:00",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z_result.json",
+      "primary_outcome": "search_surface_exhausted",
+      "sha256": "425dce61b0906fa9c3f877acc3ef0c3218c5901217b5974b69987fec04257ea0"
+    },
+    {
+      "created_at": "2026-05-20T20:29:14Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z_tranche.json",
+      "sha256": "09642c8ac7ab853279cd812a5da16d0210f018c3d3a7ab9b7287a2ec90b0e8bd"
+    },
+    {
+      "created_at": "2026-05-20T20:27:56Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z.json",
+      "sha256": "595cc69cb0daffab9dfeb5d37a7a5c15112077a2297e74804fac2a060857412a"
+    },
+    {
+      "created_at": "2026-05-20T20:28:36+00:00",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z_result.json",
+      "primary_outcome": "policy_frozen_review_only",
+      "sha256": "7721a51a0db48d7e790fccc5b3800ff5f9687e68d64ea691e8688439e04d0282"
+    },
+    {
+      "created_at": "2026-05-20T20:27:56Z",
+      "json_valid": true,
+      "path": "../catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z_tranche.json",
+      "sha256": "0e3774b49ddb2656d09889bb5d4f20e07e398d0cc646ff8818ec353f9910c785"
+    }
+  ],
+  "synthesis_conclusion": {
+    "main_loop_decision": "no_decision_change_do_not_resume_epk_as_default_task",
+    "production_activation_decision": "no_go",
+    "reason": "Late policy-harness dirty outputs add bounded ANP/AMP-PNP contract stress and search-surface exhaustion evidence, but no production scorer, threshold calibration, source-free role policy, registry edit, fingerprint edit, or label import.",
+    "requires_full_resynthesis_next_run": true
+  }
+}

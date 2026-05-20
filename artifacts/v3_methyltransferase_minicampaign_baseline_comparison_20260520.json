@@ -1,0 +1,184 @@
+{
+  "caveats": [
+    "No superiority claim is permitted because only EC/keyword routing is informative on this pre-scoring terminal surface.",
+    "The artifact prevents a source-complete but uncovered external lane from being mistaken for import-ready out-of-scope evidence.",
+    "Future methyltransferase work would require a separate review-only family-readiness packet and gated source-free axes; it cannot use this mini-campaign as production performance evidence."
+  ],
+  "frozen_rows": [
+    {
+      "accession": "O14744",
+      "primary_ec": "2.1.1.320",
+      "protein_name": "Protein arginine N-methyltransferase 5 (PRMT5) (EC 2.1.1.320) (72 kDa ICln-binding protein) (Histone-arginine N-methyltransferase PRMT5) (Jak-binding protein 1) (Shk1 kinase-binding protein 1 homolog) (SKB1 homolog) (SKB1Hs) [Cleaved into: Protein arginine N-methyltransferase 5, N-terminally processed]",
+      "row_id": "uniprot:O14744"
+    },
+    {
+      "accession": "P16455",
+      "primary_ec": "2.1.1.63",
+      "protein_name": "Methylated-DNA--protein-cysteine methyltransferase (EC 2.1.1.63) (6-O-methylguanine-DNA methyltransferase) (MGMT) (O-6-methylguanine-DNA-alkyltransferase)",
+      "row_id": "uniprot:P16455"
+    },
+    {
+      "accession": "Q8IY81",
+      "primary_ec": "2.1.1.-",
+      "protein_name": "pre-rRNA 2'-O-ribose RNA methyltransferase FTSJ3 (EC 2.1.1.-) (Protein ftsJ homolog 3) (Putative rRNA methyltransferase 3)",
+      "row_id": "uniprot:Q8IY81"
+    },
+    {
+      "accession": "Q96P11",
+      "primary_ec": "2.1.1.-",
+      "protein_name": "28S rRNA (cytosine-C(5))-methyltransferase (EC 2.1.1.-) (NOL1-related protein) (NOL1R) (NOL1/NOP2/Sun domain family member 5) (Williams-Beuren syndrome chromosomal region 20A protein)",
+      "row_id": "uniprot:Q96P11"
+    },
+    {
+      "accession": "Q9UET6",
+      "primary_ec": "2.1.1.205",
+      "protein_name": "tRNA (cytidine(32)/guanosine(34)-2'-O)-methyltransferase (EC 2.1.1.205) (2'-O-ribose RNA methyltransferase TRM7 homolog) (Protein ftsJ homolog 1)",
+      "row_id": "uniprot:Q9UET6"
+    },
+    {
+      "accession": "O14717",
+      "primary_ec": "2.1.1.204",
+      "protein_name": "tRNA (cytosine(38)-C(5))-methyltransferase (EC 2.1.1.204) (DNA (cytosine-5)-methyltransferase-like protein 2) (Dnmt2) (DNA methyltransferase homolog HsaIIP) (DNA MTase homolog HsaIIP) (M.HsaIIP) (PuMet)",
+      "row_id": "uniprot:O14717"
+    },
+    {
+      "accession": "Q99873",
+      "primary_ec": "2.1.1.319",
+      "protein_name": "Protein arginine N-methyltransferase 1 (EC 2.1.1.319) (Histone-arginine N-methyltransferase PRMT1) (Interferon receptor 1-bound protein 4)",
+      "row_id": "uniprot:Q99873"
+    },
+    {
+      "accession": "P26358",
+      "primary_ec": "2.1.1.37",
+      "protein_name": "DNA (cytosine-5)-methyltransferase 1 (Dnmt1) (EC 2.1.1.37) (CXXC-type zinc finger protein 9) (DNA methyltransferase HsaI) (DNA MTase HsaI) (M.HsaI) (MCMT)",
+      "row_id": "uniprot:P26358"
+    },
+    {
+      "accession": "Q8N1G2",
+      "primary_ec": "2.1.1.57",
+      "protein_name": "Cap-specific mRNA (nucleoside-2'-O-)-methyltransferase 1 (EC 2.1.1.57) (Cap methyltransferase 1) (Cap1 2'O-ribose methyltransferase 1) (MTr1) (hMTr1) (FtsJ methyltransferase domain-containing protein 2) (Interferon-stimulated gene 95 kDa protein) (ISG95)",
+      "row_id": "uniprot:Q8N1G2"
+    },
+    {
+      "accession": "Q9UBC3",
+      "primary_ec": "2.1.1.37",
+      "protein_name": "DNA (cytosine-5)-methyltransferase 3B (Dnmt3b) (EC 2.1.1.37) (DNA methyltransferase HsaIIIB) (DNA MTase HsaIIIB) (M.HsaIIIB)",
+      "row_id": "uniprot:Q9UBC3"
+    },
+    {
+      "accession": "P04818",
+      "primary_ec": "2.1.1.45",
+      "protein_name": "Thymidylate synthase (TS) (TSase) (EC 2.1.1.45)",
+      "row_id": "uniprot:P04818"
+    },
+    {
+      "accession": "P06134",
+      "primary_ec": "2.1.1.63",
+      "protein_name": "Bifunctional transcriptional activator/DNA repair enzyme Ada (Regulatory protein of adaptive response) [Includes: Methylphosphotriester-DNA--protein-cysteine S-methyltransferase (EC 2.1.1.n11) (Methylphosphotriester-DNA methyltransferase); Methylated-DNA--protein-cysteine methyltransferase (EC 2.1.1.63) (O6-methylguanine-DNA alkyltransferase)]",
+      "row_id": "uniprot:P06134"
+    },
+    {
+      "accession": "P0A884",
+      "primary_ec": "2.1.1.45",
+      "protein_name": "Thymidylate synthase (TS) (TSase) (EC 2.1.1.45)",
+      "row_id": "uniprot:P0A884"
+    },
+    {
+      "accession": "P0A8I5",
+      "primary_ec": "2.1.1.33",
+      "protein_name": "tRNA (guanine-N(7)-)-methyltransferase (EC 2.1.1.33) (tRNA (guanine(46)-N(7))-methyltransferase) (tRNA(m7G46)-methyltransferase)",
+      "row_id": "uniprot:P0A8I5"
+    },
+    {
+      "accession": "P0C0R7",
+      "primary_ec": "2.1.1.166",
+      "protein_name": "Ribosomal RNA large subunit methyltransferase E (EC 2.1.1.166) (23S rRNA Um2552 methyltransferase) (Cell division protein FtsJ) (rRNA (uridine-2'-O-)-methyltransferase)",
+      "row_id": "uniprot:P0C0R7"
+    },
+    {
+      "accession": "Q12400",
+      "primary_ec": "2.1.1.221",
+      "protein_name": "tRNA (guanine(9)-N1)-methyltransferase (EC 2.1.1.221) (tRNA methyltransferase 10) (tRNA(m1G9)-methyltransferase) (tRNA(m1G9)MTase)",
+      "row_id": "uniprot:Q12400"
+    },
+    {
+      "accession": "Q27869",
+      "primary_ec": "2.1.1.77",
+      "protein_name": "Protein-L-isoaspartate(D-aspartate) O-methyltransferase (PIMT) (EC 2.1.1.77) (L-isoaspartyl protein carboxyl methyltransferase) (Protein L-isoaspartyl/D-aspartyl methyltransferase) (Protein-beta-aspartate methyltransferase) (dPIMT)",
+      "row_id": "uniprot:Q27869"
+    },
+    {
+      "accession": "Q63009",
+      "primary_ec": "2.1.1.319",
+      "protein_name": "Protein arginine N-methyltransferase 1 (EC 2.1.1.319) (Histone-arginine N-methyltransferase PRMT1)",
+      "row_id": "uniprot:Q63009"
+    },
+    {
+      "accession": "O50008",
+      "primary_ec": "2.1.1.14",
+      "protein_name": "5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase 1 (EC 2.1.1.14) (Cobalamin-independent methionine synthase 1) (AtMS1) (Vitamin-B12-independent methionine synthase 1)",
+      "row_id": "uniprot:O50008"
+    },
+    {
+      "accession": "P0A9H7",
+      "primary_ec": "2.1.1.79",
+      "protein_name": "Cyclopropane-fatty-acyl-phospholipid synthase (CFA synthase) (Cyclopropane fatty acid synthase) (EC 2.1.1.79)",
+      "row_id": "uniprot:P0A9H7"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_methyltransferase_minicampaign_baseline_comparison_20260520",
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json",
+    "candidate_freeze_sha256": "11ec0c650a4950651dc1c90f0f6449627f9af412f5e33e40ae1a1fa2d6fe2eda",
+    "created_at": "2026-05-20T20:17:20Z",
+    "decision_packet_artifact": "artifacts/v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json",
+    "decision_packet_sha256": "d3235fb79094b0f2d14532b754c5eadae97184bf7697afaf400a1c34f267a3bd",
+    "frozen_row_count": 20,
+    "method": "methyltransferase_minicampaign_no_claim_baseline_comparison",
+    "ready_for_label_import": false,
+    "review_only": true,
+    "sequence_baseline_diagnostic_artifact": "artifacts/v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+    "sequence_baseline_diagnostic_sha256": "10b328333152a028c6a4142e02de294948604eccc2451297c41417916ffc0b0d",
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "current_geometry_retrieval_triage": {
+      "non_abstention_count_at_0_4115": 0,
+      "not_scored_reason": "terminal pre-scoring uncovered mechanism-lane rejection",
+      "row_count": 20,
+      "scored_row_count": 0,
+      "text_or_label_fields_used_for_score_count": 0
+    },
+    "deterministic_kmer_nearest_neighbor": {
+      "caveat": "Diagnostic only; sequence-neighbor evidence does not remove the uncovered methyltransferase mechanism-lane blocker.",
+      "computed_row_count": 20,
+      "near_neighbor_alert_count": 2,
+      "near_neighbor_alert_threshold_jaccard": 0.35,
+      "reference_sequence_count": 737,
+      "row_count": 20,
+      "terminal_decision_changed_by_sequence_baseline": false
+    },
+    "ec_keyword_lane_router": {
+      "caveat": "This baseline trivially routes EC 2.1.1.x rows to methyltransferase context but cannot provide source-free geometry, duplicate controls, inverse-gate scores, or import readiness.",
+      "current_production_fingerprint_match_count": 0,
+      "detects_uncovered_mechanism_lane": true,
+      "methyltransferase_keyword_or_ec_hits": 20,
+      "row_count": 20
+    },
+    "esm_sidecar_sample": {
+      "computed_row_count": 0,
+      "not_computed_reason": "no ESM sidecar sample requested for this pre-scoring terminal surface",
+      "row_count": 20
+    },
+    "foldseek_structural_sidecar": {
+      "computed_row_count": 0,
+      "not_computed_reason": "current-countable Foldseek screening is unnecessary after pre-scoring terminal uncovered-lane rejection",
+      "row_count": 20
+    }
+  },
+  "task_definition": {
+    "positive_claim_scope": "none",
+    "task": "diagnose whether simple baselines would detect why this external methyltransferase surface should not enter current 8-fingerprint scoring/import surfaces",
+    "terminal_decision_scope": "pre-scoring uncovered mechanism-lane rejection"
+  }
+}

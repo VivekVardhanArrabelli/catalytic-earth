@@ -178,6 +178,64 @@ sequence, current-countable structural, and terminal decision outcomes. They
 are all terminal review-only rejections by current-countable structural
 duplicate signal, with 0 import-ready rows. A future prospective campaign needs
 genuinely new external sourcing or a different frozen surface before scoring.
+Current methyltransferase external mini-campaign scope:
+`artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
+freezes a new 20-row Swiss-Prot EC 2.1.1.x surface before outcome scoring,
+requiring catalytic-activity text, active-site annotation, and at least one PDB
+cross-reference while excluding prior external candidate pools and imported
+hard negatives. `artifacts/v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json`
+closes all 20 rows as `terminal_rejection_uncovered_mechanism_lane`: the
+current 8-fingerprint universe and `0.4115` floor are recorded, but 0 rows are
+scored because methyltransferase chemistry is outside current production
+fingerprints and covered import-counterevidence lanes. The matching
+`artifacts/v3_methyltransferase_minicampaign_baseline_comparison_20260520.json`
+is diagnostic only; EC/keyword routing detects the lane, and
+`artifacts/v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json`
+adds a deterministic 5-mer nearest-current-reference check with two crude
+near-neighbor alerts across 20 rows. Geometry, ESM, and Foldseek are not valid
+performance evidence on this pre-scoring terminal surface, and the sequence
+diagnostic does not change any terminal decision.
+Current ASKHA readiness scope:
+`artifacts/v3_askha_family_readiness_packet_20260520.json` is review-only and
+not a production fingerprint. It uses four expert-supported ASKHA boundary rows
+from the ATP/phosphoryl-transfer family expansion and treats sibling-control
+evidence only as falsification/counteraxis context. ASKHA still has 0 countable
+positive seeds, 0 source-free-axis-ready rows, no calibrated threshold, and no
+external hard-negative re-audit under an expanded fingerprint universe. The
+next admissible step is a frozen ASKHA-vs-ATP-family control tranche before any
+new axis scoring.
+`artifacts/v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json`
+now freezes that next step as 14 review-only rows: four ASKHA boundary rows,
+four current production hydrolase controls, and six ATP-family
+countercontrols. It is preregistration only and authorizes no production
+scoring, threshold, label import, registry edit, or fingerprint expansion. The
+next ASKHA work must compute only the frozen local axes and duplicate screens
+before terminal decisions.
+Current main-loop decision-register scope:
+`artifacts/v3_main_loop_small_win_decision_register_20260520.json` is a
+review-only integration map for the run's small wins: ePK remains no-go, a
+late policy-harness dirty-output receipt has no decision change, a fresh
+remote ePK push synthesis keeps ePK research-lane-only with a reciprocal
+entity-context counterexample, methyltransferase is terminal by uncovered
+mechanism lane, methyltransferase baselines are diagnostic only, ASKHA is not
+fingerprint-ready, and the ASKHA control tranche is frozen before scoring. It
+does not create import evidence, performance superiority evidence, production
+scoring, or a registry edit.
+Current ePK late-output receipt scope:
+`artifacts/v3_epk_policy_harness_late_dirty_output_receipt_20260520.json`
+validates 15 unpushed dirty policy-harness JSON outputs that appeared after
+the latest main synthesis. It is not a replacement for
+`artifacts/v3_epk_research_lane_synthesis_20260520.json`, and it does not
+reopen ePK in the main loop. Its only effect is to preserve a compact
+review-only receipt for the next full research-lane synthesis.
+Current ePK fresh-push synthesis scope:
+`artifacts/v3_epk_fresh_research_lane_push_synthesis_20260520.json` integrates
+fresh remote ePK lane pushes after the latest main synthesis. It keeps the
+positive-evidence handoff updates as no-change context and records the
+substrate-role-identity lane's reciprocal entity-context counterexample:
+recovering folded Tyr positives `9UUR`/`9UUX` also admits `9UW4`. The exact
+next ePK experiment is research-lane-only local burial/solvent-exposure
+probing, not main-loop production activation.
 Current Schiff-base lyase readiness scope:
 `artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json` is review-only
 and not a production fingerprint. It uses Q9BXD5 as the only positive-like row,

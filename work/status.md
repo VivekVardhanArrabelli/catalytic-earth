@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 227
-- Measured elapsed time: 6896.7 minutes (114.95 hours)
+- Entries: 229
+- Measured elapsed time: 6939.5 minutes (115.66 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,8 +14,8 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 93.0 measured minutes (1.55 hours)
-- post-infra-science: 1659.0 measured minutes (27.65 hours)
+- ops: 94.0 measured minutes (1.57 hours)
+- post-infra-science: 1700.7 measured minutes (28.34 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2628
-- Evidence references logged: 2137
+- Artifact references logged: 2644
+- Evidence references logged: 2152
 
 ## Recent Entries
-
-### 2026-05-20T17:19:03.090362+00:00 - post-infra-science
-
-- Task: Glycoside hydrolase tranche baseline comparison
-- Time mode: measured
-- Measured minutes: 2.033
-- Started: 2026-05-20T17:17:00Z
-- Ended: 2026-05-20T17:19:02Z
-- Artifacts: artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: baseline comparison covers terminal axis packet EC keyword MMseqs2 deterministic 5-mer ESM-2 sidecars and Foldseek all-30 external sidecar, no superiority claim permitted, deterministic 5-mer near-neighbor alerts 0, external Foldseek no-signal 5 of 5, ESM-2 sidecars available for 2 of 5 external rows, targeted baseline artifact test passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
-
-### 2026-05-20T17:20:38.990082+00:00 - ops
-
-- Task: Final validation for small-win run
-- Time mode: measured
-- Measured minutes: 1.0
-- Started: 2026-05-20T17:19:38Z
-- Ended: 2026-05-20T17:20:38Z
-- Artifacts: work/progress_log.jsonl, work/status.md
-- Evidence: full 694-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, compileall passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation; safety rails preserved.
 
 ### 2026-05-20T18:22:16.234314+00:00 - post-infra-science
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: 143 ePK lane JSON files and 4 JSONL ledgers validated with 0 errors, 36 fresh lane JSON files since prior synthesis integrated as review-only evidence, terminal-gamma geometry lead sibling-control stress all-abstained 12 of 12 with 0 mismatches and 0 counterexamples, ePK remains review-only and production activation no-go, targeted synthesis test passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
+
+### 2026-05-20T20:55:03.996810+00:00 - post-infra-science
+
+- Task: Main-loop small wins: methyltransferase, ASKHA, ePK receipts
+- Time mode: measured
+- Measured minutes: 41.717
+- Started: 2026-05-20T20:13:02Z
+- Ended: 2026-05-20T20:54:45Z
+- Artifacts: artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json, artifacts/v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json, artifacts/v3_methyltransferase_minicampaign_baseline_comparison_20260520.json, artifacts/v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json, artifacts/v3_methyltransferase_minicampaign_sequence_baseline_external_20260520.fasta, artifacts/v3_askha_family_readiness_packet_20260520.json, artifacts/v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json, artifacts/v3_epk_policy_harness_late_dirty_output_receipt_20260520.json, artifacts/v3_epk_fresh_research_lane_push_synthesis_20260520.json, artifacts/v3_main_loop_small_win_decision_register_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: 20-row Swiss-Prot methyltransferase surface frozen before scoring, 20 of 20 methyltransferase rows terminal review-only rejections by uncovered mechanism lane, deterministic 5-mer baseline checked 20 rows against 737 current references with 2 alerts and no decision change, ASKHA packet records 4 boundary rows 0 countable positives and no production promotion, ASKHA control tranche freezes 14 rows before scoring, 15 late policy-harness dirty JSON outputs validated with no decision change, fresh ePK substrate-role push integrated 9UW4 reciprocal entity-context counterexample and next research-only experiment, full 720-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall JSON validation and git diff check passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
+
+### 2026-05-20T20:56:05.517765+00:00 - ops
+
+- Task: Final validation for main-loop small wins
+- Time mode: measured
+- Measured minutes: 1.0
+- Started: 2026-05-20T20:54:45Z
+- Ended: 2026-05-20T20:55:45Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: post-status full 720-test unit discovery passed, post-status validate passed with 682 labels and 8 fingerprints, post-status artifact migration dry-run passed with removal_allowed=0, JSON validation and git diff check passed before commit
+- Notes: Recorded after regenerating status so final verification is reflected.
 
 ## Expectation Updates
 
@@ -301,6 +301,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T19:49:09.571418+00:00: The previous fallback queue no longer has an unscored family tranche; all six families are terminal review-only no-go surfaces.
 - 2026-05-20T19:49:17.503329+00:00: Small-win tranche run is ready to commit and push; next work should avoid reopening the closed six-family queue unless new evidence appears.
 - 2026-05-20T20:13:02.164962+00:00: Commit this ePK integration, then return the main loop to genuinely new external sourcing or a new non-ePK family packet.
+- 2026-05-20T20:55:03.996810+00:00: Next main loop can score the frozen ASKHA tranche axes or start another genuinely new prospective external surface; ePK remains research-lane-only.
 
 ## Scope Adjustments
 
@@ -424,3 +425,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T19:12:53.814979+00:00: Fresh ePK lane output adds review-only peptide positives and product-state controls but preserves the no-go production decision.
 - 2026-05-20T19:49:09.571418+00:00: Six-family non-ePK small-win queue is now closed as review-only no-go evidence; next main loop should source a genuinely new external mini-campaign or choose a new family packet.
 - 2026-05-20T20:13:02.164962+00:00: ePK synthesis now includes terminal-gamma lead/control stress and same-author-chain pressure while preserving no-go production scope.
+- 2026-05-20T20:55:03.996810+00:00: Main loop closed a new prospective external methyltransferase terminal-failure win, added ASKHA readiness plus a frozen ASKHA-vs-ATP-family tranche, and kept new ePK lane evidence research-only.
