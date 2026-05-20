@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 200
-- Measured elapsed time: 6208.2 minutes (103.47 hours)
+- Entries: 201
+- Measured elapsed time: 6229.1 minutes (103.82 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 979.1 measured minutes (16.32 hours)
+- post-infra-science: 1000.0 measured minutes (16.67 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2282
-- Evidence references logged: 1813
+- Artifact references logged: 2294
+- Evidence references logged: 1824
 
 ## Recent Entries
-
-### 2026-05-19T17:07:27.421941+00:00 - post-infra-science
-
-- Task: ePK 5HVK protein-substrate diagnostic lane
-- Time mode: measured
-- Measured minutes: 34.883
-- Started: 2026-05-19T16:32:17Z
-- Ended: 2026-05-19T17:07:10Z
-- Artifacts: artifacts/v3_epk_ligand_specific_5hvk_prototype_control_rerun_1025.json, artifacts/v3_epk_5hvk_protein_substrate_axis_generalization_audit_1025.json, artifacts/v3_epk_protein_substrate_scorer_design_freeze_1025.json, artifacts/v3_epk_protein_substrate_calibration_diagnostic_1025.json, artifacts/v3_epk_source_authority_axis_replacement_gap_audit_1025.json, artifacts/v3_epk_local_chain_topology_acceptor_replacement_rule_1025.json, artifacts/v3_epk_5hvk_local_polymer_entity_role_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: startup 566-test unit discovery passed, final 580-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, validate-artifact-migration local-file guard passed with 108 rows and removal_allowed=0, external label invariants remained 682 total 212 seed 470 out_of_scope 3 external out_of_scope, 5HVK prototype rerun kept 20 sibling controls blocked and 3 imported external hard negatives abstained, protein-substrate diagnostic had 3 positive full-axis review rows and excluded ligand-analog m_csa640, source-authority gap audit kept production scoring blocked, local chain-topology rule passed current controls but still needs source-free 5HVK chain-role evidence, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external hard-negative scored re-audit or history rewrite.
 
 ### 2026-05-19T18:22:33.619263+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-20T00:29:56Z
 - Artifacts: artifacts/v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json, artifacts/v3_epk_substrate_mode_gap_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: startup 610-test unit discovery passed, final 616-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 225 tests, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, source-expansion peptide-role audit retained 1O6K and 1O6L with 0 nonpositive false hits, substrate-mode gap audit found 5 peptide-mode positives and 3 protein-substrate positive-like controls but no unified source-free substrate identity, pre-count remains blocked_review_only, counteraxis sufficiency keeps threshold_selection_decision do_not_select_threshold, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external-hard-negative scored re-audit or history rewrite.
+
+### 2026-05-20T01:03:47.000000+00:00 - post-infra-science
+
+- Task: ePK unified substrate identity probe
+- Time mode: measured
+- Measured minutes: 20.9
+- Started: 2026-05-20T00:42:53Z
+- Ended: 2026-05-20T01:03:47Z
+- Artifacts: artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: startup 616-test unit discovery passed, final 617-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, unified substrate identity probe hit 8 positive-like rows with 0 control false hits and 0 imported external feature non-abstentions, pre-count remains blocked_review_only, counteraxis sufficiency keeps threshold_selection_decision do_not_select_threshold, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external out_of_scope, compileall passed, jq empty passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external-hard-negative scored re-audit or history rewrite.
 
 ## Expectation Updates

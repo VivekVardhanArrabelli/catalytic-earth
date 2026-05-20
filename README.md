@@ -1355,21 +1355,23 @@ and source-free role-rule probe show that role-direction and acceptor identity
 still need local replacements. The acceptor-chain counter-axis passes current
 review controls only; the broader counter-axis and ligand-asymmetry role audit
 now pass broader review controls. The peptide acceptor-identity, peptide
-external hard-negative, outside-query source-expansion peptide-role, and
-substrate-mode gap audits pass as review-only diagnostics: five peptide-mode
-positives (`1O6K`, `1O6L`, `6Z3R`, `8OXM`, `8OXO`) and three protein-substrate
-positive-like controls clear current controls with 0 external non-abstentions,
-but unified source-free substrate identity remains missing. None of these is
-scorer or label evidence. Real
+external hard-negative, outside-query source-expansion peptide-role,
+substrate-mode gap, and unified substrate-identity rule probes pass as
+review-only diagnostics. The unified rule spans five peptide-mode positives
+(`1O6K`, `1O6L`, `6Z3R`, `8OXM`, `8OXO`), two text-free protein-substrate
+positives (`2PHK` and `1IR3`), and the heteromeric 5HVK protein-substrate lead
+while keeping current controls and the three imported external hard negatives
+at 0 non-abstentions. It excludes ligand-analog-only `m_csa:640` and remains
+uncalibrated, so none of these is scorer or label evidence. Real
 scorer design, the `m_csa:760`
 split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
 external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.
-The downstream counteraxis sufficiency decision now carries the same
-peptide-acceptor decision row: it passes current review controls and the
-external feature probe, but remains not production-admissible because it is a
-narrow peptide-chain rule rather than a general substrate-identity scorer.
+The downstream counteraxis sufficiency decision now carries the unified
+substrate-identity row as a current-control pass, but keeps
+`do_not_select_threshold` because the rule is not calibrated for production
+scoring or a real external hard-negative scored re-audit.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

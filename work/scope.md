@@ -152,10 +152,14 @@ The source-expansion peptide-role audit now makes that mixed outside-query
 surface machine-readable: `1O6K`/`1O6L` pass the source-free peptide role axis,
 `9L3M`/`9L3U` do not, and external hard-negative scoring remains closed. The
 substrate-mode gap audit combines five peptide-mode positives with three
-protein-substrate positive-like controls and still blocks scoring because a
-unified source-free substrate-identity rule is missing. The counteraxis
-sufficiency decision now records the source-expansion peptide-role row as a
-passing diagnostic row while preserving `do_not_select_threshold`.
+protein-substrate positive-like controls. A unified source-free
+substrate-identity rule probe now hits all eight positive-like rows across
+those modes, keeps current controls and the three imported external hard
+negatives at 0 feature non-abstentions, and excludes ligand-analog-only
+`m_csa:640`. It remains review-only: threshold calibration, broad stress
+controls, a real external scored re-audit, and registry/factory extension are
+still closed. The counteraxis sufficiency decision now records that unified
+rule as a passing diagnostic row while preserving `do_not_select_threshold`.
 
 ## Time Calibration Rule
 

@@ -92,6 +92,29 @@
         "1O6K",
         "1O6L"
       ]
+    },
+    {
+      "blocker": "unified_substrate_identity_rule_not_calibrated_for_production",
+      "candidate_threshold_angstrom": 6.0,
+      "control_false_hit_count": 0,
+      "decision": "passes_current_controls_but_not_calibrated_for_production_scoring",
+      "decision_axis": "unified_substrate_identity_rule_probe",
+      "external_hard_negative_feature_non_abstention_count": 0,
+      "feature_admissible_for_production_scoring": false,
+      "feature_passes_current_review_controls": true,
+      "positive_hit_count": 8,
+      "positive_hit_pdb_ids": [
+        "1IR3",
+        "1O6K",
+        "1O6L",
+        "2PHK",
+        "5HVK",
+        "6Z3R",
+        "8OXM",
+        "8OXO"
+      ],
+      "review_only": true,
+      "source_free_identity_ready_review_only": true
     }
   ],
   "metadata": {
@@ -141,7 +164,7 @@
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
       "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
-      "convert peptide role axes into a general source-free substrate identity rule before thresholding",
+      "calibrate the unified substrate-identity rule against broader controls before thresholding",
       "run external hard-negative re-audit only after a calibrated ePK score exists"
     ],
     "phosphohistidine_counteraxis_row_count": 4,
@@ -164,6 +187,7 @@
       "external_epk_specific_axes_not_materialized",
       "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
       "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
+      "unified_substrate_identity_rule_not_calibrated_for_production",
       "label_factory_gate_not_extended_for_epk"
     ],
     "prototype_gate_status": "fail_closed_review_only",
@@ -178,7 +202,23 @@
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "threshold_calibrated": false,
-    "threshold_selection_decision": "do_not_select_threshold"
+    "threshold_selection_decision": "do_not_select_threshold",
+    "unified_substrate_identity_control_false_hit_count": 0,
+    "unified_substrate_identity_external_hard_negative_non_abstention_count": 0,
+    "unified_substrate_identity_passes_current_review_controls": true,
+    "unified_substrate_identity_positive_hit_count": 8,
+    "unified_substrate_identity_positive_hit_pdb_ids": [
+      "1IR3",
+      "1O6K",
+      "1O6L",
+      "2PHK",
+      "5HVK",
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "unified_substrate_identity_ready_review_only": true,
+    "unified_substrate_identity_rule_status": "passes_current_controls_unified_substrate_identity_review_only"
   },
   "warnings": [
     "Counteraxis sufficiency is a fail-closed negative result; it must not be treated as production fingerprint evidence."

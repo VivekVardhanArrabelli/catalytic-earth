@@ -1584,6 +1584,9 @@ The source-expansion peptide-role audit then makes the same boundary explicit:
 `1O6K`/`1O6L` pass the review-only source-free peptide-role axis, `9L3M`/`9L3U`
 remain blocked, and no imported external hard negative is rescored. The
 substrate-mode gap audit combines five peptide-mode positives and three
-protein-substrate positive-like controls, but still leaves unified source-free
-substrate identity, threshold calibration, and real external hard-negative
-scored re-audit unresolved.
+protein-substrate positive-like controls. The follow-on unified
+substrate-identity rule probe now hits all eight positive-like rows and keeps
+the three imported external hard negatives at 0 review-only feature
+non-abstentions, but it remains diagnostic only: `m_csa:640` ligand-analog
+evidence is excluded, thresholds are uncalibrated, and no real external
+hard-negative scored re-audit has been run.

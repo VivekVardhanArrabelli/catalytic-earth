@@ -749,12 +749,17 @@ feature gates. The outside-query source-expansion peptide-role audit also
 passes for `1O6K`/`1O6L` while blocking the `9L3M`/`9L3U` nonpositive controls.
 The substrate-mode gap audit combines those two outside-query peptide hits
 with `6Z3R`/`8OXM`/`8OXO` and the three protein-substrate positive-like
-controls; both modes pass current controls, but unified source-free substrate
-identity is still missing. The downstream counteraxis sufficiency decision
-carries the source-expansion peptide-role row as a pass/current-controls
-decision row but keeps it blocked from production scoring because neither
-peptide nor protein-substrate mode is a general calibrated substrate-identity
-rule.
+controls; both modes pass current controls, and
+`artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json` now tests
+one unified review-only rule across those modes. The rule hits eight
+positive-like rows (`1O6K`, `1O6L`, `6Z3R`, `8OXM`, `8OXO`, `2PHK`, `1IR3`,
+and `5HVK`), blocks current peptide/protein/sibling controls, and keeps the
+three imported external hard negatives at 0 feature non-abstentions. It still
+excludes ligand-analog-only `m_csa:640` and is not a calibrated scorer. The
+downstream counteraxis sufficiency decision carries the unified rule as a
+pass/current-controls decision row but keeps `do_not_select_threshold` because
+threshold calibration, a real scored external re-audit, and registry/factory
+extension are still closed.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

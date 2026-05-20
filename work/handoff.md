@@ -50,6 +50,43 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T00:42:53Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 616 unit tests plus
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+
+`artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json` executes the
+next review-only substrate-identity experiment. The rule unifies the current
+short-peptide and protein-substrate ePK review surfaces by requiring a
+hydroxyl acceptor on a polymer substrate chain/entity distinct from the local
+nucleotide-associated kinase polymer and without local nucleotide/metal
+acceptor-chain context. It hits all eight current positive-like review rows:
+five peptide-mode rows (`1O6K`, `1O6L`, `6Z3R`, `8OXM`, and `8OXO`), two
+text-free protein-substrate rows (`2PHK` and `1IR3`), and the heteromeric 5HVK
+lead. Current peptide/protein/sibling controls have 0 false hits, and the
+three imported external hard negatives have 0 feature non-abstentions. The
+probe explicitly excludes ligand-analog-only `m_csa:640`.
+
+`artifacts/v3_epk_precount_gate_status_1025.json` now includes the unified
+substrate-identity rule gate as a passing diagnostic gate while preserving
+overall `blocked_review_only`. `artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json`
+now carries the unified rule as a current-control pass but keeps
+`threshold_selection_decision=do_not_select_threshold` because the rule is not
+frozen as a production scorer, broad stress controls are incomplete, external
+hard negatives have not been scored by a real calibrated ePK scorer, and the
+registry/factory extension remains closed.
+
+Evidence-based confidence call: confidence is medium-high that the unified
+substrate-identity rule is the right next review-only axis because it unifies
+peptide and protein-substrate modes while clearing current controls and
+imported external hard-negative feature probes. Confidence remains low for
+production scoring because threshold calibration, broader control stress, a
+real external scored re-audit, and label-factory/registry gates are still
+missing.
+
 As of the 2026-05-19T23:41:43Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

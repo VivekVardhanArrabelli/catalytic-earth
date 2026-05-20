@@ -15694,6 +15694,35 @@ def build_epk_counteraxis_sufficiency_decision(
         )
         or 0
     )
+    unified_identity_status = str(
+        precount_meta.get("unified_substrate_identity_rule_status") or ""
+    )
+    unified_identity_passes_controls = bool(
+        precount_meta.get(
+            "unified_substrate_identity_passes_current_review_controls"
+        )
+    )
+    unified_identity_positive_hit_count = int(
+        precount_meta.get("unified_substrate_identity_positive_hit_count") or 0
+    )
+    unified_identity_positive_pdb_ids = _sorted_strings(
+        precount_meta.get("unified_substrate_identity_positive_hit_pdb_ids", [])
+    )
+    unified_identity_control_false_hit_count = int(
+        precount_meta.get("unified_substrate_identity_control_false_hit_count")
+        or 0
+    )
+    unified_identity_external_non_abstention_count = int(
+        precount_meta.get(
+            "unified_substrate_identity_external_hard_negative_non_abstention_count"
+        )
+        or 0
+    )
+    unified_identity_ready_review_only = bool(
+        precount_meta.get(
+            "unified_substrate_identity_ready_review_only"
+        )
+    )
     peptide_identity_passes_current_controls = (
         peptide_identity_status
         == "passes_current_controls_peptide_like_acceptor_identity_review_only"
@@ -15850,6 +15879,30 @@ def build_epk_counteraxis_sufficiency_decision(
                 "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity"
             ),
         },
+        {
+            "decision_axis": "unified_substrate_identity_rule_probe",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "feature_passes_current_review_controls": (
+                unified_identity_passes_controls
+            ),
+            "positive_hit_count": unified_identity_positive_hit_count,
+            "positive_hit_pdb_ids": unified_identity_positive_pdb_ids,
+            "control_false_hit_count": unified_identity_control_false_hit_count,
+            "external_hard_negative_feature_non_abstention_count": (
+                unified_identity_external_non_abstention_count
+            ),
+            "source_free_identity_ready_review_only": (
+                unified_identity_ready_review_only
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "passes_current_controls_but_not_calibrated_for_production_scoring"
+                if unified_identity_passes_controls
+                else "missing_or_failing_unified_substrate_identity_rule_probe"
+            ),
+            "blocker": "unified_substrate_identity_rule_not_calibrated_for_production",
+        },
     ]
     threshold_selection_decision = "do_not_select_threshold"
     counteraxis_sufficient_to_block_threshold = bool(family_threshold_hit_rows) and bool(
@@ -15932,6 +15985,25 @@ def build_epk_counteraxis_sufficiency_decision(
             "heteromeric_source_expansion_peptide_role_general_substrate_ready_count": (
                 source_expansion_peptide_role_general_ready_count
             ),
+            "unified_substrate_identity_rule_status": unified_identity_status,
+            "unified_substrate_identity_passes_current_review_controls": (
+                unified_identity_passes_controls
+            ),
+            "unified_substrate_identity_positive_hit_count": (
+                unified_identity_positive_hit_count
+            ),
+            "unified_substrate_identity_positive_hit_pdb_ids": (
+                unified_identity_positive_pdb_ids
+            ),
+            "unified_substrate_identity_control_false_hit_count": (
+                unified_identity_control_false_hit_count
+            ),
+            "unified_substrate_identity_external_hard_negative_non_abstention_count": (
+                unified_identity_external_non_abstention_count
+            ),
+            "unified_substrate_identity_ready_review_only": (
+                unified_identity_ready_review_only
+            ),
             "family_specific_template_validated_family_ids": (
                 template_validated_family_ids
             ),
@@ -15946,6 +16018,7 @@ def build_epk_counteraxis_sufficiency_decision(
                 "external_epk_specific_axes_not_materialized",
                 "peptide_acceptor_identity_axis_narrow_not_general_epk_acceptor_identity",
                 "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
+                "unified_substrate_identity_rule_not_calibrated_for_production",
                 "label_factory_gate_not_extended_for_epk",
             ],
             "negative_control_distance_distribution_ready": False,
@@ -15967,7 +16040,7 @@ def build_epk_counteraxis_sufficiency_decision(
             ),
             "next_actions": [
                 "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
-                "convert peptide role axes into a general source-free substrate identity rule before thresholding",
+                "calibrate the unified substrate-identity rule against broader controls before thresholding",
                 "run external hard-negative re-audit only after a calibrated ePK score exists",
             ],
         },
@@ -16221,6 +16294,538 @@ def build_epk_substrate_mode_gap_audit(
             (
                 "Substrate-mode gap audit is review-only; it does not score "
                 "ePK, select thresholds, edit registries, or import labels."
+            )
+        ],
+    }
+
+
+def build_epk_unified_substrate_identity_rule_probe(
+    *,
+    epk_substrate_mode_gap_audit: dict[str, Any],
+    epk_heteromeric_peptide_acceptor_identity_probe: dict[str, Any],
+    epk_heteromeric_source_expansion_peptide_role_axis_audit: dict[str, Any],
+    epk_protein_substrate_acceptor_candidate_audit: dict[str, Any],
+    epk_heteromeric_chain_topology_signal_audit: dict[str, Any],
+    epk_heteromeric_peptide_external_hard_negative_probe: dict[str, Any],
+) -> dict[str, Any]:
+    """Probe one source-free substrate-identity rule across current ePK modes."""
+
+    substrate_meta = epk_substrate_mode_gap_audit.get("metadata", {})
+    if not isinstance(substrate_meta, dict):
+        substrate_meta = {}
+    peptide_meta = epk_heteromeric_peptide_acceptor_identity_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(peptide_meta, dict):
+        peptide_meta = {}
+    source_expansion_meta = (
+        epk_heteromeric_source_expansion_peptide_role_axis_audit.get(
+            "metadata", {}
+        )
+    )
+    if not isinstance(source_expansion_meta, dict):
+        source_expansion_meta = {}
+    protein_meta = epk_protein_substrate_acceptor_candidate_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(protein_meta, dict):
+        protein_meta = {}
+    topology_meta = epk_heteromeric_chain_topology_signal_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(topology_meta, dict):
+        topology_meta = {}
+    external_meta = epk_heteromeric_peptide_external_hard_negative_probe.get(
+        "metadata", {}
+    )
+    if not isinstance(external_meta, dict):
+        external_meta = {}
+
+    target_fingerprint_id = str(
+        substrate_meta.get("target_fingerprint_id")
+        or peptide_meta.get("target_fingerprint_id")
+        or source_expansion_meta.get("target_fingerprint_id")
+        or protein_meta.get("target_fingerprint_id")
+        or topology_meta.get("target_fingerprint_id")
+        or external_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rule_id = "epk_unified_polymer_substrate_identity_rule_v0_review_only"
+    rows: list[dict[str, Any]] = []
+    positive_hit_pdb_ids: list[str] = []
+    peptide_positive_pdb_ids: list[str] = []
+    source_expansion_positive_pdb_ids: list[str] = []
+    protein_positive_pdb_ids: list[str] = []
+    heteromeric_protein_positive_pdb_ids: list[str] = []
+    control_false_hit_pdb_ids: list[str] = []
+    ligand_analog_excluded_entry_ids: list[str] = []
+    external_by_entry_id: dict[str, dict[str, Any]] = {}
+    source_row_type_counts: Counter[str] = Counter()
+
+    def _add_probe_row(
+        *,
+        source_row: dict[str, Any],
+        row_type: str,
+        probe_decision: str,
+        rule_hit: bool,
+        mode: str,
+        control_family_id: str | None = None,
+    ) -> None:
+        source_row_type_counts[str(source_row.get("row_type") or row_type)] += 1
+        pdb_id = source_row.get("pdb_id")
+        rows.append(
+            {
+                "row_type": row_type,
+                "source_row_type": source_row.get("row_type"),
+                "source_method": source_row.get("source_method"),
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": pdb_id,
+                "family_id": control_family_id or source_row.get("family_id"),
+                "source_pair_id": source_row.get("source_pair_id"),
+                "substrate_mode": mode,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "rule_id": rule_id,
+                "unified_substrate_identity_rule_hit": rule_hit,
+                "unified_substrate_identity_probe_decision": probe_decision,
+                "candidate_threshold_angstrom": (
+                    source_row.get("candidate_threshold_angstrom")
+                    or substrate_meta.get("candidate_threshold_angstrom")
+                ),
+                "candidate_acceptor_residue_code": source_row.get(
+                    "candidate_acceptor_residue_code"
+                ),
+                "candidate_acceptor_chain_name": source_row.get(
+                    "candidate_acceptor_chain_name"
+                ),
+                "nearest_gamma_to_acceptor_distance_angstrom": (
+                    source_row.get("nearest_gamma_distance_angstrom")
+                    or source_row.get(
+                        "nearest_gamma_to_candidate_acceptor_distance_angstrom"
+                    )
+                    or source_row.get("source_valid_5hvk_distance_angstrom")
+                ),
+                "acceptor_chain_lacks_local_nucleotide_or_metal": (
+                    source_row.get("acceptor_chain_lacks_local_nucleotide_or_metal")
+                ),
+                "peptide_like_acceptor_chain": source_row.get(
+                    "peptide_like_acceptor_chain"
+                ),
+                "non_catalytic_chain_acceptor": source_row.get(
+                    "non_catalytic_chain_acceptor"
+                ),
+                "heteromeric_chain_entity_signal_hit": source_row.get(
+                    "heteromeric_chain_entity_signal_hit"
+                ),
+                "ligand_analog_acceptor": bool(
+                    source_row.get("ligand_analog_acceptor")
+                ),
+                "source_feature_decision": (
+                    source_row.get("peptide_acceptor_identity_rule_status")
+                    or source_row.get("source_free_peptide_role_axis_rule_status")
+                    or source_row.get("feature_audit_decision")
+                    or source_row.get("known_review_context_class")
+                ),
+                "production_scoring_admissible": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "rule_is_review_only_not_calibrated_scorer",
+                    "broader_substrate_identity_controls_not_exhaustive",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+                "countable_label_candidate": False,
+            }
+        )
+
+    for source_row in epk_heteromeric_peptide_acceptor_identity_probe.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = str(source_row.get("row_type") or "")
+        rule_hit = bool(source_row.get("peptide_like_acceptor_identity_rule_hit"))
+        pdb_id = str(source_row.get("pdb_id") or "")
+        if row_type == "heteromeric_peptide_acceptor_identity_candidate":
+            if rule_hit:
+                positive_hit_pdb_ids.append(pdb_id)
+                peptide_positive_pdb_ids.append(pdb_id)
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_current_peptide_positive",
+                probe_decision=(
+                    "positive_unified_substrate_identity_hit_review_only"
+                    if rule_hit
+                    else "positive_unified_substrate_identity_miss_review_only"
+                ),
+                rule_hit=rule_hit,
+                mode="short_peptide_substrate",
+            )
+        elif row_type in {
+            "heteromeric_nonaccepted_peptide_identity_control",
+            "sibling_peptide_identity_control",
+        }:
+            if rule_hit:
+                control_false_hit_pdb_ids.append(pdb_id)
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_peptide_control",
+                probe_decision=(
+                    "control_unified_substrate_identity_false_hit_review_only"
+                    if rule_hit
+                    else "control_blocked_by_unified_substrate_identity_review_only"
+                ),
+                rule_hit=rule_hit,
+                mode="peptide_mode_control",
+                control_family_id=source_row.get("family_id"),
+            )
+
+    for source_row in epk_heteromeric_source_expansion_peptide_role_axis_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = str(source_row.get("row_type") or "")
+        rule_hit = bool(source_row.get("source_free_peptide_role_axis_rule_hit"))
+        pdb_id = str(source_row.get("pdb_id") or "")
+        if row_type == "source_expansion_peptide_role_positive_candidate":
+            if rule_hit:
+                positive_hit_pdb_ids.append(pdb_id)
+                source_expansion_positive_pdb_ids.append(pdb_id)
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_source_expansion_peptide_positive",
+                probe_decision=(
+                    "positive_unified_substrate_identity_hit_review_only"
+                    if rule_hit
+                    else "positive_unified_substrate_identity_miss_review_only"
+                ),
+                rule_hit=rule_hit,
+                mode="short_peptide_source_expansion",
+            )
+        elif row_type == "source_expansion_peptide_role_nonpositive_control":
+            if rule_hit:
+                control_false_hit_pdb_ids.append(pdb_id)
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_source_expansion_nonpositive_control",
+                probe_decision=(
+                    "control_unified_substrate_identity_false_hit_review_only"
+                    if rule_hit
+                    else "control_blocked_by_unified_substrate_identity_review_only"
+                ),
+                rule_hit=rule_hit,
+                mode="source_expansion_nonpositive_control",
+            )
+
+    for source_row in epk_protein_substrate_acceptor_candidate_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        source_type = str(source_row.get("row_type") or "")
+        entry_id = str(source_row.get("entry_id") or "")
+        pdb_id = str(source_row.get("pdb_id") or "")
+        rule_hit = bool(source_row.get("candidate_feature_hit")) and bool(
+            source_row.get("non_catalytic_chain_acceptor")
+        ) and not bool(source_row.get("ligand_analog_acceptor"))
+        if source_type == "current_epk_positive_prototype":
+            if bool(source_row.get("ligand_analog_acceptor")):
+                ligand_analog_excluded_entry_ids.append(entry_id)
+                decision = "ligand_analog_positive_excluded_from_unified_identity_rule"
+            elif rule_hit:
+                positive_hit_pdb_ids.append(pdb_id)
+                protein_positive_pdb_ids.append(pdb_id)
+                decision = "positive_unified_substrate_identity_hit_review_only"
+            else:
+                decision = "positive_unified_substrate_identity_miss_review_only"
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_current_protein_substrate_positive",
+                probe_decision=decision,
+                rule_hit=rule_hit,
+                mode="protein_substrate",
+            )
+        elif source_type == "imported_external_hard_negative":
+            external_by_entry_id[entry_id] = {
+                "entry_id": entry_id,
+                "accession": entry_id.split(":", 1)[-1] if ":" in entry_id else entry_id,
+                "source_methods": ["epk_protein_substrate_acceptor_candidate_audit"],
+                "feature_non_abstention": rule_hit,
+            }
+        elif "negative_control" in source_type or "control" in source_type:
+            if rule_hit:
+                control_false_hit_pdb_ids.append(pdb_id)
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_protein_substrate_control",
+                probe_decision=(
+                    "control_unified_substrate_identity_false_hit_review_only"
+                    if rule_hit
+                    else "control_blocked_by_unified_substrate_identity_review_only"
+                ),
+                rule_hit=rule_hit,
+                mode="protein_substrate_control",
+                control_family_id=source_row.get("family_id"),
+            )
+
+    for source_row in epk_heteromeric_chain_topology_signal_audit.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        if source_row.get("row_type") != "heteromeric_chain_topology_hit_control":
+            continue
+        review_class = str(source_row.get("known_review_context_class") or "")
+        rule_hit = bool(source_row.get("heteromeric_chain_entity_signal_hit"))
+        pdb_id = str(source_row.get("pdb_id") or "")
+        if review_class == "cross_accession_source_valid_positive_like":
+            if rule_hit:
+                positive_hit_pdb_ids.append(pdb_id)
+                heteromeric_protein_positive_pdb_ids.append(pdb_id)
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_heteromeric_protein_positive",
+                probe_decision=(
+                    "positive_unified_substrate_identity_hit_review_only"
+                    if rule_hit
+                    else "positive_unified_substrate_identity_miss_review_only"
+                ),
+                rule_hit=rule_hit,
+                mode="heteromeric_protein_substrate",
+            )
+        elif review_class:
+            if rule_hit:
+                control_false_hit_pdb_ids.append(pdb_id)
+            _add_probe_row(
+                source_row=source_row,
+                row_type="unified_identity_heteromeric_topology_control",
+                probe_decision=(
+                    "control_unified_substrate_identity_false_hit_review_only"
+                    if rule_hit
+                    else "control_blocked_by_unified_substrate_identity_review_only"
+                ),
+                rule_hit=rule_hit,
+                mode="heteromeric_topology_control",
+            )
+
+    for source_row in epk_heteromeric_peptide_external_hard_negative_probe.get(
+        "rows", []
+    ) or []:
+        if not isinstance(source_row, dict):
+            continue
+        entry_id = str(source_row.get("entry_id") or "")
+        if not entry_id:
+            continue
+        previous = external_by_entry_id.setdefault(
+            entry_id,
+            {
+                "entry_id": entry_id,
+                "accession": source_row.get("accession"),
+                "source_methods": [],
+                "feature_non_abstention": False,
+            },
+        )
+        previous["source_methods"] = _sorted_strings(
+            [
+                *previous.get("source_methods", []),
+                "epk_heteromeric_peptide_external_hard_negative_probe",
+            ]
+        )
+        previous["feature_non_abstention"] = bool(
+            previous.get("feature_non_abstention")
+        ) or bool(source_row.get("review_only_feature_non_abstention"))
+
+    external_non_abstention_entry_ids: list[str] = []
+    for entry_id, external_row in sorted(external_by_entry_id.items()):
+        feature_non_abstention = bool(external_row.get("feature_non_abstention"))
+        if feature_non_abstention:
+            external_non_abstention_entry_ids.append(entry_id)
+        rows.append(
+            {
+                "row_type": "unified_identity_imported_external_hard_negative",
+                "entry_id": entry_id,
+                "accession": external_row.get("accession"),
+                "substrate_mode": "imported_external_hard_negative",
+                "source_methods": external_row.get("source_methods", []),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "rule_id": rule_id,
+                "unified_substrate_identity_rule_hit": feature_non_abstention,
+                "unified_substrate_identity_feature_non_abstention": (
+                    feature_non_abstention
+                ),
+                "unified_substrate_identity_probe_decision": (
+                    "external_hard_negative_unified_identity_non_abstention_review_only"
+                    if feature_non_abstention
+                    else "external_hard_negative_abstain_under_unified_identity_review_only"
+                ),
+                "production_scoring_admissible": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "countable_label_candidate": False,
+                "clean_heldout_performance_claim_permitted": False,
+                "remaining_blockers": [
+                    "not_a_real_scored_external_reaudit",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    positive_hit_pdb_ids = _sorted_strings(positive_hit_pdb_ids)
+    control_false_hit_pdb_ids = _sorted_strings(control_false_hit_pdb_ids)
+    external_non_abstention_entry_ids = _sorted_strings(
+        external_non_abstention_entry_ids
+    )
+    ligand_analog_excluded_entry_ids = _sorted_strings(
+        ligand_analog_excluded_entry_ids
+    )
+    positive_hit_count = len(positive_hit_pdb_ids)
+    control_false_hit_count = len(control_false_hit_pdb_ids)
+    external_non_abstention_count = len(external_non_abstention_entry_ids)
+    passes_current_controls = (
+        positive_hit_count > 0
+        and control_false_hit_count == 0
+        and external_non_abstention_count == 0
+    )
+    status = (
+        "passes_current_controls_unified_substrate_identity_review_only"
+        if passes_current_controls
+        else "blocked_review_only_unified_substrate_identity_controls_incomplete"
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_unified_substrate_identity_rule_probe",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "rule_id": rule_id,
+            "source_epk_substrate_mode_gap_audit_method": substrate_meta.get(
+                "method"
+            ),
+            "source_epk_heteromeric_peptide_acceptor_identity_probe_method": (
+                peptide_meta.get("method")
+            ),
+            "source_epk_heteromeric_source_expansion_peptide_role_axis_audit_method": (
+                source_expansion_meta.get("method")
+            ),
+            "source_epk_protein_substrate_acceptor_candidate_audit_method": (
+                protein_meta.get("method")
+            ),
+            "source_epk_heteromeric_chain_topology_signal_audit_method": (
+                topology_meta.get("method")
+            ),
+            "source_epk_heteromeric_peptide_external_hard_negative_probe_method": (
+                external_meta.get("method")
+            ),
+            "unified_substrate_identity_rule_status": status,
+            "unified_substrate_identity_passes_current_review_controls": (
+                passes_current_controls
+            ),
+            "unified_source_free_substrate_identity_ready_review_only": (
+                passes_current_controls
+            ),
+            "unified_source_free_substrate_identity_production_admissible": False,
+            "positive_hit_count": positive_hit_count,
+            "positive_hit_pdb_ids": positive_hit_pdb_ids,
+            "current_peptide_positive_hit_count": len(
+                _sorted_strings(peptide_positive_pdb_ids)
+            ),
+            "current_peptide_positive_pdb_ids": _sorted_strings(
+                peptide_positive_pdb_ids
+            ),
+            "source_expansion_peptide_positive_hit_count": len(
+                _sorted_strings(source_expansion_positive_pdb_ids)
+            ),
+            "source_expansion_peptide_positive_pdb_ids": _sorted_strings(
+                source_expansion_positive_pdb_ids
+            ),
+            "protein_substrate_positive_hit_count": len(
+                _sorted_strings(protein_positive_pdb_ids)
+            ),
+            "protein_substrate_positive_pdb_ids": _sorted_strings(
+                protein_positive_pdb_ids
+            ),
+            "heteromeric_protein_substrate_positive_hit_count": len(
+                _sorted_strings(heteromeric_protein_positive_pdb_ids)
+            ),
+            "heteromeric_protein_substrate_positive_pdb_ids": _sorted_strings(
+                heteromeric_protein_positive_pdb_ids
+            ),
+            "ligand_analog_excluded_positive_count": len(
+                ligand_analog_excluded_entry_ids
+            ),
+            "ligand_analog_excluded_positive_entry_ids": (
+                ligand_analog_excluded_entry_ids
+            ),
+            "control_false_hit_count": control_false_hit_count,
+            "control_false_hit_pdb_ids": control_false_hit_pdb_ids,
+            "imported_external_hard_negative_row_count": len(external_by_entry_id),
+            "external_hard_negative_feature_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "external_hard_negative_feature_non_abstention_entry_ids": (
+                external_non_abstention_entry_ids
+            ),
+            "source_row_type_counts": dict(sorted(source_row_type_counts.items())),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "unified_substrate_identity_rule_probe_executed",
+            "blocker_not_removed": [
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+                "rule_not_frozen_as_production_scorer",
+            ],
+            "review_only_rule": (
+                "This probe unifies the current peptide and protein-substrate "
+                "review surfaces using local polymer substrate topology: "
+                "a hydroxyl acceptor on a non-nucleotide/metal acceptor polymer "
+                "chain or entity distinct from the nucleotide-associated kinase "
+                "polymer. It remains a diagnostic rule, not a calibrated score."
+            ),
+            "next_actions": [
+                "stress the unified substrate-identity rule against broader heteromeric and sibling controls",
+                "calibrate thresholds only after the rule is frozen as a real scorer input",
+                "run the real external hard-negative scored re-audit only after threshold calibration",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                str(row.get("entry_id") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Unified substrate-identity rule probe is review-only. It does "
+                "not score ePK, select thresholds, edit registries, or authorize "
+                "label import."
             )
         ],
     }
@@ -30558,6 +31163,7 @@ def build_epk_precount_gate_status(
     epk_heteromeric_source_expansion_peptide_role_axis_audit: dict[str, Any]
     | None = None,
     epk_substrate_mode_gap_audit: dict[str, Any] | None = None,
+    epk_unified_substrate_identity_rule_probe: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -31065,6 +31671,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(substrate_mode_gap_meta, dict):
         substrate_mode_gap_meta = {}
+    unified_substrate_identity_meta = (
+        epk_unified_substrate_identity_rule_probe.get("metadata", {})
+        if isinstance(epk_unified_substrate_identity_rule_probe, dict)
+        else {}
+    )
+    if not isinstance(unified_substrate_identity_meta, dict):
+        unified_substrate_identity_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -33330,6 +33943,89 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if unified_substrate_identity_meta:
+        gate_checks.append(
+            {
+                "gate_id": "unified_substrate_identity_rule_probe",
+                "passed": unified_substrate_identity_meta.get(
+                    "unified_substrate_identity_rule_status"
+                )
+                == "passes_current_controls_unified_substrate_identity_review_only"
+                and bool(
+                    unified_substrate_identity_meta.get(
+                        "unified_substrate_identity_passes_current_review_controls"
+                    )
+                )
+                and bool(
+                    unified_substrate_identity_meta.get(
+                        "unified_source_free_substrate_identity_ready_review_only"
+                    )
+                )
+                and int(
+                    unified_substrate_identity_meta.get("positive_hit_count") or 0
+                )
+                > 0
+                and int(
+                    unified_substrate_identity_meta.get("control_false_hit_count")
+                    or 0
+                )
+                == 0
+                and int(
+                    unified_substrate_identity_meta.get(
+                        "external_hard_negative_feature_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    unified_substrate_identity_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    unified_substrate_identity_meta.get("epk_score_computed")
+                )
+                and not bool(
+                    unified_substrate_identity_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": unified_substrate_identity_meta.get("method"),
+                    "rule_id": unified_substrate_identity_meta.get("rule_id"),
+                    "unified_substrate_identity_rule_status": (
+                        unified_substrate_identity_meta.get(
+                            "unified_substrate_identity_rule_status"
+                        )
+                    ),
+                    "positive_hit_count": (
+                        unified_substrate_identity_meta.get("positive_hit_count")
+                    ),
+                    "positive_hit_pdb_ids": (
+                        unified_substrate_identity_meta.get(
+                            "positive_hit_pdb_ids", []
+                        )
+                    ),
+                    "control_false_hit_count": (
+                        unified_substrate_identity_meta.get(
+                            "control_false_hit_count"
+                        )
+                    ),
+                    "external_hard_negative_feature_non_abstention_count": (
+                        unified_substrate_identity_meta.get(
+                            "external_hard_negative_feature_non_abstention_count"
+                        )
+                    ),
+                    "unified_source_free_substrate_identity_ready_review_only": (
+                        unified_substrate_identity_meta.get(
+                            "unified_source_free_substrate_identity_ready_review_only"
+                        )
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -34071,6 +34767,21 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "review remaining exact-query heteromeric structures before treating peptide identity stress as complete",
+            )
+    if unified_substrate_identity_meta.get("method"):
+        if bool(
+            unified_substrate_identity_meta.get(
+                "unified_substrate_identity_passes_current_review_controls"
+            )
+        ):
+            next_actions.insert(
+                0,
+                "stress-test the unified substrate-identity rule against broader controls before any threshold or scored re-audit",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "repair the unified substrate-identity rule before any scorer design",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -35599,6 +36310,46 @@ def build_epk_precount_gate_status(
             "substrate_mode_gap_protein_substrate_positive_like_count": (
                 substrate_mode_gap_meta.get(
                     "protein_substrate_mode_positive_like_count"
+                )
+            ),
+            "source_epk_unified_substrate_identity_rule_probe_method": (
+                unified_substrate_identity_meta.get("method")
+            ),
+            "unified_substrate_identity_rule_status": (
+                unified_substrate_identity_meta.get(
+                    "unified_substrate_identity_rule_status"
+                )
+            ),
+            "unified_substrate_identity_rule_id": (
+                unified_substrate_identity_meta.get("rule_id")
+            ),
+            "unified_substrate_identity_passes_current_review_controls": bool(
+                unified_substrate_identity_meta.get(
+                    "unified_substrate_identity_passes_current_review_controls"
+                )
+            ),
+            "unified_substrate_identity_ready_review_only": bool(
+                unified_substrate_identity_meta.get(
+                    "unified_source_free_substrate_identity_ready_review_only"
+                )
+            ),
+            "unified_substrate_identity_positive_hit_count": (
+                unified_substrate_identity_meta.get("positive_hit_count")
+            ),
+            "unified_substrate_identity_positive_hit_pdb_ids": (
+                unified_substrate_identity_meta.get("positive_hit_pdb_ids", [])
+            ),
+            "unified_substrate_identity_control_false_hit_count": (
+                unified_substrate_identity_meta.get("control_false_hit_count")
+            ),
+            "unified_substrate_identity_external_hard_negative_non_abstention_count": (
+                unified_substrate_identity_meta.get(
+                    "external_hard_negative_feature_non_abstention_count"
+                )
+            ),
+            "unified_substrate_identity_ligand_analog_excluded_positive_count": (
+                unified_substrate_identity_meta.get(
+                    "ligand_analog_excluded_positive_count"
                 )
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (

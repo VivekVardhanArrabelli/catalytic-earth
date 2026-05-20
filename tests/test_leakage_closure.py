@@ -6686,6 +6686,25 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata["negative_control_family_specific_distance_sample_axis"],
             "family_specific_sibling_acid_base_counteraxis_not_epk_label",
         )
+        self.assertEqual(
+            metadata["source_epk_unified_substrate_identity_rule_probe_method"],
+            "epk_unified_substrate_identity_rule_probe",
+        )
+        self.assertEqual(
+            metadata["unified_substrate_identity_rule_status"],
+            "passes_current_controls_unified_substrate_identity_review_only",
+        )
+        self.assertTrue(
+            metadata["unified_substrate_identity_passes_current_review_controls"]
+        )
+        self.assertEqual(metadata["unified_substrate_identity_positive_hit_count"], 8)
+        self.assertEqual(metadata["unified_substrate_identity_control_false_hit_count"], 0)
+        self.assertEqual(
+            metadata[
+                "unified_substrate_identity_external_hard_negative_non_abstention_count"
+            ],
+            0,
+        )
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -6730,6 +6749,10 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         )
         self.assertNotIn(
             "heteromeric_chain_topology_signal_audit",
+            metadata["failing_gate_ids"],
+        )
+        self.assertNotIn(
+            "unified_substrate_identity_rule_probe",
             metadata["failing_gate_ids"],
         )
         self.assertIn(

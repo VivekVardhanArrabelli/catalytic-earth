@@ -115,6 +115,7 @@ from .labels import (
     build_epk_heteromeric_peptide_external_hard_negative_probe,
     build_epk_heteromeric_source_expansion_peptide_role_axis_audit,
     build_epk_substrate_mode_gap_audit,
+    build_epk_unified_substrate_identity_rule_probe,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -7534,6 +7535,62 @@ def cmd_build_epk_substrate_mode_gap_audit(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_epk_unified_substrate_identity_rule_probe(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_substrate_mode_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_substrate_mode_gap_audit = json.load(handle)
+    with Path(args.epk_heteromeric_peptide_acceptor_identity_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_acceptor_identity_probe = json.load(handle)
+    with Path(
+        args.epk_heteromeric_source_expansion_peptide_role_axis_audit
+    ).open("r", encoding="utf-8") as handle:
+        epk_heteromeric_source_expansion_peptide_role_axis_audit = json.load(
+            handle
+        )
+    with Path(args.epk_protein_substrate_acceptor_candidate_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_protein_substrate_acceptor_candidate_audit = json.load(handle)
+    with Path(args.epk_heteromeric_chain_topology_signal_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_chain_topology_signal_audit = json.load(handle)
+    with Path(args.epk_heteromeric_peptide_external_hard_negative_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_external_hard_negative_probe = json.load(handle)
+    probe = build_epk_unified_substrate_identity_rule_probe(
+        epk_substrate_mode_gap_audit=epk_substrate_mode_gap_audit,
+        epk_heteromeric_peptide_acceptor_identity_probe=(
+            epk_heteromeric_peptide_acceptor_identity_probe
+        ),
+        epk_heteromeric_source_expansion_peptide_role_axis_audit=(
+            epk_heteromeric_source_expansion_peptide_role_axis_audit
+        ),
+        epk_protein_substrate_acceptor_candidate_audit=(
+            epk_protein_substrate_acceptor_candidate_audit
+        ),
+        epk_heteromeric_chain_topology_signal_audit=(
+            epk_heteromeric_chain_topology_signal_audit
+        ),
+        epk_heteromeric_peptide_external_hard_negative_probe=(
+            epk_heteromeric_peptide_external_hard_negative_probe
+        ),
+    )
+    write_json(Path(args.out), probe)
+    print(
+        "Wrote ePK unified substrate-identity rule probe to "
+        f"{args.out} (status="
+        f"{probe['metadata']['unified_substrate_identity_rule_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -8162,6 +8219,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_substrate_mode_gap_audit = json.load(handle)
+    epk_unified_substrate_identity_rule_probe = None
+    if args.epk_unified_substrate_identity_rule_probe:
+        with Path(args.epk_unified_substrate_identity_rule_probe).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_unified_substrate_identity_rule_probe = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -8334,6 +8397,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             epk_heteromeric_source_expansion_peptide_role_axis_audit
         ),
         epk_substrate_mode_gap_audit=epk_substrate_mode_gap_audit,
+        epk_unified_substrate_identity_rule_probe=(
+            epk_unified_substrate_identity_rule_probe
+        ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
         ),
@@ -16969,6 +17035,61 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_substrate_mode_gap_audit
     )
 
+    epk_unified_substrate_identity = subparsers.add_parser(
+        "build-epk-unified-substrate-identity-rule-probe",
+        help=(
+            "probe a unified source-free substrate-identity rule across "
+            "peptide and protein-substrate ePK modes"
+        ),
+    )
+    epk_unified_substrate_identity.add_argument(
+        "--epk-substrate-mode-gap-audit",
+        default="artifacts/v3_epk_substrate_mode_gap_audit_1025.json",
+    )
+    epk_unified_substrate_identity.add_argument(
+        "--epk-heteromeric-peptide-acceptor-identity-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_acceptor_identity_probe_1025.json"
+        ),
+    )
+    epk_unified_substrate_identity.add_argument(
+        "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json"
+        ),
+    )
+    epk_unified_substrate_identity.add_argument(
+        "--epk-protein-substrate-acceptor-candidate-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_protein_substrate_acceptor_candidate_audit_1025.json"
+        ),
+    )
+    epk_unified_substrate_identity.add_argument(
+        "--epk-heteromeric-chain-topology-signal-audit",
+        default=(
+            "artifacts/v3_epk_heteromeric_chain_topology_signal_audit_1025.json"
+        ),
+    )
+    epk_unified_substrate_identity.add_argument(
+        "--epk-heteromeric-peptide-external-hard-negative-probe",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_peptide_external_hard_negative_probe_1025.json"
+        ),
+    )
+    epk_unified_substrate_identity.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json"
+        ),
+    )
+    epk_unified_substrate_identity.set_defaults(
+        func=cmd_build_epk_unified_substrate_identity_rule_probe
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -17457,6 +17578,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-substrate-mode-gap-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-unified-substrate-identity-rule-probe",
         default=None,
     )
     epk_precount_gate_status.add_argument(

@@ -5282,6 +5282,245 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
             self.assertFalse(metadata["unified_source_free_substrate_identity_ready"])
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
+    def test_build_epk_unified_substrate_identity_rule_probe_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            substrate_gap = root / "substrate_gap.json"
+            peptide = root / "peptide.json"
+            source_expansion = root / "source_expansion.json"
+            protein = root / "protein.json"
+            topology = root / "topology.json"
+            external = root / "external.json"
+            out = root / "unified.json"
+            substrate_gap.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_substrate_mode_gap_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            peptide.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_acceptor_identity_probe"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "heteromeric_peptide_acceptor_identity_candidate"
+                                ),
+                                "pdb_id": "6Z3R",
+                                "candidate_acceptor_residue_code": "SER",
+                                "candidate_acceptor_chain_name": "E",
+                                "nearest_gamma_distance_angstrom": 5.6,
+                                "peptide_like_acceptor_identity_rule_hit": True,
+                                "peptide_like_acceptor_chain": True,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": (
+                                    "heteromeric_nonaccepted_peptide_identity_control"
+                                ),
+                                "pdb_id": "7M0T",
+                                "peptide_like_acceptor_identity_rule_hit": False,
+                                "text_free_inputs_only": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_expansion.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_source_expansion_peptide_role_axis_audit"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "source_expansion_peptide_role_positive_candidate"
+                                ),
+                                "pdb_id": "1O6K",
+                                "source_pair_id": "pkb_gsk3",
+                                "source_free_peptide_role_axis_rule_hit": True,
+                                "source_free_peptide_role_axis_rule_status": (
+                                    "source_free_peptide_role_axis_hit_review_only"
+                                ),
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": (
+                                    "source_expansion_peptide_role_nonpositive_control"
+                                ),
+                                "pdb_id": "9L3M",
+                                "source_free_peptide_role_axis_rule_hit": False,
+                                "text_free_inputs_only": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            protein.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_protein_substrate_acceptor_candidate_audit"
+                        },
+                        "rows": [
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:35",
+                                "pdb_id": "2PHK",
+                                "candidate_feature_hit": True,
+                                "non_catalytic_chain_acceptor": True,
+                                "ligand_analog_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": "current_epk_positive_prototype",
+                                "entry_id": "m_csa:640",
+                                "pdb_id": "3TM0",
+                                "candidate_feature_hit": False,
+                                "non_catalytic_chain_acceptor": False,
+                                "ligand_analog_acceptor": True,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": (
+                                    "sibling_family_specific_negative_control"
+                                ),
+                                "pdb_id": "3R5F",
+                                "family_id": "atp_grasp",
+                                "candidate_feature_hit": False,
+                                "non_catalytic_chain_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": "imported_external_hard_negative",
+                                "entry_id": "uniprot:P06744",
+                                "candidate_feature_hit": False,
+                                "non_catalytic_chain_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            topology.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_chain_topology_signal_audit"
+                        },
+                        "rows": [
+                            {
+                                "row_type": "heteromeric_chain_topology_hit_control",
+                                "pdb_id": "5HVK",
+                                "known_review_context_class": (
+                                    "cross_accession_source_valid_positive_like"
+                                ),
+                                "heteromeric_chain_entity_signal_hit": True,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": "heteromeric_chain_topology_hit_control",
+                                "pdb_id": "3Q4Z",
+                                "known_review_context_class": (
+                                    "same_accession_phosphosite_control_risk"
+                                ),
+                                "heteromeric_chain_entity_signal_hit": False,
+                                "text_free_inputs_only": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            external.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_peptide_external_hard_negative_probe"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "imported_external_hard_negative_peptide_identity_probe"
+                                ),
+                                "entry_id": "uniprot:P06744",
+                                "accession": "P06744",
+                                "review_only_feature_non_abstention": False,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-unified-substrate-identity-rule-probe",
+                    "--epk-substrate-mode-gap-audit",
+                    str(substrate_gap),
+                    "--epk-heteromeric-peptide-acceptor-identity-probe",
+                    str(peptide),
+                    "--epk-heteromeric-source-expansion-peptide-role-axis-audit",
+                    str(source_expansion),
+                    "--epk-protein-substrate-acceptor-candidate-audit",
+                    str(protein),
+                    "--epk-heteromeric-chain-topology-signal-audit",
+                    str(topology),
+                    "--epk-heteromeric-peptide-external-hard-negative-probe",
+                    str(external),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            probe = json.loads(out.read_text(encoding="utf-8"))
+            metadata = probe["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_unified_substrate_identity_rule_probe",
+            )
+            self.assertEqual(
+                metadata["unified_substrate_identity_rule_status"],
+                "passes_current_controls_unified_substrate_identity_review_only",
+            )
+            self.assertEqual(metadata["positive_hit_count"], 4)
+            self.assertEqual(metadata["control_false_hit_count"], 0)
+            self.assertEqual(
+                metadata["external_hard_negative_feature_non_abstention_count"],
+                0,
+            )
+            self.assertEqual(
+                metadata["ligand_analog_excluded_positive_entry_ids"],
+                ["m_csa:640"],
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
     def test_build_epk_acceptor_identity_review_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
