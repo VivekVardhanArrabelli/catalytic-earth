@@ -1,0 +1,2948 @@
+{
+  "fetch_errors": {},
+  "metadata": {
+    "counterexample_count_current_auth": 0,
+    "counterexample_pdb_ids_current_auth": [],
+    "ended_at": "2026-05-20T17:26:34Z",
+    "fetch_error_count": 0,
+    "label_namespace_hazard_pdb_ids": [
+      "1A82",
+      "3C9S",
+      "4KFT",
+      "5TT6",
+      "6NOO",
+      "9NBW"
+    ],
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "method": "epk_review_only_namespace_path_audit",
+    "path_totals": {
+      "actual_materializer_auth_prefer": {
+        "entries_with_reciprocal_topology": 1,
+        "entries_with_same_chain_topology": 5,
+        "entries_with_topology_clear_cross_chain_mode_hit": 0,
+        "topology_clear_cross_chain_mode_hit_count": 0
+      },
+      "current_auth": {
+        "entries_with_reciprocal_topology": 1,
+        "entries_with_same_chain_topology": 5,
+        "entries_with_topology_clear_cross_chain_mode_hit": 0,
+        "topology_clear_cross_chain_mode_hit_count": 0
+      },
+      "id_intersection_guard": {
+        "entries_with_reciprocal_topology": 0,
+        "entries_with_same_chain_topology": 5,
+        "entries_with_topology_clear_cross_chain_mode_hit": 1,
+        "topology_clear_cross_chain_mode_hit_count": 2
+      },
+      "label_only_hazard": {
+        "entries_with_reciprocal_topology": 0,
+        "entries_with_same_chain_topology": 0,
+        "entries_with_topology_clear_cross_chain_mode_hit": 6,
+        "topology_clear_cross_chain_mode_hit_count": 14
+      },
+      "label_prefer_hazard": {
+        "entries_with_reciprocal_topology": 0,
+        "entries_with_same_chain_topology": 0,
+        "entries_with_topology_clear_cross_chain_mode_hit": 6,
+        "topology_clear_cross_chain_mode_hit_count": 14
+      },
+      "mixed_label_ligand_auth_acceptor_hazard": {
+        "entries_with_reciprocal_topology": 0,
+        "entries_with_same_chain_topology": 0,
+        "entries_with_topology_clear_cross_chain_mode_hit": 6,
+        "topology_clear_cross_chain_mode_hit_count": 14
+      }
+    },
+    "production_claim_allowed": false,
+    "review_only": true,
+    "rows_reviewed": 6,
+    "rule_under_attack": "epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0 plus epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0",
+    "search_surface": {
+      "candidate_threshold_angstrom": 6.0,
+      "current_atp_like_ligands": [
+        "A3P",
+        "ACP",
+        "AGS",
+        "ANP",
+        "ATP"
+      ],
+      "max_n_terminal_acceptor_auth_seq_id": 25,
+      "mg_distance_cutoff_angstrom": 4.5,
+      "path_variants": {
+        "actual_materializer_auth_prefer": {
+          "acceptor_chain_mode": "auth_prefer",
+          "ligand_chain_mode": "auth_prefer"
+        },
+        "current_auth": {
+          "acceptor_chain_mode": "auth",
+          "ligand_chain_mode": "auth"
+        },
+        "id_intersection_guard": {
+          "acceptor_chain_mode": "intersection",
+          "ligand_chain_mode": "intersection"
+        },
+        "label_only_hazard": {
+          "acceptor_chain_mode": "label",
+          "ligand_chain_mode": "label"
+        },
+        "label_prefer_hazard": {
+          "acceptor_chain_mode": "label_prefer",
+          "ligand_chain_mode": "label_prefer"
+        },
+        "mixed_label_ligand_auth_acceptor_hazard": {
+          "acceptor_chain_mode": "auth",
+          "ligand_chain_mode": "label"
+        }
+      },
+      "pressure_pdb_ids": [
+        "5TT6",
+        "6NOO",
+        "9NBW",
+        "4KFT",
+        "1A82",
+        "3C9S"
+      ],
+      "raw_coordinate_files_written": false
+    },
+    "started_at": "2026-05-20T17:20:18Z"
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 63,
+      "entry_path_summaries": {
+        "actual_materializer_auth_prefer": {
+          "acceptor_chain_mode": "auth_prefer",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth_prefer",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "current_auth": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "id_intersection_guard": {
+          "acceptor_chain_mode": "intersection",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "intersection",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "label_only_hazard": {
+          "acceptor_chain_mode": "label",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "37",
+            "distance_angstrom": 3.297,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "57",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        },
+        "label_prefer_hazard": {
+          "acceptor_chain_mode": "label_prefer",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label_prefer",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "37",
+            "distance_angstrom": 3.297,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "57",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        },
+        "mixed_label_ligand_auth_acceptor_hazard": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "37",
+            "distance_angstrom": 3.297,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "57",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        }
+      },
+      "hits": [
+        {
+          "auth_ligand_chain": "A",
+          "label_ligand_chain": "D",
+          "ligand": "ATP",
+          "ligand_auth_seq_id": "403",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 1,
+          "nearest_acceptors": [
+            {
+              "atom": "OH",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "37",
+              "distance_angstrom": 3.297,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "57",
+              "n_terminal_acceptor": false,
+              "residue": "TYR",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": true
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.13,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "37",
+                "distance_angstrom": 3.297,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "57",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "37",
+                "distance_angstrom": 3.297,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "57",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "37",
+                "distance_angstrom": 3.297,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "57",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "keywords": {
+        "pdbx_keywords": "LIGASE",
+        "text": "metal catalysis, covalent nucleotidyltransferase, lysyl-AMP, LIGASE"
+      },
+      "local_hit_count": 1,
+      "mg_atom_count": 2,
+      "pdb_id": "5TT6",
+      "polymer_entities": [
+        {
+          "description": "T4 RNA ligase 1",
+          "entity_id": "1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00971"
+          ]
+        }
+      ],
+      "probable_epk_from_context": false,
+      "reviewed": true,
+      "terminal_p_atom_count": 1,
+      "title": "T4 RNA Ligase 1 (K99M)"
+    },
+    {
+      "acceptor_atom_count": 86,
+      "entry_path_summaries": {
+        "actual_materializer_auth_prefer": {
+          "acceptor_chain_mode": "auth_prefer",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth_prefer",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "current_auth": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "id_intersection_guard": {
+          "acceptor_chain_mode": "intersection",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "intersection",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "label_only_hazard": {
+          "acceptor_chain_mode": "label",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "B",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "16",
+            "distance_angstrom": 5.401,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "B",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "36",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        },
+        "label_prefer_hazard": {
+          "acceptor_chain_mode": "label_prefer",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label_prefer",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "B",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "16",
+            "distance_angstrom": 5.401,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "B",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "36",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        },
+        "mixed_label_ligand_auth_acceptor_hazard": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "B",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "16",
+            "distance_angstrom": 5.401,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "B",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "36",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        }
+      },
+      "hits": [
+        {
+          "auth_ligand_chain": "B",
+          "label_ligand_chain": "C",
+          "ligand": "ATP",
+          "ligand_auth_seq_id": "501",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 1,
+          "nearest_acceptors": [
+            {
+              "atom": "OG1",
+              "auth_chain": "B",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "16",
+              "distance_angstrom": 5.401,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "B",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "36",
+              "n_terminal_acceptor": true,
+              "residue": "THR",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.244,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "16",
+                "distance_angstrom": 5.401,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "36",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "16",
+                "distance_angstrom": 5.401,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "36",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "16",
+                "distance_angstrom": 5.401,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "36",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "keywords": {
+        "pdbx_keywords": "DNA BINDING PROTEIN",
+        "text": "McdA, McdB, carboxysome, ParA-like, Walker A, DNA BINDING PROTEIN"
+      },
+      "local_hit_count": 1,
+      "mg_atom_count": 1,
+      "pdb_id": "6NOO",
+      "polymer_entities": [
+        {
+          "description": "Maintenance of carboxysome positioning A protein, MCDA",
+          "entity_id": "1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "B7KMS4"
+          ]
+        }
+      ],
+      "probable_epk_from_context": false,
+      "reviewed": true,
+      "terminal_p_atom_count": 1,
+      "title": "Structure of Cyanothece McdA-AMPPNP complex"
+    },
+    {
+      "acceptor_atom_count": 69,
+      "entry_path_summaries": {
+        "actual_materializer_auth_prefer": {
+          "acceptor_chain_mode": "auth_prefer",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth_prefer",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "current_auth": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "id_intersection_guard": {
+          "acceptor_chain_mode": "intersection",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "intersection",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 1,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "label_only_hazard": {
+          "acceptor_chain_mode": "label",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "23",
+            "distance_angstrom": 5.517,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "24",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        },
+        "label_prefer_hazard": {
+          "acceptor_chain_mode": "label_prefer",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label_prefer",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "23",
+            "distance_angstrom": 5.517,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "24",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        },
+        "mixed_label_ligand_auth_acceptor_hazard": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 1,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 1,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "23",
+            "distance_angstrom": 5.517,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "24",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 1
+        }
+      },
+      "hits": [
+        {
+          "auth_ligand_chain": "A",
+          "label_ligand_chain": "B",
+          "ligand": "ATP",
+          "ligand_auth_seq_id": "601",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 1,
+          "nearest_acceptors": [
+            {
+              "atom": "OG1",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "23",
+              "distance_angstrom": 5.517,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "24",
+              "n_terminal_acceptor": true,
+              "residue": "THR",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.899,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "23",
+                "distance_angstrom": 5.517,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "24",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "23",
+                "distance_angstrom": 5.517,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "24",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "23",
+                "distance_angstrom": 5.517,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "24",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PG"
+        },
+        {
+          "auth_ligand_chain": "A",
+          "label_ligand_chain": "C",
+          "ligand": "ATP",
+          "ligand_auth_seq_id": "602",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 1,
+          "nearest_acceptors": [
+            {
+              "atom": "OG1",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "341",
+              "distance_angstrom": 5.31,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "342",
+              "n_terminal_acceptor": false,
+              "residue": "THR",
+              "substrate_mode_rule_hit": false,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.772,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 0,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 0,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 0,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 0,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 0,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 0,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            }
+          },
+          "substrate_mode_acceptor_count": 0,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "keywords": {
+        "pdbx_keywords": "HYDROLASE",
+        "text": "ATPase, closed conformation, arsenite, arsenic, ATP, Intradimeric Walker A, HYDROLASE"
+      },
+      "local_hit_count": 2,
+      "mg_atom_count": 2,
+      "pdb_id": "9NBW",
+      "polymer_entities": [
+        {
+          "description": "Arsenite transporter ATPase-like protein,arsA",
+          "entity_id": "1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "J9ZFA3"
+          ]
+        }
+      ],
+      "probable_epk_from_context": false,
+      "reviewed": true,
+      "terminal_p_atom_count": 2,
+      "title": "Closed conformation of ArsA from L. ferriphilum in complex with MgATP and arsenite at 1.5 minute time point"
+    },
+    {
+      "acceptor_atom_count": 149,
+      "entry_path_summaries": {
+        "actual_materializer_auth_prefer": {
+          "acceptor_chain_mode": "auth_prefer",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth_prefer",
+          "mode_hit_count": 7,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 7,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "current_auth": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth",
+          "mode_hit_count": 7,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 7,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "id_intersection_guard": {
+          "acceptor_chain_mode": "intersection",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "intersection",
+          "mode_hit_count": 7,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 7,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "label_only_hazard": {
+          "acceptor_chain_mode": "label",
+          "cross_chain_mode_hit_count": 7,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 7,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG",
+            "auth_chain": "C",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "18",
+            "distance_angstrom": 4.423,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "C",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "18",
+            "n_terminal_acceptor": true,
+            "residue": "SER",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 7
+        },
+        "label_prefer_hazard": {
+          "acceptor_chain_mode": "label_prefer",
+          "cross_chain_mode_hit_count": 7,
+          "ligand_chain_mode": "label_prefer",
+          "mode_hit_count": 7,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG",
+            "auth_chain": "C",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "18",
+            "distance_angstrom": 4.423,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "C",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "18",
+            "n_terminal_acceptor": true,
+            "residue": "SER",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 7
+        },
+        "mixed_label_ligand_auth_acceptor_hazard": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 7,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 7,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG",
+            "auth_chain": "C",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "18",
+            "distance_angstrom": 4.423,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "C",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "18",
+            "n_terminal_acceptor": true,
+            "residue": "SER",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 7
+        }
+      },
+      "hits": [
+        {
+          "auth_ligand_chain": "C",
+          "label_ligand_chain": "R",
+          "ligand": "AGS",
+          "ligand_auth_seq_id": "301",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 1,
+          "nearest_acceptors": [
+            {
+              "atom": "OG",
+              "auth_chain": "C",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "18",
+              "distance_angstrom": 4.423,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "C",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "18",
+              "n_terminal_acceptor": true,
+              "residue": "SER",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.281,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "C",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.423,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "C",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "C",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.423,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "C",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "C",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.423,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "C",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PB"
+        },
+        {
+          "auth_ligand_chain": "D",
+          "label_ligand_chain": "U",
+          "ligand": "AGS",
+          "ligand_auth_seq_id": "301",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 1,
+          "nearest_acceptors": [
+            {
+              "atom": "OG",
+              "auth_chain": "D",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "18",
+              "distance_angstrom": 4.443,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "D",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "18",
+              "n_terminal_acceptor": true,
+              "residue": "SER",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.163,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "D",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.443,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "D",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "D",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.443,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "D",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "D",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.443,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "D",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PB"
+        },
+        {
+          "auth_ligand_chain": "B",
+          "label_ligand_chain": "I",
+          "ligand": "AGS",
+          "ligand_auth_seq_id": "301",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 2,
+          "nearest_acceptors": [
+            {
+              "atom": "OG",
+              "auth_chain": "B",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "18",
+              "distance_angstrom": 4.528,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "B",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "18",
+              "n_terminal_acceptor": true,
+              "residue": "SER",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            },
+            {
+              "atom": "OG",
+              "auth_chain": "B",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "15",
+              "distance_angstrom": 5.964,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "B",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "15",
+              "n_terminal_acceptor": true,
+              "residue": "SER",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.234,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.528,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.528,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.528,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            }
+          },
+          "substrate_mode_acceptor_count": 2,
+          "terminal_p_atom": "PB"
+        },
+        {
+          "auth_ligand_chain": "A",
+          "label_ligand_chain": "F",
+          "ligand": "AGS",
+          "ligand_auth_seq_id": "302",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 2,
+          "nearest_acceptors": [
+            {
+              "atom": "OG",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "18",
+              "distance_angstrom": 4.564,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "18",
+              "n_terminal_acceptor": true,
+              "residue": "SER",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            },
+            {
+              "atom": "OG",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "15",
+              "distance_angstrom": 5.381,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "15",
+              "n_terminal_acceptor": true,
+              "residue": "SER",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.498,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.564,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.564,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.564,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            }
+          },
+          "substrate_mode_acceptor_count": 2,
+          "terminal_p_atom": "PB"
+        },
+        {
+          "auth_ligand_chain": "D",
+          "label_ligand_chain": "U",
+          "ligand": "AGS",
+          "ligand_auth_seq_id": "301",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 1,
+          "nearest_acceptors": [
+            {
+              "atom": "OG",
+              "auth_chain": "D",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "18",
+              "distance_angstrom": 4.85,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "D",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "18",
+              "n_terminal_acceptor": true,
+              "residue": "SER",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 4.421,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 1,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "D",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.85,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "D",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "D",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.85,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "D",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG",
+                "auth_chain": "D",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "18",
+                "distance_angstrom": 4.85,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "D",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "18",
+                "n_terminal_acceptor": true,
+                "residue": "SER",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PA"
+        }
+      ],
+      "keywords": {
+        "pdbx_keywords": "HYDROLASE",
+        "text": "FtsK-HerA superfamily, P-loop ATPase, genome packaging NTPase, HYDROLASE"
+      },
+      "local_hit_count": 5,
+      "mg_atom_count": 8,
+      "pdb_id": "4KFT",
+      "polymer_entities": [
+        {
+          "description": "Genome packaging NTPase B204",
+          "entity_id": "1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D5IEZ9"
+          ]
+        }
+      ],
+      "probable_epk_from_context": false,
+      "reviewed": true,
+      "terminal_p_atom_count": 9,
+      "title": "Structure of the genome packaging NTPase B204 from Sulfolobus turreted icosahedral virus 2 in complex with ATP-gammaS"
+    },
+    {
+      "acceptor_atom_count": 39,
+      "entry_path_summaries": {
+        "actual_materializer_auth_prefer": {
+          "acceptor_chain_mode": "auth_prefer",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth_prefer",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 2,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "current_auth": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "auth",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 2,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "id_intersection_guard": {
+          "acceptor_chain_mode": "intersection",
+          "cross_chain_mode_hit_count": 0,
+          "ligand_chain_mode": "intersection",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": null,
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 2,
+          "same_chain_topology_detected": true,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "label_only_hazard": {
+          "acceptor_chain_mode": "label",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "11",
+            "distance_angstrom": 3.447,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "11",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 2
+        },
+        "label_prefer_hazard": {
+          "acceptor_chain_mode": "label_prefer",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "label_prefer",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "11",
+            "distance_angstrom": 3.447,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "11",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 2
+        },
+        "mixed_label_ligand_auth_acceptor_hazard": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OG1",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": true,
+            "auth_seq_id": "11",
+            "distance_angstrom": 3.447,
+            "id_intersection_same_chain_to_ligand": true,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "11",
+            "n_terminal_acceptor": true,
+            "residue": "THR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": false
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 2
+        }
+      },
+      "hits": [
+        {
+          "auth_ligand_chain": "A",
+          "label_ligand_chain": "D",
+          "ligand": "ATP",
+          "ligand_auth_seq_id": "802",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 2,
+          "nearest_acceptors": [
+            {
+              "atom": "OG1",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "11",
+              "distance_angstrom": 3.447,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "11",
+              "n_terminal_acceptor": true,
+              "residue": "THR",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            },
+            {
+              "atom": "OG1",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": true,
+              "auth_seq_id": "16",
+              "distance_angstrom": 5.368,
+              "id_intersection_same_chain_to_ligand": true,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "16",
+              "n_terminal_acceptor": true,
+              "residue": "THR",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": false
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.283,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 0,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": null,
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 2,
+              "same_chain_topology_detected": true,
+              "topology_ambiguity_counteraxis_hit": true,
+              "topology_clear_cross_chain_mode_hit_count": 0
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "11",
+                "distance_angstrom": 3.447,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "11",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "11",
+                "distance_angstrom": 3.447,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "11",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 2,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 2,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OG1",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": true,
+                "auth_seq_id": "11",
+                "distance_angstrom": 3.447,
+                "id_intersection_same_chain_to_ligand": true,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "11",
+                "n_terminal_acceptor": true,
+                "residue": "THR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": false
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 2
+            }
+          },
+          "substrate_mode_acceptor_count": 2,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "keywords": {
+        "pdbx_keywords": "BIOTIN BIOSYNTHESIS",
+        "text": "PHOSPHORYL TRANSFER, BIOTIN BIOSYNTHESIS, LIGASE"
+      },
+      "local_hit_count": 1,
+      "mg_atom_count": 1,
+      "pdb_id": "1A82",
+      "polymer_entities": [
+        {
+          "description": "DETHIOBIOTIN SYNTHETASE",
+          "entity_id": "1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13000"
+          ]
+        }
+      ],
+      "probable_epk_from_context": false,
+      "reviewed": true,
+      "terminal_p_atom_count": 1,
+      "title": "DETHIOBIOTIN SYNTHETASE FROM ESCHERICHIA COLI, COMPLEX WITH SUBSTRATES ATP AND DIAMINOPELARGONIC ACID"
+    },
+    {
+      "acceptor_atom_count": 82,
+      "entry_path_summaries": {
+        "actual_materializer_auth_prefer": {
+          "acceptor_chain_mode": "auth_prefer",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "auth_prefer",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": false,
+            "auth_seq_id": "262",
+            "distance_angstrom": 5.754,
+            "id_intersection_same_chain_to_ligand": false,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "298",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": true,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "current_auth": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "auth",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": false,
+            "auth_seq_id": "262",
+            "distance_angstrom": 5.754,
+            "id_intersection_same_chain_to_ligand": false,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "298",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": true,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": true,
+          "topology_clear_cross_chain_mode_hit_count": 0
+        },
+        "id_intersection_guard": {
+          "acceptor_chain_mode": "intersection",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "intersection",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": false,
+            "auth_seq_id": "262",
+            "distance_angstrom": 5.754,
+            "id_intersection_same_chain_to_ligand": false,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "298",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 2
+        },
+        "label_only_hazard": {
+          "acceptor_chain_mode": "label",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": false,
+            "auth_seq_id": "262",
+            "distance_angstrom": 5.754,
+            "id_intersection_same_chain_to_ligand": false,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "298",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 2
+        },
+        "label_prefer_hazard": {
+          "acceptor_chain_mode": "label_prefer",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "label_prefer",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": false,
+            "auth_seq_id": "262",
+            "distance_angstrom": 5.754,
+            "id_intersection_same_chain_to_ligand": false,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "298",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 2
+        },
+        "mixed_label_ligand_auth_acceptor_hazard": {
+          "acceptor_chain_mode": "auth",
+          "cross_chain_mode_hit_count": 2,
+          "ligand_chain_mode": "label",
+          "mode_hit_count": 2,
+          "primary_cross_chain_mode_hit": {
+            "atom": "OH",
+            "auth_chain": "A",
+            "auth_same_chain_to_ligand": false,
+            "auth_seq_id": "262",
+            "distance_angstrom": 5.754,
+            "id_intersection_same_chain_to_ligand": false,
+            "label_chain": "A",
+            "label_same_chain_to_ligand": false,
+            "label_seq_id": "298",
+            "n_terminal_acceptor": false,
+            "residue": "TYR",
+            "substrate_mode_rule_hit": true,
+            "tyrosine_acceptor": true
+          },
+          "reciprocal_cross_chain_topology_detected": false,
+          "same_chain_mode_hit_count": 0,
+          "same_chain_topology_detected": false,
+          "topology_ambiguity_counteraxis_hit": false,
+          "topology_clear_cross_chain_mode_hit_count": 2
+        }
+      },
+      "hits": [
+        {
+          "auth_ligand_chain": "B",
+          "label_ligand_chain": "J",
+          "ligand": "ACP",
+          "ligand_auth_seq_id": "900",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 2,
+          "nearest_acceptors": [
+            {
+              "atom": "OG",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": false,
+              "auth_seq_id": "209",
+              "distance_angstrom": 3.461,
+              "id_intersection_same_chain_to_ligand": false,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "245",
+              "n_terminal_acceptor": false,
+              "residue": "SER",
+              "substrate_mode_rule_hit": false,
+              "tyrosine_acceptor": false
+            },
+            {
+              "atom": "OH",
+              "auth_chain": "A",
+              "auth_same_chain_to_ligand": false,
+              "auth_seq_id": "262",
+              "distance_angstrom": 5.754,
+              "id_intersection_same_chain_to_ligand": false,
+              "label_chain": "A",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "298",
+              "n_terminal_acceptor": false,
+              "residue": "TYR",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": true
+            }
+          ],
+          "nearest_mg_distance_angstrom": 3.037,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.754,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.754,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.754,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.754,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.754,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "A",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.754,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "A",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PG"
+        },
+        {
+          "auth_ligand_chain": "A",
+          "label_ligand_chain": "F",
+          "ligand": "ACP",
+          "ligand_auth_seq_id": "900",
+          "ligand_label_seq_id": ".",
+          "nearby_acceptor_count": 2,
+          "nearest_acceptors": [
+            {
+              "atom": "OG",
+              "auth_chain": "B",
+              "auth_same_chain_to_ligand": false,
+              "auth_seq_id": "209",
+              "distance_angstrom": 3.776,
+              "id_intersection_same_chain_to_ligand": false,
+              "label_chain": "B",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "245",
+              "n_terminal_acceptor": false,
+              "residue": "SER",
+              "substrate_mode_rule_hit": false,
+              "tyrosine_acceptor": false
+            },
+            {
+              "atom": "OH",
+              "auth_chain": "B",
+              "auth_same_chain_to_ligand": false,
+              "auth_seq_id": "262",
+              "distance_angstrom": 5.706,
+              "id_intersection_same_chain_to_ligand": false,
+              "label_chain": "B",
+              "label_same_chain_to_ligand": false,
+              "label_seq_id": "298",
+              "n_terminal_acceptor": false,
+              "residue": "TYR",
+              "substrate_mode_rule_hit": true,
+              "tyrosine_acceptor": true
+            }
+          ],
+          "nearest_mg_distance_angstrom": 2.957,
+          "path_summaries": {
+            "actual_materializer_auth_prefer": {
+              "acceptor_chain_mode": "auth_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "auth_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.706,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "current_auth": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "auth",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.706,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "id_intersection_guard": {
+              "acceptor_chain_mode": "intersection",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "intersection",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.706,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_only_hazard": {
+              "acceptor_chain_mode": "label",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.706,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "label_prefer_hazard": {
+              "acceptor_chain_mode": "label_prefer",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label_prefer",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.706,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            },
+            "mixed_label_ligand_auth_acceptor_hazard": {
+              "acceptor_chain_mode": "auth",
+              "cross_chain_mode_hit_count": 1,
+              "ligand_chain_mode": "label",
+              "mode_hit_count": 1,
+              "primary_cross_chain_mode_hit": {
+                "atom": "OH",
+                "auth_chain": "B",
+                "auth_same_chain_to_ligand": false,
+                "auth_seq_id": "262",
+                "distance_angstrom": 5.706,
+                "id_intersection_same_chain_to_ligand": false,
+                "label_chain": "B",
+                "label_same_chain_to_ligand": false,
+                "label_seq_id": "298",
+                "n_terminal_acceptor": false,
+                "residue": "TYR",
+                "substrate_mode_rule_hit": true,
+                "tyrosine_acceptor": true
+              },
+              "reciprocal_cross_chain_topology_detected": false,
+              "same_chain_mode_hit_count": 0,
+              "same_chain_topology_detected": false,
+              "topology_ambiguity_counteraxis_hit": false,
+              "topology_clear_cross_chain_mode_hit_count": 1
+            }
+          },
+          "substrate_mode_acceptor_count": 1,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "keywords": {
+        "pdbx_keywords": "TRANSFERASE",
+        "text": "beta barrel, alpha-beta structure, Kinase, TRANSFERASE"
+      },
+      "local_hit_count": 2,
+      "mg_atom_count": 6,
+      "pdb_id": "3C9S",
+      "polymer_entities": [
+        {
+          "description": "Thiamine monophosphate kinase",
+          "entity_id": "1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O67883"
+          ]
+        }
+      ],
+      "probable_epk_from_context": false,
+      "reviewed": true,
+      "terminal_p_atom_count": 2,
+      "title": "AaThiL complexed with AMPPCP"
+    }
+  ],
+  "source_line_evidence": [
+    {
+      "file": "src/catalytic_earth/structure.py",
+      "matches": [
+        {
+          "excerpt": "chain = str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\")",
+          "line": 479
+        },
+        {
+          "excerpt": "chain = str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\")",
+          "line": 535
+        },
+        {
+          "excerpt": "chain = str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\")",
+          "line": 611
+        }
+      ],
+      "pattern": "chain = str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\")",
+      "purpose": "shared ligand-context grouping prefers author chain ids"
+    },
+    {
+      "file": "src/catalytic_earth/labels.py",
+      "matches": [
+        {
+          "excerpt": "str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\"),",
+          "line": 12666
+        },
+        {
+          "excerpt": "str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\"),",
+          "line": 13324
+        },
+        {
+          "excerpt": "str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\"),",
+          "line": 27157
+        }
+      ],
+      "pattern": "str(atom.get(\"auth_asym_id\") or atom.get(\"label_asym_id\") or \"\"),",
+      "purpose": "heteromeric materializer stores acceptor chain as auth_asym_id with label fallback"
+    },
+    {
+      "file": "src/catalytic_earth/labels.py",
+      "matches": [
+        {
+          "excerpt": "nearest_gamma.get(\"auth_asym_id\")",
+          "line": 24553
+        },
+        {
+          "excerpt": "nearest_gamma.get(\"auth_asym_id\")",
+          "line": 26775
+        },
+        {
+          "excerpt": "nearest_gamma.get(\"auth_asym_id\")",
+          "line": 27143
+        }
+      ],
+      "pattern": "nearest_gamma.get(\"auth_asym_id\")",
+      "purpose": "heteromeric materializer stores gamma ligand chain as auth_asym_id with label fallback"
+    },
+    {
+      "file": "src/catalytic_earth/labels.py",
+      "matches": [
+        {
+          "excerpt": "== str(hit.get(\"gamma_associated_polymer_chain_name\") or \"\")",
+          "line": 27802
+        },
+        {
+          "excerpt": "== str(hit.get(\"gamma_associated_polymer_chain_name\") or \"\")",
+          "line": 29559
+        },
+        {
+          "excerpt": "== str(hit.get(\"gamma_associated_polymer_chain_name\") or \"\")",
+          "line": 29834
+        }
+      ],
+      "pattern": "== str(hit.get(\"gamma_associated_polymer_chain_name\") or \"\")",
+      "purpose": "MEK/ERK topology counteraxis compares materialized candidate and gamma chain fields"
+    },
+    {
+      "file": "src/catalytic_earth/labels.py",
+      "matches": [
+        {
+          "excerpt": "auth_seq_id = _optional_int(hit.get(\"candidate_auth_seq_id\"))",
+          "line": 30104
+        },
+        {
+          "excerpt": "auth_seq_id = _optional_int(hit.get(\"candidate_auth_seq_id\"))",
+          "line": 30444
+        },
+        {
+          "excerpt": "auth_seq_id = _optional_int(hit.get(\"candidate_auth_seq_id\"))",
+          "line": 30791
+        }
+      ],
+      "pattern": "auth_seq_id = _optional_int(hit.get(\"candidate_auth_seq_id\"))",
+      "purpose": "substrate-mode counteraxis uses materialized auth sequence ids for N-terminal mode"
+    }
+  ]
+}

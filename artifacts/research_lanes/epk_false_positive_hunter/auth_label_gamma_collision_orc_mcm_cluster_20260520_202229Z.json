@@ -1,0 +1,1114 @@
+{
+  "actual_materializer_non_epk_pressure_rows": [
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "provided_cif_text",
+      "heteromeric_candidate_hit_count": 5,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "266",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.565
+        },
+        {
+          "acceptor_entity_id": "11",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "39",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.65
+        },
+        {
+          "acceptor_entity_id": "11",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "44",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.819
+        },
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "109",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "E",
+          "gamma_associated_polymer_entity_id": "5",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.456
+        },
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.621
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "9BCX",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "source_validation_status": "pending_source_validation",
+      "substrate_mode_materializer_hits": [
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.621
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "actual_materializer_probe": {
+    "metadata": {
+      "blocker_not_removed": [
+        "source_validation_pending_for_new_heteromeric_candidates",
+        "only_one_source_valid_heteromeric_positive_like_control",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "blocker_removed": "bounded_heteromeric_candidate_scout_executed",
+      "candidate_status_counts": {
+        "heteromeric_candidate_source_validation_pending_review_only": 1
+      },
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate_count": 0,
+      "curated_label_registry_edited": false,
+      "current_source_valid_positive_like_count": 0,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_failure_count": 0,
+      "fingerprint_registry_edited": false,
+      "heteromeric_candidate_pdb_ids": [
+        "9BCX"
+      ],
+      "heteromeric_candidate_structure_count": 1,
+      "input_candidate_count": 1,
+      "method": "epk_heteromeric_positive_coverage_candidate_scout",
+      "minimum_positive_coverage_met": false,
+      "new_heteromeric_candidate_pdb_ids": [
+        "9BCX"
+      ],
+      "next_actions": [
+        "source-validate the new heteromeric candidate PDBs before treating any as positive-like controls",
+        "keep the one validated 5HVK case as the only source-valid heteromeric positive until validation passes",
+        "do not calibrate thresholds or score external hard negatives from unsourced topology hits"
+      ],
+      "positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "ready_to_measure_gamma_acceptor_distance": false,
+      "ready_to_run_epk_scorer": false,
+      "review_only": true,
+      "review_only_rule": "This scout scans a bounded follow-on active-state kinase PDB set for source-free heteromeric entity topology. Hits are only source-validation leads; they are not positive labels, ePK scores, external hard-negative re-audits, or production fingerprint evidence.",
+      "reviewed_candidate_count": 1,
+      "source_epk_heteromeric_chain_topology_signal_audit_method": "lane_stub_auth_namespace_edge_case_stress",
+      "source_query": "epk_false_positive_hunter_auth_namespace_edge_pressure_ids",
+      "source_validation_queue_ready": true,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    "rows": [
+      {
+        "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+        "candidate_threshold_angstrom": 6.0,
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "external_hard_negative_reaudit_scored": false,
+        "fetch_status": "provided_cif_text",
+        "heteromeric_candidate_hit_count": 5,
+        "heteromeric_candidate_hits": [
+          {
+            "acceptor_entity_id": "10",
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "266",
+            "candidate_chain_name": "E",
+            "candidate_residue_code": "SER",
+            "gamma_associated_polymer_chain_name": "B",
+            "gamma_associated_polymer_entity_id": "2",
+            "gamma_atom_name": "PG",
+            "gamma_ligand_code": "ATP",
+            "nearest_gamma_distance_angstrom": 4.565
+          },
+          {
+            "acceptor_entity_id": "11",
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "39",
+            "candidate_chain_name": "F",
+            "candidate_residue_code": "SER",
+            "gamma_associated_polymer_chain_name": "F",
+            "gamma_associated_polymer_entity_id": "6",
+            "gamma_atom_name": "PG",
+            "gamma_ligand_code": "ATP",
+            "nearest_gamma_distance_angstrom": 4.65
+          },
+          {
+            "acceptor_entity_id": "11",
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "44",
+            "candidate_chain_name": "F",
+            "candidate_residue_code": "THR",
+            "gamma_associated_polymer_chain_name": "F",
+            "gamma_associated_polymer_entity_id": "6",
+            "gamma_atom_name": "PG",
+            "gamma_ligand_code": "ATP",
+            "nearest_gamma_distance_angstrom": 4.819
+          },
+          {
+            "acceptor_entity_id": "10",
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "109",
+            "candidate_chain_name": "E",
+            "candidate_residue_code": "THR",
+            "gamma_associated_polymer_chain_name": "E",
+            "gamma_associated_polymer_entity_id": "5",
+            "gamma_atom_name": "PG",
+            "gamma_ligand_code": "ATP",
+            "nearest_gamma_distance_angstrom": 5.456
+          },
+          {
+            "acceptor_entity_id": "10",
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "232",
+            "candidate_chain_name": "E",
+            "candidate_residue_code": "TYR",
+            "gamma_associated_polymer_chain_name": "B",
+            "gamma_associated_polymer_entity_id": "2",
+            "gamma_atom_name": "PG",
+            "gamma_ligand_code": "ATP",
+            "nearest_gamma_distance_angstrom": 5.621
+          }
+        ],
+        "measurement_ready": false,
+        "pdb_id": "9BCX",
+        "ready_for_label_import": false,
+        "remaining_blockers": [
+          "source_validation_pending_for_heteromeric_candidate",
+          "protein_substrate_acceptor_source_mapping_not_reviewed",
+          "external_hard_negative_reaudit_not_real_scorer"
+        ],
+        "review_only": true,
+        "source_validation_status": "pending_source_validation",
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+      }
+    ],
+    "warnings": [
+      "New heteromeric topology hits remain source-validation leads and cannot expand the positive fingerprint universe."
+    ]
+  },
+  "actual_materializer_topology_clear_non_epk_counterexamples_review_only": [
+    {
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "candidate_threshold_angstrom": 6.0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "provided_cif_text",
+      "heteromeric_candidate_hit_count": 5,
+      "heteromeric_candidate_hits": [
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "266",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.565
+        },
+        {
+          "acceptor_entity_id": "11",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "39",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.65
+        },
+        {
+          "acceptor_entity_id": "11",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "44",
+          "candidate_chain_name": "F",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.819
+        },
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "109",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "E",
+          "gamma_associated_polymer_entity_id": "5",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.456
+        },
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.621
+        }
+      ],
+      "measurement_ready": false,
+      "pdb_id": "9BCX",
+      "ready_for_label_import": false,
+      "reciprocal_cross_chain_topology_detected": false,
+      "remaining_blockers": [
+        "source_validation_pending_for_heteromeric_candidate",
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "same_chain_topology_detected": false,
+      "source_validation_status": "pending_source_validation",
+      "substrate_mode_materializer_hits": [
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.621
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "auth_label_gamma_collision_pressure_rows": [
+    {
+      "acceptor_atom_count": 1164,
+      "actual_distinct_entity_hit_count": 1,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 1,
+      "auth_label_gamma_collision_pressure": true,
+      "auth_only_distinct_entity_hit_count": 1,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "10",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "B",
+          "actual_gamma_associated_polymer_entity_id": "2",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "B",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "E",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_label_chain": "J",
+          "candidate_label_seq_id": "232",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.621,
+          "gamma_auth_chain": "B",
+          "gamma_chain_name": "B",
+          "gamma_label_chain": "Q",
+          "label_collision_polymer_entity_ids": [
+            "2"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 4.153,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "current_rule_counterexample_candidate_review_only": true,
+      "keywords": {
+        "pdbx_keywords": "DNA BINDING PROTEIN",
+        "text": "DNA replication, Cryo-EM, OCCM-deltaC6, REPLICATION-DNA complex, DNA BINDING PROTEIN"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 4,
+      "parse_status": "ok",
+      "pdb_id": "9BCX",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_2:OCCM ATP magnesium",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 1,
+      "surface_order": 3,
+      "terminal_p_atom_count": 3,
+      "title": "Cryo-EM structure of the S. cerevisiae ORC-Cdc6-Mcm2-7-DNA complex with a fully closed Mcm2-Mcm5 DNA entry gate",
+      "topology_clear_auth_label_collision_hit_count": 1
+    }
+  ],
+  "fetch_errors": {},
+  "local_current_rule_counterexamples_review_only": [
+    {
+      "acceptor_atom_count": 1164,
+      "actual_distinct_entity_hit_count": 1,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 1,
+      "auth_label_gamma_collision_pressure": true,
+      "auth_only_distinct_entity_hit_count": 1,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "10",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "B",
+          "actual_gamma_associated_polymer_entity_id": "2",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "B",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "E",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_label_chain": "J",
+          "candidate_label_seq_id": "232",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.621,
+          "gamma_auth_chain": "B",
+          "gamma_chain_name": "B",
+          "gamma_label_chain": "Q",
+          "label_collision_polymer_entity_ids": [
+            "2"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 4.153,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "current_rule_counterexample_candidate_review_only": true,
+      "keywords": {
+        "pdbx_keywords": "DNA BINDING PROTEIN",
+        "text": "DNA replication, Cryo-EM, OCCM-deltaC6, REPLICATION-DNA complex, DNA BINDING PROTEIN"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 4,
+      "parse_status": "ok",
+      "pdb_id": "9BCX",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_2:OCCM ATP magnesium",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 1,
+      "surface_order": 3,
+      "terminal_p_atom_count": 3,
+      "title": "Cryo-EM structure of the S. cerevisiae ORC-Cdc6-Mcm2-7-DNA complex with a fully closed Mcm2-Mcm5 DNA entry gate",
+      "topology_clear_auth_label_collision_hit_count": 1
+    }
+  ],
+  "metadata": {
+    "actual_materializer_candidate_status_counts": {
+      "heteromeric_candidate_source_validation_pending_review_only": 1
+    },
+    "actual_materializer_input_count": 1,
+    "actual_materializer_non_epk_pressure_count": 1,
+    "actual_materializer_non_epk_pressure_pdb_ids": [
+      "9BCX"
+    ],
+    "actual_materializer_topology_clear_non_epk_counterexample_count": 1,
+    "actual_materializer_topology_clear_non_epk_counterexample_pdb_ids": [
+      "9BCX"
+    ],
+    "auth_label_gamma_collision_pressure_entry_count": 1,
+    "auth_label_gamma_collision_pressure_pdb_ids": [
+      "9BCX"
+    ],
+    "ended_at": "2026-05-20T20:56:33Z",
+    "fetch_error_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "local_current_rule_counterexample_count": 1,
+    "local_current_rule_counterexample_pdb_ids": [
+      "9BCX"
+    ],
+    "method": "auth_label_gamma_collision_stress",
+    "production_claim_allowed": false,
+    "query_errors": {},
+    "query_result_counts": {
+      "full_text_1": 7,
+      "full_text_2": 3,
+      "full_text_3": 7
+    },
+    "raw_coordinate_files_written": false,
+    "rows_reviewed": 8,
+    "rule_under_attack": "epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0 plus epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0",
+    "search_surface": {
+      "actual_materializer_gamma_capable_codes": [
+        "ACP",
+        "ANP",
+        "ATP",
+        "DTP"
+      ],
+      "candidate_threshold_angstrom": 6.0,
+      "component_query_surface": [
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_0",
+          "rows": 60,
+          "start": 0
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_120",
+          "rows": 60,
+          "start": 120
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_240",
+          "rows": 60,
+          "start": 240
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_360",
+          "rows": 60,
+          "start": 360
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_480",
+          "rows": 60,
+          "start": 480
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_600",
+          "rows": 60,
+          "start": 600
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_720",
+          "rows": 60,
+          "start": 720
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_840",
+          "rows": 60,
+          "start": 840
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_960",
+          "rows": 60,
+          "start": 960
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_1080",
+          "rows": 60,
+          "start": 1080
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_1200",
+          "rows": 60,
+          "start": 1200
+        },
+        {
+          "ligand": "ATP",
+          "metal": "MG",
+          "name": "atp_mg_start_1320",
+          "rows": 60,
+          "start": 1320
+        },
+        {
+          "ligand": "ANP",
+          "metal": "MG",
+          "name": "anp_mg_start_0",
+          "rows": 50,
+          "start": 0
+        },
+        {
+          "ligand": "ANP",
+          "metal": "MG",
+          "name": "anp_mg_start_160",
+          "rows": 50,
+          "start": 160
+        },
+        {
+          "ligand": "ANP",
+          "metal": "MG",
+          "name": "anp_mg_start_320",
+          "rows": 50,
+          "start": 320
+        },
+        {
+          "ligand": "ANP",
+          "metal": "MG",
+          "name": "anp_mg_start_480",
+          "rows": 50,
+          "start": 480
+        },
+        {
+          "ligand": "ACP",
+          "metal": "MG",
+          "name": "acp_mg_start_0",
+          "rows": 50,
+          "start": 0
+        },
+        {
+          "ligand": "ACP",
+          "metal": "MG",
+          "name": "acp_mg_start_160",
+          "rows": 50,
+          "start": 160
+        },
+        {
+          "ligand": "ACP",
+          "metal": "MG",
+          "name": "acp_mg_start_320",
+          "rows": 50,
+          "start": 320
+        },
+        {
+          "ligand": "DTP",
+          "metal": "MG",
+          "name": "dtp_mg_start_0",
+          "rows": 45,
+          "start": 0
+        },
+        {
+          "ligand": "DTP",
+          "metal": "MG",
+          "name": "dtp_mg_start_120",
+          "rows": 45,
+          "start": 120
+        },
+        {
+          "ligand": "AGS",
+          "metal": "MG",
+          "name": "ags_mg_start_0",
+          "rows": 45,
+          "start": 0
+        },
+        {
+          "ligand": "AGS",
+          "metal": "MG",
+          "name": "ags_mg_start_160",
+          "rows": 45,
+          "start": 160
+        },
+        {
+          "ligand": "A3P",
+          "metal": "MG",
+          "name": "a3p_mg_start_0",
+          "rows": 45,
+          "start": 0
+        }
+      ],
+      "current_atp_like_ligands": [
+        "A3P",
+        "ACP",
+        "AGS",
+        "ANP",
+        "ATP"
+      ],
+      "extra_epk_context_tokens": [
+        "insulin receptor tyrosine kinase",
+        "receptor tyrosine kinase",
+        "tyrosine kinase",
+        "serine/threonine-protein kinase",
+        "serine/threonine protein kinase",
+        "eukaryotic protein kinase"
+      ],
+      "full_text_queries": [
+        "ORC Cdc6 Mcm2-7 ATP",
+        "OCCM ATP magnesium",
+        "Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "full_text_rows": 80,
+      "known_epk_positive_ids_excluded_from_counterexamples": [
+        "1IR3",
+        "1O6K",
+        "1O6L",
+        "2PHK",
+        "3TM0",
+        "5HVK",
+        "6Z3R",
+        "8OXM",
+        "8OXO",
+        "9UUR",
+        "9UUX"
+      ],
+      "max_n_terminal_acceptor_auth_seq_id": 25,
+      "max_unique_ids": 960,
+      "mg_distance_cutoff_angstrom": 4.5,
+      "raw_coordinate_files_written": false,
+      "retry_fetch_errors_from": null,
+      "scan_ligands": [
+        "A3P",
+        "ACP",
+        "AGS",
+        "ANP",
+        "ATP",
+        "DTP"
+      ],
+      "seed_ids": [
+        "7CAG",
+        "8BMS",
+        "9L3M",
+        "9L3U",
+        "7ZE5",
+        "1N56",
+        "2DRA",
+        "2Q66",
+        "2ZH6",
+        "4RWT",
+        "7Z3N",
+        "7Z3O"
+      ],
+      "variant_comparison": "current materializer-like mixed auth/label chain-to-entity gamma mapping vs auth-only polymer-chain gamma mapping"
+    },
+    "started_at": "2026-05-20T20:22:29Z",
+    "unique_pdb_ids_review_surface_count": 8
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 947,
+      "actual_distinct_entity_hit_count": 0,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 0,
+      "auth_label_gamma_collision_pressure": false,
+      "auth_only_distinct_entity_hit_count": 0,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [],
+      "current_rule_counterexample_candidate_review_only": false,
+      "keywords": {
+        "pdbx_keywords": "REPLICATION",
+        "text": "DNA Replication, MCM2-7, DNA licensing, human, origin, ORC, pre-RC, Cdc6, Cdt1, REPLICATION"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 0,
+      "parse_status": "ok",
+      "pdb_id": "8RWV",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 0,
+      "surface_order": 1,
+      "terminal_p_atom_count": 0,
+      "title": "Human OCCM DNA licensing intermediate",
+      "topology_clear_auth_label_collision_hit_count": 0
+    },
+    {
+      "acceptor_atom_count": 1235,
+      "actual_distinct_entity_hit_count": 0,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 0,
+      "auth_label_gamma_collision_pressure": false,
+      "auth_only_distinct_entity_hit_count": 0,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [],
+      "current_rule_counterexample_candidate_review_only": false,
+      "keywords": {
+        "pdbx_keywords": "REPLICATION",
+        "text": "DNA replication, Cryo-EM, OCCM, REPLICATION"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 0,
+      "parse_status": "ok",
+      "pdb_id": "5V8F",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 0,
+      "surface_order": 2,
+      "terminal_p_atom_count": 8,
+      "title": "Structural basis of MCM2-7 replicative helicase loading by ORC-Cdc6 and Cdt1",
+      "topology_clear_auth_label_collision_hit_count": 0
+    },
+    {
+      "acceptor_atom_count": 1164,
+      "actual_distinct_entity_hit_count": 1,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 1,
+      "auth_label_gamma_collision_pressure": true,
+      "auth_only_distinct_entity_hit_count": 1,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "10",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "B",
+          "actual_gamma_associated_polymer_entity_id": "2",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "B",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "E",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_label_chain": "J",
+          "candidate_label_seq_id": "232",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.621,
+          "gamma_auth_chain": "B",
+          "gamma_chain_name": "B",
+          "gamma_label_chain": "Q",
+          "label_collision_polymer_entity_ids": [
+            "2"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 4.153,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "current_rule_counterexample_candidate_review_only": true,
+      "keywords": {
+        "pdbx_keywords": "DNA BINDING PROTEIN",
+        "text": "DNA replication, Cryo-EM, OCCM-deltaC6, REPLICATION-DNA complex, DNA BINDING PROTEIN"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 4,
+      "parse_status": "ok",
+      "pdb_id": "9BCX",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_2:OCCM ATP magnesium",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 1,
+      "surface_order": 3,
+      "terminal_p_atom_count": 3,
+      "title": "Cryo-EM structure of the S. cerevisiae ORC-Cdc6-Mcm2-7-DNA complex with a fully closed Mcm2-Mcm5 DNA entry gate",
+      "topology_clear_auth_label_collision_hit_count": 1
+    },
+    {
+      "acceptor_atom_count": 477,
+      "actual_distinct_entity_hit_count": 0,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 0,
+      "auth_label_gamma_collision_pressure": false,
+      "auth_only_distinct_entity_hit_count": 0,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [],
+      "current_rule_counterexample_candidate_review_only": false,
+      "keywords": {
+        "pdbx_keywords": "REPLICATION/DNA",
+        "text": "DNA replication, Cryo-EM, OCCM-deltaC6, REPLICATION-DNA complex"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 0,
+      "parse_status": "ok",
+      "pdb_id": "6WGC",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 0,
+      "surface_order": 4,
+      "terminal_p_atom_count": 4,
+      "title": "Atomic model of semi-attached mutant OCCM-DNA complex (ORC-Cdc6-Cdt1-Mcm2-7 with Mcm6 WHD truncation)",
+      "topology_clear_auth_label_collision_hit_count": 0
+    },
+    {
+      "acceptor_atom_count": 1107,
+      "actual_distinct_entity_hit_count": 0,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 0,
+      "auth_label_gamma_collision_pressure": false,
+      "auth_only_distinct_entity_hit_count": 0,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [],
+      "current_rule_counterexample_candidate_review_only": false,
+      "keywords": {
+        "pdbx_keywords": "REPLICATION/DNA",
+        "text": "DNA replication, Cryo-EM, OCCM-deltaC6, REPLICATION-DNA complex"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 0,
+      "parse_status": "ok",
+      "pdb_id": "6WGG",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 0,
+      "surface_order": 5,
+      "terminal_p_atom_count": 4,
+      "title": "Atomic model of pre-insertion mutant OCCM-DNA complex(ORC-Cdc6-Cdt1-Mcm2-7 with Mcm6 WHD truncation)",
+      "topology_clear_auth_label_collision_hit_count": 0
+    },
+    {
+      "acceptor_atom_count": 1067,
+      "actual_distinct_entity_hit_count": 0,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 0,
+      "auth_label_gamma_collision_pressure": false,
+      "auth_only_distinct_entity_hit_count": 0,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [],
+      "current_rule_counterexample_candidate_review_only": false,
+      "keywords": {
+        "pdbx_keywords": "REPLICATION/DNA",
+        "text": "DNA replication, OCCM-deltaC6, REPLICATION-DNA complex"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 2,
+      "parse_status": "ok",
+      "pdb_id": "6WGI",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_2:OCCM ATP magnesium",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 0,
+      "surface_order": 6,
+      "terminal_p_atom_count": 4,
+      "title": "Atomic model of the mutant OCCM (ORC-Cdc6-Cdt1-Mcm2-7 with Mcm6 WHD truncation) loaded on DNA at 10.5 A resolution",
+      "topology_clear_auth_label_collision_hit_count": 0
+    },
+    {
+      "acceptor_atom_count": 534,
+      "actual_distinct_entity_hit_count": 0,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 0,
+      "auth_label_gamma_collision_pressure": false,
+      "auth_only_distinct_entity_hit_count": 0,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [],
+      "current_rule_counterexample_candidate_review_only": false,
+      "keywords": {
+        "pdbx_keywords": "REPLICATION",
+        "text": "DNA replication, Cryo-EM, OCCM-deltaC6, REPLICATION"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 0,
+      "parse_status": "ok",
+      "pdb_id": "6WGF",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_1:ORC Cdc6 Mcm2-7 ATP",
+        "full_text_3:Mcm2-7 ORC Cdc6 ATP"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 0,
+      "surface_order": 7,
+      "terminal_p_atom_count": 0,
+      "title": "Atomic model of mutant Mcm2-7 hexamer with Mcm6 WHD truncation",
+      "topology_clear_auth_label_collision_hit_count": 0
+    },
+    {
+      "acceptor_atom_count": 780,
+      "actual_distinct_entity_hit_count": 0,
+      "actual_reciprocal_cross_chain_topology_detected": false,
+      "actual_same_chain_topology_detected": false,
+      "actual_topology_ambiguity_counteraxis_hit": false,
+      "auth_asym_id_tag_present": true,
+      "auth_label_gamma_collision_hit_count": 0,
+      "auth_label_gamma_collision_pressure": false,
+      "auth_only_distinct_entity_hit_count": 0,
+      "auth_only_reciprocal_cross_chain_topology_detected": false,
+      "auth_only_same_chain_topology_detected": false,
+      "auth_only_topology_ambiguity_counteraxis_hit": false,
+      "auth_seq_id_tag_present": true,
+      "best_hits": [],
+      "current_rule_counterexample_candidate_review_only": false,
+      "keywords": {
+        "pdbx_keywords": "REPLICATION",
+        "text": "AAA+ ATPase, DNA helicase, REPLICATION"
+      },
+      "known_epk_positive_id": false,
+      "label_asym_id_tag_present": true,
+      "label_seq_id_tag_present": true,
+      "mg_atom_count": 5,
+      "parse_status": "ok",
+      "pdb_id": "8S0E",
+      "probable_epk_from_context": false,
+      "query_names": [
+        "full_text_2:OCCM ATP magnesium"
+      ],
+      "reviewed": true,
+      "substrate_mode_local_hit_count": 0,
+      "surface_order": 8,
+      "terminal_p_atom_count": 5,
+      "title": "H. sapiens OCCM bound to double stranded DNA",
+      "topology_clear_auth_label_collision_hit_count": 0
+    }
+  ],
+  "warnings": [
+    "Review-only false-positive stress evidence; no production scoring, threshold calibration, label import, or fingerprint edit.",
+    "DTP is scanned only because the actual review-only materializer currently lists it as gamma-capable; this is not a ligand-set expansion recommendation.",
+    "The auth-only variant is an adversarial comparison, not a production recommendation."
+  ]
+}

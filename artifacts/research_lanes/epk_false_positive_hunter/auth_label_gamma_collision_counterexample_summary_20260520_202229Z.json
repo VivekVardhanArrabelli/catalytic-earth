@@ -1,0 +1,767 @@
+{
+  "counterexamples": [
+    {
+      "actual_materializer_hits": [
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.404
+        },
+        {
+          "acceptor_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "7",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.521
+        }
+      ],
+      "actual_materializer_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false
+      },
+      "keywords": {
+        "pdbx_keywords": "REPLICATION",
+        "text": "origin recognition complex, DNA replication initiation, DNA binding, REPLICATION"
+      },
+      "local_best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "3",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "A",
+          "actual_gamma_associated_polymer_entity_id": "1",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "A",
+          "auth_only_gamma_associated_polymer_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "D",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_label_chain": "C",
+          "candidate_label_seq_id": "165",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.404,
+          "gamma_auth_chain": "A",
+          "gamma_chain_name": "A",
+          "gamma_label_chain": "N",
+          "label_collision_polymer_entity_ids": [
+            "1"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.389,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        },
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "6",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "G",
+          "actual_gamma_associated_polymer_entity_id": "7",
+          "actual_vs_auth_only_gamma_entity_changed": false,
+          "auth_label_gamma_collision": false,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "G",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "A",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_label_chain": "F",
+          "candidate_label_seq_id": "262",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.521,
+          "gamma_auth_chain": "G",
+          "gamma_chain_name": "G",
+          "gamma_label_chain": "P",
+          "label_collision_polymer_entity_ids": [
+            "7"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.428,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "local_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false,
+        "topology_ambiguity_counteraxis_hit": false
+      },
+      "pdb_id": "7JGR",
+      "probable_epk_from_context": false,
+      "title": "Structure of Drosophila ORC bound to DNA (84 bp) and Cdc6"
+    },
+    {
+      "actual_materializer_hits": [
+        {
+          "acceptor_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "7",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.555
+        },
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.885
+        }
+      ],
+      "actual_materializer_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false
+      },
+      "keywords": {
+        "pdbx_keywords": "REPLICATION",
+        "text": "origin recognition complex, DNA replication initiation, DNA binding, REPLICATION"
+      },
+      "local_best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "3",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "A",
+          "actual_gamma_associated_polymer_entity_id": "1",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "A",
+          "auth_only_gamma_associated_polymer_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "D",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_label_chain": "C",
+          "candidate_label_seq_id": "165",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.885,
+          "gamma_auth_chain": "A",
+          "gamma_chain_name": "A",
+          "gamma_label_chain": "N",
+          "label_collision_polymer_entity_ids": [
+            "1"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.587,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        },
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "6",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "G",
+          "actual_gamma_associated_polymer_entity_id": "7",
+          "actual_vs_auth_only_gamma_entity_changed": false,
+          "auth_label_gamma_collision": false,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "G",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "A",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_label_chain": "F",
+          "candidate_label_seq_id": "262",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.555,
+          "gamma_auth_chain": "G",
+          "gamma_chain_name": "G",
+          "gamma_label_chain": "P",
+          "label_collision_polymer_entity_ids": [
+            "7"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.23,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "local_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false,
+        "topology_ambiguity_counteraxis_hit": false
+      },
+      "pdb_id": "7JGS",
+      "probable_epk_from_context": false,
+      "title": "Structure of Drosophila ORC bound to poly(dA/dT) DNA and Cdc6 (conformation 2)"
+    },
+    {
+      "actual_materializer_hits": [
+        {
+          "acceptor_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "7",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.493
+        },
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.562
+        }
+      ],
+      "actual_materializer_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false
+      },
+      "keywords": {
+        "pdbx_keywords": "REPLICATION/DNA",
+        "text": "origin recognition complex, DNA replication initiation, REPLICATION, REPLICATION-DNA complex"
+      },
+      "local_best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "3",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "A",
+          "actual_gamma_associated_polymer_entity_id": "1",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "A",
+          "auth_only_gamma_associated_polymer_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "D",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_label_chain": "C",
+          "candidate_label_seq_id": "165",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.562,
+          "gamma_auth_chain": "A",
+          "gamma_chain_name": "A",
+          "gamma_label_chain": "N",
+          "label_collision_polymer_entity_ids": [
+            "1"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.438,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        },
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "6",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "G",
+          "actual_gamma_associated_polymer_entity_id": "7",
+          "actual_vs_auth_only_gamma_entity_changed": false,
+          "auth_label_gamma_collision": false,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "G",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "A",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_label_chain": "F",
+          "candidate_label_seq_id": "262",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.493,
+          "gamma_auth_chain": "G",
+          "gamma_chain_name": "G",
+          "gamma_label_chain": "P",
+          "label_collision_polymer_entity_ids": [
+            "7"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 4.035,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "local_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false,
+        "topology_ambiguity_counteraxis_hit": false
+      },
+      "pdb_id": "7JK2",
+      "probable_epk_from_context": false,
+      "title": "Structure of Drosophila ORC bound to poly(dA/dT) DNA and Cdc6 (conformation 1)"
+    },
+    {
+      "actual_materializer_hits": [
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.322
+        },
+        {
+          "acceptor_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "7",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.746
+        }
+      ],
+      "actual_materializer_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false
+      },
+      "keywords": {
+        "pdbx_keywords": "REPLICATION/DNA",
+        "text": "origin recognition complex, DNA replication initiation, REPLICATION, REPLICATION-DNA complex"
+      },
+      "local_best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "3",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "A",
+          "actual_gamma_associated_polymer_entity_id": "1",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "A",
+          "auth_only_gamma_associated_polymer_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "D",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_label_chain": "C",
+          "candidate_label_seq_id": "165",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.322,
+          "gamma_auth_chain": "A",
+          "gamma_chain_name": "A",
+          "gamma_label_chain": "N",
+          "label_collision_polymer_entity_ids": [
+            "1"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.775,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        },
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "6",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "G",
+          "actual_gamma_associated_polymer_entity_id": "7",
+          "actual_vs_auth_only_gamma_entity_changed": false,
+          "auth_label_gamma_collision": false,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "G",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "A",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_label_chain": "F",
+          "candidate_label_seq_id": "262",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.746,
+          "gamma_auth_chain": "G",
+          "gamma_chain_name": "G",
+          "gamma_label_chain": "P",
+          "label_collision_polymer_entity_ids": [
+            "7"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.69,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "local_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false,
+        "topology_ambiguity_counteraxis_hit": false
+      },
+      "pdb_id": "7JK3",
+      "probable_epk_from_context": false,
+      "title": "Structure of Drosophila ORC bound to GC-rich DNA and Cdc6"
+    },
+    {
+      "actual_materializer_hits": [
+        {
+          "acceptor_entity_id": "3",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.403
+        },
+        {
+          "acceptor_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "G",
+          "gamma_associated_polymer_entity_id": "7",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.521
+        }
+      ],
+      "actual_materializer_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false
+      },
+      "keywords": {
+        "pdbx_keywords": "REPLICATION/DNA",
+        "text": "origin recognition complex, DNA replication initiation, REPLICATION, REPLICATION-DNA complex"
+      },
+      "local_best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "3",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "A",
+          "actual_gamma_associated_polymer_entity_id": "1",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "A",
+          "auth_only_gamma_associated_polymer_entity_id": "6",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "D",
+          "candidate_auth_seq_id": "162",
+          "candidate_chain_name": "D",
+          "candidate_label_chain": "C",
+          "candidate_label_seq_id": "165",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.403,
+          "gamma_auth_chain": "A",
+          "gamma_chain_name": "A",
+          "gamma_label_chain": "N",
+          "label_collision_polymer_entity_ids": [
+            "1"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.388,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        },
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "6",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "G",
+          "actual_gamma_associated_polymer_entity_id": "7",
+          "actual_vs_auth_only_gamma_entity_changed": false,
+          "auth_label_gamma_collision": false,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "G",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "A",
+          "candidate_auth_seq_id": "698",
+          "candidate_chain_name": "A",
+          "candidate_label_chain": "F",
+          "candidate_label_seq_id": "262",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.521,
+          "gamma_auth_chain": "G",
+          "gamma_chain_name": "G",
+          "gamma_label_chain": "P",
+          "label_collision_polymer_entity_ids": [
+            "7"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 3.428,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "local_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false,
+        "topology_ambiguity_counteraxis_hit": false
+      },
+      "pdb_id": "7JK4",
+      "probable_epk_from_context": false,
+      "title": "Structure of Drosophila ORC bound to AT-rich DNA and Cdc6"
+    },
+    {
+      "actual_materializer_hits": [
+        {
+          "acceptor_entity_id": "10",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.621
+        }
+      ],
+      "actual_materializer_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false
+      },
+      "keywords": {
+        "pdbx_keywords": "DNA BINDING PROTEIN",
+        "text": "DNA replication, Cryo-EM, OCCM-deltaC6, REPLICATION-DNA complex, DNA BINDING PROTEIN"
+      },
+      "local_best_hits": [
+        {
+          "acceptor_entity_differs_from_label_collision_entity": true,
+          "acceptor_entity_id": "10",
+          "actual_distinct_acceptor_gamma_entities": true,
+          "actual_gamma_associated_polymer_chain_name": "B",
+          "actual_gamma_associated_polymer_entity_id": "2",
+          "actual_vs_auth_only_gamma_entity_changed": true,
+          "auth_label_gamma_collision": true,
+          "auth_only_distinct_acceptor_gamma_entities": true,
+          "auth_only_gamma_associated_polymer_chain_name": "B",
+          "auth_only_gamma_associated_polymer_entity_id": "7",
+          "candidate_atom_name": "OH",
+          "candidate_auth_chain": "E",
+          "candidate_auth_seq_id": "232",
+          "candidate_chain_name": "E",
+          "candidate_label_chain": "J",
+          "candidate_label_seq_id": "232",
+          "candidate_residue_code": "TYR",
+          "candidate_same_chain_as_gamma": false,
+          "distance_angstrom": 5.621,
+          "gamma_auth_chain": "B",
+          "gamma_chain_name": "B",
+          "gamma_label_chain": "Q",
+          "label_collision_polymer_entity_ids": [
+            "2"
+          ],
+          "ligand": "ATP",
+          "nearest_mg_distance_angstrom": 4.153,
+          "substrate_mode_rule_hit": true,
+          "terminal_p_atom": "PG"
+        }
+      ],
+      "local_topology": {
+        "reciprocal_cross_chain": false,
+        "same_chain": false,
+        "topology_ambiguity_counteraxis_hit": false
+      },
+      "pdb_id": "9BCX",
+      "probable_epk_from_context": false,
+      "title": "Cryo-EM structure of the S. cerevisiae ORC-Cdc6-Mcm2-7-DNA complex with a fully closed Mcm2-Mcm5 DNA entry gate"
+    }
+  ],
+  "metadata": {
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "method": "auth_label_gamma_collision_counterexample_summary",
+    "production_claim_allowed": false,
+    "raw_coordinate_files_written": false,
+    "source_artifact_count": 5,
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_stress_20260520_202229Z.json",
+      "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_stress_retry_fetch_errors_20260520_202229Z.json",
+      "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_orc_cdc6_cluster_20260520_202229Z.json",
+      "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_orc_mcm_cluster_20260520_202229Z.json",
+      "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_replication_initiation_cluster_20260520_202229Z.json"
+    ],
+    "unique_counterexample_count": 6,
+    "unique_counterexample_pdb_ids": [
+      "7JGR",
+      "7JGS",
+      "7JK2",
+      "7JK3",
+      "7JK4",
+      "9BCX"
+    ]
+  },
+  "surface_summaries": [
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_stress_20260520_202229Z.json",
+      "fetch_error_count": 473,
+      "local_counterexample_pdb_ids": [],
+      "materializer_counterexample_pdb_ids": [],
+      "query_result_counts": {
+        "a3p_mg_start_0": 12,
+        "acp_mg_start_0": 50,
+        "acp_mg_start_160": 50,
+        "acp_mg_start_320": 50,
+        "ags_mg_start_0": 45,
+        "ags_mg_start_160": 45,
+        "anp_mg_start_0": 50,
+        "anp_mg_start_160": 50,
+        "anp_mg_start_320": 50,
+        "anp_mg_start_480": 50,
+        "atp_mg_start_0": 60,
+        "atp_mg_start_1080": 60,
+        "atp_mg_start_120": 60,
+        "atp_mg_start_1200": 60,
+        "atp_mg_start_1320": 60,
+        "atp_mg_start_240": 60,
+        "atp_mg_start_360": 60,
+        "atp_mg_start_480": 60,
+        "atp_mg_start_600": 60,
+        "atp_mg_start_720": 60,
+        "atp_mg_start_840": 60,
+        "atp_mg_start_960": 60,
+        "dtp_mg_start_0": 45,
+        "dtp_mg_start_120": 43
+      },
+      "rows_reviewed": 487,
+      "surface_count": 960
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_stress_retry_fetch_errors_20260520_202229Z.json",
+      "fetch_error_count": 56,
+      "local_counterexample_pdb_ids": [
+        "7JGR",
+        "7JGS",
+        "7JK2",
+        "7JK3",
+        "7JK4"
+      ],
+      "materializer_counterexample_pdb_ids": [
+        "7JGR",
+        "7JGS",
+        "7JK2",
+        "7JK3",
+        "7JK4"
+      ],
+      "query_result_counts": {
+        "retry_fetch_errors": 473
+      },
+      "rows_reviewed": 417,
+      "surface_count": 473
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_orc_cdc6_cluster_20260520_202229Z.json",
+      "fetch_error_count": 0,
+      "local_counterexample_pdb_ids": [
+        "7JK2",
+        "7JK3",
+        "7JK4",
+        "7JGR",
+        "7JGS",
+        "9BCX"
+      ],
+      "materializer_counterexample_pdb_ids": [
+        "7JGR",
+        "7JGS",
+        "7JK2",
+        "7JK3",
+        "7JK4",
+        "9BCX"
+      ],
+      "query_result_counts": {
+        "full_text_1": 45,
+        "full_text_2": 27,
+        "full_text_3": 45
+      },
+      "rows_reviewed": 45,
+      "surface_count": 45
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_orc_mcm_cluster_20260520_202229Z.json",
+      "fetch_error_count": 0,
+      "local_counterexample_pdb_ids": [
+        "9BCX"
+      ],
+      "materializer_counterexample_pdb_ids": [
+        "9BCX"
+      ],
+      "query_result_counts": {
+        "full_text_1": 7,
+        "full_text_2": 3,
+        "full_text_3": 7
+      },
+      "rows_reviewed": 8,
+      "surface_count": 8
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/auth_label_gamma_collision_replication_initiation_cluster_20260520_202229Z.json",
+      "fetch_error_count": 58,
+      "local_counterexample_pdb_ids": [
+        "7JK2",
+        "7JK3",
+        "7JK4",
+        "7JGR",
+        "7JGS",
+        "9BCX"
+      ],
+      "materializer_counterexample_pdb_ids": [
+        "7JGR",
+        "7JGS",
+        "7JK2",
+        "7JK3",
+        "7JK4",
+        "9BCX"
+      ],
+      "query_result_counts": {
+        "full_text_1": 120,
+        "full_text_2": 36,
+        "full_text_3": 13
+      },
+      "rows_reviewed": 70,
+      "surface_count": 128
+    }
+  ],
+  "warnings": [
+    "Review-only research counterexamples; not production scoring or threshold calibration.",
+    "No labels, registries, fingerprints, or migration artifacts were changed."
+  ]
+}

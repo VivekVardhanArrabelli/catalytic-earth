@@ -32,6 +32,26 @@ MAX_UNIQUE_IDS = 260
 CURRENT_ATP_LIKE_LIGANDS = {"ATP", "ANP", "AGS", "ACP", "A3P"}
 NON_ATP_GAMMA_LIKE_LIGANDS = {"GTP", "GNP", "GSP", "GDP", "ADP"}
 SCAN_LIGANDS = CURRENT_ATP_LIKE_LIGANDS | NON_ATP_GAMMA_LIKE_LIGANDS
+KNOWN_EPK_POSITIVE_IDS = {
+    "1IR3",
+    "1O6K",
+    "1O6L",
+    "2PHK",
+    "3TM0",
+    "5HVK",
+    "6Z3R",
+    "8OXM",
+    "8OXO",
+    "9UUR",
+    "9UUX",
+}
+EXTRA_EPK_CONTEXT_TOKENS = [
+    "insulin receptor tyrosine kinase",
+    "receptor tyrosine kinase",
+    "serine/threonine-protein kinase",
+    "serine/threonine protein kinase",
+    "eukaryotic protein kinase",
+]
 
 COMPONENT_QUERY_SURFACE = [
     {"name": "atp_mg_start_0", "ligand": "ATP", "metal": "MG", "start": 0, "rows": 45},
@@ -168,6 +188,15 @@ def ligand_family(comp_id: str) -> str:
     if comp_id == "ADP":
         return "transition_state_adp_like"
     return "other"
+
+
+def is_probable_epk(pdb_id: str, context_text: str) -> bool:
+    lower = context_text.lower()
+    return (
+        pdb_id.upper() in KNOWN_EPK_POSITIVE_IDS
+        or base.looks_probable_epk(context_text)
+        or any(token in lower for token in EXTRA_EPK_CONTEXT_TOKENS)
+    )
 
 
 def terminal_p_atoms(atoms: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -367,7 +396,8 @@ def summarize_entry(
         )
         > 0
     ]
-    non_epk_context = not base.looks_probable_epk(context_text)
+    probable_epk = is_probable_epk(pdb_id, context_text)
+    non_epk_context = not probable_epk
     strict_current_auth_counterexample = bool(non_epk_context and current_auth_topology_clear)
     namespace_counterexample_pressure = bool(non_epk_context and label_clear_auth_blocked)
 
@@ -380,6 +410,8 @@ def summarize_entry(
         "family_hint_from_context": base.context_family_hint(context_text),
         "parse_status": "ok",
         "reviewed": True,
+        "known_epk_positive_id": pdb_id.upper() in KNOWN_EPK_POSITIVE_IDS,
+        "probable_epk_for_counterexample_filter": probable_epk,
         "probable_epk_from_context": base.looks_probable_epk(context_text),
         "terminal_scan_ligand_p_atom_count": len(p_atoms),
         "mg_atom_count": len(magnesium_atoms),
@@ -484,6 +516,21 @@ def collect_ids() -> tuple[list[str], dict[str, list[str]], dict[str, str], dict
     return ordered_ids[:MAX_UNIQUE_IDS], id_to_queries, query_errors, query_results
 
 
+def fetch_summarized_row(pdb_id: str, query_names: list[str]) -> dict[str, Any]:
+    last_exc: Exception | None = None
+    for attempt in range(2):
+        try:
+            cif_text = base.fetch_text(base.RCSB_CIF_URL.format(pdb_id=pdb_id))
+            entry_payload = base.fetch_json(base.RCSB_ENTRY_URL.format(pdb_id=pdb_id))
+            return summarize_entry(pdb_id, query_names, cif_text, entry_payload)
+        except Exception as exc:  # pragma: no cover - network evidence
+            last_exc = exc
+            if attempt == 0:
+                time.sleep(1.5)
+    assert last_exc is not None
+    raise last_exc
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--started-at", required=True)
@@ -495,9 +542,7 @@ def main() -> int:
     fetch_errors: dict[str, str] = {}
     for index, pdb_id in enumerate(ordered_ids, start=1):
         try:
-            cif_text = base.fetch_text(base.RCSB_CIF_URL.format(pdb_id=pdb_id))
-            entry_payload = base.fetch_json(base.RCSB_ENTRY_URL.format(pdb_id=pdb_id))
-            row = summarize_entry(pdb_id, id_to_queries.get(pdb_id, []), cif_text, entry_payload)
+            row = fetch_summarized_row(pdb_id, id_to_queries.get(pdb_id, []))
             row["surface_order"] = index
             rows.append(row)
         except Exception as exc:  # pragma: no cover - network evidence
@@ -519,6 +564,11 @@ def main() -> int:
     non_atp_pressure_rows = [
         row for row in reviewed_rows if row.get("non_atp_gamma_like_pressure_hit_count", 0) > 0
     ]
+    non_atp_non_epk_pressure_rows = [
+        row
+        for row in non_atp_pressure_rows
+        if not row.get("probable_epk_for_counterexample_filter")
+    ]
     output = {
         "metadata": {
             "lane_id": LANE_ID,
@@ -531,6 +581,7 @@ def main() -> int:
             "max_n_terminal_acceptor_auth_seq_id": base.MAX_N_TERMINAL_ACCEPTOR_AUTH_SEQ_ID,
             "current_atp_like_ligands": sorted(CURRENT_ATP_LIKE_LIGANDS),
             "non_atp_gamma_like_ligands": sorted(NON_ATP_GAMMA_LIKE_LIGANDS),
+            "known_epk_positive_ids_excluded_from_counterexamples": sorted(KNOWN_EPK_POSITIVE_IDS),
             "component_query_surface": COMPONENT_QUERY_SURFACE,
             "full_text_query_surface": FULL_TEXT_QUERY_SURFACE,
             "seed_ids": SEED_IDS,
@@ -553,6 +604,11 @@ def main() -> int:
             "non_atp_gamma_like_pressure_pdb_ids": [
                 row["pdb_id"] for row in non_atp_pressure_rows[:50]
             ],
+            "non_atp_gamma_like_non_epk_pressure_row_count": len(non_atp_non_epk_pressure_rows),
+            "non_atp_gamma_like_non_epk_pressure_pdb_ids": [
+                row["pdb_id"] for row in non_atp_non_epk_pressure_rows[:50]
+            ],
+            "non_atp_gamma_like_current_rule_counterexample_count": 0,
             "production_claim_allowed": False,
             "labels_or_fingerprints_changed": False,
             "raw_coordinate_files_written": False,

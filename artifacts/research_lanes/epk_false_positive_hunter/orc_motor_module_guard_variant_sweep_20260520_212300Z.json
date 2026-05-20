@@ -1,0 +1,2404 @@
+{
+  "metadata": {
+    "ended_at": "2026-05-20T21:47:01Z",
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "method": "orc_mcm_guard_variant_sweep",
+    "passing_guard_variant_ids": [
+      "v1_relaxed_oligomeric_atpase_chains",
+      "v2_relaxed_oligomeric_atpase_chains_or_entities",
+      "v4_oligomeric_atp_terminals_no_mg_required"
+    ],
+    "production_claim_allowed": false,
+    "raw_coordinate_files_written": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "reviewed_materializer_row_count": 62,
+    "selected_threshold_angstrom": null,
+    "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/orc_motor_module_multisite_guard_stress_20260520_212300Z.json",
+    "source_free_predictive_feature_materialized": true,
+    "source_method": "orc_mcm_multisite_guard_stress",
+    "started_at": "2026-05-20T21:23:00Z",
+    "threshold_calibrated": false,
+    "topology_clear_substrate_mode_row_count": 23,
+    "variant_count": 5
+  },
+  "variant_summaries": [
+    {
+      "decision_counts": {
+        "known_counterexample_blocked_by_guard_review_only": 6,
+        "known_epk_positive_retained_review_only": 10,
+        "non_epk_topology_clear_hit_blocked_by_guard_review_only": 4,
+        "non_epk_topology_clear_residual_after_guard_review_only": 2,
+        "not_topology_clear_substrate_hit_review_only": 39,
+        "topology_clear_hit_unclassified_review_only": 1
+      },
+      "guard_id": "v0_strict_multisite_entities",
+      "known_counterexample_residual_pdb_ids": [],
+      "known_epk_positive_lost_pdb_ids": [],
+      "min_gamma_mg_chains": 3,
+      "min_gamma_mg_sites": 3,
+      "min_polymer_chains": 0,
+      "min_polymer_entities": 4,
+      "non_epk_topology_clear_residual_pdb_ids": [
+        "5UJ7",
+        "5UJM"
+      ],
+      "rationale": "First-pass guard from the bounded ORC/MCM stress.",
+      "source_free": true,
+      "topology_clear_row_summaries": [
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1IR3",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6K",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6L",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "2PHK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5HVK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 6,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 6,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5UJ7",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_residual_after_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 2
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "5UJM",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_residual_after_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "6RQC",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 1
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 4
+          },
+          "pdb_id": "6Z3R",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGR",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGS",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK2",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK3",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK4",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "7JPO",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 8,
+            "polymer_entity_count": 8
+          },
+          "pdb_id": "7TJF",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7TJH",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXM",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXO",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 16,
+            "polymer_entity_count": 16
+          },
+          "pdb_id": "9BCX",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "9I3I",
+          "probable_epk_from_context": true,
+          "variant_decision": "topology_clear_hit_unclassified_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUR",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUX",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        }
+      ],
+      "variant_status": "fails_closed_current_bounded_guard_variant_review_only"
+    },
+    {
+      "decision_counts": {
+        "known_counterexample_blocked_by_guard_review_only": 6,
+        "known_epk_positive_retained_review_only": 10,
+        "non_epk_topology_clear_hit_blocked_by_guard_review_only": 6,
+        "not_topology_clear_substrate_hit_review_only": 39,
+        "topology_clear_hit_unclassified_review_only": 1
+      },
+      "guard_id": "v1_relaxed_oligomeric_atpase_chains",
+      "known_counterexample_residual_pdb_ids": [],
+      "known_epk_positive_lost_pdb_ids": [],
+      "min_gamma_mg_chains": 2,
+      "min_gamma_mg_sites": 2,
+      "min_polymer_chains": 5,
+      "min_polymer_entities": 0,
+      "non_epk_topology_clear_residual_pdb_ids": [],
+      "rationale": "Blocks ORC motor modules with two or more ATP/Mg sites across multiple chains while excluding compact two-kinase positive controls.",
+      "source_free": true,
+      "topology_clear_row_summaries": [
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1IR3",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6K",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6L",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "2PHK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5HVK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 6,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 6,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5UJ7",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 2
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "5UJM",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "6RQC",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 1
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 4
+          },
+          "pdb_id": "6Z3R",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGR",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGS",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK2",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK3",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK4",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "7JPO",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 8,
+            "polymer_entity_count": 8
+          },
+          "pdb_id": "7TJF",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7TJH",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXM",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXO",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 16,
+            "polymer_entity_count": 16
+          },
+          "pdb_id": "9BCX",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "9I3I",
+          "probable_epk_from_context": true,
+          "variant_decision": "topology_clear_hit_unclassified_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUR",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUX",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        }
+      ],
+      "variant_status": "passes_current_bounded_guard_variant_review_only"
+    },
+    {
+      "chain_or_entity_floor": true,
+      "decision_counts": {
+        "known_counterexample_blocked_by_guard_review_only": 6,
+        "known_epk_positive_retained_review_only": 10,
+        "non_epk_topology_clear_hit_blocked_by_guard_review_only": 6,
+        "not_topology_clear_substrate_hit_review_only": 39,
+        "topology_clear_hit_unclassified_review_only": 1
+      },
+      "guard_id": "v2_relaxed_oligomeric_atpase_chains_or_entities",
+      "known_counterexample_residual_pdb_ids": [],
+      "known_epk_positive_lost_pdb_ids": [],
+      "min_gamma_mg_chains": 2,
+      "min_gamma_mg_sites": 2,
+      "min_polymer_chains": 5,
+      "min_polymer_entities": 3,
+      "non_epk_topology_clear_residual_pdb_ids": [],
+      "rationale": "Same as v1, but also allows at least three polymer entities to cover author-chain/entity edge cases.",
+      "source_free": true,
+      "topology_clear_row_summaries": [
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1IR3",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6K",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6L",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "2PHK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5HVK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 6,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 6,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5UJ7",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 2
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "5UJM",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "6RQC",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 1
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 4
+          },
+          "pdb_id": "6Z3R",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGR",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGS",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK2",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK3",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK4",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "7JPO",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 8,
+            "polymer_entity_count": 8
+          },
+          "pdb_id": "7TJF",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7TJH",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXM",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXO",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 16,
+            "polymer_entity_count": 16
+          },
+          "pdb_id": "9BCX",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "9I3I",
+          "probable_epk_from_context": true,
+          "variant_decision": "topology_clear_hit_unclassified_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUR",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUX",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        }
+      ],
+      "variant_status": "passes_current_bounded_guard_variant_review_only"
+    },
+    {
+      "decision_counts": {
+        "known_counterexample_blocked_by_guard_review_only": 6,
+        "known_epk_positive_lost_to_guard_review_only": 2,
+        "known_epk_positive_retained_review_only": 8,
+        "non_epk_topology_clear_hit_blocked_by_guard_review_only": 6,
+        "not_topology_clear_substrate_hit_review_only": 39,
+        "topology_clear_hit_unclassified_review_only": 1
+      },
+      "guard_id": "v3_too_broad_multisite_only",
+      "known_counterexample_residual_pdb_ids": [],
+      "known_epk_positive_lost_pdb_ids": [
+        "8OXM",
+        "8OXO"
+      ],
+      "min_gamma_mg_chains": 2,
+      "min_gamma_mg_sites": 2,
+      "min_polymer_chains": 0,
+      "min_polymer_entities": 0,
+      "non_epk_topology_clear_residual_pdb_ids": [],
+      "rationale": "Negative-control variant expected to overblock kinase dimers.",
+      "source_free": true,
+      "topology_clear_row_summaries": [
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1IR3",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6K",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6L",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "2PHK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5HVK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 6,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 6,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5UJ7",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 2
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "5UJM",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "6RQC",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 1
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 4
+          },
+          "pdb_id": "6Z3R",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGR",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGS",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK2",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK3",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK4",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "7JPO",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 8,
+            "polymer_entity_count": 8
+          },
+          "pdb_id": "7TJF",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7TJH",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXM",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_lost_to_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXO",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_lost_to_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 16,
+            "polymer_entity_count": 16
+          },
+          "pdb_id": "9BCX",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "9I3I",
+          "probable_epk_from_context": true,
+          "variant_decision": "topology_clear_hit_unclassified_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUR",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUX",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        }
+      ],
+      "variant_status": "fails_closed_current_bounded_guard_variant_review_only"
+    },
+    {
+      "decision_counts": {
+        "known_counterexample_blocked_by_guard_review_only": 6,
+        "known_epk_positive_retained_review_only": 10,
+        "non_epk_topology_clear_hit_blocked_by_guard_review_only": 6,
+        "not_topology_clear_substrate_hit_review_only": 39,
+        "topology_clear_hit_unclassified_review_only": 1
+      },
+      "guard_id": "v4_oligomeric_atp_terminals_no_mg_required",
+      "known_counterexample_residual_pdb_ids": [],
+      "known_epk_positive_lost_pdb_ids": [],
+      "min_gamma_mg_chains": 0,
+      "min_gamma_mg_sites": 0,
+      "min_gamma_terminal_p": 3,
+      "min_polymer_chains": 5,
+      "min_polymer_entities": 0,
+      "non_epk_topology_clear_residual_pdb_ids": [],
+      "rationale": "Covers ORC/OCCM materializer hits where ATP terminal phosphates are present but Mg is absent or outside the local cutoff.",
+      "source_free": true,
+      "topology_clear_row_summaries": [
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1IR3",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6K",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "1O6L",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "2PHK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 1,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5HVK",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 6,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 6,
+            "polymer_entity_count": 3
+          },
+          "pdb_id": "5UJ7",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 2
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "5UJM",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "6RQC",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 1
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 4
+          },
+          "pdb_id": "6Z3R",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGR",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JGS",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK2",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK3",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7JK4",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 5,
+            "polymer_entity_count": 5
+          },
+          "pdb_id": "7JPO",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 8,
+            "polymer_entity_count": 8
+          },
+          "pdb_id": "7TJF",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 4,
+            "gamma_capable_terminal_p_near_mg_chain_count": 4,
+            "gamma_capable_terminal_p_near_mg_count": 4,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 4
+            },
+            "polymer_chain_count": 9,
+            "polymer_entity_count": 9
+          },
+          "pdb_id": "7TJH",
+          "probable_epk_from_context": false,
+          "variant_decision": "non_epk_topology_clear_hit_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXM",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 2,
+            "gamma_capable_terminal_p_near_mg_count": 2,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 2
+            },
+            "polymer_chain_count": 4,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "8OXO",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": true,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 16,
+            "polymer_entity_count": 16
+          },
+          "pdb_id": "9BCX",
+          "probable_epk_from_context": false,
+          "variant_decision": "known_counterexample_blocked_by_guard_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": true,
+          "guard_hit": true,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": false,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 3,
+            "gamma_capable_terminal_p_near_mg_chain_count": 3,
+            "gamma_capable_terminal_p_near_mg_count": 3,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ATP": 3
+            },
+            "polymer_chain_count": 14,
+            "polymer_entity_count": 14
+          },
+          "pdb_id": "9I3I",
+          "probable_epk_from_context": true,
+          "variant_decision": "topology_clear_hit_unclassified_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 1,
+            "gamma_capable_terminal_p_near_mg_count": 1,
+            "gamma_capable_terminal_p_near_mg_entity_count": 1,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {
+              "ANP": 1
+            },
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUR",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        },
+        {
+          "deposited_text_role_diagnostic_hit": false,
+          "guard_hit": false,
+          "known_counterexample_input": false,
+          "known_epk_positive_input": true,
+          "metrics": {
+            "gamma_capable_terminal_p_count": 2,
+            "gamma_capable_terminal_p_near_mg_chain_count": 0,
+            "gamma_capable_terminal_p_near_mg_count": 0,
+            "gamma_capable_terminal_p_near_mg_entity_count": 0,
+            "gamma_capable_terminal_p_near_mg_ligand_counts": {},
+            "polymer_chain_count": 2,
+            "polymer_entity_count": 2
+          },
+          "pdb_id": "9UUX",
+          "probable_epk_from_context": true,
+          "variant_decision": "known_epk_positive_retained_review_only"
+        }
+      ],
+      "variant_status": "passes_current_bounded_guard_variant_review_only"
+    }
+  ],
+  "warnings": [
+    "Variant sweep reuses compact stress evidence only; it is review-only.",
+    "Passing variants are bounded to the source artifact and need broader non-ORC ATPase stress before any production discussion."
+  ]
+}

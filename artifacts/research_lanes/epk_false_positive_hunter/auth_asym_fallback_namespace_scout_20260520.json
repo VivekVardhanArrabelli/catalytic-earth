@@ -1,0 +1,121 @@
+{
+  "fetch_errors": {},
+  "metadata": {
+    "auth_asym_fallback_pressure_pdb_ids": [],
+    "auth_asym_fallback_pressure_row_count": 0,
+    "candidate_threshold_angstrom": 6.0,
+    "current_atp_like_ligands": [
+      "ATP",
+      "ANP",
+      "AGS",
+      "ACP",
+      "A3P"
+    ],
+    "ended_at": "2026-05-20T17:37:19Z",
+    "fetch_error_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "method": "auth_asym_fallback_namespace_pressure_scout",
+    "mg_distance_cutoff_angstrom": 4.5,
+    "production_claim_allowed": false,
+    "query_errors": {},
+    "query_result_counts": {
+      "a3p_mg_start_0": 12,
+      "a3p_mg_start_120": 0,
+      "acp_mg_start_0": 30,
+      "acp_mg_start_120": 30,
+      "ags_mg_start_0": 30,
+      "ags_mg_start_120": 30,
+      "anp_mg_start_0": 30,
+      "anp_mg_start_120": 30,
+      "atp_mg_start_0": 30,
+      "atp_mg_start_300": 30,
+      "atp_mg_start_900": 30
+    },
+    "query_surface": [
+      {
+        "ligand": "ATP",
+        "metal": "MG",
+        "name": "atp_mg_start_0",
+        "rows": 30,
+        "start": 0
+      },
+      {
+        "ligand": "ATP",
+        "metal": "MG",
+        "name": "atp_mg_start_300",
+        "rows": 30,
+        "start": 300
+      },
+      {
+        "ligand": "ATP",
+        "metal": "MG",
+        "name": "atp_mg_start_900",
+        "rows": 30,
+        "start": 900
+      },
+      {
+        "ligand": "ANP",
+        "metal": "MG",
+        "name": "anp_mg_start_0",
+        "rows": 30,
+        "start": 0
+      },
+      {
+        "ligand": "ANP",
+        "metal": "MG",
+        "name": "anp_mg_start_120",
+        "rows": 30,
+        "start": 120
+      },
+      {
+        "ligand": "AGS",
+        "metal": "MG",
+        "name": "ags_mg_start_0",
+        "rows": 30,
+        "start": 0
+      },
+      {
+        "ligand": "AGS",
+        "metal": "MG",
+        "name": "ags_mg_start_120",
+        "rows": 30,
+        "start": 120
+      },
+      {
+        "ligand": "ACP",
+        "metal": "MG",
+        "name": "acp_mg_start_0",
+        "rows": 30,
+        "start": 0
+      },
+      {
+        "ligand": "ACP",
+        "metal": "MG",
+        "name": "acp_mg_start_120",
+        "rows": 30,
+        "start": 120
+      },
+      {
+        "ligand": "A3P",
+        "metal": "MG",
+        "name": "a3p_mg_start_0",
+        "rows": 30,
+        "start": 0
+      },
+      {
+        "ligand": "A3P",
+        "metal": "MG",
+        "name": "a3p_mg_start_120",
+        "rows": 30,
+        "start": 120
+      }
+    ],
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "rows_reviewed": 180,
+    "started_at": "2026-05-20T17:20:18Z",
+    "unique_pdb_ids_reviewed": 180
+  },
+  "rows": []
+}
