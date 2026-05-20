@@ -1,0 +1,466 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T20:35:54Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "europepmc_pikk_metal_context_literature_scout",
+    "pdb_token_note": "Core metadata PDB-like token extraction requires at least one letter to avoid DOI/year-only false hits; full-text source validation still requires follow-up.",
+    "production_claim_allowed": false,
+    "query_count": 9,
+    "recommendation": "Use only as metadata triage. No paper row supplied a fresh PDB-specific local metal/gamma substrate candidate beyond 9IZ0/6Z3R surfaces without CIF support.",
+    "returned_rows_reviewed": 29,
+    "review_only": true,
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+    "total_hit_count": 29
+  },
+  "rows": [
+    {
+      "hit_count": 3,
+      "query_or_source": "Europe PMC: \"ATM/Tel1\" \"CHK2\" \"AMP-PNP\" magnesium",
+      "results": [
+        {
+          "doi": "10.1146/annurev-biochem-072324-031915",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC12893018",
+          "pmid": "40540755",
+          "pubYear": "2025",
+          "title": "DNA Damage and Replication Stress Checkpoints."
+        },
+        {
+          "doi": "10.1080/10409238.2021.1925218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8992879",
+          "pmid": "34151669",
+          "pubYear": "2021",
+          "title": "Novel insights into the mechanism of cell cycle kinases Mec1(ATR) and Tel1(ATM)."
+        },
+        {
+          "doi": "10.7554/elife.74218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8828054",
+          "pmid": "35076389",
+          "pubYear": "2022",
+          "title": "Structure of the human ATM kinase and mechanism of Nbs1 binding."
+        }
+      ],
+      "returned_count": 3,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATM%2FTel1%22+%22CHK2%22+%22AMP-PNP%22+magnesium&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 4,
+      "query_or_source": "Europe PMC: \"ATM/Tel1\" \"CHK2\" \"AMP-PNP\"",
+      "results": [
+        {
+          "doi": "10.1038/s41421-025-00786-0",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC11933327",
+          "pmid": "40128540",
+          "pubYear": "2025",
+          "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+        },
+        {
+          "doi": "10.1080/10409238.2021.1925218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8992879",
+          "pmid": "34151669",
+          "pubYear": "2021",
+          "title": "Novel insights into the mechanism of cell cycle kinases Mec1(ATR) and Tel1(ATM)."
+        },
+        {
+          "doi": "10.1146/annurev-biochem-072324-031915",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC12893018",
+          "pmid": "40540755",
+          "pubYear": "2025",
+          "title": "DNA Damage and Replication Stress Checkpoints."
+        },
+        {
+          "doi": "10.7554/elife.74218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8828054",
+          "pmid": "35076389",
+          "pubYear": "2022",
+          "title": "Structure of the human ATM kinase and mechanism of Nbs1 binding."
+        }
+      ],
+      "returned_count": 4,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATM%2FTel1%22+%22CHK2%22+%22AMP-PNP%22&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 9,
+      "query_or_source": "Europe PMC: \"ATM\" \"CHK2\" \"AMP-PNP\" PDB",
+      "results": [
+        {
+          "doi": "10.1038/s41421-025-00786-0",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC11933327",
+          "pmid": "40128540",
+          "pubYear": "2025",
+          "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+        },
+        {
+          "doi": "10.1126/sciadv.adi8291",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC10530080",
+          "pmid": "37756394",
+          "pubYear": "2023",
+          "title": "Structural insights into the activation of ataxia-telangiectasia mutated by oxidative stress."
+        },
+        {
+          "doi": "10.7554/elife.74218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8828054",
+          "pmid": "35076389",
+          "pubYear": "2022",
+          "title": "Structure of the human ATM kinase and mechanism of Nbs1 binding."
+        },
+        {
+          "doi": "10.1080/10409238.2021.1925218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8992879",
+          "pmid": "34151669",
+          "pubYear": "2021",
+          "title": "Novel insights into the mechanism of cell cycle kinases Mec1(ATR) and Tel1(ATM)."
+        },
+        {
+          "doi": "10.1007/s00018-019-03365-1",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC6957567",
+          "pmid": "31748913",
+          "pubYear": "2020",
+          "title": "Structural basis of homologous recombination."
+        },
+        {
+          "doi": "10.1080/15476286.2019.1653679",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC6779401",
+          "pmid": "31390939",
+          "pubYear": "2019",
+          "title": "In vitro dimerization of human RIO2 kinase."
+        },
+        {
+          "doi": "10.1158/1541-7786.mcr-10-0233",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC2941563",
+          "pmid": "20719863",
+          "pubYear": "2010",
+          "title": "Chk1-dependent constitutive phosphorylation of BLM helicase at serine 646 decreases after DNA damage."
+        },
+        {
+          "doi": "10.3390/biom5042589",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC4693249",
+          "pmid": "26501335",
+          "pubYear": "2015",
+          "title": "Hsp90: A New Player in DNA Repair?"
+        },
+        {
+          "doi": null,
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC7163982",
+          "pmid": null,
+          "pubYear": "2008",
+          "title": "Poster Presentations"
+        }
+      ],
+      "returned_count": 9,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATM%22+%22CHK2%22+%22AMP-PNP%22+PDB&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 5,
+      "query_or_source": "Europe PMC: \"Tel1\" \"CHK2\" \"AMP-PNP\" PDB",
+      "results": [
+        {
+          "doi": "10.1038/s41421-025-00786-0",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC11933327",
+          "pmid": "40128540",
+          "pubYear": "2025",
+          "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+        },
+        {
+          "doi": "10.7554/elife.74218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8828054",
+          "pmid": "35076389",
+          "pubYear": "2022",
+          "title": "Structure of the human ATM kinase and mechanism of Nbs1 binding."
+        },
+        {
+          "doi": "10.1126/sciadv.adi8291",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC10530080",
+          "pmid": "37756394",
+          "pubYear": "2023",
+          "title": "Structural insights into the activation of ataxia-telangiectasia mutated by oxidative stress."
+        },
+        {
+          "doi": "10.1080/10409238.2021.1925218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8992879",
+          "pmid": "34151669",
+          "pubYear": "2021",
+          "title": "Novel insights into the mechanism of cell cycle kinases Mec1(ATR) and Tel1(ATM)."
+        },
+        {
+          "doi": "10.1007/s00018-019-03365-1",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC6957567",
+          "pmid": "31748913",
+          "pubYear": "2020",
+          "title": "Structural basis of homologous recombination."
+        }
+      ],
+      "returned_count": 5,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Tel1%22+%22CHK2%22+%22AMP-PNP%22+PDB&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 3,
+      "query_or_source": "Europe PMC: \"PIKK\" \"substrate peptide\" \"AMP-PNP\" magnesium PDB",
+      "results": [
+        {
+          "doi": "10.1126/sciadv.adi8291",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC10530080",
+          "pmid": "37756394",
+          "pubYear": "2023",
+          "title": "Structural insights into the activation of ataxia-telangiectasia mutated by oxidative stress."
+        },
+        {
+          "doi": "10.7554/elife.74218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8828054",
+          "pmid": "35076389",
+          "pubYear": "2022",
+          "title": "Structure of the human ATM kinase and mechanism of Nbs1 binding."
+        },
+        {
+          "doi": "10.1016/j.str.2019.10.012",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC6945111",
+          "pmid": "31740029",
+          "pubYear": "2020",
+          "title": "Cryo-EM Structure of Nucleotide-Bound Tel1&lt;sup&gt;ATM&lt;/sup&gt; Unravels the Molecular Basis of Inhibition and Structural Rationale for Disease-Associated Mutations."
+        }
+      ],
+      "returned_count": 3,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22PIKK%22+%22substrate+peptide%22+%22AMP-PNP%22+magnesium+PDB&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 2,
+      "query_or_source": "Europe PMC: \"SMG1\" \"UPF1\" \"AMP-PNP\" magnesium PDB",
+      "results": [
+        {
+          "doi": "10.1126/sciadv.adi8291",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC10530080",
+          "pmid": "37756394",
+          "pubYear": "2023",
+          "title": "Structural insights into the activation of ataxia-telangiectasia mutated by oxidative stress."
+        },
+        {
+          "doi": "10.7554/elife.74218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8828054",
+          "pmid": "35076389",
+          "pubYear": "2022",
+          "title": "Structure of the human ATM kinase and mechanism of Nbs1 binding."
+        }
+      ],
+      "returned_count": 2,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22SMG1%22+%22UPF1%22+%22AMP-PNP%22+magnesium+PDB&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 0,
+      "query_or_source": "Europe PMC: \"mTOR\" \"4EBP1\" \"AMP-PNP\" magnesium PDB",
+      "results": [],
+      "returned_count": 0,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22mTOR%22+%224EBP1%22+%22AMP-PNP%22+magnesium+PDB&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 2,
+      "query_or_source": "Europe PMC: \"DNA-PKcs\" \"substrate peptide\" \"AMP-PNP\" magnesium PDB",
+      "results": [
+        {
+          "doi": "10.7554/elife.74218",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC8828054",
+          "pmid": "35076389",
+          "pubYear": "2022",
+          "title": "Structure of the human ATM kinase and mechanism of Nbs1 binding."
+        },
+        {
+          "doi": "10.1016/j.str.2019.10.012",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC6945111",
+          "pmid": "31740029",
+          "pubYear": "2020",
+          "title": "Cryo-EM Structure of Nucleotide-Bound Tel1&lt;sup&gt;ATM&lt;/sup&gt; Unravels the Molecular Basis of Inhibition and Structural Rationale for Disease-Associated Mutations."
+        }
+      ],
+      "returned_count": 2,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22DNA-PKcs%22+%22substrate+peptide%22+%22AMP-PNP%22+magnesium+PDB&format=json&pageSize=10&resultType=core"
+    },
+    {
+      "hit_count": 1,
+      "query_or_source": "Europe PMC: \"ATR\" \"Mec1\" \"substrate peptide\" \"AMP-PNP\" magnesium PDB",
+      "results": [
+        {
+          "doi": "10.1016/j.str.2019.10.012",
+          "journalTitle": null,
+          "mentions_amp_pnp": false,
+          "mentions_chk2": false,
+          "mentions_magnesium_or_mg": false,
+          "mentions_manganese_or_mn": false,
+          "pdb_id_like_tokens_in_core_metadata": [],
+          "pmcid": "PMC6945111",
+          "pmid": "31740029",
+          "pubYear": "2020",
+          "title": "Cryo-EM Structure of Nucleotide-Bound Tel1&lt;sup&gt;ATM&lt;/sup&gt; Unravels the Molecular Basis of Inhibition and Structural Rationale for Disease-Associated Mutations."
+        }
+      ],
+      "returned_count": 1,
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR%22+%22Mec1%22+%22substrate+peptide%22+%22AMP-PNP%22+magnesium+PDB&format=json&pageSize=10&resultType=core"
+    }
+  ]
+}

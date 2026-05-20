@@ -1,0 +1,3639 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "gamma_acceptor_candidate_without_local_metal_review_only": 2,
+      "gamma_without_local_metal_or_heteromeric_acceptor_review_only": 6,
+      "local_metal_gamma_without_heteromeric_acceptor_review_only": 13,
+      "no_active_gamma_donor_review_only": 5
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T20:32:59Z",
+    "hypothesis": "9IZ0 or sibling PIKK/ATM/Tel1 substrate structures may include local Mg/Mn or equivalent metal context that converts the source-mapped CHK2 peptide geometry into stronger review-only positive evidence.",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "local_metal_source_map_candidate_count": 0,
+    "local_metal_source_map_candidate_pdb_ids": [],
+    "method": "pikk_atm_tel1_chk2_metal_context_followup",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Keep 9IZ0 as source-mapped peptide evidence with a no-local-metal caveat. Sibling ATM/Tel1 structures provide nucleotide/metal-only negatives, and the bounded PIKK ligand surfaces did not expose a source-mappable local metal/gamma acceptor candidate.",
+    "review_only": true,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11933327/fullTextXML",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11933327/supplementaryFiles"
+    ],
+    "surface_count": 34,
+    "surface_rows_returned_total": 38,
+    "unique_pdb_ids_reviewed": 26
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 116,
+      "atom_count_model_1": 5682,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural characterization of the GSK-3beta active site using selective and non-selective ATP-mimetic inhibitors",
+        "year": 2003
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.639,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "A",
+              "distance_angstrom": 2.971,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "1003",
+              "chain": "A",
+              "distance_angstrom": 3.076,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.686,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2001",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "2002",
+              "chain": "B",
+              "distance_angstrom": 2.952,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "2003",
+              "chain": "B",
+              "distance_angstrom": 3.063,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "2",
+          "molecule_count": 4,
+          "nonpolymer_comp_id": "MG"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "3",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ANP"
+        }
+      ],
+      "pdb_id": "1PYX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 6,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "GSK-3 Beta complexed with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 85,
+      "atom_count_model_1": 5216,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Higher-Order Substrate Recognition of eIF2alpha by the RNA-Dependent Protein Kinase PKR.",
+        "year": 2005
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.779,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1640",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1642",
+              "chain": "B",
+              "distance_angstrom": 3.312,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 12.041
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.903,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2640",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "2642",
+              "chain": "C",
+              "distance_angstrom": 3.214,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "2641",
+              "chain": "C",
+              "distance_angstrom": 3.55,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 55.295
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B",
+            "C"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "3",
+          "molecule_count": 4,
+          "nonpolymer_comp_id": "MG"
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "C"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "4",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "PHOSPHATE ION",
+          "entity_id": "5",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "PO4"
+        }
+      ],
+      "pdb_id": "2A19",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Eukaryotic translation initiation factor 2 alpha subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20459"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "C"
+          ],
+          "description": "Interferon-induced, double-stranded RNA-activated protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P19525"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 4,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "PKR kinase domain- eIF2alpha- AMP-PNP complex."
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 2507,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Autoregulation by the Juxtamembrane Region of the Human Ephrin Receptor Tyrosine Kinase A3 (EphA3).",
+        "year": 2008
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.762,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1000",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "1",
+              "chain": "A",
+              "distance_angstrom": 3.303,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "2",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MG"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "BETA-MERCAPTOETHANOL",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "BME"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "4",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "GLYCEROL",
+          "entity_id": "5",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "GOL"
+        }
+      ],
+      "pdb_id": "2QO7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ephrin receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29320"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 1,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "Human EphA3 kinase and juxtamembrane region, dephosphorylated, AMP-PNP bound"
+    },
+    {
+      "acceptor_atom_count": 160,
+      "atom_count_model_1": 9760,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism for activation of the EGF receptor catalytic domain by the juxtamembrane segment.",
+        "year": 2009
+      },
+      "donor_gamma_atom_count": 4,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.335,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "11",
+              "chain": "B",
+              "distance_angstrom": 4.737,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.409,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "12",
+              "chain": "A",
+              "distance_angstrom": 3.991,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.549,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "13",
+              "chain": "C",
+              "distance_angstrom": 4.311,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.448,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "4",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "14",
+              "chain": "D",
+              "distance_angstrom": 3.818,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "3",
+          "molecule_count": 4,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "4",
+          "molecule_count": 4,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "3GT8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Epidermal growth factor receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00533"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "Unknown peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 2,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "Crystal structure of the inactive EGFR kinase domain in complex with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 48,
+      "atom_count_model_1": 3114,
+      "candidate_status": "no_active_gamma_donor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "4",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "4HPT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "cAMP-dependent protein kinase inhibitor alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63248"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 9,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying complete phosphoryl transfer of AMP-PNP onto a substrate peptide"
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 3407,
+      "candidate_status": "no_active_gamma_donor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "MYRISTIC ACID",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MYR"
+        },
+        {
+          "auth_asym_ids": [
+            "E",
+            "I"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "4",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "5",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "4HPU",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "cAMP-dependent protein kinase inhibitor alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63248"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 10,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying partial phosphoryl transfer of AMP-PNP onto a substrate peptide"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 3048,
+      "candidate_status": "no_active_gamma_donor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of ERK2 AMP-PNP complex",
+        "year": null
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "SULFATE ION",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "SO4"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "4",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "4S32",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63086"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 3,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "Crystal structure of ERK2 AMP-PNP complex"
+    },
+    {
+      "acceptor_atom_count": 48,
+      "atom_count_model_1": 3066,
+      "candidate_status": "no_active_gamma_donor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Multiple mechanisms render Erk proteins MEK-independent",
+        "year": null
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "SULFATE ION",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "SO4"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "4",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "4S33",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63086"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 7,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "ERK2 R65S mutant complexed with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 2889,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Multiple mechanisms render Erk proteins MEK-independent",
+        "year": null
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.378,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "A",
+              "distance_angstrom": 4.272,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "SULFATE ION",
+          "entity_id": "2",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "SO4"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "4",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "4S34",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63086"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 8,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "ERK2 (I84A) in complex with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 1028,
+      "atom_count_model_1": 119740,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanisms of mTORC1 activation by RHEB and inhibition by PRAS40.",
+        "year": 2017
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.137,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3001",
+              "chain": "A",
+              "distance_angstrom": 2.981,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3002",
+              "chain": "A",
+              "distance_angstrom": 3.479,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 24.642
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.124,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3001",
+              "chain": "B",
+              "distance_angstrom": 2.965,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3002",
+              "chain": "B",
+              "distance_angstrom": 3.477,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 24.493
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "ADENOSINE-5'-TRIPHOSPHATE",
+          "entity_id": "6",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ATP"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "R",
+            "S"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "7",
+          "molecule_count": 6,
+          "nonpolymer_comp_id": "MG"
+        },
+        {
+          "auth_asym_ids": [
+            "R",
+            "S"
+          ],
+          "description": "GUANOSINE-5'-TRIPHOSPHATE",
+          "entity_id": "8",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "GTP"
+        }
+      ],
+      "pdb_id": "6BCU",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR,Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D",
+            "E"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "W",
+            "Y"
+          ],
+          "description": "Regulatory-associated protein of mTOR,Regulatory-associated protein of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N122"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "X",
+            "Z"
+          ],
+          "description": "Eukaryotic translation initiation factor 4E-binding protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13541"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "R",
+            "S"
+          ],
+          "description": "GTP-binding protein Rheb",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15382"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: PIKK peptide substrate [ATP + MG]",
+          "rank": 3,
+          "surface_id": "pikk_peptide_ligand_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ATP + MG]",
+          "rank": 2,
+          "surface_id": "mtor_peptide_ligand_atp_mg"
+        }
+      ],
+      "title": "Cryo-EM structure of the activated RHEB-mTORC1 refined to 3.4 angstrom"
+    },
+    {
+      "acceptor_atom_count": 962,
+      "atom_count_model_1": 113610,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanisms of mTORC1 activation by RHEB and inhibition by PRAS40.",
+        "year": 2017
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 1.854,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3002",
+              "chain": "A",
+              "distance_angstrom": 3.091,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3001",
+              "chain": "A",
+              "distance_angstrom": 3.537,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 25.974
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 1.874,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3002",
+              "chain": "B",
+              "distance_angstrom": 2.965,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3001",
+              "chain": "B",
+              "distance_angstrom": 3.555,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 25.921
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "ADENOSINE-5'-TRIPHOSPHATE",
+          "entity_id": "5",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ATP"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "6",
+          "molecule_count": 4,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6BCX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D",
+            "E"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "W",
+            "Y"
+          ],
+          "description": "Regulatory-associated protein of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N122"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "X",
+            "Z"
+          ],
+          "description": "Eukaryotic translation initiation factor 4E-binding protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13541"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: PIKK peptide substrate [ATP + MG]",
+          "rank": 2,
+          "surface_id": "pikk_peptide_ligand_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ATP + MG]",
+          "rank": 1,
+          "surface_id": "mtor_peptide_ligand_atp_mg"
+        }
+      ],
+      "title": "mTORC1 structure refined to 3.0 angstroms"
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 3050,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Activation loop dynamics are controlled by conformation-selective inhibitors of ERK2.",
+        "year": 2019
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.525,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "A",
+              "distance_angstrom": 2.999,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 3.649,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "3",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6OPG",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28482"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+          "rank": 5,
+          "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg"
+        }
+      ],
+      "title": "phosphorylated ERK2 with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 406,
+      "atom_count_model_1": 33664,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM Structure of Nucleotide-Bound Tel1ATMUnravels the Molecular Basis of Inhibition and Structural Rationale for Disease-Associated Mutations.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.403,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2801",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "2802",
+              "chain": "F",
+              "distance_angstrom": 2.456,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "H",
+          "associated_polymer_distance_angstrom": 2.403,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2801",
+          "gamma_chain_name": "H",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "2802",
+              "chain": "H",
+              "distance_angstrom": 2.455,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "F",
+            "H"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "F",
+            "H"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "3",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6S8F",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "F",
+            "H"
+          ],
+          "description": "Serine/threonine-protein kinase TEL1,Serine/threonine-protein kinase TEL1,Serine/threonine-protein kinase TEL1,Serine/threonine-protein kinase TEL1,Serine/threonine-protein kinase TEL1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P38110"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: ATM Tel1 [ANP]",
+          "rank": 1,
+          "surface_id": "atm_tel1_ligand_anp"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: ATM Tel1 [ANP + MG]",
+          "rank": 1,
+          "surface_id": "atm_tel1_ligand_anp_mg"
+        }
+      ],
+      "title": "Structure of nucleotide-bound Tel1/ATM"
+    },
+    {
+      "acceptor_atom_count": 462,
+      "atom_count_model_1": 22348,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Near-Complete Structure and Model of Tel1ATM from Chaetomium thermophilum Reveals a Robust Autoinhibited ATP State.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.825,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3001",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "3002",
+              "chain": "A",
+              "distance_angstrom": 4.979,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.825,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3001",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "3002",
+              "chain": "B",
+              "distance_angstrom": 4.979,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "AGS"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "3",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6SKY",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase Tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "G0S4S9"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: ATM Tel1 [AGS + MG]",
+          "rank": 1,
+          "surface_id": "atm_tel1_ligand_ags_mg"
+        }
+      ],
+      "title": "FAT and kinase domain of CtTel1"
+    },
+    {
+      "acceptor_atom_count": 408,
+      "atom_count_model_1": 20930,
+      "candidate_status": "gamma_without_local_metal_or_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Near-Complete Structure and Model of Tel1ATM from Chaetomium thermophilum Reveals a Robust Autoinhibited ATP State.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.972,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3001",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "AGS"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6SKZ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase Tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "G0S4S9"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: ATM Tel1 [AGS + MG]",
+          "rank": 2,
+          "surface_id": "atm_tel1_ligand_ags_mg"
+        }
+      ],
+      "title": "Structure of the closed conformation of CtTel1"
+    },
+    {
+      "acceptor_atom_count": 816,
+      "atom_count_model_1": 41860,
+      "candidate_status": "gamma_without_local_metal_or_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Near-Complete Structure and Model of Tel1ATM from Chaetomium thermophilum Reveals a Robust Autoinhibited ATP State.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.971,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3001",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.971,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3001",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "AGS"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "3",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6SL0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase Tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "G0S4S9"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: ATM Tel1 [AGS + MG]",
+          "rank": 4,
+          "surface_id": "atm_tel1_ligand_ags_mg"
+        }
+      ],
+      "title": "Complete CtTel1 dimer with C2 symmetry"
+    },
+    {
+      "acceptor_atom_count": 407,
+      "atom_count_model_1": 21041,
+      "candidate_status": "gamma_without_local_metal_or_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Near-Complete Structure and Model of Tel1ATM from Chaetomium thermophilum Reveals a Robust Autoinhibited ATP State.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.614,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3001",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+          "entity_id": "2",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "AGS"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "3",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6SL1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase Tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "G0S4S9"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: ATM Tel1 [AGS + MG]",
+          "rank": 3,
+          "surface_id": "atm_tel1_ligand_ags_mg"
+        }
+      ],
+      "title": "Structure of the open conformation of CtTel1"
+    },
+    {
+      "acceptor_atom_count": 316,
+      "atom_count_model_1": 36011,
+      "candidate_status": "gamma_acceptor_candidate_without_local_metal_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of substrate-bound SMG1-8-9 kinase complex reveals molecular basis for phosphorylation specificity.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.157,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3701",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "21",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "4",
+            "candidate_label_seq_id": "5",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 5.607
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.019,
+          "associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "602",
+              "chain": "C",
+              "distance_angstrom": 3.172,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "218",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "218",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 9.954
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "21",
+          "candidate_chain_name": "E",
+          "candidate_entity_id": "4",
+          "candidate_label_seq_id": "5",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3701",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 5.607
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "5",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "INOSITOL HEXAKISPHOSPHATE",
+          "entity_id": "6",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "IHP"
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "ADENOSINE-5'-TRIPHOSPHATE",
+          "entity_id": "7",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ATP"
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "8",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "6Z3R",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase SMG1,Serine/threonine-protein kinase SMG1,SMG1,Serine/threonine-protein kinase SMG1,Serine/threonine-protein kinase SMG1,Serine/threonine-protein kinase SMG1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96Q15"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein SMG8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8ND04"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Protein SMG9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9H0W8"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Regulator of nonsense transcripts 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q92900"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PIKK substrate peptide ANP magnesium",
+          "rank": 1,
+          "surface_id": "pikk_substrate_peptide_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text: PIKK kinase substrate peptide ANP magnesium",
+          "rank": 1,
+          "surface_id": "pikk_kinase_substrate_peptide_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: PIKK peptide substrate [ANP + MG]",
+          "rank": 1,
+          "surface_id": "pikk_peptide_ligand_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: PIKK peptide substrate [ATP + MG]",
+          "rank": 1,
+          "surface_id": "pikk_peptide_ligand_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: SMG1 UPF1 substrate [ANP + MG]",
+          "rank": 1,
+          "surface_id": "smg1_upf1_ligand_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: SMG1 UPF1 substrate [ATP + MG]",
+          "rank": 1,
+          "surface_id": "smg1_upf1_ligand_atp_mg"
+        }
+      ],
+      "title": "Structure of SMG1-8-9 kinase complex bound to UPF1-LSQ"
+    },
+    {
+      "acceptor_atom_count": 872,
+      "atom_count_model_1": 56947,
+      "candidate_status": "gamma_without_local_metal_or_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The 3.2- angstrom resolution structure of human mTORC2.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 4,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.82,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2601",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 25.801
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.949,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2601",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 25.806
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.532,
+          "associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "4802",
+          "gamma_chain_name": "E",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "1220",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "1220",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 28.368
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.421,
+          "associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "4802",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "1220",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "1220",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 28.504
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "E",
+            "F"
+          ],
+          "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+          "entity_id": "5",
+          "molecule_count": 4,
+          "nonpolymer_comp_id": "AGS"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "INOSITOL HEXAKISPHOSPHATE",
+          "entity_id": "6",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "IHP"
+        },
+        {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "ZINC ION",
+          "entity_id": "7",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ZN"
+        },
+        {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "ACETYL GROUP",
+          "entity_id": "8",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ACE"
+        }
+      ],
+      "pdb_id": "6ZWM",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [AGS]",
+          "rank": 1,
+          "surface_id": "mtor_peptide_ligand_ags"
+        }
+      ],
+      "title": "cryo-EM structure of human mTOR complex 2, overall refinement"
+    },
+    {
+      "acceptor_atom_count": 414,
+      "atom_count_model_1": 24994,
+      "candidate_status": "gamma_without_local_metal_or_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The 3.2- angstrom resolution structure of human mTORC2.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.962,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2601",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 25.821
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.41,
+          "associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "4802",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "1220",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "1220",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 28.341
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+          "entity_id": "5",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "AGS"
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "INOSITOL HEXAKISPHOSPHATE",
+          "entity_id": "6",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "IHP"
+        },
+        {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "ZINC ION",
+          "entity_id": "7",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ZN"
+        },
+        {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "ACETYL GROUP",
+          "entity_id": "8",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ACE"
+        }
+      ],
+      "pdb_id": "6ZWO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [AGS]",
+          "rank": 2,
+          "surface_id": "mtor_peptide_ligand_ags"
+        }
+      ],
+      "title": "cryo-EM structure of human mTOR complex 2, focused on one half"
+    },
+    {
+      "acceptor_atom_count": 853,
+      "atom_count_model_1": 99566,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "cryoEM structure of mTORC1 with the cancer-associated 1455-EWED-1458 duplication variant, overall refinement",
+        "year": null
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.564,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3001",
+              "chain": "A",
+              "distance_angstrom": 4.429,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3002",
+              "chain": "A",
+              "distance_angstrom": 4.956,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 26.802
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.459,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3001",
+              "chain": "B",
+              "distance_angstrom": 3.002,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "92",
+            "candidate_chain_name": "Y",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "92",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 25.356
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "5",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "6",
+          "molecule_count": 4,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "8RCH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D",
+            "E"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "W",
+            "Y"
+          ],
+          "description": "Regulatory-associated protein of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N122"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "X",
+            "Z"
+          ],
+          "description": "Eukaryotic translation initiation factor 4E-binding protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13541"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ANP + MG]",
+          "rank": 3,
+          "surface_id": "mtor_peptide_ligand_anp_mg"
+        }
+      ],
+      "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, overall refinement"
+    },
+    {
+      "acceptor_atom_count": 472,
+      "atom_count_model_1": 54652,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, Focused on one protomer copy.",
+        "year": null
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.003,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3001",
+              "chain": "B",
+              "distance_angstrom": 3.805,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 28.083
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "5",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "6",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "8RCK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "Regulatory-associated protein of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N122"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "Eukaryotic translation initiation factor 4E-binding protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13541"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ANP + MG]",
+          "rank": 2,
+          "surface_id": "mtor_peptide_ligand_anp_mg"
+        }
+      ],
+      "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, Focused on one protomer copy."
+    },
+    {
+      "acceptor_atom_count": 252,
+      "atom_count_model_1": 30191,
+      "candidate_status": "gamma_without_local_metal_or_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, Focused region of mTOR and RAPTOR on one protomer copy.",
+        "year": null
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.064,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "92",
+            "candidate_chain_name": "Y",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "92",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 28.659
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "4",
+          "molecule_count": 1,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "5",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "MG"
+        }
+      ],
+      "pdb_id": "8RCN",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "Regulatory-associated protein of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N122"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "Eukaryotic translation initiation factor 4E-binding protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13541"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ANP + MG]",
+          "rank": 1,
+          "surface_id": "mtor_peptide_ligand_anp_mg"
+        }
+      ],
+      "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, Focused region of mTOR and RAPTOR on one protomer copy."
+    },
+    {
+      "acceptor_atom_count": 1472,
+      "atom_count_model_1": 161433,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for mTORC1 activation on the lysosomal membrane.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 1.686,
+          "associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3002",
+              "chain": "A",
+              "distance_angstrom": 3.396,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3001",
+              "chain": "A",
+              "distance_angstrom": 4.494,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 23.967
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "O",
+          "associated_polymer_distance_angstrom": 1.689,
+          "associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "3000",
+          "gamma_chain_name": "O",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "3002",
+              "chain": "O",
+              "distance_angstrom": 3.391,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3001",
+              "chain": "O",
+              "distance_angstrom": 4.494,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "M",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 23.97
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "L",
+            "N"
+          ],
+          "description": "5'-GUANOSINE-DIPHOSPHATE-MONOTHIOPHOSPHATE",
+          "entity_id": "13",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "GSP"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "D",
+            "L",
+            "N",
+            "O",
+            "P"
+          ],
+          "description": "MAGNESIUM ION",
+          "entity_id": "14",
+          "molecule_count": 8,
+          "nonpolymer_comp_id": "MG"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "O"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "15",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ANP"
+        },
+        {
+          "auth_asym_ids": [
+            "A",
+            "O"
+          ],
+          "description": "INOSITOL HEXAKISPHOSPHATE",
+          "entity_id": "16",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "IHP"
+        },
+        {
+          "auth_asym_ids": [
+            "D",
+            "P"
+          ],
+          "description": "GUANOSINE-5'-TRIPHOSPHATE",
+          "entity_id": "17",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "GTP"
+        },
+        {
+          "auth_asym_ids": [
+            "E",
+            "V"
+          ],
+          "description": "GUANOSINE-5'-DIPHOSPHATE",
+          "entity_id": "18",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "GDP"
+        }
+      ],
+      "pdb_id": "9ED4",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B",
+            "M"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "10": {
+          "auth_asym_ids": [
+            "E",
+            "V"
+          ],
+          "description": "Ras-related GTP-binding protein C",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9HB90"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "F",
+            "W"
+          ],
+          "description": "Ragulator complex protein LAMTOR1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6IAA8"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "I",
+            "X"
+          ],
+          "description": "Ragulator complex protein LAMTOR4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q0VGL1"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L",
+            "N"
+          ],
+          "description": "GTP-binding protein Rheb",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15382"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "A",
+            "O"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D",
+            "P"
+          ],
+          "description": "Ras-related GTP-binding protein A",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7L523"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "G",
+            "Q"
+          ],
+          "description": "Ragulator complex protein LAMTOR2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y2Q5"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "H",
+            "R"
+          ],
+          "description": "Ragulator complex protein LAMTOR3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UHA4"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "J",
+            "S"
+          ],
+          "description": "Ragulator complex protein LAMTOR5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O43504"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "K",
+            "T"
+          ],
+          "description": "Eukaryotic translation initiation factor 4E-binding protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13541"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "C",
+            "U"
+          ],
+          "description": "Regulatory-associated protein of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N122"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ANP + MG]",
+          "rank": 4,
+          "surface_id": "mtor_peptide_ligand_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: mTOR 4EBP1 substrate [ANP + MG]",
+          "rank": 1,
+          "surface_id": "mtor_4ebp1_ligand_anp_mg"
+        }
+      ],
+      "title": "A composite map of mTORC1-Rag-Ragultor-4EBP1 on membrane"
+    },
+    {
+      "acceptor_atom_count": 448,
+      "atom_count_model_1": 32048,
+      "candidate_status": "gamma_acceptor_candidate_without_local_metal_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 1.433,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2901",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "68",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "3",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 4.383
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.366,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2901",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "73",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "8",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 66.832
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "68",
+          "candidate_chain_name": "F",
+          "candidate_entity_id": "1",
+          "candidate_label_seq_id": "3",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2901",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 4.383
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+          "entity_id": "3",
+          "molecule_count": 2,
+          "nonpolymer_comp_id": "ANP"
+        }
+      ],
+      "pdb_id": "9IZ0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "VAL-SER-THR-GLN-GLU-LEU-TYR-SER",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O74630"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Asymmetric activation of dimeric ATM Tel1 kinase",
+          "rank": 2,
+          "surface_id": "exact_article_title_atm_tel1"
+        },
+        {
+          "query_or_source": "RCSB full_text: ATM Tel1 CHK2 peptide ANP",
+          "rank": 1,
+          "surface_id": "atm_tel1_chk2_peptide_anp"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: ATM Tel1 [ANP]",
+          "rank": 2,
+          "surface_id": "atm_tel1_ligand_anp"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: CHK2 peptide [ANP]",
+          "rank": 1,
+          "surface_id": "chk2_peptide_ligand_anp"
+        },
+        {
+          "query_or_source": "Fixed 9IZ0/9IZ7 source sibling review seed",
+          "rank": 1,
+          "surface_id": "fixed_followup_seed"
+        }
+      ],
+      "title": "ATM/Tel1 bound to CHK2 peptide"
+    },
+    {
+      "acceptor_atom_count": 1,
+      "atom_count_model_1": 12996,
+      "candidate_status": "no_active_gamma_donor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "nonpolymer_entities": [],
+      "pdb_id": "9IZ7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O74630"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Asymmetric activation of dimeric ATM Tel1 kinase",
+          "rank": 1,
+          "surface_id": "exact_article_title_atm_tel1"
+        },
+        {
+          "query_or_source": "Fixed 9IZ0/9IZ7 source sibling review seed",
+          "rank": 1,
+          "surface_id": "fixed_followup_seed"
+        }
+      ],
+      "title": "ATM/Tel1 in Basal state"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "note": "article-title sibling surface",
+      "pdb_ids": [
+        "9IZ7",
+        "9IZ0"
+      ],
+      "query_or_source": "RCSB full_text: Asymmetric activation of dimeric ATM Tel1 kinase",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "surface_id": "exact_article_title_atm_tel1",
+      "total_count": 2
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "9IZ0"
+      ],
+      "query_or_source": "RCSB full_text: ATM Tel1 CHK2 peptide ANP",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "atm_tel1_chk2_peptide_anp",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: ATM Tel1 CHK2 peptide AMP-PNP",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "atm_tel1_chk2_peptide_amp_pnp",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: ATM Tel1 CHK2 magnesium",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "atm_tel1_chk2_metal",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: full-length CHK2 ATM Tel1 substrate peptide",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "full_length_chk2_atm_tel1",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: PIKK substrate peptide AMP-PNP magnesium",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "pikk_substrate_peptide_amp_pnp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6Z3R"
+      ],
+      "query_or_source": "RCSB full_text: PIKK substrate peptide ANP magnesium",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "pikk_substrate_peptide_anp_mg",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6Z3R"
+      ],
+      "query_or_source": "RCSB full_text: PIKK kinase substrate peptide ANP magnesium",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "pikk_kinase_substrate_peptide_anp_mg",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: ATR Mec1 substrate peptide AMP-PNP magnesium",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "atr_mec1_substrate_peptide_amp_pnp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "2QO7",
+        "3GT8",
+        "4S32",
+        "2A19",
+        "6OPG",
+        "1PYX",
+        "4S33",
+        "4S34",
+        "4HPT",
+        "4HPU"
+      ],
+      "query_or_source": "RCSB full_text: DNA-PK substrate peptide AMP-PNP magnesium",
+      "requested_rows": 25,
+      "returned_count": 10,
+      "surface_id": "dna_pk_substrate_peptide_amp_pnp_mg",
+      "total_count": 10
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: mTOR substrate peptide AMP-PNP magnesium",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "mtor_substrate_peptide_amp_pnp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6S8F",
+        "9IZ0"
+      ],
+      "query_or_source": "RCSB full_text + ligand: ATM Tel1 [ANP]",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "surface_id": "atm_tel1_ligand_anp",
+      "total_count": 2
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6S8F"
+      ],
+      "query_or_source": "RCSB full_text + ligand: ATM Tel1 [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "atm_tel1_ligand_anp_mg",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6SKY",
+        "6SKZ",
+        "6SL1",
+        "6SL0"
+      ],
+      "query_or_source": "RCSB full_text + ligand: ATM Tel1 [AGS + MG]",
+      "requested_rows": 25,
+      "returned_count": 4,
+      "surface_id": "atm_tel1_ligand_ags_mg",
+      "total_count": 4
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "9IZ0"
+      ],
+      "query_or_source": "RCSB full_text + ligand: CHK2 peptide [ANP]",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "chk2_peptide_ligand_anp",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6Z3R"
+      ],
+      "query_or_source": "RCSB full_text + ligand: PIKK peptide substrate [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "pikk_peptide_ligand_anp_mg",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6Z3R",
+        "6BCX",
+        "6BCU"
+      ],
+      "query_or_source": "RCSB full_text + ligand: PIKK peptide substrate [ATP + MG]",
+      "requested_rows": 25,
+      "returned_count": 3,
+      "surface_id": "pikk_peptide_ligand_atp_mg",
+      "total_count": 3
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "8RCN",
+        "8RCK",
+        "8RCH",
+        "9ED4"
+      ],
+      "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 4,
+      "surface_id": "mtor_peptide_ligand_anp_mg",
+      "total_count": 4
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6BCX",
+        "6BCU"
+      ],
+      "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [ATP + MG]",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "surface_id": "mtor_peptide_ligand_atp_mg",
+      "total_count": 2
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6ZWM",
+        "6ZWO"
+      ],
+      "query_or_source": "RCSB full_text + ligand: mTOR substrate peptide [AGS]",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "surface_id": "mtor_peptide_ligand_ags",
+      "total_count": 2
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6Z3R"
+      ],
+      "query_or_source": "RCSB full_text + ligand: SMG1 UPF1 substrate [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "smg1_upf1_ligand_anp_mg",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "6Z3R"
+      ],
+      "query_or_source": "RCSB full_text + ligand: SMG1 UPF1 substrate [ATP + MG]",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "smg1_upf1_ligand_atp_mg",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: SMG1 UPF1 AMP-PNP magnesium",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "smg1_upf1_amp_pnp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: DNA-PKcs substrate [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "dna_pkcs_ligand_anp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: DNA-PKcs substrate [ATP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "dna_pkcs_ligand_atp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: DNA-PKcs substrate [AGS + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "dna_pkcs_ligand_ags_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: ATR Mec1 substrate [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "atr_mec1_ligand_anp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: ATR Mec1 substrate [ATP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "atr_mec1_ligand_atp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: ATM substrate peptide [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "atm_substrate_ligand_anp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: ATM substrate peptide [AGS + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "atm_substrate_ligand_ags_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [
+        "9ED4"
+      ],
+      "query_or_source": "RCSB full_text + ligand: mTOR 4EBP1 substrate [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "surface_id": "mtor_4ebp1_ligand_anp_mg",
+      "total_count": 1
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: mTOR 4EBP1 substrate [ATP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "mtor_4ebp1_ligand_atp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: PIKK full-length substrate [ANP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "pikk_full_length_substrate_ligand_anp_mg",
+      "total_count": 0
+    },
+    {
+      "note": null,
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: PIKK full-length substrate [ATP + MG]",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "surface_id": "pikk_full_length_substrate_ligand_atp_mg",
+      "total_count": 0
+    }
+  ],
+  "source_checks": {
+    "article_context_flags": {
+      "maps_chk2_63_74": true,
+      "maps_thr68_phosphoacceptor": true,
+      "states_full_length_chk2_binding_without_pdb": true,
+      "states_thr68_oriented_to_gamma_phosphate": true
+    },
+    "article_full_text_xml_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11933327/fullTextXML",
+    "article_term_counts": {
+      "amp_pnp_mentions": 2,
+      "anp_mentions": 0,
+      "chk2_mentions": 12,
+      "magnesium_word_mentions": 0,
+      "manganese_word_mentions": 0,
+      "mg_exact_or_salt_mentions": 0,
+      "mn_exact_or_salt_mentions": 0,
+      "pdb_9iz0_mentions": 2,
+      "pdb_9iz7_mentions": 3,
+      "thr68_mentions": 3
+    },
+    "supplementary_checks": {
+      "file_manifest": [
+        {
+          "file_size": 6626,
+          "filename": "41421_2025_786_Fig1_HTML.gif"
+        },
+        {
+          "file_size": 233484,
+          "filename": "41421_2025_786_Fig1_HTML.jpg"
+        },
+        {
+          "file_size": 3879754,
+          "filename": "41421_2025_786_MOESM1_ESM.pdf"
+        }
+      ],
+      "pdf_names": [
+        "41421_2025_786_MOESM1_ESM.pdf"
+      ],
+      "term_counts": {
+        "amp_pnp_mentions": 0,
+        "anp_mentions": 0,
+        "chk2_mentions": 0,
+        "magnesium_word_mentions": 0,
+        "manganese_word_mentions": 0,
+        "mg_exact_or_salt_mentions": 0,
+        "mn_exact_or_salt_mentions": 0,
+        "pdb_9iz0_mentions": 0,
+        "pdb_9iz7_mentions": 0,
+        "single_token_mg_mn_note": "Ignored bare Mg/Mn tokens because strings-based extraction also returns binary/compressed PDF noise.",
+        "thr68_mentions": 0
+      },
+      "text_char_count": 358387,
+      "text_extraction_method": "strings",
+      "zip_byte_count": 3979818
+    },
+    "supplementary_files_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11933327/supplementaryFiles"
+  }
+}

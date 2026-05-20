@@ -1,0 +1,1591 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "gamma_acceptor_candidate_without_local_metal_review_only": 1,
+      "local_metal_gamma_without_heteromeric_acceptor_review_only": 9
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T20:43:18Z",
+    "hypothesis": "Exact full-length/folded substrate text surfaces with ATP/ANP/ACP/AGS plus Mg may expose clean folded-protein substrate positives.",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "local_metal_candidate_pdb_ids": [],
+    "method": "full_length_ligand_mg_geometry_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Only repeat 5HVK is gamma/acceptor-proximal and lacks local metal; all new exact full-length/folded ATP/AGS/Mg rows lack heteromeric acceptor geometry under the scanner.",
+    "review_only": true,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_count": 12,
+    "surface_rows_returned_total": 16,
+    "unique_pdb_ids_reviewed": 10
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 115,
+      "candidate_status": "gamma_acceptor_candidate_without_local_metal_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.853,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "701",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "3",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "2",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 4.236
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "3",
+          "candidate_chain_name": "D",
+          "candidate_entity_id": "3",
+          "candidate_label_seq_id": "2",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "701",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 4.236
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "5HVK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "LIM domain kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53667"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ANP + MG]",
+          "rank": 1,
+          "surface_id": "full-length_protein_substrate_kinase_ANP_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ANP + MG]",
+          "rank": 1,
+          "surface_id": "protein_kinase_full-length_substrate_ANP_mg"
+        }
+      ],
+      "title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1"
+    },
+    {
+      "acceptor_atom_count": 82,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular Mechanism of J-Domain-Triggered ATP Hydrolysis by Hsp70 Chaperones.",
+        "year": 2018
+      },
+      "donor_gamma_atom_count": 1,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.502,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "A",
+              "distance_angstrom": 3.687,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "25",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "25",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 27.928
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "5NRO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Chaperone protein DnaK",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0A6Y8"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Chaperone protein DnaJ",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08622"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ATP + MG]",
+          "rank": 4,
+          "surface_id": "full-length_protein_substrate_kinase_ATP_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ATP + MG]",
+          "rank": 4,
+          "surface_id": "protein_kinase_full-length_substrate_ATP_mg"
+        }
+      ],
+      "title": "Structure of full-length DnaK with bound J-domain"
+    },
+    {
+      "acceptor_atom_count": 359,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for distinct operational modes and protease activation in AAA+ protease Lon.",
+        "year": 2020
+      },
+      "donor_gamma_atom_count": 4,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.543,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "801",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "802",
+              "chain": "A",
+              "distance_angstrom": 3.352,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.744,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "801",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "802",
+              "chain": "B",
+              "distance_angstrom": 3.374,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.365,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "801",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "802",
+              "chain": "C",
+              "distance_angstrom": 2.55,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.358,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "801",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "802",
+              "chain": "D",
+              "distance_angstrom": 3.51,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "6ON2",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "description": "ATP-dependent protease La",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A0A5P8YJ65"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Bound Y2853 Substrate",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ATP + MG]",
+          "rank": 1,
+          "surface_id": "full-length_protein_substrate_kinase_ATP_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ATP + MG]",
+          "rank": 1,
+          "surface_id": "protein_kinase_full-length_substrate_ATP_mg"
+        }
+      ],
+      "title": "Lon Protease from Yersinia pestis with Y2853 substrate"
+    },
+    {
+      "acceptor_atom_count": 287,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformational equilibria in allosteric control of Hsp70 chaperones.",
+        "year": 2021
+      },
+      "donor_gamma_atom_count": 4,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.6,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "A",
+              "distance_angstrom": 3.202,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.608,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "B",
+              "distance_angstrom": 3.195,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.686,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "C",
+              "distance_angstrom": 3.16,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.484,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "D",
+              "distance_angstrom": 3.211,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "7KO2",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Chaperone protein DnaK",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0A6Y8"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ATP + MG]",
+          "rank": 3,
+          "surface_id": "full-length_protein_substrate_kinase_ATP_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ATP + MG]",
+          "rank": 3,
+          "surface_id": "protein_kinase_full-length_substrate_ATP_mg"
+        }
+      ],
+      "title": "Restraining state of near full-length Hsp70 DnaK"
+    },
+    {
+      "acceptor_atom_count": 154,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Intermediates in allosteric equilibria of DnaK-ATP interactions with substrate peptides",
+        "year": 2021
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.451,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "701",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "704",
+              "chain": "A",
+              "distance_angstrom": 3.138,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.558,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "704",
+              "chain": "B",
+              "distance_angstrom": 3.067,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "7KZI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Chaperone protein DnaK fused with substrate peptide,Chaperone protein DnaK fused with substrate peptide",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0A6Y8"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ATP + MG]",
+          "rank": 2,
+          "surface_id": "full-length_protein_substrate_kinase_ATP_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ATP + MG]",
+          "rank": 2,
+          "surface_id": "protein_kinase_full-length_substrate_ATP_mg"
+        }
+      ],
+      "title": "Intermediate state (QQQ) of near full-length DnaK alternatively fused with a substrate peptide"
+    },
+    {
+      "acceptor_atom_count": 455,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformations of Bcs1L undergoing ATP hydrolysis suggest a concerted translocation mechanism for folded iron-sulfur protein substrate.",
+        "year": 2024
+      },
+      "donor_gamma_atom_count": 7,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.458,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "A",
+              "distance_angstrom": 3.316,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.469,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "B",
+              "distance_angstrom": 3.305,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.443,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "C",
+              "distance_angstrom": 3.312,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.435,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "D",
+              "distance_angstrom": 3.23,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.444,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "E",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "E",
+              "distance_angstrom": 3.249,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.44,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "F",
+              "distance_angstrom": 3.249,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.492,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "G",
+              "distance_angstrom": 3.29,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "8T5U",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "description": "Mitochondrial chaperone BCS1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9CZP5"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [ATP + MG]",
+          "rank": 4,
+          "surface_id": "folded_protein_substrate_kinase_ATP_mg"
+        }
+      ],
+      "title": "ATP-1 state of Bcs1 (C7 symmetrized)"
+    },
+    {
+      "acceptor_atom_count": 455,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformations of Bcs1L undergoing ATP hydrolysis suggest a concerted translocation mechanism for folded iron-sulfur protein substrate.",
+        "year": 2024
+      },
+      "donor_gamma_atom_count": 7,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.579,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "A",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.636,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "B",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.626,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "C",
+              "distance_angstrom": 3.447,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.605,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "D",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.606,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "E",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "E",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.59,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "F",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.607,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "702",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "G",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "8TI0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "description": "Mitochondrial chaperone BCS1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9CZP5"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [ATP + MG]",
+          "rank": 1,
+          "surface_id": "folded_protein_substrate_kinase_ATP_mg"
+        }
+      ],
+      "title": "ATP-1 state of Bcs1 (unsymmetrized)"
+    },
+    {
+      "acceptor_atom_count": 490,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformations of Bcs1L undergoing ATP hydrolysis suggest a concerted translocation mechanism for folded iron-sulfur protein substrate.",
+        "year": 2024
+      },
+      "donor_gamma_atom_count": 7,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.417,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "A",
+              "distance_angstrom": 2.62,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.412,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "B",
+              "distance_angstrom": 2.389,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.416,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "C",
+              "distance_angstrom": 2.391,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.437,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "D",
+              "distance_angstrom": 2.394,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.433,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "E",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "E",
+              "distance_angstrom": 2.39,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.421,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "F",
+              "distance_angstrom": 2.387,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.393,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "G",
+              "distance_angstrom": 2.388,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "8TP1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "description": "Mitochondrial chaperone BCS1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9CZP5"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [ATP + MG]",
+          "rank": 2,
+          "surface_id": "folded_protein_substrate_kinase_ATP_mg"
+        }
+      ],
+      "title": "ATP-2 state of Bcs1 (C7 symmetrized)"
+    },
+    {
+      "acceptor_atom_count": 490,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformations of Bcs1L undergoing ATP hydrolysis suggest a concerted translocation mechanism for folded iron-sulfur protein substrate.",
+        "year": 2024
+      },
+      "donor_gamma_atom_count": 7,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.257,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "A",
+              "distance_angstrom": 3.257,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.341,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "B",
+              "distance_angstrom": 3.089,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.346,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "C",
+              "distance_angstrom": 2.989,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.279,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "D",
+              "distance_angstrom": 3.033,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.307,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "E",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "E",
+              "distance_angstrom": 3.04,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.305,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "F",
+              "distance_angstrom": 3.063,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.272,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "700",
+          "gamma_chain_name": "G",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "G",
+              "distance_angstrom": 3.023,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "8TPL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "description": "Mitochondrial chaperone BCS1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9CZP5"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [ATP + MG]",
+          "rank": 3,
+          "surface_id": "folded_protein_substrate_kinase_ATP_mg"
+        }
+      ],
+      "title": "ATP-2 state of Bcs1 (unsymmetrized)"
+    },
+    {
+      "acceptor_atom_count": 625,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structure of substrate-free full-length ClpX.ClpP complex",
+        "year": null
+      },
+      "donor_gamma_atom_count": 5,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.042,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "4",
+            "candidate_chain_name": "G",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "4",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 29.449
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.277,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "C",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "4",
+            "candidate_chain_name": "G",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "4",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 25.373
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.265,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "502",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "503",
+              "chain": "D",
+              "distance_angstrom": 3.506,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "H",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "10",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 21.519
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 1.937,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "E",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "E",
+              "distance_angstrom": 3.657,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "M",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "10",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 19.318
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.128,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "600",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "K",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "10",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 16.939
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "9PIO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "description": "ATP-dependent Clp protease ATP-binding subunit ClpX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "C3TLS7"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Arc family DNA-binding protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A0A1Y5CGZ0"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U"
+          ],
+          "description": "ATP-dependent Clp protease proteolytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0A6G7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [AGS + MG]",
+          "rank": 1,
+          "surface_id": "full-length_protein_substrate_kinase_AGS_mg"
+        },
+        {
+          "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [AGS + MG]",
+          "rank": 1,
+          "surface_id": "protein_kinase_full-length_substrate_AGS_mg"
+        }
+      ],
+      "title": "Cryo-EM structure of the ClpXP AAA+ protease bound to lambdaO-tagged Arc in a recognition complex"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "5HVK"
+      ],
+      "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ANP + MG]",
+      "returned_count": 1,
+      "surface_id": "full-length_protein_substrate_kinase_ANP_mg",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "6ON2",
+        "7KZI",
+        "7KO2",
+        "5NRO"
+      ],
+      "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ATP + MG]",
+      "returned_count": 4,
+      "surface_id": "full-length_protein_substrate_kinase_ATP_mg",
+      "total_count": 4
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [ACP + MG]",
+      "returned_count": 0,
+      "surface_id": "full-length_protein_substrate_kinase_ACP_mg",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "9PIO"
+      ],
+      "query_or_source": "RCSB full_text + ligand: full-length protein substrate kinase [AGS + MG]",
+      "returned_count": 1,
+      "surface_id": "full-length_protein_substrate_kinase_AGS_mg",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [ANP + MG]",
+      "returned_count": 0,
+      "surface_id": "folded_protein_substrate_kinase_ANP_mg",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "8TI0",
+        "8TP1",
+        "8TPL",
+        "8T5U"
+      ],
+      "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [ATP + MG]",
+      "returned_count": 4,
+      "surface_id": "folded_protein_substrate_kinase_ATP_mg",
+      "total_count": 4
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [ACP + MG]",
+      "returned_count": 0,
+      "surface_id": "folded_protein_substrate_kinase_ACP_mg",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: folded protein substrate kinase [AGS + MG]",
+      "returned_count": 0,
+      "surface_id": "folded_protein_substrate_kinase_AGS_mg",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "5HVK"
+      ],
+      "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ANP + MG]",
+      "returned_count": 1,
+      "surface_id": "protein_kinase_full-length_substrate_ANP_mg",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "6ON2",
+        "7KZI",
+        "7KO2",
+        "5NRO"
+      ],
+      "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ATP + MG]",
+      "returned_count": 4,
+      "surface_id": "protein_kinase_full-length_substrate_ATP_mg",
+      "total_count": 4
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [ACP + MG]",
+      "returned_count": 0,
+      "surface_id": "protein_kinase_full-length_substrate_ACP_mg",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "9PIO"
+      ],
+      "query_or_source": "RCSB full_text + ligand: protein kinase full-length substrate [AGS + MG]",
+      "returned_count": 1,
+      "surface_id": "protein_kinase_full-length_substrate_AGS_mg",
+      "total_count": 1
+    }
+  ]
+}

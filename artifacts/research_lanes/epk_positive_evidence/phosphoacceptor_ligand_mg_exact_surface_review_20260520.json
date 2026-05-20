@@ -1,0 +1,300 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "local_metal_gamma_without_heteromeric_acceptor_review_only": 2,
+      "no_active_gamma_donor_review_only": 1
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T20:40:08Z",
+    "hypothesis": "An exact phosphoacceptor/protein-kinase/substrate text surface with ATP/ANP/ACP/AGS plus Mg may expose source-mappable clean positives missed by broader routes.",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "local_metal_candidate_pdb_ids": [],
+    "method": "phosphoacceptor_ligand_mg_exact_surface_review",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "This exact phosphoacceptor/ligand/Mg surface added no strict PG local-metal acceptor candidate. It recovers known legacy ANP/PB review-only 4JDI, plus negative/non-ePK 4BIW and 5LFK controls.",
+    "review_only": true,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_count": 4,
+    "surface_rows_returned_total": 3,
+    "unique_pdb_ids_reviewed": 3
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 68,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Segmental Helical Motions and Dynamical Asymmetry Modulate Histidine Kinase Autophosphorylation.",
+        "year": 2014
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.678,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "A",
+              "distance_angstrom": 3.121,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.588,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "B",
+              "distance_angstrom": 3.588,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "4BIW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "SENSOR PROTEIN CPXA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0AE82"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: phosphoacceptor protein kinase substrate [ANP + MG]",
+          "rank": 1,
+          "surface_id": "phosphoacceptor_protein_kinase_substrate_ANP_mg"
+        }
+      ],
+      "title": "Crystal structure of CpxAHDC (hexagonal form)"
+    },
+    {
+      "acceptor_atom_count": 32,
+      "candidate_status": "no_active_gamma_donor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of a major determinant for serine-threonine kinase phosphoacceptor specificity.",
+        "year": 2014
+      },
+      "donor_gamma_atom_count": 0,
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "4JDI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase PAK 4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O96013"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Paktide S",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: phosphoacceptor protein kinase substrate [ANP + MG]",
+          "rank": 2,
+          "surface_id": "phosphoacceptor_protein_kinase_substrate_ANP_mg"
+        }
+      ],
+      "title": "Crystal structure of Serine/threonine-protein kinase PAK 4 in complex with Paktide S peptide substrate"
+    },
+    {
+      "acceptor_atom_count": 68,
+      "candidate_status": "local_metal_gamma_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Coupling between Autokinase and Phosphotransferase Reactions in a Bacterial Histidine Kinase.",
+        "year": 2017
+      },
+      "donor_gamma_atom_count": 2,
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.305,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "503",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "504",
+              "chain": "A",
+              "distance_angstrom": 4.251,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "238",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "79",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 17.904
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.31,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "B",
+              "distance_angstrom": 3.712,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "252",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "93",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 8.549
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "local_metal_candidate_hits": [],
+      "pdb_id": "5LFK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Sensor histidine kinase CpxA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0AE82"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Sensor histidine kinase CpxA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0AE82"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text + ligand: phosphoacceptor protein kinase substrate [ATP + MG]",
+          "rank": 1,
+          "surface_id": "phosphoacceptor_protein_kinase_substrate_ATP_mg"
+        }
+      ],
+      "title": "Crystal structure of CpxAHDC (hemiphosphorylated form)"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "4BIW",
+        "4JDI"
+      ],
+      "query_or_source": "RCSB full_text + ligand: phosphoacceptor protein kinase substrate [ANP + MG]",
+      "returned_count": 2,
+      "surface_id": "phosphoacceptor_protein_kinase_substrate_ANP_mg",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "5LFK"
+      ],
+      "query_or_source": "RCSB full_text + ligand: phosphoacceptor protein kinase substrate [ATP + MG]",
+      "returned_count": 1,
+      "surface_id": "phosphoacceptor_protein_kinase_substrate_ATP_mg",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: phosphoacceptor protein kinase substrate [ACP + MG]",
+      "returned_count": 0,
+      "surface_id": "phosphoacceptor_protein_kinase_substrate_ACP_mg",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text + ligand: phosphoacceptor protein kinase substrate [AGS + MG]",
+      "returned_count": 0,
+      "surface_id": "phosphoacceptor_protein_kinase_substrate_AGS_mg",
+      "total_count": 0
+    }
+  ]
+}
