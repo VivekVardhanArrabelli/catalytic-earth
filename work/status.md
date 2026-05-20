@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 209
-- Measured elapsed time: 6616.4 minutes (110.27 hours)
+- Entries: 210
+- Measured elapsed time: 6666.9 minutes (111.11 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1387.3 measured minutes (23.12 hours)
+- post-infra-science: 1437.8 measured minutes (23.96 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2440
-- Evidence references logged: 1946
+- Artifact references logged: 2455
+- Evidence references logged: 1962
 
 ## Recent Entries
-
-### 2026-05-20T02:33:19.307966+00:00 - post-infra-science
-
-- Task: ePK unified review-only scorer stress
-- Time mode: measured
-- Measured minutes: 49.65
-- Started: 2026-05-20T01:43:22Z
-- Ended: 2026-05-20T02:33:01Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json, artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json, artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json, artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 617-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, unified prototype retained 8 positive-like rows and kept 44 current controls 20 sibling controls and 3 imported external hard negatives at 0 non-abstentions, broad stress reviewed 110 exact-query and 111 outside-query candidates with 9L3M/9L3U source-validation counterexamples, next broad-stress tranche preregistered across 3 lanes, pre-count gate remained blocked_review_only, counteraxis decision remained do_not_select_threshold, final 624-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Normal locked direct automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ### 2026-05-20T03:33:14.995937+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-20T09:40:25Z
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_mek_erk_residual_false_hit_source_adjudication_1025.json, artifacts/v3_epk_mek_erk_source_free_topology_ambiguity_counteraxis_1025.json, artifacts/v3_epk_mek_erk_source_free_topology_broader_stress_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: startup 656-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, residual source adjudication terminally blocked 7CAG and 8BMS as transporter-context false hits, source-free topology ambiguity blocked 7CAG and 8BMS while retaining 9UUR and 9UUX, broader topology stress retained five positive controls but left 2JJ2 4HPU 7B56 and 7ZDT false hits, pre-count remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 665-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 274 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true.
+
+### 2026-05-20T10:43:00+00:00 - post-infra-science
+
+- Task: ePK MEK ERK substrate-mode counteraxis stress
+- Time mode: measured
+- Measured minutes: 50.5
+- Started: 2026-05-20T09:52:30Z
+- Ended: 2026-05-20T10:43:00Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json, artifacts/v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json, artifacts/v3_epk_mek_erk_substrate_mode_existing_scout_gap_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 665-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, substrate-mode counteraxis retained five positives and blocked residual false hits 2JJ2 4HPU 7B56 7ZDT, fresh MEK ERK stress found 7M0T 7M0W 9UW4 had zero substrate-mode rule hits but all topology-confounded, existing scout gap audit found ten remaining unreviewed topology hits all same-chain topology-confounded, pre-count remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 674-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 283 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true.
 
 ## Expectation Updates

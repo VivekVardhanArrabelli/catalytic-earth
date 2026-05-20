@@ -831,6 +831,66 @@
     },
     {
       "evidence": {
+        "false_hit_blocked_by_substrate_mode_count": 4,
+        "false_hit_blocked_by_substrate_mode_pdb_ids": [
+          "2JJ2",
+          "4HPU",
+          "7B56",
+          "7ZDT"
+        ],
+        "false_hit_blocked_by_topology_count": 4,
+        "missing_primary_hydroxyl_hit_count": 0,
+        "positive_control_lost_count": 0,
+        "positive_control_retained_count": 5,
+        "residual_false_hit_count": 0,
+        "source_method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+        "substrate_mode_axis_weak_current_stress_only": true,
+        "substrate_mode_counteraxis_status": "passes_current_broad_stress_substrate_mode_controls_review_only"
+      },
+      "gate_id": "mek_erk_substrate_mode_counteraxis_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "fresh_nonrepeat_candidate_count": 3,
+        "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids": [
+          "7M0T",
+          "7M0W",
+          "9UW4"
+        ],
+        "fresh_nonrepeat_rule_hit_count": 0,
+        "fresh_nonrepeat_topology_ambiguous_count": 3,
+        "fresh_stress_topology_confounded": true,
+        "source_method": "epk_mek_erk_substrate_mode_fresh_stress_audit",
+        "substrate_mode_fresh_stress_status": "passes_fresh_nonrepeat_controls_with_topology_confounding_review_only"
+      },
+      "gate_id": "mek_erk_substrate_mode_fresh_stress_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "existing_scout_gap_status": "blocked_existing_scouts_only_topology_confounded_candidates_review_only",
+        "materialized_unreviewed_hit_count": 10,
+        "non_topology_confounded_candidate_count": 0,
+        "source_method": "epk_mek_erk_substrate_mode_existing_scout_gap_audit",
+        "topology_confounded_candidate_pdb_ids": [
+          "1TFW",
+          "2DRA",
+          "2Q66",
+          "2ZH6",
+          "7T55",
+          "7T56",
+          "7T57",
+          "9BJI",
+          "9L3M",
+          "9L3U"
+        ]
+      },
+      "gate_id": "mek_erk_substrate_mode_existing_scout_gap_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "current_control_false_non_abstention_count": 0,
         "imported_external_hard_negative_non_abstention_count": 0,
         "positive_like_full_score_count": 8,
@@ -1494,6 +1554,59 @@
     "mek_erk_source_free_topology_residual_unblocked_count": 0,
     "mek_erk_source_free_topology_residual_unblocked_pdb_ids": [],
     "mek_erk_source_free_topology_source_free_predictive_feature_materialized": true,
+    "mek_erk_substrate_mode_axis_weak_current_stress_only": true,
+    "mek_erk_substrate_mode_counteraxis_status": "passes_current_broad_stress_substrate_mode_controls_review_only",
+    "mek_erk_substrate_mode_existing_scout_gap_status": "blocked_existing_scouts_only_topology_confounded_candidates_review_only",
+    "mek_erk_substrate_mode_existing_scout_materialized_unreviewed_count": 10,
+    "mek_erk_substrate_mode_existing_scout_non_topology_count": 0,
+    "mek_erk_substrate_mode_existing_scout_topology_confounded_pdb_ids": [
+      "1TFW",
+      "2DRA",
+      "2Q66",
+      "2ZH6",
+      "7T55",
+      "7T56",
+      "7T57",
+      "9BJI",
+      "9L3M",
+      "9L3U"
+    ],
+    "mek_erk_substrate_mode_false_hit_blocked_by_substrate_mode_count": 4,
+    "mek_erk_substrate_mode_false_hit_blocked_by_substrate_mode_pdb_ids": [
+      "2JJ2",
+      "4HPU",
+      "7B56",
+      "7ZDT"
+    ],
+    "mek_erk_substrate_mode_false_hit_blocked_by_topology_count": 4,
+    "mek_erk_substrate_mode_fresh_nonrepeat_candidate_count": 3,
+    "mek_erk_substrate_mode_fresh_nonrepeat_candidate_pdb_ids": [
+      "7M0T",
+      "7M0W",
+      "9UW4"
+    ],
+    "mek_erk_substrate_mode_fresh_nonrepeat_rejected_pdb_ids": [
+      "7M0T",
+      "7M0W",
+      "9UW4"
+    ],
+    "mek_erk_substrate_mode_fresh_nonrepeat_rule_hit_count": 0,
+    "mek_erk_substrate_mode_fresh_nonrepeat_topology_ambiguous_count": 3,
+    "mek_erk_substrate_mode_fresh_stress_status": "passes_fresh_nonrepeat_controls_with_topology_confounding_review_only",
+    "mek_erk_substrate_mode_fresh_stress_topology_confounded": true,
+    "mek_erk_substrate_mode_missing_primary_hit_count": 0,
+    "mek_erk_substrate_mode_positive_lost_count": 0,
+    "mek_erk_substrate_mode_positive_retained_count": 5,
+    "mek_erk_substrate_mode_positive_retained_pdb_ids": [
+      "1IR3",
+      "5HVK",
+      "6Z3R",
+      "9UUR",
+      "9UUX"
+    ],
+    "mek_erk_substrate_mode_residual_false_hit_count": 0,
+    "mek_erk_substrate_mode_residual_false_hit_pdb_ids": [],
+    "mek_erk_substrate_mode_source_free_predictive_feature_materialized": true,
     "method": "epk_precount_gate_status",
     "midlength_protein_role_blocked_false_hit_count": 1,
     "midlength_protein_role_blocked_false_hit_pdb_ids": [
@@ -1633,6 +1746,7 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "source a new bounded non-topology-confounded kinase-substrate tranche; existing ePK scouts do not contain one",
       "rerun protein-substrate role and acceptor-identity controls with source-reviewed MEK1/ERK1 rows while keeping thresholds closed",
       "use 9L3M and 9L3U as broad-sourcing counterexamples before any ePK threshold calibration",
       "treat the unified review-only scorer as current-control clean but keep threshold selection and real external scored re-audit closed",
@@ -1746,6 +1860,9 @@
     "source_epk_mek_erk_phosphosite_source_review_method": "epk_mek_erk_phosphosite_source_review",
     "source_epk_mek_erk_residual_false_hit_source_adjudication_method": "epk_mek_erk_residual_false_hit_source_adjudication",
     "source_epk_mek_erk_source_free_topology_ambiguity_counteraxis_method": "epk_mek_erk_source_free_topology_ambiguity_counteraxis",
+    "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+    "source_epk_mek_erk_substrate_mode_existing_scout_gap_audit_method": "epk_mek_erk_substrate_mode_existing_scout_gap_audit",
+    "source_epk_mek_erk_substrate_mode_fresh_stress_audit_method": "epk_mek_erk_substrate_mode_fresh_stress_audit",
     "source_epk_midlength_protein_role_counteraxis_audit_method": "epk_midlength_protein_role_counteraxis_audit",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",

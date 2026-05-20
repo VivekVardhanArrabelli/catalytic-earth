@@ -861,6 +861,22 @@ ambiguity probe then blocks those two bounded residuals with same-chain
 companion and reciprocal cross-chain hit patterns, but the broader stress audit
 still leaves `2JJ2`, `4HPU`, `7B56`, and `7ZDT` as false hits. The result is a
 useful fail-closed counteraxis experiment, not production evidence.
+`artifacts/v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json` tests
+one concrete source-free substrate-mode counteraxis on that broader surface:
+retain tyrosine acceptors or N-terminal Ser/Thr/Tyr acceptors while carrying
+the topology-ambiguity blocker. It retains all five current positives and
+blocks the four remaining broad-role false hits, but is explicitly
+review-only and weak because residue class plus auth-position is not substrate
+identity. The fresh stress follow-up,
+`artifacts/v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json`,
+applies the same heuristic to the targeted MEK1/ERK1 outside-query tranche.
+Fresh nonrepeat controls `7M0T`, `7M0W`, and `9UW4` have 0 substrate-mode rule
+hits, but all three are same-chain topology-confounded, so the next experiment
+must find a non-topology-confounded kinase-substrate tranche before any
+threshold or scorer work. The existing-scout gap audit confirms that the
+current materialized ePK scout cache cannot supply that tranche: the 10
+unreviewed topology-hit PDBs outside the current/fresh surfaces are all
+same-chain topology-confounded.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

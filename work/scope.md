@@ -18,8 +18,17 @@ A review-context counteraxis blocks six prior-counterexample repeats and leaves
 `7CAG`/`8BMS` unresolved. Source adjudication marks those two residuals as
 transporter-context false hits, and a source-free topology-ambiguity probe
 blocks them locally, but broader stress still leaves `2JJ2`, `4HPU`, `7B56`,
-and `7ZDT` as false hits. No threshold, scorer, registry edit, or label import
-is authorized. The chain/ligand acceptor disambiguation experiment now
+and `7ZDT` as false hits. A source-free substrate-mode heuristic now blocks
+those four residuals while retaining the five current positives, but it is
+review-only and weak because residue class plus auth-position is not substrate
+identity. The fresh MEK1/ERK1 targeted stress tranche adds 0 substrate-mode
+false hits for fresh nonrepeat `7M0T`, `7M0W`, and `9UW4`, but all three are
+same-chain topology-confounded; the next useful evidence is a fresh
+non-topology-confounded kinase-substrate tranche. The existing ePK scout cache
+does not already contain that tranche: the 10 remaining unreviewed topology-hit
+PDBs outside the current/fresh surfaces are all same-chain topology-confounded.
+No threshold, scorer, registry edit, or label import is authorized. The
+chain/ligand acceptor disambiguation experiment now
 keeps 3/3 current ePK positives, blocks 20/20 current sibling controls with 0
 false hits, and leaves all three imported external hard negatives abstained.
 The stricter protein-substrate-only acceptor candidate keeps 2/3 positives and

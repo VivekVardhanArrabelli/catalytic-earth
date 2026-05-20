@@ -16755,6 +16755,115 @@ def build_epk_counteraxis_sufficiency_decision(
             "mek_erk_source_free_topology_source_free_predictive_feature_materialized"
         )
     )
+    mek_erk_substrate_mode_status = str(
+        precount_meta.get("mek_erk_substrate_mode_counteraxis_status") or ""
+    )
+    mek_erk_substrate_mode_positive_retained_count = int(
+        precount_meta.get("mek_erk_substrate_mode_positive_retained_count") or 0
+    )
+    mek_erk_substrate_mode_positive_retained_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_substrate_mode_positive_retained_pdb_ids", [])
+    )
+    mek_erk_substrate_mode_positive_lost_count = int(
+        precount_meta.get("mek_erk_substrate_mode_positive_lost_count") or 0
+    )
+    mek_erk_substrate_mode_false_hit_blocked_by_topology_count = int(
+        precount_meta.get(
+            "mek_erk_substrate_mode_false_hit_blocked_by_topology_count"
+        )
+        or 0
+    )
+    mek_erk_substrate_mode_false_hit_blocked_by_substrate_count = int(
+        precount_meta.get(
+            "mek_erk_substrate_mode_false_hit_blocked_by_substrate_mode_count"
+        )
+        or 0
+    )
+    mek_erk_substrate_mode_false_hit_blocked_by_substrate_pdb_ids = (
+        _sorted_strings(
+            precount_meta.get(
+                "mek_erk_substrate_mode_false_hit_blocked_by_substrate_mode_pdb_ids",
+                [],
+            )
+        )
+    )
+    mek_erk_substrate_mode_residual_false_hit_count = int(
+        precount_meta.get("mek_erk_substrate_mode_residual_false_hit_count") or 0
+    )
+    mek_erk_substrate_mode_residual_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_substrate_mode_residual_false_hit_pdb_ids", [])
+    )
+    mek_erk_substrate_mode_missing_primary_hit_count = int(
+        precount_meta.get("mek_erk_substrate_mode_missing_primary_hit_count") or 0
+    )
+    mek_erk_substrate_mode_source_free_materialized = bool(
+        precount_meta.get(
+            "mek_erk_substrate_mode_source_free_predictive_feature_materialized"
+        )
+    )
+    mek_erk_substrate_mode_axis_weak = bool(
+        precount_meta.get("mek_erk_substrate_mode_axis_weak_current_stress_only")
+    )
+    mek_erk_substrate_mode_fresh_status = str(
+        precount_meta.get("mek_erk_substrate_mode_fresh_stress_status") or ""
+    )
+    mek_erk_substrate_mode_fresh_candidate_count = int(
+        precount_meta.get(
+            "mek_erk_substrate_mode_fresh_nonrepeat_candidate_count"
+        )
+        or 0
+    )
+    mek_erk_substrate_mode_fresh_candidate_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "mek_erk_substrate_mode_fresh_nonrepeat_candidate_pdb_ids", []
+        )
+    )
+    mek_erk_substrate_mode_fresh_rule_hit_count = int(
+        precount_meta.get(
+            "mek_erk_substrate_mode_fresh_nonrepeat_rule_hit_count"
+        )
+        or 0
+    )
+    mek_erk_substrate_mode_fresh_rejected_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "mek_erk_substrate_mode_fresh_nonrepeat_rejected_pdb_ids", []
+        )
+    )
+    mek_erk_substrate_mode_fresh_topology_ambiguous_count = int(
+        precount_meta.get(
+            "mek_erk_substrate_mode_fresh_nonrepeat_topology_ambiguous_count"
+        )
+        or 0
+    )
+    mek_erk_substrate_mode_fresh_topology_confounded = bool(
+        precount_meta.get(
+            "mek_erk_substrate_mode_fresh_stress_topology_confounded"
+        )
+    )
+    mek_erk_substrate_mode_existing_gap_status = str(
+        precount_meta.get(
+            "mek_erk_substrate_mode_existing_scout_gap_status"
+        )
+        or ""
+    )
+    mek_erk_substrate_mode_existing_unreviewed_count = int(
+        precount_meta.get(
+            "mek_erk_substrate_mode_existing_scout_materialized_unreviewed_count"
+        )
+        or 0
+    )
+    mek_erk_substrate_mode_existing_topology_confounded_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "mek_erk_substrate_mode_existing_scout_topology_confounded_pdb_ids",
+            [],
+        )
+    )
+    mek_erk_substrate_mode_existing_non_topology_count = int(
+        precount_meta.get(
+            "mek_erk_substrate_mode_existing_scout_non_topology_count"
+        )
+        or 0
+    )
     unified_scoring_passes_current_controls = bool(
         precount_meta.get("unified_review_only_scoring_passes_current_controls")
     )
@@ -17339,6 +17448,136 @@ def build_epk_counteraxis_sufficiency_decision(
             ),
             "blocker": (
                 "topology_ambiguity_counteraxis_bounded_not_calibrated"
+            ),
+        },
+        {
+            "decision_axis": "mek_erk_substrate_mode_counteraxis_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "substrate_mode_counteraxis_status": mek_erk_substrate_mode_status,
+            "positive_control_retained_count": (
+                mek_erk_substrate_mode_positive_retained_count
+            ),
+            "positive_control_retained_pdb_ids": (
+                mek_erk_substrate_mode_positive_retained_pdb_ids
+            ),
+            "positive_control_lost_count": (
+                mek_erk_substrate_mode_positive_lost_count
+            ),
+            "false_hit_blocked_by_topology_count": (
+                mek_erk_substrate_mode_false_hit_blocked_by_topology_count
+            ),
+            "false_hit_blocked_by_substrate_mode_count": (
+                mek_erk_substrate_mode_false_hit_blocked_by_substrate_count
+            ),
+            "false_hit_blocked_by_substrate_mode_pdb_ids": (
+                mek_erk_substrate_mode_false_hit_blocked_by_substrate_pdb_ids
+            ),
+            "residual_false_hit_count": (
+                mek_erk_substrate_mode_residual_false_hit_count
+            ),
+            "residual_false_hit_pdb_ids": (
+                mek_erk_substrate_mode_residual_false_hit_pdb_ids
+            ),
+            "missing_primary_hydroxyl_hit_count": (
+                mek_erk_substrate_mode_missing_primary_hit_count
+            ),
+            "source_free_predictive_feature_materialized": (
+                mek_erk_substrate_mode_source_free_materialized
+            ),
+            "substrate_mode_axis_weak_current_stress_only": (
+                mek_erk_substrate_mode_axis_weak
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "passes_current_stress_but_weak_not_production_admissible"
+                if mek_erk_substrate_mode_status
+                == "passes_current_broad_stress_substrate_mode_controls_review_only"
+                and not mek_erk_substrate_mode_positive_lost_count
+                and not mek_erk_substrate_mode_residual_false_hit_count
+                and not mek_erk_substrate_mode_missing_primary_hit_count
+                else (
+                    "substrate_mode_counteraxis_fails_closed"
+                    if mek_erk_substrate_mode_status
+                    else "missing_mek_erk_substrate_mode_counteraxis_audit"
+                )
+            ),
+            "blocker": (
+                "substrate_mode_counteraxis_current_stress_only_not_calibrated"
+            ),
+        },
+        {
+            "decision_axis": "mek_erk_substrate_mode_fresh_stress_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "substrate_mode_fresh_stress_status": (
+                mek_erk_substrate_mode_fresh_status
+            ),
+            "fresh_nonrepeat_candidate_count": (
+                mek_erk_substrate_mode_fresh_candidate_count
+            ),
+            "fresh_nonrepeat_candidate_pdb_ids": (
+                mek_erk_substrate_mode_fresh_candidate_pdb_ids
+            ),
+            "fresh_nonrepeat_rule_hit_count": (
+                mek_erk_substrate_mode_fresh_rule_hit_count
+            ),
+            "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids": (
+                mek_erk_substrate_mode_fresh_rejected_pdb_ids
+            ),
+            "fresh_nonrepeat_topology_ambiguous_count": (
+                mek_erk_substrate_mode_fresh_topology_ambiguous_count
+            ),
+            "fresh_stress_topology_confounded": (
+                mek_erk_substrate_mode_fresh_topology_confounded
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "passes_fresh_nonrepeat_controls_but_topology_confounded_not_production_admissible"
+                if mek_erk_substrate_mode_fresh_status
+                == "passes_fresh_nonrepeat_controls_with_topology_confounding_review_only"
+                and mek_erk_substrate_mode_fresh_candidate_count
+                and not mek_erk_substrate_mode_fresh_rule_hit_count
+                else (
+                    "fresh_stress_fails_closed_or_missing"
+                    if mek_erk_substrate_mode_fresh_status
+                    else "missing_mek_erk_substrate_mode_fresh_stress_audit"
+                )
+            ),
+            "blocker": (
+                "fresh_substrate_mode_controls_topology_confounded_not_calibrated"
+            ),
+        },
+        {
+            "decision_axis": "mek_erk_substrate_mode_existing_scout_gap_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "existing_scout_gap_status": (
+                mek_erk_substrate_mode_existing_gap_status
+            ),
+            "materialized_unreviewed_hit_count": (
+                mek_erk_substrate_mode_existing_unreviewed_count
+            ),
+            "topology_confounded_candidate_pdb_ids": (
+                mek_erk_substrate_mode_existing_topology_confounded_pdb_ids
+            ),
+            "non_topology_confounded_candidate_count": (
+                mek_erk_substrate_mode_existing_non_topology_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "existing_scouts_do_not_supply_clean_next_tranche"
+                if mek_erk_substrate_mode_existing_gap_status
+                == "blocked_existing_scouts_only_topology_confounded_candidates_review_only"
+                and not mek_erk_substrate_mode_existing_non_topology_count
+                else (
+                    "existing_scout_gap_has_candidate_or_fails_closed"
+                    if mek_erk_substrate_mode_existing_gap_status
+                    else "missing_mek_erk_substrate_mode_existing_scout_gap_audit"
+                )
+            ),
+            "blocker": (
+                "new_non_topology_confounded_tranche_required_before_calibration"
             ),
         },
         {
@@ -29695,6 +29934,948 @@ def build_epk_mek_erk_source_free_topology_broader_stress_audit(
     }
 
 
+def build_epk_mek_erk_substrate_mode_counteraxis_audit(
+    *,
+    epk_mek_erk_source_free_topology_broader_stress_audit: dict[str, Any],
+    candidate_threshold_angstrom: float = 6.0,
+    max_n_terminal_acceptor_auth_seq_id: int = 25,
+) -> dict[str, Any]:
+    """Probe a source-free substrate-mode rule on MEK/ERK broad-role stress."""
+
+    stress_meta = epk_mek_erk_source_free_topology_broader_stress_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(stress_meta, dict):
+        stress_meta = {}
+    target_fingerprint_id = str(
+        stress_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(
+            stress_meta.get("candidate_threshold_angstrom")
+            or candidate_threshold_angstrom
+        )
+    except (TypeError, ValueError):
+        threshold = 6.0
+    try:
+        n_terminal_max = int(max_n_terminal_acceptor_auth_seq_id)
+    except (TypeError, ValueError):
+        n_terminal_max = 25
+    n_terminal_max = max(1, n_terminal_max)
+
+    hydroxyl_residue_codes = {"SER", "THR", "TYR"}
+
+    def _safe_float(value: Any) -> float:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return 9999.0
+
+    def _optional_int(value: Any) -> int | None:
+        try:
+            if value in {None, "", ".", "?"}:
+                return None
+            return int(float(str(value)))
+        except (TypeError, ValueError):
+            return None
+
+    def _primary_hydroxyl_hit(row: dict[str, Any]) -> dict[str, Any]:
+        hits = [
+            hit
+            for hit in row.get("candidate_hits", []) or []
+            if isinstance(hit, dict)
+            and str(hit.get("candidate_residue_code") or "").upper()
+            in hydroxyl_residue_codes
+            and _safe_float(hit.get("nearest_gamma_distance_angstrom")) <= threshold
+        ]
+        return (
+            sorted(
+                hits,
+                key=lambda hit: (
+                    _safe_float(hit.get("nearest_gamma_distance_angstrom")),
+                    str(hit.get("candidate_chain_name") or ""),
+                    str(hit.get("candidate_auth_seq_id") or ""),
+                    str(hit.get("candidate_residue_code") or ""),
+                ),
+            )[0]
+            if hits
+            else {}
+        )
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_retained_pdb_ids: list[str] = []
+    positive_lost_pdb_ids: list[str] = []
+    topology_blocked_false_hit_pdb_ids: list[str] = []
+    substrate_blocked_false_hit_pdb_ids: list[str] = []
+    residual_false_hit_pdb_ids: list[str] = []
+    missing_primary_hit_pdb_ids: list[str] = []
+
+    for stress_row in (
+        epk_mek_erk_source_free_topology_broader_stress_audit.get("rows", [])
+        or []
+    ):
+        if not isinstance(stress_row, dict):
+            continue
+        pdb_id = str(stress_row.get("pdb_id") or "").upper()
+        if not pdb_id:
+            continue
+        hit = _primary_hydroxyl_hit(stress_row)
+        residue_code = str(hit.get("candidate_residue_code") or "").upper()
+        auth_seq_id = _optional_int(hit.get("candidate_auth_seq_id"))
+        tyrosine_mode_hit = residue_code == "TYR"
+        n_terminal_mode_hit = (
+            residue_code in {"SER", "THR", "TYR"}
+            and auth_seq_id is not None
+            and auth_seq_id <= n_terminal_max
+        )
+        substrate_mode_rule_hit = bool(tyrosine_mode_hit or n_terminal_mode_hit)
+        topology_blocked = bool(
+            stress_row.get("topology_ambiguity_counteraxis_hit")
+        )
+        positive = bool(stress_row.get("known_positive_control"))
+        false_hit = bool(stress_row.get("known_false_hit_control"))
+        if not hit:
+            decision = "missing_primary_hydroxyl_hit_review_only"
+            missing_primary_hit_pdb_ids.append(pdb_id)
+        elif positive and substrate_mode_rule_hit:
+            decision = "positive_control_retained_by_substrate_mode_review_only"
+            positive_retained_pdb_ids.append(pdb_id)
+        elif positive:
+            decision = "positive_control_lost_by_substrate_mode_review_only"
+            positive_lost_pdb_ids.append(pdb_id)
+        elif false_hit and topology_blocked:
+            decision = "false_hit_blocked_by_existing_topology_counteraxis_review_only"
+            topology_blocked_false_hit_pdb_ids.append(pdb_id)
+        elif false_hit and not substrate_mode_rule_hit:
+            decision = "false_hit_blocked_by_substrate_mode_counteraxis_review_only"
+            substrate_blocked_false_hit_pdb_ids.append(pdb_id)
+        elif false_hit:
+            decision = "false_hit_not_blocked_by_substrate_mode_review_only"
+            residual_false_hit_pdb_ids.append(pdb_id)
+        else:
+            decision = "nonpositive_abstained_review_only"
+        decision_counts[decision] += 1
+        counterevidence_reasons: list[str] = []
+        if not hit:
+            counterevidence_reasons.append("primary_hydroxyl_hit_missing")
+        if residue_code and residue_code != "TYR" and not n_terminal_mode_hit:
+            counterevidence_reasons.append(
+                "acceptor_residue_not_tyrosine_or_n_terminal_ser_thr_tyr"
+            )
+        if auth_seq_id is None:
+            counterevidence_reasons.append("acceptor_auth_seq_id_missing")
+        elif auth_seq_id > n_terminal_max and residue_code != "TYR":
+            counterevidence_reasons.append(
+                "acceptor_auth_seq_id_outside_n_terminal_substrate_mode"
+            )
+        if topology_blocked:
+            counterevidence_reasons.append("topology_ambiguity_counteraxis_hit")
+        rows.append(
+            {
+                "row_type": "mek_erk_substrate_mode_counteraxis_stress_row",
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "source_context_used_for_failure_label_only": True,
+                "candidate_threshold_angstrom": threshold,
+                "max_n_terminal_acceptor_auth_seq_id": n_terminal_max,
+                "known_positive_control": positive,
+                "known_false_hit_control": false_hit,
+                "source_topology_broader_stress_decision": (
+                    stress_row.get("counteraxis_decision")
+                ),
+                "known_context": stress_row.get("known_context"),
+                "primary_candidate_acceptor_residue_code": residue_code or None,
+                "primary_candidate_acceptor_auth_seq_id": (
+                    hit.get("candidate_auth_seq_id")
+                ),
+                "primary_candidate_acceptor_chain_name": (
+                    hit.get("candidate_chain_name")
+                ),
+                "primary_gamma_associated_polymer_chain_name": (
+                    hit.get("gamma_associated_polymer_chain_name")
+                ),
+                "nearest_gamma_distance_angstrom": (
+                    hit.get("nearest_gamma_distance_angstrom")
+                ),
+                "tyrosine_acceptor_mode_hit": tyrosine_mode_hit,
+                "n_terminal_ser_thr_tyr_acceptor_mode_hit": n_terminal_mode_hit,
+                "substrate_mode_counteraxis_rule_hit": substrate_mode_rule_hit,
+                "topology_ambiguity_counteraxis_hit": topology_blocked,
+                "substrate_mode_counteraxis_decision": decision,
+                "substrate_mode_counterevidence_reasons": _sorted_strings(
+                    counterevidence_reasons
+                ),
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_orphan_discovery_claims": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "substrate_mode_rule_current_stress_only_not_calibrated",
+                    "residue_class_and_auth_position_are_weak_substrate_identity",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    positive_retained_pdb_ids = _sorted_strings(positive_retained_pdb_ids)
+    positive_lost_pdb_ids = _sorted_strings(positive_lost_pdb_ids)
+    topology_blocked_false_hit_pdb_ids = _sorted_strings(
+        topology_blocked_false_hit_pdb_ids
+    )
+    substrate_blocked_false_hit_pdb_ids = _sorted_strings(
+        substrate_blocked_false_hit_pdb_ids
+    )
+    residual_false_hit_pdb_ids = _sorted_strings(residual_false_hit_pdb_ids)
+    missing_primary_hit_pdb_ids = _sorted_strings(missing_primary_hit_pdb_ids)
+    if positive_lost_pdb_ids or residual_false_hit_pdb_ids or missing_primary_hit_pdb_ids:
+        status = "fails_closed_substrate_mode_counteraxis_gap_or_false_hit"
+    else:
+        status = "passes_current_broad_stress_substrate_mode_controls_review_only"
+
+    return {
+        "metadata": {
+            "method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_mek_erk_source_free_topology_broader_stress_audit_method": (
+                stress_meta.get("method")
+            ),
+            "rule_id": "epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0",
+            "candidate_threshold_angstrom": threshold,
+            "max_n_terminal_acceptor_auth_seq_id": n_terminal_max,
+            "substrate_mode_counteraxis_status": status,
+            "reviewed_broad_topology_hit_count": len(rows),
+            "positive_control_retained_count": len(positive_retained_pdb_ids),
+            "positive_control_retained_pdb_ids": positive_retained_pdb_ids,
+            "positive_control_lost_count": len(positive_lost_pdb_ids),
+            "positive_control_lost_pdb_ids": positive_lost_pdb_ids,
+            "false_hit_blocked_by_topology_count": len(
+                topology_blocked_false_hit_pdb_ids
+            ),
+            "false_hit_blocked_by_topology_pdb_ids": (
+                topology_blocked_false_hit_pdb_ids
+            ),
+            "false_hit_blocked_by_substrate_mode_count": len(
+                substrate_blocked_false_hit_pdb_ids
+            ),
+            "false_hit_blocked_by_substrate_mode_pdb_ids": (
+                substrate_blocked_false_hit_pdb_ids
+            ),
+            "residual_false_hit_count": len(residual_false_hit_pdb_ids),
+            "residual_false_hit_pdb_ids": residual_false_hit_pdb_ids,
+            "missing_primary_hydroxyl_hit_count": len(missing_primary_hit_pdb_ids),
+            "missing_primary_hydroxyl_hit_pdb_ids": missing_primary_hit_pdb_ids,
+            "decision_counts": dict(sorted(decision_counts.items())),
+            "source_free_predictive_feature_materialized": True,
+            "substrate_mode_axis_weak_current_stress_only": True,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": (
+                "broader_mek_erk_false_hits_blocked_by_topology_or_substrate_mode_counteraxis"
+            ),
+            "blocker_not_removed": [
+                "substrate_mode_rule_current_stress_only_not_calibrated",
+                "residue_class_and_auth_position_are_weak_substrate_identity",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact tests a source-free substrate-mode heuristic on "
+                "the broader MEK/ERK broad-role stress surface: retain local "
+                "tyrosine acceptors or N-terminal Ser/Thr/Tyr acceptors while "
+                "carrying the existing topology-ambiguity counteraxis. Source "
+                "context labels controls only; this is not a calibrated ePK "
+                "score or production-admissible substrate identity rule."
+            ),
+            "next_actions": [
+                "stress this substrate-mode heuristic on a fresh outside-query tranche before scorer calibration",
+                "replace residue-class/auth-position heuristics with stronger substrate identity evidence",
+                "keep real external hard-negative scored re-audit closed until a calibrated scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("substrate_mode_counteraxis_decision") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The MEK/ERK substrate-mode counteraxis is review-only and "
+                "current-stress scoped; it cannot support threshold selection, "
+                "production scoring, registry edits, or label import."
+            )
+        ],
+    }
+
+
+def build_epk_mek_erk_substrate_mode_fresh_stress_audit(
+    *,
+    epk_mek_erk_substrate_mode_counteraxis_audit: dict[str, Any],
+    epk_mek_erk_targeted_candidate_scout: dict[str, Any],
+    epk_mek_erk_targeted_source_validation_review: dict[str, Any] | None = None,
+    candidate_threshold_angstrom: float = 6.0,
+    max_n_terminal_acceptor_auth_seq_id: int = 25,
+) -> dict[str, Any]:
+    """Stress the MEK/ERK substrate-mode rule on a fresh targeted tranche."""
+
+    substrate_meta = epk_mek_erk_substrate_mode_counteraxis_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(substrate_meta, dict):
+        substrate_meta = {}
+    scout_meta = epk_mek_erk_targeted_candidate_scout.get("metadata", {})
+    if not isinstance(scout_meta, dict):
+        scout_meta = {}
+    validation_meta: dict[str, Any] = {}
+    if isinstance(epk_mek_erk_targeted_source_validation_review, dict):
+        validation_meta = epk_mek_erk_targeted_source_validation_review.get(
+            "metadata", {}
+        )
+        if not isinstance(validation_meta, dict):
+            validation_meta = {}
+
+    target_fingerprint_id = str(
+        substrate_meta.get("target_fingerprint_id")
+        or scout_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(
+            substrate_meta.get("candidate_threshold_angstrom")
+            or candidate_threshold_angstrom
+        )
+    except (TypeError, ValueError):
+        threshold = 6.0
+    try:
+        n_terminal_max = int(
+            substrate_meta.get("max_n_terminal_acceptor_auth_seq_id")
+            or max_n_terminal_acceptor_auth_seq_id
+        )
+    except (TypeError, ValueError):
+        n_terminal_max = 25
+    n_terminal_max = max(1, n_terminal_max)
+
+    current_surface_pdb_ids = {
+        str(row.get("pdb_id") or "").upper()
+        for row in epk_mek_erk_substrate_mode_counteraxis_audit.get("rows", [])
+        or []
+        if isinstance(row, dict) and row.get("pdb_id")
+    }
+    validation_by_pdb: dict[str, dict[str, Any]] = {}
+    if isinstance(epk_mek_erk_targeted_source_validation_review, dict):
+        for validation_row in (
+            epk_mek_erk_targeted_source_validation_review.get("rows", []) or []
+        ):
+            if not isinstance(validation_row, dict):
+                continue
+            pdb_id = str(validation_row.get("pdb_id") or "").upper()
+            if pdb_id:
+                validation_by_pdb[pdb_id] = validation_row
+
+    hydroxyl_residue_codes = {"SER", "THR", "TYR"}
+
+    def _safe_float(value: Any) -> float:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return 9999.0
+
+    def _optional_int(value: Any) -> int | None:
+        try:
+            if value in {None, "", ".", "?"}:
+                return None
+            return int(float(str(value)))
+        except (TypeError, ValueError):
+            return None
+
+    def _candidate_hits(row: dict[str, Any]) -> list[dict[str, Any]]:
+        hits = row.get("heteromeric_candidate_hits")
+        if not isinstance(hits, list):
+            hits = row.get("candidate_hits")
+        return [hit for hit in hits or [] if isinstance(hit, dict)]
+
+    def _primary_hydroxyl_hit(row: dict[str, Any]) -> dict[str, Any]:
+        hits = [
+            hit
+            for hit in _candidate_hits(row)
+            if str(hit.get("candidate_residue_code") or "").upper()
+            in hydroxyl_residue_codes
+            and _safe_float(hit.get("nearest_gamma_distance_angstrom")) <= threshold
+        ]
+        return (
+            sorted(
+                hits,
+                key=lambda hit: (
+                    _safe_float(hit.get("nearest_gamma_distance_angstrom")),
+                    str(hit.get("candidate_chain_name") or ""),
+                    str(hit.get("candidate_auth_seq_id") or ""),
+                    str(hit.get("candidate_residue_code") or ""),
+                ),
+            )[0]
+            if hits
+            else {}
+        )
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    fresh_pdb_ids: list[str] = []
+    fresh_rule_hit_pdb_ids: list[str] = []
+    fresh_rejected_pdb_ids: list[str] = []
+    fresh_topology_ambiguous_pdb_ids: list[str] = []
+    fresh_missing_hit_pdb_ids: list[str] = []
+    repeat_pdb_ids: list[str] = []
+    repeat_rule_hit_pdb_ids: list[str] = []
+
+    for scout_row in epk_mek_erk_targeted_candidate_scout.get("rows", []) or []:
+        if not isinstance(scout_row, dict):
+            continue
+        pdb_id = str(scout_row.get("pdb_id") or "").upper()
+        if not pdb_id or not _candidate_hits(scout_row):
+            continue
+        validation_row = validation_by_pdb.get(pdb_id, {})
+        source_validation_status = str(
+            validation_row.get("source_validation_status")
+            or scout_row.get("source_validation_status")
+            or ""
+        )
+        hit = _primary_hydroxyl_hit(scout_row)
+        residue_code = str(hit.get("candidate_residue_code") or "").upper()
+        auth_seq_id = _optional_int(hit.get("candidate_auth_seq_id"))
+        candidate_chain = str(hit.get("candidate_chain_name") or "")
+        gamma_chain = str(hit.get("gamma_associated_polymer_chain_name") or "")
+        tyrosine_mode_hit = residue_code == "TYR"
+        n_terminal_mode_hit = (
+            residue_code in hydroxyl_residue_codes
+            and auth_seq_id is not None
+            and auth_seq_id <= n_terminal_max
+        )
+        substrate_mode_rule_hit = bool(tyrosine_mode_hit or n_terminal_mode_hit)
+        topology_ambiguous = bool(candidate_chain and candidate_chain == gamma_chain)
+        repeat_from_current_surface = pdb_id in current_surface_pdb_ids
+        if repeat_from_current_surface:
+            repeat_pdb_ids.append(pdb_id)
+            if substrate_mode_rule_hit:
+                repeat_rule_hit_pdb_ids.append(pdb_id)
+            decision = (
+                "repeat_current_surface_retained_by_substrate_mode_review_only"
+                if substrate_mode_rule_hit
+                else "repeat_current_surface_not_retained_review_only"
+            )
+        else:
+            fresh_pdb_ids.append(pdb_id)
+            if not hit:
+                fresh_missing_hit_pdb_ids.append(pdb_id)
+                decision = "fresh_nonrepeat_missing_primary_hydroxyl_hit_review_only"
+            elif substrate_mode_rule_hit:
+                fresh_rule_hit_pdb_ids.append(pdb_id)
+                decision = "fresh_nonrepeat_rule_hit_unresolved_review_only"
+            else:
+                fresh_rejected_pdb_ids.append(pdb_id)
+                if topology_ambiguous:
+                    fresh_topology_ambiguous_pdb_ids.append(pdb_id)
+                    decision = (
+                        "fresh_nonrepeat_blocked_by_topology_and_substrate_mode_review_only"
+                    )
+                else:
+                    decision = "fresh_nonrepeat_blocked_by_substrate_mode_review_only"
+        decision_counts[decision] += 1
+        counterevidence_reasons: list[str] = []
+        if not hit:
+            counterevidence_reasons.append("primary_hydroxyl_hit_missing")
+        if residue_code and residue_code != "TYR" and not n_terminal_mode_hit:
+            counterevidence_reasons.append(
+                "acceptor_residue_not_tyrosine_or_n_terminal_ser_thr_tyr"
+            )
+        if auth_seq_id is None:
+            counterevidence_reasons.append("acceptor_auth_seq_id_missing")
+        elif auth_seq_id > n_terminal_max and residue_code != "TYR":
+            counterevidence_reasons.append(
+                "acceptor_auth_seq_id_outside_n_terminal_substrate_mode"
+            )
+        if topology_ambiguous:
+            counterevidence_reasons.append("same_auth_chain_topology_ambiguity")
+        rows.append(
+            {
+                "row_type": "mek_erk_substrate_mode_fresh_stress_row",
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "fresh_nonrepeat_candidate": not repeat_from_current_surface,
+                "repeat_from_current_stress_surface": repeat_from_current_surface,
+                "text_free_inputs_only": True,
+                "source_context_used_for_failure_label_only": True,
+                "candidate_threshold_angstrom": threshold,
+                "max_n_terminal_acceptor_auth_seq_id": n_terminal_max,
+                "source_validation_status": source_validation_status or None,
+                "source_pair_id": validation_row.get("source_pair_id"),
+                "primary_candidate_acceptor_residue_code": residue_code or None,
+                "primary_candidate_acceptor_auth_seq_id": (
+                    hit.get("candidate_auth_seq_id")
+                ),
+                "primary_candidate_acceptor_chain_name": (
+                    hit.get("candidate_chain_name")
+                ),
+                "primary_gamma_associated_polymer_chain_name": (
+                    hit.get("gamma_associated_polymer_chain_name")
+                ),
+                "nearest_gamma_distance_angstrom": (
+                    hit.get("nearest_gamma_distance_angstrom")
+                ),
+                "tyrosine_acceptor_mode_hit": tyrosine_mode_hit,
+                "n_terminal_ser_thr_tyr_acceptor_mode_hit": n_terminal_mode_hit,
+                "substrate_mode_counteraxis_rule_hit": substrate_mode_rule_hit,
+                "same_auth_chain_topology_ambiguity": topology_ambiguous,
+                "fresh_stress_decision": decision,
+                "substrate_mode_counterevidence_reasons": _sorted_strings(
+                    counterevidence_reasons
+                ),
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_orphan_discovery_claims": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "fresh_controls_all_topology_confounded",
+                    "substrate_mode_rule_not_calibrated",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    fresh_pdb_ids = _sorted_strings(fresh_pdb_ids)
+    fresh_rule_hit_pdb_ids = _sorted_strings(fresh_rule_hit_pdb_ids)
+    fresh_rejected_pdb_ids = _sorted_strings(fresh_rejected_pdb_ids)
+    fresh_topology_ambiguous_pdb_ids = _sorted_strings(
+        fresh_topology_ambiguous_pdb_ids
+    )
+    fresh_missing_hit_pdb_ids = _sorted_strings(fresh_missing_hit_pdb_ids)
+    repeat_pdb_ids = _sorted_strings(repeat_pdb_ids)
+    repeat_rule_hit_pdb_ids = _sorted_strings(repeat_rule_hit_pdb_ids)
+    if fresh_rule_hit_pdb_ids or fresh_missing_hit_pdb_ids:
+        status = "fails_closed_fresh_substrate_mode_stress_residual_hits"
+    elif fresh_pdb_ids and fresh_topology_ambiguous_pdb_ids == fresh_pdb_ids:
+        status = "passes_fresh_nonrepeat_controls_with_topology_confounding_review_only"
+    elif fresh_pdb_ids:
+        status = "passes_fresh_nonrepeat_controls_review_only"
+    else:
+        status = "blocked_no_fresh_nonrepeat_candidates_review_only"
+
+    return {
+        "metadata": {
+            "method": "epk_mek_erk_substrate_mode_fresh_stress_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": (
+                substrate_meta.get("method")
+            ),
+            "source_epk_mek_erk_targeted_candidate_scout_method": (
+                scout_meta.get("method")
+            ),
+            "source_epk_mek_erk_targeted_source_validation_review_method": (
+                validation_meta.get("method")
+            ),
+            "rule_id": "epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0",
+            "candidate_threshold_angstrom": threshold,
+            "max_n_terminal_acceptor_auth_seq_id": n_terminal_max,
+            "substrate_mode_fresh_stress_status": status,
+            "reviewed_candidate_count": len(rows),
+            "fresh_nonrepeat_candidate_count": len(fresh_pdb_ids),
+            "fresh_nonrepeat_candidate_pdb_ids": fresh_pdb_ids,
+            "fresh_nonrepeat_rule_hit_count": len(fresh_rule_hit_pdb_ids),
+            "fresh_nonrepeat_rule_hit_pdb_ids": fresh_rule_hit_pdb_ids,
+            "fresh_nonrepeat_rejected_by_substrate_mode_count": len(
+                fresh_rejected_pdb_ids
+            ),
+            "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids": (
+                fresh_rejected_pdb_ids
+            ),
+            "fresh_nonrepeat_topology_ambiguous_count": len(
+                fresh_topology_ambiguous_pdb_ids
+            ),
+            "fresh_nonrepeat_topology_ambiguous_pdb_ids": (
+                fresh_topology_ambiguous_pdb_ids
+            ),
+            "fresh_nonrepeat_missing_primary_hydroxyl_count": len(
+                fresh_missing_hit_pdb_ids
+            ),
+            "fresh_nonrepeat_missing_primary_hydroxyl_pdb_ids": (
+                fresh_missing_hit_pdb_ids
+            ),
+            "repeat_current_surface_candidate_count": len(repeat_pdb_ids),
+            "repeat_current_surface_candidate_pdb_ids": repeat_pdb_ids,
+            "repeat_current_surface_rule_hit_count": len(repeat_rule_hit_pdb_ids),
+            "repeat_current_surface_rule_hit_pdb_ids": repeat_rule_hit_pdb_ids,
+            "source_free_predictive_feature_materialized": True,
+            "substrate_mode_axis_weak_current_stress_only": True,
+            "fresh_stress_topology_confounded": bool(
+                fresh_pdb_ids and fresh_topology_ambiguous_pdb_ids == fresh_pdb_ids
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": (
+                "fresh_nonrepeat_mek_erk_tranche_has_no_substrate_mode_rule_hits"
+            ),
+            "blocker_not_removed": [
+                "fresh_nonrepeat_controls_all_topology_confounded",
+                "no_new_clean_source_valid_positive_coverage",
+                "substrate_mode_rule_not_calibrated",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "decision_counts": dict(sorted(decision_counts.items())),
+            "review_only_rule": (
+                "This artifact applies the MEK/ERK substrate-mode heuristic to "
+                "a targeted outside-query tranche. Source review labels fresh "
+                "controls only; the rule remains review-only, topology-confounded, "
+                "and not admissible for scoring or registry edits."
+            ),
+            "next_actions": [
+                "find a fresh non-topology-confounded MEK/ERK or kinase-substrate tranche",
+                "replace residue-position substrate mode with stronger source-free substrate identity evidence",
+                "keep ePK thresholding and external hard-negative scoring closed",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("fresh_stress_decision") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Fresh MEK/ERK substrate-mode stress is review-only and "
+                "topology-confounded; it cannot support threshold selection, "
+                "production scoring, registry edits, or label import."
+            )
+        ],
+    }
+
+
+def build_epk_mek_erk_substrate_mode_existing_scout_gap_audit(
+    *,
+    epk_mek_erk_substrate_mode_counteraxis_audit: dict[str, Any],
+    epk_mek_erk_substrate_mode_fresh_stress_audit: dict[str, Any],
+    candidate_context_artifacts: list[dict[str, Any]],
+    candidate_threshold_angstrom: float = 6.0,
+    max_n_terminal_acceptor_auth_seq_id: int = 25,
+) -> dict[str, Any]:
+    """Audit existing candidate scouts for non-topology-confounded next rows."""
+
+    substrate_meta = epk_mek_erk_substrate_mode_counteraxis_audit.get(
+        "metadata", {}
+    )
+    if not isinstance(substrate_meta, dict):
+        substrate_meta = {}
+    fresh_meta = epk_mek_erk_substrate_mode_fresh_stress_audit.get("metadata", {})
+    if not isinstance(fresh_meta, dict):
+        fresh_meta = {}
+    target_fingerprint_id = str(
+        substrate_meta.get("target_fingerprint_id")
+        or fresh_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(
+            substrate_meta.get("candidate_threshold_angstrom")
+            or fresh_meta.get("candidate_threshold_angstrom")
+            or candidate_threshold_angstrom
+        )
+    except (TypeError, ValueError):
+        threshold = 6.0
+    try:
+        n_terminal_max = int(
+            substrate_meta.get("max_n_terminal_acceptor_auth_seq_id")
+            or fresh_meta.get("max_n_terminal_acceptor_auth_seq_id")
+            or max_n_terminal_acceptor_auth_seq_id
+        )
+    except (TypeError, ValueError):
+        n_terminal_max = 25
+    n_terminal_max = max(1, n_terminal_max)
+
+    reviewed_pdb_ids = {
+        str(row.get("pdb_id") or "").upper()
+        for artifact in (
+            epk_mek_erk_substrate_mode_counteraxis_audit,
+            epk_mek_erk_substrate_mode_fresh_stress_audit,
+        )
+        for row in artifact.get("rows", []) or []
+        if isinstance(row, dict) and row.get("pdb_id")
+    }
+    hydroxyl_residue_codes = {"SER", "THR", "TYR"}
+
+    def _safe_float(value: Any) -> float:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return 9999.0
+
+    def _optional_int(value: Any) -> int | None:
+        try:
+            if value in {None, "", ".", "?"}:
+                return None
+            return int(float(str(value)))
+        except (TypeError, ValueError):
+            return None
+
+    def _candidate_hits(row: dict[str, Any]) -> list[dict[str, Any]]:
+        hits = row.get("heteromeric_candidate_hits")
+        if not isinstance(hits, list):
+            hits = row.get("candidate_hits")
+        return [hit for hit in hits or [] if isinstance(hit, dict)]
+
+    def _primary_hydroxyl_hit(row: dict[str, Any]) -> dict[str, Any]:
+        hits = [
+            hit
+            for hit in _candidate_hits(row)
+            if str(hit.get("candidate_residue_code") or "").upper()
+            in hydroxyl_residue_codes
+            and _safe_float(hit.get("nearest_gamma_distance_angstrom")) <= threshold
+        ]
+        return (
+            sorted(
+                hits,
+                key=lambda hit: (
+                    _safe_float(hit.get("nearest_gamma_distance_angstrom")),
+                    str(hit.get("candidate_chain_name") or ""),
+                    str(hit.get("candidate_auth_seq_id") or ""),
+                    str(hit.get("candidate_residue_code") or ""),
+                ),
+            )[0]
+            if hits
+            else {}
+        )
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    materialized_unreviewed_pdb_ids: set[str] = set()
+    topology_confounded_pdb_ids: set[str] = set()
+    non_topology_confounded_pdb_ids: set[str] = set()
+    non_topology_rule_hit_pdb_ids: set[str] = set()
+    missing_primary_hit_pdb_ids: set[str] = set()
+
+    for artifact_index, artifact in enumerate(candidate_context_artifacts):
+        if not isinstance(artifact, dict):
+            continue
+        artifact_meta = artifact.get("metadata", {})
+        if not isinstance(artifact_meta, dict):
+            artifact_meta = {}
+        for candidate_row in artifact.get("rows", []) or []:
+            if not isinstance(candidate_row, dict):
+                continue
+            pdb_id = str(candidate_row.get("pdb_id") or "").upper()
+            if not pdb_id or pdb_id in reviewed_pdb_ids:
+                continue
+            if not _candidate_hits(candidate_row):
+                continue
+            materialized_unreviewed_pdb_ids.add(pdb_id)
+            hit = _primary_hydroxyl_hit(candidate_row)
+            residue_code = str(hit.get("candidate_residue_code") or "").upper()
+            auth_seq_id = _optional_int(hit.get("candidate_auth_seq_id"))
+            candidate_chain = str(hit.get("candidate_chain_name") or "")
+            gamma_chain = str(hit.get("gamma_associated_polymer_chain_name") or "")
+            tyrosine_mode_hit = residue_code == "TYR"
+            n_terminal_mode_hit = (
+                residue_code in hydroxyl_residue_codes
+                and auth_seq_id is not None
+                and auth_seq_id <= n_terminal_max
+            )
+            substrate_mode_rule_hit = bool(tyrosine_mode_hit or n_terminal_mode_hit)
+            topology_confounded = bool(candidate_chain and candidate_chain == gamma_chain)
+            if not hit:
+                missing_primary_hit_pdb_ids.add(pdb_id)
+                decision = "existing_scout_missing_primary_hydroxyl_hit_review_only"
+            elif topology_confounded:
+                topology_confounded_pdb_ids.add(pdb_id)
+                decision = "existing_scout_topology_confounded_review_only"
+            else:
+                non_topology_confounded_pdb_ids.add(pdb_id)
+                if substrate_mode_rule_hit:
+                    non_topology_rule_hit_pdb_ids.add(pdb_id)
+                    decision = (
+                        "existing_scout_non_topology_confounded_rule_hit_review_only"
+                    )
+                else:
+                    decision = (
+                        "existing_scout_non_topology_confounded_rule_rejected_review_only"
+                    )
+            decision_counts[decision] += 1
+            rows.append(
+                {
+                    "row_type": "mek_erk_substrate_mode_existing_scout_gap_row",
+                    "pdb_id": pdb_id,
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "candidate_threshold_angstrom": threshold,
+                    "max_n_terminal_acceptor_auth_seq_id": n_terminal_max,
+                    "source_artifact_index": artifact_index,
+                    "source_artifact_method": artifact_meta.get("method"),
+                    "source_query": artifact_meta.get("source_query"),
+                    "primary_candidate_acceptor_residue_code": residue_code or None,
+                    "primary_candidate_acceptor_auth_seq_id": (
+                        hit.get("candidate_auth_seq_id")
+                    ),
+                    "primary_candidate_acceptor_chain_name": (
+                        hit.get("candidate_chain_name")
+                    ),
+                    "primary_gamma_associated_polymer_chain_name": (
+                        hit.get("gamma_associated_polymer_chain_name")
+                    ),
+                    "nearest_gamma_distance_angstrom": (
+                        hit.get("nearest_gamma_distance_angstrom")
+                    ),
+                    "same_auth_chain_topology_ambiguity": topology_confounded,
+                    "tyrosine_acceptor_mode_hit": tyrosine_mode_hit,
+                    "n_terminal_ser_thr_tyr_acceptor_mode_hit": n_terminal_mode_hit,
+                    "substrate_mode_counteraxis_rule_hit": substrate_mode_rule_hit,
+                    "existing_scout_gap_decision": decision,
+                    "production_scoring_admissible": False,
+                    "ready_for_production_scoring": False,
+                    "ready_for_orphan_discovery_claims": False,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                }
+            )
+
+    materialized_unreviewed_ids = _sorted_strings(materialized_unreviewed_pdb_ids)
+    topology_confounded_ids = _sorted_strings(topology_confounded_pdb_ids)
+    non_topology_confounded_ids = _sorted_strings(non_topology_confounded_pdb_ids)
+    non_topology_rule_hit_ids = _sorted_strings(non_topology_rule_hit_pdb_ids)
+    missing_primary_hit_ids = _sorted_strings(missing_primary_hit_pdb_ids)
+    if non_topology_confounded_ids:
+        status = "existing_scouts_have_non_topology_confounded_candidates_review_only"
+    elif materialized_unreviewed_ids:
+        status = "blocked_existing_scouts_only_topology_confounded_candidates_review_only"
+    else:
+        status = "blocked_no_existing_scout_candidates_after_exclusions_review_only"
+
+    return {
+        "metadata": {
+            "method": "epk_mek_erk_substrate_mode_existing_scout_gap_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": (
+                substrate_meta.get("method")
+            ),
+            "source_epk_mek_erk_substrate_mode_fresh_stress_audit_method": (
+                fresh_meta.get("method")
+            ),
+            "candidate_context_artifact_count": len(candidate_context_artifacts),
+            "candidate_threshold_angstrom": threshold,
+            "max_n_terminal_acceptor_auth_seq_id": n_terminal_max,
+            "existing_scout_gap_status": status,
+            "reviewed_exclusion_pdb_count": len(reviewed_pdb_ids),
+            "materialized_unreviewed_hit_count": len(materialized_unreviewed_ids),
+            "materialized_unreviewed_hit_pdb_ids": materialized_unreviewed_ids,
+            "topology_confounded_candidate_count": len(topology_confounded_ids),
+            "topology_confounded_candidate_pdb_ids": topology_confounded_ids,
+            "non_topology_confounded_candidate_count": len(
+                non_topology_confounded_ids
+            ),
+            "non_topology_confounded_candidate_pdb_ids": (
+                non_topology_confounded_ids
+            ),
+            "non_topology_confounded_rule_hit_count": len(
+                non_topology_rule_hit_ids
+            ),
+            "non_topology_confounded_rule_hit_pdb_ids": non_topology_rule_hit_ids,
+            "missing_primary_hydroxyl_hit_count": len(missing_primary_hit_ids),
+            "missing_primary_hydroxyl_hit_pdb_ids": missing_primary_hit_ids,
+            "decision_counts": dict(sorted(decision_counts.items())),
+            "source_free_predictive_feature_materialized": True,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "existing_materialized_scouts_audited_for_next_tranche_reuse",
+            "blocker_not_removed": [
+                "no_existing_non_topology_confounded_substrate_mode_tranche",
+                "substrate_mode_rule_not_calibrated",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact audits already materialized ePK candidate scouts "
+                "for reusable non-topology-confounded substrate-mode stress rows. "
+                "It records a negative queue result only; it does not query new "
+                "sources, score ePK, edit registries, or import labels."
+            ),
+            "next_actions": [
+                "source a new bounded tranche because existing scouts do not provide a clean non-topology-confounded substrate-mode stress row",
+                "prefer kinase-substrate rows with different auth chains and explicit local acceptor context",
+                "keep thresholding and external hard-negative scoring closed",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("existing_scout_gap_decision") or ""),
+                str(row.get("pdb_id") or ""),
+                str(row.get("source_artifact_index") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Existing scout gap audit is review-only negative queue evidence; "
+                "it cannot support threshold selection, production scoring, "
+                "registry edits, or label import."
+            )
+        ],
+    }
+
+
 def build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     *,
     epk_heteromeric_candidate_source_validation_review: dict[str, Any],
@@ -37352,6 +38533,10 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_mek_erk_source_free_topology_ambiguity_counteraxis: dict[str, Any]
     | None = None,
+    epk_mek_erk_substrate_mode_counteraxis_audit: dict[str, Any] | None = None,
+    epk_mek_erk_substrate_mode_fresh_stress_audit: dict[str, Any] | None = None,
+    epk_mek_erk_substrate_mode_existing_scout_gap_audit: dict[str, Any]
+    | None = None,
     epk_unified_review_only_scoring_prototype: dict[str, Any] | None = None,
     epk_unified_prototype_broad_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
@@ -37958,6 +39143,27 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(mek_erk_source_free_topology_meta, dict):
         mek_erk_source_free_topology_meta = {}
+    mek_erk_substrate_mode_meta = (
+        epk_mek_erk_substrate_mode_counteraxis_audit.get("metadata", {})
+        if isinstance(epk_mek_erk_substrate_mode_counteraxis_audit, dict)
+        else {}
+    )
+    if not isinstance(mek_erk_substrate_mode_meta, dict):
+        mek_erk_substrate_mode_meta = {}
+    mek_erk_substrate_mode_fresh_stress_meta = (
+        epk_mek_erk_substrate_mode_fresh_stress_audit.get("metadata", {})
+        if isinstance(epk_mek_erk_substrate_mode_fresh_stress_audit, dict)
+        else {}
+    )
+    if not isinstance(mek_erk_substrate_mode_fresh_stress_meta, dict):
+        mek_erk_substrate_mode_fresh_stress_meta = {}
+    mek_erk_substrate_mode_existing_gap_meta = (
+        epk_mek_erk_substrate_mode_existing_scout_gap_audit.get("metadata", {})
+        if isinstance(epk_mek_erk_substrate_mode_existing_scout_gap_audit, dict)
+        else {}
+    )
+    if not isinstance(mek_erk_substrate_mode_existing_gap_meta, dict):
+        mek_erk_substrate_mode_existing_gap_meta = {}
     unified_scoring_meta = (
         epk_unified_review_only_scoring_prototype.get("metadata", {})
         if isinstance(epk_unified_review_only_scoring_prototype, dict)
@@ -41195,6 +42401,277 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if mek_erk_substrate_mode_meta:
+        gate_checks.append(
+            {
+                "gate_id": "mek_erk_substrate_mode_counteraxis_audit",
+                "passed": mek_erk_substrate_mode_meta.get("method")
+                == "epk_mek_erk_substrate_mode_counteraxis_audit"
+                and mek_erk_substrate_mode_meta.get(
+                    "substrate_mode_counteraxis_status"
+                )
+                == "passes_current_broad_stress_substrate_mode_controls_review_only"
+                and bool(
+                    mek_erk_substrate_mode_meta.get(
+                        "source_free_predictive_feature_materialized"
+                    )
+                )
+                and int(
+                    mek_erk_substrate_mode_meta.get("positive_control_lost_count")
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_substrate_mode_meta.get("residual_false_hit_count")
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_substrate_mode_meta.get(
+                        "missing_primary_hydroxyl_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_substrate_mode_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(mek_erk_substrate_mode_meta.get("epk_score_computed"))
+                and not bool(
+                    mek_erk_substrate_mode_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and not bool(
+                    mek_erk_substrate_mode_meta.get("fingerprint_registry_edited")
+                )
+                and not bool(
+                    mek_erk_substrate_mode_meta.get("curated_label_registry_edited")
+                ),
+                "evidence": {
+                    "source_method": mek_erk_substrate_mode_meta.get("method"),
+                    "substrate_mode_counteraxis_status": (
+                        mek_erk_substrate_mode_meta.get(
+                            "substrate_mode_counteraxis_status"
+                        )
+                    ),
+                    "positive_control_retained_count": (
+                        mek_erk_substrate_mode_meta.get(
+                            "positive_control_retained_count"
+                        )
+                    ),
+                    "positive_control_lost_count": (
+                        mek_erk_substrate_mode_meta.get("positive_control_lost_count")
+                    ),
+                    "false_hit_blocked_by_topology_count": (
+                        mek_erk_substrate_mode_meta.get(
+                            "false_hit_blocked_by_topology_count"
+                        )
+                    ),
+                    "false_hit_blocked_by_substrate_mode_count": (
+                        mek_erk_substrate_mode_meta.get(
+                            "false_hit_blocked_by_substrate_mode_count"
+                        )
+                    ),
+                    "false_hit_blocked_by_substrate_mode_pdb_ids": (
+                        mek_erk_substrate_mode_meta.get(
+                            "false_hit_blocked_by_substrate_mode_pdb_ids", []
+                        )
+                    ),
+                    "residual_false_hit_count": (
+                        mek_erk_substrate_mode_meta.get("residual_false_hit_count")
+                    ),
+                    "missing_primary_hydroxyl_hit_count": (
+                        mek_erk_substrate_mode_meta.get(
+                            "missing_primary_hydroxyl_hit_count"
+                        )
+                    ),
+                    "substrate_mode_axis_weak_current_stress_only": bool(
+                        mek_erk_substrate_mode_meta.get(
+                            "substrate_mode_axis_weak_current_stress_only"
+                        )
+                    ),
+                },
+            }
+        )
+    if mek_erk_substrate_mode_fresh_stress_meta:
+        gate_checks.append(
+            {
+                "gate_id": "mek_erk_substrate_mode_fresh_stress_audit",
+                "passed": mek_erk_substrate_mode_fresh_stress_meta.get("method")
+                == "epk_mek_erk_substrate_mode_fresh_stress_audit"
+                and mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "substrate_mode_fresh_stress_status"
+                )
+                == "passes_fresh_nonrepeat_controls_with_topology_confounding_review_only"
+                and int(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "fresh_nonrepeat_candidate_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "fresh_nonrepeat_rule_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "fresh_nonrepeat_missing_primary_hydroxyl_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "epk_score_computed"
+                    )
+                )
+                and not bool(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and not bool(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "fingerprint_registry_edited"
+                    )
+                )
+                and not bool(
+                    mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "curated_label_registry_edited"
+                    )
+                ),
+                "evidence": {
+                    "source_method": mek_erk_substrate_mode_fresh_stress_meta.get(
+                        "method"
+                    ),
+                    "substrate_mode_fresh_stress_status": (
+                        mek_erk_substrate_mode_fresh_stress_meta.get(
+                            "substrate_mode_fresh_stress_status"
+                        )
+                    ),
+                    "fresh_nonrepeat_candidate_count": (
+                        mek_erk_substrate_mode_fresh_stress_meta.get(
+                            "fresh_nonrepeat_candidate_count"
+                        )
+                    ),
+                    "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids": (
+                        mek_erk_substrate_mode_fresh_stress_meta.get(
+                            "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "fresh_nonrepeat_rule_hit_count": (
+                        mek_erk_substrate_mode_fresh_stress_meta.get(
+                            "fresh_nonrepeat_rule_hit_count"
+                        )
+                    ),
+                    "fresh_nonrepeat_topology_ambiguous_count": (
+                        mek_erk_substrate_mode_fresh_stress_meta.get(
+                            "fresh_nonrepeat_topology_ambiguous_count"
+                        )
+                    ),
+                    "fresh_stress_topology_confounded": bool(
+                        mek_erk_substrate_mode_fresh_stress_meta.get(
+                            "fresh_stress_topology_confounded"
+                        )
+                    ),
+                },
+            }
+        )
+    if mek_erk_substrate_mode_existing_gap_meta:
+        gate_checks.append(
+            {
+                "gate_id": "mek_erk_substrate_mode_existing_scout_gap_audit",
+                "passed": mek_erk_substrate_mode_existing_gap_meta.get("method")
+                == "epk_mek_erk_substrate_mode_existing_scout_gap_audit"
+                and mek_erk_substrate_mode_existing_gap_meta.get(
+                    "existing_scout_gap_status"
+                )
+                == "blocked_existing_scouts_only_topology_confounded_candidates_review_only"
+                and int(
+                    mek_erk_substrate_mode_existing_gap_meta.get(
+                        "materialized_unreviewed_hit_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    mek_erk_substrate_mode_existing_gap_meta.get(
+                        "non_topology_confounded_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_substrate_mode_existing_gap_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    mek_erk_substrate_mode_existing_gap_meta.get(
+                        "epk_score_computed"
+                    )
+                )
+                and not bool(
+                    mek_erk_substrate_mode_existing_gap_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and not bool(
+                    mek_erk_substrate_mode_existing_gap_meta.get(
+                        "fingerprint_registry_edited"
+                    )
+                )
+                and not bool(
+                    mek_erk_substrate_mode_existing_gap_meta.get(
+                        "curated_label_registry_edited"
+                    )
+                ),
+                "evidence": {
+                    "source_method": mek_erk_substrate_mode_existing_gap_meta.get(
+                        "method"
+                    ),
+                    "existing_scout_gap_status": (
+                        mek_erk_substrate_mode_existing_gap_meta.get(
+                            "existing_scout_gap_status"
+                        )
+                    ),
+                    "materialized_unreviewed_hit_count": (
+                        mek_erk_substrate_mode_existing_gap_meta.get(
+                            "materialized_unreviewed_hit_count"
+                        )
+                    ),
+                    "topology_confounded_candidate_pdb_ids": (
+                        mek_erk_substrate_mode_existing_gap_meta.get(
+                            "topology_confounded_candidate_pdb_ids", []
+                        )
+                    ),
+                    "non_topology_confounded_candidate_count": (
+                        mek_erk_substrate_mode_existing_gap_meta.get(
+                            "non_topology_confounded_candidate_count"
+                        )
+                    ),
+                },
+            }
+        )
     if unified_scoring_meta:
         gate_checks.append(
             {
@@ -42097,6 +43574,32 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "keep MEK1/ERK1 rows terminally blocked unless source-authoritative phosphosite evidence appears",
+            )
+    if mek_erk_substrate_mode_meta.get("method"):
+        if mek_erk_substrate_mode_existing_gap_meta.get("method"):
+            next_actions.insert(
+                0,
+                "source a new bounded non-topology-confounded kinase-substrate tranche; existing ePK scouts do not contain one",
+            )
+        elif mek_erk_substrate_mode_fresh_stress_meta.get("method"):
+            next_actions.insert(
+                0,
+                "find a fresh non-topology-confounded MEK/ERK or kinase-substrate tranche for the substrate-mode counteraxis",
+            )
+        elif (
+            mek_erk_substrate_mode_meta.get("substrate_mode_counteraxis_status")
+            == "passes_current_broad_stress_substrate_mode_controls_review_only"
+            and int(mek_erk_substrate_mode_meta.get("residual_false_hit_count") or 0)
+            == 0
+        ):
+            next_actions.insert(
+                0,
+                "stress the MEK/ERK substrate-mode counteraxis on fresh outside-query controls before any scoring claim",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "repair the MEK/ERK substrate-mode counteraxis before threshold or scorer work",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -44091,6 +45594,118 @@ def build_epk_precount_gate_status(
             "mek_erk_source_free_topology_source_free_predictive_feature_materialized": bool(
                 mek_erk_source_free_topology_meta.get(
                     "source_free_predictive_feature_materialized"
+                )
+            ),
+            "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": (
+                mek_erk_substrate_mode_meta.get("method")
+            ),
+            "mek_erk_substrate_mode_counteraxis_status": (
+                mek_erk_substrate_mode_meta.get(
+                    "substrate_mode_counteraxis_status"
+                )
+            ),
+            "mek_erk_substrate_mode_positive_retained_count": (
+                mek_erk_substrate_mode_meta.get("positive_control_retained_count")
+            ),
+            "mek_erk_substrate_mode_positive_retained_pdb_ids": (
+                mek_erk_substrate_mode_meta.get(
+                    "positive_control_retained_pdb_ids", []
+                )
+            ),
+            "mek_erk_substrate_mode_positive_lost_count": (
+                mek_erk_substrate_mode_meta.get("positive_control_lost_count")
+            ),
+            "mek_erk_substrate_mode_false_hit_blocked_by_topology_count": (
+                mek_erk_substrate_mode_meta.get("false_hit_blocked_by_topology_count")
+            ),
+            "mek_erk_substrate_mode_false_hit_blocked_by_substrate_mode_count": (
+                mek_erk_substrate_mode_meta.get(
+                    "false_hit_blocked_by_substrate_mode_count"
+                )
+            ),
+            "mek_erk_substrate_mode_false_hit_blocked_by_substrate_mode_pdb_ids": (
+                mek_erk_substrate_mode_meta.get(
+                    "false_hit_blocked_by_substrate_mode_pdb_ids", []
+                )
+            ),
+            "mek_erk_substrate_mode_residual_false_hit_count": (
+                mek_erk_substrate_mode_meta.get("residual_false_hit_count")
+            ),
+            "mek_erk_substrate_mode_residual_false_hit_pdb_ids": (
+                mek_erk_substrate_mode_meta.get("residual_false_hit_pdb_ids", [])
+            ),
+            "mek_erk_substrate_mode_missing_primary_hit_count": (
+                mek_erk_substrate_mode_meta.get("missing_primary_hydroxyl_hit_count")
+            ),
+            "mek_erk_substrate_mode_source_free_predictive_feature_materialized": bool(
+                mek_erk_substrate_mode_meta.get(
+                    "source_free_predictive_feature_materialized"
+                )
+            ),
+            "mek_erk_substrate_mode_axis_weak_current_stress_only": bool(
+                mek_erk_substrate_mode_meta.get(
+                    "substrate_mode_axis_weak_current_stress_only"
+                )
+            ),
+            "source_epk_mek_erk_substrate_mode_fresh_stress_audit_method": (
+                mek_erk_substrate_mode_fresh_stress_meta.get("method")
+            ),
+            "mek_erk_substrate_mode_fresh_stress_status": (
+                mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "substrate_mode_fresh_stress_status"
+                )
+            ),
+            "mek_erk_substrate_mode_fresh_nonrepeat_candidate_count": (
+                mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "fresh_nonrepeat_candidate_count"
+                )
+            ),
+            "mek_erk_substrate_mode_fresh_nonrepeat_candidate_pdb_ids": (
+                mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "fresh_nonrepeat_candidate_pdb_ids", []
+                )
+            ),
+            "mek_erk_substrate_mode_fresh_nonrepeat_rule_hit_count": (
+                mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "fresh_nonrepeat_rule_hit_count"
+                )
+            ),
+            "mek_erk_substrate_mode_fresh_nonrepeat_rejected_pdb_ids": (
+                mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids", []
+                )
+            ),
+            "mek_erk_substrate_mode_fresh_nonrepeat_topology_ambiguous_count": (
+                mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "fresh_nonrepeat_topology_ambiguous_count"
+                )
+            ),
+            "mek_erk_substrate_mode_fresh_stress_topology_confounded": bool(
+                mek_erk_substrate_mode_fresh_stress_meta.get(
+                    "fresh_stress_topology_confounded"
+                )
+            ),
+            "source_epk_mek_erk_substrate_mode_existing_scout_gap_audit_method": (
+                mek_erk_substrate_mode_existing_gap_meta.get("method")
+            ),
+            "mek_erk_substrate_mode_existing_scout_gap_status": (
+                mek_erk_substrate_mode_existing_gap_meta.get(
+                    "existing_scout_gap_status"
+                )
+            ),
+            "mek_erk_substrate_mode_existing_scout_materialized_unreviewed_count": (
+                mek_erk_substrate_mode_existing_gap_meta.get(
+                    "materialized_unreviewed_hit_count"
+                )
+            ),
+            "mek_erk_substrate_mode_existing_scout_topology_confounded_pdb_ids": (
+                mek_erk_substrate_mode_existing_gap_meta.get(
+                    "topology_confounded_candidate_pdb_ids", []
+                )
+            ),
+            "mek_erk_substrate_mode_existing_scout_non_topology_count": (
+                mek_erk_substrate_mode_existing_gap_meta.get(
+                    "non_topology_confounded_candidate_count"
                 )
             ),
             "source_epk_unified_review_only_scoring_prototype_method": (

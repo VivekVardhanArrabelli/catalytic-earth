@@ -328,6 +328,83 @@
       ]
     },
     {
+      "blocker": "substrate_mode_counteraxis_current_stress_only_not_calibrated",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "passes_current_stress_but_weak_not_production_admissible",
+      "decision_axis": "mek_erk_substrate_mode_counteraxis_audit",
+      "false_hit_blocked_by_substrate_mode_count": 4,
+      "false_hit_blocked_by_substrate_mode_pdb_ids": [
+        "2JJ2",
+        "4HPU",
+        "7B56",
+        "7ZDT"
+      ],
+      "false_hit_blocked_by_topology_count": 4,
+      "feature_admissible_for_production_scoring": false,
+      "missing_primary_hydroxyl_hit_count": 0,
+      "positive_control_lost_count": 0,
+      "positive_control_retained_count": 5,
+      "positive_control_retained_pdb_ids": [
+        "1IR3",
+        "5HVK",
+        "6Z3R",
+        "9UUR",
+        "9UUX"
+      ],
+      "residual_false_hit_count": 0,
+      "residual_false_hit_pdb_ids": [],
+      "review_only": true,
+      "source_free_predictive_feature_materialized": true,
+      "substrate_mode_axis_weak_current_stress_only": true,
+      "substrate_mode_counteraxis_status": "passes_current_broad_stress_substrate_mode_controls_review_only"
+    },
+    {
+      "blocker": "fresh_substrate_mode_controls_topology_confounded_not_calibrated",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "passes_fresh_nonrepeat_controls_but_topology_confounded_not_production_admissible",
+      "decision_axis": "mek_erk_substrate_mode_fresh_stress_audit",
+      "feature_admissible_for_production_scoring": false,
+      "fresh_nonrepeat_candidate_count": 3,
+      "fresh_nonrepeat_candidate_pdb_ids": [
+        "7M0T",
+        "7M0W",
+        "9UW4"
+      ],
+      "fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids": [
+        "7M0T",
+        "7M0W",
+        "9UW4"
+      ],
+      "fresh_nonrepeat_rule_hit_count": 0,
+      "fresh_nonrepeat_topology_ambiguous_count": 3,
+      "fresh_stress_topology_confounded": true,
+      "review_only": true,
+      "substrate_mode_fresh_stress_status": "passes_fresh_nonrepeat_controls_with_topology_confounding_review_only"
+    },
+    {
+      "blocker": "new_non_topology_confounded_tranche_required_before_calibration",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "existing_scouts_do_not_supply_clean_next_tranche",
+      "decision_axis": "mek_erk_substrate_mode_existing_scout_gap_audit",
+      "existing_scout_gap_status": "blocked_existing_scouts_only_topology_confounded_candidates_review_only",
+      "feature_admissible_for_production_scoring": false,
+      "materialized_unreviewed_hit_count": 10,
+      "non_topology_confounded_candidate_count": 0,
+      "review_only": true,
+      "topology_confounded_candidate_pdb_ids": [
+        "1TFW",
+        "2DRA",
+        "2Q66",
+        "2ZH6",
+        "7T55",
+        "7T56",
+        "7T57",
+        "9BJI",
+        "9L3M",
+        "9L3U"
+      ]
+    },
+    {
       "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
       "candidate_threshold_angstrom": 6.0,
       "control_false_non_abstention_count": 0,

@@ -50,6 +50,52 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T09:52:30Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+external hard-negative production score, or `removal_allowed=true` occurred.
+SSH deploy-key fetch/pull/ls-remote/dry-run push hygiene passed at startup,
+and startup checks passed: 665 unit tests plus `catalytic_earth.cli validate`
+with 682 labels and 8 production fingerprints.
+
+This run added a source-free MEK/ERK substrate-mode counteraxis prototype and
+made it fail closed. `artifacts/v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json`
+retains all five current positives (`1IR3`, `5HVK`, `6Z3R`, `9UUR`, and
+`9UUX`), carries the topology-ambiguity blocker for `7CAG`, `7ZDU`, `7ZE5`,
+and `8BMS`, and blocks the previous residual false hits `2JJ2`, `4HPU`,
+`7B56`, and `7ZDT` with a weak residue-position rule: tyrosine acceptors or
+N-terminal Ser/Thr/Tyr acceptors. The regenerated pre-count and counteraxis
+artifacts include this row, but still keep
+`precount_gate_status=blocked_review_only` and
+`threshold_selection_decision=do_not_select_threshold`.
+
+The immediate fresh-stress follow-up is also review-only. `artifacts/v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json`
+checks the targeted MEK1/ERK1 outside-query tranche: fresh nonrepeat controls
+`7M0T`, `7M0W`, and `9UW4` have 0 substrate-mode rule hits, while `9UUR` and
+`9UUX` remain repeat current-surface rule hits. However, all three fresh
+nonrepeat controls are same-chain topology-confounded, so this is not a clean
+generalization pass. `artifacts/v3_epk_mek_erk_substrate_mode_existing_scout_gap_audit_1025.json`
+then audits the already materialized ePK scout cache and finds no reusable
+non-topology-confounded tranche: the 10 unreviewed topology-hit PDBs outside
+the current/fresh surfaces are all same-chain topology-confounded. The
+regenerated pre-count and counteraxis artifacts carry that negative queue row
+too, with the next action now focused on sourcing a new bounded
+non-topology-confounded kinase-substrate tranche.
+
+Evidence-based confidence call: confidence is higher that residue-position
+substrate mode is useful counterevidence against the current MEK/ERK false-hit
+surface. Confidence remains low that it is production-admissible, because the
+rule is weak, the fresh controls are topology-confounded, and the existing
+scout cache cannot provide a clean non-topology-confounded stress tranche.
+
+Wrap-up verification passed with 674 unit tests, `tests.test_cli` plus
+`tests.test_leakage_closure` (283 tests), `catalytic_earth.cli validate`,
+`compileall`, targeted CLI/leakage tests, artifact migration dry-run/local-file
+guard at 108 rows with `removal_allowed=0`, label invariants at 682 total
+labels (212 seed fingerprints, 470 out-of-scope, and the three imported
+UniProt hard negatives unchanged), and `git diff --check`.
+
 As of the 2026-05-20T08:52:03Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

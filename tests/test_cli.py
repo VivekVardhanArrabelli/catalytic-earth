@@ -15014,6 +15014,355 @@ _struct_ref_seq.pdbx_auth_seq_align_end
             self.assertEqual(metadata["false_hit_blocked_pdb_ids"], ["7TRN"])
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
+    def test_build_epk_mek_erk_substrate_mode_counteraxis_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            stress = root / "topology_broader_stress.json"
+            out = root / "substrate_mode_counteraxis.json"
+            stress.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_mek_erk_source_free_topology_broader_stress_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_threshold_angstrom": 6.0,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9POS",
+                                "known_positive_control": True,
+                                "known_false_hit_control": False,
+                                "topology_ambiguity_counteraxis_hit": False,
+                                "candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "TYR",
+                                        "candidate_auth_seq_id": "204",
+                                        "candidate_chain_name": "B",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 4.1,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "5PEP",
+                                "known_positive_control": True,
+                                "known_false_hit_control": False,
+                                "topology_ambiguity_counteraxis_hit": False,
+                                "candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "SER",
+                                        "candidate_auth_seq_id": "3",
+                                        "candidate_chain_name": "D",
+                                        "gamma_associated_polymer_chain_name": "C",
+                                        "nearest_gamma_distance_angstrom": 4.2,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "7TOPO",
+                                "known_positive_control": False,
+                                "known_false_hit_control": True,
+                                "topology_ambiguity_counteraxis_hit": True,
+                                "candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "SER",
+                                        "candidate_auth_seq_id": "140",
+                                        "candidate_chain_name": "D",
+                                        "gamma_associated_polymer_chain_name": "C",
+                                        "nearest_gamma_distance_angstrom": 4.0,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "8BAD",
+                                "known_positive_control": False,
+                                "known_false_hit_control": True,
+                                "topology_ambiguity_counteraxis_hit": False,
+                                "candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "SER",
+                                        "candidate_auth_seq_id": "344",
+                                        "candidate_chain_name": "I",
+                                        "gamma_associated_polymer_chain_name": "M",
+                                        "nearest_gamma_distance_angstrom": 5.4,
+                                    }
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-substrate-mode-counteraxis-audit",
+                    "--epk-mek-erk-source-free-topology-broader-stress-audit",
+                    str(stress),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_mek_erk_substrate_mode_counteraxis_audit",
+            )
+            self.assertEqual(
+                metadata["substrate_mode_counteraxis_status"],
+                "passes_current_broad_stress_substrate_mode_controls_review_only",
+            )
+            self.assertEqual(metadata["positive_control_retained_count"], 2)
+            self.assertEqual(metadata["false_hit_blocked_by_topology_pdb_ids"], ["7TOPO"])
+            self.assertEqual(
+                metadata["false_hit_blocked_by_substrate_mode_pdb_ids"], ["8BAD"]
+            )
+            self.assertEqual(metadata["residual_false_hit_count"], 0)
+            self.assertTrue(metadata["source_free_predictive_feature_materialized"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_mek_erk_substrate_mode_fresh_stress_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            substrate = root / "substrate_mode_counteraxis.json"
+            scout = root / "targeted_candidate_scout.json"
+            validation = root / "targeted_source_validation.json"
+            out = root / "fresh_stress.json"
+            substrate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_threshold_angstrom": 6.0,
+                            "max_n_terminal_acceptor_auth_seq_id": 25,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9REP",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scout.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_positive_coverage_candidate_scout"
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "7NEW",
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "SER",
+                                        "candidate_auth_seq_id": "467",
+                                        "candidate_chain_name": "A",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 3.9,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "9REP",
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "TYR",
+                                        "candidate_auth_seq_id": "204",
+                                        "candidate_chain_name": "B",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 4.1,
+                                    }
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            validation.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_candidate_source_validation_review"
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "7NEW",
+                                "source_validation_status": (
+                                    "blocked_ambiguous_kinase_kinase_role_direction_review_only"
+                                ),
+                                "source_pair_id": None,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-substrate-mode-fresh-stress-audit",
+                    "--epk-mek-erk-substrate-mode-counteraxis-audit",
+                    str(substrate),
+                    "--epk-mek-erk-targeted-candidate-scout",
+                    str(scout),
+                    "--epk-mek-erk-targeted-source-validation-review",
+                    str(validation),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_mek_erk_substrate_mode_fresh_stress_audit",
+            )
+            self.assertEqual(
+                metadata["substrate_mode_fresh_stress_status"],
+                (
+                    "passes_fresh_nonrepeat_controls_with_topology_confounding_review_only"
+                ),
+            )
+            self.assertEqual(metadata["fresh_nonrepeat_candidate_pdb_ids"], ["7NEW"])
+            self.assertEqual(
+                metadata["fresh_nonrepeat_rejected_by_substrate_mode_pdb_ids"],
+                ["7NEW"],
+            )
+            self.assertEqual(metadata["fresh_nonrepeat_rule_hit_count"], 0)
+            self.assertEqual(
+                metadata["repeat_current_surface_rule_hit_pdb_ids"], ["9REP"]
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_mek_erk_substrate_mode_existing_scout_gap_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            substrate = root / "substrate_mode_counteraxis.json"
+            fresh = root / "fresh_stress.json"
+            scout = root / "candidate_scout.json"
+            out = root / "existing_gap.json"
+            substrate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [{"pdb_id": "9OLD"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fresh.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_mek_erk_substrate_mode_fresh_stress_audit"
+                            )
+                        },
+                        "rows": [{"pdb_id": "7SEEN"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scout.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                            "source_query": "unit-test",
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "7NEW",
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_residue_code": "SER",
+                                        "candidate_auth_seq_id": "467",
+                                        "candidate_chain_name": "A",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 3.9,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-substrate-mode-existing-scout-gap-audit",
+                    "--epk-mek-erk-substrate-mode-counteraxis-audit",
+                    str(substrate),
+                    "--epk-mek-erk-substrate-mode-fresh-stress-audit",
+                    str(fresh),
+                    "--candidate-context-artifact",
+                    str(scout),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            metadata = json.loads(out.read_text(encoding="utf-8"))["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_mek_erk_substrate_mode_existing_scout_gap_audit",
+            )
+            self.assertEqual(
+                metadata["existing_scout_gap_status"],
+                (
+                    "blocked_existing_scouts_only_topology_confounded_candidates_review_only"
+                ),
+            )
+            self.assertEqual(metadata["topology_confounded_candidate_pdb_ids"], ["7NEW"])
+            self.assertEqual(metadata["non_topology_confounded_candidate_count"], 0)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
 
 if __name__ == "__main__":
     unittest.main()

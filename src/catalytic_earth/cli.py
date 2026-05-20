@@ -110,6 +110,9 @@ from .labels import (
     build_epk_mek_erk_role_control_rerun,
     build_epk_mek_erk_source_free_topology_ambiguity_counteraxis,
     build_epk_mek_erk_source_free_topology_broader_stress_audit,
+    build_epk_mek_erk_substrate_mode_counteraxis_audit,
+    build_epk_mek_erk_substrate_mode_existing_scout_gap_audit,
+    build_epk_mek_erk_substrate_mode_fresh_stress_audit,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_heteromeric_source_valid_control_rerun,
     build_epk_heteromeric_source_free_role_rule_probe,
@@ -7371,6 +7374,104 @@ def cmd_build_epk_mek_erk_source_free_topology_broader_stress_audit(
     return 0
 
 
+def cmd_build_epk_mek_erk_substrate_mode_counteraxis_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_source_free_topology_broader_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_source_free_topology_broader_stress_audit = json.load(handle)
+    audit = build_epk_mek_erk_substrate_mode_counteraxis_audit(
+        epk_mek_erk_source_free_topology_broader_stress_audit=(
+            epk_mek_erk_source_free_topology_broader_stress_audit
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        max_n_terminal_acceptor_auth_seq_id=(
+            args.max_n_terminal_acceptor_auth_seq_id
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK substrate-mode counteraxis audit to "
+        f"{args.out} (status={audit['metadata']['substrate_mode_counteraxis_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_mek_erk_substrate_mode_fresh_stress_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_substrate_mode_counteraxis_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_substrate_mode_counteraxis_audit = json.load(handle)
+    with Path(args.epk_mek_erk_targeted_candidate_scout).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_targeted_candidate_scout = json.load(handle)
+    epk_mek_erk_targeted_source_validation_review = None
+    if args.epk_mek_erk_targeted_source_validation_review:
+        with Path(args.epk_mek_erk_targeted_source_validation_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_targeted_source_validation_review = json.load(handle)
+    audit = build_epk_mek_erk_substrate_mode_fresh_stress_audit(
+        epk_mek_erk_substrate_mode_counteraxis_audit=(
+            epk_mek_erk_substrate_mode_counteraxis_audit
+        ),
+        epk_mek_erk_targeted_candidate_scout=epk_mek_erk_targeted_candidate_scout,
+        epk_mek_erk_targeted_source_validation_review=(
+            epk_mek_erk_targeted_source_validation_review
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        max_n_terminal_acceptor_auth_seq_id=(
+            args.max_n_terminal_acceptor_auth_seq_id
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK substrate-mode fresh stress audit to "
+        f"{args.out} (status={audit['metadata']['substrate_mode_fresh_stress_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_mek_erk_substrate_mode_existing_scout_gap_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_substrate_mode_counteraxis_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_substrate_mode_counteraxis_audit = json.load(handle)
+    with Path(args.epk_mek_erk_substrate_mode_fresh_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_substrate_mode_fresh_stress_audit = json.load(handle)
+    candidate_context_artifacts = []
+    for candidate_context_artifact in args.candidate_context_artifact:
+        with Path(candidate_context_artifact).open("r", encoding="utf-8") as handle:
+            candidate_context_artifacts.append(json.load(handle))
+    audit = build_epk_mek_erk_substrate_mode_existing_scout_gap_audit(
+        epk_mek_erk_substrate_mode_counteraxis_audit=(
+            epk_mek_erk_substrate_mode_counteraxis_audit
+        ),
+        epk_mek_erk_substrate_mode_fresh_stress_audit=(
+            epk_mek_erk_substrate_mode_fresh_stress_audit
+        ),
+        candidate_context_artifacts=candidate_context_artifacts,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+        max_n_terminal_acceptor_auth_seq_id=(
+            args.max_n_terminal_acceptor_auth_seq_id
+        ),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK substrate-mode existing-scout gap audit to "
+        f"{args.out} (status={audit['metadata']['existing_scout_gap_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     args: argparse.Namespace,
 ) -> int:
@@ -8852,6 +8953,24 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             epk_mek_erk_source_free_topology_ambiguity_counteraxis = json.load(
                 handle
             )
+    epk_mek_erk_substrate_mode_counteraxis_audit = None
+    if args.epk_mek_erk_substrate_mode_counteraxis_audit:
+        with Path(args.epk_mek_erk_substrate_mode_counteraxis_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_substrate_mode_counteraxis_audit = json.load(handle)
+    epk_mek_erk_substrate_mode_fresh_stress_audit = None
+    if args.epk_mek_erk_substrate_mode_fresh_stress_audit:
+        with Path(args.epk_mek_erk_substrate_mode_fresh_stress_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_substrate_mode_fresh_stress_audit = json.load(handle)
+    epk_mek_erk_substrate_mode_existing_scout_gap_audit = None
+    if args.epk_mek_erk_substrate_mode_existing_scout_gap_audit:
+        with Path(args.epk_mek_erk_substrate_mode_existing_scout_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_substrate_mode_existing_scout_gap_audit = json.load(handle)
     epk_unified_review_only_scoring_prototype = None
     if args.epk_unified_review_only_scoring_prototype:
         with Path(args.epk_unified_review_only_scoring_prototype).open(
@@ -9071,6 +9190,15 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_mek_erk_source_free_topology_ambiguity_counteraxis=(
             epk_mek_erk_source_free_topology_ambiguity_counteraxis
+        ),
+        epk_mek_erk_substrate_mode_counteraxis_audit=(
+            epk_mek_erk_substrate_mode_counteraxis_audit
+        ),
+        epk_mek_erk_substrate_mode_fresh_stress_audit=(
+            epk_mek_erk_substrate_mode_fresh_stress_audit
+        ),
+        epk_mek_erk_substrate_mode_existing_scout_gap_audit=(
+            epk_mek_erk_substrate_mode_existing_scout_gap_audit
         ),
         epk_unified_review_only_scoring_prototype=(
             epk_unified_review_only_scoring_prototype
@@ -17463,6 +17591,135 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_mek_erk_source_free_topology_broader_stress_audit
     )
 
+    epk_mek_erk_substrate_mode_counteraxis = subparsers.add_parser(
+        "build-epk-mek-erk-substrate-mode-counteraxis-audit",
+        help=(
+            "probe a source-free substrate-mode counteraxis on MEK/ERK "
+            "broad-role stress hits"
+        ),
+    )
+    epk_mek_erk_substrate_mode_counteraxis.add_argument(
+        "--epk-mek-erk-source-free-topology-broader-stress-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_source_free_topology_broader_stress_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_counteraxis.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_mek_erk_substrate_mode_counteraxis.add_argument(
+        "--max-n-terminal-acceptor-auth-seq-id",
+        type=int,
+        default=25,
+    )
+    epk_mek_erk_substrate_mode_counteraxis.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_counteraxis.set_defaults(
+        func=cmd_build_epk_mek_erk_substrate_mode_counteraxis_audit
+    )
+
+    epk_mek_erk_substrate_mode_fresh_stress = subparsers.add_parser(
+        "build-epk-mek-erk-substrate-mode-fresh-stress-audit",
+        help=(
+            "stress the MEK/ERK substrate-mode counteraxis on a targeted "
+            "outside-query tranche"
+        ),
+    )
+    epk_mek_erk_substrate_mode_fresh_stress.add_argument(
+        "--epk-mek-erk-substrate-mode-counteraxis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_fresh_stress.add_argument(
+        "--epk-mek-erk-targeted-candidate-scout",
+        default="artifacts/v3_epk_mek_erk_targeted_candidate_scout_1025.json",
+    )
+    epk_mek_erk_substrate_mode_fresh_stress.add_argument(
+        "--epk-mek-erk-targeted-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_targeted_source_validation_review_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_fresh_stress.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_mek_erk_substrate_mode_fresh_stress.add_argument(
+        "--max-n-terminal-acceptor-auth-seq-id",
+        type=int,
+        default=25,
+    )
+    epk_mek_erk_substrate_mode_fresh_stress.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_fresh_stress.set_defaults(
+        func=cmd_build_epk_mek_erk_substrate_mode_fresh_stress_audit
+    )
+
+    epk_mek_erk_substrate_mode_existing_gap = subparsers.add_parser(
+        "build-epk-mek-erk-substrate-mode-existing-scout-gap-audit",
+        help=(
+            "audit existing ePK scouts for non-topology-confounded "
+            "substrate-mode next-tranche rows"
+        ),
+    )
+    epk_mek_erk_substrate_mode_existing_gap.add_argument(
+        "--epk-mek-erk-substrate-mode-counteraxis-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_existing_gap.add_argument(
+        "--epk-mek-erk-substrate-mode-fresh-stress-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_existing_gap.add_argument(
+        "--candidate-context-artifact",
+        action="append",
+        default=[],
+        help="repeatable candidate scout artifact path",
+    )
+    epk_mek_erk_substrate_mode_existing_gap.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_mek_erk_substrate_mode_existing_gap.add_argument(
+        "--max-n-terminal-acceptor-auth-seq-id",
+        type=int,
+        default=25,
+    )
+    epk_mek_erk_substrate_mode_existing_gap.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_substrate_mode_existing_scout_gap_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_substrate_mode_existing_gap.set_defaults(
+        func=cmd_build_epk_mek_erk_substrate_mode_existing_scout_gap_audit
+    )
+
     epk_heteromeric_distance_sample = subparsers.add_parser(
         "build-epk-heteromeric-source-valid-candidate-gamma-distance-sample",
         help="measure source-valid heteromeric review-lead gamma distances",
@@ -18870,6 +19127,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-mek-erk-source-free-topology-ambiguity-counteraxis",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-substrate-mode-counteraxis-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-substrate-mode-fresh-stress-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-substrate-mode-existing-scout-gap-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

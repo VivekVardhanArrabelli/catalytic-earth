@@ -1446,6 +1446,22 @@ companion topology blocks `7CAG` and reciprocal cross-chain topology blocks
 `2JJ2`, `4HPU`, `7B56`, and `7ZDT` remain false hits. That negative result
 keeps the topology feature review-only and points to a missing acceptor or
 substrate-identity axis before thresholding.
+`artifacts/v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json` adds the
+next source-free residue-position heuristic: retain tyrosine acceptors or
+N-terminal Ser/Thr/Tyr acceptors while carrying the topology-ambiguity blocker.
+It retains `1IR3`, `5HVK`, `6Z3R`, `9UUR`, and `9UUX`, blocks the remaining
+false hits `2JJ2`, `4HPU`, `7B56`, and `7ZDT`, and keeps pre-count and
+counteraxis sufficiency closed as review-only evidence. The fresh targeted
+stress artifact
+`artifacts/v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json` then
+checks the MEK1/ERK1 outside-query tranche: fresh nonrepeat hits `7M0T`,
+`7M0W`, and `9UW4` have no substrate-mode rule hits, but all three are also
+same-chain topology-confounded. The next blocker is a fresh
+non-topology-confounded kinase-substrate tranche, not thresholding.
+`artifacts/v3_epk_mek_erk_substrate_mode_existing_scout_gap_audit_1025.json`
+confirms the already materialized ePK scout cache does not contain that next
+clean tranche: the 10 unreviewed topology-hit PDBs outside the current/fresh
+surfaces are all same-chain topology-confounded.
 The
 preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`
