@@ -32,10 +32,23 @@ FAMILY_CONFIGS = {
         "query_terms": [
             "glucokinase ATP magnesium",
             "glucokinase AMP-PNP magnesium",
+            "glucokinase ADP glucose 6-phosphate magnesium",
             "hexokinase ATP magnesium",
             "hexokinase AMP-PNP magnesium",
+            "hexokinase ADP glucose 6-phosphate magnesium",
             "acetate kinase ATP magnesium",
             "acetate kinase AMP-PNP",
+            "acetate kinase ADP acetyl phosphate magnesium",
+        ],
+        "product_state_query_terms": [
+            "glucokinase ADP glucose 6-phosphate magnesium",
+            "glucokinase ADP glucose-6-phosphate magnesium",
+            "glucokinase ADP G6P magnesium",
+            "hexokinase ADP glucose 6-phosphate magnesium",
+            "hexokinase ADP glucose-6-phosphate magnesium",
+            "hexokinase ADP G6P magnesium",
+            "acetate kinase ADP acetyl phosphate magnesium",
+            "acetate kinase ADP phosphate magnesium",
         ],
         "seed_pdb_ids": [
             "3FGU",
@@ -65,11 +78,24 @@ FAMILY_CONFIGS = {
         "method": "epk_sibling_controls_dnk_bounded_control_screen",
         "query_terms": [
             "thymidine kinase ATP magnesium",
+            "thymidine kinase ADP thymidine monophosphate magnesium",
             "thymidine kinase deoxythymidine triphosphate magnesium",
             "deoxyguanosine kinase DTP magnesium",
             "deoxyguanosine kinase ATP magnesium",
+            "deoxyguanosine kinase ADP dGMP magnesium",
             "deoxycytidine kinase ATP magnesium",
+            "deoxycytidine kinase ADP dCMP magnesium",
             "deoxynucleoside kinase ATP magnesium",
+        ],
+        "product_state_query_terms": [
+            "thymidine kinase ADP thymidine monophosphate magnesium",
+            "thymidine kinase ADP TMP magnesium",
+            "thymidine kinase ADP dTMP magnesium",
+            "deoxyguanosine kinase ADP dGMP magnesium",
+            "deoxyguanosine kinase ADP deoxyguanosine monophosphate magnesium",
+            "deoxycytidine kinase ADP dCMP magnesium",
+            "deoxycytidine kinase ADP deoxycytidine monophosphate magnesium",
+            "deoxynucleoside kinase ADP deoxynucleoside monophosphate magnesium",
         ],
         "seed_pdb_ids": [
             "2OCP",
@@ -98,10 +124,22 @@ FAMILY_CONFIGS = {
         "query_terms": [
             "histidine kinase ATP magnesium",
             "histidine kinase AMP-PNP magnesium",
+            "histidine kinase ADP phosphate magnesium",
             "CheA ATP magnesium",
             "CheA AMP-PNP magnesium",
+            "CheA ADP phosphate magnesium",
             "pyruvate dehydrogenase kinase ATP magnesium",
             "pyruvate dehydrogenase kinase AMP-PNP magnesium",
+            "pyruvate dehydrogenase kinase ADP phosphate magnesium",
+        ],
+        "product_state_query_terms": [
+            "histidine kinase ADP phosphate magnesium",
+            "histidine kinase ADP phospho histidine magnesium",
+            "CheA ADP phosphate magnesium",
+            "CheA ADP phospho histidine magnesium",
+            "pyruvate dehydrogenase kinase ADP phosphate magnesium",
+            "pyruvate dehydrogenase kinase ADP phosphoserine magnesium",
+            "PDK ADP phosphate magnesium",
         ],
         "seed_pdb_ids": [
             "1I58",
@@ -133,10 +171,25 @@ FAMILY_CONFIGS = {
         "query_terms": [
             "mevalonate kinase ATP magnesium",
             "mevalonate kinase AMP-PNP magnesium",
+            "mevalonate kinase ADP phosphomevalonate magnesium",
             "phosphomevalonate kinase ATP magnesium",
+            "phosphomevalonate kinase ADP phosphate magnesium",
             "homoserine kinase ATP magnesium",
+            "homoserine kinase ADP phosphohomoserine magnesium",
             "CDP-ME kinase ATP magnesium",
             "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase AMP-PNP",
+            "CDP-ME kinase ADP phosphate magnesium",
+        ],
+        "product_state_query_terms": [
+            "mevalonate kinase ADP phosphomevalonate magnesium",
+            "mevalonate kinase ADP mevalonate phosphate magnesium",
+            "mevalonate kinase ADP mevalonate 5-phosphate magnesium",
+            "phosphomevalonate kinase ADP phosphate magnesium",
+            "phosphomevalonate kinase ADP mevalonate diphosphate magnesium",
+            "homoserine kinase ADP phospho homoserine magnesium",
+            "CDP ME kinase ADP phosphate magnesium",
+            "CDP methyl erythritol kinase ADP phosphate magnesium",
+            "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase ADP magnesium",
         ],
         "seed_pdb_ids": [
             "1OJ4",
@@ -184,6 +237,21 @@ FAMILY_CONFIGS = {
             "pseudomurein peptide ligase UDP phosphate magnesium",
             "ATP-grasp ligase ATP magnesium",
             "ATP-grasp ligase AMP-PNP magnesium",
+            "ATP-grasp ligase ADP phosphate magnesium",
+        ],
+        "product_state_query_terms": [
+            "D-alanine D-alanine ligase ADP phosphate magnesium",
+            "D-alanine D-alanine ligase ADP phosphoryl phosphinate magnesium",
+            "D-alanine D-alanine ligase ADP phosphoryl phosphonate magnesium",
+            "D-Ala D-Ala ligase ADP phosphate magnesium",
+            "glutathione synthase ADP phosphate magnesium",
+            "glutathione synthetase ADP phosphate magnesium",
+            "glycinamide ribonucleotide synthetase ADP phosphate magnesium",
+            "biotin carboxylase ADP phosphate magnesium",
+            "glutamate-cysteine ligase ADP phosphate magnesium",
+            "Mur ligase ADP phosphate magnesium",
+            "carbamoyl phosphate synthetase ADP phosphate magnesium",
+            "cyanophycin synthetase ADP phosphate magnesium",
             "ATP-grasp ligase ADP phosphate magnesium",
         ],
         "seed_pdb_ids": [
@@ -250,6 +318,14 @@ FAMILY_CONFIGS = {
             "phosphofructokinase-1 ATP Mg",
             "PFK ATP magnesium",
         ],
+        "product_state_query_terms": [
+            "phosphofructokinase ADP fructose 1,6-bisphosphate magnesium",
+            "phosphofructokinase ADP fructose 1 6 bisphosphate magnesium",
+            "phosphofructokinase ADP FBP magnesium",
+            "phosphofructokinase-1 ADP fructose bisphosphate magnesium",
+            "ATP-dependent phosphofructokinase ADP fructose 1,6-bisphosphate magnesium",
+            "PFK ADP FBP magnesium",
+        ],
         "seed_pdb_ids": [
             "3F5M",
             "4XYJ",
@@ -261,6 +337,12 @@ FAMILY_CONFIGS = {
             "phosphofructokinase",
             "phosphofructo kinase",
             "pfk",
+        ),
+        "exclude_title_keywords": (
+            "phosphofructokinase-2",
+            "6-phosphofructo-2-kinase",
+            "pfk-2",
+            "pfkb",
         ),
         "prior_artifact_label": "seed_from_prior_pfka_homolog_gamma_distance_sample",
         "next_query": (
@@ -281,6 +363,16 @@ FAMILY_CONFIGS = {
             "thiazole kinase ATP magnesium",
             "PfkB family kinase ATP magnesium",
         ],
+        "product_state_query_terms": [
+            "ribokinase ADP ribose 5-phosphate magnesium",
+            "ribokinase ADP ribose-5-phosphate magnesium",
+            "adenosine kinase ADP AMP magnesium",
+            "aminoimidazole riboside kinase ADP phosphate magnesium",
+            "phosphofructokinase-2 ADP fructose 2,6-bisphosphate magnesium",
+            "phosphofructokinase-2 ADP FBP magnesium",
+            "ketohexokinase ADP fructose phosphate magnesium",
+            "PfkB family kinase ADP phosphate magnesium",
+        ],
         "seed_pdb_ids": [
             "1ESQ",
             "1TZ6",
@@ -300,7 +392,6 @@ FAMILY_CONFIGS = {
             "thiazole kinase",
             "pfkb",
             "ketohexokinase",
-            "fructokinase",
         ),
         "prior_artifact_label": "seed_from_prior_pfkb_homolog_gamma_distance_sample",
         "next_query": (
@@ -308,9 +399,51 @@ FAMILY_CONFIGS = {
             "or extend PfkA/PfkB only if a new query term exposes additional metal-supported rows."
         ),
     },
+    "ndk": {
+        "family_id": "ndk",
+        "family_name": "Nucleoside diphosphate kinases",
+        "method": "epk_sibling_controls_ndk_bounded_control_screen",
+        "query_terms": [
+            "nucleoside diphosphate kinase ATP magnesium",
+            "nucleoside-diphosphate kinase ATP magnesium",
+            "NDP kinase ATP magnesium",
+            "nucleoside diphosphate kinase AMP-PNP magnesium",
+            "nucleoside diphosphate kinase ATP analog magnesium",
+            "nm23 nucleoside diphosphate kinase ATP magnesium",
+        ],
+        "product_state_query_terms": [
+            "nucleoside diphosphate kinase ADP GTP magnesium",
+            "nucleoside-diphosphate kinase ADP GTP magnesium",
+            "NDP kinase ADP GTP magnesium",
+            "nucleoside diphosphate kinase GDP ATP magnesium",
+            "nucleoside diphosphate kinase ADP ATP magnesium",
+            "nucleoside diphosphate kinase UDP ATP magnesium",
+            "nucleoside diphosphate kinase CDP ATP magnesium",
+            "nm23 nucleoside diphosphate kinase ADP GTP magnesium",
+        ],
+        "seed_pdb_ids": [
+            "1WKL",
+            "3Q86",
+            "9OAN",
+            "9PFY",
+        ],
+        "title_keywords": (
+            "nucleoside diphosphate kinase",
+            "nucleoside-diphosphate kinase",
+            "ndp kinase",
+            "nucleoside 2-phosphate kinase",
+            "nm23",
+        ),
+        "prior_artifact_label": "seed_from_prior_ndk_homolog_gamma_distance_sample",
+        "next_query": (
+            "Either extend GHKL/GHMP product-state controls or run a stricter small-molecule "
+            "acceptor branch for PfkA/PfkB now that source-free weak-rule stress is available."
+        ),
+    },
 }
 
 GAMMA_CAPABLE_CODES = {"ATP", "ANP", "ACP", "AGS", "DTP", "GTP"}
+NDK_PRODUCT_NTP_CODES = {"ATP", "DTP", "GTP"}
 PRODUCT_OR_PARTIAL_CODES = {"ADP", "AMP", "GDP", "UDP", "CDP"}
 PHOSPHORYL_MIMIC_CODES = {"PO4", "PHY", "POB"}
 METAL_CODES = {"MG", "MN"}
@@ -350,7 +483,10 @@ def post_json(url: str, payload: dict, timeout: int = 30) -> dict:
         headers={"Content-Type": "application/json"},
     )
     with urllib.request.urlopen(request, timeout=timeout) as response:
-        return json.loads(response.read().decode("utf-8"))
+        body = response.read()
+        if response.status == 204 or not body:
+            return {}
+        return json.loads(body.decode("utf-8"))
 
 
 def fetch_text(url: str, timeout: int = 30) -> str:
@@ -392,7 +528,7 @@ def parse_struct_title(cif_text: str) -> str | None:
         if idx + 1 < len(lines):
             next_line = lines[idx + 1].strip()
             if next_line.startswith(";"):
-                collected = []
+                collected = [next_line[1:].strip()] if next_line[1:].strip() else []
                 for follow in lines[idx + 2 :]:
                     if follow.startswith(";"):
                         break
@@ -546,6 +682,8 @@ def title_has_family_signal(title: str | None, config: dict) -> bool:
     if not title:
         return False
     lower = title.lower()
+    if any(keyword in lower for keyword in config.get("exclude_title_keywords", ())):
+        return False
     return any(keyword in lower for keyword in config["title_keywords"])
 
 
@@ -589,18 +727,36 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
         atom for atom in atoms if atom["group"] == "HETATM" and atom["comp"] in METAL_CODES
     ]
     product_codes = sorted({atom["comp"] for atom in atoms if atom["comp"] in PRODUCT_OR_PARTIAL_CODES})
+    hetatm_codes_with_phosphorus = {
+        atom["comp"]
+        for atom in atoms
+        if atom["group"] == "HETATM" and atom["element"] == "P"
+    }
+    hetatm_codes_with_carbon = {
+        atom["comp"]
+        for atom in atoms
+        if atom["group"] == "HETATM" and atom["element"] == "C"
+    }
+    phosphoryl_mimic_code_set = {
+        comp
+        for comp in hetatm_codes_with_phosphorus
+        if comp not in GAMMA_CAPABLE_CODES
+        and comp not in PRODUCT_OR_PARTIAL_CODES
+        and comp not in METAL_CODES
+        and comp not in WATER_CODES
+        and comp not in {"SO4"}
+    }
+    phosphoryl_mimic_code_set.update(
+        comp for comp in hetatm_codes_with_phosphorus if comp in PHOSPHORYL_MIMIC_CODES
+    )
     phosphoryl_mimic_codes = sorted(
-        {atom["comp"] for atom in atoms if atom["comp"] in PHOSPHORYL_MIMIC_CODES}
+        phosphoryl_mimic_code_set
     )
     phosphorylated_nonpolymer_codes = sorted(
         {
-            atom["comp"]
-            for atom in atoms
-            if atom["comp"] in PHOSPHORYL_MIMIC_CODES
-            and any(
-                other["comp"] == atom["comp"] and other["group"] == "HETATM" and other["element"] == "C"
-                for other in atoms
-            )
+            comp
+            for comp in phosphoryl_mimic_code_set
+            if comp in hetatm_codes_with_carbon
         }
     )
     product_nucleotide_beta_atoms = [
@@ -614,14 +770,25 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
         atom
         for atom in atoms
         if atom["group"] == "HETATM"
-        and atom["comp"] in PHOSPHORYL_MIMIC_CODES
+        and atom["comp"] in phosphoryl_mimic_code_set
         and atom["element"] == "P"
     ]
+    product_state_control_phosphoryl_atoms = [
+        atom
+        for atom in product_state_phosphoryl_atoms
+        if atom["comp"] == "PO4" or atom["comp"] in phosphorylated_nonpolymer_codes
+    ]
+    ndk_product_ntp_phosphoryl_atoms = [
+        atom
+        for atom in gamma_atoms
+        if config["family_id"] == "ndk" and atom["comp"] in NDK_PRODUCT_NTP_CODES
+    ]
+    product_state_control_phosphoryl_atoms.extend(ndk_product_ntp_phosphoryl_atoms)
     product_state_phosphoryl_oxygen_atoms = [
         atom
         for atom in atoms
         if atom["group"] == "HETATM"
-        and atom["comp"] in PHOSPHORYL_MIMIC_CODES
+        and atom["comp"] in phosphoryl_mimic_code_set
         and atom["element"] == "O"
     ]
     product_state_nonpolymer_oxygen_atoms = [
@@ -651,15 +818,15 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
     nearest_nonpolymer.sort(key=lambda row: row[0])
     nearest_metal.sort(key=lambda row: row[0])
 
-    nearest_product_phosphoryl_to_metal = atom_pairs(product_state_phosphoryl_atoms, metal_atoms)
+    nearest_product_phosphoryl_to_metal = atom_pairs(product_state_control_phosphoryl_atoms, metal_atoms)
     nearest_product_phosphoryl_to_product_beta = atom_pairs(
-        product_state_phosphoryl_atoms, product_nucleotide_beta_atoms
+        product_state_control_phosphoryl_atoms, product_nucleotide_beta_atoms
     )
     nearest_product_phosphoryl_to_protein = atom_pairs(
-        product_state_phosphoryl_atoms, protein_hydroxyl_atoms
+        product_state_control_phosphoryl_atoms, protein_hydroxyl_atoms
     )
     nearest_product_phosphoryl_to_nonpolymer_oxygen = atom_pairs(
-        product_state_phosphoryl_atoms, product_state_nonpolymer_oxygen_atoms
+        product_state_control_phosphoryl_atoms, product_state_nonpolymer_oxygen_atoms
     )
 
     local_metal = [row for row in nearest_metal if row[0] <= 7.0]
@@ -670,13 +837,32 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
         bool(nearest_product_phosphoryl_to_metal)
         and nearest_product_phosphoryl_to_metal[0][0] <= 7.0
     )
+    has_ndk_local_product_pair = (
+        bool(nearest_product_phosphoryl_to_product_beta)
+        and nearest_product_phosphoryl_to_product_beta[0][0] <= 10.0
+    )
+    ndk_ntp_product_candidate = (
+        has_family_title_signal
+        and bool(product_codes)
+        and bool(ndk_product_ntp_phosphoryl_atoms)
+        and has_product_state_local_metal
+    )
     product_state_control_candidate = (
         has_family_title_signal
         and bool(product_codes)
-        and bool(product_state_phosphoryl_atoms)
+        and bool(product_state_control_phosphoryl_atoms)
         and has_product_state_local_metal
+        and (not ndk_product_ntp_phosphoryl_atoms or has_ndk_local_product_pair)
     )
-    if product_state_control_candidate and phosphorylated_nonpolymer_codes:
+    if product_state_control_candidate and ndk_product_ntp_phosphoryl_atoms:
+        product_state_branch_status = (
+            f"{config['family_id']}_nucleoside_triphosphate_product_control_review_only"
+        )
+    elif ndk_ntp_product_candidate:
+        product_state_branch_status = (
+            f"{config['family_id']}_nucleoside_triphosphate_product_pair_gap_review_only"
+        )
+    elif product_state_control_candidate and phosphorylated_nonpolymer_codes:
         product_state_branch_status = (
             f"{config['family_id']}_phosphorylated_nonpolymer_product_control_review_only"
         )
@@ -764,17 +950,26 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
         "metal_atom_count": len(metal_atoms),
         "product_nucleotide_beta_atom_count": len(product_nucleotide_beta_atoms),
         "product_state_phosphoryl_atom_count": len(product_state_phosphoryl_atoms),
+        "product_state_control_phosphoryl_atom_count": len(product_state_control_phosphoryl_atoms),
+        "ndk_product_ntp_phosphoryl_atom_count": len(ndk_product_ntp_phosphoryl_atoms),
         "product_state_phosphoryl_oxygen_atom_count": len(product_state_phosphoryl_oxygen_atoms),
         "nearest_gamma_to_metal_distance_angstrom": nearest_metal_distance,
         "nearest_gamma_to_protein_hydroxyl_distance_angstrom": nearest_protein_distance,
         "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": nearest_nonpolymer_distance,
         "product_state_branch_status": product_state_branch_status,
         "product_state_control_candidate_review_only": product_state_control_candidate,
+        "product_state_ndk_nucleoside_triphosphate_candidate_review_only": (
+            ndk_ntp_product_candidate
+        ),
+        "product_state_ndk_local_product_pair_review_only": has_ndk_local_product_pair,
         "product_state_free_phosphate_control_review_only": (
             product_state_control_candidate and "PO4" in phosphoryl_mimic_codes
         ),
         "product_state_phosphorylated_nonpolymer_control_review_only": (
             product_state_control_candidate and bool(phosphorylated_nonpolymer_codes)
+        ),
+        "product_state_ndk_nucleoside_triphosphate_control_review_only": (
+            product_state_control_candidate and bool(ndk_product_ntp_phosphoryl_atoms)
         ),
         "nearest_product_phosphoryl_to_metal_distance_angstrom": (
             nearest_product_phosphoryl_to_metal_distance
@@ -842,11 +1037,11 @@ def scan_structure(pdb_id: str, query_origins: list[str], config: dict) -> dict:
 
 
 def build_candidate_ids(
-    rows_per_query: int, max_structures: int, config: dict
+    rows_per_query: int, max_structures: int, config: dict, query_terms: list[str]
 ) -> tuple[list[str], dict[str, list[str]], list[dict]]:
     origins: dict[str, list[str]] = defaultdict(list)
     query_records = []
-    for term in config["query_terms"]:
+    for term in query_terms:
         try:
             hits = rcsb_full_text(term, rows_per_query)
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
@@ -873,14 +1068,25 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
     parser.add_argument("--family", choices=sorted(FAMILY_CONFIGS), default="askha")
+    parser.add_argument(
+        "--query-mode",
+        choices=("default", "product-state"),
+        default="default",
+        help="Use the broad family search surface or product-state-first terms when present.",
+    )
     parser.add_argument("--rows-per-query", type=int, default=8)
     parser.add_argument("--max-structures", type=int, default=32)
     args = parser.parse_args()
 
     config = FAMILY_CONFIGS[args.family]
+    query_terms = (
+        config.get("product_state_query_terms", config["query_terms"])
+        if args.query_mode == "product-state"
+        else config["query_terms"]
+    )
     started_at = utc_now()
     candidate_ids, origins, query_records = build_candidate_ids(
-        args.rows_per_query, args.max_structures, config
+        args.rows_per_query, args.max_structures, config, query_terms
     )
     rows = [
         scan_structure(pdb_id, sorted(set(origins[pdb_id])), config)
@@ -933,6 +1139,16 @@ def main() -> int:
         for row in rows
         if row.get("product_state_phosphorylated_nonpolymer_control_review_only")
     ]
+    product_state_ndk_nucleoside_triphosphate_controls = [
+        row
+        for row in rows
+        if row.get("product_state_ndk_nucleoside_triphosphate_control_review_only")
+    ]
+    product_state_ndk_nucleoside_triphosphate_candidates = [
+        row
+        for row in rows
+        if row.get("product_state_ndk_nucleoside_triphosphate_candidate_review_only")
+    ]
     status_counts = defaultdict(int)
     product_branch_status_counts = defaultdict(int)
     for row in rows:
@@ -958,6 +1174,7 @@ def main() -> int:
             "raw_coordinate_files_written": False,
             "rows_per_query": args.rows_per_query,
             "max_structures": args.max_structures,
+            "query_mode": args.query_mode,
             "candidate_structure_count": len(candidate_ids),
             "rows_reviewed": len(rows),
             f"{config['family_id']}_gamma_metal_control_count": len(controls),
@@ -994,6 +1211,18 @@ def main() -> int:
             "product_state_phosphorylated_nonpolymer_control_pdb_ids": [
                 row["pdb_id"] for row in product_state_phosphorylated_nonpolymer_controls
             ],
+            "product_state_ndk_nucleoside_triphosphate_control_count": len(
+                product_state_ndk_nucleoside_triphosphate_controls
+            ),
+            "product_state_ndk_nucleoside_triphosphate_control_pdb_ids": [
+                row["pdb_id"] for row in product_state_ndk_nucleoside_triphosphate_controls
+            ],
+            "product_state_ndk_nucleoside_triphosphate_candidate_count": len(
+                product_state_ndk_nucleoside_triphosphate_candidates
+            ),
+            "product_state_ndk_nucleoside_triphosphate_candidate_pdb_ids": [
+                row["pdb_id"] for row in product_state_ndk_nucleoside_triphosphate_candidates
+            ],
             "review_status_counts": dict(sorted(status_counts.items())),
             "product_state_branch_status_counts": dict(sorted(product_branch_status_counts.items())),
             "nearest_protein_hydroxyl_min_angstrom": min(distances) if distances else None,
@@ -1004,7 +1233,9 @@ def main() -> int:
                 "candidate rows accepted only by in-memory mmCIF gamma-capable nucleotide, local Mg/Mn, "
                 "and compact source-free local oxygen measurements"
             ),
-            "query_terms": config["query_terms"],
+            "query_terms": query_terms,
+            "default_query_terms": config["query_terms"],
+            "product_state_query_terms": config.get("product_state_query_terms", []),
             "seed_pdb_ids": config["seed_pdb_ids"],
             "candidate_pdb_ids": candidate_ids,
             "source_prior_artifacts": [

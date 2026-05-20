@@ -1,0 +1,271 @@
+{
+  "gamma_design_cases": [
+    {
+      "case_id": "gamma::atp_grasp::2QF7",
+      "case_type": "gamma_metal_control_no_weak_hit",
+      "expected_block_review_only": false,
+      "expected_review_only_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 2.889,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 24.476,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 10.155,
+      "pdb_id": "2QF7",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": false
+    },
+    {
+      "case_id": "gamma::atp_grasp::7U9K",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 3.11,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.257,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.442,
+      "pdb_id": "7U9K",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::atp_grasp::7VHV",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 3.168,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.477,
+      "pdb_id": "7VHV",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::atp_grasp::7WAE",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 3.03,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 6.718,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.23,
+      "pdb_id": "7WAE",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::atp_grasp::7ZZ3",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 3.439,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 5.279,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 9.548,
+      "pdb_id": "7ZZ3",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::atp_grasp::8EVW",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 2.976,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.264,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.392,
+      "pdb_id": "8EVW",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::atp_grasp::8EVY",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 2.587,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.142,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.332,
+      "pdb_id": "8EVY",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::atp_grasp::8VW2",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "family_id": "atp_grasp",
+      "nearest_gamma_to_metal_distance_angstrom": 3.119,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 6.4,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.326,
+      "pdb_id": "8VW2",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::ghkl::4R39",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "family_id": "ghkl",
+      "nearest_gamma_to_metal_distance_angstrom": 3.256,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.817,
+      "pdb_id": "4R39",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/ghkl_expanded_bounded_control_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::ghkl::9EPN",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "family_id": "ghkl",
+      "nearest_gamma_to_metal_distance_angstrom": 3.263,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 19.725,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.443,
+      "pdb_id": "9EPN",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/ghkl_expanded_bounded_control_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "gamma::pfka::3IE7",
+      "case_type": "gamma_metal_control_no_weak_hit",
+      "expected_block_review_only": false,
+      "expected_review_only_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "family_id": "pfka",
+      "nearest_gamma_to_metal_distance_angstrom": 3.287,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 13.904,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 7.035,
+      "pdb_id": "3IE7",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": false
+    },
+    {
+      "case_id": "gamma::pfkb::1LII",
+      "case_type": "gamma_metal_weak_rule_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "family_id": "pfkb",
+      "nearest_gamma_to_metal_distance_angstrom": 5.719,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.045,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.205,
+      "pdb_id": "1LII",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json"
+      ],
+      "weak_nearest_any_oxygen_rule_hit_6a": true
+    }
+  ],
+  "metadata": {
+    "created_at": "2026-05-20T19:43:39Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "gamma_design_case_count": 12,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_counteraxis_scorer_design_cases",
+    "primary_outcome": "counterexample_found",
+    "product_design_case_count": 4,
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "recommendation": "Use these as review-only expected-block fixtures if a future scorer implements source-free substrate-identity and sibling-family counteraxes; do not import as labels or calibrate thresholds.",
+    "review_only": true,
+    "source_rollup": "artifacts/research_lanes/epk_sibling_controls/expanded_sibling_surface_rollup_20260520.json"
+  },
+  "product_design_cases": [
+    {
+      "case_id": "product::atp_grasp::1VA6",
+      "case_type": "strict_product_state_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "family_id": "atp_grasp",
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 2.576,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.55,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 6.991,
+      "pdb_id": "1VA6",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_product_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "product::atp_grasp::2IOA",
+      "case_type": "strict_product_state_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "family_id": "atp_grasp",
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.245,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.323,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.704,
+      "pdb_id": "2IOA",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_product_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "product::atp_grasp::3LVV",
+      "case_type": "strict_product_state_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "family_id": "atp_grasp",
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 2.766,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.47,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 8.366,
+      "pdb_id": "3LVV",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_product_any_oxygen_rule_hit_6a": true
+    },
+    {
+      "case_id": "product::atp_grasp::3TW6",
+      "case_type": "strict_product_state_counterexample",
+      "expected_block_review_only": true,
+      "expected_review_only_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "family_id": "atp_grasp",
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 6.454,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.493,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 6.898,
+      "pdb_id": "3TW6",
+      "source_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+        "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json"
+      ],
+      "weak_product_any_oxygen_rule_hit_6a": true
+    }
+  ],
+  "warnings": [
+    "Review-only expected-block cases, not production labels.",
+    "All production claims, label changes, fingerprint edits, and threshold calibration remain forbidden."
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "counteraxis_summary": {
+    "blocker_counts_blocked_weak_controls": {
+      "nonpolymer_acceptor_local_to_gamma": 6,
+      "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate": 7
+    },
+    "family_blocked_weak_counts": {
+      "ndk": 3,
+      "pfka": 4,
+      "pfkb": 6
+    },
+    "gamma_metal_controls_reviewed": 20,
+    "source_free_counteraxis_blocked_weak_count": 13,
+    "source_free_counteraxis_unblocked_weak_count": 0,
+    "weak_rule_counterexample_count": 13
+  },
+  "family_summaries": [
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 80,
+      "family_id": "ndk",
+      "gamma_metal_controls": 3,
+      "product_state_branch_control_count": 0,
+      "product_state_branch_controls": [],
+      "product_state_with_metal_pdb_ids": [
+        "3EE3",
+        "2DYA",
+        "3BBF"
+      ],
+      "review_status_counts": {
+        "ndk_gamma_metal_control_candidate_review_only": 3,
+        "ndk_no_gamma_context_review_only": 7,
+        "ndk_product_state_only_review_only": 3,
+        "outside_ndk_title_boundary_review_only": 67
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_count": 3,
+      "weak_rule_counterexamples": [
+        "1WKL",
+        "3Q86",
+        "9OAN"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 29,
+      "family_id": "pfka",
+      "gamma_metal_controls": 6,
+      "product_state_branch_control_count": 2,
+      "product_state_branch_controls": [
+        "1PFK",
+        "9QV4"
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "4PFK",
+        "1PFK",
+        "9QV2",
+        "9QV4",
+        "9MF6",
+        "9QV0",
+        "9QV1",
+        "9QV3",
+        "9MED",
+        "9MEC"
+      ],
+      "review_status_counts": {
+        "outside_pfka_title_boundary_review_only": 8,
+        "pfka_gamma_metal_control_candidate_review_only": 6,
+        "pfka_no_gamma_context_review_only": 4,
+        "pfka_product_state_only_review_only": 11
+      },
+      "rows_reviewed": 29,
+      "weak_rule_counterexample_count": 4,
+      "weak_rule_counterexamples": [
+        "4XYJ",
+        "5XZ8",
+        "8W2H",
+        "8W2J"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 80,
+      "family_id": "pfkb",
+      "gamma_metal_controls": 11,
+      "product_state_branch_control_count": 1,
+      "product_state_branch_controls": [
+        "3UQD"
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "3GO6",
+        "9M8T"
+      ],
+      "review_status_counts": {
+        "outside_pfkb_title_boundary_review_only": 63,
+        "pfkb_gamma_metal_control_candidate_review_only": 11,
+        "pfkb_no_gamma_context_review_only": 4,
+        "pfkb_product_state_only_review_only": 2
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_count": 6,
+      "weak_rule_counterexamples": [
+        "1ESQ",
+        "1TZ6",
+        "3UQD",
+        "3UQE",
+        "2C49",
+        "1LII"
+      ]
+    }
+  ],
+  "metadata": {
+    "candidate_structure_count_total": 189,
+    "created_at": "2026-05-20T19:35:26Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "gamma_metal_controls_total": 20,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_thin_expanded_panel_rollup",
+    "new_gamma_metal_control_count_vs_prior_counteraxis": 2,
+    "new_gamma_metal_control_pdb_ids_vs_prior_counteraxis": [
+      "1LII",
+      "3IE7"
+    ],
+    "new_weak_rule_counterexample_count_vs_prior_counteraxis": 1,
+    "new_weak_rule_counterexample_pdb_ids_vs_prior_counteraxis": [
+      "1LII"
+    ],
+    "next_query": "Run a final bounded ATP-grasp expansion only if more weak-rule stress is still useful; otherwise start scorer-design tests from the blocker artifacts without production calibration.",
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "reviewed_sibling_families": [
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "rows_reviewed_total": 189,
+    "search_surface": "Expanded bounded NDK/PfkA/PfkB RCSB full_text screens at rows_per_query=20, max_structures=80, with compact source-free counteraxis adjudication.",
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/thin_expanded_gamma_counteraxis_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/gamma_control_substrate_identity_counteraxis_20260520.json"
+    ],
+    "source_free_counteraxis_blocked_weak_count": 13,
+    "source_free_counteraxis_unblocked_weak_count": 0,
+    "source_free_counteraxis_unblocked_weak_pdb_ids": [],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "weak_rule_counterexample_count_total": 13,
+    "weak_rule_counterexample_unique_count": 13
+  },
+  "warnings": [
+    "Review-only lane evidence; not production scoring or threshold calibration.",
+    "No production registries, fingerprint registries, labels, migrations, or raw coordinate dumps were changed."
+  ]
+}

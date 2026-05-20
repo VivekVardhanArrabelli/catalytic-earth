@@ -1,0 +1,1159 @@
+{
+  "controls": [
+    {
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.251,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 37.477,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.24,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ADP",
+        "ATP",
+        "MG",
+        "PHS"
+      ],
+      "pdb_id": "1WKL",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "nucleoside diphosphate kinase ATP magnesium",
+        "nucleoside-diphosphate kinase ATP magnesium",
+        "seed_from_prior_ndk_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "ndk_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal Structure of Nucleoside Diphosphate Kinase from Thermus thermophilus HB8 in Complex with ATP and ADP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_capable_nucleotide_codes": [
+        "GTP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.341,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.487,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "GTP",
+        "MG"
+      ],
+      "pdb_id": "3Q86",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "seed_from_prior_ndk_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "ndk_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of Staphylococcus aureus nucleoside diphosphate kinase complexed with GTP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.323,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.12,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ANP",
+        "GDP",
+        "MG"
+      ],
+      "pdb_id": "9OAN",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "nucleoside diphosphate kinase AMP-PNP magnesium",
+        "seed_from_prior_ndk_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "ndk_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of nucleoside-diphosphate kinase from Cryptosporidium parvum in complex with with guanosine-5'-diphosphate and AMP-PNP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.981,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.152,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "GOL",
+        "MG",
+        "NA",
+        "SO4"
+      ],
+      "pdb_id": "3F5M",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-dependent phosphofructokinase ATP magnesium",
+        "PFK ATP magnesium",
+        "phosphofructokinase ATP magnesium",
+        "phosphofructokinase fructose 6-phosphate ATP magnesium",
+        "phosphofructokinase-1 ATP Mg",
+        "seed_from_prior_pfka_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfka_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal Structure of ATP-Bound Phosphofructokinase from Trypanosoma brucei",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.905,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.221,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "CO",
+        "MG",
+        "PO4"
+      ],
+      "pdb_id": "4XYJ",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-dependent phosphofructokinase ATP magnesium",
+        "PFK ATP magnesium",
+        "phosphofructokinase ATP magnesium",
+        "phosphofructokinase fructose 6-phosphate ATP magnesium",
+        "phosphofructokinase-1 ATP Mg",
+        "seed_from_prior_pfka_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfka_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of human phosphofructokinase-1 in complex with ATP and Mg, Northeast Structural Genomics Consortium Target HR9275",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.74,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.772,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.013,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O1",
+        "auth_asym_id": "A",
+        "auth_seq_id": "401",
+        "comp": "F6P",
+        "distance_angstrom": 3.772,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "label_asym_id": "B",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ANP",
+        "F6P",
+        "GOL",
+        "MG"
+      ],
+      "pdb_id": "5XZ8",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-dependent phosphofructokinase ATP magnesium",
+        "PFK ATP magnesium",
+        "phosphofructokinase ATP magnesium",
+        "phosphofructokinase fructose 6-phosphate ATP magnesium",
+        "phosphofructokinase-1 ATP Mg",
+        "seed_from_prior_pfka_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfka_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM F6P:O1 at 3.772 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Crystal Structure of Phosphofructokinase from Staphylococcus aureus in complex with adenylylimidodiphosphate (the ATP analog) and fructose-6-phosphate",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.288,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 27.43,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.52,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "FBP",
+        "MG"
+      ],
+      "pdb_id": "8W2H",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-dependent phosphofructokinase ATP magnesium",
+        "PFK ATP magnesium",
+        "phosphofructokinase ATP magnesium",
+        "phosphofructokinase fructose 6-phosphate ATP magnesium",
+        "phosphofructokinase-1 ATP Mg",
+        "seed_from_prior_pfka_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfka_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Human liver phosphofructokinase-1 in the T-state conformation",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.403,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 27.375,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.404,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "FBP",
+        "MG"
+      ],
+      "pdb_id": "8W2J",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-dependent phosphofructokinase ATP magnesium",
+        "PFK ATP magnesium",
+        "phosphofructokinase ATP magnesium",
+        "phosphofructokinase fructose 6-phosphate ATP magnesium",
+        "phosphofructokinase-1 ATP Mg",
+        "seed_from_prior_pfka_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfka_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Human liver phosphofructokinase-1 filament in the T-state conformation",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.287,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 13.904,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 7.035,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "GOL",
+        "MG",
+        "MSE"
+      ],
+      "pdb_id": "3IE7",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-dependent phosphofructokinase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "pfka_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "The crystal structure of phosphofructokinase (lin2199) from Listeria innocua in complex with ATP at 1.6A",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.246,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.671,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.66,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O3",
+        "auth_asym_id": "C",
+        "auth_seq_id": "330",
+        "comp": "TZP",
+        "distance_angstrom": 4.671,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "P",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "MG",
+        "SO4",
+        "TZP"
+      ],
+      "pdb_id": "1ESQ",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample",
+        "thiazole kinase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM TZP:O3 at 4.671 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "CRYSTAL STRUCTURE OF THIAZOLE KINASE MUTANT (C198S) WITH ATP AND THIAZOLE PHOSPHATE.",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.442,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 5.547,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.441,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O5'",
+        "auth_asym_id": "A",
+        "auth_seq_id": "402",
+        "comp": "AIS",
+        "distance_angstrom": 5.547,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ACP",
+        "label_asym_id": "G",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ACP",
+        "AIS",
+        "K",
+        "MG"
+      ],
+      "pdb_id": "1TZ6",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "aminoimidazole riboside kinase ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM AIS:O5' at 5.547 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Crystal structure of aminoimidazole riboside kinase from Salmonella enterica complexed with aminoimidazole riboside and ATP analog",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.202,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.29,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "pdb_id": "3CQD",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "phosphofructokinase-2 ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Structure of the tetrameric inhibited form of phosphofructokinase-2 from Escherichia coli",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.078,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 7.951,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.025,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "MG",
+        "MSE"
+      ],
+      "pdb_id": "3IQ0",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of a putative Ribokinase II in complex with ATP and Mg+2 from E.coli",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.18,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.808,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "K",
+        "MG"
+      ],
+      "pdb_id": "3UMO",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "phosphofructokinase-2 ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with Potassium",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.159,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.773,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "CS",
+        "MG"
+      ],
+      "pdb_id": "3UMP",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "phosphofructokinase-2 ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with Cesium and ATP",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.816,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 5.262,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.772,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O1",
+        "auth_asym_id": "D",
+        "auth_seq_id": "402",
+        "comp": "F6P",
+        "distance_angstrom": 5.262,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "R",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ADP",
+        "ATP",
+        "F6P",
+        "FBP",
+        "MG"
+      ],
+      "pdb_id": "3UQD",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM F6P:O1 at 5.262 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 from Escherichia coli in complex with substrates and products",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.705,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.652,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.776,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O4",
+        "auth_asym_id": "B",
+        "auth_seq_id": "402",
+        "comp": "POP",
+        "distance_angstrom": 3.652,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "H",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "MG",
+        "POP"
+      ],
+      "pdb_id": "3UQE",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "phosphofructokinase-2 ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM POP:O4 at 3.652 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Crystal structure of the Phosphofructokinase-2 mutant Y23D from Escherichia coli",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.611,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.455,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "MG",
+        "NA"
+      ],
+      "pdb_id": "6ILT",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "ribokinase ATP magnesium",
+        "seed_from_prior_pfkb_homolog_gamma_distance_sample"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Structure of Arabidopsis thaliana Ribokinase complexed with ATP and Magnesium ion",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 5.231,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 6.162,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.456,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ADN",
+        "ANP",
+        "MG"
+      ],
+      "pdb_id": "2C49",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "PfkB family kinase ATP magnesium",
+        "ribokinase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal Structure of Methanocaldococcus jannaschii Nucleoside Kinase - An Archaeal Member of the Ribokinase Family",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 5.719,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.045,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.205,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O5'",
+        "auth_asym_id": "A",
+        "auth_seq_id": "699",
+        "comp": "ADN",
+        "distance_angstrom": 3.045,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ACP",
+        "label_asym_id": "D",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ACP",
+        "ADN",
+        "CL",
+        "MG"
+      ],
+      "pdb_id": "1LII",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "aminoimidazole riboside kinase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "pfkb_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM ADN:O5' at 3.045 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "STRUCTURE OF T. GONDII ADENOSINE KINASE BOUND TO ADENOSINE 2 AND AMP-PCP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    }
+  ],
+  "metadata": {
+    "blocker_counts_all_gamma_controls": {
+      "nonpolymer_acceptor_local_to_gamma": 6,
+      "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate": 14
+    },
+    "blocker_counts_blocked_weak_controls": {
+      "nonpolymer_acceptor_local_to_gamma": 6,
+      "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate": 7
+    },
+    "created_at": "2026-05-20T19:34:59Z",
+    "curated_label_registry_edited": false,
+    "family_blocked_weak_counts": {
+      "ndk": 3,
+      "pfka": 4,
+      "pfkb": 6
+    },
+    "family_control_counts": {
+      "ndk": 3,
+      "pfka": 6,
+      "pfkb": 11
+    },
+    "family_weak_rule_counts": {
+      "ndk": 3,
+      "pfka": 4,
+      "pfkb": 6
+    },
+    "fingerprint_registry_edited": false,
+    "gamma_metal_control_pdb_ids": [
+      "1WKL",
+      "3Q86",
+      "9OAN",
+      "3F5M",
+      "4XYJ",
+      "5XZ8",
+      "8W2H",
+      "8W2J",
+      "3IE7",
+      "1ESQ",
+      "1TZ6",
+      "3CQD",
+      "3IQ0",
+      "3UMO",
+      "3UMP",
+      "3UQD",
+      "3UQE",
+      "6ILT",
+      "2C49",
+      "1LII"
+    ],
+    "gamma_metal_controls_reviewed": 20,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_gamma_control_source_free_counteraxis_adjudication",
+    "next_query": "Add a fresh under-covered ASKHA/dNK/GHKL/GHMP seed set only if new curated ligand/title seeds appear; otherwise keep using these blockers as review-only scorer design inputs.",
+    "nonpolymer_acceptor_blocked_weak_count": 6,
+    "nonpolymer_acceptor_blocked_weak_pdb_ids": [
+      "5XZ8",
+      "1ESQ",
+      "1TZ6",
+      "3UQD",
+      "3UQE",
+      "1LII"
+    ],
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "screen_started_at": "2026-05-20T19:34:59Z",
+    "search_surface": "Existing bounded gamma/metal sibling controls from ASKHA, dNK, GHKL, GHMP, ATP-grasp, PfkA, PfkB, and NDK artifacts; adjudication uses only compact source-free fields already recorded in lane JSON.",
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json"
+    ],
+    "source_free_counteraxis_blocked_weak_count": 13,
+    "source_free_counteraxis_blocked_weak_pdb_ids": [
+      "1WKL",
+      "3Q86",
+      "9OAN",
+      "4XYJ",
+      "5XZ8",
+      "8W2H",
+      "8W2J",
+      "1ESQ",
+      "1TZ6",
+      "3UQD",
+      "3UQE",
+      "2C49",
+      "1LII"
+    ],
+    "source_free_counteraxis_unblocked_weak_count": 0,
+    "source_free_counteraxis_unblocked_weak_pdb_ids": [],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "weak_rule_counterexample_count": 13,
+    "weak_rule_counterexample_pdb_ids": [
+      "1WKL",
+      "3Q86",
+      "9OAN",
+      "4XYJ",
+      "5XZ8",
+      "8W2H",
+      "8W2J",
+      "1ESQ",
+      "1TZ6",
+      "3UQD",
+      "3UQE",
+      "2C49",
+      "1LII"
+    ]
+  },
+  "warnings": [
+    "Review-only counteraxis adjudication; not production scoring, threshold calibration, registry work, or label import.",
+    "Weak gamma-to-oxygen proximity remains falsified on sibling families unless paired with source-free substrate-identity and family-boundary blockers."
+  ]
+}

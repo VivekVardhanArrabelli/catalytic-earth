@@ -1,0 +1,1865 @@
+{
+  "family_summaries": {
+    "askha": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/askha_product_state_adjudication_20260520.json",
+      "candidate_structure_count": 80,
+      "fetch_failure_count": 0,
+      "gamma_metal_control_count": 5,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [],
+      "product_state_branch_control_count": 0,
+      "product_state_branch_control_pdb_ids": [],
+      "product_state_branch_status_counts": {
+        "askha_product_phosphoryl_metal_gap_review_only": 2
+      },
+      "product_state_only_row_count": 7,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1G99",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "askha_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1TUU",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PIS"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP",
+            "AMP"
+          ],
+          "product_state_branch_status": "askha_product_phosphoryl_metal_gap_review_only",
+          "review_status": "askha_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1TUY",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "askha_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1GC5",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "askha_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1UA4",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "AMP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "askha_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "4B8S",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "AMP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "askha_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 24.946,
+          "pdb_id": "1CZA",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "G6P"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "G6P"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "askha_product_phosphoryl_metal_gap_review_only",
+          "review_status": "askha_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [],
+      "query_failure_count": 0,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "askha_gamma_candidate_metal_gap_review_only": 1,
+        "askha_gamma_metal_control_candidate_review_only": 5,
+        "askha_no_gamma_context_review_only": 18,
+        "askha_product_state_only_review_only": 7,
+        "outside_askha_title_boundary_review_only": 49
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_pdb_ids": [
+        "3FGU",
+        "6PDT",
+        "3ID8",
+        "5ZQT"
+      ]
+    },
+    "atp_grasp": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_product_state_acceptor_adjudication_20260520.json",
+      "candidate_structure_count": 80,
+      "fetch_failure_count": 0,
+      "gamma_metal_control_count": 14,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [],
+      "product_state_branch_control_count": 11,
+      "product_state_branch_control_pdb_ids": [
+        "1EHI",
+        "1IOV",
+        "1IOW",
+        "2DLN",
+        "5DOU",
+        "6U1H",
+        "6U1I",
+        "6VR8",
+        "6U1J",
+        "4C5A",
+        "1E4E"
+      ],
+      "product_state_branch_status_counts": {
+        "atp_grasp_adp_or_udp_phosphate_product_control_review_only": 4,
+        "atp_grasp_phosphorylated_nonpolymer_product_control_review_only": 7,
+        "atp_grasp_product_phosphoryl_metal_gap_review_only": 2
+      },
+      "product_state_only_row_count": 25,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.356,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.467,
+          "pdb_id": "1EHI",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PHY"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "PHY"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.344,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.161,
+          "pdb_id": "1IOV",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "POB"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "POB"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.201,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.131,
+          "pdb_id": "1IOW",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PHY"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "PHY"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.274,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.143,
+          "pdb_id": "2DLN",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PHY"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "PHY"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2ZDG",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.009,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.004,
+          "pdb_id": "5DOU",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PO4"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "6NO5",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.202,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.216,
+          "pdb_id": "6U1H",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PO4"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.132,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.16,
+          "pdb_id": "6U1I",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "DS0"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "DS0"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.529,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 28.184,
+          "pdb_id": "6VR8",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PO4"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "UDP"
+          ],
+          "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "7DRM",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 10.655,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 10.579,
+          "pdb_id": "7DRP",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "DV9"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "DV9"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_product_phosphoryl_metal_gap_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.054,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.013,
+          "pdb_id": "6U1J",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PO4"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "4ME6",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3RFC",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.132,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 3.972,
+          "pdb_id": "4C5A",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "DS0"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "DS0"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "6U1K",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2ZDH",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2I8C",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "4C5B",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3Q1K",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.139,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.177,
+          "pdb_id": "1E4E",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PHY"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "PHY"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3I12",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 16.631,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 21.077,
+          "pdb_id": "2XJA",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "UAG"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "UAG"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "atp_grasp_product_phosphoryl_metal_gap_review_only",
+          "review_status": "atp_grasp_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3KAL",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "atp_grasp_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "1EHI",
+        "1IOV",
+        "1IOW",
+        "2DLN",
+        "2ZDG",
+        "5DOU",
+        "6NO5",
+        "6U1H",
+        "6U1I",
+        "6VR8",
+        "7DRM",
+        "7DRP",
+        "6U1J",
+        "4ME6",
+        "3RFC",
+        "4C5A",
+        "6U1K",
+        "2ZDH",
+        "2I8C",
+        "4C5B",
+        "3Q1K",
+        "1E4E",
+        "2XJA",
+        "3KAL"
+      ],
+      "query_failure_count": 0,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "atp_grasp_gamma_candidate_metal_gap_review_only": 1,
+        "atp_grasp_gamma_metal_control_candidate_review_only": 14,
+        "atp_grasp_no_gamma_context_review_only": 3,
+        "atp_grasp_product_state_only_review_only": 25,
+        "outside_atp_grasp_title_boundary_review_only": 37
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_pdb_ids": [
+        "3R5F",
+        "5C1O",
+        "7U9K",
+        "4C5C",
+        "8EVW",
+        "6U1D",
+        "6U1E",
+        "6U1F",
+        "6U1G",
+        "8EVY",
+        "7VHV",
+        "4QF5",
+        "4QDI",
+        "9DQW"
+      ]
+    },
+    "dnk": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/dnk_product_state_acceptor_adjudication_20260520.json",
+      "candidate_structure_count": 80,
+      "fetch_failure_count": 0,
+      "gamma_metal_control_count": 1,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [],
+      "product_state_branch_control_count": 1,
+      "product_state_branch_control_pdb_ids": [
+        "2QQ0"
+      ],
+      "product_state_branch_status_counts": {
+        "dnk_phosphorylated_nonpolymer_product_control_review_only": 1
+      },
+      "product_state_only_row_count": 1,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3IPX",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "dnk_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "3IPX"
+      ],
+      "query_failure_count": 0,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "dnk_gamma_candidate_metal_gap_review_only": 1,
+        "dnk_gamma_metal_control_candidate_review_only": 1,
+        "dnk_no_gamma_context_review_only": 3,
+        "dnk_product_state_only_review_only": 1,
+        "outside_dnk_title_boundary_review_only": 74
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_pdb_ids": [
+        "2QQ0"
+      ]
+    },
+    "ghkl": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/ghkl_product_state_adjudication_20260520.json",
+      "candidate_structure_count": 80,
+      "fetch_failure_count": 0,
+      "gamma_metal_control_count": 6,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [],
+      "product_state_branch_control_count": 0,
+      "product_state_branch_control_pdb_ids": [],
+      "product_state_branch_status_counts": {},
+      "product_state_only_row_count": 8,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1I5C",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1JM6",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "5IDJ",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3A0T",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "9QQW",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3D36",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3D2R",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2ZDY",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghkl_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "1JM6",
+        "5IDJ",
+        "3A0T",
+        "9QQW",
+        "3D36",
+        "3D2R",
+        "2ZDY"
+      ],
+      "query_failure_count": 1,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "ghkl_gamma_metal_control_candidate_review_only": 6,
+        "ghkl_no_gamma_context_review_only": 1,
+        "ghkl_product_state_only_review_only": 8,
+        "outside_ghkl_title_boundary_review_only": 65
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_pdb_ids": [
+        "1I58",
+        "1I5A",
+        "1I5B",
+        "9EPN"
+      ]
+    },
+    "ghmp": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/ghmp_product_state_adjudication_20260520.json",
+      "candidate_structure_count": 49,
+      "fetch_failure_count": 0,
+      "gamma_metal_control_count": 2,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [],
+      "product_state_branch_control_count": 0,
+      "product_state_branch_control_pdb_ids": [],
+      "product_state_branch_status_counts": {},
+      "product_state_only_row_count": 1,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1FWK",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ghmp_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "1FWK"
+      ],
+      "query_failure_count": 2,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "ghmp_gamma_candidate_metal_gap_review_only": 1,
+        "ghmp_gamma_metal_control_candidate_review_only": 2,
+        "ghmp_no_gamma_context_review_only": 4,
+        "ghmp_product_state_only_review_only": 1,
+        "outside_ghmp_title_boundary_review_only": 41
+      },
+      "rows_reviewed": 49,
+      "weak_rule_counterexample_pdb_ids": [
+        "3GON",
+        "1KVK"
+      ]
+    },
+    "ndk": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/ndk_product_state_ntp_redesign_20260520.json",
+      "candidate_structure_count": 80,
+      "fetch_failure_count": 0,
+      "gamma_metal_control_count": 3,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [
+        "1WKL"
+      ],
+      "product_state_branch_control_count": 0,
+      "product_state_branch_control_pdb_ids": [],
+      "product_state_branch_status_counts": {
+        "ndk_nucleoside_triphosphate_product_pair_gap_review_only": 1
+      },
+      "product_state_only_row_count": 10,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2DXE",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "GDP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "4FKY",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "GDP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "6XPS",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "GDP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "9OBC",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1NLK",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2DY9",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3Q8U",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "4UOH",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2DYA",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3Q8Y",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "ndk_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "2DXE",
+        "4FKY",
+        "6XPS",
+        "9OBC",
+        "1NLK",
+        "2DY9",
+        "3Q8U",
+        "4UOH",
+        "2DYA",
+        "3Q8Y"
+      ],
+      "query_failure_count": 0,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "ndk_gamma_metal_control_candidate_review_only": 3,
+        "ndk_no_gamma_context_review_only": 2,
+        "ndk_product_state_only_review_only": 10,
+        "outside_ndk_title_boundary_review_only": 65
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_pdb_ids": [
+        "1WKL",
+        "3Q86",
+        "9OAN"
+      ]
+    },
+    "pfka": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_product_state_acceptor_adjudication_20260520.json",
+      "candidate_structure_count": 29,
+      "fetch_failure_count": 0,
+      "gamma_metal_control_count": 6,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [],
+      "product_state_branch_control_count": 2,
+      "product_state_branch_control_pdb_ids": [
+        "9QV4",
+        "1PFK"
+      ],
+      "product_state_branch_status_counts": {
+        "pfka_phosphorylated_nonpolymer_product_control_review_only": 2,
+        "pfka_product_phosphoryl_metal_gap_review_only": 1
+      },
+      "product_state_only_row_count": 3,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.351,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.118,
+          "pdb_id": "9QV4",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "FBP"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "FBP"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "pfka_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "pfka_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.487,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.277,
+          "pdb_id": "1PFK",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "FBP"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "FBP"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "pfka_phosphorylated_nonpolymer_product_control_review_only",
+          "review_status": "pfka_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 9.124,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 9.351,
+          "pdb_id": "4PFK",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "F6P"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [
+            "F6P"
+          ],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "pfka_product_phosphoryl_metal_gap_review_only",
+          "review_status": "pfka_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "9QV4",
+        "1PFK",
+        "4PFK"
+      ],
+      "query_failure_count": 0,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "outside_pfka_title_boundary_review_only": 16,
+        "pfka_gamma_candidate_metal_gap_review_only": 1,
+        "pfka_gamma_metal_control_candidate_review_only": 6,
+        "pfka_no_gamma_context_review_only": 3,
+        "pfka_product_state_only_review_only": 3
+      },
+      "rows_reviewed": 29,
+      "weak_rule_counterexample_pdb_ids": [
+        "4XYJ",
+        "5XZ8",
+        "8W2H",
+        "8W2J"
+      ]
+    },
+    "pfkb": {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_product_state_acceptor_adjudication_20260520.json",
+      "candidate_structure_count": 80,
+      "fetch_failure_count": 13,
+      "gamma_metal_control_count": 9,
+      "ndk_ntp_pair_gap_candidate_pdb_ids": [],
+      "product_state_branch_control_count": 1,
+      "product_state_branch_control_pdb_ids": [
+        "3UQD"
+      ],
+      "product_state_branch_status_counts": {
+        "pfkb_phosphorylated_nonpolymer_product_control_review_only": 1,
+        "pfkb_product_phosphoryl_metal_gap_review_only": 2
+      },
+      "product_state_only_row_count": 6,
+      "product_state_rows_compact": [
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "1RK2",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "pfkb_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "3GO6",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "pfkb_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 7.07,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.11,
+          "pdb_id": "9M8T",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PO4"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "pfkb_product_phosphoryl_metal_gap_review_only",
+          "review_status": "pfkb_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "2FV7",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "pfkb_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": null,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": null,
+          "pdb_id": "6A8C",
+          "phosphate_or_phosphoryl_mimic_codes": [],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": null,
+          "review_status": "pfkb_product_state_only_review_only"
+        },
+        {
+          "metal_ligand_codes": [
+            "MG"
+          ],
+          "nearest_product_phosphoryl_to_metal_distance_angstrom": 19.806,
+          "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 19.998,
+          "pdb_id": "5KB5",
+          "phosphate_or_phosphoryl_mimic_codes": [
+            "PO4"
+          ],
+          "phosphorylated_nonpolymer_ligand_codes": [],
+          "product_or_partial_nucleotide_codes": [
+            "ADP"
+          ],
+          "product_state_branch_status": "pfkb_product_phosphoryl_metal_gap_review_only",
+          "review_status": "pfkb_product_state_only_review_only"
+        }
+      ],
+      "product_state_with_metal_pdb_ids": [
+        "1RK2",
+        "3GO6",
+        "9M8T",
+        "2FV7",
+        "5KB5"
+      ],
+      "query_failure_count": 1,
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "fetch_failed": 13,
+        "outside_pfkb_title_boundary_review_only": 41,
+        "pfkb_gamma_candidate_metal_gap_review_only": 3,
+        "pfkb_gamma_metal_control_candidate_review_only": 9,
+        "pfkb_no_gamma_context_review_only": 8,
+        "pfkb_product_state_only_review_only": 6
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_pdb_ids": [
+        "1ESQ",
+        "1TZ6",
+        "3UQD",
+        "3UQE"
+      ]
+    }
+  },
+  "fetch_failures": [
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:TimeoutError",
+      "pdb_id": "5JCB"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "6BR1"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "7DBD"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "5XI5"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "8YTX"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "8YU9"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "8YUA"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "5C8Y"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "5YL4"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "7CNM"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "7DBB"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "7DBC"
+    },
+    {
+      "family_id": "pfkb",
+      "fetch_status": "fetch_failed:URLError",
+      "pdb_id": "8YRK"
+    }
+  ],
+  "metadata": {
+    "created_at": "2026-05-20T18:12:26Z",
+    "family_ids": [
+      "askha",
+      "atp_grasp",
+      "dnk",
+      "ghkl",
+      "ghmp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "fetch_failure_count": 13,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_product_state_exhaustion_and_substrate_identity_adjudication",
+    "ndk_ntp_product_pair_gap_candidate_pdb_ids": [
+      "1WKL"
+    ],
+    "next_query": "Retry the residual failed synonym product-state queries for GHKL, GHMP, and PfkB with a structured RCSB query or curated PDB-id seeds; then run PfkA/PfkB controls through the future substrate-identity counteraxis once implemented.",
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "query_failure_count": 4,
+    "raw_coordinate_files_written": false,
+    "recommendation": "Use strict product-state controls only as review-only evidence for a source-free small-molecule/free-phosphate substrate-identity blocker; do not claim total ASKHA/GHKL/GHMP exhaustion until residual failed synonym queries are retried or removed by design.",
+    "review_only": true,
+    "rows_reviewed": 558,
+    "strict_product_state_control_count": 15,
+    "strict_product_state_control_family_ids": [
+      "atp_grasp",
+      "dnk",
+      "pfka",
+      "pfkb"
+    ],
+    "strict_product_state_control_pdb_ids": [
+      "9QV4",
+      "1PFK",
+      "3UQD",
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2QQ0"
+    ],
+    "strict_product_state_free_phosphate_control_count": 4,
+    "strict_product_state_phosphorylated_nonpolymer_control_count": 11,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "undercovered_product_state_search_surface_exhausted_without_query_failures": false,
+    "undercovered_product_state_zero_control_family_ids": [
+      "askha",
+      "ghkl",
+      "ghmp"
+    ],
+    "undercovered_product_state_zero_control_rows_reviewed": 209,
+    "weak_rule_counterexample_count": 36,
+    "weak_rule_counterexample_pdb_ids": [
+      "1ESQ",
+      "1I58",
+      "1I5A",
+      "1I5B",
+      "1KVK",
+      "1TZ6",
+      "1WKL",
+      "2QQ0",
+      "3FGU",
+      "3GON",
+      "3ID8",
+      "3Q86",
+      "3R5F",
+      "3UQD",
+      "3UQE",
+      "4C5C",
+      "4QDI",
+      "4QF5",
+      "4XYJ",
+      "5C1O",
+      "5XZ8",
+      "5ZQT",
+      "6PDT",
+      "6U1D",
+      "6U1E",
+      "6U1F",
+      "6U1G",
+      "7U9K",
+      "7VHV",
+      "8EVW",
+      "8EVY",
+      "8W2H",
+      "8W2J",
+      "9DQW",
+      "9EPN",
+      "9OAN"
+    ]
+  },
+  "query_failures": [
+    {
+      "family_id": "ghkl",
+      "status": "query_failed:JSONDecodeError",
+      "term": "CheA ADP phospho histidine magnesium"
+    },
+    {
+      "family_id": "ghmp",
+      "status": "query_failed:JSONDecodeError",
+      "term": "homoserine kinase ADP phospho homoserine magnesium"
+    },
+    {
+      "family_id": "ghmp",
+      "status": "query_failed:JSONDecodeError",
+      "term": "CDP ME kinase ADP phosphate magnesium"
+    },
+    {
+      "family_id": "pfkb",
+      "status": "query_failed:JSONDecodeError",
+      "term": "ketohexokinase ADP fructose phosphate magnesium"
+    }
+  ],
+  "strict_product_state_control_substrate_identity_adjudication": {
+    "control_rows": [
+      {
+        "family_id": "pfka",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.351,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.118,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 3.496,
+        "pdb_id": "9QV4",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "FBP"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "FBP"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "pfka_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "pfka",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.487,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.277,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 3.526,
+        "pdb_id": "1PFK",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "FBP"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "FBP"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "pfka_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "pfkb",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 4.987,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 6.021,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 3.14,
+        "pdb_id": "3UQD",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "F6P",
+          "FBP"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "F6P",
+          "FBP"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "pfkb_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.356,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.467,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.859,
+        "pdb_id": "1EHI",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PHY"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "PHY"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.344,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.161,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.118,
+        "pdb_id": "1IOV",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "POB"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "POB"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.201,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.131,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.712,
+        "pdb_id": "1IOW",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PHY"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "PHY"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.274,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.143,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.051,
+        "pdb_id": "2DLN",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PHY"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "PHY"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.009,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.004,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.102,
+        "pdb_id": "5DOU",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PO4"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "free_phosphate_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.202,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.216,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.041,
+        "pdb_id": "6U1H",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PO4"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "free_phosphate_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.132,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.16,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.002,
+        "pdb_id": "6U1I",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "DS0"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "DS0"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.529,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 28.184,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 3.703,
+        "pdb_id": "6VR8",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PO4"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [],
+        "product_or_partial_nucleotide_codes": [
+          "UDP"
+        ],
+        "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "free_phosphate_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.054,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.013,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.478,
+        "pdb_id": "6U1J",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PO4"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "free_phosphate_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.132,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 3.972,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.052,
+        "pdb_id": "4C5A",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "DS0"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "DS0"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "atp_grasp",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.139,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.177,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.246,
+        "pdb_id": "1E4E",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "PHY"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "PHY"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      },
+      {
+        "family_id": "dnk",
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.359,
+        "nearest_product_phosphoryl_to_product_beta_distance_angstrom": 4.039,
+        "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.467,
+        "pdb_id": "2QQ0",
+        "phosphate_or_phosphoryl_mimic_codes": [
+          "TMP"
+        ],
+        "phosphorylated_nonpolymer_ligand_codes": [
+          "TMP"
+        ],
+        "product_or_partial_nucleotide_codes": [
+          "ADP"
+        ],
+        "product_state_branch_status": "dnk_phosphorylated_nonpolymer_product_control_review_only",
+        "production_scoring_admissible": false,
+        "review_only": true,
+        "source_free_substrate_identity_blocker_review_only": "phosphorylated_hetatm_product_not_epk_protein_substrate"
+      }
+    ],
+    "family_counts": {
+      "atp_grasp": {
+        "control_count": 11,
+        "free_phosphate_count": 4,
+        "phosphorylated_nonpolymer_count": 7
+      },
+      "dnk": {
+        "control_count": 1,
+        "free_phosphate_count": 0,
+        "phosphorylated_nonpolymer_count": 1
+      },
+      "pfka": {
+        "control_count": 2,
+        "free_phosphate_count": 0,
+        "phosphorylated_nonpolymer_count": 2
+      },
+      "pfkb": {
+        "control_count": 1,
+        "free_phosphate_count": 0,
+        "phosphorylated_nonpolymer_count": 1
+      }
+    }
+  },
+  "warnings": [
+    "Review-only sibling-control evidence; not a calibrated ePK score, production threshold, registry edit, label import, or external hard-negative re-audit.",
+    "The substrate-identity blocker here is source-free and ligand-class based: phosphorylated HETATM product or free phosphate is not an ePK protein-substrate phosphoacceptor claim.",
+    "Residual query failures prevent claiming complete product-state surface exhaustion for the undercovered zero-control families."
+  ]
+}

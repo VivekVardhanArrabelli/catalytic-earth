@@ -1,46 +1,65 @@
 # ePK sibling controls handoff
 
-Run started: 2026-05-20T15:18:16Z
-Run ended: 2026-05-20T16:06:34Z
+Last updated: 2026-05-20T21:13:43Z
+Run started: 2026-05-20T20:25:00Z
+Run ended: 2026-05-20T21:13:43Z
+Measured minutes: 48.7
 
-Primary outcome: `counterexample_found`
+Pushed commit: not pushed; linked-worktree Git metadata writes are blocked in this sandbox.
+Primary outcome: `evidence_for`
 
 ## What changed
 
-Added ATP-grasp to the lane-only bounded sibling-control screen and fixed the helper title parser so RCSB mmCIF titles on the next quoted line are recognized. The helper still fetches structures in memory, writes no raw coordinate files, and emits compact review-only evidence.
+Consolidated the expanded review-only sibling blockers into a lane-local scorer-design test matrix. The new matrix de-duplicates the expanded counteraxis artifacts into 91 review-only cases:
 
-New artifact:
+- 72 gamma-proximity controls across ASKHA, dNK, GHKL, GHMP, NDK, PfkA, PfkB, and ATP-grasp.
+- 57 gamma weak-rule cases with expected review-only blockers and 0 expected-unblocked weak gamma cases.
+- 19 strict product controls across ATP-grasp, dNK, PfkA, and PfkB.
+- 19 strict product weak-rule cases with expected review-only blockers and 0 expected-unblocked product cases.
+- The existing 16-case scorer-design panel is represented as a subset for smoke-style future tests.
 
-- `artifacts/research_lanes/epk_sibling_controls/atp_grasp_bounded_control_screen_20260520.json`
+The new fixture is `artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json`. It is review-only scorer-design input, not production labels, not production scoring, and not threshold calibration.
 
-Updated helper:
+## Files changed
 
-- `tools/research_lanes/epk_sibling_controls/askha_control_screen.py`
+New in this run:
 
-## Results
+- `tools/research_lanes/epk_sibling_controls/build_counteraxis_scorer_test_matrix.py`
+- `artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json`
+- `artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl`
+- `work/research_lanes/epk_sibling_controls/handoff.md`
 
-| family | rows reviewed | gamma/metal controls | weak-rule counterexamples | product-state metal rows |
-| --- | ---: | ---: | ---: | ---: |
-| ATP-grasp | 72 | 25 | 21 | 24 |
+Inherited uncommitted lane artifacts from prior runs were present at start and were left intact.
 
-The weak-rule counterexamples are:
+## Controls added
 
-`3R5F`, `5C1O`, `4L1K`, `6U1D`, `6U1E`, `6U1F`, `6U1G`, `4CVL`, `4CVM`, `9DQW`, `1M0W`, `1KJ8`, `1EZ1`, `1EYZ`, `1KJ9`, `1KJI`, `2D32`, `7WAD`, `4QF5`, `7WAF`, `4QDI`.
+Controls added: 0 new sourced controls.
 
-Breakdown:
+Controls adjudicated: 91 de-duplicated expanded controls.
 
-- 19 ATP-grasp controls hit the weak nearest gamma-to-protein-hydroxyl rule at <=6A.
-- 8 ATP-grasp controls hit the weak nearest gamma-to-nonpolymer-oxygen rule at <=6A.
-- 7 ATP-grasp product-state rows carry ADP/UDP plus metal and phosphate/phosphoryl-mimic ligands: `1EHI`, `1IOV`, `1IOW`, `2DLN`, `6U1H`, `6VR8`, `5DOU`.
+- Gamma matrix: 72 unique cases; 57 expected-block weak cases, 15 no-weak-hit controls.
+- Product matrix: 19 unique strict product cases; all 19 expected-block weak product cases.
+- Expected unblocked weak cases: 0.
 
-The existing unified review-only scorer already blocks the prior ATP-grasp rows `3R5F` and `5C1O`; the 19 newly surfaced weak-rule counterexamples were not production-scored. This run therefore falsifies weak distance-only / nearest-oxygen ePK rules for the broader ATP-grasp surface, but does not claim a production scorer or threshold.
+## Evidence notes
+
+- Evidence for review-only separation: the defined expanded sibling surface is fully covered by source-free expected blockers in the matrix.
+- Evidence against naive rules remains: the matrix still contains 57 gamma and 19 product proximity sibling counterexamples, so distance/proximity-only ePK rules remain unsafe without source-free substrate-identity and family-boundary blockers.
+- The matrix keeps all cases `production_claim_allowed=false`, `production_scoring_admissible=false`, `epk_score_computed=false`, and `labels_or_fingerprints_changed=false`.
+- No new RCSB queries, mmCIF fetches, raw coordinate files, production labels, registries, fingerprints, migrations, thresholds, or production scoring changes were made.
+
+## Blockers
+
+`git fetch origin` failed before work began while opening linked-worktree `FETCH_HEAD` with `Operation not permitted`, so `git pull --ff-only origin research/epk-sibling-controls` could not be safely completed.
+
+Final `git add artifacts/research_lanes/epk_sibling_controls work/research_lanes/epk_sibling_controls tools/research_lanes/epk_sibling_controls` failed creating linked-worktree `index.lock` with `Operation not permitted`, so commit and push could not be completed from this sandbox.
 
 ## Safety notes
 
-No production label registries, fingerprint registries, migration files, or git history were edited. No labels were imported, no thresholds were calibrated, no ePK production score was claimed, and no raw coordinate dumps were written.
-
-`git fetch origin` and `git pull --ff-only origin research/epk-sibling-controls` still fail because the linked worktree cannot open `.git/worktrees/catalytic-earth-epk-sibling-controls/FETCH_HEAD` (`Operation not permitted`). `git ls-remote` showed the remote branch hash matched local `HEAD` before this run's uncommitted lane edits, but remote-tracking refs could not be refreshed. A direct write probe into the linked-worktree git metadata also failed. `git add` then failed creating `.git/worktrees/catalytic-earth-epk-sibling-controls/index.lock` (`Operation not permitted`), so commit/push could not be completed from this sandbox.
+Production claims remain forbidden. Production label registries, `data/registries/mechanism_fingerprints.json`, artifact migration files, labels, thresholds, and Git history were not changed. No labels were imported, no production score was claimed, and no raw coordinate dumps were written.
 
 ## Next query
 
-Rerun ATP-grasp with an explicit phosphorylated-acceptor/product-state branch for ADP plus phosphate or phosphorylated nonpolymer controls, starting from `1EHI`, `1IOV`, `1IOW`, `2DLN`, `6U1H`, `6VR8`, and `5DOU`.
+Use `artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json` as the future source-free scorer-design fixture; only reopen sibling sourcing if a specific curated seed set appears.
+
+Production claims, label changes, fingerprint edits, registry edits, and threshold calibration remain forbidden.

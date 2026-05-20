@@ -1,0 +1,389 @@
+{
+  "counteraxis_artifacts": [
+    "artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_gamma_counteraxis_20260520.json",
+    "artifacts/research_lanes/epk_sibling_controls/thin_expanded_gamma_counteraxis_20260520.json",
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_gamma_counteraxis_20260520.json",
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_gamma_counteraxis_20260520.json",
+    "artifacts/research_lanes/epk_sibling_controls/strict_product_substrate_identity_counteraxis_20260520.json",
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_counteraxis_20260520.json",
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_product_counteraxis_20260520.json"
+  ],
+  "family_summaries": [
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/askha_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 80,
+      "family_id": "askha",
+      "gamma_metal_controls": 5,
+      "product_state_branch_control_count": 0,
+      "product_state_branch_controls": [],
+      "query_mode": "default",
+      "review_status_counts": {
+        "askha_gamma_candidate_metal_gap_review_only": 1,
+        "askha_gamma_metal_control_candidate_review_only": 5,
+        "askha_no_gamma_context_review_only": 23,
+        "askha_product_state_only_review_only": 8,
+        "outside_askha_title_boundary_review_only": 43
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_count": 4,
+      "weak_rule_counterexamples": [
+        "3FGU",
+        "6PDT",
+        "3ID8",
+        "5ZQT"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/dnk_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 80,
+      "family_id": "dnk",
+      "gamma_metal_controls": 1,
+      "product_state_branch_control_count": 1,
+      "product_state_branch_controls": [
+        "2QQ0"
+      ],
+      "query_mode": "default",
+      "review_status_counts": {
+        "dnk_gamma_candidate_metal_gap_review_only": 1,
+        "dnk_gamma_metal_control_candidate_review_only": 1,
+        "dnk_no_gamma_context_review_only": 8,
+        "outside_dnk_title_boundary_review_only": 70
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_count": 1,
+      "weak_rule_counterexamples": [
+        "2QQ0"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/ghkl_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 80,
+      "family_id": "ghkl",
+      "gamma_metal_controls": 10,
+      "product_state_branch_control_count": 0,
+      "product_state_branch_controls": [],
+      "query_mode": "default",
+      "review_status_counts": {
+        "ghkl_gamma_metal_control_candidate_review_only": 10,
+        "ghkl_no_gamma_context_review_only": 7,
+        "ghkl_product_state_only_review_only": 5,
+        "outside_ghkl_title_boundary_review_only": 58
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_count": 8,
+      "weak_rule_counterexamples": [
+        "1I58",
+        "1I5A",
+        "1I5B",
+        "6BLK",
+        "3SL2",
+        "8F71",
+        "9EPN",
+        "4R39"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/ghmp_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 36,
+      "family_id": "ghmp",
+      "gamma_metal_controls": 3,
+      "product_state_branch_control_count": 0,
+      "product_state_branch_controls": [],
+      "query_mode": "default",
+      "review_status_counts": {
+        "ghmp_gamma_candidate_metal_gap_review_only": 1,
+        "ghmp_gamma_metal_control_candidate_review_only": 3,
+        "ghmp_no_gamma_context_review_only": 11,
+        "ghmp_product_state_only_review_only": 1,
+        "outside_ghmp_title_boundary_review_only": 20
+      },
+      "rows_reviewed": 36,
+      "weak_rule_counterexample_count": 3,
+      "weak_rule_counterexamples": [
+        "3GON",
+        "1KVK",
+        "1H74"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 80,
+      "family_id": "ndk",
+      "gamma_metal_controls": 3,
+      "product_state_branch_control_count": 0,
+      "product_state_branch_controls": [],
+      "query_mode": "default",
+      "review_status_counts": {
+        "ndk_gamma_metal_control_candidate_review_only": 3,
+        "ndk_no_gamma_context_review_only": 7,
+        "ndk_product_state_only_review_only": 3,
+        "outside_ndk_title_boundary_review_only": 67
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_count": 3,
+      "weak_rule_counterexamples": [
+        "1WKL",
+        "3Q86",
+        "9OAN"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 29,
+      "family_id": "pfka",
+      "gamma_metal_controls": 6,
+      "product_state_branch_control_count": 2,
+      "product_state_branch_controls": [
+        "1PFK",
+        "9QV4"
+      ],
+      "query_mode": "default",
+      "review_status_counts": {
+        "outside_pfka_title_boundary_review_only": 8,
+        "pfka_gamma_metal_control_candidate_review_only": 6,
+        "pfka_no_gamma_context_review_only": 4,
+        "pfka_product_state_only_review_only": 11
+      },
+      "rows_reviewed": 29,
+      "weak_rule_counterexample_count": 4,
+      "weak_rule_counterexamples": [
+        "4XYJ",
+        "5XZ8",
+        "8W2H",
+        "8W2J"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 80,
+      "family_id": "pfkb",
+      "gamma_metal_controls": 11,
+      "product_state_branch_control_count": 1,
+      "product_state_branch_controls": [
+        "3UQD"
+      ],
+      "query_mode": "default",
+      "review_status_counts": {
+        "outside_pfkb_title_boundary_review_only": 63,
+        "pfkb_gamma_metal_control_candidate_review_only": 11,
+        "pfkb_no_gamma_context_review_only": 4,
+        "pfkb_product_state_only_review_only": 2
+      },
+      "rows_reviewed": 80,
+      "weak_rule_counterexample_count": 6,
+      "weak_rule_counterexamples": [
+        "1ESQ",
+        "1TZ6",
+        "3UQD",
+        "3UQE",
+        "2C49",
+        "1LII"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "candidate_structure_count": 120,
+      "family_id": "atp_grasp",
+      "gamma_metal_controls": 26,
+      "product_state_branch_control_count": 15,
+      "product_state_branch_controls": [
+        "1EHI",
+        "1IOV",
+        "1IOW",
+        "2DLN",
+        "5DOU",
+        "6U1H",
+        "6U1I",
+        "6VR8",
+        "6U1J",
+        "4C5A",
+        "1E4E",
+        "2IOA",
+        "3TW6",
+        "3LVV",
+        "1VA6"
+      ],
+      "query_mode": "default",
+      "review_status_counts": {
+        "atp_grasp_gamma_candidate_metal_gap_review_only": 1,
+        "atp_grasp_gamma_metal_control_candidate_review_only": 26,
+        "atp_grasp_no_gamma_context_review_only": 20,
+        "atp_grasp_product_state_only_review_only": 48,
+        "outside_atp_grasp_title_boundary_review_only": 25
+      },
+      "rows_reviewed": 120,
+      "weak_rule_counterexample_count": 22,
+      "weak_rule_counterexamples": [
+        "3R5F",
+        "5C1O",
+        "4L1K",
+        "6U1D",
+        "6U1E",
+        "6U1F",
+        "6U1G",
+        "8EVW",
+        "8EVY",
+        "4CVL",
+        "4CVM",
+        "9DQW",
+        "7U9K",
+        "7VHV",
+        "4QF5",
+        "1M0W",
+        "1KJ8",
+        "1EZ1",
+        "1EYZ",
+        "1KJ9",
+        "1KJI",
+        "2D32"
+      ]
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json",
+      "candidate_structure_count": 120,
+      "family_id": "atp_grasp",
+      "gamma_metal_controls": 14,
+      "product_state_branch_control_count": 15,
+      "product_state_branch_controls": [
+        "1EHI",
+        "1IOV",
+        "1IOW",
+        "2DLN",
+        "5DOU",
+        "6U1H",
+        "6U1I",
+        "6VR8",
+        "6U1J",
+        "4C5A",
+        "1E4E",
+        "2IOA",
+        "3LVV",
+        "1VA6",
+        "3TW6"
+      ],
+      "query_mode": "product-state",
+      "review_status_counts": {
+        "atp_grasp_gamma_candidate_metal_gap_review_only": 1,
+        "atp_grasp_gamma_metal_control_candidate_review_only": 14,
+        "atp_grasp_no_gamma_context_review_only": 4,
+        "atp_grasp_product_state_only_review_only": 57,
+        "outside_atp_grasp_title_boundary_review_only": 44
+      },
+      "rows_reviewed": 120,
+      "weak_rule_counterexample_count": 13,
+      "weak_rule_counterexamples": [
+        "3R5F",
+        "5C1O",
+        "7U9K",
+        "1KJ8",
+        "1KJ9",
+        "7ZZ3",
+        "7WAD",
+        "7WAF",
+        "7WAE",
+        "4QF5",
+        "4QDI",
+        "9DQW",
+        "8VW2"
+      ]
+    }
+  ],
+  "metadata": {
+    "candidate_structure_count_total": 705,
+    "created_at": "2026-05-20T19:41:31Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "gamma_metal_control_rows_total": 79,
+    "gamma_metal_control_unique_count": 72,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_expanded_sibling_surface_rollup",
+    "new_gamma_metal_control_count_vs_prior_counteraxis": 12,
+    "new_gamma_metal_control_pdb_ids_vs_prior_counteraxis": [
+      "1LII",
+      "2QF7",
+      "3IE7",
+      "4R39",
+      "7U9K",
+      "7VHV",
+      "7WAE",
+      "7ZZ3",
+      "8EVW",
+      "8EVY",
+      "8VW2",
+      "9EPN"
+    ],
+    "new_strict_product_control_count_vs_prior_product_counteraxis": 4,
+    "new_strict_product_control_pdb_ids_vs_prior_product_counteraxis": [
+      "1VA6",
+      "2IOA",
+      "3LVV",
+      "3TW6"
+    ],
+    "new_weak_rule_counterexample_count_vs_prior_counteraxis": 10,
+    "new_weak_rule_counterexample_pdb_ids_vs_prior_counteraxis": [
+      "1LII",
+      "4R39",
+      "7U9K",
+      "7VHV",
+      "7WAE",
+      "7ZZ3",
+      "8EVW",
+      "8EVY",
+      "8VW2",
+      "9EPN"
+    ],
+    "next_query": "Consolidate expanded review-only blockers into scorer-design tests, then only run new sourcing if a specific curated seed set appears; production labels, fingerprints, and threshold calibration remain forbidden.",
+    "primary_outcome": "counterexample_found",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "reviewed_sibling_families": [
+      "askha",
+      "atp_grasp",
+      "dnk",
+      "ghkl",
+      "ghmp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "rows_reviewed_total": 705,
+    "search_surface": "Expanded bounded source-free sibling controls across ASKHA, dNK, GHKL, GHMP, NDK, PfkA, PfkB, and ATP-grasp; in-memory mmCIF scans only, no raw coordinates.",
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_sibling_controls/askha_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/dnk_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/ghkl_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/ghmp_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/ndk_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/pfka_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/pfkb_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_screen_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_gamma_counteraxis_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/thin_expanded_gamma_counteraxis_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_gamma_counteraxis_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_gamma_counteraxis_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/strict_product_substrate_identity_counteraxis_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_counteraxis_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_product_counteraxis_20260520.json"
+    ],
+    "source_free_counteraxis_blocked_weak_unique_count": 57,
+    "source_free_counteraxis_unblocked_weak_pdb_ids": [],
+    "source_free_counteraxis_unblocked_weak_unique_count": 0,
+    "strict_product_control_rows_total": 34,
+    "strict_product_control_unique_count": 19,
+    "strict_product_counteraxis_blocked_unique_count": 19,
+    "strict_product_counteraxis_unblocked_pdb_ids": [],
+    "strict_product_counteraxis_unblocked_unique_count": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "weak_rule_counterexample_rows_total": 64,
+    "weak_rule_counterexample_unique_count": 57
+  },
+  "warnings": [
+    "Review-only lane evidence; not production scoring or threshold calibration.",
+    "Weak-rule hits are counterexamples to naive proximity rules, not production ePK positives.",
+    "No production registries, fingerprint registries, labels, migrations, or raw coordinate dumps were changed."
+  ]
+}

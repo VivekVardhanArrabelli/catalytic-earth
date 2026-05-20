@@ -1,0 +1,512 @@
+{
+  "adjacent_review_only_gate_alignment": {
+    "counteraxis_sufficiency_decision": {
+      "counteraxis_sufficient_to_block_distance_only_threshold": true,
+      "curated_label_registry_edited": false,
+      "epk_score_computed": false,
+      "fingerprint_registry_edited": false,
+      "path": "artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json",
+      "precount_gate_status": "blocked_review_only",
+      "prototype_gate_status": "fail_closed_review_only",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": null,
+      "ready_to_run_epk_scorer": false,
+      "unified_source_free_substrate_identity_production_admissible": null,
+      "unified_source_free_substrate_identity_ready_review_only": null,
+      "unified_substrate_identity_ready_review_only": true
+    },
+    "precount_gate_status": {
+      "counteraxis_sufficient_to_block_distance_only_threshold": null,
+      "curated_label_registry_edited": false,
+      "epk_score_computed": false,
+      "fingerprint_registry_edited": false,
+      "path": "artifacts/v3_epk_precount_gate_status_1025.json",
+      "precount_gate_status": "blocked_review_only",
+      "prototype_gate_status": null,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": null,
+      "ready_to_run_epk_scorer": false,
+      "unified_source_free_substrate_identity_production_admissible": null,
+      "unified_source_free_substrate_identity_ready_review_only": null,
+      "unified_substrate_identity_ready_review_only": true
+    },
+    "unified_review_only_scoring_prototype": {
+      "counteraxis_sufficient_to_block_distance_only_threshold": null,
+      "curated_label_registry_edited": false,
+      "epk_score_computed": false,
+      "fingerprint_registry_edited": false,
+      "path": "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+      "precount_gate_status": null,
+      "prototype_gate_status": "fail_closed_review_only",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_run_epk_scorer": false,
+      "unified_source_free_substrate_identity_production_admissible": null,
+      "unified_source_free_substrate_identity_ready_review_only": null,
+      "unified_substrate_identity_ready_review_only": null
+    },
+    "unified_substrate_identity_rule_probe": {
+      "counteraxis_sufficient_to_block_distance_only_threshold": null,
+      "curated_label_registry_edited": false,
+      "epk_score_computed": false,
+      "fingerprint_registry_edited": false,
+      "path": "artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json",
+      "precount_gate_status": null,
+      "prototype_gate_status": null,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_run_epk_scorer": false,
+      "unified_source_free_substrate_identity_production_admissible": false,
+      "unified_source_free_substrate_identity_ready_review_only": true,
+      "unified_substrate_identity_ready_review_only": null
+    }
+  },
+  "assertions": [
+    {
+      "assertion": "matrix_has_expected_case_count",
+      "details": {
+        "gamma_cases": 72,
+        "product_cases": 19,
+        "total_cases": 91
+      },
+      "passed": true
+    },
+    {
+      "assertion": "case_ids_are_unique",
+      "details": {
+        "duplicate_case_ids": []
+      },
+      "passed": true
+    },
+    {
+      "assertion": "metadata_unique_count_matches_cases",
+      "details": {
+        "computed_unique_case_count": 91,
+        "metadata_unique_case_count": 91
+      },
+      "passed": true
+    },
+    {
+      "assertion": "all_weak_cases_have_expected_review_only_blockers",
+      "details": {
+        "weak_case_count": 76,
+        "weak_unblocked_case_ids": []
+      },
+      "passed": true
+    },
+    {
+      "assertion": "expected_blockers_are_allowed_by_axis",
+      "details": {
+        "blocker_mismatch_case_ids": []
+      },
+      "passed": true
+    },
+    {
+      "assertion": "per_case_production_flags_closed",
+      "details": {
+        "cases_with_forbidden_true_flags": []
+      },
+      "passed": true
+    },
+    {
+      "assertion": "metadata_production_flags_closed",
+      "details": {
+        "curated_label_registry_edited": false,
+        "fingerprint_registry_edited": false,
+        "labels_or_fingerprints_changed": false,
+        "production_claim_allowed": false,
+        "production_scoring_admissible": false,
+        "raw_coordinate_files_written": false
+      },
+      "passed": true
+    },
+    {
+      "assertion": "review_only_contract_forbids_label_threshold_registry_use",
+      "details": {
+        "do_not_calibrate_thresholds": true,
+        "do_not_claim_production_scoring": true,
+        "do_not_edit_production_registries": true,
+        "do_not_import_as_labels": true,
+        "expected_runtime_scope": "future scorer tests only"
+      },
+      "passed": true
+    },
+    {
+      "assertion": "source_artifacts_are_existing_lane_local_json",
+      "details": {
+        "cases_with_missing_or_nonlocal_sources": []
+      },
+      "passed": true
+    },
+    {
+      "assertion": "gamma_family_surface_is_complete_for_defined_fixture",
+      "details": {
+        "missing_gamma_families": [],
+        "required_gamma_families": [
+          "askha",
+          "atp_grasp",
+          "dnk",
+          "ghkl",
+          "ghmp",
+          "ndk",
+          "pfka",
+          "pfkb"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "assertion": "product_family_surface_is_expected_subset",
+      "details": {
+        "expected_product_families": [
+          "atp_grasp",
+          "dnk",
+          "pfka",
+          "pfkb"
+        ],
+        "unexpected_product_families": []
+      },
+      "passed": true
+    },
+    {
+      "assertion": "metadata_unblocked_weak_count_matches_audit",
+      "details": {
+        "computed_unblocked_weak_case_count": 0,
+        "metadata_expected_unblocked_weak_case_count": 0
+      },
+      "passed": true
+    },
+    {
+      "assertion": "existing_minimal_design_panel_is_represented",
+      "details": {
+        "computed_existing_minimal_design_panel_case_count": 16,
+        "existing_minimal_design_panel_case_ids": [
+          "gamma::atp_grasp::2QF7",
+          "gamma::atp_grasp::7U9K",
+          "gamma::atp_grasp::7VHV",
+          "gamma::atp_grasp::7WAE",
+          "gamma::atp_grasp::7ZZ3",
+          "gamma::atp_grasp::8EVW",
+          "gamma::atp_grasp::8EVY",
+          "gamma::atp_grasp::8VW2",
+          "gamma::ghkl::4R39",
+          "gamma::ghkl::9EPN",
+          "gamma::pfka::3IE7",
+          "gamma::pfkb::1LII",
+          "product::atp_grasp::1VA6",
+          "product::atp_grasp::2IOA",
+          "product::atp_grasp::3LVV",
+          "product::atp_grasp::3TW6"
+        ],
+        "metadata_existing_minimal_design_panel_case_count": 16
+      },
+      "passed": true
+    },
+    {
+      "assertion": "adjacent_review_only_gate_artifacts_remain_fail_closed",
+      "details": {
+        "counteraxis_sufficiency_decision": {
+          "counteraxis_sufficient_to_block_distance_only_threshold": true,
+          "curated_label_registry_edited": false,
+          "epk_score_computed": false,
+          "fingerprint_registry_edited": false,
+          "path": "artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json",
+          "precount_gate_status": "blocked_review_only",
+          "prototype_gate_status": "fail_closed_review_only",
+          "ready_for_label_import": false,
+          "ready_for_production_scoring": null,
+          "ready_to_run_epk_scorer": false,
+          "unified_source_free_substrate_identity_production_admissible": null,
+          "unified_source_free_substrate_identity_ready_review_only": null,
+          "unified_substrate_identity_ready_review_only": true
+        },
+        "precount_gate_status": {
+          "counteraxis_sufficient_to_block_distance_only_threshold": null,
+          "curated_label_registry_edited": false,
+          "epk_score_computed": false,
+          "fingerprint_registry_edited": false,
+          "path": "artifacts/v3_epk_precount_gate_status_1025.json",
+          "precount_gate_status": "blocked_review_only",
+          "prototype_gate_status": null,
+          "ready_for_label_import": false,
+          "ready_for_production_scoring": null,
+          "ready_to_run_epk_scorer": false,
+          "unified_source_free_substrate_identity_production_admissible": null,
+          "unified_source_free_substrate_identity_ready_review_only": null,
+          "unified_substrate_identity_ready_review_only": true
+        },
+        "unified_review_only_scoring_prototype": {
+          "counteraxis_sufficient_to_block_distance_only_threshold": null,
+          "curated_label_registry_edited": false,
+          "epk_score_computed": false,
+          "fingerprint_registry_edited": false,
+          "path": "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+          "precount_gate_status": null,
+          "prototype_gate_status": "fail_closed_review_only",
+          "ready_for_label_import": false,
+          "ready_for_production_scoring": false,
+          "ready_to_run_epk_scorer": false,
+          "unified_source_free_substrate_identity_production_admissible": null,
+          "unified_source_free_substrate_identity_ready_review_only": null,
+          "unified_substrate_identity_ready_review_only": null
+        },
+        "unified_substrate_identity_rule_probe": {
+          "counteraxis_sufficient_to_block_distance_only_threshold": null,
+          "curated_label_registry_edited": false,
+          "epk_score_computed": false,
+          "fingerprint_registry_edited": false,
+          "path": "artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json",
+          "precount_gate_status": null,
+          "prototype_gate_status": null,
+          "ready_for_label_import": false,
+          "ready_for_production_scoring": false,
+          "ready_to_run_epk_scorer": false,
+          "unified_source_free_substrate_identity_production_admissible": false,
+          "unified_source_free_substrate_identity_ready_review_only": true,
+          "unified_substrate_identity_ready_review_only": null
+        }
+      },
+      "passed": true
+    },
+    {
+      "assertion": "ontology_family_boundary_matches_fixture_surface",
+      "details": {
+        "boundary_guardrail_ready": true,
+        "countable_label_candidate_count": 0,
+        "epk_scope_note": "Protein, lipid, and ePK-like antibiotic-resistance kinases using ATP gamma-phosphoryl transfer to hydroxyl acceptors. Includes ePK/RTK/MAPK-family and ePK-related lanes; excludes GHKL histidine kinases and ASKHA/Pfk sugar kinases.",
+        "epk_sibling_ids": [
+          "askha",
+          "atp_grasp",
+          "dnk",
+          "ghkl",
+          "ghmp",
+          "ndk",
+          "pfka",
+          "pfkb"
+        ],
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "path": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+        "unmapped_required_family_ids": [],
+        "unsupported_mapping_count": 0
+      },
+      "passed": true
+    }
+  ],
+  "metadata": {
+    "assertion_count": 15,
+    "assertions_passed": 15,
+    "controls_added": 0,
+    "controls_adjudicated": 91,
+    "created_at": "2026-05-20T21:33:31Z",
+    "existing_minimal_design_panel_case_count": 16,
+    "expected_unblocked_weak_case_count": 0,
+    "fixture_readiness_status": "ready_review_only",
+    "gamma_case_count": 72,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_review_only_fixture_readiness_audit",
+    "next_query": "Use the matrix and readiness audit as future source-free scorer-design fixtures; only reopen sibling sourcing if a specific curated seed set appears.",
+    "primary_outcome": "evidence_for",
+    "product_case_count": 19,
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "rows_reviewed": 91,
+    "search_surface": "Bounded 91-case review-only sibling counteraxis matrix: 72 gamma controls and 19 strict product controls from existing lane artifacts.",
+    "source_file_digest_count": 13,
+    "source_matrix": "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+    "weak_gamma_case_count": 57,
+    "weak_product_case_count": 19
+  },
+  "ontology_family_boundary_alignment": {
+    "boundary_guardrail_ready": true,
+    "countable_label_candidate_count": 0,
+    "epk_scope_note": "Protein, lipid, and ePK-like antibiotic-resistance kinases using ATP gamma-phosphoryl transfer to hydroxyl acceptors. Includes ePK/RTK/MAPK-family and ePK-related lanes; excludes GHKL histidine kinases and ASKHA/Pfk sugar kinases.",
+    "epk_sibling_ids": [
+      "askha",
+      "atp_grasp",
+      "dnk",
+      "ghkl",
+      "ghmp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "parent_family_id": "atp_phosphoryl_transfer",
+    "path": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+    "unmapped_required_family_ids": [],
+    "unsupported_mapping_count": 0
+  },
+  "recommendation": "Use this readiness artifact only to guide future source-free substrate-identity and family-boundary scorer tests. Keep production labels, registries, fingerprints, thresholds, and scoring claims closed.",
+  "review_only_contract": {
+    "do_not_calibrate_thresholds": true,
+    "do_not_claim_production_ePK_separation": true,
+    "do_not_claim_production_scoring": true,
+    "do_not_edit_production_registries": true,
+    "do_not_import_as_labels": true,
+    "expected_runtime_scope": "future scorer tests only"
+  },
+  "source_file_sha256": {
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_gamma_counteraxis_20260520.json": "f2bcc9666bc60a43bb5f7effd616b03054c2e0f12603670f458bb1b1ab8608e9",
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_counteraxis_20260520.json": "2f247604fb67fb6b10e916d0545bbc2713e28cce858cdf83f4d047cdfc32d607",
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_gamma_counteraxis_20260520.json": "c49564a13e734fc3df98374e49086b83a81918aa4ec1e631048ff0828488e244",
+    "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_product_state_product_counteraxis_20260520.json": "95b9d38ff2637bce098aa30aa4fdf6834091e40232aa1262fa14c76757c9fd23",
+    "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json": "7a309aff0dfea9405f7302ad1b01427db978f88bef6b94359d26c5a589188fe6",
+    "artifacts/research_lanes/epk_sibling_controls/strict_product_substrate_identity_counteraxis_20260520.json": "702209788c05a740cf97bbb3d0196c0f1f6f852a7638ae7ef7c44f68114d79eb",
+    "artifacts/research_lanes/epk_sibling_controls/thin_expanded_gamma_counteraxis_20260520.json": "cb067cc58ee0a46ae7eccf3930a443d08439e9a7b952669017a30e378036972e",
+    "artifacts/research_lanes/epk_sibling_controls/undercovered_expanded_gamma_counteraxis_20260520.json": "b77ea81e38222bdc012b7950dd13c99ec68dc74f07404dc8bf12461e2d9da3c3",
+    "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json": "d6dd950972c9a2609895d93def22bec579ef974bfe7600f9b9b6c9bb0aa75456",
+    "artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json": "d0cfb071604f4f4072b77bfe403bf69d1f5511c131e338bf99cbe0ebf15f9f7e",
+    "artifacts/v3_epk_precount_gate_status_1025.json": "505e0bc72d9bd59b47edecdadaf38b6a12cb15ae8b1f7ed11a01aa8cce0df6aa",
+    "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json": "ba61ca616aedc7b070595d5ee26caa4dea32a67552171531e15faef0698b3a0f",
+    "artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json": "4589de0714b88d730422a1d88eb8cfc9df08bb0830402e65154796feb17b8582"
+  },
+  "summary": {
+    "case_counts_by_axis": {
+      "gamma": 72,
+      "product": 19
+    },
+    "case_counts_by_family_and_axis": {
+      "askha": {
+        "gamma": 5
+      },
+      "atp_grasp": {
+        "gamma": 33,
+        "product": 15
+      },
+      "dnk": {
+        "gamma": 1,
+        "product": 1
+      },
+      "ghkl": {
+        "gamma": 10
+      },
+      "ghmp": {
+        "gamma": 3
+      },
+      "ndk": {
+        "gamma": 3
+      },
+      "pfka": {
+        "gamma": 6,
+        "product": 2
+      },
+      "pfkb": {
+        "gamma": 11,
+        "product": 1
+      }
+    },
+    "existing_minimal_design_panel_case_ids": [
+      "gamma::atp_grasp::2QF7",
+      "gamma::atp_grasp::7U9K",
+      "gamma::atp_grasp::7VHV",
+      "gamma::atp_grasp::7WAE",
+      "gamma::atp_grasp::7ZZ3",
+      "gamma::atp_grasp::8EVW",
+      "gamma::atp_grasp::8EVY",
+      "gamma::atp_grasp::8VW2",
+      "gamma::ghkl::4R39",
+      "gamma::ghkl::9EPN",
+      "gamma::pfka::3IE7",
+      "gamma::pfkb::1LII",
+      "product::atp_grasp::1VA6",
+      "product::atp_grasp::2IOA",
+      "product::atp_grasp::3LVV",
+      "product::atp_grasp::3TW6"
+    ],
+    "expected_blocker_counts": {
+      "gamma::none_required": 15,
+      "gamma::nonpolymer_acceptor_local_to_gamma": 24,
+      "gamma::nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate": 33,
+      "product::free_phosphate_product": 4,
+      "product::phosphorylated_hetatm_nonpolymer_product": 15
+    },
+    "expected_unblocked_weak_case_ids": [],
+    "weak_case_counts_by_axis": {
+      "gamma": 57,
+      "product": 19
+    },
+    "weak_case_ids_by_axis": {
+      "gamma": [
+        "gamma::askha::3FGU",
+        "gamma::askha::3ID8",
+        "gamma::askha::5ZQT",
+        "gamma::askha::6PDT",
+        "gamma::atp_grasp::1EYZ",
+        "gamma::atp_grasp::1EZ1",
+        "gamma::atp_grasp::1KJ8",
+        "gamma::atp_grasp::1KJ9",
+        "gamma::atp_grasp::1KJI",
+        "gamma::atp_grasp::1M0W",
+        "gamma::atp_grasp::2D32",
+        "gamma::atp_grasp::3R5F",
+        "gamma::atp_grasp::4CVL",
+        "gamma::atp_grasp::4CVM",
+        "gamma::atp_grasp::4L1K",
+        "gamma::atp_grasp::4QDI",
+        "gamma::atp_grasp::4QF5",
+        "gamma::atp_grasp::5C1O",
+        "gamma::atp_grasp::6U1D",
+        "gamma::atp_grasp::6U1E",
+        "gamma::atp_grasp::6U1F",
+        "gamma::atp_grasp::6U1G",
+        "gamma::atp_grasp::7U9K",
+        "gamma::atp_grasp::7VHV",
+        "gamma::atp_grasp::7WAD",
+        "gamma::atp_grasp::7WAE",
+        "gamma::atp_grasp::7WAF",
+        "gamma::atp_grasp::7ZZ3",
+        "gamma::atp_grasp::8EVW",
+        "gamma::atp_grasp::8EVY",
+        "gamma::atp_grasp::8VW2",
+        "gamma::atp_grasp::9DQW",
+        "gamma::dnk::2QQ0",
+        "gamma::ghkl::1I58",
+        "gamma::ghkl::1I5A",
+        "gamma::ghkl::1I5B",
+        "gamma::ghkl::3SL2",
+        "gamma::ghkl::4R39",
+        "gamma::ghkl::6BLK",
+        "gamma::ghkl::8F71",
+        "gamma::ghkl::9EPN",
+        "gamma::ghmp::1H74",
+        "gamma::ghmp::1KVK",
+        "gamma::ghmp::3GON",
+        "gamma::ndk::1WKL",
+        "gamma::ndk::3Q86",
+        "gamma::ndk::9OAN",
+        "gamma::pfka::4XYJ",
+        "gamma::pfka::5XZ8",
+        "gamma::pfka::8W2H",
+        "gamma::pfka::8W2J",
+        "gamma::pfkb::1ESQ",
+        "gamma::pfkb::1LII",
+        "gamma::pfkb::1TZ6",
+        "gamma::pfkb::2C49",
+        "gamma::pfkb::3UQD",
+        "gamma::pfkb::3UQE"
+      ],
+      "product": [
+        "product::atp_grasp::1E4E",
+        "product::atp_grasp::1EHI",
+        "product::atp_grasp::1IOV",
+        "product::atp_grasp::1IOW",
+        "product::atp_grasp::1VA6",
+        "product::atp_grasp::2DLN",
+        "product::atp_grasp::2IOA",
+        "product::atp_grasp::3LVV",
+        "product::atp_grasp::3TW6",
+        "product::atp_grasp::4C5A",
+        "product::atp_grasp::5DOU",
+        "product::atp_grasp::6U1H",
+        "product::atp_grasp::6U1I",
+        "product::atp_grasp::6U1J",
+        "product::atp_grasp::6VR8",
+        "product::dnk::2QQ0",
+        "product::pfka::1PFK",
+        "product::pfka::9QV4",
+        "product::pfkb::3UQD"
+      ]
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "created_at": "2026-05-20T18:35:44Z",
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_residual_retry_and_counteraxis_rollup",
+    "next_query": "Use the review-only substrate-identity blocker definition when future scorer work adds source-free counteraxes; only reopen ASKHA/GHKL/GHMP product-state sourcing if new curated product-ligand seeds appear.",
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_sibling_controls/residual_product_state_structured_retry_20260520.json",
+      "artifacts/research_lanes/epk_sibling_controls/strict_product_substrate_identity_counteraxis_20260520.json"
+    ]
+  },
+  "residual_structured_retry_summary": {
+    "case_summaries": [
+      {
+        "case_id": "askha_structured_product_ligand_retry",
+        "family_id": "askha",
+        "product_state_branch_control_count": 0,
+        "product_state_only_row_count": 10,
+        "product_state_with_metal_pdb_ids": [
+          "2E2Q"
+        ],
+        "product_state_with_phosphoryl_mimic_pdb_ids": [
+          "1CZA",
+          "1DGK",
+          "1TUU"
+        ],
+        "rows_reviewed": 21,
+        "weak_rule_counterexample_pdb_ids": []
+      },
+      {
+        "case_id": "ghkl_chea_phosphohistidine_retry",
+        "family_id": "ghkl",
+        "product_state_branch_control_count": 0,
+        "product_state_only_row_count": 2,
+        "product_state_with_metal_pdb_ids": [],
+        "product_state_with_phosphoryl_mimic_pdb_ids": [
+          "6MI6"
+        ],
+        "rows_reviewed": 30,
+        "weak_rule_counterexample_pdb_ids": [
+          "1I58",
+          "1I5A",
+          "1I5B"
+        ]
+      },
+      {
+        "case_id": "ghmp_homoserine_phosphohomoserine_retry",
+        "family_id": "ghmp",
+        "product_state_branch_control_count": 0,
+        "product_state_only_row_count": 1,
+        "product_state_with_metal_pdb_ids": [
+          "1FWK"
+        ],
+        "product_state_with_phosphoryl_mimic_pdb_ids": [],
+        "rows_reviewed": 12,
+        "weak_rule_counterexample_pdb_ids": [
+          "1H74"
+        ]
+      },
+      {
+        "case_id": "ghmp_cdp_me_phosphate_retry",
+        "family_id": "ghmp",
+        "product_state_branch_control_count": 0,
+        "product_state_only_row_count": 1,
+        "product_state_with_metal_pdb_ids": [],
+        "product_state_with_phosphoryl_mimic_pdb_ids": [],
+        "rows_reviewed": 10,
+        "weak_rule_counterexample_pdb_ids": []
+      },
+      {
+        "case_id": "pfkb_ketohexokinase_product_retry",
+        "family_id": "pfkb",
+        "product_state_branch_control_count": 0,
+        "product_state_only_row_count": 1,
+        "product_state_with_metal_pdb_ids": [],
+        "product_state_with_phosphoryl_mimic_pdb_ids": [],
+        "rows_reviewed": 22,
+        "weak_rule_counterexample_pdb_ids": []
+      }
+    ],
+    "controls_added": 0,
+    "no_hit_synonym_terms": [
+      "CheA ADP phospho histidine magnesium",
+      "homoserine kinase ADP phospho homoserine magnesium",
+      "CDP ME kinase ADP phosphate magnesium",
+      "ketohexokinase ADP fructose phosphate magnesium"
+    ],
+    "rows_reviewed": 95,
+    "target_sibling_families": [
+      "askha",
+      "ghkl",
+      "ghmp",
+      "pfkb"
+    ],
+    "unresolved_query_failure_count": 0,
+    "weak_rule_counterexample_pdb_ids": [
+      "1H74",
+      "1I58",
+      "1I5A",
+      "1I5B"
+    ]
+  },
+  "strict_product_counteraxis_summary": {
+    "blocker_counts": {
+      "free_phosphate_product": 4,
+      "phosphorylated_hetatm_nonpolymer_product": 11
+    },
+    "strict_product_control_pdb_ids": [
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2QQ0",
+      "9QV4",
+      "1PFK",
+      "3UQD"
+    ],
+    "strict_product_controls_reviewed": 15,
+    "substrate_identity_counteraxis_blocked_count": 15,
+    "substrate_identity_counteraxis_unblocked_count": 0,
+    "weak_product_any_oxygen_counterexample_pdb_ids": [
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2QQ0",
+      "9QV4",
+      "1PFK",
+      "3UQD"
+    ]
+  },
+  "warnings": [
+    "Review-only rollup; no production labels, thresholds, fingerprints, or raw coordinates.",
+    "Residual search-surface exhaustion is bounded to the listed structured/title seed surfaces, not a claim of global family exhaustion."
+  ]
+}

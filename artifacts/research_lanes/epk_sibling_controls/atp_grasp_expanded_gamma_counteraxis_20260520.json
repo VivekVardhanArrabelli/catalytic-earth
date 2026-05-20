@@ -1,0 +1,1501 @@
+{
+  "controls": [
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.382,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.672,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "pdb_id": "3R5F",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase ATP magnesium",
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase ATP magnesium",
+        "seed_from_prior_atp_grasp_artifacts_or_graph_linked_alternates"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of D-alanine-D-alnine ligase from Xanthomonas oryzae pv. oryzae with ATP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.672,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.047,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ANP",
+        "MG",
+        "NA"
+      ],
+      "pdb_id": "5C1O",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase AMP-PNP magnesium",
+        "ATP-grasp ligase ATP magnesium",
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase AMP-PNP magnesium",
+        "D-alanine D-alanine ligase ATP magnesium",
+        "glutathione synthetase AMP-PNP magnesium",
+        "seed_from_prior_atp_grasp_artifacts_or_graph_linked_alternates"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of AMP-PNP complexed D-alanine-D-alanine ligase(DDL) from Yersinia pestis",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.566,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.475,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "pdb_id": "4L1K",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of D-alanine-D-alnine ligase from Xanthomonas oryzae pv. oryzae with AMPPNP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.023,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.053,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.5,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O",
+        "auth_asym_id": "B",
+        "auth_seq_id": "401",
+        "comp": "DAL",
+        "distance_angstrom": 4.053,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "J",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "DAL",
+        "MG",
+        "RB"
+      ],
+      "pdb_id": "6U1D",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase ATP magnesium",
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM DAL:O at 4.053 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Thermus thermophilus D-alanine-D-alanine ligase in complex with ATP, D-alanine-D-alanine, Mg2+ and Rb+",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.085,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.105,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.529,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O",
+        "auth_asym_id": "A",
+        "auth_seq_id": "401",
+        "comp": "DAL",
+        "distance_angstrom": 4.105,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "C",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "DAL",
+        "MG",
+        "RB"
+      ],
+      "pdb_id": "6U1E",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase ATP magnesium",
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM DAL:O at 4.105 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Thermus thermophilus D-alanine-D-alanine ligase in complex with ATP, D-alanine-D-alanine, Mg2+ and Rb+",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.988,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.999,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.489,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O",
+        "auth_asym_id": "B",
+        "auth_seq_id": "401",
+        "comp": "DAL",
+        "distance_angstrom": 3.999,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "J",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "CS",
+        "DAL",
+        "MG"
+      ],
+      "pdb_id": "6U1F",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase ATP magnesium",
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM DAL:O at 3.999 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Thermus thermophilus D-alanine-D-alanine ligase in complex with ATP, D-alanine-D-alanine, Mg2+ and Cs+",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.019,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.121,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.568,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O",
+        "auth_asym_id": "A",
+        "auth_seq_id": "401",
+        "comp": "DAL",
+        "distance_angstrom": 4.121,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "C",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "CS",
+        "DAL",
+        "MG"
+      ],
+      "pdb_id": "6U1G",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase ATP magnesium",
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM DAL:O at 4.121 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Thermus thermophilus D-alanine-D-alanine ligase in complex with ATP, D-alanine-D-alanine, Mg2+ and Cs+",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.976,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.264,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.392,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O",
+        "auth_asym_id": "B",
+        "auth_seq_id": "602",
+        "comp": "DAL",
+        "distance_angstrom": 4.264,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "I",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "DAL",
+        "MG"
+      ],
+      "pdb_id": "8EVW",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-alanine D-alanine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM DAL:O at 4.264 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "DdlA from Pseudomonas aeruginosa PAO1 in complex with ATP and D-ala-D-ala",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.587,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.142,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.332,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O",
+        "auth_asym_id": "B",
+        "auth_seq_id": "401",
+        "comp": "DAL",
+        "distance_angstrom": 4.142,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "D",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "DAL",
+        "MG",
+        "NA"
+      ],
+      "pdb_id": "8EVY",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-alanine D-alanine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM DAL:O at 4.142 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "DdlB from Pseudomonas aeruginosa PAO1 in complex with ATP and D-ala-D-ala",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.061,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.193,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ACP",
+        "MG"
+      ],
+      "pdb_id": "4CVL",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-alanine D-alanine ligase AMP-PNP magnesium",
+        "Mur ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "PaMurF in complex with AMP-PNP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.266,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 7.811,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.366,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ALA",
+        "ANP",
+        "FGA",
+        "MG",
+        "MUB",
+        "UDP"
+      ],
+      "pdb_id": "4CVM",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-alanine D-alanine ligase AMP-PNP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "PaMurF in complex with AMP-PNP and UDP-MurNAc-tripeptide (mDAP)",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 5.213,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 5.441,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.77,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O20",
+        "auth_asym_id": "A",
+        "auth_seq_id": "502",
+        "comp": "UMA",
+        "distance_angstrom": 5.441,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "label_asym_id": "C",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ANP",
+        "CL",
+        "EPE",
+        "GOL",
+        "KCX",
+        "MG",
+        "SO4",
+        "UMA"
+      ],
+      "pdb_id": "9DQW",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-alanine D-alanine ligase AMP-PNP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM UMA:O20 at 5.441 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Crystal Structure of UDP-N-acetylmuramoylalanine--D-glutamate ligase (MurD) from E. coli in complex with UMA and AMP-PNP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.11,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.257,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.442,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O",
+        "auth_asym_id": "F",
+        "auth_seq_id": "1",
+        "comp": "DAL",
+        "distance_angstrom": 4.257,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "C",
+        "label_seq_id": "1"
+      },
+      "observed_ligand_codes": [
+        "ADP",
+        "ATP",
+        "DAL",
+        "K",
+        "MG"
+      ],
+      "pdb_id": "7U9K",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-Ala D-Ala ligase ATP magnesium",
+        "D-alanine D-alanine ligase ADP phosphate magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM DAL:O at 4.257 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Staphylococcus aureus D-alanine-D-alanine ligase in complex with ATP, D-ala-D-ala, Mg2+ and K+",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.168,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.477,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "pdb_id": "7VHV",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-Ala D-Ala ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of S. aureus D-alanine alanyl carrier protein ligase",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.362,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 5.513,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.423,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "OQ2",
+        "auth_asym_id": "B",
+        "auth_seq_id": "216",
+        "comp": "KCX",
+        "distance_angstrom": 5.513,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "label_asym_id": "B",
+        "label_seq_id": "222"
+      },
+      "observed_ligand_codes": [
+        "ATP",
+        "KCX",
+        "MG"
+      ],
+      "pdb_id": "4QF5",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "D-Ala D-Ala ligase ATP magnesium",
+        "Mur ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM KCX:OQ2 at 5.513 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Crystal structure I of MurF from Acinetobacter baumannii",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.108,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 4.957,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 8.514,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "O3",
+        "auth_asym_id": "A",
+        "auth_seq_id": "501",
+        "comp": "3GC",
+        "distance_angstrom": 4.957,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "label_asym_id": "I",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "3GC",
+        "ANP",
+        "MG",
+        "SO4"
+      ],
+      "pdb_id": "1M0W",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase AMP-PNP magnesium",
+        "ATP-grasp ligase ATP magnesium",
+        "glutathione synthase ATP magnesium",
+        "glutathione synthetase AMP-PNP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM 3GC:O3 at 4.957 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Yeast Glutathione Synthase Bound to gamma-glutamyl-cysteine, AMP-PNP and 2 Magnesium Ions",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.893,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 7.989,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ANP",
+        "MG"
+      ],
+      "pdb_id": "2IO7",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glutathione synthase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "E. coli Bifunctional glutathionylspermidine synthetase/amidase Incomplex with Mg2+ and AMPPNP",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.98,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 6.638,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.365,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "CL",
+        "EDO",
+        "GAR",
+        "MG",
+        "MPO",
+        "NA"
+      ],
+      "pdb_id": "1KJ8",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glycinamide ribonucleotide synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal Structure of PurT-Encoded Glycinamide Ribonucleotide Transformylase in Complex with Mg-ATP and GAR",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.193,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 6.654,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 3.79,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ACT",
+        "ANP",
+        "GAR",
+        "MG",
+        "MPO",
+        "NA"
+      ],
+      "pdb_id": "1EZ1",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glycinamide ribonucleotide synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "STRUCTURE OF ESCHERICHIA COLI PURT-ENCODED GLYCINAMIDE RIBONUCLEOTIDE TRANSFORMYLASE COMPLEXED WITH MG, AMPPNP, AND GAR",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 2.966,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 27.143,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.777,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ANP",
+        "CL",
+        "MG",
+        "MPO",
+        "NA"
+      ],
+      "pdb_id": "1EYZ",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glycinamide ribonucleotide synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "STRUCTURE OF ESCHERICHIA COLI PURT-ENCODED GLYCINAMIDE RIBONUCLEOTIDE TRANSFORMYLASE COMPLEXED WITH MG AND AMPPNP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.41,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 14.857,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 6.051,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ANP",
+        "MG",
+        "MSE"
+      ],
+      "pdb_id": "2XCL",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "ATP-grasp ligase AMP-PNP magnesium",
+        "glycinamide ribonucleotide synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Nucleotide-bound Structures of Bacillus subtilis Glycinamide Ribonucleotide Synthetase",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ATP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.146,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 27.333,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 5.3,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ATP",
+        "CL",
+        "EDO",
+        "MG",
+        "MPO",
+        "NA"
+      ],
+      "pdb_id": "1KJ9",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glycinamide ribonucleotide synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of purt-encoded glycinamide ribonucleotide transformylase complexed with Mg-ATP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.199,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 27.228,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 4.017,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ACP",
+        "CL",
+        "EDO",
+        "MG",
+        "MPO",
+        "NA"
+      ],
+      "pdb_id": "1KJI",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glycinamide ribonucleotide synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of glycinamide ribonucleotide transformylase in complex with Mg-AMPPCP",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ACP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 4.122,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 11.74,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ACP",
+        "CL",
+        "EDO",
+        "MG"
+      ],
+      "pdb_id": "4MV4",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "biotin carboxylase ATP magnesium",
+        "carbamoyl phosphate synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal Structure of Biotin Carboxylase from Haemophilus influenzae in Complex with AMPPCP and Mg2",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.004,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": null,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 9.842,
+      "nearest_local_nonpolymer_oxygen": null,
+      "observed_ligand_codes": [
+        "ANP",
+        "CL",
+        "MG"
+      ],
+      "pdb_id": "2VPQ",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "biotin carboxylase ATP magnesium",
+        "carbamoyl phosphate synthetase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate",
+      "source_free_counteraxis_expected_block_review_only": false,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": false,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "existing compact screen marks the local oxygen context as non-ePK substrate identity evidence",
+      "structure_title": "Crystal structure of biotin carboxylase from S. aureus complexed with AMPPNP",
+      "weak_nearest_any_oxygen_rule_hit_6a": false,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": false,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "gamma_capable_nucleotide_codes": [
+        "ANP"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_gamma_to_metal_distance_angstrom": 3.062,
+      "nearest_gamma_to_nonpolymer_oxygen_distance_angstrom": 3.98,
+      "nearest_gamma_to_protein_hydroxyl_distance_angstrom": 7.927,
+      "nearest_local_nonpolymer_oxygen": {
+        "atom": "OE1",
+        "auth_asym_id": "A",
+        "auth_seq_id": "1519",
+        "comp": "GLU",
+        "distance_angstrom": 3.98,
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "label_asym_id": "I",
+        "label_seq_id": "."
+      },
+      "observed_ligand_codes": [
+        "ANP",
+        "CYS",
+        "GLU",
+        "MG"
+      ],
+      "pdb_id": "2D32",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "query_origins": [
+        "glutamate-cysteine ligase ATP magnesium"
+      ],
+      "review_only": true,
+      "review_status": "atp_grasp_gamma_metal_control_candidate_review_only",
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_blocker": "nonpolymer_acceptor_local_to_gamma",
+      "source_free_counteraxis_expected_block_review_only": true,
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "family_title_boundary_non_epk": true,
+        "gamma_capable_nucleotide_present": true,
+        "labels_or_fingerprints_changed": false,
+        "local_nonpolymer_acceptor_oxygen_6a": true,
+        "metal_local_to_gamma_6a": true,
+        "production_scoring_admissible": false
+      },
+      "source_free_counteraxis_reason": "nearest gamma-proximal oxygen is HETATM GLU:OE1 at 3.98 A, not an ATOM Ser/Thr/Tyr substrate residue",
+      "structure_title": "Crystal Structure of Michaelis Complex of gamma-Glutamylcysteine Synthetase",
+      "weak_nearest_any_oxygen_rule_hit_6a": true,
+      "weak_nearest_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_nearest_protein_hydroxyl_rule_hit_6a": false
+    }
+  ],
+  "metadata": {
+    "blocker_counts_all_gamma_controls": {
+      "nonpolymer_acceptor_local_to_gamma": 11,
+      "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate": 15
+    },
+    "blocker_counts_blocked_weak_controls": {
+      "nonpolymer_acceptor_local_to_gamma": 11,
+      "nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate": 11
+    },
+    "created_at": "2026-05-20T19:37:43Z",
+    "curated_label_registry_edited": false,
+    "family_blocked_weak_counts": {
+      "atp_grasp": 22
+    },
+    "family_control_counts": {
+      "atp_grasp": 26
+    },
+    "family_weak_rule_counts": {
+      "atp_grasp": 22
+    },
+    "fingerprint_registry_edited": false,
+    "gamma_metal_control_pdb_ids": [
+      "3R5F",
+      "5C1O",
+      "4L1K",
+      "6U1D",
+      "6U1E",
+      "6U1F",
+      "6U1G",
+      "8EVW",
+      "8EVY",
+      "4CVL",
+      "4CVM",
+      "9DQW",
+      "7U9K",
+      "7VHV",
+      "4QF5",
+      "1M0W",
+      "2IO7",
+      "1KJ8",
+      "1EZ1",
+      "1EYZ",
+      "2XCL",
+      "1KJ9",
+      "1KJI",
+      "4MV4",
+      "2VPQ",
+      "2D32"
+    ],
+    "gamma_metal_controls_reviewed": 26,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_gamma_control_source_free_counteraxis_adjudication",
+    "next_query": "Add a fresh under-covered ASKHA/dNK/GHKL/GHMP seed set only if new curated ligand/title seeds appear; otherwise keep using these blockers as review-only scorer design inputs.",
+    "nonpolymer_acceptor_blocked_weak_count": 11,
+    "nonpolymer_acceptor_blocked_weak_pdb_ids": [
+      "6U1D",
+      "6U1E",
+      "6U1F",
+      "6U1G",
+      "8EVW",
+      "8EVY",
+      "9DQW",
+      "7U9K",
+      "4QF5",
+      "1M0W",
+      "2D32"
+    ],
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "screen_started_at": "2026-05-20T19:37:43Z",
+    "search_surface": "Existing bounded gamma/metal sibling controls from ASKHA, dNK, GHKL, GHMP, ATP-grasp, PfkA, PfkB, and NDK artifacts; adjudication uses only compact source-free fields already recorded in lane JSON.",
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json"
+    ],
+    "source_free_counteraxis_blocked_weak_count": 22,
+    "source_free_counteraxis_blocked_weak_pdb_ids": [
+      "3R5F",
+      "5C1O",
+      "4L1K",
+      "6U1D",
+      "6U1E",
+      "6U1F",
+      "6U1G",
+      "8EVW",
+      "8EVY",
+      "4CVL",
+      "4CVM",
+      "9DQW",
+      "7U9K",
+      "7VHV",
+      "4QF5",
+      "1M0W",
+      "1KJ8",
+      "1EZ1",
+      "1EYZ",
+      "1KJ9",
+      "1KJI",
+      "2D32"
+    ],
+    "source_free_counteraxis_unblocked_weak_count": 0,
+    "source_free_counteraxis_unblocked_weak_pdb_ids": [],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "weak_rule_counterexample_count": 22,
+    "weak_rule_counterexample_pdb_ids": [
+      "3R5F",
+      "5C1O",
+      "4L1K",
+      "6U1D",
+      "6U1E",
+      "6U1F",
+      "6U1G",
+      "8EVW",
+      "8EVY",
+      "4CVL",
+      "4CVM",
+      "9DQW",
+      "7U9K",
+      "7VHV",
+      "4QF5",
+      "1M0W",
+      "1KJ8",
+      "1EZ1",
+      "1EYZ",
+      "1KJ9",
+      "1KJI",
+      "2D32"
+    ]
+  },
+  "warnings": [
+    "Review-only counteraxis adjudication; not production scoring, threshold calibration, registry work, or label import.",
+    "Weak gamma-to-oxygen proximity remains falsified on sibling families unless paired with source-free substrate-identity and family-boundary blockers."
+  ]
+}

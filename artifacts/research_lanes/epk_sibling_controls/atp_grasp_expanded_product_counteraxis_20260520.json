@@ -1,0 +1,736 @@
+{
+  "controls": [
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.356,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.468,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.859,
+      "pdb_id": "1EHI",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PHY"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "PHY"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "D-ALANINE:D-LACTATE LIGASE (LMDDL2) OF VANCOMYCIN-RESISTANT LEUCONOSTOC MESENTEROIDES",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.344,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.43,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.118,
+      "pdb_id": "1IOV",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "POB"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "POB"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "COMPLEX OF D-ALA:D-ALA LIGASE WITH ADP AND A PHOSPHORYL PHOSPHONATE",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.201,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.436,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.712,
+      "pdb_id": "1IOW",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PHY"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "PHY"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "COMPLEX OF Y216F D-ALA:D-ALA LIGASE WITH ADP AND A PHOSPHORYL PHOSPHINATE",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.274,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.471,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.051,
+      "pdb_id": "2DLN",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PHY"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "PHY"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "VANCOMYCIN RESISTANCE: STRUCTURE OF D-ALANINE:D-ALANINE LIGASE AT 2.3 ANGSTROMS RESOLUTION",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.009,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.49,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.102,
+      "pdb_id": "5DOU",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PO4"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "Crystal Structure of Human Carbamoyl phosphate synthetase I (CPS1), ligand-bound form",
+      "substrate_identity_counteraxis_blocker": "free_phosphate_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is free HETATM phosphate, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.202,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.51,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.041,
+      "pdb_id": "6U1H",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PO4"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "Thermus thermophilus D-alanine-D-alanine ligase in complex with ADP, phosphate, Mg2+ and K+",
+      "substrate_identity_counteraxis_blocker": "free_phosphate_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is free HETATM phosphate, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.132,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.509,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.002,
+      "pdb_id": "6U1I",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "DS0"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "DS0"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "Thermus thermophilus D-alanine-D-alanine ligase in complex with ADP, phosphorylated D-cycloserine, Mg2+ and K+",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.529,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.494,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 3.703,
+      "pdb_id": "6VR8",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PO4"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [],
+      "product_or_partial_nucleotide_codes": [
+        "UDP"
+      ],
+      "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "Structure of a pseudomurein peptide ligase type E from Methanothermus fervidus",
+      "substrate_identity_counteraxis_blocker": "free_phosphate_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is free HETATM phosphate, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.054,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.507,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.478,
+      "pdb_id": "6U1J",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PO4"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_adp_or_udp_phosphate_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "Thermus thermophilus D-alanine-D-alanine ligase in complex with ADP, phosphate, D-ala-D-ala, Mg2+ and K+",
+      "substrate_identity_counteraxis_blocker": "free_phosphate_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is free HETATM phosphate, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.132,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.514,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 5.052,
+      "pdb_id": "4C5A",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "DS0"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "DS0"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "The X-ray crystal structures of D-alanyl-D-alanine ligase in complex ADP and D-cycloserine phosphate",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.139,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.427,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.246,
+      "pdb_id": "1E4E",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "PHY"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "PHY"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "D-alanyl-D-lacate ligase",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 3.245,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.323,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 4.704,
+      "pdb_id": "2IOA",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "GGA"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "GGA"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "E. coli Bifunctional glutathionylspermidine synthetase/amidase Incomplex with Mg2+ and ADP and phosphinate inhibitor",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": true
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 6.454,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.493,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 6.898,
+      "pdb_id": "3TW6",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "COA",
+        "PAE"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "COA",
+        "PAE"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "Structure of Rhizobium etli pyruvate carboxylase T882A with the allosteric activator, acetyl coenzyme-A",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 2.766,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.47,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 8.366,
+      "pdb_id": "3LVV",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "LBP"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "LBP"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "BSO-inhibited ScGCL",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": false
+    },
+    {
+      "epk_score_computed": false,
+      "family_id": "atp_grasp",
+      "labels_or_fingerprints_changed": false,
+      "metal_ligand_codes": [
+        "MG"
+      ],
+      "nearest_product_phosphoryl_to_metal_distance_angstrom": 2.576,
+      "nearest_product_phosphoryl_to_nonpolymer_oxygen_distance_angstrom": 1.55,
+      "nearest_product_phosphoryl_to_protein_hydroxyl_distance_angstrom": 6.991,
+      "pdb_id": "1VA6",
+      "phosphate_or_phosphoryl_mimic_codes": [
+        "P2S"
+      ],
+      "phosphorylated_nonpolymer_ligand_codes": [
+        "P2S"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "product_state_branch_status": "atp_grasp_phosphorylated_nonpolymer_product_control_review_only",
+      "production_claim_allowed": false,
+      "production_scoring_admissible": false,
+      "review_only": true,
+      "source_artifact": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json",
+      "source_free_counteraxis_features": {
+        "epk_score_computed": false,
+        "labels_or_fingerprints_changed": false,
+        "metal_local_to_product_phosphoryl_7a": true,
+        "phosphoryl_source_is_hetatm_product": true,
+        "product_or_partial_nucleotide_present": true,
+        "production_scoring_admissible": false
+      },
+      "structure_title": "Crystal structure of Gamma-glutamylcysteine synthetase from Escherichia Coli B complexed with Transition-state analogue",
+      "substrate_identity_counteraxis_blocker": "phosphorylated_hetatm_nonpolymer_product",
+      "substrate_identity_counteraxis_expected_block_review_only": true,
+      "substrate_identity_counteraxis_reason": "product phosphoryl source is a phosphorylated HETATM nonpolymer ligand, not an ATOM Ser/Thr/Tyr substrate residue",
+      "weak_product_any_oxygen_rule_hit_6a": true,
+      "weak_product_nonpolymer_oxygen_rule_hit_6a": true,
+      "weak_product_protein_hydroxyl_rule_hit_6a": false
+    }
+  ],
+  "metadata": {
+    "blocker_counts": {
+      "free_phosphate_product": 4,
+      "phosphorylated_hetatm_nonpolymer_product": 11
+    },
+    "created_at": "2026-05-20T19:37:43Z",
+    "curated_label_registry_edited": false,
+    "family_blocked_counts": {
+      "atp_grasp": 15
+    },
+    "family_control_counts": {
+      "atp_grasp": 15
+    },
+    "fingerprint_registry_edited": false,
+    "labels_or_fingerprints_changed": false,
+    "method": "epk_sibling_controls_strict_product_substrate_identity_counteraxis_adjudication",
+    "next_query": "Use this review-only blocker definition when a future scorer adds substrate-identity counteraxes; do not calibrate production thresholds from these rows.",
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "production_scoring_admissible": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "screen_started_at": "2026-05-20T19:37:43Z",
+    "search_surface": "Existing strict product-state controls from ATP-grasp, dNK, PfkA, and PfkB lane artifacts; source-free blocker uses only ligand identity, HETATM/ATOM class inherited from the source scan, and local product-phosphoryl distances already recorded in compact JSON.",
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_sibling_controls/atp_grasp_expanded_bounded_control_screen_20260520.json"
+    ],
+    "strict_product_control_pdb_ids": [
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2IOA",
+      "3TW6",
+      "3LVV",
+      "1VA6"
+    ],
+    "strict_product_controls_reviewed": 15,
+    "substrate_identity_counteraxis_blocked_count": 15,
+    "substrate_identity_counteraxis_blocked_pdb_ids": [
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2IOA",
+      "3TW6",
+      "3LVV",
+      "1VA6"
+    ],
+    "substrate_identity_counteraxis_unblocked_count": 0,
+    "substrate_identity_counteraxis_unblocked_pdb_ids": [],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "weak_product_any_oxygen_counterexample_count": 15,
+    "weak_product_any_oxygen_counterexample_pdb_ids": [
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2IOA",
+      "3TW6",
+      "3LVV",
+      "1VA6"
+    ],
+    "weak_product_nonpolymer_oxygen_counterexample_count": 15,
+    "weak_product_nonpolymer_oxygen_counterexample_pdb_ids": [
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2IOA",
+      "3TW6",
+      "3LVV",
+      "1VA6"
+    ],
+    "weak_product_protein_hydroxyl_counterexample_count": 12,
+    "weak_product_protein_hydroxyl_counterexample_pdb_ids": [
+      "1EHI",
+      "1IOV",
+      "1IOW",
+      "2DLN",
+      "5DOU",
+      "6U1H",
+      "6U1I",
+      "6VR8",
+      "6U1J",
+      "4C5A",
+      "1E4E",
+      "2IOA"
+    ]
+  },
+  "warnings": [
+    "Review-only counteraxis adjudication; not production scoring, threshold calibration, registry work, or label import.",
+    "A blocked sibling control can still be a weak-rule counterexample because local product-phosphoryl geometry alone is not substrate identity."
+  ]
+}
