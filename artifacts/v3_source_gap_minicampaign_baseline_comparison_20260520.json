@@ -1,0 +1,273 @@
+{
+  "caveats": [
+    "This diagnostic is a benchmark of source-gap triage completeness, not a claim about geometry retrieval performance.",
+    "EC/keyword lane routing would over-admit these rows because it cannot detect missing active-site source evidence or uncovered mechanism-lane policy.",
+    "Sequence, ESM, and Foldseek baselines should be run only on a future source-complete frozen surface."
+  ],
+  "frozen_rows": [
+    {
+      "accession": "O15121",
+      "lane_id": "external_source:isomerase",
+      "row_id": "uniprot:O15121",
+      "selection_bucket": "active_site_source_missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing"
+    },
+    {
+      "accession": "O43708",
+      "lane_id": "external_source:isomerase",
+      "row_id": "uniprot:O43708",
+      "selection_bucket": "active_site_source_missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing"
+    },
+    {
+      "accession": "O05394",
+      "lane_id": "external_source:lyase",
+      "row_id": "uniprot:O05394",
+      "selection_bucket": "active_site_source_missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing"
+    },
+    {
+      "accession": "O43306",
+      "lane_id": "external_source:lyase",
+      "row_id": "uniprot:O43306",
+      "selection_bucket": "active_site_source_missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing"
+    },
+    {
+      "accession": "O43593",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "row_id": "uniprot:O43593",
+      "selection_bucket": "active_site_source_missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing"
+    },
+    {
+      "accession": "O95571",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "row_id": "uniprot:O95571",
+      "selection_bucket": "active_site_source_missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing"
+    },
+    {
+      "accession": "A3RF67",
+      "lane_id": "external_source:glycan_chemistry",
+      "row_id": "uniprot:A3RF67",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria"
+    },
+    {
+      "accession": "I1C083",
+      "lane_id": "external_source:glycan_chemistry",
+      "row_id": "uniprot:I1C083",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria"
+    },
+    {
+      "accession": "O43447",
+      "lane_id": "external_source:isomerase",
+      "row_id": "uniprot:O43447",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria"
+    },
+    {
+      "accession": "P00942",
+      "lane_id": "external_source:isomerase",
+      "row_id": "uniprot:P00942",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria"
+    },
+    {
+      "accession": "O22822",
+      "lane_id": "external_source:glycan_chemistry",
+      "row_id": "uniprot:O22822",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "source_evidence_blockers_at_freeze": [
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria"
+    },
+    {
+      "accession": "O22943",
+      "lane_id": "external_source:glycan_chemistry",
+      "row_id": "uniprot:O22943",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "source_evidence_blockers_at_freeze": [
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria"
+    },
+    {
+      "accession": "A6NJ78",
+      "lane_id": "external_source:transferase_methyl",
+      "row_id": "uniprot:A6NJ78",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules",
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O43148",
+      "lane_id": "external_source:transferase_methyl",
+      "row_id": "uniprot:O43148",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O60678",
+      "lane_id": "external_source:transferase_methyl",
+      "row_id": "uniprot:O60678",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O60725",
+      "lane_id": "external_source:transferase_methyl",
+      "row_id": "uniprot:O60725",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "P0DPD7",
+      "lane_id": "external_source:transferase_methyl",
+      "row_id": "uniprot:P0DPD7",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules",
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "P11086",
+      "lane_id": "external_source:transferase_methyl",
+      "row_id": "uniprot:P11086",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane"
+    }
+  ],
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_migration_files_edited": false,
+    "created_at": "2026-05-20T18:04:27Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 18,
+    "method": "source_gap_minicampaign_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "source_decision_packet": "artifacts/v3_prospective_external_source_gap_minicampaign_decision_packet_20260520.json",
+    "source_freeze_artifact": "artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json",
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "deterministic_kmer_nearest_neighbor": {
+      "evaluated_row_count": 0,
+      "missing_sequence_sidecar_count": 18,
+      "near_neighbor_alert_count": 0,
+      "not_run_reason": "sequence sidecars are not committed for this source-gap freeze and sequence screening would not remove the source blockers",
+      "row_count": 18
+    },
+    "ec_keyword_lane_proxy": {
+      "detects_source_gap_blockers": false,
+      "keyword_or_ec_routed_row_count": 18,
+      "lane_counts": {
+        "external_source:glycan_chemistry": 4,
+        "external_source:isomerase": 4,
+        "external_source:lyase": 2,
+        "external_source:oxidoreductase_long_tail": 2,
+        "external_source:transferase_methyl": 6
+      },
+      "predictive_use_allowed": false,
+      "row_count": 18
+    },
+    "esm2_sidecars": {
+      "available_row_count": 0,
+      "near_duplicate_alert_count": 0,
+      "not_run_reason": "no committed ESM sidecars cover this new source-gap freeze",
+      "row_count": 18
+    },
+    "foldseek_sidecars": {
+      "available_row_count": 0,
+      "not_run_reason": "source-gap terminal decisions intentionally precede coordinate materialization and Foldseek screening",
+      "row_count": 18,
+      "structural_duplicate_signal_count": 0
+    },
+    "geometry_retrieval_triage": {
+      "non_abstention_count_at_0_4115": 0,
+      "not_run_reason": "all rows failed pre-scoring source-gap prerequisites",
+      "row_count": 18,
+      "scored_row_count": 0,
+      "text_or_label_fields_used_for_score_count": 0
+    },
+    "source_completeness_gate": {
+      "missing_active_site_source_count": 6,
+      "row_count": 18,
+      "source_specificity_or_sampling_gap_count": 6,
+      "terminal_blocker_detection_count": 18,
+      "uncovered_mechanism_lane_count": 6
+    },
+    "terminal_source_gap_triage": {
+      "import_ready_count": 0,
+      "row_count": 18,
+      "terminal_decision_counts": {
+        "terminal_rejection": 18
+      },
+      "terminal_decision_reason_counts": {
+        "terminal_rejection_missing_active_site_source_evidence": 6,
+        "terminal_rejection_source_specificity_or_sampling_blocker": 6,
+        "terminal_rejection_uncovered_mechanism_lane": 6
+      }
+    }
+  },
+  "task_definition": {
+    "positive_claim_allowed": false,
+    "question": "Can a bounded external source-gap set be closed by terminal source/scope decisions before any geometry or import scoring?",
+    "task_id": "pre_scoring_external_source_gap_triage_v1",
+    "why_baseline_is_limited": "All rows are terminal pre-scoring source-gap rejections, so retrieval or neighbor baselines cannot make performance claims on this frozen surface."
+  }
+}

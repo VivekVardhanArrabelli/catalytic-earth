@@ -1,0 +1,1023 @@
+{
+  "caveats": [
+    "Terminal decisions are pre-scoring source/scope decisions, not evidence that current geometry retrieval outperforms baselines.",
+    "Protein names, EC numbers, and UniProt prose are review-only context and are not positive predictive features.",
+    "No row can enter an import path without source-complete evidence, duplicate screens, terminal review, and full factory gates."
+  ],
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_migration_files_edited": false,
+    "candidate_count": 18,
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T18:04:27Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "foldseek_screened_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "inverse_gate_scored_candidate_count": 0,
+    "lane_counts": {
+      "external_source:glycan_chemistry": 4,
+      "external_source:isomerase": 4,
+      "external_source:lyase": 2,
+      "external_source:oxidoreductase_long_tail": 2,
+      "external_source:transferase_methyl": 6
+    },
+    "method": "prospective_external_source_gap_minicampaign_decision_packet",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selection_bucket_counts": {
+      "active_site_source_missing": 6,
+      "source_specificity_or_sampling_gap": 6,
+      "uncovered_mechanism_lane": 6
+    },
+    "separates_predictive_import_evidence_from_review_only_context": true,
+    "sequence_screened_candidate_count": 0,
+    "source_freeze_artifact": "artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json",
+    "source_freeze_method": "prospective_external_source_gap_minicampaign_freeze",
+    "superiority_claim_permitted": false,
+    "terminal_decision_counts": {
+      "terminal_rejection": 18
+    },
+    "terminal_decision_reason_counts": {
+      "terminal_rejection_missing_active_site_source_evidence": 6,
+      "terminal_rejection_source_specificity_or_sampling_blocker": 6,
+      "terminal_rejection_uncovered_mechanism_lane": 6
+    }
+  },
+  "rows": [
+    {
+      "accession": "O15121",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:isomerase",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": 0,
+        "binding_site_feature_count": 0,
+        "catalytic_activity_count": 6,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "uniprot_active_site_feature_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+        "why_terminal_before_scoring": "terminal_rejection_missing_active_site_source_evidence"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O15121"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "5.2.1.-"
+        ],
+        "ec_numbers": [
+          "1.14.19.17",
+          "5.2.1.-"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Sphingolipid delta(4)-desaturase DES1 (EC 1.14.19.17) (Cell migration-inducing gene 15 protein) (Degenerative spermatocyte homolog 1) (Dihydroceramide desaturase-1) (Membrane lipid desaturase) (Retinol isomerase) (EC 5.2.1.-)",
+        "specific_ec_numbers": [
+          "1.14.19.17"
+        ],
+        "uniprot_entry_name": "DEGS1_HUMAN",
+        "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+      },
+      "row_id": "uniprot:O15121",
+      "selection_bucket": "active_site_source_missing",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_missing_active_site_source_evidence"
+    },
+    {
+      "accession": "O43708",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:isomerase",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": 0,
+        "binding_site_feature_count": 6,
+        "catalytic_activity_count": 2,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "uniprot_active_site_feature_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+        "why_terminal_before_scoring": "terminal_rejection_missing_active_site_source_evidence"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O43708"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "2.5.1.18",
+          "5.2.1.2"
+        ],
+        "pdb_ids": [
+          "1FW1",
+          "8E8P"
+        ],
+        "protein_name": "Maleylacetoacetate isomerase (MAAI) (EC 5.2.1.2) (GSTZ1-1) (Glutathione S-transferase zeta 1) (EC 2.5.1.18)",
+        "specific_ec_numbers": [
+          "2.5.1.18",
+          "5.2.1.2"
+        ],
+        "uniprot_entry_name": "MAAI_HUMAN",
+        "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+      },
+      "row_id": "uniprot:O43708",
+      "selection_bucket": "active_site_source_missing",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_missing_active_site_source_evidence"
+    },
+    {
+      "accession": "O05394",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:lyase",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": 0,
+        "binding_site_feature_count": 0,
+        "catalytic_activity_count": 2,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "uniprot_active_site_feature_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+        "why_terminal_before_scoring": "terminal_rejection_missing_active_site_source_evidence"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O05394"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "4.4.1.1",
+          "4.4.1.2"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Cystathionine gamma-lyase (EC 4.4.1.1) (Gamma-cystathionase) (Homocysteine gamma-lyase) (EC 4.4.1.2)",
+        "specific_ec_numbers": [
+          "4.4.1.1",
+          "4.4.1.2"
+        ],
+        "uniprot_entry_name": "MCCB_BACSU",
+        "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+      },
+      "row_id": "uniprot:O05394",
+      "selection_bucket": "active_site_source_missing",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_missing_active_site_source_evidence"
+    },
+    {
+      "accession": "O43306",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:lyase",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": 0,
+        "binding_site_feature_count": 12,
+        "catalytic_activity_count": 1,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "uniprot_active_site_feature_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+        "why_terminal_before_scoring": "terminal_rejection_missing_active_site_source_evidence"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O43306"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "4.6.1.1"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Adenylate cyclase type 6 (EC 4.6.1.1) (ATP pyrophosphate-lyase 6) (Adenylate cyclase type VI) (Adenylyl cyclase 6) (Ca(2+)-inhibitable adenylyl cyclase)",
+        "specific_ec_numbers": [
+          "4.6.1.1"
+        ],
+        "uniprot_entry_name": "ADCY6_HUMAN",
+        "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+      },
+      "row_id": "uniprot:O43306",
+      "selection_bucket": "active_site_source_missing",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_missing_active_site_source_evidence"
+    },
+    {
+      "accession": "O43593",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": 0,
+        "binding_site_feature_count": 3,
+        "catalytic_activity_count": 1,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "uniprot_active_site_feature_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+        "why_terminal_before_scoring": "terminal_rejection_missing_active_site_source_evidence"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O43593"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "1.14.11.65"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Lysine-specific demethylase hairless (EC 1.14.11.65) ([histone H3]-dimethyl-L-lysine(9) demethylase hairless)",
+        "specific_ec_numbers": [
+          "1.14.11.65"
+        ],
+        "uniprot_entry_name": "HAIR_HUMAN",
+        "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+      },
+      "row_id": "uniprot:O43593",
+      "selection_bucket": "active_site_source_missing",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_missing_active_site_source_evidence"
+    },
+    {
+      "accession": "O95571",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": 0,
+        "binding_site_feature_count": 3,
+        "catalytic_activity_count": 1,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "uniprot_active_site_feature_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+        "why_terminal_before_scoring": "terminal_rejection_missing_active_site_source_evidence"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O95571"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "1.13.11.18"
+        ],
+        "pdb_ids": [
+          "4CHL"
+        ],
+        "protein_name": "Persulfide dioxygenase ETHE1, mitochondrial (EC 1.13.11.18) (Ethylmalonic encephalopathy protein 1) (Hepatoma subtracted clone one protein) (Sulfur dioxygenase ETHE1)",
+        "specific_ec_numbers": [
+          "1.13.11.18"
+        ],
+        "uniprot_entry_name": "ETHE1_HUMAN",
+        "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+      },
+      "row_id": "uniprot:O95571",
+      "selection_bucket": "active_site_source_missing",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_missing_active_site_source_evidence"
+    },
+    {
+      "accession": "A3RF67",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:glycan_chemistry",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "active_site_feature_sampling_cap_reached"
+        ],
+        "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+        "why_terminal_before_scoring": "terminal_rejection_source_specificity_or_sampling_blocker"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "A3RF67"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "3.2.1.161"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Isoflavonoid 7-O-beta-apiosyl-glucoside beta-glycosidase (EC 3.2.1.161) (Beta-glycosidase)",
+        "specific_ec_numbers": [
+          "3.2.1.161"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:A3RF67",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_source_specificity_or_sampling_blocker"
+    },
+    {
+      "accession": "I1C083",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:glycan_chemistry",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "active_site_feature_sampling_cap_reached"
+        ],
+        "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+        "why_terminal_before_scoring": "terminal_rejection_source_specificity_or_sampling_blocker"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "I1C083"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "3.2.2.22"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Mucoricin (EC 3.2.2.22) (Ricin-like toxin) (rRNA N-glycosidase)",
+        "specific_ec_numbers": [
+          "3.2.2.22"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:I1C083",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_source_specificity_or_sampling_blocker"
+    },
+    {
+      "accession": "O43447",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:isomerase",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "active_site_feature_sampling_cap_reached"
+        ],
+        "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+        "why_terminal_before_scoring": "terminal_rejection_source_specificity_or_sampling_blocker"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O43447"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "5.2.1.8"
+        ],
+        "pdb_ids": [
+          "1MZW",
+          "1QOI",
+          "5O9Z",
+          "6AHD",
+          "8H6K",
+          "8H6L",
+          "8QO9",
+          "8QZS",
+          "8R09",
+          "8R0B",
+          "8RM5"
+        ],
+        "protein_name": "Peptidyl-prolyl cis-trans isomerase H (PPIase H) (EC 5.2.1.8) (Rotamase H) (Small nuclear ribonucleoprotein particle-specific cyclophilin H) (CypH) (U-snRNP-associated cyclophilin SnuCyp-20) (USA-CYP)",
+        "specific_ec_numbers": [
+          "5.2.1.8"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:O43447",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_source_specificity_or_sampling_blocker"
+    },
+    {
+      "accession": "P00942",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:isomerase",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "active_site_feature_sampling_cap_reached"
+        ],
+        "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+        "why_terminal_before_scoring": "terminal_rejection_source_specificity_or_sampling_blocker"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "P00942"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "5.3.1.1"
+        ],
+        "pdb_ids": [
+          "1I45",
+          "1NEY",
+          "1NF0",
+          "1YPI",
+          "2YPI",
+          "3YPI",
+          "4FF7",
+          "7TIM"
+        ],
+        "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Triose-phosphate isomerase)",
+        "specific_ec_numbers": [
+          "5.3.1.1"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:P00942",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_source_specificity_or_sampling_blocker"
+    },
+    {
+      "accession": "O22822",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:glycan_chemistry",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "specific_ec_context_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+        "why_terminal_before_scoring": "terminal_rejection_source_specificity_or_sampling_blocker"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O22822"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "2.4.1.-"
+        ],
+        "ec_numbers": [
+          "2.4.1.-"
+        ],
+        "pdb_ids": [
+          "5U6M",
+          "5U6N",
+          "5U6S",
+          "5V2J",
+          "5V2K"
+        ],
+        "protein_name": "UDP-glycosyltransferase 74F2 (EC 2.4.1.-) (AtSGT1) (Salicylic acid glucosyltransferase 1)",
+        "specific_ec_numbers": [],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:O22822",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_source_specificity_or_sampling_blocker"
+    },
+    {
+      "accession": "O22943",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:glycan_chemistry",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "specific_ec_context_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+        "why_terminal_before_scoring": "terminal_rejection_source_specificity_or_sampling_blocker"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O22943"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "2.4.-.-"
+        ],
+        "ec_numbers": [
+          "2.4.-.-"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Probable glycosyltransferase STELLO1 (EC 2.4.-.-)",
+        "specific_ec_numbers": [],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:O22943",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_source_specificity_or_sampling_blocker"
+    },
+    {
+      "accession": "A6NJ78",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:transferase_methyl",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "mechanism_lane_not_covered_by_existing_counterevidence_rules",
+          "specific_ec_context_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+        "why_terminal_before_scoring": "terminal_rejection_uncovered_mechanism_lane"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "A6NJ78"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "2.1.1.-"
+        ],
+        "ec_numbers": [
+          "2.1.1.-"
+        ],
+        "pdb_ids": [
+          "7PNX",
+          "7PNY",
+          "7PNZ",
+          "8IPI",
+          "8IPK",
+          "8IPL",
+          "8IPM",
+          "8QRL",
+          "9G5C",
+          "9G5D"
+        ],
+        "protein_name": "12S rRNA N(4)-cytidine methyltransferase METTL15 (12S rRNA m4C methyltransferase) (EC 2.1.1.-) (Methyltransferase 5 domain-containing protein 1) (Methyltransferase-like protein 15)",
+        "specific_ec_numbers": [],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:A6NJ78",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O43148",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:transferase_methyl",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+        ],
+        "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+        "why_terminal_before_scoring": "terminal_rejection_uncovered_mechanism_lane"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O43148"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "2.1.1.56"
+        ],
+        "pdb_ids": [
+          "3BGV",
+          "3EPP",
+          "5E8J",
+          "5E9J",
+          "5E9W",
+          "8Q69",
+          "8Q8G",
+          "8Q9W"
+        ],
+        "protein_name": "mRNA cap guanine-N(7) methyltransferase (EC 2.1.1.56) (RG7MT1) (mRNA (guanine-N(7))-methyltransferase) (mRNA cap methyltransferase) (hCMT1) (hMet) (hcm1p)",
+        "specific_ec_numbers": [
+          "2.1.1.56"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:O43148",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O60678",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:transferase_methyl",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+        ],
+        "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+        "why_terminal_before_scoring": "terminal_rejection_uncovered_mechanism_lane"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O60678"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "2.1.1.319"
+        ],
+        "pdb_ids": [
+          "2FYT",
+          "3SMQ",
+          "4HSG",
+          "4QQN",
+          "4RYL",
+          "8G2F",
+          "8G2G",
+          "8SHB",
+          "8SHR",
+          "8SIO"
+        ],
+        "protein_name": "Protein arginine N-methyltransferase 3 (EC 2.1.1.319) (Heterogeneous nuclear ribonucleoprotein methyltransferase-like protein 3)",
+        "specific_ec_numbers": [
+          "2.1.1.319"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:O60678",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "O60725",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:transferase_methyl",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+        ],
+        "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+        "why_terminal_before_scoring": "terminal_rejection_uncovered_mechanism_lane"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "O60725"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "2.1.1.100"
+        ],
+        "pdb_ids": [],
+        "protein_name": "Protein-S-isoprenylcysteine O-methyltransferase (EC 2.1.1.100) (Isoprenylcysteine carboxylmethyltransferase) (Prenylated protein carboxyl methyltransferase) (PPMT) (Prenylcysteine carboxyl methyltransferase) (pcCMT)",
+        "specific_ec_numbers": [
+          "2.1.1.100"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:O60725",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "P0DPD7",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:transferase_methyl",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "mechanism_lane_not_covered_by_existing_counterevidence_rules",
+          "specific_ec_context_missing"
+        ],
+        "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+        "why_terminal_before_scoring": "terminal_rejection_uncovered_mechanism_lane"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "P0DPD7"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "2.1.1.-"
+        ],
+        "ec_numbers": [
+          "2.1.1.-"
+        ],
+        "pdb_ids": [
+          "2PXX"
+        ],
+        "protein_name": "EEF1A lysine methyltransferase 4 (EC 2.1.1.-)",
+        "specific_ec_numbers": [],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:P0DPD7",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_uncovered_mechanism_lane"
+    },
+    {
+      "accession": "P11086",
+      "countable_label_candidate": false,
+      "excluded_context_from_positive_scoring": [
+        "protein_name",
+        "ec_numbers",
+        "uniprot_entry_name",
+        "UniProt prose/context",
+        "source_query_text"
+      ],
+      "inverse_gate_score_status": "not_run_no_candidate_passed_source_gap_prerequisites",
+      "lane_id": "external_source:transferase_methyl",
+      "predictive_or_import_evidence": {
+        "abstain_threshold": 0.4115,
+        "active_site_feature_count": null,
+        "binding_site_feature_count": null,
+        "catalytic_activity_count": null,
+        "production_fingerprint_count": 8,
+        "source_evidence_blockers_at_freeze": [
+          "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+        ],
+        "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+        "why_terminal_before_scoring": "terminal_rejection_uncovered_mechanism_lane"
+      },
+      "production_fingerprint_scoring_status": "not_run_pre_scoring_source_gap_terminal_rejection",
+      "ready_for_label_import": false,
+      "review_only_context": {
+        "alphafold_ids": [
+          "P11086"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "ec_numbers": [
+          "2.1.1.28"
+        ],
+        "pdb_ids": [
+          "1HNN",
+          "1N7I",
+          "1N7J",
+          "1YZ3",
+          "2AN3",
+          "2AN4",
+          "2AN5",
+          "2G70",
+          "2G71",
+          "2G72",
+          "2G8N",
+          "2OBF",
+          "2ONY",
+          "2ONZ",
+          "2OPB",
+          "3HCA",
+          "3HCB",
+          "3HCC",
+          "3HCD",
+          "3HCE",
+          "3HCF",
+          "3KPJ",
+          "3KPU",
+          "3KPV",
+          "3KPW",
+          "3KPY",
+          "3KQM",
+          "3KQO",
+          "3KQP",
+          "3KQQ",
+          "3KQS",
+          "3KQT",
+          "3KQV",
+          "3KQW",
+          "3KQY",
+          "3KR0",
+          "3KR1",
+          "3KR2",
+          "4DM3",
+          "4MIK",
+          "4MQ4",
+          "6WS1",
+          "7TWU",
+          "7TX2"
+        ],
+        "protein_name": "Phenylethanolamine N-methyltransferase (PNMTase) (EC 2.1.1.28) (Noradrenaline N-methyltransferase)",
+        "specific_ec_numbers": [
+          "2.1.1.28"
+        ],
+        "uniprot_entry_name": null,
+        "uniprot_review_status": null
+      },
+      "row_id": "uniprot:P11086",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "terminal_rejection_uncovered_mechanism_lane"
+    }
+  ],
+  "synthesis_conclusion": {
+    "label_import_decision": "no_import_ready_rows",
+    "next_external_minicampaign_decision": "new_scored_candidate_surface_requires_source_complete_rows_not_rejected_here",
+    "overall": "external_source_gap_minicampaign_closed_by_pre_scoring_terminal_rejections",
+    "production_scoring_decision": "do_not_run_current_fingerprint_scores_on_source_gap_rows"
+  }
+}

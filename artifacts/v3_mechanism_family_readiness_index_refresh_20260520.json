@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "added_packets": [
+      "artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json",
+      "artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json"
+    ],
+    "artifact_migration_files_edited": false,
+    "created_at": "2026-05-20T18:04:27Z",
+    "curated_label_registry_edited": false,
+    "family_packet_count": 6,
+    "fingerprint_registry_edited": false,
+    "method": "mechanism_family_readiness_index_refresh",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_index": "artifacts/v3_mechanism_family_readiness_index_20260520.json"
+  },
+  "rows": [
+    {
+      "artifact": "artifacts/v3_glycoside_hydrolase_family_readiness_packet_20260520.json",
+      "artifact_sha256": "cf084582021d96aaa6d4ba8e171f6516b7a2ee0bb41d765f21b3967e86ffe57e",
+      "current_decision": "do_not_promote_production_fingerprint",
+      "family_id": "glycoside_hydrolase",
+      "next_experiment_id": "glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only",
+      "next_experiment_target_row_count": "10-20",
+      "positive_like_accession": "Q6NSJ0",
+      "positive_like_status": "deferred_requires_human_expert",
+      "priority_rank": 1,
+      "priority_reason": "Most concrete non-ePK boundary failure mode: current metal-hydrolase top1 collapse despite acidic-dyad and absent metal-role context; next tranche can directly test hydrolase boundary controls.",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "review_only": true,
+      "selection_freeze_required_before_scoring": true
+    },
+    {
+      "current_decision": "do_not_promote_production_fingerprint",
+      "family_id": "schiff_base_lyase",
+      "key_blockers": [
+        "single_positive_like_row",
+        "source_traced_not_source_free_axis",
+        "representation_near_duplicate_holdout",
+        "broader_duplicate_screening_required"
+      ],
+      "positive_like_row_count": 1,
+      "priority_rank": 2,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_experiment": "schiff_base_lyase_vs_heme_plp_control_tranche_v1_review_only",
+      "selection_freeze_required_before_scoring": true,
+      "source_packet": "artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json"
+    },
+    {
+      "current_decision": "do_not_promote_production_fingerprint",
+      "family_id": "dna_glycosylase_lyase",
+      "key_blockers": [
+        "single_positive_like_row",
+        "sequence_axis_not_geometry_axis",
+        "representation_conflict_holdout",
+        "broader_duplicate_screening_required"
+      ],
+      "positive_like_row_count": 1,
+      "priority_rank": 3,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "recommended_next_experiment": "dna_glycosylase_lyase_vs_flavin_out_of_scope_control_tranche_v1_review_only",
+      "selection_freeze_required_before_scoring": true,
+      "source_packet": "artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json"
+    },
+    {
+      "artifact": "artifacts/v3_sdr_family_readiness_packet_20260520.json",
+      "artifact_sha256": "7068f4b583e4b7e51bf5a994bb16241acb1eeee9ba94b54d9cffe0c61676bd5f",
+      "current_decision": "do_not_promote_production_fingerprint",
+      "family_id": "sdr_nad_p_redox",
+      "next_experiment_id": "freeze_sdr_akr_nadp_control_tranche_v0",
+      "next_experiment_target_row_count": "10-20 total rows, balanced across SDR positives, AKR/NADP siblings, flavin/heme redox current-fingerprint controls, and EC 1.1.1 non-SDR controls",
+      "positive_like_accession": "O14756",
+      "positive_like_status": "needs_review",
+      "priority_rank": 4,
+      "priority_reason": "Already has a no-go packet and a clean 36-row SDR abstention surface; next value depends on the broader SDR/AKR tranche rather than another single-row packet.",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "review_only": true,
+      "selection_freeze_required_before_scoring": true
+    },
+    {
+      "artifact": "artifacts/v3_akr_family_readiness_packet_20260520.json",
+      "artifact_sha256": "28727b0d5acfd4c88a2b9b567eccfa8114c3221d995bff230ea4e3a806dbec2a",
+      "current_decision": "do_not_promote_production_fingerprint",
+      "family_id": "akr_nadp_redox",
+      "next_experiment_id": "akr_sdr_flavin_heme_control_tranche_v1_review_only",
+      "next_experiment_target_row_count": "10-20",
+      "positive_like_accession": "C9JRZ8",
+      "positive_like_status": "needs_review",
+      "priority_rank": 5,
+      "priority_reason": "Strong AKR/NADP sequence/source axis and clear redox sibling controls, but local NADP geometry is less ready than the glycoside acidic-dyad boundary.",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "review_only": true,
+      "selection_freeze_required_before_scoring": true
+    },
+    {
+      "artifact": "artifacts/v3_sugar_phosphate_isomerase_readiness_packet_20260520.json",
+      "artifact_sha256": "cdfda5ccc20128d9f89a2dc66cdab50e4a72058679efb7fe4094bccf46ecd5e5",
+      "current_decision": "do_not_promote_production_fingerprint",
+      "family_id": "sugar_phosphate_isomerase",
+      "next_experiment_id": "sugar_phosphate_isomerase_vs_flavin_control_tranche_v1_review_only",
+      "next_experiment_target_row_count": "10-20",
+      "positive_like_accession": "P34949",
+      "positive_like_status": "deferred_requires_human_expert",
+      "priority_rank": 6,
+      "priority_reason": "Useful flavin-scope control with weak top1 and absent flavin context; expert-review blocker remains prominent.",
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "ready_to_expand_positive_fingerprint_universe": false,
+      "review_only": true,
+      "selection_freeze_required_before_scoring": true
+    }
+  ],
+  "synthesis_conclusion": {
+    "do_not_promote_any_family_now": true,
+    "overall": "all_family_packets_review_only_not_freeze_ready",
+    "recommended_next_family_experiment": "glycoside_hydrolase_source_free_axis_repair_or_schiff_base_lyase_vs_heme_plp_control_tranche_review_only",
+    "why": "glycoside remains the top already-preregistered closed boundary; Schiff-base and DNA glycosylase/lyase are compact new non-ePK packets but each needs a frozen control tranche before scoring."
+  }
+}

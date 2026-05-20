@@ -133,6 +133,40 @@ rejections, including 11 current-countable structural duplicate-signal rows.
 `P31040` remains a sequence-neighbor caveat under the deterministic 5-mer
 baseline, but structural duplicate rejection is the decisive terminal evidence.
 No superiority claim or import decision is in scope.
+Current source-gap mini-campaign scope:
+`artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json`
+freezes 18 external rows from the post-P06744 sourcing surface before any
+outcome scoring. The companion decision packet records all 18 as terminal
+review-only rejections by pre-scoring source/scope blockers: missing active-site
+source evidence, source-specificity/sampling blockers, or uncovered
+methyltransferase mechanism-lane coverage. The current 8-fingerprint inverse
+gate remains configured at `0.4115`, but it correctly scores 0 rows because
+none passes source-gap prerequisites. No sequence, Foldseek, geometry,
+registry, import, or production scorer claim is in scope for this tranche.
+`artifacts/v3_source_gap_minicampaign_baseline_comparison_20260520.json`
+is the matching no-claim baseline artifact. EC/keyword lane routing is
+diagnostic only and would over-admit all 18 rows; k-mer, ESM, Foldseek, and
+geometry/retrieval comparisons are not valid performance evidence on this
+pre-scoring source-gap surface.
+Current Schiff-base lyase readiness scope:
+`artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json` is review-only
+and not a production fingerprint. It uses Q9BXD5 as the only positive-like row,
+with source-traced Tyr143/Lys173 Schiff-base evidence, absent heme context
+against a weak `heme_peroxidase_oxidase` top1, and representation/broader
+duplicate blockers still active. The next admissible step is a frozen
+Schiff-base lyase versus heme/PLP control tranche; no threshold, registry edit,
+label import, or production scorer is authorized.
+Current DNA glycosylase/lyase readiness scope:
+`artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json` is
+review-only and not a production fingerprint. It uses P06746 as the only
+positive-like DNA Pol X/5'-dRP lyase row, with source-traced Lys72 sequence
+context and current-reference contrasts that lack the same axis. The packet
+keeps the representation-conflict and broader duplicate blockers open, so the
+next admissible step is a frozen DNA glycosylase/lyase versus flavin/out-of-
+scope control tranche before any source-free geometry scoring.
+`artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json` now folds
+Schiff-base lyase and DNA glycosylase/lyase into the non-ePK readiness index.
+All six indexed families remain no-go for production promotion.
 MEK1/ERK1 source review now provides two
 source-authoritative broad protein-substrate review controls (`9UUR` and
 `9UUX`) and rejects same-chain `9UW4`, but the broad-role stress test shows a

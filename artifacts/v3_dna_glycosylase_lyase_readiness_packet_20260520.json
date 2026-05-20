@@ -1,0 +1,154 @@
+{
+  "family_readiness": {
+    "cofactor_and_active_site_evidence": {
+      "dna_pol_x_lyase_axis": {
+        "active_site_lys_local_windows": [
+          {
+            "local_acidic_residue_count": 3,
+            "local_basic_residue_count": 7,
+            "position": 72,
+            "residue": "K",
+            "window_end": 84,
+            "window_sequence": "KKLPGVGTKIAEKIDEFLATGKLRK",
+            "window_start": 60
+          }
+        ],
+        "current_reference_dna_pol_x_lyase_axis_match_count": 0,
+        "has_active_site_basic_acidic_context": true,
+        "source_active_site_lys_positions": [
+          72
+        ],
+        "source_free_geometry_axis_ready": false,
+        "source_limitation": "axis is sequence/source-position review evidence; selected structure mapping and source-free geometry are not ready"
+      },
+      "duplicate_and_representation_context": {
+        "bounded_current_reference_backend": "no_near_duplicate_signal",
+        "external_all_vs_all_backend": "no_near_duplicate_signal",
+        "representation_control_status": "representation_near_duplicate_holdout",
+        "structural_neighbor_above_tm_0_7": false,
+        "structural_neighbor_tm_score": 0.3661
+      }
+    },
+    "counterfamilies": [
+      {
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "matched_reference_accessions": [
+          "P08373"
+        ],
+        "why_relevant": "nearest current-reference contrast P08373 is a flavin seed-fingerprint row lacking the DNA Pol X lyase axis"
+      },
+      {
+        "fingerprint_id": "out_of_scope_current_reference_controls",
+        "matched_reference_accessions": [
+          "P26239",
+          "P31116"
+        ],
+        "why_relevant": "two nearest current references are out-of-scope rows that lack source-active-site Lys windows"
+      }
+    ],
+    "current_decision": "do_not_promote_production_fingerprint",
+    "import_and_duplicate_blockers": {
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "review_decision_not_terminal"
+      ],
+      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal",
+      "terminal_status_before_family_repair": "rejected_duplicate_or_near_duplicate"
+    },
+    "positive_like_rows": [
+      {
+        "accession": "P06746",
+        "countable_label_candidate": false,
+        "entry_id": "uniprot:P06746",
+        "family_axis_status": "review_only_dna_pol_x_lyase_axis_contrast_ready",
+        "normalized_decision_status_after_repair": "needs_review",
+        "previous_normalized_decision_status": "rejected_representation_conflict",
+        "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+        "ready_for_label_import": false,
+        "review_resolution_status": "rejected_representation_conflict",
+        "source_confidence": "medium"
+      }
+    ]
+  },
+  "likely_failure_modes": [
+    {
+      "id": "single_positive_like_row",
+      "risk": "P06746 is the only direct positive-like row in this packet, so family breadth is not tested."
+    },
+    {
+      "id": "sequence_axis_not_geometry_axis",
+      "risk": "The active-site Lys/basic-acidic signal is source/sequence-derived; selected-structure local geometry is not ready."
+    },
+    {
+      "id": "representation_conflict_holdout",
+      "risk": "Representation evidence still points at high-cosine current references despite sequence/UniRef/Foldseek no-duplicate signals."
+    },
+    {
+      "id": "flavin_or_out_of_scope_neighbor_collision",
+      "risk": "Nearest current references include a flavin seed and out-of-scope controls, so a production rule would need counterfamily calibration."
+    }
+  ],
+  "metadata": {
+    "artifact_migration_files_edited": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T18:04:27Z",
+    "curated_label_registry_edited": false,
+    "family_id": "dna_glycosylase_lyase",
+    "fingerprint_registry_edited": false,
+    "method": "mechanism_family_readiness_packet",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_artifacts": {
+      "dna_pol_x_lyase_import_safety_adjudication": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json",
+      "dna_pol_x_lyase_repair_control": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json",
+      "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "pilot_needs_review_resolution": "artifacts/v3_external_source_pilot_needs_review_resolution_1025.json",
+      "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json"
+    },
+    "source_methods": {
+      "dna_pol_x_lyase_import_safety_adjudication": "external_source_pilot_dna_pol_x_lyase_import_safety_adjudication",
+      "dna_pol_x_lyase_repair_control": "external_source_pilot_dna_pol_x_lyase_repair_control",
+      "pilot_active_site_evidence_decisions": "external_source_pilot_active_site_evidence_decisions",
+      "pilot_needs_review_resolution": "external_source_pilot_needs_review_resolution",
+      "pilot_terminal_decisions": "external_source_pilot_terminal_decisions"
+    }
+  },
+  "next_experiment": {
+    "counterfamily_requirements": [
+      "current flavin_dehydrogenase_reductase nearest-neighbor controls",
+      "out-of-scope current references from the P06746 representation neighborhood",
+      "generic lyase controls without DNA/AP lyase active-site context"
+    ],
+    "decision_to_start_now": false,
+    "frozen_axes_before_scoring": [
+      "source-free catalytic Lys environment and basic/acidic local context",
+      "DNA/AP substrate-pocket proxy where local structure supports it",
+      "flavin/cofactor absence or contrast context",
+      "current-reference sequence and current-countable structural duplicate screens"
+    ],
+    "id": "dna_glycosylase_lyase_vs_flavin_out_of_scope_control_tranche_v1_review_only",
+    "positive_like_requirements": [
+      "external DNA glycosylase/AP lyase/5-dRP lyase rows with explicit catalytic Lys or Schiff-base active-site evidence",
+      "local structures or AlphaFold sidecars available for source-free residue-environment axes"
+    ],
+    "promotion_blockers_that_must_remain_closed": [
+      "production fingerprint edit",
+      "curated label import",
+      "threshold selection",
+      "full label-factory gate extension"
+    ],
+    "selection_freeze_required_before_scoring": true,
+    "target_row_count": "10-20"
+  }
+}

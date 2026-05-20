@@ -285,6 +285,27 @@ import.
   as a sequence-neighbor caveat, but the completed structural duplicate screen
   is the stronger terminal blocker. The diagnostic authorizes no import,
   superiority claim, registry edit, or production fingerprint change.
+- `artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json`
+  freezes a second, different 18-row review-only mini-campaign from the
+  post-P06744 sourcing surface before outcome scoring. It targets source-gap
+  rows rather than rerunning the closed structural-duplicate set: six missing
+  active-site-source rows, six source-specificity/sampling-gap rows, and six
+  uncovered methyltransferase-lane rows. The companion decision packet,
+  `artifacts/v3_prospective_external_source_gap_minicampaign_decision_packet_20260520.json`,
+  records all 18 as terminal pre-scoring rejections, with 0 sequence-screened,
+  0 Foldseek-screened, 0 inverse-gate-scored, 0 import-ready, and 0 countable
+  rows. The baseline companion,
+  `artifacts/v3_source_gap_minicampaign_baseline_comparison_20260520.json`,
+  makes no superiority claim: EC/keyword routing would admit all 18 rows while
+  source completeness detects all 18 blockers, and sequence/ESM/Foldseek/
+  geometry comparisons remain unscored because the surface is pre-scoring.
+- `artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json`,
+  `artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json`, and
+  `artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json` package
+  two more non-ePK family-readiness decisions. Q9BXD5 and P06746 remain
+  single-row, review-only positive-like controls with source-free-axis,
+  duplicate-screening, and representation blockers; no production fingerprint,
+  registry, or import path is opened.
 
 ## Immediate Pilot Direction
 

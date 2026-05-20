@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 221
-- Measured elapsed time: 6827.1 minutes (113.79 hours)
+- Entries: 222
+- Measured elapsed time: 6844.7 minutes (114.08 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 85.3 measured minutes (1.42 hours)
-- post-infra-science: 1597.0 measured minutes (26.62 hours)
+- post-infra-science: 1614.5 measured minutes (26.91 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2582
-- Evidence references logged: 2088
+- Artifact references logged: 2594
+- Evidence references logged: 2105
 
 ## Recent Entries
-
-### 2026-05-20T14:14:08.715044+00:00 - post-infra-science
-
-- Task: SDR readiness packet and mini-campaign sequence baseline
-- Time mode: measured
-- Measured minutes: 16.45
-- Started: 2026-05-20T13:57:21Z
-- Ended: 2026-05-20T14:13:48Z
-- Artifacts: artifacts/v3_sdr_family_readiness_packet_20260520.json, artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 683-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, subagent JSON packets validated, SDR readiness packet keeps O14756 review-only and no-go for production fingerprint expansion, SDR packet records 36 clean SDR abstentions and AKR/NADP counterfamily requirements, mini-campaign sequence baseline records P07237 terminal rejection and P31040 k-mer review-priority caveat, Foldseek restored at /private/tmp/catalytic-foldseek-env/bin/foldseek but candidate coordinate sidecars missing keep 11 rows needs_review, inverse gate scored 0 rows because no candidate cleared structural screening, focused artifact tests passed, final 685-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ### 2026-05-20T15:32:22.885905+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: full 694-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, compileall passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation; safety rails preserved.
+
+### 2026-05-20T18:22:16.234314+00:00 - post-infra-science
+
+- Task: Source-gap mini-campaign and family readiness packets
+- Time mode: measured
+- Measured minutes: 17.55
+- Started: 2026-05-20T18:04:27Z
+- Ended: 2026-05-20T18:22:00Z
+- Artifacts: artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json, artifacts/v3_prospective_external_source_gap_minicampaign_decision_packet_20260520.json, artifacts/v3_source_gap_minicampaign_baseline_comparison_20260520.json, artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json, artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json, artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 699-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, source-gap mini-campaign froze 18 rows before scoring, source-gap decisions closed 18 of 18 rows as terminal pre-scoring rejections, source-gap baseline diagnostic made no superiority claim, Schiff-base lyase Q9BXD5 readiness packet remains no-go, DNA glycosylase lyase P06746 readiness packet remains no-go, readiness refresh indexes six non-ePK families as no-go, focused small-win artifact tests passed, final 700-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and three external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -296,6 +296,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T17:16:23.980051+00:00: Glycoside hydrolase control tranche is closed as a review-only small win; future work needs source-free acidic-dyad/glycan-pocket axes and broader duplicate coverage before any import path.
 - 2026-05-20T17:19:03.090362+00:00: Glycoside baseline comparison is diagnostic only; Foldseek external no-signal does not replace current-countable structural duplicate screening.
 - 2026-05-20T17:20:38.990082+00:00: Small-win run is ready to commit and push with ePK still review-only and glycoside hydrolase still no-go for production.
+- 2026-05-20T18:22:16.234314+00:00: Next main-loop work should use source-complete external rows or freeze one Schiff-base/DNA-lyase control tranche before scoring; ePK remains research-lane-only.
 
 ## Scope Adjustments
 
@@ -415,3 +416,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T17:10:02.023049+00:00: ePK lane synthesis now includes later pushed and dirty sibling-worktree evidence without copying production changes; PKA/CFTR mapping is research-lane-only if reopened.
 - 2026-05-20T17:16:23.980051+00:00: Glycoside hydrolase remains no-go for production fingerprint expansion; Q6NSJ0 is needs-review boundary evidence, not a label import candidate.
 - 2026-05-20T17:19:03.090362+00:00: Modern baseline comparison now exists for the glycoside tranche without authorizing production scoring or import.
+- 2026-05-20T18:22:16.234314+00:00: Main loop added a source-gap terminal mini-campaign plus two non-ePK readiness packets; no registry import or production fingerprint path opened.

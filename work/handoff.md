@@ -50,6 +50,51 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T18:04:27Z automation run,
+`artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json`
+freezes a second prospective external mini-campaign before scoring. This
+18-row source-gap tranche is deliberately different from the closed
+structural-duplicate mini-campaign: it selects six rows with missing
+active-site source evidence, six rows with source-specificity or sampling-cap
+blockers, and six methyltransferase rows from an uncovered external mechanism
+lane. The freeze excludes the closed 12-row mini-campaign and the three
+imported external hard negatives. No sequence-neighbor, Foldseek, inverse-gate,
+production-fingerprint, EC/keyword outcome, or import-gate scoring was used to
+select rows.
+
+`artifacts/v3_prospective_external_source_gap_minicampaign_decision_packet_20260520.json`
+closes those 18 rows as terminal review-only rejections before scoring:
+6 `terminal_rejection_missing_active_site_source_evidence`, 6
+`terminal_rejection_source_specificity_or_sampling_blocker`, and 6
+`terminal_rejection_uncovered_mechanism_lane`. The packet explicitly separates
+source/import evidence from review-only context, records 0 sequence-screened,
+0 Foldseek-screened, and 0 inverse-gate-scored rows, and authorizes 0 label
+imports or production fingerprint edits.
+`artifacts/v3_source_gap_minicampaign_baseline_comparison_20260520.json`
+records the corresponding no-claim baseline diagnostic: EC/keyword lane routing
+would admit all 18 rows but detects none of the source blockers, while
+geometry, deterministic k-mer, ESM, and Foldseek metrics are intentionally
+unscored/unavailable because the rows fail before scoring.
+
+The same run adds two non-ePK family-readiness packets:
+`artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json` for Q9BXD5
+and `artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json` for
+P06746. Both are review-only no-go packets: each has one positive-like row,
+no source-free production axis, unresolved duplicate/representation blockers,
+and a frozen 10-20 row control-tranche experiment as the next admissible step.
+`artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json` folds
+those packets into the existing non-ePK index without changing any registry.
+
+Evidence-based confidence call: confidence is high that the new external
+source-gap mini-campaign is a real small win because it produces terminal
+decisions and prevents source-blocked rows from drifting into scored/import
+surfaces. Confidence is high that Schiff-base lyase and DNA
+glycosylase/lyase remain no-go production fingerprints because both packets
+are single-row, source-traced, and blocked by duplicate/representation
+questions. Confidence is moderate that the next useful main-loop experiment is
+either a genuinely source-complete external mini-campaign or one frozen
+Schiff-base/DNA-lyase control tranche, not ePK production work.
+
 As of the 2026-05-20T17:15:21Z automation run,
 `artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json`
 turns the frozen 15-row glycoside hydrolase control tranche into terminal

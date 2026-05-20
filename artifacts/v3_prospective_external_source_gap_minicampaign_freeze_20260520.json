@@ -1,0 +1,777 @@
+{
+  "frozen_before_scoring_statement": "This 18-row external source-gap mini-campaign was selected only from pre-existing source/sourcing blocker fields in the post-P06744 review-only surface. No geometry, sequence-neighbor, Foldseek, inverse-gate, production-fingerprint, EC/keyword outcome, or import-gate scoring was used to choose rows.",
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_migration_files_edited": false,
+    "candidate_count": 18,
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T18:04:27Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "imported_external_hard_negative_excluded_accessions": [
+      "P06744",
+      "P78549",
+      "Q3LXA3"
+    ],
+    "lane_counts": {
+      "external_source:glycan_chemistry": 4,
+      "external_source:isomerase": 4,
+      "external_source:lyase": 2,
+      "external_source:oxidoreductase_long_tail": 2,
+      "external_source:transferase_methyl": 6
+    },
+    "method": "prospective_external_source_gap_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "prior_minicampaign_excluded_accessions": [
+      "P07237",
+      "P0A6L4",
+      "P14174",
+      "P28240",
+      "P28330",
+      "P30101",
+      "P30838",
+      "P31040",
+      "P36959",
+      "P54098",
+      "Q8TAT5",
+      "Q9BZE2"
+    ],
+    "production_fingerprint_count": 8,
+    "production_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selection_bucket_counts": {
+      "active_site_source_missing": 6,
+      "source_specificity_or_sampling_gap": 6,
+      "uncovered_mechanism_lane": 6
+    },
+    "source_artifact": "artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json",
+    "source_artifact_method": "external_hard_negative_post_p06744_sourcing",
+    "source_evidence_blocker_counts": {
+      "active_site_feature_sampling_cap_reached": 4,
+      "mechanism_lane_not_covered_by_existing_counterevidence_rules": 6,
+      "specific_ec_context_missing": 4,
+      "uniprot_active_site_feature_missing": 6
+    },
+    "source_surface_row_count": 379,
+    "sourcing_status_counts": {
+      "blocked_active_site_source_missing": 6,
+      "blocked_source_sourcing_criteria": 6,
+      "blocked_uncovered_mechanism_lane": 6
+    }
+  },
+  "rows": [
+    {
+      "accession": "O15121",
+      "active_site_feature_count": 0,
+      "alphafold_ids": [
+        "O15121"
+      ],
+      "binding_site_feature_count": 0,
+      "broad_or_incomplete_ec_numbers": [
+        "5.2.1.-"
+      ],
+      "catalytic_activity_count": 6,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "1.14.19.17",
+        "5.2.1.-"
+      ],
+      "lane_id": "external_source:isomerase",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 1,
+      "protein_name": "Sphingolipid delta(4)-desaturase DES1 (EC 1.14.19.17) (Cell migration-inducing gene 15 protein) (Degenerative spermatocyte homolog 1) (Dihydroceramide desaturase-1) (Membrane lipid desaturase) (Retinol isomerase) (EC 5.2.1.-)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O15121",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "active_site_source_missing",
+      "selection_reason": "deterministic first two rows per covered lane with UniProt active-site feature missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+      "specific_ec_numbers": [
+        "1.14.19.17"
+      ],
+      "uniprot_entry_name": "DEGS1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O43708",
+      "active_site_feature_count": 0,
+      "alphafold_ids": [
+        "O43708"
+      ],
+      "binding_site_feature_count": 6,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": 2,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.5.1.18",
+        "5.2.1.2"
+      ],
+      "lane_id": "external_source:isomerase",
+      "pdb_ids": [
+        "1FW1",
+        "8E8P"
+      ],
+      "pre_outcome_selection_rank": 2,
+      "protein_name": "Maleylacetoacetate isomerase (MAAI) (EC 5.2.1.2) (GSTZ1-1) (Glutathione S-transferase zeta 1) (EC 2.5.1.18)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O43708",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "active_site_source_missing",
+      "selection_reason": "deterministic first two rows per covered lane with UniProt active-site feature missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+      "specific_ec_numbers": [
+        "2.5.1.18",
+        "5.2.1.2"
+      ],
+      "uniprot_entry_name": "MAAI_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O05394",
+      "active_site_feature_count": 0,
+      "alphafold_ids": [
+        "O05394"
+      ],
+      "binding_site_feature_count": 0,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": 2,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "4.4.1.1",
+        "4.4.1.2"
+      ],
+      "lane_id": "external_source:lyase",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 3,
+      "protein_name": "Cystathionine gamma-lyase (EC 4.4.1.1) (Gamma-cystathionase) (Homocysteine gamma-lyase) (EC 4.4.1.2)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O05394",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "active_site_source_missing",
+      "selection_reason": "deterministic first two rows per covered lane with UniProt active-site feature missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+      "specific_ec_numbers": [
+        "4.4.1.1",
+        "4.4.1.2"
+      ],
+      "uniprot_entry_name": "MCCB_BACSU",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O43306",
+      "active_site_feature_count": 0,
+      "alphafold_ids": [
+        "O43306"
+      ],
+      "binding_site_feature_count": 12,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": 1,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "4.6.1.1"
+      ],
+      "lane_id": "external_source:lyase",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 4,
+      "protein_name": "Adenylate cyclase type 6 (EC 4.6.1.1) (ATP pyrophosphate-lyase 6) (Adenylate cyclase type VI) (Adenylyl cyclase 6) (Ca(2+)-inhibitable adenylyl cyclase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O43306",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "active_site_source_missing",
+      "selection_reason": "deterministic first two rows per covered lane with UniProt active-site feature missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+      "specific_ec_numbers": [
+        "4.6.1.1"
+      ],
+      "uniprot_entry_name": "ADCY6_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O43593",
+      "active_site_feature_count": 0,
+      "alphafold_ids": [
+        "O43593"
+      ],
+      "binding_site_feature_count": 3,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": 1,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "1.14.11.65"
+      ],
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 5,
+      "protein_name": "Lysine-specific demethylase hairless (EC 1.14.11.65) ([histone H3]-dimethyl-L-lysine(9) demethylase hairless)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O43593",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "active_site_source_missing",
+      "selection_reason": "deterministic first two rows per covered lane with UniProt active-site feature missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+      "specific_ec_numbers": [
+        "1.14.11.65"
+      ],
+      "uniprot_entry_name": "HAIR_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "O95571",
+      "active_site_feature_count": 0,
+      "alphafold_ids": [
+        "O95571"
+      ],
+      "binding_site_feature_count": 3,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": 1,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "1.13.11.18"
+      ],
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_ids": [
+        "4CHL"
+      ],
+      "pre_outcome_selection_rank": 6,
+      "protein_name": "Persulfide dioxygenase ETHE1, mitochondrial (EC 1.13.11.18) (Ethylmalonic encephalopathy protein 1) (Hepatoma subtracted clone one protein) (Sulfur dioxygenase ETHE1)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O95571",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "active_site_source_missing",
+      "selection_reason": "deterministic first two rows per covered lane with UniProt active-site feature missing",
+      "source_evidence_blockers_at_freeze": [
+        "uniprot_active_site_feature_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_active_site_source_missing",
+      "specific_ec_numbers": [
+        "1.13.11.18"
+      ],
+      "uniprot_entry_name": "ETHE1_HUMAN",
+      "uniprot_review_status": "UniProtKB reviewed (Swiss-Prot)"
+    },
+    {
+      "accession": "A3RF67",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "A3RF67"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "3.2.1.161"
+      ],
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 7,
+      "protein_name": "Isoflavonoid 7-O-beta-apiosyl-glucoside beta-glycosidase (EC 3.2.1.161) (Beta-glycosidase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:A3RF67",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "selection_reason": "deterministic rows with source-specificity or active-site sampling-cap blockers",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+      "specific_ec_numbers": [
+        "3.2.1.161"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "I1C083",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "I1C083"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "3.2.2.22"
+      ],
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 8,
+      "protein_name": "Mucoricin (EC 3.2.2.22) (Ricin-like toxin) (rRNA N-glycosidase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:I1C083",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "selection_reason": "deterministic rows with source-specificity or active-site sampling-cap blockers",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+      "specific_ec_numbers": [
+        "3.2.2.22"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "O43447",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "O43447"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "5.2.1.8"
+      ],
+      "lane_id": "external_source:isomerase",
+      "pdb_ids": [
+        "1MZW",
+        "1QOI",
+        "5O9Z",
+        "6AHD",
+        "8H6K",
+        "8H6L",
+        "8QO9",
+        "8QZS",
+        "8R09",
+        "8R0B",
+        "8RM5"
+      ],
+      "pre_outcome_selection_rank": 9,
+      "protein_name": "Peptidyl-prolyl cis-trans isomerase H (PPIase H) (EC 5.2.1.8) (Rotamase H) (Small nuclear ribonucleoprotein particle-specific cyclophilin H) (CypH) (U-snRNP-associated cyclophilin SnuCyp-20) (USA-CYP)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O43447",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "selection_reason": "deterministic rows with source-specificity or active-site sampling-cap blockers",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+      "specific_ec_numbers": [
+        "5.2.1.8"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "P00942",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "P00942"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "5.3.1.1"
+      ],
+      "lane_id": "external_source:isomerase",
+      "pdb_ids": [
+        "1I45",
+        "1NEY",
+        "1NF0",
+        "1YPI",
+        "2YPI",
+        "3YPI",
+        "4FF7",
+        "7TIM"
+      ],
+      "pre_outcome_selection_rank": 10,
+      "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Triose-phosphate isomerase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P00942",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "selection_reason": "deterministic rows with source-specificity or active-site sampling-cap blockers",
+      "source_evidence_blockers_at_freeze": [
+        "active_site_feature_sampling_cap_reached"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+      "specific_ec_numbers": [
+        "5.3.1.1"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "O22822",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "O22822"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [
+        "2.4.1.-"
+      ],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.1.-"
+      ],
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_ids": [
+        "5U6M",
+        "5U6N",
+        "5U6S",
+        "5V2J",
+        "5V2K"
+      ],
+      "pre_outcome_selection_rank": 11,
+      "protein_name": "UDP-glycosyltransferase 74F2 (EC 2.4.1.-) (AtSGT1) (Salicylic acid glucosyltransferase 1)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O22822",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "selection_reason": "deterministic rows with source-specificity or active-site sampling-cap blockers",
+      "source_evidence_blockers_at_freeze": [
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+      "specific_ec_numbers": [],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "O22943",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "O22943"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [
+        "2.4.-.-"
+      ],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.4.-.-"
+      ],
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 12,
+      "protein_name": "Probable glycosyltransferase STELLO1 (EC 2.4.-.-)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O22943",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "source_specificity_or_sampling_gap",
+      "selection_reason": "deterministic rows with source-specificity or active-site sampling-cap blockers",
+      "source_evidence_blockers_at_freeze": [
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_source_sourcing_criteria",
+      "specific_ec_numbers": [],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "A6NJ78",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "A6NJ78"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [
+        "2.1.1.-"
+      ],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.-"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids": [
+        "7PNX",
+        "7PNY",
+        "7PNZ",
+        "8IPI",
+        "8IPK",
+        "8IPL",
+        "8IPM",
+        "8QRL",
+        "9G5C",
+        "9G5D"
+      ],
+      "pre_outcome_selection_rank": 13,
+      "protein_name": "12S rRNA N(4)-cytidine methyltransferase METTL15 (12S rRNA m4C methyltransferase) (EC 2.1.1.-) (Methyltransferase 5 domain-containing protein 1) (Methyltransferase-like protein 15)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:A6NJ78",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "selection_reason": "deterministic methyltransferase rows from an uncovered external mechanism lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules",
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+      "specific_ec_numbers": [],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "O43148",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "O43148"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.56"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids": [
+        "3BGV",
+        "3EPP",
+        "5E8J",
+        "5E9J",
+        "5E9W",
+        "8Q69",
+        "8Q8G",
+        "8Q9W"
+      ],
+      "pre_outcome_selection_rank": 14,
+      "protein_name": "mRNA cap guanine-N(7) methyltransferase (EC 2.1.1.56) (RG7MT1) (mRNA (guanine-N(7))-methyltransferase) (mRNA cap methyltransferase) (hCMT1) (hMet) (hcm1p)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O43148",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "selection_reason": "deterministic methyltransferase rows from an uncovered external mechanism lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+      "specific_ec_numbers": [
+        "2.1.1.56"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "O60678",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "O60678"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.319"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids": [
+        "2FYT",
+        "3SMQ",
+        "4HSG",
+        "4QQN",
+        "4RYL",
+        "8G2F",
+        "8G2G",
+        "8SHB",
+        "8SHR",
+        "8SIO"
+      ],
+      "pre_outcome_selection_rank": 15,
+      "protein_name": "Protein arginine N-methyltransferase 3 (EC 2.1.1.319) (Heterogeneous nuclear ribonucleoprotein methyltransferase-like protein 3)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O60678",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "selection_reason": "deterministic methyltransferase rows from an uncovered external mechanism lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+      "specific_ec_numbers": [
+        "2.1.1.319"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "O60725",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "O60725"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.100"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids": [],
+      "pre_outcome_selection_rank": 16,
+      "protein_name": "Protein-S-isoprenylcysteine O-methyltransferase (EC 2.1.1.100) (Isoprenylcysteine carboxylmethyltransferase) (Prenylated protein carboxyl methyltransferase) (PPMT) (Prenylcysteine carboxyl methyltransferase) (pcCMT)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O60725",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "selection_reason": "deterministic methyltransferase rows from an uncovered external mechanism lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+      "specific_ec_numbers": [
+        "2.1.1.100"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "P0DPD7",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "P0DPD7"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [
+        "2.1.1.-"
+      ],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.-"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids": [
+        "2PXX"
+      ],
+      "pre_outcome_selection_rank": 17,
+      "protein_name": "EEF1A lysine methyltransferase 4 (EC 2.1.1.-)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0DPD7",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "selection_reason": "deterministic methyltransferase rows from an uncovered external mechanism lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules",
+        "specific_ec_context_missing"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+      "specific_ec_numbers": [],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    },
+    {
+      "accession": "P11086",
+      "active_site_feature_count": null,
+      "alphafold_ids": [
+        "P11086"
+      ],
+      "binding_site_feature_count": null,
+      "broad_or_incomplete_ec_numbers": [],
+      "catalytic_activity_count": null,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.1.1.28"
+      ],
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids": [
+        "1HNN",
+        "1N7I",
+        "1N7J",
+        "1YZ3",
+        "2AN3",
+        "2AN4",
+        "2AN5",
+        "2G70",
+        "2G71",
+        "2G72",
+        "2G8N",
+        "2OBF",
+        "2ONY",
+        "2ONZ",
+        "2OPB",
+        "3HCA",
+        "3HCB",
+        "3HCC",
+        "3HCD",
+        "3HCE",
+        "3HCF",
+        "3KPJ",
+        "3KPU",
+        "3KPV",
+        "3KPW",
+        "3KPY",
+        "3KQM",
+        "3KQO",
+        "3KQP",
+        "3KQQ",
+        "3KQS",
+        "3KQT",
+        "3KQV",
+        "3KQW",
+        "3KQY",
+        "3KR0",
+        "3KR1",
+        "3KR2",
+        "4DM3",
+        "4MIK",
+        "4MQ4",
+        "6WS1",
+        "7TWU",
+        "7TX2"
+      ],
+      "pre_outcome_selection_rank": 18,
+      "protein_name": "Phenylethanolamine N-methyltransferase (PNMTase) (EC 2.1.1.28) (Noradrenaline N-methyltransferase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P11086",
+      "score_status": "not_scored_in_this_freeze",
+      "selection_bucket": "uncovered_mechanism_lane",
+      "selection_reason": "deterministic methyltransferase rows from an uncovered external mechanism lane",
+      "source_evidence_blockers_at_freeze": [
+        "mechanism_lane_not_covered_by_existing_counterevidence_rules"
+      ],
+      "sourcing_status_at_freeze": "blocked_uncovered_mechanism_lane",
+      "specific_ec_numbers": [
+        "2.1.1.28"
+      ],
+      "uniprot_entry_name": null,
+      "uniprot_review_status": null
+    }
+  ],
+  "selection_rule": [
+    "Exclude the closed 12-row prospective mini-campaign, the three imported external hard negatives, and prior external import surfaces.",
+    "Select six rows with missing UniProt active-site feature evidence across isomerase, lyase, and oxidoreductase covered lanes.",
+    "Select six rows with source-specificity or active-site sampling blockers from glycan/isomerase covered lanes.",
+    "Select six methyltransferase rows from an uncovered mechanism lane, avoiding phosphoryl-transfer/ePK-like reopening in the main loop.",
+    "Sort deterministically by lane and accession inside each bucket before freezing."
+  ]
+}

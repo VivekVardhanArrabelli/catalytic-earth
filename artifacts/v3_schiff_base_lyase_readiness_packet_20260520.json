@@ -1,0 +1,153 @@
+{
+  "family_readiness": {
+    "cofactor_and_active_site_evidence": {
+      "heme_or_cofactor_context": {
+        "acid_base_role_hint_match_count": 1,
+        "heme_ligand_context_absent": true,
+        "heme_or_electron_role_hint_match_count": 0,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      "pocket_boundary_features": {
+        "aromatic_fraction": 0.3571,
+        "hydrophobic_fraction": 0.4286,
+        "nearby_aromatic_residue_count": 10,
+        "nearby_basic_residue_count": 2,
+        "nearby_residue_count": 28,
+        "positive_fraction": 0.0714
+      },
+      "schiff_base_axis": {
+        "schiff_base_lys_present": true,
+        "source_active_site_lys_positions": [
+          173
+        ],
+        "source_active_site_tyr_positions": [
+          143
+        ],
+        "source_free_position_policy_ready": false,
+        "source_limitation": "positions are source-traced/homology-supported review evidence, not a frozen source-free local axis",
+        "tyr_lys_spacing_values": [
+          30
+        ]
+      }
+    },
+    "counterfamilies": [
+      {
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "heme_ligand_context_absent": true,
+        "local_counterevidence": [
+          "absent_heme_context"
+        ],
+        "top1_role_match_fraction": 0.3333,
+        "top1_score": 0.3646,
+        "why_relevant": "current weak heuristic top1 for Q9BXD5 before Schiff-base lyase scope repair"
+      },
+      {
+        "current_control_status": "required_in_next_tranche_not_satisfied_here",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "why_relevant": "Schiff-base chemistry can collapse to generic Lys/PLP-like logic without a source-free substrate/covalent-imine axis"
+      }
+    ],
+    "current_decision": "do_not_promote_production_fingerprint",
+    "import_and_duplicate_blockers": {
+      "broader_duplicate_screening_status": "broader_duplicate_screening_required",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "representation_near_duplicate_holdout",
+        "review_decision_not_terminal"
+      ],
+      "representation_control_status": "representation_near_duplicate_holdout",
+      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal",
+      "terminal_status_before_family_repair": "rejected_duplicate_or_near_duplicate"
+    },
+    "positive_like_rows": [
+      {
+        "accession": "Q9BXD5",
+        "countable_label_candidate": false,
+        "entry_id": "uniprot:Q9BXD5",
+        "family_axis_status": "review_only_schiff_base_lyase_scope_ready",
+        "normalized_decision_status_after_repair": "needs_review",
+        "previous_normalized_decision_status": "rejected_representation_conflict",
+        "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+        "ready_for_label_import": false,
+        "source_confidence": "medium"
+      }
+    ]
+  },
+  "likely_failure_modes": [
+    {
+      "id": "single_positive_like_row",
+      "risk": "Q9BXD5 is the only direct positive-like row in this packet, so family breadth is not tested."
+    },
+    {
+      "id": "source_traced_not_source_free_axis",
+      "risk": "Tyr/Lys positions and Schiff-base assignment are review evidence; a production scorer would need a frozen source-free local axis."
+    },
+    {
+      "id": "heme_peroxidase_collapse_risk",
+      "risk": "Current heuristic top1 is weak heme_peroxidase_oxidase, so heme/PLP/lyase counterfamilies must be frozen before any threshold work."
+    },
+    {
+      "id": "representation_near_duplicate_holdout",
+      "risk": "Representation adjudication still marks the row as a near-duplicate holdout, so it cannot be clean import evidence."
+    }
+  ],
+  "metadata": {
+    "artifact_migration_files_edited": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T18:04:27Z",
+    "curated_label_registry_edited": false,
+    "family_id": "schiff_base_lyase",
+    "fingerprint_registry_edited": false,
+    "method": "mechanism_family_readiness_packet",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "source_artifacts": {
+      "pilot_active_site_evidence_decisions": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "pilot_terminal_decisions": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+      "schiff_base_lyase_control": "artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json",
+      "schiff_base_lyase_import_safety_adjudication": "artifacts/v3_external_source_pilot_schiff_base_lyase_import_safety_adjudication_1025.json"
+    },
+    "source_methods": {
+      "pilot_active_site_evidence_decisions": "external_source_pilot_active_site_evidence_decisions",
+      "pilot_terminal_decisions": "external_source_pilot_terminal_decisions",
+      "schiff_base_lyase_control": "external_source_pilot_schiff_base_lyase_control",
+      "schiff_base_lyase_import_safety_adjudication": "external_source_pilot_schiff_base_lyase_import_safety_adjudication"
+    }
+  },
+  "next_experiment": {
+    "counterfamily_requirements": [
+      "current heme_peroxidase_oxidase controls with heme context present and absent",
+      "PLP-dependent enzyme controls with Schiff-base-like Lys chemistry",
+      "non-lyase hydrolase controls with generic acid/base residues"
+    ],
+    "decision_to_start_now": false,
+    "frozen_axes_before_scoring": [
+      "source-free Lys/base spacing and pocket geometry",
+      "local heme/PLP/cofactor absence or presence",
+      "carbonyl/glycan/sialate pocket context where available",
+      "current-reference sequence and current-countable structural duplicate screens"
+    ],
+    "id": "schiff_base_lyase_vs_heme_plp_control_tranche_v1_review_only",
+    "positive_like_requirements": [
+      "external Schiff-base lyase rows with explicit source-traced catalytic Lys/Tyr or Lys/base evidence",
+      "local structure or AlphaFold coordinates available before geometry axes are computed"
+    ],
+    "promotion_blockers_that_must_remain_closed": [
+      "production fingerprint edit",
+      "curated label import",
+      "threshold selection",
+      "full label-factory gate extension"
+    ],
+    "selection_freeze_required_before_scoring": true,
+    "target_row_count": "10-20"
+  }
+}
