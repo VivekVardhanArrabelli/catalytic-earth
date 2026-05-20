@@ -1,55 +1,40 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T14:29:58-0500
+Last updated: 2026-05-20T15:25:58-0500
 
-Primary outcome: `blocker_not_cleared_data_scarcity`
+Primary outcome: `counterexample_found`
 
 `production_claim_allowed=false`
 
 `labels_or_fingerprints_changed=false`
 
-Run note: `git fetch origin` failed at start because the sandbox could not
-write `FETCH_HEAD` inside the parent repository worktree metadata. Remote tip
-was checked with `git ls-remote` and matched local `HEAD` at run start. The run
-continued only in the isolated `research/epk-substrate-role-identity` worktree.
+Run note: normal `git fetch origin` and `git pull --ff-only` were attempted
+at run start, but the sandbox could not write linked-worktree `FETCH_HEAD`.
+Live remote state was checked with `git ls-remote`; local `HEAD`, stale
+`origin/research/epk-substrate-role-identity`, and the live remote ref all
+matched `3e81ffc011601e96ba697a80210252ab6227010f` before this run.
 
 ## What Was Tested
 
-Two review-only terminal-index experiments are now present in this lane.
+This run executed the requested alternate source-free feature-family probe:
 
-First, `epk_folded_nterminal_auth_terminal_stress_v1_review_only` added a
-30-row stress artifact:
-
-`artifacts/research_lanes/epk_substrate_role_identity/epk_folded_nterminal_auth_terminal_stress_20260520.json`
-
-It introduced these source-free coordinate-derived features:
-
-- integer author residue number from coordinate records
-- resolved 1-based residue ordinal in the candidate acceptor chain
-- `auth_seq_id - resolved_ordinal`
-- `auth-terminal-like N-terminal STY` guard:
-  `abs(auth_seq_id - resolved_ordinal) <= 5`
-- `internal-fragment-like N-terminal STY` flag when resolved N-terminal STY
-  numbering is inconsistent with a true chain N terminus
-
-Second, this run executed the handoff's next requested probe,
-`epk_folded_nterminal_auth_terminal_guard_generalization_v2_review_only`.
+`epk_reciprocal_entity_context_probe_v1_review_only`
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_auth_terminal_guard_generalization_v2_20260520.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_reciprocal_entity_context_probe_v1_20260520.json`
 
-The new frozen diagnostic set has 24 non-overlap rows from prior review
-artifacts: five positive-like rows (`1IR3`, `2PHK`, `4EKK`, `1L0O`, `3TM0`)
-and 19 sibling/topology/transporter controls. All 24 PDB coordinate files
-fetched successfully in memory. No raw coordinate files were written.
+The helper:
 
-The full requested enrichment for independent true folded N-terminal substrate
-positives was not possible: prior lane artifacts repeatedly identify `5HVK` as
-the only source-valid heteromeric folded N-terminal protein-substrate positive.
-The non-overlap positives available for this run are current protein-substrate,
-exact-source/context-ambiguous, product-state, or ligand-analog rows rather
-than independent folded auth-terminal positives.
+- reused the prior 30-row terminal-index stress set and 24-row non-overlap
+  set, for 54 compact diagnostic rows;
+- fetched structures in memory only, with no raw coordinate files written;
+- added source-free reciprocal chain/entity features: resolved residue-name
+  sequence hashes by chain, ligand/acceptor same-sequence entity flag,
+  acceptor-chain active-gamma occupancy, acceptor-chain nucleotide/metal
+  occupancy, and reciprocal context class;
+- compared the existing strict, auth-terminal guarded strict, and permissive
+  nearest-hydroxyl rules to two reciprocal-context rules.
 
 Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
 EC/Rhea, paper/source text, mechanism labels, curated substrate names,
@@ -58,73 +43,87 @@ imports, and production threshold calibration.
 
 ## Evidence
 
-Over the prior 30-row terminal-index stress set:
+Combined 54-row diagnostic set:
 
-- Baseline strict rule: TP=11, FP=1, TN=14, FN=4.
-- `strict_auth_terminal_guard_v1`: TP=11, FP=0, TN=15, FN=4.
-- The guard removed the decisive `7B56` false positive by classifying its
-  resolved N-terminal Ser 822/ordinal 1 as internal-fragment-like
-  (`auth_seq_id - resolved_ordinal = 821`).
-- Permissive nearest-hydroxyl rule: TP=13, FP=15, TN=0, FN=2.
+- Baseline strict rule: TP=14, FP=1, TN=33, FN=6.
+- `strict_auth_terminal_guard_v1`: TP=14, FP=0, TN=34, FN=6.
+- Permissive nearest-hydroxyl rule: TP=17, FP=27, TN=7, FN=3.
+- `reciprocal_asymmetric_guarded_strict_v1`: TP=14, FP=0, TN=34, FN=6.
+- `reciprocal_folded_tyr_rescue_v1`: TP=16, FP=1, TN=33, FN=4.
 
-Over the new 24-row non-overlap generalization set:
+The asymmetric reciprocal guard made no improvement over the auth-terminal
+strict baseline. It retained the same true positives and still missed
+`9UUR`, `9UUX`, `3QHR`, `3QHW`, `1L0O`, and `3TM0`.
 
-- Baseline strict rule: TP=3, FP=0, TN=19, FN=2.
-- `strict_auth_terminal_guard_v1`: TP=3, FP=0, TN=19, FN=2.
-- Permissive nearest-hydroxyl rule: TP=4, FP=12, TN=7, FN=1.
-- Independent folded auth-terminal true-positive coverage: 0/5 positive-like
-  rows.
+The folded-Tyr reciprocal rescue recovered `9UUR` and `9UUX`, but it also
+introduced `9UW4` as a false positive. The decisive source-free match:
 
-The guard made no difference on the non-overlap set because no independent
-true positive supplied a folded, auth-terminal-like N-terminal STY candidate.
-The retained positives were all short-peptide-like in coordinate context:
-`1IR3` chain length 6, `2PHK` chain length 7, and `4EKK` chain length 10.
-`4EKK` also remains source-context ambiguous in prior broad review and is not
-clean folded N-terminal guard evidence. False negatives were `1L0O`
-(ADP/product-state) and `3TM0` (ligand-analog/topology ambiguity).
+- `9UUR`: folded Tyr 204, cross-chain, distance 4.181 A, different resolved
+  chain-sequence hash, acceptor chain has active-gamma context.
+- `9UUX`: folded Tyr 204, cross-chain, distance 3.968 A, different resolved
+  chain-sequence hash, acceptor chain has active-gamma context.
+- `9UW4`: folded Tyr 204, cross-chain, distance 4.194 A, different resolved
+  chain-sequence hash, acceptor chain has active-gamma context.
+
+Thus the source-free feature needed to recover the MEK/ERK-like folded Tyr
+positives also admits the source-reviewed non-substrate-role counterexample.
+
+The context-class summary also shows why reciprocal context is mostly a
+review axis, not an identity rule: positive rows and counterexample rows both
+contain same-chain gamma/hydroxyl contexts and reciprocal active-gamma
+different-entity contexts.
+
+A scratch, no-artifact sanity check of local atom-density around the decisive
+Tyr204 trio did not suggest an easy separation: `9UUR`, `9UUX`, and `9UW4`
+all had 32 protein ATOM neighbors within 6 A of the Tyr hydroxyl, and very
+similar 8-10 A density. A full exposure probe should still be run, but simple
+local density alone may be another weak axis.
 
 ## Interpretation
 
-The terminal-index guard is useful review-only counterevidence for one mimic
-class: resolved N-terminal Ser/Thr/Tyr candidates that are actually internal
-fragments under coordinate residue numbering. It provides a source-free
-explanation for why `7B56` should not be generalized as a true folded substrate
-positive.
+Reciprocal chain/entity context further characterizes the blocker, but does
+not clear it. It distinguishes clean peptide-like asymmetric substrate rows
+from many enzyme-context controls, yet the hard folded protein cases remain
+biologically ambiguous from structure alone.
 
-The blocker is still not cleared. The guard has not generalized beyond `5HVK`
-because this lane still lacks independent folded N-terminal protein-substrate
-positives with auth-terminal-like numbering. It also does not solve
-non-terminal folded protein acceptors, product/analog states, topology
-ambiguity, or acceptor-role ambiguity.
+`7B56` remains handled only by the auth-terminal internal-fragment guard. That
+guard is still useful review-only counterevidence, not a production identity
+rule.
 
-Comparable ePK substrate-role blockers in this repo have not been cleared by
-structure-only nearest-atom, topology, residue-class, or terminal-position
-rules. Usable progress remains hybrid: source-reviewed evidence can label and
-audit rows, while source text stays excluded from predictive features.
+The current decisive counterexample is `9UW4`: a source-free reciprocal
+folded-Tyr rule that recovers `9UUR`/`9UUX` cannot keep `9UW4` negative.
+
+Comparable ePK substrate-role blockers in this repo still have not cleared
+with structure-only nearest-atom, topology, residue-class, terminal-index, or
+reciprocal-context rules. Usable progress remains hybrid: source-reviewed
+evidence can label and audit rows, while source text remains excluded from
+predictive features.
 
 ## Current Decision
 
-`strict_auth_terminal_guard_v1` should remain a review-only counteraxis for
-`7B56`-style internal-fragment mimics. It is not a general source-free
-substrate-role identity rule and does not authorize production readiness,
-label imports, fingerprint edits, threshold calibration, or held-out
-performance claims.
+Do not claim ePK production readiness. Do not import labels, edit production
+fingerprints, calibrate thresholds, or treat reciprocal entity context as a
+substrate-role identity rule.
+
+Use reciprocal context only as review-only ambiguity evidence:
+
+- asymmetric cross-chain peptide-like contexts support the existing strict
+  review rule;
+- reciprocal active-gamma folded Tyr contexts need source-reviewed
+  adjudication;
+- product/analog rows without terminal gamma remain unavailable to these
+  gamma-to-hydroxyl rules.
 
 ## Exact Next Experiment
 
-Run a different source-free feature family rather than another terminal-index
-generalization probe. Recommended next query:
+Run a different source-free feature family:
 
-`epk_reciprocal_cross_chain_entity_asymmetry_or_burial_probe_v1_review_only`
+`epk_local_burial_solvent_exposure_probe_v1_review_only`
 
-Use the existing positive/control rows and test one frozen feature family:
-
-- reciprocal cross-chain/entity asymmetry between nucleotide-bearing chain and
-  acceptor chain, or
-- cheap residue burial/local solvent exposure around candidate hydroxyl atoms.
-
-Compare against the existing strict, guarded strict, and permissive rules.
-Success requires improving non-terminal folded protein/product-state ambiguity
-without reintroducing `7B56`-style or sibling-family false positives. If the
-feature only explains one row class, keep it as review-only counterevidence,
-not a production rule.
+Use the same combined 54-row diagnostic set and compute cheap local burial or
+solvent-exposure proxies around candidate hydroxyl atoms, such as local ATOM
+count within fixed radii, same-chain neighbor density, heteroatom proximity,
+or accessible-shell vacancy counts. The key test is whether anything richer
+than simple neighbor counts separates `9UW4` from `9UUR`/`9UUX` without losing
+peptide positives or reintroducing `7B56`. If it only explains one row class,
+keep it as review-only counterevidence.
