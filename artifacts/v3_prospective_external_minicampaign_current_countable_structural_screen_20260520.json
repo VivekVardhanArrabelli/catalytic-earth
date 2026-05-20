@@ -13,52 +13,51 @@
       "slice_id": 1025
     },
     "blocker_not_removed": [
-      "current_countable_structural_pair_cache_incomplete",
+      "current_countable_structural_duplicate_signal",
       "full_label_factory_gate_not_run",
       "no_import_ready_external_rows",
       "terminal_review_decision_not_accepted",
       "uniref_wide_duplicate_screening_required"
     ],
-    "blocker_removed": "new_candidate_current_countable_structural_screen_attempted",
+    "blocker_removed": "new_candidate_current_countable_structural_screen_completed",
     "candidate_count": 11,
     "countable_label_candidate_count": 0,
-    "created_at": "2026-05-20T14:09:54Z",
+    "created_at": "2026-05-20T15:25:36Z",
     "current_countable_coordinate_count": 672,
     "current_countable_evaluated_row_count": 676,
     "current_countable_structural_screen_status_counts": {
-      "current_countable_structural_screen_not_completed": 11
+      "current_countable_structural_duplicate_signal": 11
     },
     "exact_reference_holdout_accessions": [
       "P07237"
     ],
     "exact_reference_holdout_count": 1,
-    "expected_query_target_pair_count": 0,
+    "expected_query_target_pair_count": 7392,
     "foldseek_binary_available": true,
     "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
     "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
-    "foldseek_command": null,
+    "foldseek_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-second-tranche-current-structural-435ef372f9a7bacf/external_queries /private/tmp/catalytic-earth-second-tranche-current-structural-435ef372f9a7bacf/current_countable_targets /private/tmp/catalytic-earth-second-tranche-current-structural-435ef372f9a7bacf/second_tranche_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-second-tranche-current-structural-435ef372f9a7bacf/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 4 -v 1",
     "foldseek_error": null,
     "foldseek_reporting_mode": "external_second_tranche_queries_vs_current_countable_targets_exhaustive_exact_tmscore",
-    "foldseek_run_status": "external_coordinate_sidecars_missing",
+    "foldseek_run_status": "completed",
     "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
-    "high_tm_candidate_count": 0,
+    "high_tm_candidate_count": 11,
     "import_ready_candidate_count": 0,
-    "max_external_vs_current_countable_tm_score": null,
+    "max_external_vs_current_countable_tm_score": 0.9978,
     "method": "external_hard_negative_new_candidate_current_countable_structural_screen",
     "no_current_countable_structural_signal_count": 0,
     "ontology_version_at_decision": "label_factory_v1_8fp",
-    "pair_cache_complete": false,
-    "query_target_pair_coverage": null,
+    "pair_cache_complete": true,
+    "query_target_pair_coverage": 1.0,
     "ready_for_label_import": false,
     "remaining_import_blocker_counts": {
-      "current_countable_structural_screen_not_completed": 11,
-      "external_coordinate_sidecar_missing": 11,
+      "current_countable_structural_duplicate_signal": 11,
       "full_label_factory_gate_not_run": 11,
       "terminal_review_decision_not_accepted": 11,
       "uniref_wide_duplicate_screening_required": 11
     },
     "review_only": true,
-    "screened_candidate_count": 0,
+    "screened_candidate_count": 11,
     "sequence_no_signal_candidate_count": 11,
     "slice_id": 1025,
     "source_backend_sequence_search_method": "external_source_backend_sequence_search",
@@ -71,29 +70,48 @@
     "target_label_type": "out_of_scope",
     "threads": 4,
     "tm_score_threshold": 0.7,
-    "unique_query_target_pair_count": 0
+    "unique_query_target_pair_count": 7392
   },
   "rows": [
     {
       "accession": "P0A6L4",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P0A6L4.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 7,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P0A6L4",
       "import_ready_candidate": false,
       "lane_id": "external_source:lyase",
       "max_external_vs_reference_identity": 0.255,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.9126,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1DHP.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DHP.cif",
+        "current_entry_ids": [
+          "m_csa:267"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1DHP",
+        "current_selected_structure_key": "pdb:1DHP",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:267",
+        "max_pair_tm_score": 0.9097,
+        "qtmscore": 0.8954,
+        "raw_query_name": "afdb_P0A6L4",
+        "raw_target_name": "pdb_1DHP_B",
+        "ttmscore": 0.9097
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "N-acetylneuraminate lyase (AcNeu lyase) (NAL) (Neu5Ac lyase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (NALase) (Sialate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -108,28 +126,153 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.9126,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1DHP.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DHP.cif",
+          "current_entry_ids": [
+            "m_csa:267"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1DHP",
+          "current_selected_structure_key": "pdb:1DHP",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:267",
+          "max_pair_tm_score": 0.9097,
+          "qtmscore": 0.8954,
+          "raw_query_name": "afdb_P0A6L4",
+          "raw_target_name": "pdb_1DHP_B",
+          "ttmscore": 0.9097
+        },
+        {
+          "alntmscore": 0.7535,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1Q6L.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1Q6L.cif",
+          "current_entry_ids": [
+            "m_csa:236"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1Q6L",
+          "current_selected_structure_key": "pdb:1Q6L",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:236",
+          "max_pair_tm_score": 0.7505,
+          "qtmscore": 0.5623,
+          "raw_query_name": "afdb_P0A6L4",
+          "raw_target_name": "pdb_1Q6L_B",
+          "ttmscore": 0.7505
+        },
+        {
+          "alntmscore": 0.7478,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+          "current_entry_ids": [
+            "m_csa:328"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1LBM",
+          "current_selected_structure_key": "pdb:1LBM",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:328",
+          "max_pair_tm_score": 0.7413,
+          "qtmscore": 0.513,
+          "raw_query_name": "afdb_P0A6L4",
+          "raw_target_name": "pdb_1LBM",
+          "ttmscore": 0.7413
+        },
+        {
+          "alntmscore": 0.7375,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1H1Z.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1H1Z.cif",
+          "current_entry_ids": [
+            "m_csa:270"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1H1Z",
+          "current_selected_structure_key": "pdb:1H1Z",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:270",
+          "max_pair_tm_score": 0.7347,
+          "qtmscore": 0.5626,
+          "raw_query_name": "afdb_P0A6L4",
+          "raw_target_name": "pdb_1H1Z_B",
+          "ttmscore": 0.7347
+        },
+        {
+          "alntmscore": 0.7431,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1FQ0.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FQ0.cif",
+          "current_entry_ids": [
+            "m_csa:550"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1FQ0",
+          "current_selected_structure_key": "pdb:1FQ0",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:550",
+          "max_pair_tm_score": 0.7219,
+          "qtmscore": 0.5377,
+          "raw_query_name": "afdb_P0A6L4",
+          "raw_target_name": "pdb_1FQ0_A",
+          "ttmscore": 0.7219
+        }
+      ]
     },
     {
       "accession": "P14174",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P14174.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P14174",
       "import_ready_candidate": false,
       "lane_id": "external_source:isomerase",
       "max_external_vs_reference_identity": null,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7816,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJP.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJP.cif",
+        "current_entry_ids": [
+          "m_csa:61"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1BJP",
+        "current_selected_structure_key": "pdb:1BJP",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:61",
+        "max_pair_tm_score": 0.7719,
+        "qtmscore": 0.4407,
+        "raw_query_name": "afdb_P14174",
+        "raw_target_name": "pdb_1BJP_C",
+        "ttmscore": 0.7719
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "Macrophage migration inhibitory factor (MIF) (EC 5.3.2.1) (Glycosylation-inhibiting factor) (GIF) (L-dopachrome isomerase) (L-dopachrome tautomerase) (EC 5.3.3.12) (Phenylpyruvate tautomerase)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -144,28 +287,153 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.7816,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJP.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJP.cif",
+          "current_entry_ids": [
+            "m_csa:61"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1BJP",
+          "current_selected_structure_key": "pdb:1BJP",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:61",
+          "max_pair_tm_score": 0.7719,
+          "qtmscore": 0.4407,
+          "raw_query_name": "afdb_P14174",
+          "raw_target_name": "pdb_1BJP_C",
+          "ttmscore": 0.7719
+        },
+        {
+          "alntmscore": 0.7189,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_entry_ids": [
+            "m_csa:246"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1IR3",
+          "current_selected_structure_key": "pdb:1IR3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:246",
+          "max_pair_tm_score": 0.5991,
+          "qtmscore": 0.05056,
+          "raw_query_name": "afdb_P14174",
+          "raw_target_name": "pdb_1IR3_B",
+          "ttmscore": 0.5991
+        },
+        {
+          "alntmscore": 0.6278,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1F80.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1F80.cif",
+          "current_entry_ids": [
+            "m_csa:152"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1F80",
+          "current_selected_structure_key": "pdb:1F80",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:152",
+          "max_pair_tm_score": 0.5626,
+          "qtmscore": 0.4009,
+          "raw_query_name": "afdb_P14174",
+          "raw_target_name": "pdb_1F80_D",
+          "ttmscore": 0.5626
+        },
+        {
+          "alntmscore": 0.5899,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1D8C.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D8C.cif",
+          "current_entry_ids": [
+            "m_csa:53"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1D8C",
+          "current_selected_structure_key": "pdb:1D8C",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:53",
+          "max_pair_tm_score": 0.5443,
+          "qtmscore": 0.5443,
+          "raw_query_name": "afdb_P14174",
+          "raw_target_name": "pdb_1D8C",
+          "ttmscore": 0.1203
+        },
+        {
+          "alntmscore": 0.6336,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_entry_ids": [
+            "m_csa:35"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "2PHK",
+          "current_selected_structure_key": "pdb:2PHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:35",
+          "max_pair_tm_score": 0.5431,
+          "qtmscore": 0.05903,
+          "raw_query_name": "afdb_P14174",
+          "raw_target_name": "pdb_2PHK_B",
+          "ttmscore": 0.5431
+        }
+      ]
     },
     {
       "accession": "P28240",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P28240.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 7,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P28240",
       "import_ready_candidate": false,
       "lane_id": "external_source:lyase",
       "max_external_vs_reference_identity": null,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.9384,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1F61.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1F61.cif",
+        "current_entry_ids": [
+          "m_csa:272"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1F61",
+        "current_selected_structure_key": "pdb:1F61",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:272",
+        "max_pair_tm_score": 0.9297,
+        "qtmscore": 0.7026,
+        "raw_query_name": "afdb_P28240",
+        "raw_target_name": "pdb_1F61_A",
+        "ttmscore": 0.9297
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Methylisocitrate lyase) (MICA) (EC 4.1.3.30) (Threo-D(S)-isocitrate glyoxylate-lyase)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -180,28 +448,157 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.9384,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1F61.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1F61.cif",
+          "current_entry_ids": [
+            "m_csa:272"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1F61",
+          "current_selected_structure_key": "pdb:1F61",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:272",
+          "max_pair_tm_score": 0.9297,
+          "qtmscore": 0.7026,
+          "raw_query_name": "afdb_P28240",
+          "raw_target_name": "pdb_1F61_A",
+          "ttmscore": 0.9297
+        },
+        {
+          "alntmscore": 0.8882,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1PYM.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PYM.cif",
+          "current_entry_ids": [
+            "m_csa:271"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1PYM",
+          "current_selected_structure_key": "pdb:1PYM",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:271",
+          "max_pair_tm_score": 0.8853,
+          "qtmscore": 0.4812,
+          "raw_query_name": "afdb_P28240",
+          "raw_target_name": "pdb_1PYM_A",
+          "ttmscore": 0.8853
+        },
+        {
+          "alntmscore": 0.8567,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1MUM.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MUM.cif",
+          "current_entry_ids": [
+            "m_csa:182"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1MUM",
+          "current_selected_structure_key": "pdb:1MUM",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:182",
+          "max_pair_tm_score": 0.854,
+          "qtmscore": 0.4648,
+          "raw_query_name": "afdb_P28240",
+          "raw_target_name": "pdb_1MUM_B",
+          "ttmscore": 0.854
+        },
+        {
+          "alntmscore": 0.7675,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_entry_ids": [
+            "m_csa:735"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EHK",
+          "current_selected_structure_key": "pdb:1EHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:735",
+          "max_pair_tm_score": 0.7398,
+          "qtmscore": 0.05534,
+          "raw_query_name": "afdb_P28240",
+          "raw_target_name": "pdb_1EHK_C",
+          "ttmscore": 0.7398
+        },
+        {
+          "alntmscore": 0.7851,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+          "current_entry_ids": [
+            "m_csa:328"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1LBM",
+          "current_selected_structure_key": "pdb:1LBM",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:328",
+          "max_pair_tm_score": 0.7335,
+          "qtmscore": 0.2855,
+          "raw_query_name": "afdb_P28240",
+          "raw_target_name": "pdb_1LBM",
+          "ttmscore": 0.7335
+        }
+      ]
     },
     {
       "accession": "P28330",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P28330.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 3,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P28330",
       "import_ready_candidate": false,
       "lane_id": "external_source:oxidoreductase_long_tail",
       "max_external_vs_reference_identity": 0.344,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.9561,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IVH.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IVH.cif",
+        "current_entry_ids": [
+          "m_csa:68"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1IVH",
+        "current_selected_structure_key": "pdb:1IVH",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:68",
+        "max_pair_tm_score": 0.9537,
+        "qtmscore": 0.861,
+        "raw_query_name": "afdb_P28330",
+        "raw_target_name": "pdb_1IVH_D",
+        "ttmscore": 0.9537
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "Long-chain specific acyl-CoA dehydrogenase, mitochondrial (LCAD) (EC 1.3.8.8) (Medium-chain acyl-CoA dehydrogenase, mitochondrial) (EC 1.3.8.7)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -216,28 +613,161 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.9561,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IVH.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IVH.cif",
+          "current_entry_ids": [
+            "m_csa:68"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1IVH",
+          "current_selected_structure_key": "pdb:1IVH",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:68",
+          "max_pair_tm_score": 0.9537,
+          "qtmscore": 0.861,
+          "raw_query_name": "afdb_P28330",
+          "raw_target_name": "pdb_1IVH_D",
+          "ttmscore": 0.9537
+        },
+        {
+          "alntmscore": 0.8672,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif",
+          "current_entry_ids": [
+            "m_csa:973"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "3X0Y",
+          "current_selected_structure_key": "pdb:3X0Y",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:973",
+          "max_pair_tm_score": 0.8153,
+          "qtmscore": 0.7627,
+          "raw_query_name": "afdb_P28330",
+          "raw_target_name": "pdb_3X0Y_H",
+          "ttmscore": 0.8153
+        },
+        {
+          "alntmscore": 0.7739,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_entry_ids": [
+            "m_csa:735"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EHK",
+          "current_selected_structure_key": "pdb:1EHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:735",
+          "max_pair_tm_score": 0.7626,
+          "qtmscore": 0.07507,
+          "raw_query_name": "afdb_P28330",
+          "raw_target_name": "pdb_1EHK_C",
+          "ttmscore": 0.7626
+        },
+        {
+          "alntmscore": 0.7867,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1U8V.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1U8V.cif",
+          "current_entry_ids": [
+            "m_csa:750"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1U8V",
+          "current_selected_structure_key": "pdb:1U8V",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:750",
+          "max_pair_tm_score": 0.6771,
+          "qtmscore": 0.6771,
+          "raw_query_name": "afdb_P28330",
+          "raw_target_name": "pdb_1U8V_C",
+          "ttmscore": 0.6023
+        },
+        {
+          "alntmscore": 0.6117,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1C17.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C17.cif",
+          "current_entry_ids": [
+            "m_csa:507"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1C17",
+          "current_selected_structure_key": "pdb:1C17",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:507",
+          "max_pair_tm_score": 0.6063,
+          "qtmscore": 0.1485,
+          "raw_query_name": "afdb_P28330",
+          "raw_target_name": "pdb_1C17_L",
+          "ttmscore": 0.6063
+        }
+      ]
     },
     {
       "accession": "P30101",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P30101.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P30101",
       "import_ready_candidate": false,
       "lane_id": "external_source:isomerase",
       "max_external_vs_reference_identity": 0.338,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.855,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+        "current_entry_ids": [
+          "m_csa:191"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1MEK",
+        "current_selected_structure_key": "pdb:1MEK",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:191",
+        "max_pair_tm_score": 0.8166,
+        "qtmscore": 0.21,
+        "raw_query_name": "afdb_P30101",
+        "raw_target_name": "pdb_1MEK_MODEL_29_A",
+        "ttmscore": 0.8166
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "Protein disulfide-isomerase A3 (EC 5.3.4.1) (58 kDa glucose-regulated protein) (58 kDa microsomal protein) (p58) (Disulfide isomerase ER-60) (Endoplasmic reticulum resident protein 57) (ER protein 57) (ERp57) (Endoplasmic reticulum resident protein 60) (ER protein 60) (ERp60)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -252,28 +782,155 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.855,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
+          "current_entry_ids": [
+            "m_csa:191"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1MEK",
+          "current_selected_structure_key": "pdb:1MEK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:191",
+          "max_pair_tm_score": 0.8166,
+          "qtmscore": 0.21,
+          "raw_query_name": "afdb_P30101",
+          "raw_target_name": "pdb_1MEK_MODEL_29_A",
+          "ttmscore": 0.8166
+        },
+        {
+          "alntmscore": 0.8367,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_entry_ids": [
+            "m_csa:246"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1IR3",
+          "current_selected_structure_key": "pdb:1IR3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:246",
+          "max_pair_tm_score": 0.6973,
+          "qtmscore": 0.01181,
+          "raw_query_name": "afdb_P30101",
+          "raw_target_name": "pdb_1IR3_B",
+          "ttmscore": 0.6973
+        },
+        {
+          "alntmscore": 0.708,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_entry_ids": [
+            "m_csa:35"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "2PHK",
+          "current_selected_structure_key": "pdb:2PHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:35",
+          "max_pair_tm_score": 0.6068,
+          "qtmscore": 0.01377,
+          "raw_query_name": "afdb_P30101",
+          "raw_target_name": "pdb_2PHK_B",
+          "ttmscore": 0.6068
+        },
+        {
+          "alntmscore": 0.6684,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "current_entry_ids": [
+            "m_csa:798"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1RTF",
+          "current_selected_structure_key": "pdb:1RTF",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "example_current_entry_id": "m_csa:798",
+          "max_pair_tm_score": 0.5729,
+          "qtmscore": 0.01373,
+          "raw_query_name": "afdb_P30101",
+          "raw_target_name": "pdb_1RTF_A",
+          "ttmscore": 0.5729
+        },
+        {
+          "alntmscore": 0.6516,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+          "current_entry_ids": [
+            "m_csa:635"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1T7D",
+          "current_selected_structure_key": "pdb:1T7D",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:635",
+          "max_pair_tm_score": 0.543,
+          "qtmscore": 0.01177,
+          "raw_query_name": "afdb_P30101",
+          "raw_target_name": "pdb_1T7D_D",
+          "ttmscore": 0.543
+        }
+      ]
     },
     {
       "accession": "P30838",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P30838.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P30838",
       "import_ready_candidate": false,
       "lane_id": "external_source:oxidoreductase_long_tail",
       "max_external_vs_reference_identity": null,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8862,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1A4S.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A4S.cif",
+        "current_entry_ids": [
+          "m_csa:100"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1A4S",
+        "current_selected_structure_key": "pdb:1A4S",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:100",
+        "max_pair_tm_score": 0.8697,
+        "qtmscore": 0.8697,
+        "raw_query_name": "afdb_P30838",
+        "raw_target_name": "pdb_1A4S_D",
+        "ttmscore": 0.788
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "Aldehyde dehydrogenase, dimeric NADP-preferring (EC 1.2.1.5) (ALDHIII) (Aldehyde dehydrogenase 3) (Aldehyde dehydrogenase family 3 member A1)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -288,28 +945,157 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.8862,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1A4S.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A4S.cif",
+          "current_entry_ids": [
+            "m_csa:100"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1A4S",
+          "current_selected_structure_key": "pdb:1A4S",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:100",
+          "max_pair_tm_score": 0.8697,
+          "qtmscore": 0.8697,
+          "raw_query_name": "afdb_P30838",
+          "raw_target_name": "pdb_1A4S_D",
+          "ttmscore": 0.788
+        },
+        {
+          "alntmscore": 0.805,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_entry_ids": [
+            "m_csa:246"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1IR3",
+          "current_selected_structure_key": "pdb:1IR3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:246",
+          "max_pair_tm_score": 0.6708,
+          "qtmscore": 0.01307,
+          "raw_query_name": "afdb_P30838",
+          "raw_target_name": "pdb_1IR3_B",
+          "ttmscore": 0.6708
+        },
+        {
+          "alntmscore": 0.5944,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1CB7.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CB7.cif",
+          "current_entry_ids": [
+            "m_csa:63"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1CB7",
+          "current_selected_structure_key": "pdb:1CB7",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "cobalamin_radical_rearrangement"
+          ],
+          "example_current_entry_id": "m_csa:63",
+          "max_pair_tm_score": 0.5915,
+          "qtmscore": 0.2238,
+          "raw_query_name": "afdb_P30838",
+          "raw_target_name": "pdb_1CB7_C",
+          "ttmscore": 0.5915
+        },
+        {
+          "alntmscore": 0.5574,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1N1D.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1N1D.cif",
+          "current_entry_ids": [
+            "m_csa:296"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1N1D",
+          "current_selected_structure_key": "pdb:1N1D",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:296",
+          "max_pair_tm_score": 0.5543,
+          "qtmscore": 0.1992,
+          "raw_query_name": "afdb_P30838",
+          "raw_target_name": "pdb_1N1D_C",
+          "ttmscore": 0.5543
+        },
+        {
+          "alntmscore": 0.6088,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1B93.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B93.cif",
+          "current_entry_ids": [
+            "m_csa:85"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1B93",
+          "current_selected_structure_key": "pdb:1B93",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:85",
+          "max_pair_tm_score": 0.5537,
+          "qtmscore": 0.2122,
+          "raw_query_name": "afdb_P30838",
+          "raw_target_name": "pdb_1B93_C",
+          "ttmscore": 0.5537
+        }
+      ]
     },
     {
       "accession": "P31040",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P31040.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 4,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P31040",
       "import_ready_candidate": false,
       "lane_id": "external_source:oxidoreductase_long_tail",
       "max_external_vs_reference_identity": 0.888,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.9994,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1YQ4.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YQ4.cif",
+        "current_entry_ids": [
+          "m_csa:294"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1YQ4",
+        "current_selected_structure_key": "pdb:1YQ4",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:294",
+        "max_pair_tm_score": 0.9978,
+        "qtmscore": 0.9228,
+        "raw_query_name": "afdb_P31040",
+        "raw_target_name": "pdb_1YQ4_A",
+        "ttmscore": 0.9978
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial (EC 1.3.5.1) (Flavoprotein subunit of complex II) (Fp) (Malate dehydrogenase [quinone] flavoprotein subunit) (EC 1.1.5.-)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -324,28 +1110,161 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.9994,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1YQ4.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YQ4.cif",
+          "current_entry_ids": [
+            "m_csa:294"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1YQ4",
+          "current_selected_structure_key": "pdb:1YQ4",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:294",
+          "max_pair_tm_score": 0.9978,
+          "qtmscore": 0.9228,
+          "raw_query_name": "afdb_P31040",
+          "raw_target_name": "pdb_1YQ4_A",
+          "ttmscore": 0.9978
+        },
+        {
+          "alntmscore": 0.9248,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1KNP.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1KNP.cif",
+          "current_entry_ids": [
+            "m_csa:739"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1KNP",
+          "current_selected_structure_key": "pdb:1KNP",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:739",
+          "max_pair_tm_score": 0.9232,
+          "qtmscore": 0.7407,
+          "raw_query_name": "afdb_P31040",
+          "raw_target_name": "pdb_1KNP",
+          "ttmscore": 0.9232
+        },
+        {
+          "alntmscore": 0.8232,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1JNR.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1JNR.cif",
+          "current_entry_ids": [
+            "m_csa:123"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1JNR",
+          "current_selected_structure_key": "pdb:1JNR",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:123",
+          "max_pair_tm_score": 0.7831,
+          "qtmscore": 0.7587,
+          "raw_query_name": "afdb_P31040",
+          "raw_target_name": "pdb_1JNR_A",
+          "ttmscore": 0.7831
+        },
+        {
+          "alntmscore": 0.7333,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_entry_ids": [
+            "m_csa:735"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EHK",
+          "current_selected_structure_key": "pdb:1EHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:735",
+          "max_pair_tm_score": 0.7208,
+          "qtmscore": 0.04567,
+          "raw_query_name": "afdb_P31040",
+          "raw_target_name": "pdb_1EHK_C",
+          "ttmscore": 0.7208
+        },
+        {
+          "alntmscore": 0.8185,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+          "current_entry_ids": [
+            "m_csa:635"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1T7D",
+          "current_selected_structure_key": "pdb:1T7D",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:635",
+          "max_pair_tm_score": 0.6821,
+          "qtmscore": 0.009015,
+          "raw_query_name": "afdb_P31040",
+          "raw_target_name": "pdb_1T7D_C",
+          "ttmscore": 0.6821
+        }
+      ]
     },
     {
       "accession": "P36959",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P36959.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 4,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P36959",
       "import_ready_candidate": false,
       "lane_id": "external_source:oxidoreductase_long_tail",
       "max_external_vs_reference_identity": null,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7602,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+        "current_entry_ids": [
+          "m_csa:328"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1LBM",
+        "current_selected_structure_key": "pdb:1LBM",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:328",
+        "max_pair_tm_score": 0.7569,
+        "qtmscore": 0.4575,
+        "raw_query_name": "afdb_P36959",
+        "raw_target_name": "pdb_1LBM",
+        "ttmscore": 0.7569
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "GMP reductase 1 (GMPR 1) (EC 1.7.1.7) (Guanosine 5'-monophosphate oxidoreductase 1) (Guanosine monophosphate reductase 1)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -360,28 +1279,155 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.7602,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LBM.cif",
+          "current_entry_ids": [
+            "m_csa:328"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1LBM",
+          "current_selected_structure_key": "pdb:1LBM",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:328",
+          "max_pair_tm_score": 0.7569,
+          "qtmscore": 0.4575,
+          "raw_query_name": "afdb_P36959",
+          "raw_target_name": "pdb_1LBM",
+          "ttmscore": 0.7569
+        },
+        {
+          "alntmscore": 0.7539,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2TPS.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TPS.cif",
+          "current_entry_ids": [
+            "m_csa:364"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "2TPS",
+          "current_selected_structure_key": "pdb:2TPS",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:364",
+          "max_pair_tm_score": 0.7368,
+          "qtmscore": 0.5088,
+          "raw_query_name": "afdb_P36959",
+          "raw_target_name": "pdb_2TPS_A",
+          "ttmscore": 0.7368
+        },
+        {
+          "alntmscore": 0.7335,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1Q6L.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1Q6L.cif",
+          "current_entry_ids": [
+            "m_csa:236"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1Q6L",
+          "current_selected_structure_key": "pdb:1Q6L",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:236",
+          "max_pair_tm_score": 0.7308,
+          "qtmscore": 0.4904,
+          "raw_query_name": "afdb_P36959",
+          "raw_target_name": "pdb_1Q6L_B",
+          "ttmscore": 0.7308
+        },
+        {
+          "alntmscore": 0.7298,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1HO1.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HO1.cif",
+          "current_entry_ids": [
+            "m_csa:243"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1HO1",
+          "current_selected_structure_key": "pdb:1HO1",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:243",
+          "max_pair_tm_score": 0.7272,
+          "qtmscore": 0.5186,
+          "raw_query_name": "afdb_P36959",
+          "raw_target_name": "pdb_1HO1_A",
+          "ttmscore": 0.7272
+        },
+        {
+          "alntmscore": 0.7024,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1H1Z.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1H1Z.cif",
+          "current_entry_ids": [
+            "m_csa:270"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1H1Z",
+          "current_selected_structure_key": "pdb:1H1Z",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:270",
+          "max_pair_tm_score": 0.6998,
+          "qtmscore": 0.4765,
+          "raw_query_name": "afdb_P36959",
+          "raw_target_name": "pdb_1H1Z_A",
+          "ttmscore": 0.6998
+        }
+      ]
     },
     {
       "accession": "P54098",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_P54098.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:P54098",
       "import_ready_candidate": false,
       "lane_id": "external_source:lyase",
       "max_external_vs_reference_identity": null,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8342,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "current_entry_ids": [
+          "m_csa:735"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1EHK",
+        "current_selected_structure_key": "pdb:1EHK",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "heme_peroxidase_oxidase"
+        ],
+        "example_current_entry_id": "m_csa:735",
+        "max_pair_tm_score": 0.8191,
+        "qtmscore": 0.0264,
+        "raw_query_name": "afdb_P54098",
+        "raw_target_name": "pdb_1EHK_C",
+        "ttmscore": 0.8191
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "DNA polymerase subunit gamma-1 (EC 2.7.7.7) (3'-5' exodeoxyribonuclease) (EC 3.1.11.-) (5'-deoxyribose-phosphate lyase) (EC 4.2.99.-) (Mitochondrial DNA polymerase catalytic subunit) (PolG-alpha)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -396,28 +1442,161 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.8342,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_entry_ids": [
+            "m_csa:735"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EHK",
+          "current_selected_structure_key": "pdb:1EHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:735",
+          "max_pair_tm_score": 0.8191,
+          "qtmscore": 0.0264,
+          "raw_query_name": "afdb_P54098",
+          "raw_target_name": "pdb_1EHK_C",
+          "ttmscore": 0.8191
+        },
+        {
+          "alntmscore": 0.8126,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_entry_ids": [
+            "m_csa:246"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1IR3",
+          "current_selected_structure_key": "pdb:1IR3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:246",
+          "max_pair_tm_score": 0.6771,
+          "qtmscore": 0.004837,
+          "raw_query_name": "afdb_P54098",
+          "raw_target_name": "pdb_1IR3_B",
+          "ttmscore": 0.6771
+        },
+        {
+          "alntmscore": 0.6233,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1C17.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C17.cif",
+          "current_entry_ids": [
+            "m_csa:507"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1C17",
+          "current_selected_structure_key": "pdb:1C17",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:507",
+          "max_pair_tm_score": 0.618,
+          "qtmscore": 0.05778,
+          "raw_query_name": "afdb_P54098",
+          "raw_target_name": "pdb_1C17_D",
+          "ttmscore": 0.618
+        },
+        {
+          "alntmscore": 0.6079,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1J53.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1J53.cif",
+          "current_entry_ids": [
+            "m_csa:754"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1J53",
+          "current_selected_structure_key": "pdb:1J53",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "example_current_entry_id": "m_csa:754",
+          "max_pair_tm_score": 0.6049,
+          "qtmscore": 0.09994,
+          "raw_query_name": "afdb_P54098",
+          "raw_target_name": "pdb_1J53",
+          "ttmscore": 0.6049
+        },
+        {
+          "alntmscore": 0.5526,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1YT3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YT3.cif",
+          "current_entry_ids": [
+            "m_csa:321"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1YT3",
+          "current_selected_structure_key": "pdb:1YT3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "example_current_entry_id": "m_csa:321",
+          "max_pair_tm_score": 0.5515,
+          "qtmscore": 0.1957,
+          "raw_query_name": "afdb_P54098",
+          "raw_target_name": "pdb_1YT3",
+          "ttmscore": 0.5515
+        }
+      ]
     },
     {
       "accession": "Q8TAT5",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_Q8TAT5.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 2,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:Q8TAT5",
       "import_ready_candidate": false,
       "lane_id": "external_source:lyase",
       "max_external_vs_reference_identity": null,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.9144,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+        "current_entry_ids": [
+          "m_csa:798"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1RTF",
+        "current_selected_structure_key": "pdb:1RTF",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "ser_his_acid_hydrolase"
+        ],
+        "example_current_entry_id": "m_csa:798",
+        "max_pair_tm_score": 0.7837,
+        "qtmscore": 0.01156,
+        "raw_query_name": "afdb_Q8TAT5",
+        "raw_target_name": "pdb_1RTF_A",
+        "ttmscore": 0.7837
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "Endonuclease 8-like 3 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase FPG2) (DNA glycosylase/AP lyase Neil3) (Endonuclease VIII-like 3) (Nei-like protein 3)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -432,28 +1611,159 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.9144,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "current_entry_ids": [
+            "m_csa:798"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1RTF",
+          "current_selected_structure_key": "pdb:1RTF",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "example_current_entry_id": "m_csa:798",
+          "max_pair_tm_score": 0.7837,
+          "qtmscore": 0.01156,
+          "raw_query_name": "afdb_Q8TAT5",
+          "raw_target_name": "pdb_1RTF_A",
+          "ttmscore": 0.7837
+        },
+        {
+          "alntmscore": 0.8399,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_entry_ids": [
+            "m_csa:735"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EHK",
+          "current_selected_structure_key": "pdb:1EHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:735",
+          "max_pair_tm_score": 0.7246,
+          "qtmscore": 0.04379,
+          "raw_query_name": "afdb_Q8TAT5",
+          "raw_target_name": "pdb_1EHK_C",
+          "ttmscore": 0.7246
+        },
+        {
+          "alntmscore": 0.7758,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_entry_ids": [
+            "m_csa:246"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1IR3",
+          "current_selected_structure_key": "pdb:1IR3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:246",
+          "max_pair_tm_score": 0.6465,
+          "qtmscore": 0.009898,
+          "raw_query_name": "afdb_Q8TAT5",
+          "raw_target_name": "pdb_1IR3_B",
+          "ttmscore": 0.6465
+        },
+        {
+          "alntmscore": 0.6796,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_entry_ids": [
+            "m_csa:35"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "2PHK",
+          "current_selected_structure_key": "pdb:2PHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:35",
+          "max_pair_tm_score": 0.5825,
+          "qtmscore": 0.01151,
+          "raw_query_name": "afdb_Q8TAT5",
+          "raw_target_name": "pdb_2PHK_B",
+          "ttmscore": 0.5825
+        },
+        {
+          "alntmscore": 0.5385,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "current_entry_ids": [
+            "m_csa:124"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1V54",
+          "current_selected_structure_key": "pdb:1V54",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:124",
+          "max_pair_tm_score": 0.4863,
+          "qtmscore": 0.0565,
+          "raw_query_name": "afdb_Q8TAT5",
+          "raw_target_name": "pdb_1V54_Y",
+          "ttmscore": 0.4863
+        }
+      ]
     },
     {
       "accession": "Q9BZE2",
       "backend_sequence_search_status": "no_near_duplicate_signal",
       "coordinate_path": "artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/afdb_Q9BZE2.cif",
-      "coordinate_status": "coordinate_sidecar_missing",
+      "coordinate_status": "coordinate_sidecar_reused",
       "countable_label_candidate": false,
-      "current_countable_high_tm_hit_count": 0,
-      "current_countable_hit_count": 0,
-      "current_countable_structural_screen_status": "current_countable_structural_screen_not_completed",
+      "current_countable_high_tm_hit_count": 2,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
       "entry_id": "uniprot:Q9BZE2",
       "import_ready_candidate": false,
       "lane_id": "external_source:isomerase",
       "max_external_vs_reference_identity": null,
-      "nearest_current_countable_hit": null,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8456,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1DJ0.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DJ0.cif",
+        "current_entry_ids": [
+          "m_csa:493"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1DJ0",
+        "current_selected_structure_key": "pdb:1DJ0",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:493",
+        "max_pair_tm_score": 0.8335,
+        "qtmscore": 0.4702,
+        "raw_query_name": "afdb_Q9BZE2",
+        "raw_target_name": "pdb_1DJ0_A",
+        "ttmscore": 0.8335
+      },
       "ontology_version_at_decision": "label_factory_v1_8fp",
       "protein_name": "tRNA pseudouridine(38/39) synthase (EC 5.4.99.45) (tRNA pseudouridine synthase 3) (tRNA pseudouridylate synthase 3) (tRNA-uridine isomerase 3)",
       "ready_for_label_import": false,
       "remaining_import_blockers": [
-        "current_countable_structural_screen_not_completed",
-        "external_coordinate_sidecar_missing",
+        "current_countable_structural_duplicate_signal",
         "full_label_factory_gate_not_run",
         "terminal_review_decision_not_accepted",
         "uniref_wide_duplicate_screening_required"
@@ -468,7 +1778,119 @@
       "target_fingerprint_id": null,
       "target_label_type": "out_of_scope",
       "tm_score_threshold": 0.7,
-      "top_current_countable_hits": []
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.8456,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1DJ0.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DJ0.cif",
+          "current_entry_ids": [
+            "m_csa:493"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1DJ0",
+          "current_selected_structure_key": "pdb:1DJ0",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:493",
+          "max_pair_tm_score": 0.8335,
+          "qtmscore": 0.4702,
+          "raw_query_name": "afdb_Q9BZE2",
+          "raw_target_name": "pdb_1DJ0_A",
+          "ttmscore": 0.8335
+        },
+        {
+          "alntmscore": 0.8271,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_entry_ids": [
+            "m_csa:735"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EHK",
+          "current_selected_structure_key": "pdb:1EHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:735",
+          "max_pair_tm_score": 0.8113,
+          "qtmscore": 0.06697,
+          "raw_query_name": "afdb_Q9BZE2",
+          "raw_target_name": "pdb_1EHK_C",
+          "ttmscore": 0.8113
+        },
+        {
+          "alntmscore": 0.6793,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_entry_ids": [
+            "m_csa:35"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "2PHK",
+          "current_selected_structure_key": "pdb:2PHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:35",
+          "max_pair_tm_score": 0.5823,
+          "qtmscore": 0.01448,
+          "raw_query_name": "afdb_Q9BZE2",
+          "raw_target_name": "pdb_2PHK_B",
+          "ttmscore": 0.5823
+        },
+        {
+          "alntmscore": 0.6677,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EZV.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EZV.cif",
+          "current_entry_ids": [
+            "m_csa:208"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EZV",
+          "current_selected_structure_key": "pdb:1EZV",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:208",
+          "max_pair_tm_score": 0.5683,
+          "qtmscore": 0.08507,
+          "raw_query_name": "afdb_Q9BZE2",
+          "raw_target_name": "pdb_1EZV_I",
+          "ttmscore": 0.5683
+        },
+        {
+          "alntmscore": 0.5362,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "current_entry_ids": [
+            "m_csa:124"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1V54",
+          "current_selected_structure_key": "pdb:1V54",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:124",
+          "max_pair_tm_score": 0.5311,
+          "qtmscore": 0.07769,
+          "raw_query_name": "afdb_Q9BZE2",
+          "raw_target_name": "pdb_1V54_M",
+          "ttmscore": 0.5311
+        }
+      ]
     }
   ],
   "warnings": [

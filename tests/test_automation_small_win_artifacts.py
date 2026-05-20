@@ -52,16 +52,23 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertTrue(metadata["review_only"])
         self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
         self.assertEqual(metadata["candidate_count"], 12)
-        self.assertEqual(metadata["normalized_terminal_decision_counts"]["needs_review"], 11)
         self.assertEqual(
             metadata["normalized_terminal_decision_counts"]["terminal_rejection"], 1
+            + 11
         )
         self.assertEqual(
             metadata["current_countable_structural_screen_status"],
-            "external_coordinate_sidecars_missing",
+            "completed_current_countable_structural_duplicate_signals",
         )
         self.assertTrue(metadata["foldseek_binary_available"])
-        self.assertEqual(metadata["coordinate_sidecar_missing_count"], 11)
+        self.assertTrue(metadata["foldseek_pair_cache_complete"])
+        self.assertEqual(metadata["coordinate_sidecar_missing_count"], 0)
+        self.assertEqual(metadata["coordinate_materialized_or_reused_count"], 11)
+        self.assertEqual(metadata["structurally_screened_candidate_count"], 11)
+        self.assertEqual(
+            metadata["current_countable_structural_screen_status_counts"],
+            {"current_countable_structural_duplicate_signal": 11},
+        )
         self.assertEqual(metadata["inverse_gate_scored_candidate_count"], 0)
         self.assertEqual(metadata["production_fingerprint_count"], 8)
         self.assertEqual(metadata["abstain_threshold"], 0.4115)
@@ -99,6 +106,28 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertTrue(
             metrics["foldseek_structural_sidecar"]["all_vs_all_pair_cache_complete"]
+        )
+
+    def test_minicampaign_coordinate_materialization_is_review_only(self) -> None:
+        materialization = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_minicampaign_coordinate_materialization_20260520.json"
+        )
+        metadata = materialization["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["candidate_count"], 11)
+        self.assertEqual(metadata["coordinate_materialized_or_reused_count"], 11)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["coordinate_status_counts"],
+            {"coordinate_sidecar_materialized": 11},
+        )
+        self.assertTrue(
+            all(row["coordinate_digest_sha256"] for row in materialization["rows"])
         )
 
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
@@ -149,21 +178,36 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertFalse(metadata["superiority_claim_permitted"])
         self.assertFalse(metadata["ready_for_label_import"])
         self.assertEqual(metadata["candidate_count"], 12)
-        self.assertEqual(metadata["normalized_diagnostic_decision_counts"]["needs_review"], 11)
-        self.assertEqual(metadata["normalized_diagnostic_decision_counts"]["terminal_rejection"], 1)
+        self.assertEqual(
+            metadata["normalized_diagnostic_decision_counts"]["terminal_rejection"],
+            12,
+        )
         self.assertEqual(
             metadata["current_countable_structural_screen_status"],
-            "external_coordinate_sidecars_missing",
+            "completed_current_countable_structural_duplicate_signals",
         )
         self.assertTrue(metadata["foldseek_binary_available"])
-        self.assertEqual(metadata["coordinate_sidecar_missing_count"], 11)
+        self.assertTrue(metadata["foldseek_pair_cache_complete"])
+        self.assertEqual(metadata["coordinate_sidecar_missing_count"], 0)
+        self.assertEqual(metadata["coordinate_materialized_or_reused_count"], 11)
+        self.assertEqual(metadata["structural_duplicate_signal_count"], 11)
 
         self.assertEqual(metrics["exact_reference_holdout_count"], 1)
         self.assertEqual(metrics["borderline_sequence_neighbor_count"], 1)
         self.assertEqual(metrics["no_near_neighbor_signal_count"], 10)
         self.assertEqual(
+            diagnostic["metrics"]["current_countable_foldseek_structural_screen"][
+                "structural_duplicate_signal_count"
+            ],
+            11,
+        )
+        self.assertEqual(
             by_accession["P31040"]["deterministic_kmer5_status"],
             "kmer_borderline_sequence_neighbor",
+        )
+        self.assertEqual(
+            by_accession["P31040"]["terminal_decision_from_existing_packet"],
+            "rejected_current_countable_structural_duplicate_signal",
         )
         self.assertTrue(
             all(not row["ready_for_label_import"] for row in diagnostic["rows"])

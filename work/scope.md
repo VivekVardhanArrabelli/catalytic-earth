@@ -21,13 +21,13 @@ the default task and toward prospective external mini-campaigns, modern
 baseline comparisons, terminal decisions, and family-readiness packets.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
-screening, and terminal review-only decisions. One exact-reference holdout is
-rejected; the other 11 rows are `needs_review` because Foldseek is now restored
-but the candidate coordinate sidecars are still missing, so current-countable
-structural duplicate screening remains incomplete. The current 8-fingerprint
-inverse gate remains configured at `0.4115`, but no candidate is eligible for
-scoring until candidate coordinates are materialized and structural screening
-completes. The modern
+screening, materialized candidate coordinate sidecars, and completed
+current-countable Foldseek structural duplicate screening. One exact-reference
+holdout (`P07237`) is rejected, and the other 11 sequence-clean rows are
+terminal review-only rejections because all have current-countable high-TM
+duplicate signals at `TM >= 0.7`. The current 8-fingerprint inverse gate
+remains configured at `0.4115`, but it correctly scores 0 rows because no
+candidate survived structural duplicate screening. The modern
 baseline comparison is also review-only: geometry abstains on all 12 mapped
 controls, EC/keyword lanes are routing context only, k-mer and ESM-2 are
 sequence-neighbor controls, and Foldseek context comes from the existing all-30
@@ -45,10 +45,11 @@ any source-free local-axis scoring.
 Current mini-campaign sequence-baseline scope: the sequence diagnostic in
 `artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`
 is a review-only baseline, not a replacement for Foldseek or factory gates. It
-keeps the same 1 terminal rejection and 11 `needs_review` decisions, while
-marking `P31040` as a review-priority sequence-neighbor caveat under the
-deterministic 5-mer baseline. No superiority claim or import decision is in
-scope.
+now keeps the same terminal surface as the decision packet: 12/12 terminal
+rejections, including 11 current-countable structural duplicate-signal rows.
+`P31040` remains a sequence-neighbor caveat under the deterministic 5-mer
+baseline, but structural duplicate rejection is the decisive terminal evidence.
+No superiority claim or import decision is in scope.
 MEK1/ERK1 source review now provides two
 source-authoritative broad protein-substrate review controls (`9UUR` and
 `9UUX`) and rejects same-chain `9UW4`, but the broad-role stress test shows a

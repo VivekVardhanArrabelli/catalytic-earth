@@ -271,17 +271,20 @@ import.
 - `artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json`
   records the first post-ePK-synthesis prospective mini-campaign as a frozen
   12-row, three-lane review-only decision packet. MMseqs2 finds 11 bounded
-  current-reference no-signal rows and one exact-reference holdout (`P07237`),
-  and Foldseek is restored locally. The current-countable structural screen is
-  still incomplete because all 11 non-holdout candidate coordinate sidecars are
-  missing, so those rows remain `needs_review`.
+  current-reference no-signal rows and one exact-reference holdout (`P07237`).
+  The follow-on coordinate materialization artifact stages all 11 AlphaFold
+  sidecars, and the current-countable Foldseek screen completes 7392/7392
+  query-target pairs against 672 staged current countable coordinate groups.
+  All 11 sequence-clean rows are rejected as current-countable structural
+  duplicate signals, leaving 0 import-ready rows and 0 countable candidates.
 - `artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`
   compares that same frozen set against the bounded MMseqs2 result and a
   deterministic 5-mer nearest-neighbor baseline from committed FASTA sidecars.
-  It keeps the same 1 terminal rejection and 11 `needs_review` decisions,
-  flags `P31040` as a review-priority sequence-neighbor caveat, and authorizes
-  no import, superiority claim, registry edit, or production fingerprint
-  change.
+  It now agrees with the terminal surface: 12/12 rows are rejected, including
+  11 current-countable structural duplicate signals. It still flags `P31040`
+  as a sequence-neighbor caveat, but the completed structural duplicate screen
+  is the stronger terminal blocker. The diagnostic authorizes no import,
+  superiority claim, registry edit, or production fingerprint change.
 
 ## Immediate Pilot Direction
 

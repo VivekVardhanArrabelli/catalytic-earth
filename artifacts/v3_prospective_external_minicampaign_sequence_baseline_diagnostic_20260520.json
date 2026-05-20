@@ -1,19 +1,19 @@
 {
   "caveats": [
-    "Foldseek is restored, but current-countable structural screening remains incomplete because all 11 non-holdout candidate coordinate sidecars are missing.",
-    "P31040 is below the MMseqs2 near-duplicate identity threshold but has a high deterministic k-mer neighbor signal to Q9YHT1; treat it as a review-priority row, not an import decision.",
-    "No inverse-gate scores were run for the structurally unscreened rows.",
+    "Current-countable Foldseek structural screening is now complete for the 11 sequence-clean rows and rejects all 11 with high-TM duplicate signals.",
+    "P31040 remains below the MMseqs2 near-duplicate identity threshold and has a high deterministic k-mer neighbor signal to Q9YHT1, but its terminal blocker is stronger: current-countable structural duplicate signal.",
+    "No inverse-gate scores were run because no row survived structural duplicate screening.",
     "No label import, registry edit, or production fingerprint change is authorized by this diagnostic."
   ],
   "metadata": {
     "artifact_id": "v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520",
     "candidate_count": 12,
     "candidate_selection_before_outcome_scoring": true,
-    "coordinate_sidecar_missing_count": 11,
+    "coordinate_sidecar_missing_count": 0,
     "countable_label_candidate_count": 0,
-    "created_at": "2026-05-20T14:11:11Z",
+    "created_at": "2026-05-20T15:28:13Z",
     "curated_label_registry_edited": false,
-    "current_countable_structural_screen_status": "external_coordinate_sidecars_missing",
+    "current_countable_structural_screen_status": "completed_current_countable_structural_duplicate_signals",
     "fingerprint_registry_edited": false,
     "foldseek_binary_available": true,
     "kmer5_status_counts": {
@@ -31,18 +31,18 @@
     "mmseqs_exact_reference_holdout_count": 1,
     "mmseqs_no_signal_row_count": 11,
     "normalized_diagnostic_decision_counts": {
-      "needs_review": 11,
-      "terminal_rejection": 1
+      "terminal_rejection": 12
     },
     "ready_for_label_import": false,
     "review_only": true,
     "source_artifact_sha256": {
       "backend_sequence_search": "c4aa3034900110eb3d4c64b0beb808d732872327b626e840dd6be7cef3873efa",
       "candidate_freeze": "2c8aca26c479f4dd25ff09ab17349526bdec01561dc5f4f37dea107fdea59260",
-      "current_countable_structural_screen": "6a671439e49dc36e0bd1d6c8fee1715508be7bf6d18beb4a1dfe5d45639ad49e",
+      "current_countable_structural_screen": "1817380b4b018cd20456527206f054fb8a1a2934f470c9e5ab67263636fd174d",
       "external_fasta": "c16cdd6d17c4795c9aafd4903dc7b0b38e91c9c8c9abe90eb257b1fa21932e57",
       "reference_fasta": "8eaca1d4cc482d1b9e37f2d3a6def7f73824d85ba869b7702591aee3e2a4aff2",
-      "terminal_decisions": "ec24404f2bb48c7b0d2e84958260a45733ff11efb72bcae914d588a6d06ce96d"
+      "terminal_decisions": "aef376a06a27f8b78399ba305035353c6e105ea733acaf3aeda187eba347fba6",
+      "coordinate_materialization": "e747d9877189fedf026e591d7e78cdfecfb52c8b99308fc6e09f2e0b75cc41d1"
     },
     "source_artifacts": {
       "backend_sequence_search": "artifacts/v3_prospective_external_minicampaign_backend_sequence_search_20260520.json",
@@ -50,12 +50,17 @@
       "current_countable_structural_screen": "artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json",
       "external_fasta": "artifacts/v3_prospective_external_minicampaign_backend_sequence_search_external_20260520.fasta",
       "reference_fasta": "artifacts/v3_prospective_external_minicampaign_backend_sequence_search_reference_20260520.fasta",
-      "terminal_decisions": "artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json"
+      "terminal_decisions": "artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json",
+      "coordinate_materialization": "artifacts/v3_prospective_external_minicampaign_coordinate_materialization_20260520.json"
     },
     "source_candidate_freeze_created_at": "2026-05-20T13:07:45Z",
     "superiority_claim_permitted": false,
-    "superiority_claim_reason": "The deterministic k-mer diagnostic is a sequence-neighbor baseline only; it does not replace candidate coordinate materialization, Foldseek structural screening, terminal review, inverse-gate scoring, UniRef screening, or factory gates.",
-    "task_definition": "Compare the frozen prospective mini-campaign rows against bounded MMseqs2 current-reference search and a deterministic 5-mer nearest-neighbor baseline while Foldseek is restored but candidate coordinate sidecars are missing."
+    "superiority_claim_reason": "The deterministic k-mer diagnostic is sequence-neighbor context only; the decisive terminal evidence for this frozen set is exact-reference or current-countable structural duplicate rejection, not baseline superiority.",
+    "task_definition": "Compare the frozen prospective mini-campaign rows against bounded MMseqs2 current-reference search, deterministic 5-mer nearest-neighbor baseline, and completed current-countable Foldseek duplicate screening.",
+    "coordinate_materialized_or_reused_count": 11,
+    "foldseek_pair_cache_complete": true,
+    "foldseek_query_target_pair_coverage": 1.0,
+    "structural_duplicate_signal_count": 11
   },
   "metrics": {
     "deterministic_kmer5_nearest_neighbor": {
@@ -79,6 +84,15 @@
       "near_duplicate_row_count": 0,
       "no_signal_row_count": 11,
       "row_count": 12
+    },
+    "current_countable_foldseek_structural_screen": {
+      "row_count": 11,
+      "screened_candidate_count": 11,
+      "pair_cache_complete": true,
+      "query_target_pair_coverage": 1.0,
+      "structural_duplicate_signal_count": 11,
+      "no_current_countable_structural_signal_count": 0,
+      "max_external_vs_current_countable_tm_score": 0.9978
     }
   },
   "rows": [
@@ -147,10 +161,13 @@
         "identity": 0.255,
         "reference_accession": "P0A6L4"
       },
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "N-acetylneuraminate lyase (AcNeu lyase) (NAL) (Neu5Ac lyase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (NALase) (Sialate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 7,
+      "nearest_current_countable_tm_score": 0.9097
     },
     {
       "accession": "P14174",
@@ -177,10 +194,13 @@
       "mmseqs_max_external_vs_reference_identity": null,
       "mmseqs_search_status": "no_near_duplicate_signal",
       "mmseqs_top_hit": null,
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "Macrophage migration inhibitory factor (MIF) (EC 5.3.2.1) (Glycosylation-inhibiting factor) (GIF) (L-dopachrome isomerase) (L-dopachrome tautomerase) (EC 5.3.3.12) (Phenylpyruvate tautomerase)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 1,
+      "nearest_current_countable_tm_score": 0.7719
     },
     {
       "accession": "P28240",
@@ -207,10 +227,13 @@
       "mmseqs_max_external_vs_reference_identity": null,
       "mmseqs_search_status": "no_near_duplicate_signal",
       "mmseqs_top_hit": null,
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "Isocitrate lyase (ICL) (EC 4.1.3.1) (Methylisocitrate lyase) (MICA) (EC 4.1.3.30) (Threo-D(S)-isocitrate glyoxylate-lyase)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 7,
+      "nearest_current_countable_tm_score": 0.9297
     },
     {
       "accession": "P28330",
@@ -242,10 +265,13 @@
         "identity": 0.344,
         "reference_accession": "P28330"
       },
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "Long-chain specific acyl-CoA dehydrogenase, mitochondrial (LCAD) (EC 1.3.8.8) (Medium-chain acyl-CoA dehydrogenase, mitochondrial) (EC 1.3.8.7)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 3,
+      "nearest_current_countable_tm_score": 0.9537
     },
     {
       "accession": "P30101",
@@ -277,10 +303,13 @@
         "identity": 0.338,
         "reference_accession": "P30101"
       },
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "Protein disulfide-isomerase A3 (EC 5.3.4.1) (58 kDa glucose-regulated protein) (58 kDa microsomal protein) (p58) (Disulfide isomerase ER-60) (Endoplasmic reticulum resident protein 57) (ER protein 57) (ERp57) (Endoplasmic reticulum resident protein 60) (ER protein 60) (ERp60)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 1,
+      "nearest_current_countable_tm_score": 0.8166
     },
     {
       "accession": "P30838",
@@ -307,10 +336,13 @@
       "mmseqs_max_external_vs_reference_identity": null,
       "mmseqs_search_status": "no_near_duplicate_signal",
       "mmseqs_top_hit": null,
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "Aldehyde dehydrogenase, dimeric NADP-preferring (EC 1.2.1.5) (ALDHIII) (Aldehyde dehydrogenase 3) (Aldehyde dehydrogenase family 3 member A1)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 1,
+      "nearest_current_countable_tm_score": 0.8697
     },
     {
       "accession": "P31040",
@@ -342,10 +374,13 @@
         "identity": 0.888,
         "reference_accession": "P31040"
       },
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial (EC 1.3.5.1) (Flavoprotein subunit of complex II) (Fp) (Malate dehydrogenase [quinone] flavoprotein subunit) (EC 1.1.5.-)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 4,
+      "nearest_current_countable_tm_score": 0.9978
     },
     {
       "accession": "P36959",
@@ -372,10 +407,13 @@
       "mmseqs_max_external_vs_reference_identity": null,
       "mmseqs_search_status": "no_near_duplicate_signal",
       "mmseqs_top_hit": null,
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "GMP reductase 1 (GMPR 1) (EC 1.7.1.7) (Guanosine 5'-monophosphate oxidoreductase 1) (Guanosine monophosphate reductase 1)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 4,
+      "nearest_current_countable_tm_score": 0.7569
     },
     {
       "accession": "P54098",
@@ -402,10 +440,13 @@
       "mmseqs_max_external_vs_reference_identity": null,
       "mmseqs_search_status": "no_near_duplicate_signal",
       "mmseqs_top_hit": null,
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "DNA polymerase subunit gamma-1 (EC 2.7.7.7) (3'-5' exodeoxyribonuclease) (EC 3.1.11.-) (5'-deoxyribose-phosphate lyase) (EC 4.2.99.-) (Mitochondrial DNA polymerase catalytic subunit) (PolG-alpha)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 1,
+      "nearest_current_countable_tm_score": 0.8191
     },
     {
       "accession": "Q8TAT5",
@@ -432,10 +473,13 @@
       "mmseqs_max_external_vs_reference_identity": null,
       "mmseqs_search_status": "no_near_duplicate_signal",
       "mmseqs_top_hit": null,
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "Endonuclease 8-like 3 (EC 3.2.2.-) (EC 4.2.99.18) (DNA glycosylase FPG2) (DNA glycosylase/AP lyase Neil3) (Endonuclease VIII-like 3) (Nei-like protein 3)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 2,
+      "nearest_current_countable_tm_score": 0.7837
     },
     {
       "accession": "Q9BZE2",
@@ -462,10 +506,13 @@
       "mmseqs_max_external_vs_reference_identity": null,
       "mmseqs_search_status": "no_near_duplicate_signal",
       "mmseqs_top_hit": null,
-      "normalized_diagnostic_decision": "needs_review",
+      "normalized_diagnostic_decision": "terminal_rejection",
       "protein_name": "tRNA pseudouridine(38/39) synthase (EC 5.4.99.45) (tRNA pseudouridine synthase 3) (tRNA pseudouridylate synthase 3) (tRNA-uridine isomerase 3)",
       "ready_for_label_import": false,
-      "terminal_decision_from_existing_packet": "needs_review_current_countable_structural_screen_incomplete"
+      "terminal_decision_from_existing_packet": "rejected_current_countable_structural_duplicate_signal",
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "current_countable_high_tm_hit_count": 2,
+      "nearest_current_countable_tm_score": 0.8335
     }
   ]
 }

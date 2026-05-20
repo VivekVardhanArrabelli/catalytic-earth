@@ -50,25 +50,26 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-As of the 2026-05-20T13:15:07Z automation run, the main loop completed two
-visible small wins after committing the ePK synthesis. The prospective external
-mini-campaign is frozen and decisioned in
+As of the 2026-05-20T14:58:48Z automation run, the frozen prospective external
+mini-campaign has a terminal review-only outcome in
 `artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json`.
 The candidate-freeze artifact selected 12 external review-only candidates
 across oxidoreductase, lyase, and isomerase lanes after excluding the prior
 external pool, prior new-candidate surfaces, prior terminal duplicate rejects,
 the three imported external out-of-scope labels, and the explicit P22830
-deferral. Backend MMseqs2 sequence search completed: 11 rows have no current
-reference near-duplicate signal and `P07237` is an exact-reference terminal
-rejection. The current automation restored Foldseek at
-`/private/tmp/catalytic-foldseek-env/bin/foldseek` and reran the
-current-countable structural-screen artifact, but all 11 sequence-clean rows
-still lack external coordinate sidecars, so the structural screen remains
-incomplete and those rows stay terminal `needs_review` rather than out-of-scope
-or import-ready. The current 8-fingerprint inverse gate was configured at the
-calibrated `0.4115` abstention threshold, but scored 0 rows because no row
-cleared structural duplicate screening. No external row became countable or
-import-ready.
+deferral. Backend MMseqs2 sequence search completed: 11 rows had no current
+reference near-duplicate signal and `P07237` was an exact-reference terminal
+rejection. This run materialized all 11 missing AlphaFold candidate sidecars in
+`artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520/`
+and records their digests in
+`artifacts/v3_prospective_external_minicampaign_coordinate_materialization_20260520.json`.
+The Foldseek current-countable structural screen then completed 7392/7392
+query-target pairs against 672 staged current countable coordinate groups; all
+11 sequence-clean rows have high-TM current-countable duplicate signals
+(`TM >= 0.7`) and are terminal review-only rejections. The inverse gate remains
+configured at the calibrated `0.4115` threshold, but it scored 0 rows because
+no candidate survived structural duplicate screening. No external row became
+countable or import-ready.
 
 The modern-baseline comparison is in
 `artifacts/v3_modern_baseline_comparison_20260520.json`. It compares the
@@ -82,8 +83,8 @@ representation holdout; ESM-2 flags three; the Foldseek sidecar is useful
 structural-diversity context only and does not cover the new prospective
 mini-campaign rows. A focused regression test in
 `tests/test_automation_small_win_artifacts.py` pins the review-only status,
-zero-import outcome, Foldseek blocker, 8-fingerprint/threshold metadata, and
-no-superiority baseline caveat.
+zero-import outcome, coordinate materialization, completed Foldseek duplicate
+screen, 8-fingerprint/threshold metadata, and no-superiority baseline caveat.
 
 As of the 2026-05-20T13:57:21Z automation run, the first fallback
 mechanism-family readiness packet is now staged for SDR/NAD(P) redox in
@@ -114,13 +115,22 @@ mini-campaign in
 `artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`.
 It compares the already frozen 12 rows against the bounded MMseqs2
 current-reference search and a deterministic 5-mer nearest-neighbor baseline
-from the committed FASTA sidecars. The diagnostic agrees with the existing
-terminal surface: 1 exact-reference terminal rejection (`P07237`) and 11
-`needs_review` rows while candidate coordinate sidecars remain missing. It adds
-one useful review-priority caveat: `P31040` remains below the MMseqs2
-near-duplicate threshold but has a high deterministic k-mer neighbor signal to
-`Q9YHT1`, so it should not be treated as clean import evidence without
-structural and UniRef screens.
+from the committed FASTA sidecars. After coordinate materialization and
+Foldseek rerun, the diagnostic agrees with the terminal surface: 12/12 rows
+are terminal rejections, with `P07237` rejected as an exact-reference holdout
+and the other 11 rejected by current-countable structural duplicate signal. It
+retains one useful baseline caveat: `P31040` remains below the MMseqs2
+near-duplicate threshold and has a high deterministic k-mer neighbor signal to
+`Q9YHT1`, but its stronger terminal blocker is the completed structural
+duplicate screen.
+
+Evidence-based confidence call: confidence is high that the frozen
+mini-campaign is now closed as a useful negative result rather than blocked by
+missing sidecars, because the pair cache is complete and all sequence-clean
+rows have current-countable high-TM duplicate signals. Confidence is high that
+no import, registry edit, or inverse-gate claim is authorized from this set.
+The next external mini-campaign should use genuinely new preregistered sourcing
+or a different frozen surface, not rerun these structurally duplicated rows.
 
 As of the 2026-05-20T12:55:46Z automation run, the completed ePK subagent
 packets are integrated as review-only synthesis in

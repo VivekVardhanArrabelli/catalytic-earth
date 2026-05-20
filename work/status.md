@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 214
-- Measured elapsed time: 6759.5 minutes (112.66 hours)
+- Entries: 215
+- Measured elapsed time: 6792.6 minutes (113.21 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1530.4 measured minutes (25.51 hours)
+- post-infra-science: 1563.4 measured minutes (26.06 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2533
-- Evidence references logged: 2025
+- Artifact references logged: 2546
+- Evidence references logged: 2042
 
 ## Recent Entries
-
-### 2026-05-20T07:35:18.172497+00:00 - post-infra-science
-
-- Task: ePK active-query multi-source terminal stress
-- Time mode: measured
-- Measured minutes: 48.333
-- Started: 2026-05-20T06:49:30Z
-- Ended: 2026-05-20T07:37:50Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_ligand_specific_active_query_extension_audit_1025.json, artifacts/v3_epk_mek_erk_targeted_extension_audit_1025.json, artifacts/v3_epk_substrate_cocomplex_text_extension_audit_1025.json, artifacts/v3_epk_amp_pnp_protein_query_extension_audit_1025.json, artifacts/v3_epk_atp_protein_query_extension_audit_1025.json, artifacts/v3_epk_adp_product_query_extension_audit_1025.json, artifacts/v3_epk_multi_query_active_site_terminal_audit_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 642-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, active-query extension plus targeted MEK ERK co-complex AMP-PNP ATP and ADP routes covered 784 query placements and 630 unique structures, multi-query terminal audit found 27 topology hits 3 known positive repeats 8 known counterexample repeats 11 new blocked hits and 0 accepted new positives, MEK ERK rows 9UUR 9UUX 9UW4 blocked on role direction and phosphoacceptor state, same-author-chain topology risk covers 15 hits, final 644-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 253 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external out_of_scope, compileall passed, JSON validation passed, review-only artifact guard passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ### 2026-05-20T08:39:33.652171+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-20T14:13:48Z
 - Artifacts: artifacts/v3_sdr_family_readiness_packet_20260520.json, artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 683-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, subagent JSON packets validated, SDR readiness packet keeps O14756 review-only and no-go for production fingerprint expansion, SDR packet records 36 clean SDR abstentions and AKR/NADP counterfamily requirements, mini-campaign sequence baseline records P07237 terminal rejection and P31040 k-mer review-priority caveat, Foldseek restored at /private/tmp/catalytic-foldseek-env/bin/foldseek but candidate coordinate sidecars missing keep 11 rows needs_review, inverse gate scored 0 rows because no candidate cleared structural screening, focused artifact tests passed, final 685-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
+
+### 2026-05-20T15:32:22.885905+00:00 - post-infra-science
+
+- Task: Close prospective mini-campaign structural duplicates
+- Time mode: measured
+- Measured minutes: 33.017
+- Started: 2026-05-20T14:58:48Z
+- Ended: 2026-05-20T15:31:49Z
+- Artifacts: artifacts/v3_prospective_external_minicampaign_coordinate_materialization_20260520.json, artifacts/v3_prospective_external_minicampaign_structural_coordinates_20260520, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 685-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, subagent JSON packets and synthesis JSON validated, 11 frozen mini-campaign AlphaFold coordinate sidecars materialized with 0 fetch failures, Foldseek current-countable structural screen completed 7392/7392 query-target pairs against 672 current coordinate groups, all 11 sequence-clean rows rejected by current-countable structural duplicate signal, P07237 remains exact-reference terminal rejection, inverse gate scored 0 rows because no row survived structural duplicate screening, focused small-win artifact tests passed, final 686-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -289,6 +289,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T12:19:46.938589+00:00: Folded protein-substrate sourcing is still negative under the current source-free substrate-mode surface; next work needs a fresh bounded tranche with stronger source-free substrate identity or pair-specific source mapping kept outside predictive scoring.
 - 2026-05-20T13:17:20.692201+00:00: Next external mini-campaign blocker is restoring or configuring Foldseek before current-countable structural screen and inverse-gate scoring can produce import decisions
 - 2026-05-20T14:14:08.715044+00:00: Next mini-campaign work should materialize the 11 candidate coordinate sidecars before rerunning Foldseek; next SDR work should freeze a 10-20 row SDR/AKR control tranche before scoring.
+- 2026-05-20T15:32:22.885905+00:00: Next external mini-campaign work needs genuinely new preregistered sourcing or a different frozen surface; do not rerun this structurally duplicated set for import.
 
 ## Scope Adjustments
 
@@ -402,3 +403,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-18T06:29:09.711385+00:00: ePK now has a review-only draft spec and local evidence audit but remains blocked from positive-universe expansion until scorer threshold external re-audit terminal review and factory gates pass.
 - 2026-05-20T13:17:20.692201+00:00: ePK remains review-only; main loop pivoted to external mini-campaign and baseline comparison small wins
 - 2026-05-20T14:14:08.715044+00:00: Main loop now has a non-ePK SDR readiness packet and a mini-campaign sequence baseline; Foldseek binary is restored but candidate coordinate sidecars are the active external-screen blocker.
+- 2026-05-20T15:32:22.885905+00:00: Frozen prospective mini-campaign is now closed as terminal review-only duplicate evidence rather than blocked by missing coordinate sidecars.
