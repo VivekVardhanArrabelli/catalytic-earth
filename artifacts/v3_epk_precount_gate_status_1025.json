@@ -636,6 +636,44 @@
     },
     {
       "evidence": {
+        "current_control_false_non_abstention_count": 0,
+        "imported_external_hard_negative_non_abstention_count": 0,
+        "positive_like_full_score_count": 8,
+        "positive_like_full_score_pdb_ids": [
+          "1IR3",
+          "1O6K",
+          "1O6L",
+          "2PHK",
+          "5HVK",
+          "6Z3R",
+          "8OXM",
+          "8OXO"
+        ],
+        "prototype_gate_status": "fail_closed_review_only",
+        "review_only_score_computed": true,
+        "rule_id": "epk_unified_polymer_substrate_identity_rule_v0_review_only",
+        "source_method": "epk_unified_review_only_scoring_prototype"
+      },
+      "gate_id": "unified_review_only_scoring_prototype",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "broad_stress_complete": false,
+        "broad_stress_status": "bounded_stress_has_source_validation_counterexamples_review_only",
+        "outside_query_heteromeric_candidate_hit_count": 4,
+        "outside_query_reviewed_candidate_count": 111,
+        "source_method": "epk_unified_prototype_broad_stress_audit",
+        "source_validation_blocked_or_rejected_pdb_ids": [
+          "9L3M",
+          "9L3U"
+        ]
+      },
+      "gate_id": "unified_prototype_broad_stress_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "atp_metal_state_candidate_count": 2,
         "atp_metal_state_candidate_pdb_ids": [
           "1TID",
@@ -1259,6 +1297,8 @@
       "treat m_csa:756 as active-state-source blocked and require a new source or pre-registered analog/product-state policy",
       "treat m_csa:757 as active-state-source blocked and pivot protein-substrate coverage repair to m_csa:756 unless a mapped substrate structure is found",
       "treat m_csa:760 as split-state blocked and pivot protein-substrate coverage repair to another ePK source unless a combined ATP/substrate structure is found",
+      "use 9L3M and 9L3U as broad-sourcing counterexamples before any ePK threshold calibration",
+      "treat the unified review-only scorer as current-control clean but keep threshold selection and real external scored re-audit closed",
       "stress-test the unified substrate-identity rule against broader controls before any threshold or scored re-audit",
       "source heteromeric kinase-substrate co-complexes outside the exhausted ANP/Mg EC 2.7.11.1 snapshot or add a general substrate-chain identity axis",
       "keep the peptide-like external hard-negative probe as diagnostic only until a calibrated scorer exists",
@@ -1362,6 +1402,8 @@
     "source_epk_substrate_acceptor_counteraxis_prototype_method": "epk_substrate_acceptor_counteraxis_prototype",
     "source_epk_substrate_mode_gap_audit_method": "epk_substrate_mode_gap_audit",
     "source_epk_text_free_acceptor_feature_gap_audit_method": "epk_text_free_acceptor_feature_gap_audit",
+    "source_epk_unified_prototype_broad_stress_audit_method": "epk_unified_prototype_broad_stress_audit",
+    "source_epk_unified_review_only_scoring_prototype_method": "epk_unified_review_only_scoring_prototype",
     "source_epk_unified_substrate_identity_rule_probe_method": "epk_unified_substrate_identity_rule_probe",
     "source_free_chain_topology_audit_status": "blocked_review_only_source_free_topology_role_rule_false_hit_risk",
     "source_free_chain_topology_cross_accession_positive_count": 1,
@@ -1411,6 +1453,34 @@
     "text_free_acceptor_negative_control_false_hit_count": 11,
     "text_free_acceptor_positive_hit_count": 3,
     "threshold_calibrated": false,
+    "unified_prototype_broad_stress_blocked_or_rejected_pdb_ids": [
+      "9L3M",
+      "9L3U"
+    ],
+    "unified_prototype_broad_stress_complete": false,
+    "unified_prototype_broad_stress_outside_query_candidate_hit_count": 4,
+    "unified_prototype_broad_stress_outside_query_reviewed_candidate_count": 111,
+    "unified_prototype_broad_stress_source_validated_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "unified_prototype_broad_stress_status": "bounded_stress_has_source_validation_counterexamples_review_only",
+    "unified_review_only_score_computed": true,
+    "unified_review_only_scoring_control_false_non_abstention_count": 0,
+    "unified_review_only_scoring_external_hard_negative_non_abstention_count": 0,
+    "unified_review_only_scoring_passes_current_controls": true,
+    "unified_review_only_scoring_positive_full_score_count": 8,
+    "unified_review_only_scoring_positive_full_score_pdb_ids": [
+      "1IR3",
+      "1O6K",
+      "1O6L",
+      "2PHK",
+      "5HVK",
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
+    "unified_review_only_scoring_prototype_status": "fail_closed_review_only",
     "unified_substrate_identity_control_false_hit_count": 0,
     "unified_substrate_identity_external_hard_negative_non_abstention_count": 0,
     "unified_substrate_identity_ligand_analog_excluded_positive_count": 1,

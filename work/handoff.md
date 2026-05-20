@@ -50,6 +50,47 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T01:43:22Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 617 unit tests plus
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+
+`artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json` is the new
+review-only ePK scorer-development artifact. It uses the unified
+substrate-identity rule as a gated local axis, carries the 5HVK gamma distance
+forward from nested heteromeric topology evidence, gives full diagnostic signal
+to eight positive-like rows (`1IR3`, `1O6K`, `1O6L`, `2PHK`, `5HVK`, `6Z3R`,
+`8OXM`, and `8OXO`), excludes ligand-analog-only `3TM0`, blocks 44 current
+controls and 20 legacy sibling counter-axis rows, and keeps the three imported
+external hard negatives at 0 review-only non-abstentions. It deliberately
+reports `prototype_gate_status=fail_closed_review_only`; `epk_score_computed`
+and real external hard-negative scored re-audit both remain false.
+
+`artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json` consolidates
+the bounded broad-stress result. The exact 110-entry source query is exhausted,
+outside-query scouts reviewed 111 candidates with 0 fetch failures and four
+heteromeric topology hits, `1O6K`/`1O6L` are source-valid positives, and
+`9L3M`/`9L3U` are source-validation counterexamples. The preregistration
+artifact
+`artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`
+freezes three next broad-stress lanes and carries `9L3M`/`9L3U` as blocked
+controls before any threshold calibration. `artifacts/v3_epk_precount_gate_status_1025.json`
+and `artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json` now include
+the unified prototype and broad-stress diagnostic rows while preserving overall
+`blocked_review_only` and `threshold_selection_decision=do_not_select_threshold`.
+
+Evidence-based confidence call: confidence is high that the unified
+review-only prototype is current-control clean because it retains the eight
+positive-like rows, blocks current/sibling controls, and abstains on all three
+imported external hard negatives. Confidence remains low for production
+scoring because broad-stress evidence is bounded and already contains
+source-validation counterexamples, thresholds are uncalibrated, the real
+external scored re-audit is closed, and registry/factory extension remains
+out of scope.
+
 As of the 2026-05-20T00:42:53Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

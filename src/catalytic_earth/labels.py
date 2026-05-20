@@ -15574,6 +15574,764 @@ def build_epk_review_only_scoring_prototype(
     }
 
 
+def build_epk_unified_review_only_scoring_prototype(
+    *,
+    epk_unified_substrate_identity_rule_probe: dict[str, Any],
+    epk_review_only_scoring_prototype: dict[str, Any],
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Score the unified ePK substrate-identity surface in review-only mode."""
+
+    unified_meta = epk_unified_substrate_identity_rule_probe.get("metadata", {})
+    if not isinstance(unified_meta, dict):
+        unified_meta = {}
+    prototype_meta = epk_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+
+    target_fingerprint_id = str(
+        unified_meta.get("target_fingerprint_id")
+        or prototype_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rule_id = str(
+        unified_meta.get("rule_id")
+        or "epk_unified_polymer_substrate_identity_rule_v0_review_only"
+    )
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_like_row_types = {
+        "unified_identity_current_peptide_positive",
+        "unified_identity_source_expansion_peptide_positive",
+        "unified_identity_current_protein_substrate_positive",
+        "unified_identity_heteromeric_protein_positive",
+    }
+
+    def _float_or_none(value: Any) -> float | None:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return None
+
+    def _role_context_present(row: dict[str, Any]) -> bool:
+        return any(
+            bool(row.get(key))
+            for key in (
+                "acceptor_chain_lacks_local_nucleotide_or_metal",
+                "peptide_like_acceptor_chain",
+                "non_catalytic_chain_acceptor",
+                "heteromeric_chain_entity_signal_hit",
+            )
+        )
+
+    for source_row in epk_unified_substrate_identity_rule_probe.get("rows", []) or []:
+        if not isinstance(source_row, dict):
+            continue
+        row_type = str(source_row.get("row_type") or "")
+        rule_hit = bool(source_row.get("unified_substrate_identity_rule_hit"))
+        gamma_distance = _float_or_none(
+            source_row.get("nearest_gamma_to_acceptor_distance_angstrom")
+        )
+        gamma_axis = (
+            gamma_distance is not None
+            and gamma_distance <= float(candidate_threshold_angstrom)
+        )
+        role_context = _role_context_present(source_row)
+        ligand_analog = bool(source_row.get("ligand_analog_acceptor"))
+        source_positive_like = row_type in positive_like_row_types
+        external_hard_negative = (
+            row_type == "unified_identity_imported_external_hard_negative"
+        )
+        control_like = (
+            not source_positive_like
+            and not external_hard_negative
+        )
+
+        axis_values = {
+            "unified_substrate_identity_rule_hit": int(rule_hit),
+            "gamma_to_acceptor_distance_within_candidate_cutoff": int(gamma_axis),
+            "local_substrate_role_context_present": int(role_context),
+            "not_ligand_analog_acceptor": int(not ligand_analog),
+        }
+        if source_positive_like and all(axis_values.values()):
+            decision = "unified_positive_signal_review_only_not_calibrated"
+            score = 1.0
+            blockers = [
+                "threshold_not_calibrated_against_broad_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ]
+        elif external_hard_negative:
+            decision = "external_hard_negative_abstain_unified_review_only"
+            score = 0.0
+            blockers = [
+                "external_hard_negative_reaudit_not_real_scorer",
+                "threshold_not_calibrated_against_broad_controls",
+            ]
+        elif control_like:
+            decision = (
+                "control_false_non_abstention_unified_review_only"
+                if rule_hit
+                else "control_blocked_by_unified_identity_counteraxis_review_only"
+            )
+            score = 1.0 if rule_hit else 0.0
+            blockers = [
+                "control_row_not_epk_positive_label",
+                "threshold_not_calibrated_against_broad_controls",
+            ]
+        elif ligand_analog:
+            decision = "ligand_analog_positive_excluded_unified_review_only"
+            score = 0.0
+            blockers = [
+                "ligand_analog_policy_not_production_admissible",
+                "threshold_not_calibrated_against_broad_controls",
+            ]
+        else:
+            decision = "positive_like_abstain_missing_unified_axis_review_only"
+            score = 0.0
+            blockers = [
+                axis_id
+                for axis_id, value in axis_values.items()
+                if value == 0
+            ] + [
+                "threshold_not_calibrated_against_broad_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": row_type,
+                "source_row_type": source_row.get("source_row_type"),
+                "entry_id": source_row.get("entry_id"),
+                "pdb_id": source_row.get("pdb_id"),
+                "family_id": source_row.get("family_id"),
+                "substrate_mode": source_row.get("substrate_mode"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "rule_id": rule_id,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "nearest_gamma_to_acceptor_distance_angstrom": gamma_distance,
+                "candidate_acceptor_residue_code": source_row.get(
+                    "candidate_acceptor_residue_code"
+                ),
+                "candidate_acceptor_chain_name": source_row.get(
+                    "candidate_acceptor_chain_name"
+                ),
+                "review_only_axis_values": axis_values,
+                "review_only_unified_prototype_score": score,
+                "review_only_prototype_decision": decision,
+                "production_scoring_admissible": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": blockers,
+            }
+        )
+
+    for prior_row in epk_review_only_scoring_prototype.get("rows", []) or []:
+        if not isinstance(prior_row, dict):
+            continue
+        prior_type = str(prior_row.get("row_type") or "")
+        if prior_type not in {
+            "sibling_homolog_negative_control",
+            "sibling_family_specific_negative_control",
+        }:
+            continue
+        decision = str(
+            prior_row.get("prototype_decision")
+            or "sibling_counteraxis_blocks_unified_review_only"
+        )
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": f"legacy_{prior_type}",
+                "entry_id": prior_row.get("entry_id"),
+                "pdb_id": prior_row.get("pdb_id"),
+                "family_id": prior_row.get("family_id"),
+                "family_name": prior_row.get("family_name"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    prior_row.get("text_free_inputs_only", True)
+                ),
+                "rule_id": rule_id,
+                "candidate_threshold_angstrom": candidate_threshold_angstrom,
+                "review_only_axis_values": prior_row.get(
+                    "prototype_axis_values", {}
+                ),
+                "review_only_unified_prototype_score": 0.0,
+                "review_only_prototype_decision": decision,
+                "nearest_gamma_to_mapped_histidine_distance_angstrom": (
+                    prior_row.get(
+                        "nearest_gamma_to_mapped_histidine_distance_angstrom"
+                    )
+                ),
+                "nearest_gamma_to_family_acid_base_distance_angstrom": (
+                    prior_row.get(
+                        "nearest_gamma_to_family_acid_base_distance_angstrom"
+                    )
+                ),
+                "production_scoring_admissible": False,
+                "ready_for_label_import": False,
+                "ready_for_production_scoring": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "sibling_family_control_not_epk_positive_label",
+                    "threshold_not_calibrated_against_broad_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                ],
+            }
+        )
+
+    positive_like_rows = [
+        row
+        for row in rows
+        if row.get("row_type") in positive_like_row_types
+    ]
+    positive_full_score_rows = [
+        row
+        for row in positive_like_rows
+        if row.get("review_only_prototype_decision")
+        == "unified_positive_signal_review_only_not_calibrated"
+    ]
+    control_rows = [
+        row
+        for row in rows
+        if str(row.get("row_type") or "").startswith("unified_identity_")
+        and row.get("row_type") not in positive_like_row_types
+        and row.get("row_type") != "unified_identity_imported_external_hard_negative"
+    ]
+    control_false_rows = [
+        row
+        for row in control_rows
+        if row.get("review_only_prototype_decision")
+        == "control_false_non_abstention_unified_review_only"
+    ]
+    external_rows = [
+        row
+        for row in rows
+        if row.get("row_type") == "unified_identity_imported_external_hard_negative"
+    ]
+    external_non_abstention_rows = [
+        row
+        for row in external_rows
+        if float(row.get("review_only_unified_prototype_score") or 0.0) > 0.0
+    ]
+    legacy_sibling_rows = [
+        row
+        for row in rows
+        if str(row.get("row_type") or "").startswith("legacy_sibling_")
+    ]
+    positive_like_miss_rows = [
+        row
+        for row in positive_like_rows
+        if row.get("review_only_prototype_decision")
+        != "unified_positive_signal_review_only_not_calibrated"
+    ]
+    prototype_passes_current_controls = (
+        len(positive_full_score_rows) > 0
+        and not control_false_rows
+        and not external_non_abstention_rows
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_unified_review_only_scoring_prototype",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_unified_substrate_identity_rule_probe_method": (
+                unified_meta.get("method")
+            ),
+            "source_epk_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "rule_id": rule_id,
+            "candidate_threshold_angstrom": candidate_threshold_angstrom,
+            "row_count": len(rows),
+            "positive_like_row_count": len(positive_like_rows),
+            "positive_like_full_score_count": len(positive_full_score_rows),
+            "positive_like_full_score_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in positive_full_score_rows
+            ),
+            "positive_like_miss_count": len(positive_like_miss_rows),
+            "positive_like_miss_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in positive_like_miss_rows
+            ),
+            "current_control_row_count": len(control_rows),
+            "current_control_false_non_abstention_count": len(control_false_rows),
+            "current_control_false_non_abstention_pdb_ids": _sorted_strings(
+                row.get("pdb_id") for row in control_false_rows
+            ),
+            "imported_external_hard_negative_row_count": len(external_rows),
+            "imported_external_hard_negative_non_abstention_count": (
+                len(external_non_abstention_rows)
+            ),
+            "imported_external_hard_negative_non_abstention_entry_ids": (
+                _sorted_strings(row.get("entry_id") for row in external_non_abstention_rows)
+            ),
+            "legacy_sibling_counteraxis_row_count": len(legacy_sibling_rows),
+            "review_only_score_computed": True,
+            "prototype_passes_current_controls": prototype_passes_current_controls,
+            "prototype_decision_counts": dict(sorted(decision_counts.items())),
+            "prototype_gate_status": "fail_closed_review_only",
+            "prototype_failed_closed": True,
+            "prototype_failure_axes": [
+                "threshold_not_calibrated_against_broad_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+                "unified_rule_not_frozen_as_production_scorer",
+            ],
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "ready_for_production_scoring": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "This artifact scores the unified substrate-identity probe in "
+                "review-only mode. The score is a diagnostic decision surface "
+                "over local substrate identity, gamma distance, role context, "
+                "and ligand-analog exclusion; it is not a calibrated ePK score "
+                "or a label/fingerprint gate."
+            ),
+            "next_actions": [
+                "stress the unified prototype against broader controls before threshold selection",
+                "run a real external hard-negative scored re-audit only after the scorer is calibrated",
+                "keep registry and label-factory extension closed until a production scorer gate exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("row_type") or ""),
+                _entry_id_sort_key(str(row.get("entry_id") or "")),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Unified prototype scores are review-only diagnostics and must "
+                "not be treated as held-out performance, label import evidence, "
+                "or production fingerprint evidence."
+            )
+        ],
+    }
+
+
+def build_epk_unified_prototype_broad_stress_audit(
+    *,
+    epk_unified_review_only_scoring_prototype: dict[str, Any],
+    epk_heteromeric_peptide_broader_stress_audit: dict[str, Any],
+    epk_heteromeric_source_expansion_candidate_scout: dict[str, Any]
+    | list[dict[str, Any]],
+    epk_heteromeric_source_expansion_source_validation_review: dict[str, Any]
+    | list[dict[str, Any]]
+    | None = None,
+) -> dict[str, Any]:
+    """Summarize bounded broad-stress evidence for the unified ePK prototype."""
+
+    prototype_meta = epk_unified_review_only_scoring_prototype.get("metadata", {})
+    if not isinstance(prototype_meta, dict):
+        prototype_meta = {}
+    stress_meta = epk_heteromeric_peptide_broader_stress_audit.get("metadata", {})
+    if not isinstance(stress_meta, dict):
+        stress_meta = {}
+    scouts = (
+        epk_heteromeric_source_expansion_candidate_scout
+        if isinstance(epk_heteromeric_source_expansion_candidate_scout, list)
+        else [epk_heteromeric_source_expansion_candidate_scout]
+    )
+    reviews = (
+        epk_heteromeric_source_expansion_source_validation_review
+        if isinstance(epk_heteromeric_source_expansion_source_validation_review, list)
+        else (
+            [epk_heteromeric_source_expansion_source_validation_review]
+            if isinstance(epk_heteromeric_source_expansion_source_validation_review, dict)
+            else []
+        )
+    )
+    target_fingerprint_id = str(
+        prototype_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+
+    rows: list[dict[str, Any]] = []
+    exact_reviewed_count = int(stress_meta.get("combined_reviewed_pdb_count") or 0)
+    exact_unreviewed_count = int(stress_meta.get("unreviewed_exact_query_pdb_count") or 0)
+    exact_positive_non_peptide_count = int(
+        stress_meta.get("positive_non_peptide_substrate_chain_hit_count") or 0
+    )
+    rows.append(
+        {
+            "row_type": "exact_query_stress_summary",
+            "source_method": stress_meta.get("method"),
+            "target_fingerprint_id": target_fingerprint_id,
+            "review_only": True,
+            "exact_source_query_exhausted": bool(
+                stress_meta.get("exact_source_query_exhausted")
+            ),
+            "reviewed_pdb_count": exact_reviewed_count,
+            "unreviewed_pdb_count": exact_unreviewed_count,
+            "heteromeric_topology_hit_count": stress_meta.get(
+                "heteromeric_topology_hit_count"
+            ),
+            "positive_peptide_identity_hit_count": stress_meta.get(
+                "positive_peptide_identity_hit_count"
+            ),
+            "positive_non_peptide_substrate_chain_hit_count": (
+                exact_positive_non_peptide_count
+            ),
+            "control_false_hit_count": int(
+                stress_meta.get("nonaccepted_peptide_identity_false_hit_count") or 0
+            )
+            + int(stress_meta.get("sibling_peptide_identity_false_hit_count") or 0),
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+        }
+    )
+
+    scout_reviewed_count = 0
+    scout_fetch_failure_count = 0
+    scout_candidate_hit_count = 0
+    scout_candidate_pdb_ids: list[str] = []
+    for scout in scouts:
+        if not isinstance(scout, dict):
+            continue
+        meta = scout.get("metadata", {})
+        if not isinstance(meta, dict):
+            meta = {}
+        candidate_pdb_ids = _sorted_strings(meta.get("heteromeric_candidate_pdb_ids", []))
+        scout_reviewed_count += int(meta.get("reviewed_candidate_count") or 0)
+        scout_fetch_failure_count += int(meta.get("fetch_failure_count") or 0)
+        scout_candidate_hit_count += int(meta.get("heteromeric_candidate_structure_count") or 0)
+        scout_candidate_pdb_ids.extend(candidate_pdb_ids)
+        rows.append(
+            {
+                "row_type": "outside_query_scout_summary",
+                "source_method": meta.get("method"),
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "positive_coverage_status": meta.get("positive_coverage_status"),
+                "input_candidate_count": meta.get("input_candidate_count"),
+                "reviewed_candidate_count": meta.get("reviewed_candidate_count"),
+                "fetch_failure_count": meta.get("fetch_failure_count"),
+                "heteromeric_candidate_structure_count": meta.get(
+                    "heteromeric_candidate_structure_count"
+                ),
+                "heteromeric_candidate_pdb_ids": candidate_pdb_ids,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+            }
+        )
+
+    review_status_counts: Counter[str] = Counter()
+    source_validated_pdb_ids: list[str] = []
+    blocked_or_rejected_pdb_ids: list[str] = []
+    for review in reviews:
+        if not isinstance(review, dict):
+            continue
+        for row in review.get("rows", []) or []:
+            if not isinstance(row, dict):
+                continue
+            status = str(row.get("source_validation_status") or "")
+            pdb_id = str(row.get("pdb_id") or "")
+            if status:
+                review_status_counts[status] += 1
+            if status.startswith("accepted_source_valid"):
+                source_validated_pdb_ids.append(pdb_id)
+                decision = "source_valid_positive_like_review_only"
+            elif status:
+                blocked_or_rejected_pdb_ids.append(pdb_id)
+                decision = "source_validation_blocks_candidate_review_only"
+            else:
+                decision = "source_validation_status_missing_review_only"
+            rows.append(
+                {
+                    "row_type": "outside_query_source_validation_row",
+                    "source_method": review.get("metadata", {}).get("method")
+                    if isinstance(review.get("metadata"), dict)
+                    else None,
+                    "target_fingerprint_id": target_fingerprint_id,
+                    "review_only": True,
+                    "pdb_id": pdb_id,
+                    "source_pair_id": row.get("source_pair_id"),
+                    "source_validation_status": status,
+                    "broad_stress_decision": decision,
+                    "countable_label_candidate": False,
+                    "epk_score_computed": False,
+                }
+            )
+
+    prototype_current_control_false_non_abstention_count = int(
+        prototype_meta.get("current_control_false_non_abstention_count") or 0
+    )
+    prototype_external_non_abstention_count = int(
+        prototype_meta.get("imported_external_hard_negative_non_abstention_count") or 0
+    )
+    bounded_stress_passes_current_controls = (
+        bool(prototype_meta.get("prototype_passes_current_controls"))
+        and prototype_current_control_false_non_abstention_count == 0
+        and prototype_external_non_abstention_count == 0
+        and exact_unreviewed_count == 0
+        and exact_positive_non_peptide_count == 0
+        and scout_fetch_failure_count == 0
+        and not blocked_or_rejected_pdb_ids
+    )
+    bounded_stress_identifies_counterexamples = bool(blocked_or_rejected_pdb_ids)
+    broad_stress_status = (
+        "bounded_stress_has_source_validation_counterexamples_review_only"
+        if bounded_stress_identifies_counterexamples
+        else "bounded_stress_passes_current_controls_review_only"
+        if bounded_stress_passes_current_controls
+        else "bounded_stress_incomplete_review_only"
+    )
+
+    return {
+        "metadata": {
+            "method": "epk_unified_prototype_broad_stress_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_unified_review_only_scoring_prototype_method": (
+                prototype_meta.get("method")
+            ),
+            "source_epk_heteromeric_peptide_broader_stress_audit_method": (
+                stress_meta.get("method")
+            ),
+            "source_expansion_scout_count": len(
+                [scout for scout in scouts if isinstance(scout, dict)]
+            ),
+            "source_expansion_review_count": len(
+                [review for review in reviews if isinstance(review, dict)]
+            ),
+            "exact_source_query_reviewed_count": exact_reviewed_count,
+            "exact_source_query_unreviewed_count": exact_unreviewed_count,
+            "exact_source_query_positive_non_peptide_hit_count": (
+                exact_positive_non_peptide_count
+            ),
+            "outside_query_reviewed_candidate_count": scout_reviewed_count,
+            "outside_query_fetch_failure_count": scout_fetch_failure_count,
+            "outside_query_heteromeric_candidate_hit_count": scout_candidate_hit_count,
+            "outside_query_heteromeric_candidate_pdb_ids": _sorted_strings(
+                scout_candidate_pdb_ids
+            ),
+            "source_validated_positive_like_pdb_ids": _sorted_strings(
+                source_validated_pdb_ids
+            ),
+            "source_validation_blocked_or_rejected_pdb_ids": _sorted_strings(
+                blocked_or_rejected_pdb_ids
+            ),
+            "source_validation_status_counts": dict(sorted(review_status_counts.items())),
+            "prototype_positive_like_full_score_count": prototype_meta.get(
+                "positive_like_full_score_count"
+            ),
+            "prototype_current_control_false_non_abstention_count": (
+                prototype_current_control_false_non_abstention_count
+            ),
+            "prototype_external_hard_negative_non_abstention_count": (
+                prototype_external_non_abstention_count
+            ),
+            "bounded_stress_passes_current_controls": (
+                bounded_stress_passes_current_controls
+            ),
+            "bounded_stress_identifies_counterexamples": (
+                bounded_stress_identifies_counterexamples
+            ),
+            "broad_stress_status": broad_stress_status,
+            "broad_stress_complete": False,
+            "threshold_calibrated": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "next_actions": [
+                "treat 9L3M and 9L3U as source-validation counterexamples for broad text-query sourcing",
+                "pre-register the next outside-query control tranche before threshold calibration",
+                "keep the real external hard-negative scored re-audit closed until the production scorer exists",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Broad-stress audit is bounded review-only evidence. It does "
+                "not calibrate thresholds, score ePK in production, edit "
+                "registries, or support held-out performance claims."
+            )
+        ],
+    }
+
+
+def build_epk_unified_prototype_next_broad_stress_preregistration(
+    *,
+    epk_unified_prototype_broad_stress_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Pre-register the next bounded broad-stress tranche for ePK."""
+
+    stress_meta = epk_unified_prototype_broad_stress_audit.get("metadata", {})
+    if not isinstance(stress_meta, dict):
+        stress_meta = {}
+    target_fingerprint_id = str(
+        stress_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    known_counterexample_pdb_ids = _sorted_strings(
+        stress_meta.get("source_validation_blocked_or_rejected_pdb_ids", [])
+    )
+    source_validated_pdb_ids = _sorted_strings(
+        stress_meta.get("source_validated_positive_like_pdb_ids", [])
+    )
+    observed_candidate_ids = set(
+        _sorted_strings(stress_meta.get("outside_query_heteromeric_candidate_pdb_ids", []))
+    )
+    for row in epk_unified_prototype_broad_stress_audit.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        pdb_id = row.get("pdb_id")
+        if pdb_id:
+            observed_candidate_ids.add(str(pdb_id))
+        for value in row.get("heteromeric_candidate_pdb_ids", []) or []:
+            observed_candidate_ids.add(str(value))
+
+    rows = [
+        {
+            "row_type": "next_broad_stress_lane",
+            "lane_id": "amp_pnp_mg_reviewed_peptide_kinase_substrate",
+            "review_only": True,
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_query_principle": (
+                "reviewed kinase-substrate peptide co-complexes with AMP-PNP "
+                "or ATP analog plus Mg, excluding already reviewed PDB ids"
+            ),
+            "required_controls": [
+                "source validation for kinase-substrate role",
+                "unified substrate-identity rule evaluation",
+                "imported external hard-negative feature abstention check",
+            ],
+            "success_criteria": [
+                "new source-valid positive-like rows have unified score 1.0 review-only",
+                "no source-validation blocked row receives a non-abstention",
+            ],
+            "failure_criteria": [
+                "any blocked or non-ePK source context receives a non-abstention",
+                "any imported external hard negative receives a feature non-abstention",
+            ],
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+        },
+        {
+            "row_type": "next_broad_stress_lane",
+            "lane_id": "protein_substrate_cross_accession_anp_mg",
+            "review_only": True,
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_query_principle": (
+                "cross-accession protein-substrate kinase co-complexes with "
+                "ANP/ATP-like gamma-capable ligand and Mg, excluding exact "
+                "query rows already summarized"
+            ),
+            "required_controls": [
+                "mapped non-catalytic substrate-chain hydroxyl acceptor",
+                "acceptor-chain nucleotide/metal counteraxis",
+                "sibling-family same-chain hydroxyl controls",
+            ],
+            "success_criteria": [
+                "source-valid protein-substrate positives score review-only",
+                "same-accession or role-ambiguous controls abstain",
+            ],
+            "failure_criteria": [
+                "same-accession phosphosite controls receive a non-abstention",
+                "role-ambiguous heteromeric controls receive a non-abstention",
+            ],
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+        },
+        {
+            "row_type": "next_broad_stress_lane",
+            "lane_id": "broad_text_query_counterexample_guard",
+            "review_only": True,
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_query_principle": (
+                "broad kinase substrate peptide text-query rows are allowed "
+                "only as counterexample controls unless source validation "
+                "confirms kinase-substrate chemistry"
+            ),
+            "required_controls": [
+                "explicit source-validation screen before scorer use",
+                "carry known counterexamples as blocked controls",
+            ],
+            "known_counterexample_pdb_ids": known_counterexample_pdb_ids,
+            "success_criteria": [
+                "known counterexamples remain abstentions under the unified prototype",
+                "new broad-query rows without source authority remain non-countable",
+            ],
+            "failure_criteria": [
+                "any known counterexample receives a non-abstention",
+                "source-unvalidated broad-query hits are treated as positives",
+            ],
+            "countable_label_candidate": False,
+            "epk_score_computed": False,
+        },
+    ]
+
+    return {
+        "metadata": {
+            "method": "epk_unified_prototype_next_broad_stress_preregistration",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_unified_prototype_broad_stress_audit_method": (
+                stress_meta.get("method")
+            ),
+            "preregistration_status": (
+                "active_review_only_next_broad_stress_tranche_preregistered"
+            ),
+            "known_counterexample_pdb_ids": known_counterexample_pdb_ids,
+            "source_validated_positive_like_pdb_ids": source_validated_pdb_ids,
+            "excluded_prior_pdb_ids": _sorted_strings(observed_candidate_ids),
+            "lane_count": len(rows),
+            "threshold_calibrated": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_run_epk_scorer": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "next_actions": [
+                "source a bounded next tranche only under these preregistered lanes",
+                "score any new rows in review-only mode before threshold work",
+                "keep production ePK gates closed until broad-stress controls pass",
+            ],
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "Preregistration freezes next-experiment criteria only. It does "
+                "not fetch candidates, calibrate thresholds, score production "
+                "ePK, edit registries, or import labels."
+            )
+        ],
+    }
+
+
 def build_epk_counteraxis_sufficiency_decision(
     *,
     epk_review_only_scoring_prototype: dict[str, Any],
@@ -15722,6 +16480,53 @@ def build_epk_counteraxis_sufficiency_decision(
         precount_meta.get(
             "unified_substrate_identity_ready_review_only"
         )
+    )
+    unified_scoring_passes_current_controls = bool(
+        precount_meta.get("unified_review_only_scoring_passes_current_controls")
+    )
+    unified_scoring_positive_full_score_count = int(
+        precount_meta.get("unified_review_only_scoring_positive_full_score_count")
+        or 0
+    )
+    unified_scoring_positive_full_score_pdb_ids = _sorted_strings(
+        precount_meta.get(
+            "unified_review_only_scoring_positive_full_score_pdb_ids", []
+        )
+    )
+    unified_scoring_control_false_non_abstention_count = int(
+        precount_meta.get(
+            "unified_review_only_scoring_control_false_non_abstention_count"
+        )
+        or 0
+    )
+    unified_scoring_external_non_abstention_count = int(
+        precount_meta.get(
+            "unified_review_only_scoring_external_hard_negative_non_abstention_count"
+        )
+        or 0
+    )
+    unified_broad_stress_status = str(
+        precount_meta.get("unified_prototype_broad_stress_status") or ""
+    )
+    unified_broad_stress_outside_reviewed_count = int(
+        precount_meta.get(
+            "unified_prototype_broad_stress_outside_query_reviewed_candidate_count"
+        )
+        or 0
+    )
+    unified_broad_stress_candidate_hit_count = int(
+        precount_meta.get(
+            "unified_prototype_broad_stress_outside_query_candidate_hit_count"
+        )
+        or 0
+    )
+    unified_broad_stress_blocked_ids = _sorted_strings(
+        precount_meta.get(
+            "unified_prototype_broad_stress_blocked_or_rejected_pdb_ids", []
+        )
+    )
+    unified_broad_stress_complete = bool(
+        precount_meta.get("unified_prototype_broad_stress_complete")
     )
     peptide_identity_passes_current_controls = (
         peptide_identity_status
@@ -15903,6 +16708,58 @@ def build_epk_counteraxis_sufficiency_decision(
             ),
             "blocker": "unified_substrate_identity_rule_not_calibrated_for_production",
         },
+        {
+            "decision_axis": "unified_review_only_scoring_prototype",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "prototype_passes_current_controls": (
+                unified_scoring_passes_current_controls
+            ),
+            "positive_full_score_count": (
+                unified_scoring_positive_full_score_count
+            ),
+            "positive_full_score_pdb_ids": (
+                unified_scoring_positive_full_score_pdb_ids
+            ),
+            "control_false_non_abstention_count": (
+                unified_scoring_control_false_non_abstention_count
+            ),
+            "external_hard_negative_non_abstention_count": (
+                unified_scoring_external_non_abstention_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "passes_current_controls_but_review_only_not_calibrated"
+                if unified_scoring_passes_current_controls
+                else "missing_or_failing_unified_review_only_scoring_prototype"
+            ),
+            "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
+        },
+        {
+            "decision_axis": "unified_prototype_broad_stress_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "broad_stress_status": unified_broad_stress_status,
+            "outside_query_reviewed_candidate_count": (
+                unified_broad_stress_outside_reviewed_count
+            ),
+            "outside_query_candidate_hit_count": (
+                unified_broad_stress_candidate_hit_count
+            ),
+            "source_validation_blocked_or_rejected_pdb_ids": (
+                unified_broad_stress_blocked_ids
+            ),
+            "broad_stress_complete": unified_broad_stress_complete,
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "counterexamples_found_keep_threshold_closed"
+                if unified_broad_stress_blocked_ids
+                else "bounded_stress_present_but_not_complete"
+                if unified_broad_stress_status
+                else "missing_unified_prototype_broad_stress_audit"
+            ),
+            "blocker": "broad_stress_not_complete_or_counterexamples_present",
+        },
     ]
     threshold_selection_decision = "do_not_select_threshold"
     counteraxis_sufficient_to_block_threshold = bool(family_threshold_hit_rows) and bool(
@@ -16003,6 +16860,36 @@ def build_epk_counteraxis_sufficiency_decision(
             ),
             "unified_substrate_identity_ready_review_only": (
                 unified_identity_ready_review_only
+            ),
+            "unified_review_only_scoring_passes_current_controls": (
+                unified_scoring_passes_current_controls
+            ),
+            "unified_review_only_scoring_positive_full_score_count": (
+                unified_scoring_positive_full_score_count
+            ),
+            "unified_review_only_scoring_positive_full_score_pdb_ids": (
+                unified_scoring_positive_full_score_pdb_ids
+            ),
+            "unified_review_only_scoring_control_false_non_abstention_count": (
+                unified_scoring_control_false_non_abstention_count
+            ),
+            "unified_review_only_scoring_external_hard_negative_non_abstention_count": (
+                unified_scoring_external_non_abstention_count
+            ),
+            "unified_prototype_broad_stress_status": (
+                unified_broad_stress_status
+            ),
+            "unified_prototype_broad_stress_outside_query_reviewed_candidate_count": (
+                unified_broad_stress_outside_reviewed_count
+            ),
+            "unified_prototype_broad_stress_outside_query_candidate_hit_count": (
+                unified_broad_stress_candidate_hit_count
+            ),
+            "unified_prototype_broad_stress_blocked_or_rejected_pdb_ids": (
+                unified_broad_stress_blocked_ids
+            ),
+            "unified_prototype_broad_stress_complete": (
+                unified_broad_stress_complete
             ),
             "family_specific_template_validated_family_ids": (
                 template_validated_family_ids
@@ -16362,6 +17249,29 @@ def build_epk_unified_substrate_identity_rule_probe(
     external_by_entry_id: dict[str, dict[str, Any]] = {}
     source_row_type_counts: Counter[str] = Counter()
 
+    def _nearest_gamma_distance_from_row(source_row: dict[str, Any]) -> Any:
+        for key in (
+            "nearest_gamma_distance_angstrom",
+            "nearest_gamma_to_candidate_acceptor_distance_angstrom",
+            "source_valid_5hvk_distance_angstrom",
+        ):
+            if source_row.get(key) is not None:
+                return source_row.get(key)
+        for nested_key in ("hit_evaluations", "heteromeric_candidate_hits"):
+            nested_rows = source_row.get(nested_key, [])
+            if not isinstance(nested_rows, list):
+                continue
+            for nested_row in nested_rows:
+                if not isinstance(nested_row, dict):
+                    continue
+                for key in (
+                    "nearest_gamma_distance_angstrom",
+                    "source_recorded_nearest_gamma_distance_angstrom",
+                ):
+                    if nested_row.get(key) is not None:
+                        return nested_row.get(key)
+        return None
+
     def _add_probe_row(
         *,
         source_row: dict[str, Any],
@@ -16403,11 +17313,7 @@ def build_epk_unified_substrate_identity_rule_probe(
                     "candidate_acceptor_chain_name"
                 ),
                 "nearest_gamma_to_acceptor_distance_angstrom": (
-                    source_row.get("nearest_gamma_distance_angstrom")
-                    or source_row.get(
-                        "nearest_gamma_to_candidate_acceptor_distance_angstrom"
-                    )
-                    or source_row.get("source_valid_5hvk_distance_angstrom")
+                    _nearest_gamma_distance_from_row(source_row)
                 ),
                 "acceptor_chain_lacks_local_nucleotide_or_metal": (
                     source_row.get("acceptor_chain_lacks_local_nucleotide_or_metal")
@@ -31164,6 +32070,8 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_substrate_mode_gap_audit: dict[str, Any] | None = None,
     epk_unified_substrate_identity_rule_probe: dict[str, Any] | None = None,
+    epk_unified_review_only_scoring_prototype: dict[str, Any] | None = None,
+    epk_unified_prototype_broad_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa757_active_state_repair_scan: dict[str, Any] | None = None,
     epk_m_csa756_active_state_repair_scan: dict[str, Any] | None = None,
@@ -31678,6 +32586,20 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(unified_substrate_identity_meta, dict):
         unified_substrate_identity_meta = {}
+    unified_scoring_meta = (
+        epk_unified_review_only_scoring_prototype.get("metadata", {})
+        if isinstance(epk_unified_review_only_scoring_prototype, dict)
+        else {}
+    )
+    if not isinstance(unified_scoring_meta, dict):
+        unified_scoring_meta = {}
+    unified_broad_stress_meta = (
+        epk_unified_prototype_broad_stress_audit.get("metadata", {})
+        if isinstance(epk_unified_prototype_broad_stress_audit, dict)
+        else {}
+    )
+    if not isinstance(unified_broad_stress_meta, dict):
+        unified_broad_stress_meta = {}
     m_csa760_repair_meta = (
         epk_m_csa760_atp_state_repair_scan.get("metadata", {})
         if isinstance(epk_m_csa760_atp_state_repair_scan, dict)
@@ -34026,6 +34948,114 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if unified_scoring_meta:
+        gate_checks.append(
+            {
+                "gate_id": "unified_review_only_scoring_prototype",
+                "passed": unified_scoring_meta.get("prototype_gate_status")
+                == "fail_closed_review_only"
+                and bool(unified_scoring_meta.get("prototype_passes_current_controls"))
+                and int(unified_scoring_meta.get("positive_like_full_score_count") or 0)
+                > 0
+                and int(
+                    unified_scoring_meta.get(
+                        "current_control_false_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    unified_scoring_meta.get(
+                        "imported_external_hard_negative_non_abstention_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(unified_scoring_meta.get("epk_score_computed"))
+                and not bool(
+                    unified_scoring_meta.get("external_hard_negative_reaudit_scored")
+                )
+                and int(
+                    unified_scoring_meta.get("countable_label_candidate_count") or 0
+                )
+                == 0,
+                "evidence": {
+                    "source_method": unified_scoring_meta.get("method"),
+                    "rule_id": unified_scoring_meta.get("rule_id"),
+                    "prototype_gate_status": unified_scoring_meta.get(
+                        "prototype_gate_status"
+                    ),
+                    "positive_like_full_score_count": (
+                        unified_scoring_meta.get("positive_like_full_score_count")
+                    ),
+                    "positive_like_full_score_pdb_ids": (
+                        unified_scoring_meta.get(
+                            "positive_like_full_score_pdb_ids", []
+                        )
+                    ),
+                    "current_control_false_non_abstention_count": (
+                        unified_scoring_meta.get(
+                            "current_control_false_non_abstention_count"
+                        )
+                    ),
+                    "imported_external_hard_negative_non_abstention_count": (
+                        unified_scoring_meta.get(
+                            "imported_external_hard_negative_non_abstention_count"
+                        )
+                    ),
+                    "review_only_score_computed": unified_scoring_meta.get(
+                        "review_only_score_computed"
+                    ),
+                },
+            }
+        )
+    if unified_broad_stress_meta:
+        gate_checks.append(
+            {
+                "gate_id": "unified_prototype_broad_stress_audit",
+                "passed": unified_broad_stress_meta.get("broad_stress_status")
+                in {
+                    "bounded_stress_has_source_validation_counterexamples_review_only",
+                    "bounded_stress_passes_current_controls_review_only",
+                }
+                and int(
+                    unified_broad_stress_meta.get("countable_label_candidate_count")
+                    or 0
+                )
+                == 0
+                and not bool(unified_broad_stress_meta.get("epk_score_computed"))
+                and not bool(
+                    unified_broad_stress_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": unified_broad_stress_meta.get("method"),
+                    "broad_stress_status": unified_broad_stress_meta.get(
+                        "broad_stress_status"
+                    ),
+                    "outside_query_reviewed_candidate_count": (
+                        unified_broad_stress_meta.get(
+                            "outside_query_reviewed_candidate_count"
+                        )
+                    ),
+                    "outside_query_heteromeric_candidate_hit_count": (
+                        unified_broad_stress_meta.get(
+                            "outside_query_heteromeric_candidate_hit_count"
+                        )
+                    ),
+                    "source_validation_blocked_or_rejected_pdb_ids": (
+                        unified_broad_stress_meta.get(
+                            "source_validation_blocked_or_rejected_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "broad_stress_complete": unified_broad_stress_meta.get(
+                        "broad_stress_complete"
+                    ),
+                },
+            }
+        )
     if m_csa760_repair_meta:
         gate_checks.append(
             {
@@ -34782,6 +35812,28 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "repair the unified substrate-identity rule before any scorer design",
+            )
+    if unified_scoring_meta.get("method"):
+        if bool(unified_scoring_meta.get("prototype_passes_current_controls")):
+            next_actions.insert(
+                0,
+                "treat the unified review-only scorer as current-control clean but keep threshold selection and real external scored re-audit closed",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "repair unified review-only scorer false hits or positive misses before any threshold work",
+            )
+    if unified_broad_stress_meta.get("method"):
+        if bool(unified_broad_stress_meta.get("bounded_stress_identifies_counterexamples")):
+            next_actions.insert(
+                0,
+                "use 9L3M and 9L3U as broad-sourcing counterexamples before any ePK threshold calibration",
+            )
+        elif not bool(unified_broad_stress_meta.get("broad_stress_complete")):
+            next_actions.insert(
+                0,
+                "pre-register another outside-query broad-stress tranche before treating the unified prototype as calibrated",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -36351,6 +37403,58 @@ def build_epk_precount_gate_status(
                 unified_substrate_identity_meta.get(
                     "ligand_analog_excluded_positive_count"
                 )
+            ),
+            "source_epk_unified_review_only_scoring_prototype_method": (
+                unified_scoring_meta.get("method")
+            ),
+            "unified_review_only_scoring_prototype_status": (
+                unified_scoring_meta.get("prototype_gate_status")
+            ),
+            "unified_review_only_scoring_passes_current_controls": bool(
+                unified_scoring_meta.get("prototype_passes_current_controls")
+            ),
+            "unified_review_only_scoring_positive_full_score_count": (
+                unified_scoring_meta.get("positive_like_full_score_count")
+            ),
+            "unified_review_only_scoring_positive_full_score_pdb_ids": (
+                unified_scoring_meta.get("positive_like_full_score_pdb_ids", [])
+            ),
+            "unified_review_only_scoring_control_false_non_abstention_count": (
+                unified_scoring_meta.get("current_control_false_non_abstention_count")
+            ),
+            "unified_review_only_scoring_external_hard_negative_non_abstention_count": (
+                unified_scoring_meta.get(
+                    "imported_external_hard_negative_non_abstention_count"
+                )
+            ),
+            "unified_review_only_score_computed": bool(
+                unified_scoring_meta.get("review_only_score_computed")
+            ),
+            "source_epk_unified_prototype_broad_stress_audit_method": (
+                unified_broad_stress_meta.get("method")
+            ),
+            "unified_prototype_broad_stress_status": (
+                unified_broad_stress_meta.get("broad_stress_status")
+            ),
+            "unified_prototype_broad_stress_outside_query_reviewed_candidate_count": (
+                unified_broad_stress_meta.get("outside_query_reviewed_candidate_count")
+            ),
+            "unified_prototype_broad_stress_outside_query_candidate_hit_count": (
+                unified_broad_stress_meta.get(
+                    "outside_query_heteromeric_candidate_hit_count"
+                )
+            ),
+            "unified_prototype_broad_stress_source_validated_pdb_ids": (
+                unified_broad_stress_meta.get("source_validated_positive_like_pdb_ids", [])
+            ),
+            "unified_prototype_broad_stress_blocked_or_rejected_pdb_ids": (
+                unified_broad_stress_meta.get(
+                    "source_validation_blocked_or_rejected_pdb_ids",
+                    [],
+                )
+            ),
+            "unified_prototype_broad_stress_complete": bool(
+                unified_broad_stress_meta.get("broad_stress_complete")
             ),
             "source_epk_m_csa760_atp_state_repair_scan_method": (
                 m_csa760_repair_meta.get("method")

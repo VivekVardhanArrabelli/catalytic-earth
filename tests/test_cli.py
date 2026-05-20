@@ -5434,6 +5434,11 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
                                     "cross_accession_source_valid_positive_like"
                                 ),
                                 "heteromeric_chain_entity_signal_hit": True,
+                                "hit_evaluations": [
+                                    {
+                                        "nearest_gamma_distance_angstrom": 4.2,
+                                    }
+                                ],
                                 "text_free_inputs_only": True,
                             },
                             {
@@ -5519,7 +5524,313 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
                 metadata["ligand_analog_excluded_positive_entry_ids"],
                 ["m_csa:640"],
             )
+            five_hvk = [
+                row for row in probe["rows"] if row.get("pdb_id") == "5HVK"
+            ][0]
+            self.assertEqual(
+                five_hvk["nearest_gamma_to_acceptor_distance_angstrom"], 4.2
+            )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_unified_review_only_scoring_prototype_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            unified = root / "unified.json"
+            prior = root / "prior.json"
+            out = root / "unified_score.json"
+            unified.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_unified_substrate_identity_rule_probe",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "rule_id": (
+                                "epk_unified_polymer_substrate_identity_rule_v0_review_only"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "unified_identity_current_peptide_positive"
+                                ),
+                                "pdb_id": "6Z3R",
+                                "substrate_mode": "short_peptide_substrate",
+                                "unified_substrate_identity_rule_hit": True,
+                                "nearest_gamma_to_acceptor_distance_angstrom": 5.6,
+                                "acceptor_chain_lacks_local_nucleotide_or_metal": True,
+                                "peptide_like_acceptor_chain": True,
+                                "ligand_analog_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": "unified_identity_peptide_control",
+                                "pdb_id": "7M0T",
+                                "substrate_mode": "peptide_mode_control",
+                                "unified_substrate_identity_rule_hit": False,
+                                "nearest_gamma_to_acceptor_distance_angstrom": 3.8,
+                                "peptide_like_acceptor_chain": False,
+                                "ligand_analog_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                            {
+                                "row_type": (
+                                    "unified_identity_imported_external_hard_negative"
+                                ),
+                                "entry_id": "uniprot:P06744",
+                                "substrate_mode": "imported_external_hard_negative",
+                                "unified_substrate_identity_rule_hit": False,
+                                "ligand_analog_acceptor": False,
+                                "text_free_inputs_only": True,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            prior.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "epk_review_only_scoring_prototype"},
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "sibling_family_specific_negative_control"
+                                ),
+                                "pdb_id": "1ABC",
+                                "family_id": "pfkb",
+                                "prototype_decision": (
+                                    "blocked_by_family_specific_sibling_counteraxis_review_only"
+                                ),
+                                "prototype_axis_values": {
+                                    "family_specific_sibling_counteraxis": 1
+                                },
+                                "text_free_inputs_only": True,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-unified-review-only-scoring-prototype",
+                    "--epk-unified-substrate-identity-rule-probe",
+                    str(unified),
+                    "--epk-review-only-scoring-prototype",
+                    str(prior),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            prototype = json.loads(out.read_text(encoding="utf-8"))
+            metadata = prototype["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_unified_review_only_scoring_prototype"
+            )
+            self.assertEqual(metadata["prototype_gate_status"], "fail_closed_review_only")
+            self.assertTrue(metadata["prototype_passes_current_controls"])
+            self.assertEqual(metadata["positive_like_full_score_count"], 1)
+            self.assertEqual(metadata["current_control_false_non_abstention_count"], 0)
+            self.assertEqual(
+                metadata["imported_external_hard_negative_non_abstention_count"], 0
+            )
+            self.assertEqual(metadata["legacy_sibling_counteraxis_row_count"], 1)
+            self.assertTrue(metadata["review_only_score_computed"])
+            self.assertFalse(metadata["epk_score_computed"])
+
+    def test_build_epk_unified_prototype_broad_stress_audit_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            prototype = root / "prototype.json"
+            stress = root / "stress.json"
+            scout = root / "scout.json"
+            review = root / "review.json"
+            out = root / "broad_stress.json"
+            prototype.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_unified_review_only_scoring_prototype",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "prototype_passes_current_controls": True,
+                            "positive_like_full_score_count": 1,
+                            "current_control_false_non_abstention_count": 0,
+                            "imported_external_hard_negative_non_abstention_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            stress.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_peptide_broader_stress_audit",
+                            "combined_reviewed_pdb_count": 10,
+                            "unreviewed_exact_query_pdb_count": 0,
+                            "exact_source_query_exhausted": True,
+                            "positive_non_peptide_substrate_chain_hit_count": 0,
+                            "nonaccepted_peptide_identity_false_hit_count": 0,
+                            "sibling_peptide_identity_false_hit_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scout.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_positive_coverage_candidate_scout",
+                            "reviewed_candidate_count": 2,
+                            "fetch_failure_count": 0,
+                            "heteromeric_candidate_structure_count": 1,
+                            "heteromeric_candidate_pdb_ids": ["9L3M"],
+                            "positive_coverage_status": (
+                                "source_validation_pending_for_broadened_heteromeric_candidates_review_only"
+                            ),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_heteromeric_candidate_source_validation_review"
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9L3M",
+                                "source_validation_status": (
+                                    "blocked_source_context_insufficient_review_only"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-unified-prototype-broad-stress-audit",
+                    "--epk-unified-review-only-scoring-prototype",
+                    str(prototype),
+                    "--epk-heteromeric-peptide-broader-stress-audit",
+                    str(stress),
+                    "--epk-heteromeric-source-expansion-candidate-scout",
+                    str(scout),
+                    "--epk-heteromeric-source-expansion-source-validation-review",
+                    str(review),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_unified_prototype_broad_stress_audit"
+            )
+            self.assertEqual(
+                metadata["broad_stress_status"],
+                "bounded_stress_has_source_validation_counterexamples_review_only",
+            )
+            self.assertEqual(metadata["outside_query_reviewed_candidate_count"], 2)
+            self.assertEqual(metadata["outside_query_heteromeric_candidate_hit_count"], 1)
+            self.assertEqual(
+                metadata["source_validation_blocked_or_rejected_pdb_ids"], ["9L3M"]
+            )
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+
+    def test_build_epk_unified_prototype_next_broad_stress_preregistration_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            stress = root / "stress.json"
+            out = root / "prereg.json"
+            stress.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_unified_prototype_broad_stress_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "source_validation_blocked_or_rejected_pdb_ids": [
+                                "9L3M"
+                            ],
+                            "source_validated_positive_like_pdb_ids": ["1O6K"],
+                            "outside_query_heteromeric_candidate_pdb_ids": [
+                                "1O6K",
+                                "9L3M",
+                            ],
+                        },
+                        "rows": [
+                            {
+                                "row_type": "outside_query_source_validation_row",
+                                "pdb_id": "9L3M",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-unified-prototype-next-broad-stress-preregistration",
+                    "--epk-unified-prototype-broad-stress-audit",
+                    str(stress),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            preregistration = json.loads(out.read_text(encoding="utf-8"))
+            metadata = preregistration["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_unified_prototype_next_broad_stress_preregistration",
+            )
+            self.assertEqual(
+                metadata["preregistration_status"],
+                "active_review_only_next_broad_stress_tranche_preregistered",
+            )
+            self.assertEqual(metadata["known_counterexample_pdb_ids"], ["9L3M"])
+            self.assertEqual(metadata["source_validated_positive_like_pdb_ids"], ["1O6K"])
+            self.assertEqual(metadata["lane_count"], 3)
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
 
     def test_build_epk_acceptor_identity_review_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

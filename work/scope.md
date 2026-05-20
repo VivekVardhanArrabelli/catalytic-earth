@@ -158,8 +158,14 @@ those modes, keeps current controls and the three imported external hard
 negatives at 0 feature non-abstentions, and excludes ligand-analog-only
 `m_csa:640`. It remains review-only: threshold calibration, broad stress
 controls, a real external scored re-audit, and registry/factory extension are
-still closed. The counteraxis sufficiency decision now records that unified
-rule as a passing diagnostic row while preserving `do_not_select_threshold`.
+still closed. The unified review-only scoring prototype now gives full
+diagnostic signal to those eight positive-like rows while blocking current
+controls, legacy sibling counter-axis rows, and all three imported external
+hard negatives. Broad-stress audit then keeps the lane fail-closed because
+`9L3M`/`9L3U` are source-validation counterexamples and the next control
+tranche is only preregistered, not executed. The counteraxis sufficiency
+decision records the unified rule, prototype, and broad-stress rows while
+preserving `do_not_select_threshold`.
 
 ## Time Calibration Rule
 

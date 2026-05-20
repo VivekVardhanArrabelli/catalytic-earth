@@ -116,6 +116,9 @@ from .labels import (
     build_epk_heteromeric_source_expansion_peptide_role_axis_audit,
     build_epk_substrate_mode_gap_audit,
     build_epk_unified_substrate_identity_rule_probe,
+    build_epk_unified_prototype_next_broad_stress_preregistration,
+    build_epk_unified_prototype_broad_stress_audit,
+    build_epk_unified_review_only_scoring_prototype,
     build_epk_ligand_specific_5hvk_control_rerun_queue,
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
@@ -7591,6 +7594,101 @@ def cmd_build_epk_unified_substrate_identity_rule_probe(
     return 0
 
 
+def cmd_build_epk_unified_review_only_scoring_prototype(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_unified_substrate_identity_rule_probe).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_unified_substrate_identity_rule_probe = json.load(handle)
+    with Path(args.epk_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_review_only_scoring_prototype = json.load(handle)
+    prototype = build_epk_unified_review_only_scoring_prototype(
+        epk_unified_substrate_identity_rule_probe=(
+            epk_unified_substrate_identity_rule_probe
+        ),
+        epk_review_only_scoring_prototype=epk_review_only_scoring_prototype,
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), prototype)
+    print(
+        "Wrote ePK unified review-only scoring prototype to "
+        f"{args.out} (status={prototype['metadata']['prototype_gate_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_unified_prototype_broad_stress_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_unified_review_only_scoring_prototype).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_unified_review_only_scoring_prototype = json.load(handle)
+    with Path(args.epk_heteromeric_peptide_broader_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_heteromeric_peptide_broader_stress_audit = json.load(handle)
+    scout_artifacts = []
+    scout_paths = args.epk_heteromeric_source_expansion_candidate_scout or [
+        "artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_atp_1025.json",
+        "artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_adp_1025.json",
+        "artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_ags_1025.json",
+        "artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_amp_pnp_1025.json",
+        "artifacts/v3_epk_heteromeric_source_expansion_candidate_scout_broad_peptide_atp_1025.json",
+    ]
+    for scout_path in scout_paths:
+        with Path(scout_path).open("r", encoding="utf-8") as handle:
+            scout_artifacts.append(json.load(handle))
+    review_artifacts = []
+    review_paths = args.epk_heteromeric_source_expansion_source_validation_review or [
+        "artifacts/v3_epk_heteromeric_source_expansion_source_validation_review_amp_pnp_1025.json",
+        "artifacts/v3_epk_heteromeric_source_expansion_source_validation_review_broad_peptide_atp_1025.json",
+    ]
+    for review_path in review_paths:
+        with Path(review_path).open("r", encoding="utf-8") as handle:
+            review_artifacts.append(json.load(handle))
+    audit = build_epk_unified_prototype_broad_stress_audit(
+        epk_unified_review_only_scoring_prototype=(
+            epk_unified_review_only_scoring_prototype
+        ),
+        epk_heteromeric_peptide_broader_stress_audit=(
+            epk_heteromeric_peptide_broader_stress_audit
+        ),
+        epk_heteromeric_source_expansion_candidate_scout=scout_artifacts,
+        epk_heteromeric_source_expansion_source_validation_review=review_artifacts,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK unified prototype broad-stress audit to "
+        f"{args.out} (status={audit['metadata']['broad_stress_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_unified_prototype_next_broad_stress_preregistration(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_unified_prototype_broad_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_unified_prototype_broad_stress_audit = json.load(handle)
+    preregistration = build_epk_unified_prototype_next_broad_stress_preregistration(
+        epk_unified_prototype_broad_stress_audit=(
+            epk_unified_prototype_broad_stress_audit
+        )
+    )
+    write_json(Path(args.out), preregistration)
+    print(
+        "Wrote ePK unified prototype next broad-stress preregistration to "
+        f"{args.out} (status="
+        f"{preregistration['metadata']['preregistration_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_external_source_lower_priority_ligand_sourcing_review(
     args: argparse.Namespace,
 ) -> int:
@@ -8225,6 +8323,18 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_unified_substrate_identity_rule_probe = json.load(handle)
+    epk_unified_review_only_scoring_prototype = None
+    if args.epk_unified_review_only_scoring_prototype:
+        with Path(args.epk_unified_review_only_scoring_prototype).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_unified_review_only_scoring_prototype = json.load(handle)
+    epk_unified_prototype_broad_stress_audit = None
+    if args.epk_unified_prototype_broad_stress_audit:
+        with Path(args.epk_unified_prototype_broad_stress_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_unified_prototype_broad_stress_audit = json.load(handle)
     epk_m_csa760_atp_state_repair_scan = None
     if args.epk_m_csa760_atp_state_repair_scan:
         with Path(args.epk_m_csa760_atp_state_repair_scan).open(
@@ -8399,6 +8509,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         epk_substrate_mode_gap_audit=epk_substrate_mode_gap_audit,
         epk_unified_substrate_identity_rule_probe=(
             epk_unified_substrate_identity_rule_probe
+        ),
+        epk_unified_review_only_scoring_prototype=(
+            epk_unified_review_only_scoring_prototype
+        ),
+        epk_unified_prototype_broad_stress_audit=(
+            epk_unified_prototype_broad_stress_audit
         ),
         epk_m_csa760_atp_state_repair_scan=(
             epk_m_csa760_atp_state_repair_scan
@@ -17090,6 +17206,80 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_unified_substrate_identity_rule_probe
     )
 
+    epk_unified_scoring_prototype = subparsers.add_parser(
+        "build-epk-unified-review-only-scoring-prototype",
+        help="score the unified ePK substrate-identity surface in review-only mode",
+    )
+    epk_unified_scoring_prototype.add_argument(
+        "--epk-unified-substrate-identity-rule-probe",
+        default="artifacts/v3_epk_unified_substrate_identity_rule_probe_1025.json",
+    )
+    epk_unified_scoring_prototype.add_argument(
+        "--epk-review-only-scoring-prototype",
+        default="artifacts/v3_epk_review_only_scoring_prototype_1025.json",
+    )
+    epk_unified_scoring_prototype.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_unified_scoring_prototype.add_argument(
+        "--out",
+        default="artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+    )
+    epk_unified_scoring_prototype.set_defaults(
+        func=cmd_build_epk_unified_review_only_scoring_prototype
+    )
+
+    epk_unified_broad_stress = subparsers.add_parser(
+        "build-epk-unified-prototype-broad-stress-audit",
+        help="summarize bounded broad-stress controls for the unified ePK prototype",
+    )
+    epk_unified_broad_stress.add_argument(
+        "--epk-unified-review-only-scoring-prototype",
+        default="artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+    )
+    epk_unified_broad_stress.add_argument(
+        "--epk-heteromeric-peptide-broader-stress-audit",
+        default="artifacts/v3_epk_heteromeric_peptide_broader_stress_audit_1025.json",
+    )
+    epk_unified_broad_stress.add_argument(
+        "--epk-heteromeric-source-expansion-candidate-scout",
+        action="append",
+        default=None,
+    )
+    epk_unified_broad_stress.add_argument(
+        "--epk-heteromeric-source-expansion-source-validation-review",
+        action="append",
+        default=None,
+    )
+    epk_unified_broad_stress.add_argument(
+        "--out",
+        default="artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json",
+    )
+    epk_unified_broad_stress.set_defaults(
+        func=cmd_build_epk_unified_prototype_broad_stress_audit
+    )
+
+    epk_unified_broad_stress_prereg = subparsers.add_parser(
+        "build-epk-unified-prototype-next-broad-stress-preregistration",
+        help="pre-register the next bounded broad-stress tranche for ePK",
+    )
+    epk_unified_broad_stress_prereg.add_argument(
+        "--epk-unified-prototype-broad-stress-audit",
+        default="artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json",
+    )
+    epk_unified_broad_stress_prereg.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json"
+        ),
+    )
+    epk_unified_broad_stress_prereg.set_defaults(
+        func=cmd_build_epk_unified_prototype_next_broad_stress_preregistration
+    )
+
     epk_external_lower_priority_ligand = subparsers.add_parser(
         "build-epk-external-source-lower-priority-ligand-sourcing-review",
         help="review ligand sourcing blockers for lower-priority mapped ePK rows",
@@ -17582,6 +17772,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-unified-substrate-identity-rule-probe",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-unified-review-only-scoring-prototype",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-unified-prototype-broad-stress-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

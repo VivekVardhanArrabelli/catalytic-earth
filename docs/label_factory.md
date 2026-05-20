@@ -756,10 +756,20 @@ positive-like rows (`1O6K`, `1O6L`, `6Z3R`, `8OXM`, `8OXO`, `2PHK`, `1IR3`,
 and `5HVK`), blocks current peptide/protein/sibling controls, and keeps the
 three imported external hard negatives at 0 feature non-abstentions. It still
 excludes ligand-analog-only `m_csa:640` and is not a calibrated scorer. The
-downstream counteraxis sufficiency decision carries the unified rule as a
-pass/current-controls decision row but keeps `do_not_select_threshold` because
-threshold calibration, a real scored external re-audit, and registry/factory
-extension are still closed.
+new `artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json` scores
+that surface only as a diagnostic: eight positive-like rows receive full
+review-only signal, `3TM0` remains excluded as ligand-analog-only, 44 current
+controls plus 20 legacy sibling counter-axis rows abstain, and all three
+imported external hard negatives score as abstentions. The bounded
+`artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json` then records
+that exact-query stress is exhausted but outside-query broad sourcing still has
+source-validation counterexamples (`9L3M` and `9L3U`). The next broad-stress
+tranche is preregistered in
+`artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`.
+The downstream counteraxis sufficiency decision carries the unified rule,
+unified prototype, and broad-stress audit as review-only decision rows but
+keeps `do_not_select_threshold` because threshold calibration, a real scored
+external re-audit, and registry/factory extension are still closed.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

@@ -1363,6 +1363,19 @@ positives (`2PHK` and `1IR3`), and the heteromeric 5HVK protein-substrate lead
 while keeping current controls and the three imported external hard negatives
 at 0 non-abstentions. It excludes ligand-analog-only `m_csa:640` and remains
 uncalibrated, so none of these is scorer or label evidence. Real
+`artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json` now turns
+that rule into a deliberately fail-closed diagnostic score surface. It gives
+full review-only signal to the same eight positive-like rows, keeps
+ligand-analog-only `3TM0` as a positive-like miss, blocks 44 current controls
+plus 20 legacy sibling counter-axis rows, and scores all three imported
+external hard negatives as abstentions. The follow-on
+`artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json` records the
+bounded broad-stress result: the exact 110-entry source query is exhausted,
+outside-query scouts reviewed 111 candidates, and broad-query `9L3M`/`9L3U`
+remain source-validation counterexamples. The preregistration artifact
+`artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`
+freezes the next three review-only stress lanes and carries those
+counterexamples forward before any threshold work.
 scorer design, the `m_csa:760`
 split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,

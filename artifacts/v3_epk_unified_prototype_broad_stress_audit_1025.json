@@ -1,0 +1,201 @@
+{
+  "metadata": {
+    "bounded_stress_identifies_counterexamples": true,
+    "bounded_stress_passes_current_controls": false,
+    "broad_stress_complete": false,
+    "broad_stress_status": "bounded_stress_has_source_validation_counterexamples_review_only",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "exact_source_query_positive_non_peptide_hit_count": 0,
+    "exact_source_query_reviewed_count": 110,
+    "exact_source_query_unreviewed_count": 0,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_unified_prototype_broad_stress_audit",
+    "next_actions": [
+      "treat 9L3M and 9L3U as source-validation counterexamples for broad text-query sourcing",
+      "pre-register the next outside-query control tranche before threshold calibration",
+      "keep the real external hard-negative scored re-audit closed until the production scorer exists"
+    ],
+    "outside_query_fetch_failure_count": 0,
+    "outside_query_heteromeric_candidate_hit_count": 4,
+    "outside_query_heteromeric_candidate_pdb_ids": [
+      "1O6K",
+      "1O6L",
+      "9L3M",
+      "9L3U"
+    ],
+    "outside_query_reviewed_candidate_count": 111,
+    "prototype_current_control_false_non_abstention_count": 0,
+    "prototype_external_hard_negative_non_abstention_count": 0,
+    "prototype_positive_like_full_score_count": 8,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "source_epk_heteromeric_peptide_broader_stress_audit_method": "epk_heteromeric_peptide_broader_stress_audit",
+    "source_epk_unified_review_only_scoring_prototype_method": "epk_unified_review_only_scoring_prototype",
+    "source_expansion_review_count": 2,
+    "source_expansion_scout_count": 5,
+    "source_validated_positive_like_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "source_validation_blocked_or_rejected_pdb_ids": [
+      "9L3M",
+      "9L3U"
+    ],
+    "source_validation_status_counts": {
+      "accepted_source_valid_heteromeric_kinase_substrate_review_only": 2,
+      "blocked_source_context_insufficient_review_only": 2
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "control_false_hit_count": 0,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "exact_source_query_exhausted": true,
+      "heteromeric_topology_hit_count": 6,
+      "positive_non_peptide_substrate_chain_hit_count": 0,
+      "positive_peptide_identity_hit_count": 3,
+      "review_only": true,
+      "reviewed_pdb_count": 110,
+      "row_type": "exact_query_stress_summary",
+      "source_method": "epk_heteromeric_peptide_broader_stress_audit",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "unreviewed_pdb_count": 0
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_failure_count": 0,
+      "heteromeric_candidate_pdb_ids": [],
+      "heteromeric_candidate_structure_count": 0,
+      "input_candidate_count": 25,
+      "positive_coverage_status": "blocked_no_new_heteromeric_candidates_review_only",
+      "review_only": true,
+      "reviewed_candidate_count": 25,
+      "row_type": "outside_query_scout_summary",
+      "source_method": "epk_heteromeric_positive_coverage_candidate_scout",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_failure_count": 0,
+      "heteromeric_candidate_pdb_ids": [],
+      "heteromeric_candidate_structure_count": 0,
+      "input_candidate_count": 25,
+      "positive_coverage_status": "blocked_no_new_heteromeric_candidates_review_only",
+      "review_only": true,
+      "reviewed_candidate_count": 25,
+      "row_type": "outside_query_scout_summary",
+      "source_method": "epk_heteromeric_positive_coverage_candidate_scout",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_failure_count": 0,
+      "heteromeric_candidate_pdb_ids": [],
+      "heteromeric_candidate_structure_count": 0,
+      "input_candidate_count": 25,
+      "positive_coverage_status": "blocked_no_new_heteromeric_candidates_review_only",
+      "review_only": true,
+      "reviewed_candidate_count": 25,
+      "row_type": "outside_query_scout_summary",
+      "source_method": "epk_heteromeric_positive_coverage_candidate_scout",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_failure_count": 0,
+      "heteromeric_candidate_pdb_ids": [
+        "1O6K",
+        "1O6L"
+      ],
+      "heteromeric_candidate_structure_count": 2,
+      "input_candidate_count": 11,
+      "positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+      "review_only": true,
+      "reviewed_candidate_count": 11,
+      "row_type": "outside_query_scout_summary",
+      "source_method": "epk_heteromeric_positive_coverage_candidate_scout",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_failure_count": 0,
+      "heteromeric_candidate_pdb_ids": [
+        "9L3M",
+        "9L3U"
+      ],
+      "heteromeric_candidate_structure_count": 2,
+      "input_candidate_count": 25,
+      "positive_coverage_status": "source_validation_pending_for_broadened_heteromeric_candidates_review_only",
+      "review_only": true,
+      "reviewed_candidate_count": 25,
+      "row_type": "outside_query_scout_summary",
+      "source_method": "epk_heteromeric_positive_coverage_candidate_scout",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "broad_stress_decision": "source_valid_positive_like_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "pdb_id": "1O6K",
+      "review_only": true,
+      "row_type": "outside_query_source_validation_row",
+      "source_method": "epk_heteromeric_candidate_source_validation_review",
+      "source_pair_id": "pkb_gsk3",
+      "source_validation_status": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "broad_stress_decision": "source_valid_positive_like_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "pdb_id": "1O6L",
+      "review_only": true,
+      "row_type": "outside_query_source_validation_row",
+      "source_method": "epk_heteromeric_candidate_source_validation_review",
+      "source_pair_id": "pkb_gsk3",
+      "source_validation_status": "accepted_source_valid_heteromeric_kinase_substrate_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "broad_stress_decision": "source_validation_blocks_candidate_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "pdb_id": "9L3M",
+      "review_only": true,
+      "row_type": "outside_query_source_validation_row",
+      "source_method": "epk_heteromeric_candidate_source_validation_review",
+      "source_pair_id": null,
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "broad_stress_decision": "source_validation_blocks_candidate_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "pdb_id": "9L3U",
+      "review_only": true,
+      "row_type": "outside_query_source_validation_row",
+      "source_method": "epk_heteromeric_candidate_source_validation_review",
+      "source_pair_id": null,
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Broad-stress audit is bounded review-only evidence. It does not calibrate thresholds, score ePK in production, edit registries, or support held-out performance claims."
+  ]
+}

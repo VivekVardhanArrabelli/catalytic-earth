@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "excluded_prior_pdb_ids": [
+      "1O6K",
+      "1O6L",
+      "9L3M",
+      "9L3U"
+    ],
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "known_counterexample_pdb_ids": [
+      "9L3M",
+      "9L3U"
+    ],
+    "lane_count": 3,
+    "method": "epk_unified_prototype_next_broad_stress_preregistration",
+    "next_actions": [
+      "source a bounded next tranche only under these preregistered lanes",
+      "score any new rows in review-only mode before threshold work",
+      "keep production ePK gates closed until broad-stress controls pass"
+    ],
+    "preregistration_status": "active_review_only_next_broad_stress_tranche_preregistered",
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "source_epk_unified_prototype_broad_stress_audit_method": "epk_unified_prototype_broad_stress_audit",
+    "source_validated_positive_like_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "failure_criteria": [
+        "any blocked or non-ePK source context receives a non-abstention",
+        "any imported external hard negative receives a feature non-abstention"
+      ],
+      "lane_id": "amp_pnp_mg_reviewed_peptide_kinase_substrate",
+      "required_controls": [
+        "source validation for kinase-substrate role",
+        "unified substrate-identity rule evaluation",
+        "imported external hard-negative feature abstention check"
+      ],
+      "review_only": true,
+      "row_type": "next_broad_stress_lane",
+      "source_query_principle": "reviewed kinase-substrate peptide co-complexes with AMP-PNP or ATP analog plus Mg, excluding already reviewed PDB ids",
+      "success_criteria": [
+        "new source-valid positive-like rows have unified score 1.0 review-only",
+        "no source-validation blocked row receives a non-abstention"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "failure_criteria": [
+        "same-accession phosphosite controls receive a non-abstention",
+        "role-ambiguous heteromeric controls receive a non-abstention"
+      ],
+      "lane_id": "protein_substrate_cross_accession_anp_mg",
+      "required_controls": [
+        "mapped non-catalytic substrate-chain hydroxyl acceptor",
+        "acceptor-chain nucleotide/metal counteraxis",
+        "sibling-family same-chain hydroxyl controls"
+      ],
+      "review_only": true,
+      "row_type": "next_broad_stress_lane",
+      "source_query_principle": "cross-accession protein-substrate kinase co-complexes with ANP/ATP-like gamma-capable ligand and Mg, excluding exact query rows already summarized",
+      "success_criteria": [
+        "source-valid protein-substrate positives score review-only",
+        "same-accession or role-ambiguous controls abstain"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "failure_criteria": [
+        "any known counterexample receives a non-abstention",
+        "source-unvalidated broad-query hits are treated as positives"
+      ],
+      "known_counterexample_pdb_ids": [
+        "9L3M",
+        "9L3U"
+      ],
+      "lane_id": "broad_text_query_counterexample_guard",
+      "required_controls": [
+        "explicit source-validation screen before scorer use",
+        "carry known counterexamples as blocked controls"
+      ],
+      "review_only": true,
+      "row_type": "next_broad_stress_lane",
+      "source_query_principle": "broad kinase substrate peptide text-query rows are allowed only as counterexample controls unless source validation confirms kinase-substrate chemistry",
+      "success_criteria": [
+        "known counterexamples remain abstentions under the unified prototype",
+        "new broad-query rows without source authority remain non-countable"
+      ],
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Preregistration freezes next-experiment criteria only. It does not fetch candidates, calibrate thresholds, score production ePK, edit registries, or import labels."
+  ]
+}

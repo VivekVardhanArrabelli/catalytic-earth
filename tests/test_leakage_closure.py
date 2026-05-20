@@ -6705,6 +6705,50 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             ],
             0,
         )
+        self.assertEqual(
+            metadata["source_epk_unified_review_only_scoring_prototype_method"],
+            "epk_unified_review_only_scoring_prototype",
+        )
+        self.assertEqual(
+            metadata["unified_review_only_scoring_prototype_status"],
+            "fail_closed_review_only",
+        )
+        self.assertTrue(
+            metadata["unified_review_only_scoring_passes_current_controls"]
+        )
+        self.assertEqual(
+            metadata["unified_review_only_scoring_positive_full_score_count"], 8
+        )
+        self.assertEqual(
+            metadata["unified_review_only_scoring_control_false_non_abstention_count"],
+            0,
+        )
+        self.assertEqual(
+            metadata[
+                "unified_review_only_scoring_external_hard_negative_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertTrue(metadata["unified_review_only_score_computed"])
+        self.assertEqual(
+            metadata["source_epk_unified_prototype_broad_stress_audit_method"],
+            "epk_unified_prototype_broad_stress_audit",
+        )
+        self.assertEqual(
+            metadata["unified_prototype_broad_stress_status"],
+            "bounded_stress_has_source_validation_counterexamples_review_only",
+        )
+        self.assertEqual(
+            metadata[
+                "unified_prototype_broad_stress_outside_query_reviewed_candidate_count"
+            ],
+            111,
+        )
+        self.assertEqual(
+            metadata["unified_prototype_broad_stress_blocked_or_rejected_pdb_ids"],
+            ["9L3M", "9L3U"],
+        )
+        self.assertFalse(metadata["unified_prototype_broad_stress_complete"])
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
         self.assertEqual(metadata["nonready_ligand_excluded_count"], 2)
         self.assertTrue(metadata["nonready_rows_repaired_or_excluded"])
@@ -6753,6 +6797,14 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         )
         self.assertNotIn(
             "unified_substrate_identity_rule_probe",
+            metadata["failing_gate_ids"],
+        )
+        self.assertNotIn(
+            "unified_review_only_scoring_prototype",
+            metadata["failing_gate_ids"],
+        )
+        self.assertNotIn(
+            "unified_prototype_broad_stress_audit",
             metadata["failing_gate_ids"],
         )
         self.assertIn(
@@ -7718,6 +7770,157 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
                 "external_hard_negative_abstain_missing_epk_axes_review_only",
             )
 
+    def test_epk_unified_review_only_scoring_prototype_fails_closed(self) -> None:
+        prototype = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_review_only_scoring_prototype_1025.json"
+        )
+        metadata = prototype["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_unified_review_only_scoring_prototype"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["prototype_gate_status"], "fail_closed_review_only")
+        self.assertTrue(metadata["prototype_failed_closed"])
+        self.assertTrue(metadata["prototype_passes_current_controls"])
+        self.assertEqual(metadata["positive_like_full_score_count"], 8)
+        self.assertEqual(
+            metadata["positive_like_full_score_pdb_ids"],
+            ["1IR3", "1O6K", "1O6L", "2PHK", "5HVK", "6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(metadata["positive_like_miss_count"], 1)
+        self.assertEqual(metadata["positive_like_miss_pdb_ids"], ["3TM0"])
+        self.assertEqual(metadata["current_control_false_non_abstention_count"], 0)
+        self.assertEqual(
+            metadata["imported_external_hard_negative_non_abstention_count"],
+            0,
+        )
+        self.assertEqual(metadata["legacy_sibling_counteraxis_row_count"], 20)
+        self.assertTrue(metadata["review_only_score_computed"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = prototype["rows"]
+        five_hvk = [row for row in rows if row.get("pdb_id") == "5HVK"][0]
+        self.assertEqual(
+            five_hvk["review_only_prototype_decision"],
+            "unified_positive_signal_review_only_not_calibrated",
+        )
+        self.assertEqual(
+            five_hvk["nearest_gamma_to_acceptor_distance_angstrom"], 4.236
+        )
+        external_rows = [
+            row
+            for row in rows
+            if row.get("row_type")
+            == "unified_identity_imported_external_hard_negative"
+        ]
+        self.assertEqual(
+            sorted(row["entry_id"] for row in external_rows),
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        for row in external_rows:
+            self.assertEqual(row["review_only_unified_prototype_score"], 0.0)
+            self.assertEqual(
+                row["review_only_prototype_decision"],
+                "external_hard_negative_abstain_unified_review_only",
+            )
+
+    def test_epk_unified_prototype_broad_stress_audit_fails_closed(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_prototype_broad_stress_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_unified_prototype_broad_stress_audit"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["broad_stress_status"],
+            "bounded_stress_has_source_validation_counterexamples_review_only",
+        )
+        self.assertEqual(metadata["exact_source_query_reviewed_count"], 110)
+        self.assertEqual(metadata["exact_source_query_unreviewed_count"], 0)
+        self.assertEqual(metadata["outside_query_reviewed_candidate_count"], 111)
+        self.assertEqual(metadata["outside_query_fetch_failure_count"], 0)
+        self.assertEqual(metadata["outside_query_heteromeric_candidate_hit_count"], 4)
+        self.assertEqual(
+            metadata["source_validated_positive_like_pdb_ids"], ["1O6K", "1O6L"]
+        )
+        self.assertEqual(
+            metadata["source_validation_blocked_or_rejected_pdb_ids"],
+            ["9L3M", "9L3U"],
+        )
+        self.assertTrue(metadata["bounded_stress_identifies_counterexamples"])
+        self.assertFalse(metadata["broad_stress_complete"])
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_unified_prototype_next_broad_stress_preregistration_closed(
+        self,
+    ) -> None:
+        preregistration = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json"
+        )
+        metadata = preregistration["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_unified_prototype_next_broad_stress_preregistration",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["preregistration_status"],
+            "active_review_only_next_broad_stress_tranche_preregistered",
+        )
+        self.assertEqual(metadata["known_counterexample_pdb_ids"], ["9L3M", "9L3U"])
+        self.assertEqual(
+            metadata["source_validated_positive_like_pdb_ids"], ["1O6K", "1O6L"]
+        )
+        self.assertEqual(metadata["lane_count"], 3)
+        self.assertFalse(metadata["threshold_calibrated"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            [row["lane_id"] for row in preregistration["rows"]],
+            [
+                "amp_pnp_mg_reviewed_peptide_kinase_substrate",
+                "protein_substrate_cross_accession_anp_mg",
+                "broad_text_query_counterexample_guard",
+            ],
+        )
+
+    def test_epk_unified_review_artifacts_have_no_countable_rows(self) -> None:
+        for artifact_name in [
+            "v3_epk_unified_review_only_scoring_prototype_1025.json",
+            "v3_epk_unified_prototype_broad_stress_audit_1025.json",
+            "v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json",
+        ]:
+            artifact = _load_json(ROOT / "artifacts" / artifact_name)
+            for row in artifact["rows"]:
+                self.assertFalse(row.get("countable_label_candidate"))
+                self.assertFalse(row.get("epk_score_computed"))
+
     def test_epk_counteraxis_sufficiency_decision_blocks_threshold(self) -> None:
         decision = _load_json(
             ROOT / "artifacts" / "v3_epk_counteraxis_sufficiency_decision_1025.json"
@@ -7782,6 +7985,35 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             ],
             0,
         )
+        self.assertTrue(
+            metadata["unified_review_only_scoring_passes_current_controls"]
+        )
+        self.assertEqual(
+            metadata["unified_review_only_scoring_positive_full_score_count"], 8
+        )
+        self.assertEqual(
+            metadata[
+                "unified_review_only_scoring_control_false_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            metadata[
+                "unified_review_only_scoring_external_hard_negative_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            metadata["unified_prototype_broad_stress_status"],
+            "bounded_stress_has_source_validation_counterexamples_review_only",
+        )
+        self.assertEqual(
+            metadata[
+                "unified_prototype_broad_stress_blocked_or_rejected_pdb_ids"
+            ],
+            ["9L3M", "9L3U"],
+        )
+        self.assertFalse(metadata["unified_prototype_broad_stress_complete"])
         self.assertEqual(
             metadata["family_specific_template_validated_family_ids"],
             ["atp_grasp", "pfka", "pfkb"],
@@ -7829,6 +8061,26 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         self.assertEqual(
             axes["heteromeric_source_expansion_peptide_role_axis"]["blocker"],
             "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
+        )
+        self.assertEqual(
+            axes["unified_review_only_scoring_prototype"]["decision"],
+            "passes_current_controls_but_review_only_not_calibrated",
+        )
+        self.assertEqual(
+            axes["unified_review_only_scoring_prototype"][
+                "external_hard_negative_non_abstention_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            axes["unified_prototype_broad_stress_audit"]["decision"],
+            "counterexamples_found_keep_threshold_closed",
+        )
+        self.assertEqual(
+            axes["unified_prototype_broad_stress_audit"][
+                "source_validation_blocked_or_rejected_pdb_ids"
+            ],
+            ["9L3M", "9L3U"],
         )
 
     def test_epk_substrate_acceptor_counteraxis_prototype_fails_closed(self) -> None:
