@@ -1,9 +1,10 @@
 # ePK Positive Evidence Handoff
 
-Last updated: 2026-05-20T21:09:01Z
+Last updated: 2026-05-20T21:10:45Z
 
-Pushed commit: pending primary run artifact commit; update this line after the
-lane-only commit is pushed.
+Pushed commit: `1585d3e3945d0e30a5ec1069a5b6f31bd69b1622` (primary run
+artifact commit). Final branch HEAD after this handoff-reference update is
+reported in the automation summary.
 
 ## Current Outcome
 
