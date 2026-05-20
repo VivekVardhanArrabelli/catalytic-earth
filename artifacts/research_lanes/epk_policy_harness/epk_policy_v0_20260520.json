@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "policy_version": "epk_review_only_policy_harness_v0_20260520",
+    "policy_id": "epk_ligand_state_substrate_role_review_only_v0_20260520",
+    "created_at": "2026-05-20T09:17:14-05:00",
+    "lane_id": "epk_policy_harness",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "review_only": true,
+    "production_claim_allowed": false,
+    "labels_or_fingerprints_changed": false,
+    "epk_score_computed": false,
+    "threshold_calibrated": false,
+    "ready_for_production_scoring": false,
+    "ready_for_label_import": false
+  },
+  "hypothesis": "A frozen review-only ePK policy can be run on future tranches without tuning by allowing active-gamma ligand state to contribute only when terminal gamma-equivalent geometry, local metal context, catalytic-site locality, and a pre-frozen source-free acceptor or role feature co-materialize in the same structure; otherwise the harness abstains.",
+  "frozen_inputs": {
+    "ligand_code_alias_map": {
+      "ATP": [
+        "ATP"
+      ],
+      "ANP": [
+        "ANP"
+      ],
+      "AMP_PNP": [
+        "AMP-PNP",
+        "AMPPNP"
+      ]
+    },
+    "candidate_distance_cutoff_angstrom": 6.0,
+    "required_same_structure_features": [
+      "terminal_gamma_equivalent_geometry",
+      "local_metal_context",
+      "catalytic_site_locality",
+      "source_free_acceptor_role_features",
+      "same_structure_co_materialization"
+    ],
+    "accepted_source_free_acceptor_role_policy_ids": [],
+    "accepted_source_free_acceptor_role_policy_status": "none_currently_accepted_for_v0; this policy intentionally fails closed until a future frozen source-free role extractor is preregistered before tranche selection",
+    "development_row_performance_rule": "Rows observed in prior ePK development artifacts may be used only for regression diagnostics, not clean held-out performance evidence."
+  },
+  "allowed_predictive_features": [
+    "ligand_code_from_structure",
+    "terminal_gamma_equivalent_geometry",
+    "terminal_gamma_atom_name",
+    "nearest_gamma_acceptor_distance_angstrom",
+    "local_metal_context",
+    "catalytic_site_locality",
+    "source_free_acceptor_role_features",
+    "source_free_acceptor_role_policy_id",
+    "same_structure_co_materialization"
+  ],
+  "review_only_features": [
+    "pdb_id",
+    "row_role",
+    "clean_held_out_performance_evidence",
+    "development_or_regression_context",
+    "product_state_context",
+    "substrate_acceptor_analog_context",
+    "split_state_context",
+    "candidate_specific_source_repair",
+    "sibling_counterfamily_context",
+    "post_score_review_status",
+    "source_validation_status",
+    "source_review_status",
+    "source_query",
+    "structure_title",
+    "entity_descriptions",
+    "chain_accessions",
+    "source_pair_id",
+    "known_counterexample_status",
+    "expert_notes"
+  ],
+  "forbidden_features": [
+    "production_label",
+    "curated_mechanism_label",
+    "mechanism_fingerprint_registry_status",
+    "source_review_used_for_predictive_feature",
+    "candidate_specific_source_repair_used_for_predictive_feature",
+    "mechanism_text",
+    "pdb_title_as_predictive_feature",
+    "uniprot_prose_as_predictive_feature",
+    "ec_or_rhea_as_predictive_feature",
+    "source_id_as_predictive_feature",
+    "post_hoc_ligand_alias_expansion",
+    "post_hoc_threshold_selection",
+    "cross_pdb_split_state_fusion",
+    "homomeric_chain_choice_as_substrate_mapping"
+  ],
+  "review_only_ligand_contexts": [
+    "ADP",
+    "PRODUCT_STATE",
+    "SUBSTRATE_ACCEPTOR_ANALOG",
+    "SPLIT_STATE",
+    "POST_HOC_REPAIR"
+  ],
+  "decision_rules": [
+    {
+      "rule_id": "forbidden_predictive_context_blocks_row",
+      "description": "Any row that marks source review, candidate repair, labels, source ids, mechanism text, EC/Rhea, UniProt prose, split-state fusion, post-hoc ligand aliases, or post-hoc thresholds as predictive must abstain."
+    },
+    {
+      "rule_id": "product_or_analog_context_is_review_only",
+      "description": "ADP, product-state rows, substrate/acceptor analogs, split-state rows, and candidate-specific repairs are review-only regardless of local distance."
+    },
+    {
+      "rule_id": "active_gamma_ligand_requires_all_local_features",
+      "description": "ATP, ANP, and frozen AMP-PNP aliases can produce a non-abstaining review-only candidate only when every required same-structure local feature is true and the source-free acceptor or role policy id is pre-accepted."
+    },
+    {
+      "rule_id": "development_rows_are_not_clean_performance_evidence",
+      "description": "Prior ePK development and regression rows can stress the harness but cannot support held-out performance claims."
+    }
+  ],
+  "source_artifacts_consulted": [
+    "artifacts/v3_epk_analog_product_state_policy_preregistration_1025.json",
+    "artifacts/v3_epk_ligand_specific_active_state_terminal_decision_1025.json",
+    "artifacts/v3_epk_unified_review_only_scoring_prototype_1025.json",
+    "artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json",
+    "artifacts/v3_epk_unified_prototype_broad_stress_with_next_tranche_amp_pnp_1025.json",
+    "artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json",
+    "artifacts/v3_epk_precount_gate_status_1025.json",
+    "artifacts/v3_epk_subagent_synthesis_20260520.json",
+    "work/subagents/epk_ligand_state_policy_freeze_review_20260520.md",
+    "work/subagents/epk_substrate_role_axis_review_20260520.md",
+    "work/subagents/epk_sibling_counterfamily_stress_review_20260520.md",
+    "work/subagents/epk_external_stress_tranche_review_20260520.md"
+  ]
+}
