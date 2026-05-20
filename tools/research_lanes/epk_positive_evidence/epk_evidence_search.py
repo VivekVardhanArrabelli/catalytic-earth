@@ -378,6 +378,29 @@ def scan_cif_for_candidates(cif_text: str) -> dict[str, Any]:
     for gamma in gamma_atoms:
         associated = nearest_polymer_entity(ligand_atoms_by_key.get(ligand_key(gamma), []), polymer_atoms)
         metals_near_gamma = local_metals(gamma, metals)
+        gamma_entity = associated.get("entity_id") if associated else None
+        gamma_chain = associated.get("chain") if associated else None
+        heteromeric_acceptors = [
+            acceptor
+            for acceptor in acceptor_atoms
+            if not (gamma_entity is not None and acceptor.get("entity_id") == gamma_entity)
+            and not (gamma_chain is not None and acceptor.get("chain") == gamma_chain)
+        ]
+        nearest_heteromeric_acceptor = None
+        if heteromeric_acceptors:
+            nearest_distance, nearest_acceptor = min(
+                ((dist(gamma, acceptor), acceptor) for acceptor in heteromeric_acceptors),
+                key=lambda item: item[0],
+            )
+            nearest_heteromeric_acceptor = {
+                "candidate_residue_code": nearest_acceptor["comp"],
+                "candidate_atom_name": nearest_acceptor["atom"],
+                "candidate_chain_name": nearest_acceptor.get("chain"),
+                "candidate_entity_id": nearest_acceptor.get("entity_id"),
+                "candidate_auth_seq_id": nearest_acceptor.get("auth_seq_id"),
+                "candidate_label_seq_id": nearest_acceptor.get("label_seq_id"),
+                "nearest_gamma_distance_angstrom": round(nearest_distance, 3),
+            }
         gamma_records.append(
             {
                 "gamma_ligand_code": gamma["comp"],
@@ -389,15 +412,10 @@ def scan_cif_for_candidates(cif_text: str) -> dict[str, Any]:
                 "associated_polymer_distance_angstrom": associated.get("distance_angstrom") if associated else None,
                 "associated_polymer_basis": associated.get("association_basis") if associated else None,
                 "local_metals": metals_near_gamma,
+                "nearest_heteromeric_acceptor": nearest_heteromeric_acceptor,
             }
         )
-        gamma_entity = associated.get("entity_id") if associated else None
-        gamma_chain = associated.get("chain") if associated else None
-        for acceptor in acceptor_atoms:
-            if gamma_entity is not None and acceptor.get("entity_id") == gamma_entity:
-                continue
-            if gamma_chain is not None and acceptor.get("chain") == gamma_chain:
-                continue
+        for acceptor in heteromeric_acceptors:
             d = dist(gamma, acceptor)
             if d <= 6.0:
                 hits.append(

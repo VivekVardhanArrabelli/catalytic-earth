@@ -25,10 +25,27 @@ The compact artifact records 5 reviewed PDB entries, 3 RCSB exact-family rows,
 2 Europe PMC exact-title rows, and 0 fetch failures. It stores only compact
 metadata, mapped-site statuses, and distances; no coordinate dumps were written.
 
+A secondary PINK1/ubiquitin split-state scout artifact was also tracked during
+wrap because it was generated in the lane path and otherwise blocked a clean
+branch. It reviewed 22 unique PDB IDs from 27 RCSB rows and found no
+heteromeric candidate structures.
+
+A secondary aPKC/Lgl substrate-state scout artifact was also tracked from the
+same lane-local generated pass. It reviewed 5 unique PDB IDs from 8 RCSB rows
+and found no heteromeric candidate structures.
+
+A secondary mTORC2/Akt substrate-state scout artifact was also tracked after
+the generator settled. It reviewed 11 unique PDB IDs from 33 RCSB rows and
+found no heteromeric candidate structures.
+
 ## Files Changed
 
 - `artifacts/research_lanes/epk_positive_evidence/pka_cftr_source_mapped_site_review_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_pink1_ubiquitin_split_state_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_apkc_lgl_substrate_state_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_mtorc2_akt_substrate_state_scout_20260520.json`
 - `tools/research_lanes/epk_positive_evidence/pka_cftr_source_map.py`
+- `tools/research_lanes/epk_positive_evidence/epk_evidence_search.py`
 - `artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl`
 - `work/research_lanes/epk_positive_evidence/handoff.md`
 
@@ -58,6 +75,18 @@ metadata, mapped-site statuses, and distances; no coordinate dumps were written.
 - Nearest nonmapped CFTR Ser/Thr/Tyr acceptors to PKA gamma in `9DW5`, `9DW8`,
   and `9DW9` are 38.178, 27.427, and 27.299 Angstrom away respectively;
   `9DW7` has no modeled CFTR acceptor atom in the scan.
+- Secondary PINK1/ubiquitin scout: 22 unique PDB IDs from four exact PINK1
+  surfaces produced 20 rows with no active gamma donor and 2 rows with no
+  heteromeric candidate hit, reinforcing the already-recorded split-state
+  PINK1/ubiquitin negative call.
+- Secondary aPKC/Lgl scout: 5 unique PDB IDs from three exact aPKC/Lgl surfaces
+  produced 4 rows with no active gamma donor and 1 row with no heteromeric
+  candidate hit, reinforcing the already-recorded docking/long-distance
+  aPKC/Lgl negative call.
+- Secondary mTORC2/Akt scout: 11 unique PDB IDs from four exact mTORC2/Akt
+  surfaces produced 9 rows with no active gamma donor and 2 rows with no
+  heteromeric candidate hit, reinforcing the already-recorded recruitment/
+  ATP-state mTORC2/Akt negative call.
 
 ## Blockers
 

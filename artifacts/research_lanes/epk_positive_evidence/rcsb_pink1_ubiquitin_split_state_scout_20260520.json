@@ -1,0 +1,1583 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_active_gamma_donor_atom_review_only": 20,
+      "no_heteromeric_candidate_hit_review_only": 2
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T18:26:13Z",
+    "heteromeric_candidate_pdb_ids": [],
+    "heteromeric_candidate_structure_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 4,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 27,
+    "surface_total_count_reported_total": 27,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 22
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 75,
+      "atom_count_model_1": 4950,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Ubiquitin Ser65 phosphorylation affects ubiquitin structure, chain assembly and hydrolysis.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4WZP",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "description": "ubiquitin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG47"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 16,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Ser65 phosphorylated ubiquitin, major conformation"
+    },
+    {
+      "acceptor_atom_count": 70,
+      "atom_count_model_1": 5627,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of phospho-ubiquitin-induced PARKIN activation.",
+        "year": 2015
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5CAW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "E3 ubiquitin-protein ligase parkin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E0VIU9"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Polyubiquitin-B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG47"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 bound to ubiquitin",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_pink1_bound_to_ubiquitin_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 17,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of Pediculus humanus Parkin bound to phospho-ubiquitin"
+    },
+    {
+      "acceptor_atom_count": 342,
+      "atom_count_model_1": 16758,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of PINK1 and mechanisms of Parkinson's disease associated mutations.",
+        "year": 2017
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5OAT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial-like Protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "PINK1 structure"
+    },
+    {
+      "acceptor_atom_count": 6,
+      "atom_count_model_1": 1249,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of phosphorylated UBL domain and insights into PINK1-orchestrated parkin activation.",
+        "year": 2017
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5TR5",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "E3 ubiquitin-protein ligase parkin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O60260"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 18,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Solution structure of Serine 65 phosphorylated UBL domain from parkin"
+    },
+    {
+      "acceptor_atom_count": 53,
+      "atom_count_model_1": 2769,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into ubiquitin phosphorylation by PINK1.",
+        "year": 2018
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.591,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "D",
+              "distance_angstrom": 3.14,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "602",
+              "chain": "D",
+              "distance_angstrom": 4.812,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5YJ9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial-like Protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: PINK1 AMP-PNP",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_pink1_amp_pnp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of Tribolium castaneum PINK1 kinase domain in complex with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 79,
+      "atom_count_model_1": 4453,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of PINK1 in complex with its substrate ubiquitin.",
+        "year": 2017
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6EQI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ubiquitin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG48"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Nb696",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, putative",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E0W1I1"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 bound to ubiquitin",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_pink1_bound_to_ubiquitin_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 7,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of PINK1 bound to ubiquitin"
+    },
+    {
+      "acceptor_atom_count": 55,
+      "atom_count_model_1": 3216,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of parkin activation by PINK1.",
+        "year": 2018
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6GLC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "E3 ubiquitin-protein ligase parkin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O60260"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Polyubiquitin-B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG47"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 bound to ubiquitin",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_pink1_bound_to_ubiquitin_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 19,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of phospho-Parkin bound to phospho-ubiquitin"
+    },
+    {
+      "acceptor_atom_count": 9,
+      "atom_count_model_1": 1238,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Ubiquitin is double-phosphorylated by PINK1 for enhanced pH-sensitivity of conformational switch.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6KOW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Polyubiquitin-B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG47"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 8,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Retracted state of S65/T66 double-phosphorylated ubiquitin"
+    },
+    {
+      "acceptor_atom_count": 9,
+      "atom_count_model_1": 1238,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Ubiquitin is double-phosphorylated by PINK1 for enhanced pH-sensitivity of conformational switch.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "SOLUTION NMR"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6KOX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Polyubiquitin-B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG47"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 9,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Relaxed state of S65/T66 double-phosphorylated ubiquitin"
+    },
+    {
+      "acceptor_atom_count": 59,
+      "atom_count_model_1": 3058,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of PINK1 activation by autophosphorylation and insights into assembly on the TOM complex.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7MP8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial-like Protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of the cytosolic domain of Tribolium castaneum PINK1 in the non-phosphorylated state"
+    },
+    {
+      "acceptor_atom_count": 60,
+      "atom_count_model_1": 3335,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of PINK1 activation by autophosphorylation and insights into assembly on the TOM complex.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7MP9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial-like Protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of the cytosolic domain of Tribolium castaneum PINK1 phosphorylated at Ser205 in complex with ADP analog"
+    },
+    {
+      "acceptor_atom_count": 60,
+      "atom_count_model_1": 5659,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification and structural characterization of small molecule inhibitors of PINK1.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UCT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase Pink1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of TcPINK1 in complex with PRT"
+    },
+    {
+      "acceptor_atom_count": 60,
+      "atom_count_model_1": 3069,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification and structural characterization of small molecule inhibitors of PINK1.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UDC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase Pink1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of TcPINK1 in complex with CYC116"
+    },
+    {
+      "acceptor_atom_count": 115,
+      "atom_count_model_1": 6460,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Interaction of PINK1 with nucleotides and kinetin.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UYF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase Pink1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E0W1I1"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 nucleotide kinetin",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_pink1_nucleotide_kinetin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of nucleotide-free Pediculus humanus (Ph) PINK1 dimer"
+    },
+    {
+      "acceptor_atom_count": 110,
+      "atom_count_model_1": 6036,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Interaction of PINK1 with nucleotides and kinetin.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.674,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "602",
+              "chain": "A",
+              "distance_angstrom": 3.837,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.637,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "602",
+              "chain": "B",
+              "distance_angstrom": 4.673,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "603",
+              "chain": "B",
+              "distance_angstrom": 4.739,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UYH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase Pink1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E0W1I1"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 AMP-PNP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_pink1_amp_pnp_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: PINK1 nucleotide kinetin",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_pink1_nucleotide_kinetin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of AMP-PNP-bound Pediculus humanus (Ph) PINK1 dimer"
+    },
+    {
+      "acceptor_atom_count": 106,
+      "atom_count_model_1": 5980,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Interaction of PINK1 with nucleotides and kinetin.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UYI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase Pink1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E0W1I1"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 nucleotide kinetin",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_pink1_nucleotide_kinetin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of ADP-bound and phosphorylated Pediculus humanus (Ph) PINK1 dimer"
+    },
+    {
+      "acceptor_atom_count": 517,
+      "atom_count_model_1": 28887,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of human PINK1 at a mitochondrial TOM-VDAC array.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EIH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM20 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15388"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Non-selective voltage-gated ion channel VDAC2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P45880"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "G",
+            "H",
+            "I",
+            "J"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM40 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O96008"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K",
+            "L",
+            "Y",
+            "Z"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM5 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N4H5"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "M",
+            "N",
+            "W",
+            "X"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM7 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9P0U1"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "O",
+            "P",
+            "U",
+            "V"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM6 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96B49"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "Q",
+            "R",
+            "S",
+            "T"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM22 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NS69"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BXM7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 13,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Import stalled PINK1 TOM complex"
+    },
+    {
+      "acceptor_atom_count": 258,
+      "atom_count_model_1": 14448,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of human PINK1 at a mitochondrial TOM-VDAC array.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EII",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BXM7"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM20 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15388"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "Voltage-dependent anion-selective channel protein 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P45880"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "I",
+            "J"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM40 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O96008"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "L",
+            "Z"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM5 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N4H5"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "N",
+            "X"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM7 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9P0U1"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "P",
+            "V"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM6 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96B49"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "R",
+            "T"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM22 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NS69"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 14,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Import stalled PINK1 TOM complex, symmetry expanded"
+    },
+    {
+      "acceptor_atom_count": 325,
+      "atom_count_model_1": 16970,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of human PINK1 at a mitochondrial TOM-VDAC array.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EIJ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM20 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15388"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Non-selective voltage-gated ion channel VDAC2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P45880"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "I",
+            "J"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM40 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O96008"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K",
+            "L",
+            "Z"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM5 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N4H5"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "N",
+            "X"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM7 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9P0U1"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "P",
+            "V"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM6 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96B49"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "R",
+            "T"
+          ],
+          "description": "Mitochondrial import receptor subunit TOM22 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NS69"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BXM7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 15,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Import stalled PINK1 TOM complex, extended TOM20 helix class"
+    },
+    {
+      "acceptor_atom_count": 243,
+      "atom_count_model_1": 13029,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Human Hsp90-PINK1 complex",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9KMR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Heat shock protein HSP 90-alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P07900"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BXM7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 10,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human Hsp90-PINK1 complex"
+    },
+    {
+      "acceptor_atom_count": 292,
+      "atom_count_model_1": 16257,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "human Hsp90-FKBP51-PINK1 complex",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9KOX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Peptidyl-prolyl cis-trans isomerase FKBP5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13451"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Heat shock protein HSP 90-alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P07900"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BXM7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 12,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "human Hsp90-FKBP51-PINK1 complex"
+    },
+    {
+      "acceptor_atom_count": 245,
+      "atom_count_model_1": 14292,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Human Hsp90-Cdc37-PINK1 complex",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9KQN",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Heat shock protein HSP 90-alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P07900"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BXM7"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Hsp90 co-chaperone Cdc37",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q16543"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+          "rank": 11,
+          "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Hsp90-Cdc37-PINK1 complex"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "6EQI",
+        "5CAW",
+        "6GLC"
+      ],
+      "query_or_source": "RCSB full_text: PINK1 bound to ubiquitin",
+      "requested_rows": 50,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pink1_bound_to_ubiquitin_all",
+      "total_count": 3
+    },
+    {
+      "pdb_ids": [
+        "5YJ9",
+        "5OAT",
+        "7MP9",
+        "7MP8",
+        "8UCT",
+        "8UDC",
+        "6EQI",
+        "6KOW",
+        "6KOX",
+        "9KMR",
+        "9KQN",
+        "9KOX",
+        "9EIH",
+        "9EII",
+        "9EIJ",
+        "4WZP",
+        "5CAW",
+        "5TR5",
+        "6GLC"
+      ],
+      "query_or_source": "RCSB full_text: PINK1 complex ubiquitin",
+      "requested_rows": 50,
+      "returned_count": 19,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pink1_complex_with_ubiquitin_all",
+      "total_count": 19
+    },
+    {
+      "pdb_ids": [
+        "8UYH",
+        "5YJ9"
+      ],
+      "query_or_source": "RCSB full_text: PINK1 AMP-PNP",
+      "requested_rows": 50,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pink1_amp_pnp_all",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "8UYF",
+        "8UYH",
+        "8UYI"
+      ],
+      "query_or_source": "RCSB full_text: PINK1 nucleotide kinetin",
+      "requested_rows": 50,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pink1_nucleotide_kinetin_all",
+      "total_count": 3
+    }
+  ]
+}

@@ -1,0 +1,437 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_active_gamma_donor_atom_review_only": 4,
+      "no_heteromeric_candidate_hit_review_only": 1
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T18:27:02Z",
+    "heteromeric_candidate_pdb_ids": [],
+    "heteromeric_candidate_structure_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 3,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 8,
+    "surface_total_count_reported_total": 8,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 5
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 5714,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3X",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: atypical protein kinase C Lgl substrate",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_atypical_protein_kinase_c_lgl_substrate_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: Par6 Lgl phosphorylation kinase",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_par6_lgl_phosphorylation_kinase_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of aPKC Iota kinase domain with LLGL2 peptide"
+    },
+    {
+      "acceptor_atom_count": 187,
+      "atom_count_model_1": 20120,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "I",
+          "associated_polymer_distance_angstrom": 1.668,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "I",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "655",
+            "candidate_chain_name": "L",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "641",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 12.56
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3Y",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Lethal(2) giant larvae protein homolog 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15334"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Partitioning defective 6 homolog alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "R4GMM2"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: aPKC Par6 Lgl ANP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_apkc_par6_lgl_anp_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: atypical protein kinase C Lgl substrate",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_atypical_protein_kinase_c_lgl_substrate_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: Par6 Lgl phosphorylation kinase",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_par6_lgl_phosphorylation_kinase_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cryo EM structure of a stable LGL/aPKC Iota/Par-6 complex"
+    },
+    {
+      "acceptor_atom_count": 181,
+      "atom_count_model_1": 9854,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9JK83"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Par6 Lgl phosphorylation kinase",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_par6_lgl_phosphorylation_kinase_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Lgl2 bound to the aPKCiota-Par6b complex in nucleotide-free form. Head sub-complex region subtracted"
+    },
+    {
+      "acceptor_atom_count": 196,
+      "atom_count_model_1": 11764,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9JK83"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Par6 Lgl phosphorylation kinase",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_par6_lgl_phosphorylation_kinase_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Lgl2 bound to the aPKCiota-Par6B complex in nucleotide-free form. Conformation with visible head sub-complex."
+    },
+    {
+      "acceptor_atom_count": 184,
+      "atom_count_model_1": 10056,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJM",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Par6 Lgl phosphorylation kinase",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_par6_lgl_phosphorylation_kinase_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Lgl2 bound to the aPKCiota-Par6B complex in its ADP-bound form"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "8R3Y"
+      ],
+      "query_or_source": "RCSB full_text: aPKC Par6 Lgl ANP",
+      "requested_rows": 50,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_apkc_par6_lgl_anp_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "8R3Y",
+        "8R3X"
+      ],
+      "query_or_source": "RCSB full_text: atypical protein kinase C Lgl substrate",
+      "requested_rows": 50,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_atypical_protein_kinase_c_lgl_substrate_all",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "8R3Y",
+        "9EJK",
+        "9EJM",
+        "8R3X",
+        "9EJL"
+      ],
+      "query_or_source": "RCSB full_text: Par6 Lgl phosphorylation kinase",
+      "requested_rows": 50,
+      "returned_count": 5,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_par6_lgl_phosphorylation_kinase_all",
+      "total_count": 5
+    }
+  ]
+}
