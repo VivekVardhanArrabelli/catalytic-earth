@@ -61,7 +61,7 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(metadata["lane_json_validation_error_count"], 0)
         self.assertTrue(metadata["fresh_lane_outputs_since_prior_synthesis"])
         self.assertTrue(metadata["integrates_uncommitted_sibling_worktree_outputs"])
-        self.assertEqual(metadata["lane_json_file_count"], 54)
+        self.assertEqual(metadata["lane_json_file_count"], 107)
         self.assertEqual(metadata["lane_jsonl_file_count"], 4)
 
         self.assertEqual(

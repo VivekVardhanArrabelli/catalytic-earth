@@ -50,6 +50,37 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T19:05:55Z automation run,
+`artifacts/v3_epk_research_lane_synthesis_20260520.json` has been refreshed
+again from the four ePK sibling research-lane worktrees and origin research
+branches before unrelated main-loop work. The main run did not merge lane code
+or copy production changes. It validated 107 JSON files and 4 JSONL ledgers
+with 0 parse errors across the positive-evidence, false-positive-hunter,
+sibling-control, and policy-harness lanes. Several lane worktrees still carry
+uncommitted outputs because linked-worktree Git metadata writes are blocked in
+their sandboxes; this synthesis treats them as review-only evidence.
+
+The refreshed synthesis keeps ePK out of production. The positive-evidence
+lane now adds useful review-only peptide positives (`1O6K`, `1O6L`, `4DG0`,
+`3O7L`, and `4JDI`) but still adds 0 fresh clean folded-protein positives.
+`2V55` and `3BEG` reject as clean processive folded-substrate evidence because
+source-mapped acceptors are distant from ANP gamma or absent from modeled
+substrate regions. The false-positive lane found 0 current-rule auth-namespace
+counterexamples on the bounded edge-case stress, while preserving namespace
+pressure as a future regression concern. The sibling-control lane adds 15
+strict product-state controls and blocks all 15 under a review-only
+substrate-identity counteraxis, which falsifies weak distance-only rules but
+does not create a scorer. The policy harness keeps the fresh ATP terminal-gamma
+chemcomp surfaces review-only and abstained/fail-closed.
+
+Evidence-based confidence call: confidence is high that ePK remains no-go for
+production activation because the fresh lanes add no ePK score, threshold,
+external hard-negative scored re-audit, registry edit, label import, or
+fingerprint expansion. Confidence is moderate that the only useful future ePK
+follow-up is research-lane-only legacy ANP/PB terminal-atom auditing or a
+chemcomp ATP terminal-gamma tranche; neither belongs on the main-loop critical
+path until it resolves a preregistered blocker.
+
 As of the 2026-05-20T18:04:27Z automation run,
 `artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json`
 freezes a second prospective external mini-campaign before scoring. This

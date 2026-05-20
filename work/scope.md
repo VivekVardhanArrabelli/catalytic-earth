@@ -41,6 +41,15 @@ fresh policy-harness stress reviewed 25 candidates, found 0 nonconfounded
 within cutoff, and abstained on all 6 carried rows. The next ePK action, if a
 research lane continues, is PKA/CFTR site-specific acceptor mapping; it is not
 a main-loop production or scoring task.
+The 2026-05-20T19:05:55Z refreshed synthesis integrates still newer lane
+outputs and validates 107 JSON files plus 4 JSONL ledgers with 0 parse errors.
+It changes review context but not scope: peptide positives (`1O6K`, `1O6L`,
+`4DG0`, `3O7L`, and `4JDI`) are review-only, processive folded-substrate
+leads `2V55` and `3BEG` reject as clean positives, auth-namespace stress finds
+0 current-rule counterexamples while preserving pressure, strict product-state
+sibling controls block weak substrate rules, and ATP terminal-gamma policy
+surfaces remain abstained/fail-closed. ePK remains research-lane-only and not
+production-ready.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed
