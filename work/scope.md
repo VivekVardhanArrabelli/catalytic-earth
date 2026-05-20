@@ -181,10 +181,15 @@ excluding ligand-analog-only `m_csa:640`, with 0 current-control false hits and
 0 imported external hard-negative non-abstentions. Its source-expansion stress
 audit remains negative: `1O6K`/`1O6L` are peptide-mode, no broad source-valid
 protein-mode positive exists, and relaxed folded-protein role logic false-hits
-blocked `7B56`. The
+blocked `7B56`. The mid-length protein-role counteraxis now blocks that `7B56`
+false hit and stress-checks measured source-valid heteromeric positives
+`6Z3R`, `8OXM`, and `8OXO`, but all three are short peptide-mode acceptor
+chains. That is useful counterevidence, not broad protein-substrate support.
+The
 counteraxis sufficiency decision records the unified rule, prototype,
 broad-stress rows, relaxed polymer gap audit, length-band repair audit,
-protein-role discriminator, and protein-role stress audit
+protein-role discriminator, protein-role stress audit, and mid-length
+counteraxis audit
 while preserving `do_not_select_threshold`.
 The fourth bounded external protein-substrate source scout excludes the first
 31 UniProt/PDB-backed source-pass accessions and finds eight new review-only
@@ -194,6 +199,12 @@ not reopen scoring, measurement, or label import gates. The bounded follow-on
 mapping/ligand review checks 37 structures, finds 8 direct-position-ready rows
 but 0 active-state mapping-ready rows, and closes the fourth pass at 0
 measurement-ready candidates.
+The follow-on ligand-specific active-query scout over the first 100 RCSB
+full-text `protein kinase substrate ANP magnesium` hits is also negative:
+all 100 structures fetch, 96 have no heteromeric gamma-to-acceptor topology
+hits, `7ZE5`, `2JJ2`, and `4HPU` are blocked source-context counterexamples,
+and `1IR3` is already current peptide-substrate support rather than new broad
+protein-substrate evidence.
 
 ## Time Calibration Rule
 

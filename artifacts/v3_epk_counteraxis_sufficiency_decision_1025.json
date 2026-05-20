@@ -188,6 +188,30 @@
       "review_only": true
     },
     {
+      "blocked_midlength_false_hit_count": 1,
+      "blocked_midlength_false_hit_pdb_ids": [
+        "7B56"
+      ],
+      "blocker": "midlength_counteraxis_lacks_broad_source_valid_positive",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "blocks_midlength_false_hit_but_broad_positive_missing",
+      "decision_axis": "midlength_protein_role_counteraxis_audit",
+      "feature_admissible_for_production_scoring": false,
+      "midlength_counteraxis_status": "blocks_current_midlength_false_hit_but_no_broad_positive_review_only",
+      "protein_discriminator_generalization_ready": false,
+      "residual_protein_role_false_hit_count": 0,
+      "review_only": true,
+      "source_valid_chain_length_unresolved_count": 0,
+      "source_valid_chain_length_unresolved_pdb_ids": [],
+      "source_valid_protein_role_retained_count": 0,
+      "source_valid_short_or_peptide_mode_count": 3,
+      "source_valid_short_or_peptide_mode_pdb_ids": [
+        "6Z3R",
+        "8OXM",
+        "8OXO"
+      ]
+    },
+    {
       "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
       "candidate_threshold_angstrom": 6.0,
       "control_false_non_abstention_count": 0,
@@ -302,6 +326,22 @@
     ],
     "length_band_substrate_identity_status": "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
     "method": "epk_counteraxis_sufficiency_decision",
+    "midlength_protein_role_blocked_false_hit_count": 1,
+    "midlength_protein_role_blocked_false_hit_pdb_ids": [
+      "7B56"
+    ],
+    "midlength_protein_role_counteraxis_status": "blocks_current_midlength_false_hit_but_no_broad_positive_review_only",
+    "midlength_protein_role_generalization_ready": false,
+    "midlength_protein_role_residual_false_hit_count": 0,
+    "midlength_protein_role_source_valid_chain_length_unresolved_count": 0,
+    "midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids": [],
+    "midlength_protein_role_source_valid_retained_count": 0,
+    "midlength_protein_role_source_valid_short_or_peptide_mode_count": 3,
+    "midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
       "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
@@ -330,6 +370,7 @@
       "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
       "relaxed_polymer_rule_false_hits_source_context_counterexample",
       "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
+      "midlength_counteraxis_lacks_broad_source_valid_positive",
       "unified_substrate_identity_rule_not_calibrated_for_production",
       "label_factory_gate_not_extended_for_epk"
     ],

@@ -17,6 +17,7 @@ from catalytic_earth.labels import (
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
     build_epk_local_chain_topology_acceptor_replacement_rule,
+    build_epk_midlength_protein_role_counteraxis_audit,
     build_epk_protein_substrate_calibration_diagnostic,
     build_epk_protein_substrate_scorer_design_freeze,
     build_epk_heteromeric_candidate_source_validation_review,
@@ -1635,6 +1636,134 @@ class LeakageClosureTests(unittest.TestCase):
         self.assertFalse(metadata["fingerprint_registry_edited"])
         self.assertFalse(metadata["curated_label_registry_edited"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_midlength_protein_role_counteraxis_stays_review_only(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_midlength_protein_role_counteraxis_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_midlength_protein_role_counteraxis_audit"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["midlength_counteraxis_status"],
+            "blocks_current_midlength_false_hit_but_no_broad_positive_review_only",
+        )
+        self.assertEqual(metadata["blocked_midlength_false_hit_count"], 1)
+        self.assertEqual(metadata["blocked_midlength_false_hit_pdb_ids"], ["7B56"])
+        self.assertEqual(metadata["residual_protein_role_false_hit_count"], 0)
+        self.assertEqual(metadata["source_valid_protein_role_retained_count"], 0)
+        self.assertEqual(metadata["source_valid_measured_candidate_count"], 3)
+        self.assertEqual(metadata["source_valid_short_or_peptide_mode_count"], 3)
+        self.assertEqual(
+            metadata["source_valid_short_or_peptide_mode_pdb_ids"],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(metadata["source_valid_chain_length_unresolved_count"], 0)
+        self.assertFalse(metadata["protein_discriminator_generalization_ready"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["epk_score_computed"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows = {row["pdb_id"]: row for row in audit["rows"]}
+        self.assertTrue(rows["7B56"]["midlength_acceptor_counterevidence_hit"])
+        self.assertFalse(rows["7B56"]["repaired_protein_role_rule_hit"])
+        self.assertTrue(rows["6Z3R"]["short_or_peptide_mode_acceptor_hit"])
+        self.assertFalse(rows["6Z3R"]["broad_protein_mode_acceptor_hit"])
+        self.assertTrue(all(row["review_only"] for row in audit["rows"]))
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in audit["rows"])
+        )
+
+    def test_epk_ligand_specific_active_query_scout_stays_review_only(
+        self,
+    ) -> None:
+        scouts = [
+            _load_json(
+                ROOT
+                / "artifacts"
+                / artifact_name
+            )
+            for artifact_name in [
+                "v3_epk_ligand_specific_active_query_candidate_scout_1025.json",
+                "v3_epk_ligand_specific_active_query_candidate_scout_round2_1025.json",
+                "v3_epk_ligand_specific_active_query_candidate_scout_round3_1025.json",
+                "v3_epk_ligand_specific_active_query_candidate_scout_round4_1025.json",
+                "v3_epk_ligand_specific_active_query_candidate_scout_round5_1025.json",
+            ]
+        ]
+        total_reviewed = sum(
+            int(scout["metadata"]["reviewed_candidate_count"])
+            for scout in scouts
+        )
+        total_hit_structures = sum(
+            int(scout["metadata"]["heteromeric_candidate_structure_count"])
+            for scout in scouts
+        )
+        self.assertEqual(total_reviewed, 100)
+        self.assertEqual(total_hit_structures, 4)
+        for scout in scouts:
+            metadata = scout["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_heteromeric_positive_coverage_candidate_scout",
+            )
+            self.assertTrue(metadata["review_only"])
+            self.assertEqual(metadata["input_candidate_count"], 20)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+            self.assertFalse(metadata["fingerprint_registry_edited"])
+            self.assertFalse(metadata["curated_label_registry_edited"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+            self.assertTrue(all(row["review_only"] for row in scout["rows"]))
+            self.assertTrue(
+                all(not row["countable_label_candidate"] for row in scout["rows"])
+            )
+        self.assertEqual(
+            scouts[0]["metadata"]["candidate_status_counts"],
+            {"no_heteromeric_candidate_hit_review_only": 20},
+        )
+        self.assertEqual(
+            scouts[1]["metadata"]["candidate_status_counts"],
+            {"no_heteromeric_candidate_hit_review_only": 20},
+        )
+        self.assertEqual(
+            scouts[2]["metadata"]["heteromeric_candidate_pdb_ids"], ["7ZE5"]
+        )
+        self.assertEqual(
+            scouts[3]["metadata"]["heteromeric_candidate_pdb_ids"], ["1IR3"]
+        )
+        self.assertEqual(
+            scouts[4]["metadata"]["heteromeric_candidate_pdb_ids"],
+            ["2JJ2", "4HPU"],
+        )
+        for artifact_name in [
+            "v3_epk_ligand_specific_active_query_source_validation_review_round3_1025.json",
+            "v3_epk_ligand_specific_active_query_source_validation_review_round4_1025.json",
+            "v3_epk_ligand_specific_active_query_source_validation_review_round5_1025.json",
+        ]:
+            validation = _load_json(ROOT / "artifacts" / artifact_name)
+            metadata = validation["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_heteromeric_candidate_source_validation_review",
+            )
+            self.assertGreaterEqual(metadata["reviewed_candidate_count"], 1)
+            self.assertEqual(metadata["source_validated_new_candidate_count"], 0)
+            self.assertEqual(
+                set(metadata["source_validation_status_counts"]),
+                {"blocked_source_context_insufficient_review_only"},
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
 
     def test_epk_external_source_three_pass_terminal_decision_stays_review_only(
         self,
@@ -5322,6 +5451,78 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
         self.assertFalse(row["measurement_ready"])
         self.assertIn("analog_policy_not_active", row["remaining_blockers"])
 
+    def test_epk_midlength_protein_role_counteraxis_builder_blocks_false_hit(
+        self,
+    ) -> None:
+        audit = build_epk_midlength_protein_role_counteraxis_audit(
+            epk_source_free_protein_substrate_role_discriminator_stress_audit={
+                "metadata": {
+                    "method": "stress_fixture",
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "row_type": "source_expansion_protein_role_stress",
+                        "pdb_id": "7B56",
+                        "source_validated_positive_like": False,
+                        "protein_substrate_role_stress_decision": (
+                            "nonpositive_source_expansion_protein_role_false_hit"
+                        ),
+                        "relaxed_folded_protein_role_rule_hit": True,
+                        "acceptor_chain_residue_count": 68,
+                    },
+                    {
+                        "row_type": "source_expansion_protein_role_stress",
+                        "pdb_id": "1PRO",
+                        "source_validated_positive_like": True,
+                        "protein_substrate_role_stress_decision": (
+                            "source_valid_expansion_protein_role_hit_review_only"
+                        ),
+                        "relaxed_folded_protein_role_rule_hit": True,
+                        "acceptor_chain_residue_count": 180,
+                    },
+                ],
+            },
+            epk_heteromeric_source_valid_candidate_gamma_distance_sample={
+                "metadata": {
+                    "method": (
+                        "epk_heteromeric_source_valid_candidate_gamma_distance_sample"
+                    ),
+                    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                },
+                "rows": [
+                    {
+                        "pdb_id": "1PEP",
+                        "source_pair_id": "kinase_peptide",
+                        "source_validated_positive_like": True,
+                        "measurement_status": (
+                            "source_valid_heteromeric_gamma_distance_measured_review_only"
+                        ),
+                        "distance_candidates": [
+                            {
+                                "candidate_chain_name": "B",
+                                "gamma_associated_polymer_chain_name": "A",
+                                "acceptor_chain_residue_count": 7,
+                                "nearest_gamma_distance_angstrom": 3.2,
+                            }
+                        ],
+                    }
+                ],
+            },
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(metadata["blocked_midlength_false_hit_pdb_ids"], ["7B56"])
+        self.assertEqual(metadata["residual_protein_role_false_hit_count"], 0)
+        self.assertEqual(metadata["source_valid_protein_role_retained_pdb_ids"], ["1PRO"])
+        self.assertEqual(metadata["source_valid_short_or_peptide_mode_pdb_ids"], ["1PEP"])
+        self.assertTrue(metadata["protein_discriminator_generalization_ready"])
+        rows = {row["pdb_id"]: row for row in audit["rows"]}
+        self.assertFalse(rows["7B56"]["repaired_protein_role_rule_hit"])
+        self.assertTrue(rows["1PRO"]["repaired_protein_role_rule_hit"])
+        self.assertTrue(rows["1PEP"]["short_or_peptide_mode_acceptor_hit"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["epk_score_computed"])
+
     def test_epk_external_source_terminal_decision_builder_closes_empty_passes(
         self,
     ) -> None:
@@ -7187,6 +7388,24 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata["protein_substrate_role_stress_generalization_ready"]
         )
         self.assertEqual(
+            metadata["midlength_protein_role_counteraxis_status"],
+            "blocks_current_midlength_false_hit_but_no_broad_positive_review_only",
+        )
+        self.assertEqual(
+            metadata["midlength_protein_role_blocked_false_hit_pdb_ids"],
+            ["7B56"],
+        )
+        self.assertEqual(
+            metadata[
+                "midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids"
+            ],
+            ["6Z3R", "8OXM", "8OXO"],
+        )
+        self.assertEqual(
+            metadata["midlength_protein_role_source_valid_retained_count"], 0
+        )
+        self.assertFalse(metadata["midlength_protein_role_generalization_ready"])
+        self.assertEqual(
             metadata["source_epk_unified_review_only_scoring_prototype_method"],
             "epk_unified_review_only_scoring_prototype",
         )
@@ -8720,6 +8939,7 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             "v3_epk_length_band_external_hard_negative_review_1025.json",
             "v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json",
             "v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json",
+            "v3_epk_midlength_protein_role_counteraxis_audit_1025.json",
             "v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json",
         ]:
             artifact = _load_json(ROOT / "artifacts" / artifact_name)
@@ -8899,6 +9119,22 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
                 "nonpositive_relaxed_false_hit_blocked_by_length_band_pdb_ids"
             ],
             ["7B56"],
+        )
+        self.assertEqual(
+            axes["midlength_protein_role_counteraxis_audit"]["decision"],
+            "blocks_midlength_false_hit_but_broad_positive_missing",
+        )
+        self.assertEqual(
+            axes["midlength_protein_role_counteraxis_audit"][
+                "blocked_midlength_false_hit_pdb_ids"
+            ],
+            ["7B56"],
+        )
+        self.assertEqual(
+            axes["midlength_protein_role_counteraxis_audit"][
+                "source_valid_short_or_peptide_mode_pdb_ids"
+            ],
+            ["6Z3R", "8OXM", "8OXO"],
         )
         self.assertEqual(
             axes["source_free_protein_substrate_role_discriminator"]["decision"],

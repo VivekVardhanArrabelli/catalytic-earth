@@ -50,6 +50,55 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T05:48:13Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 638 unit tests plus
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+
+`artifacts/v3_epk_midlength_protein_role_counteraxis_audit_1025.json` is the
+new review-only counter-axis audit for the relaxed folded-protein role failure.
+It blocks the current `7B56` mid-length acceptor false hit with 0 residual
+protein-role false hits, then stress-checks the measured source-valid
+heteromeric positives `6Z3R`, `8OXM`, and `8OXO`. All three measured positives
+are short peptide-mode acceptor chains, so the counter-axis removes a concrete
+false hit but still has 0 broad source-valid protein-role retained positives.
+The regenerated pre-count and counteraxis artifacts carry this as
+`midlength_counteraxis_lacks_broad_source_valid_positive`; pre-count remains
+`blocked_review_only`, and counteraxis sufficiency remains
+`do_not_select_threshold`.
+
+The same run executed a ligand-specific active-query source experiment instead
+of only recording the blocker. RCSB full-text `protein kinase substrate ANP
+magnesium` rows 0-99 were scouted in five review-only tranches:
+`artifacts/v3_epk_ligand_specific_active_query_candidate_scout_1025.json`
+through `artifacts/v3_epk_ligand_specific_active_query_candidate_scout_round5_1025.json`.
+All 100 structures fetched. Ninety-six had no source-free heteromeric
+gamma-to-acceptor topology hit; `7ZE5`, `2JJ2`, and `4HPU` are source-context
+counterexamples; and `1IR3` is already current peptide-substrate support rather
+than new broad protein-substrate evidence. Source-validation reviews for the
+hit tranches accepted 0 new candidates, so no distance measurement, scorer,
+registry, or label gate opened.
+
+Wrap-up verification for this run passed with 642 unit tests,
+`catalytic_earth.cli validate`, `compileall`, JSON parsing for the new/updated
+ePK artifacts, label invariants at 682 total labels (212 seed fingerprints and
+470 out-of-scope labels, with the three imported UniProt hard negatives still
+out-of-scope/null-fingerprint), `git diff --check`, and the artifact migration
+dry-run/local-file guard at 108 rows with `removal_allowed=0`.
+
+Evidence-based confidence call: confidence is higher that the mid-length rule
+is a useful narrow counter-axis for the `7B56` failure and that the first 100
+ligand-specific active-query hits do not contain a new broad protein-substrate
+support row. Confidence remains low that the current protein-role surface is
+general enough for production, because the only measured source-valid additions
+are short peptide-mode and threshold/external scored re-audit gates remain
+closed. Next useful experiment: source qualitatively new broad
+protein-substrate positives outside the exhausted first-100 active-query
+surface, or build an acceptor-identity axis that is not just peptide length.
+
 As of the 2026-05-20T05:04:15Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

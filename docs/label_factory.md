@@ -794,13 +794,19 @@ ligand-analog-only `m_csa:640`, and records 0 current-control false hits plus
 `artifacts/v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json`
 keeps that evidence fail-closed by showing no broad source-valid
 protein-mode positive and one relaxed folded-protein false hit (`7B56`).
+`artifacts/v3_epk_midlength_protein_role_counteraxis_audit_1025.json` adds the
+next concrete counter-axis and keeps it review-only: mid-length acceptor
+polymers are blocked, which removes the current `7B56` false hit. It also
+stress-checks measured source-valid heteromeric positives `6Z3R`, `8OXM`, and
+`8OXO`; those acceptor chains are short peptide-mode supports, not broad
+protein-substrate supports, so production generalization remains closed.
 The next broad-stress tranche is
 preregistered in
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`.
 The downstream counteraxis sufficiency decision carries the unified rule,
 unified prototype, broad-stress audit, relaxed-polymer gap audit,
-length-band repair audit, protein-role discriminator, and protein-role stress
-audit as review-only decision rows but keeps
+length-band repair audit, protein-role discriminator, protein-role stress, and
+mid-length counteraxis audits as review-only decision rows but keeps
 `do_not_select_threshold` because threshold
 calibration, a real scored external re-audit, and registry/factory extension
 are still closed.
@@ -813,6 +819,15 @@ structures and finds 8 direct-position-ready rows, but ligand review finds
 only metal-without-gamma or non-ATP/remote-ligand contexts and 0
 measurement-ready rows. There are no
 scores, registry edits, or label candidates.
+The ligand-specific active-query scout
+`artifacts/v3_epk_ligand_specific_active_query_candidate_scout_1025.json`
+plus round-2 through round-5 companions then tests the RCSB full-text
+`protein kinase substrate ANP magnesium` first-100 candidate set. It fetches
+all 100 structures; 96 have no heteromeric gamma-to-acceptor topology hit,
+`7ZE5`, `2JJ2`, and `4HPU` are blocked source-context counterexamples, and
+`1IR3` is already current peptide-substrate support rather than new broad
+protein-substrate evidence. No new positive source, score, registry edit, or
+label gate opens.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

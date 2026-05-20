@@ -1413,7 +1413,14 @@ The paired stress audit
 then deliberately fails closed: the current source-expansion positives
 `1O6K`/`1O6L` are peptide-mode rather than protein-mode evidence, and the
 relaxed folded-protein role rule false-hits blocked `7B56`. Protein-role
-generalization therefore remains unavailable.
+generalization therefore remains unavailable. The mid-length protein-role
+counteraxis audit
+`artifacts/v3_epk_midlength_protein_role_counteraxis_audit_1025.json` adds a
+narrow review-only repair: it blocks that `7B56` mid-length false hit and
+stress-checks the measured source-valid heteromeric positives `6Z3R`, `8OXM`,
+and `8OXO`. All three measured positives are short peptide-mode acceptors, not
+broad folded-protein positives, so the blocker shifts from the single `7B56`
+false hit to missing source-valid broad protein-substrate support.
 The
 preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`
@@ -1426,7 +1433,7 @@ external scored re-audit, and label-factory extension all remain failing
 gates; the negative-control distribution blocker also stays open.
 The downstream counteraxis sufficiency decision now carries the unified
 substrate-identity, relaxed-polymer gap, length-band repair, protein-role
-discriminator, and protein-role stress rows, but
+discriminator, protein-role stress, and mid-length counteraxis rows, but
 keeps `do_not_select_threshold` because the repaired rule is not calibrated
 for production scoring or a real external hard-negative scored re-audit.
 The next source pass is now concrete:
@@ -1438,6 +1445,15 @@ structure mapping. The follow-on fourth-pass structure-mapping and ligand
 sourcing reviews inspect 37 structures, find 8 direct-position-ready rows but
 0 active-state mapping-ready rows, and keep measurement-ready count at 0. They
 do not open scorer, registry, or label gates.
+The ligand-specific active-query scout
+`artifacts/v3_epk_ligand_specific_active_query_candidate_scout_1025.json`
+and its round-2 through round-5 companions record the RCSB full-text
+`protein kinase substrate ANP magnesium` first-100 candidate set as another
+negative review-only result. All 100 structures were fetched; 96 produced no
+source-free heteromeric gamma-to-acceptor topology hit, `7ZE5`, `2JJ2`, and
+`4HPU` are blocked source-context counterexamples, and `1IR3` is already
+current peptide-substrate support rather than new broad protein-substrate
+evidence.
 
 The 875, 900, 925, 950, 975, and 1,000 batches accepted 27 clean
 automation-curated bronze labels after the accepted 850 state. The latest

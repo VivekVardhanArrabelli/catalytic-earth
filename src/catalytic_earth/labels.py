@@ -16573,6 +16573,52 @@ def build_epk_counteraxis_sufficiency_decision(
     protein_role_stress_generalization_ready = bool(
         precount_meta.get("protein_substrate_role_stress_generalization_ready")
     )
+    midlength_protein_role_status = str(
+        precount_meta.get("midlength_protein_role_counteraxis_status") or ""
+    )
+    midlength_protein_role_blocked_false_hit_count = int(
+        precount_meta.get("midlength_protein_role_blocked_false_hit_count") or 0
+    )
+    midlength_protein_role_blocked_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("midlength_protein_role_blocked_false_hit_pdb_ids", [])
+    )
+    midlength_protein_role_residual_false_hit_count = int(
+        precount_meta.get("midlength_protein_role_residual_false_hit_count") or 0
+    )
+    midlength_protein_role_source_valid_retained_count = int(
+        precount_meta.get("midlength_protein_role_source_valid_retained_count") or 0
+    )
+    midlength_protein_role_source_valid_short_or_peptide_mode_count = int(
+        precount_meta.get(
+            "midlength_protein_role_source_valid_short_or_peptide_mode_count"
+        )
+        or 0
+    )
+    midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids = (
+        _sorted_strings(
+            precount_meta.get(
+                "midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids",
+                [],
+            )
+        )
+    )
+    midlength_protein_role_source_valid_chain_length_unresolved_count = int(
+        precount_meta.get(
+            "midlength_protein_role_source_valid_chain_length_unresolved_count"
+        )
+        or 0
+    )
+    midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids = (
+        _sorted_strings(
+            precount_meta.get(
+                "midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids",
+                [],
+            )
+        )
+    )
+    midlength_protein_role_generalization_ready = bool(
+        precount_meta.get("midlength_protein_role_generalization_ready")
+    )
     unified_scoring_passes_current_controls = bool(
         precount_meta.get("unified_review_only_scoring_passes_current_controls")
     )
@@ -16925,6 +16971,52 @@ def build_epk_counteraxis_sufficiency_decision(
             "blocker": "source_expansion_protein_role_stress_false_hit_or_missing_positive",
         },
         {
+            "decision_axis": "midlength_protein_role_counteraxis_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "midlength_counteraxis_status": midlength_protein_role_status,
+            "blocked_midlength_false_hit_count": (
+                midlength_protein_role_blocked_false_hit_count
+            ),
+            "blocked_midlength_false_hit_pdb_ids": (
+                midlength_protein_role_blocked_false_hit_pdb_ids
+            ),
+            "residual_protein_role_false_hit_count": (
+                midlength_protein_role_residual_false_hit_count
+            ),
+            "source_valid_protein_role_retained_count": (
+                midlength_protein_role_source_valid_retained_count
+            ),
+            "source_valid_short_or_peptide_mode_count": (
+                midlength_protein_role_source_valid_short_or_peptide_mode_count
+            ),
+            "source_valid_short_or_peptide_mode_pdb_ids": (
+                midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids
+            ),
+            "source_valid_chain_length_unresolved_count": (
+                midlength_protein_role_source_valid_chain_length_unresolved_count
+            ),
+            "source_valid_chain_length_unresolved_pdb_ids": (
+                midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids
+            ),
+            "protein_discriminator_generalization_ready": (
+                midlength_protein_role_generalization_ready
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "blocks_midlength_false_hit_but_broad_positive_missing"
+                if midlength_protein_role_blocked_false_hit_count
+                and midlength_protein_role_residual_false_hit_count == 0
+                and not midlength_protein_role_generalization_ready
+                else (
+                    "midlength_counteraxis_passes_review_only_but_not_calibrated"
+                    if midlength_protein_role_generalization_ready
+                    else "missing_or_failing_midlength_protein_role_counteraxis"
+                )
+            ),
+            "blocker": "midlength_counteraxis_lacks_broad_source_valid_positive",
+        },
+        {
             "decision_axis": "unified_review_only_scoring_prototype",
             "review_only": True,
             "candidate_threshold_angstrom": candidate_threshold,
@@ -17116,6 +17208,36 @@ def build_epk_counteraxis_sufficiency_decision(
             "length_band_substrate_identity_blocked_relaxed_false_hit_pdb_ids": (
                 length_band_identity_blocked_false_hit_pdb_ids
             ),
+            "midlength_protein_role_counteraxis_status": (
+                midlength_protein_role_status
+            ),
+            "midlength_protein_role_blocked_false_hit_count": (
+                midlength_protein_role_blocked_false_hit_count
+            ),
+            "midlength_protein_role_blocked_false_hit_pdb_ids": (
+                midlength_protein_role_blocked_false_hit_pdb_ids
+            ),
+            "midlength_protein_role_residual_false_hit_count": (
+                midlength_protein_role_residual_false_hit_count
+            ),
+            "midlength_protein_role_source_valid_retained_count": (
+                midlength_protein_role_source_valid_retained_count
+            ),
+            "midlength_protein_role_source_valid_short_or_peptide_mode_count": (
+                midlength_protein_role_source_valid_short_or_peptide_mode_count
+            ),
+            "midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids": (
+                midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids
+            ),
+            "midlength_protein_role_source_valid_chain_length_unresolved_count": (
+                midlength_protein_role_source_valid_chain_length_unresolved_count
+            ),
+            "midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids": (
+                midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids
+            ),
+            "midlength_protein_role_generalization_ready": (
+                midlength_protein_role_generalization_ready
+            ),
             "unified_review_only_scoring_passes_current_controls": (
                 unified_scoring_passes_current_controls
             ),
@@ -17162,6 +17284,7 @@ def build_epk_counteraxis_sufficiency_decision(
                 "source_expansion_peptide_role_axis_narrow_not_general_epk_substrate_identity",
                 "relaxed_polymer_rule_false_hits_source_context_counterexample",
                 "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
+                "midlength_counteraxis_lacks_broad_source_valid_positive",
                 "unified_substrate_identity_rule_not_calibrated_for_production",
                 "label_factory_gate_not_extended_for_epk",
             ],
@@ -32235,6 +32358,473 @@ def build_epk_source_free_protein_substrate_role_discriminator_stress_audit(
     }
 
 
+def build_epk_midlength_protein_role_counteraxis_audit(
+    *,
+    epk_source_free_protein_substrate_role_discriminator_stress_audit: dict[str, Any],
+    epk_heteromeric_source_valid_candidate_gamma_distance_sample: dict[str, Any]
+    | None = None,
+    max_short_acceptor_residues: int = 40,
+    min_large_acceptor_residues: int = 120,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Block mid-length protein-role false hits in review-only ePK stress rows."""
+
+    stress_meta = (
+        epk_source_free_protein_substrate_role_discriminator_stress_audit.get(
+            "metadata", {}
+        )
+        if isinstance(
+            epk_source_free_protein_substrate_role_discriminator_stress_audit, dict
+        )
+        else {}
+    )
+    if not isinstance(stress_meta, dict):
+        stress_meta = {}
+    source_valid_sample_meta = (
+        epk_heteromeric_source_valid_candidate_gamma_distance_sample.get(
+            "metadata", {}
+        )
+        if isinstance(epk_heteromeric_source_valid_candidate_gamma_distance_sample, dict)
+        else {}
+    )
+    if not isinstance(source_valid_sample_meta, dict):
+        source_valid_sample_meta = {}
+    target_fingerprint_id = str(
+        stress_meta.get("target_fingerprint_id")
+        or source_valid_sample_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        short_max = int(max_short_acceptor_residues)
+    except (TypeError, ValueError):
+        short_max = 40
+    try:
+        large_min = int(min_large_acceptor_residues)
+    except (TypeError, ValueError):
+        large_min = 120
+    if short_max < 1:
+        short_max = 40
+    if large_min <= short_max:
+        large_min = short_max + 1
+
+    def _optional_int(value: Any) -> int | None:
+        try:
+            if value in {None, "", ".", "?"}:
+                return None
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    cif_texts = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    cif_cache: dict[str, tuple[str, str, str | None]] = {}
+
+    def _load_cif(pdb_id: str) -> tuple[str, str, str | None]:
+        if pdb_id in cif_cache:
+            return cif_cache[pdb_id]
+        cif_text = cif_texts.get(pdb_id)
+        fetch_status = "provided_cif_text" if cif_text is not None else "fetched"
+        fetch_error = None
+        try:
+            if cif_text is None and pdb_id:
+                cif_text = cif_fetcher(pdb_id)
+        except Exception as exc:  # pragma: no cover - network failure is data.
+            cif_text = ""
+            fetch_status = "fetch_failed"
+            fetch_error = str(exc)
+        result = (cif_text or "", fetch_status, fetch_error)
+        cif_cache[pdb_id] = result
+        return result
+
+    def _chain_residue_counts(cif_text: str) -> dict[str, int]:
+        chain_residues: dict[str, set[tuple[str, str]]] = defaultdict(set)
+        for atom in parse_atom_site_loop(cif_text):
+            if atom.get("group_PDB") != "ATOM":
+                continue
+            chain_id = str(
+                atom.get("auth_asym_id") or atom.get("label_asym_id") or ""
+            )
+            seq_id = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+            code = _epk_atom_code(atom)
+            if chain_id and seq_id:
+                chain_residues[chain_id].add((seq_id, code))
+        return {
+            chain_id: len(residue_keys)
+            for chain_id, residue_keys in chain_residues.items()
+        }
+
+    def _best_distance_candidate(source_row: dict[str, Any]) -> dict[str, Any]:
+        candidates = [
+            candidate
+            for candidate in source_row.get("distance_candidates", []) or []
+            if isinstance(candidate, dict)
+        ]
+        if not candidates:
+            return {}
+        return sorted(
+            candidates,
+            key=lambda candidate: (
+                float(
+                    candidate.get("nearest_gamma_distance_angstrom")
+                    or source_row.get("nearest_gamma_acceptor_distance_angstrom")
+                    or 9999.0
+                ),
+                str(candidate.get("candidate_chain_name") or ""),
+                str(candidate.get("candidate_auth_seq_id") or ""),
+            ),
+        )[0]
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    blocked_false_hit_pdb_ids: list[str] = []
+    residual_false_hit_pdb_ids: list[str] = []
+    source_valid_protein_retained_pdb_ids: list[str] = []
+    source_valid_protein_lost_pdb_ids: list[str] = []
+    source_valid_short_or_peptide_mode_pdb_ids: list[str] = []
+    source_valid_chain_length_unresolved_pdb_ids: list[str] = []
+    source_expansion_reviewed_row_count = 0
+
+    for source_row in (
+        epk_source_free_protein_substrate_role_discriminator_stress_audit.get(
+            "rows", []
+        )
+        or []
+    ):
+        if not isinstance(source_row, dict):
+            continue
+        if source_row.get("row_type") != "source_expansion_protein_role_stress":
+            continue
+        source_expansion_reviewed_row_count += 1
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        source_valid = bool(source_row.get("source_validated_positive_like"))
+        source_decision = str(source_row.get("protein_substrate_role_stress_decision") or "")
+        relaxed_hit = bool(source_row.get("relaxed_folded_protein_role_rule_hit"))
+        acceptor_count = _optional_int(source_row.get("acceptor_chain_residue_count"))
+        midlength_counterevidence = (
+            acceptor_count is not None
+            and short_max < acceptor_count < large_min
+        )
+        repaired_hit = relaxed_hit and not midlength_counterevidence
+
+        if source_decision == "source_valid_expansion_protein_role_hit_review_only":
+            if repaired_hit:
+                decision = "source_valid_protein_role_retained_review_only"
+                source_valid_protein_retained_pdb_ids.append(pdb_id)
+            else:
+                decision = "source_valid_protein_role_lost_to_midlength_counteraxis_review_only"
+                source_valid_protein_lost_pdb_ids.append(pdb_id)
+        elif source_decision == "nonpositive_source_expansion_protein_role_false_hit":
+            if midlength_counterevidence:
+                decision = "nonpositive_midlength_false_hit_blocked_review_only"
+                blocked_false_hit_pdb_ids.append(pdb_id)
+            elif repaired_hit:
+                decision = "nonpositive_residual_protein_role_false_hit_review_only"
+                residual_false_hit_pdb_ids.append(pdb_id)
+            else:
+                decision = "nonpositive_false_hit_removed_by_prior_counterevidence_review_only"
+        elif source_valid:
+            decision = "source_valid_nonprotein_or_missed_row_carried_review_only"
+        else:
+            decision = "nonpositive_blocked_before_midlength_counteraxis_review_only"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "midlength_protein_role_counteraxis_stress",
+                "source_row_type": source_row.get("row_type"),
+                "source_stress_decision": source_decision,
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": bool(
+                    source_row.get("text_free_inputs_only", True)
+                ),
+                "rule_id": "epk_midlength_protein_role_counteraxis_v0_review_only",
+                "max_short_acceptor_residues": short_max,
+                "min_large_acceptor_residues": large_min,
+                "source_validated_positive_like": source_valid,
+                "source_validation_status_review_context": source_row.get(
+                    "source_validation_status_review_context"
+                ),
+                "candidate_acceptor_chain_name": source_row.get(
+                    "candidate_acceptor_chain_name"
+                ),
+                "gamma_associated_polymer_chain_name": source_row.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "acceptor_chain_residue_count": acceptor_count,
+                "nearest_gamma_distance_angstrom": source_row.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                "relaxed_folded_protein_role_rule_hit": relaxed_hit,
+                "midlength_acceptor_counterevidence_hit": (
+                    midlength_counterevidence
+                ),
+                "repaired_protein_role_rule_hit": repaired_hit,
+                "midlength_counteraxis_decision": decision,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "no_source_valid_expansion_protein_substrate_positive",
+                    "midlength_counteraxis_source_expansion_only",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    source_valid_measured_candidate_count = 0
+    for source_row in (
+        (
+            epk_heteromeric_source_valid_candidate_gamma_distance_sample or {}
+        ).get("rows", [])
+        or []
+    ):
+        if not isinstance(source_row, dict):
+            continue
+        if not bool(source_row.get("source_validated_positive_like")):
+            continue
+        source_valid_measured_candidate_count += 1
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        hit = _best_distance_candidate(source_row)
+        acceptor_count = _optional_int(
+            hit.get("acceptor_chain_residue_count")
+            or source_row.get("acceptor_chain_residue_count")
+        )
+        gamma_count = _optional_int(
+            hit.get("gamma_chain_residue_count")
+            or source_row.get("gamma_chain_residue_count")
+        )
+        fetch_status = "not_needed_embedded_chain_lengths"
+        fetch_error = None
+        if acceptor_count is None and hit:
+            cif_text, fetch_status, fetch_error = _load_cif(pdb_id)
+            if cif_text:
+                chain_counts = _chain_residue_counts(cif_text)
+                acceptor_count = chain_counts.get(
+                    str(hit.get("candidate_chain_name") or "")
+                )
+                gamma_count = chain_counts.get(
+                    str(hit.get("gamma_associated_polymer_chain_name") or "")
+                )
+
+        midlength_counterevidence = (
+            acceptor_count is not None
+            and short_max < acceptor_count < large_min
+        )
+        short_or_peptide_mode = (
+            acceptor_count is not None and acceptor_count <= short_max
+        )
+        broad_protein_mode = (
+            acceptor_count is not None and acceptor_count >= large_min
+        )
+        repaired_hit = broad_protein_mode and not midlength_counterevidence
+        if repaired_hit:
+            decision = "source_valid_broad_protein_role_retained_review_only"
+            source_valid_protein_retained_pdb_ids.append(pdb_id)
+        elif midlength_counterevidence:
+            decision = "source_valid_midlength_positive_lost_to_counteraxis_review_only"
+            source_valid_protein_lost_pdb_ids.append(pdb_id)
+        elif short_or_peptide_mode:
+            decision = "source_valid_short_peptide_mode_not_broad_protein_role_review_only"
+            source_valid_short_or_peptide_mode_pdb_ids.append(pdb_id)
+        else:
+            decision = "source_valid_chain_length_unresolved_review_only"
+            source_valid_chain_length_unresolved_pdb_ids.append(pdb_id)
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "source_valid_measured_protein_role_counteraxis_stress",
+                "source_row_type": source_row.get("row_type"),
+                "source_stress_decision": source_row.get("measurement_status"),
+                "pdb_id": pdb_id,
+                "source_pair_id": source_row.get("source_pair_id"),
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "text_free_inputs_only": True,
+                "rule_id": "epk_midlength_protein_role_counteraxis_v0_review_only",
+                "max_short_acceptor_residues": short_max,
+                "min_large_acceptor_residues": large_min,
+                "source_validated_positive_like": True,
+                "source_validation_status_review_context": (
+                    "source_valid_heteromeric_gamma_distance_measured_review_only"
+                ),
+                "candidate_acceptor_chain_name": hit.get("candidate_chain_name"),
+                "gamma_associated_polymer_chain_name": hit.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "acceptor_chain_residue_count": acceptor_count,
+                "gamma_chain_residue_count": gamma_count,
+                "chain_length_fetch_status": fetch_status,
+                "chain_length_fetch_error": fetch_error,
+                "nearest_gamma_distance_angstrom": hit.get(
+                    "nearest_gamma_distance_angstrom"
+                )
+                or source_row.get("nearest_gamma_acceptor_distance_angstrom"),
+                "relaxed_folded_protein_role_rule_hit": broad_protein_mode,
+                "midlength_acceptor_counterevidence_hit": (
+                    midlength_counterevidence
+                ),
+                "short_or_peptide_mode_acceptor_hit": short_or_peptide_mode,
+                "broad_protein_mode_acceptor_hit": broad_protein_mode,
+                "repaired_protein_role_rule_hit": repaired_hit,
+                "midlength_counteraxis_decision": decision,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "source_valid_positive_not_broad_protein_substrate_mode"
+                    if short_or_peptide_mode
+                    else "source_valid_positive_chain_length_unresolved"
+                    if acceptor_count is None
+                    else "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    blocked_false_hit_pdb_ids = _sorted_strings(blocked_false_hit_pdb_ids)
+    residual_false_hit_pdb_ids = _sorted_strings(residual_false_hit_pdb_ids)
+    source_valid_protein_retained_pdb_ids = _sorted_strings(
+        source_valid_protein_retained_pdb_ids
+    )
+    source_valid_protein_lost_pdb_ids = _sorted_strings(
+        source_valid_protein_lost_pdb_ids
+    )
+    source_valid_short_or_peptide_mode_pdb_ids = _sorted_strings(
+        source_valid_short_or_peptide_mode_pdb_ids
+    )
+    source_valid_chain_length_unresolved_pdb_ids = _sorted_strings(
+        source_valid_chain_length_unresolved_pdb_ids
+    )
+    if residual_false_hit_pdb_ids or source_valid_protein_lost_pdb_ids:
+        status = "fails_closed_midlength_counteraxis_has_residual_risk"
+    elif blocked_false_hit_pdb_ids and not source_valid_protein_retained_pdb_ids:
+        status = "blocks_current_midlength_false_hit_but_no_broad_positive_review_only"
+    elif source_valid_protein_retained_pdb_ids:
+        status = "passes_source_expansion_midlength_counteraxis_review_only"
+    else:
+        status = "blocked_review_only_no_midlength_false_hit_or_positive_to_test"
+
+    return {
+        "metadata": {
+            "method": "epk_midlength_protein_role_counteraxis_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "rule_id": "epk_midlength_protein_role_counteraxis_v0_review_only",
+            "source_epk_source_free_protein_substrate_role_discriminator_stress_audit_method": (
+                stress_meta.get("method")
+            ),
+            "source_epk_heteromeric_source_valid_candidate_gamma_distance_sample_method": (
+                source_valid_sample_meta.get("method")
+            ),
+            "max_short_acceptor_residues": short_max,
+            "min_large_acceptor_residues": large_min,
+            "source_expansion_reviewed_row_count": source_expansion_reviewed_row_count,
+            "reviewed_row_count": len(rows),
+            "source_valid_measured_candidate_count": (
+                source_valid_measured_candidate_count
+            ),
+            "midlength_counteraxis_status": status,
+            "midlength_counteraxis_decision_counts": dict(
+                sorted(decision_counts.items())
+            ),
+            "blocked_midlength_false_hit_count": len(blocked_false_hit_pdb_ids),
+            "blocked_midlength_false_hit_pdb_ids": blocked_false_hit_pdb_ids,
+            "residual_protein_role_false_hit_count": len(residual_false_hit_pdb_ids),
+            "residual_protein_role_false_hit_pdb_ids": residual_false_hit_pdb_ids,
+            "source_valid_protein_role_retained_count": len(
+                source_valid_protein_retained_pdb_ids
+            ),
+            "source_valid_protein_role_retained_pdb_ids": (
+                source_valid_protein_retained_pdb_ids
+            ),
+            "source_valid_protein_role_lost_count": len(
+                source_valid_protein_lost_pdb_ids
+            ),
+            "source_valid_protein_role_lost_pdb_ids": (
+                source_valid_protein_lost_pdb_ids
+            ),
+            "source_valid_short_or_peptide_mode_count": len(
+                source_valid_short_or_peptide_mode_pdb_ids
+            ),
+            "source_valid_short_or_peptide_mode_pdb_ids": (
+                source_valid_short_or_peptide_mode_pdb_ids
+            ),
+            "source_valid_chain_length_unresolved_count": len(
+                source_valid_chain_length_unresolved_pdb_ids
+            ),
+            "source_valid_chain_length_unresolved_pdb_ids": (
+                source_valid_chain_length_unresolved_pdb_ids
+            ),
+            "protein_discriminator_generalization_ready": (
+                bool(source_valid_protein_retained_pdb_ids)
+                and not residual_false_hit_pdb_ids
+                and not source_valid_protein_lost_pdb_ids
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "midlength_protein_role_counteraxis_evaluated",
+            "blocker_not_removed": [
+                "source_valid_broad_protein_substrate_positive_missing",
+                "midlength_counteraxis_source_expansion_only",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This audit adds a narrow counterevidence rule to the relaxed "
+                "protein-role stress surface: mid-length acceptor polymers are "
+                "blocked until a source-valid broad protein-substrate positive "
+                "supports that band. It changes no score, threshold, label, or "
+                "registry state."
+            ),
+            "next_actions": [
+                "source a true broad protein-substrate ePK positive before treating the repaired protein-role rule as general",
+                "keep 7B56 as blocked mid-length counterevidence for relaxed protein-role logic",
+                "keep production scoring and external scored re-audit closed",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("source_stress_decision") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "The mid-length counteraxis is review-only and cannot authorize "
+                "threshold selection, registry edits, label imports, or "
+                "held-out performance claims."
+            )
+        ],
+    }
+
+
 def build_epk_external_source_lower_priority_ligand_sourcing_review(
     *,
     epk_external_source_structure_mapping_review: dict[str, Any],
@@ -33961,6 +34551,7 @@ def build_epk_precount_gate_status(
     | None = None,
     epk_source_free_protein_substrate_role_discriminator_stress_audit: dict[str, Any]
     | None = None,
+    epk_midlength_protein_role_counteraxis_audit: dict[str, Any] | None = None,
     epk_unified_review_only_scoring_prototype: dict[str, Any] | None = None,
     epk_unified_prototype_broad_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
@@ -34521,6 +35112,13 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(protein_role_stress_meta, dict):
         protein_role_stress_meta = {}
+    midlength_counteraxis_meta = (
+        epk_midlength_protein_role_counteraxis_audit.get("metadata", {})
+        if isinstance(epk_midlength_protein_role_counteraxis_audit, dict)
+        else {}
+    )
+    if not isinstance(midlength_counteraxis_meta, dict):
+        midlength_counteraxis_meta = {}
     unified_scoring_meta = (
         epk_unified_review_only_scoring_prototype.get("metadata", {})
         if isinstance(epk_unified_review_only_scoring_prototype, dict)
@@ -37265,6 +37863,88 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if midlength_counteraxis_meta:
+        gate_checks.append(
+            {
+                "gate_id": "midlength_protein_role_counteraxis_audit",
+                "passed": midlength_counteraxis_meta.get(
+                    "midlength_counteraxis_status"
+                )
+                in {
+                    "blocks_current_midlength_false_hit_but_no_broad_positive_review_only",
+                    "passes_source_expansion_midlength_counteraxis_review_only",
+                }
+                and int(
+                    midlength_counteraxis_meta.get(
+                        "residual_protein_role_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    midlength_counteraxis_meta.get(
+                        "source_valid_protein_role_lost_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    midlength_counteraxis_meta.get("countable_label_candidate_count")
+                    or 0
+                )
+                == 0
+                and not bool(midlength_counteraxis_meta.get("epk_score_computed"))
+                and not bool(
+                    midlength_counteraxis_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                ),
+                "evidence": {
+                    "source_method": midlength_counteraxis_meta.get("method"),
+                    "rule_id": midlength_counteraxis_meta.get("rule_id"),
+                    "midlength_counteraxis_status": (
+                        midlength_counteraxis_meta.get(
+                            "midlength_counteraxis_status"
+                        )
+                    ),
+                    "blocked_midlength_false_hit_count": (
+                        midlength_counteraxis_meta.get(
+                            "blocked_midlength_false_hit_count"
+                        )
+                    ),
+                    "blocked_midlength_false_hit_pdb_ids": (
+                        midlength_counteraxis_meta.get(
+                            "blocked_midlength_false_hit_pdb_ids", []
+                        )
+                    ),
+                    "residual_protein_role_false_hit_count": (
+                        midlength_counteraxis_meta.get(
+                            "residual_protein_role_false_hit_count"
+                        )
+                    ),
+                    "source_valid_protein_role_retained_count": (
+                        midlength_counteraxis_meta.get(
+                            "source_valid_protein_role_retained_count"
+                        )
+                    ),
+                    "source_valid_short_or_peptide_mode_count": (
+                        midlength_counteraxis_meta.get(
+                            "source_valid_short_or_peptide_mode_count"
+                        )
+                    ),
+                    "source_valid_chain_length_unresolved_count": (
+                        midlength_counteraxis_meta.get(
+                            "source_valid_chain_length_unresolved_count"
+                        )
+                    ),
+                    "protein_discriminator_generalization_ready": bool(
+                        midlength_counteraxis_meta.get(
+                            "protein_discriminator_generalization_ready"
+                        )
+                    ),
+                },
+            }
+        )
     if unified_scoring_meta:
         gate_checks.append(
             {
@@ -39896,6 +40576,55 @@ def build_epk_precount_gate_status(
             ),
             "protein_substrate_role_stress_generalization_ready": bool(
                 protein_role_stress_meta.get(
+                    "protein_discriminator_generalization_ready"
+                )
+            ),
+            "source_epk_midlength_protein_role_counteraxis_audit_method": (
+                midlength_counteraxis_meta.get("method")
+            ),
+            "midlength_protein_role_counteraxis_status": (
+                midlength_counteraxis_meta.get("midlength_counteraxis_status")
+            ),
+            "midlength_protein_role_blocked_false_hit_count": (
+                midlength_counteraxis_meta.get("blocked_midlength_false_hit_count")
+            ),
+            "midlength_protein_role_blocked_false_hit_pdb_ids": (
+                midlength_counteraxis_meta.get(
+                    "blocked_midlength_false_hit_pdb_ids", []
+                )
+            ),
+            "midlength_protein_role_residual_false_hit_count": (
+                midlength_counteraxis_meta.get(
+                    "residual_protein_role_false_hit_count"
+                )
+            ),
+            "midlength_protein_role_source_valid_retained_count": (
+                midlength_counteraxis_meta.get(
+                    "source_valid_protein_role_retained_count"
+                )
+            ),
+            "midlength_protein_role_source_valid_short_or_peptide_mode_count": (
+                midlength_counteraxis_meta.get(
+                    "source_valid_short_or_peptide_mode_count"
+                )
+            ),
+            "midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids": (
+                midlength_counteraxis_meta.get(
+                    "source_valid_short_or_peptide_mode_pdb_ids", []
+                )
+            ),
+            "midlength_protein_role_source_valid_chain_length_unresolved_count": (
+                midlength_counteraxis_meta.get(
+                    "source_valid_chain_length_unresolved_count"
+                )
+            ),
+            "midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids": (
+                midlength_counteraxis_meta.get(
+                    "source_valid_chain_length_unresolved_pdb_ids", []
+                )
+            ),
+            "midlength_protein_role_generalization_ready": bool(
+                midlength_counteraxis_meta.get(
                     "protein_discriminator_generalization_ready"
                 )
             ),

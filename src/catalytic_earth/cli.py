@@ -133,6 +133,7 @@ from .labels import (
     build_epk_m_csa757_active_state_repair_scan,
     build_epk_m_csa760_atp_state_repair_scan,
     build_epk_m_csa640_alternate_gamma_geometry_review,
+    build_epk_midlength_protein_role_counteraxis_audit,
     build_epk_missing_sibling_control_post_repair_source_decision,
     build_epk_missing_sibling_control_source_request,
     build_epk_negative_control_calibration_sufficiency_decision,
@@ -7779,6 +7780,42 @@ def cmd_build_epk_source_free_protein_substrate_role_discriminator_stress_audit(
     return 0
 
 
+def cmd_build_epk_midlength_protein_role_counteraxis_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_source_free_protein_substrate_role_discriminator_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_source_free_protein_substrate_role_discriminator_stress_audit = json.load(
+            handle
+        )
+    epk_heteromeric_source_valid_candidate_gamma_distance_sample = None
+    if args.epk_heteromeric_source_valid_candidate_gamma_distance_sample:
+        with Path(
+            args.epk_heteromeric_source_valid_candidate_gamma_distance_sample
+        ).open("r", encoding="utf-8") as handle:
+            epk_heteromeric_source_valid_candidate_gamma_distance_sample = json.load(
+                handle
+            )
+    audit = build_epk_midlength_protein_role_counteraxis_audit(
+        epk_source_free_protein_substrate_role_discriminator_stress_audit=(
+            epk_source_free_protein_substrate_role_discriminator_stress_audit
+        ),
+        epk_heteromeric_source_valid_candidate_gamma_distance_sample=(
+            epk_heteromeric_source_valid_candidate_gamma_distance_sample
+        ),
+        max_short_acceptor_residues=args.max_short_acceptor_residues,
+        min_large_acceptor_residues=args.min_large_acceptor_residues,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK mid-length protein-role counteraxis audit to "
+        f"{args.out} (status={audit['metadata']['midlength_counteraxis_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_unified_review_only_scoring_prototype(
     args: argparse.Namespace,
 ) -> int:
@@ -8542,6 +8579,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             epk_source_free_protein_substrate_role_discriminator_stress_audit = json.load(
                 handle
             )
+    epk_midlength_protein_role_counteraxis_audit = None
+    if args.epk_midlength_protein_role_counteraxis_audit:
+        with Path(args.epk_midlength_protein_role_counteraxis_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_midlength_protein_role_counteraxis_audit = json.load(handle)
     epk_unified_review_only_scoring_prototype = None
     if args.epk_unified_review_only_scoring_prototype:
         with Path(args.epk_unified_review_only_scoring_prototype).open(
@@ -8743,6 +8786,9 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_source_free_protein_substrate_role_discriminator_stress_audit=(
             epk_source_free_protein_substrate_role_discriminator_stress_audit
+        ),
+        epk_midlength_protein_role_counteraxis_audit=(
+            epk_midlength_protein_role_counteraxis_audit
         ),
         epk_unified_review_only_scoring_prototype=(
             epk_unified_review_only_scoring_prototype
@@ -17638,6 +17684,53 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_source_free_protein_substrate_role_discriminator_stress_audit
     )
 
+    epk_midlength_protein_role_counteraxis = subparsers.add_parser(
+        "build-epk-midlength-protein-role-counteraxis-audit",
+        help=(
+            "audit a review-only mid-length counteraxis for ePK protein-role "
+            "stress false hits"
+        ),
+    )
+    epk_midlength_protein_role_counteraxis.add_argument(
+        "--epk-source-free-protein-substrate-role-discriminator-stress-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_source_free_protein_substrate_role_discriminator_stress_audit_1025.json"
+        ),
+    )
+    epk_midlength_protein_role_counteraxis.add_argument(
+        "--epk-heteromeric-source-valid-candidate-gamma-distance-sample",
+        default=(
+            "artifacts/"
+            "v3_epk_heteromeric_source_valid_candidate_gamma_distance_sample_1025.json"
+        ),
+    )
+    epk_midlength_protein_role_counteraxis.add_argument(
+        "--max-short-acceptor-residues",
+        type=int,
+        default=40,
+    )
+    epk_midlength_protein_role_counteraxis.add_argument(
+        "--min-large-acceptor-residues",
+        type=int,
+        default=120,
+    )
+    epk_midlength_protein_role_counteraxis.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_midlength_protein_role_counteraxis.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_midlength_protein_role_counteraxis_audit_1025.json"
+        ),
+    )
+    epk_midlength_protein_role_counteraxis.set_defaults(
+        func=cmd_build_epk_midlength_protein_role_counteraxis_audit
+    )
+
     epk_unified_scoring_prototype = subparsers.add_parser(
         "build-epk-unified-review-only-scoring-prototype",
         help="score the unified ePK substrate-identity surface in review-only mode",
@@ -18224,6 +18317,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-source-free-protein-substrate-role-discriminator-stress-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-midlength-protein-role-counteraxis-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

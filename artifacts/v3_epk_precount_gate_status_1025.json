@@ -726,6 +726,24 @@
     },
     {
       "evidence": {
+        "blocked_midlength_false_hit_count": 1,
+        "blocked_midlength_false_hit_pdb_ids": [
+          "7B56"
+        ],
+        "midlength_counteraxis_status": "blocks_current_midlength_false_hit_but_no_broad_positive_review_only",
+        "protein_discriminator_generalization_ready": false,
+        "residual_protein_role_false_hit_count": 0,
+        "rule_id": "epk_midlength_protein_role_counteraxis_v0_review_only",
+        "source_method": "epk_midlength_protein_role_counteraxis_audit",
+        "source_valid_chain_length_unresolved_count": 0,
+        "source_valid_protein_role_retained_count": 0,
+        "source_valid_short_or_peptide_mode_count": 3
+      },
+      "gate_id": "midlength_protein_role_counteraxis_audit",
+      "passed": true
+    },
+    {
+      "evidence": {
         "current_control_false_non_abstention_count": 0,
         "imported_external_hard_negative_non_abstention_count": 0,
         "positive_like_full_score_count": 8,
@@ -1309,6 +1327,22 @@
     "m_csa760_split_state_blocker_detected": true,
     "measured_acceptor_identity_source_supported_count": 2,
     "method": "epk_precount_gate_status",
+    "midlength_protein_role_blocked_false_hit_count": 1,
+    "midlength_protein_role_blocked_false_hit_pdb_ids": [
+      "7B56"
+    ],
+    "midlength_protein_role_counteraxis_status": "blocks_current_midlength_false_hit_but_no_broad_positive_review_only",
+    "midlength_protein_role_generalization_ready": false,
+    "midlength_protein_role_residual_false_hit_count": 0,
+    "midlength_protein_role_source_valid_chain_length_unresolved_count": 0,
+    "midlength_protein_role_source_valid_chain_length_unresolved_pdb_ids": [],
+    "midlength_protein_role_source_valid_retained_count": 0,
+    "midlength_protein_role_source_valid_short_or_peptide_mode_count": 3,
+    "midlength_protein_role_source_valid_short_or_peptide_mode_pdb_ids": [
+      "6Z3R",
+      "8OXM",
+      "8OXO"
+    ],
     "negative_control_alternate_lowest_candidate_hit_count": 1,
     "negative_control_alternate_measured_candidate_structure_count": 3,
     "negative_control_alternate_measured_entry_count": 3,
@@ -1538,6 +1572,7 @@
     "source_epk_m_csa756_active_state_repair_scan_method": "epk_m_csa756_active_state_repair_scan",
     "source_epk_m_csa757_active_state_repair_scan_method": "epk_m_csa757_active_state_repair_scan",
     "source_epk_m_csa760_atp_state_repair_scan_method": "epk_m_csa760_atp_state_repair_scan",
+    "source_epk_midlength_protein_role_counteraxis_audit_method": "epk_midlength_protein_role_counteraxis_audit",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",
     "source_epk_negative_control_gamma_distance_distribution_method": "epk_negative_control_gamma_distance_distribution",

@@ -1,0 +1,231 @@
+{
+  "metadata": {
+    "ambiguous_candidate_count": 0,
+    "blocker_not_removed": [
+      "source_free_role_direction_not_generalized_to_scoring",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "heteromeric_candidate_source_validation_review_executed",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "epk_heteromeric_candidate_source_validation_review",
+    "minimum_positive_coverage_met_review_only": false,
+    "next_actions": [
+      "rerun the heteromeric topology audit with source-validated candidates separated from ambiguous and rejected rows",
+      "treat BRAF/MEK kinase-kinase hits as ambiguous until role direction is source-reviewed",
+      "keep threshold selection and external hard-negative scoring closed"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "rejected_candidate_count": 0,
+    "review_only": true,
+    "review_only_rule": "This artifact source-reviews heteromeric topology leads. Accepted rows are positive-like review controls only; they are not countable labels, ePK scores, or held-out performance evidence.",
+    "reviewed_candidate_count": 2,
+    "source_epk_heteromeric_positive_coverage_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_validated_new_candidate_count": 0,
+    "source_validated_new_candidate_pdb_ids": [],
+    "source_validated_unique_pair_count": 0,
+    "source_validated_unique_pair_ids": [],
+    "source_validation_status_counts": {
+      "blocked_source_context_insufficient_review_only": 2
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "344",
+          "candidate_chain_name": "I",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "M",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.466
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "344",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "F",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.518
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "P19483"
+        ],
+        "B": [
+          "P19483"
+        ],
+        "C": [
+          "P19483"
+        ],
+        "D": [
+          "P00829"
+        ],
+        "E": [
+          "P00829"
+        ],
+        "F": [
+          "P00829"
+        ],
+        "G": [
+          "P05631"
+        ],
+        "H": [
+          "P19483"
+        ],
+        "I": [
+          "P19483"
+        ],
+        "J": [
+          "P19483"
+        ],
+        "K": [
+          "P00829"
+        ],
+        "L": [
+          "P00829"
+        ],
+        "M": [
+          "P00829"
+        ],
+        "N": [
+          "P05631"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "3,5,7,3',4'-PENTAHYDROXYFLAVONE",
+        "ADENOSINE-5'-DIPHOSPHATE",
+        "ATP SYNTHASE GAMMA CHAIN",
+        "ATP SYNTHASE SUBUNIT ALPHA HEART ISOFORM",
+        "ATP SYNTHASE SUBUNIT BETA",
+        "AZIDE ION",
+        "GLYCEROL",
+        "MAGNESIUM ION",
+        "PHOSPHATE ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 2,
+      "keywords": [
+        "ATP PHOSPHORYLASE, HYDROLASE, ATP SYNTHESIS",
+        "HYDROLASE"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 5.466,
+      "pdb_id": "2JJ2",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": "The Structure of F1-ATPase inhibited by quercetin.",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "53",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.779
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "201",
+          "candidate_chain_name": "E",
+          "candidate_residue_code": "THR",
+          "gamma_associated_polymer_chain_name": "I",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 5.97
+        }
+      ],
+      "chain_accessions": {
+        "E": [
+          "P05132"
+        ],
+        "I": [
+          "P63248"
+        ]
+      },
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "MAGNESIUM ION",
+        "MYRISTIC ACID",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "cAMP-dependent protein kinase catalytic subunit alpha",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "heteromeric_candidate_hit_count": 2,
+      "keywords": [
+        "transferase/transferase inhibitor"
+      ],
+      "measurement_ready": false,
+      "nearest_heteromeric_candidate_distance_angstrom": 5.779,
+      "pdb_id": "4HPU",
+      "ready_for_label_import": false,
+      "remaining_blockers": [
+        "protein_substrate_acceptor_source_mapping_not_reviewed",
+        "source_validation_pending_for_heteromeric_candidate"
+      ],
+      "review_only": true,
+      "source_pair_id": null,
+      "source_validated_positive_like": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Source-validated heteromeric candidates remain review-only controls until scorer, threshold, external re-audit, and registry gates exist."
+  ]
+}

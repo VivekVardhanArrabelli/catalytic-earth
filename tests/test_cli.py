@@ -6146,6 +6146,106 @@ HETATM MG MG MG MG A A 2 2 0.0 1.0 0.0
             self.assertFalse(metadata["epk_score_computed"])
             self.assertEqual(metadata["countable_label_candidate_count"], 0)
 
+    def test_build_epk_midlength_protein_role_counteraxis_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            stress = root / "protein_role_stress.json"
+            source_valid = root / "source_valid_distance.json"
+            out = root / "midlength.json"
+            stress.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_source_free_protein_substrate_role_discriminator_stress_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": "source_expansion_protein_role_stress",
+                                "pdb_id": "7B56",
+                                "source_validated_positive_like": False,
+                                "protein_substrate_role_stress_decision": (
+                                    "nonpositive_source_expansion_protein_role_false_hit"
+                                ),
+                                "relaxed_folded_protein_role_rule_hit": True,
+                                "acceptor_chain_residue_count": 68,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_valid.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_source_valid_candidate_gamma_distance_sample"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "6Z3R",
+                                "source_pair_id": "smg1_upf1",
+                                "source_validated_positive_like": True,
+                                "measurement_status": (
+                                    "source_valid_heteromeric_gamma_distance_measured_review_only"
+                                ),
+                                "distance_candidates": [
+                                    {
+                                        "candidate_chain_name": "E",
+                                        "gamma_associated_polymer_chain_name": "M",
+                                        "acceptor_chain_residue_count": 7,
+                                        "nearest_gamma_distance_angstrom": 5.607,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-midlength-protein-role-counteraxis-audit",
+                    "--epk-source-free-protein-substrate-role-discriminator-stress-audit",
+                    str(stress),
+                    "--epk-heteromeric-source-valid-candidate-gamma-distance-sample",
+                    str(source_valid),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            metadata = audit["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_midlength_protein_role_counteraxis_audit"
+            )
+            self.assertEqual(metadata["blocked_midlength_false_hit_pdb_ids"], ["7B56"])
+            self.assertEqual(
+                metadata["source_valid_short_or_peptide_mode_pdb_ids"], ["6Z3R"]
+            )
+            self.assertEqual(metadata["source_valid_protein_role_retained_count"], 0)
+            self.assertFalse(metadata["protein_discriminator_generalization_ready"])
+            self.assertFalse(metadata["epk_score_computed"])
+            self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+            self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
     def test_build_epk_unified_review_only_scoring_prototype_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
