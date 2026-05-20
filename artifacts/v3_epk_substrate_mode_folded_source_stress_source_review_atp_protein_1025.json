@@ -1,0 +1,519 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_review_evidence_not_source_free_predictive_feature",
+      "substrate_mode_rule_not_calibrated",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "next_tranche_reviewed_but_no_clean_non_topology_row",
+    "candidate_threshold_angstrom": 6.0,
+    "cif_fetch_failure_count": 0,
+    "cif_fetch_failures": {},
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "topology_confounded_not_measurement_ready_review_only": 6
+    },
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "1TFW",
+      "2DRA",
+      "2Q66",
+      "2ZH6",
+      "9L3M",
+      "9L3U"
+    ],
+    "fetched_uniprot_accessions": [
+      "O28126",
+      "P28737",
+      "P29468"
+    ],
+    "fingerprint_registry_edited": false,
+    "max_n_terminal_acceptor_auth_seq_id": 25,
+    "method": "epk_substrate_mode_next_tranche_source_review",
+    "nearest_gamma_acceptor_distance_max_angstrom": null,
+    "nearest_gamma_acceptor_distance_min_angstrom": null,
+    "next_actions": [
+      "stress the source-mapped substrate-mode row against fresh non-topology controls",
+      "replace source-reviewed phosphosite support with a source-free substrate identity feature before scoring",
+      "keep real external hard-negative scored re-audit closed until a calibrated scorer exists"
+    ],
+    "next_tranche_source_review_status": "blocked_next_tranche_only_topology_confounded_review_only",
+    "non_topology_confounded_candidate_count": 0,
+    "non_topology_confounded_candidate_pdb_ids": [],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact source-maps a fresh substrate-mode tranche. A row can become measurement-ready review evidence only when local non-topology gamma geometry maps to an explicit source phosphosite and kinase/substrate accession pair. It does not score ePK, select a threshold, edit registries, or import labels.",
+    "reviewed_candidate_count": 6,
+    "selected_threshold_angstrom": null,
+    "source_context_used_as_review_evidence_only": true,
+    "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+    "source_epk_next_tranche_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_epk_next_tranche_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_free_predictive_feature_materialized": false,
+    "source_mapped_measurement_ready_count": 0,
+    "source_mapped_measurement_ready_pdb_ids": [],
+    "source_mapping_unresolved_count": 0,
+    "source_mapping_unresolved_pdb_ids": [],
+    "source_query": "RCSB full_text protein kinase protein substrate ATP magnesium first 30 2026-05-20",
+    "substrate_mode_rejected_count": 0,
+    "substrate_mode_rejected_pdb_ids": [],
+    "substrate_mode_rule_hit_non_topology_count": 0,
+    "substrate_mode_rule_hit_non_topology_pdb_ids": [],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "topology_confounded_candidate_count": 6,
+    "topology_confounded_candidate_pdb_ids": [
+      "1TFW",
+      "2DRA",
+      "2Q66",
+      "2ZH6",
+      "9L3M",
+      "9L3U"
+    ],
+    "uniprot_fetch_failure_count": 0,
+    "uniprot_fetch_failures": {}
+  },
+  "rows": [
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "47",
+      "candidate_chain_name": "B",
+      "candidate_hit": {
+        "acceptor_entity_id": "5",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "47",
+        "candidate_chain_name": "B",
+        "candidate_residue_code": "SER",
+        "gamma_associated_polymer_chain_name": "B",
+        "gamma_associated_polymer_entity_id": "2",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "nearest_gamma_distance_angstrom": 3.365
+      },
+      "candidate_residue_code": "SER",
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "O28126",
+      "candidate_uniprot_position": 47,
+      "chain_accessions": {
+        "A": [
+          "O28126"
+        ],
+        "B": [
+          "O28126"
+        ],
+        "C": [
+          "O28126"
+        ],
+        "D": [
+          "O28126"
+        ],
+        "E": [
+          "1TFW"
+        ],
+        "F": [
+          "1TFW"
+        ],
+        "G": [
+          "1TFW"
+        ],
+        "H": [
+          "1TFW"
+        ],
+        "I": [
+          "1TFW"
+        ],
+        "J": [
+          "1TFW"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "B",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "O28126",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.365,
+      "next_tranche_source_review_status": "topology_confounded_not_measurement_ready_review_only",
+      "pdb_id": "1TFW",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "candidate_acceptor_chain_matches_gamma_chain",
+        "fresh_non_topology_confounded_tranche_not_supplied_by_this_row"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "47",
+      "candidate_chain_name": "A",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "47",
+        "candidate_chain_name": "A",
+        "candidate_residue_code": "SER",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "nearest_gamma_distance_angstrom": 2.993
+      },
+      "candidate_residue_code": "SER",
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "O28126",
+      "candidate_uniprot_position": 47,
+      "chain_accessions": {
+        "A": [
+          "O28126"
+        ],
+        "B": [
+          "2DRA"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "O28126",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 2.993,
+      "next_tranche_source_review_status": "topology_confounded_not_measurement_ready_review_only",
+      "pdb_id": "2DRA",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "candidate_acceptor_chain_matches_gamma_chain",
+        "fresh_non_topology_confounded_tranche_not_supplied_by_this_row"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Complex structure of CCA-adding enzyme with tRNAminiDCC and ATP",
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "224",
+      "candidate_chain_name": "A",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OH",
+        "candidate_auth_seq_id": "224",
+        "candidate_chain_name": "A",
+        "candidate_residue_code": "TYR",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "nearest_gamma_distance_angstrom": 3.361
+      },
+      "candidate_residue_code": "TYR",
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "P29468",
+      "candidate_uniprot_position": 224,
+      "chain_accessions": {
+        "A": [
+          "P29468"
+        ],
+        "X": [
+          "2Q66"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "P29468",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.361,
+      "next_tranche_source_review_status": "topology_confounded_not_measurement_ready_review_only",
+      "pdb_id": "2Q66",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "candidate_acceptor_chain_matches_gamma_chain",
+        "fresh_non_topology_confounded_tranche_not_supplied_by_this_row"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Structure of Yeast Poly(A) Polymerase with ATP and oligo(A)",
+      "substrate_mode_counteraxis_rule_hit": true,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": true
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "47",
+      "candidate_chain_name": "A",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "47",
+        "candidate_chain_name": "A",
+        "candidate_residue_code": "SER",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "nearest_gamma_distance_angstrom": 3.063
+      },
+      "candidate_residue_code": "SER",
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "O28126",
+      "candidate_uniprot_position": 47,
+      "chain_accessions": {
+        "A": [
+          "O28126"
+        ],
+        "B": [
+          "2ZH6"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "O28126",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.063,
+      "next_tranche_source_review_status": "topology_confounded_not_measurement_ready_review_only",
+      "pdb_id": "2ZH6",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "candidate_acceptor_chain_matches_gamma_chain",
+        "fresh_non_topology_confounded_tranche_not_supplied_by_this_row"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Complex structure of AFCCA with tRNAminiDCU and ATP",
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "140",
+      "candidate_chain_name": "A",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "140",
+        "candidate_chain_name": "A",
+        "candidate_residue_code": "THR",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "nearest_gamma_distance_angstrom": 4.31
+      },
+      "candidate_residue_code": "THR",
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "P28737",
+      "candidate_uniprot_position": 140,
+      "chain_accessions": {
+        "A": [
+          "P28737"
+        ],
+        "B": [
+          "P28737"
+        ],
+        "C": [
+          "P28737"
+        ],
+        "D": [
+          "P28737"
+        ],
+        "E": [
+          "P28737"
+        ],
+        "F": [
+          "P28737"
+        ],
+        "G": [
+          "9L3M"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "P28737",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 4.31,
+      "next_tranche_source_review_status": "topology_confounded_not_measurement_ready_review_only",
+      "pdb_id": "9L3M",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "candidate_acceptor_chain_matches_gamma_chain",
+        "fresh_non_topology_confounded_tranche_not_supplied_by_this_row"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "140",
+      "candidate_chain_name": "A",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "140",
+        "candidate_chain_name": "A",
+        "candidate_residue_code": "THR",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ATP",
+        "nearest_gamma_distance_angstrom": 3.291
+      },
+      "candidate_residue_code": "THR",
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "P28737",
+      "candidate_uniprot_position": 140,
+      "chain_accessions": {
+        "A": [
+          "P28737"
+        ],
+        "B": [
+          "P28737"
+        ],
+        "C": [
+          "P28737"
+        ],
+        "D": [
+          "P28737"
+        ],
+        "E": [
+          "P28737"
+        ],
+        "F": [
+          "P28737"
+        ],
+        "G": [
+          "P28737"
+        ],
+        "H": [
+          "9L3U"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "P28737",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.291,
+      "next_tranche_source_review_status": "topology_confounded_not_measurement_ready_review_only",
+      "pdb_id": "9L3U",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "candidate_acceptor_chain_matches_gamma_chain",
+        "fresh_non_topology_confounded_tranche_not_supplied_by_this_row"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    }
+  ],
+  "warnings": [
+    "Next-tranche substrate-mode source review is review-only; measurement-ready rows are not countable labels or clean held-out performance evidence."
+  ]
+}

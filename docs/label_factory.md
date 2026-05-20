@@ -716,6 +716,20 @@ remains fail-closed because the new positive-like pair is source-authority
 dependent. A broader "kinase substrate peptide ATP/Mg" first-25 scout finds
 `9L3M`/`9L3U`, but source validation blocks both as outer mitochondrial
 transmembrane helix translocase contexts rather than ePK substrate evidence.
+The recovered next-tranche source-review surface is now explicit in
+`artifacts/v3_epk_substrate_mode_tranche_recovery_decision_1025.json`.
+`4EKK` remains the only recovered source-mapped measurement-ready row, while
+`1O6K`/`1O6L` are no longer generic unresolved rows: they carry the exact
+blocker `pkb_gsk3b_source_context_detected_but_exact_akt1_or_chain_mapping_unresolved`.
+The folded protein-substrate stress follow-up then fails closed. The
+`v3_epk_substrate_mode_folded_source_stress_*_1025.json` artifacts cover
+AMP-PNP, ATP, and ANP protein-substrate query surfaces, find 0 new
+measurement-ready positives, reject `2JJ2`/`4HPU`/`7B56`/`7ZE5` by substrate
+mode, classify six ATP-query rows as same-chain topology-confounded, and leave
+current positive repeat `1IR3` as source-mapping unresolved under this generic
+mapper. These artifacts add counterevidence and next-experiment routing only;
+they do not run a scored ePK re-audit, select a threshold, edit registries, or
+import labels.
 The 1025 preview/expanded source-triage artifacts repeat the same exhausted
 source candidates (`m_csa:760`, `m_csa:757`, and `m_csa:756`) and do not open
 a new protein-substrate ePK source lane; the expanded terminal decision stays

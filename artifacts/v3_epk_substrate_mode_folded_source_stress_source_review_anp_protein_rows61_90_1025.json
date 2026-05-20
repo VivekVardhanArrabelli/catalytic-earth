@@ -1,0 +1,313 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_review_evidence_not_source_free_predictive_feature",
+      "substrate_mode_rule_not_calibrated",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "fresh_non_topology_confounded_tranche_materialized",
+    "candidate_threshold_angstrom": 6.0,
+    "cif_fetch_failure_count": 0,
+    "cif_fetch_failures": {},
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "non_topology_confounded_rejected_by_substrate_mode_review_only": 3
+    },
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "2JJ2",
+      "4HPU",
+      "7B56"
+    ],
+    "fetched_uniprot_accessions": [
+      "P00829",
+      "P05132",
+      "P11798",
+      "P19483",
+      "P35609",
+      "P63248"
+    ],
+    "fingerprint_registry_edited": false,
+    "max_n_terminal_acceptor_auth_seq_id": 25,
+    "method": "epk_substrate_mode_next_tranche_source_review",
+    "nearest_gamma_acceptor_distance_max_angstrom": null,
+    "nearest_gamma_acceptor_distance_min_angstrom": null,
+    "next_actions": [
+      "stress the source-mapped substrate-mode row against fresh non-topology controls",
+      "replace source-reviewed phosphosite support with a source-free substrate identity feature before scoring",
+      "keep real external hard-negative scored re-audit closed until a calibrated scorer exists"
+    ],
+    "next_tranche_source_review_status": "fails_closed_non_topology_tranche_rejected_by_substrate_mode",
+    "non_topology_confounded_candidate_count": 3,
+    "non_topology_confounded_candidate_pdb_ids": [
+      "2JJ2",
+      "4HPU",
+      "7B56"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact source-maps a fresh substrate-mode tranche. A row can become measurement-ready review evidence only when local non-topology gamma geometry maps to an explicit source phosphosite and kinase/substrate accession pair. It does not score ePK, select a threshold, edit registries, or import labels.",
+    "reviewed_candidate_count": 3,
+    "selected_threshold_angstrom": null,
+    "source_context_used_as_review_evidence_only": true,
+    "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": "epk_mek_erk_substrate_mode_counteraxis_audit",
+    "source_epk_next_tranche_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
+    "source_epk_next_tranche_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_free_predictive_feature_materialized": false,
+    "source_mapped_measurement_ready_count": 0,
+    "source_mapped_measurement_ready_pdb_ids": [],
+    "source_mapping_unresolved_count": 0,
+    "source_mapping_unresolved_pdb_ids": [],
+    "source_query": "RCSB full_text protein kinase substrate protein ANP magnesium complex rows 61-90 2026-05-20",
+    "substrate_mode_rejected_count": 3,
+    "substrate_mode_rejected_pdb_ids": [
+      "2JJ2",
+      "4HPU",
+      "7B56"
+    ],
+    "substrate_mode_rule_hit_non_topology_count": 0,
+    "substrate_mode_rule_hit_non_topology_pdb_ids": [],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "topology_confounded_candidate_count": 0,
+    "topology_confounded_candidate_pdb_ids": [],
+    "uniprot_fetch_failure_count": 0,
+    "uniprot_fetch_failures": {}
+  },
+  "rows": [
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "344",
+      "candidate_chain_name": "I",
+      "candidate_hit": {
+        "acceptor_entity_id": "1",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "344",
+        "candidate_chain_name": "I",
+        "candidate_residue_code": "SER",
+        "gamma_associated_polymer_chain_name": "M",
+        "gamma_associated_polymer_entity_id": "2",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "nearest_gamma_distance_angstrom": 5.466
+      },
+      "candidate_residue_code": "SER",
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "P19483",
+      "candidate_uniprot_position": 387,
+      "chain_accessions": {
+        "A": [
+          "P19483"
+        ],
+        "B": [
+          "P19483"
+        ],
+        "C": [
+          "P19483"
+        ],
+        "D": [
+          "P00829"
+        ],
+        "E": [
+          "P00829"
+        ],
+        "F": [
+          "P00829"
+        ],
+        "G": [
+          "P05631"
+        ],
+        "H": [
+          "P19483"
+        ],
+        "I": [
+          "P19483"
+        ],
+        "J": [
+          "P19483"
+        ],
+        "K": [
+          "P00829"
+        ],
+        "L": [
+          "P00829"
+        ],
+        "M": [
+          "P00829"
+        ],
+        "N": [
+          "P05631"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "M",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "P00829",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 5.466,
+      "next_tranche_source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "pdb_id": "2JJ2",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "substrate_mode_rule_not_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": "The Structure of F1-ATPase inhibited by quercetin.",
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "53",
+      "candidate_chain_name": "E",
+      "candidate_hit": {
+        "acceptor_entity_id": "1",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "53",
+        "candidate_chain_name": "E",
+        "candidate_residue_code": "SER",
+        "gamma_associated_polymer_chain_name": "I",
+        "gamma_associated_polymer_entity_id": "2",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "nearest_gamma_distance_angstrom": 5.779
+      },
+      "candidate_residue_code": "SER",
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "P05132",
+      "candidate_uniprot_position": 54,
+      "chain_accessions": {
+        "E": [
+          "P05132"
+        ],
+        "I": [
+          "P63248"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "I",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "P63248",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 5.779,
+      "next_tranche_source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "pdb_id": "4HPU",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "substrate_mode_rule_not_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "822",
+      "candidate_chain_name": "A",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "822",
+        "candidate_chain_name": "A",
+        "candidate_residue_code": "SER",
+        "gamma_associated_polymer_chain_name": "B",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "nearest_gamma_distance_angstrom": 3.92
+      },
+      "candidate_residue_code": "SER",
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "P35609",
+      "candidate_uniprot_position": null,
+      "chain_accessions": {
+        "A": [
+          "P35609"
+        ],
+        "B": [
+          "P11798"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "B",
+      "kinase_protein_phosphorylation_reaction_supported": true,
+      "kinase_uniprot_accession": "P11798",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.92,
+      "next_tranche_source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "pdb_id": "7B56",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "substrate_mode_rule_not_hit",
+        "positive_coverage_not_expanded"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Crystal structure of CaMKII-actinin complex bound to AMPPNP",
+      "substrate_mode_counteraxis_rule_hit": false,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": false
+    }
+  ],
+  "warnings": [
+    "Next-tranche substrate-mode source review is review-only; measurement-ready rows are not countable labels or clean held-out performance evidence."
+  ]
+}

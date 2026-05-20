@@ -114,6 +114,7 @@ from .labels import (
     build_epk_mek_erk_substrate_mode_existing_scout_gap_audit,
     build_epk_mek_erk_substrate_mode_fresh_stress_audit,
     build_epk_substrate_mode_next_tranche_source_review,
+    build_epk_substrate_mode_tranche_recovery_decision,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_heteromeric_source_valid_control_rerun,
     build_epk_heteromeric_source_free_role_rule_probe,
@@ -7516,6 +7517,24 @@ def cmd_build_epk_substrate_mode_next_tranche_source_review(
         "Wrote ePK substrate-mode next-tranche source review to "
         f"{args.out} (ready="
         f"{review['metadata']['source_mapped_measurement_ready_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_substrate_mode_tranche_recovery_decision(
+    args: argparse.Namespace,
+) -> int:
+    source_reviews: list[dict[str, Any]] = []
+    for source_review in args.epk_substrate_mode_next_tranche_source_review:
+        with Path(source_review).open("r", encoding="utf-8") as handle:
+            source_reviews.append(json.load(handle))
+    decision = build_epk_substrate_mode_tranche_recovery_decision(
+        epk_substrate_mode_next_tranche_source_reviews=source_reviews
+    )
+    write_json(Path(args.out), decision)
+    print(
+        "Wrote ePK substrate-mode tranche recovery decision to "
+        f"{args.out} (status={decision['metadata']['recovery_decision_status']})"
     )
     return 0
 
@@ -17831,6 +17850,31 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_substrate_mode_next_tranche_source_review.set_defaults(
         func=cmd_build_epk_substrate_mode_next_tranche_source_review
+    )
+
+    epk_substrate_mode_tranche_recovery = subparsers.add_parser(
+        "build-epk-substrate-mode-tranche-recovery-decision",
+        help=(
+            "aggregate recovered substrate-mode source-review tranche outputs "
+            "into a terminal review-only decision"
+        ),
+    )
+    epk_substrate_mode_tranche_recovery.add_argument(
+        "--epk-substrate-mode-next-tranche-source-review",
+        action="append",
+        default=[],
+        required=True,
+        help="repeatable source-review artifact path",
+    )
+    epk_substrate_mode_tranche_recovery.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_substrate_mode_tranche_recovery_decision_1025.json"
+        ),
+    )
+    epk_substrate_mode_tranche_recovery.set_defaults(
+        func=cmd_build_epk_substrate_mode_tranche_recovery_decision
     )
 
     epk_heteromeric_distance_sample = subparsers.add_parser(

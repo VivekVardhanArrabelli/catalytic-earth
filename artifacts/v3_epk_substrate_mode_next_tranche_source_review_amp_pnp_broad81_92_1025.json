@@ -60,7 +60,7 @@
     ],
     "source_mapping_unresolved_count": 0,
     "source_mapping_unresolved_pdb_ids": [],
-    "source_query": "RCSB full_text protein kinase peptide substrate AMP-PNP first fresh unseen 9 rows 2026-05-20",
+    "source_query": "RCSB full_text protein kinase substrate AMP-PNP rows 81-92 2026-05-20",
     "substrate_mode_rejected_count": 0,
     "substrate_mode_rejected_pdb_ids": [],
     "substrate_mode_rule_hit_non_topology_count": 1,

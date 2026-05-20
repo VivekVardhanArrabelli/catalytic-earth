@@ -7,38 +7,38 @@
       "external_hard_negative_reaudit_not_real_scorer",
       "registry_and_label_factory_extension_not_implemented"
     ],
-    "blocker_removed": "fresh_non_topology_confounded_tranche_materialized_and_source_mapped",
+    "blocker_removed": "fresh_non_topology_confounded_tranche_materialized",
     "candidate_threshold_angstrom": 6.0,
     "cif_fetch_failure_count": 0,
     "cif_fetch_failures": {},
     "countable_label_candidate_count": 0,
     "curated_label_registry_edited": false,
     "decision_counts": {
-      "source_mapped_non_topology_substrate_mode_measurement_ready_review_only": 1
+      "non_topology_confounded_rejected_by_substrate_mode_review_only": 1
     },
     "epk_score_computed": false,
     "external_hard_negative_reaudit_scored": false,
     "fetched_pdb_ids": [
-      "4EKK"
+      "4HPU"
     ],
     "fetched_uniprot_accessions": [
-      "P31749",
-      "P49841"
+      "P05132",
+      "P63248"
     ],
     "fingerprint_registry_edited": false,
     "max_n_terminal_acceptor_auth_seq_id": 25,
     "method": "epk_substrate_mode_next_tranche_source_review",
-    "nearest_gamma_acceptor_distance_max_angstrom": 3.228,
-    "nearest_gamma_acceptor_distance_min_angstrom": 3.228,
+    "nearest_gamma_acceptor_distance_max_angstrom": null,
+    "nearest_gamma_acceptor_distance_min_angstrom": null,
     "next_actions": [
       "stress the source-mapped substrate-mode row against fresh non-topology controls",
       "replace source-reviewed phosphosite support with a source-free substrate identity feature before scoring",
       "keep real external hard-negative scored re-audit closed until a calibrated scorer exists"
     ],
-    "next_tranche_source_review_status": "adds_source_mapped_non_topology_substrate_mode_row_review_only",
+    "next_tranche_source_review_status": "fails_closed_non_topology_tranche_rejected_by_substrate_mode",
     "non_topology_confounded_candidate_count": 1,
     "non_topology_confounded_candidate_pdb_ids": [
-      "4EKK"
+      "4HPU"
     ],
     "ready_for_label_import": false,
     "ready_for_orphan_discovery_claims": false,
@@ -54,19 +54,17 @@
     "source_epk_next_tranche_candidate_scout_method": "epk_heteromeric_positive_coverage_candidate_scout",
     "source_epk_next_tranche_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
     "source_free_predictive_feature_materialized": false,
-    "source_mapped_measurement_ready_count": 1,
-    "source_mapped_measurement_ready_pdb_ids": [
-      "4EKK"
-    ],
+    "source_mapped_measurement_ready_count": 0,
+    "source_mapped_measurement_ready_pdb_ids": [],
     "source_mapping_unresolved_count": 0,
     "source_mapping_unresolved_pdb_ids": [],
-    "source_query": "RCSB full_text protein kinase peptide substrate AMP-PNP first fresh unseen 9 rows 2026-05-20",
-    "substrate_mode_rejected_count": 0,
-    "substrate_mode_rejected_pdb_ids": [],
-    "substrate_mode_rule_hit_non_topology_count": 1,
-    "substrate_mode_rule_hit_non_topology_pdb_ids": [
-      "4EKK"
+    "source_query": "RCSB full_text protein kinase protein substrate AMP-PNP magnesium rows 41-67 2026-05-20",
+    "substrate_mode_rejected_count": 1,
+    "substrate_mode_rejected_pdb_ids": [
+      "4HPU"
     ],
+    "substrate_mode_rule_hit_non_topology_count": 0,
+    "substrate_mode_rule_hit_non_topology_pdb_ids": [],
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "threshold_calibrated": false,
@@ -77,37 +75,31 @@
   },
   "rows": [
     {
-      "akt1_gsk3b_source_mapped": true,
-      "candidate_auth_seq_id": "7",
-      "candidate_chain_name": "D",
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "53",
+      "candidate_chain_name": "E",
       "candidate_hit": {
-        "acceptor_entity_id": "2",
+        "acceptor_entity_id": "1",
         "candidate_atom_name": "OG",
-        "candidate_auth_seq_id": "7",
-        "candidate_chain_name": "D",
+        "candidate_auth_seq_id": "53",
+        "candidate_chain_name": "E",
         "candidate_residue_code": "SER",
-        "gamma_associated_polymer_chain_name": "B",
-        "gamma_associated_polymer_entity_id": "1",
+        "gamma_associated_polymer_chain_name": "I",
+        "gamma_associated_polymer_entity_id": "2",
         "gamma_atom_name": "PG",
         "gamma_ligand_code": "ANP",
-        "nearest_gamma_distance_angstrom": 3.228
+        "nearest_gamma_distance_angstrom": 5.779
       },
       "candidate_residue_code": "SER",
       "candidate_same_chain_as_gamma": false,
-      "candidate_uniprot_accession": "P49841",
-      "candidate_uniprot_position": 9,
+      "candidate_uniprot_accession": "P05132",
+      "candidate_uniprot_position": 54,
       "chain_accessions": {
-        "A": [
-          "P31749"
+        "E": [
+          "P05132"
         ],
-        "B": [
-          "P31749"
-        ],
-        "C": [
-          "P49841"
-        ],
-        "D": [
-          "P49841"
+        "I": [
+          "P63248"
         ]
       },
       "countable_label_candidate": false,
@@ -115,14 +107,14 @@
       "external_hard_negative_reaudit_scored": false,
       "fetch_status": "fetched",
       "gamma_acceptor_distance_measured": true,
-      "gamma_associated_polymer_chain_name": "B",
-      "kinase_protein_phosphorylation_reaction_supported": true,
-      "kinase_uniprot_accession": "P31749",
-      "measurement_ready_for_review_controls": true,
-      "n_terminal_ser_thr_tyr_acceptor_mode_hit": true,
-      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.228,
-      "next_tranche_source_review_status": "source_mapped_non_topology_substrate_mode_measurement_ready_review_only",
-      "pdb_id": "4EKK",
+      "gamma_associated_polymer_chain_name": "I",
+      "kinase_protein_phosphorylation_reaction_supported": false,
+      "kinase_uniprot_accession": "P63248",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 5.779,
+      "next_tranche_source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "pdb_id": "4HPU",
       "pkb_gsk3b_exact_mapping_blocked": false,
       "pkb_gsk3b_source_context_matched": false,
       "production_scoring_admissible": false,
@@ -130,28 +122,16 @@
       "ready_for_orphan_discovery_claims": false,
       "ready_for_production_scoring": false,
       "remaining_blockers": [
-        "source_review_evidence_not_source_free_predictive_feature",
-        "substrate_mode_rule_not_calibrated",
-        "threshold_not_calibrated_against_negative_controls",
-        "external_hard_negative_reaudit_not_real_scorer",
-        "registry_and_label_factory_extension_not_implemented"
+        "substrate_mode_rule_not_hit",
+        "positive_coverage_not_expanded"
       ],
       "review_only": true,
       "row_type": "epk_substrate_mode_next_tranche_source_review_row",
-      "source_phosphosite_feature": {
-        "description": "Phosphoserine; by PKB/AKT1, RPS6KA3, SGK3 and NME7",
-        "evidence_codes": [
-          "ECO:0000269"
-        ],
-        "position": 9,
-        "roles": [
-          "source_phosphoacceptor"
-        ]
-      },
-      "source_phosphosite_matched_candidate": true,
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
       "source_validation_status_input": "blocked_source_context_insufficient_review_only",
-      "structure_title": "Akt1 with AMP-PNP",
-      "substrate_mode_counteraxis_rule_hit": true,
+      "structure_title": null,
+      "substrate_mode_counteraxis_rule_hit": false,
       "target_family_id": "epk",
       "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
       "tyrosine_acceptor_mode_hit": false

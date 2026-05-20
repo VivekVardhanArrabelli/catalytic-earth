@@ -1334,6 +1334,20 @@ scorer axis. A broader "kinase substrate peptide ATP/Mg" first-25 scout finds
 two topology hits (`9L3M`/`9L3U`), but source validation blocks both as outer
 mitochondrial transmembrane helix translocase contexts, so broad text queries
 need source-validation filters before they are useful.
+`artifacts/v3_epk_substrate_mode_tranche_recovery_decision_1025.json` recovers
+the interrupted AMP-PNP source-review writes and keeps the outcome
+review-only: `4EKK` is the only source-mapped measurement-ready row, `1O6K`
+and `1O6L` now fail with an explicit PKB/GSK3 exact AKT1-or-chain mapping
+blocker, and `4HPU`/`7ZE5` are rejected by the substrate-mode rule. The
+follow-on folded-source stress scouts
+(`artifacts/v3_epk_substrate_mode_folded_source_stress_*_1025.json`) cover
+fresh AMP-PNP/ATP/ANP protein-substrate query surfaces. Their terminal decision
+reviews 11 topology hits and finds 0 measurement-ready positives: `2JJ2`,
+`4HPU`, `7B56`, and `7ZE5` reject by substrate mode, six ATP-query rows are
+same-chain topology-confounded, and current positive repeat `1IR3` remains
+source-mapping unresolved under the generic fresh-tranche source mapper. This
+is negative review-only evidence; thresholding, production scoring, external
+hard-negative scored re-audit, registry edits, and label import remain closed.
 The 1025 preview/expanded source-triage artifacts do not surface a new
 protein-substrate ePK source beyond the already-exhausted `m_csa:760`,
 `m_csa:757`, and `m_csa:756` candidates, so they are negative queue evidence,

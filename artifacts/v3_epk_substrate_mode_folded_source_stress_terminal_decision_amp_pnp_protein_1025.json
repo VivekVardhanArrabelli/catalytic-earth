@@ -1,0 +1,128 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_review_evidence_not_source_free_predictive_feature",
+      "source_mapping_unresolved_for_some_rows",
+      "substrate_mode_rule_not_calibrated",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "recovered_missing_substrate_mode_source_review_writes",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "non_topology_confounded_rejected_by_substrate_mode_review_only": 2
+    },
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_pdb_ids": [],
+    "measurement_ready_unique_count": 0,
+    "method": "epk_substrate_mode_tranche_recovery_decision",
+    "nearest_gamma_acceptor_distance_max_angstrom": 5.779,
+    "nearest_gamma_acceptor_distance_min_angstrom": 3.876,
+    "next_experiment": "source a new bounded tranche with non-topology-confounded kinase-substrate rows",
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "recovery_decision_status": "recovered_terminal_nonpositive_or_blocked_rows_review_only",
+    "rejected_by_substrate_mode_count": 2,
+    "rejected_by_substrate_mode_pdb_ids": [
+      "4HPU",
+      "7ZE5"
+    ],
+    "review_only": true,
+    "review_only_rule": "This artifact aggregates recovered substrate-mode source-review outputs after interrupted writes. It preserves measurement-ready, unresolved, and rejected rows as review-only evidence only; it does not score ePK, select a threshold, edit registries, or import labels.",
+    "reviewed_row_count": 2,
+    "reviewed_unique_pdb_count": 2,
+    "reviewed_unique_pdb_ids": [
+      "4HPU",
+      "7ZE5"
+    ],
+    "selected_threshold_angstrom": null,
+    "source_context_used_as_review_evidence_only": true,
+    "source_free_predictive_feature_materialized": false,
+    "source_mapping_unresolved_count": 0,
+    "source_mapping_unresolved_pdb_ids": [],
+    "source_queries": [
+      "RCSB full_text protein kinase protein substrate AMP-PNP magnesium first 40 2026-05-20",
+      "RCSB full_text protein kinase protein substrate AMP-PNP magnesium rows 41-67 2026-05-20"
+    ],
+    "source_review_artifact_count": 2,
+    "source_review_methods": [
+      "epk_substrate_mode_next_tranche_source_review"
+    ],
+    "source_review_status_counts": {
+      "fails_closed_non_topology_tranche_rejected_by_substrate_mode": 2
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "topology_confounded_count": 0,
+    "topology_confounded_pdb_ids": []
+  },
+  "rows": [
+    {
+      "candidate_uniprot_accession": "P05132",
+      "candidate_uniprot_position": 54,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "P63248",
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 5.779,
+      "pdb_id": "4HPU",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "positive_coverage_not_expanded",
+        "substrate_mode_rule_not_hit"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 1,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": false,
+      "source_query": "RCSB full_text protein kinase protein substrate AMP-PNP magnesium rows 41-67 2026-05-20",
+      "source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_uniprot_accession": "P29018",
+      "candidate_uniprot_position": 487,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "P23886",
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.876,
+      "pdb_id": "7ZE5",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "positive_coverage_not_expanded",
+        "substrate_mode_rule_not_hit"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 0,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": false,
+      "source_query": "RCSB full_text protein kinase protein substrate AMP-PNP magnesium first 40 2026-05-20",
+      "source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Recovered substrate-mode tranche decisions are review-only and cannot support held-out performance claims, production scoring, registry edits, or label import."
+  ]
+}

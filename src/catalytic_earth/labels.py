@@ -31208,6 +31208,7 @@ def build_epk_substrate_mode_next_tranche_source_review(
     non_topology_pdb_ids: list[str] = []
     source_mapped_ready_pdb_ids: list[str] = []
     unresolved_pdb_ids: list[str] = []
+    substrate_rejected_pdb_ids: list[str] = []
     topology_confounded_pdb_ids: list[str] = []
     substrate_rule_hit_pdb_ids: list[str] = []
     distances: list[float] = []
@@ -31310,6 +31311,13 @@ def build_epk_substrate_mode_next_tranche_source_review(
         phosphosite_description = str(
             phosphosite_feature.get("description") if phosphosite_feature else ""
         )
+        pkb_gsk3b_source_context_matched = (
+            validation_row.get("source_pair_id") == "pkb_gsk3"
+            and acceptor_accession == "P49841"
+            and candidate_position == 9
+            and phosphosite_feature is not None
+            and any(token in phosphosite_description.lower() for token in ("akt", "pkb"))
+        )
         akt_gsk3b_source_mapped = (
             kinase_accession == "P31749"
             and acceptor_accession == "P49841"
@@ -31339,6 +31347,7 @@ def build_epk_substrate_mode_next_tranche_source_review(
         elif not substrate_mode_rule_hit:
             status = "non_topology_confounded_rejected_by_substrate_mode_review_only"
             non_topology_pdb_ids.append(pdb_id)
+            substrate_rejected_pdb_ids.append(pdb_id)
             blockers = [
                 "substrate_mode_rule_not_hit",
                 "positive_coverage_not_expanded",
@@ -31366,7 +31375,11 @@ def build_epk_substrate_mode_next_tranche_source_review(
                 substrate_rule_hit_pdb_ids.append(pdb_id)
             unresolved_pdb_ids.append(pdb_id)
             blockers = [
-                "source_phosphosite_or_role_direction_not_mapped_to_candidate",
+                (
+                    "pkb_gsk3b_source_context_detected_but_exact_akt1_or_chain_mapping_unresolved"
+                    if pkb_gsk3b_source_context_matched
+                    else "source_phosphosite_or_role_direction_not_mapped_to_candidate"
+                ),
                 "substrate_mode_rule_not_calibrated",
                 "external_hard_negative_reaudit_not_real_scorer",
             ]
@@ -31391,6 +31404,11 @@ def build_epk_substrate_mode_next_tranche_source_review(
                 "source_phosphosite_feature": phosphosite_feature,
                 "source_phosphosite_matched_candidate": phosphosite_feature
                 is not None,
+                "pkb_gsk3b_source_context_matched": pkb_gsk3b_source_context_matched,
+                "pkb_gsk3b_exact_mapping_blocked": (
+                    pkb_gsk3b_source_context_matched
+                    and not akt_gsk3b_source_mapped
+                ),
                 "akt1_gsk3b_source_mapped": akt_gsk3b_source_mapped,
                 "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
                     round(nearest_distance, 3)
@@ -31414,6 +31432,7 @@ def build_epk_substrate_mode_next_tranche_source_review(
     non_topology_ids = _sorted_strings(non_topology_pdb_ids)
     source_ready_ids = _sorted_strings(source_mapped_ready_pdb_ids)
     unresolved_ids = _sorted_strings(unresolved_pdb_ids)
+    substrate_rejected_ids = _sorted_strings(substrate_rejected_pdb_ids)
     topology_confounded_ids = _sorted_strings(topology_confounded_pdb_ids)
     substrate_rule_hit_ids = _sorted_strings(substrate_rule_hit_pdb_ids)
     if source_ready_ids:
@@ -31421,8 +31440,11 @@ def build_epk_substrate_mode_next_tranche_source_review(
             "adds_source_mapped_non_topology_substrate_mode_row_review_only"
         )
         blocker_removed = "fresh_non_topology_confounded_tranche_materialized_and_source_mapped"
-    elif non_topology_ids:
+    elif unresolved_ids:
         review_status = "fails_closed_non_topology_tranche_source_mapping_unresolved"
+        blocker_removed = "fresh_non_topology_confounded_tranche_materialized"
+    elif substrate_rejected_ids:
+        review_status = "fails_closed_non_topology_tranche_rejected_by_substrate_mode"
         blocker_removed = "fresh_non_topology_confounded_tranche_materialized"
     elif topology_confounded_ids:
         review_status = "blocked_next_tranche_only_topology_confounded_review_only"
@@ -31461,6 +31483,8 @@ def build_epk_substrate_mode_next_tranche_source_review(
             "source_mapped_measurement_ready_pdb_ids": source_ready_ids,
             "source_mapping_unresolved_count": len(unresolved_ids),
             "source_mapping_unresolved_pdb_ids": unresolved_ids,
+            "substrate_mode_rejected_count": len(substrate_rejected_ids),
+            "substrate_mode_rejected_pdb_ids": substrate_rejected_ids,
             "topology_confounded_candidate_count": len(topology_confounded_ids),
             "topology_confounded_candidate_pdb_ids": topology_confounded_ids,
             "nearest_gamma_acceptor_distance_min_angstrom": (
@@ -31523,6 +31547,240 @@ def build_epk_substrate_mode_next_tranche_source_review(
                 "Next-tranche substrate-mode source review is review-only; "
                 "measurement-ready rows are not countable labels or clean "
                 "held-out performance evidence."
+            )
+        ],
+    }
+
+
+def build_epk_substrate_mode_tranche_recovery_decision(
+    *,
+    epk_substrate_mode_next_tranche_source_reviews: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Aggregate recovered substrate-mode source-review tranches."""
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    source_review_status_counts: Counter[str] = Counter()
+    reviewed_pdb_ids: set[str] = set()
+    measurement_ready_pdb_ids: set[str] = set()
+    source_mapping_unresolved_pdb_ids: set[str] = set()
+    rejected_pdb_ids: set[str] = set()
+    topology_confounded_pdb_ids: set[str] = set()
+    source_queries: list[str] = []
+    source_methods: list[str] = []
+    distances: list[float] = []
+
+    def _safe_float(value: Any) -> float | None:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return None
+
+    for source_index, review in enumerate(
+        epk_substrate_mode_next_tranche_source_reviews
+    ):
+        if not isinstance(review, dict):
+            continue
+        meta = review.get("metadata", {})
+        if not isinstance(meta, dict):
+            meta = {}
+        source_method = str(meta.get("method") or "")
+        if source_method:
+            source_methods.append(source_method)
+        source_query = str(meta.get("source_query") or "")
+        if source_query:
+            source_queries.append(source_query)
+        source_status = str(meta.get("next_tranche_source_review_status") or "")
+        if source_status:
+            source_review_status_counts[source_status] += 1
+        for source_row in review.get("rows", []) or []:
+            if not isinstance(source_row, dict):
+                continue
+            pdb_id = str(source_row.get("pdb_id") or "").upper()
+            if not pdb_id:
+                continue
+            status = str(source_row.get("next_tranche_source_review_status") or "")
+            if not status:
+                status = "missing_source_review_status"
+            reviewed_pdb_ids.add(pdb_id)
+            status_counts[status] += 1
+            if bool(source_row.get("measurement_ready_for_review_controls")):
+                measurement_ready_pdb_ids.add(pdb_id)
+            if status == "non_topology_confounded_source_mapping_unresolved_review_only":
+                source_mapping_unresolved_pdb_ids.add(pdb_id)
+            if status == "non_topology_confounded_rejected_by_substrate_mode_review_only":
+                rejected_pdb_ids.add(pdb_id)
+            if status == "topology_confounded_not_measurement_ready_review_only":
+                topology_confounded_pdb_ids.add(pdb_id)
+            distance = _safe_float(
+                source_row.get("nearest_gamma_to_candidate_acceptor_distance_angstrom")
+            )
+            if distance is not None:
+                distances.append(distance)
+            rows.append(
+                {
+                    "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+                    "source_artifact_index": source_index,
+                    "source_artifact_method": source_method or None,
+                    "source_query": source_query or None,
+                    "pdb_id": pdb_id,
+                    "target_family_id": "epk",
+                    "target_fingerprint_id": source_row.get(
+                        "target_fingerprint_id"
+                    )
+                    or meta.get("target_fingerprint_id")
+                    or "epk_atp_gamma_phosphoryl_transfer",
+                    "review_only": True,
+                    "source_review_status": status,
+                    "measurement_ready_for_review_controls": bool(
+                        source_row.get("measurement_ready_for_review_controls")
+                    ),
+                    "candidate_uniprot_accession": source_row.get(
+                        "candidate_uniprot_accession"
+                    ),
+                    "candidate_uniprot_position": source_row.get(
+                        "candidate_uniprot_position"
+                    ),
+                    "kinase_uniprot_accession": source_row.get(
+                        "kinase_uniprot_accession"
+                    ),
+                    "source_phosphosite_matched_candidate": bool(
+                        source_row.get("source_phosphosite_matched_candidate")
+                    ),
+                    "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                        round(distance, 3) if distance is not None else None
+                    ),
+                    "production_scoring_admissible": False,
+                    "ready_for_production_scoring": False,
+                    "ready_for_orphan_discovery_claims": False,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate": False,
+                    "epk_score_computed": False,
+                    "external_hard_negative_reaudit_scored": False,
+                    "remaining_blockers": _sorted_strings(
+                        source_row.get("remaining_blockers", [])
+                    ),
+                }
+            )
+
+    ready_ids = _sorted_strings(measurement_ready_pdb_ids)
+    unresolved_ids = _sorted_strings(source_mapping_unresolved_pdb_ids)
+    rejected_ids = _sorted_strings(rejected_pdb_ids)
+    topology_ids = _sorted_strings(topology_confounded_pdb_ids)
+    reviewed_ids = _sorted_strings(reviewed_pdb_ids)
+    if ready_ids and unresolved_ids:
+        recovery_status = (
+            "partial_recovery_with_measurement_ready_row_and_unresolved_mapping_review_only"
+        )
+        next_experiment = (
+            "freeze 4EKK as review-only source-mapped stress and source a "
+            "fresh nonconfounded folded-substrate tranche for source-free "
+            "substrate identity"
+        )
+    elif ready_ids:
+        recovery_status = "recovered_measurement_ready_row_review_only"
+        next_experiment = (
+            "stress the recovered measurement-ready row against fresh "
+            "nonconfounded controls before any scorer calibration"
+        )
+    elif unresolved_ids:
+        recovery_status = "fails_closed_source_mapping_unresolved_review_only"
+        next_experiment = (
+            "pivot to a fresh source tranche or alternate sourcing because "
+            "current rows do not remove source-mapping blockers"
+        )
+    elif reviewed_ids:
+        recovery_status = "recovered_terminal_nonpositive_or_blocked_rows_review_only"
+        next_experiment = (
+            "source a new bounded tranche with non-topology-confounded "
+            "kinase-substrate rows"
+        )
+    else:
+        recovery_status = "blocked_no_recovered_source_review_rows"
+        next_experiment = "rerun source-review generation from the preserved scouts"
+
+    return {
+        "metadata": {
+            "method": "epk_substrate_mode_tranche_recovery_decision",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+            "source_review_artifact_count": len(
+                [
+                    review
+                    for review in epk_substrate_mode_next_tranche_source_reviews
+                    if isinstance(review, dict)
+                ]
+            ),
+            "source_review_methods": _sorted_strings(source_methods),
+            "source_queries": _sorted_strings(source_queries),
+            "source_review_status_counts": dict(
+                sorted(source_review_status_counts.items())
+            ),
+            "recovery_decision_status": recovery_status,
+            "reviewed_unique_pdb_count": len(reviewed_ids),
+            "reviewed_unique_pdb_ids": reviewed_ids,
+            "reviewed_row_count": len(rows),
+            "measurement_ready_unique_count": len(ready_ids),
+            "measurement_ready_pdb_ids": ready_ids,
+            "source_mapping_unresolved_count": len(unresolved_ids),
+            "source_mapping_unresolved_pdb_ids": unresolved_ids,
+            "rejected_by_substrate_mode_count": len(rejected_ids),
+            "rejected_by_substrate_mode_pdb_ids": rejected_ids,
+            "topology_confounded_count": len(topology_ids),
+            "topology_confounded_pdb_ids": topology_ids,
+            "decision_counts": dict(sorted(status_counts.items())),
+            "nearest_gamma_acceptor_distance_min_angstrom": (
+                round(min(distances), 3) if distances else None
+            ),
+            "nearest_gamma_acceptor_distance_max_angstrom": (
+                round(max(distances), 3) if distances else None
+            ),
+            "source_context_used_as_review_evidence_only": True,
+            "source_free_predictive_feature_materialized": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "recovered_missing_substrate_mode_source_review_writes",
+            "blocker_not_removed": [
+                "source_review_evidence_not_source_free_predictive_feature",
+                "source_mapping_unresolved_for_some_rows",
+                "substrate_mode_rule_not_calibrated",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "next_experiment": next_experiment,
+            "review_only_rule": (
+                "This artifact aggregates recovered substrate-mode source-review "
+                "outputs after interrupted writes. It preserves measurement-ready, "
+                "unresolved, and rejected rows as review-only evidence only; it "
+                "does not score ePK, select a threshold, edit registries, or "
+                "import labels."
+            ),
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("source_review_status") or ""),
+                str(row.get("pdb_id") or ""),
+                str(row.get("source_artifact_index") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Recovered substrate-mode tranche decisions are review-only and "
+                "cannot support held-out performance claims, production scoring, "
+                "registry edits, or label import."
             )
         ],
     }

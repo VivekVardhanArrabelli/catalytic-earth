@@ -50,6 +50,46 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T11:55:15Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+external hard-negative production score, or `removal_allowed=true` occurred.
+SSH deploy-key fetch/pull/ls-remote/dry-run push hygiene passed at startup.
+The run first recovered coherent dirty review-only synthesis artifacts from
+the previous worktree state in commit `5c9b0ae`, without spawning or delegating
+new work.
+
+The interrupted AMP-PNP substrate-mode source-review writes are now recovered.
+`artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_broad41_80_1025.json`
+reviews `1O6K`, `1O6L`, and `4HPU`: `1O6K`/`1O6L` carry the explicit blocker
+`pkb_gsk3b_source_context_detected_but_exact_akt1_or_chain_mapping_unresolved`,
+while `4HPU` rejects by substrate mode. The regenerated broad81-92 review keeps
+`4EKK` as the only source-mapped measurement-ready row. The aggregate
+`artifacts/v3_epk_substrate_mode_tranche_recovery_decision_1025.json` records
+partial recovery: `4EKK` ready, `1O6K`/`1O6L` unresolved, and `4HPU`/`7ZE5`
+rejected, with scoring and registry gates still closed.
+
+Fresh folded protein-substrate stress was negative. The new
+`artifacts/v3_epk_substrate_mode_folded_source_stress_*_1025.json` scouts cover
+bounded RCSB AMP-PNP, ATP, and ANP protein-substrate query surfaces. The
+terminal decision reviews 11 topology hits and finds 0 measurement-ready
+positives: `2JJ2`, `4HPU`, `7B56`, and `7ZE5` reject by substrate mode; `1TFW`,
+`2DRA`, `2Q66`, `2ZH6`, `9L3M`, and `9L3U` are same-chain topology-confounded;
+and current positive repeat `1IR3` remains source-mapping unresolved under the
+generic fresh-tranche mapper. This is counterevidence and next-experiment
+routing only, not clean held-out performance evidence.
+
+Evidence-based confidence call: confidence is higher that `4EKK` is useful
+source-mapped review evidence and that the current broad folded-source query
+surface is dominated by counterexamples or topology-confounded rows. Confidence
+is lower that the generic fresh-tranche source mapper can recover known
+protein-substrate positives without pair-specific source rules, because it
+leaves `1IR3` unresolved and keeps `1O6K`/`1O6L` non-ready under exact
+AKT1/chain requirements. The next useful experiment is a fresh bounded source
+tranche with explicit, pre-frozen source-free substrate-identity features or a
+pair-specific source-mapping review kept outside predictive scoring.
+
 As of the 2026-05-20T11:23:08Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

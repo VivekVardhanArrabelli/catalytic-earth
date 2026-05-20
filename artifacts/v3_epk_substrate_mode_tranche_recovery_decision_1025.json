@@ -1,0 +1,262 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_review_evidence_not_source_free_predictive_feature",
+      "source_mapping_unresolved_for_some_rows",
+      "substrate_mode_rule_not_calibrated",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "recovered_missing_substrate_mode_source_review_writes",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "non_topology_confounded_rejected_by_substrate_mode_review_only": 2,
+      "non_topology_confounded_source_mapping_unresolved_review_only": 2,
+      "source_mapped_non_topology_substrate_mode_measurement_ready_review_only": 2
+    },
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "measurement_ready_pdb_ids": [
+      "4EKK"
+    ],
+    "measurement_ready_unique_count": 1,
+    "method": "epk_substrate_mode_tranche_recovery_decision",
+    "nearest_gamma_acceptor_distance_max_angstrom": 5.779,
+    "nearest_gamma_acceptor_distance_min_angstrom": 3.228,
+    "next_experiment": "freeze 4EKK as review-only source-mapped stress and source a fresh nonconfounded folded-substrate tranche for source-free substrate identity",
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "recovery_decision_status": "partial_recovery_with_measurement_ready_row_and_unresolved_mapping_review_only",
+    "rejected_by_substrate_mode_count": 2,
+    "rejected_by_substrate_mode_pdb_ids": [
+      "4HPU",
+      "7ZE5"
+    ],
+    "review_only": true,
+    "review_only_rule": "This artifact aggregates recovered substrate-mode source-review outputs after interrupted writes. It preserves measurement-ready, unresolved, and rejected rows as review-only evidence only; it does not score ePK, select a threshold, edit registries, or import labels.",
+    "reviewed_row_count": 6,
+    "reviewed_unique_pdb_count": 5,
+    "reviewed_unique_pdb_ids": [
+      "1O6K",
+      "1O6L",
+      "4EKK",
+      "4HPU",
+      "7ZE5"
+    ],
+    "selected_threshold_angstrom": null,
+    "source_context_used_as_review_evidence_only": true,
+    "source_free_predictive_feature_materialized": false,
+    "source_mapping_unresolved_count": 2,
+    "source_mapping_unresolved_pdb_ids": [
+      "1O6K",
+      "1O6L"
+    ],
+    "source_queries": [
+      "RCSB full_text protein kinase peptide substrate AMP-PNP first fresh unseen 9 rows 2026-05-20",
+      "RCSB full_text protein kinase substrate AMP-PNP first 40 rows 2026-05-20",
+      "RCSB full_text protein kinase substrate AMP-PNP rows 41-80 2026-05-20",
+      "RCSB full_text protein kinase substrate AMP-PNP rows 81-92 2026-05-20"
+    ],
+    "source_review_artifact_count": 4,
+    "source_review_methods": [
+      "epk_substrate_mode_next_tranche_source_review"
+    ],
+    "source_review_status_counts": {
+      "adds_source_mapped_non_topology_substrate_mode_row_review_only": 2,
+      "fails_closed_non_topology_tranche_rejected_by_substrate_mode": 1,
+      "fails_closed_non_topology_tranche_source_mapping_unresolved": 1
+    },
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false,
+    "topology_confounded_count": 0,
+    "topology_confounded_pdb_ids": []
+  },
+  "rows": [
+    {
+      "candidate_uniprot_accession": "P05132",
+      "candidate_uniprot_position": 54,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "P63248",
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 5.779,
+      "pdb_id": "4HPU",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "positive_coverage_not_expanded",
+        "substrate_mode_rule_not_hit"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 2,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": false,
+      "source_query": "RCSB full_text protein kinase substrate AMP-PNP rows 41-80 2026-05-20",
+      "source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_uniprot_accession": "P29018",
+      "candidate_uniprot_position": 487,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "P23886",
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.876,
+      "pdb_id": "7ZE5",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "positive_coverage_not_expanded",
+        "substrate_mode_rule_not_hit"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 1,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": false,
+      "source_query": "RCSB full_text protein kinase substrate AMP-PNP first 40 rows 2026-05-20",
+      "source_review_status": "non_topology_confounded_rejected_by_substrate_mode_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_uniprot_accession": "P49841",
+      "candidate_uniprot_position": 9,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "P31751",
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.566,
+      "pdb_id": "1O6K",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "pkb_gsk3b_source_context_detected_but_exact_akt1_or_chain_mapping_unresolved",
+        "substrate_mode_rule_not_calibrated"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 2,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": true,
+      "source_query": "RCSB full_text protein kinase substrate AMP-PNP rows 41-80 2026-05-20",
+      "source_review_status": "non_topology_confounded_source_mapping_unresolved_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_uniprot_accession": "P49841",
+      "candidate_uniprot_position": 9,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": null,
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.542,
+      "pdb_id": "1O6L",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "pkb_gsk3b_source_context_detected_but_exact_akt1_or_chain_mapping_unresolved",
+        "substrate_mode_rule_not_calibrated"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 2,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": true,
+      "source_query": "RCSB full_text protein kinase substrate AMP-PNP rows 41-80 2026-05-20",
+      "source_review_status": "non_topology_confounded_source_mapping_unresolved_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_uniprot_accession": "P49841",
+      "candidate_uniprot_position": 9,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "P31749",
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.228,
+      "pdb_id": "4EKK",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "source_review_evidence_not_source_free_predictive_feature",
+        "substrate_mode_rule_not_calibrated",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 0,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": true,
+      "source_query": "RCSB full_text protein kinase peptide substrate AMP-PNP first fresh unseen 9 rows 2026-05-20",
+      "source_review_status": "source_mapped_non_topology_substrate_mode_measurement_ready_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_uniprot_accession": "P49841",
+      "candidate_uniprot_position": 9,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "P31749",
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.228,
+      "pdb_id": "4EKK",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented",
+        "source_review_evidence_not_source_free_predictive_feature",
+        "substrate_mode_rule_not_calibrated",
+        "threshold_not_calibrated_against_negative_controls"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_tranche_recovery_decision_row",
+      "source_artifact_index": 3,
+      "source_artifact_method": "epk_substrate_mode_next_tranche_source_review",
+      "source_phosphosite_matched_candidate": true,
+      "source_query": "RCSB full_text protein kinase substrate AMP-PNP rows 81-92 2026-05-20",
+      "source_review_status": "source_mapped_non_topology_substrate_mode_measurement_ready_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "Recovered substrate-mode tranche decisions are review-only and cannot support held-out performance claims, production scoring, registry edits, or label import."
+  ]
+}

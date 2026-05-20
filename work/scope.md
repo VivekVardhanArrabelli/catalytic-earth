@@ -31,10 +31,15 @@ A fresh AMP-PNP substrate-query tranche now supplies one source-mapped
 measurement-ready review row, `4EKK`, mapping AKT1/GSK3B source evidence to
 GSK3B Ser9 with a 3.228 Angstrom gamma-to-acceptor distance. It stays
 review-only because the support is source context rather than a source-free
-substrate-identity axis. Broader AMP-PNP scout/source-validation passes add
-counterevidence (`7ZE5`) and incomplete recovery work for rows 41-80 and
-81-92 after local disk exhaustion blocked final source-review artifact writes.
-No threshold, scorer, registry edit, or label import is authorized. The
+substrate-identity axis. The interrupted broader AMP-PNP source-review writes
+are now recovered: `4EKK` remains the only measurement-ready row, `1O6K` and
+`1O6L` fail with an explicit PKB/GSK3 exact AKT1-or-chain mapping blocker, and
+`4HPU`/`7ZE5` reject by substrate mode. A fresh folded protein-substrate stress
+surface across AMP-PNP, ATP, and ANP query lanes finds 0 measurement-ready
+positives; `2JJ2`/`4HPU`/`7B56`/`7ZE5` reject by substrate mode, six ATP-query
+rows are same-chain topology-confounded, and current positive repeat `1IR3`
+remains source-mapping unresolved under the generic fresh-tranche mapper. No threshold,
+scorer, registry edit, or label import is authorized. The
 chain/ligand acceptor disambiguation experiment now
 keeps 3/3 current ePK positives, blocks 20/20 current sibling controls with 0
 false hits, and leaves all three imported external hard negatives abstained.

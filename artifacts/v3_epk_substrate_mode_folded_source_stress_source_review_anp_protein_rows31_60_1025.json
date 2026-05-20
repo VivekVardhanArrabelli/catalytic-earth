@@ -14,14 +14,17 @@
     "countable_label_candidate_count": 0,
     "curated_label_registry_edited": false,
     "decision_counts": {
-      "non_topology_confounded_rejected_by_substrate_mode_review_only": 1
+      "non_topology_confounded_rejected_by_substrate_mode_review_only": 1,
+      "non_topology_confounded_source_mapping_unresolved_review_only": 1
     },
     "epk_score_computed": false,
     "external_hard_negative_reaudit_scored": false,
     "fetched_pdb_ids": [
+      "1IR3",
       "7ZE5"
     ],
     "fetched_uniprot_accessions": [
+      "P06213",
       "P23886",
       "P29018"
     ],
@@ -35,9 +38,10 @@
       "replace source-reviewed phosphosite support with a source-free substrate identity feature before scoring",
       "keep real external hard-negative scored re-audit closed until a calibrated scorer exists"
     ],
-    "next_tranche_source_review_status": "fails_closed_non_topology_tranche_rejected_by_substrate_mode",
-    "non_topology_confounded_candidate_count": 1,
+    "next_tranche_source_review_status": "fails_closed_non_topology_tranche_source_mapping_unresolved",
+    "non_topology_confounded_candidate_count": 2,
     "non_topology_confounded_candidate_pdb_ids": [
+      "1IR3",
       "7ZE5"
     ],
     "ready_for_label_import": false,
@@ -47,7 +51,7 @@
     "ready_to_run_epk_scorer": false,
     "review_only": true,
     "review_only_rule": "This artifact source-maps a fresh substrate-mode tranche. A row can become measurement-ready review evidence only when local non-topology gamma geometry maps to an explicit source phosphosite and kinase/substrate accession pair. It does not score ePK, select a threshold, edit registries, or import labels.",
-    "reviewed_candidate_count": 1,
+    "reviewed_candidate_count": 2,
     "selected_threshold_angstrom": null,
     "source_context_used_as_review_evidence_only": true,
     "source_epk_mek_erk_substrate_mode_counteraxis_audit_method": "epk_mek_erk_substrate_mode_counteraxis_audit",
@@ -56,22 +60,28 @@
     "source_free_predictive_feature_materialized": false,
     "source_mapped_measurement_ready_count": 0,
     "source_mapped_measurement_ready_pdb_ids": [],
-    "source_mapping_unresolved_count": 0,
-    "source_mapping_unresolved_pdb_ids": [],
-    "source_query": "RCSB full_text protein kinase substrate AMP-PNP first 40 rows 2026-05-20",
+    "source_mapping_unresolved_count": 1,
+    "source_mapping_unresolved_pdb_ids": [
+      "1IR3"
+    ],
+    "source_query": "RCSB full_text protein kinase substrate protein ANP magnesium complex rows 31-60 2026-05-20",
     "substrate_mode_rejected_count": 1,
     "substrate_mode_rejected_pdb_ids": [
       "7ZE5"
     ],
-    "substrate_mode_rule_hit_non_topology_count": 0,
-    "substrate_mode_rule_hit_non_topology_pdb_ids": [],
+    "substrate_mode_rule_hit_non_topology_count": 1,
+    "substrate_mode_rule_hit_non_topology_pdb_ids": [
+      "1IR3"
+    ],
     "target_family_id": "epk",
     "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
     "threshold_calibrated": false,
     "topology_confounded_candidate_count": 0,
     "topology_confounded_candidate_pdb_ids": [],
-    "uniprot_fetch_failure_count": 0,
-    "uniprot_fetch_failures": {}
+    "uniprot_fetch_failure_count": 1,
+    "uniprot_fetch_failures": {
+      "1IR3": "HTTP Error 400: Bad Request"
+    }
   },
   "rows": [
     {
@@ -135,6 +145,69 @@
       "target_family_id": "epk",
       "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
       "tyrosine_acceptor_mode_hit": false
+    },
+    {
+      "akt1_gsk3b_source_mapped": false,
+      "candidate_auth_seq_id": "10",
+      "candidate_chain_name": "B",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OH",
+        "candidate_auth_seq_id": "10",
+        "candidate_chain_name": "B",
+        "candidate_residue_code": "TYR",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "nearest_gamma_distance_angstrom": 5.082
+      },
+      "candidate_residue_code": "TYR",
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "1IR3",
+      "candidate_uniprot_position": 10,
+      "chain_accessions": {
+        "A": [
+          "P06213"
+        ],
+        "B": [
+          "1IR3"
+        ]
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": true,
+      "kinase_uniprot_accession": "P06213",
+      "measurement_ready_for_review_controls": false,
+      "n_terminal_ser_thr_tyr_acceptor_mode_hit": true,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 5.082,
+      "next_tranche_source_review_status": "non_topology_confounded_source_mapping_unresolved_review_only",
+      "pdb_id": "1IR3",
+      "pkb_gsk3b_exact_mapping_blocked": false,
+      "pkb_gsk3b_source_context_matched": false,
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_phosphosite_or_role_direction_not_mapped_to_candidate",
+        "substrate_mode_rule_not_calibrated",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "row_type": "epk_substrate_mode_next_tranche_source_review_row",
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_validation_status_input": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "substrate_mode_counteraxis_rule_hit": true,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "tyrosine_acceptor_mode_hit": true
     }
   ],
   "warnings": [

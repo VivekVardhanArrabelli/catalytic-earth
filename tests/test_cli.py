@@ -15532,6 +15532,96 @@ _struct_ref_seq.pdbx_auth_seq_align_end
             self.assertTrue(metadata["source_context_used_as_review_evidence_only"])
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
+    def test_build_epk_substrate_mode_tranche_recovery_decision_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            ready_review = root / "ready_review.json"
+            unresolved_review = root / "unresolved_review.json"
+            out = root / "recovery_decision.json"
+            ready_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_substrate_mode_next_tranche_source_review",
+                            "source_query": "unit-test ready tranche",
+                            "next_tranche_source_review_status": (
+                                "adds_source_mapped_non_topology_substrate_mode_row_review_only"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "4EKK",
+                                "next_tranche_source_review_status": (
+                                    "source_mapped_non_topology_substrate_mode_measurement_ready_review_only"
+                                ),
+                                "measurement_ready_for_review_controls": True,
+                                "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.228,
+                                "remaining_blockers": [
+                                    "source_review_evidence_not_source_free_predictive_feature"
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            unresolved_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_substrate_mode_next_tranche_source_review",
+                            "source_query": "unit-test unresolved tranche",
+                            "next_tranche_source_review_status": (
+                                "fails_closed_non_topology_tranche_source_mapping_unresolved"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "1O6K",
+                                "next_tranche_source_review_status": (
+                                    "non_topology_confounded_source_mapping_unresolved_review_only"
+                                ),
+                                "measurement_ready_for_review_controls": False,
+                                "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.566,
+                                "remaining_blockers": [
+                                    "source_phosphosite_or_role_direction_not_mapped_to_candidate"
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-substrate-mode-tranche-recovery-decision",
+                    "--epk-substrate-mode-next-tranche-source-review",
+                    str(ready_review),
+                    "--epk-substrate-mode-next-tranche-source-review",
+                    str(unresolved_review),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            metadata = json.loads(out.read_text(encoding="utf-8"))["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_substrate_mode_tranche_recovery_decision"
+            )
+            self.assertEqual(metadata["measurement_ready_pdb_ids"], ["4EKK"])
+            self.assertEqual(metadata["source_mapping_unresolved_pdb_ids"], ["1O6K"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
 
 if __name__ == "__main__":
     unittest.main()
