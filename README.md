@@ -99,8 +99,9 @@ The repository currently contains:
     `unknown_blocking`. The unavailable rows preserve path/size/SHA identity
     for 9 Foldseek coordinate sidecars plus all 31 adjacent-slice geometry
     feature artifacts whose exact historical reuse/cache closure is unavailable.
-    Phase 1 is ready for the Phase 2 approval checkpoint, but no upload,
-    migration, Git removal, Git LFS migration, or history rewrite has occurred.
+    Phase 1 is now treated as a closed guardrail checkpoint unless a human
+    explicitly reopens Phase 2; no upload, migration, Git removal, Git LFS
+    migration, or history rewrite has occurred.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
     artifact admission. See `docs/artifact_storage.md`.
 
@@ -1371,12 +1372,18 @@ plus 20 legacy sibling counter-axis rows, and scores all three imported
 external hard negatives as abstentions. The follow-on
 `artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json` records the
 bounded broad-stress result: the exact 110-entry source query is exhausted,
-outside-query scouts reviewed 111 candidates, and broad-query `9L3M`/`9L3U`
-remain source-validation counterexamples. The preregistration artifact
+outside-query scouts now reviewed 299 candidates, and only `1O6K`/`1O6L`
+remain source-valid positives. Eleven source-context counterexamples (`2JJ2`,
+`4HPU`, `7B56`, `7T55`, `7T56`, `7T57`, `7ZDT`, `7ZDU`, `7ZE5`, `9L3M`, and
+`9L3U`) are blocked before any threshold work. The peptide-role audit now
+attaches source-free counterevidence for those blocked hits: non-peptide-like
+acceptor chains, local nucleotide/metal acceptor context, same-chain
+acceptor/gamma context, or a gamma-associated chain that is not larger than
+the putative acceptor. The preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`
-freezes the next three review-only stress lanes and carries those
-counterexamples forward before any threshold work.
-scorer design, the `m_csa:760`
+keeps those counterexamples in the next review-only stress plan.
+
+Scorer design, the `m_csa:760`
 split-state repair scan, the
 `m_csa:757`/`m_csa:756` active-state source scans, acceptor thresholding,
 external scored re-audit, and label-factory extension all remain failing

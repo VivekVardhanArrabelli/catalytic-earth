@@ -162,10 +162,15 @@ still closed. The unified review-only scoring prototype now gives full
 diagnostic signal to those eight positive-like rows while blocking current
 controls, legacy sibling counter-axis rows, and all three imported external
 hard negatives. Broad-stress audit then keeps the lane fail-closed because
-`9L3M`/`9L3U` are source-validation counterexamples and the next control
-tranche is only preregistered, not executed. The counteraxis sufficiency
-decision records the unified rule, prototype, and broad-stress rows while
-preserving `do_not_select_threshold`.
+the executed outside-query stress surface now has 299 reviewed candidates, 13
+heteromeric topology hits, and 11 source-validation counterexamples (`2JJ2`,
+`4HPU`, `7B56`, `7T55`, `7T56`, `7T57`, `7ZDT`, `7ZDU`, `7ZE5`, `9L3M`, and
+`9L3U`). The source-expansion peptide-role audit now blocks those nonpositives
+with explicit source-free counterevidence: non-peptide-like acceptor chains,
+local nucleotide/metal acceptor context, same-chain acceptor/gamma context, or
+gamma-chain topology inconsistent with a peptide acceptor role. The
+counteraxis sufficiency decision records the unified rule, prototype, and
+broad-stress rows while preserving `do_not_select_threshold`.
 
 ## Time Calibration Rule
 

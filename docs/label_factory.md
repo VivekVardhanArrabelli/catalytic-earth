@@ -746,7 +746,7 @@ current review controls. The broader counter-axis and ligand-asymmetry role
 audit now pass broader heteromeric/sibling review controls, and the peptide
 acceptor identity plus peptide external hard-negative probes pass as diagnostic
 feature gates. The outside-query source-expansion peptide-role audit also
-passes for `1O6K`/`1O6L` while blocking the `9L3M`/`9L3U` nonpositive controls.
+passes for `1O6K`/`1O6L` while blocking 11 nonpositive outside-query controls.
 The substrate-mode gap audit combines those two outside-query peptide hits
 with `6Z3R`/`8OXM`/`8OXO` and the three protein-substrate positive-like
 controls; both modes pass current controls, and
@@ -762,9 +762,14 @@ review-only signal, `3TM0` remains excluded as ligand-analog-only, 44 current
 controls plus 20 legacy sibling counter-axis rows abstain, and all three
 imported external hard negatives score as abstentions. The bounded
 `artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json` then records
-that exact-query stress is exhausted but outside-query broad sourcing still has
-source-validation counterexamples (`9L3M` and `9L3U`). The next broad-stress
-tranche is preregistered in
+that exact-query stress is exhausted and outside-query broad sourcing now has
+299 reviewed candidates, 13 heteromeric topology hits, and 11 blocked
+source-validation counterexamples (`2JJ2`, `4HPU`, `7B56`, `7T55`, `7T56`,
+`7T57`, `7ZDT`, `7ZDU`, `7ZE5`, `9L3M`, and `9L3U`). The peptide-role audit
+adds source-free counterevidence for the blocked hits: non-peptide-like
+acceptor chains, local nucleotide/metal acceptor context, same-chain
+acceptor/gamma context, or gamma-chain topology inconsistent with a peptide
+acceptor role. The next broad-stress tranche is preregistered in
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`.
 The downstream counteraxis sufficiency decision carries the unified rule,
 unified prototype, and broad-stress audit as review-only decision rows but

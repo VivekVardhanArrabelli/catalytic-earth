@@ -2484,6 +2484,71 @@ class LeakageClosureTests(unittest.TestCase):
             / "artifacts"
             / "v3_epk_heteromeric_source_expansion_source_validation_review_broad_peptide_atp_1025.json"
         )
+        next_amp_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_amp_pnp_peptide_1025.json"
+        )
+        next_protein_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_protein_substrate_anp_1025.json"
+        )
+        next_broad_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_1025.json"
+        )
+        next_amp_validation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_source_validation_review_amp_pnp_peptide_1025.json"
+        )
+        next_amp_round2_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_amp_pnp_peptide_round2_1025.json"
+        )
+        next_protein_round2_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_protein_substrate_anp_round2_1025.json"
+        )
+        next_broad_round2_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_round2_1025.json"
+        )
+        next_amp_round2_validation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_source_validation_review_amp_pnp_peptide_round2_1025.json"
+        )
+        next_broad_round2_validation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_source_validation_review_broad_text_atp_round2_1025.json"
+        )
+        next_protein_round3_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_protein_substrate_anp_round3_1025.json"
+        )
+        next_broad_round3_scout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_candidate_scout_broad_text_atp_round3_1025.json"
+        )
+        next_protein_round3_validation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_source_validation_review_protein_substrate_anp_round3_1025.json"
+        )
+        next_broad_round3_validation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_unified_next_broad_stress_source_validation_review_broad_text_atp_round3_1025.json"
+        )
         distance_sample = _load_json(
             ROOT
             / "artifacts"
@@ -2544,6 +2609,137 @@ class LeakageClosureTests(unittest.TestCase):
             {"blocked_source_context_insufficient_review_only": 2},
         )
 
+        self.assertEqual(next_amp_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(
+            next_amp_scout["metadata"]["heteromeric_candidate_pdb_ids"],
+            ["7ZE5"],
+        )
+        self.assertTrue(next_amp_scout["metadata"]["source_validation_queue_ready"])
+        self.assertEqual(next_protein_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(
+            next_protein_scout["metadata"]["heteromeric_candidate_structure_count"],
+            0,
+        )
+        self.assertFalse(next_protein_scout["metadata"]["source_validation_queue_ready"])
+        self.assertEqual(next_broad_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(
+            next_broad_scout["metadata"]["heteromeric_candidate_structure_count"],
+            0,
+        )
+        self.assertFalse(next_broad_scout["metadata"]["source_validation_queue_ready"])
+        self.assertEqual(
+            next_amp_validation["metadata"]["source_validation_status_counts"],
+            {"blocked_source_context_insufficient_review_only": 1},
+        )
+        self.assertEqual(
+            next_amp_validation["metadata"]["source_validated_new_candidate_count"],
+            0,
+        )
+        self.assertIn(
+            "ATP-binding/permease protein CydC",
+            next_amp_validation["rows"][0]["entity_descriptions"],
+        )
+
+        self.assertEqual(next_amp_round2_scout["metadata"]["input_candidate_count"], 13)
+        self.assertEqual(
+            next_amp_round2_scout["metadata"]["heteromeric_candidate_pdb_ids"],
+            ["4HPU"],
+        )
+        self.assertTrue(
+            next_amp_round2_scout["metadata"]["source_validation_queue_ready"]
+        )
+        self.assertEqual(
+            next_protein_round2_scout["metadata"]["input_candidate_count"], 25
+        )
+        self.assertEqual(
+            next_protein_round2_scout["metadata"][
+                "heteromeric_candidate_structure_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            next_protein_round2_scout["metadata"]["source_validation_queue_ready"]
+        )
+        self.assertEqual(next_broad_round2_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(
+            next_broad_round2_scout["metadata"]["heteromeric_candidate_pdb_ids"],
+            ["7T55", "7T56", "7T57"],
+        )
+        self.assertTrue(
+            next_broad_round2_scout["metadata"]["source_validation_queue_ready"]
+        )
+        self.assertEqual(
+            next_amp_round2_validation["metadata"][
+                "source_validation_status_counts"
+            ],
+            {"blocked_source_context_insufficient_review_only": 1},
+        )
+        self.assertEqual(
+            next_amp_round2_validation["metadata"][
+                "source_validated_new_candidate_count"
+            ],
+            0,
+        )
+        self.assertIn(
+            "cAMP-dependent protein kinase catalytic subunit alpha",
+            next_amp_round2_validation["rows"][0]["entity_descriptions"],
+        )
+        self.assertEqual(
+            next_broad_round2_validation["metadata"][
+                "source_validation_status_counts"
+            ],
+            {"blocked_source_context_insufficient_review_only": 3},
+        )
+        self.assertEqual(
+            next_broad_round2_validation["metadata"][
+                "source_validated_new_candidate_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            [row["pdb_id"] for row in next_broad_round2_validation["rows"]],
+            ["7T55", "7T56", "7T57"],
+        )
+
+        self.assertEqual(
+            next_protein_round3_scout["metadata"]["input_candidate_count"], 25
+        )
+        self.assertEqual(
+            next_protein_round3_scout["metadata"]["heteromeric_candidate_pdb_ids"],
+            ["2JJ2", "7B56"],
+        )
+        self.assertTrue(
+            next_protein_round3_scout["metadata"]["source_validation_queue_ready"]
+        )
+        self.assertEqual(next_broad_round3_scout["metadata"]["input_candidate_count"], 25)
+        self.assertEqual(
+            next_broad_round3_scout["metadata"]["heteromeric_candidate_pdb_ids"],
+            ["7ZDT", "7ZDU"],
+        )
+        self.assertTrue(
+            next_broad_round3_scout["metadata"]["source_validation_queue_ready"]
+        )
+        self.assertEqual(
+            next_protein_round3_validation["metadata"][
+                "source_validation_status_counts"
+            ],
+            {"blocked_source_context_insufficient_review_only": 2},
+        )
+        self.assertEqual(
+            next_broad_round3_validation["metadata"][
+                "source_validation_status_counts"
+            ],
+            {"blocked_source_context_insufficient_review_only": 2},
+        )
+        self.assertEqual(
+            [row["pdb_id"] for row in next_protein_round3_validation["rows"]],
+            ["2JJ2", "7B56"],
+        )
+        self.assertEqual(
+            [row["pdb_id"] for row in next_broad_round3_validation["rows"]],
+            ["7ZDT", "7ZDU"],
+        )
+
         self.assertEqual(
             distance_sample["metadata"]["measured_candidate_pdb_ids"],
             ["1O6K", "1O6L"],
@@ -2570,6 +2766,46 @@ class LeakageClosureTests(unittest.TestCase):
             ["1O6K", "1O6L"],
         )
         self.assertEqual(
+            peptide_role_axis["metadata"]["source_expansion_reviewed_row_count"],
+            13,
+        )
+        self.assertEqual(
+            peptide_role_axis["metadata"]["source_expansion_status_counts"],
+            {
+                "nonpositive_source_expansion_blocked_by_peptide_role_axis": 11,
+                "positive_like_source_expansion_peptide_role_hit_review_only": 2,
+            },
+        )
+        self.assertEqual(
+            peptide_role_axis["metadata"][
+                "source_free_peptide_role_axis_counterevidence_status_counts"
+            ],
+            {
+                "candidate_acceptor_and_gamma_on_same_chain": 5,
+                "candidate_acceptor_chain_has_local_nucleotide_or_metal": 9,
+                "candidate_acceptor_chain_not_peptide_like": 11,
+                "gamma_chain_not_larger_than_acceptor_chain": 5,
+            },
+        )
+        self.assertEqual(
+            peptide_role_axis["metadata"][
+                "nonpositive_source_expansion_counterevidence_complete_pdb_ids"
+            ],
+            [
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "9L3M",
+                "9L3U",
+            ],
+        )
+        self.assertEqual(
             peptide_role_axis["metadata"]["nonpositive_source_expansion_control_false_hit_count"],
             0,
         )
@@ -2586,6 +2822,19 @@ class LeakageClosureTests(unittest.TestCase):
             broad_peptide_scout,
             validation,
             broad_peptide_validation,
+            next_amp_scout,
+            next_protein_scout,
+            next_broad_scout,
+            next_amp_validation,
+            next_amp_round2_scout,
+            next_protein_round2_scout,
+            next_broad_round2_scout,
+            next_amp_round2_validation,
+            next_broad_round2_validation,
+            next_protein_round3_scout,
+            next_broad_round3_scout,
+            next_protein_round3_validation,
+            next_broad_round3_validation,
             distance_sample,
             rerun,
             peptide_role_axis,
@@ -3033,8 +3282,37 @@ class LeakageClosureTests(unittest.TestCase):
         rows = {row["pdb_id"]: row for row in audit["rows"]}
         self.assertTrue(rows["1O6K"]["source_free_peptide_role_axis_rule_hit"])
         self.assertTrue(rows["1O6L"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["2JJ2"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["4HPU"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["7B56"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["7T55"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["7T56"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["7T57"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["7ZDT"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["7ZDU"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertFalse(rows["7ZE5"]["source_free_peptide_role_axis_rule_hit"])
         self.assertFalse(rows["9L3M"]["source_free_peptide_role_axis_rule_hit"])
         self.assertFalse(rows["9L3U"]["source_free_peptide_role_axis_rule_hit"])
+        self.assertEqual(
+            rows["1O6K"]["source_free_peptide_role_axis_counterevidence_reasons"],
+            [],
+        )
+        self.assertEqual(
+            rows["4HPU"]["source_free_peptide_role_axis_counterevidence_reasons"],
+            [
+                "candidate_acceptor_chain_not_peptide_like",
+                "candidate_acceptor_chain_has_local_nucleotide_or_metal",
+                "gamma_chain_not_larger_than_acceptor_chain",
+            ],
+        )
+        self.assertEqual(
+            rows["7T55"]["source_free_peptide_role_axis_counterevidence_reasons"],
+            [
+                "candidate_acceptor_chain_not_peptide_like",
+                "candidate_acceptor_chain_has_local_nucleotide_or_metal",
+                "candidate_acceptor_and_gamma_on_same_chain",
+            ],
+        )
         for row in audit["rows"]:
             self.assertTrue(row["review_only"])
             self.assertTrue(row["text_free_inputs_only"])
@@ -6742,11 +7020,23 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata[
                 "unified_prototype_broad_stress_outside_query_reviewed_candidate_count"
             ],
-            111,
+            299,
         )
         self.assertEqual(
             metadata["unified_prototype_broad_stress_blocked_or_rejected_pdb_ids"],
-            ["9L3M", "9L3U"],
+            [
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "9L3M",
+                "9L3U",
+            ],
         )
         self.assertFalse(metadata["unified_prototype_broad_stress_complete"])
         self.assertEqual(metadata["nonready_ligand_repair_row_count"], 2)
@@ -7849,15 +8139,45 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
         )
         self.assertEqual(metadata["exact_source_query_reviewed_count"], 110)
         self.assertEqual(metadata["exact_source_query_unreviewed_count"], 0)
-        self.assertEqual(metadata["outside_query_reviewed_candidate_count"], 111)
+        self.assertEqual(metadata["outside_query_reviewed_candidate_count"], 299)
         self.assertEqual(metadata["outside_query_fetch_failure_count"], 0)
-        self.assertEqual(metadata["outside_query_heteromeric_candidate_hit_count"], 4)
+        self.assertEqual(metadata["outside_query_heteromeric_candidate_hit_count"], 13)
+        self.assertEqual(
+            metadata["outside_query_heteromeric_candidate_pdb_ids"],
+            [
+                "1O6K",
+                "1O6L",
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "9L3M",
+                "9L3U",
+            ],
+        )
         self.assertEqual(
             metadata["source_validated_positive_like_pdb_ids"], ["1O6K", "1O6L"]
         )
         self.assertEqual(
             metadata["source_validation_blocked_or_rejected_pdb_ids"],
-            ["9L3M", "9L3U"],
+            [
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "9L3M",
+                "9L3U",
+            ],
         )
         self.assertTrue(metadata["bounded_stress_identifies_counterexamples"])
         self.assertFalse(metadata["broad_stress_complete"])
@@ -7888,7 +8208,22 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata["preregistration_status"],
             "active_review_only_next_broad_stress_tranche_preregistered",
         )
-        self.assertEqual(metadata["known_counterexample_pdb_ids"], ["9L3M", "9L3U"])
+        self.assertEqual(
+            metadata["known_counterexample_pdb_ids"],
+            [
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "9L3M",
+                "9L3U",
+            ],
+        )
         self.assertEqual(
             metadata["source_validated_positive_like_pdb_ids"], ["1O6K", "1O6L"]
         )
@@ -8011,7 +8346,19 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             metadata[
                 "unified_prototype_broad_stress_blocked_or_rejected_pdb_ids"
             ],
-            ["9L3M", "9L3U"],
+            [
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "9L3M",
+                "9L3U",
+            ],
         )
         self.assertFalse(metadata["unified_prototype_broad_stress_complete"])
         self.assertEqual(
@@ -8080,7 +8427,19 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             axes["unified_prototype_broad_stress_audit"][
                 "source_validation_blocked_or_rejected_pdb_ids"
             ],
-            ["9L3M", "9L3U"],
+            [
+                "2JJ2",
+                "4HPU",
+                "7B56",
+                "7T55",
+                "7T56",
+                "7T57",
+                "7ZDT",
+                "7ZDU",
+                "7ZE5",
+                "9L3M",
+                "9L3U",
+            ],
         )
 
     def test_epk_substrate_acceptor_counteraxis_prototype_fails_closed(self) -> None:

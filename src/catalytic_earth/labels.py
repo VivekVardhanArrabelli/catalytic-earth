@@ -30070,6 +30070,12 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
                     "acceptor_chain_lacks_local_nucleotide_or_metal": False,
                     "gamma_chain_is_larger_polymer": False,
                     "gamma_chain_has_local_nucleotide_or_metal": False,
+                    "source_free_peptide_role_axis_counterevidence_reasons": [
+                        "source_free_peptide_role_axis_unmapped_fetch_or_hit_missing"
+                    ],
+                    "source_free_peptide_role_axis_primary_counterevidence": (
+                        "source_free_peptide_role_axis_unmapped_fetch_or_hit_missing"
+                    ),
                 },
                 False,
                 "source_free_peptide_role_axis_unmapped_fetch_or_hit_missing",
@@ -30103,6 +30109,26 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
             and not acceptor_nucleotide_or_metal
             and bool(gamma_nucleotide_or_metal)
         )
+        counterevidence_reasons: list[str] = []
+        if not peptide_like:
+            counterevidence_reasons.append("candidate_acceptor_chain_not_peptide_like")
+        if acceptor_nucleotide_or_metal:
+            counterevidence_reasons.append(
+                "candidate_acceptor_chain_has_local_nucleotide_or_metal"
+            )
+        if not gamma_larger:
+            if acceptor_chain and gamma_chain and acceptor_chain == gamma_chain:
+                counterevidence_reasons.append(
+                    "candidate_acceptor_and_gamma_on_same_chain"
+                )
+            else:
+                counterevidence_reasons.append(
+                    "gamma_chain_not_larger_than_acceptor_chain"
+                )
+        if not gamma_nucleotide_or_metal:
+            counterevidence_reasons.append(
+                "gamma_chain_lacks_local_nucleotide_or_metal"
+            )
         status = (
             "source_free_peptide_role_axis_hit_review_only"
             if rule_hit
@@ -30128,6 +30154,14 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
                 "gamma_chain_has_local_nucleotide_or_metal": bool(
                     gamma_nucleotide_or_metal
                 ),
+                "source_free_peptide_role_axis_counterevidence_reasons": (
+                    counterevidence_reasons
+                ),
+                "source_free_peptide_role_axis_primary_counterevidence": (
+                    counterevidence_reasons[0]
+                    if counterevidence_reasons
+                    else "source_free_peptide_role_axis_supports_peptide_acceptor_role"
+                ),
             },
             rule_hit,
             status,
@@ -30139,6 +30173,8 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
     accepted_miss_pdb_ids: list[str] = []
     accepted_pair_ids: list[str] = []
     nonpositive_false_hit_pdb_ids: list[str] = []
+    counterevidence_counts: Counter[str] = Counter()
+    nonpositive_counterevidence_complete_pdb_ids: list[str] = []
     source_review_count = 0
 
     for review_index, review in enumerate(source_reviews):
@@ -30168,6 +30204,13 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
                 decision = "nonpositive_source_expansion_peptide_role_false_hit"
             else:
                 decision = "nonpositive_source_expansion_blocked_by_peptide_role_axis"
+            counterevidence_reasons = _sorted_strings(
+                evidence.get("source_free_peptide_role_axis_counterevidence_reasons")
+            )
+            for reason in counterevidence_reasons:
+                counterevidence_counts[reason] += 1
+            if not source_valid and not rule_hit and counterevidence_reasons:
+                nonpositive_counterevidence_complete_pdb_ids.append(pdb_id)
             status_counts[decision] += 1
             rows.append(
                 {
@@ -30223,6 +30266,9 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
     accepted_miss_pdb_ids = _sorted_strings(accepted_miss_pdb_ids)
     accepted_pair_ids = _sorted_strings(accepted_pair_ids)
     nonpositive_false_hit_pdb_ids = _sorted_strings(nonpositive_false_hit_pdb_ids)
+    nonpositive_counterevidence_complete_pdb_ids = _sorted_strings(
+        nonpositive_counterevidence_complete_pdb_ids
+    )
     current_controls_passed = bool(
         peptide_meta.get("current_controls_passed_review_only")
     )
@@ -30268,6 +30314,15 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
             "max_peptide_chain_residue_count": peptide_limit,
             "source_expansion_reviewed_row_count": source_review_count,
             "source_expansion_status_counts": dict(sorted(status_counts.items())),
+            "source_free_peptide_role_axis_counterevidence_status_counts": (
+                dict(sorted(counterevidence_counts.items()))
+            ),
+            "nonpositive_source_expansion_counterevidence_complete_count": len(
+                nonpositive_counterevidence_complete_pdb_ids
+            ),
+            "nonpositive_source_expansion_counterevidence_complete_pdb_ids": (
+                nonpositive_counterevidence_complete_pdb_ids
+            ),
             "source_valid_expansion_positive_candidate_count": accepted_count,
             "source_valid_expansion_peptide_role_hit_count": len(
                 accepted_hit_pdb_ids
@@ -30332,6 +30387,13 @@ def build_epk_heteromeric_source_expansion_peptide_role_axis_audit(
                 "or metal context, while the gamma-associated polymer is larger "
                 "and locally carries nucleotide or metal context. Source review "
                 "is used only to label positives and nonpositive controls."
+            ),
+            "counterevidence_rule": (
+                "Nonpositive outside-query hits are blocked by explicit "
+                "source-free counterevidence when the putative acceptor chain "
+                "is not peptide-like, carries local nucleotide/metal context, "
+                "shares the same polymer chain as the gamma-associated atom, "
+                "or lacks a larger nucleotide/metal-carrying catalytic chain."
             ),
             "next_actions": [
                 "use the outside-query peptide-role pass only as review evidence",

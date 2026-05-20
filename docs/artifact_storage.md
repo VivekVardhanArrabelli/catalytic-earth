@@ -212,9 +212,10 @@ be considered.
 
 Phase 1 readiness checkpoint: the execution manifest has zero
 `unknown_blocking` rows, zero migration-ready rows, zero remote SHA-256
-verifications, zero restore-test passes, and zero removal authorizations. The
-next step is human approval of a Phase 2 storage target and upload plan. Phase
-2 must still be upload-and-verify only; it cannot remove artifacts from Git.
+verifications, zero restore-test passes, and zero removal authorizations.
+Phase 1 is closed as a guardrail checkpoint unless a human explicitly reopens
+Phase 2. If reopened, Phase 2 must still be upload-and-verify only; it cannot
+remove artifacts from Git.
 
 Phase 2 may upload approved artifacts only after a human authorizes the storage
 target. Every uploaded artifact must have a target URI, independently verified

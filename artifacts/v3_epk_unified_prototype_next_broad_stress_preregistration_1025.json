@@ -6,12 +6,30 @@
     "excluded_prior_pdb_ids": [
       "1O6K",
       "1O6L",
+      "2JJ2",
+      "4HPU",
+      "7B56",
+      "7T55",
+      "7T56",
+      "7T57",
+      "7ZDT",
+      "7ZDU",
+      "7ZE5",
       "9L3M",
       "9L3U"
     ],
     "external_hard_negative_reaudit_scored": false,
     "fingerprint_registry_edited": false,
     "known_counterexample_pdb_ids": [
+      "2JJ2",
+      "4HPU",
+      "7B56",
+      "7T55",
+      "7T56",
+      "7T57",
+      "7ZDT",
+      "7ZDU",
+      "7ZE5",
       "9L3M",
       "9L3U"
     ],
@@ -89,6 +107,15 @@
         "source-unvalidated broad-query hits are treated as positives"
       ],
       "known_counterexample_pdb_ids": [
+        "2JJ2",
+        "4HPU",
+        "7B56",
+        "7T55",
+        "7T56",
+        "7T57",
+        "7ZDT",
+        "7ZDU",
+        "7ZE5",
         "9L3M",
         "9L3U"
       ],

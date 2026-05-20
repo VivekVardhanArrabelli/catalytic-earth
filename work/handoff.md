@@ -50,6 +50,42 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T02:43:53Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+or `removal_allowed=true` occurred. SSH deploy-key fetch/pull/ls-remote/dry-run
+push hygiene passed at startup, and startup checks passed: 624 unit tests plus
+`catalytic_earth.cli validate` with 682 labels and 8 production fingerprints.
+
+The preregistered broad-stress lanes were executed rather than left as a paper
+plan. The current
+`artifacts/v3_epk_unified_prototype_broad_stress_audit_1025.json` now covers
+110 exact-query entries plus 299 outside-query reviewed candidates. It finds
+13 heteromeric topology hits: the two source-valid PKB/GSK3 positives
+(`1O6K` and `1O6L`) plus 11 blocked source-context counterexamples (`2JJ2`,
+`4HPU`, `7B56`, `7T55`, `7T56`, `7T57`, `7ZDT`, `7ZDU`, `7ZE5`, `9L3M`, and
+`9L3U`). The new round found ATP synthase, CaMKII/autoinhibitory-peptide, and
+CydC/CydD transporter contexts, all rejected before any threshold or label
+claim.
+
+`artifacts/v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json`
+now carries an explicit source-free counterevidence rule for those outside-query
+hits. The two positives still pass the short peptide-role axis, while all 11
+blocked candidates have machine-readable counterevidence: 11 non-peptide-like
+acceptor chains, 9 acceptor chains with local nucleotide/metal context, 5
+same-chain acceptor/gamma contexts, and 5 gamma-chain-not-larger contexts. The
+downstream substrate-mode, unified identity, unified scorer, pre-count, and
+counteraxis artifacts were regenerated; `blocked_review_only` and
+`threshold_selection_decision=do_not_select_threshold` remain unchanged.
+
+Evidence-based confidence call: confidence is higher that the current
+source-free peptide-role counterevidence separates the PKB/GSK3 positives from
+outside-query topology false positives. Confidence remains low for production
+ePK scoring because broad stress is still bounded, thresholds are uncalibrated,
+the real external hard-negative scored re-audit is closed, and registry/factory
+extension remains out of scope.
+
 As of the 2026-05-20T01:43:22Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
