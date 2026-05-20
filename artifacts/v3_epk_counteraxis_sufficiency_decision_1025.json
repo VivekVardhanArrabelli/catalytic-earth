@@ -282,6 +282,52 @@
       "source_free_predictive_feature_materialized": false
     },
     {
+      "blocker": "source_context_residual_false_hit_blocking_not_source_free",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "source_adjudication_blocks_residual_false_hits_but_not_source_free",
+      "decision_axis": "mek_erk_residual_false_hit_source_adjudication",
+      "feature_admissible_for_production_scoring": false,
+      "residual_false_hit_input_count": 2,
+      "residual_false_hit_input_pdb_ids": [
+        "7CAG",
+        "8BMS"
+      ],
+      "review_only": true,
+      "source_adjudication_status": "passes_review_only_residual_false_hits_terminally_blocked_not_source_free",
+      "source_free_predictive_feature_materialized": false,
+      "terminally_blocked_residual_false_hit_count": 2,
+      "terminally_blocked_residual_false_hit_pdb_ids": [
+        "7CAG",
+        "8BMS"
+      ],
+      "unresolved_residual_false_hit_count": 0,
+      "unresolved_residual_false_hit_pdb_ids": []
+    },
+    {
+      "blocker": "topology_ambiguity_counteraxis_bounded_not_calibrated",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "source_free_topology_ambiguity_blocks_residuals_but_not_calibrated",
+      "decision_axis": "mek_erk_source_free_topology_ambiguity_counteraxis",
+      "feature_admissible_for_production_scoring": false,
+      "missing_local_topology_hit_count": 0,
+      "residual_false_hit_blocked_count": 2,
+      "residual_false_hit_blocked_pdb_ids": [
+        "7CAG",
+        "8BMS"
+      ],
+      "residual_false_hit_unblocked_count": 0,
+      "residual_false_hit_unblocked_pdb_ids": [],
+      "review_only": true,
+      "source_free_counteraxis_status": "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+      "source_free_predictive_feature_materialized": true,
+      "source_reviewed_positive_lost_count": 0,
+      "source_reviewed_positive_retained_count": 2,
+      "source_reviewed_positive_retained_pdb_ids": [
+        "9UUR",
+        "9UUX"
+      ]
+    },
+    {
       "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
       "candidate_threshold_angstrom": 6.0,
       "control_false_non_abstention_count": 0,
@@ -431,6 +477,20 @@
     ],
     "mek_erk_context_source_free_predictive_feature_materialized": false,
     "mek_erk_phosphosite_source_review_status": "adds_source_authoritative_broad_protein_substrate_rows_review_only",
+    "mek_erk_residual_source_adjudication_input_count": 2,
+    "mek_erk_residual_source_adjudication_input_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "mek_erk_residual_source_adjudication_source_free_predictive_feature_materialized": false,
+    "mek_erk_residual_source_adjudication_status": "passes_review_only_residual_false_hits_terminally_blocked_not_source_free",
+    "mek_erk_residual_source_adjudication_terminal_count": 2,
+    "mek_erk_residual_source_adjudication_terminal_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "mek_erk_residual_source_adjudication_unresolved_count": 0,
+    "mek_erk_residual_source_adjudication_unresolved_pdb_ids": [],
     "mek_erk_same_chain_artifact_rejected_count": 1,
     "mek_erk_same_chain_artifact_rejected_pdb_ids": [
       "9UW4"
@@ -441,6 +501,22 @@
       "9UUX"
     ],
     "mek_erk_source_free_predictive_feature_materialized": false,
+    "mek_erk_source_free_topology_ambiguity_counteraxis_status": "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+    "mek_erk_source_free_topology_missing_hit_count": 0,
+    "mek_erk_source_free_topology_positive_lost_count": 0,
+    "mek_erk_source_free_topology_positive_retained_count": 2,
+    "mek_erk_source_free_topology_positive_retained_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "mek_erk_source_free_topology_residual_blocked_count": 2,
+    "mek_erk_source_free_topology_residual_blocked_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "mek_erk_source_free_topology_residual_unblocked_count": 0,
+    "mek_erk_source_free_topology_residual_unblocked_pdb_ids": [],
+    "mek_erk_source_free_topology_source_free_predictive_feature_materialized": true,
     "method": "epk_counteraxis_sufficiency_decision",
     "midlength_protein_role_blocked_false_hit_count": 1,
     "midlength_protein_role_blocked_false_hit_pdb_ids": [
@@ -462,7 +538,7 @@
     "next_actions": [
       "use source-reviewed MEK1/ERK1 rows only after source-free role and acceptor controls are rerun",
       "repair MEK1/ERK1 broad-role false hits with a source-free counter-axis before scorer calibration",
-      "source-adjudicate 7CAG and 8BMS or replace review-context blocking with a source-free feature",
+      "stress the topology-ambiguity feature against broader MEK/ERK false-hit controls",
       "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
       "calibrate the unified substrate-identity rule against broader controls before thresholding",
       "run external hard-negative re-audit only after a calibrated ePK score exists"
@@ -495,6 +571,8 @@
       "mek_erk_source_review_not_source_free_or_calibrated_scoring_axis",
       "naive_mek_erk_broad_role_rule_false_hits_terminal_surface",
       "review_context_counteraxis_not_source_free_or_residual_false_hits",
+      "mek_erk_residual_source_adjudication_not_source_free",
+      "topology_ambiguity_counteraxis_bounded_not_calibrated",
       "unified_substrate_identity_rule_not_calibrated_for_production",
       "label_factory_gate_not_extended_for_epk"
     ],

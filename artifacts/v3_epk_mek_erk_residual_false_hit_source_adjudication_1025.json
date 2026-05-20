@@ -1,0 +1,246 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_context_counterevidence_not_source_free_predictive_feature",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "residual_new_topology_false_hits_source_adjudicated",
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_mek_erk_residual_false_hit_source_adjudication",
+    "missing_source_review_count": 0,
+    "missing_source_review_pdb_ids": [],
+    "next_actions": [
+      "replace source-context residual-hit blocking with a source-free acceptor or substrate identity feature",
+      "do not calibrate MEK/ERK broad-role thresholds from this source-adjudicated surface",
+      "keep external hard-negative scored re-audit closed until a calibrated scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "residual_false_hit_input_count": 2,
+    "residual_false_hit_input_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "review_only": true,
+    "review_only_rule": "This source-adjudication artifact turns the residual MEK/ERK broad-role topology false hits into terminal review-only counterexamples. It uses source context, so it is not a source-free ePK counteraxis or production score.",
+    "reviewed_residual_false_hit_count": 2,
+    "selected_threshold_angstrom": null,
+    "source_adjudication_status": "passes_review_only_residual_false_hits_terminally_blocked_not_source_free",
+    "source_adjudication_status_counts": {
+      "terminal_non_epk_transporter_false_hit_review_only": 2
+    },
+    "source_context_counterevidence_used": true,
+    "source_epk_mek_erk_context_counteraxis_stress_audit_method": "epk_mek_erk_context_counteraxis_stress_audit",
+    "source_free_predictive_feature_materialized": false,
+    "source_validation_review_artifact_count": 2,
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "terminally_blocked_residual_false_hit_count": 2,
+    "terminally_blocked_residual_false_hit_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "threshold_calibrated": false,
+    "transporter_false_hit_count": 2,
+    "transporter_false_hit_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "unresolved_residual_false_hit_count": 0,
+    "unresolved_residual_false_hit_pdb_ids": []
+  },
+  "rows": [
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "4",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "140",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.023
+        },
+        {
+          "acceptor_entity_id": "4",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "48",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.825
+        },
+        {
+          "acceptor_entity_id": "4",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "43",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.867
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "I7G6S2"
+        ],
+        "B": [
+          "A0R2C1"
+        ],
+        "C": [
+          "A0R2C0"
+        ],
+        "D": [
+          "A0R2C0"
+        ],
+        "E": [
+          "A0R2C3"
+        ]
+      },
+      "context_counteraxis_decision": "residual_new_topology_false_hit_review_only",
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "ABC sugar transporter, permease component",
+        "ABC transporter, ATP-binding protein SugC",
+        "ABC transporter, permease protein SugB",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Bacterial extracellular solute-binding protein",
+        "MAGNESIUM ION",
+        "alpha-D-glucopyranose-(1-1)-alpha-D-glucopyranose"
+      ],
+      "epk_score_computed": false,
+      "explicit_negative_source_review_detected": true,
+      "external_hard_negative_reaudit_scored": false,
+      "keywords": [
+        "TRANSPORT PROTEIN"
+      ],
+      "kinase_source_context_detected": false,
+      "pdb_id": "7CAG",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_context_counterevidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "mek_erk_residual_false_hit_source_adjudication",
+      "source_adjudication_status": "terminal_non_epk_transporter_false_hit_review_only",
+      "source_context_used_for_counterevidence": true,
+      "source_free_predictive_feature_materialized": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": "Mycobacterium smegmatis LpqY-SugABC complex in the catalytic intermediate state",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "terminally_blocked_as_broad_role_false_hit": true,
+      "transporter_source_context_detected": true
+    },
+    {
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "147",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.408
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "145",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.554
+        }
+      ],
+      "chain_accessions": {
+        "A": [
+          "Q1GBJ0"
+        ],
+        "B": [
+          "Q1GBI9"
+        ],
+        "C": [
+          "Q1GBI8"
+        ]
+      },
+      "context_counteraxis_decision": "residual_new_topology_false_hit_review_only",
+      "countable_label_candidate": false,
+      "entity_descriptions": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Energy-coupling factor transporter transmembrane protein EcfT",
+        "MAGNESIUM ION",
+        "water"
+      ],
+      "epk_score_computed": false,
+      "explicit_negative_source_review_detected": true,
+      "external_hard_negative_reaudit_scored": false,
+      "keywords": [
+        "ABC Transporter, ECF transporter complex, motor, membrane protein",
+        "MEMBRANE PROTEIN"
+      ],
+      "kinase_source_context_detected": false,
+      "pdb_id": "8BMS",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_context_counterevidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "mek_erk_residual_false_hit_source_adjudication",
+      "source_adjudication_status": "terminal_non_epk_transporter_false_hit_review_only",
+      "source_context_used_for_counterevidence": true,
+      "source_free_predictive_feature_materialized": false,
+      "source_validation_evidence": [
+        "no_explicit_kinase_substrate_source_context_detected"
+      ],
+      "source_validation_status": "blocked_source_context_insufficient_review_only",
+      "structure_title": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "terminally_blocked_as_broad_role_false_hit": true,
+      "transporter_source_context_detected": true
+    }
+  ],
+  "warnings": [
+    "Residual false-hit source adjudication is review-only and does not authorize threshold selection, scoring, registry edits, or label import."
+  ]
+}

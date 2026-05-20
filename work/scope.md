@@ -15,8 +15,11 @@ source-authoritative broad protein-substrate review controls (`9UUR` and
 `9UUX`) and rejects same-chain `9UW4`, but the broad-role stress test shows a
 naive different-chain/distance rule false-hits eight nonpositive topology rows.
 A review-context counteraxis blocks six prior-counterexample repeats and leaves
-`7CAG`/`8BMS` unresolved, so no threshold, scorer, registry edit, or label
-import is authorized. The chain/ligand acceptor disambiguation experiment now
+`7CAG`/`8BMS` unresolved. Source adjudication marks those two residuals as
+transporter-context false hits, and a source-free topology-ambiguity probe
+blocks them locally, but broader stress still leaves `2JJ2`, `4HPU`, `7B56`,
+and `7ZDT` as false hits. No threshold, scorer, registry edit, or label import
+is authorized. The chain/ligand acceptor disambiguation experiment now
 keeps 3/3 current ePK positives, blocks 20/20 current sibling controls with 0
 false hits, and leaves all three imported external hard negatives abstained.
 The stricter protein-substrate-only acceptor candidate keeps 2/3 positives and

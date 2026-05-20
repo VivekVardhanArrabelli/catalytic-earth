@@ -1,0 +1,264 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "topology_ambiguity_counteraxis_only_bounded_to_mek_erk_residuals",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "bounded_residual_false_hits_blocked_by_source_free_topology_ambiguity",
+    "candidate_context_artifact_count": 2,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "residual_false_hit_blocked_by_topology_ambiguity_review_only": 2,
+      "source_reviewed_positive_retained_review_only": 2
+    },
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_mek_erk_source_free_topology_ambiguity_counteraxis",
+    "missing_local_topology_hit_count": 0,
+    "missing_local_topology_hit_pdb_ids": [],
+    "next_actions": [
+      "stress the topology-ambiguity counteraxis against broader heteromeric positives and controls",
+      "do not calibrate thresholds until the rule clears broader source-free controls",
+      "keep external hard-negative scored re-audit closed until a calibrated scorer exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "residual_false_hit_blocked_count": 2,
+    "residual_false_hit_blocked_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "residual_false_hit_input_count": 2,
+    "residual_false_hit_input_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "residual_false_hit_unblocked_count": 0,
+    "residual_false_hit_unblocked_pdb_ids": [],
+    "review_only": true,
+    "review_only_rule": "This artifact uses only local topology hit-pattern ambiguity for the candidate rule: same-chain companion hits or reciprocal cross-chain ATP-to-hydroxyl hits. Source context is used only to label positives and residual false hits for review.",
+    "rule_id": "epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0",
+    "selected_threshold_angstrom": null,
+    "source_context_used_for_failure_label_only": true,
+    "source_epk_mek_erk_context_counteraxis_stress_audit_method": "epk_mek_erk_context_counteraxis_stress_audit",
+    "source_epk_mek_erk_phosphosite_source_review_method": "epk_mek_erk_phosphosite_source_review",
+    "source_fields_masked_for_candidate_rule": true,
+    "source_free_counteraxis_status": "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+    "source_free_predictive_feature_materialized": true,
+    "source_reviewed_positive_input_count": 2,
+    "source_reviewed_positive_input_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "source_reviewed_positive_lost_count": 0,
+    "source_reviewed_positive_lost_pdb_ids": [],
+    "source_reviewed_positive_retained_count": 2,
+    "source_reviewed_positive_retained_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "candidate_hit_count": 3,
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "4",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "140",
+          "candidate_chain_name": "D",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.023
+        },
+        {
+          "acceptor_entity_id": "4",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "48",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 4.825
+        },
+        {
+          "acceptor_entity_id": "4",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "43",
+          "candidate_chain_name": "C",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "C",
+          "gamma_associated_polymer_entity_id": "3",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 5.867
+        }
+      ],
+      "countable_label_candidate": false,
+      "counteraxis_decision": "residual_false_hit_blocked_by_topology_ambiguity_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "known_residual_false_hit": true,
+      "known_source_reviewed_positive": false,
+      "pdb_id": "7CAG",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "reciprocal_cross_chain_hit_detected": false,
+      "review_only": true,
+      "row_type": "mek_erk_source_free_topology_ambiguity_counteraxis_row",
+      "same_chain_companion_hit_detected": true,
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "source_review_status": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "topology_ambiguity_counteraxis_hit": true
+    },
+    {
+      "candidate_hit_count": 2,
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "147",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.408
+        },
+        {
+          "acceptor_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "145",
+          "candidate_chain_name": "A",
+          "candidate_residue_code": "SER",
+          "gamma_associated_polymer_chain_name": "B",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ATP",
+          "nearest_gamma_distance_angstrom": 3.554
+        }
+      ],
+      "countable_label_candidate": false,
+      "counteraxis_decision": "residual_false_hit_blocked_by_topology_ambiguity_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "known_residual_false_hit": true,
+      "known_source_reviewed_positive": false,
+      "pdb_id": "8BMS",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "reciprocal_cross_chain_hit_detected": true,
+      "review_only": true,
+      "row_type": "mek_erk_source_free_topology_ambiguity_counteraxis_row",
+      "same_chain_companion_hit_detected": false,
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "source_review_status": null,
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "topology_ambiguity_counteraxis_hit": true
+    },
+    {
+      "candidate_hit_count": 1,
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 4.181
+        }
+      ],
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_reviewed_positive_retained_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "known_residual_false_hit": false,
+      "known_source_reviewed_positive": true,
+      "pdb_id": "9UUR",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "reciprocal_cross_chain_hit_detected": false,
+      "review_only": true,
+      "row_type": "mek_erk_source_free_topology_ambiguity_counteraxis_row",
+      "same_chain_companion_hit_detected": false,
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "source_review_status": "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "topology_ambiguity_counteraxis_hit": false
+    },
+    {
+      "candidate_hit_count": 1,
+      "candidate_hits": [
+        {
+          "acceptor_entity_id": "2",
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 3.968
+        }
+      ],
+      "countable_label_candidate": false,
+      "counteraxis_decision": "source_reviewed_positive_retained_review_only",
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "known_residual_false_hit": false,
+      "known_source_reviewed_positive": true,
+      "pdb_id": "9UUX",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "reciprocal_cross_chain_hit_detected": false,
+      "review_only": true,
+      "row_type": "mek_erk_source_free_topology_ambiguity_counteraxis_row",
+      "same_chain_companion_hit_detected": false,
+      "source_context_used_for_failure_label_only": true,
+      "source_fields_masked_for_candidate_rule": true,
+      "source_review_status": "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+      "topology_ambiguity_counteraxis_hit": false
+    }
+  ],
+  "warnings": [
+    "The topology-ambiguity counteraxis is a bounded review-only source-free feature probe, not production scoring evidence."
+  ]
+}

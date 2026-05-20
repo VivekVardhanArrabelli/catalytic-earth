@@ -106,7 +106,10 @@ from .labels import (
     build_epk_mek_erk_broad_role_stress_audit,
     build_epk_mek_erk_context_counteraxis_stress_audit,
     build_epk_mek_erk_phosphosite_source_review,
+    build_epk_mek_erk_residual_false_hit_source_adjudication,
     build_epk_mek_erk_role_control_rerun,
+    build_epk_mek_erk_source_free_topology_ambiguity_counteraxis,
+    build_epk_mek_erk_source_free_topology_broader_stress_audit,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_heteromeric_source_valid_control_rerun,
     build_epk_heteromeric_source_free_role_rule_probe,
@@ -7286,6 +7289,88 @@ def cmd_build_epk_mek_erk_context_counteraxis_stress_audit(
     return 0
 
 
+def cmd_build_epk_mek_erk_residual_false_hit_source_adjudication(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_context_counteraxis_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_context_counteraxis_stress_audit = json.load(handle)
+    source_reviews: list[dict[str, Any]] = []
+    for path in args.epk_ligand_specific_active_query_source_validation_review:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            source_reviews.append(json.load(handle))
+    audit = build_epk_mek_erk_residual_false_hit_source_adjudication(
+        epk_mek_erk_context_counteraxis_stress_audit=(
+            epk_mek_erk_context_counteraxis_stress_audit
+        ),
+        epk_ligand_specific_active_query_source_validation_reviews=source_reviews,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK residual false-hit source adjudication to "
+        f"{args.out} (status={audit['metadata']['source_adjudication_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_mek_erk_source_free_topology_ambiguity_counteraxis(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_phosphosite_source_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_phosphosite_source_review = json.load(handle)
+    with Path(args.epk_mek_erk_context_counteraxis_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_context_counteraxis_stress_audit = json.load(handle)
+    candidate_context_artifacts: list[dict[str, Any]] = []
+    for path in args.candidate_context_artifact:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            candidate_context_artifacts.append(json.load(handle))
+    audit = build_epk_mek_erk_source_free_topology_ambiguity_counteraxis(
+        epk_mek_erk_phosphosite_source_review=(
+            epk_mek_erk_phosphosite_source_review
+        ),
+        epk_mek_erk_context_counteraxis_stress_audit=(
+            epk_mek_erk_context_counteraxis_stress_audit
+        ),
+        candidate_context_artifacts=candidate_context_artifacts,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK source-free topology ambiguity counteraxis to "
+        f"{args.out} (status={audit['metadata']['source_free_counteraxis_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_mek_erk_source_free_topology_broader_stress_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_broad_role_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_broad_role_stress_audit = json.load(handle)
+    candidate_context_artifacts: list[dict[str, Any]] = []
+    for path in args.candidate_context_artifact:
+        with Path(path).open("r", encoding="utf-8") as handle:
+            candidate_context_artifacts.append(json.load(handle))
+    audit = build_epk_mek_erk_source_free_topology_broader_stress_audit(
+        epk_mek_erk_broad_role_stress_audit=(
+            epk_mek_erk_broad_role_stress_audit
+        ),
+        candidate_context_artifacts=candidate_context_artifacts,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK source-free topology broader stress audit to "
+        f"{args.out} (status={audit['metadata']['broader_stress_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     args: argparse.Namespace,
 ) -> int:
@@ -8753,6 +8838,20 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_mek_erk_context_counteraxis_stress_audit = json.load(handle)
+    epk_mek_erk_residual_false_hit_source_adjudication = None
+    if args.epk_mek_erk_residual_false_hit_source_adjudication:
+        with Path(args.epk_mek_erk_residual_false_hit_source_adjudication).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_residual_false_hit_source_adjudication = json.load(handle)
+    epk_mek_erk_source_free_topology_ambiguity_counteraxis = None
+    if args.epk_mek_erk_source_free_topology_ambiguity_counteraxis:
+        with Path(args.epk_mek_erk_source_free_topology_ambiguity_counteraxis).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_source_free_topology_ambiguity_counteraxis = json.load(
+                handle
+            )
     epk_unified_review_only_scoring_prototype = None
     if args.epk_unified_review_only_scoring_prototype:
         with Path(args.epk_unified_review_only_scoring_prototype).open(
@@ -8966,6 +9065,12 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_mek_erk_context_counteraxis_stress_audit=(
             epk_mek_erk_context_counteraxis_stress_audit
+        ),
+        epk_mek_erk_residual_false_hit_source_adjudication=(
+            epk_mek_erk_residual_false_hit_source_adjudication
+        ),
+        epk_mek_erk_source_free_topology_ambiguity_counteraxis=(
+            epk_mek_erk_source_free_topology_ambiguity_counteraxis
         ),
         epk_unified_review_only_scoring_prototype=(
             epk_unified_review_only_scoring_prototype
@@ -17264,6 +17369,100 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_mek_erk_context_counteraxis_stress_audit
     )
 
+    epk_mek_erk_residual_adjudication = subparsers.add_parser(
+        "build-epk-mek-erk-residual-false-hit-source-adjudication",
+        help=(
+            "source-adjudicate residual MEK1/ERK1 broad-role topology false "
+            "hits without opening scoring or registry gates"
+        ),
+    )
+    epk_mek_erk_residual_adjudication.add_argument(
+        "--epk-mek-erk-context-counteraxis-stress-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_context_counteraxis_stress_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_residual_adjudication.add_argument(
+        "--epk-ligand-specific-active-query-source-validation-review",
+        action="append",
+        default=[],
+        help="repeatable active-query source-validation review artifact path",
+    )
+    epk_mek_erk_residual_adjudication.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_residual_false_hit_source_adjudication_1025.json"
+        ),
+    )
+    epk_mek_erk_residual_adjudication.set_defaults(
+        func=cmd_build_epk_mek_erk_residual_false_hit_source_adjudication
+    )
+
+    epk_mek_erk_source_free_topology = subparsers.add_parser(
+        "build-epk-mek-erk-source-free-topology-ambiguity-counteraxis",
+        help=(
+            "test a bounded source-free topology ambiguity counteraxis for "
+            "MEK1/ERK1 residual false hits"
+        ),
+    )
+    epk_mek_erk_source_free_topology.add_argument(
+        "--epk-mek-erk-phosphosite-source-review",
+        default="artifacts/v3_epk_mek_erk_phosphosite_source_review_1025.json",
+    )
+    epk_mek_erk_source_free_topology.add_argument(
+        "--epk-mek-erk-context-counteraxis-stress-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_context_counteraxis_stress_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_source_free_topology.add_argument(
+        "--candidate-context-artifact",
+        action="append",
+        default=[],
+        help="repeatable artifact path containing candidate topology hits",
+    )
+    epk_mek_erk_source_free_topology.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_source_free_topology_ambiguity_counteraxis_1025.json"
+        ),
+    )
+    epk_mek_erk_source_free_topology.set_defaults(
+        func=cmd_build_epk_mek_erk_source_free_topology_ambiguity_counteraxis
+    )
+
+    epk_mek_erk_source_free_topology_broader_stress = subparsers.add_parser(
+        "build-epk-mek-erk-source-free-topology-broader-stress-audit",
+        help=(
+            "stress the MEK1/ERK1 topology ambiguity rule against broader "
+            "broad-role hits"
+        ),
+    )
+    epk_mek_erk_source_free_topology_broader_stress.add_argument(
+        "--epk-mek-erk-broad-role-stress-audit",
+        default="artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json",
+    )
+    epk_mek_erk_source_free_topology_broader_stress.add_argument(
+        "--candidate-context-artifact",
+        action="append",
+        default=[],
+        help="repeatable artifact path containing candidate topology hits",
+    )
+    epk_mek_erk_source_free_topology_broader_stress.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_source_free_topology_broader_stress_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_source_free_topology_broader_stress.set_defaults(
+        func=cmd_build_epk_mek_erk_source_free_topology_broader_stress_audit
+    )
+
     epk_heteromeric_distance_sample = subparsers.add_parser(
         "build-epk-heteromeric-source-valid-candidate-gamma-distance-sample",
         help="measure source-valid heteromeric review-lead gamma distances",
@@ -18663,6 +18862,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-mek-erk-context-counteraxis-stress-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-residual-false-hit-source-adjudication",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-source-free-topology-ambiguity-counteraxis",
         default=None,
     )
     epk_precount_gate_status.add_argument(

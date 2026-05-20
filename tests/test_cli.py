@@ -14711,6 +14711,309 @@ _struct_ref_seq.pdbx_auth_seq_align_end
             )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
+    def test_build_epk_mek_erk_residual_false_hit_source_adjudication_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            context = root / "context_counteraxis.json"
+            review = root / "source_review.json"
+            out = root / "residual_adjudication.json"
+            context.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_context_counteraxis_stress_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "residual_new_topology_false_hit_pdb_ids": ["8TRN"],
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "8TRN",
+                                "context_counteraxis_decision": (
+                                    "residual_new_topology_false_hit_review_only"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_candidate_source_validation_review"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "8TRN",
+                                "source_validation_status": (
+                                    "blocked_source_context_insufficient_review_only"
+                                ),
+                                "source_validation_evidence": [
+                                    "no_explicit_kinase_substrate_source_context_detected"
+                                ],
+                                "entity_descriptions": [
+                                    "Energy-coupling factor transporter",
+                                    "MAGNESIUM ION",
+                                ],
+                                "keywords": ["MEMBRANE PROTEIN"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-residual-false-hit-source-adjudication",
+                    "--epk-mek-erk-context-counteraxis-stress-audit",
+                    str(context),
+                    "--epk-ligand-specific-active-query-source-validation-review",
+                    str(review),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_mek_erk_residual_false_hit_source_adjudication",
+            )
+            self.assertEqual(
+                metadata["terminally_blocked_residual_false_hit_pdb_ids"],
+                ["8TRN"],
+            )
+            self.assertEqual(metadata["unresolved_residual_false_hit_count"], 0)
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_mek_erk_source_free_topology_ambiguity_counteraxis_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_review = root / "phosphosite_source_review.json"
+            context = root / "context_counteraxis.json"
+            candidate_artifact = root / "candidate_context.json"
+            out = root / "topology_counteraxis.json"
+            source_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_phosphosite_source_review",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "source_authoritative_measurement_ready_pdb_ids": [
+                                "9POS"
+                            ],
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9POS",
+                                "candidate_hit": {
+                                    "candidate_chain_name": "B",
+                                    "candidate_auth_seq_id": "204",
+                                    "candidate_residue_code": "TYR",
+                                    "gamma_associated_polymer_chain_name": "A",
+                                    "nearest_gamma_distance_angstrom": 4.1,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            context.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_context_counteraxis_stress_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "residual_new_topology_false_hit_pdb_ids": ["7TRN"],
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_artifact.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "candidate_context_fixture"},
+                        "rows": [
+                            {
+                                "pdb_id": "7TRN",
+                                "candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "C",
+                                        "candidate_auth_seq_id": "48",
+                                        "candidate_residue_code": "SER",
+                                        "gamma_associated_polymer_chain_name": "C",
+                                        "nearest_gamma_distance_angstrom": 4.8,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-source-free-topology-ambiguity-counteraxis",
+                    "--epk-mek-erk-phosphosite-source-review",
+                    str(source_review),
+                    "--epk-mek-erk-context-counteraxis-stress-audit",
+                    str(context),
+                    "--candidate-context-artifact",
+                    str(candidate_artifact),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_mek_erk_source_free_topology_ambiguity_counteraxis",
+            )
+            self.assertEqual(
+                metadata["source_free_counteraxis_status"],
+                "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+            )
+            self.assertEqual(
+                metadata["source_reviewed_positive_retained_pdb_ids"], ["9POS"]
+            )
+            self.assertEqual(
+                metadata["residual_false_hit_blocked_pdb_ids"], ["7TRN"]
+            )
+            self.assertTrue(metadata["source_free_predictive_feature_materialized"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_mek_erk_source_free_topology_broader_stress_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            broad = root / "broad_role.json"
+            candidate_artifact = root / "candidate_context.json"
+            out = root / "broader_stress.json"
+            broad.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_broad_role_stress_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9POS",
+                                "naive_broad_protein_role_rule_hit": True,
+                                "source_reviewed_mek_erk_positive": True,
+                                "broad_role_stress_decision": (
+                                    "source_reviewed_mek_erk_positive_retained_review_only"
+                                ),
+                                "candidate_chain_name": "B",
+                                "gamma_associated_polymer_chain_name": "A",
+                            },
+                            {
+                                "pdb_id": "7TRN",
+                                "naive_broad_protein_role_rule_hit": True,
+                                "source_reviewed_mek_erk_positive": False,
+                                "known_positive_repeat_or_source_valid": False,
+                                "broad_role_stress_decision": (
+                                    "nonpositive_naive_broad_role_false_hit_review_only"
+                                ),
+                                "candidate_chain_name": "D",
+                                "gamma_associated_polymer_chain_name": "C",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_artifact.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "candidate_context_fixture"},
+                        "rows": [
+                            {
+                                "pdb_id": "7TRN",
+                                "candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "C",
+                                        "gamma_associated_polymer_chain_name": "C",
+                                        "nearest_gamma_distance_angstrom": 4.8,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-source-free-topology-broader-stress-audit",
+                    "--epk-mek-erk-broad-role-stress-audit",
+                    str(broad),
+                    "--candidate-context-artifact",
+                    str(candidate_artifact),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(
+                metadata["method"],
+                "epk_mek_erk_source_free_topology_broader_stress_audit",
+            )
+            self.assertEqual(
+                metadata["broader_stress_status"],
+                "passes_broader_topology_ambiguity_controls_review_only",
+            )
+            self.assertEqual(metadata["false_hit_blocked_pdb_ids"], ["7TRN"])
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
 
 if __name__ == "__main__":
     unittest.main()

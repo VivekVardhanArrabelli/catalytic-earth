@@ -855,6 +855,12 @@ terminal topology rows. The review-context counteraxis artifact blocks six
 prior-counterexample repeats but still leaves `7CAG` and `8BMS` unresolved,
 so it is diagnostic only; pre-count and counteraxis sufficiency remain blocked
 and do not authorize ePK scoring, thresholds, registry edits, or label import.
+The residual source-adjudication artifact closes `7CAG`/`8BMS` only as
+review-only transporter-context counterexamples. A source-free topology
+ambiguity probe then blocks those two bounded residuals with same-chain
+companion and reciprocal cross-chain hit patterns, but the broader stress audit
+still leaves `2JJ2`, `4HPU`, `7B56`, and `7ZDT` as false hits. The result is a
+useful fail-closed counteraxis experiment, not production evidence.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

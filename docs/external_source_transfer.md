@@ -1590,3 +1590,9 @@ the three imported external hard negatives at 0 review-only feature
 non-abstentions, but it remains diagnostic only: `m_csa:640` ligand-analog
 evidence is excluded, thresholds are uncalibrated, and no real external
 hard-negative scored re-audit has been run.
+The MEK1/ERK1 follow-up stays within that same external-hard-negative
+boundary. Source adjudication and a source-free topology-ambiguity probe now
+block the `7CAG`/`8BMS` residual broad-role false hits, but a broader stress
+audit leaves `2JJ2`, `4HPU`, `7B56`, and `7ZDT` unblocked. These artifacts do
+not rescore `uniprot:P06744`, `uniprot:P78549`, or `uniprot:Q3LXA3`, do not
+claim clean held-out performance, and do not authorize label import.

@@ -50,6 +50,53 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T08:52:03Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+external hard-negative production score, or `removal_allowed=true` occurred.
+SSH deploy-key fetch/pull/ls-remote/dry-run push hygiene passed at startup,
+and startup checks passed: 656 unit tests plus `catalytic_earth.cli validate`
+with 682 labels and 8 production fingerprints.
+
+The residual MEK1/ERK1 broad-role false hits are now closed as review-only
+counterexamples but not as production evidence.
+`artifacts/v3_epk_mek_erk_residual_false_hit_source_adjudication_1025.json`
+source-adjudicates `7CAG` and `8BMS` as transporter-context false hits with 0
+unresolved residuals, while explicitly keeping
+`source_free_predictive_feature_materialized=false`.
+`artifacts/v3_epk_mek_erk_source_free_topology_ambiguity_counteraxis_1025.json`
+then replaces that specific source-context blocker with a source-free local
+hit-pattern probe: same-chain companion topology blocks `7CAG`, reciprocal
+cross-chain topology blocks `8BMS`, and `9UUR`/`9UUX` are retained. The
+regenerated pre-count and counteraxis artifacts carry the source-free bounded
+counteraxis row, but still keep `precount_gate_status=blocked_review_only` and
+`threshold_selection_decision=do_not_select_threshold`.
+
+The important negative result is the broader stress audit.
+`artifacts/v3_epk_mek_erk_source_free_topology_broader_stress_audit_1025.json`
+applies the same source-free topology-ambiguity rule across the broader
+MEK/ERK broad-role hit surface. It retains all five positive controls
+(`1IR3`, `5HVK`, `6Z3R`, `9UUR`, `9UUX`) and blocks four false hits (`7CAG`,
+`7ZDU`, `7ZE5`, `8BMS`), but fails closed because `2JJ2`, `4HPU`, `7B56`, and
+`7ZDT` remain false hits. This narrows the next experiment: the topology rule
+is useful bounded counterevidence, but ePK still needs an additional
+source-free acceptor or substrate-identity axis before any scorer calibration.
+
+Evidence-based confidence call: confidence is higher that the MEK1/ERK1
+residuals were real transporter false hits and that local topology ambiguity is
+a useful counteraxis ingredient. Confidence remains low that this axis can
+generalize alone, because the broader stress audit leaves four known
+nonpositive false hits.
+
+Wrap-up verification passed with 665 unit tests, `tests.test_cli` plus
+`tests.test_leakage_closure` (274 tests), `catalytic_earth.cli validate`,
+`compileall`, targeted CLI/leakage tests, JSON validation for new and
+regenerated ePK artifacts, artifact migration dry-run/local-file guard at 108
+rows with `removal_allowed=0`, label invariants at 682 total labels (212 seed
+fingerprints, 470 out-of-scope, and the three imported UniProt hard negatives
+unchanged), and `git diff --check`.
+
 As of the 2026-05-20T07:50:46Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

@@ -1439,6 +1439,13 @@ different-chain/distance rule retains those two controls but false-hits eight
 nonpositive topology rows. A review-context counteraxis blocks six
 prior-counterexample repeats and leaves `7CAG`/`8BMS` unresolved, so it remains
 diagnostic rather than production-admissible.
+The residual follow-up source-adjudicates `7CAG` and `8BMS` as transporter
+contexts, then tests a source-free local topology-ambiguity feature. Same-chain
+companion topology blocks `7CAG` and reciprocal cross-chain topology blocks
+`8BMS` while retaining `9UUR`/`9UUX`, but the broader stress audit fails closed:
+`2JJ2`, `4HPU`, `7B56`, and `7ZDT` remain false hits. That negative result
+keeps the topology feature review-only and points to a missing acceptor or
+substrate-identity axis before thresholding.
 The
 preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`

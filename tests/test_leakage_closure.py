@@ -20,7 +20,10 @@ from catalytic_earth.labels import (
     build_epk_mek_erk_broad_role_stress_audit,
     build_epk_mek_erk_context_counteraxis_stress_audit,
     build_epk_mek_erk_phosphosite_source_review,
+    build_epk_mek_erk_residual_false_hit_source_adjudication,
     build_epk_mek_erk_role_control_rerun,
+    build_epk_mek_erk_source_free_topology_ambiguity_counteraxis,
+    build_epk_mek_erk_source_free_topology_broader_stress_audit,
     build_epk_midlength_protein_role_counteraxis_audit,
     build_epk_protein_substrate_calibration_diagnostic,
     build_epk_protein_substrate_scorer_design_freeze,
@@ -9740,6 +9743,264 @@ _pdbx_struct_mod_residue.details
         self.assertFalse(metadata["ready_to_run_epk_scorer"])
         self.assertEqual(metadata["countable_label_candidate_count"], 0)
 
+    def test_build_epk_mek_erk_residual_false_hit_source_adjudication_blocks_transporter(
+        self,
+    ) -> None:
+        context = {
+            "metadata": {
+                "method": "epk_mek_erk_context_counteraxis_stress_audit",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "residual_new_topology_false_hit_pdb_ids": ["7TRN"],
+            },
+            "rows": [
+                {
+                    "pdb_id": "7TRN",
+                    "context_counteraxis_decision": (
+                        "residual_new_topology_false_hit_review_only"
+                    ),
+                }
+            ],
+        }
+        source_review = {
+            "metadata": {"method": "epk_heteromeric_candidate_source_validation_review"},
+            "rows": [
+                {
+                    "pdb_id": "7TRN",
+                    "source_validation_status": (
+                        "blocked_source_context_insufficient_review_only"
+                    ),
+                    "source_validation_evidence": [
+                        "no_explicit_kinase_substrate_source_context_detected"
+                    ],
+                    "entity_descriptions": [
+                        "ABC transporter, ATP-binding protein",
+                        "MAGNESIUM ION",
+                    ],
+                    "keywords": ["TRANSPORT PROTEIN"],
+                    "chain_accessions": {"A": ["P00001"], "B": ["P00002"]},
+                    "candidate_hits": [{"nearest_gamma_distance_angstrom": 3.4}],
+                }
+            ],
+        }
+        result = build_epk_mek_erk_residual_false_hit_source_adjudication(
+            epk_mek_erk_context_counteraxis_stress_audit=context,
+            epk_ligand_specific_active_query_source_validation_reviews=[
+                source_review
+            ],
+        )
+        metadata = result["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_mek_erk_residual_false_hit_source_adjudication",
+        )
+        self.assertEqual(
+            metadata["source_adjudication_status"],
+            "passes_review_only_residual_false_hits_terminally_blocked_not_source_free",
+        )
+        self.assertEqual(
+            metadata["terminally_blocked_residual_false_hit_pdb_ids"], ["7TRN"]
+        )
+        self.assertEqual(metadata["unresolved_residual_false_hit_count"], 0)
+        self.assertEqual(metadata["transporter_false_hit_pdb_ids"], ["7TRN"])
+        self.assertTrue(metadata["source_context_counterevidence_used"])
+        self.assertFalse(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertTrue(
+            result["rows"][0]["terminally_blocked_as_broad_role_false_hit"]
+        )
+
+    def test_build_epk_mek_erk_source_free_topology_ambiguity_counteraxis_blocks_residuals(
+        self,
+    ) -> None:
+        source_review = {
+            "metadata": {
+                "method": "epk_mek_erk_phosphosite_source_review",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "source_authoritative_measurement_ready_pdb_ids": ["9POS"],
+            },
+            "rows": [
+                {
+                    "pdb_id": "9POS",
+                    "phosphosite_source_review_status": (
+                        "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only"
+                    ),
+                    "candidate_hit": {
+                        "candidate_chain_name": "B",
+                        "candidate_auth_seq_id": "204",
+                        "candidate_residue_code": "TYR",
+                        "gamma_associated_polymer_chain_name": "A",
+                        "nearest_gamma_distance_angstrom": 4.1,
+                    },
+                }
+            ],
+        }
+        context = {
+            "metadata": {
+                "method": "epk_mek_erk_context_counteraxis_stress_audit",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "residual_new_topology_false_hit_pdb_ids": ["7TRN", "8XSW"],
+            },
+            "rows": [],
+        }
+        candidate_artifact = {
+            "metadata": {"method": "candidate_context_fixture"},
+            "rows": [
+                {
+                    "pdb_id": "7TRN",
+                    "candidate_hits": [
+                        {
+                            "candidate_chain_name": "D",
+                            "candidate_auth_seq_id": "140",
+                            "candidate_residue_code": "SER",
+                            "gamma_associated_polymer_chain_name": "C",
+                            "nearest_gamma_distance_angstrom": 4.0,
+                        },
+                        {
+                            "candidate_chain_name": "C",
+                            "candidate_auth_seq_id": "48",
+                            "candidate_residue_code": "SER",
+                            "gamma_associated_polymer_chain_name": "C",
+                            "nearest_gamma_distance_angstrom": 4.8,
+                        },
+                    ],
+                },
+                {
+                    "pdb_id": "8XSW",
+                    "candidate_hits": [
+                        {
+                            "candidate_chain_name": "B",
+                            "candidate_auth_seq_id": "147",
+                            "candidate_residue_code": "SER",
+                            "gamma_associated_polymer_chain_name": "A",
+                            "nearest_gamma_distance_angstrom": 3.4,
+                        },
+                        {
+                            "candidate_chain_name": "A",
+                            "candidate_auth_seq_id": "145",
+                            "candidate_residue_code": "SER",
+                            "gamma_associated_polymer_chain_name": "B",
+                            "nearest_gamma_distance_angstrom": 3.5,
+                        },
+                    ],
+                },
+            ],
+        }
+        result = build_epk_mek_erk_source_free_topology_ambiguity_counteraxis(
+            epk_mek_erk_phosphosite_source_review=source_review,
+            epk_mek_erk_context_counteraxis_stress_audit=context,
+            candidate_context_artifacts=[candidate_artifact],
+        )
+        metadata = result["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_mek_erk_source_free_topology_ambiguity_counteraxis",
+        )
+        self.assertEqual(
+            metadata["source_free_counteraxis_status"],
+            "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+        )
+        self.assertEqual(
+            metadata["source_reviewed_positive_retained_pdb_ids"], ["9POS"]
+        )
+        self.assertEqual(metadata["source_reviewed_positive_lost_count"], 0)
+        self.assertEqual(
+            metadata["residual_false_hit_blocked_pdb_ids"], ["7TRN", "8XSW"]
+        )
+        self.assertEqual(metadata["residual_false_hit_unblocked_count"], 0)
+        self.assertEqual(metadata["missing_local_topology_hit_count"], 0)
+        self.assertTrue(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_build_epk_mek_erk_source_free_topology_broader_stress_audit_fails_closed(
+        self,
+    ) -> None:
+        broad_role = {
+            "metadata": {
+                "method": "epk_mek_erk_broad_role_stress_audit",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "candidate_threshold_angstrom": 6.0,
+            },
+            "rows": [
+                {
+                    "pdb_id": "9POS",
+                    "naive_broad_protein_role_rule_hit": True,
+                    "source_reviewed_mek_erk_positive": True,
+                    "known_positive_repeat_or_source_valid": False,
+                    "broad_role_stress_decision": (
+                        "source_reviewed_mek_erk_positive_retained_review_only"
+                    ),
+                    "candidate_chain_name": "B",
+                    "gamma_associated_polymer_chain_name": "A",
+                    "nearest_gamma_distance_angstrom": 4.1,
+                },
+                {
+                    "pdb_id": "7TRN",
+                    "naive_broad_protein_role_rule_hit": True,
+                    "source_reviewed_mek_erk_positive": False,
+                    "known_positive_repeat_or_source_valid": False,
+                    "broad_role_stress_decision": (
+                        "nonpositive_naive_broad_role_false_hit_review_only"
+                    ),
+                    "candidate_chain_name": "D",
+                    "gamma_associated_polymer_chain_name": "C",
+                    "nearest_gamma_distance_angstrom": 4.0,
+                },
+                {
+                    "pdb_id": "8OPEN",
+                    "naive_broad_protein_role_rule_hit": True,
+                    "source_reviewed_mek_erk_positive": False,
+                    "known_positive_repeat_or_source_valid": False,
+                    "broad_role_stress_decision": (
+                        "nonpositive_naive_broad_role_false_hit_review_only"
+                    ),
+                    "candidate_chain_name": "B",
+                    "gamma_associated_polymer_chain_name": "A",
+                    "nearest_gamma_distance_angstrom": 3.4,
+                },
+            ],
+        }
+        candidate_artifact = {
+            "metadata": {"method": "candidate_context_fixture"},
+            "rows": [
+                {
+                    "pdb_id": "7TRN",
+                    "candidate_hits": [
+                        {
+                            "candidate_chain_name": "C",
+                            "candidate_auth_seq_id": "48",
+                            "candidate_residue_code": "SER",
+                            "gamma_associated_polymer_chain_name": "C",
+                            "nearest_gamma_distance_angstrom": 4.8,
+                        }
+                    ],
+                }
+            ],
+        }
+        result = build_epk_mek_erk_source_free_topology_broader_stress_audit(
+            epk_mek_erk_broad_role_stress_audit=broad_role,
+            candidate_context_artifacts=[candidate_artifact],
+        )
+        metadata = result["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_mek_erk_source_free_topology_broader_stress_audit",
+        )
+        self.assertEqual(
+            metadata["broader_stress_status"],
+            "fails_closed_broader_topology_ambiguity_residual_false_hits",
+        )
+        self.assertEqual(metadata["positive_control_retained_pdb_ids"], ["9POS"])
+        self.assertEqual(metadata["false_hit_blocked_pdb_ids"], ["7TRN"])
+        self.assertEqual(metadata["residual_false_hit_pdb_ids"], ["8OPEN"])
+        self.assertTrue(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
     def test_epk_mek_erk_phosphosite_source_review_artifact_stays_review_only(
         self,
     ) -> None:
@@ -9944,6 +10205,165 @@ _pdbx_struct_mod_residue.details
             context_rows[0]["decision"],
             "review_context_reduces_but_residual_false_hits_remain",
         )
+
+    def test_epk_mek_erk_residual_false_hit_source_adjudication_artifact_blocks_residuals(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_mek_erk_residual_false_hit_source_adjudication_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_mek_erk_residual_false_hit_source_adjudication",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["source_adjudication_status"],
+            "passes_review_only_residual_false_hits_terminally_blocked_not_source_free",
+        )
+        self.assertEqual(metadata["residual_false_hit_input_pdb_ids"], ["7CAG", "8BMS"])
+        self.assertEqual(
+            metadata["terminally_blocked_residual_false_hit_pdb_ids"],
+            ["7CAG", "8BMS"],
+        )
+        self.assertEqual(metadata["unresolved_residual_false_hit_count"], 0)
+        self.assertEqual(metadata["transporter_false_hit_count"], 2)
+        self.assertFalse(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertTrue(
+            all(
+                row["terminally_blocked_as_broad_role_false_hit"]
+                for row in audit["rows"]
+            )
+        )
+        precount = _load_json(
+            ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
+        )
+        self.assertEqual(
+            precount["metadata"][
+                "mek_erk_residual_source_adjudication_terminal_pdb_ids"
+            ],
+            ["7CAG", "8BMS"],
+        )
+        counteraxis = _load_json(
+            ROOT / "artifacts" / "v3_epk_counteraxis_sufficiency_decision_1025.json"
+        )
+        adjudication_rows = [
+            row
+            for row in counteraxis["decision_rows"]
+            if row["decision_axis"]
+            == "mek_erk_residual_false_hit_source_adjudication"
+        ]
+        self.assertEqual(len(adjudication_rows), 1)
+        self.assertEqual(
+            adjudication_rows[0]["decision"],
+            "source_adjudication_blocks_residual_false_hits_but_not_source_free",
+        )
+
+    def test_epk_mek_erk_source_free_topology_ambiguity_artifact_blocks_residuals(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_mek_erk_source_free_topology_ambiguity_counteraxis_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_mek_erk_source_free_topology_ambiguity_counteraxis",
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["source_free_counteraxis_status"],
+            "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+        )
+        self.assertEqual(
+            metadata["source_reviewed_positive_retained_pdb_ids"],
+            ["9UUR", "9UUX"],
+        )
+        self.assertEqual(metadata["source_reviewed_positive_lost_count"], 0)
+        self.assertEqual(
+            metadata["residual_false_hit_blocked_pdb_ids"], ["7CAG", "8BMS"]
+        )
+        self.assertEqual(metadata["residual_false_hit_unblocked_count"], 0)
+        self.assertEqual(metadata["missing_local_topology_hit_count"], 0)
+        self.assertTrue(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        rows_by_pdb = {row["pdb_id"]: row for row in audit["rows"]}
+        self.assertTrue(rows_by_pdb["7CAG"]["same_chain_companion_hit_detected"])
+        self.assertTrue(rows_by_pdb["8BMS"]["reciprocal_cross_chain_hit_detected"])
+        precount = _load_json(
+            ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
+        )
+        self.assertEqual(
+            precount["metadata"][
+                "mek_erk_source_free_topology_residual_blocked_pdb_ids"
+            ],
+            ["7CAG", "8BMS"],
+        )
+        counteraxis = _load_json(
+            ROOT / "artifacts" / "v3_epk_counteraxis_sufficiency_decision_1025.json"
+        )
+        topology_rows = [
+            row
+            for row in counteraxis["decision_rows"]
+            if row["decision_axis"]
+            == "mek_erk_source_free_topology_ambiguity_counteraxis"
+        ]
+        self.assertEqual(len(topology_rows), 1)
+        self.assertEqual(
+            topology_rows[0]["decision"],
+            "source_free_topology_ambiguity_blocks_residuals_but_not_calibrated",
+        )
+
+    def test_epk_mek_erk_source_free_topology_broader_stress_artifact_fails_closed(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_mek_erk_source_free_topology_broader_stress_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"],
+            "epk_mek_erk_source_free_topology_broader_stress_audit",
+        )
+        self.assertEqual(
+            metadata["broader_stress_status"],
+            "fails_closed_broader_topology_ambiguity_residual_false_hits",
+        )
+        self.assertEqual(
+            metadata["positive_control_retained_pdb_ids"],
+            ["1IR3", "5HVK", "6Z3R", "9UUR", "9UUX"],
+        )
+        self.assertEqual(metadata["positive_control_lost_count"], 0)
+        self.assertEqual(
+            metadata["false_hit_blocked_pdb_ids"],
+            ["7CAG", "7ZDU", "7ZE5", "8BMS"],
+        )
+        self.assertEqual(
+            metadata["residual_false_hit_pdb_ids"],
+            ["2JJ2", "4HPU", "7B56", "7ZDT"],
+        )
+        self.assertTrue(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(

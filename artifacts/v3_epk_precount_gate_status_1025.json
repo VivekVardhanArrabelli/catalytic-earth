@@ -798,6 +798,39 @@
     },
     {
       "evidence": {
+        "residual_false_hit_input_count": 2,
+        "source_adjudication_status": "passes_review_only_residual_false_hits_terminally_blocked_not_source_free",
+        "source_free_predictive_feature_materialized": false,
+        "source_method": "epk_mek_erk_residual_false_hit_source_adjudication",
+        "terminally_blocked_residual_false_hit_count": 2,
+        "terminally_blocked_residual_false_hit_pdb_ids": [
+          "7CAG",
+          "8BMS"
+        ],
+        "unresolved_residual_false_hit_count": 0
+      },
+      "gate_id": "mek_erk_residual_false_hit_source_adjudication",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "residual_false_hit_blocked_count": 2,
+        "residual_false_hit_blocked_pdb_ids": [
+          "7CAG",
+          "8BMS"
+        ],
+        "residual_false_hit_unblocked_count": 0,
+        "source_free_counteraxis_status": "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+        "source_free_predictive_feature_materialized": true,
+        "source_method": "epk_mek_erk_source_free_topology_ambiguity_counteraxis",
+        "source_reviewed_positive_lost_count": 0,
+        "source_reviewed_positive_retained_count": 2
+      },
+      "gate_id": "mek_erk_source_free_topology_ambiguity_counteraxis",
+      "passed": true
+    },
+    {
+      "evidence": {
         "current_control_false_non_abstention_count": 0,
         "imported_external_hard_negative_non_abstention_count": 0,
         "positive_like_full_score_count": 8,
@@ -1421,6 +1454,20 @@
     "mek_erk_context_source_free_predictive_feature_materialized": false,
     "mek_erk_gamma_acceptor_distance_measured_count": 2,
     "mek_erk_phosphosite_source_review_status": "adds_source_authoritative_broad_protein_substrate_rows_review_only",
+    "mek_erk_residual_source_adjudication_input_count": 2,
+    "mek_erk_residual_source_adjudication_input_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "mek_erk_residual_source_adjudication_source_free_predictive_feature_materialized": false,
+    "mek_erk_residual_source_adjudication_status": "passes_review_only_residual_false_hits_terminally_blocked_not_source_free",
+    "mek_erk_residual_source_adjudication_terminal_count": 2,
+    "mek_erk_residual_source_adjudication_terminal_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "mek_erk_residual_source_adjudication_unresolved_count": 0,
+    "mek_erk_residual_source_adjudication_unresolved_pdb_ids": [],
     "mek_erk_same_chain_artifact_rejected_count": 1,
     "mek_erk_same_chain_artifact_rejected_pdb_ids": [
       "9UW4"
@@ -1431,6 +1478,22 @@
       "9UUX"
     ],
     "mek_erk_source_free_predictive_feature_materialized": false,
+    "mek_erk_source_free_topology_ambiguity_counteraxis_status": "passes_bounded_residual_controls_source_free_topology_ambiguity_review_only",
+    "mek_erk_source_free_topology_missing_hit_count": 0,
+    "mek_erk_source_free_topology_positive_lost_count": 0,
+    "mek_erk_source_free_topology_positive_retained_count": 2,
+    "mek_erk_source_free_topology_positive_retained_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "mek_erk_source_free_topology_residual_blocked_count": 2,
+    "mek_erk_source_free_topology_residual_blocked_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "mek_erk_source_free_topology_residual_unblocked_count": 0,
+    "mek_erk_source_free_topology_residual_unblocked_pdb_ids": [],
+    "mek_erk_source_free_topology_source_free_predictive_feature_materialized": true,
     "method": "epk_precount_gate_status",
     "midlength_protein_role_blocked_false_hit_count": 1,
     "midlength_protein_role_blocked_false_hit_pdb_ids": [
@@ -1681,6 +1744,8 @@
     "source_epk_mek_erk_broad_role_stress_audit_method": "epk_mek_erk_broad_role_stress_audit",
     "source_epk_mek_erk_context_counteraxis_stress_audit_method": "epk_mek_erk_context_counteraxis_stress_audit",
     "source_epk_mek_erk_phosphosite_source_review_method": "epk_mek_erk_phosphosite_source_review",
+    "source_epk_mek_erk_residual_false_hit_source_adjudication_method": "epk_mek_erk_residual_false_hit_source_adjudication",
+    "source_epk_mek_erk_source_free_topology_ambiguity_counteraxis_method": "epk_mek_erk_source_free_topology_ambiguity_counteraxis",
     "source_epk_midlength_protein_role_counteraxis_audit_method": "epk_midlength_protein_role_counteraxis_audit",
     "source_epk_missing_sibling_control_source_request_method": "epk_missing_sibling_control_source_request",
     "source_epk_negative_control_calibration_sufficiency_decision_method": "epk_negative_control_calibration_sufficiency_decision",
