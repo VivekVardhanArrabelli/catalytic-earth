@@ -1,0 +1,966 @@
+{
+  "counterexamples_found": [
+    "2JJ2",
+    "7B56",
+    "7ZE5",
+    "9UW4"
+  ],
+  "evidence_against": [
+    "Strict AMP-PNP plus phosphoacceptor folded-substrate query returned 0 rows.",
+    "The full-length ATP/Mg substrate wording add-on returned 24 rows but no new heteromeric source-review lead beyond known 5HVK.",
+    "All nine heteromeric geometry leads from 177 unique reviewed structures are repeats or rejected counterexamples.",
+    "No fresh non-topology-confounded folded-protein kinase-substrate positive with clean source-mapped phosphoacceptor was found.",
+    "2JJ2, 7B56, 7ZE5, and 9UW4 reinforce false-positive/mapping-risk contexts for text-plus-geometry searches."
+  ],
+  "evidence_for": [
+    "Known/repeat review-only positives recovered: 5HVK LIMK1/cofilin Ser3, 6Z3R SMG1/UPF1 Ser21, 9UUR/9UUX MEK1/ERK1 Tyr204, and peptide repeat 1IR3."
+  ],
+  "metadata": {
+    "accepted_repeat_folded_protein_positive_like_pdb_ids": [
+      "5HVK",
+      "6Z3R",
+      "9UUR",
+      "9UUX"
+    ],
+    "accepted_repeat_peptide_positive_like_pdb_ids": [
+      "1IR3"
+    ],
+    "blocker_not_removed": [
+      "no_fresh_clean_folded_protein_positive",
+      "source_review_evidence_not_source_free_predictive_feature",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "fresh_clean_folded_protein_positive_count": 0,
+    "fresh_clean_positive_count": 0,
+    "full_length_atp_mg_query_count": 24,
+    "generated_at": "2026-05-20T15:47:29Z",
+    "hypothesis": "A bounded explicit-phosphoacceptor/folded-substrate RCSB search may expose a fresh non-topology-confounded ePK kinase-substrate positive with gamma-equivalent local geometry and source-mapped acceptor residue.",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_explicit_acceptor_source_review",
+    "primary_outcome": "evidence_against",
+    "primary_outcome_reason": "The bounded explicit-acceptor plus full-length-substrate surfaces recover only previously reviewed positive-like rows and known counterexamples; no fresh clean folded-protein ePK positive is added.",
+    "production_claim_allowed": false,
+    "rejected_or_counterexample_pdb_ids": [
+      "2JJ2",
+      "7B56",
+      "7ZE5",
+      "9UW4"
+    ],
+    "review_only": true,
+    "search_surface_count": 14,
+    "search_surface_exhausted": true,
+    "source_review_status_counts": {
+      "accepted_repeat_folded_protein_substrate_evidence_review_only": 4,
+      "accepted_repeat_peptide_substrate_evidence_review_only": 1,
+      "rejected_actinin_complex_source_insufficient_counterexample_review_only": 1,
+      "rejected_cyddc_transporter_counterexample_review_only": 1,
+      "rejected_mek_erk_mapping_disagreement_not_clean_positive_review_only": 1,
+      "rejected_non_epk_atp_synthase_counterexample_review_only": 1
+    },
+    "source_reviewed_candidate_count": 9,
+    "source_scout_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json",
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "strict_amp_pnp_phosphoacceptor_query_count": 0,
+    "surface_rows_returned_total": 200,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 177
+  },
+  "rows": [
+    {
+      "candidate_auth_seq_id": "10",
+      "candidate_chain_name": "B",
+      "candidate_entity_description": "PEPTIDE SUBSTRATE",
+      "candidate_entity_uniprot_ids": [],
+      "candidate_residue": "TYR",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of the activated insulin receptor tyrosine kinase in complex with peptide substrate and ATP analog.",
+        "year": 1997
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "INSULIN RECEPTOR",
+      "gamma_associated_entity_uniprot_ids": [
+        "P06213"
+      ],
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "301",
+          "chain": "A",
+          "distance_angstrom": 3.143,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 5.082,
+      "pdb_id": "1IR3",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "peptide_substrate_not_folded_protein_positive",
+        "repeat_not_fresh_evidence",
+        "production_scoring_closed"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows41_80"
+        }
+      ],
+      "source_basis": [
+        "PDB title identifies phosphorylated insulin receptor tyrosine kinase in complex with peptide substrate and ATP analog",
+        "current scout maps peptide-substrate Tyr10 OH 5.082 Angstrom from ANP PG",
+        "repeat of prior/current peptide positive-like evidence, not a fresh folded-protein substrate positive"
+      ],
+      "source_review_status": "accepted_repeat_peptide_substrate_evidence_review_only",
+      "structure_title": "PHOSPHORYLATED INSULIN RECEPTOR TYROSINE KINASE IN COMPLEX WITH PEPTIDE SUBSTRATE AND ATP ANALOG",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "3",
+      "candidate_chain_name": "D",
+      "candidate_entity_description": "Cofilin-1",
+      "candidate_entity_uniprot_ids": [
+        "P23528"
+      ],
+      "candidate_residue": "SER",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": true,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "LIM domain kinase 1",
+      "gamma_associated_entity_uniprot_ids": [
+        "P53667"
+      ],
+      "gamma_associated_polymer_chain_name": "C",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 4.236,
+      "pdb_id": "5HVK",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "repeat_not_fresh_evidence",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 31,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows81_120"
+        },
+        {
+          "query_or_source": "RCSB full_text: protein kinase full-length substrate ANP magnesium",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_protein_kinase_full_length_substrate_anp_mg_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: protein kinase full-length substrate ATP magnesium",
+          "rank": 11,
+          "surface_id": "rcsb_fulltext_protein_kinase_full_length_substrate_atp_mg_all"
+        },
+        {
+          "query_or_source": "RCSB full_text: full-length protein substrate kinase ANP",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_full_length_protein_substrate_kinase_anp_all"
+        }
+      ],
+      "source_basis": [
+        "Prior 5HVK source-validity review accepts LIMK1/cofilin kinase-substrate co-complex",
+        "Cofilin-1 Ser3 is source-mapped and 4.236 Angstrom from ANP PG in the scout",
+        "repeat of known positive-like folded-protein evidence, not fresh evidence"
+      ],
+      "source_review_status": "accepted_repeat_folded_protein_substrate_evidence_review_only",
+      "structure_title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "21",
+      "candidate_chain_name": "E",
+      "candidate_entity_description": "Regulator of nonsense transcripts 1",
+      "candidate_entity_uniprot_ids": [
+        "Q92900"
+      ],
+      "candidate_residue": "SER",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of substrate-bound SMG1-8-9 kinase complex reveals molecular basis for phosphorylation specificity.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": true,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "Serine/threonine-protein kinase SMG1,Serine/threonine-protein kinase SMG1,SMG1,Serine/threonine-protein kinase SMG1,Serine/threonine-protein kinase SMG1,Serine/threonine-protein kinase SMG1",
+      "gamma_associated_entity_uniprot_ids": [
+        "Q96Q15"
+      ],
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 5.607,
+      "pdb_id": "6Z3R",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "repeat_not_fresh_evidence",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 33,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows41_80"
+        }
+      ],
+      "source_basis": [
+        "Prior heteromeric source validation accepts SMG1 kinase complex bound to UPF1-LSQ as review-only positive-like evidence",
+        "current scout maps UPF1 Ser21 5.607 Angstrom from ANP PG",
+        "repeat of known positive-like folded-protein evidence, not fresh evidence"
+      ],
+      "source_review_status": "accepted_repeat_folded_protein_substrate_evidence_review_only",
+      "structure_title": "Structure of SMG1-8-9 kinase complex bound to UPF1-LSQ",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "204",
+      "candidate_chain_name": "B",
+      "candidate_entity_description": "Mitogen-activated protein kinase 3",
+      "candidate_entity_uniprot_ids": [
+        "P27361"
+      ],
+      "candidate_residue": "TYR",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": true,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+      "gamma_associated_entity_uniprot_ids": [
+        "Q02750"
+      ],
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 4.181,
+      "pdb_id": "9UUR",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "repeat_not_fresh_evidence",
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 18,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows81_120"
+        }
+      ],
+      "source_basis": [
+        "Prior MEK/ERK phosphosite source review accepts 9UUR as MEK1/ERK1 source-authoritative review control",
+        "ERK1 Tyr204 is source-mapped and 4.181 Angstrom from ANP PG in the scout",
+        "repeat of known positive-like folded-protein evidence, not fresh evidence"
+      ],
+      "source_review_status": "accepted_repeat_folded_protein_substrate_evidence_review_only",
+      "structure_title": "The complex of human pMEK1 and uERK1 (ANP)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "204",
+      "candidate_chain_name": "B",
+      "candidate_entity_description": "Mitogen-activated protein kinase 3",
+      "candidate_entity_uniprot_ids": [
+        "P27361"
+      ],
+      "candidate_residue": "TYR",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": true,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+      "gamma_associated_entity_uniprot_ids": [
+        "Q02750"
+      ],
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [],
+      "measurement_ready_for_review_controls": true,
+      "nearest_gamma_distance_angstrom": 3.968,
+      "pdb_id": "9UUX",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "repeat_not_fresh_evidence",
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated",
+        "external_hard_negative_reaudit_not_real_scorer"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 19,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows81_120"
+        }
+      ],
+      "source_basis": [
+        "Prior MEK/ERK phosphosite source review accepts 9UUX as MEK1/ERK1 source-authoritative review control",
+        "ERK1 Tyr204 is source-mapped and 3.968 Angstrom from ANP PG in the scout",
+        "repeat of known positive-like folded-protein evidence, not fresh evidence"
+      ],
+      "source_review_status": "accepted_repeat_folded_protein_substrate_evidence_review_only",
+      "structure_title": "The complex of human pMEK1 and ERK1 pT202 (ANP)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "344",
+      "candidate_chain_name": "I",
+      "candidate_entity_description": "ATP SYNTHASE SUBUNIT ALPHA HEART ISOFORM",
+      "candidate_entity_uniprot_ids": [
+        "P19483"
+      ],
+      "candidate_residue": "SER",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of Inhibition of Bovine F1-ATPase by Resveratrol and Related Polyphenols.",
+        "year": 2007
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "ATP SYNTHASE SUBUNIT BETA",
+      "gamma_associated_entity_uniprot_ids": [
+        "P00829"
+      ],
+      "gamma_associated_polymer_chain_name": "M",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "1476",
+          "chain": "M",
+          "distance_angstrom": 3.489,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_distance_angstrom": 5.466,
+      "pdb_id": "2JJ2",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "non_epk_atpase_context",
+        "source_validation_blocks_positive_use"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 16,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows81_120"
+        }
+      ],
+      "source_basis": [
+        "Structure title and entity descriptions identify F1-ATPase, not an ePK kinase-substrate complex",
+        "Prior source validation blocks 2JJ2 as no explicit kinase-substrate source context",
+        "Heteromeric Ser proximity is transporter/ATPase-family counterevidence, not ePK substrate evidence"
+      ],
+      "source_review_status": "rejected_non_epk_atp_synthase_counterexample_review_only",
+      "structure_title": "The Structure of F1-ATPase inhibited by quercetin.",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "822",
+      "candidate_chain_name": "A",
+      "candidate_entity_description": "Alpha-actinin-2",
+      "candidate_entity_uniprot_ids": [
+        "P35609"
+      ],
+      "candidate_residue": "SER",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of CaMKII-actinin complex bound to MES",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+      "gamma_associated_entity_uniprot_ids": [
+        "P11798"
+      ],
+      "gamma_associated_polymer_chain_name": "B",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "402",
+          "chain": "B",
+          "distance_angstrom": 3.192,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_distance_angstrom": 3.92,
+      "pdb_id": "7B56",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_context_insufficient",
+        "substrate_mode_rule_not_hit",
+        "source_phosphosite_not_mapped_to_candidate"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 15,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows41_80"
+        }
+      ],
+      "source_basis": [
+        "Structure title identifies CaMKII-actinin complex bound to AMPPNP, but prior source validation finds no explicit kinase-substrate source context",
+        "Prior substrate-mode source review rejects 7B56 with substrate-mode rule not hit",
+        "Actinin Ser822 proximity is not clean source-mapped phosphoacceptor evidence"
+      ],
+      "source_review_status": "rejected_actinin_complex_source_insufficient_counterexample_review_only",
+      "structure_title": "Crystal structure of CaMKII-actinin complex bound to AMPPNP",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "487",
+      "candidate_chain_name": "D",
+      "candidate_entity_description": "ATP-binding/permease protein CydD",
+      "candidate_entity_uniprot_ids": [
+        "P29018"
+      ],
+      "candidate_residue": "SER",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dissecting the conformational complexity and mechanism of a bacterial heme transporter.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "ATP-binding/permease protein CydC",
+      "gamma_associated_entity_uniprot_ids": [
+        "P23886"
+      ],
+      "gamma_associated_polymer_chain_name": "C",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ATP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [
+        {
+          "auth_seq_id": "601",
+          "chain": "C",
+          "distance_angstrom": 3.331,
+          "metal_code": "MG"
+        }
+      ],
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_distance_angstrom": 3.876,
+      "pdb_id": "7ZE5",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "non_epk_transporter_context",
+        "source_validation_blocks_positive_use"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 26,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_first40"
+        }
+      ],
+      "source_basis": [
+        "Structure title and citation identify bacterial CydDC heme transporter, not an ePK kinase-substrate complex",
+        "Prior source validation blocks 7ZE5 as no explicit kinase-substrate source context",
+        "ATP/AMP-PNP heteromeric Ser proximity is a transporter false-positive context"
+      ],
+      "source_review_status": "rejected_cyddc_transporter_counterexample_review_only",
+      "structure_title": "Occ(apo/return) conformation of CydDC mutant (E500Q.C) in ATP(CydC)/AMP-PNP(CydD) bound state (Dataset-23)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "204",
+      "candidate_chain_name": "B",
+      "candidate_entity_description": "Mitogen-activated protein kinase 3",
+      "candidate_entity_uniprot_ids": [
+        "P27361"
+      ],
+      "candidate_residue": "TYR",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "folded_non_peptide_positive": false,
+      "fresh_positive": false,
+      "gamma_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+      "gamma_associated_entity_uniprot_ids": [
+        "Q02750"
+      ],
+      "gamma_associated_polymer_chain_name": "A",
+      "gamma_atom_name": "PG",
+      "gamma_ligand_code": "ANP",
+      "labels_or_fingerprints_changed": false,
+      "local_metals": [],
+      "measurement_ready_for_review_controls": false,
+      "nearest_gamma_distance_angstrom": 4.194,
+      "pdb_id": "9UW4",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "prior_source_review_rejected_9uw4",
+        "local_metal_context_missing_for_candidate_hit",
+        "candidate_mapping_requires_manual_remap"
+      ],
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+          "rank": 21,
+          "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows81_120"
+        }
+      ],
+      "source_basis": [
+        "Prior MEK/ERK phosphosite review rejects 9UW4 as not source-authoritative measurement-ready",
+        "Current scout sees ERK Tyr204 near MEK-associated ANP, but the relevant local metal list is empty and the title marks a pY204-derived context",
+        "Treat as candidate-mapping disagreement and not as fresh positive evidence"
+      ],
+      "source_review_status": "rejected_mek_erk_mapping_disagreement_not_clean_positive_review_only",
+      "structure_title": "The complex of human pMEK1 and uERK1 (ANP)(from pY204ERK1)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase substrate protein phosphoacceptor AMP-PNP",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_substrate_protein_phosphoacceptor_amp_pnp_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "4BIW",
+        "4JDI"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase substrate protein phosphoacceptor ANP",
+      "requested_rows": 100,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_substrate_protein_phosphoacceptor_anp_all",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "5LFK",
+        "4CB0",
+        "4BIV",
+        "8UK7",
+        "3KYZ",
+        "4BIW",
+        "4BIX",
+        "7KPO",
+        "4BIY",
+        "4JDH",
+        "4JDI",
+        "4JDJ",
+        "4JDK",
+        "4BIZ",
+        "4BIU",
+        "3DGE",
+        "4MDE",
+        "6RGY",
+        "4MDF",
+        "2LP4"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase substrate protein phosphoacceptor ATP",
+      "requested_rows": 30,
+      "returned_count": 20,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_substrate_protein_phosphoacceptor_atp_first30",
+      "total_count": 20
+    },
+    {
+      "pdb_ids": [
+        "4JDI",
+        "4FIG",
+        "4FFN",
+        "4U40",
+        "6KO6",
+        "3ALN",
+        "7JUU",
+        "3ALO",
+        "7JUY",
+        "7JUS",
+        "7JUV",
+        "7JV0",
+        "7JUW",
+        "7JUR",
+        "3C1M",
+        "7JUX",
+        "7JV1",
+        "6TY4",
+        "2P0C",
+        "2J0L",
+        "1IA9",
+        "3FXX",
+        "7JUT",
+        "3U87",
+        "7JUZ",
+        "7ZE5",
+        "2QO9",
+        "2QOQ",
+        "4JQE",
+        "5LI1",
+        "2QO7",
+        "2A19",
+        "1JQH",
+        "2QOC",
+        "2V55",
+        "2PVR",
+        "9AXH",
+        "7M0Z",
+        "7M0X",
+        "7M0T"
+      ],
+      "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+      "requested_rows": 40,
+      "returned_count": 40,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_first40",
+      "total_count": 133
+    },
+    {
+      "pdb_ids": [
+        "7M0U",
+        "7M0V",
+        "1IR3",
+        "4HPU",
+        "7M0W",
+        "6PP9",
+        "6V2W",
+        "7M0Y",
+        "5YT3",
+        "5UPK",
+        "9AXY",
+        "9ECU",
+        "9AXX",
+        "6OPG",
+        "7B56",
+        "9AXM",
+        "3SLS",
+        "7B3M",
+        "7B7R",
+        "7B94",
+        "3Q4Z",
+        "3WIG",
+        "6DUK",
+        "4HPT",
+        "1PYX",
+        "4ZSE",
+        "7LTX",
+        "8GB4",
+        "8TO4",
+        "4U7Z",
+        "4LMN",
+        "7JXP",
+        "6Z3R",
+        "7B9L",
+        "8XN6",
+        "8TO3",
+        "8FV3",
+        "4U80",
+        "4U81",
+        "3ORN"
+      ],
+      "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+      "requested_rows": 40,
+      "returned_count": 40,
+      "start": 40,
+      "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows41_80",
+      "total_count": 133
+    },
+    {
+      "pdb_ids": [
+        "6P1D",
+        "6P1L",
+        "7JXQ",
+        "9AYA",
+        "7JXM",
+        "3BEG",
+        "9AY7",
+        "3GT8",
+        "5X2A",
+        "6WAK",
+        "5CNO",
+        "2GS7",
+        "5CNN",
+        "5D41",
+        "8FV4",
+        "2JJ2",
+        "6ZMD",
+        "9UUR",
+        "9UUX",
+        "9UW3",
+        "9UW4",
+        "4H3P",
+        "4NIF",
+        "2ITN",
+        "7UMB",
+        "7JXK",
+        "4S33",
+        "7K1I",
+        "8DSW",
+        "3TEI",
+        "5HVK",
+        "4RIW",
+        "4RIX",
+        "4RIY",
+        "3O7L",
+        "4S32",
+        "4S34",
+        "6P8Q",
+        "6XL4",
+        "6WXN"
+      ],
+      "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+      "requested_rows": 40,
+      "returned_count": 40,
+      "start": 80,
+      "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows81_120",
+      "total_count": 133
+    },
+    {
+      "pdb_ids": [
+        "1J1B",
+        "8RCN",
+        "8RCH",
+        "7SQC",
+        "6MM7",
+        "8RCK",
+        "8VH5",
+        "6BBN",
+        "2E8A",
+        "8VH4",
+        "9ED4",
+        "7Z8F",
+        "8PTK"
+      ],
+      "query_or_source": "RCSB full_text: serine threonine protein kinase substrate protein ANP magnesium",
+      "requested_rows": 40,
+      "returned_count": 13,
+      "start": 120,
+      "surface_id": "rcsb_fulltext_ser_thr_kinase_substrate_protein_anp_mg_rows121_133",
+      "total_count": 133
+    },
+    {
+      "pdb_ids": [
+        "1XQS",
+        "4HPU",
+        "4S32",
+        "6OPG",
+        "4S33",
+        "4S34"
+      ],
+      "query_or_source": "RCSB full_text: kinase substrate residue AMP-PNP magnesium protein",
+      "requested_rows": 100,
+      "returned_count": 6,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_kinase_substrate_residue_amp_pnp_mg_protein_all",
+      "total_count": 6
+    },
+    {
+      "pdb_ids": [
+        "5HVK"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase full-length substrate ANP magnesium",
+      "requested_rows": 100,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_full_length_substrate_anp_mg_all",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "1KO7",
+        "6ON2",
+        "7KO2",
+        "7KZI",
+        "9PIO",
+        "8T2V",
+        "5NRO",
+        "9DEQ",
+        "4V0R",
+        "8VIZ",
+        "5HVK",
+        "6U9W",
+        "7LHT",
+        "7LHW",
+        "7LI3",
+        "7LI4",
+        "6U9V",
+        "5DIS",
+        "8TZF",
+        "8TZH",
+        "8JJP",
+        "9CHO",
+        "8XGM",
+        "8ZJG"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase full-length substrate ATP magnesium",
+      "requested_rows": 100,
+      "returned_count": 24,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_full_length_substrate_atp_mg_all",
+      "total_count": 24
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase full-length substrate AMP-PNP magnesium",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_protein_kinase_full_length_substrate_amp_pnp_mg_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "4FIE",
+        "5HVK"
+      ],
+      "query_or_source": "RCSB full_text: full-length protein substrate kinase ANP",
+      "requested_rows": 100,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_full_length_protein_substrate_kinase_anp_all",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "5LFK",
+        "4CB0",
+        "4BIV",
+        "3DGE",
+        "4MDF",
+        "6RGY"
+      ],
+      "query_or_source": "RCSB full_text: tyrosine protein kinase substrate protein phosphoacceptor ATP",
+      "requested_rows": 100,
+      "returned_count": 6,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_tyrosine_kinase_substrate_protein_phosphoacceptor_atp_all",
+      "total_count": 6
+    },
+    {
+      "pdb_ids": [
+        "1XQS",
+        "4S32",
+        "4HPU",
+        "6OPG",
+        "4S33",
+        "4S34"
+      ],
+      "query_or_source": "RCSB full_text: tyrosine kinase substrate residue AMP-PNP magnesium protein",
+      "requested_rows": 100,
+      "returned_count": 6,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_tyrosine_kinase_substrate_residue_amp_pnp_mg_protein_all",
+      "total_count": 6
+    }
+  ]
+}

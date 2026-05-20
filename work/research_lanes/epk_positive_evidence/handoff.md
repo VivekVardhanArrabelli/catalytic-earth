@@ -1,57 +1,62 @@
 # ePK Positive Evidence Handoff
 
-Last updated: 2026-05-20T15:04:30Z
+Last updated: 2026-05-20T16:05:14Z
 
 ## Current Outcome
 
-Primary outcome: `evidence_for`.
+Primary outcome: `evidence_against`.
 
-This run found clean review-only peptide positive evidence, including two
-CDK2/Cyclin A transition-state mimic structures (`3QHR`, `3QHW`) with
-ADP/MG/MGF and source-mapped CDK2 substrate peptide Thr acceptors. It also
-found ATP/MG or ACP/MG peptide evidence for `1QMZ`, `3X2U`, `3X2V`, `3X2W`,
-and `4IAC`.
+This run exhausted a bounded explicit-acceptor/full-length substrate RCSB
+surface and found 0 fresh clean folded-protein ePK positives. The scout
+reviewed 177 unique PDB IDs across 14 full-text surfaces. It recovered only
+repeat positive-like review rows (`1IR3`, `5HVK`, `6Z3R`, `9UUR`, and `9UUX`)
+plus known or newly reinforced counterexample/mapping-risk rows (`2JJ2`,
+`7B56`, `7ZE5`, and `9UW4`).
 
-No new non-peptide folded-protein substrate positive was found. The broader
-folded/protein search surface returned only known positive repeat `5HVK` as a
-heteromeric source-free geometry hit.
+The strict `AMP-PNP` plus phosphoacceptor folded-substrate query returned 0
+rows. The added full-length ATP/Mg wording returned 24 rows but no new
+heteromeric source-review lead beyond known `5HVK`.
 
 ## Files
 
-- `artifacts/research_lanes/epk_positive_evidence/rcsb_positive_evidence_source_review_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39_scout_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39_source_validation_builtin_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_protein_atp_mg_46_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_source_review_20260520.json`
+- `tools/research_lanes/epk_positive_evidence/epk_evidence_search.py`
+- `artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl`
 
 ## Search Surfaces
 
-- RCSB full text `"protein kinase" "substrate peptide" ATP magnesium`: 39 rows reviewed, 12 heteromeric geometry hits. Manual review accepts CDK2 and PKA peptide rows as review-only positives and rejects proteasome ATPase substrate-processing false positives.
-- RCSB full text `"protein kinase" "protein substrate" ATP magnesium`: 16 rows reviewed, no fresh folded-protein ePK positive; the hits were the same PKA peptide rows.
-- RCSB full text `protein kinase transition state mimic substrate MGF`: 2 rows reviewed, `3QHR` and `3QHW`; both are accepted review-only peptide transition-state evidence.
-- RCSB full text `protein kinase substrate peptide MGF`: 10 rows reviewed; only `3QHR` and `3QHW` are ePK transition-state evidence, while the other eight rows are GDP/MgF3 GTPase contexts.
-- RCSB full text `"kinase-substrate" protein ATP Mg`: 46 rows reviewed; only known positive repeat `5HVK` hit the heteromeric geometry rule.
-- RCSB full text `phosphoacceptor protein kinase substrate`: 21 rows reviewed; no heteromeric gamma geometry hits. PAK4/Paktide rows are source-relevant but not gamma-transfer measurement-ready under the atom-level check.
-- RCSB full text `"protein kinase" "substrate" "AMP-PNP" "protein"`: 67 rows reviewed; recovered known positives `1O6K`, `1O6L`, and `4EKK`, plus known counterexamples `4HPU` and `7ZE5`. No fresh folded-protein positive was added.
+- RCSB full text `protein kinase substrate protein phosphoacceptor AMP-PNP`: 0 rows.
+- RCSB full text `protein kinase substrate protein phosphoacceptor ANP`: 2 rows.
+- RCSB full text `protein kinase substrate protein phosphoacceptor ATP`: 20 rows.
+- RCSB full text `serine threonine protein kinase substrate protein ANP magnesium`: 133 rows, exhausted through offsets.
+- RCSB full text `kinase substrate residue AMP-PNP magnesium protein`: 6 rows.
+- RCSB full text `protein kinase full-length substrate ANP magnesium`: 1 row.
+- RCSB full text `protein kinase full-length substrate ATP magnesium`: 24 rows.
+- RCSB full text `protein kinase full-length substrate AMP-PNP magnesium`: 0 rows.
+- RCSB full text `full-length protein substrate kinase ANP`: 2 rows.
+- RCSB tyrosine phosphoacceptor/residue control surfaces: 12 total rows.
 
 ## Decision Notes
 
-The strongest new positive evidence is peptide evidence, not production-ready
-general protein-substrate evidence. The CDK2 transition-state structures are
-especially useful for review because the source maps the peptide sequence
-`PKTPKKAKKL` and the Thr acceptor, while MGF provides an equivalent
-gamma-transfer analog state.
+The recovered positives are useful review-only regression anchors, not fresh
+evidence. `5HVK`, `6Z3R`, `9UUR`, and `9UUX` remain the clean folded-protein
+positive-like repeats; `1IR3` remains peptide evidence. `2JJ2` is non-ePK
+ATP synthase context, `7ZE5` is CydDC transporter context, `7B56` remains
+source-insufficient CaMKII-actinin proximity, and `9UW4` remains a MEK/ERK
+mapping-disagreement/product-context risk rather than a clean positive.
 
 Keep all outputs review-only. Do not score ePK, calibrate thresholds, import
 labels, edit registries, or claim production readiness.
 
-Run record: `artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl`
-
 ## Next Query
 
-Target a non-peptide folded-protein substrate co-complex query with explicit
-acceptor wording, for example:
+The explicit phosphoacceptor/full-length route is exhausted for this lane.
+Next useful search should avoid broad text surfaces and instead target a
+specific under-reviewed kinase-substrate family or paper set with direct
+source mapping, for example a bounded RCSB/PubMed route for:
 
-`"protein kinase" "substrate protein" phosphoacceptor "AMP-PNP"`
+`"kinase-substrate complex" "full-length" "ATP" "phosphorylation site"`
 
-Use the same bounded pattern: RCSB query IDs first, scout heteromeric
-gamma/analog geometry, then source-review only the hits.
+Use the same pattern: query IDs first, scout gamma/analog geometry, then
+source-review only heteromeric hits.
