@@ -16619,6 +16619,65 @@ def build_epk_counteraxis_sufficiency_decision(
     midlength_protein_role_generalization_ready = bool(
         precount_meta.get("midlength_protein_role_generalization_ready")
     )
+    mek_erk_source_review_status = str(
+        precount_meta.get("mek_erk_phosphosite_source_review_status") or ""
+    )
+    mek_erk_measurement_ready_count = int(
+        precount_meta.get("mek_erk_source_authoritative_measurement_ready_count") or 0
+    )
+    mek_erk_measurement_ready_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_source_authoritative_measurement_ready_pdb_ids", [])
+    )
+    mek_erk_same_chain_rejected_count = int(
+        precount_meta.get("mek_erk_same_chain_artifact_rejected_count") or 0
+    )
+    mek_erk_same_chain_rejected_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_same_chain_artifact_rejected_pdb_ids", [])
+    )
+    mek_erk_source_free_materialized = bool(
+        precount_meta.get("mek_erk_source_free_predictive_feature_materialized")
+    )
+    mek_erk_broad_role_stress_status = str(
+        precount_meta.get("mek_erk_broad_role_stress_status") or ""
+    )
+    mek_erk_broad_role_retained_count = int(
+        precount_meta.get("mek_erk_broad_role_positive_retained_count") or 0
+    )
+    mek_erk_broad_role_retained_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_broad_role_positive_retained_pdb_ids", [])
+    )
+    mek_erk_broad_role_false_hit_count = int(
+        precount_meta.get("mek_erk_broad_role_false_hit_count") or 0
+    )
+    mek_erk_broad_role_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_broad_role_false_hit_pdb_ids", [])
+    )
+    mek_erk_broad_role_same_chain_blocked_count = int(
+        precount_meta.get("mek_erk_broad_role_same_chain_blocked_count") or 0
+    )
+    mek_erk_context_status = str(
+        precount_meta.get("mek_erk_context_counteraxis_status") or ""
+    )
+    mek_erk_context_decision_surface_changed = bool(
+        precount_meta.get("mek_erk_context_counteraxis_decision_surface_changed")
+    )
+    mek_erk_context_prior_blocked_count = int(
+        precount_meta.get("mek_erk_context_prior_counterexample_blocked_count") or 0
+    )
+    mek_erk_context_prior_blocked_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_context_prior_counterexample_blocked_pdb_ids", [])
+    )
+    mek_erk_context_residual_false_hit_count = int(
+        precount_meta.get("mek_erk_context_residual_false_hit_count") or 0
+    )
+    mek_erk_context_residual_false_hit_pdb_ids = _sorted_strings(
+        precount_meta.get("mek_erk_context_residual_false_hit_pdb_ids", [])
+    )
+    mek_erk_context_source_free_materialized = bool(
+        precount_meta.get(
+            "mek_erk_context_source_free_predictive_feature_materialized"
+        )
+    )
     unified_scoring_passes_current_controls = bool(
         precount_meta.get("unified_review_only_scoring_passes_current_controls")
     )
@@ -17017,6 +17076,103 @@ def build_epk_counteraxis_sufficiency_decision(
             "blocker": "midlength_counteraxis_lacks_broad_source_valid_positive",
         },
         {
+            "decision_axis": "mek_erk_phosphosite_source_review",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "source_review_status": mek_erk_source_review_status,
+            "source_authoritative_measurement_ready_count": (
+                mek_erk_measurement_ready_count
+            ),
+            "source_authoritative_measurement_ready_pdb_ids": (
+                mek_erk_measurement_ready_pdb_ids
+            ),
+            "same_chain_artifact_rejected_count": mek_erk_same_chain_rejected_count,
+            "same_chain_artifact_rejected_pdb_ids": (
+                mek_erk_same_chain_rejected_pdb_ids
+            ),
+            "source_free_predictive_feature_materialized": (
+                mek_erk_source_free_materialized
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "adds_broad_source_review_rows_but_not_source_free_scoring_axis"
+                if mek_erk_measurement_ready_count
+                else "missing_or_failing_mek_erk_phosphosite_source_review"
+            ),
+            "blocker": (
+                "mek_erk_source_review_not_source_free_or_calibrated_scoring_axis"
+            ),
+        },
+        {
+            "decision_axis": "mek_erk_broad_role_stress_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "broad_role_stress_status": mek_erk_broad_role_stress_status,
+            "source_reviewed_positive_retained_count": (
+                mek_erk_broad_role_retained_count
+            ),
+            "source_reviewed_positive_retained_pdb_ids": (
+                mek_erk_broad_role_retained_pdb_ids
+            ),
+            "nonpositive_naive_broad_role_false_hit_count": (
+                mek_erk_broad_role_false_hit_count
+            ),
+            "nonpositive_naive_broad_role_false_hit_pdb_ids": (
+                mek_erk_broad_role_false_hit_pdb_ids
+            ),
+            "nonpositive_same_chain_blocked_count": (
+                mek_erk_broad_role_same_chain_blocked_count
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "false_hits_keep_broad_role_rule_closed"
+                if mek_erk_broad_role_false_hit_count
+                else (
+                    "broad_role_stress_passed_but_review_only_not_calibrated"
+                    if mek_erk_broad_role_retained_count
+                    else "missing_or_failing_mek_erk_broad_role_stress"
+                )
+            ),
+            "blocker": (
+                "naive_mek_erk_broad_role_rule_false_hits_terminal_surface"
+            ),
+        },
+        {
+            "decision_axis": "mek_erk_context_counteraxis_stress_audit",
+            "review_only": True,
+            "candidate_threshold_angstrom": candidate_threshold,
+            "context_counteraxis_status": mek_erk_context_status,
+            "decision_surface_changed": mek_erk_context_decision_surface_changed,
+            "prior_counterexample_context_blocked_count": (
+                mek_erk_context_prior_blocked_count
+            ),
+            "prior_counterexample_context_blocked_pdb_ids": (
+                mek_erk_context_prior_blocked_pdb_ids
+            ),
+            "residual_new_topology_false_hit_count": (
+                mek_erk_context_residual_false_hit_count
+            ),
+            "residual_new_topology_false_hit_pdb_ids": (
+                mek_erk_context_residual_false_hit_pdb_ids
+            ),
+            "source_free_predictive_feature_materialized": (
+                mek_erk_context_source_free_materialized
+            ),
+            "feature_admissible_for_production_scoring": False,
+            "decision": (
+                "review_context_reduces_but_residual_false_hits_remain"
+                if mek_erk_context_residual_false_hit_count
+                else (
+                    "review_context_clears_current_false_hits_but_not_source_free"
+                    if mek_erk_context_prior_blocked_count
+                    else "missing_mek_erk_context_counteraxis_stress_audit"
+                )
+            ),
+            "blocker": (
+                "review_context_counteraxis_not_source_free_or_residual_false_hits"
+            ),
+        },
+        {
             "decision_axis": "unified_review_only_scoring_prototype",
             "review_only": True,
             "candidate_threshold_angstrom": candidate_threshold,
@@ -17238,6 +17394,61 @@ def build_epk_counteraxis_sufficiency_decision(
             "midlength_protein_role_generalization_ready": (
                 midlength_protein_role_generalization_ready
             ),
+            "mek_erk_phosphosite_source_review_status": (
+                mek_erk_source_review_status
+            ),
+            "mek_erk_source_authoritative_measurement_ready_count": (
+                mek_erk_measurement_ready_count
+            ),
+            "mek_erk_source_authoritative_measurement_ready_pdb_ids": (
+                mek_erk_measurement_ready_pdb_ids
+            ),
+            "mek_erk_same_chain_artifact_rejected_count": (
+                mek_erk_same_chain_rejected_count
+            ),
+            "mek_erk_same_chain_artifact_rejected_pdb_ids": (
+                mek_erk_same_chain_rejected_pdb_ids
+            ),
+            "mek_erk_source_free_predictive_feature_materialized": (
+                mek_erk_source_free_materialized
+            ),
+            "mek_erk_broad_role_stress_status": (
+                mek_erk_broad_role_stress_status
+            ),
+            "mek_erk_broad_role_positive_retained_count": (
+                mek_erk_broad_role_retained_count
+            ),
+            "mek_erk_broad_role_positive_retained_pdb_ids": (
+                mek_erk_broad_role_retained_pdb_ids
+            ),
+            "mek_erk_broad_role_false_hit_count": (
+                mek_erk_broad_role_false_hit_count
+            ),
+            "mek_erk_broad_role_false_hit_pdb_ids": (
+                mek_erk_broad_role_false_hit_pdb_ids
+            ),
+            "mek_erk_broad_role_same_chain_blocked_count": (
+                mek_erk_broad_role_same_chain_blocked_count
+            ),
+            "mek_erk_context_counteraxis_status": mek_erk_context_status,
+            "mek_erk_context_counteraxis_decision_surface_changed": (
+                mek_erk_context_decision_surface_changed
+            ),
+            "mek_erk_context_prior_counterexample_blocked_count": (
+                mek_erk_context_prior_blocked_count
+            ),
+            "mek_erk_context_prior_counterexample_blocked_pdb_ids": (
+                mek_erk_context_prior_blocked_pdb_ids
+            ),
+            "mek_erk_context_residual_false_hit_count": (
+                mek_erk_context_residual_false_hit_count
+            ),
+            "mek_erk_context_residual_false_hit_pdb_ids": (
+                mek_erk_context_residual_false_hit_pdb_ids
+            ),
+            "mek_erk_context_source_free_predictive_feature_materialized": (
+                mek_erk_context_source_free_materialized
+            ),
             "unified_review_only_scoring_passes_current_controls": (
                 unified_scoring_passes_current_controls
             ),
@@ -17285,6 +17496,9 @@ def build_epk_counteraxis_sufficiency_decision(
                 "relaxed_polymer_rule_false_hits_source_context_counterexample",
                 "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
                 "midlength_counteraxis_lacks_broad_source_valid_positive",
+                "mek_erk_source_review_not_source_free_or_calibrated_scoring_axis",
+                "naive_mek_erk_broad_role_rule_false_hits_terminal_surface",
+                "review_context_counteraxis_not_source_free_or_residual_false_hits",
                 "unified_substrate_identity_rule_not_calibrated_for_production",
                 "label_factory_gate_not_extended_for_epk",
             ],
@@ -17306,6 +17520,9 @@ def build_epk_counteraxis_sufficiency_decision(
                 "negatives, or import labels."
             ),
             "next_actions": [
+                "use source-reviewed MEK1/ERK1 rows only after source-free role and acceptor controls are rerun",
+                "repair MEK1/ERK1 broad-role false hits with a source-free counter-axis before scorer calibration",
+                "source-adjudicate 7CAG and 8BMS or replace review-context blocking with a source-free feature",
                 "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
                 "calibrate the unified substrate-identity rule against broader controls before thresholding",
                 "run external hard-negative re-audit only after a calibrated ePK score exists",
@@ -27222,6 +27439,1214 @@ def build_epk_ligand_specific_active_query_extension_audit(
     }
 
 
+def build_epk_mek_erk_phosphosite_source_review(
+    *,
+    epk_mek_erk_source_validation_review: dict[str, Any],
+    uniprot_records_by_accession: dict[str, Any] | None = None,
+    cif_text_by_pdb: dict[str, str] | None = None,
+    cif_fetcher=fetch_pdb_cif,
+    uniprot_fetcher=None,
+) -> dict[str, Any]:
+    """Review MEK1/ERK1 topology hits against explicit phosphosite evidence."""
+
+    review_meta = epk_mek_erk_source_validation_review.get("metadata", {})
+    if not isinstance(review_meta, dict):
+        review_meta = {}
+    target_fingerprint_id = str(
+        review_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    cif_texts = {
+        str(key).upper(): value for key, value in (cif_text_by_pdb or {}).items()
+    }
+    provided_uniprot_records = {
+        str(key).upper(): value
+        for key, value in (uniprot_records_by_accession or {}).items()
+    }
+    fetched_uniprot_accessions: list[str] = []
+    uniprot_fetch_failures: dict[str, str] = {}
+    uniprot_cache: dict[str, dict[str, Any]] = {}
+
+    def _load_uniprot_record(accession: str) -> dict[str, Any]:
+        accession_upper = accession.upper()
+        if not accession_upper:
+            return {}
+        if accession_upper in uniprot_cache:
+            return uniprot_cache[accession_upper]
+        record = _unwrap_uniprot_entry_record(
+            provided_uniprot_records.get(accession_upper)
+        )
+        if not record and uniprot_fetcher is not None:
+            try:
+                record = _unwrap_uniprot_entry_record(uniprot_fetcher(accession))
+                fetched_uniprot_accessions.append(accession_upper)
+            except Exception as exc:  # pragma: no cover - network failure is data.
+                record = {}
+                uniprot_fetch_failures[accession_upper] = str(exc)
+        elif not record and uniprot_fetcher is None:
+            try:
+                from .adapters import fetch_uniprot_entry
+
+                record = _unwrap_uniprot_entry_record(fetch_uniprot_entry(accession))
+                fetched_uniprot_accessions.append(accession_upper)
+            except Exception as exc:  # pragma: no cover - network failure is data.
+                record = {}
+                uniprot_fetch_failures[accession_upper] = str(exc)
+        uniprot_cache[accession_upper] = record
+        return record
+
+    def _chain_accessions_from_cif(cif_text: str) -> dict[str, list[str]]:
+        chain_accessions: dict[str, list[str]] = defaultdict(list)
+        for row in _epk_struct_ref_seq_rows(cif_text):
+            accession = str(row.get("pdbx_db_accession") or "").upper()
+            if not accession:
+                continue
+            for chain_id in _sorted_strings(
+                str(row.get("pdbx_strand_id") or "").split(",")
+            ):
+                if accession not in chain_accessions[chain_id]:
+                    chain_accessions[chain_id].append(accession)
+        return {
+            chain_id: sorted(accessions)
+            for chain_id, accessions in sorted(chain_accessions.items())
+        }
+
+    def _merge_chain_accessions(
+        row_accessions: Any, cif_accessions: dict[str, list[str]]
+    ) -> dict[str, list[str]]:
+        merged: dict[str, list[str]] = defaultdict(list)
+        if isinstance(row_accessions, dict):
+            for chain_id, accessions in row_accessions.items():
+                for accession in _sorted_strings(accessions):
+                    accession_upper = accession.upper()
+                    if accession_upper not in merged[str(chain_id)]:
+                        merged[str(chain_id)].append(accession_upper)
+        for chain_id, accessions in cif_accessions.items():
+            for accession in accessions:
+                accession_upper = accession.upper()
+                if accession_upper not in merged[str(chain_id)]:
+                    merged[str(chain_id)].append(accession_upper)
+        return {
+            chain_id: sorted(accessions)
+            for chain_id, accessions in sorted(merged.items())
+        }
+
+    def _chain_primary_accession(
+        chain_accessions: dict[str, list[str]], chain_id: str
+    ) -> str | None:
+        accessions = chain_accessions.get(chain_id) or []
+        return accessions[0] if len(accessions) == 1 else None
+
+    def _auth_residue_to_uniprot_position(
+        *, cif_text: str, accession: str, chain_id: str, auth_resid: str
+    ) -> int | None:
+        accession_upper = accession.upper()
+        for row in _epk_struct_ref_seq_rows(cif_text):
+            if str(row.get("pdbx_db_accession") or "").upper() != accession_upper:
+                continue
+            if chain_id not in _sorted_strings(
+                str(row.get("pdbx_strand_id") or "").split(",")
+            ):
+                continue
+            try:
+                auth_begin = int(str(row.get("pdbx_auth_seq_align_beg")))
+                auth_end = int(str(row.get("pdbx_auth_seq_align_end")))
+                db_begin = int(str(row.get("db_align_beg")))
+                auth_value = int(str(auth_resid))
+            except (TypeError, ValueError):
+                continue
+            if auth_begin <= auth_value <= auth_end:
+                return db_begin + (auth_value - auth_begin)
+        return None
+
+    def _modified_residue_rows(cif_text: str) -> list[dict[str, Any]]:
+        rows: list[dict[str, Any]] = []
+        for row in _epk_mmcif_rows(cif_text, "_pdbx_struct_mod_residue."):
+            rows.append(
+                {
+                    "auth_asym_id": row.get("auth_asym_id"),
+                    "auth_seq_id": row.get("auth_seq_id"),
+                    "auth_comp_id": row.get("auth_comp_id"),
+                    "label_asym_id": row.get("label_asym_id"),
+                    "label_seq_id": row.get("label_seq_id"),
+                    "label_comp_id": row.get("label_comp_id"),
+                    "parent_comp_id": row.get("parent_comp_id"),
+                    "details": row.get("details"),
+                }
+            )
+        return rows
+
+    def _is_candidate_modified(
+        modified_rows: list[dict[str, Any]], chain_id: str, auth_resid: str
+    ) -> bool:
+        return any(
+            str(row.get("auth_asym_id") or "") == chain_id
+            and str(row.get("auth_seq_id") or "") == auth_resid
+            for row in modified_rows
+        )
+
+    def _companion_modified_sites(
+        *,
+        modified_rows: list[dict[str, Any]],
+        chain_id: str,
+        candidate_auth_resid: str,
+    ) -> list[dict[str, Any]]:
+        return sorted(
+            [
+                row
+                for row in modified_rows
+                if str(row.get("auth_asym_id") or "") == chain_id
+                and str(row.get("auth_seq_id") or "") != candidate_auth_resid
+            ],
+            key=lambda row: (
+                int(str(row.get("auth_seq_id") or "0"))
+                if str(row.get("auth_seq_id") or "").isdigit()
+                else 0,
+                str(row.get("auth_comp_id") or ""),
+            ),
+        )
+
+    def _phosphosite_match(
+        *, record: dict[str, Any], position: int | None, residue_code: str
+    ) -> dict[str, Any] | None:
+        if position is None:
+            return None
+        residue_code_upper = residue_code.upper()
+        for feature in _epk_uniprot_phosphoacceptor_features(record):
+            try:
+                feature_position = int(str(feature.get("position")))
+            except (TypeError, ValueError):
+                continue
+            if feature_position != position:
+                continue
+            description = str(feature.get("description") or "")
+            lowered = description.lower()
+            residue_matches = (
+                ("phosphotyrosine" in lowered and residue_code_upper in {"TYR", "PTR"})
+                or (
+                    "phosphothreonine" in lowered
+                    and residue_code_upper in {"THR", "TPO"}
+                )
+                or (
+                    "phosphoserine" in lowered
+                    and residue_code_upper in {"SER", "SEP"}
+                )
+            )
+            if residue_matches:
+                return feature
+        return None
+
+    def _kinase_reaction_supports_protein_phosphorylation(
+        record: dict[str, Any]
+    ) -> bool:
+        for comment in record.get("catalytic_activity_comments", []) or []:
+            if not isinstance(comment, dict):
+                continue
+            reaction = str(comment.get("reaction") or "").lower()
+            if "[protein]" in reaction and "atp" in reaction and "phospho" in reaction:
+                return True
+        return False
+
+    def _best_candidate_hit(row: dict[str, Any]) -> dict[str, Any]:
+        hits = [
+            hit for hit in row.get("candidate_hits", []) or [] if isinstance(hit, dict)
+        ]
+        if not hits:
+            hits = [
+                hit
+                for hit in row.get("heteromeric_candidate_hits", []) or []
+                if isinstance(hit, dict)
+            ]
+        if not hits:
+            return {}
+        return sorted(
+            hits,
+            key=lambda hit: (
+                float(hit.get("nearest_gamma_distance_angstrom") or 9999.0),
+                str(hit.get("candidate_chain_name") or ""),
+                str(hit.get("candidate_auth_seq_id") or ""),
+            ),
+        )[0]
+
+    candidate_rows_by_pdb: dict[str, dict[str, Any]] = {}
+    for row in epk_mek_erk_source_validation_review.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        status = str(row.get("source_validation_status") or "")
+        pdb_id = str(row.get("pdb_id") or "").upper()
+        if not pdb_id:
+            continue
+        if (
+            row.get("source_pair_id") == "mek1_erk1"
+            or status
+            == "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only"
+        ):
+            candidate_rows_by_pdb.setdefault(pdb_id, row)
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    measurement_ready_pdb_ids: list[str] = []
+    terminal_not_ready_pdb_ids: list[str] = []
+    distances: list[float] = []
+    cif_fetch_failures: dict[str, str] = {}
+    fetched_pdb_ids: list[str] = []
+
+    for pdb_id, source_row in sorted(candidate_rows_by_pdb.items()):
+        hit = _best_candidate_hit(source_row)
+        row_base = {
+            "row_type": "mek_erk_phosphosite_source_review_candidate",
+            "pdb_id": pdb_id,
+            "target_family_id": "epk",
+            "target_fingerprint_id_if_future_gated": target_fingerprint_id,
+            "review_only": True,
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "structure_title": source_row.get("structure_title"),
+            "source_validation_status_input": source_row.get(
+                "source_validation_status"
+            ),
+            "candidate_hit": hit,
+        }
+        try:
+            cif_text = cif_texts.get(pdb_id)
+            fetch_status = "provided_cif_text" if cif_text is not None else "fetched"
+            if cif_text is None:
+                cif_text = cif_fetcher(pdb_id)
+                fetched_pdb_ids.append(pdb_id)
+        except Exception as exc:  # pragma: no cover - network failure is data.
+            status = "structure_fetch_failed_review_only"
+            cif_fetch_failures[pdb_id] = str(exc)
+            status_counts[status] += 1
+            terminal_not_ready_pdb_ids.append(pdb_id)
+            rows.append(
+                {
+                    **row_base,
+                    "fetch_status": "fetch_failed",
+                    "fetch_error": str(exc),
+                    "phosphosite_source_review_status": status,
+                    "source_authoritative_measurement_ready": False,
+                    "gamma_acceptor_distance_measured": False,
+                    "remaining_blockers": ["structure_fetch_failed"],
+                }
+            )
+            continue
+
+        struct_rows = _epk_mmcif_rows(cif_text, "_struct.")
+        title = _first_present_value(struct_rows, "title") or source_row.get(
+            "structure_title"
+        )
+        modified_rows = _modified_residue_rows(cif_text)
+        chain_accessions = _merge_chain_accessions(
+            source_row.get("chain_accessions"),
+            _chain_accessions_from_cif(cif_text),
+        )
+        candidate_chain = str(hit.get("candidate_chain_name") or "")
+        gamma_chain = str(hit.get("gamma_associated_polymer_chain_name") or "")
+        candidate_auth_resid = str(hit.get("candidate_auth_seq_id") or "")
+        candidate_code = str(hit.get("candidate_residue_code") or "").upper()
+        acceptor_accession = _chain_primary_accession(
+            chain_accessions, candidate_chain
+        )
+        kinase_accession = _chain_primary_accession(chain_accessions, gamma_chain)
+        acceptor_record = _load_uniprot_record(acceptor_accession or "")
+        kinase_record = _load_uniprot_record(kinase_accession or "")
+        candidate_position = (
+            _auth_residue_to_uniprot_position(
+                cif_text=cif_text,
+                accession=acceptor_accession,
+                chain_id=candidate_chain,
+                auth_resid=candidate_auth_resid,
+            )
+            if acceptor_accession
+            else None
+        )
+        phosphosite_feature = _phosphosite_match(
+            record=acceptor_record,
+            position=candidate_position,
+            residue_code=candidate_code,
+        )
+        kinase_reaction_supported = _kinase_reaction_supports_protein_phosphorylation(
+            kinase_record
+        )
+        role_direction_supported = (
+            kinase_accession == "Q02750"
+            and acceptor_accession == "P27361"
+            and kinase_reaction_supported
+            and phosphosite_feature is not None
+            and "map2k" in str(phosphosite_feature.get("description") or "").lower()
+        )
+        same_chain = bool(candidate_chain and candidate_chain == gamma_chain)
+        candidate_modified = _is_candidate_modified(
+            modified_rows, candidate_chain, candidate_auth_resid
+        )
+        companion_modified = _companion_modified_sites(
+            modified_rows=modified_rows,
+            chain_id=candidate_chain,
+            candidate_auth_resid=candidate_auth_resid,
+        )
+        try:
+            nearest_distance = float(hit.get("nearest_gamma_distance_angstrom"))
+        except (TypeError, ValueError):
+            nearest_distance = None
+
+        if role_direction_supported and not same_chain and not candidate_modified:
+            status = (
+                "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only"
+            )
+            measurement_ready = True
+            blockers = [
+                "source_review_evidence_not_source_free_predictive_feature",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ]
+            measurement_ready_pdb_ids.append(pdb_id)
+            if nearest_distance is not None:
+                distances.append(nearest_distance)
+        elif same_chain:
+            status = "rejected_same_chain_mek_active_site_not_erk_phosphosite_review_only"
+            measurement_ready = False
+            blockers = [
+                "candidate_acceptor_chain_matches_gamma_chain",
+                "same_author_chain_entity_mapping_artifact_risk",
+                "source_phosphosite_not_on_candidate_chain",
+            ]
+            terminal_not_ready_pdb_ids.append(pdb_id)
+        elif phosphosite_feature is None:
+            status = "blocked_source_phosphosite_not_matched_to_candidate_review_only"
+            measurement_ready = False
+            blockers = [
+                "candidate_residue_not_matched_to_source_phosphosite_feature",
+                "role_direction_or_acceptor_identity_unresolved",
+            ]
+            terminal_not_ready_pdb_ids.append(pdb_id)
+        else:
+            status = "blocked_mek_erk_role_direction_or_acceptor_state_review_only"
+            measurement_ready = False
+            blockers = [
+                "role_direction_or_acceptor_state_unresolved",
+                "external_hard_negative_reaudit_not_real_scorer",
+            ]
+            terminal_not_ready_pdb_ids.append(pdb_id)
+
+        status_counts[status] += 1
+        rows.append(
+            {
+                **row_base,
+                "fetch_status": fetch_status,
+                "structure_title": title,
+                "chain_accessions": chain_accessions,
+                "candidate_chain_name": candidate_chain,
+                "gamma_associated_polymer_chain_name": gamma_chain,
+                "candidate_same_chain_as_gamma": same_chain,
+                "candidate_auth_seq_id": candidate_auth_resid,
+                "candidate_residue_code": candidate_code,
+                "candidate_uniprot_accession": acceptor_accession,
+                "candidate_uniprot_position": candidate_position,
+                "kinase_uniprot_accession": kinase_accession,
+                "kinase_protein_phosphorylation_reaction_supported": (
+                    kinase_reaction_supported
+                ),
+                "source_phosphosite_feature": phosphosite_feature,
+                "source_phosphosite_matched_candidate": phosphosite_feature is not None,
+                "source_role_direction_supported": role_direction_supported,
+                "candidate_residue_modified_in_structure": candidate_modified,
+                "companion_modified_residue_rows_on_candidate_chain": (
+                    companion_modified
+                ),
+                "structure_modified_residue_rows": modified_rows,
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    round(nearest_distance, 3)
+                    if nearest_distance is not None
+                    else None
+                ),
+                "gamma_acceptor_distance_measured": nearest_distance is not None,
+                "source_authoritative_measurement_ready": measurement_ready,
+                "phosphosite_source_review_status": status,
+                "remaining_blockers": blockers,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_orphan_discovery_claims": False,
+            }
+        )
+
+    measurement_ready_pdb_ids = _sorted_strings(measurement_ready_pdb_ids)
+    terminal_not_ready_pdb_ids = _sorted_strings(terminal_not_ready_pdb_ids)
+    if measurement_ready_pdb_ids:
+        review_status = (
+            "adds_source_authoritative_broad_protein_substrate_rows_review_only"
+        )
+    else:
+        review_status = "fails_closed_no_source_authoritative_mek_erk_rows"
+    return {
+        "metadata": {
+            "method": "epk_mek_erk_phosphosite_source_review",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_mek_erk_source_validation_review_method": (
+                review_meta.get("method")
+            ),
+            "reviewed_candidate_count": len(rows),
+            "source_review_status": review_status,
+            "phosphosite_source_review_status_counts": dict(
+                sorted(status_counts.items())
+            ),
+            "source_authoritative_measurement_ready_count": len(
+                measurement_ready_pdb_ids
+            ),
+            "source_authoritative_measurement_ready_pdb_ids": (
+                measurement_ready_pdb_ids
+            ),
+            "terminal_not_ready_count": len(terminal_not_ready_pdb_ids),
+            "terminal_not_ready_pdb_ids": terminal_not_ready_pdb_ids,
+            "same_chain_artifact_rejected_count": int(
+                status_counts[
+                    "rejected_same_chain_mek_active_site_not_erk_phosphosite_review_only"
+                ]
+            ),
+            "same_chain_artifact_rejected_pdb_ids": [
+                row.get("pdb_id")
+                for row in rows
+                if row.get("phosphosite_source_review_status")
+                == "rejected_same_chain_mek_active_site_not_erk_phosphosite_review_only"
+            ],
+            "gamma_acceptor_distance_measured_count": len(distances),
+            "nearest_gamma_acceptor_distance_min_angstrom": (
+                round(min(distances), 3) if distances else None
+            ),
+            "nearest_gamma_acceptor_distance_max_angstrom": (
+                round(max(distances), 3) if distances else None
+            ),
+            "fetched_pdb_ids": _sorted_strings(fetched_pdb_ids),
+            "cif_fetch_failure_count": len(cif_fetch_failures),
+            "cif_fetch_failures": cif_fetch_failures,
+            "fetched_uniprot_accessions": _sorted_strings(fetched_uniprot_accessions),
+            "uniprot_fetch_failure_count": len(uniprot_fetch_failures),
+            "uniprot_fetch_failures": dict(sorted(uniprot_fetch_failures.items())),
+            "source_context_used_as_review_evidence_only": True,
+            "source_free_predictive_feature_materialized": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_measure_gamma_acceptor_distance": False,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "mek_erk_phosphosite_source_review_executed",
+            "blocker_not_removed": [
+                "source_review_evidence_not_source_free_predictive_feature",
+                "source_free_protein_role_and_acceptor_identity_generalization_not_rerun",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact reviews MEK1/ERK1 topology hits against PDB "
+                "modified-residue records and UniProt phosphosite evidence. "
+                "Rows can become measurement-ready review controls, but this "
+                "does not create a source-free ePK scorer, threshold, registry "
+                "edit, label import, or held-out performance claim."
+            ),
+            "next_actions": [
+                "rerun protein-substrate role and acceptor-identity controls with the source-reviewed MEK1/ERK1 rows before threshold work",
+                "keep same-chain MEK active-site hits as topology counterexamples",
+                "convert source-reviewed phosphosite support into a source-free predictive feature only after broad controls and external scored re-audit pass",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("phosphosite_source_review_status") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "MEK1/ERK1 phosphosite source review remains review-only and "
+                "does not authorize ePK scoring, thresholding, registry edits, "
+                "or label import."
+            )
+        ],
+    }
+
+
+def build_epk_mek_erk_role_control_rerun(
+    *,
+    epk_mek_erk_phosphosite_source_review: dict[str, Any],
+    epk_source_free_protein_substrate_role_discriminator_audit: dict[str, Any],
+    epk_midlength_protein_role_counteraxis_audit: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Rerun review-only role controls after MEK1/ERK1 phosphosite review."""
+
+    source_meta = epk_mek_erk_phosphosite_source_review.get("metadata", {})
+    if not isinstance(source_meta, dict):
+        source_meta = {}
+    protein_role_meta = (
+        epk_source_free_protein_substrate_role_discriminator_audit.get(
+            "metadata", {}
+        )
+        if isinstance(
+            epk_source_free_protein_substrate_role_discriminator_audit, dict
+        )
+        else {}
+    )
+    if not isinstance(protein_role_meta, dict):
+        protein_role_meta = {}
+    midlength_meta = (
+        epk_midlength_protein_role_counteraxis_audit.get("metadata", {})
+        if isinstance(epk_midlength_protein_role_counteraxis_audit, dict)
+        else {}
+    )
+    if not isinstance(midlength_meta, dict):
+        midlength_meta = {}
+
+    target_fingerprint_id = str(
+        source_meta.get("target_fingerprint_id")
+        or protein_role_meta.get("target_fingerprint_id")
+        or midlength_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    rule_id = "epk_mek_erk_role_control_rerun_v0_review_only"
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    broad_hit_pdb_ids: list[str] = []
+    same_chain_blocked_pdb_ids: list[str] = []
+    source_review_miss_pdb_ids: list[str] = []
+
+    for source_row in epk_mek_erk_phosphosite_source_review.get("rows", []) or []:
+        if not isinstance(source_row, dict):
+            continue
+        pdb_id = str(source_row.get("pdb_id") or "").upper()
+        source_ready = bool(source_row.get("source_authoritative_measurement_ready"))
+        same_chain = bool(source_row.get("candidate_same_chain_as_gamma"))
+        candidate_accession = str(source_row.get("candidate_uniprot_accession") or "")
+        kinase_accession = str(source_row.get("kinase_uniprot_accession") or "")
+        role_hit = (
+            source_ready
+            and not same_chain
+            and bool(candidate_accession)
+            and bool(kinase_accession)
+            and candidate_accession != kinase_accession
+        )
+        if role_hit:
+            decision = (
+                "source_reviewed_mek_erk_broad_protein_role_hit_review_only"
+            )
+            broad_hit_pdb_ids.append(pdb_id)
+        elif same_chain:
+            decision = "same_chain_mek_active_site_counterexample_blocked_review_only"
+            same_chain_blocked_pdb_ids.append(pdb_id)
+        else:
+            decision = "source_reviewed_mek_erk_role_miss_review_only"
+            source_review_miss_pdb_ids.append(pdb_id)
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "mek_erk_role_control_rerun_candidate",
+                "source_row_type": source_row.get("row_type"),
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "rule_id": rule_id,
+                "source_phosphosite_review_status": source_row.get(
+                    "phosphosite_source_review_status"
+                ),
+                "source_authoritative_measurement_ready": source_ready,
+                "candidate_uniprot_accession": candidate_accession or None,
+                "candidate_uniprot_position": source_row.get(
+                    "candidate_uniprot_position"
+                ),
+                "kinase_uniprot_accession": kinase_accession or None,
+                "candidate_same_chain_as_gamma": same_chain,
+                "source_phosphosite_matched_candidate": bool(
+                    source_row.get("source_phosphosite_matched_candidate")
+                ),
+                "nearest_gamma_to_candidate_acceptor_distance_angstrom": (
+                    source_row.get(
+                        "nearest_gamma_to_candidate_acceptor_distance_angstrom"
+                    )
+                ),
+                "mek_erk_role_control_rule_hit": role_hit,
+                "role_control_decision": decision,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+                "remaining_blockers": [
+                    "source_review_evidence_not_source_free_predictive_feature",
+                    "threshold_not_calibrated_against_negative_controls",
+                    "external_hard_negative_reaudit_not_real_scorer",
+                    "registry_and_label_factory_extension_not_implemented",
+                ],
+            }
+        )
+
+    broad_hit_pdb_ids = _sorted_strings(broad_hit_pdb_ids)
+    same_chain_blocked_pdb_ids = _sorted_strings(same_chain_blocked_pdb_ids)
+    source_review_miss_pdb_ids = _sorted_strings(source_review_miss_pdb_ids)
+    current_control_false_hit_count = int(
+        protein_role_meta.get("protein_role_control_false_hit_count") or 0
+    )
+    external_non_abstention_count = int(
+        protein_role_meta.get("protein_role_external_hard_negative_non_abstention_count")
+        or 0
+    )
+    midlength_residual_false_hit_count = int(
+        midlength_meta.get("residual_protein_role_false_hit_count") or 0
+    )
+    if (
+        broad_hit_pdb_ids
+        and not source_review_miss_pdb_ids
+        and current_control_false_hit_count == 0
+        and external_non_abstention_count == 0
+        and midlength_residual_false_hit_count == 0
+    ):
+        status = (
+            "passes_review_only_with_source_reviewed_broad_rows_but_scoring_closed"
+        )
+    else:
+        status = "fails_closed_mek_erk_role_control_rerun"
+
+    return {
+        "metadata": {
+            "method": "epk_mek_erk_role_control_rerun",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "rule_id": rule_id,
+            "source_epk_mek_erk_phosphosite_source_review_method": (
+                source_meta.get("method")
+            ),
+            "source_epk_source_free_protein_substrate_role_discriminator_audit_method": (
+                protein_role_meta.get("method")
+            ),
+            "source_epk_midlength_protein_role_counteraxis_audit_method": (
+                midlength_meta.get("method")
+            ),
+            "role_control_rerun_status": status,
+            "reviewed_candidate_count": len(rows),
+            "source_reviewed_broad_protein_role_hit_count": len(broad_hit_pdb_ids),
+            "source_reviewed_broad_protein_role_hit_pdb_ids": broad_hit_pdb_ids,
+            "same_chain_counterexample_blocked_count": len(
+                same_chain_blocked_pdb_ids
+            ),
+            "same_chain_counterexample_blocked_pdb_ids": same_chain_blocked_pdb_ids,
+            "source_reviewed_role_miss_count": len(source_review_miss_pdb_ids),
+            "source_reviewed_role_miss_pdb_ids": source_review_miss_pdb_ids,
+            "carried_current_control_false_hit_count": (
+                current_control_false_hit_count
+            ),
+            "carried_imported_external_hard_negative_non_abstention_count": (
+                external_non_abstention_count
+            ),
+            "carried_midlength_residual_false_hit_count": (
+                midlength_residual_false_hit_count
+            ),
+            "role_control_decision_counts": dict(sorted(decision_counts.items())),
+            "source_free_predictive_feature_materialized": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "mek_erk_source_reviewed_rows_rerun_against_role_controls",
+            "blocker_not_removed": [
+                "source_review_evidence_not_source_free_predictive_feature",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact reruns role-control accounting after MEK1/ERK1 "
+                "phosphosite source review. It can add review-only broad "
+                "protein-substrate rows, but it does not create a source-free "
+                "scorer, threshold, registry edit, label import, or performance "
+                "claim."
+            ),
+            "next_actions": [
+                "stress source-reviewed MEK1/ERK1 rows against sibling and broad-query topology counterexamples before scorer calibration",
+                "materialize a source-free acceptor-identity feature that does not depend on UniProt phosphosite text",
+                "keep external hard-negative re-audit closed until a calibrated ePK score exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("role_control_decision") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "MEK1/ERK1 role-control rerun is review-only and cannot "
+                "authorize threshold selection, production scoring, registry "
+                "edits, or label import."
+            )
+        ],
+    }
+
+
+def build_epk_mek_erk_broad_role_stress_audit(
+    *,
+    epk_mek_erk_role_control_rerun: dict[str, Any],
+    epk_multi_query_active_site_terminal_audit: dict[str, Any],
+    candidate_threshold_angstrom: float = 6.0,
+) -> dict[str, Any]:
+    """Stress source-reviewed MEK1/ERK1 broad-role logic on terminal queries."""
+
+    rerun_meta = epk_mek_erk_role_control_rerun.get("metadata", {})
+    if not isinstance(rerun_meta, dict):
+        rerun_meta = {}
+    terminal_meta = epk_multi_query_active_site_terminal_audit.get("metadata", {})
+    if not isinstance(terminal_meta, dict):
+        terminal_meta = {}
+    target_fingerprint_id = str(
+        rerun_meta.get("target_fingerprint_id")
+        or terminal_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    try:
+        threshold = float(candidate_threshold_angstrom)
+    except (TypeError, ValueError):
+        threshold = 6.0
+    source_reviewed_positive_ids = set(
+        _sorted_strings(
+            rerun_meta.get("source_reviewed_broad_protein_role_hit_pdb_ids", [])
+        )
+    )
+    known_positive_ids = set(
+        _sorted_strings(
+            terminal_meta.get("known_positive_repeat_hit_pdb_ids", [])
+        )
+    )
+
+    def _nearest_hit(row: dict[str, Any]) -> dict[str, Any]:
+        hits = [
+            hit
+            for hit in row.get("heteromeric_candidate_hits", []) or []
+            if isinstance(hit, dict)
+        ]
+        if not hits:
+            return {}
+        return sorted(
+            hits,
+            key=lambda hit: (
+                float(hit.get("nearest_gamma_distance_angstrom") or 9999.0),
+                str(hit.get("candidate_chain_name") or ""),
+                str(hit.get("candidate_auth_seq_id") or ""),
+            ),
+        )[0]
+
+    rows_by_pdb: dict[str, dict[str, Any]] = {}
+    for row in epk_multi_query_active_site_terminal_audit.get("rows", []) or []:
+        if not isinstance(row, dict) or not bool(row.get("topology_hit")):
+            continue
+        pdb_id = str(row.get("pdb_id") or "").upper()
+        if not pdb_id:
+            continue
+        rows_by_pdb.setdefault(pdb_id, row)
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_retained_pdb_ids: list[str] = []
+    known_positive_retained_pdb_ids: list[str] = []
+    nonpositive_false_hit_pdb_ids: list[str] = []
+    same_chain_blocked_pdb_ids: list[str] = []
+    source_reviewed_positive_missing_ids: list[str] = []
+
+    for pdb_id, terminal_row in sorted(rows_by_pdb.items()):
+        hit = _nearest_hit(terminal_row)
+        candidate_chain = str(hit.get("candidate_chain_name") or "")
+        gamma_chain = str(hit.get("gamma_associated_polymer_chain_name") or "")
+        try:
+            distance = float(hit.get("nearest_gamma_distance_angstrom"))
+        except (TypeError, ValueError):
+            distance = None
+        same_chain = bool(candidate_chain and candidate_chain == gamma_chain)
+        naive_role_hit = (
+            distance is not None
+            and distance <= threshold
+            and not same_chain
+            and bool(candidate_chain)
+            and bool(gamma_chain)
+        )
+        source_reviewed_positive = pdb_id in source_reviewed_positive_ids
+        known_positive = pdb_id in known_positive_ids or bool(
+            terminal_row.get("source_validated_positive_like")
+        )
+        nonpositive_control = not source_reviewed_positive and not known_positive
+        if source_reviewed_positive and naive_role_hit:
+            decision = "source_reviewed_mek_erk_positive_retained_review_only"
+            positive_retained_pdb_ids.append(pdb_id)
+        elif source_reviewed_positive:
+            decision = "source_reviewed_mek_erk_positive_missed_review_only"
+            source_reviewed_positive_missing_ids.append(pdb_id)
+        elif known_positive and naive_role_hit:
+            decision = "known_positive_repeat_retained_review_only"
+            known_positive_retained_pdb_ids.append(pdb_id)
+        elif nonpositive_control and same_chain:
+            decision = "nonpositive_same_chain_topology_blocked_review_only"
+            same_chain_blocked_pdb_ids.append(pdb_id)
+        elif nonpositive_control and naive_role_hit:
+            decision = "nonpositive_naive_broad_role_false_hit_review_only"
+            nonpositive_false_hit_pdb_ids.append(pdb_id)
+        else:
+            decision = "nonpositive_abstained_by_naive_broad_role_review_only"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "mek_erk_broad_role_stress_terminal_topology_hit",
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "candidate_threshold_angstrom": threshold,
+                "candidate_chain_name": candidate_chain,
+                "gamma_associated_polymer_chain_name": gamma_chain,
+                "candidate_same_chain_as_gamma": same_chain,
+                "nearest_gamma_distance_angstrom": (
+                    round(distance, 3) if distance is not None else None
+                ),
+                "source_validation_status": terminal_row.get(
+                    "source_validation_status"
+                ),
+                "known_context": terminal_row.get("known_context"),
+                "source_pair_id": terminal_row.get("source_pair_id"),
+                "source_reviewed_mek_erk_positive": source_reviewed_positive,
+                "known_positive_repeat_or_source_valid": known_positive,
+                "naive_broad_protein_role_rule_hit": naive_role_hit,
+                "broad_role_stress_decision": decision,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+            }
+        )
+
+    positive_retained_pdb_ids = _sorted_strings(positive_retained_pdb_ids)
+    known_positive_retained_pdb_ids = _sorted_strings(
+        known_positive_retained_pdb_ids
+    )
+    nonpositive_false_hit_pdb_ids = _sorted_strings(nonpositive_false_hit_pdb_ids)
+    same_chain_blocked_pdb_ids = _sorted_strings(same_chain_blocked_pdb_ids)
+    source_reviewed_positive_missing_ids = _sorted_strings(
+        source_reviewed_positive_missing_ids
+    )
+    if nonpositive_false_hit_pdb_ids or source_reviewed_positive_missing_ids:
+        status = "fails_closed_naive_broad_role_rule_false_hits_terminal_surface"
+    else:
+        status = "passes_current_terminal_surface_but_review_only_not_calibrated"
+
+    return {
+        "metadata": {
+            "method": "epk_mek_erk_broad_role_stress_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_mek_erk_role_control_rerun_method": rerun_meta.get(
+                "method"
+            ),
+            "source_epk_multi_query_active_site_terminal_audit_method": (
+                terminal_meta.get("method")
+            ),
+            "candidate_threshold_angstrom": threshold,
+            "broad_role_stress_status": status,
+            "reviewed_topology_hit_count": len(rows),
+            "source_reviewed_mek_erk_positive_retained_count": len(
+                positive_retained_pdb_ids
+            ),
+            "source_reviewed_mek_erk_positive_retained_pdb_ids": (
+                positive_retained_pdb_ids
+            ),
+            "source_reviewed_mek_erk_positive_missed_count": len(
+                source_reviewed_positive_missing_ids
+            ),
+            "source_reviewed_mek_erk_positive_missed_pdb_ids": (
+                source_reviewed_positive_missing_ids
+            ),
+            "known_positive_repeat_retained_count": len(
+                known_positive_retained_pdb_ids
+            ),
+            "known_positive_repeat_retained_pdb_ids": known_positive_retained_pdb_ids,
+            "nonpositive_naive_broad_role_false_hit_count": len(
+                nonpositive_false_hit_pdb_ids
+            ),
+            "nonpositive_naive_broad_role_false_hit_pdb_ids": (
+                nonpositive_false_hit_pdb_ids
+            ),
+            "nonpositive_same_chain_blocked_count": len(same_chain_blocked_pdb_ids),
+            "nonpositive_same_chain_blocked_pdb_ids": same_chain_blocked_pdb_ids,
+            "broad_role_stress_decision_counts": dict(
+                sorted(decision_counts.items())
+            ),
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "source_reviewed_mek_erk_rows_stressed_against_terminal_query_surface",
+            "blocker_not_removed": [
+                "naive_broad_role_rule_false_hits_terminal_surface",
+                "source_review_evidence_not_source_free_predictive_feature",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This stress audit asks whether a naive source-free broad-role "
+                "rule can retain source-reviewed MEK1/ERK1 positives while "
+                "blocking terminal active-query counterexamples. It is a "
+                "fail-closed diagnostic, not an ePK score or threshold gate."
+            ),
+            "next_actions": [
+                "add a concrete counter-axis for the false-hit terminal topology rows before scorer calibration",
+                "keep same-chain topology blocked as counterevidence",
+                "do not run a real external hard-negative re-audit until false hits are repaired",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("broad_role_stress_decision") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "Broad-role stress is review-only and does not authorize "
+                "threshold selection, production scoring, registry edits, or "
+                "label import."
+            )
+        ],
+    }
+
+
+def build_epk_mek_erk_context_counteraxis_stress_audit(
+    *,
+    epk_mek_erk_broad_role_stress_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Apply a review-context counteraxis to MEK1/ERK1 broad-role stress hits."""
+
+    broad_meta = epk_mek_erk_broad_role_stress_audit.get("metadata", {})
+    if not isinstance(broad_meta, dict):
+        broad_meta = {}
+    target_fingerprint_id = str(
+        broad_meta.get("target_fingerprint_id")
+        or "epk_atp_gamma_phosphoryl_transfer"
+    )
+    threshold = broad_meta.get("candidate_threshold_angstrom")
+    rule_id = "epk_mek_erk_review_context_counteraxis_v0"
+
+    rows: list[dict[str, Any]] = []
+    decision_counts: Counter[str] = Counter()
+    positive_retained_pdb_ids: list[str] = []
+    known_positive_retained_pdb_ids: list[str] = []
+    prior_counterexample_blocked_pdb_ids: list[str] = []
+    same_chain_blocked_pdb_ids: list[str] = []
+    residual_false_hit_pdb_ids: list[str] = []
+
+    for broad_row in epk_mek_erk_broad_role_stress_audit.get("rows", []) or []:
+        if not isinstance(broad_row, dict):
+            continue
+        pdb_id = str(broad_row.get("pdb_id") or "").upper()
+        if not pdb_id:
+            continue
+        broad_decision = str(broad_row.get("broad_role_stress_decision") or "")
+        known_context = str(broad_row.get("known_context") or "")
+        source_reviewed_positive = bool(
+            broad_row.get("source_reviewed_mek_erk_positive")
+        )
+        known_positive = bool(
+            broad_row.get("known_positive_repeat_or_source_valid")
+        )
+        same_chain = bool(broad_row.get("candidate_same_chain_as_gamma"))
+        naive_hit = bool(broad_row.get("naive_broad_protein_role_rule_hit"))
+        if source_reviewed_positive and naive_hit:
+            decision = "source_reviewed_mek_erk_positive_retained_review_only"
+            positive_retained_pdb_ids.append(pdb_id)
+        elif known_positive and naive_hit:
+            decision = "known_positive_repeat_retained_review_only"
+            known_positive_retained_pdb_ids.append(pdb_id)
+        elif same_chain:
+            decision = "same_chain_topology_blocked_review_only"
+            same_chain_blocked_pdb_ids.append(pdb_id)
+        elif (
+            broad_decision
+            == "nonpositive_naive_broad_role_false_hit_review_only"
+            and known_context == "prior_counterexample_repeat"
+        ):
+            decision = "prior_counterexample_context_blocked_review_only"
+            prior_counterexample_blocked_pdb_ids.append(pdb_id)
+        elif (
+            broad_decision
+            == "nonpositive_naive_broad_role_false_hit_review_only"
+        ):
+            decision = "residual_new_topology_false_hit_review_only"
+            residual_false_hit_pdb_ids.append(pdb_id)
+        else:
+            decision = "nonpositive_abstained_review_only"
+        decision_counts[decision] += 1
+        rows.append(
+            {
+                "row_type": "mek_erk_context_counteraxis_terminal_topology_hit",
+                "pdb_id": pdb_id,
+                "target_family_id": "epk",
+                "target_fingerprint_id": target_fingerprint_id,
+                "review_only": True,
+                "rule_id": rule_id,
+                "candidate_threshold_angstrom": threshold,
+                "source_broad_role_stress_decision": broad_decision,
+                "known_context": broad_row.get("known_context"),
+                "source_validation_status": broad_row.get(
+                    "source_validation_status"
+                ),
+                "candidate_same_chain_as_gamma": same_chain,
+                "source_reviewed_mek_erk_positive": source_reviewed_positive,
+                "known_positive_repeat_or_source_valid": known_positive,
+                "naive_broad_protein_role_rule_hit": naive_hit,
+                "context_counteraxis_decision": decision,
+                "production_scoring_admissible": False,
+                "ready_for_production_scoring": False,
+                "ready_for_label_import": False,
+                "countable_label_candidate": False,
+                "epk_score_computed": False,
+                "external_hard_negative_reaudit_scored": False,
+            }
+        )
+
+    positive_retained_pdb_ids = _sorted_strings(positive_retained_pdb_ids)
+    known_positive_retained_pdb_ids = _sorted_strings(
+        known_positive_retained_pdb_ids
+    )
+    prior_counterexample_blocked_pdb_ids = _sorted_strings(
+        prior_counterexample_blocked_pdb_ids
+    )
+    same_chain_blocked_pdb_ids = _sorted_strings(same_chain_blocked_pdb_ids)
+    residual_false_hit_pdb_ids = _sorted_strings(residual_false_hit_pdb_ids)
+    if residual_false_hit_pdb_ids:
+        status = (
+            "fails_closed_context_counteraxis_reduces_but_does_not_clear_false_hits"
+        )
+    else:
+        status = "passes_review_context_counteraxis_but_not_source_free"
+
+    return {
+        "metadata": {
+            "method": "epk_mek_erk_context_counteraxis_stress_audit",
+            "review_only": True,
+            "target_family_id": "epk",
+            "target_fingerprint_id": target_fingerprint_id,
+            "source_epk_mek_erk_broad_role_stress_audit_method": (
+                broad_meta.get("method")
+            ),
+            "rule_id": rule_id,
+            "candidate_threshold_angstrom": threshold,
+            "context_counteraxis_status": status,
+            "reviewed_topology_hit_count": len(rows),
+            "source_reviewed_mek_erk_positive_retained_count": len(
+                positive_retained_pdb_ids
+            ),
+            "source_reviewed_mek_erk_positive_retained_pdb_ids": (
+                positive_retained_pdb_ids
+            ),
+            "known_positive_repeat_retained_count": len(
+                known_positive_retained_pdb_ids
+            ),
+            "known_positive_repeat_retained_pdb_ids": known_positive_retained_pdb_ids,
+            "prior_counterexample_context_blocked_count": len(
+                prior_counterexample_blocked_pdb_ids
+            ),
+            "prior_counterexample_context_blocked_pdb_ids": (
+                prior_counterexample_blocked_pdb_ids
+            ),
+            "same_chain_topology_blocked_count": len(same_chain_blocked_pdb_ids),
+            "same_chain_topology_blocked_pdb_ids": same_chain_blocked_pdb_ids,
+            "residual_new_topology_false_hit_count": len(
+                residual_false_hit_pdb_ids
+            ),
+            "residual_new_topology_false_hit_pdb_ids": residual_false_hit_pdb_ids,
+            "context_counteraxis_decision_counts": dict(
+                sorted(decision_counts.items())
+            ),
+            "decision_surface_changed": True,
+            "source_free_predictive_feature_materialized": False,
+            "threshold_calibrated": False,
+            "selected_threshold_angstrom": None,
+            "ready_to_run_epk_scorer": False,
+            "epk_score_computed": False,
+            "external_hard_negative_reaudit_scored": False,
+            "ready_to_expand_positive_fingerprint_universe": False,
+            "ready_for_production_scoring": False,
+            "ready_for_orphan_discovery_claims": False,
+            "ready_for_label_import": False,
+            "fingerprint_registry_edited": False,
+            "curated_label_registry_edited": False,
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "prior_counterexample_context_blocks_six_mek_erk_broad_role_false_hits",
+            "blocker_not_removed": [
+                "review_context_counteraxis_not_source_free",
+                "residual_new_topology_false_hits_need_source_adjudication",
+                "threshold_not_calibrated_against_negative_controls",
+                "external_hard_negative_reaudit_not_real_scorer",
+                "registry_and_label_factory_extension_not_implemented",
+            ],
+            "review_only_rule": (
+                "This artifact changes the review-only decision surface by "
+                "blocking prior-counterexample repeats after MEK1/ERK1 broad "
+                "role stress. It uses review context, so it is not a "
+                "source-free ePK scorer or production-admissible counteraxis."
+            ),
+            "next_actions": [
+                "source-adjudicate residual new topology hits 7CAG and 8BMS before scorer calibration",
+                "replace review-context blocking with a source-free feature before any production threshold",
+                "keep external hard-negative scored re-audit closed until a calibrated scorer exists",
+            ],
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                str(row.get("context_counteraxis_decision") or ""),
+                str(row.get("pdb_id") or ""),
+            ),
+        ),
+        "warnings": [
+            (
+                "MEK1/ERK1 context counteraxis stress is review-only and "
+                "depends on review context; it cannot support production "
+                "scoring, registry edits, or label import."
+            )
+        ],
+    }
+
+
 def build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     *,
     epk_heteromeric_candidate_source_validation_review: dict[str, Any],
@@ -34872,6 +36297,9 @@ def build_epk_precount_gate_status(
     epk_source_free_protein_substrate_role_discriminator_stress_audit: dict[str, Any]
     | None = None,
     epk_midlength_protein_role_counteraxis_audit: dict[str, Any] | None = None,
+    epk_mek_erk_phosphosite_source_review: dict[str, Any] | None = None,
+    epk_mek_erk_broad_role_stress_audit: dict[str, Any] | None = None,
+    epk_mek_erk_context_counteraxis_stress_audit: dict[str, Any] | None = None,
     epk_unified_review_only_scoring_prototype: dict[str, Any] | None = None,
     epk_unified_prototype_broad_stress_audit: dict[str, Any] | None = None,
     epk_m_csa760_atp_state_repair_scan: dict[str, Any] | None = None,
@@ -35439,6 +36867,27 @@ def build_epk_precount_gate_status(
     )
     if not isinstance(midlength_counteraxis_meta, dict):
         midlength_counteraxis_meta = {}
+    mek_erk_phosphosite_meta = (
+        epk_mek_erk_phosphosite_source_review.get("metadata", {})
+        if isinstance(epk_mek_erk_phosphosite_source_review, dict)
+        else {}
+    )
+    if not isinstance(mek_erk_phosphosite_meta, dict):
+        mek_erk_phosphosite_meta = {}
+    mek_erk_broad_stress_meta = (
+        epk_mek_erk_broad_role_stress_audit.get("metadata", {})
+        if isinstance(epk_mek_erk_broad_role_stress_audit, dict)
+        else {}
+    )
+    if not isinstance(mek_erk_broad_stress_meta, dict):
+        mek_erk_broad_stress_meta = {}
+    mek_erk_context_counteraxis_meta = (
+        epk_mek_erk_context_counteraxis_stress_audit.get("metadata", {})
+        if isinstance(epk_mek_erk_context_counteraxis_stress_audit, dict)
+        else {}
+    )
+    if not isinstance(mek_erk_context_counteraxis_meta, dict):
+        mek_erk_context_counteraxis_meta = {}
     unified_scoring_meta = (
         epk_unified_review_only_scoring_prototype.get("metadata", {})
         if isinstance(epk_unified_review_only_scoring_prototype, dict)
@@ -38265,6 +39714,217 @@ def build_epk_precount_gate_status(
                 },
             }
         )
+    if mek_erk_phosphosite_meta:
+        gate_checks.append(
+            {
+                "gate_id": "mek_erk_phosphosite_source_review",
+                "passed": mek_erk_phosphosite_meta.get("method")
+                == "epk_mek_erk_phosphosite_source_review"
+                and int(
+                    mek_erk_phosphosite_meta.get(
+                        "source_authoritative_measurement_ready_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    mek_erk_phosphosite_meta.get("countable_label_candidate_count")
+                    or 0
+                )
+                == 0
+                and not bool(mek_erk_phosphosite_meta.get("epk_score_computed"))
+                and not bool(
+                    mek_erk_phosphosite_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and not bool(
+                    mek_erk_phosphosite_meta.get("fingerprint_registry_edited")
+                )
+                and not bool(
+                    mek_erk_phosphosite_meta.get("curated_label_registry_edited")
+                ),
+                "evidence": {
+                    "source_method": mek_erk_phosphosite_meta.get("method"),
+                    "source_review_status": mek_erk_phosphosite_meta.get(
+                        "source_review_status"
+                    ),
+                    "source_authoritative_measurement_ready_count": (
+                        mek_erk_phosphosite_meta.get(
+                            "source_authoritative_measurement_ready_count"
+                        )
+                    ),
+                    "source_authoritative_measurement_ready_pdb_ids": (
+                        mek_erk_phosphosite_meta.get(
+                            "source_authoritative_measurement_ready_pdb_ids",
+                            [],
+                        )
+                    ),
+                    "same_chain_artifact_rejected_count": (
+                        mek_erk_phosphosite_meta.get(
+                            "same_chain_artifact_rejected_count"
+                        )
+                    ),
+                    "source_free_predictive_feature_materialized": bool(
+                        mek_erk_phosphosite_meta.get(
+                            "source_free_predictive_feature_materialized"
+                        )
+                    ),
+                },
+            }
+        )
+    if mek_erk_broad_stress_meta:
+        gate_checks.append(
+            {
+                "gate_id": "mek_erk_broad_role_stress_audit",
+                "passed": mek_erk_broad_stress_meta.get("method")
+                == "epk_mek_erk_broad_role_stress_audit"
+                and int(
+                    mek_erk_broad_stress_meta.get(
+                        "source_reviewed_mek_erk_positive_retained_count"
+                    )
+                    or 0
+                )
+                > 0
+                and int(
+                    mek_erk_broad_stress_meta.get(
+                        "source_reviewed_mek_erk_positive_missed_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_broad_stress_meta.get(
+                        "nonpositive_naive_broad_role_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and int(
+                    mek_erk_broad_stress_meta.get("countable_label_candidate_count")
+                    or 0
+                )
+                == 0
+                and not bool(mek_erk_broad_stress_meta.get("epk_score_computed"))
+                and not bool(
+                    mek_erk_broad_stress_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and not bool(
+                    mek_erk_broad_stress_meta.get("fingerprint_registry_edited")
+                )
+                and not bool(
+                    mek_erk_broad_stress_meta.get("curated_label_registry_edited")
+                ),
+                "evidence": {
+                    "source_method": mek_erk_broad_stress_meta.get("method"),
+                    "broad_role_stress_status": mek_erk_broad_stress_meta.get(
+                        "broad_role_stress_status"
+                    ),
+                    "reviewed_topology_hit_count": (
+                        mek_erk_broad_stress_meta.get("reviewed_topology_hit_count")
+                    ),
+                    "source_reviewed_mek_erk_positive_retained_count": (
+                        mek_erk_broad_stress_meta.get(
+                            "source_reviewed_mek_erk_positive_retained_count"
+                        )
+                    ),
+                    "source_reviewed_mek_erk_positive_missed_count": (
+                        mek_erk_broad_stress_meta.get(
+                            "source_reviewed_mek_erk_positive_missed_count"
+                        )
+                    ),
+                    "nonpositive_naive_broad_role_false_hit_count": (
+                        mek_erk_broad_stress_meta.get(
+                            "nonpositive_naive_broad_role_false_hit_count"
+                        )
+                    ),
+                    "nonpositive_naive_broad_role_false_hit_pdb_ids": (
+                        mek_erk_broad_stress_meta.get(
+                            "nonpositive_naive_broad_role_false_hit_pdb_ids", []
+                        )
+                    ),
+                    "nonpositive_same_chain_blocked_count": (
+                        mek_erk_broad_stress_meta.get(
+                            "nonpositive_same_chain_blocked_count"
+                        )
+                    ),
+                },
+            }
+        )
+    if mek_erk_context_counteraxis_meta:
+        gate_checks.append(
+            {
+                "gate_id": "mek_erk_context_counteraxis_stress_audit",
+                "passed": mek_erk_context_counteraxis_meta.get("method")
+                == "epk_mek_erk_context_counteraxis_stress_audit"
+                and int(
+                    mek_erk_context_counteraxis_meta.get(
+                        "residual_new_topology_false_hit_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(
+                    mek_erk_context_counteraxis_meta.get(
+                        "source_free_predictive_feature_materialized"
+                    )
+                )
+                and int(
+                    mek_erk_context_counteraxis_meta.get(
+                        "countable_label_candidate_count"
+                    )
+                    or 0
+                )
+                == 0
+                and not bool(mek_erk_context_counteraxis_meta.get("epk_score_computed"))
+                and not bool(
+                    mek_erk_context_counteraxis_meta.get(
+                        "external_hard_negative_reaudit_scored"
+                    )
+                )
+                and not bool(
+                    mek_erk_context_counteraxis_meta.get("fingerprint_registry_edited")
+                )
+                and not bool(
+                    mek_erk_context_counteraxis_meta.get("curated_label_registry_edited")
+                ),
+                "evidence": {
+                    "source_method": mek_erk_context_counteraxis_meta.get("method"),
+                    "context_counteraxis_status": (
+                        mek_erk_context_counteraxis_meta.get(
+                            "context_counteraxis_status"
+                        )
+                    ),
+                    "decision_surface_changed": bool(
+                        mek_erk_context_counteraxis_meta.get(
+                            "decision_surface_changed"
+                        )
+                    ),
+                    "prior_counterexample_context_blocked_count": (
+                        mek_erk_context_counteraxis_meta.get(
+                            "prior_counterexample_context_blocked_count"
+                        )
+                    ),
+                    "residual_new_topology_false_hit_count": (
+                        mek_erk_context_counteraxis_meta.get(
+                            "residual_new_topology_false_hit_count"
+                        )
+                    ),
+                    "residual_new_topology_false_hit_pdb_ids": (
+                        mek_erk_context_counteraxis_meta.get(
+                            "residual_new_topology_false_hit_pdb_ids", []
+                        )
+                    ),
+                    "source_free_predictive_feature_materialized": bool(
+                        mek_erk_context_counteraxis_meta.get(
+                            "source_free_predictive_feature_materialized"
+                        )
+                    ),
+                },
+            }
+        )
     if unified_scoring_meta:
         gate_checks.append(
             {
@@ -39151,6 +40811,22 @@ def build_epk_precount_gate_status(
             next_actions.insert(
                 0,
                 "pre-register another outside-query broad-stress tranche before treating the unified prototype as calibrated",
+            )
+    if mek_erk_phosphosite_meta.get("method"):
+        if int(
+            mek_erk_phosphosite_meta.get(
+                "source_authoritative_measurement_ready_count"
+            )
+            or 0
+        ):
+            next_actions.insert(
+                0,
+                "rerun protein-substrate role and acceptor-identity controls with source-reviewed MEK1/ERK1 rows while keeping thresholds closed",
+            )
+        else:
+            next_actions.insert(
+                0,
+                "keep MEK1/ERK1 rows terminally blocked unless source-authoritative phosphosite evidence appears",
             )
     if m_csa760_repair_meta.get("method"):
         if bool(m_csa760_repair_meta.get("split_state_blocker_detected")):
@@ -40946,6 +42622,111 @@ def build_epk_precount_gate_status(
             "midlength_protein_role_generalization_ready": bool(
                 midlength_counteraxis_meta.get(
                     "protein_discriminator_generalization_ready"
+                )
+            ),
+            "source_epk_mek_erk_phosphosite_source_review_method": (
+                mek_erk_phosphosite_meta.get("method")
+            ),
+            "mek_erk_phosphosite_source_review_status": (
+                mek_erk_phosphosite_meta.get("source_review_status")
+            ),
+            "mek_erk_source_authoritative_measurement_ready_count": (
+                mek_erk_phosphosite_meta.get(
+                    "source_authoritative_measurement_ready_count"
+                )
+            ),
+            "mek_erk_source_authoritative_measurement_ready_pdb_ids": (
+                mek_erk_phosphosite_meta.get(
+                    "source_authoritative_measurement_ready_pdb_ids", []
+                )
+            ),
+            "mek_erk_gamma_acceptor_distance_measured_count": (
+                mek_erk_phosphosite_meta.get("gamma_acceptor_distance_measured_count")
+            ),
+            "mek_erk_same_chain_artifact_rejected_count": (
+                mek_erk_phosphosite_meta.get("same_chain_artifact_rejected_count")
+            ),
+            "mek_erk_same_chain_artifact_rejected_pdb_ids": (
+                mek_erk_phosphosite_meta.get(
+                    "same_chain_artifact_rejected_pdb_ids", []
+                )
+            ),
+            "mek_erk_source_free_predictive_feature_materialized": bool(
+                mek_erk_phosphosite_meta.get(
+                    "source_free_predictive_feature_materialized"
+                )
+            ),
+            "source_epk_mek_erk_broad_role_stress_audit_method": (
+                mek_erk_broad_stress_meta.get("method")
+            ),
+            "mek_erk_broad_role_stress_status": (
+                mek_erk_broad_stress_meta.get("broad_role_stress_status")
+            ),
+            "mek_erk_broad_role_reviewed_topology_hit_count": (
+                mek_erk_broad_stress_meta.get("reviewed_topology_hit_count")
+            ),
+            "mek_erk_broad_role_positive_retained_count": (
+                mek_erk_broad_stress_meta.get(
+                    "source_reviewed_mek_erk_positive_retained_count"
+                )
+            ),
+            "mek_erk_broad_role_positive_retained_pdb_ids": (
+                mek_erk_broad_stress_meta.get(
+                    "source_reviewed_mek_erk_positive_retained_pdb_ids", []
+                )
+            ),
+            "mek_erk_broad_role_positive_missed_count": (
+                mek_erk_broad_stress_meta.get(
+                    "source_reviewed_mek_erk_positive_missed_count"
+                )
+            ),
+            "mek_erk_broad_role_false_hit_count": (
+                mek_erk_broad_stress_meta.get(
+                    "nonpositive_naive_broad_role_false_hit_count"
+                )
+            ),
+            "mek_erk_broad_role_false_hit_pdb_ids": (
+                mek_erk_broad_stress_meta.get(
+                    "nonpositive_naive_broad_role_false_hit_pdb_ids", []
+                )
+            ),
+            "mek_erk_broad_role_same_chain_blocked_count": (
+                mek_erk_broad_stress_meta.get(
+                    "nonpositive_same_chain_blocked_count"
+                )
+            ),
+            "source_epk_mek_erk_context_counteraxis_stress_audit_method": (
+                mek_erk_context_counteraxis_meta.get("method")
+            ),
+            "mek_erk_context_counteraxis_status": (
+                mek_erk_context_counteraxis_meta.get("context_counteraxis_status")
+            ),
+            "mek_erk_context_counteraxis_decision_surface_changed": bool(
+                mek_erk_context_counteraxis_meta.get("decision_surface_changed")
+            ),
+            "mek_erk_context_prior_counterexample_blocked_count": (
+                mek_erk_context_counteraxis_meta.get(
+                    "prior_counterexample_context_blocked_count"
+                )
+            ),
+            "mek_erk_context_prior_counterexample_blocked_pdb_ids": (
+                mek_erk_context_counteraxis_meta.get(
+                    "prior_counterexample_context_blocked_pdb_ids", []
+                )
+            ),
+            "mek_erk_context_residual_false_hit_count": (
+                mek_erk_context_counteraxis_meta.get(
+                    "residual_new_topology_false_hit_count"
+                )
+            ),
+            "mek_erk_context_residual_false_hit_pdb_ids": (
+                mek_erk_context_counteraxis_meta.get(
+                    "residual_new_topology_false_hit_pdb_ids", []
+                )
+            ),
+            "mek_erk_context_source_free_predictive_feature_materialized": bool(
+                mek_erk_context_counteraxis_meta.get(
+                    "source_free_predictive_feature_materialized"
                 )
             ),
             "source_epk_unified_review_only_scoring_prototype_method": (

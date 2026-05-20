@@ -1432,6 +1432,13 @@ MEK1/ERK1 rows (`9UUR`, `9UUX`,
 and `9UW4`) need role-direction and phosphoacceptor-state source review, while
 RNA transferase, AAA+/translocase, and transporter hits expose same-author-chain
 topology risk. The result is negative evidence, not a score or label gate.
+The MEK1/ERK1 source-review follow-up now admits `9UUR` and `9UUX` only as
+source-authoritative review controls for ERK1 Tyr204, and rejects same-chain
+`9UW4`. Broad-role stress then fails closed: a naive
+different-chain/distance rule retains those two controls but false-hits eight
+nonpositive topology rows. A review-context counteraxis blocks six
+prior-counterexample repeats and leaves `7CAG`/`8BMS` unresolved, so it remains
+diagnostic rather than production-admissible.
 The
 preregistration artifact
 `artifacts/v3_epk_unified_prototype_next_broad_stress_preregistration_1025.json`

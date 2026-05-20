@@ -17,6 +17,10 @@ from catalytic_earth.labels import (
     build_epk_ligand_specific_5hvk_prototype_control_rerun,
     build_epk_ligand_specific_5hvk_source_validity_review,
     build_epk_local_chain_topology_acceptor_replacement_rule,
+    build_epk_mek_erk_broad_role_stress_audit,
+    build_epk_mek_erk_context_counteraxis_stress_audit,
+    build_epk_mek_erk_phosphosite_source_review,
+    build_epk_mek_erk_role_control_rerun,
     build_epk_midlength_protein_role_counteraxis_audit,
     build_epk_protein_substrate_calibration_diagnostic,
     build_epk_protein_substrate_scorer_design_freeze,
@@ -9414,6 +9418,532 @@ ATOM 2 C CA LYS A 109 1.0 0.0 0.0 CA LYS A 100
             self.assertTrue(row["text_free_inputs_only"])
             self.assertFalse(row["epk_score_computed"])
             self.assertFalse(row["countable_label_candidate"])
+
+    def test_build_epk_mek_erk_phosphosite_source_review_with_records(self) -> None:
+        review = {
+            "metadata": {
+                "method": "epk_heteromeric_candidate_source_validation_review",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+            },
+            "rows": [
+                {
+                    "pdb_id": "9TST",
+                    "source_pair_id": "mek1_erk1",
+                    "source_validation_status": (
+                        "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only"
+                    ),
+                    "structure_title": "MEK1/ERK1 test complex",
+                    "chain_accessions": {"A": ["Q02750"], "B": ["P27361"]},
+                    "candidate_hits": [
+                        {
+                            "candidate_chain_name": "B",
+                            "candidate_auth_seq_id": "204",
+                            "candidate_residue_code": "TYR",
+                            "gamma_associated_polymer_chain_name": "A",
+                            "nearest_gamma_distance_angstrom": 3.5,
+                        }
+                    ],
+                }
+            ],
+        }
+        cif_text = """
+data_9TST
+_struct.title 'MEK1 ERK1 test complex'
+#
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_seq_align_beg_ins_code
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_seq_align_end_ins_code
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.pdbx_db_align_beg_ins_code
+_struct_ref_seq.db_align_end
+_struct_ref_seq.pdbx_db_align_end_ins_code
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_end
+1 1 9TST A 1 ? 393 ? Q02750 1 ? 393 ? 1 393
+2 2 9TST B 1 ? 379 ? P27361 1 ? 379 ? 1 379
+#
+loop_
+_pdbx_struct_mod_residue.id
+_pdbx_struct_mod_residue.label_asym_id
+_pdbx_struct_mod_residue.label_comp_id
+_pdbx_struct_mod_residue.label_seq_id
+_pdbx_struct_mod_residue.auth_asym_id
+_pdbx_struct_mod_residue.auth_comp_id
+_pdbx_struct_mod_residue.auth_seq_id
+_pdbx_struct_mod_residue.PDB_ins_code
+_pdbx_struct_mod_residue.parent_comp_id
+_pdbx_struct_mod_residue.details
+1 B TPO 202 B TPO 202 ? THR 'modified residue'
+#
+"""
+        records = {
+            "Q02750": {
+                "accession": "Q02750",
+                "catalytic_activity_comments": [
+                    {
+                        "reaction": (
+                            "L-tyrosyl-[protein] + ATP = O-phospho-L-tyrosyl-[protein] + ADP"
+                        )
+                    }
+                ],
+                "modified_residue_features": [],
+            },
+            "P27361": {
+                "accession": "P27361",
+                "catalytic_activity_comments": [],
+                "modified_residue_features": [
+                    {
+                        "feature_type": "Modified residue",
+                        "begin": 204,
+                        "end": 204,
+                        "description": "Phosphotyrosine; by MAP2K1 and MAP2K2",
+                        "evidence": [
+                            {"evidence_code": "ECO:0000269", "source": "PubMed"}
+                        ],
+                    }
+                ],
+            },
+        }
+        result = build_epk_mek_erk_phosphosite_source_review(
+            epk_mek_erk_source_validation_review=review,
+            uniprot_records_by_accession=records,
+            cif_text_by_pdb={"9TST": cif_text},
+        )
+        metadata = result["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_mek_erk_phosphosite_source_review"
+        )
+        self.assertEqual(metadata["source_authoritative_measurement_ready_count"], 1)
+        self.assertEqual(
+            metadata["source_authoritative_measurement_ready_pdb_ids"], ["9TST"]
+        )
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        row = result["rows"][0]
+        self.assertEqual(row["candidate_uniprot_position"], 204)
+        self.assertTrue(row["source_role_direction_supported"])
+        self.assertTrue(row["source_authoritative_measurement_ready"])
+        self.assertFalse(row["countable_label_candidate"])
+
+    def test_build_epk_mek_erk_role_control_rerun_stays_review_only(self) -> None:
+        source_review = {
+            "metadata": {
+                "method": "epk_mek_erk_phosphosite_source_review",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+            },
+            "rows": [
+                {
+                    "row_type": "mek_erk_phosphosite_source_review_candidate",
+                    "pdb_id": "9TST",
+                    "source_authoritative_measurement_ready": True,
+                    "candidate_same_chain_as_gamma": False,
+                    "candidate_uniprot_accession": "P27361",
+                    "candidate_uniprot_position": 204,
+                    "kinase_uniprot_accession": "Q02750",
+                    "source_phosphosite_matched_candidate": True,
+                    "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.5,
+                    "phosphosite_source_review_status": (
+                        "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only"
+                    ),
+                }
+            ],
+        }
+        protein_role = {
+            "metadata": {
+                "method": "epk_source_free_protein_substrate_role_discriminator_audit",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "protein_role_control_false_hit_count": 0,
+                "protein_role_external_hard_negative_non_abstention_count": 0,
+            }
+        }
+        midlength = {
+            "metadata": {
+                "method": "epk_midlength_protein_role_counteraxis_audit",
+                "residual_protein_role_false_hit_count": 0,
+            }
+        }
+        result = build_epk_mek_erk_role_control_rerun(
+            epk_mek_erk_phosphosite_source_review=source_review,
+            epk_source_free_protein_substrate_role_discriminator_audit=protein_role,
+            epk_midlength_protein_role_counteraxis_audit=midlength,
+        )
+        metadata = result["metadata"]
+        self.assertEqual(metadata["method"], "epk_mek_erk_role_control_rerun")
+        self.assertEqual(
+            metadata["role_control_rerun_status"],
+            "passes_review_only_with_source_reviewed_broad_rows_but_scoring_closed",
+        )
+        self.assertEqual(metadata["source_reviewed_broad_protein_role_hit_count"], 1)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_build_epk_mek_erk_broad_role_stress_audit_fails_closed(self) -> None:
+        rerun = {
+            "metadata": {
+                "method": "epk_mek_erk_role_control_rerun",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "source_reviewed_broad_protein_role_hit_pdb_ids": ["9POS"],
+            }
+        }
+        terminal = {
+            "metadata": {
+                "method": "epk_ligand_specific_active_query_extension_audit",
+                "known_positive_repeat_hit_pdb_ids": ["1POS"],
+            },
+            "rows": [
+                {
+                    "pdb_id": "9POS",
+                    "topology_hit": True,
+                    "known_context": "source_reviewed_mek_erk_positive",
+                    "source_validated_positive_like": False,
+                    "heteromeric_candidate_hits": [
+                        {
+                            "candidate_chain_name": "B",
+                            "gamma_associated_polymer_chain_name": "A",
+                            "candidate_auth_seq_id": "204",
+                            "nearest_gamma_distance_angstrom": 4.0,
+                        }
+                    ],
+                },
+                {
+                    "pdb_id": "7BAD",
+                    "topology_hit": True,
+                    "known_context": "prior_counterexample_repeat",
+                    "source_validated_positive_like": False,
+                    "heteromeric_candidate_hits": [
+                        {
+                            "candidate_chain_name": "D",
+                            "gamma_associated_polymer_chain_name": "C",
+                            "candidate_auth_seq_id": "12",
+                            "nearest_gamma_distance_angstrom": 3.2,
+                        }
+                    ],
+                },
+                {
+                    "pdb_id": "1POS",
+                    "topology_hit": True,
+                    "known_context": "known_source_valid_positive_repeat",
+                    "source_validated_positive_like": False,
+                    "heteromeric_candidate_hits": [
+                        {
+                            "candidate_chain_name": "F",
+                            "gamma_associated_polymer_chain_name": "E",
+                            "candidate_auth_seq_id": "3",
+                            "nearest_gamma_distance_angstrom": 5.5,
+                        }
+                    ],
+                },
+                {
+                    "pdb_id": "9SAME",
+                    "topology_hit": True,
+                    "known_context": "same_chain_artifact",
+                    "source_validated_positive_like": False,
+                    "heteromeric_candidate_hits": [
+                        {
+                            "candidate_chain_name": "A",
+                            "gamma_associated_polymer_chain_name": "A",
+                            "candidate_auth_seq_id": "194",
+                            "nearest_gamma_distance_angstrom": 3.5,
+                        }
+                    ],
+                },
+            ],
+        }
+        result = build_epk_mek_erk_broad_role_stress_audit(
+            epk_mek_erk_role_control_rerun=rerun,
+            epk_multi_query_active_site_terminal_audit=terminal,
+        )
+        metadata = result["metadata"]
+        self.assertEqual(metadata["method"], "epk_mek_erk_broad_role_stress_audit")
+        self.assertEqual(
+            metadata["broad_role_stress_status"],
+            "fails_closed_naive_broad_role_rule_false_hits_terminal_surface",
+        )
+        self.assertEqual(
+            metadata["source_reviewed_mek_erk_positive_retained_pdb_ids"], ["9POS"]
+        )
+        self.assertEqual(
+            metadata["nonpositive_naive_broad_role_false_hit_pdb_ids"], ["7BAD"]
+        )
+        self.assertEqual(metadata["nonpositive_same_chain_blocked_pdb_ids"], ["9SAME"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_build_epk_mek_erk_context_counteraxis_stress_audit_reduces_false_hits(
+        self,
+    ) -> None:
+        broad = {
+            "metadata": {
+                "method": "epk_mek_erk_broad_role_stress_audit",
+                "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+                "candidate_threshold_angstrom": 6.0,
+            },
+            "rows": [
+                {
+                    "pdb_id": "9POS",
+                    "broad_role_stress_decision": (
+                        "source_reviewed_mek_erk_positive_retained_review_only"
+                    ),
+                    "source_reviewed_mek_erk_positive": True,
+                    "known_positive_repeat_or_source_valid": False,
+                    "naive_broad_protein_role_rule_hit": True,
+                    "candidate_same_chain_as_gamma": False,
+                },
+                {
+                    "pdb_id": "7OLD",
+                    "broad_role_stress_decision": (
+                        "nonpositive_naive_broad_role_false_hit_review_only"
+                    ),
+                    "known_context": "prior_counterexample_repeat",
+                    "source_reviewed_mek_erk_positive": False,
+                    "known_positive_repeat_or_source_valid": False,
+                    "naive_broad_protein_role_rule_hit": True,
+                    "candidate_same_chain_as_gamma": False,
+                },
+                {
+                    "pdb_id": "7NEW",
+                    "broad_role_stress_decision": (
+                        "nonpositive_naive_broad_role_false_hit_review_only"
+                    ),
+                    "known_context": "new_topology_hit_needs_source_adjudication",
+                    "source_reviewed_mek_erk_positive": False,
+                    "known_positive_repeat_or_source_valid": False,
+                    "naive_broad_protein_role_rule_hit": True,
+                    "candidate_same_chain_as_gamma": False,
+                },
+            ],
+        }
+        result = build_epk_mek_erk_context_counteraxis_stress_audit(
+            epk_mek_erk_broad_role_stress_audit=broad
+        )
+        metadata = result["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_mek_erk_context_counteraxis_stress_audit"
+        )
+        self.assertEqual(
+            metadata["context_counteraxis_status"],
+            "fails_closed_context_counteraxis_reduces_but_does_not_clear_false_hits",
+        )
+        self.assertEqual(metadata["prior_counterexample_context_blocked_pdb_ids"], ["7OLD"])
+        self.assertEqual(metadata["residual_new_topology_false_hit_pdb_ids"], ["7NEW"])
+        self.assertTrue(metadata["decision_surface_changed"])
+        self.assertFalse(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_mek_erk_phosphosite_source_review_artifact_stays_review_only(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_mek_erk_phosphosite_source_review_1025.json"
+        )
+        metadata = review["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_mek_erk_phosphosite_source_review"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["source_authoritative_measurement_ready_count"], 2)
+        self.assertEqual(
+            metadata["source_authoritative_measurement_ready_pdb_ids"],
+            ["9UUR", "9UUX"],
+        )
+        self.assertEqual(metadata["same_chain_artifact_rejected_pdb_ids"], ["9UW4"])
+        self.assertEqual(metadata["gamma_acceptor_distance_measured_count"], 2)
+        self.assertFalse(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        ready_rows = [
+            row for row in review["rows"] if row["source_authoritative_measurement_ready"]
+        ]
+        self.assertEqual(len(ready_rows), 2)
+        self.assertTrue(
+            all(row["candidate_uniprot_accession"] == "P27361" for row in ready_rows)
+        )
+        precount = _load_json(
+            ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
+        )
+        self.assertEqual(
+            precount["metadata"]["mek_erk_source_authoritative_measurement_ready_count"],
+            2,
+        )
+        self.assertEqual(
+            precount["metadata"]["precount_gate_status"], "blocked_review_only"
+        )
+        counteraxis = _load_json(
+            ROOT / "artifacts" / "v3_epk_counteraxis_sufficiency_decision_1025.json"
+        )
+        self.assertEqual(
+            counteraxis["metadata"]["threshold_selection_decision"],
+            "do_not_select_threshold",
+        )
+        mek_rows = [
+            row
+            for row in counteraxis["decision_rows"]
+            if row["decision_axis"] == "mek_erk_phosphosite_source_review"
+        ]
+        self.assertEqual(len(mek_rows), 1)
+        self.assertEqual(mek_rows[0]["source_authoritative_measurement_ready_count"], 2)
+
+    def test_epk_mek_erk_role_control_rerun_artifact_stays_review_only(self) -> None:
+        rerun = _load_json(
+            ROOT / "artifacts" / "v3_epk_mek_erk_role_control_rerun_1025.json"
+        )
+        metadata = rerun["metadata"]
+        self.assertEqual(metadata["method"], "epk_mek_erk_role_control_rerun")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["role_control_rerun_status"],
+            "passes_review_only_with_source_reviewed_broad_rows_but_scoring_closed",
+        )
+        self.assertEqual(metadata["source_reviewed_broad_protein_role_hit_count"], 2)
+        self.assertEqual(
+            metadata["source_reviewed_broad_protein_role_hit_pdb_ids"],
+            ["9UUR", "9UUX"],
+        )
+        self.assertEqual(metadata["same_chain_counterexample_blocked_pdb_ids"], ["9UW4"])
+        self.assertEqual(metadata["carried_current_control_false_hit_count"], 0)
+        self.assertEqual(
+            metadata["carried_imported_external_hard_negative_non_abstention_count"],
+            0,
+        )
+        self.assertFalse(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+    def test_epk_mek_erk_broad_role_stress_audit_artifact_fails_closed(self) -> None:
+        audit = _load_json(
+            ROOT / "artifacts" / "v3_epk_mek_erk_broad_role_stress_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(metadata["method"], "epk_mek_erk_broad_role_stress_audit")
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["broad_role_stress_status"],
+            "fails_closed_naive_broad_role_rule_false_hits_terminal_surface",
+        )
+        self.assertEqual(metadata["reviewed_topology_hit_count"], 27)
+        self.assertEqual(
+            metadata["source_reviewed_mek_erk_positive_retained_pdb_ids"],
+            ["9UUR", "9UUX"],
+        )
+        self.assertEqual(
+            metadata["known_positive_repeat_retained_pdb_ids"],
+            ["1IR3", "5HVK", "6Z3R"],
+        )
+        self.assertEqual(
+            metadata["nonpositive_naive_broad_role_false_hit_count"], 8
+        )
+        self.assertEqual(
+            metadata["nonpositive_naive_broad_role_false_hit_pdb_ids"],
+            ["2JJ2", "4HPU", "7B56", "7CAG", "7ZDT", "7ZDU", "7ZE5", "8BMS"],
+        )
+        self.assertEqual(metadata["nonpositive_same_chain_blocked_count"], 14)
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        precount = _load_json(
+            ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
+        )
+        self.assertEqual(
+            precount["metadata"]["mek_erk_broad_role_false_hit_count"], 8
+        )
+        self.assertIn(
+            "mek_erk_broad_role_stress_audit",
+            precount["metadata"]["failing_gate_ids"],
+        )
+        counteraxis = _load_json(
+            ROOT / "artifacts" / "v3_epk_counteraxis_sufficiency_decision_1025.json"
+        )
+        stress_rows = [
+            row
+            for row in counteraxis["decision_rows"]
+            if row["decision_axis"] == "mek_erk_broad_role_stress_audit"
+        ]
+        self.assertEqual(len(stress_rows), 1)
+        self.assertEqual(
+            stress_rows[0]["decision"],
+            "false_hits_keep_broad_role_rule_closed",
+        )
+
+    def test_epk_mek_erk_context_counteraxis_stress_artifact_fails_closed(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_epk_mek_erk_context_counteraxis_stress_audit_1025.json"
+        )
+        metadata = audit["metadata"]
+        self.assertEqual(
+            metadata["method"], "epk_mek_erk_context_counteraxis_stress_audit"
+        )
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(
+            metadata["context_counteraxis_status"],
+            "fails_closed_context_counteraxis_reduces_but_does_not_clear_false_hits",
+        )
+        self.assertEqual(
+            metadata["source_reviewed_mek_erk_positive_retained_pdb_ids"],
+            ["9UUR", "9UUX"],
+        )
+        self.assertEqual(
+            metadata["prior_counterexample_context_blocked_pdb_ids"],
+            ["2JJ2", "4HPU", "7B56", "7ZDT", "7ZDU", "7ZE5"],
+        )
+        self.assertEqual(
+            metadata["residual_new_topology_false_hit_pdb_ids"],
+            ["7CAG", "8BMS"],
+        )
+        self.assertTrue(metadata["decision_surface_changed"])
+        self.assertFalse(metadata["source_free_predictive_feature_materialized"])
+        self.assertFalse(metadata["ready_to_run_epk_scorer"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        precount = _load_json(
+            ROOT / "artifacts" / "v3_epk_precount_gate_status_1025.json"
+        )
+        self.assertEqual(
+            precount["metadata"]["mek_erk_context_residual_false_hit_pdb_ids"],
+            ["7CAG", "8BMS"],
+        )
+        self.assertIn(
+            "mek_erk_context_counteraxis_stress_audit",
+            precount["metadata"]["failing_gate_ids"],
+        )
+        counteraxis = _load_json(
+            ROOT / "artifacts" / "v3_epk_counteraxis_sufficiency_decision_1025.json"
+        )
+        context_rows = [
+            row
+            for row in counteraxis["decision_rows"]
+            if row["decision_axis"] == "mek_erk_context_counteraxis_stress_audit"
+        ]
+        self.assertEqual(len(context_rows), 1)
+        self.assertEqual(
+            context_rows[0]["decision"],
+            "review_context_reduces_but_residual_false_hits_remain",
+        )
 
     def test_mcsa_strict_structural_ood_claim_stays_disabled(self) -> None:
         adjudication = _load_json(

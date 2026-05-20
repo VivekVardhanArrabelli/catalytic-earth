@@ -50,6 +50,55 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T07:50:46Z automation run, the ePK lane remains
+review-only and blocked from production fingerprint expansion. Artifact
+migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,
+externalization, Git LFS change, history rewrite, registry edit, label import,
+external hard-negative production score, or `removal_allowed=true` occurred.
+SSH deploy-key fetch/pull/ls-remote/dry-run push hygiene passed at startup,
+and startup checks passed: 644 unit tests plus `catalytic_earth.cli validate`
+with 682 labels and 8 production fingerprints.
+
+The MEK1/ERK1 role-direction blocker is now source-reviewed in a bounded,
+review-only lane. `artifacts/v3_epk_mek_erk_phosphosite_source_review_1025.json`
+maps `9UUR` and `9UUX` to ERK1 `P27361` Tyr204, supported by UniProt
+phosphotyrosine evidence "by MAP2K1 and MAP2K2", with ANP/ATP gamma distances
+4.181 and 3.968 Angstrom. The same-chain `9UW4` MEK active-site topology hit is
+rejected as a counterexample. The companion
+`artifacts/v3_epk_mek_erk_role_control_rerun_1025.json` admits `9UUR`/`9UUX`
+only as source-reviewed broad protein-substrate review rows; it does not create
+a source-free scorer, threshold, registry edit, label import, or held-out claim.
+
+The follow-on broad-role stress test is the useful negative result.
+`artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json` retains both
+source-reviewed MEK1/ERK1 positives and the three known positive repeats, but a
+naive different-chain/distance broad protein-role rule false-hits eight
+nonpositive topology rows: `2JJ2`, `4HPU`, `7B56`, `7CAG`, `7ZDT`, `7ZDU`,
+`7ZE5`, and `8BMS`. A concrete review-context counteraxis in
+`artifacts/v3_epk_mek_erk_context_counteraxis_stress_audit_1025.json` blocks
+the six prior-counterexample repeats but still leaves new residual false hits
+`7CAG` and `8BMS`; because that blocker uses review context and is not
+source-free, production scoring remains closed. The regenerated pre-count and
+counteraxis artifacts now carry both blockers:
+`mek_erk_broad_role_stress_audit` and
+`mek_erk_context_counteraxis_stress_audit`; pre-count remains
+`blocked_review_only`, and counteraxis sufficiency remains
+`do_not_select_threshold`.
+
+Evidence-based confidence call: confidence is now higher that MEK1/ERK1 has two
+real source-authoritative broad protein-substrate review controls, but also
+higher that broad protein-role geometry alone is unsafe. The next useful
+experiment is not thresholding; it is to source-adjudicate residual new topology
+false hits `7CAG` and `8BMS` or replace review-context blocking with a
+source-free acceptor/substrate identity feature before any scorer calibration.
+
+Wrap-up verification passed with 656 unit tests, `catalytic_earth.cli
+validate`, `compileall`, targeted CLI/leakage tests, JSON validation for the
+new artifacts, artifact migration dry-run/local-file guard at 108 rows with
+`removal_allowed=0`, label invariants at 682 total labels (212 seed
+fingerprints, 470 out-of-scope, and the three imported UniProt hard negatives
+unchanged), and `git diff --check`.
+
 As of the 2026-05-20T06:49:30Z automation run, the ePK lane remains
 review-only and blocked from production fingerprint expansion. Artifact
 migration Phase 1 stayed guard-only and closed; no Phase 2/3 upload, deletion,

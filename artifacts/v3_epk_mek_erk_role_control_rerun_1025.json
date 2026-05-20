@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_review_evidence_not_source_free_predictive_feature",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "mek_erk_source_reviewed_rows_rerun_against_role_controls",
+    "carried_current_control_false_hit_count": 0,
+    "carried_imported_external_hard_negative_non_abstention_count": 0,
+    "carried_midlength_residual_false_hit_count": 0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "method": "epk_mek_erk_role_control_rerun",
+    "next_actions": [
+      "stress source-reviewed MEK1/ERK1 rows against sibling and broad-query topology counterexamples before scorer calibration",
+      "materialize a source-free acceptor-identity feature that does not depend on UniProt phosphosite text",
+      "keep external hard-negative re-audit closed until a calibrated ePK score exists"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact reruns role-control accounting after MEK1/ERK1 phosphosite source review. It can add review-only broad protein-substrate rows, but it does not create a source-free scorer, threshold, registry edit, label import, or performance claim.",
+    "reviewed_candidate_count": 3,
+    "role_control_decision_counts": {
+      "same_chain_mek_active_site_counterexample_blocked_review_only": 1,
+      "source_reviewed_mek_erk_broad_protein_role_hit_review_only": 2
+    },
+    "role_control_rerun_status": "passes_review_only_with_source_reviewed_broad_rows_but_scoring_closed",
+    "rule_id": "epk_mek_erk_role_control_rerun_v0_review_only",
+    "same_chain_counterexample_blocked_count": 1,
+    "same_chain_counterexample_blocked_pdb_ids": [
+      "9UW4"
+    ],
+    "selected_threshold_angstrom": null,
+    "source_epk_mek_erk_phosphosite_source_review_method": "epk_mek_erk_phosphosite_source_review",
+    "source_epk_midlength_protein_role_counteraxis_audit_method": "epk_midlength_protein_role_counteraxis_audit",
+    "source_epk_source_free_protein_substrate_role_discriminator_audit_method": "epk_source_free_protein_substrate_role_discriminator_audit",
+    "source_free_predictive_feature_materialized": false,
+    "source_reviewed_broad_protein_role_hit_count": 2,
+    "source_reviewed_broad_protein_role_hit_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "source_reviewed_role_miss_count": 0,
+    "source_reviewed_role_miss_pdb_ids": [],
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "Q02750",
+      "candidate_uniprot_position": 194,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "Q02750",
+      "mek_erk_role_control_rule_hit": false,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 4.194,
+      "pdb_id": "9UW4",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "role_control_decision": "same_chain_mek_active_site_counterexample_blocked_review_only",
+      "row_type": "mek_erk_role_control_rerun_candidate",
+      "rule_id": "epk_mek_erk_role_control_rerun_v0_review_only",
+      "source_authoritative_measurement_ready": false,
+      "source_phosphosite_matched_candidate": false,
+      "source_phosphosite_review_status": "rejected_same_chain_mek_active_site_not_erk_phosphosite_review_only",
+      "source_row_type": "mek_erk_phosphosite_source_review_candidate",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "P27361",
+      "candidate_uniprot_position": 204,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "Q02750",
+      "mek_erk_role_control_rule_hit": true,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 4.181,
+      "pdb_id": "9UUR",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "role_control_decision": "source_reviewed_mek_erk_broad_protein_role_hit_review_only",
+      "row_type": "mek_erk_role_control_rerun_candidate",
+      "rule_id": "epk_mek_erk_role_control_rerun_v0_review_only",
+      "source_authoritative_measurement_ready": true,
+      "source_phosphosite_matched_candidate": true,
+      "source_phosphosite_review_status": "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only",
+      "source_row_type": "mek_erk_phosphosite_source_review_candidate",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "P27361",
+      "candidate_uniprot_position": 204,
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "kinase_uniprot_accession": "Q02750",
+      "mek_erk_role_control_rule_hit": true,
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.968,
+      "pdb_id": "9UUX",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "role_control_decision": "source_reviewed_mek_erk_broad_protein_role_hit_review_only",
+      "row_type": "mek_erk_role_control_rerun_candidate",
+      "rule_id": "epk_mek_erk_role_control_rerun_v0_review_only",
+      "source_authoritative_measurement_ready": true,
+      "source_phosphosite_matched_candidate": true,
+      "source_phosphosite_review_status": "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only",
+      "source_row_type": "mek_erk_phosphosite_source_review_candidate",
+      "target_family_id": "epk",
+      "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "MEK1/ERK1 role-control rerun is review-only and cannot authorize threshold selection, production scoring, registry edits, or label import."
+  ]
+}

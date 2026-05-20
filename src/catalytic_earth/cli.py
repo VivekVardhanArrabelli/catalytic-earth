@@ -103,6 +103,10 @@ from .labels import (
     build_epk_heteromeric_chain_topology_signal_audit,
     build_epk_heteromeric_positive_coverage_candidate_scout,
     build_epk_ligand_specific_active_query_extension_audit,
+    build_epk_mek_erk_broad_role_stress_audit,
+    build_epk_mek_erk_context_counteraxis_stress_audit,
+    build_epk_mek_erk_phosphosite_source_review,
+    build_epk_mek_erk_role_control_rerun,
     build_epk_heteromeric_source_valid_candidate_gamma_distance_sample,
     build_epk_heteromeric_source_valid_control_rerun,
     build_epk_heteromeric_source_free_role_rule_probe,
@@ -7165,6 +7169,123 @@ def cmd_build_epk_ligand_specific_active_query_extension_audit(
     return 0
 
 
+def cmd_build_epk_mek_erk_phosphosite_source_review(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_source_validation_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_source_validation_review = json.load(handle)
+    uniprot_records_by_accession: dict[str, Any] = {}
+    if args.uniprot_records_by_accession:
+        with Path(args.uniprot_records_by_accession).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            payload = json.load(handle)
+        if isinstance(payload, dict) and isinstance(payload.get("records"), list):
+            for record in payload["records"]:
+                if isinstance(record, dict) and record.get("accession"):
+                    uniprot_records_by_accession[str(record["accession"])] = record
+        elif isinstance(payload, dict):
+            uniprot_records_by_accession = payload
+    review = build_epk_mek_erk_phosphosite_source_review(
+        epk_mek_erk_source_validation_review=epk_mek_erk_source_validation_review,
+        uniprot_records_by_accession=uniprot_records_by_accession or None,
+        cif_text_by_pdb=_load_cif_texts_from_dir(args.cif_dir) or None,
+    )
+    write_json(Path(args.out), review)
+    print(
+        "Wrote ePK MEK/ERK phosphosite source review to "
+        f"{args.out} (measurement_ready="
+        f"{review['metadata']['source_authoritative_measurement_ready_count']})"
+    )
+    return 0
+
+
+def cmd_build_epk_mek_erk_role_control_rerun(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_phosphosite_source_review).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_phosphosite_source_review = json.load(handle)
+    with Path(args.epk_source_free_protein_substrate_role_discriminator_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_source_free_protein_substrate_role_discriminator_audit = json.load(
+            handle
+        )
+    epk_midlength_protein_role_counteraxis_audit = None
+    if args.epk_midlength_protein_role_counteraxis_audit:
+        with Path(args.epk_midlength_protein_role_counteraxis_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_midlength_protein_role_counteraxis_audit = json.load(handle)
+    rerun = build_epk_mek_erk_role_control_rerun(
+        epk_mek_erk_phosphosite_source_review=(
+            epk_mek_erk_phosphosite_source_review
+        ),
+        epk_source_free_protein_substrate_role_discriminator_audit=(
+            epk_source_free_protein_substrate_role_discriminator_audit
+        ),
+        epk_midlength_protein_role_counteraxis_audit=(
+            epk_midlength_protein_role_counteraxis_audit
+        ),
+    )
+    write_json(Path(args.out), rerun)
+    print(
+        "Wrote ePK MEK/ERK role-control rerun to "
+        f"{args.out} (status={rerun['metadata']['role_control_rerun_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_mek_erk_broad_role_stress_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_role_control_rerun).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_role_control_rerun = json.load(handle)
+    with Path(args.epk_multi_query_active_site_terminal_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_multi_query_active_site_terminal_audit = json.load(handle)
+    audit = build_epk_mek_erk_broad_role_stress_audit(
+        epk_mek_erk_role_control_rerun=epk_mek_erk_role_control_rerun,
+        epk_multi_query_active_site_terminal_audit=(
+            epk_multi_query_active_site_terminal_audit
+        ),
+        candidate_threshold_angstrom=args.candidate_threshold_angstrom,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK broad-role stress audit to "
+        f"{args.out} (status={audit['metadata']['broad_role_stress_status']})"
+    )
+    return 0
+
+
+def cmd_build_epk_mek_erk_context_counteraxis_stress_audit(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.epk_mek_erk_broad_role_stress_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        epk_mek_erk_broad_role_stress_audit = json.load(handle)
+    audit = build_epk_mek_erk_context_counteraxis_stress_audit(
+        epk_mek_erk_broad_role_stress_audit=(
+            epk_mek_erk_broad_role_stress_audit
+        )
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote ePK MEK/ERK context counteraxis stress audit to "
+        f"{args.out} (status={audit['metadata']['context_counteraxis_status']})"
+    )
+    return 0
+
+
 def cmd_build_epk_heteromeric_source_valid_candidate_gamma_distance_sample(
     args: argparse.Namespace,
 ) -> int:
@@ -8614,6 +8735,24 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             epk_midlength_protein_role_counteraxis_audit = json.load(handle)
+    epk_mek_erk_phosphosite_source_review = None
+    if args.epk_mek_erk_phosphosite_source_review:
+        with Path(args.epk_mek_erk_phosphosite_source_review).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_phosphosite_source_review = json.load(handle)
+    epk_mek_erk_broad_role_stress_audit = None
+    if args.epk_mek_erk_broad_role_stress_audit:
+        with Path(args.epk_mek_erk_broad_role_stress_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_broad_role_stress_audit = json.load(handle)
+    epk_mek_erk_context_counteraxis_stress_audit = None
+    if args.epk_mek_erk_context_counteraxis_stress_audit:
+        with Path(args.epk_mek_erk_context_counteraxis_stress_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            epk_mek_erk_context_counteraxis_stress_audit = json.load(handle)
     epk_unified_review_only_scoring_prototype = None
     if args.epk_unified_review_only_scoring_prototype:
         with Path(args.epk_unified_review_only_scoring_prototype).open(
@@ -8818,6 +8957,15 @@ def cmd_build_epk_precount_gate_status(args: argparse.Namespace) -> int:
         ),
         epk_midlength_protein_role_counteraxis_audit=(
             epk_midlength_protein_role_counteraxis_audit
+        ),
+        epk_mek_erk_phosphosite_source_review=(
+            epk_mek_erk_phosphosite_source_review
+        ),
+        epk_mek_erk_broad_role_stress_audit=(
+            epk_mek_erk_broad_role_stress_audit
+        ),
+        epk_mek_erk_context_counteraxis_stress_audit=(
+            epk_mek_erk_context_counteraxis_stress_audit
         ),
         epk_unified_review_only_scoring_prototype=(
             epk_unified_review_only_scoring_prototype
@@ -17004,6 +17152,118 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_epk_ligand_specific_active_query_extension_audit
     )
 
+    epk_mek_erk_phosphosite_review = subparsers.add_parser(
+        "build-epk-mek-erk-phosphosite-source-review",
+        help=(
+            "source-review MEK1/ERK1 topology hits against explicit "
+            "phosphosite evidence"
+        ),
+    )
+    epk_mek_erk_phosphosite_review.add_argument(
+        "--epk-mek-erk-source-validation-review",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_targeted_source_validation_review_1025.json"
+        ),
+    )
+    epk_mek_erk_phosphosite_review.add_argument(
+        "--uniprot-records-by-accession",
+        default=None,
+        help="optional JSON mapping accessions to normalized UniProt records",
+    )
+    epk_mek_erk_phosphosite_review.add_argument(
+        "--cif-dir",
+        default=None,
+        help="optional directory of cached CIF/mmCIF files keyed by PDB id",
+    )
+    epk_mek_erk_phosphosite_review.add_argument(
+        "--out",
+        default="artifacts/v3_epk_mek_erk_phosphosite_source_review_1025.json",
+    )
+    epk_mek_erk_phosphosite_review.set_defaults(
+        func=cmd_build_epk_mek_erk_phosphosite_source_review
+    )
+
+    epk_mek_erk_role_rerun = subparsers.add_parser(
+        "build-epk-mek-erk-role-control-rerun",
+        help="rerun review-only role controls with MEK1/ERK1 phosphosite rows",
+    )
+    epk_mek_erk_role_rerun.add_argument(
+        "--epk-mek-erk-phosphosite-source-review",
+        default="artifacts/v3_epk_mek_erk_phosphosite_source_review_1025.json",
+    )
+    epk_mek_erk_role_rerun.add_argument(
+        "--epk-source-free-protein-substrate-role-discriminator-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_source_free_protein_substrate_role_discriminator_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_role_rerun.add_argument(
+        "--epk-midlength-protein-role-counteraxis-audit",
+        default="artifacts/v3_epk_midlength_protein_role_counteraxis_audit_1025.json",
+    )
+    epk_mek_erk_role_rerun.add_argument(
+        "--out",
+        default="artifacts/v3_epk_mek_erk_role_control_rerun_1025.json",
+    )
+    epk_mek_erk_role_rerun.set_defaults(
+        func=cmd_build_epk_mek_erk_role_control_rerun
+    )
+
+    epk_mek_erk_broad_role_stress = subparsers.add_parser(
+        "build-epk-mek-erk-broad-role-stress-audit",
+        help=(
+            "stress MEK1/ERK1 broad-role logic against terminal topology "
+            "counterexamples"
+        ),
+    )
+    epk_mek_erk_broad_role_stress.add_argument(
+        "--epk-mek-erk-role-control-rerun",
+        default="artifacts/v3_epk_mek_erk_role_control_rerun_1025.json",
+    )
+    epk_mek_erk_broad_role_stress.add_argument(
+        "--epk-multi-query-active-site-terminal-audit",
+        default=(
+            "artifacts/"
+            "v3_epk_multi_query_active_site_terminal_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_broad_role_stress.add_argument(
+        "--candidate-threshold-angstrom",
+        type=float,
+        default=6.0,
+    )
+    epk_mek_erk_broad_role_stress.add_argument(
+        "--out",
+        default="artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json",
+    )
+    epk_mek_erk_broad_role_stress.set_defaults(
+        func=cmd_build_epk_mek_erk_broad_role_stress_audit
+    )
+
+    epk_mek_erk_context_counteraxis = subparsers.add_parser(
+        "build-epk-mek-erk-context-counteraxis-stress-audit",
+        help=(
+            "apply review-context counteraxis to MEK1/ERK1 broad-role stress "
+            "false hits"
+        ),
+    )
+    epk_mek_erk_context_counteraxis.add_argument(
+        "--epk-mek-erk-broad-role-stress-audit",
+        default="artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json",
+    )
+    epk_mek_erk_context_counteraxis.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_epk_mek_erk_context_counteraxis_stress_audit_1025.json"
+        ),
+    )
+    epk_mek_erk_context_counteraxis.set_defaults(
+        func=cmd_build_epk_mek_erk_context_counteraxis_stress_audit
+    )
+
     epk_heteromeric_distance_sample = subparsers.add_parser(
         "build-epk-heteromeric-source-valid-candidate-gamma-distance-sample",
         help="measure source-valid heteromeric review-lead gamma distances",
@@ -18391,6 +18651,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     epk_precount_gate_status.add_argument(
         "--epk-midlength-protein-role-counteraxis-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-phosphosite-source-review",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-broad-role-stress-audit",
+        default=None,
+    )
+    epk_precount_gate_status.add_argument(
+        "--epk-mek-erk-context-counteraxis-stress-audit",
         default=None,
     )
     epk_precount_gate_status.add_argument(

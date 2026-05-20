@@ -14300,6 +14300,417 @@ ATOM 2 O OG SER D 3 3.0 0.0 0.0 OG SER D 3
             )
             self.assertFalse(metadata["ready_to_run_epk_scorer"])
 
+    def test_build_epk_mek_erk_phosphosite_source_review_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cif_dir = root / "cifs"
+            cif_dir.mkdir()
+            review = root / "review.json"
+            records = root / "records.json"
+            out = root / "mek_erk_review.json"
+            review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_heteromeric_candidate_source_validation_review"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9TST",
+                                "source_pair_id": "mek1_erk1",
+                                "source_validation_status": (
+                                    "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only"
+                                ),
+                                "structure_title": "MEK1/ERK1 test complex",
+                                "chain_accessions": {
+                                    "A": ["Q02750"],
+                                    "B": ["P27361"],
+                                },
+                                "candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "B",
+                                        "candidate_auth_seq_id": "204",
+                                        "candidate_residue_code": "TYR",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "nearest_gamma_distance_angstrom": 3.5,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (cif_dir / "9TST.cif").write_text(
+                """
+data_9TST
+_struct.title 'MEK1 ERK1 test complex'
+#
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_seq_align_beg_ins_code
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_seq_align_end_ins_code
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.pdbx_db_align_beg_ins_code
+_struct_ref_seq.db_align_end
+_struct_ref_seq.pdbx_db_align_end_ins_code
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_end
+1 1 9TST A 1 ? 393 ? Q02750 1 ? 393 ? 1 393
+2 2 9TST B 1 ? 379 ? P27361 1 ? 379 ? 1 379
+#
+""",
+                encoding="utf-8",
+            )
+            records.write_text(
+                json.dumps(
+                    {
+                        "Q02750": {
+                            "accession": "Q02750",
+                            "catalytic_activity_comments": [
+                                {
+                                    "reaction": (
+                                        "L-tyrosyl-[protein] + ATP = O-phospho-L-tyrosyl-[protein] + ADP"
+                                    )
+                                }
+                            ],
+                            "modified_residue_features": [],
+                        },
+                        "P27361": {
+                            "accession": "P27361",
+                            "catalytic_activity_comments": [],
+                            "modified_residue_features": [
+                                {
+                                    "feature_type": "Modified residue",
+                                    "begin": 204,
+                                    "end": 204,
+                                    "description": (
+                                        "Phosphotyrosine; by MAP2K1 and MAP2K2"
+                                    ),
+                                    "evidence": [],
+                                }
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-phosphosite-source-review",
+                    "--epk-mek-erk-source-validation-review",
+                    str(review),
+                    "--uniprot-records-by-accession",
+                    str(records),
+                    "--cif-dir",
+                    str(cif_dir),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_mek_erk_phosphosite_source_review"
+            )
+            self.assertEqual(metadata["source_authoritative_measurement_ready_count"], 1)
+            self.assertEqual(
+                metadata["source_authoritative_measurement_ready_pdb_ids"], ["9TST"]
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+            self.assertEqual(payload["rows"][0]["candidate_uniprot_position"], 204)
+
+    def test_build_epk_mek_erk_role_control_rerun_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_review = root / "source_review.json"
+            protein_role = root / "protein_role.json"
+            midlength = root / "midlength.json"
+            out = root / "role_rerun.json"
+            source_review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_phosphosite_source_review",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                        },
+                        "rows": [
+                            {
+                                "row_type": (
+                                    "mek_erk_phosphosite_source_review_candidate"
+                                ),
+                                "pdb_id": "9TST",
+                                "source_authoritative_measurement_ready": True,
+                                "candidate_same_chain_as_gamma": False,
+                                "candidate_uniprot_accession": "P27361",
+                                "candidate_uniprot_position": 204,
+                                "kinase_uniprot_accession": "Q02750",
+                                "source_phosphosite_matched_candidate": True,
+                                "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.5,
+                                "phosphosite_source_review_status": (
+                                    "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            protein_role.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_source_free_protein_substrate_role_discriminator_audit"
+                            ),
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "protein_role_control_false_hit_count": 0,
+                            "protein_role_external_hard_negative_non_abstention_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            midlength.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_midlength_protein_role_counteraxis_audit",
+                            "residual_protein_role_false_hit_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-role-control-rerun",
+                    "--epk-mek-erk-phosphosite-source-review",
+                    str(source_review),
+                    "--epk-source-free-protein-substrate-role-discriminator-audit",
+                    str(protein_role),
+                    "--epk-midlength-protein-role-counteraxis-audit",
+                    str(midlength),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(metadata["method"], "epk_mek_erk_role_control_rerun")
+            self.assertEqual(metadata["source_reviewed_broad_protein_role_hit_count"], 1)
+            self.assertEqual(
+                metadata["role_control_rerun_status"],
+                "passes_review_only_with_source_reviewed_broad_rows_but_scoring_closed",
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_mek_erk_broad_role_stress_audit_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            rerun = root / "role_rerun.json"
+            terminal = root / "terminal.json"
+            out = root / "broad_role_stress.json"
+            rerun.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_role_control_rerun",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "source_reviewed_broad_protein_role_hit_pdb_ids": [
+                                "9POS"
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            terminal.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "epk_ligand_specific_active_query_extension_audit"
+                            ),
+                            "known_positive_repeat_hit_pdb_ids": ["1POS"],
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9POS",
+                                "topology_hit": True,
+                                "source_validated_positive_like": False,
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "B",
+                                        "gamma_associated_polymer_chain_name": "A",
+                                        "candidate_auth_seq_id": "204",
+                                        "nearest_gamma_distance_angstrom": 4.0,
+                                    }
+                                ],
+                            },
+                            {
+                                "pdb_id": "7BAD",
+                                "topology_hit": True,
+                                "source_validated_positive_like": False,
+                                "heteromeric_candidate_hits": [
+                                    {
+                                        "candidate_chain_name": "D",
+                                        "gamma_associated_polymer_chain_name": "C",
+                                        "candidate_auth_seq_id": "12",
+                                        "nearest_gamma_distance_angstrom": 3.2,
+                                    }
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-broad-role-stress-audit",
+                    "--epk-mek-erk-role-control-rerun",
+                    str(rerun),
+                    "--epk-multi-query-active-site-terminal-audit",
+                    str(terminal),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(metadata["method"], "epk_mek_erk_broad_role_stress_audit")
+            self.assertEqual(
+                metadata["broad_role_stress_status"],
+                "fails_closed_naive_broad_role_rule_false_hits_terminal_surface",
+            )
+            self.assertEqual(
+                metadata["nonpositive_naive_broad_role_false_hit_pdb_ids"],
+                ["7BAD"],
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
+    def test_build_epk_mek_erk_context_counteraxis_stress_audit_command(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            broad = root / "broad_role_stress.json"
+            out = root / "context_counteraxis.json"
+            broad.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "epk_mek_erk_broad_role_stress_audit",
+                            "target_fingerprint_id": (
+                                "epk_atp_gamma_phosphoryl_transfer"
+                            ),
+                            "candidate_threshold_angstrom": 6.0,
+                        },
+                        "rows": [
+                            {
+                                "pdb_id": "9POS",
+                                "broad_role_stress_decision": (
+                                    "source_reviewed_mek_erk_positive_retained_review_only"
+                                ),
+                                "source_reviewed_mek_erk_positive": True,
+                                "known_positive_repeat_or_source_valid": False,
+                                "naive_broad_protein_role_rule_hit": True,
+                                "candidate_same_chain_as_gamma": False,
+                            },
+                            {
+                                "pdb_id": "7OLD",
+                                "broad_role_stress_decision": (
+                                    "nonpositive_naive_broad_role_false_hit_review_only"
+                                ),
+                                "known_context": "prior_counterexample_repeat",
+                                "source_reviewed_mek_erk_positive": False,
+                                "known_positive_repeat_or_source_valid": False,
+                                "naive_broad_protein_role_rule_hit": True,
+                                "candidate_same_chain_as_gamma": False,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-epk-mek-erk-context-counteraxis-stress-audit",
+                    "--epk-mek-erk-broad-role-stress-audit",
+                    str(broad),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            metadata = payload["metadata"]
+            self.assertEqual(
+                metadata["method"], "epk_mek_erk_context_counteraxis_stress_audit"
+            )
+            self.assertEqual(
+                metadata["context_counteraxis_status"],
+                "passes_review_context_counteraxis_but_not_source_free",
+            )
+            self.assertEqual(
+                metadata["prior_counterexample_context_blocked_pdb_ids"],
+                ["7OLD"],
+            )
+            self.assertFalse(metadata["ready_to_run_epk_scorer"])
+
 
 if __name__ == "__main__":
     unittest.main()

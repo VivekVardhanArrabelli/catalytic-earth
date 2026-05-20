@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 207
-- Measured elapsed time: 6519.5 minutes (108.66 hours)
+- Entries: 208
+- Measured elapsed time: 6568.0 minutes (109.47 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1290.4 measured minutes (21.51 hours)
+- post-infra-science: 1338.9 measured minutes (22.31 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2410
-- Evidence references logged: 1915
+- Artifact references logged: 2426
+- Evidence references logged: 1930
 
 ## Recent Entries
-
-### 2026-05-20T00:30:20.032873+00:00 - post-infra-science
-
-- Task: ePK source-expansion peptide role and mode gap
-- Time mode: measured
-- Measured minutes: 48.217
-- Started: 2026-05-19T23:41:43Z
-- Ended: 2026-05-20T00:29:56Z
-- Artifacts: artifacts/v3_epk_heteromeric_source_expansion_peptide_role_axis_audit_1025.json, artifacts/v3_epk_substrate_mode_gap_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: startup 610-test unit discovery passed, final 616-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 225 tests, validate passed with 682 labels and 8 fingerprints, migration guard passed with 108 rows and removal_allowed=0, source-expansion peptide-role audit retained 1O6K and 1O6L with 0 nonpositive false hits, substrate-mode gap audit found 5 peptide-mode positives and 3 protein-substrate positive-like controls but no unified source-free substrate identity, pre-count remains blocked_review_only, counteraxis sufficiency keeps threshold_selection_decision do_not_select_threshold, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion Git LFS migration externalization label import positive fingerprint registry edit external-hard-negative scored re-audit or history rewrite.
 
 ### 2026-05-20T01:03:47.000000+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-20T07:37:50Z
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_ligand_specific_active_query_extension_audit_1025.json, artifacts/v3_epk_mek_erk_targeted_extension_audit_1025.json, artifacts/v3_epk_substrate_cocomplex_text_extension_audit_1025.json, artifacts/v3_epk_amp_pnp_protein_query_extension_audit_1025.json, artifacts/v3_epk_atp_protein_query_extension_audit_1025.json, artifacts/v3_epk_adp_product_query_extension_audit_1025.json, artifacts/v3_epk_multi_query_active_site_terminal_audit_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 642-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, active-query extension plus targeted MEK ERK co-complex AMP-PNP ATP and ADP routes covered 784 query placements and 630 unique structures, multi-query terminal audit found 27 topology hits 3 known positive repeats 8 known counterexample repeats 11 new blocked hits and 0 accepted new positives, MEK ERK rows 9UUR 9UUX 9UW4 blocked on role direction and phosphoacceptor state, same-author-chain topology risk covers 15 hits, final 644-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 253 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external out_of_scope, compileall passed, JSON validation passed, review-only artifact guard passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
+
+### 2026-05-20T08:39:33.652171+00:00 - post-infra-science
+
+- Task: ePK MEK ERK source review and broad-role stress
+- Time mode: measured
+- Measured minutes: 48.517
+- Started: 2026-05-20T07:50:46Z
+- Ended: 2026-05-20T08:39:17Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_mek_erk_phosphosite_source_review_1025.json, artifacts/v3_epk_mek_erk_role_control_rerun_1025.json, artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json, artifacts/v3_epk_mek_erk_context_counteraxis_stress_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 644-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, MEK ERK source review marked 9UUR and 9UUX measurement-ready and rejected 9UW4 same-chain topology, broad-role stress retained 9UUR and 9UUX but false-hit 8 nonpositive topology rows, review-context counteraxis blocked 6 prior counterexample repeats and left 7CAG and 8BMS residual false hits, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 656-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
 - Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external hard-negative production score or removal_allowed=true.
 
 ## Expectation Updates
@@ -283,6 +283,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T05:33:51.904993+00:00: ePK protein-role evidence is current-control clean but not general: 7B56 blocks relaxed folded-protein generalization and the fourth external source pass adds no measurement-ready positives.
 - 2026-05-20T06:36:57.763104+00:00: The mid-length rule repairs the current 7B56 failure but has no broad source-valid protein-substrate positive; the first 100 ligand-specific active-query hits add counterexamples but no new positive source, so ePK thresholding and production fingerprint expansion remain closed.
 - 2026-05-20T07:35:18.172497+00:00: Broad active-query routes now look negative for clean ePK protein-substrate sourcing; next progress needs MEK ERK source-authority review or a curated kinase-substrate source rather than thresholding current query hits.
+- 2026-05-20T08:39:33.652171+00:00: MEK ERK now provides two source-authoritative review controls but broad protein-role geometry is unsafe; source-free substrate identity or source adjudication for 7CAG and 8BMS is the next blocker before scorer calibration.
 
 ## Scope Adjustments
 

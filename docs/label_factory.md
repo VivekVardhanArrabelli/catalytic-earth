@@ -844,6 +844,17 @@ risk, while MEK1/ERK1 hits (`9UUR`, `9UUX`, and `9UW4`) are blocked until
 role direction and phosphoacceptor state are source-reviewed. No distance
 measurement, threshold, external scored re-audit, registry edit, or label gate
 opens.
+The MEK1/ERK1 source-review follow-up now resolves that specific blocker only
+as review evidence. `artifacts/v3_epk_mek_erk_phosphosite_source_review_1025.json`
+marks `9UUR` and `9UUX` measurement-ready against ERK1 `P27361` Tyr204
+phosphosite evidence and rejects same-chain `9UW4`. The role-control rerun
+keeps these as review-only broad protein-substrate rows, then
+`artifacts/v3_epk_mek_erk_broad_role_stress_audit_1025.json` shows that a
+naive different-chain/distance broad-role rule false-hits eight nonpositive
+terminal topology rows. The review-context counteraxis artifact blocks six
+prior-counterexample repeats but still leaves `7CAG` and `8BMS` unresolved,
+so it is diagnostic only; pre-count and counteraxis sufficiency remain blocked
+and do not authorize ePK scoring, thresholds, registry edits, or label import.
 Negative-control distribution readiness,
 acceptor-threshold calibration, text-free acceptor
 feature production admissibility, real scorer design, `m_csa:760` split-state

@@ -212,6 +212,76 @@
       ]
     },
     {
+      "blocker": "mek_erk_source_review_not_source_free_or_calibrated_scoring_axis",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "adds_broad_source_review_rows_but_not_source_free_scoring_axis",
+      "decision_axis": "mek_erk_phosphosite_source_review",
+      "feature_admissible_for_production_scoring": false,
+      "review_only": true,
+      "same_chain_artifact_rejected_count": 1,
+      "same_chain_artifact_rejected_pdb_ids": [
+        "9UW4"
+      ],
+      "source_authoritative_measurement_ready_count": 2,
+      "source_authoritative_measurement_ready_pdb_ids": [
+        "9UUR",
+        "9UUX"
+      ],
+      "source_free_predictive_feature_materialized": false,
+      "source_review_status": "adds_source_authoritative_broad_protein_substrate_rows_review_only"
+    },
+    {
+      "blocker": "naive_mek_erk_broad_role_rule_false_hits_terminal_surface",
+      "broad_role_stress_status": "fails_closed_naive_broad_role_rule_false_hits_terminal_surface",
+      "candidate_threshold_angstrom": 6.0,
+      "decision": "false_hits_keep_broad_role_rule_closed",
+      "decision_axis": "mek_erk_broad_role_stress_audit",
+      "feature_admissible_for_production_scoring": false,
+      "nonpositive_naive_broad_role_false_hit_count": 8,
+      "nonpositive_naive_broad_role_false_hit_pdb_ids": [
+        "2JJ2",
+        "4HPU",
+        "7B56",
+        "7CAG",
+        "7ZDT",
+        "7ZDU",
+        "7ZE5",
+        "8BMS"
+      ],
+      "nonpositive_same_chain_blocked_count": 14,
+      "review_only": true,
+      "source_reviewed_positive_retained_count": 2,
+      "source_reviewed_positive_retained_pdb_ids": [
+        "9UUR",
+        "9UUX"
+      ]
+    },
+    {
+      "blocker": "review_context_counteraxis_not_source_free_or_residual_false_hits",
+      "candidate_threshold_angstrom": 6.0,
+      "context_counteraxis_status": "fails_closed_context_counteraxis_reduces_but_does_not_clear_false_hits",
+      "decision": "review_context_reduces_but_residual_false_hits_remain",
+      "decision_axis": "mek_erk_context_counteraxis_stress_audit",
+      "decision_surface_changed": true,
+      "feature_admissible_for_production_scoring": false,
+      "prior_counterexample_context_blocked_count": 6,
+      "prior_counterexample_context_blocked_pdb_ids": [
+        "2JJ2",
+        "4HPU",
+        "7B56",
+        "7ZDT",
+        "7ZDU",
+        "7ZE5"
+      ],
+      "residual_new_topology_false_hit_count": 2,
+      "residual_new_topology_false_hit_pdb_ids": [
+        "7CAG",
+        "8BMS"
+      ],
+      "review_only": true,
+      "source_free_predictive_feature_materialized": false
+    },
+    {
       "blocker": "unified_review_only_score_not_calibrated_or_production_admissible",
       "candidate_threshold_angstrom": 6.0,
       "control_false_non_abstention_count": 0,
@@ -325,6 +395,52 @@
       "1O6L"
     ],
     "length_band_substrate_identity_status": "passes_source_expansion_subset_by_blocking_relaxed_false_hits_review_only",
+    "mek_erk_broad_role_false_hit_count": 8,
+    "mek_erk_broad_role_false_hit_pdb_ids": [
+      "2JJ2",
+      "4HPU",
+      "7B56",
+      "7CAG",
+      "7ZDT",
+      "7ZDU",
+      "7ZE5",
+      "8BMS"
+    ],
+    "mek_erk_broad_role_positive_retained_count": 2,
+    "mek_erk_broad_role_positive_retained_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "mek_erk_broad_role_same_chain_blocked_count": 14,
+    "mek_erk_broad_role_stress_status": "fails_closed_naive_broad_role_rule_false_hits_terminal_surface",
+    "mek_erk_context_counteraxis_decision_surface_changed": true,
+    "mek_erk_context_counteraxis_status": "fails_closed_context_counteraxis_reduces_but_does_not_clear_false_hits",
+    "mek_erk_context_prior_counterexample_blocked_count": 6,
+    "mek_erk_context_prior_counterexample_blocked_pdb_ids": [
+      "2JJ2",
+      "4HPU",
+      "7B56",
+      "7ZDT",
+      "7ZDU",
+      "7ZE5"
+    ],
+    "mek_erk_context_residual_false_hit_count": 2,
+    "mek_erk_context_residual_false_hit_pdb_ids": [
+      "7CAG",
+      "8BMS"
+    ],
+    "mek_erk_context_source_free_predictive_feature_materialized": false,
+    "mek_erk_phosphosite_source_review_status": "adds_source_authoritative_broad_protein_substrate_rows_review_only",
+    "mek_erk_same_chain_artifact_rejected_count": 1,
+    "mek_erk_same_chain_artifact_rejected_pdb_ids": [
+      "9UW4"
+    ],
+    "mek_erk_source_authoritative_measurement_ready_count": 2,
+    "mek_erk_source_authoritative_measurement_ready_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "mek_erk_source_free_predictive_feature_materialized": false,
     "method": "epk_counteraxis_sufficiency_decision",
     "midlength_protein_role_blocked_false_hit_count": 1,
     "midlength_protein_role_blocked_false_hit_pdb_ids": [
@@ -344,6 +460,9 @@
     ],
     "negative_control_distance_distribution_ready": false,
     "next_actions": [
+      "use source-reviewed MEK1/ERK1 rows only after source-free role and acceptor controls are rerun",
+      "repair MEK1/ERK1 broad-role false hits with a source-free counter-axis before scorer calibration",
+      "source-adjudicate 7CAG and 8BMS or replace review-context blocking with a source-free feature",
       "replace distance-only ePK thresholding with a substrate-acceptor and sibling-family counteraxis rule",
       "calibrate the unified substrate-identity rule against broader controls before thresholding",
       "run external hard-negative re-audit only after a calibrated ePK score exists"
@@ -357,6 +476,8 @@
       "m_csa756_active_state_repair_scan",
       "m_csa757_active_state_repair_scan",
       "m_csa760_atp_state_repair_scan",
+      "mek_erk_broad_role_stress_audit",
+      "mek_erk_context_counteraxis_stress_audit",
       "protein_substrate_acceptor_candidate_audit",
       "registry_and_label_factory_extension",
       "source_free_chain_topology_role_audit",
@@ -371,6 +492,9 @@
       "relaxed_polymer_rule_false_hits_source_context_counterexample",
       "length_band_counteraxis_source_expansion_only_not_general_epk_identity",
       "midlength_counteraxis_lacks_broad_source_valid_positive",
+      "mek_erk_source_review_not_source_free_or_calibrated_scoring_axis",
+      "naive_mek_erk_broad_role_rule_false_hits_terminal_surface",
+      "review_context_counteraxis_not_source_free_or_residual_false_hits",
       "unified_substrate_identity_rule_not_calibrated_for_production",
       "label_factory_gate_not_extended_for_epk"
     ],

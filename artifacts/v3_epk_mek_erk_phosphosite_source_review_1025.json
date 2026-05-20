@@ -1,0 +1,388 @@
+{
+  "metadata": {
+    "blocker_not_removed": [
+      "source_review_evidence_not_source_free_predictive_feature",
+      "source_free_protein_role_and_acceptor_identity_generalization_not_rerun",
+      "threshold_not_calibrated_against_negative_controls",
+      "external_hard_negative_reaudit_not_real_scorer",
+      "registry_and_label_factory_extension_not_implemented"
+    ],
+    "blocker_removed": "mek_erk_phosphosite_source_review_executed",
+    "cif_fetch_failure_count": 0,
+    "cif_fetch_failures": {},
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetched_pdb_ids": [
+      "9UUR",
+      "9UUX",
+      "9UW4"
+    ],
+    "fetched_uniprot_accessions": [
+      "P27361",
+      "Q02750"
+    ],
+    "fingerprint_registry_edited": false,
+    "gamma_acceptor_distance_measured_count": 2,
+    "method": "epk_mek_erk_phosphosite_source_review",
+    "nearest_gamma_acceptor_distance_max_angstrom": 4.181,
+    "nearest_gamma_acceptor_distance_min_angstrom": 3.968,
+    "next_actions": [
+      "rerun protein-substrate role and acceptor-identity controls with the source-reviewed MEK1/ERK1 rows before threshold work",
+      "keep same-chain MEK active-site hits as topology counterexamples",
+      "convert source-reviewed phosphosite support into a source-free predictive feature only after broad controls and external scored re-audit pass"
+    ],
+    "phosphosite_source_review_status_counts": {
+      "rejected_same_chain_mek_active_site_not_erk_phosphosite_review_only": 1,
+      "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only": 2
+    },
+    "ready_for_label_import": false,
+    "ready_for_orphan_discovery_claims": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "ready_to_run_epk_scorer": false,
+    "review_only": true,
+    "review_only_rule": "This artifact reviews MEK1/ERK1 topology hits against PDB modified-residue records and UniProt phosphosite evidence. Rows can become measurement-ready review controls, but this does not create a source-free ePK scorer, threshold, registry edit, label import, or held-out performance claim.",
+    "reviewed_candidate_count": 3,
+    "same_chain_artifact_rejected_count": 1,
+    "same_chain_artifact_rejected_pdb_ids": [
+      "9UW4"
+    ],
+    "selected_threshold_angstrom": null,
+    "source_authoritative_measurement_ready_count": 2,
+    "source_authoritative_measurement_ready_pdb_ids": [
+      "9UUR",
+      "9UUX"
+    ],
+    "source_context_used_as_review_evidence_only": true,
+    "source_epk_mek_erk_source_validation_review_method": "epk_heteromeric_candidate_source_validation_review",
+    "source_free_predictive_feature_materialized": false,
+    "source_review_status": "adds_source_authoritative_broad_protein_substrate_rows_review_only",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "terminal_not_ready_count": 1,
+    "terminal_not_ready_pdb_ids": [
+      "9UW4"
+    ],
+    "threshold_calibrated": false,
+    "uniprot_fetch_failure_count": 0,
+    "uniprot_fetch_failures": {}
+  },
+  "rows": [
+    {
+      "candidate_auth_seq_id": "194",
+      "candidate_chain_name": "A",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "194",
+        "candidate_chain_name": "A",
+        "candidate_residue_code": "SER",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "nearest_gamma_distance_angstrom": 4.194
+      },
+      "candidate_residue_code": "SER",
+      "candidate_residue_modified_in_structure": false,
+      "candidate_same_chain_as_gamma": true,
+      "candidate_uniprot_accession": "Q02750",
+      "candidate_uniprot_position": 194,
+      "chain_accessions": {
+        "A": [
+          "Q02750"
+        ],
+        "B": [
+          "P27361"
+        ]
+      },
+      "companion_modified_residue_rows_on_candidate_chain": [
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "218",
+          "details": "modified residue",
+          "label_asym_id": "B",
+          "label_comp_id": "SEP",
+          "label_seq_id": "218",
+          "parent_comp_id": "SER"
+        },
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "222",
+          "details": "modified residue",
+          "label_asym_id": "B",
+          "label_comp_id": "SEP",
+          "label_seq_id": "222",
+          "parent_comp_id": "SER"
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": true,
+      "kinase_uniprot_accession": "Q02750",
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 4.194,
+      "pdb_id": "9UW4",
+      "phosphosite_source_review_status": "rejected_same_chain_mek_active_site_not_erk_phosphosite_review_only",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "candidate_acceptor_chain_matches_gamma_chain",
+        "same_author_chain_entity_mapping_artifact_risk",
+        "source_phosphosite_not_on_candidate_chain"
+      ],
+      "review_only": true,
+      "row_type": "mek_erk_phosphosite_source_review_candidate",
+      "source_authoritative_measurement_ready": false,
+      "source_phosphosite_feature": null,
+      "source_phosphosite_matched_candidate": false,
+      "source_role_direction_supported": false,
+      "source_validation_status_input": "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+      "structure_modified_residue_rows": [
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "218",
+          "details": "modified residue",
+          "label_asym_id": "B",
+          "label_comp_id": "SEP",
+          "label_seq_id": "218",
+          "parent_comp_id": "SER"
+        },
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "222",
+          "details": "modified residue",
+          "label_asym_id": "B",
+          "label_comp_id": "SEP",
+          "label_seq_id": "222",
+          "parent_comp_id": "SER"
+        }
+      ],
+      "structure_title": "The complex of human pMEK1 and uERK1 (ANP)(from pY204ERK1)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "204",
+      "candidate_chain_name": "B",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OH",
+        "candidate_auth_seq_id": "204",
+        "candidate_chain_name": "B",
+        "candidate_residue_code": "TYR",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "nearest_gamma_distance_angstrom": 4.181
+      },
+      "candidate_residue_code": "TYR",
+      "candidate_residue_modified_in_structure": false,
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "P27361",
+      "candidate_uniprot_position": 204,
+      "chain_accessions": {
+        "A": [
+          "Q02750"
+        ],
+        "B": [
+          "P27361"
+        ]
+      },
+      "companion_modified_residue_rows_on_candidate_chain": [],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": true,
+      "kinase_uniprot_accession": "Q02750",
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 4.181,
+      "pdb_id": "9UUR",
+      "phosphosite_source_review_status": "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "mek_erk_phosphosite_source_review_candidate",
+      "source_authoritative_measurement_ready": true,
+      "source_phosphosite_feature": {
+        "description": "Phosphotyrosine; by MAP2K1 and MAP2K2",
+        "evidence_codes": [
+          "ECO:0000269",
+          "ECO:0007744"
+        ],
+        "position": 204,
+        "roles": [
+          "source_phosphoacceptor"
+        ]
+      },
+      "source_phosphosite_matched_candidate": true,
+      "source_role_direction_supported": true,
+      "source_validation_status_input": "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+      "structure_modified_residue_rows": [
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "218",
+          "details": "modified residue",
+          "label_asym_id": "A",
+          "label_comp_id": "SEP",
+          "label_seq_id": "218",
+          "parent_comp_id": "SER"
+        },
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "222",
+          "details": "modified residue",
+          "label_asym_id": "A",
+          "label_comp_id": "SEP",
+          "label_seq_id": "222",
+          "parent_comp_id": "SER"
+        }
+      ],
+      "structure_title": "The complex of human pMEK1 and uERK1 (ANP)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_auth_seq_id": "204",
+      "candidate_chain_name": "B",
+      "candidate_hit": {
+        "acceptor_entity_id": "2",
+        "candidate_atom_name": "OH",
+        "candidate_auth_seq_id": "204",
+        "candidate_chain_name": "B",
+        "candidate_residue_code": "TYR",
+        "gamma_associated_polymer_chain_name": "A",
+        "gamma_associated_polymer_entity_id": "1",
+        "gamma_atom_name": "PG",
+        "gamma_ligand_code": "ANP",
+        "nearest_gamma_distance_angstrom": 3.968
+      },
+      "candidate_residue_code": "TYR",
+      "candidate_residue_modified_in_structure": false,
+      "candidate_same_chain_as_gamma": false,
+      "candidate_uniprot_accession": "P27361",
+      "candidate_uniprot_position": 204,
+      "chain_accessions": {
+        "A": [
+          "Q02750"
+        ],
+        "B": [
+          "P27361"
+        ]
+      },
+      "companion_modified_residue_rows_on_candidate_chain": [
+        {
+          "auth_asym_id": "B",
+          "auth_comp_id": "TPO",
+          "auth_seq_id": "202",
+          "details": "modified residue",
+          "label_asym_id": "B",
+          "label_comp_id": "TPO",
+          "label_seq_id": "203",
+          "parent_comp_id": "THR"
+        }
+      ],
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "external_hard_negative_reaudit_scored": false,
+      "fetch_status": "fetched",
+      "gamma_acceptor_distance_measured": true,
+      "gamma_associated_polymer_chain_name": "A",
+      "kinase_protein_phosphorylation_reaction_supported": true,
+      "kinase_uniprot_accession": "Q02750",
+      "nearest_gamma_to_candidate_acceptor_distance_angstrom": 3.968,
+      "pdb_id": "9UUX",
+      "phosphosite_source_review_status": "source_authoritative_mek1_erk1_phosphosite_measurement_ready_review_only",
+      "production_scoring_admissible": false,
+      "ready_for_label_import": false,
+      "ready_for_orphan_discovery_claims": false,
+      "ready_for_production_scoring": false,
+      "remaining_blockers": [
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "review_only": true,
+      "row_type": "mek_erk_phosphosite_source_review_candidate",
+      "source_authoritative_measurement_ready": true,
+      "source_phosphosite_feature": {
+        "description": "Phosphotyrosine; by MAP2K1 and MAP2K2",
+        "evidence_codes": [
+          "ECO:0000269",
+          "ECO:0007744"
+        ],
+        "position": 204,
+        "roles": [
+          "source_phosphoacceptor"
+        ]
+      },
+      "source_phosphosite_matched_candidate": true,
+      "source_role_direction_supported": true,
+      "source_validation_status_input": "blocked_mek_erk_role_direction_or_phosphosite_state_unresolved_review_only",
+      "structure_modified_residue_rows": [
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "218",
+          "details": "modified residue",
+          "label_asym_id": "A",
+          "label_comp_id": "SEP",
+          "label_seq_id": "218",
+          "parent_comp_id": "SER"
+        },
+        {
+          "auth_asym_id": "A",
+          "auth_comp_id": "SEP",
+          "auth_seq_id": "222",
+          "details": "modified residue",
+          "label_asym_id": "A",
+          "label_comp_id": "SEP",
+          "label_seq_id": "222",
+          "parent_comp_id": "SER"
+        },
+        {
+          "auth_asym_id": "B",
+          "auth_comp_id": "TPO",
+          "auth_seq_id": "202",
+          "details": "modified residue",
+          "label_asym_id": "B",
+          "label_comp_id": "TPO",
+          "label_seq_id": "203",
+          "parent_comp_id": "THR"
+        }
+      ],
+      "structure_title": "The complex of human pMEK1 and ERK1 pT202 (ANP)",
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "warnings": [
+    "MEK1/ERK1 phosphosite source review remains review-only and does not authorize ePK scoring, thresholding, registry edits, or label import."
+  ]
+}
