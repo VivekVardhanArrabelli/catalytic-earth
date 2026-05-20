@@ -1,0 +1,1399 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_active_gamma_donor_atom_review_only": 13,
+      "no_heteromeric_candidate_hit_review_only": 3
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T16:22:50Z",
+    "heteromeric_candidate_pdb_ids": [],
+    "heteromeric_candidate_structure_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 9,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 16,
+    "surface_total_count_reported_total": 16,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 16
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 884,
+      "atom_count_model_1": 57117,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Interactions between mTORC2 core subunits Rictor and mSin1 dictate selective and context-dependent phosphorylation of substrate kinases SGK1 and Akt.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7TZO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The apo structure of human mTORC2 complex"
+    },
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 5714,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3X",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: aPKC Lgl ATP phosphorylation site",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_apkc_lgl_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of aPKC Iota kinase domain with LLGL2 peptide"
+    },
+    {
+      "acceptor_atom_count": 187,
+      "atom_count_model_1": 20120,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "I",
+          "associated_polymer_distance_angstrom": 1.668,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "I",
+          "gamma_ligand_code": "ANP",
+          "local_metals": []
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3Y",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Lethal(2) giant larvae protein homolog 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15334"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Partitioning defective 6 homolog alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "R4GMM2"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: aPKC Lgl ATP phosphorylation site",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_apkc_lgl_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cryo EM structure of a stable LGL/aPKC Iota/Par-6 complex"
+    },
+    {
+      "acceptor_atom_count": 0,
+      "atom_count_model_1": 0,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for the Recruitment and Selective Phosphorylation of Akt by mTORC2",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AAA",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "MTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "RICTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "MLST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "MSIN1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "I",
+            "J"
+          ],
+          "description": "AKT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P31749"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Integrative model of mTORC2-AKT1"
+    },
+    {
+      "acceptor_atom_count": 181,
+      "atom_count_model_1": 9854,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9JK83"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: aPKC Lgl ATP phosphorylation site",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_apkc_lgl_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Lgl2 bound to the aPKCiota-Par6b complex in nucleotide-free form. Head sub-complex region subtracted"
+    },
+    {
+      "acceptor_atom_count": 196,
+      "atom_count_model_1": 11764,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9JK83"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: aPKC Lgl ATP phosphorylation site",
+          "rank": 5,
+          "surface_id": "rcsb_fulltext_apkc_lgl_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Lgl2 bound to the aPKCiota-Par6B complex in nucleotide-free form. Conformation with visible head sub-complex."
+    },
+    {
+      "acceptor_atom_count": 184,
+      "atom_count_model_1": 10056,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJM",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: aPKC Lgl ATP phosphorylation site",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_apkc_lgl_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Lgl2 bound to the aPKCiota-Par6B complex in its ADP-bound form"
+    },
+    {
+      "acceptor_atom_count": 885,
+      "atom_count_model_1": 52802,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.796,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2602",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": []
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.885,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2601",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ATP",
+          "local_metals": []
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9T7J",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of AKT phosphorylated mTOR complex 2, overall refinement"
+    },
+    {
+      "acceptor_atom_count": 889,
+      "atom_count_model_1": 53168,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9T92",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 7,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of autophosphorylated mTOR complex 2, overall refinement"
+    },
+    {
+      "acceptor_atom_count": 427,
+      "atom_count_model_1": 25205,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9T93",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 8,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of autophosphorylated mTOR complex 2, focused on a single protomer"
+    },
+    {
+      "acceptor_atom_count": 422,
+      "atom_count_model_1": 24959,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 1,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.736,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2602",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": []
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9T94",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 6,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of AKT phosphorylated mTOR complex 2, focused on a single protomer"
+    },
+    {
+      "acceptor_atom_count": 881,
+      "atom_count_model_1": 52832,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9TDS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 9,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of dephosphorylated mTOR complex 2, overall refinement"
+    },
+    {
+      "acceptor_atom_count": 423,
+      "atom_count_model_1": 25046,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9TDT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 10,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-EM structure of dephosphorylated mTOR complex 2, focused on a single protomer"
+    },
+    {
+      "acceptor_atom_count": 1012,
+      "atom_count_model_1": 61288,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for a phosphoinositide-driven mTORC2-AKT positive feedback loop",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9TPW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 11,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cryo-ET structure of mTOR complex 2 on a PIP2-containing membrane"
+    },
+    {
+      "acceptor_atom_count": 440,
+      "atom_count_model_1": 28107,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9ZBJ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cryo-EM structure of human apo mTORC2"
+    },
+    {
+      "acceptor_atom_count": 461,
+      "atom_count_model_1": 30622,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9ZBK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "RAC-alpha serine/threonine-protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P31749"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "mTORC2 in complex with Akt1"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: PINK1 ubiquitin AMP-PNP Ser65",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pink1_ubiquitin_amp_pnp_ser65_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: PINK1 ubiquitin ATP analog phosphorylation Ser65",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pink1_ubiquitin_atp_analog_phosphorylation_ser65_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: PINK1 ubiquitin ANP magnesium substrate",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pink1_ubiquitin_anp_magnesium_substrate_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase A CFTR AMP-PNP phosphorylation",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pka_cftr_amp_pnp_phosphorylation_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase A CFTR ATP analog substrate",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_pka_cftr_atp_analog_substrate_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: aPKC Par6 Lgl AMP-PNP phosphorylation",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_apkc_par6_lgl_amp_pnp_phosphorylation_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "8R3Y",
+        "8R3X",
+        "9EJK",
+        "9EJM",
+        "9EJL"
+      ],
+      "query_or_source": "RCSB full_text: aPKC Lgl ATP phosphorylation site",
+      "requested_rows": 50,
+      "returned_count": 5,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_apkc_lgl_atp_phosphorylation_site_all",
+      "total_count": 5
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: mTORC2 Akt AMP-PNP phosphorylation",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_mtorc2_akt_amp_pnp_phosphorylation_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "9ZBK",
+        "7TZO",
+        "9ZBJ",
+        "9T7J",
+        "9AAA",
+        "9T94",
+        "9T92",
+        "9T93",
+        "9TDS",
+        "9TDT",
+        "9TPW"
+      ],
+      "query_or_source": "RCSB full_text: mTORC2 Akt ATP phosphorylation site",
+      "requested_rows": 50,
+      "returned_count": 11,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_mtorc2_akt_atp_phosphorylation_site_all",
+      "total_count": 11
+    }
+  ]
+}

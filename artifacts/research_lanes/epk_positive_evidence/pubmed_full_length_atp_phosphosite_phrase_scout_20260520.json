@@ -1,0 +1,968 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T16:22:15Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "europepmc_full_length_atp_phosphosite_query",
+    "note": "Fallback after NCBI E-utilities returned HTTP 429 for the same bounded PubMed-style query surface.",
+    "production_claim_allowed": false,
+    "query_counts": [
+      {
+        "count": 18,
+        "error": null,
+        "query": "\"kinase-substrate complex\" \"full-length\" ATP \"phosphorylation site\"",
+        "returned_count": 18
+      },
+      {
+        "count": 4354,
+        "error": null,
+        "query": "\"protein kinase\" \"full-length\" substrate ATP \"phosphorylation site\"",
+        "returned_count": 25
+      },
+      {
+        "count": 61,
+        "error": null,
+        "query": "\"kinase-substrate\" \"full-length\" \"AMP-PNP\" phosphorylation",
+        "returned_count": 25
+      }
+    ],
+    "query_surface_count": 3,
+    "review_only": true,
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+    "total_returned_rows": 68,
+    "unique_pmids_returned": 61
+  },
+  "queries": [
+    {
+      "count": 18,
+      "error": null,
+      "query": "\"kinase-substrate complex\" \"full-length\" ATP \"phosphorylation site\"",
+      "results": [
+        {
+          "author_string": "Earl CP, Cobbaut M, Barros-Carvalho A, Ivanova ME, Briggs DC, Morais-de-S\u00e1 E, Parker PJ, McDonald NQ.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "39762628",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        },
+        {
+          "author_string": "Gavagan M, Jameson N, Zalatan JG.",
+          "doi": "10.7554/elife.85444",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "7554"
+          ],
+          "pmid": "37548359",
+          "pub_year": "2023",
+          "source": "MED",
+          "title": "The Axin scaffold protects the kinase GSK3\u03b2 from cross-pathway inhibition."
+        },
+        {
+          "author_string": "Backe SJ, Votra SD, Stokes MP, Sebesty\u00e9n E, Castelli M, Torielli L, Colombo G, Woodford MR, Mollapour M, Bourboulia D.",
+          "doi": "10.1016/j.celrep.2023.112539",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2023"
+          ],
+          "pmid": "37243593",
+          "pub_year": "2023",
+          "source": "MED",
+          "title": "PhosY-secretome profiling combined with kinase-substrate interaction screening defines active c-Src-driven extracellular signaling."
+        },
+        {
+          "author_string": "Wong AW, Urisman A, Burlingame AL, Shokat KM.",
+          "doi": "10.1002/pro.3570",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1002",
+            "3570"
+          ],
+          "pmid": "30636329",
+          "pub_year": "2019",
+          "source": "MED",
+          "title": "Chemically reprogramming the phospho-transfer reaction to crosslink protein kinases to their substrates."
+        },
+        {
+          "author_string": "Castro-Rodrigues AF, Zhao Y, Fonseca F, Gabant G, Cadene M, Robertson GA, Morais-Cabral JH.",
+          "doi": "10.1016/j.jmb.2018.10.015",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2018"
+          ],
+          "pmid": "30381148",
+          "pub_year": "2018",
+          "source": "MED",
+          "title": "The Interaction between the Drosophila EAG Potassium Channel and the Protein Kinase CaMKII Involves an Extensive Interface at the Active Site of the Kinase."
+        },
+        {
+          "author_string": "Kumar A, Tamjar J, Waddell AD, Woodroof HI, Raimi OG, Shaw AM, Peggie M, Muqit MM, van Aalten DM.",
+          "doi": "10.7554/elife.29985",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "7554"
+          ],
+          "pmid": "28980524",
+          "pub_year": "2017",
+          "source": "MED",
+          "title": "Structure of PINK1 and mechanisms of Parkinson's disease-associated mutations."
+        },
+        {
+          "author_string": "Mitchell DC, Menon A, Garner AL.",
+          "doi": "10.1016/j.chembiol.2019.03.012",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2019"
+          ],
+          "pmid": "31056462",
+          "pub_year": "2019",
+          "source": "MED",
+          "title": "Chemoproteomic Profiling Uncovers CDK4-Mediated Phosphorylation of the Translational Suppressor 4E-BP1."
+        },
+        {
+          "author_string": "Hamill S, Lou HJ, Turk BE, Boggon TJ.",
+          "doi": "10.1016/j.molcel.2016.04.001",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2016"
+          ],
+          "pmid": "27153537",
+          "pub_year": "2016",
+          "source": "MED",
+          "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases."
+        },
+        {
+          "author_string": "Lee WL, Singaravelu P, Wee S, Xue B, Ang KC, Gunaratne J, Grimes JM, Swaminathan K, Robinson RC.",
+          "doi": "10.1038/srep39998",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "28051168",
+          "pub_year": "2017",
+          "source": "MED",
+          "title": "Mechanisms of Yersinia YopO kinase substrate specificity."
+        },
+        {
+          "author_string": "Amano M, Hamaguchi T, Shohag MH, Kozawa K, Kato K, Zhang X, Yura Y, Matsuura Y, Kataoka C, Nishioka T, Kaibuchi K.",
+          "doi": "10.1083/jcb.201412008",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1083"
+          ],
+          "pmid": "26101221",
+          "pub_year": "2015",
+          "source": "MED",
+          "title": "Kinase-interacting substrate screening is a novel method to identify kinase substrates."
+        },
+        {
+          "author_string": "Keshwani MM, Hailey KL, Aubol BE, Fattet L, McGlone ML, Jennings PA, Adams JA.",
+          "doi": "10.1042/bj20150903",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1042"
+          ],
+          "pmid": "26443864",
+          "pub_year": "2015",
+          "source": "MED",
+          "title": "Nuclear protein kinase CLK1 uses a non-traditional docking mechanism to select physiological substrates."
+        },
+        {
+          "author_string": "Maiolica A, de Medina-Redondo M, Schoof EM, Chaikuad A, Villa F, Gatti M, Jeganathan S, Lou HJ, Novy K, Hauri S, Toprak UH, Herzog F, Meraldi P, Penengo L, Turk BE, Knapp S, Linding R, Aebersold R.",
+          "doi": "10.1074/mcp.m113.034819",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1074",
+            "3964"
+          ],
+          "pmid": "24732914",
+          "pub_year": "2014",
+          "source": "MED",
+          "title": "Modulation of the chromatin phosphoproteome by the Haspin protein kinase."
+        },
+        {
+          "author_string": "Marion JD, Roberts CF, Call RJ, Forbes JL, Nelson KT, Bell JE, Bell JK.",
+          "doi": "10.1074/jbc.m112.440859",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1074"
+          ],
+          "pmid": "23649622",
+          "pub_year": "2013",
+          "source": "MED",
+          "title": "Mechanism of endogenous regulation of the type I interferon response by suppressor of I\u03baB kinase epsilon (SIKE), a novel substrate of TANK-binding kinase 1 (TBK1)."
+        },
+        {
+          "author_string": "Statsuk AV, Maly DJ, Seeliger MA, Fabian MA, Biggs WH, Lockhart DJ, Zarrinkar PP, Kuriyan J, Shokat KM.",
+          "doi": "10.1021/ja807066f",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1021"
+          ],
+          "pmid": "19053485",
+          "pub_year": "2008",
+          "source": "MED",
+          "title": "Tuning a three-component reaction for trapping kinase substrate complexes."
+        },
+        {
+          "author_string": "Nawaratne R, Gray A, J\u00f8rgensen CH, Downes CP, Siddle K, Sethi JK.",
+          "doi": "10.1210/me.2005-0536",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "0536",
+            "1210",
+            "2005"
+          ],
+          "pmid": "16574739",
+          "pub_year": "2006",
+          "source": "MED",
+          "title": "Regulation of insulin receptor substrate 1 pleckstrin homology domain by protein kinase C: role of serine 24 phosphorylation."
+        },
+        {
+          "author_string": "Alexa A, G\u00f3gl G, Glatz G, Garai \u00c1, Zeke A, Varga J, Dud\u00e1s E, Jeszen\u0151i N, Bodor A, Het\u00e9nyi C, Rem\u00e9nyi A.",
+          "doi": "10.1073/pnas.1417571112",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1073"
+          ],
+          "pmid": "25730857",
+          "pub_year": "2015",
+          "source": "MED",
+          "title": "Structural assembly of the signaling competent ERK2-RSK1 heterodimeric protein kinase complex."
+        },
+        {
+          "author_string": "Joseph RE, Severin A, Min L, Fulton DB, Andreotti AH.",
+          "doi": "10.1016/j.jmb.2009.06.023",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2009"
+          ],
+          "pmid": "19523959",
+          "pub_year": "2009",
+          "source": "MED",
+          "title": "SH2-dependent autophosphorylation within the Tec family kinase Itk."
+        },
+        {
+          "author_string": "Aubol BE, Chakrabarti S, Ngo J, Shaffer J, Nolen B, Fu XD, Ghosh G, Adams JA.",
+          "doi": "10.1073/pnas.1635129100",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1073"
+          ],
+          "pmid": "14555757",
+          "pub_year": "2003",
+          "source": "MED",
+          "title": "Processive phosphorylation of alternative splicing factor/splicing factor 2."
+        }
+      ],
+      "returned_count": 18
+    },
+    {
+      "count": 4354,
+      "error": null,
+      "query": "\"protein kinase\" \"full-length\" substrate ATP \"phosphorylation site\"",
+      "results": [
+        {
+          "author_string": "Zol-Hanlon M, McDonald NQ.",
+          "doi": "10.1530/erc-25-0322",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "0322",
+            "1530"
+          ],
+          "pmid": "41921038",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "RET receptor tyrosine kinase architecture, assemblies, and activation."
+        },
+        {
+          "author_string": "Gonzalez-Areizaga G, Smithgall TE.",
+          "doi": "10.1016/j.jbc.2025.111099",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2025"
+          ],
+          "pmid": "41443422",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Chaperone-assisted expression and purification of the AML-associated Src-family kinase Fgr in Escherichia coli."
+        },
+        {
+          "author_string": "Kim BR, Cho HD, Kudo Y, Gunasekara H, Li G, Tu K, Waters SB, Hu YS, Yamada KH.",
+          "doi": "10.1111/tra.70032",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1111"
+          ],
+          "pmid": "41681080",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Protein Kinase D Regulates Kinesin-Mediated VEGFR2 Trafficking and Influences Retinal Endothelial Permeability."
+        },
+        {
+          "author_string": "Piwko AT, Jeffes MA, Frederich JH, Miller BG.",
+          "doi": "10.1021/acschembio.5c00715",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1021"
+          ],
+          "pmid": "41187334",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Characterization and Inhibition of Human Hexokinase Domain Containing Protein 1 Reveals an Enzyme with Unique Catalytic and Regulatory Traits."
+        },
+        {
+          "author_string": "Brown SJ, Briggs DC, Costello P, Yaguchi H, Bangham CR, Parker PJ, McDonald NQ.",
+          "doi": "10.1042/bcj20253384",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1042"
+          ],
+          "pmid": "41091072",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Penetrant PKC\u03b2 mutation in ATLL displays a mixed gain-of-function."
+        },
+        {
+          "author_string": "Taylor MS, Chen M, Hancock M, Wranik M, Miller BD, O'Meara TR, Palanski BA, Ficarro SB, Groendyke BJ, Xiang Y, Kondo KT, Linde-Garelli KY, Lee MJ, Mondal D, Freund D, Congreve S, Matas K, Hennink M, Xibinaku K, Valenstein ML, van Eeuwen T, Marto JA, Sali A, Shi Y, Gray NS, Sabatini DM, Chu N, Rogala KB, Cole PA.",
+          "doi": "10.1126/science.adv7111",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1126"
+          ],
+          "pmid": "41308123",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2."
+        },
+        {
+          "author_string": "Hrmova M, Dockter C, Krsticevic F, J\u00f8rgensen ME, Skadhauge B, Fincher GB.",
+          "doi": "10.3390/ijms27010530",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "3390"
+          ],
+          "pmid": "41516403",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Dormancy Versus Germination: 3D Protein Modeling and Evolutionary Analyses Define the Roles of Genetic Variants in the Barley MKK3 Enzyme."
+        },
+        {
+          "author_string": "Hodapp SJ, Kao TH, Wu J, Balasuriya N, Antal CE, Taylor SS, Newton AC.",
+          "doi": "10.1016/j.jbc.2025.110921",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2025"
+          ],
+          "pmid": "41207627",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "C-spine mutations of protein kinase C and Akt as a novel generalizable approach to create stable pseudokinases."
+        },
+        {
+          "author_string": "Piret J, Boivin G.",
+          "doi": "10.3390/v17070941",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "3390"
+          ],
+          "pmid": "40733558",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "In Silico Analysis of Mechanisms of Maribavir-Induced Inhibition and Drug Resistance Mutations in pUL97 Kinase Structural Prediction with AlphaFold2."
+        },
+        {
+          "author_string": "Olivieri C, Biancaniello C, Manu VS, Walters MS, Masterson L, Rosner MR, De Simone A, Veglia G.",
+          "doi": "10.1016/j.jmb.2025.169466",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2025"
+          ],
+          "pmid": "41016548",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Protein Kinase A Phosphorylates a Conformationally High-energy State of Raf Kinase Inhibitory Protein."
+        },
+        {
+          "author_string": "Das Jana I, Dey S, Si M, Roy A, Mondal A.",
+          "doi": "10.1371/journal.ppat.1013841",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1371"
+          ],
+          "pmid": "41474797",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Host Protein Kinase C\u237a: The novel Mitogen Activated Protein Kinase (MAPK) specific scaffold regulating nuclear export of influenza virus ribonucleoprotein complexes."
+        },
+        {
+          "author_string": "Xu L, Eren M, Weako J, Jang H, Keskin O, Gursoy A, Nussinov R.",
+          "doi": "10.1002/pro.70420",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1002"
+          ],
+          "pmid": "41432345",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "The structural heterogeneity of AKT autoinhibition."
+        },
+        {
+          "author_string": "Miles JA, Batchelor M, Walko M, Gunning V, Wilson AJ, Wright MH, Bayliss R.",
+          "doi": "10.1038/s44319-025-00687-z",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "41606264",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Bora bridges Aurora-A activation and substrate recognition of PLK1."
+        },
+        {
+          "author_string": "Ahmad A, Kumar V, Kushwaha T, Kumar A, Sehgal D, Inampudi KK, Somlata.",
+          "doi": "10.1371/journal.ppat.1012729",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1371"
+          ],
+          "pmid": "39561205",
+          "pub_year": "2024",
+          "source": "MED",
+          "title": "AGC family kinase of Entamoeba histolytica: Decoding the members biochemically."
+        },
+        {
+          "author_string": "Umeta LT, Natarajan A.",
+          "doi": "10.3390/cells15070604",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "3390"
+          ],
+          "pmid": "41972694",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "MAP3K1: A Multifunctional Kinase at the Crossroads of Cancer Progression and Tumor Suppression."
+        },
+        {
+          "author_string": "Zhu C, Sang T, Zhang Z, Wang Y, Lin Z, Wang W, Lang Z, Zhu JK, Wang P.",
+          "doi": "10.1111/jipb.70012",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1111"
+          ],
+          "pmid": "40778476",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Maintaining basal B-RAF kinase activity for abscisic acid signaling via reciprocal phosphoregulation of a single serine residue."
+        },
+        {
+          "author_string": "Larsen FB, Kragelund BB, Lindorff-Larsen K, Heidarsson PO, Hartmann-Petersen R.",
+          "doi": "10.1007/s00018-026-06103-6",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1007"
+          ],
+          "pmid": "41764121",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Proteasomal control of transcription factors: mechanisms, regulation and dysregulation."
+        },
+        {
+          "author_string": "Kiss A, T\u00f3th E, Bodog\u00e1n Z, Mahfood M, K\u00f3nya Z, Erd\u0151di F.",
+          "doi": "10.3390/ijms26157347",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "3390"
+          ],
+          "pmid": "40806479",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "LIMK2-1 Is a Phosphorylation-Dependent Inhibitor of Protein Phosphatase-1 Catalytic Subunit and Myosin Phosphatase Holoenzyme."
+        },
+        {
+          "author_string": "Williams CC, Chuck J, Munoz-Tello P, Kojetin DJ.",
+          "doi": "10.1073/pnas.2414606122",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1073"
+          ],
+          "pmid": "40388619",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "A tethering mechanism underlies Pin1-catalyzed proline &lt;i&gt;cis-trans&lt;/i&gt; isomerization at a noncanonical site."
+        },
+        {
+          "author_string": "Niu Y, DeLuca KF, Owen RH, Konishi HA, Gong R, Alushin GM, DeLuca JG, Funabiki H.",
+          "doi": "10.1126/sciadv.aea2112",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1126"
+          ],
+          "pmid": "41880487",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Microtubules guide Aurora B substrate geometries for accurate chromosome segregation."
+        },
+        {
+          "author_string": "\u00c1vila A, L\u00f3pez A, Cervantes J, Rodr\u00edguez-Sotres R, Mart\u00ednez-Barajas E, Coello P.",
+          "doi": "10.1111/ppl.70726",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1111"
+          ],
+          "pmid": "41457917",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Dual Phosphorylation of Thr175 and Ser176 Is Essential for SnRK1\u03b11 Activation."
+        },
+        {
+          "author_string": "Vineall KG, Andrikopoulos A, Sun MJ, Yan A, Hartanto ER, Schmitt DL.",
+          "doi": "10.1021/acssensors.5c03859",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1021"
+          ],
+          "pmid": "41632883",
+          "pub_year": "2026",
+          "source": "MED",
+          "title": "Visualizing PINK1 Activity Dynamics in Single Cells with a Phase Separation-Based Kinase Activity Reporter."
+        },
+        {
+          "author_string": "Wang L, Shi L, Wang H, Han Q, Hu Y, Zheng Q, Dong Z, Liu R, Zhao M, Chen H.",
+          "doi": "10.1038/s42003-025-09144-y",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "41388142",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "GSK3 phosphorylates and activates trehalose-6-phosphate synthase to improve trehalose production and thermotolerance in Ganoderma lucidum."
+        },
+        {
+          "author_string": "Fiedorczuk K, Iordanov I, Mih\u00e1lyi C, Szollosi A, Csan\u00e1dy L, Chen J.",
+          "doi": "10.1073/pnas.2409049121",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1073"
+          ],
+          "pmid": "39495916",
+          "pub_year": "2024",
+          "source": "MED",
+          "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation."
+        },
+        {
+          "author_string": "Liu M, You Y, Chong K, Liu D.",
+          "doi": "10.1186/s12870-025-07747-5",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1186"
+          ],
+          "pmid": "41388360",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Natural variations in the OsCPK9 promoter confer chilling tolerance in rice by stabilizing OsSAPK8 through phosphorylation."
+        }
+      ],
+      "returned_count": 25
+    },
+    {
+      "count": 61,
+      "error": null,
+      "query": "\"kinase-substrate\" \"full-length\" \"AMP-PNP\" phosphorylation",
+      "results": [
+        {
+          "author_string": "Almagor L, Weis WI.",
+          "doi": "10.1038/s42003-025-08401-4",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "40595028",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+        },
+        {
+          "author_string": "Earl CP, Cobbaut M, Barros-Carvalho A, Ivanova ME, Briggs DC, Morais-de-S\u00e1 E, Parker PJ, McDonald NQ.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "39762628",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        },
+        {
+          "author_string": "Earl CP, Cobbaut M, Barros-Carvalho A, Ivanova ME, Briggs DC, Morais-de-S\u00e1 E, Parker PJ, McDonald NQ.",
+          "doi": "10.1101/2024.09.26.615224",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1101",
+            "2024"
+          ],
+          "pmid": null,
+          "pub_year": "2024",
+          "source": "PPR",
+          "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multi-site polarity substrate Lgl"
+        },
+        {
+          "author_string": "Fiedorczuk K, Iordanov I, Mih\u00e1lyi C, Szollosi A, Csan\u00e1dy L, Chen J.",
+          "doi": "10.1073/pnas.2409049121",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1073"
+          ],
+          "pmid": "39495916",
+          "pub_year": "2024",
+          "source": "MED",
+          "title": "The structures of protein kinase A in complex with CFTR: Mechanisms of phosphorylation and noncatalytic activation."
+        },
+        {
+          "author_string": "Ha BH, Yigit S, Natarajan N, Morse EM, Calderwood DA, Boggon TJ.",
+          "doi": "10.1038/s42003-022-04157-3",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "36385162",
+          "pub_year": "2022",
+          "source": "MED",
+          "title": "Molecular basis for integrin adhesion receptor binding to p21-activated kinase 4 (PAK4)."
+        },
+        {
+          "author_string": "Delva-Wiley J, Ekhator ES, Adams LL, Patwardhan S, Dong M, Newman RH.",
+          "doi": "10.3390/life13091811",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "3390"
+          ],
+          "pmid": "37763215",
+          "pub_year": "2023",
+          "source": "MED",
+          "title": "Redox Modification of PKA-C\u03b1 Differentially Affects Its Substrate Selection."
+        },
+        {
+          "author_string": "Raia P, Lee K, Bartsch SM, Rico-Resendiz F, Portugal-Calisto D, Vadas O, Panse VG, Panse VG, Fiedler D, Hothorn M.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "39966396",
+          "pub_year": "2025",
+          "source": "MED",
+          "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis."
+        },
+        {
+          "author_string": "Raia P, Lee K, Bartsch SM, Rico-Resendiz F, Portugal-Calisto D, Vadas O, Panse VG, Fiedler D, Hothorn M.",
+          "doi": "10.1101/2024.09.12.612650",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1101",
+            "2024"
+          ],
+          "pmid": null,
+          "pub_year": "2024",
+          "source": "PPR",
+          "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis"
+        },
+        {
+          "author_string": "Sreelatha A, Nolan C, Park BC, Paw\u0142owski K, Tomchick DR, Tagliabracci VS.",
+          "doi": "10.1074/jbc.ra120.013067",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1074"
+          ],
+          "pmid": "32229585",
+          "pub_year": "2020",
+          "source": "MED",
+          "title": "A <i>Legionella</i> effector kinase is activated by host inositol hexakisphosphate."
+        },
+        {
+          "author_string": "Bose A, Visweswariah SS.",
+          "doi": "10.1016/bs.mie.2022.03.046",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2022"
+          ],
+          "pmid": "35525553",
+          "pub_year": "2022",
+          "source": "MED",
+          "title": "The pseudokinase domain in receptor guanylyl cyclases."
+        },
+        {
+          "author_string": "\u00d6zden C, Sloutsky R, Mitsugi T, Santos N, Agnello E, Gaubitz C, Foster J, Lapinskas E, Esposito EA, Saneyoshi T, Kelch BA, Garman SC, Hayashi Y, Stratton MM.",
+          "doi": "10.1016/j.celrep.2022.111064",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2022"
+          ],
+          "pmid": "35830796",
+          "pub_year": "2022",
+          "source": "MED",
+          "title": "CaMKII binds both substrates and activators at the active site."
+        },
+        {
+          "author_string": "Hamill S, Lou HJ, Turk BE, Boggon TJ.",
+          "doi": "10.1016/j.molcel.2016.04.001",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2016"
+          ],
+          "pmid": "27153537",
+          "pub_year": "2016",
+          "source": "MED",
+          "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases."
+        },
+        {
+          "author_string": "Boczek EE, Luo Q, Dehling M, R\u00f6pke M, Mader SL, Seidl A, Kaila VRI, Buchner J.",
+          "doi": "10.1074/jbc.ra119.008199",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1074"
+          ],
+          "pmid": "31331936",
+          "pub_year": "2019",
+          "source": "MED",
+          "title": "Autophosphorylation activates c-Src kinase through global structural rearrangements."
+        },
+        {
+          "author_string": "Wong AW, Urisman A, Burlingame AL, Shokat KM.",
+          "doi": "10.1002/pro.3570",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1002",
+            "3570"
+          ],
+          "pmid": "30636329",
+          "pub_year": "2019",
+          "source": "MED",
+          "title": "Chemically reprogramming the phospho-transfer reaction to crosslink protein kinases to their substrates."
+        },
+        {
+          "author_string": "Thompson JA, Carlson GM.",
+          "doi": "10.1016/j.bbrc.2016.11.044",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2016"
+          ],
+          "pmid": "27845042",
+          "pub_year": "2017",
+          "source": "MED",
+          "title": "The regulatory \u03b1 and \u03b2 subunits of phosphorylase kinase directly interact with its substrate, glycogen phosphorylase."
+        },
+        {
+          "author_string": "Byun JA, Akimoto M, VanSchouwen B, Lazarou TS, Taylor SS, Melacini G.",
+          "doi": "10.1126/sciadv.abb1250",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1126"
+          ],
+          "pmid": "32596469",
+          "pub_year": "2020",
+          "source": "MED",
+          "title": "Allosteric pluripotency as revealed by protein kinase A."
+        },
+        {
+          "author_string": "Khleborodova A, Pan X, Nagre NN, Ryan K.",
+          "doi": "10.1016/j.biochi.2016.04.004",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2016"
+          ],
+          "pmid": "27060432",
+          "pub_year": "2016",
+          "source": "MED",
+          "title": "An investigation into the role of ATP in the mammalian pre-mRNA 3' cleavage reaction."
+        },
+        {
+          "author_string": "Lopez VA, Park BC, Nowak D, Sreelatha A, Zembek P, Fernandez J, Servage KA, Gradowski M, Hennig J, Tomchick DR, Paw\u0142owski K, Krzymowska M, Tagliabracci VS.",
+          "doi": "10.1016/j.cell.2019.08.020",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2019"
+          ],
+          "pmid": "31522888",
+          "pub_year": "2019",
+          "source": "MED",
+          "title": "A Bacterial Effector Mimics a Host HSP90 Client to Undermine Immunity."
+        },
+        {
+          "author_string": "Kumar A, Tamjar J, Waddell AD, Woodroof HI, Raimi OG, Shaw AM, Peggie M, Muqit MM, van Aalten DM.",
+          "doi": "10.7554/elife.29985",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "7554"
+          ],
+          "pmid": "28980524",
+          "pub_year": "2017",
+          "source": "MED",
+          "title": "Structure of PINK1 and mechanisms of Parkinson's disease-associated mutations."
+        },
+        {
+          "author_string": "Xiong S, Lorenzen K, Couzens AL, Templeton CM, Rajendran D, Mao DYL, Juang YC, Chiovitti D, Kurinov I, Guettler S, Gingras AC, Sicheri F.",
+          "doi": "10.1016/j.str.2018.05.014",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1016",
+            "2018"
+          ],
+          "pmid": "29983373",
+          "pub_year": "2018",
+          "source": "MED",
+          "title": "Structural Basis for Auto-Inhibition of the NDR1 Kinase Domain by an Atypically Long Activation Segment."
+        },
+        {
+          "author_string": "Mattos EC, Silva LP, Valero C, de Castro PA, Dos Reis TF, Ribeiro LFC, Marten MR, Silva-Rocha R, Westmann C, da Silva CHTP, Taft CA, Al-Furaiji N, Bromley M, Mortensen UH, Benz JP, Brown NA, Goldman GH.",
+          "doi": "10.1128/mbio.02962-19",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1128"
+          ],
+          "pmid": "32019798",
+          "pub_year": "2020",
+          "source": "MED",
+          "title": "The Aspergillus fumigatus Phosphoproteome Reveals Roles of High-Osmolarity Glycerol Mitogen-Activated Protein Kinases in Promoting Cell Wall Damage and Caspofungin Tolerance."
+        },
+        {
+          "author_string": "Seacrist CD, Blind RD.",
+          "doi": "10.1038/s41598-018-34941-3",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1038"
+          ],
+          "pmid": "30420721",
+          "pub_year": "2018",
+          "source": "MED",
+          "title": "Crystallographic and kinetic analyses of human IPMK reveal disordered domains modulate ATP binding and kinase activity."
+        },
+        {
+          "author_string": "Kim DJ, Park KS, Kim JH, Yang SH, Yoon JY, Han BG, Kim HS, Lee SJ, Jang JY, Kim KH, Kim MJ, Song JS, Kim HJ, Park CM, Lee SK, Lee BI, Suh SW.",
+          "doi": "10.1073/pnas.1010153107",
+          "is_open_access": "N",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1073"
+          ],
+          "pmid": "21098302",
+          "pub_year": "2010",
+          "source": "MED",
+          "title": "Helicobacter pylori proinflammatory protein up-regulates NF-kappaB as a cell-translocating Ser/Thr kinase."
+        },
+        {
+          "author_string": "Hashimoto-Sugimoto M, Negi J, Monda K, Higaki T, Isogai Y, Nakano T, Hasezawa S, Iba K.",
+          "doi": "10.1093/jxb/erw134",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1093"
+          ],
+          "pmid": "27034327",
+          "pub_year": "2016",
+          "source": "MED",
+          "title": "Dominant and recessive mutations in the Raf-like kinase HT1 gene completely disrupt stomatal responses to CO2 in Arabidopsis."
+        },
+        {
+          "author_string": "Bou-Nader C, Gordon JM, Henderson FE, Zhang J.",
+          "doi": "10.1261/rna.070169.118",
+          "is_open_access": "Y",
+          "journal": null,
+          "pdb_like_tokens_in_title_or_abstract": [
+            "1261"
+          ],
+          "pmid": "30770398",
+          "pub_year": "2019",
+          "source": "MED",
+          "title": "The search for a PKR code-differential regulation of protein kinase R activity by diverse RNA and protein regulators."
+        }
+      ],
+      "returned_count": 25
+    }
+  ]
+}
