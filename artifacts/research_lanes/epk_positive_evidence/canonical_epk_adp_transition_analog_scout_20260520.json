@@ -1,0 +1,2628 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_transition_analog_candidate_hit_review_only": 15,
+      "transition_analog_candidate_source_validation_pending_review_only": 5
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T22:32:31Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "canonical_epk_adp_transition_analog_bounded_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "This compact lane-local scout searches canonical ePK EC/Pfam surfaces for ADP plus MgF/AlF/BeF-style transition analog ligands and transiently scans analog-to-heteromeric Ser/Thr/Tyr/SEP/TPO/PTR proximity. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 16,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 34,
+    "surface_total_count_reported_total": 34,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "transition_analog_candidate_pdb_ids": [
+      "3QHR",
+      "3QHW",
+      "7PT7",
+      "1L3R",
+      "5LIH"
+    ],
+    "unique_pdb_ids_reviewed": 20
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 3701,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Transition State Analogue Structures of Human Phosphoglycerate Kinase Establish the Importance of Charge Balance in Catalysis.",
+        "year": 2010
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2WZB",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOGLYCERATE KINASE 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00558"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=MGF",
+          "rank": 1,
+          "surface_id": "ec_2_7_11_adp_mgf"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The catalytically active fully closed conformation of human phosphoglycerate kinase in complex with ADP, 3PG and magnesium trifluoride",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "1421",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.627,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 129,
+      "atom_count_model_1": 7808,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of the human dimeric ATM kinase.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3JBZ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=MGF",
+          "rank": 2,
+          "surface_id": "ec_2_7_11_adp_mgf"
+        },
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_10 AND ligand=ADP AND analog=MGF",
+          "rank": 1,
+          "surface_id": "ec_2_7_10_adp_mgf"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of mTOR docked into EM map of dimeric ATM kinase",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "2604",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.04,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 182,
+      "atom_count_model_1": 10077,
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3QHR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Cell division protein kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51943"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J",
+            "K",
+            "L",
+            "M"
+          ],
+          "description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=MGF",
+          "rank": 3,
+          "surface_id": "ec_2_7_11_adp_mgf"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=MGF",
+          "rank": 1,
+          "surface_id": "pfam_pkinase_adp_mgf"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a pCDK2/CyclinA transition-state mimic",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "analog_associated_polymer_chain_name": "A",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "K",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "3",
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.497
+        },
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "analog_associated_polymer_chain_name": "C",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "J",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "3",
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.593
+        }
+      ],
+      "transition_analog_group_count": 2,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.662,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "0",
+            "candidate_chain_name": "K",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "3",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "MG",
+            "nearest_analog_distance_angstrom": 2.497
+          }
+        },
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.703,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "0",
+            "candidate_chain_name": "J",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "3",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "MG",
+            "nearest_analog_distance_angstrom": 2.593
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 180,
+      "atom_count_model_1": 10087,
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3QHW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Cell division protein kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51943"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J",
+            "K",
+            "L",
+            "M"
+          ],
+          "description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=MGF",
+          "rank": 4,
+          "surface_id": "ec_2_7_11_adp_mgf"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=MGF",
+          "rank": 2,
+          "surface_id": "pfam_pkinase_adp_mgf"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a pCDK2/CyclinA transition-state mimic",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "analog_associated_polymer_chain_name": "C",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "K",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "3",
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.507
+        },
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "analog_associated_polymer_chain_name": "A",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "J",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "3",
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.581
+        }
+      ],
+      "transition_analog_group_count": 2,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.636,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "0",
+            "candidate_chain_name": "J",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "3",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "MG",
+            "nearest_analog_distance_angstrom": 2.581
+          }
+        },
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "300",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.258,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "0",
+            "candidate_chain_name": "K",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "3",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "MG",
+            "nearest_analog_distance_angstrom": 2.507
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 3515,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of the Activating Anion Binding Site in Human Phosphoglycerate Kinase",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3ZOZ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOGLYCERATE KINASE 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00558"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=MGF",
+          "rank": 5,
+          "surface_id": "ec_2_7_11_adp_mgf"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The structure of human phosphoglycerate kinase with bound bromide, a stimulating anion.",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "1420",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.572,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 398,
+      "atom_count_model_1": 22194,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "mTOR kinase structure, mechanism and regulation.",
+        "year": 2013
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4JSV",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=MGF",
+          "rank": 6,
+          "surface_id": "ec_2_7_11_adp_mgf"
+        },
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_10 AND ligand=ADP AND analog=MGF",
+          "rank": 2,
+          "surface_id": "ec_2_7_10_adp_mgf"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "mTOR kinase structure, mechanism and regulation.",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 2,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "2604",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.27,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 22.973
+          }
+        },
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "2604",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "MGF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.041,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "62",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "TYR",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 23.636
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 3558,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Transition State Analogue Structures of Human Phosphoglycerate Kinase Establish the Importance of Charge Balance in Catalysis.",
+        "year": 2010
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2WZC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOGLYCERATE KINASE 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00558"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=ALF",
+          "rank": 1,
+          "surface_id": "ec_2_7_11_adp_alf"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The catalytically active fully closed conformation of human phosphoglycerate kinase in complex with ADP, 3PG and aluminium tetrafluoride",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3",
+            "F4"
+          ],
+          "analog_auth_seq_id": "1419",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "ALF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.578,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 3522,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Metal fluorides-multi-functional tools for the study of phosphoryl transfer enzymes, a practical guide.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4AXX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOGLYCERATE KINASE 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00558"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=BEF",
+          "rank": 1,
+          "surface_id": "ec_2_7_11_adp_bef"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The catalytically active fully closed conformation of human phosphoglycerate kinase in complex with ADP 3-phosphoglycerate and beryllium trifluoride",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1422",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.54,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 65,
+      "atom_count_model_1": 3873,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for the Activation and Target Site Specificity of CDC7 Kinase.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6YA8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O00311"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein DBF4 homolog A",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UBU7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=BEF",
+          "rank": 2,
+          "surface_id": "ec_2_7_11_adp_bef"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=BEF",
+          "rank": 1,
+          "surface_id": "pfam_pkinase_adp_bef"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cdc7-Dbf4 bound to ADP-BeF3",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "603",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.426,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "303",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "97",
+            "candidate_residue_code": "TYR",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 14.527
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 1422,
+      "atom_count_model_1": 67420,
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structural basis of Cdc7-Dbf4 kinase dependent targeting and phosphorylation of the MCM2-7 double hexamer.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7PT7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "1"
+          ],
+          "description": "Undefined Mcm4 flexible N-terminal tail",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "2",
+            "B"
+          ],
+          "description": "DNA replication licensing factor MCM2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29469"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "3",
+            "C"
+          ],
+          "description": "DNA replication licensing factor MCM3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24279"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "4",
+            "D"
+          ],
+          "description": "DNA replication licensing factor MCM4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P30665"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "5",
+            "E"
+          ],
+          "description": "Minichromosome maintenance protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29496"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "6",
+            "F"
+          ],
+          "description": "DNA replication licensing factor MCM6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53091"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "7",
+            "G"
+          ],
+          "description": "DNA replication licensing factor MCM7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P38132"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "8"
+          ],
+          "description": "Cell division control protein 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06243"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "9"
+          ],
+          "description": "DDK kinase regulatory subunit DBF4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P32325"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=BEF",
+          "rank": 3,
+          "surface_id": "ec_2_7_11_adp_bef"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=BEF",
+          "rank": 2,
+          "surface_id": "pfam_pkinase_adp_bef"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of MCM2-7 DH complexed with Cdc7-Dbf4 in the presence of ADP:BeF3, state I",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+          "analog_associated_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "analog_associated_polymer_chain_name": "3",
+          "analog_associated_polymer_entity_id": "3",
+          "analog_auth_seq_id": "1004",
+          "analog_chain_name": "3",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "467",
+          "candidate_chain_name": "7",
+          "candidate_entity_description": "DNA replication licensing factor MCM7",
+          "candidate_entity_id": "7",
+          "candidate_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "candidate_label_seq_id": "467",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F1",
+          "nearest_analog_distance_angstrom": 3.86
+        },
+        {
+          "analog_associated_entity_description": "Minichromosome maintenance protein 5",
+          "analog_associated_entity_uniprot_ids": [
+            "P29496"
+          ],
+          "analog_associated_polymer_chain_name": "E",
+          "analog_associated_polymer_entity_id": "5",
+          "analog_auth_seq_id": "801",
+          "analog_chain_name": "E",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "416",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_label_seq_id": "416",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F1",
+          "nearest_analog_distance_angstrom": 4.016
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM4",
+          "analog_associated_entity_uniprot_ids": [
+            "P30665"
+          ],
+          "analog_associated_polymer_chain_name": "D",
+          "analog_associated_polymer_entity_id": "4",
+          "analog_auth_seq_id": "1103",
+          "analog_chain_name": "D",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "592",
+          "candidate_chain_name": "G",
+          "candidate_entity_description": "DNA replication licensing factor MCM7",
+          "candidate_entity_id": "7",
+          "candidate_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "candidate_label_seq_id": "592",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 4.61
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+          "analog_associated_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "analog_associated_polymer_chain_name": "3",
+          "analog_associated_polymer_entity_id": "3",
+          "analog_auth_seq_id": "1002",
+          "analog_chain_name": "3",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "548",
+          "candidate_chain_name": "5",
+          "candidate_entity_description": "Minichromosome maintenance protein 5",
+          "candidate_entity_id": "5",
+          "candidate_entity_uniprot_ids": [
+            "P29496"
+          ],
+          "candidate_label_seq_id": "548",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.003
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM7",
+          "analog_associated_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "analog_associated_polymer_chain_name": "G",
+          "analog_associated_polymer_entity_id": "7",
+          "analog_auth_seq_id": "1103",
+          "analog_chain_name": "G",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "538",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_label_seq_id": "538",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.132
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM4",
+          "analog_associated_entity_uniprot_ids": [
+            "P30665"
+          ],
+          "analog_associated_polymer_chain_name": "4",
+          "analog_associated_polymer_entity_id": "4",
+          "analog_auth_seq_id": "1103",
+          "analog_chain_name": "4",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "592",
+          "candidate_chain_name": "7",
+          "candidate_entity_description": "DNA replication licensing factor MCM7",
+          "candidate_entity_id": "7",
+          "candidate_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "candidate_label_seq_id": "592",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.436
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM7",
+          "analog_associated_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "analog_associated_polymer_chain_name": "G",
+          "analog_associated_polymer_entity_id": "7",
+          "analog_auth_seq_id": "1103",
+          "analog_chain_name": "G",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "541",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_label_seq_id": "541",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.483
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+          "analog_associated_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "analog_associated_polymer_chain_name": "3",
+          "analog_associated_polymer_entity_id": "3",
+          "analog_auth_seq_id": "1002",
+          "analog_chain_name": "3",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "545",
+          "candidate_chain_name": "5",
+          "candidate_entity_description": "Minichromosome maintenance protein 5",
+          "candidate_entity_id": "5",
+          "candidate_entity_uniprot_ids": [
+            "P29496"
+          ],
+          "candidate_label_seq_id": "545",
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.501
+        },
+        {
+          "analog_associated_entity_description": "Minichromosome maintenance protein 5",
+          "analog_associated_entity_uniprot_ids": [
+            "P29496"
+          ],
+          "analog_associated_polymer_chain_name": "E",
+          "analog_associated_polymer_entity_id": "5",
+          "analog_auth_seq_id": "801",
+          "analog_chain_name": "E",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "413",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_label_seq_id": "413",
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "F2",
+          "nearest_analog_distance_angstrom": 5.687
+        }
+      ],
+      "transition_analog_group_count": 7,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1002",
+          "analog_chain_name": "3",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "3",
+          "associated_polymer_distance_angstrom": 2.41,
+          "associated_polymer_entity_id": "3",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "548",
+            "candidate_chain_name": "5",
+            "candidate_entity_id": "5",
+            "candidate_label_seq_id": "548",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 5.003
+          }
+        },
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1004",
+          "analog_chain_name": "3",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "3",
+          "associated_polymer_distance_angstrom": 2.418,
+          "associated_polymer_entity_id": "3",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "467",
+            "candidate_chain_name": "7",
+            "candidate_entity_id": "7",
+            "candidate_label_seq_id": "467",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 3.86
+          }
+        },
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1103",
+          "analog_chain_name": "4",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "4",
+          "associated_polymer_distance_angstrom": 2.434,
+          "associated_polymer_entity_id": "4",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "592",
+            "candidate_chain_name": "7",
+            "candidate_entity_id": "7",
+            "candidate_label_seq_id": "592",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 5.436
+          }
+        },
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1003",
+          "analog_chain_name": "8",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "8",
+          "associated_polymer_distance_angstrom": 2.345,
+          "associated_polymer_entity_id": "8",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "668",
+            "candidate_chain_name": "9",
+            "candidate_entity_id": "9",
+            "candidate_label_seq_id": "668",
+            "candidate_residue_code": "TYR",
+            "nearest_analog_atom": "F2",
+            "nearest_analog_distance_angstrom": 13.833
+          }
+        },
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1103",
+          "analog_chain_name": "D",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.426,
+          "associated_polymer_entity_id": "4",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "592",
+            "candidate_chain_name": "G",
+            "candidate_entity_id": "7",
+            "candidate_label_seq_id": "592",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 4.61
+          }
+        },
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "801",
+          "analog_chain_name": "E",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.631,
+          "associated_polymer_entity_id": "5",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "416",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "416",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 4.016
+          }
+        },
+        {
+          "analog_atom_names": [
+            "BE",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1103",
+          "analog_chain_name": "G",
+          "analog_ligand_code": "BEF",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.801,
+          "associated_polymer_entity_id": "7",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "538",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "538",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 5.132
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 50,
+      "atom_count_model_1": 3160,
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of a transition state mimic of the catalytic subunit of cAMP-dependent protein kinase.",
+        "year": 2002
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1L3R",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63249"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 1,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 1,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal Structure of a Transition State Mimic of the Catalytic Subunit of cAMP-dependent Protein Kinase",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+          "analog_associated_entity_uniprot_ids": [
+            "P05132"
+          ],
+          "analog_associated_polymer_chain_name": "E",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "400",
+          "analog_chain_name": "E",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "21",
+          "candidate_chain_name": "I",
+          "candidate_entity_description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P63249"
+          ],
+          "candidate_label_seq_id": "17",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "AL",
+          "nearest_analog_distance_angstrom": 2.268
+        }
+      ],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "400",
+          "analog_chain_name": "E",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.461,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "21",
+            "candidate_chain_name": "I",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "17",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "AL",
+            "nearest_analog_distance_angstrom": 2.268
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 3546,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Transition State Analogue Structures of Human Phosphoglycerate Kinase Establish the Importance of Charge Balance in Catalysis.",
+        "year": 2010
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2WZD",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PHOSPHOGLYCERATE KINASE 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00558"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 2,
+          "surface_id": "ec_2_7_11_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The catalytically active fully closed conformation of human phosphoglycerate kinase K219A mutant in complex with ADP, 3PG and aluminium trifluoride",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1419",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.587,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 145,
+      "atom_count_model_1": 9618,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structure and substrate specificity of human Cdk12/Cyclin K.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4NST",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Cyclin-dependent kinase 12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NYV4"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Cyclin-K",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O75909"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 3,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 2,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of human Cdk12/Cyclin K in complex with ADP-aluminum fluoride",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 2,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1102",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.414,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "77",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "78",
+            "candidate_residue_code": "TYR",
+            "nearest_analog_atom": "F2",
+            "nearest_analog_distance_angstrom": 23.62
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1102",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.373,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "77",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "78",
+            "candidate_residue_code": "TYR",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 23.154
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 63,
+      "atom_count_model_1": 3082,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4NU1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9WV60"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 4,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 3,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of a transition state mimic of the GSK-3/Axin complex bound to phosphorylated N-terminal auto-inhibitory pS9 peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "406",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.57,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 133,
+      "atom_count_model_1": 9353,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural and Functional Analysis of the Cdk13/Cyclin K Complex.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5EFQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Cyclin-dependent kinase 13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q14004"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Cyclin-K",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O75909"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 5,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 4,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of human Cdk13/Cyclin K in complex with ADP-aluminum fluoride",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 2,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1102",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.254,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "109",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "110",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "F2",
+            "nearest_analog_distance_angstrom": 23.619
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "1102",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.387,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "109",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "110",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 23.244
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 73,
+      "atom_count_model_1": 5293,
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5LIH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "F",
+            "G"
+          ],
+          "description": "PKC Epsilon pseudo substrate sequence",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02156"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 6,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 5,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a peptide-substrate bound to PKCiota core kinase domain",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "Protein kinase C iota type",
+          "analog_associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "analog_associated_polymer_chain_name": "B",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "11",
+          "candidate_chain_name": "G",
+          "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "Q02156"
+          ],
+          "candidate_label_seq_id": "11",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 2.419
+        },
+        {
+          "analog_associated_entity_description": "Protein kinase C iota type",
+          "analog_associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "analog_associated_polymer_chain_name": "A",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "11",
+          "candidate_chain_name": "F",
+          "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "Q02156"
+          ],
+          "candidate_label_seq_id": "11",
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 2.624
+        }
+      ],
+      "transition_analog_group_count": 4,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "602",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.432,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 8.518
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.432,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 2.624
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "602",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.522,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "G",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 9.113
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.428,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "G",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 2.419
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 95,
+      "atom_count_model_1": 5022,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of TFIIK for phosphorylation of CTD of RNA polymerase II.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6XI8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "RNA polymerase II transcription factor B subunit 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q03290"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase KIN28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06242"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclin CCL1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P37366"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 7,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 6,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Yeast TFIIK (Kin28/Ccl1/Tfb3) Complex",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "402",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.461,
+          "associated_polymer_entity_id": "2",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "173",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "127",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 26.143
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 94,
+      "atom_count_model_1": 4726,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of TFIIK for phosphorylation of CTD of RNA polymerase II.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7KUE",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "RNA polymerase II transcription factor B subunit 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q03290"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase KIN28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06242"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclin CCL1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P37366"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 8,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 7,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "CryoEM structure of Yeast TFIIK (Kin28/Ccl1/Tfb3) Complex",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "402",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.461,
+          "associated_polymer_entity_id": "2",
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "173",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "173",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 26.142
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 60,
+      "atom_count_model_1": 3180,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural and functional effects of phosphopriming and scaffolding in the kinase GSK-3 beta.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8VMF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9WV60"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Catenin beta-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P35222"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+          "rank": 9,
+          "surface_id": "ec_2_7_11_adp_af3"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+          "rank": 8,
+          "surface_id": "pfam_pkinase_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of a transition-state mimic of the GSK-3/Axin complex bound to a beta-catenin S45D peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "503",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.384,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 49,
+      "atom_count_model_1": 2393,
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of protein O-mannose kinase reveals a unique active site architecture",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5GZA",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Protein O-mannose kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q5U3W1"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: pfam_pkinase_tyr AND ligand=ADP AND analog=AF3",
+          "rank": 1,
+          "surface_id": "pfam_pkinase_tyr_adp_af3"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "protein O-mannose kinase",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "404",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.501,
+          "associated_polymer_entity_id": "1",
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "2WZB",
+        "3JBZ",
+        "3QHR",
+        "3QHW",
+        "3ZOZ",
+        "4JSV"
+      ],
+      "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=MGF",
+      "requested_rows": 25,
+      "returned_count": 6,
+      "start": 0,
+      "surface_id": "ec_2_7_11_adp_mgf",
+      "total_count": 6
+    },
+    {
+      "pdb_ids": [
+        "3JBZ",
+        "4JSV"
+      ],
+      "query_or_source": "RCSB advanced: ec_2_7_10 AND ligand=ADP AND analog=MGF",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "ec_2_7_10_adp_mgf",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "3QHR",
+        "3QHW"
+      ],
+      "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=MGF",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "pfam_pkinase_adp_mgf",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: pfam_pkinase_tyr AND ligand=ADP AND analog=MGF",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_adp_mgf",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "2WZC"
+      ],
+      "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=ALF",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "ec_2_7_11_adp_alf",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: ec_2_7_10 AND ligand=ADP AND analog=ALF",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "ec_2_7_10_adp_alf",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=ALF",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "pfam_pkinase_adp_alf",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: pfam_pkinase_tyr AND ligand=ADP AND analog=ALF",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_adp_alf",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "4AXX",
+        "6YA8",
+        "7PT7"
+      ],
+      "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=BEF",
+      "requested_rows": 25,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "ec_2_7_11_adp_bef",
+      "total_count": 3
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: ec_2_7_10 AND ligand=ADP AND analog=BEF",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "ec_2_7_10_adp_bef",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "6YA8",
+        "7PT7"
+      ],
+      "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=BEF",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "pfam_pkinase_adp_bef",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: pfam_pkinase_tyr AND ligand=ADP AND analog=BEF",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_adp_bef",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "1L3R",
+        "2WZD",
+        "4NST",
+        "4NU1",
+        "5EFQ",
+        "5LIH",
+        "6XI8",
+        "7KUE",
+        "8VMF"
+      ],
+      "query_or_source": "RCSB advanced: ec_2_7_11 AND ligand=ADP AND analog=AF3",
+      "requested_rows": 25,
+      "returned_count": 9,
+      "start": 0,
+      "surface_id": "ec_2_7_11_adp_af3",
+      "total_count": 9
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: ec_2_7_10 AND ligand=ADP AND analog=AF3",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "ec_2_7_10_adp_af3",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "1L3R",
+        "4NST",
+        "4NU1",
+        "5EFQ",
+        "5LIH",
+        "6XI8",
+        "7KUE",
+        "8VMF"
+      ],
+      "query_or_source": "RCSB advanced: pfam_pkinase AND ligand=ADP AND analog=AF3",
+      "requested_rows": 25,
+      "returned_count": 8,
+      "start": 0,
+      "surface_id": "pfam_pkinase_adp_af3",
+      "total_count": 8
+    },
+    {
+      "pdb_ids": [
+        "5GZA"
+      ],
+      "query_or_source": "RCSB advanced: pfam_pkinase_tyr AND ligand=ADP AND analog=AF3",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_adp_af3",
+      "total_count": 1
+    }
+  ]
+}

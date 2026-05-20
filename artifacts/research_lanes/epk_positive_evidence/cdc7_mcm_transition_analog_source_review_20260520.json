@@ -1,0 +1,373 @@
+{
+  "family_rows_reviewed": [
+    {
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structural basis of Cdc7-Dbf4 kinase dependent targeting and phosphorylation of the MCM2-7 double hexamer.",
+        "year": 2022
+      },
+      "pdb_id": "7PT6",
+      "polymer_entity_descriptions": {
+        "1": "Undefined Mcm4 flexible N-terminal tail",
+        "2": "DNA replication licensing factor MCM2",
+        "3": "DNA replication licensing factor MCM3",
+        "4": "DNA replication licensing factor MCM4",
+        "5": "Minichromosome maintenance protein 5",
+        "6": "DNA replication licensing factor MCM6",
+        "7": "DNA replication licensing factor MCM7",
+        "8": "Cell division control protein 7",
+        "9": "DDK kinase regulatory subunit DBF4"
+      },
+      "structure_title": "Structure of MCM2-7 DH complexed with Cdc7-Dbf4 in the presence of ATPgS, state III"
+    },
+    {
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structural basis of Cdc7-Dbf4 kinase dependent targeting and phosphorylation of the MCM2-7 double hexamer.",
+        "year": 2022
+      },
+      "pdb_id": "7PT7",
+      "polymer_entity_descriptions": {
+        "1": "Undefined Mcm4 flexible N-terminal tail",
+        "2": "DNA replication licensing factor MCM2",
+        "3": "DNA replication licensing factor MCM3",
+        "4": "DNA replication licensing factor MCM4",
+        "5": "Minichromosome maintenance protein 5",
+        "6": "DNA replication licensing factor MCM6",
+        "7": "DNA replication licensing factor MCM7",
+        "8": "Cell division control protein 7",
+        "9": "DDK kinase regulatory subunit DBF4"
+      },
+      "structure_title": "Structure of MCM2-7 DH complexed with Cdc7-Dbf4 in the presence of ADP:BeF3, state I"
+    },
+    {
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for the Activation and Target Site Specificity of CDC7 Kinase.",
+        "year": 2020
+      },
+      "pdb_id": "6YA7",
+      "polymer_entity_descriptions": {
+        "1": "Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase",
+        "2": "Protein DBF4 homolog A",
+        "3": "DNA replication licensing factor MCM2"
+      },
+      "structure_title": "Cdc7-Dbf4 bound to an Mcm2-S40 derived bivalent substrate"
+    },
+    {
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural mechanism for the selective phosphorylation of DNA-loaded MCM double hexamers by the Dbf4-dependent kinase.",
+        "year": 2022
+      },
+      "pdb_id": "7P5Z",
+      "polymer_entity_descriptions": {
+        "1": "DNA replication licensing factor MCM2",
+        "10": "DNA (53-MER)",
+        "2": "DNA replication licensing factor MCM3",
+        "3": "DNA replication licensing factor MCM4",
+        "4": "Minichromosome maintenance protein 5",
+        "5": "DNA replication licensing factor MCM6",
+        "6": "DNA replication licensing factor MCM7",
+        "7": "Cell division control protein 7",
+        "8": "DDK kinase regulatory subunit DBF4",
+        "9": "DNA (53-MER)"
+      },
+      "structure_title": "Structure of a DNA-loaded MCM double hexamer engaged with the Dbf4-dependent kinase"
+    },
+    {
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Insight into the MCM double hexamer activation by Dbf4-Cdc7 kinase.",
+        "year": 2022
+      },
+      "pdb_id": "7V3V",
+      "polymer_entity_descriptions": {
+        "1": "DNA replication licensing factor MCM2",
+        "2": "DNA replication licensing factor MCM3",
+        "3": "DNA replication licensing factor MCM4",
+        "4": "Minichromosome maintenance protein 5",
+        "5": "DNA replication licensing factor MCM6",
+        "6": "DNA replication licensing factor MCM7",
+        "7": "Cell division control protein 7",
+        "8": "DDK kinase regulatory subunit DBF4"
+      },
+      "structure_title": "Cryo-EM structure of MCM double hexamer bound with DDK in State I"
+    },
+    {
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Insight into the MCM double hexamer activation by Dbf4-Cdc7 kinase.",
+        "year": 2022
+      },
+      "pdb_id": "7V3U",
+      "polymer_entity_descriptions": {
+        "1": "DNA replication licensing factor MCM2",
+        "2": "DNA replication licensing factor MCM3",
+        "3": "DNA replication licensing factor MCM4",
+        "4": "Minichromosome maintenance protein 5",
+        "5": "DNA replication licensing factor MCM6",
+        "6": "DNA replication licensing factor MCM7"
+      },
+      "structure_title": "Cryo-EM structure of MCM double hexamer with structured Mcm4-NSD"
+    },
+    {
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Insight into the MCM double hexamer activation by Dbf4-Cdc7 kinase.",
+        "year": 2022
+      },
+      "pdb_id": "7W8G",
+      "polymer_entity_descriptions": {
+        "1": "DNA replication licensing factor MCM2",
+        "2": "DNA replication licensing factor MCM3",
+        "3": "DNA replication licensing factor MCM4",
+        "4": "Minichromosome maintenance protein 5",
+        "5": "DNA replication licensing factor MCM6",
+        "6": "DNA replication licensing factor MCM7"
+      },
+      "structure_title": "Cryo-EM structure of MCM double hexamer"
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-05-20T22:37:15Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/cdc7_mcm_transition_analog_family_followup_20260520.json",
+    "source_review_scope": "Validate whether Cdc7-Dbf4/MCM family transition-analog hits represent kinase-associated substrate-transfer geometry or substrate/helicase ATPase-site geometry.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 7
+  },
+  "seven_pt7_adjudication": {
+    "false_positive_hits_sample": [
+      {
+        "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+        "analog_associated_polymer_chain_name": "3",
+        "analog_associated_polymer_entity_id": "3",
+        "analog_auth_seq_id": "1004",
+        "analog_chain_name": "3",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "467",
+        "candidate_chain_name": "7",
+        "candidate_entity_description": "DNA replication licensing factor MCM7",
+        "candidate_entity_id": "7",
+        "candidate_residue_code": "SER",
+        "nearest_analog_atom": "F1",
+        "nearest_analog_distance_angstrom": 3.86
+      },
+      {
+        "analog_associated_entity_description": "Minichromosome maintenance protein 5",
+        "analog_associated_polymer_chain_name": "E",
+        "analog_associated_polymer_entity_id": "5",
+        "analog_auth_seq_id": "801",
+        "analog_chain_name": "E",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "416",
+        "candidate_chain_name": "C",
+        "candidate_entity_description": "DNA replication licensing factor MCM3",
+        "candidate_entity_id": "3",
+        "candidate_residue_code": "SER",
+        "nearest_analog_atom": "F1",
+        "nearest_analog_distance_angstrom": 4.016
+      },
+      {
+        "analog_associated_entity_description": "DNA replication licensing factor MCM4",
+        "analog_associated_polymer_chain_name": "D",
+        "analog_associated_polymer_entity_id": "4",
+        "analog_auth_seq_id": "1103",
+        "analog_chain_name": "D",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "592",
+        "candidate_chain_name": "G",
+        "candidate_entity_description": "DNA replication licensing factor MCM7",
+        "candidate_entity_id": "7",
+        "candidate_residue_code": "SER",
+        "nearest_analog_atom": "F3",
+        "nearest_analog_distance_angstrom": 4.61
+      },
+      {
+        "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+        "analog_associated_polymer_chain_name": "3",
+        "analog_associated_polymer_entity_id": "3",
+        "analog_auth_seq_id": "1002",
+        "analog_chain_name": "3",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "548",
+        "candidate_chain_name": "5",
+        "candidate_entity_description": "Minichromosome maintenance protein 5",
+        "candidate_entity_id": "5",
+        "candidate_residue_code": "SER",
+        "nearest_analog_atom": "F3",
+        "nearest_analog_distance_angstrom": 5.003
+      },
+      {
+        "analog_associated_entity_description": "DNA replication licensing factor MCM7",
+        "analog_associated_polymer_chain_name": "G",
+        "analog_associated_polymer_entity_id": "7",
+        "analog_auth_seq_id": "1103",
+        "analog_chain_name": "G",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "538",
+        "candidate_chain_name": "C",
+        "candidate_entity_description": "DNA replication licensing factor MCM3",
+        "candidate_entity_id": "3",
+        "candidate_residue_code": "SER",
+        "nearest_analog_atom": "F3",
+        "nearest_analog_distance_angstrom": 5.132
+      },
+      {
+        "analog_associated_entity_description": "DNA replication licensing factor MCM4",
+        "analog_associated_polymer_chain_name": "4",
+        "analog_associated_polymer_entity_id": "4",
+        "analog_auth_seq_id": "1103",
+        "analog_chain_name": "4",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "592",
+        "candidate_chain_name": "7",
+        "candidate_entity_description": "DNA replication licensing factor MCM7",
+        "candidate_entity_id": "7",
+        "candidate_residue_code": "SER",
+        "nearest_analog_atom": "F3",
+        "nearest_analog_distance_angstrom": 5.436
+      },
+      {
+        "analog_associated_entity_description": "DNA replication licensing factor MCM7",
+        "analog_associated_polymer_chain_name": "G",
+        "analog_associated_polymer_entity_id": "7",
+        "analog_auth_seq_id": "1103",
+        "analog_chain_name": "G",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "541",
+        "candidate_chain_name": "C",
+        "candidate_entity_description": "DNA replication licensing factor MCM3",
+        "candidate_entity_id": "3",
+        "candidate_residue_code": "SER",
+        "nearest_analog_atom": "F3",
+        "nearest_analog_distance_angstrom": 5.483
+      },
+      {
+        "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+        "analog_associated_polymer_chain_name": "3",
+        "analog_associated_polymer_entity_id": "3",
+        "analog_auth_seq_id": "1002",
+        "analog_chain_name": "3",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "545",
+        "candidate_chain_name": "5",
+        "candidate_entity_description": "Minichromosome maintenance protein 5",
+        "candidate_entity_id": "5",
+        "candidate_residue_code": "THR",
+        "nearest_analog_atom": "F3",
+        "nearest_analog_distance_angstrom": 5.501
+      },
+      {
+        "analog_associated_entity_description": "Minichromosome maintenance protein 5",
+        "analog_associated_polymer_chain_name": "E",
+        "analog_associated_polymer_entity_id": "5",
+        "analog_auth_seq_id": "801",
+        "analog_chain_name": "E",
+        "analog_ligand_code": "BEF",
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "413",
+        "candidate_chain_name": "C",
+        "candidate_entity_description": "DNA replication licensing factor MCM3",
+        "candidate_entity_id": "3",
+        "candidate_residue_code": "THR",
+        "nearest_analog_atom": "F2",
+        "nearest_analog_distance_angstrom": 5.687
+      }
+    ],
+    "kinase_associated_analog_record": [
+      {
+        "analog_atom_names": [
+          "BE",
+          "F1",
+          "F2",
+          "F3"
+        ],
+        "analog_auth_seq_id": "1003",
+        "analog_chain_name": "8",
+        "analog_ligand_code": "BEF",
+        "associated_polymer_chain_name": "8",
+        "associated_polymer_distance_angstrom": 2.345,
+        "associated_polymer_entity_id": "8",
+        "local_metals": [
+          {
+            "auth_seq_id": "1004",
+            "chain": "8",
+            "distance_angstrom": 2.029,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "1002",
+            "chain": "8",
+            "distance_angstrom": 2.059,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_heteromeric_acceptor": {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "668",
+          "candidate_chain_name": "9",
+          "candidate_entity_id": "9",
+          "candidate_residue_code": "TYR",
+          "nearest_analog_atom": "F2",
+          "nearest_analog_distance_angstrom": 13.833
+        }
+      }
+    ],
+    "pdb_id": "7PT7",
+    "review_decision": "counterexample_found_substrate_owned_mcm_atpase_analog_sites_not_cdc7_transfer",
+    "source_basis": "RCSB title and primary citation identify a Cdc7-Dbf4 kinase-dependent MCM2-7 phosphorylation complex, but the local BEF/ADP groups that produce within-6-Angstrom contacts are associated with MCM3/MCM4/MCM5/MCM7 helicase ATPase chains. The only Cdc7-associated BEF record is nearest to DBF4 Tyr668 at 13.833 Angstrom and has no local MCM phosphoacceptor candidate.",
+    "source_limitations": [
+      "Reject local MCM-chain BEF-to-MCM Ser/Thr contacts as ePK positive evidence because the donor analog belongs to MCM helicase ATPase sites, not the Cdc7 kinase active site.",
+      "This is a source-mapped counterexample for transition-analog searches inside large kinase-substrate assemblies."
+    ],
+    "source_urls": [
+      "https://www.rcsb.org/structure/7PT7",
+      "https://data.rcsb.org/rest/v1/core/entry/7PT7",
+      "https://files.rcsb.org/download/7PT7.cif",
+      "https://doi.org/10.1038/s41467-022-30576-1"
+    ],
+    "structure_title": "Structure of MCM2-7 DH complexed with Cdc7-Dbf4 in the presence of ADP:BeF3, state I"
+  },
+  "source_review_summary": {
+    "counterexamples_found": [
+      "7PT7 MCM helicase ATPase BEF contacts inside a Cdc7-Dbf4/MCM kinase-substrate assembly."
+    ],
+    "evidence_against": [
+      "Cdc7/MCM family search reviewed seven PDB IDs and found no Cdc7-associated transition-analog local transfer geometry to an MCM phosphoacceptor.",
+      "7PT7 contains local BEF/Mg contacts, but all within-6 contacts come from MCM helicase ATPase sites; Cdc7-associated BEF is distant from any heteromeric acceptor in the scan."
+    ],
+    "evidence_for": [],
+    "primary_outcome": "counterexample_found",
+    "production_claim_allowed": false,
+    "recommendation": "Use 7PT7 as a review-only counterexample for transition-analog ownership checks. Do not use Cdc7/MCM family rows for production scoring, labels, thresholds, registries, or fingerprints.",
+    "search_surface_exhausted": true
+  }
+}

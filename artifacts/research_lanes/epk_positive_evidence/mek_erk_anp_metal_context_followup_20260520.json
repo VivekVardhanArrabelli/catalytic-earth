@@ -1,0 +1,658 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "heteromeric_candidate_source_validation_pending_review_only": 3,
+      "no_heteromeric_candidate_hit_review_only": 2
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T22:27:43Z",
+    "heteromeric_candidate_pdb_ids": [
+      "9UUR",
+      "9UUX",
+      "9UW4"
+    ],
+    "heteromeric_candidate_structure_count": 3,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 3,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 5,
+    "surface_total_count_reported_total": 5,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 5
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 71,
+      "atom_count_model_1": 4995,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Fragment-Based Discovery of Novel Allosteric MEK1 Binders.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.611,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 3.164,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.603,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 3.022,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7B3M",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1,Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: MEK1 ERK1 AMP-PNP magnesium substrate",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_mek1_erk1_amp_pnp_mg_substrate_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "MEK1 in complex with compound 6"
+    },
+    {
+      "acceptor_atom_count": 88,
+      "atom_count_model_1": 5300,
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.29,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "204",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "205",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 4.181
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.785,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 4.467,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 17.794
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_entity_description": "Mitogen-activated protein kinase 3",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P27361"
+          ],
+          "candidate_label_seq_id": "205",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "gamma_associated_entity_uniprot_ids": [
+            "Q02750"
+          ],
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 4.181
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UUR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Mechanistic insight phosphorylation ERK MEK ANP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_mechanistic_insight_erk_mek_anp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of human pMEK1 and uERK1 (ANP)"
+    },
+    {
+      "acceptor_atom_count": 87,
+      "atom_count_model_1": 5310,
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.567,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "204",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "205",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 3.968
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.758,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 4.691,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 16.929
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_entity_description": "Mitogen-activated protein kinase 3",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P27361"
+          ],
+          "candidate_label_seq_id": "205",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "gamma_associated_entity_uniprot_ids": [
+            "Q02750"
+          ],
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 3.968
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UUX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Mechanistic insight phosphorylation ERK MEK ANP",
+          "rank": 2,
+          "surface_id": "rcsb_fulltext_mechanistic_insight_erk_mek_anp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of human pMEK1 and ERK1 pT202 (ANP)"
+    },
+    {
+      "acceptor_atom_count": 85,
+      "atom_count_model_1": 5204,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.556,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "81",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "82",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 13.012
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.754,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 3.341,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 17.865
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UW3",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Mechanistic insight phosphorylation ERK MEK ANP",
+          "rank": 3,
+          "surface_id": "rcsb_fulltext_mechanistic_insight_erk_mek_anp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of human pMEK1 and ERK1 pY204 (ANP)"
+    },
+    {
+      "acceptor_atom_count": 86,
+      "atom_count_model_1": 5269,
+      "candidate_status": "heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 2,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.741,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 4.304,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 18.098
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.548,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "204",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "205",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 4.194
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_entity_description": "Mitogen-activated protein kinase 3",
+          "candidate_entity_id": "1",
+          "candidate_entity_uniprot_ids": [
+            "P27361"
+          ],
+          "candidate_label_seq_id": "205",
+          "candidate_residue_code": "TYR",
+          "gamma_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "gamma_associated_entity_uniprot_ids": [
+            "Q02750"
+          ],
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "501",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 4.194
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UW4",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Mechanistic insight phosphorylation ERK MEK ANP",
+          "rank": 4,
+          "surface_id": "rcsb_fulltext_mechanistic_insight_erk_mek_anp_all"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "The complex of human pMEK1 and uERK1 (ANP)(from pY204ERK1)"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: MEK ERK ANP magnesium Tyr204 phosphorylation",
+      "requested_rows": 40,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_mek_erk_anp_magnesium_tyr204_all",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "9UUR",
+        "9UUX",
+        "9UW3",
+        "9UW4"
+      ],
+      "query_or_source": "RCSB full_text: Mechanistic insight phosphorylation ERK MEK ANP",
+      "requested_rows": 40,
+      "returned_count": 4,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_mechanistic_insight_erk_mek_anp_all",
+      "total_count": 4
+    },
+    {
+      "pdb_ids": [
+        "7B3M"
+      ],
+      "query_or_source": "RCSB full_text: MEK1 ERK1 AMP-PNP magnesium substrate",
+      "requested_rows": 40,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_mek1_erk1_amp_pnp_mg_substrate_all",
+      "total_count": 1
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T22:38:39Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/cdc7_mcm_gamma_donor_family_followup_20260520.json",
+    "source_review_scope": "Validate Cdc7-Dbf4/MCM family ATP/ATP-gamma-S donor rows for kinase-associated local transfer geometry.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 2
+  },
+  "reviewed_rows": [
+    {
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for the Activation and Target Site Specificity of CDC7 Kinase.",
+        "year": 2020
+      },
+      "pdb_id": "6YA7",
+      "polymer_entity_descriptions": {
+        "1": "Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase",
+        "2": "Protein DBF4 homolog A",
+        "3": "DNA replication licensing factor MCM2"
+      },
+      "structure_title": "Cdc7-Dbf4 bound to an Mcm2-S40 derived bivalent substrate"
+    },
+    {
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structural basis of Cdc7-Dbf4 kinase dependent targeting and phosphorylation of the MCM2-7 double hexamer.",
+        "year": 2022
+      },
+      "pdb_id": "7PT6",
+      "polymer_entity_descriptions": {
+        "1": "Undefined Mcm4 flexible N-terminal tail",
+        "2": "DNA replication licensing factor MCM2",
+        "3": "DNA replication licensing factor MCM3",
+        "4": "DNA replication licensing factor MCM4",
+        "5": "Minichromosome maintenance protein 5",
+        "6": "DNA replication licensing factor MCM6",
+        "7": "DNA replication licensing factor MCM7",
+        "8": "Cell division control protein 7",
+        "9": "DDK kinase regulatory subunit DBF4"
+      },
+      "structure_title": "Structure of MCM2-7 DH complexed with Cdc7-Dbf4 in the presence of ATPgS, state III"
+    }
+  ],
+  "seven_pt6_adjudication": {
+    "cdc7_associated_gamma_records": [
+      {
+        "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "associated_polymer_chain_name": "8",
+        "associated_polymer_distance_angstrom": 2.152,
+        "associated_polymer_entity_id": "8",
+        "gamma_atom_name": "PG",
+        "gamma_auth_seq_id": "1001",
+        "gamma_chain_name": "8",
+        "gamma_ligand_code": "AGS",
+        "local_metals": [
+          {
+            "auth_seq_id": "1002",
+            "chain": "8",
+            "distance_angstrom": 3.108,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_heteromeric_acceptor": {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "668",
+          "candidate_chain_name": "9",
+          "candidate_entity_id": "9",
+          "candidate_label_seq_id": "668",
+          "candidate_residue_code": "TYR",
+          "nearest_gamma_distance_angstrom": 15.243
+        }
+      },
+      {
+        "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+        "associated_polymer_chain_name": "H",
+        "associated_polymer_distance_angstrom": 2.152,
+        "associated_polymer_entity_id": "8",
+        "gamma_atom_name": "PG",
+        "gamma_auth_seq_id": "1001",
+        "gamma_chain_name": "H",
+        "gamma_ligand_code": "AGS",
+        "local_metals": [
+          {
+            "auth_seq_id": "1002",
+            "chain": "H",
+            "distance_angstrom": 3.108,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_heteromeric_acceptor": {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "668",
+          "candidate_chain_name": "I",
+          "candidate_entity_id": "9",
+          "candidate_label_seq_id": "668",
+          "candidate_residue_code": "TYR",
+          "nearest_gamma_distance_angstrom": 15.189
+        }
+      }
+    ],
+    "pdb_id": "7PT6",
+    "review_decision": "gamma_donor_family_negative_no_cdc7_to_mcm_transfer_geometry",
+    "source_basis": "7PT6 is a Cdc7-Dbf4/MCM2-7 ATP-gamma-S state, but the scan found no heteromeric acceptor within 6 Angstrom of any AGS PG. Several MCM-chain AGS donors approach MCM-chain Ser residues at 6.09-6.64 Angstrom, just outside the lane bound and not Cdc7-associated. The Cdc7-associated AGS donor is nearest to DBF4 Tyr668 at 15.243 Angstrom, not to an MCM phosphoacceptor.",
+    "source_urls": [
+      "https://www.rcsb.org/structure/7PT6",
+      "https://data.rcsb.org/rest/v1/core/entry/7PT6",
+      "https://files.rcsb.org/download/7PT6.cif",
+      "https://doi.org/10.1038/s41467-022-30576-1"
+    ]
+  },
+  "six_ya7_adjudication": {
+    "pdb_id": "6YA7",
+    "review_decision": "source_relevant_bivalent_substrate_but_no_active_gamma_donor",
+    "source_basis": "6YA7 is source-relevant Cdc7-Dbf4 bound to an Mcm2-S40 derived bivalent substrate, but this scan found no ATP/ANP/ACP/AGS gamma donor atom, so it is not clean gamma-transfer evidence.",
+    "source_urls": [
+      "https://www.rcsb.org/structure/6YA7",
+      "https://data.rcsb.org/rest/v1/core/entry/6YA7",
+      "https://files.rcsb.org/download/6YA7.cif",
+      "https://doi.org/10.1016/j.molcel.2020.05.024"
+    ]
+  },
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "The Cdc7/MCM gamma-donor family follow-up reviewed 6YA7 and 7PT6 and found no within-6-Angstrom heteromeric gamma/acceptor candidate.",
+      "7PT6 has Cdc7-associated AGS/Mg, but its nearest heteromeric acceptor is DBF4 Tyr668 at 15.243 Angstrom, not an MCM substrate site.",
+      "6YA7 is source-relevant for Cdc7/Mcm2-S40 substrate binding but has no active gamma donor under the lane scan."
+    ],
+    "evidence_for": [],
+    "primary_outcome": "evidence_against",
+    "production_claim_allowed": false,
+    "recommendation": "Keep Cdc7/MCM as review-only evidence against clean local transfer-state evidence for now. Do not change production scoring, labels, thresholds, registries, or fingerprints.",
+    "search_surface_exhausted": true
+  }
+}

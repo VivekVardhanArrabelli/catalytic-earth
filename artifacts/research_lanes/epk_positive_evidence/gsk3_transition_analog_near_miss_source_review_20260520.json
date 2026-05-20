@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T22:45:24Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/rcsb_transition_analog_phrase_scout_20260520.json",
+    "source_review_scope": "Adjudicate source-relevant GSK-3 transition-state phrase-scout near misses without within-threshold acceptor hits.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "reviewed_near_misses": [
+    {
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6.",
+        "year": 2014
+      },
+      "pdb_id": "4NU1",
+      "polymer_entity_descriptions": {
+        "1": "Glycogen synthase kinase-3 beta",
+        "2": "Axin-1"
+      },
+      "review_decision": "source_relevant_gsk3_transition_state_autoinhibitory_phosphopeptide_no_acceptor",
+      "source_basis": "GSK-3/Axin AF3/Mg transition-state mimic with phosphorylated N-terminal autoinhibitory pS9 peptide; no heteromeric unmodified Ser/Thr/Tyr/SEP/TPO/PTR acceptor candidate was modeled near the kinase-associated AF3 group.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/4NU1",
+        "https://data.rcsb.org/rest/v1/core/entry/4NU1",
+        "https://files.rcsb.org/download/4NU1.cif"
+      ],
+      "structure_title": "Crystal structure of a transition state mimic of the GSK-3/Axin complex bound to phosphorylated N-terminal auto-inhibitory pS9 peptide",
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "406",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.57,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "A",
+              "distance_angstrom": 2.116,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "404",
+              "chain": "A",
+              "distance_angstrom": 2.702,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "candidate_status": "no_transition_analog_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural and functional effects of phosphopriming and scaffolding in the kinase GSK-3 beta.",
+        "year": 2024
+      },
+      "pdb_id": "8VMF",
+      "polymer_entity_descriptions": {
+        "1": "Glycogen synthase kinase-3 beta",
+        "2": "Axin-1",
+        "3": "Catenin beta-1"
+      },
+      "review_decision": "source_relevant_gsk3_transition_state_s45d_peptide_no_acceptor",
+      "source_basis": "GSK-3/Axin AF3/Mg transition-state mimic with beta-catenin S45D peptide; the modeled substrate uses an Asp phosphomimetic at the named site, so no source-mapped hydroxyl acceptor is available for clean positive evidence.",
+      "source_urls": [
+        "https://www.rcsb.org/structure/8VMF",
+        "https://data.rcsb.org/rest/v1/core/entry/8VMF",
+        "https://files.rcsb.org/download/8VMF.cif"
+      ],
+      "structure_title": "Crystal structure of a transition-state mimic of the GSK-3/Axin complex bound to a beta-catenin S45D peptide",
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "503",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.384,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "A",
+              "distance_angstrom": 2.836,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "501",
+              "chain": "A",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "4NU1 and 8VMF have kinase-associated AF3/Mg transition-state analog context but do not model a clean source-mapped heteromeric hydroxyl acceptor near the analog.",
+      "4NU1 is an autoinhibitory phosphorylated-peptide context; 8VMF uses beta-catenin S45D phosphomimetic peptide. Neither is clean positive substrate-transfer evidence."
+    ],
+    "evidence_for": [],
+    "primary_outcome": "evidence_against",
+    "production_claim_allowed": false,
+    "recommendation": "Keep GSK-3 transition-state phrase hits as review-only near-miss negatives unless a sibling structure models an unmodified source-mapped substrate acceptor near the kinase-associated analog.",
+    "search_surface_exhausted": false
+  }
+}

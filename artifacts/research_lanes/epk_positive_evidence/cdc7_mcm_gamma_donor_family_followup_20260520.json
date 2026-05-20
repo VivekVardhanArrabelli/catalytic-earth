@@ -1,0 +1,597 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "no_active_gamma_donor_atom_review_only": 1,
+      "no_heteromeric_candidate_hit_review_only": 1
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T22:37:48Z",
+    "heteromeric_candidate_pdb_ids": [],
+    "heteromeric_candidate_structure_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "epk_positive_evidence_bounded_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_measure_gamma_acceptor_distance": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout uses RCSB full-text surfaces plus transient mmCIF geometry to identify source-validation leads only. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 4,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 3,
+    "surface_total_count_reported_total": 3,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 2
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 68,
+      "atom_count_model_1": 4112,
+      "candidate_status": "no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for the Activation and Target Site Specificity of CDC7 Kinase.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 0,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6YA7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase,Cell division cycle 7-related protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O00311"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein DBF4 homolog A",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UBU7"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "DNA replication licensing factor MCM2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49736"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Cdc7 Mcm2 S40 bivalent substrate ADP",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_cdc7_mcm_bivalent_substrate_adp"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cdc7-Dbf4 bound to an Mcm2-S40 derived bivalent substrate"
+    },
+    {
+      "acceptor_atom_count": 1554,
+      "atom_count_model_1": 74358,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structural basis of Cdc7-Dbf4 kinase dependent targeting and phosphorylation of the MCM2-7 double hexamer.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "donor_gamma_atom_count": 12,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "2",
+          "associated_polymer_distance_angstrom": 2.711,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "2",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "2",
+              "distance_angstrom": 3.746,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "707",
+            "candidate_chain_name": "6",
+            "candidate_entity_id": "6",
+            "candidate_label_seq_id": "707",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.223
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "4",
+          "associated_polymer_distance_angstrom": 2.603,
+          "associated_polymer_entity_id": "4",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "4",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "901",
+              "chain": "7",
+              "distance_angstrom": 3.242,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "592",
+            "candidate_chain_name": "7",
+            "candidate_entity_id": "7",
+            "candidate_label_seq_id": "592",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.105
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "5",
+          "associated_polymer_distance_angstrom": 2.7,
+          "associated_polymer_entity_id": "5",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "5",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1004",
+              "chain": "2",
+              "distance_angstrom": 3.175,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "675",
+            "candidate_chain_name": "2",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "675",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.622
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "6",
+          "associated_polymer_distance_angstrom": 2.747,
+          "associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1101",
+          "gamma_chain_name": "6",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "449",
+            "candidate_chain_name": "2",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "449",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 12.238
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "6",
+          "associated_polymer_distance_angstrom": 2.651,
+          "associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1102",
+          "gamma_chain_name": "6",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1103",
+              "chain": "6",
+              "distance_angstrom": 3.285,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "700",
+            "candidate_chain_name": "4",
+            "candidate_entity_id": "4",
+            "candidate_label_seq_id": "700",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.364
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "8",
+          "associated_polymer_distance_angstrom": 2.152,
+          "associated_polymer_entity_id": "8",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "8",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "8",
+              "distance_angstrom": 3.108,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "668",
+            "candidate_chain_name": "9",
+            "candidate_entity_id": "9",
+            "candidate_label_seq_id": "668",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 15.243
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.711,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "B",
+              "distance_angstrom": 3.746,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "707",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "6",
+            "candidate_label_seq_id": "707",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.198
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.603,
+          "associated_polymer_entity_id": "4",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "901",
+              "chain": "G",
+              "distance_angstrom": 3.241,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "592",
+            "candidate_chain_name": "G",
+            "candidate_entity_id": "7",
+            "candidate_label_seq_id": "592",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.094
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.701,
+          "associated_polymer_entity_id": "5",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "E",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1004",
+              "chain": "B",
+              "distance_angstrom": 3.175,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "675",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "675",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.642
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.737,
+          "associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1101",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "449",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "449",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 12.237
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.651,
+          "associated_polymer_entity_id": "6",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1102",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1103",
+              "chain": "F",
+              "distance_angstrom": 3.286,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "700",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "4",
+            "candidate_label_seq_id": "700",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 6.345
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "H",
+          "associated_polymer_distance_angstrom": 2.152,
+          "associated_polymer_entity_id": "8",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "1001",
+          "gamma_chain_name": "H",
+          "gamma_ligand_code": "AGS",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "H",
+              "distance_angstrom": 3.108,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "668",
+            "candidate_chain_name": "I",
+            "candidate_entity_id": "9",
+            "candidate_label_seq_id": "668",
+            "candidate_residue_code": "TYR",
+            "nearest_gamma_distance_angstrom": 15.189
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7PT6",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "1",
+            "A"
+          ],
+          "description": "Undefined Mcm4 flexible N-terminal tail",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "2",
+            "B"
+          ],
+          "description": "DNA replication licensing factor MCM2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29469"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "3",
+            "C"
+          ],
+          "description": "DNA replication licensing factor MCM3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24279"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "4",
+            "D"
+          ],
+          "description": "DNA replication licensing factor MCM4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P30665"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "5",
+            "E"
+          ],
+          "description": "Minichromosome maintenance protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29496"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "6",
+            "F"
+          ],
+          "description": "DNA replication licensing factor MCM6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53091"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "7",
+            "G"
+          ],
+          "description": "DNA replication licensing factor MCM7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P38132"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "8",
+            "H"
+          ],
+          "description": "Cell division control protein 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06243"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "9",
+            "I"
+          ],
+          "description": "DDK kinase regulatory subunit DBF4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P32325"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Cdc7 Dbf4 MCM ATPgS phosphorylation",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_cdc7_dbf4_mcm_atpgs_phosphorylation"
+        },
+        {
+          "query_or_source": "RCSB full_text: Cdc7 Dbf4 MCM AGS phosphorylation",
+          "rank": 1,
+          "surface_id": "rcsb_fulltext_cdc7_dbf4_mcm_ags_phosphorylation"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of MCM2-7 DH complexed with Cdc7-Dbf4 in the presence of ATPgS, state III"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "7PT6"
+      ],
+      "query_or_source": "RCSB full_text: Cdc7 Dbf4 MCM ATPgS phosphorylation",
+      "requested_rows": 50,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_cdc7_dbf4_mcm_atpgs_phosphorylation",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "7PT6"
+      ],
+      "query_or_source": "RCSB full_text: Cdc7 Dbf4 MCM AGS phosphorylation",
+      "requested_rows": 50,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_cdc7_dbf4_mcm_ags_phosphorylation",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: Cdc7 Dbf4 MCM ATP magnesium substrate",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_cdc7_dbf4_mcm_atp_mg_substrate",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "6YA7"
+      ],
+      "query_or_source": "RCSB full_text: Cdc7 Mcm2 S40 bivalent substrate ADP",
+      "requested_rows": 50,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "rcsb_fulltext_cdc7_mcm_bivalent_substrate_adp",
+      "total_count": 1
+    }
+  ]
+}

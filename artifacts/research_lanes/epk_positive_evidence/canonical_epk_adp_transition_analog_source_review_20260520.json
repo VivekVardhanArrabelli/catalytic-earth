@@ -1,0 +1,424 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T22:34:19Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_adp_transition_analog_scout_20260520.json",
+    "source_review_scope": "Source-map canonical EC/Pfam ePK ADP plus MgF/AlF/BeF-style transition-analog proximity candidates.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "transition_analog_candidate_pdb_ids": [
+      "3QHR",
+      "3QHW",
+      "7PT7",
+      "1L3R",
+      "5LIH"
+    ],
+    "unique_pdb_ids_reviewed": 20
+  },
+  "reviewed_candidates": [
+    {
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "year": 2011
+      },
+      "geometry_hits": [
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "K",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.497
+        },
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "J",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.593
+        }
+      ],
+      "local_metal_context": [
+        "MG 298/299 local to MGF in both kinase chains (1.959-2.233 Angstrom analog-to-metal distances)."
+      ],
+      "pdb_id": "3QHR",
+      "polymer_entity_descriptions": {
+        "1": "Cell division protein kinase 2",
+        "2": "Cyclin-A2",
+        "3": "CDK2 substrate peptide: PKTPKKAKKL"
+      },
+      "review_decision": "repeat_review_only_cdk2_peptide_transition_state_positive",
+      "source_basis": "Prior lane source review already accepted this pCDK2/Cyclin A transition-state mimic as review-only peptide evidence; canonical exact-ligand scan re-detected substrate peptide Thr0 near ADP/MGF with local Mg.",
+      "source_limitations": [
+        "Repeat evidence, not fresh.",
+        "Peptide substrate only; not folded-protein substrate evidence.",
+        "Review-only; not valid for production thresholding or labels."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/3QHR",
+        "https://data.rcsb.org/rest/v1/core/entry/3QHR",
+        "https://files.rcsb.org/download/3QHR.cif"
+      ],
+      "structure_title": "Structure of a pCDK2/CyclinA transition-state mimic"
+    },
+    {
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Briefly Bound to Activate: Transient Binding of a Second Catalytic Magnesium Activates the Structure and Dynamics of CDK2 Kinase for Catalysis.",
+        "year": 2011
+      },
+      "geometry_hits": [
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "K",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.507
+        },
+        {
+          "analog_associated_entity_description": "Cell division protein kinase 2",
+          "analog_ligand_code": "MGF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "0",
+          "candidate_chain_name": "J",
+          "candidate_entity_description": "CDK2 substrate peptide: PKTPKKAKKL",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "MG",
+          "nearest_analog_distance_angstrom": 2.581
+        }
+      ],
+      "local_metal_context": [
+        "MG 298/299 local to MGF in both kinase chains (1.852-2.007 Angstrom analog-to-metal distances)."
+      ],
+      "pdb_id": "3QHW",
+      "polymer_entity_descriptions": {
+        "1": "Cell division protein kinase 2",
+        "2": "Cyclin-A2",
+        "3": "CDK2 substrate peptide: PKTPKKAKKL"
+      },
+      "review_decision": "repeat_review_only_cdk2_peptide_transition_state_positive",
+      "source_basis": "Prior lane source review already accepted this pCDK2/Cyclin A transition-state mimic as review-only peptide evidence; canonical exact-ligand scan re-detected substrate peptide Thr0 near ADP/MGF with local Mg.",
+      "source_limitations": [
+        "Repeat evidence, not fresh.",
+        "Peptide substrate only; not folded-protein substrate evidence.",
+        "Review-only; not valid for production thresholding or labels."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/3QHW",
+        "https://data.rcsb.org/rest/v1/core/entry/3QHW",
+        "https://files.rcsb.org/download/3QHW.cif"
+      ],
+      "structure_title": "Structure of a pCDK2/CyclinA transition-state mimic"
+    },
+    {
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of a transition state mimic of the catalytic subunit of cAMP-dependent protein kinase.",
+        "year": 2002
+      },
+      "geometry_hits": [
+        {
+          "analog_associated_entity_description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "21",
+          "candidate_chain_name": "I",
+          "candidate_entity_description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+          "candidate_entity_uniprot_ids": [
+            "P63249"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "AL",
+          "nearest_analog_distance_angstrom": 2.268
+        }
+      ],
+      "local_metal_context": [
+        "Two MG ions local to AF3 (1.965 and 1.971 Angstrom analog-to-metal distances)."
+      ],
+      "pdb_id": "1L3R",
+      "polymer_entity_descriptions": {
+        "1": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+        "2": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM"
+      },
+      "review_decision": "fresh_review_only_pka_peptide_transition_state_positive_inhibitor_scaffold",
+      "source_basis": "RCSB/header and primary citation identify a PKA catalytic-subunit transition-state mimic with synthetic PKI-alpha residues 5-24; PKI-alpha Ser21 OG is 2.268 Angstrom from AF3 Al with two local Mg ions.",
+      "source_limitations": [
+        "Synthetic engineered inhibitor/pseudosubstrate peptide scaffold, not a folded-protein substrate.",
+        "Use as review-only transition-state stress evidence only."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/1L3R",
+        "https://data.rcsb.org/rest/v1/core/entry/1L3R",
+        "https://files.rcsb.org/download/1L3R.cif"
+      ],
+      "structure_title": "Crystal Structure of a Transition State Mimic of the Catalytic Subunit of cAMP-dependent Protein Kinase"
+    },
+    {
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "geometry_hits": [
+        {
+          "analog_associated_entity_description": "Protein kinase C iota type",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "11",
+          "candidate_chain_name": "G",
+          "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+          "candidate_entity_uniprot_ids": [
+            "Q02156"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 2.419
+        },
+        {
+          "analog_associated_entity_description": "Protein kinase C iota type",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "11",
+          "candidate_chain_name": "F",
+          "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+          "candidate_entity_uniprot_ids": [
+            "Q02156"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 2.624
+        }
+      ],
+      "local_metal_context": [
+        "Two MN ions local to each active AF3 group (1.901-2.073 Angstrom analog-to-metal distances); duplicate AF3 groups without local metals were ignored in adjudication."
+      ],
+      "pdb_id": "5LIH",
+      "polymer_entity_descriptions": {
+        "1": "Protein kinase C iota type",
+        "2": "PKC Epsilon pseudo substrate sequence"
+      },
+      "review_decision": "fresh_review_only_apkc_peptide_transition_state_positive_pseudosubstrate_context",
+      "source_basis": "RCSB title identifies a peptide-substrate bound to PKCiota core kinase domain; entity metadata/header identify a synthetic PKC epsilon pseudosubstrate sequence. Ser11 OG is 2.419-2.624 Angstrom from active AF3 groups with local Mn ions.",
+      "source_limitations": [
+        "Synthetic pseudosubstrate peptide context; not a non-topology-confounded folded-protein substrate positive.",
+        "Some modeled AF3 groups lack local metal and are excluded from the positive interpretation.",
+        "Review-only; no scoring, labels, or thresholds."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/5LIH",
+        "https://data.rcsb.org/rest/v1/core/entry/5LIH",
+        "https://files.rcsb.org/download/5LIH.cif"
+      ],
+      "structure_title": "Structure of a peptide-substrate bound to PKCiota core kinase domain"
+    },
+    {
+      "candidate_status": "transition_analog_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structural basis of Cdc7-Dbf4 kinase dependent targeting and phosphorylation of the MCM2-7 double hexamer.",
+        "year": 2022
+      },
+      "geometry_hits": [
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "467",
+          "candidate_chain_name": "7",
+          "candidate_entity_description": "DNA replication licensing factor MCM7",
+          "candidate_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F1",
+          "nearest_analog_distance_angstrom": 3.86
+        },
+        {
+          "analog_associated_entity_description": "Minichromosome maintenance protein 5",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "416",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F1",
+          "nearest_analog_distance_angstrom": 4.016
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM4",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "592",
+          "candidate_chain_name": "G",
+          "candidate_entity_description": "DNA replication licensing factor MCM7",
+          "candidate_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 4.61
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "548",
+          "candidate_chain_name": "5",
+          "candidate_entity_description": "Minichromosome maintenance protein 5",
+          "candidate_entity_uniprot_ids": [
+            "P29496"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.003
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM7",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "538",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.132
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM4",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "592",
+          "candidate_chain_name": "7",
+          "candidate_entity_description": "DNA replication licensing factor MCM7",
+          "candidate_entity_uniprot_ids": [
+            "P38132"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.436
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM7",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "541",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_residue_code": "SER",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.483
+        },
+        {
+          "analog_associated_entity_description": "DNA replication licensing factor MCM3",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "545",
+          "candidate_chain_name": "5",
+          "candidate_entity_description": "Minichromosome maintenance protein 5",
+          "candidate_entity_uniprot_ids": [
+            "P29496"
+          ],
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 5.501
+        },
+        {
+          "analog_associated_entity_description": "Minichromosome maintenance protein 5",
+          "analog_ligand_code": "BEF",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "413",
+          "candidate_chain_name": "C",
+          "candidate_entity_description": "DNA replication licensing factor MCM3",
+          "candidate_entity_uniprot_ids": [
+            "P24279"
+          ],
+          "candidate_residue_code": "THR",
+          "nearest_analog_atom": "F2",
+          "nearest_analog_distance_angstrom": 5.687
+        }
+      ],
+      "local_metal_context": [
+        "BEF groups are associated mostly with MCM helicase ATPase chains; the Cdc7-associated BEF nearest heteromeric acceptor is DBF4 Tyr668 at 13.833 Angstrom, outside transfer geometry."
+      ],
+      "pdb_id": "7PT7",
+      "polymer_entity_descriptions": {
+        "1": "Undefined Mcm4 flexible N-terminal tail",
+        "2": "DNA replication licensing factor MCM2",
+        "3": "DNA replication licensing factor MCM3",
+        "4": "DNA replication licensing factor MCM4",
+        "5": "Minichromosome maintenance protein 5",
+        "6": "DNA replication licensing factor MCM6",
+        "7": "DNA replication licensing factor MCM7",
+        "8": "Cell division control protein 7",
+        "9": "DDK kinase regulatory subunit DBF4"
+      },
+      "review_decision": "counterexample_found_mcm_helicase_transition_analog_false_hit",
+      "source_basis": "The source title identifies Cdc7-Dbf4 kinase targeting/phosphorylation of MCM2-7, but the within-6-Angstrom BEF hits are associated with MCM helicase ATPase subunits rather than the Cdc7 kinase donor; the Cdc7-associated BEF is distant from DBF4.",
+      "source_limitations": [
+        "This is a kinase-complex search false positive caused by substrate/helicase nucleotide sites.",
+        "Do not treat MCM-chain BEF-to-MCM Ser contacts as ePK kinase-substrate transfer evidence."
+      ],
+      "source_urls": [
+        "https://www.rcsb.org/structure/7PT7",
+        "https://data.rcsb.org/rest/v1/core/entry/7PT7",
+        "https://files.rcsb.org/download/7PT7.cif"
+      ],
+      "structure_title": "Structure of MCM2-7 DH complexed with Cdc7-Dbf4 in the presence of ADP:BeF3, state I"
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [
+      "7PT7 MCM helicase ATPase BEF false hit inside a Cdc7-Dbf4 kinase/substrate complex."
+    ],
+    "evidence_against": [
+      "No fresh clean folded-protein substrate positive was found in the canonical ADP/transition-analog exact-ligand surface.",
+      "Most exact transition-analog rows are single-chain PGK, mTOR kinase-only/regulatory, or kinase-only states without a heteromeric source-mapped acceptor.",
+      "7PT7 is a false-positive transition-analog hit: local BEF-to-Ser contacts are MCM helicase ATPase sites, not Cdc7 kinase-to-MCM substrate transfer geometry."
+    ],
+    "evidence_for": [
+      "Fresh review-only transition-state peptide positives: 1L3R PKA/PKI-alpha Ser21 near AF3 with local Mg, and 5LIH PKCiota/pseudosubstrate Ser11 near AF3 with local Mn.",
+      "Repeat transition-state peptide positives recovered: 3QHR and 3QHW CDK2/Cyclin A substrate peptide Thr0 near MGF with local Mg."
+    ],
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "recommendation": "Use 1L3R and 5LIH only as review-only peptide/pseudosubstrate transition-state stress evidence. Keep folded-protein positives unresolved and keep production scoring, threshold calibration, label import, registries, fingerprints, migrations, and production claims closed.",
+    "search_surface_exhausted": true
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T22:40:11Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_review_scope": "Compact Europe PMC term validation for transition-analog positive/counterexample adjudications; abstracts are not stored verbatim."
+  },
+  "rows": [
+    {
+      "abstract_term_flags": {
+        "BeF3": false,
+        "Cdc7": false,
+        "Dbf4": false,
+        "MCM": false,
+        "aluminum fluoride": true,
+        "inhibition": false,
+        "kinase": true,
+        "magnesium": false,
+        "peptide": true,
+        "phosphorylation": false,
+        "pseudosubstrate": false,
+        "substrate": true,
+        "transition state": true
+      },
+      "article_title": "Crystal structure of a transition state mimic of the catalytic subunit of cAMP-dependent protein kinase.",
+      "doi": "10.1038/nsb780",
+      "journal": null,
+      "pdb_id": "1L3R",
+      "pmid": "11896404",
+      "pub_year": "2002",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A11896404%20SRC%3AMED&format=json&pageSize=1&resultType=core"
+    },
+    {
+      "abstract_term_flags": {
+        "BeF3": false,
+        "Cdc7": false,
+        "Dbf4": false,
+        "MCM": false,
+        "aluminum fluoride": false,
+        "inhibition": true,
+        "kinase": true,
+        "magnesium": false,
+        "peptide": false,
+        "phosphorylation": true,
+        "pseudosubstrate": false,
+        "substrate": true,
+        "transition state": false
+      },
+      "article_title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+      "doi": "10.1016/j.devcel.2016.07.018",
+      "journal": null,
+      "pdb_id": "5LIH",
+      "pmid": "27554858",
+      "pub_year": "2016",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A27554858%20SRC%3AMED&format=json&pageSize=1&resultType=core"
+    },
+    {
+      "abstract_term_flags": {
+        "BeF3": false,
+        "Cdc7": true,
+        "Dbf4": true,
+        "MCM": true,
+        "aluminum fluoride": false,
+        "inhibition": false,
+        "kinase": true,
+        "magnesium": false,
+        "peptide": false,
+        "phosphorylation": true,
+        "pseudosubstrate": false,
+        "substrate": false,
+        "transition state": false
+      },
+      "article_title": "The structural basis of Cdc7-Dbf4 kinase dependent targeting and phosphorylation of the MCM2-7 double hexamer.",
+      "doi": "10.1038/s41467-022-30576-1",
+      "journal": null,
+      "pdb_id": "7PT7",
+      "pmid": "35614055",
+      "pub_year": "2022",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A35614055%20SRC%3AMED&format=json&pageSize=1&resultType=core"
+    },
+    {
+      "abstract_term_flags": {
+        "BeF3": false,
+        "Cdc7": true,
+        "Dbf4": true,
+        "MCM": true,
+        "aluminum fluoride": false,
+        "inhibition": false,
+        "kinase": true,
+        "magnesium": false,
+        "peptide": false,
+        "phosphorylation": true,
+        "pseudosubstrate": false,
+        "substrate": true,
+        "transition state": false
+      },
+      "article_title": "Structural Basis for the Activation and Target Site Specificity of CDC7 Kinase.",
+      "doi": "10.1016/j.str.2020.05.010",
+      "journal": null,
+      "pdb_id": "6YA7",
+      "pmid": "32521228",
+      "pub_year": "2020",
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A32521228%20SRC%3AMED&format=json&pageSize=1&resultType=core"
+    }
+  ],
+  "source_review_summary": {
+    "evidence_against": [
+      "Europe PMC term flags support 7PT7 and 6YA7 as Cdc7/Dbf4/MCM phosphorylation-targeting contexts, requiring nucleotide-site ownership checks before any positive interpretation."
+    ],
+    "evidence_for": [
+      "Europe PMC term flags support 1L3R as transition-state/kinase/peptide/substrate context and 5LIH as kinase/substrate/access-control context."
+    ],
+    "production_claim_allowed": false
+  }
+}
