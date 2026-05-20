@@ -2,9 +2,10 @@
 
 Last updated: 2026-05-20T17:04:49Z
 
-Pushed commit: pending at handoff write time; final automation summary records
-the pushed commit hash after alternate-index commit/push. Normal linked-worktree
-Git metadata writes are blocked in this sandbox.
+Pushed commit: `480b0eec74559fcca4e610fed0cc287e360328ae` (primary run artifact
+commit). Final branch HEAD after this handoff self-reference update is reported
+in the automation summary. Normal linked-worktree Git metadata writes are
+blocked in this sandbox.
 
 ## Current Outcome
 
