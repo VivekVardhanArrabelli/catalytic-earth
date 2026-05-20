@@ -1,0 +1,126 @@
+{
+  "article_source": {
+    "article_full_text_xml_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11933327/fullTextXML",
+    "article_metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Asymmetric+activation+of+dimeric+ATM%2FTel1+kinase%22&format=json&pageSize=5&resultType=core",
+    "doi": "10.1038/s41421-025-00786-0",
+    "pmcid": "PMC11933327",
+    "pmid": "40128540",
+    "pubYear": "2025",
+    "source_checks": {
+      "mentions_9iz0": true,
+      "mentions_active_site_bound_to_substrate_peptide": true,
+      "mentions_chk2_63_74": true,
+      "mentions_chk2_substrate_peptide_and_amp_pnp": true,
+      "mentions_magnesium_or_mg": false,
+      "mentions_manganese_or_mn": false,
+      "mentions_thr68": true
+    },
+    "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+  },
+  "evidence_against": [
+    "9IZ0 lacks local Mg/Mn in the modeled ANP PG environment and is peptide-only, not folded-protein substrate evidence.",
+    "Article text check found AMP-PNP but no magnesium/Mg or manganese/Mn wording, reinforcing the no-local-metal caveat."
+  ],
+  "evidence_for": [
+    "9IZ0 Tel1/ATM bound to CHK2 peptide has source-mapped CHK2 Thr68 OG1 4.383 Angstrom from ANP PG."
+  ],
+  "metadata": {
+    "folded_protein_substrate_positive_count": 0,
+    "generated_at": "2026-05-20T19:48:18Z",
+    "input_artifact": "artifacts/research_lanes/epk_positive_evidence/recent_exact_title_no_ligand_scout_20260520.json",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "metal_caveat_count": 1,
+    "method": "atm_tel1_chk2_peptide_amp_pnp_source_review",
+    "next_query_seed_note": "Initial RCSB phrase checks found no ATM/Tel1 CHK2 magnesium/AMP-PNP sibling beyond 9IZ0; next run should inspect supplementary/model metadata for omitted metal context or broader PIKK substrate analogs.",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Use 9IZ0 only as review-only peptide evidence; it is source-mapped and gamma-proximal but lacks local Mg/Mn in the model and is not a folded-protein substrate positive.",
+    "review_only": true,
+    "source_mapped_peptide_positive_count": 1
+  },
+  "next_query_seed_searches": [
+    {
+      "query_or_source": "RCSB full_text: ATM Tel1 CHK2 AMP-PNP magnesium",
+      "returned_pdb_ids": []
+    },
+    {
+      "query_or_source": "RCSB full_text: ATM Tel1 CHK2 peptide AMP-PNP",
+      "returned_pdb_ids": []
+    },
+    {
+      "query_or_source": "RCSB full_text: ATM Tel1 CHK2 peptide ANP",
+      "returned_pdb_ids": [
+        "9IZ0"
+      ]
+    },
+    {
+      "query_or_source": "RCSB full_text: CHK2 peptide AMP-PNP kinase structure",
+      "returned_pdb_ids": []
+    }
+  ],
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+        "year": 2025
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PG",
+        "gamma_auth_seq_id": "2901",
+        "gamma_chain_name": "A",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 4.383,
+        "local_metals": [],
+        "metal_caveat": "No Mg/Mn within 5 Angstrom of ANP PG under the lane scanner.",
+        "source_metal_note": "Europe PMC full text check found AMP-PNP wording but no magnesium/Mg or manganese/Mn wording in the article text."
+      },
+      "kinase_entity_description": "Serine/threonine-protein kinase tel1",
+      "kinase_entity_uniprot_ids": [
+        "O74630"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IZ0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "VAL-SER-THR-GLN-GLU-LEU-TYR-SER",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O74630"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG1",
+        "auth_seq_id": "68",
+        "chain_name": "F",
+        "label_seq_id": "3",
+        "mapping_basis": "RCSB title identifies ATM/Tel1 bound to CHK2 peptide; article text identifies CHK2 substrate peptide with AMP-PNP and Thr68 in the active-site substrate peptide.",
+        "residue_code": "THR"
+      },
+      "source_review_status": "source_mapped_peptide_positive_amp_pnp_no_local_metal_review_only",
+      "substrate_entity_description": "VAL-SER-THR-GLN-GLU-LEU-TYR-SER",
+      "title": "ATM/Tel1 bound to CHK2 peptide"
+    }
+  ]
+}

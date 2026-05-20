@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T19:45:16Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "recent_literature_title_followup_rcsb_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Use CDK/CAK and CRAF/MEK hits as source-review negatives already recorded this run; rerun title surfaces in future for newly deposited IDs.",
+    "review_only": true,
+    "surface_count": 9,
+    "surface_rows_returned_total": 7,
+    "unique_pdb_ids": [
+      "9I9I",
+      "9I9J",
+      "9I9K",
+      "9O0V",
+      "9QCV",
+      "9QCX",
+      "9SKQ"
+    ]
+  },
+  "search_surfaces": [
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [
+        "9I9I",
+        "9I9K",
+        "9I9J",
+        "9QCV",
+        "9QCX",
+        "9SKQ"
+      ],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase",
+      "returned_count": 6,
+      "review_only": true,
+      "surface_id": "cdk_cak_title",
+      "total_count": 6
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: CDK-activating kinase CDK activation AMP-PNP substrate",
+      "returned_count": 0,
+      "review_only": true,
+      "surface_id": "cdk_cak_amp_pnp_alias",
+      "total_count": 0
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: Asymmetric activation of dimeric ATM Tel1 kinase AMP-PNP substrate",
+      "returned_count": 0,
+      "review_only": true,
+      "surface_id": "atm_tel1_title_alias",
+      "total_count": 0
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: Capture mutual inhibition release mechanism aPKC Par6 Lgl AMP-PNP",
+      "returned_count": 0,
+      "review_only": true,
+      "surface_id": "apkc_par6_lgl_title_alias",
+      "total_count": 0
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: Structural insights catalytic cycle G protein-coupled receptor kinase 5 ATP analog substrate",
+      "returned_count": 0,
+      "review_only": true,
+      "surface_id": "grk5_catalytic_cycle_alias",
+      "total_count": 0
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: Bipartite binding scaffold protein JIP1 kinase JNK1 AMP-PNP substrate",
+      "returned_count": 0,
+      "review_only": true,
+      "surface_id": "jnk1_jip1_title_alias",
+      "total_count": 0
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer",
+      "returned_count": 0,
+      "review_only": true,
+      "surface_id": "raf_mek_mechanism_title",
+      "total_count": 0
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: BRAF MEK1 AMPPNP asymmetric dimer phosphorylation",
+      "returned_count": 0,
+      "review_only": true,
+      "surface_id": "raf_mek_amppnp_alias",
+      "total_count": 0
+    },
+    {
+      "fetch_error": null,
+      "labels_or_fingerprints_changed": false,
+      "pdb_ids": [
+        "9O0V"
+      ],
+      "production_claim_allowed": false,
+      "query_or_source": "RCSB full_text: CRAF MEK1 AMPPNP phosphorylation complex",
+      "returned_count": 1,
+      "review_only": true,
+      "surface_id": "craf_mek_amppnp_alias",
+      "total_count": 1
+    }
+  ]
+}

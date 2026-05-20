@@ -1,0 +1,933 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "recent_exact_title_heteromeric_candidate_source_mapping_required_review_only": 1,
+      "recent_exact_title_no_active_gamma_donor_atom_review_only": 8,
+      "recent_exact_title_no_heteromeric_candidate_hit_review_only": 5
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-20T19:47:12Z",
+    "heteromeric_candidate_pdb_ids": [
+      "9IZ0"
+    ],
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "recent_exact_title_no_ligand_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "rows_reviewed": 14,
+    "title_surface_count": 5
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 5714,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3X",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl",
+          "rank": 1,
+          "surface_id": "exact_title_apkc_par6_lgl_capture"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of aPKC Iota kinase domain with LLGL2 peptide"
+    },
+    {
+      "acceptor_atom_count": 187,
+      "atom_count_model_1": 20120,
+      "candidate_status": "recent_exact_title_no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 1,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "I",
+          "associated_polymer_distance_angstrom": 1.668,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "601",
+          "gamma_chain_name": "I",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "655",
+            "candidate_chain_name": "L",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "641",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 12.56
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3Y",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Lethal(2) giant larvae protein homolog 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15334"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Partitioning defective 6 homolog alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "R4GMM2"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl",
+          "rank": 2,
+          "surface_id": "exact_title_apkc_par6_lgl_capture"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Cryo EM structure of a stable LGL/aPKC Iota/Par-6 complex"
+    },
+    {
+      "acceptor_atom_count": 152,
+      "atom_count_model_1": 10754,
+      "candidate_status": "recent_exact_title_no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystallographic, kinetic, and calorimetric investigation of PKA interactions with L-type calcium channels and Rad GTPase.",
+        "year": 2024
+      },
+      "donor_gamma_atom_count": 1,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.983,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "400",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UKN",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C",
+            "D",
+            "F",
+            "H"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Crystallographic, kinetic, and calorimetric investigation of PKA interactions with L-type calcium channels and Rad GTPase",
+          "rank": 1,
+          "surface_id": "exact_title_pka_cav_rad"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "APO and AMP-PNP bound cAMP-dependent protein kinase A catalytic domain"
+    },
+    {
+      "acceptor_atom_count": 44,
+      "atom_count_model_1": 2790,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystallographic, kinetic, and calorimetric investigation of PKA interactions with L-type calcium channels and Rad GTPase.",
+        "year": 2024
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UKO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "ARG-GLY-PHE-LEU-ARG-SER-ALA-SER-LEU-GLY-ARG-ARG-ALA-SER-PHE-HIS-LEU",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13936"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Crystallographic, kinetic, and calorimetric investigation of PKA interactions with L-type calcium channels and Rad GTPase",
+          "rank": 2,
+          "surface_id": "exact_title_pka_cav_rad"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cAMP-dependent protein kinase A catalytic domain in complex with voltage gated calcium channel peptide ternary complex 2"
+    },
+    {
+      "acceptor_atom_count": 44,
+      "atom_count_model_1": 2684,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystallographic, kinetic, and calorimetric investigation of PKA interactions with L-type calcium channels and Rad GTPase.",
+        "year": 2024
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8UKP",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "ARG-GLY-PHE-LEU-ARG-SER-ALA-SER-LEU-GLY-ARG-ARG-ALA-SER-PHE-HIS-LEU",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13936"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Crystallographic, kinetic, and calorimetric investigation of PKA interactions with L-type calcium channels and Rad GTPase",
+          "rank": 3,
+          "surface_id": "exact_title_pka_cav_rad"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "cAMP-dependent protein kinase A catalytic domain in complex with voltage gated calcium channel peptide ternary complex 1"
+    },
+    {
+      "acceptor_atom_count": 64,
+      "atom_count_model_1": 8861,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9CKO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "G protein-coupled receptor kinase 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P34947"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion",
+          "rank": 5,
+          "surface_id": "exact_title_grk5_catalytic_cycle"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human G protein-coupled receptor kinase 5 wild-type in complex with sangivamycin"
+    },
+    {
+      "acceptor_atom_count": 64,
+      "atom_count_model_1": 8827,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9CKP",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "G protein-coupled receptor kinase 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P34947"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion",
+          "rank": 6,
+          "surface_id": "exact_title_grk5_catalytic_cycle"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human G protein-coupled receptor kinase 5-D311N in complex with sangivamycin"
+    },
+    {
+      "acceptor_atom_count": 61,
+      "atom_count_model_1": 8004,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9CKQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "G protein-coupled receptor kinase 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P34947"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion",
+          "rank": 3,
+          "surface_id": "exact_title_grk5_catalytic_cycle"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human G protein-coupled receptor kinase 5-D311N ligand-free form"
+    },
+    {
+      "acceptor_atom_count": 61,
+      "atom_count_model_1": 8181,
+      "candidate_status": "recent_exact_title_no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 1,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 1.649,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "603",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "602",
+              "chain": "A",
+              "distance_angstrom": 4.07,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9CKR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "G protein-coupled receptor kinase 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P34947"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion",
+          "rank": 2,
+          "surface_id": "exact_title_grk5_catalytic_cycle"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human G protein-coupled receptor kinase 5-D311N in complex with ATP and magnesium ion"
+    },
+    {
+      "acceptor_atom_count": 61,
+      "atom_count_model_1": 8181,
+      "candidate_status": "recent_exact_title_no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 1,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 1.756,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "603",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ATP",
+          "local_metals": [
+            {
+              "auth_seq_id": "602",
+              "chain": "A",
+              "distance_angstrom": 2.848,
+              "metal_code": "MN"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9CKS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "G protein-coupled receptor kinase 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P34947"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion",
+          "rank": 4,
+          "surface_id": "exact_title_grk5_catalytic_cycle"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human G protein-coupled receptor kinase 5-D311N in complex with ATP and manganese ion"
+    },
+    {
+      "acceptor_atom_count": 53,
+      "atom_count_model_1": 3221,
+      "candidate_status": "recent_exact_title_no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Bipartite binding of the intrinsically disordered scaffold protein JIP1 to the kinase JNK1.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 1,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.437,
+          "associated_polymer_entity_id": "1",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "210",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "30",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 17.891
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9FT9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Isoform 1 of Mitogen-activated protein kinase 8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P45983"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "C-Jun-amino-terminal kinase-interacting protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Bipartite binding of the intrinsically disordered scaffold protein JIP1 to the kinase JNK1",
+          "rank": 1,
+          "surface_id": "exact_title_jip1_jnk1_bipartite"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of the bipartite JNK1-JIP1 complex"
+    },
+    {
+      "acceptor_atom_count": 448,
+      "atom_count_model_1": 32048,
+      "candidate_status": "recent_exact_title_heteromeric_candidate_source_mapping_required_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 2,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 1.433,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2901",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "68",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "3",
+            "candidate_residue_code": "THR",
+            "nearest_gamma_distance_angstrom": 4.383
+          }
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.366,
+          "associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2901",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "73",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "8",
+            "candidate_residue_code": "SER",
+            "nearest_gamma_distance_angstrom": 66.832
+          }
+        }
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "68",
+          "candidate_chain_name": "F",
+          "candidate_entity_description": "VAL-SER-THR-GLN-GLU-LEU-TYR-SER",
+          "candidate_entity_id": "1",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "3",
+          "candidate_residue_code": "THR",
+          "gamma_associated_entity_description": "Serine/threonine-protein kinase tel1",
+          "gamma_associated_entity_uniprot_ids": [
+            "O74630"
+          ],
+          "gamma_associated_polymer_chain_name": "A",
+          "gamma_associated_polymer_entity_id": "2",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "2901",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 4.383
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IZ0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "VAL-SER-THR-GLN-GLU-LEU-TYR-SER",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O74630"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Asymmetric activation of dimeric ATM/Tel1 kinase",
+          "rank": 2,
+          "surface_id": "exact_title_atm_tel1_asymmetric_activation"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "ATM/Tel1 bound to CHK2 peptide"
+    },
+    {
+      "acceptor_atom_count": 1,
+      "atom_count_model_1": 12996,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IZ7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O74630"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Asymmetric activation of dimeric ATM/Tel1 kinase",
+          "rank": 1,
+          "surface_id": "exact_title_atm_tel1_asymmetric_activation"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "ATM/Tel1 in Basal state"
+    },
+    {
+      "acceptor_atom_count": 64,
+      "atom_count_model_1": 8780,
+      "candidate_status": "recent_exact_title_no_active_gamma_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "gamma_records": [],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9MX2",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "G protein-coupled receptor kinase 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P34947"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB exact title: Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion",
+          "rank": 1,
+          "surface_id": "exact_title_grk5_catalytic_cycle"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Human G protein-coupled receptor kinase 5-D311N in complex with sangivamycin soaked in pH 6"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "9IZ7",
+        "9IZ0"
+      ],
+      "query": "Asymmetric activation of dimeric ATM/Tel1 kinase",
+      "surface_id": "exact_title_atm_tel1_asymmetric_activation"
+    },
+    {
+      "pdb_ids": [
+        "8R3X",
+        "8R3Y"
+      ],
+      "query": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl",
+      "surface_id": "exact_title_apkc_par6_lgl_capture"
+    },
+    {
+      "pdb_ids": [
+        "9MX2",
+        "9CKR",
+        "9CKQ",
+        "9CKS",
+        "9CKO",
+        "9CKP"
+      ],
+      "query": "Structural insights into the catalytic cycle of G protein-coupled receptor kinase 5 and a possible regulatory site for potassium ion",
+      "surface_id": "exact_title_grk5_catalytic_cycle"
+    },
+    {
+      "pdb_ids": [
+        "9FT9"
+      ],
+      "query": "Bipartite binding of the intrinsically disordered scaffold protein JIP1 to the kinase JNK1",
+      "surface_id": "exact_title_jip1_jnk1_bipartite"
+    },
+    {
+      "pdb_ids": [
+        "8UKN",
+        "8UKO",
+        "8UKP"
+      ],
+      "query": "Crystallographic, kinetic, and calorimetric investigation of PKA interactions with L-type calcium channels and Rad GTPase",
+      "surface_id": "exact_title_pka_cav_rad"
+    }
+  ]
+}

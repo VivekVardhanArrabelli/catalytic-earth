@@ -1,0 +1,517 @@
+{
+  "evidence_against": [
+    "9I9I: source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+    "9I9J: source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+    "9I9K: source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+    "9QCV: source_relevant_cdk_cak_gamma_present_but_acceptor_distant_review_only",
+    "9QCX: source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+    "9SKQ: source_relevant_cdk_cak_gamma_present_but_acceptor_distant_review_only"
+  ],
+  "metadata": {
+    "clean_positive_count": 0,
+    "gamma_present_geometry_negative_count": 2,
+    "generated_at": "2026-05-20T19:44:38Z",
+    "input_artifact": "artifacts/research_lanes/epk_positive_evidence/recent_cdk_cak_title_scout_20260520.json",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "recent_cdk_cak_title_source_review",
+    "no_active_gamma_count": 4,
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Treat recent CDK/CAK structures as source-relevant geometry-negative folded-protein controls; do not count as positive ePK substrate evidence.",
+    "review_only": true,
+    "source_relevant_rows_reviewed": 6
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [],
+      "pdb_id": "9I9I",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Isoform 7 of Cyclin-dependent kinase 11B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P21127"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapping_note": "Source/title identifies CAK-CDK assembly, but the model lacks ATP/ANP/AMP-PNP gamma donor atoms under the lane scanner.",
+      "source_review_status": "source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+      "title": "Cryo-EM structure of CAK-CDK11"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [],
+      "pdb_id": "9I9J",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapping_note": "Source/title identifies CAK-CDK assembly, but the model lacks ATP/ANP/AMP-PNP gamma donor atoms under the lane scanner.",
+      "source_review_status": "source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+      "title": "Cryo-EM structure of CAK-CDK2 (determined in the presence of ADP-nitrate)"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [],
+      "pdb_id": "9I9K",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapping_note": "Source/title identifies CAK-CDK assembly, but the model lacks ATP/ANP/AMP-PNP gamma donor atoms under the lane scanner.",
+      "source_review_status": "source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+      "title": "Cryo-EM structure of CAK-CDK2 (determined in the presence of ADP-AlFx)"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 2,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [
+        {
+          "associated_polymer_chain_name": "K",
+          "associated_polymer_entity_id": "1",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "49",
+          "candidate_chain_name": "J",
+          "candidate_entity_id": "5",
+          "candidate_label_seq_id": "94",
+          "candidate_residue_code": "SER",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "301",
+          "gamma_chain_name": "K",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "302",
+              "chain": "K",
+              "distance_angstrom": 3.983,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 9.747
+        },
+        {
+          "associated_polymer_chain_name": "J",
+          "associated_polymer_entity_id": "5",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "14",
+          "candidate_chain_name": "K",
+          "candidate_entity_id": "1",
+          "candidate_label_seq_id": "17",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "J",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "J",
+              "distance_angstrom": 4.259,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 11.752
+        }
+      ],
+      "pdb_id": "9QCV",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapping_note": "Source/title identifies CAK-CDK assembly and ANP/Mg is present, but no heteromeric Ser/Thr/Tyr acceptor is within 6 Angstrom of ANP PG.",
+      "source_review_status": "source_relevant_cdk_cak_gamma_present_but_acceptor_distant_review_only",
+      "title": "Cryo-EM structure of CAK-CDK2-cyclin A2 bound to AMP-PNP"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 0,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [],
+      "pdb_id": "9QCX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapping_note": "Source/title identifies CAK-CDK assembly, but the model lacks ATP/ANP/AMP-PNP gamma donor atoms under the lane scanner.",
+      "source_review_status": "source_relevant_cdk_cak_no_active_gamma_donor_review_only",
+      "title": "Cryo-EM structure of apo-CAK-CDK2-cyclin A2"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 2,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [
+        {
+          "associated_polymer_chain_name": "J",
+          "associated_polymer_entity_id": "3",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "14",
+          "candidate_chain_name": "A",
+          "candidate_entity_id": "4",
+          "candidate_label_seq_id": "19",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "J",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "J",
+              "distance_angstrom": 4.318,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_gamma_distance_angstrom": 12.359
+        },
+        {
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_entity_id": "4",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "25",
+          "candidate_chain_name": "J",
+          "candidate_entity_id": "3",
+          "candidate_label_seq_id": "70",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "301",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "local_metals": [],
+          "nearest_gamma_distance_angstrom": 12.501
+        }
+      ],
+      "pdb_id": "9SKQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cyclin-dependent kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06493"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "G2/mitotic-specific cyclin-B1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P14635"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapping_note": "Source/title identifies CAK-CDK assembly and ANP/Mg is present, but no heteromeric Ser/Thr/Tyr acceptor is within 6 Angstrom of ANP PG.",
+      "source_review_status": "source_relevant_cdk_cak_gamma_present_but_acceptor_distant_review_only",
+      "title": "Cryo-EM structure of CAK-CDK1-cyclin B1"
+    }
+  ]
+}

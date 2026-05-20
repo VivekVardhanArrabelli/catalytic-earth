@@ -1,0 +1,393 @@
+{
+  "evidence_against": [
+    "0 folded-protein substrate positives were added by the legacy PB audit.",
+    "Seven legacy ANP PB/no-PG structures had no heteromeric Ser/Thr/Tyr acceptor within 6 Angstrom.",
+    "5HVK remains a known folded-protein positive through its prior PG-based measurement, not through PB fallback; its nearest PB acceptor in this audit is 15.468 Angstrom.",
+    "5LI1 sits just outside the strict PB cutoff at 6.053 Angstrom and lacks source-ready positive status under this audit."
+  ],
+  "evidence_for": [
+    "3O7L PKA/phospholamban Ser21 OG is 5.930 Angstrom from legacy ANP PB with two local Mg ions.",
+    "4JDI PAK4/Paktide Ser0 OG is 5.862 Angstrom from legacy ANP PB with two local Mg ions.",
+    "The broad audit found no additional prior-scout ANP/PB within-6 candidates, reducing helper fallback blast radius to explicit review-only cases."
+  ],
+  "legacy_anp_pb_distance_negative_rows": [
+    {
+      "candidate_status": "legacy_anp_pb_no_pg_without_within_6_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Low-density crystal packing of human protein kinase CK2 catalytic subunit in complex with resorufin or other ligands: a tool to study the unique hinge-region plasticity of the enzyme without packing bias.",
+        "year": 2012
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_group_count": 1,
+      "nearest_heteromeric_acceptor_to_pb": null,
+      "pdb_id": "3U87",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "legacy_anp_pb_no_within_6_acceptor_not_positive_review_only",
+      "title": "Structure of a chimeric construct of human CK2alpha and human CK2alpha' in complex with a non-hydrolysable ATP-analogue"
+    },
+    {
+      "candidate_status": "legacy_anp_pb_no_pg_without_within_6_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_group_count": 1,
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "16",
+        "candidate_chain_name": "I",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "THR",
+        "nearest_pb_distance_angstrom": 19.12
+      },
+      "pdb_id": "4HPT",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "legacy_anp_pb_no_within_6_acceptor_not_positive_review_only",
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying complete phosphoryl transfer of AMP-PNP onto a substrate peptide"
+    },
+    {
+      "candidate_status": "legacy_anp_pb_no_pg_without_within_6_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_group_count": 1,
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "16",
+        "candidate_chain_name": "I",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "THR",
+        "nearest_pb_distance_angstrom": 19.381
+      },
+      "pdb_id": "4HPU",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "legacy_anp_pb_no_within_6_acceptor_not_positive_review_only",
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying partial phosphoryl transfer of AMP-PNP onto a substrate peptide"
+    },
+    {
+      "candidate_status": "legacy_anp_pb_no_pg_without_within_6_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The multiple nucleotide-divalent cation binding modes of Saccharomyces cerevisiae CK2 alpha indicate a possible co-substrate hydrolysis product (ADP/GDP) release pathway.",
+        "year": 2014
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_group_count": 1,
+      "nearest_heteromeric_acceptor_to_pb": null,
+      "pdb_id": "4JQE",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "legacy_anp_pb_no_within_6_acceptor_not_positive_review_only",
+      "title": "Crystal structure of scCK2 alpha in complex with AMPPN"
+    },
+    {
+      "candidate_status": "legacy_anp_pb_no_pg_without_within_6_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Multiple mechanisms render Erk proteins MEK-independent",
+        "year": null
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_group_count": 1,
+      "nearest_heteromeric_acceptor_to_pb": null,
+      "pdb_id": "4S33",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "legacy_anp_pb_no_within_6_acceptor_not_positive_review_only",
+      "title": "ERK2 R65S mutant complexed with AMP-PNP"
+    },
+    {
+      "candidate_status": "legacy_anp_pb_no_pg_without_within_6_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_group_count": 1,
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "119",
+        "candidate_chain_name": "B",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "118",
+        "candidate_residue_code": "SER",
+        "nearest_pb_distance_angstrom": 15.468
+      },
+      "pdb_id": "5HVK",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "legacy_anp_pb_no_within_6_acceptor_not_positive_review_only",
+      "title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1"
+    },
+    {
+      "candidate_status": "legacy_anp_pb_no_pg_without_within_6_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_group_count": 1,
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "12",
+        "candidate_chain_name": "B",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "SER",
+        "nearest_pb_distance_angstrom": 6.053
+      },
+      "pdb_id": "5LI1",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_review_status": "legacy_anp_pb_no_within_6_acceptor_not_positive_review_only",
+      "title": "Structure of a Par3-inhibitory peptide bound to PKCiota core kinase domain"
+    }
+  ],
+  "metadata": {
+    "audit_artifact": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_audit_20260520.json",
+    "folded_protein_substrate_positive_count": 0,
+    "generated_at": "2026-05-20T19:32:02Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "legacy_anp_pb_distance_negative_count": 7,
+    "legacy_anp_pb_no_pg_structure_count": 9,
+    "legacy_anp_pb_within_6_structure_count": 2,
+    "method": "legacy_anp_pb_prior_scout_source_mapping_review",
+    "prior_scout_anp_intersection_count": 221,
+    "prior_scout_unique_pdb_ids": 971,
+    "production_claim_allowed": false,
+    "production_helper_fallback_decision": "forbidden",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Add or use PB fallback only in review-only lane helpers when ANP lacks PG, never in production scoring or label import; require source-mapped acceptor and keep distance threshold explicit.",
+    "review_only": true,
+    "review_only_helper_fallback_decision": "warranted_only_for_lane_review_helpers_with_explicit_legacy_pb_flag_source_mapping_local_metal_context_and_no_production_scoring",
+    "source_mapped_peptide_positive_count": 2
+  },
+  "source_mapped_within_6_rows": [
+    {
+      "audit_pb_candidate_hit": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "21",
+        "candidate_chain_name": "I",
+        "candidate_entity_description": "Cardiac phospholamban",
+        "candidate_entity_id": "3",
+        "candidate_entity_uniprot_ids": [
+          "P61014"
+        ],
+        "candidate_label_seq_id": "13",
+        "candidate_residue_code": "SER",
+        "local_metals": [
+          {
+            "auth_seq_id": "352",
+            "chain": "B",
+            "distance_angstrom": 2.599,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "351",
+            "chain": "B",
+            "distance_angstrom": 4.039,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_pb_distance_angstrom": 5.93,
+        "pb_associated_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+        "pb_associated_entity_uniprot_ids": [
+          "P05132"
+        ],
+        "pb_associated_polymer_chain_name": "B",
+        "pb_associated_polymer_entity_id": "1",
+        "pb_atom_name": "PB",
+        "pb_auth_seq_id": "354",
+        "pb_chain_name": "B",
+        "pb_label_asym_id": "G",
+        "pb_ligand_code": "ANP",
+        "review_only_legacy_terminal_atom": true
+      },
+      "audit_seed_scout_files": [
+        "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_rescue_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_protein_kinase_substrate_amp_pnp_protein_all67_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_peptide_amp_pnp_anp_positive_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_pka_phospholamban_peptide_scout_20260520.json"
+      ],
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dynamics connect substrate recognition to catalysis in protein kinase A.",
+        "year": 2010
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PB",
+        "gamma_atom_naming_note": "Legacy ANP atom naming in 3O7L has PA/PB and no PG; PB is treated as the source-declared AMP-PNP terminal gamma-equivalent atom for this review-only artifact.",
+        "gamma_auth_seq_id": "354",
+        "gamma_chain_name": "B",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 5.93,
+        "local_metals": [
+          {
+            "auth_seq_id": "352",
+            "chain": "B",
+            "distance_angstrom": 2.599,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "351",
+            "chain": "B",
+            "distance_angstrom": 4.039,
+            "metal_code": "MG"
+          }
+        ]
+      },
+      "kinase_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3O7L",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG",
+        "auth_seq_id": "21",
+        "chain_name": "I",
+        "label_seq_id": "13",
+        "mapping_basis": "RCSB title identifies phospholamban (1-19):PKA C-subunit:AMP-PNP:Mg2+ complex; phospholamban Ser21 is the modeled substrate acceptor nearest the terminal ANP atom.",
+        "residue_code": "SER"
+      },
+      "source_review_status": "source_mapped_peptide_positive_legacy_anp_pb_review_only",
+      "substrate_entity_description": "Cardiac phospholamban",
+      "supporting_prior_source_review_file": "artifacts/research_lanes/epk_positive_evidence/pka_phospholamban_amp_pnp_source_review_20260520.json",
+      "title": "Crystal Structure of phospholamban (1-19):PKA C-subunit:AMP-PNP:Mg2+ complex"
+    },
+    {
+      "audit_pb_candidate_hit": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "0",
+        "candidate_chain_name": "B",
+        "candidate_entity_description": "Paktide S",
+        "candidate_entity_id": "2",
+        "candidate_entity_uniprot_ids": [],
+        "candidate_label_seq_id": "5",
+        "candidate_residue_code": "SER",
+        "local_metals": [
+          {
+            "auth_seq_id": "1002",
+            "chain": "A",
+            "distance_angstrom": 3.206,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "1001",
+            "chain": "A",
+            "distance_angstrom": 3.347,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_pb_distance_angstrom": 5.862,
+        "pb_associated_entity_description": "Serine/threonine-protein kinase PAK 4",
+        "pb_associated_entity_uniprot_ids": [
+          "O96013"
+        ],
+        "pb_associated_polymer_chain_name": "A",
+        "pb_associated_polymer_entity_id": "1",
+        "pb_atom_name": "PB",
+        "pb_auth_seq_id": "1000",
+        "pb_chain_name": "A",
+        "pb_label_asym_id": "C",
+        "pb_ligand_code": "ANP",
+        "review_only_legacy_terminal_atom": true
+      },
+      "audit_seed_scout_files": [
+        "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_rescue_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_atp_analog_gamma_transfer_alias_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_phosphoacceptor_protein_kinase_substrate_all21_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/rcsb_peptide_amp_pnp_anp_positive_scout_20260520.json"
+      ],
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of a major determinant for serine-threonine kinase phosphoacceptor specificity.",
+        "year": 2014
+      },
+      "folded_protein_substrate_positive": false,
+      "gamma_transfer_geometry": {
+        "gamma_atom_name": "PB",
+        "gamma_atom_naming_note": "Legacy ANP atom naming has PA/PB and no PG; PB is treated as source-declared AMP-PNP terminal gamma-equivalent atom for this review-only artifact.",
+        "gamma_auth_seq_id": "1000",
+        "gamma_chain_name": "A",
+        "gamma_ligand_code": "ANP",
+        "gamma_to_acceptor_distance_angstrom": 5.862,
+        "local_metals": [
+          {
+            "auth_seq_id": "1002",
+            "chain": "A",
+            "distance_angstrom": 3.206,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "1001",
+            "chain": "A",
+            "distance_angstrom": 3.347,
+            "metal_code": "MG"
+          }
+        ]
+      },
+      "kinase_entity_description": "Serine/threonine-protein kinase PAK 4",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4JDI",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_mapped_acceptor": {
+        "atom_name": "OG",
+        "auth_seq_id": "0",
+        "chain_name": "B",
+        "label_seq_id": "5",
+        "mapping_basis": "RCSB title identifies PAK4 in complex with Paktide S peptide substrate; mmCIF maps the modeled peptide Ser auth_seq_id 0 on chain B as the nearest phosphoacceptor.",
+        "residue_code": "SER"
+      },
+      "source_review_status": "source_mapped_peptide_positive_legacy_anp_pb_review_only",
+      "substrate_entity_description": "Paktide S",
+      "supporting_prior_source_review_file": "artifacts/research_lanes/epk_positive_evidence/pak4_paktide_legacy_anp_source_review_20260520.json",
+      "title": "Crystal structure of Serine/threonine-protein kinase PAK 4 in complex with Paktide S peptide substrate"
+    }
+  ]
+}

@@ -1,0 +1,759 @@
+{
+  "evidence_against": [
+    "3U87: kinase_only_analog_complex_no_heteromeric_substrate_acceptor_review_only",
+    "4HPT: product_state_phosphoryl_transfer_not_gamma_transfer_analog_positive_review_only",
+    "4HPU: product_state_phosphoryl_transfer_not_gamma_transfer_analog_positive_review_only",
+    "4JQE: kinase_only_analog_complex_no_heteromeric_substrate_acceptor_review_only",
+    "4S33: kinase_only_analog_complex_no_heteromeric_substrate_acceptor_review_only",
+    "5HVK: separate_pg_positive_not_legacy_pb_rescue_review_only",
+    "5LI1: near_threshold_inhibitory_peptide_not_strict_positive_review_only"
+  ],
+  "metadata": {
+    "audit_artifact": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_audit_20260520.json",
+    "distance_negative_structure_count": 7,
+    "generated_at": "2026-05-20T19:34:48Z",
+    "kinase_only_or_no_heteromeric_acceptor_count": 3,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "legacy_anp_pb_distance_negative_source_checks",
+    "near_threshold_not_strict_positive_count": 1,
+    "product_state_or_non_transfer_state_count": 2,
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Do not broaden PB fallback beyond strict review-only source-mapped cases; keep 5LI1 as a near-threshold next-query candidate, not a positive.",
+    "review_only": true,
+    "separate_pg_positive_not_pb_rescue_count": 1,
+    "source_review_artifact": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_source_review_20260520.json"
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Low-density crystal packing of human protein kinase CK2 catalytic subunit in complex with resorufin or other ligands: a tool to study the unique hinge-region plasticity of the enzyme without packing bias.",
+        "year": 2012
+      },
+      "europe_pmc_source_check": {
+        "query_or_source": "Europe PMC exact title: Low-density crystal packing of human protein kinase CK2 catalytic subunit in complex with resorufin or other ligands: a tool to study the unique hinge-region plasticity of the enzyme without packing bias.",
+        "rows": [
+          {
+            "doi": "10.1107/s0907444912016587",
+            "isOpenAccess": "N",
+            "journalTitle": "Acta Crystallogr D Biol Crystallogr",
+            "pmcid": null,
+            "pmid": "22868753",
+            "pubYear": "2012",
+            "title": "Low-density crystal packing of human protein kinase CK2 catalytic subunit in complex with resorufin or other ligands: a tool to study the unique hinge-region plasticity of the enzyme without packing bias."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Low-density+crystal+packing+of+human+protein+kinase+CK2+catalytic+subunit+in+complex+with+resorufin+or+other+ligands%3A+a+tool+to+study+the+unique+hinge-region+plasticity+of+the+enzyme+without+packing+bias.%22&format=json&pageSize=3"
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_groups": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.065,
+          "associated_polymer_entity_id": "1",
+          "atom_names": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N3",
+            "N3B",
+            "N6",
+            "N7",
+            "N9",
+            "O1A",
+            "O1B",
+            "O2'",
+            "O2A",
+            "O2B",
+            "O3'",
+            "O3A",
+            "O4'",
+            "O5'",
+            "PA",
+            "PB"
+          ],
+          "auth_seq_id": "401",
+          "has_pb": true,
+          "has_pg": false,
+          "is_legacy_anp_pb_no_pg": true,
+          "label_asym_id": "I",
+          "nearest_heteromeric_acceptor_to_pb": null
+        }
+      ],
+      "nearest_heteromeric_acceptor_to_pb": null,
+      "nearest_pb_distance_angstrom": null,
+      "pdb_id": "3U87",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Casein kinase II subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P19784",
+            "P68400"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "kinase_only_analog_complex_no_heteromeric_substrate_acceptor_review_only",
+      "source_mapping_note": "CK2 chimeric kinase construct with ANP on kinase chain and no heteromeric acceptor candidate in the model.",
+      "title": "Structure of a chimeric construct of human CK2alpha and human CK2alpha' in complex with a non-hydrolysable ATP-analogue"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "europe_pmc_source_check": {
+        "query_or_source": "Europe PMC exact title: Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "rows": [
+          {
+            "doi": "10.1021/ja312237q",
+            "isOpenAccess": "N",
+            "journalTitle": "J Am Chem Soc",
+            "pmcid": "PMC3663052",
+            "pmid": "23458248",
+            "pubYear": "2013",
+            "title": "Phosphoryl transfer by protein kinase A is captured in a crystal lattice."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Phosphoryl+transfer+by+protein+kinase+a+is+captured+in+a+crystal+lattice.%22&format=json&pageSize=3"
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_groups": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.465,
+          "associated_polymer_entity_id": "1",
+          "atom_names": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N3",
+            "N3B",
+            "N6",
+            "N7",
+            "N9",
+            "O1A",
+            "O1B",
+            "O2'",
+            "O2A",
+            "O2B",
+            "O3'",
+            "O3A",
+            "O4'",
+            "O5'",
+            "PA",
+            "PB"
+          ],
+          "auth_seq_id": "401",
+          "has_pb": true,
+          "has_pg": false,
+          "is_legacy_anp_pb_no_pg": true,
+          "label_asym_id": "C",
+          "nearest_heteromeric_acceptor_to_pb": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "16",
+            "candidate_chain_name": "I",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "12",
+            "candidate_residue_code": "THR",
+            "nearest_pb_distance_angstrom": 19.12
+          }
+        }
+      ],
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "16",
+        "candidate_chain_name": "I",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "THR",
+        "nearest_pb_distance_angstrom": 19.12
+      },
+      "nearest_pb_distance_angstrom": 19.12,
+      "pdb_id": "4HPT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "cAMP-dependent protein kinase inhibitor alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63248"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "product_state_phosphoryl_transfer_not_gamma_transfer_analog_positive_review_only",
+      "source_mapping_note": "RCSB title/source article identify complete phosphoryl transfer onto substrate peptide; modeled peptide contains phosphoserine on chain I, but nearest unphosphorylated heteromeric Thr acceptor to legacy ANP PB is 19.120 Angstrom.",
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying complete phosphoryl transfer of AMP-PNP onto a substrate peptide"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "year": 2013
+      },
+      "europe_pmc_source_check": {
+        "query_or_source": "Europe PMC exact title: Phosphoryl transfer by protein kinase a is captured in a crystal lattice.",
+        "rows": [
+          {
+            "doi": "10.1021/ja312237q",
+            "isOpenAccess": "N",
+            "journalTitle": "J Am Chem Soc",
+            "pmcid": "PMC3663052",
+            "pmid": "23458248",
+            "pubYear": "2013",
+            "title": "Phosphoryl transfer by protein kinase A is captured in a crystal lattice."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Phosphoryl+transfer+by+protein+kinase+a+is+captured+in+a+crystal+lattice.%22&format=json&pageSize=3"
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_groups": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.595,
+          "associated_polymer_entity_id": "1",
+          "atom_names": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N3",
+            "N3B",
+            "N6",
+            "N7",
+            "N9",
+            "O1A",
+            "O1B",
+            "O2'",
+            "O2A",
+            "O2B",
+            "O3'",
+            "O3A",
+            "O4'",
+            "O5'",
+            "PA",
+            "PB"
+          ],
+          "auth_seq_id": "402",
+          "has_pb": true,
+          "has_pg": false,
+          "is_legacy_anp_pb_no_pg": true,
+          "label_asym_id": "D",
+          "nearest_heteromeric_acceptor_to_pb": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "16",
+            "candidate_chain_name": "I",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "12",
+            "candidate_residue_code": "THR",
+            "nearest_pb_distance_angstrom": 19.381
+          }
+        }
+      ],
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "16",
+        "candidate_chain_name": "I",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "THR",
+        "nearest_pb_distance_angstrom": 19.381
+      },
+      "nearest_pb_distance_angstrom": 19.381,
+      "pdb_id": "4HPU",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "cAMP-dependent protein kinase inhibitor alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63248"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "product_state_phosphoryl_transfer_not_gamma_transfer_analog_positive_review_only",
+      "source_mapping_note": "RCSB title/source article identify partial phosphoryl transfer onto substrate peptide; modeled peptide contains phosphoserine on chain I, but nearest unphosphorylated heteromeric Thr acceptor to legacy ANP PB is 19.381 Angstrom.",
+      "title": "Crystal structure of the catalytic subunit of cAMP-dependent protein kinase displaying partial phosphoryl transfer of AMP-PNP onto a substrate peptide"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The multiple nucleotide-divalent cation binding modes of Saccharomyces cerevisiae CK2 alpha indicate a possible co-substrate hydrolysis product (ADP/GDP) release pathway.",
+        "year": 2014
+      },
+      "europe_pmc_source_check": {
+        "query_or_source": "Europe PMC exact title: The multiple nucleotide-divalent cation binding modes of Saccharomyces cerevisiae CK2 alpha indicate a possible co-substrate hydrolysis product (ADP/GDP) release pathway.",
+        "rows": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22The+multiple+nucleotide-divalent+cation+binding+modes+of+Saccharomyces+cerevisiae+CK2+alpha+indicate+a+possible+co-substrate+hydrolysis+product+%28ADP%2FGDP%29+release+pathway.%22&format=json&pageSize=3"
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_groups": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.655,
+          "associated_polymer_entity_id": "1",
+          "atom_names": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N3",
+            "N3B",
+            "N6",
+            "N7",
+            "N9",
+            "O1A",
+            "O1B",
+            "O2'",
+            "O2A",
+            "O2B",
+            "O3'",
+            "O3A",
+            "O4'",
+            "O5'",
+            "PA",
+            "PB"
+          ],
+          "auth_seq_id": "401",
+          "has_pb": true,
+          "has_pg": false,
+          "is_legacy_anp_pb_no_pg": true,
+          "label_asym_id": "B",
+          "nearest_heteromeric_acceptor_to_pb": null
+        }
+      ],
+      "nearest_heteromeric_acceptor_to_pb": null,
+      "nearest_pb_distance_angstrom": null,
+      "pdb_id": "4JQE",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Casein kinase II subunit alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15790"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "kinase_only_analog_complex_no_heteromeric_substrate_acceptor_review_only",
+      "source_mapping_note": "scCK2 alpha AMPPN complex has ANP PB/no-PG on the kinase chain and no heteromeric acceptor candidate in the model.",
+      "title": "Crystal structure of scCK2 alpha in complex with AMPPN"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Multiple mechanisms render Erk proteins MEK-independent",
+        "year": null
+      },
+      "europe_pmc_source_check": {
+        "query_or_source": "Europe PMC exact title: Multiple mechanisms render Erk proteins MEK-independent",
+        "rows": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Multiple+mechanisms+render+Erk+proteins+MEK-independent%22&format=json&pageSize=3"
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_groups": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.7,
+          "associated_polymer_entity_id": "1",
+          "atom_names": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N3",
+            "N3B",
+            "N6",
+            "N7",
+            "N9",
+            "O1A",
+            "O1B",
+            "O2'",
+            "O2A",
+            "O2B",
+            "O3'",
+            "O3A",
+            "O4'",
+            "O5'",
+            "PA",
+            "PB"
+          ],
+          "auth_seq_id": "401",
+          "has_pb": true,
+          "has_pg": false,
+          "is_legacy_anp_pb_no_pg": true,
+          "label_asym_id": "B",
+          "nearest_heteromeric_acceptor_to_pb": null
+        }
+      ],
+      "nearest_heteromeric_acceptor_to_pb": null,
+      "nearest_pb_distance_angstrom": null,
+      "pdb_id": "4S33",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63086"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "kinase_only_analog_complex_no_heteromeric_substrate_acceptor_review_only",
+      "source_mapping_note": "ERK2 mutant AMP-PNP complex has ANP PB/no-PG on a kinase-only model and no heteromeric acceptor candidate.",
+      "title": "ERK2 R65S mutant complexed with AMP-PNP"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "europe_pmc_source_check": {
+        "query_or_source": "Europe PMC exact title: Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "rows": [
+          {
+            "doi": "10.1016/j.molcel.2016.04.001",
+            "isOpenAccess": "N",
+            "journalTitle": "Mol Cell",
+            "pmcid": "PMC4860616",
+            "pmid": "27153537",
+            "pubYear": "2016",
+            "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Structural+Basis+for+Noncanonical+Substrate+Recognition+of+Cofilin%2FADF+Proteins+by+LIM+Kinases.%22&format=json&pageSize=3"
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_groups": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.881,
+          "associated_polymer_entity_id": "1",
+          "atom_names": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N3",
+            "N3B",
+            "N6",
+            "N7",
+            "N9",
+            "O1A",
+            "O1B",
+            "O2'",
+            "O2A",
+            "O2B",
+            "O3'",
+            "O3A",
+            "O4'",
+            "O5'",
+            "PA",
+            "PB"
+          ],
+          "auth_seq_id": "1001",
+          "has_pb": true,
+          "has_pg": false,
+          "is_legacy_anp_pb_no_pg": true,
+          "label_asym_id": "E",
+          "nearest_heteromeric_acceptor_to_pb": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "119",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "118",
+            "candidate_residue_code": "SER",
+            "nearest_pb_distance_angstrom": 15.468
+          }
+        }
+      ],
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "119",
+        "candidate_chain_name": "B",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "118",
+        "candidate_residue_code": "SER",
+        "nearest_pb_distance_angstrom": 15.468
+      },
+      "nearest_pb_distance_angstrom": 15.468,
+      "pdb_id": "5HVK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "LIM domain kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53667"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Cofilin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "separate_pg_positive_not_legacy_pb_rescue_review_only",
+      "source_mapping_note": "5HVK remains positive-like only through a separate ANP PG group on the LIMK1/cofilin C/D copy; its legacy PB/no-PG group on the A/B copy is 15.468 Angstrom from the nearest heteromeric acceptor.",
+      "title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "europe_pmc_source_check": {
+        "query_or_source": "Europe PMC exact title: aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "rows": [
+          {
+            "doi": "10.1016/j.devcel.2016.07.018",
+            "isOpenAccess": "Y",
+            "journalTitle": "Dev Cell",
+            "pmcid": "PMC4998004",
+            "pmid": "27554858",
+            "pubYear": "2016",
+            "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22aPKC+Inhibition+by+Par3+CR3+Flanking+Regions+Controls+Substrate+Access+and+Underpins+Apical-Junctional+Polarization.%22&format=json&pageSize=3"
+      },
+      "labels_or_fingerprints_changed": false,
+      "legacy_anp_pb_no_pg_groups": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.572,
+          "associated_polymer_entity_id": "1",
+          "atom_names": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N3",
+            "N3B",
+            "N6",
+            "N7",
+            "N9",
+            "O1A",
+            "O1B",
+            "O2'",
+            "O2A",
+            "O2B",
+            "O3'",
+            "O3A",
+            "O4'",
+            "O5'",
+            "PA",
+            "PB"
+          ],
+          "auth_seq_id": "601",
+          "has_pb": true,
+          "has_pg": false,
+          "is_legacy_anp_pb_no_pg": true,
+          "label_asym_id": "C",
+          "nearest_heteromeric_acceptor_to_pb": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "12",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "12",
+            "candidate_residue_code": "SER",
+            "nearest_pb_distance_angstrom": 6.053
+          }
+        }
+      ],
+      "near_threshold_local_metal_context": [
+        {
+          "auth_seq_id": "604",
+          "chain": "A",
+          "distance_angstrom": 3.48,
+          "metal_code": "MG"
+        }
+      ],
+      "nearest_heteromeric_acceptor_to_pb": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "12",
+        "candidate_chain_name": "B",
+        "candidate_entity_id": "2",
+        "candidate_label_seq_id": "12",
+        "candidate_residue_code": "SER",
+        "nearest_pb_distance_angstrom": 6.053
+      },
+      "nearest_pb_distance_angstrom": 6.053,
+      "pdb_id": "5LI1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Par-3 partitioning defective 3 homolog (C. elegans)",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q28E03"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "near_threshold_inhibitory_peptide_not_strict_positive_review_only",
+      "source_mapping_note": "Par3 inhibitory/access-control peptide is not accepted as a clean transfer-state substrate positive; nearest Par3 Ser12 OG is 6.053 Angstrom from legacy ANP PB, just outside the strict 6 Angstrom cutoff, with one local Mg near PB.",
+      "title": "Structure of a Par3-inhibitory peptide bound to PKCiota core kinase domain"
+    }
+  ]
+}

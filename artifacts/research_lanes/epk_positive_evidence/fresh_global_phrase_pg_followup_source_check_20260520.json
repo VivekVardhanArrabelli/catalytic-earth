@@ -1,0 +1,264 @@
+{
+  "evidence_against": [
+    "9M5Y: fresh_global_phrase_kinase_regulatory_complex_geometry_negative_review_only",
+    "9M6G: fresh_global_phrase_kinase_regulatory_complex_geometry_negative_review_only",
+    "9O0V: fresh_global_phrase_raf_mek_complex_geometry_negative_review_only"
+  ],
+  "metadata": {
+    "fresh_clean_positive_count": 0,
+    "fresh_kinase_like_rows_reviewed": 3,
+    "generated_at": "2026-05-20T19:39:09Z",
+    "input_artifact": "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_global_phrase_scout_20260520.json",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "fresh_global_phrase_pg_followup_source_check",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recommendation": "Treat 9M5Y, 9M6G, and 9O0V as fresh phrase-scout negatives; do not use them as clean folded-substrate positives.",
+    "review_only": true
+  },
+  "rows": [
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the Ca 2+ /CaM-mediated regulation of CASK-CaMK.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 1,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "147",
+          "candidate_chain_name": "B",
+          "candidate_entity_id": "2",
+          "candidate_label_seq_id": "151",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 23.496
+        }
+      ],
+      "pdb_id": "9M5Y",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Peripheral plasma membrane protein CASK",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O14936"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Calmodulin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0DP29"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "fresh_global_phrase_kinase_regulatory_complex_geometry_negative_review_only",
+      "source_mapping_note": "CASK/CaM regulatory complex has ANP PG on CASK, but nearest heteromeric calmodulin acceptor is >23 Angstrom and no substrate phosphoacceptor maps within 6 Angstrom.",
+      "title": "the crystal structure of the Ca2+/CaM-CASK-CaMK complex"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the Ca 2+ /CaM-mediated regulation of CASK-CaMK.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 1,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_entity_id": "1",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "147",
+          "candidate_chain_name": "B",
+          "candidate_entity_id": "2",
+          "candidate_label_seq_id": "151",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "401",
+          "gamma_chain_name": "A",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 23.877
+        }
+      ],
+      "pdb_id": "9M6G",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Peripheral plasma membrane protein CASK",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O14936"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Calmodulin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0DP29"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Amyloid-beta A4 precursor protein-binding family A member 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O35430"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "fresh_global_phrase_kinase_regulatory_complex_geometry_negative_review_only",
+      "source_mapping_note": "CASK/CaM regulatory complex has ANP PG on CASK, but nearest heteromeric calmodulin acceptor is >23 Angstrom and no substrate phosphoacceptor maps within 6 Angstrom.",
+      "title": "the crystal structure of the Ca2+/CaM-CASK-CaMK-Mint1-CID complex"
+    },
+    {
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Characterization and inhibitor sensitivity of ARAF, BRAF, and CRAF kinases.",
+        "year": 2025
+      },
+      "donor_gamma_atom_count": 4,
+      "heteromeric_candidate_hit_count_within_6": 0,
+      "labels_or_fingerprints_changed": false,
+      "nearest_heteromeric_acceptors_by_gamma": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_entity_id": "2",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "359",
+          "candidate_chain_name": "A",
+          "candidate_entity_id": "1",
+          "candidate_label_seq_id": "24",
+          "candidate_residue_code": "SER",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "B",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 10.481
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_entity_id": "2",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "506",
+          "candidate_chain_name": "C",
+          "candidate_entity_id": "1",
+          "candidate_label_seq_id": "171",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "D",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 13.603
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_entity_id": "2",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "506",
+          "candidate_chain_name": "E",
+          "candidate_entity_id": "1",
+          "candidate_label_seq_id": "171",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "F",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 14.86
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "H",
+          "associated_polymer_entity_id": "2",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "506",
+          "candidate_chain_name": "G",
+          "candidate_entity_id": "1",
+          "candidate_label_seq_id": "171",
+          "candidate_residue_code": "THR",
+          "gamma_atom_name": "PG",
+          "gamma_auth_seq_id": "402",
+          "gamma_chain_name": "H",
+          "gamma_ligand_code": "ANP",
+          "nearest_gamma_distance_angstrom": 12.231
+        }
+      ],
+      "pdb_id": "9O0V",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C",
+            "E",
+            "G"
+          ],
+          "description": "RAF proto-oncogene serine/threonine-protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D",
+            "F",
+            "H"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "source_check_status": "fresh_global_phrase_raf_mek_complex_geometry_negative_review_only",
+      "source_mapping_note": "CRAF/MEK1 complex has ANP PG associated with MEK1 chains, not RAF donor-to-MEK substrate transfer geometry; nearest heteromeric RAF hydroxyls are 10.481-14.860 Angstrom away.",
+      "title": "Crystal structure of CRAF/MEK1 complex with PLX4720, CH5126766, and AMPPNP"
+    }
+  ]
+}
