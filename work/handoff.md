@@ -50,6 +50,47 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T17:15:21Z automation run,
+`artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json`
+turns the frozen 15-row glycoside hydrolase control tranche into terminal
+review-only decisions. Candidate selection remained frozen before outcome
+scoring. The packet uses existing preregistered axes and duplicate-screen
+evidence only: bounded current-reference sequence search, external all-vs-all
+sequence search, external structural clustering, the prior P33025
+current-countable structural duplicate screen, active-site/source evidence,
+Q6NSJ0 glycoside boundary/import-safety artifacts, and current 1,000-slice
+geometry/retrieval context for the 10 production controls.
+
+The terminal decision counts are 10 `mechanism_match` current-control rows, 2
+`ambiguous` external rows (`P30176` and `P29372`), 1 `needs_review` boundary row
+(`Q6NSJ0`), and 2 `terminal_rejection` rows (`P33025` and `O60568`). All five
+external rows have bounded current-reference sequence no-signal and external
+all-vs-all structural no-signal, but only P33025 has a prior current-countable
+structural duplicate signal and is therefore rejected on that axis. Q6NSJ0
+remains useful boundary evidence but not import-ready: source-traced acidic
+dyad/glycan-pocket context exists, while source-free axis, broader duplicate
+screening, terminal review, and factory gates remain unresolved.
+
+Evidence-based confidence call: confidence is high that the frozen glycoside
+tranche produced a visible small win without label import, registry edits, or
+fingerprint expansion. Confidence is high that glycoside hydrolase is still a
+no-go production fingerprint because the source-free glycoside axis ready count
+is 0. Confidence is moderate that future useful work should resolve
+source-free acidic-dyad/glycan-pocket axes and current-countable structural
+duplicate coverage for unresolved external rows before any import path.
+
+The same run adds
+`artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json`
+as a modern baseline diagnostic for the frozen tranche. It compares the
+terminal axis packet with EC/protein-name keyword routing, MMseqs2
+current-reference sequence search, a deterministic 5-mer nearest-neighbor
+baseline, available ESM-2 sidecars, and the all-30 Foldseek external sidecar.
+It makes no superiority claim: 5/5 external rows have sequence no-signal and
+external Foldseek no-signal, the deterministic 5-mer baseline has 0
+near-neighbor alerts at the diagnostic threshold, and ESM-2 sidecars cover only
+2/5 external rows. The Foldseek sidecar is external-external only and does not
+replace current-countable structural duplicate screening.
+
 As of the 2026-05-20T17:08:53Z automation run, fresh ePK research-lane
 outputs pushed after the prior main synthesis, plus newer dirty sibling
 worktree outputs, are integrated in

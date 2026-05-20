@@ -436,6 +436,96 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             prereg["frozen_before_scoring_statement"],
         )
 
+    def test_glycoside_hydrolase_control_tranche_decisions_stay_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json"
+        )
+        metadata = packet["metadata"]
+        conclusion = packet["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 15)
+        self.assertEqual(metadata["external_candidate_count"], 5)
+        self.assertEqual(metadata["current_control_count"], 10)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {
+                "ambiguous": 2,
+                "mechanism_match": 10,
+                "needs_review": 1,
+                "terminal_rejection": 2,
+            },
+        )
+        self.assertEqual(metadata["external_sequence_no_signal_count"], 5)
+        self.assertEqual(metadata["external_all_vs_all_structural_no_signal_count"], 5)
+        self.assertEqual(metadata["current_countable_structural_duplicate_signal_count"], 1)
+        self.assertEqual(metadata["source_free_glycoside_axis_ready_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in packet["rows"]}
+        self.assertEqual(rows["uniprot:Q6NSJ0"]["terminal_decision"], "needs_review")
+        self.assertEqual(rows["uniprot:P33025"]["terminal_decision"], "terminal_rejection")
+        self.assertEqual(rows["uniprot:O60568"]["terminal_decision"], "terminal_rejection")
+        self.assertTrue(
+            all(
+                row["terminal_decision"] == "mechanism_match"
+                for row in rows.values()
+                if row["row_id"].startswith("m_csa:")
+            )
+        )
+        self.assertEqual(
+            conclusion["production_fingerprint_decision"],
+            "do_not_promote_glycoside_hydrolase_fingerprint",
+        )
+        self.assertEqual(conclusion["label_import_decision"], "no_import_ready_rows")
+        self.assertFalse(packet["next_experiment"]["decision_to_start_now"])
+
+    def test_glycoside_hydrolase_tranche_baseline_comparison_makes_no_claim(self) -> None:
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json"
+        )
+        metadata = comparison["metadata"]
+        metrics = comparison["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertEqual(metadata["frozen_row_count"], 15)
+        self.assertEqual(metadata["external_row_count"], 5)
+        self.assertEqual(metadata["current_control_row_count"], 10)
+
+        self.assertEqual(
+            metrics["terminal_axis_packet"],
+            {
+                "ambiguous": 2,
+                "mechanism_match": 10,
+                "needs_review": 1,
+                "terminal_rejection": 2,
+            },
+        )
+        self.assertFalse(metrics["ec_keyword_baseline"]["predictive_use_allowed"])
+        self.assertEqual(
+            metrics["deterministic_kmer5_nearest_neighbor"]["near_neighbor_alert_count"],
+            0,
+        )
+        self.assertEqual(
+            metrics["foldseek_external_all30_sidecar"][
+                "no_external_structural_neighbor_above_threshold_count"
+            ],
+            5,
+        )
+        self.assertEqual(metrics["esm2_sidecars"]["esm2_8m_available_row_count"], 2)
+        self.assertTrue(
+            any("does not replace current-countable" in caveat for caveat in comparison["caveats"])
+        )
+
     def test_minicampaign_sequence_baseline_diagnostic_is_non_import_evidence(self) -> None:
         diagnostic = _load_json(
             ARTIFACTS

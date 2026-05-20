@@ -1,0 +1,1217 @@
+{
+  "axis_policy": {
+    "allowed_review_only_axes": [
+      "source-free acidic-dyad local geometry",
+      "metal-ligand presence or absence",
+      "glycan/substrate-pocket local geometry",
+      "current 8-fingerprint calibrated abstention surface"
+    ],
+    "excluded_predictive_inputs": [
+      "EC labels",
+      "protein names",
+      "UniProt prose",
+      "Rhea/InterPro/source annotations",
+      "known terminal decisions",
+      "post-hoc score outcomes"
+    ],
+    "note": "This artifact summarizes frozen-row axes and existing duplicate screens. Source annotations remain review context, not production scoring evidence."
+  },
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_id": "v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T17:15:21Z",
+    "curated_label_registry_edited": false,
+    "current_control_count": 10,
+    "current_countable_structural_duplicate_signal_count": 1,
+    "experiment_id": "glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only",
+    "external_all_vs_all_structural_no_signal_count": 5,
+    "external_candidate_count": 5,
+    "external_sequence_no_signal_count": 5,
+    "family_id": "glycoside_hydrolase",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 15,
+    "git_history_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "glycoside_hydrolase_control_tranche_review_only_axis_decisions",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_glycoside_axis_ready_count": 0,
+    "terminal_decision_counts": {
+      "ambiguous": 2,
+      "mechanism_match": 10,
+      "needs_review": 1,
+      "terminal_rejection": 2
+    }
+  },
+  "next_experiment": {
+    "decision_to_start_now": false,
+    "required_before_any_future_import": [
+      "source-free acidic-dyad and glycan-pocket local axis frozen before scoring",
+      "current-countable structural duplicate screen completed for any external row not already terminally rejected",
+      "expert or terminal review decision for Q6NSJ0 if it remains a boundary positive-like row",
+      "full label-factory and external-transfer gates before any countable label change"
+    ],
+    "status": "deferred_until_source_free_axis_and_duplicate_screen_gaps_are_resolved"
+  },
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "acidic_dyad_axis": {
+        "acidic_active_site_spacing_values": [
+          57
+        ],
+        "acidic_source_active_site_positions": [
+          463,
+          520
+        ],
+        "acidic_source_active_site_residue_count": 2,
+        "active_site_residue_windows": [
+          {
+            "position": 463,
+            "residue": "D",
+            "sequence_window": "LRSRYSVASFKFDAGEVSYLPRDFS",
+            "window_end": 475,
+            "window_start": 451
+          },
+          {
+            "position": 520,
+            "residue": "D",
+            "sequence_window": "QSQNISCFFRLVDRDSVWGYDLGLR",
+            "window_end": 532,
+            "window_start": 508
+          }
+        ],
+        "has_acidic_active_site_pair": true,
+        "sequence_length": 714,
+        "source_active_site_positions": [
+          463,
+          520
+        ],
+        "source_free_position_policy_ready": false,
+        "source_traced_active_site_feature_count": 2,
+        "source_traced_active_site_positions": [
+          463,
+          520
+        ],
+        "status": "source_traced_acidic_pair_present_not_source_free"
+      },
+      "active_site_decision_status": "explicit_active_site_source_present",
+      "countable_label_candidate": false,
+      "freeze_rank": 1,
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.2647,
+        "binding_ligand_ids": [
+          "ChEBI:CHEBI:46953"
+        ],
+        "binding_ligand_names": [
+          "an alpha-D-galactoside"
+        ],
+        "binding_site_feature_count": 8,
+        "direct_local_glycan_geometry_ready": false,
+        "nearby_acidic_residue_count": 7,
+        "nearby_aromatic_residue_count": 8,
+        "nearby_residue_count": 34,
+        "negative_fraction": 0.2059,
+        "status": "source_traced_glycan_binding_and_pocket_boundary_context_present"
+      },
+      "import_safety_status": "glycoside_boundary_representation_conflict_repaired",
+      "metal_or_cofactor_axis": {
+        "binding_ligand_ids": [
+          "ChEBI:CHEBI:46953"
+        ],
+        "binding_ligand_names": [
+          "an alpha-D-galactoside"
+        ],
+        "matched_signature_roles": [
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu/Cys",
+            "required_role": "metal_ligand",
+            "role_hint_match": false
+          },
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu",
+            "required_role": "water_activator",
+            "role_hint_match": false
+          }
+        ],
+        "metal_binding_context_present": false,
+        "metal_ligand_context_absent": true,
+        "metal_role_hint_match_count": 0,
+        "status": "source_traced_absent_metal_role_context_for_boundary_control",
+        "top1_residue_match_fraction": 0.6667,
+        "top1_role_match_fraction": 0.0
+      },
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "review_decision_not_terminal"
+      ],
+      "row_id": "uniprot:Q6NSJ0",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "bounded_current_reference_near_duplicate_hit_count": 0,
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_structural_screen_available": false,
+        "current_countable_structural_status": "not_run_for_this_tranche_row",
+        "external_all_vs_all_sequence_near_duplicate_hit_count": 0,
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_all_vs_all_structural_status": "no_external_structural_neighbor_above_threshold",
+        "external_nearest_neighbor": {
+          "accession": "P60174",
+          "tm_score": 0.5931
+        }
+      },
+      "source_terminal_status": "deferred_requires_human_expert",
+      "terminal_decision": "needs_review",
+      "terminal_decision_reason": "source-traced acidic dyad and glycan pocket context support a boundary control, but source-free axis, broader duplicate screen, terminal review, and full factory gates remain unresolved"
+    },
+    {
+      "accession": "P30176",
+      "acidic_dyad_axis": {
+        "source_free_position_policy_ready": false,
+        "source_traced_active_site_feature_count": 0,
+        "source_traced_active_site_positions": [],
+        "status": "defer_broad_ec_disambiguation"
+      },
+      "active_site_decision_status": null,
+      "countable_label_candidate": false,
+      "freeze_rank": 2,
+      "glycan_or_substrate_pocket_axis": {
+        "binding_ligand_ids": [],
+        "binding_ligand_names": [],
+        "binding_site_feature_count": 0,
+        "direct_local_glycan_geometry_ready": false,
+        "status": "broad_ec_disambiguation_required_before_active_site_axis"
+      },
+      "import_safety_status": null,
+      "metal_or_cofactor_axis": {
+        "binding_ligand_ids": [],
+        "binding_ligand_names": [],
+        "metal_binding_context_present": false,
+        "status": "no_direct_local_metal_axis_computed"
+      },
+      "protein_name": "N-glycosidase YbiA (EC 3.2.2.-) (Riboflavin biosynthesis intermediates N-glycosidase)",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [],
+      "row_id": "uniprot:P30176",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "bounded_current_reference_near_duplicate_hit_count": 0,
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_structural_screen_available": false,
+        "current_countable_structural_status": "not_run_for_this_tranche_row",
+        "external_all_vs_all_sequence_near_duplicate_hit_count": 0,
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_all_vs_all_structural_status": "no_external_structural_neighbor_above_threshold",
+        "external_nearest_neighbor": {
+          "accession": "O15247",
+          "tm_score": 0.4245
+        }
+      },
+      "source_terminal_status": null,
+      "terminal_decision": "ambiguous",
+      "terminal_decision_reason": "broad EC disambiguation and active-site evidence sampling are unresolved despite sequence and external-structural no-signal screens"
+    },
+    {
+      "accession": "P29372",
+      "acidic_dyad_axis": {
+        "source_free_position_policy_ready": false,
+        "source_traced_active_site_feature_count": 0,
+        "source_traced_active_site_positions": [],
+        "status": "reaction_context_only_no_active_site_positions"
+      },
+      "active_site_decision_status": null,
+      "countable_label_candidate": false,
+      "freeze_rank": 3,
+      "glycan_or_substrate_pocket_axis": {
+        "binding_ligand_ids": [],
+        "binding_ligand_names": [],
+        "binding_site_feature_count": 0,
+        "direct_local_glycan_geometry_ready": false,
+        "status": "reaction_context_only_no_active_site_positions"
+      },
+      "import_safety_status": null,
+      "metal_or_cofactor_axis": {
+        "binding_ligand_ids": [],
+        "binding_ligand_names": [],
+        "metal_binding_context_present": false,
+        "status": "no_direct_local_metal_axis_computed"
+      },
+      "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [],
+      "row_id": "uniprot:P29372",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "bounded_current_reference_near_duplicate_hit_count": 0,
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_structural_screen_available": false,
+        "current_countable_structural_status": "not_run_for_this_tranche_row",
+        "external_all_vs_all_sequence_near_duplicate_hit_count": 0,
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_all_vs_all_structural_status": "no_external_structural_neighbor_above_threshold",
+        "external_nearest_neighbor": {
+          "accession": "Q969G6",
+          "tm_score": 0.4322
+        }
+      },
+      "source_terminal_status": null,
+      "terminal_decision": "ambiguous",
+      "terminal_decision_reason": "DNA glycosylase reaction context is present but active-site sourcing resolution found reaction-context-only evidence with no active-site positions"
+    },
+    {
+      "accession": "P33025",
+      "acidic_dyad_axis": {
+        "source_free_position_policy_ready": false,
+        "source_traced_active_site_feature_count": 2,
+        "source_traced_active_site_positions": [
+          31,
+          166
+        ],
+        "status": "ready_for_active_site_evidence"
+      },
+      "active_site_decision_status": null,
+      "countable_label_candidate": false,
+      "freeze_rank": 4,
+      "glycan_or_substrate_pocket_axis": {
+        "binding_ligand_ids": [
+          "ChEBI:CHEBI:29035"
+        ],
+        "binding_ligand_names": [
+          "Mn(2+)",
+          "substrate"
+        ],
+        "binding_site_feature_count": 4,
+        "direct_local_glycan_geometry_ready": false,
+        "status": "source_traced_substrate_binding_context_present_with_mn_context"
+      },
+      "import_safety_status": null,
+      "metal_or_cofactor_axis": {
+        "binding_ligand_ids": [
+          "ChEBI:CHEBI:29035"
+        ],
+        "binding_ligand_names": [
+          "Mn(2+)",
+          "substrate"
+        ],
+        "metal_binding_context_present": true,
+        "status": "source_traced_mn_binding_context_present"
+      },
+      "protein_name": "Pseudouridine-5'-phosphate glycosidase (PsiMP glycosidase) (EC 4.2.1.70)",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "full_label_factory_gate_not_run_after_duplicate_rejection",
+        "no_import_ready_external_rows"
+      ],
+      "row_id": "uniprot:P33025",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "bounded_current_reference_near_duplicate_hit_count": 0,
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_remaining_blockers": [
+          "current_countable_structural_duplicate_signal",
+          "current_countable_structural_pair_cache_incomplete",
+          "full_label_factory_gate_not_run",
+          "terminal_review_decision_not_accepted",
+          "uniref_wide_duplicate_screening_required"
+        ],
+        "current_countable_structural_screen_available": true,
+        "current_countable_structural_status": "current_countable_structural_duplicate_signal",
+        "external_all_vs_all_sequence_near_duplicate_hit_count": 0,
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_all_vs_all_structural_status": "no_external_structural_neighbor_above_threshold",
+        "external_nearest_neighbor": {
+          "accession": "Q9Y5N5",
+          "tm_score": 0.5061
+        }
+      },
+      "source_terminal_status": "external_hard_negative_second_tranche_terminal_decision_review_only",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "prior current-countable structural duplicate screen rejected this row despite source-traced active-site/substrate/Mn context"
+    },
+    {
+      "accession": "O60568",
+      "acidic_dyad_axis": {
+        "source_free_position_policy_ready": false,
+        "source_traced_active_site_feature_count": 0,
+        "source_traced_active_site_positions": [],
+        "status": "binding_and_reaction_context_only_no_active_site_positions"
+      },
+      "active_site_decision_status": "binding_context_only",
+      "countable_label_candidate": false,
+      "freeze_rank": 5,
+      "glycan_or_substrate_pocket_axis": {
+        "binding_ligand_ids": [
+          "ChEBI:CHEBI:16810",
+          "ChEBI:CHEBI:24875",
+          "ChEBI:CHEBI:29035",
+          "ChEBI:CHEBI:58223"
+        ],
+        "binding_ligand_names": [
+          "2-oxoglutarate",
+          "Fe cation",
+          "Mn(2+)",
+          "UDP"
+        ],
+        "binding_site_feature_count": 13,
+        "direct_local_glycan_geometry_ready": false,
+        "status": "udp_metal_binding_context_only_active_site_missing"
+      },
+      "import_safety_status": null,
+      "metal_or_cofactor_axis": {
+        "binding_ligand_ids": [
+          "ChEBI:CHEBI:16810",
+          "ChEBI:CHEBI:24875",
+          "ChEBI:CHEBI:29035",
+          "ChEBI:CHEBI:58223"
+        ],
+        "binding_ligand_names": [
+          "2-oxoglutarate",
+          "Fe cation",
+          "Mn(2+)",
+          "UDP"
+        ],
+        "metal_binding_context_present": true,
+        "status": "source_traced_metal_binding_context_present_but_active_site_missing"
+      },
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [],
+      "row_id": "uniprot:O60568",
+      "row_role": "external_glycan_or_glycoside_candidate",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "bounded_current_reference_near_duplicate_hit_count": 0,
+        "bounded_current_reference_sequence_status": "no_near_duplicate_signal",
+        "current_countable_structural_screen_available": false,
+        "current_countable_structural_status": "not_run_for_this_tranche_row",
+        "external_all_vs_all_sequence_near_duplicate_hit_count": 0,
+        "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+        "external_all_vs_all_structural_status": "no_external_structural_neighbor_above_threshold",
+        "external_nearest_neighbor": {
+          "accession": "Q9Y5N5",
+          "tm_score": 0.4844
+        }
+      },
+      "source_terminal_status": "rejected_active_site_evidence_missing",
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "pilot terminal decision rejected active-site evidence missing; current local axis has only binding context for UDP, Mn/Fe, and 2-oxoglutarate"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 1,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor",
+        "metal ligand",
+        "steric role"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5777
+      },
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 6,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.1127,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 71,
+        "negative_fraction": 0.0845,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "ZN",
+          "NA"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "metal_ligand_role_present": true,
+        "proximal_ligand_codes": [
+          "ZN"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "pdb_id": "1ZNB",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Asp",
+        "Cys",
+        "Asn",
+        "His",
+        "His",
+        "His",
+        "His",
+        "Lys"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 1,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "metal ligand",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5929
+      },
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 7,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.0862,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 58,
+        "negative_fraction": 0.1379,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "ZN",
+          "SO4"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "metal_ligand_role_present": true,
+        "proximal_ligand_codes": [
+          "ZN"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "pdb_id": "1BC2",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Asp",
+        "Asn",
+        "His",
+        "His",
+        "His"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 4,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "metal ligand",
+        "transition state stabiliser"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.58
+      },
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 8,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.1341,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 82,
+        "negative_fraction": 0.0488,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "3DR",
+          "ZN"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "metal_ligand_role_present": true,
+        "proximal_ligand_codes": [
+          "3DR",
+          "ZN"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "pdb_id": "1QUM",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Arg",
+        "Asp",
+        "His",
+        "Tyr",
+        "His",
+        "Glu",
+        "Asp",
+        "His",
+        "Glu",
+        "His",
+        "His"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:11",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 3,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "metal ligand",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5842
+      },
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 9,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.2375,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 80,
+        "negative_fraction": 0.075,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "ZN"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "metal_ligand_role_present": true,
+        "proximal_ligand_codes": [
+          "ZN"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "pdb_id": "1AH7",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Asp",
+        "His",
+        "Asp",
+        "His",
+        "His",
+        "Glu",
+        "His",
+        "His"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:27",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 3,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "increase acidity",
+        "metal ligand",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.6053
+      },
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "freeze_rank": 10,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.2075,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 53,
+        "negative_fraction": 0.0189,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "I3P",
+          "CA",
+          "ACT"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "metal_ligand_role_present": true,
+        "proximal_ligand_codes": [
+          "I3P",
+          "CA"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "pdb_id": "1DJX",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Glu",
+        "His",
+        "Glu",
+        "His",
+        "Asn",
+        "Asp"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:28",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 1,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "covalently attached",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "increase acidity",
+        "increase basicity",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8877
+      },
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 11,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.1897,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 58,
+        "negative_fraction": 0.1034,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "ACY",
+          "NAG",
+          "FUC",
+          "GOL"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [],
+        "metal_ligand_role_present": false,
+        "proximal_ligand_codes": [
+          "ACY"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": []
+      },
+      "pdb_id": "1WHS",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Gly",
+        "Ser",
+        "Tyr",
+        "Asp",
+        "His"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:5",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 1,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "activator",
+        "covalently attached",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8774
+      },
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 12,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.1957,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 46,
+        "negative_fraction": 0.0652,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "ACT"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [],
+        "metal_ligand_role_present": false,
+        "proximal_ligand_codes": [
+          "ACT"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": []
+      },
+      "pdb_id": "1WAB",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Ser",
+        "Gly",
+        "Asn",
+        "Asp",
+        "His"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:94",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 1,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "activator",
+        "covalently attached",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8688
+      },
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 13,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.2708,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 48,
+        "negative_fraction": 0.1458,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "NAG"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [],
+        "metal_ligand_role_present": false,
+        "proximal_ligand_codes": [],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": []
+      },
+      "pdb_id": "1PFQ",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Tyr",
+        "Tyr",
+        "Ser",
+        "Asp",
+        "His"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:169",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 2,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "activator",
+        "covalently attached",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor",
+        "transition state stabiliser"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8986
+      },
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 14,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.1333,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 60,
+        "negative_fraction": 0.0167,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "ARG",
+          "SO4"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [],
+        "metal_ligand_role_present": false,
+        "proximal_ligand_codes": [
+          "ARG"
+        ],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": []
+      },
+      "pdb_id": "1PQ5",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Gly",
+        "Ser",
+        "Gln",
+        "His",
+        "Asp",
+        "Ser",
+        "Asp"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:173",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    },
+    {
+      "acidic_dyad_axis": {
+        "acidic_residue_count": 1,
+        "source_free_glycoside_hydrolase_axis_ready": false,
+        "status": "current_control_axis_context_only"
+      },
+      "active_site_roles": [
+        "activator",
+        "covalently attached",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "countable_label_candidate": false,
+      "current_fingerprint_retrieval_context": {
+        "cofactor_evidence_level": "not_required",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8987
+      },
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "freeze_rank": 15,
+      "geometry_status": "ok",
+      "glycan_or_substrate_pocket_axis": {
+        "aromatic_fraction": 0.2708,
+        "direct_glycan_geometry_ready_for_new_family": false,
+        "nearby_residue_count": 48,
+        "negative_fraction": 0.0625,
+        "status": "current_control_pocket_context_only",
+        "structure_ligand_codes": [
+          "CA"
+        ]
+      },
+      "label_type": "seed_fingerprint",
+      "metal_or_cofactor_axis": {
+        "cofactor_families": [],
+        "metal_ligand_role_present": false,
+        "proximal_ligand_codes": [],
+        "status": "current_control_local_ligand_context",
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "pdb_id": "1HPL",
+      "ready_for_label_import": false,
+      "residue_codes": [
+        "Leu",
+        "Ser",
+        "Asp",
+        "His",
+        "Phe"
+      ],
+      "review_status_at_decision": "automation_curated",
+      "row_id": "m_csa:218",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "sequence_duplicate_screen": {
+        "status": "not_applicable_current_countable_control"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current registry control retains its existing production fingerprint label and is used only as counterfamily context for this review-only tranche",
+      "tier_at_decision": "bronze"
+    }
+  ],
+  "source_json_validation": [
+    {
+      "json_valid": true,
+      "method": "glycoside_hydrolase_control_tranche_preregistration",
+      "path": "artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json",
+      "sha256": "f5c3645d219e7830e498e430dcfede68fc3f95df3b304b66fabcac6012bc8cde"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_backend_sequence_search",
+      "path": "artifacts/v3_external_source_backend_sequence_search_1025.json",
+      "sha256": "d603b00bc35a2530e9a847a6e3521840010d7ec482fd9fafddadc12807d65b81"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_all_vs_all_sequence_search",
+      "path": "artifacts/v3_external_source_all_vs_all_sequence_search_1025.json",
+      "sha256": "fe52dcc5612bee63d808b59007dd4f019cbcab77b3ba18c60dc55a355946e74a"
+    },
+    {
+      "json_valid": true,
+      "method": "external_structural_cluster_index",
+      "path": "artifacts/v3_external_structural_cluster_index_1025_all30.json",
+      "sha256": "88f67f528a880ca5538466acdc4e6e2987868ff4b2cdc57b44969bf4129ec928"
+    },
+    {
+      "json_valid": true,
+      "method": "external_hard_negative_second_tranche_current_countable_structural_screen",
+      "path": "artifacts/v3_external_hard_negative_second_tranche_current_countable_structural_screen_1025.json",
+      "sha256": "dfe753f536fa8282c3544f1e9e79840ba15aec9c2b7faa03a3f1e72b28b06ed1"
+    },
+    {
+      "json_valid": true,
+      "method": "external_hard_negative_second_tranche_terminal_decisions",
+      "path": "artifacts/v3_external_hard_negative_second_tranche_terminal_decisions_1025.json",
+      "sha256": "8696143a832ea592fdb52f75322058ab6980ce786a03276017f12793831ad57e"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_terminal_decisions",
+      "path": "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+      "sha256": "7f005ed853ecde500cd17adf600ad84dcd38c6aa685896220bf66c8890d8b4c4"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_active_site_evidence_queue",
+      "path": "artifacts/v3_external_source_active_site_evidence_queue_1025.json",
+      "sha256": "ad48e1f8ab3c0e706693f649b1bf96e4cbef8b3640bc30074c91ad4afe012019"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_active_site_sourcing_resolution",
+      "path": "artifacts/v3_external_source_active_site_sourcing_resolution_1025.json",
+      "sha256": "4ae5917cb7882171c616f0a7e9ad2b6be7c6876a8b8aef58c16717bcae210b7b"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_active_site_evidence_sample",
+      "path": "artifacts/v3_external_source_active_site_evidence_sample_1025.json",
+      "sha256": "af592dfeccf34fd57d3d84f1430f05c36a3c7c8147dd986c4661222036d51139"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_active_site_evidence_decisions",
+      "path": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+      "sha256": "a5c8056dfc8258f5cd67d06bbfbe150192633ab2c0ea7f1eb4ff5407156a6aaf"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_glycoside_hydrolase_boundary_control",
+      "path": "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json",
+      "sha256": "d55bc4aefbab34c418690a2dc7e9d2eab651d0c8483ef0d5e149b984ae89730d"
+    },
+    {
+      "json_valid": true,
+      "method": "external_source_pilot_glycoside_hydrolase_import_safety_adjudication",
+      "path": "artifacts/v3_external_source_pilot_glycoside_hydrolase_import_safety_adjudication_1025.json",
+      "sha256": "6c3a87e39d6794b8ee646a542369e5ce7ad85ea0ca86bd02c581ca48d3cae436"
+    },
+    {
+      "json_valid": true,
+      "method": null,
+      "path": "artifacts/v3_geometry_features_1000.json",
+      "sha256": "9c57e16535a7a66a4892fdea3d2a8d83087f6b0ede31f1135fb2ad64585f0e55"
+    },
+    {
+      "json_valid": true,
+      "method": "geometry_aware_seed_fingerprint_retrieval",
+      "path": "artifacts/v3_geometry_retrieval_1000.json",
+      "sha256": "bf1119e915492e25b2a1c4494d987ddfc81cf64ff43ef83f498a91d83c392ddd"
+    },
+    {
+      "json_valid": true,
+      "method": "curated_mechanism_label_registry",
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "f30dd8fb8afe1a7d4ed91be38254851dd91dc3889ca856662c889cf177e6e3c3"
+    }
+  ],
+  "synthesis_conclusion": {
+    "label_import_decision": "no_import_ready_rows",
+    "main_loop_decision": "glycoside_tranche_closed_as_review_only_small_win",
+    "overall": "review_only_tranche_scored_to_terminal_decisions_without_import",
+    "production_fingerprint_decision": "do_not_promote_glycoside_hydrolase_fingerprint",
+    "terminal_summary": "Q6NSJ0 remains needs_review; P30176 and P29372 are ambiguous; P33025 and O60568 are terminal rejections; 10 current controls remain mechanism matches to existing production fingerprints."
+  }
+}

@@ -114,6 +114,17 @@ production-fingerprint scoring, and it authorizes no registry edit, label
 import, threshold, or production scorer. The next work on this tranche must
 compute only the preregistered local axes and duplicate screens before terminal
 decisions.
+`artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json`
+now closes that frozen tranche as review-only terminal evidence. The decisions
+are 10 current-control mechanism matches, Q6NSJ0 as needs-review boundary
+evidence, P30176/P29372 as ambiguous, and P33025/O60568 as terminal
+rejections. No source-free glycoside axis is ready, no row is import-ready, and
+no production fingerprint expansion is authorized.
+`artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json`
+adds a no-superiority baseline diagnostic for the same frozen rows. EC/keyword,
+MMseqs2, deterministic 5-mer, ESM-2 sidecars, and Foldseek external clustering
+remain comparison context only; Foldseek external-external no-signal does not
+replace current-countable structural duplicate screening.
 Current mini-campaign sequence-baseline scope: the sequence diagnostic in
 `artifacts/v3_prospective_external_minicampaign_sequence_baseline_diagnostic_20260520.json`
 is a review-only baseline, not a replacement for Foldseek or factory gates. It

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 218
-- Measured elapsed time: 6819.7 minutes (113.66 hours)
+- Entries: 221
+- Measured elapsed time: 6827.1 minutes (113.79 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,8 +14,8 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1590.6 measured minutes (26.51 hours)
+- ops: 85.3 measured minutes (1.42 hours)
+- post-infra-science: 1597.0 measured minutes (26.62 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,43 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2568
-- Evidence references logged: 2070
+- Artifact references logged: 2582
+- Evidence references logged: 2088
 
 ## Recent Entries
-
-### 2026-05-20T11:24:52.078372+00:00 - post-infra-science
-
-- Task: ePK 4EKK source-mapped substrate-mode tranche
-- Time mode: measured
-- Measured minutes: 31.267
-- Started: 2026-05-20T10:53:16Z
-- Ended: 2026-05-20T11:24:32Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_fresh_stress_amp_pnp_1025.json, artifacts/v3_epk_unified_prototype_broad_stress_with_next_tranche_amp_pnp_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_broad40_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_broad40_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_broad40_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_broad41_80_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_broad41_80_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_candidate_scout_amp_pnp_broad81_92_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_validation_amp_pnp_broad81_92_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 674-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, 4EKK maps to GSK3B P49841 Ser9 with AKT PKB phosphosite support and 3.228 Angstrom gamma distance, broad40 AMP-PNP scout rejects 7ZE5 as non-topology counterexample blocked by substrate-mode/source context, review-only external hard-negative score probe remains 0 non-abstentions, pre-count gate remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 676-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 285 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, JSON validation passed, git diff --check passed, local ENOSPC blocked final broad41-80 and broad81-92 source-review writes
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true. Stopped expansion early because local disk reached ENOSPC.
-
-### 2026-05-20T12:19:46.938589+00:00 - post-infra-science
-
-- Task: ePK substrate-mode recovery and folded-source stress
-- Time mode: measured
-- Measured minutes: 23.9
-- Started: 2026-05-20T11:55:15Z
-- Ended: 2026-05-20T12:19:09Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_broad41_80_1025.json, artifacts/v3_epk_substrate_mode_next_tranche_source_review_amp_pnp_broad81_92_1025.json, artifacts/v3_epk_substrate_mode_tranche_recovery_decision_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_amp_pnp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_amp_pnp_protein_rows41_67_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_atp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_rows31_60_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_rows61_90_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_candidate_scout_anp_protein_rows91_120_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_amp_pnp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_amp_pnp_protein_rows41_67_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_atp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_anp_protein_rows31_60_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_validation_anp_protein_rows61_90_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_amp_pnp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_amp_pnp_protein_rows41_67_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_atp_protein_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_anp_protein_rows31_60_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_source_review_anp_protein_rows61_90_1025.json, artifacts/v3_epk_substrate_mode_folded_source_stress_terminal_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: recovered missing broad41-80 and broad81-92 source-review writes, 4EKK remains only source-mapped measurement-ready review row, 1O6K and 1O6L now carry explicit PKB GSK3 exact AKT1 or chain mapping blocker, folded protein-substrate stress reviewed 11 topology hits with 0 measurement-ready positives, 2JJ2 4HPU 7B56 and 7ZE5 rejected by substrate mode, six ATP-query rows topology-confounded, 1IR3 source-mapping unresolved under generic mapper, 680-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true.
-
-### 2026-05-20T13:17:20.692201+00:00 - post-infra-science
-
-- Task: ePK subagent synthesis plus external mini-campaign and baseline comparison
-- Time mode: measured
-- Measured minutes: 21.033
-- Started: 2026-05-20T12:55:46Z
-- Ended: 2026-05-20T13:16:48Z
-- Artifacts: artifacts/v3_epk_subagent_synthesis_20260520.json, artifacts/v3_prospective_external_minicampaign_candidate_freeze_20260520.json, artifacts/v3_prospective_external_minicampaign_backend_sequence_search_20260520.json, artifacts/v3_prospective_external_minicampaign_current_countable_structural_screen_20260520.json, artifacts/v3_prospective_external_minicampaign_terminal_decisions_20260520.json, artifacts/v3_prospective_external_minicampaign_inverse_gate_scores_20260520.json, artifacts/v3_prospective_external_minicampaign_decision_packet_20260520.json, artifacts/v3_modern_baseline_comparison_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: startup 680-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, ePK subagent synthesis integrated and pushed in commit 45dec98, prospective external mini-campaign froze 12 rows across 3 lanes before scoring, MMseqs2 backend sequence search found 11 no-signal rows and one exact-reference holdout P07237, local Foldseek binary unavailable so structural screen incomplete and 11 rows are needs_review, inverse gate configured with 8 fingerprints at threshold 0.4115 but scored 0 rows due no structurally screened survivors, modern baseline comparison makes no superiority claim, focused artifact tests passed, full 683-test unit discovery passed, validate passed, artifact migration dry-run local-file guard passed with removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external hard negatives unchanged, compileall passed, git diff --check passed
-- Notes: No Phase 2 or 3 artifact migration, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ### 2026-05-20T14:14:08.715044+00:00 - post-infra-science
 
@@ -119,6 +86,39 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 692-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, four sibling ePK research lanes read from worktrees and origin research branches, 54 JSON files and 4 JSONL ledgers validated with 0 errors, ePK remains review-only and production activation no-go, targeted synthesis test passed
 - Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
+
+### 2026-05-20T17:16:23.980051+00:00 - post-infra-science
+
+- Task: Glycoside hydrolase control tranche decisions
+- Time mode: measured
+- Measured minutes: 4.383
+- Started: 2026-05-20T17:12:00Z
+- Ended: 2026-05-20T17:16:23Z
+- Artifacts: artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: frozen 15-row glycoside hydrolase tranche scored only with preregistered review-only axes and existing duplicate-screen evidence, terminal decisions are 10 mechanism_match 2 ambiguous 1 needs_review 2 terminal_rejection, five external rows have bounded sequence no-signal and external all-vs-all structural no-signal, P33025 remains terminal rejection by prior current-countable structural duplicate signal, source-free glycoside axis ready count is 0, targeted artifact test passed, JSON validation passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
+
+### 2026-05-20T17:19:03.090362+00:00 - post-infra-science
+
+- Task: Glycoside hydrolase tranche baseline comparison
+- Time mode: measured
+- Measured minutes: 2.033
+- Started: 2026-05-20T17:17:00Z
+- Ended: 2026-05-20T17:19:02Z
+- Artifacts: artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: baseline comparison covers terminal axis packet EC keyword MMseqs2 deterministic 5-mer ESM-2 sidecars and Foldseek all-30 external sidecar, no superiority claim permitted, deterministic 5-mer near-neighbor alerts 0, external Foldseek no-signal 5 of 5, ESM-2 sidecars available for 2 of 5 external rows, targeted baseline artifact test passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
+
+### 2026-05-20T17:20:38.990082+00:00 - ops
+
+- Task: Final validation for small-win run
+- Time mode: measured
+- Measured minutes: 1.0
+- Started: 2026-05-20T17:19:38Z
+- Ended: 2026-05-20T17:20:38Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: full 694-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, compileall passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation; safety rails preserved.
 
 ## Expectation Updates
 
@@ -293,6 +293,9 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T16:07:10.750132+00:00: Current ePK evidence still does not remove production blockers; the only exact future ePK experiment is deferred review-only fresh substrate-role stress.
 - 2026-05-20T16:21:03.279937+00:00: Next best non-ePK family work is scoring only the preregistered glycoside hydrolase versus metal/ser-his hydrolase review-only tranche; no family is production-ready.
 - 2026-05-20T17:10:02.023049+00:00: Fresh ePK research-lane output reinforces the no-go production decision; main-loop work should continue the preregistered glycoside hydrolase control tranche.
+- 2026-05-20T17:16:23.980051+00:00: Glycoside hydrolase control tranche is closed as a review-only small win; future work needs source-free acidic-dyad/glycan-pocket axes and broader duplicate coverage before any import path.
+- 2026-05-20T17:19:03.090362+00:00: Glycoside baseline comparison is diagnostic only; Foldseek external no-signal does not replace current-countable structural duplicate screening.
+- 2026-05-20T17:20:38.990082+00:00: Small-win run is ready to commit and push with ePK still review-only and glycoside hydrolase still no-go for production.
 
 ## Scope Adjustments
 
@@ -410,3 +413,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T16:07:10.750132+00:00: Fresh ePK research-lane outputs are synthesized as review-only evidence; main loop should continue non-ePK small wins instead of ePK default work.
 - 2026-05-20T16:21:03.279937+00:00: Main loop has concrete non-ePK family-readiness small wins and a frozen glycoside hydrolase control tranche for the next review-only experiment.
 - 2026-05-20T17:10:02.023049+00:00: ePK lane synthesis now includes later pushed and dirty sibling-worktree evidence without copying production changes; PKA/CFTR mapping is research-lane-only if reopened.
+- 2026-05-20T17:16:23.980051+00:00: Glycoside hydrolase remains no-go for production fingerprint expansion; Q6NSJ0 is needs-review boundary evidence, not a label import candidate.
+- 2026-05-20T17:19:03.090362+00:00: Modern baseline comparison now exists for the glycoside tranche without authorizing production scoring or import.

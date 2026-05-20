@@ -1,0 +1,325 @@
+{
+  "caveats": [
+    "EC/protein-name routing is review context and is excluded from predictive use.",
+    "Deterministic k-mer and ESM sidecars are sequence/representation controls, not mechanism evidence.",
+    "Foldseek all-30 sidecar covers external-external structure only and does not replace current-countable structural duplicate screening.",
+    "The axis packet remains terminal review evidence with 0 import-ready rows."
+  ],
+  "metadata": {
+    "artifact_id": "v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-20T17:18:15Z",
+    "curated_label_registry_edited": false,
+    "current_control_row_count": 10,
+    "deterministic_kmer5_near_neighbor_alert_count": 0,
+    "esm2_150m_available_row_count": 2,
+    "esm2_8m_available_row_count": 2,
+    "external_row_count": 5,
+    "fingerprint_registry_edited": false,
+    "foldseek_external_no_signal_count": 5,
+    "frozen_row_count": 15,
+    "frozen_row_source": "artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json",
+    "method": "glycoside_hydrolase_control_tranche_modern_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "superiority_claim_reason": "Baselines cover different evidence surfaces; the frozen axis packet makes terminal review decisions but does not define a held-out quantitative task."
+  },
+  "metrics": {
+    "deterministic_kmer5_nearest_neighbor": {
+      "max_jaccard": 0.004367,
+      "near_neighbor_alert_count": 0,
+      "near_neighbor_alert_threshold_jaccard": 0.05,
+      "row_count": 5
+    },
+    "ec_keyword_baseline": {
+      "broad_or_context_caveat_count": 3,
+      "predictive_use_allowed": false,
+      "routes_all_external_rows_to_glycan_or_glycoside": 5
+    },
+    "esm2_sidecars": {
+      "esm2_150m_available_row_count": 2,
+      "esm2_8m_available_row_count": 2,
+      "missing_row_count": 3
+    },
+    "foldseek_external_all30_sidecar": {
+      "all_vs_all_pair_cache_complete": true,
+      "no_external_structural_neighbor_above_threshold_count": 5,
+      "row_count": 5
+    },
+    "mmseqs2_current_reference_sequence_search": {
+      "exact_reference_holdout_count": 0,
+      "no_near_duplicate_signal_count": 5
+    },
+    "terminal_axis_packet": {
+      "ambiguous": 2,
+      "mechanism_match": 10,
+      "needs_review": 1,
+      "terminal_rejection": 2
+    }
+  },
+  "rows": [
+    {
+      "accession": "Q6NSJ0",
+      "deterministic_kmer5_near_neighbor_alert": false,
+      "deterministic_kmer5_nearest_neighbor": {
+        "jaccard": 0.003507,
+        "reference_id": "ref__P07547",
+        "shared_kmer_count": 8,
+        "union_kmer_count": 2281
+      },
+      "ec_keyword_baseline_route": "glycan_or_glycoside_keyword_route",
+      "ec_keyword_caveats": [],
+      "entry_id": "uniprot:Q6NSJ0",
+      "esm2_150m_available": true,
+      "esm2_150m_nearest_reference": {
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.926,
+        "length_coverage": 0.9622,
+        "matched_m_csa_entry_ids": [
+          "m_csa:289"
+        ],
+        "reference_accession": "P07342",
+        "screen_near_duplicate_score": 0.0784
+      },
+      "esm2_8m_available": true,
+      "esm2_8m_nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.8958,
+        "length_coverage": 0.9286,
+        "matched_m_csa_entry_ids": [
+          "m_csa:714"
+        ],
+        "reference_accession": "P0ABI8",
+        "screen_near_duplicate_score": 0.0784
+      },
+      "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+      "foldseek_external_nearest_neighbor": {
+        "accession": "P60174",
+        "tm_score": 0.5931
+      },
+      "foldseek_external_status": "no_external_structural_neighbor_above_threshold",
+      "mmseqs_current_reference_status": "no_near_duplicate_signal",
+      "prior_kmer_sidecar_available": true,
+      "prior_kmer_sidecar_nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9175,
+        "length_coverage": 0.9096,
+        "matched_m_csa_entry_ids": [
+          "m_csa:539"
+        ],
+        "reference_accession": "P27002",
+        "screen_near_duplicate_score": 0.0803
+      },
+      "ready_for_label_import": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "accession": "P30176",
+      "deterministic_kmer5_near_neighbor_alert": false,
+      "deterministic_kmer5_nearest_neighbor": {
+        "jaccard": 0.003676,
+        "reference_id": "ref__P95468",
+        "shared_kmer_count": 2,
+        "union_kmer_count": 544
+      },
+      "ec_keyword_baseline_route": "glycan_or_glycoside_keyword_route",
+      "ec_keyword_caveats": [
+        "broad_or_incomplete_ec_context"
+      ],
+      "entry_id": "uniprot:P30176",
+      "esm2_150m_available": false,
+      "esm2_150m_nearest_reference": null,
+      "esm2_8m_available": false,
+      "esm2_8m_nearest_reference": null,
+      "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+      "foldseek_external_nearest_neighbor": {
+        "accession": "O15247",
+        "tm_score": 0.4245
+      },
+      "foldseek_external_status": "no_external_structural_neighbor_above_threshold",
+      "mmseqs_current_reference_status": "no_near_duplicate_signal",
+      "prior_kmer_sidecar_available": false,
+      "prior_kmer_sidecar_nearest_reference": null,
+      "ready_for_label_import": false,
+      "terminal_decision": "ambiguous"
+    },
+    {
+      "accession": "P29372",
+      "deterministic_kmer5_near_neighbor_alert": false,
+      "deterministic_kmer5_nearest_neighbor": {
+        "jaccard": 0.002976,
+        "reference_id": "ref__P21953",
+        "shared_kmer_count": 2,
+        "union_kmer_count": 672
+      },
+      "ec_keyword_baseline_route": "glycan_or_glycoside_keyword_route",
+      "ec_keyword_caveats": [
+        "dna_glycosylase_context_not_glycan_hydrolase"
+      ],
+      "entry_id": "uniprot:P29372",
+      "esm2_150m_available": false,
+      "esm2_150m_nearest_reference": null,
+      "esm2_8m_available": false,
+      "esm2_8m_nearest_reference": null,
+      "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+      "foldseek_external_nearest_neighbor": {
+        "accession": "Q969G6",
+        "tm_score": 0.4322
+      },
+      "foldseek_external_status": "no_external_structural_neighbor_above_threshold",
+      "mmseqs_current_reference_status": "no_near_duplicate_signal",
+      "prior_kmer_sidecar_available": false,
+      "prior_kmer_sidecar_nearest_reference": null,
+      "ready_for_label_import": false,
+      "terminal_decision": "ambiguous"
+    },
+    {
+      "accession": "P33025",
+      "deterministic_kmer5_near_neighbor_alert": false,
+      "deterministic_kmer5_nearest_neighbor": {
+        "jaccard": 0.004367,
+        "reference_id": "ref__P15474",
+        "shared_kmer_count": 2,
+        "union_kmer_count": 458
+      },
+      "ec_keyword_baseline_route": "glycan_or_glycoside_keyword_route",
+      "ec_keyword_caveats": [],
+      "entry_id": "uniprot:P33025",
+      "esm2_150m_available": false,
+      "esm2_150m_nearest_reference": null,
+      "esm2_8m_available": false,
+      "esm2_8m_nearest_reference": null,
+      "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+      "foldseek_external_nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.5061
+      },
+      "foldseek_external_status": "no_external_structural_neighbor_above_threshold",
+      "mmseqs_current_reference_status": "no_near_duplicate_signal",
+      "prior_kmer_sidecar_available": true,
+      "prior_kmer_sidecar_nearest_reference": {
+        "embedding_backend": "deterministic_sequence_kmer_control",
+        "embedding_cosine": 0.9,
+        "length_coverage": 0.9968,
+        "matched_m_csa_entry_ids": [
+          "m_csa:405"
+        ],
+        "reference_accession": "P0A786",
+        "screen_near_duplicate_score": 0.0929
+      },
+      "ready_for_label_import": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "accession": "O60568",
+      "deterministic_kmer5_near_neighbor_alert": false,
+      "deterministic_kmer5_nearest_neighbor": {
+        "jaccard": 0.003072,
+        "reference_id": "ref__P12821",
+        "shared_kmer_count": 6,
+        "union_kmer_count": 1953
+      },
+      "ec_keyword_baseline_route": "glycan_or_glycoside_keyword_route",
+      "ec_keyword_caveats": [
+        "multifunctional_or_transferase_context"
+      ],
+      "entry_id": "uniprot:O60568",
+      "esm2_150m_available": true,
+      "esm2_150m_nearest_reference": {
+        "embedding_backend": "esm2_t30_150m_ur50d",
+        "embedding_cosine": 0.931,
+        "length_coverage": 0.9919,
+        "matched_m_csa_entry_ids": [
+          "m_csa:149"
+        ],
+        "reference_accession": "P00488",
+        "screen_near_duplicate_score": 0.0718
+      },
+      "esm2_8m_available": true,
+      "esm2_8m_nearest_reference": {
+        "embedding_backend": "esm2_t6_8m_ur50d",
+        "embedding_cosine": 0.9454,
+        "length_coverage": 0.9919,
+        "matched_m_csa_entry_ids": [
+          "m_csa:149"
+        ],
+        "reference_accession": "P00488",
+        "screen_near_duplicate_score": 0.0718
+      },
+      "external_all_vs_all_sequence_status": "external_all_vs_all_no_near_duplicate_signal",
+      "foldseek_external_nearest_neighbor": {
+        "accession": "Q9Y5N5",
+        "tm_score": 0.4844
+      },
+      "foldseek_external_status": "no_external_structural_neighbor_above_threshold",
+      "mmseqs_current_reference_status": "no_near_duplicate_signal",
+      "prior_kmer_sidecar_available": false,
+      "prior_kmer_sidecar_nearest_reference": null,
+      "ready_for_label_import": false,
+      "terminal_decision": "terminal_rejection"
+    }
+  ],
+  "source_validation": [
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json",
+      "sha256": "52cd969c919f752c4a120cd1820bbf1a40d67cf6aa8d81967ebc7b0e776f1a9d"
+    },
+    {
+      "json_valid": null,
+      "path": "artifacts/v3_external_source_backend_sequence_search_external_1025.fasta",
+      "sha256": "a4dbed08f02c6e4be4f075887b7b57e5003656b10e9e8e27eb92013217a3dba1"
+    },
+    {
+      "json_valid": null,
+      "path": "artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta",
+      "sha256": "8eaca1d4cc482d1b9e37f2d3a6def7f73824d85ba869b7702591aee3e2a4aff2"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_backend_sequence_search_1025.json",
+      "sha256": "d603b00bc35a2530e9a847a6e3521840010d7ec482fd9fafddadc12807d65b81"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_all_vs_all_sequence_search_1025.json",
+      "sha256": "fe52dcc5612bee63d808b59007dd4f019cbcab77b3ba18c60dc55a355946e74a"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_structural_cluster_index_1025_all30.json",
+      "sha256": "88f67f528a880ca5538466acdc4e6e2987868ff4b2cdc57b44969bf4129ec928"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_representation_backend_sample_1025.json",
+      "sha256": "414a7eb25fa81a973fef5310c90edefa13eaefb0411d921976fc6044d9075317"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "sha256": "20006e4e952b520b526011b992126f6ca72cecb81a7524965bebd82859f2d3dd"
+    },
+    {
+      "json_valid": true,
+      "path": "artifacts/v3_external_source_kmer_representation_backend_sample_1025.json",
+      "sha256": "980fb759d793d60ea4223b99c6e7c6945d28ab3552bdfb8f8741c75026746112"
+    }
+  ],
+  "task_definition": {
+    "compared_surfaces": [
+      "terminal review-only axis packet",
+      "EC/protein-name keyword routing baseline",
+      "MMseqs2 current-reference sequence search",
+      "deterministic 5-mer nearest-neighbor baseline",
+      "available ESM-2 sidecar samples",
+      "available Foldseek external all-vs-all sidecar"
+    ],
+    "frozen_rows": "15-row glycoside hydrolase versus metal/ser-his hydrolase control tranche",
+    "not_a_claim": "No method superiority or production performance claim is permitted from this diagnostic."
+  }
+}
