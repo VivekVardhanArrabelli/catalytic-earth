@@ -1,0 +1,509 @@
+{
+  "fresh_branch_heads": [
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "commit": "8fed206e29064b1fdb1e0597773cc8c7af926241",
+      "committer_date": "2026-05-20 16:55:20 -0500",
+      "summary": "Add ePK canonical ligand positive evidence scouts"
+    },
+    {
+      "branch": "origin/research/epk-substrate-role-identity",
+      "commit": "8d38053d85cc28b7592267e9420578ca19a98814",
+      "committer_date": "2026-05-20 16:54:19 -0500",
+      "summary": "Add ePK substrate-role identity follow-up probes"
+    },
+    {
+      "branch": "origin/research/epk-false-positive-hunter",
+      "commit": "d82b17d1df3d456e6f657c517b90594d37d6503f",
+      "committer_date": "2026-05-20 17:16:30 -0500",
+      "summary": "Record ePK ORC false-positive breakthrough handoff"
+    },
+    {
+      "branch": "origin/research/epk-sibling-controls",
+      "commit": "0f48cbb0efbe004aa18d5a1bc3332b2fbec0974f",
+      "committer_date": "2026-05-20 16:53:58 -0500",
+      "summary": "Add expanded ePK sibling counteraxis controls"
+    },
+    {
+      "branch": "origin/research/epk-policy-harness",
+      "commit": "75598151c3789917bf0b42a244d98de1426aee86",
+      "committer_date": "2026-05-20 16:54:09 -0500",
+      "summary": "Add ePK policy terminal-gamma contract stress"
+    }
+  ],
+  "handoff_validation": [
+    {
+      "exists": true,
+      "lane_id": "positive_evidence",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "sha256": "5132a4a6bd79fc3577173c7271bec5bf00910a9f199a2b227d3fc84e602d6ee0"
+    },
+    {
+      "exists": true,
+      "lane_id": "false_positive_hunter",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "sha256": "93d4b5a484467f6b9a219358350c8b24cd2b2298eacecc174092811c200bf306"
+    },
+    {
+      "exists": true,
+      "lane_id": "sibling_controls",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "sha256": "42aee222530fe13daf2d3152310eb59f6d773ac28059da70966792349341fd90"
+    },
+    {
+      "exists": true,
+      "lane_id": "policy_harness",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "sha256": "35e9f482c7fd5fdeb3a551b3e13accb85099fe993c2fb89dc29f327d19d5b3c4"
+    },
+    {
+      "exists": true,
+      "lane_id": "substrate_role_identity",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-substrate-role-identity/work/research_lanes/epk_substrate_role_identity/handoff.md",
+      "sha256": "d14045e967904ff16795ada720dd213d9096a3f7afeaef8ce55c7c160b471209"
+    }
+  ],
+  "input_validation": [
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_scout_20260520.json",
+      "sha256": "74ee80e589e327cdb9c9441198bf98d9f76c2e95589436f3d5d27d59ec3563e8",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset25_scout_20260520.json",
+      "sha256": "c6b88406eae36be74ab0ca544a74f9372f0f3064e3e209c22d0d180f0d5063e8",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset50_scout_20260520.json",
+      "sha256": "2eec1638fb070df4a6bd003a0f4bcf7b92b1e6ee760595c6e194c51e4540db18",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json",
+      "sha256": "6786b5ef20336d46089c326e7967d1c1c78ca8b5b96ead1dd4b563e247fb36ca",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset100_scout_20260520.json",
+      "sha256": "3182563184413eabaa3e53ec19b86460f937dc4f1173ad987b0afd9394ee6bd0",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset125_scout_20260520.json",
+      "sha256": "f7980ae49e663f60b2d4b356a249bd7021ca25515f41264f21a54976967720f4",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_ligand_candidate_source_review_20260520.json",
+      "sha256": "233e998e079cd2f3b1f3b7b2e46366d052c1e45ade45af989a30ecb03d0e6d2f",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_offset_candidate_source_review_20260520.json",
+      "sha256": "797ca00a46a2f656d9206665ca144754abda1a0956e3e047e353ebfdbdcb0b54",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_offset75_candidate_source_review_20260520.json",
+      "sha256": "37dbcd8d2a4c87051492164f8be6f5aaf4ac93dbcfea646e7004d9e6c60f2e58",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_offset100_candidate_source_review_20260520.json",
+      "sha256": "f00f659272f72e2af4b975cb8eb6405074dae9e5f0a8c046fc3dec01650fb0ca",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_folded_negative_source_review_20260520.json",
+      "sha256": "8613e06243937036c0031037a7bfb6878c939166babd20c35dbf8eb42e211304",
+      "source": "remote_git_show"
+    },
+    {
+      "branch": "origin/research/epk-substrate-role-identity",
+      "json_valid": true,
+      "path": "artifacts/research_lanes/epk_substrate_role_identity/epk_active_site_orientation_asymmetry_probe_v1_20260520.json",
+      "sha256": "09b0c4c2b470e752f99234bef56fc25985b13c0770b77c2188dd5d0c9961b51e",
+      "source": "remote_git_show"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_guard_variant_retry_fetch_errors_20260520_212300Z.json",
+      "sha256": "13e536d33880c5e34cbf3d3865f4ef853b370f281357de7170a5c5b2f40c46be",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_guard_variant_sweep_20260520_212300Z.json",
+      "sha256": "1abdbe57b39a2e90f7b0b81f357133fab7fe20d6fb2825611dd9fca8222da8b8",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_multisite_guard_retry_fetch_errors_20260520_212300Z.json",
+      "sha256": "3471aedb71a730743d6bd8557af0ce7078a0932db5f25c87a88b0cea0afaf73b",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_multisite_guard_stress_20260520_212300Z.json",
+      "sha256": "c10860cae2d846b6f7d6e352e877adbd13480d8b0d9512c2e491f483d4165709",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/orc_cdk_keyword_guard_variant_sweep_20260520_212300Z.json",
+      "sha256": "692135e3e4679cc58f146a20a10cc1a0a7fb5a7fe53ff5f8f90f2fad15c74fc3",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/orc_cdk_keyword_multisite_guard_stress_20260520_212300Z.json",
+      "sha256": "4fd511ce2817448ef3c7ede4f8af526c8fda5dc390131b4f37b6cdfad93d01d1",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/orc_mcm_guard_variant_sweep_20260520_212300Z.json",
+      "sha256": "4a341b90e9b61753b0e0c38d42f8cbd1ac688d698daf7fb4cb61306640251f37",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/orc_mcm_multisite_guard_stress_20260520_212300Z.json",
+      "sha256": "2ab0200aca11711614a933815c03bba25c8fbd41992414efcce9337154d5dab6",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/orc_motor_module_guard_variant_sweep_20260520_212300Z.json",
+      "sha256": "d6ddbe6fde335df419c729a088c6746af9bb6099b863cf8c68f244337f5de6ec",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/orc_motor_module_multisite_guard_stress_20260520_212300Z.json",
+      "sha256": "b621e36ea79232132804efff58a6e23954b398e7a4382141d36f06c3bad9028d",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/transport_motor_guard_variant_retry_fetch_errors_20260520_212300Z.json",
+      "sha256": "87fdbe3f50ce840bd5ea8cf8abe7a03b23eb155ccd769a4207db792c973f430a",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/transport_motor_multisite_guard_retry_fetch_errors_20260520_212300Z.json",
+      "sha256": "f34192696c9327e1d5ee22a405a09afa5aefbdf4b95ce2db080364d3c7dca68d",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/transport_motor_multisite_guard_stress_20260520_212300Z.json",
+      "sha256": "8dddb568436d69f30e98eef87c84aa6120e25eaf28566d949b391e51887904fe",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+      "sha256": "7a309aff0dfea9405f7302ad1b01427db978f88bef6b94359d26c5a589188fe6",
+      "source": "sibling_worktree"
+    },
+    {
+      "json_valid": true,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z_result.json",
+      "sha256": "3c79d5b6fb35ab850f6771fb6708dd47847bacb3a378644e81b69c0059957f5d",
+      "source": "sibling_worktree"
+    }
+  ],
+  "lane_findings": [
+    {
+      "decision_change": true,
+      "lane_id": "epk_positive_evidence",
+      "legacy_anp_pb_fallback_candidate_pdb_ids": [
+        "3O7L",
+        "4JDI"
+      ],
+      "local_metal_candidate_pdb_ids": [
+        "1QMZ",
+        "2CCI",
+        "3O7L",
+        "3X2U",
+        "3X2V",
+        "3X2W",
+        "4DFX",
+        "4DG0",
+        "4JDI",
+        "7B56",
+        "7E0Z",
+        "7E11",
+        "7E12",
+        "7KL1",
+        "7V3X",
+        "8OXM",
+        "8OXO"
+      ],
+      "primary_outcome": "evidence_for_review_only_peptide_positive_and_against_fresh_folded_positive",
+      "scout_unique_rows_reviewed_sum": 300,
+      "source_review_summaries": [
+        {
+          "artifact": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/canonical_epk_ligand_candidate_source_review_20260520.json",
+          "evidence_against": [
+            "The bounded canonical search did not expose a fresh folded-protein substrate positive; the only fresh local-metal source-mapped candidate is a peptide/substrate-fragment complex.",
+            "2CCI has engineered flanking residues and unresolved linker density, so it should not be used to activate production labels or thresholds.",
+            "2CCH is an equivalent analog/inhibitor sibling but has no local Mg/Mn and no normal heteromeric hydroxyl acceptor within 6 Angstrom of ATP PG."
+          ],
+          "evidence_for": [
+            "2CCI is a fresh source-mapped peptide positive: pCDK2/cyclin A ATP/Mg has CDC6 Ser74 OG within 5.821-5.995 Angstrom of ATP PG across two chains.",
+            "1QMZ is a repeat source-clean peptide positive recovered by the canonical EC/Pfam ligand screen."
+          ],
+          "production_claim_allowed": false,
+          "recommendation": "Add 2CCI only as review-only peptide positive evidence. Keep production scoring, threshold calibration, label import, registries, fingerprints, and migrations closed."
+        },
+        {
+          "artifact": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/canonical_epk_offset_candidate_source_review_20260520.json",
+          "evidence_against": [
+            "The offset canonical EC/Pfam ligand search reviewed 50 additional unique structures and found zero fresh folded-protein substrate positives.",
+            "Seven local-metal candidates are all peptide or peptide-derived contexts; 3O7L and 4JDI still depend on explicit legacy ANP PB fallback.",
+            "4DFX is fresh as a structure but not as an independent substrate-family result because it is the K7C mutant sibling of the already reviewed PKA/SP20 4DG0 context."
+          ],
+          "evidence_for": [
+            "4DFX adds a fresh source-mapped review-only SP20 peptide positive: Ser21 OG is 3.533 Angstrom from ANP PG with two local Mg ions.",
+            "The offset search independently recovered repeat review-only peptide positives 3X2U, 3X2V, 3X2W, 3O7L, 4DG0, and 4JDI."
+          ],
+          "production_claim_allowed": false,
+          "recommendation": "Keep 4DFX as review-only peptide stress evidence only; production labels, thresholds, registries, fingerprints, migrations, and scoring paths remain forbidden."
+        },
+        {
+          "artifact": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/canonical_epk_offset75_candidate_source_review_20260520.json",
+          "evidence_against": [
+            "The offset75 pass still found no fresh clean folded-protein local-metal positive. The new local-metal positives are phospholamban peptide/synthetic construct contexts.",
+            "7B56 remains a prior rejected CaMKII-actinin mapping-risk row, despite local ANP/Mg-to-actinin Ser proximity.",
+            "6Z3R and 7UJP remain positive-like but lack local metal in the measured donor state."
+          ],
+          "evidence_for": [
+            "Fresh review-only PKA/phospholamban peptide positives: 7E0Z, 7E11, and 7E12 source-map PLN Ser16 near ANP PG with two local Mg ions.",
+            "The canonical EC/Pfam ligand search independently recovered prior no-local-metal positive-like rows 6Z3R and 7UJP for follow-up."
+          ],
+          "production_claim_allowed": false,
+          "recommendation": "Use 7E0Z/7E11/7E12 only as review-only peptide positive evidence. Keep production scoring, threshold calibration, label imports, registries, fingerprints, migrations, and production claims closed."
+        },
+        {
+          "artifact": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/canonical_epk_offset100_candidate_source_review_20260520.json",
+          "evidence_against": [
+            "The start=100 canonical page found no fresh folded-protein ePK positive. Fresh positives are synthetic peptide contexts.",
+            "7KL1 is a wrong-associated-donor counterexample: ATP is associated with GluN2B while the closest acceptor is CaMKII Thr176.",
+            "7V3X is an out-of-scope KaiC clock autokinase-style counterexample, not a clean ePK kinase-substrate complex.",
+            "ATM siblings 8OXP and 8OXQ have Mg AMP-PNP but no p53 peptide/substrate acceptor."
+          ],
+          "evidence_for": [
+            "Fresh review-only ATM/p53 peptide positives: 8OXM and 8OXO source-map p53 Ser15 near ANP PG with local Mg in Mg AMP-PNP structures."
+          ],
+          "production_claim_allowed": false,
+          "recommendation": "Use 8OXM and 8OXO only as review-only peptide positive evidence. Keep production scoring, threshold calibration, label imports, registries, fingerprints, migrations, and production claims closed."
+        },
+        {
+          "artifact": "origin/research/epk-positive-evidence:artifacts/research_lanes/epk_positive_evidence/canonical_epk_folded_negative_source_review_20260520.json",
+          "evidence_against": [
+            "Folded-protein-looking canonical ligand rows did not provide clean positive geometry: 2A19, 2Y4I, 4M69, and 4LGD all have source-relevant complex context but nearest heteromeric acceptors are at least 12.041 Angstrom from the kinase terminal phosphate.",
+            "3LCB is an out-of-scope/non-ePK kinase-phosphatase substrate complex and is also geometry-negative.",
+            "The offset50 source checks added no clean positives: 5XD6 and 5YJ9 have no modeled substrate chain, 6AO5 is distant regulatory context, 5LI1 is a 6.053 Angstrom inhibitory-peptide near miss, and 5HVK remains a no-local-metal repeat.",
+            "These source checks reinforce that canonical EC/Pfam plus ATP/ANP/Mg filters still need geometry and source validation before any label use."
+          ],
+          "evidence_for": [],
+          "production_claim_allowed": false,
+          "recommendation": "Treat these folded-complex rows as review-only negatives for clean local transfer-state evidence. Do not activate production labels, thresholds, registries, fingerprints, migrations, or scoring."
+        }
+      ],
+      "summary": "Bounded canonical EC/Pfam ePK ligand scouting reviewed six 50-row pages without finding a fresh clean folded-protein ePK positive. It adds review-only peptide positives such as 2CCI, 4DFX, 7E0Z/7E11/7E12, and 8OXM/8OXO, plus folded-complex geometry-negative rows and local false-positive contexts.",
+      "use_in_main_loop": false,
+      "validated_artifact_count": 11
+    },
+    {
+      "decision_change": true,
+      "lane_id": "epk_substrate_role_identity",
+      "orientation_summary": {
+        "accepted_interpretation": "active_site_orientation_asymmetry_is_review_only_and_does_not_identify_substrate_role",
+        "artifact": "origin/research/epk-substrate-role-identity:artifacts/research_lanes/epk_substrate_role_identity/epk_active_site_orientation_asymmetry_probe_v1_20260520.json",
+        "hard_counterexample": "9UW4",
+        "post_hoc_threshold_status": "diagnostic_only_not_accepted_source_free_identity_rule",
+        "primary_outcome": "counterexample_found",
+        "production_claim_allowed": false,
+        "recovered_folded_tyr_positives": [
+          "9UUR",
+          "9UUX"
+        ],
+        "review_only": true,
+        "strict_rule_false_negative_next_probe": [
+          "3QHR",
+          "3QHW",
+          "1L0O",
+          "3TM0"
+        ]
+      },
+      "primary_outcome": "counterexample_found",
+      "summary": "Active-site orientation/asymmetry descriptors recover 9UUR and 9UUX but still admit 9UW4; post-hoc scalar thresholds are diagnostic only and not accepted as source-free substrate-role rules.",
+      "use_in_main_loop": false
+    },
+    {
+      "decision_change": true,
+      "false_positive_summary": {
+        "guard_variant_interpretation": "v4_oligomeric_atp_terminals_no_mg_required_is_promising_but_review_only_and_not_promoted",
+        "json_artifact_count": 13,
+        "jsonl_ledger": {
+          "jsonl_valid": true,
+          "line_count": 8,
+          "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+          "sha256": "5ce02e390a008bc043b47dff29569b1ae542401854e59bfba52e67c05237233e",
+          "source": "sibling_worktree"
+        },
+        "local_dirty_outputs_integrated_as_review_only": true,
+        "next_query": "stress_v4_oligomeric_atp_terminals_no_mg_required_on_component_level_atp_adp_no_mg_structures_and_kinase_dimer_positives_review_only",
+        "primary_outcome": "counterexample_found",
+        "residual_after_strict_multisite_guard_pdb_ids": [
+          "5UJ7",
+          "5UJM",
+          "9GJW"
+        ],
+        "review_observation_count_from_stress_artifacts": 290,
+        "topology_clear_non_epk_counterexample_pdb_ids": [
+          "5UJ7",
+          "5UJM",
+          "6RQC",
+          "7JGR",
+          "7JGS",
+          "7JK2",
+          "7JK3",
+          "7JK4",
+          "7JPO",
+          "7TJF",
+          "7TJH",
+          "9BCX",
+          "9GJW"
+        ]
+      },
+      "lane_id": "epk_false_positive_hunter",
+      "primary_outcome": "counterexample_found",
+      "summary": "Fresh ORC/OCCM/MCM and ATPase stress found 13 topology-clear non-ePK substrate-mode rows, showing the current review-only materializer remains unsafe. A broader ATP-terminal oligomer guard is only bounded review evidence and is not promoted.",
+      "use_in_main_loop": false
+    },
+    {
+      "decision_change": false,
+      "lane_id": "epk_sibling_controls",
+      "primary_outcome": "evidence_for_review_only_counteraxis_fixture",
+      "sibling_control_summary": {
+        "case_count": 91,
+        "expected_unblocked_weak_case_count": 0,
+        "gamma_case_count": 72,
+        "gamma_expected_block_count": 57,
+        "jsonl_ledger": {
+          "jsonl_valid": true,
+          "line_count": 8,
+          "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
+          "sha256": "fd3e57fe1a0025a6bd7da327123d61a87df526c7ad2c3986206e5f36898098cb",
+          "source": "sibling_worktree"
+        },
+        "local_dirty_output_integrated_as_review_only": true,
+        "next_query": "Keep these as future source-free scorer-design fixtures; only reopen sibling sourcing if a specific curated seed set appears.",
+        "primary_outcome": "evidence_for",
+        "product_case_count": 19,
+        "product_expected_block_count": 19
+      },
+      "summary": "A dirty sibling-worktree matrix de-duplicates 91 sibling-control cases into future review-only scorer-design fixtures with zero expected-unblocked weak cases. It reinforces, but does not solve, the source-free substrate-role blocker.",
+      "use_in_main_loop": false
+    },
+    {
+      "decision_change": false,
+      "lane_id": "epk_policy_harness",
+      "policy_harness_summary": {
+        "counterexample_count": 0,
+        "expected_decision_mismatch_count": 0,
+        "jsonl_ledger": {
+          "jsonl_valid": true,
+          "line_count": 8,
+          "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+          "sha256": "29235fd848526499d4ceb7928aedab682574a1e22c0950a2c6b4ea0495c26d6a",
+          "source": "sibling_worktree"
+        },
+        "local_dirty_output_revalidated_as_review_only": true,
+        "next_query": "epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_v1_review_only",
+        "policy_interpretation": "query_context_is_review_only_and_coordinate_side_ligand_materialization_controls_ligand_state",
+        "primary_outcome": "policy_frozen_review_only_no_decision_change",
+        "result_artifact": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z_result.json",
+        "reviewed_row_count": 8
+      },
+      "primary_outcome": "policy_frozen_review_only_no_decision_change",
+      "summary": "The policy harness remains fail-closed: query wording is review context only, coordinate-side ligand materialization controls ligand state, and the terminal-gamma sibling contract still abstains without mismatches.",
+      "use_in_main_loop": false
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_late_research_lane_synthesis_20260520",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T22:17:26Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_remote_branch_outputs_integrated": true,
+    "input_json_validated_file_count": 27,
+    "input_json_validation_error_count": 0,
+    "input_jsonl_validated_file_count": 3,
+    "input_jsonl_validation_error_count": 0,
+    "integrates_uncommitted_sibling_worktree_outputs": true,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "main_loop_late_epk_research_lane_synthesis",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_claim_allowed": false,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "review_only": true,
+    "started_at": "2026-05-20T22:11:00Z"
+  },
+  "safety_summary": {
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false,
+    "artifact_removed_or_externalized": false,
+    "external_imported_out_of_scope_labels_changed": false,
+    "external_imported_seed_fingerprint_labels_changed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "registry_or_fingerprint_edit_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "synthesis_conclusion": {
+    "confidence_call": "high_confidence_no_go_for_main_loop_production_activation",
+    "decision_to_start_now": false,
+    "main_loop_decision": "do_not_resume_epk_as_default_main_loop_task",
+    "next_exact_research_lane_experiment_if_reopened": "epk_substrate_role_blocker_stop_decision_probe_v1_review_only",
+    "next_experiment_description": "Classify the remaining strict-rule false negatives by unavailable ligand state versus same-chain/autophosphorylation-like topology, then decide whether substrate-role identity should stop at source-reviewed adjudication rather than more feature probing.",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "production_activation_decision": "no_go",
+    "reason": "Fresh research-lane outputs add peptide-only positives, folded-complex negatives, source-free substrate-role counterexamples, and ORC/OCCM/MCM ATPase false positives, but no accepted source-free role policy, production scorer, threshold calibration, external hard-negative production re-audit, label import, registry edit, or fingerprint edit."
+  }
+}

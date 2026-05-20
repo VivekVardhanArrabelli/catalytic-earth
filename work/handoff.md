@@ -50,6 +50,32 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T22:17:26Z automation run,
+`artifacts/v3_epk_late_research_lane_synthesis_20260520.json` integrates the
+fresh late ePK research-lane surface without copying production changes. It
+validates 27 JSON artifacts plus 3 JSONL ledgers with 0 parse errors,
+including remote canonical ePK ligand scouts, a fresh substrate-role
+orientation/asymmetry probe, false-positive hunter dirty outputs, the sibling
+counteraxis matrix, and the policy harness result. The production decision is
+unchanged and stronger: ePK remains review-only, no-go for production
+activation, and out of the main-loop critical path. Canonical ePK ligand
+scouting reviewed six 50-row pages but found only review-only peptide positives
+and folded-complex geometry negatives; substrate-role orientation descriptors
+recover `9UUR`/`9UUX` but still admit `9UW4`; false-positive stress finds
+ORC/OCCM/MCM ATPase topology-clear counterexamples; sibling controls provide a
+91-case review-only fixture; policy remains fail-closed.
+
+Evidence-based confidence call: confidence is high that fresh ePK evidence
+does not justify a production scorer, threshold, label import, registry edit,
+or fingerprint expansion. If an isolated research lane continues, the exact
+next blocker decision is
+`epk_substrate_role_blocker_stop_decision_probe_v1_review_only`: classify the
+remaining strict-rule false negatives by unavailable ligand state versus
+same-chain/autophosphorylation-like topology, then decide whether ePK
+substrate-role identity should stop at source-reviewed adjudication rather than
+more feature probing. Main-loop work should return to visible non-ePK small
+wins after this integration commit.
+
 As of the 2026-05-20T21:08:55Z automation run,
 `artifacts/v3_epk_counterexample_push_synthesis_20260520.json` integrates the
 fresh ePK positive-evidence research-lane push that landed after the prior

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 229
-- Measured elapsed time: 6939.5 minutes (115.66 hours)
+- Entries: 230
+- Measured elapsed time: 6947.4 minutes (115.79 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 94.0 measured minutes (1.57 hours)
-- post-infra-science: 1700.7 measured minutes (28.34 hours)
+- post-infra-science: 1708.6 measured minutes (28.48 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2644
-- Evidence references logged: 2152
+- Artifact references logged: 2648
+- Evidence references logged: 2160
 
 ## Recent Entries
-
-### 2026-05-20T18:22:16.234314+00:00 - post-infra-science
-
-- Task: Source-gap mini-campaign and family readiness packets
-- Time mode: measured
-- Measured minutes: 17.55
-- Started: 2026-05-20T18:04:27Z
-- Ended: 2026-05-20T18:22:00Z
-- Artifacts: artifacts/v3_prospective_external_source_gap_minicampaign_freeze_20260520.json, artifacts/v3_prospective_external_source_gap_minicampaign_decision_packet_20260520.json, artifacts/v3_source_gap_minicampaign_baseline_comparison_20260520.json, artifacts/v3_schiff_base_lyase_readiness_packet_20260520.json, artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json, artifacts/v3_mechanism_family_readiness_index_refresh_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 699-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, source-gap mini-campaign froze 18 rows before scoring, source-gap decisions closed 18 of 18 rows as terminal pre-scoring rejections, source-gap baseline diagnostic made no superiority claim, Schiff-base lyase Q9BXD5 readiness packet remains no-go, DNA glycosylase lyase P06746 readiness packet remains no-go, readiness refresh indexes six non-ePK families as no-go, focused small-win artifact tests passed, final 700-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and three external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ### 2026-05-20T19:12:53.814979+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: post-status full 720-test unit discovery passed, post-status validate passed with 682 labels and 8 fingerprints, post-status artifact migration dry-run passed with removal_allowed=0, JSON validation and git diff check passed before commit
 - Notes: Recorded after regenerating status so final verification is reflected.
+
+### 2026-05-20T22:19:09.281826+00:00 - post-infra-science
+
+- Task: Late ePK research-lane synthesis
+- Time mode: measured
+- Measured minutes: 7.933
+- Started: 2026-05-20T22:11:00Z
+- Ended: 2026-05-20T22:18:56Z
+- Artifacts: artifacts/v3_epk_late_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: startup 730-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, 27 late ePK lane JSON artifacts and 3 JSONL ledgers validated with 0 errors, canonical ePK ligand scouts found review-only peptide positives and no fresh clean folded-protein positive, substrate orientation probe still admits 9UW4 counterexample, false-positive hunter reports ORC/OCCM/MCM ATPase topology-clear counterexamples, ePK remains review-only and production activation no-go, focused late synthesis regression passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -302,6 +302,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T19:49:17.503329+00:00: Small-win tranche run is ready to commit and push; next work should avoid reopening the closed six-family queue unless new evidence appears.
 - 2026-05-20T20:13:02.164962+00:00: Commit this ePK integration, then return the main loop to genuinely new external sourcing or a new non-ePK family packet.
 - 2026-05-20T20:55:03.996810+00:00: Next main loop can score the frozen ASKHA tranche axes or start another genuinely new prospective external surface; ePK remains research-lane-only.
+- 2026-05-20T22:19:09.281826+00:00: Fresh late ePK evidence strengthens the no-go decision; commit this integration, then return the main loop to non-ePK visible small wins.
 
 ## Scope Adjustments
 
@@ -426,3 +427,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T19:49:09.571418+00:00: Six-family non-ePK small-win queue is now closed as review-only no-go evidence; next main loop should source a genuinely new external mini-campaign or choose a new family packet.
 - 2026-05-20T20:13:02.164962+00:00: ePK synthesis now includes terminal-gamma lead/control stress and same-author-chain pressure while preserving no-go production scope.
 - 2026-05-20T20:55:03.996810+00:00: Main loop closed a new prospective external methyltransferase terminal-failure win, added ASKHA readiness plus a frozen ASKHA-vs-ATP-family tranche, and kept new ePK lane evidence research-only.
+- 2026-05-20T22:19:09.281826+00:00: ePK late-lane synthesis is integrated as review-only evidence with no production scorer threshold label import registry edit or fingerprint expansion.

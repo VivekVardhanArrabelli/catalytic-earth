@@ -106,6 +106,91 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             ]
         )
 
+    def test_late_epk_research_lane_synthesis_stays_no_go(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_late_research_lane_synthesis_20260520.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["fresh_remote_branch_outputs_integrated"])
+        self.assertTrue(metadata["integrates_uncommitted_sibling_worktree_outputs"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_migration_files_edited"])
+        self.assertFalse(metadata["main_loop_should_continue_epk_by_default"])
+        self.assertEqual(metadata["input_json_validated_file_count"], 27)
+        self.assertEqual(metadata["input_json_validation_error_count"], 0)
+        self.assertEqual(metadata["input_jsonl_validated_file_count"], 3)
+
+        self.assertEqual(
+            conclusion["overall"],
+            "epk_remains_review_only_and_not_production_ready",
+        )
+        self.assertEqual(conclusion["production_activation_decision"], "no_go")
+        self.assertEqual(
+            conclusion["main_loop_decision"],
+            "do_not_resume_epk_as_default_main_loop_task",
+        )
+        self.assertFalse(conclusion["decision_to_start_now"])
+
+        lanes = {row["lane_id"]: row for row in synthesis["lane_findings"]}
+        self.assertEqual(
+            set(lanes),
+            {
+                "epk_positive_evidence",
+                "epk_substrate_role_identity",
+                "epk_false_positive_hunter",
+                "epk_sibling_controls",
+                "epk_policy_harness",
+            },
+        )
+        self.assertEqual(
+            lanes["epk_positive_evidence"]["primary_outcome"],
+            "evidence_for_review_only_peptide_positive_and_against_fresh_folded_positive",
+        )
+        self.assertEqual(
+            lanes["epk_positive_evidence"]["scout_unique_rows_reviewed_sum"],
+            300,
+        )
+        self.assertIn(
+            "2CCI", lanes["epk_positive_evidence"]["local_metal_candidate_pdb_ids"]
+        )
+        self.assertEqual(
+            lanes["epk_substrate_role_identity"]["orientation_summary"][
+                "hard_counterexample"
+            ],
+            "9UW4",
+        )
+        self.assertEqual(
+            lanes["epk_false_positive_hunter"]["false_positive_summary"][
+                "primary_outcome"
+            ],
+            "counterexample_found",
+        )
+        self.assertEqual(
+            len(
+                lanes["epk_false_positive_hunter"]["false_positive_summary"][
+                    "topology_clear_non_epk_counterexample_pdb_ids"
+                ]
+            ),
+            13,
+        )
+        self.assertEqual(
+            lanes["epk_sibling_controls"]["sibling_control_summary"]["case_count"],
+            91,
+        )
+        self.assertEqual(
+            lanes["epk_policy_harness"]["policy_harness_summary"][
+                "expected_decision_mismatch_count"
+            ],
+            0,
+        )
+
     def test_prospective_external_minicampaign_records_blocker_without_import(self) -> None:
         packet = _load_json(
             ARTIFACTS

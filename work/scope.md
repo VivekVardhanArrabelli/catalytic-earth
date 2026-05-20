@@ -71,6 +71,19 @@ heme transporter context rather than kinase-substrate phosphorylation. The
 main loop must treat this as counterevidence for generic ATP/Mg/Ser proximity.
 Any future ePK work belongs in a research lane and should use a domain/EC-
 filtered canonical ePK ligand search with explicit ATPase/chaperone exclusions.
+The 2026-05-20T22:17:26Z late-lane synthesis in
+`artifacts/v3_epk_late_research_lane_synthesis_20260520.json` validates 27
+JSON artifacts and 3 JSONL ledgers from fresh remote branches plus sibling
+dirty outputs. It reinforces the same boundary: canonical ePK ligand scouting
+found review-only peptide positives and folded-complex negatives, not clean
+folded-protein positives; orientation/asymmetry descriptors still admit the
+`9UW4` substrate-role counterexample; ORC/OCCM/MCM ATPase stresses add
+topology-clear false positives; sibling controls are now a 91-case fixture; and
+policy remains fail-closed. ePK remains out of main-loop production scope. If
+research continues outside the main loop, the next exact blocker decision is
+`epk_substrate_role_blocker_stop_decision_probe_v1_review_only`, not production
+scoring, threshold calibration, label import, registry edit, or fingerprint
+expansion.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed
