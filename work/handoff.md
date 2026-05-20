@@ -50,6 +50,36 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-20T17:08:53Z automation run, fresh ePK research-lane
+outputs pushed after the prior main synthesis, plus newer dirty sibling
+worktree outputs, are integrated in
+`artifacts/v3_epk_research_lane_synthesis_20260520.json`. The main run did
+not merge lane code or copy production changes. It validated 54 JSON files and
+4 JSONL ledgers with 0 parse errors across the positive-evidence,
+false-positive-hunter, sibling-control, and policy-harness lanes.
+
+The refreshed synthesis keeps ePK out of production. The positive-evidence
+lane reviewed 700 unique RCSB PDB IDs plus 61 Europe PMC/PubMed-style PMIDs
+on full-length ATP/phosphorylation-site surfaces and still found 0 fresh clean
+folded-protein positives beyond repeat `5HVK` and peptide anchors. The
+false-positive lane found no topology-clear cross-chain counterexample on the
+bounded ATP-like/Mg and gamma-chain namespace attacks, but preserved namespace
+and non-ATP gamma-like pressure cases as review-only attack material. The
+sibling-control lane now rolls up 8 families, 452 reviewed rows, 64 gamma/metal
+controls, 47 unique weak-rule counterexamples, and 17 product-state branch
+controls. The policy harness ran the fresh folded role-identity stress tranche
+fail-closed: 25 candidates reviewed, 0 nonconfounded candidates within cutoff,
+and 6/6 rows abstained with 0 expected-decision mismatches.
+
+Evidence-based confidence call: confidence is high that ePK remains a no-go
+for production activation because the fresh lanes add no score, threshold,
+external hard-negative scored re-audit, registry edit, label import, or
+fingerprint expansion. Confidence is high that the main loop should continue
+with the preregistered glycoside hydrolase control tranche rather than reopen
+ePK by default. Confidence is moderate that the only useful future ePK work is
+research-lane-only PKA/CFTR site-specific acceptor mapping, with source review
+kept after local geometry inspection.
+
 As of the 2026-05-20T16:00:50Z automation run,
 `artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json`
 freezes the next review-only non-ePK family tranche before any new scoring. The

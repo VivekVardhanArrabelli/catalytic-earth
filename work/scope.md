@@ -31,6 +31,16 @@ and it remains deferred: source-free features must be computed on a frozen
 fresh tranche before source validation, with no threshold calibration, external
 hard-negative production score, registry edit, fingerprint edit, or label
 import.
+The 2026-05-20T17:08:53Z refreshed synthesis integrates later pushed and dirty
+sibling-worktree lane outputs without copying production changes. It validates
+54 JSON files and 4 JSONL ledgers, keeps ePK review-only, records 0 fresh clean
+folded-protein positives from the full-length ATP/phosphorylation-site route,
+preserves bounded false-positive attacks as non-safety-proof diagnostics, and
+adds an 8-family sibling-control rollup with 47 weak-rule counterexamples. The
+fresh policy-harness stress reviewed 25 candidates, found 0 nonconfounded
+within cutoff, and abstained on all 6 carried rows. The next ePK action, if a
+research lane continues, is PKA/CFTR site-specific acceptor mapping; it is not
+a main-loop production or scoring task.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

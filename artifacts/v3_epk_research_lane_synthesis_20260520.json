@@ -3,15 +3,36 @@
     {
       "branch": "research/epk-positive-evidence",
       "dirty_status_summary": [
-        " M artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
-        " M work/research_lanes/epk_positive_evidence/handoff.md",
-        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json",
-        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_source_review_20260520.json",
-        "?? tools/"
+        "MM artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+        "D  artifacts/research_lanes/epk_positive_evidence/rcsb_atp_analog_gamma_transfer_alias_scout_20260520.json",
+        "D  artifacts/research_lanes/epk_positive_evidence/rcsb_dephosphorylated_substrate_scout_20260520.json",
+        "D  artifacts/research_lanes/epk_positive_evidence/rcsb_michaelis_transition_substrate_scout_20260520.json",
+        "D  artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_family_broad_title_scout_20260520.json",
+        "D  artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_full_length_atp_phosphosite_source_review_20260520.json",
+        "D  artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_top_paper_targeted_scout_20260520.json",
+        "MM work/research_lanes/epk_positive_evidence/handoff.md",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_atp_analog_gamma_transfer_alias_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_dephosphorylated_substrate_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_michaelis_transition_substrate_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_family_broad_title_scout_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_full_length_atp_phosphosite_source_review_20260520.json",
+        "?? artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_top_paper_targeted_scout_20260520.json"
       ],
       "handoff_path": "work/research_lanes/epk_positive_evidence/handoff.md",
-      "handoff_sha256": "10e1b08aea9b69e1828a5d292723ba6901ca068205c2cfaa9f765dc1a448c3ed",
+      "handoff_sha256": "6384fb7a88a1844700eca718e031580aa8de1d3b584e756e41b1d80efba6f5a8",
       "json_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/pubmed_full_length_atp_phosphosite_phrase_scout_20260520.json",
+          "sha256": "6514abb52c4d321e97bd59050f260126752b316a2ce8ff0df41cb3c0f797bb63"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_atp_analog_gamma_transfer_alias_scout_20260520.json",
+          "sha256": "3d502709a416fad774bf167045dc7f75c5c6e78c80927074c24b531e2437057d"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_dephosphorylated_substrate_scout_20260520.json",
+          "sha256": "8867df5a8c853e8e8b1fabeee8dec224c10f72d56456dd41435e360b02e58fed"
+        },
         {
           "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_scout_20260520.json",
           "sha256": "363d0bbb76199ea2acf402680605b6493a002b4ac9ed1fcb744aa4976c5dd907"
@@ -19,6 +40,10 @@
         {
           "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_explicit_acceptor_folded_substrate_source_review_20260520.json",
           "sha256": "6f1f72c87e73c4a04493174b2b411737d1b097a3e32a67e8b4f76cc6681b57ba"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_full_length_atp_phosphosite_phrase_scout_20260520.json",
+          "sha256": "c0cbefd9d7f4ceeb99d8456f0c2c2cc4152ffede48ddcc1951918064c5280d31"
         },
         {
           "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_fulltext_kinase_substrate_peptide_atp_mg_all39_scout_20260520.json",
@@ -61,37 +86,136 @@
           "sha256": "ea68b7df87b2d2bd7034de906fae7e11011b8e4f5d61ddc1bb31354ac6d1912d"
         },
         {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_michaelis_transition_substrate_scout_20260520.json",
+          "sha256": "2ebdb09f3701599f08bac8eaf2ff5ff442d2718276b629496e80c958f7e10eb4"
+        },
+        {
           "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_positive_evidence_source_review_20260520.json",
           "sha256": "925612520d74602f820d3fc0956136f8b9e9b1227df1b421a608399cc9f39ffe"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_family_broad_title_scout_20260520.json",
+          "sha256": "60a2be61fbe7431ab9be5cb4b5741ac3d858f16ec49344bee3b2726b48eeebb6"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_family_targeted_scout_20260520.json",
+          "sha256": "f4808c008fa7c7440120a2d807b62fe404e8efd1bdea239e005b3bd6cb2bb8dd"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_full_length_atp_phosphosite_source_review_20260520.json",
+          "sha256": "9c0c6bf8c299f161afeb5dc7a36d6f835c601acc3697aae174762b8a92eae251"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/rcsb_pubmed_top_paper_targeted_scout_20260520.json",
+          "sha256": "04b4326bdb61c94842eb11aa6174b82a56de3b57633e2ccbc1124141953270ef"
         }
       ],
       "json_validation": {
         "error_count": 0,
-        "json_file_count": 13,
+        "errors": [],
+        "json_file_count": 22,
         "jsonl_file_count": 1,
-        "validated_file_count": 14
+        "validated_file_count": 23
       },
+      "jsonl_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+          "record_count": 3,
+          "sha256": "c442049bb45507a089b8fdb995bd9b6f91172392c7bdfb8492ce21c5e899a245"
+        }
+      ],
       "lane_id": "epk_positive_evidence",
+      "latest_json_created_at": "2026-05-20T16:36:31Z",
+      "latest_ledger_record": {
+        "counterexamples_found": [
+          "6EQI",
+          "5YJ9",
+          "8UYH",
+          "9DW5",
+          "9DW7",
+          "9DW8",
+          "9DW9",
+          "8R3Y",
+          "9T7J",
+          "9T94",
+          "9ZBK",
+          "2SRC",
+          "6ZXF",
+          "7ZDU",
+          "7ZE5"
+        ],
+        "ended_at": "2026-05-20T17:04:49Z",
+        "evidence_against": [
+          "The exact full-length/ATP/phosphorylation-site route reviewed 110 unique PDB IDs and found only repeat 5HVK.",
+          "Europe PMC returned 68 rows and 61 unique PMIDs; top paper/family leads did not add a fresh clean transfer-state structure.",
+          "PINK1/ubiquitin is split-state: 6EQI has substrate without active gamma, while 5YJ9/8UYH have AMP-PNP without ubiquitin substrate.",
+          "PKA/CFTR 9DW5/9DW7/9DW8/9DW9 lacks a modeled CFTR acceptor within 6 Angstrom of kinase gamma; sampled nearest heteromeric acceptors are 27-38 Angstrom away or absent.",
+          "aPKC/Par6/Lgl 8R3Y nearest Lgl hydroxyl is 12.560 Angstrom from ANP PG; mTORC2/Akt recruitment or ATP-state rows likewise lack local transfer geometry.",
+          "Dephosphorylated/unphosphorylated and broad ATP-analog alias surfaces added 0 fresh folded-protein positives."
+        ],
+        "evidence_for": [
+          "Repeat folded-protein positive-like evidence recovered: 5HVK LIMK1/cofilin Ser3 near ANP PG.",
+          "Repeat peptide positives recovered for review-only stress: 3X2U, 3X2V, 3X2W, 1IR3, 2PHK, and 4IAC."
+        ],
+        "hypothesis": "A bounded RCSB/PubMed route for full-length kinase-substrate complexes with ATP/analog and phosphorylation-site wording may expose fresh non-topology-confounded folded-protein ePK positive evidence.",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_positive_evidence",
+        "measured_minutes": 48.1,
+        "next_query": "RCSB/PubMed source review: \"PKA CFTR\" \"ANP\" \"dephosphorylated\" \"phosphorylation\" site-specific acceptor mapping; start with 9DW4/9DW5/9DW7/9DW8/9DW9 and record whether modeled CFTR phosphorylation-site residues are absent, disordered, or intentionally distant from PKA gamma.",
+        "primary_outcome": "evidence_against",
+        "production_claim_allowed": false,
+        "query_or_source": [
+          "RCSB full_text: kinase-substrate complex full-length ATP phosphorylation site",
+          "RCSB full_text: protein kinase substrate complex full-length ATP phosphorylation site",
+          "RCSB full_text: full-length protein substrate ATP phosphorylation site kinase",
+          "RCSB full_text: kinase-substrate complex full-length AMP-PNP phosphorylation site",
+          "RCSB full_text: kinase-substrate complex full-length ANP phosphorylation site",
+          "RCSB full_text: substrate phosphorylation site AMP-PNP magnesium kinase",
+          "Europe PMC: \"kinase-substrate complex\" \"full-length\" ATP \"phosphorylation site\"",
+          "Europe PMC: \"protein kinase\" \"full-length\" substrate ATP \"phosphorylation site\"",
+          "Europe PMC: \"kinase-substrate\" \"full-length\" \"AMP-PNP\" phosphorylation",
+          "RCSB family/title targets: PINK1/ubiquitin, PKA/CFTR, aPKC/Par6/Lgl, mTORC2/Akt, Axin/GSK3beta, c-Src, CDK4/4E-BP1, YopO, CaMKII/EAG, RKIP/PKA, Fgr",
+          "RCSB full_text: dephosphorylated/unphosphorylated substrate protein kinase ATP/ANP/AMP-PNP aliases",
+          "RCSB full_text: Michaelis/transition/substrate-trapping protein kinase aliases",
+          "RCSB full_text: ATP-analog/gamma-transfer/substrate-complex aliases"
+        ],
+        "recommendation": "Treat this RCSB/PubMed full-length ATP/phosphorylation-site route as exhausted for fresh folded-protein positives. Keep 5HVK and peptide structures review-only; do not score, threshold, import labels, edit registries, or change fingerprints. Git commit/push remains blocked by sandbox gitdir write permissions.",
+        "rows_reviewed": 768,
+        "search_surface": [
+          "rcsb_full_length_atp_phosphosite_phrase_scout_20260520",
+          "europepmc_full_length_atp_phosphosite_phrase_scout_20260520",
+          "rcsb_pubmed_family_targeted_scout_20260520",
+          "rcsb_pubmed_family_broad_title_scout_20260520",
+          "rcsb_pubmed_top_paper_targeted_scout_20260520",
+          "rcsb_dephosphorylated_substrate_scout_20260520",
+          "rcsb_michaelis_transition_substrate_scout_20260520",
+          "rcsb_atp_analog_gamma_transfer_alias_scout_20260520",
+          "rcsb_pubmed_full_length_atp_phosphosite_source_review_20260520"
+        ],
+        "search_surface_exhausted": true,
+        "started_at": "2026-05-20T16:16:42Z"
+      },
       "ledger_path": "artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
-      "ledger_sha256": "b1c25100da322584bbc8d88a364eed6ab2fb516b80185b2a4f12a054eb9228c3",
+      "ledger_record_count": 3,
+      "ledger_sha256": "c442049bb45507a089b8fdb995bd9b6f91172392c7bdfb8492ce21c5e899a245",
+      "linked_worktree_git_metadata_write_blocked_in_lane": true,
+      "origin_commit": "6ae8a6fb29eff298315731a698a3522aa87bf12e",
+      "origin_commit_date": "2026-05-20T12:07:57-05:00",
+      "origin_commit_summary": "Record ePK evidence run commit in handoff",
       "origin_ref": "origin/research/epk-positive-evidence",
-      "pushed_commit_prefix": "5cb29afec94a",
-      "pushed_commit_summary": "Add ePK positive evidence research lane",
       "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive",
       "worktree_dirty_at_synthesis": true
     },
     {
       "branch": "research/epk-false-positive-hunter",
       "dirty_status_summary": [
-        "?? artifacts/research_lanes/epk_false_positive_hunter/component_atp_like_mg_cross_chain_substrate_mode_stress_20260520.json",
-        "?? artifacts/research_lanes/epk_false_positive_hunter/cross_chain_acceptor_targeted_substrate_mode_stress_20260520.json",
-        "?? artifacts/research_lanes/epk_false_positive_hunter/cross_chain_interface_oligomer_substrate_mode_stress_20260520.json",
-        "?? artifacts/research_lanes/epk_false_positive_hunter/cross_chain_non_epk_atp_mg_substrate_mode_stress_20260520.json",
-        "?? tools/research_lanes/epk_false_positive_hunter/component_cross_chain_substrate_mode_stress.py",
-        "?? tools/research_lanes/epk_false_positive_hunter/cross_chain_substrate_mode_stress.py"
+        "M artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+        " M tools/research_lanes/epk_false_positive_hunter/gamma_chain_assignment_stress.py",
+        " M work/research_lanes/epk_false_positive_hunter/handoff.md",
+        "?? artifacts/research_lanes/epk_false_positive_hunter/gamma_chain_assignment_stress_20260520.json"
       ],
       "handoff_path": "work/research_lanes/epk_false_positive_hunter/handoff.md",
-      "handoff_sha256": "e2164d83545612a5f7fe20b55338d437fa5d835dd261f150bef73897e1bc5b95",
+      "handoff_sha256": "6291b1cf039b931475a9899cada63f8a8d48044e06abcf2608c91f9cc55324d0",
       "json_file_digests": [
         {
           "path": "artifacts/research_lanes/epk_false_positive_hunter/atpase_transporter_substrate_mode_stress_20260520.json",
@@ -114,6 +238,14 @@
           "sha256": "e262513daba186bea69d97549faf47298c7001d99b451ecf1f1cea69bdf94064"
         },
         {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/cross_chain_search_summary_20260520.json",
+          "sha256": "9912c212f50ef514bdbe8bca2b6c1ad0e210093014536fceadc4e812c92eaba3"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/gamma_chain_assignment_stress_20260520.json",
+          "sha256": "24def360323fa530af3fb1823766632b4f271b8ade8883c62f43d81db74b619f"
+        },
+        {
           "path": "artifacts/research_lanes/epk_false_positive_hunter/non_epk_atp_mg_enzyme_substrate_mode_stress_20260520.json",
           "sha256": "68e81f62ecf25a65ea6402ceef4f5279a304afeeee06289d2268c64b284f004b"
         },
@@ -128,77 +260,644 @@
       ],
       "json_validation": {
         "error_count": 0,
-        "json_file_count": 8,
+        "errors": [],
+        "json_file_count": 10,
         "jsonl_file_count": 1,
-        "validated_file_count": 9
+        "validated_file_count": 11
       },
+      "jsonl_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+          "record_count": 3,
+          "sha256": "293e5f2b48b4b55fcab5dd4de869a5defbab2321f9b90de113298b2e9d9c095e"
+        }
+      ],
       "lane_id": "epk_false_positive_hunter",
+      "latest_json_created_at": "2026-05-20T16:51:10Z",
+      "latest_ledger_record": {
+        "artifacts": {
+          "handoff": "work/research_lanes/epk_false_positive_hunter/handoff.md",
+          "helper": "tools/research_lanes/epk_false_positive_hunter/gamma_chain_assignment_stress.py",
+          "ledger": "artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+          "stress_artifact": "artifacts/research_lanes/epk_false_positive_hunter/gamma_chain_assignment_stress_20260520.json"
+        },
+        "counterexamples_found": [],
+        "ended_at": "2026-05-20T17:08:23Z",
+        "evidence_against": [
+          "Zero strict current-auth counterexamples across 260 reviewed rows / 260 unique PDB IDs with zero fetch errors.",
+          "The only non-ePK current ATP-like auth cross-chain pressure row was 3C9S, and it was blocked by reciprocal cross-chain topology.",
+          "Non-ATP gamma-like ligands produced 11 non-ePK pressure rows, but zero current-rule counterexamples because GTP/GNP/GSP/GDP/ADP are outside the current ATP-like ligand set.",
+          "Known ePK positive 1IR3 was explicitly excluded from non-ePK counterexample status after the first pass surfaced it as a title-token false positive."
+        ],
+        "evidence_for": [
+          "Found 47 current ATP-like namespace artifact rows and 41 label-clear/auth-blocked pressure rows; label_asym_id treatment would make many same-chain auth hits look cross-chain.",
+          "Representative label-namespace pressure IDs include 9NBW, 6NOO, 5TT6, 4KFT, 1A82, Hsp70/Hsc70 rows, actin rows, and synthetase/ligase rows.",
+          "Non-ATP gamma-like pressure remains real geometry pressure for any future ligand expansion: examples include 1NMY, 1E96, 1GWN, 1M7B, 1NVU, 1NVX, 1PLK, and 1QRA."
+        ],
+        "hypothesis": "Ligand-chain namespace artifacts and non-ATP gamma-like Mg structures can satisfy the current review-only ePK substrate-mode/topology rules as non-ePK false positives.",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_false_positive_hunter",
+        "measured_minutes": 49.6,
+        "namespace_assignment_pressure_examples": [
+          {
+            "acceptor_atom": "OG1",
+            "acceptor_auth_seq_id": "23",
+            "acceptor_chain": "A",
+            "acceptor_distance_angstrom": 5.517,
+            "acceptor_residue": "THR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "B",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.899,
+            "pdb_id": "9NBW",
+            "terminal_p_atom": "PG",
+            "title": "Closed conformation of ArsA from L. ferriphilum in complex with MgATP and arsenite at 1.5 minute time point"
+          },
+          {
+            "acceptor_atom": "OG1",
+            "acceptor_auth_seq_id": "16",
+            "acceptor_chain": "B",
+            "acceptor_distance_angstrom": 5.401,
+            "acceptor_residue": "THR",
+            "auth_ligand_chain": "B",
+            "label_ligand_chain": "C",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.244,
+            "pdb_id": "6NOO",
+            "terminal_p_atom": "PG",
+            "title": "Structure of Cyanothece McdA-AMPPNP complex"
+          },
+          {
+            "acceptor_atom": "OH",
+            "acceptor_auth_seq_id": "37",
+            "acceptor_chain": "A",
+            "acceptor_distance_angstrom": 3.297,
+            "acceptor_residue": "TYR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "D",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.13,
+            "pdb_id": "5TT6",
+            "terminal_p_atom": "PG",
+            "title": "T4 RNA Ligase 1 (K99M)"
+          },
+          {
+            "acceptor_atom": "OG",
+            "acceptor_auth_seq_id": "18",
+            "acceptor_chain": "A",
+            "acceptor_distance_angstrom": 4.564,
+            "acceptor_residue": "SER",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "F",
+            "ligand": "AGS",
+            "nearest_mg_distance_angstrom": 3.498,
+            "pdb_id": "4KFT",
+            "terminal_p_atom": "PB",
+            "title": "Structure of the genome packaging NTPase B204 from Sulfolobus turreted icosahedral virus 2 in complex with ATP-gammaS"
+          },
+          {
+            "acceptor_atom": "OG1",
+            "acceptor_auth_seq_id": "11",
+            "acceptor_chain": "A",
+            "acceptor_distance_angstrom": 3.447,
+            "acceptor_residue": "THR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "D",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.283,
+            "pdb_id": "1A82",
+            "terminal_p_atom": "PG",
+            "title": "DETHIOBIOTIN SYNTHETASE FROM ESCHERICHIA COLI, COMPLEX WITH SUBSTRATES ATP AND DIAMINOPELARGONIC ACID"
+          },
+          {
+            "acceptor_atom": "OG",
+            "acceptor_auth_seq_id": "22",
+            "acceptor_chain": "A",
+            "acceptor_distance_angstrom": 4.006,
+            "acceptor_residue": "SER",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "E",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.227,
+            "pdb_id": "1CSN",
+            "terminal_p_atom": "PG",
+            "title": "BINARY COMPLEX OF CASEIN KINASE-1 WITH MGATP"
+          },
+          {
+            "acceptor_atom": "OG",
+            "acceptor_auth_seq_id": "14",
+            "acceptor_chain": "A",
+            "acceptor_distance_angstrom": 3.819,
+            "acceptor_residue": "SER",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "E",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.322,
+            "pdb_id": "1D4X",
+            "terminal_p_atom": "PG",
+            "title": "Crystal Structure of Caenorhabditis Elegans Mg-ATP Actin Complexed with Human Gelsolin Segment 1 at 1.75 A resolution."
+          },
+          {
+            "acceptor_atom": "OH",
+            "acceptor_auth_seq_id": "116",
+            "acceptor_chain": "A",
+            "acceptor_distance_angstrom": 3.795,
+            "acceptor_residue": "TYR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "B",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.602,
+            "pdb_id": "1DY3",
+            "terminal_p_atom": "PG",
+            "title": "Ternary complex of 7,8-dihydro-6-hydroxymethylpterinpyrophosphokinase from Escherichia coli with ATP and a substrate analogue."
+          }
+        ],
+        "next_query": "Audit the actual review-only scorer/materialization path for ligand-chain namespace use: prove that ATP-like nonpolymer ligand chains and hydroxyl acceptor chains are compared in auth_asym_id space, then run the label-clear/auth-blocked pressure IDs (5TT6, 6NOO, 9NBW, 4KFT, 1A82, 3C9S) through any code path that might use label_asym_id. Do not expand ligand labels or production thresholds.",
+        "non_atp_gamma_like_non_epk_pressure_examples": [
+          {
+            "acceptor_atom": "OG",
+            "acceptor_auth_seq_id": "20",
+            "acceptor_distance_angstrom": 4.488,
+            "acceptor_residue": "SER",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "E",
+            "ligand": "ADP",
+            "nearest_mg_distance_angstrom": 3.299,
+            "pdb_id": "1NMY",
+            "terminal_p_atom": "PB",
+            "title": "Crystal structure of human thymidylate kinase with FLTMP and AppNHp"
+          },
+          {
+            "acceptor_atom": "OH",
+            "acceptor_auth_seq_id": "32",
+            "acceptor_distance_angstrom": 3.639,
+            "acceptor_residue": "TYR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "C",
+            "ligand": "GTP",
+            "nearest_mg_distance_angstrom": 3.248,
+            "pdb_id": "1E96",
+            "terminal_p_atom": "PG",
+            "title": "Structure of the Rac/p67phox complex"
+          },
+          {
+            "acceptor_atom": "OH",
+            "acceptor_auth_seq_id": "52",
+            "acceptor_distance_angstrom": 3.956,
+            "acceptor_residue": "TYR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "C",
+            "ligand": "GTP",
+            "nearest_mg_distance_angstrom": 3.262,
+            "pdb_id": "1GWN",
+            "terminal_p_atom": "PG",
+            "title": "The crystal structure of the core domain of RhoE/Rnd3 - a constitutively activated small G protein"
+          },
+          {
+            "acceptor_atom": "OH",
+            "acceptor_auth_seq_id": "52",
+            "acceptor_distance_angstrom": 3.774,
+            "acceptor_residue": "TYR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "C",
+            "ligand": "GTP",
+            "nearest_mg_distance_angstrom": 3.227,
+            "pdb_id": "1M7B",
+            "terminal_p_atom": "PG",
+            "title": "Crystal structure of Rnd3/RhoE: functional implications"
+          },
+          {
+            "acceptor_atom": "OH",
+            "acceptor_auth_seq_id": "32",
+            "acceptor_distance_angstrom": 3.707,
+            "acceptor_residue": "TYR",
+            "auth_ligand_chain": "Q",
+            "label_ligand_chain": "F",
+            "ligand": "GTP",
+            "nearest_mg_distance_angstrom": 3.228,
+            "pdb_id": "1NVU",
+            "terminal_p_atom": "PG",
+            "title": "Structural evidence for feedback activation by RasGTP of the Ras-specific nucleotide exchange factor SOS"
+          },
+          {
+            "acceptor_atom": "OH",
+            "acceptor_auth_seq_id": "32",
+            "acceptor_distance_angstrom": 4.156,
+            "acceptor_residue": "TYR",
+            "auth_ligand_chain": "Q",
+            "label_ligand_chain": "E",
+            "ligand": "GTP",
+            "nearest_mg_distance_angstrom": 3.263,
+            "pdb_id": "1NVX",
+            "terminal_p_atom": "PG",
+            "title": "Structural evidence for feedback activation by RasGTP of the Ras-specific nucleotide exchange factor SOS"
+          },
+          {
+            "acceptor_atom": "OG",
+            "acceptor_auth_seq_id": "17",
+            "acceptor_distance_angstrom": 5.475,
+            "acceptor_residue": "SER",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "C",
+            "ligand": "GTP",
+            "nearest_mg_distance_angstrom": 3.572,
+            "pdb_id": "1PLK",
+            "terminal_p_atom": "PG",
+            "title": "CRYSTALLOGRAPHIC STUDIES ON P21H-RAS USING SYNCHROTRON LAUE METHOD: IMPROVEMENT OF CRYSTAL QUALITY AND MONITORING OF THE GTPASE REACTION AT DIFFERENT TIME POINTS"
+          },
+          {
+            "acceptor_atom": "OG1",
+            "acceptor_auth_seq_id": "35",
+            "acceptor_distance_angstrom": 4.426,
+            "acceptor_residue": "THR",
+            "auth_ligand_chain": "A",
+            "label_ligand_chain": "C",
+            "ligand": "GTP",
+            "nearest_mg_distance_angstrom": 3.171,
+            "pdb_id": "1QRA",
+            "terminal_p_atom": "PG",
+            "title": "STRUCTURE OF P21RAS IN COMPLEX WITH GTP AT 100 K"
+          }
+        ],
+        "primary_outcome": "search_surface_exhausted",
+        "production_claim_allowed": false,
+        "query_or_source": {
+          "fetch_errors": {},
+          "query_errors": {},
+          "rcsb_cif_template": "https://files.rcsb.org/download/{pdb_id}.cif",
+          "rcsb_entry_template": "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+          "rcsb_search_api": "https://search.rcsb.org/rcsbsearch/v2/query"
+        },
+        "recommendation": "Keep production scoring, threshold calibration, label import, and ligand-set expansion closed. Preserve auth_asym_id namespace discipline for topology checks and audit any implementation path that might use label_asym_id for ligand-chain comparisons.",
+        "rows_reviewed": 260,
+        "rule_under_attack": "epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0 plus epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0",
+        "search_surface": {
+          "candidate_threshold_angstrom": 6.0,
+          "component_query_surface": [
+            {
+              "ligand": "ATP",
+              "metal": "MG",
+              "name": "atp_mg_start_0",
+              "rows": 45,
+              "start": 0
+            },
+            {
+              "ligand": "ATP",
+              "metal": "MG",
+              "name": "atp_mg_start_600",
+              "rows": 45,
+              "start": 600
+            },
+            {
+              "ligand": "ANP",
+              "metal": "MG",
+              "name": "anp_mg_start_0",
+              "rows": 45,
+              "start": 0
+            },
+            {
+              "ligand": "AGS",
+              "metal": "MG",
+              "name": "ags_mg_start_0",
+              "rows": 45,
+              "start": 0
+            },
+            {
+              "ligand": "ACP",
+              "metal": "MG",
+              "name": "acp_mg_start_0",
+              "rows": 45,
+              "start": 0
+            },
+            {
+              "ligand": "GTP",
+              "metal": "MG",
+              "name": "gtp_mg_start_0",
+              "rows": 55,
+              "start": 0
+            },
+            {
+              "ligand": "GTP",
+              "metal": "MG",
+              "name": "gtp_mg_start_200",
+              "rows": 55,
+              "start": 200
+            },
+            {
+              "ligand": "GNP",
+              "metal": "MG",
+              "name": "gnp_mg_start_0",
+              "rows": 55,
+              "start": 0
+            },
+            {
+              "ligand": "GSP",
+              "metal": "MG",
+              "name": "gsp_mg_start_0",
+              "rows": 55,
+              "start": 0
+            },
+            {
+              "ligand": "GDP",
+              "metal": "MG",
+              "name": "gdp_mg_start_0",
+              "rows": 55,
+              "start": 0
+            },
+            {
+              "ligand": "ADP",
+              "metal": "MG",
+              "name": "adp_mg_start_0",
+              "rows": 55,
+              "start": 0
+            }
+          ],
+          "current_atp_like_auth_cross_chain_non_epk_blocked_by_topology_pdb_ids": [
+            "3C9S"
+          ],
+          "current_atp_like_ligands": [
+            "A3P",
+            "ACP",
+            "AGS",
+            "ANP",
+            "ATP"
+          ],
+          "current_atp_like_namespace_artifact_row_count": 47,
+          "fetch_error_count": 0,
+          "full_text_query_surface": [
+            {
+              "name": "gtp_magnesium_tyrosine",
+              "phrase": "GTP magnesium tyrosine",
+              "rows": 45
+            },
+            {
+              "name": "gtp_magnesium_n_terminal_serine",
+              "phrase": "GTP magnesium N-terminal serine",
+              "rows": 45
+            },
+            {
+              "name": "gtp_magnesium_n_terminal_threonine",
+              "phrase": "GTP magnesium N-terminal threonine",
+              "rows": 45
+            },
+            {
+              "name": "gmp_pnp_magnesium_tyrosine",
+              "phrase": "GMPPNP magnesium tyrosine",
+              "rows": 45
+            },
+            {
+              "name": "gtp_gamma_s_magnesium_tyrosine",
+              "phrase": "GTP gamma S magnesium tyrosine",
+              "rows": 45
+            },
+            {
+              "name": "gtpase_transition_state_magnesium",
+              "phrase": "GTPase transition state magnesium",
+              "rows": 45
+            },
+            {
+              "name": "gdp_aluminum_fluoride_magnesium_tyrosine",
+              "phrase": "GDP aluminum fluoride magnesium tyrosine",
+              "rows": 45
+            },
+            {
+              "name": "adp_aluminum_fluoride_magnesium_tyrosine",
+              "phrase": "ADP aluminum fluoride magnesium tyrosine",
+              "rows": 45
+            }
+          ],
+          "known_epk_positive_ids_excluded_from_counterexamples": [
+            "1IR3",
+            "1O6K",
+            "1O6L",
+            "2PHK",
+            "3TM0",
+            "5HVK",
+            "6Z3R",
+            "8OXM",
+            "8OXO",
+            "9UUR",
+            "9UUX"
+          ],
+          "max_n_terminal_acceptor_auth_seq_id": 25,
+          "method": "gamma_chain_assignment_namespace_and_non_atp_stress",
+          "mg_distance_cutoff_angstrom": 4.5,
+          "namespace_assignment_pressure_count": 41,
+          "non_atp_gamma_like_ligands": [
+            "ADP",
+            "GDP",
+            "GNP",
+            "GSP",
+            "GTP"
+          ],
+          "non_atp_gamma_like_non_epk_pressure_row_count": 11,
+          "rows_reviewed": 260,
+          "seed_ids": [
+            "7CAG",
+            "8BMS",
+            "9L3M",
+            "9L3U",
+            "7ZE5",
+            "4KFT",
+            "5TT6",
+            "6NOO",
+            "9NBW"
+          ],
+          "unique_pdb_ids_review_surface_count": 260
+        },
+        "search_surface_exhausted": true,
+        "started_at": "2026-05-20T16:18:47Z"
+      },
       "ledger_path": "artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
-      "ledger_sha256": "507ca6255302ae797d8dc956e3c5e3ab55bccab4e52962ccb95138e2d8f9d80c",
+      "ledger_record_count": 3,
+      "ledger_sha256": "293e5f2b48b4b55fcab5dd4de869a5defbab2321f9b90de113298b2e9d9c095e",
+      "linked_worktree_git_metadata_write_blocked_in_lane": false,
+      "origin_commit": "96b921c3af9742b85c0e2feea23060fab0750afc",
+      "origin_commit_date": "2026-05-20T11:26:22-05:00",
+      "origin_commit_summary": "Add ePK cross-chain false-positive stress",
       "origin_ref": "origin/research/epk-false-positive-hunter",
-      "pushed_commit_prefix": "264a470b3933",
-      "pushed_commit_summary": "Add ePK false-positive hunter stress evidence",
       "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive",
       "worktree_dirty_at_synthesis": true
     },
     {
       "branch": "research/epk-sibling-controls",
       "dirty_status_summary": [
+        "M artifacts/research_lanes/epk_sibling_controls/atp_grasp_product_state_control_screen_20260520.json",
         " M tools/research_lanes/epk_sibling_controls/askha_control_screen.py",
-        "?? artifacts/research_lanes/epk_sibling_controls/atp_grasp_bounded_control_screen_20260520.json"
+        "?? artifacts/research_lanes/epk_sibling_controls/askha_product_state_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/cross_family_source_free_control_rollup_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/dnk_product_state_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/ghkl_product_state_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/ghmp_product_state_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/ndk_bounded_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/pfka_bounded_control_screen_20260520.json",
+        "?? artifacts/research_lanes/epk_sibling_controls/pfkb_bounded_control_screen_20260520.json"
       ],
       "handoff_path": "work/research_lanes/epk_sibling_controls/handoff.md",
-      "handoff_sha256": "689a4051e623b6e2ca5039c165c63a275993774ac9670379f73e5f82121ed793",
+      "handoff_sha256": "cd963c8e3a43fa4178226dc41547512635190cd8f1719580028ae6681eeb123f",
       "json_file_digests": [
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/askha_bounded_control_screen_20260520.json",
           "sha256": "723653fbe77142c7af27adcc6eeabaea04346db6b457acdb088cc9f0bdf63ebe"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/askha_product_state_control_screen_20260520.json",
+          "sha256": "5e0b84f6585d5d6a6c91a26518aeb0b14823c08977a00a9d68e8d6ec6fe8286c"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_bounded_control_screen_20260520.json",
           "sha256": "4e9532b71ede252aef9fb45bcda24eab302797eed74b55dfd2b7598abbbbce52"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/atp_grasp_product_state_control_screen_20260520.json",
+          "sha256": "03b3cfbcf3a4dd22b7f9a591236a9eace9bce0645678f70d2138c6c6181c111b"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/cross_family_source_free_control_rollup_20260520.json",
+          "sha256": "ed90fdb0a02f9284880a6d03c277aec1d9e8de425c769ce23c8b5ffe46e6a29d"
         },
         {
           "path": "artifacts/research_lanes/epk_sibling_controls/dnk_bounded_control_screen_20260520.json",
           "sha256": "48a66f68001b9e9f51b833cfe7b3a56eb44d412806867baf32af1558b2568dae"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/dnk_product_state_control_screen_20260520.json",
+          "sha256": "09aeb3d09d1604fdd5c7254dc16485168891aa9a3aa494e4994aeaf164088672"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/ghkl_bounded_control_screen_20260520.json",
           "sha256": "202356205f4e6564dc701f3fa84770374c5c188b8f3f5e3ba9bd14c157ea1c7f"
         },
         {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ghkl_product_state_control_screen_20260520.json",
+          "sha256": "1a74246730099c806a44751b66f81faf5f37ab3a178d5df563297c78501f9be3"
+        },
+        {
           "path": "artifacts/research_lanes/epk_sibling_controls/ghmp_bounded_control_screen_20260520.json",
           "sha256": "0896d4cbc55a6931e1fb275dd755c09f02106b8be4664bb3346bd20a5e697459"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ghmp_product_state_control_screen_20260520.json",
+          "sha256": "a2859a569edd4df2f23d50f6f9c8b9a8b8c7a8c0fa82c5ff9e1285410979cc41"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/ndk_bounded_control_screen_20260520.json",
+          "sha256": "732ddfaf234897a7f070fb850b3cd9f23115c91b62b88967a0bcdef027e1370c"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/pfka_bounded_control_screen_20260520.json",
+          "sha256": "2812d6e8aeca0070c21dd35189dad550eb9cc948c42e97f161120f5cb3f46efd"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/pfkb_bounded_control_screen_20260520.json",
+          "sha256": "95df4601be83dd9570cc16577f4a3e26d1a8887a0171d57a02dbdff31a20b4c7"
         }
       ],
       "json_validation": {
         "error_count": 0,
-        "json_file_count": 5,
+        "errors": [],
+        "json_file_count": 14,
         "jsonl_file_count": 1,
-        "validated_file_count": 6
+        "validated_file_count": 15
       },
+      "jsonl_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
+          "record_count": 2,
+          "sha256": "6478f01f2ba5fbc9b1ab7b88542a58b441c92c2811c50f9e8bc33c63fc4b980f"
+        }
+      ],
       "lane_id": "epk_sibling_controls",
+      "latest_json_created_at": "2026-05-20T16:47:37Z",
+      "latest_ledger_record": {
+        "controls_added": 25,
+        "counterexamples_found": [
+          "3R5F",
+          "5C1O",
+          "4L1K",
+          "6U1D",
+          "6U1E",
+          "6U1F",
+          "6U1G",
+          "4CVL",
+          "4CVM",
+          "9DQW",
+          "1M0W",
+          "1KJ8",
+          "1EZ1",
+          "1EYZ",
+          "1KJ9",
+          "1KJI",
+          "2D32",
+          "7WAD",
+          "4QF5",
+          "7WAF",
+          "4QDI"
+        ],
+        "ended_at": "2026-05-20T16:06:34Z",
+        "evidence_against": [
+          "ATP-grasp produced 25 gamma/metal controls and 21 weak nearest-oxygen or nearest-hydroxyl counterexamples in a 72-row bounded screen.",
+          "Nineteen controls hit the weak nearest protein-hydroxyl rule at <=6A; eight controls hit the weak nearest nonpolymer-oxygen rule at <=6A, with overlap between the two sets.",
+          "The counterexamples span ATP, ANP, ACP, and AGS nucleotide states across Ddl, Mur ligase, PurT/GAR transformylase, gamma-glutamylcysteine synthetase, and cyanophycin synthetase surfaces."
+        ],
+        "evidence_for": [
+          "The existing unified review-only scorer already blocks the prior ATP-grasp rows 3R5F and 5C1O through family-specific or substrate-identity counteraxes.",
+          "The 19 newly surfaced weak-rule counterexamples were not production-scored, and the precount gates remain blocked for threshold calibration, external hard-negative scored re-audit, and registry/label-factory work.",
+          "The screen also separated 24 ATP-grasp product-state metal rows, including 7 with phosphate or phosphoryl-mimic ligands, as next-query evidence rather than gamma-distance controls."
+        ],
+        "git_write_status": "git fetch and pull blocked by linked-worktree FETCH_HEAD Operation not permitted; git add failed creating linked-worktree index.lock Operation not permitted, so commit/push could not be completed in this sandbox.",
+        "hypothesis": "A broader ATP-grasp gamma/metal sibling surface will break weak source-free ePK rules based only on nearest gamma-to-protein-hydroxyl or nearest gamma-to-any-local-oxygen distance, while existing review-only counteraxes should remain non-production evidence.",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_sibling_controls",
+        "measured_minutes": 48.3,
+        "next_query": "Rerun ATP-grasp with an explicit phosphorylated-acceptor/product-state branch for ADP plus phosphate or phosphorylated nonpolymer controls, starting from 1EHI, 1IOV, 1IOW, 2DLN, 6U1H, 6VR8, and 5DOU.",
+        "primary_outcome": "counterexample_found",
+        "production_claim_allowed": false,
+        "query_or_source": "D-alanine D-alanine ligase, D-Ala D-Ala ligase, glutathione synthase/synthetase, glycinamide ribonucleotide synthetase/PurT, biotin carboxylase, glutamate-cysteine ligase, Mur ligase, carbamoyl phosphate synthetase, ATP-grasp ligase, and prior ATP-grasp sibling artifacts.",
+        "recommendation": "Keep distance-only and nearest-oxygen ePK rules closed; add the expanded ATP-grasp rows only as review-only sibling controls; do not calibrate thresholds or import labels until broader scorer gates are satisfied.",
+        "rows_reviewed": 72,
+        "search_surface": "RCSB full_text bounded ATP-grasp and related ATP/Mg phosphoryl-transfer terms plus 12 prior ATP-grasp seeds; 72 max structures; in-memory mmCIF only; title-boundary aliases; gamma-capable nucleotide, local Mg/Mn, and compact local oxygen measurements.",
+        "search_surface_exhausted": false,
+        "started_at": "2026-05-20T15:18:16Z",
+        "target_sibling_family": "ATP-grasp"
+      },
       "ledger_path": "artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
-      "ledger_sha256": "d504b18521be634003ce2e1257780a86badac266240e5136cd8dca373b711355",
+      "ledger_record_count": 2,
+      "ledger_sha256": "6478f01f2ba5fbc9b1ab7b88542a58b441c92c2811c50f9e8bc33c63fc4b980f",
+      "linked_worktree_git_metadata_write_blocked_in_lane": true,
+      "origin_commit": "f5185ea0b0dca7f0bd0002531580def0f962c02f",
+      "origin_commit_date": "2026-05-20T11:26:32-05:00",
+      "origin_commit_summary": "Add ePK ATP-grasp sibling controls",
       "origin_ref": "origin/research/epk-sibling-controls",
-      "pushed_commit_prefix": "8537feec28a2",
-      "pushed_commit_summary": "Add ePK sibling controls research evidence",
       "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls",
       "worktree_dirty_at_synthesis": true
     },
     {
       "branch": "research/epk-policy-harness",
       "dirty_status_summary": [
-        " M tools/research_lanes/epk_policy_harness/epk_policy_harness.py",
-        "?? artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_result_20260520T151816Z.json",
-        "?? artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_tranche_20260520T151816Z.json"
+        "M tools/research_lanes/epk_policy_harness/epk_policy_harness.py",
+        "?? artifacts/research_lanes/epk_policy_harness/epk_fresh_folded_role_identity_search_surface_20260520T161951Z.json",
+        "?? artifacts/research_lanes/epk_policy_harness/epk_fresh_folded_role_identity_stress_result_20260520T161951Z.json",
+        "?? artifacts/research_lanes/epk_policy_harness/epk_fresh_folded_role_identity_stress_tranche_20260520T161951Z.json"
       ],
       "handoff_path": "work/research_lanes/epk_policy_harness/handoff.md",
-      "handoff_sha256": "047a9faf0084d69de0135f63d513393297e5ab28b86531ebc945203f52f4f71b",
+      "handoff_sha256": "c1e398f9f8a31957d43f152ee9a84a77d4d5ce34f6ebddb41d7889f426b4682d",
       "json_file_digests": [
         {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_fresh_folded_role_identity_search_surface_20260520T161951Z.json",
+          "sha256": "97ed984ba7f5558892dbf07e5574bee0ef51de43fbeb57d2129e3caeb9b054bb"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_fresh_folded_role_identity_stress_result_20260520T161951Z.json",
+          "sha256": "98d6843934a84494bc0d2503f7f9105599d3f679ac2cedeede0679f5f0e19dbc"
+        },
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_fresh_folded_role_identity_stress_tranche_20260520T161951Z.json",
+          "sha256": "95b3089f716f55b3fb323db5537473fa90408f9bf104a13beeba9ac6d1ac9d57"
+        },
+        {
           "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_result_20260520T151816Z.json",
-          "sha256": "0dbd31af003f4c9bec1ad57471c4ed646ddb04f1faa2a0842ee5dd32d22d016c"
+          "sha256": "60fc1a40aa6d7a07e8614ad40a8a284934490af8ff6b3acc585ec273f590d77d"
         },
         {
           "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_tranche_20260520T151816Z.json",
@@ -219,16 +918,123 @@
       ],
       "json_validation": {
         "error_count": 0,
-        "json_file_count": 5,
+        "errors": [],
+        "json_file_count": 8,
         "jsonl_file_count": 1,
-        "validated_file_count": 6
+        "validated_file_count": 9
       },
+      "jsonl_file_digests": [
+        {
+          "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+          "record_count": 2,
+          "sha256": "84b42cb9c43a86e50d8629bff8b5a9a57e09b111c406d55ccb7955a5dff6ebbb"
+        }
+      ],
       "lane_id": "epk_policy_harness",
+      "latest_json_created_at": "2026-05-20T16:34:40+00:00",
+      "latest_ledger_record": {
+        "allowed_predictive_features": [
+          "ligand_code_from_structure",
+          "terminal_gamma_equivalent_geometry",
+          "terminal_gamma_atom_name",
+          "nearest_gamma_acceptor_distance_angstrom",
+          "local_metal_context",
+          "catalytic_site_locality",
+          "source_free_acceptor_role_features",
+          "source_free_acceptor_role_policy_id",
+          "same_structure_co_materialization"
+        ],
+        "counterexamples_found": [],
+        "ended_at": "2026-05-20T11:10:44-05:00",
+        "evaluation_tranche": "artifacts/research_lanes/epk_policy_harness/epk_policy_cutoff_expectation_tranche_20260520T151816Z.json",
+        "evidence_against": [
+          "The invariant tranche is synthetic policy QA, not clean held-out biological performance evidence.",
+          "Policy v0 remains deliberately fail-closed because no source-free acceptor or role extractor is accepted.",
+          "Normal git pull and git add are blocked by linked-worktree metadata permissions on FETCH_HEAD/index.lock, preventing commit and push from this sandbox."
+        ],
+        "evidence_for": [
+          "Harness now validates that the frozen candidate_distance_cutoff_angstrom exists, is numeric, and is positive before evaluating any tranche.",
+          "Rows with terminal gamma geometry but missing or over-cutoff nearest gamma-acceptor distance now abstain with explicit frozen-distance reasons; measured distance is retained in compact row output.",
+          "Result metadata records SHA-256 hashes for the exact policy and tranche inputs, and the 5-row invariant tranche produced five abstentions, zero expected-decision mismatches, zero counterexamples, and primary_outcome policy_frozen_review_only.",
+          "The prior 13-row diagnostic tranche reran cleanly under the stricter harness with all rows abstaining and zero expected-decision mismatches."
+        ],
+        "forbidden_features": [
+          "production_label",
+          "curated_mechanism_label",
+          "mechanism_fingerprint_registry_status",
+          "source_review_used_for_predictive_feature",
+          "candidate_specific_source_repair_used_for_predictive_feature",
+          "mechanism_text",
+          "pdb_title_as_predictive_feature",
+          "uniprot_prose_as_predictive_feature",
+          "ec_or_rhea_as_predictive_feature",
+          "source_id_as_predictive_feature",
+          "post_hoc_ligand_alias_expansion",
+          "post_hoc_threshold_selection",
+          "cross_pdb_split_state_fusion",
+          "homomeric_chain_choice_as_substrate_mapping"
+        ],
+        "frozen_inputs": {
+          "accepted_source_free_acceptor_role_policy_ids": [],
+          "candidate_distance_cutoff_angstrom": 6.0,
+          "evaluation_tranche_sha256": "11e763896a9b7133040151a283c7d6744f6e5fcb0f8d337587568dce926192be",
+          "ligand_code_alias_map": {
+            "AMP_PNP": [
+              "AMP-PNP",
+              "AMPPNP"
+            ],
+            "ANP": [
+              "ANP"
+            ],
+            "ATP": [
+              "ATP"
+            ]
+          },
+          "policy_manifest": "artifacts/research_lanes/epk_policy_harness/epk_policy_v0_20260520.json",
+          "policy_sha256": "298b2a636fe3a50b3872bb513a9d37e0151b02b71d25fe1b651da5d3854b4345"
+        },
+        "hypothesis": "A frozen review-only ePK policy can be run on future tranches without tuning by allowing active-gamma ligand state to contribute only when terminal gamma-equivalent geometry, local metal context, catalytic-site locality, source-free acceptor or role features, same-structure co-materialization, and the frozen gamma-distance cutoff all hold before any review context is consulted; otherwise the harness abstains.",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_policy_harness",
+        "measured_minutes": 52.47,
+        "next_query": "epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only",
+        "policy_version": "epk_review_only_policy_harness_v0_20260520",
+        "primary_outcome": "policy_frozen_review_only",
+        "production_claim_allowed": false,
+        "recommendation": "policy_frozen_review_only",
+        "review_only_features": [
+          "pdb_id",
+          "row_role",
+          "clean_held_out_performance_evidence",
+          "development_or_regression_context",
+          "product_state_context",
+          "substrate_acceptor_analog_context",
+          "split_state_context",
+          "candidate_specific_source_repair",
+          "sibling_counterfamily_context",
+          "post_score_review_status",
+          "source_validation_status",
+          "source_review_status",
+          "source_query",
+          "structure_title",
+          "entity_descriptions",
+          "chain_accessions",
+          "source_pair_id",
+          "known_counterexample_status",
+          "expert_notes"
+        ],
+        "rows_reviewed": 5,
+        "search_surface_exhausted": false,
+        "started_at": "2026-05-20T10:18:16-05:00"
+      },
       "ledger_path": "artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
-      "ledger_sha256": "cc31918c2f7adcadd750836f585b45fd30f1f8ea44bfbcb5c2b1bff9dd30e716",
+      "ledger_record_count": 2,
+      "ledger_sha256": "84b42cb9c43a86e50d8629bff8b5a9a57e09b111c406d55ccb7955a5dff6ebbb",
+      "linked_worktree_git_metadata_write_blocked_in_lane": false,
+      "origin_commit": "9f0775c963d9be54fdf6cc90620e4743cdba2390",
+      "origin_commit_date": "2026-05-20T11:26:43-05:00",
+      "origin_commit_summary": "Tighten ePK policy harness invariants",
       "origin_ref": "origin/research/epk-policy-harness",
-      "pushed_commit_prefix": "4ac7ac682301",
-      "pushed_commit_summary": "Add ePK policy harness research evidence",
       "source_worktree": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness",
       "worktree_dirty_at_synthesis": true
     }
@@ -236,57 +1042,76 @@
   "lane_findings": [
     {
       "evidence_against": [
-        "The later explicit phosphoacceptor/full-length substrate surface reviewed 177 unique PDB IDs across 14 surfaces and found 0 fresh clean folded-protein positives.",
-        "Strict AMP-PNP plus phosphoacceptor folded-substrate query returned 0 rows; full-length ATP/Mg wording returned 24 rows without a new heteromeric source-review lead.",
-        "Rejected or counterexample rows include 2JJ2, 7B56, 7ZE5, and 9UW4."
+        "The RCSB/PubMed full-length ATP/phosphorylation-site route reviewed 700 unique RCSB PDB IDs, 954 returned RCSB rows, and 61 Europe PMC/PubMed-style PMIDs with 0 fresh clean positives.",
+        "PINK1/ubiquitin remains split-state; PKA/CFTR modeled acceptors are absent or 27-38 Angstrom from PKA gamma; aPKC/Lgl and mTORC2/Akt leads lack local transfer geometry.",
+        "Broad ATP-analog/gamma-transfer aliases still produce non-ePK transporter counterexamples 7ZDU and 7ZE5."
       ],
       "evidence_for": [
-        "Pushed lane evidence added review-only peptide/protein-substrate positive-like anchors including CDK2 and PKA peptide structures.",
-        "Known folded-protein positive-like repeats 5HVK, 6Z3R, 9UUR, and 9UUX were recovered as regression anchors."
+        "Repeat folded-protein positive-like evidence remains 5HVK LIMK1/cofilin Ser3 near ANP PG.",
+        "Repeat peptide positives 3X2U, 3X2V, 3X2W, 1IR3, 2PHK, and 4IAC were recovered for review-only stress coverage."
       ],
       "lane_id": "epk_positive_evidence",
       "primary_outcome": "evidence_against_fresh_folded_protein_positive",
-      "recommendation": "Keep positive evidence review-only; do not score ePK or calibrate thresholds from repeat positives or source-context peptide anchors."
+      "recommendation": "Keep positive evidence review-only; do not score ePK or calibrate thresholds from repeat positives, peptide anchors, or source-context searches.",
+      "review_only_blockers": [
+        "no_fresh_clean_folded_protein_positive",
+        "source_review_evidence_not_source_free_predictive_feature",
+        "threshold_not_calibrated_against_negative_controls",
+        "external_hard_negative_reaudit_not_real_scorer",
+        "registry_and_label_factory_extension_not_implemented"
+      ],
+      "source_review_status_counts": {
+        "accepted_repeat_folded_protein_substrate_evidence_review_only": 1,
+        "accepted_repeat_peptide_substrate_evidence_review_only": 6,
+        "rejected_apkc_lgl_acceptor_too_far_review_only": 1,
+        "rejected_cyddc_transporter_counterexample_review_only": 2,
+        "rejected_mtorc2_akt_no_local_transfer_geometry_review_only": 2,
+        "rejected_mtorc2_akt_recruitment_no_active_gamma_review_only": 1,
+        "rejected_pink1_nucleotide_state_without_ubiquitin_substrate_review_only": 2,
+        "rejected_pink1_ubiquitin_split_state_no_active_gamma_review_only": 1,
+        "rejected_pka_cftr_no_local_transfer_geometry_review_only": 4,
+        "rejected_top_paper_surface_false_positive_review_only": 2
+      }
     },
     {
       "evidence_against": [
-        "The surfaces are bounded review-only attacks, not clean safety proof for production scoring.",
-        "The next adversarial surface remains topology-clear cross-chain non-ePK ATP/Mg cases, not same-chain Walker-A/P-loop repeats."
+        "Bounded attacks are negative review evidence, not proof that an ePK production scorer is safe.",
+        "Gamma-chain assignment stress surfaced 41 namespace pressure PDB IDs and 11 non-ePK non-ATP gamma-like pressure rows that remain future attack material."
       ],
       "evidence_for": [
-        "Across the pushed stress summary, 295 reviewed rows / 281 unique PDB IDs produced 14 substrate-mode pressure cases, all blocked by same-chain topology ambiguity.",
-        "Newer sibling-worktree cross-chain stress artifacts validate and add 668 reviewed rows with 0 counterexample candidates across non-ePK ATP/Mg, interface/oligomer, acceptor-targeted, and component ATP-like Mg surfaces."
+        "The cross-chain ATP-like/Mg stress aggregate reviewed None rows and found 0 topology-clear cross-chain substrate-mode counterexamples.",
+        "The gamma-chain/namespace stress reviewed 260 rows, found 0 current-auth counterexamples and 0 non-ATP current-rule counterexamples."
       ],
       "lane_id": "epk_false_positive_hunter",
-      "primary_outcome": "evidence_against_exact_counterexample_on_bounded_surfaces",
-      "recommendation": "Preserve the topology ambiguity counteraxis as review-only evidence and keep ePK production scoring closed."
+      "next_attack_surface": "ligand-chain assignment artifacts plus non-ATP gamma-like transition-state analogs; do not convert the bounded no-counterexample result into a production safety claim.",
+      "primary_outcome": "bounded_attacks_exhausted_no_topology_clear_counterexample",
+      "recommendation": "Preserve topology and ligand-namespace pressure cases as review-only falsification surfaces while keeping scoring, thresholds, and imports closed."
     },
     {
       "evidence_against": [
-        "The controls were not production-scored and do not clear threshold calibration or external hard-negative re-audit gates.",
-        "Distance-only, nearest-oxygen, and unqualified gamma-to-hydroxyl rules remain invalidated by sibling-family overlap."
+        "Distance-only and nearest-oxygen rules fail across ATP-grasp, ASKHA, dNK, GHKL, GHMP, NDK, PfkA, and PfkB control surfaces.",
+        "Product-state branches add review-only falsification controls, but not a calibrated source-free ePK substrate-role extractor."
       ],
       "evidence_for": [
-        "ASKHA, dNK, GHKL, and GHMP pushed controls reviewed 119 rows, added 14 controls, and found weak nearest-hydroxyl counterexamples including 3FGU, 6PDT, 5ZQT, 2QQ0, 1I5A, 1I5B, 6BLK, 3SL2, 8F71, 3GON, and 1H74.",
-        "A newer ATP-grasp local artifact reviewed 72 structures and records 25 gamma/metal control candidates plus 24 product-state-with-metal rows."
+        "Cross-family sibling rollup covers 8 families, 452 reviewed rows, and 64 gamma/metal controls.",
+        "It records 47 unique weak-rule counterexamples and 17 product-state branch controls."
       ],
       "lane_id": "epk_sibling_controls",
       "primary_outcome": "counterexample_found",
-      "recommendation": "Use sibling rows as falsification controls; expand ATP-grasp or add nonpolymer-acceptor counteraxes only inside review-only experiments."
+      "recommendation": "Use sibling controls to falsify weak ePK rules; do not production-score ePK until a source-free role and acceptor-identity axis passes these controls plus external re-audit."
     },
     {
       "evidence_against": [
-        "No accepted source-free acceptor/role extractor exists in v0, so the policy is deliberately fail-closed rather than positive-yielding.",
-        "Diagnostic and synthetic tranches are harness QA or development context, not clean held-out performance evidence."
+        "All six fresh tripwire rows abstained because required same-structure source-free acceptor-role/co-materialization features are missing.",
+        "The harness remains fail-closed policy QA, not biological performance evidence or a production score."
       ],
       "evidence_for": [
-        "The frozen v0 policy manifest separates allowed structure-local features from forbidden text, label, source, EC/Rhea, post-hoc threshold, and registry-derived features.",
-        "The 13-row diagnostic tranche abstained on all rows, including 4EKK, seven regression counterexamples, product/analog/repair tripwires, and sibling controls.",
-        "A newer five-row synthetic cutoff expectation tranche produced 0 expected-decision mismatches and 5 review-only abstentions."
+        "Fresh folded role-identity stress reviewed 25 candidates and found 0 nonconfounded candidates within cutoff.",
+        "The frozen harness returned {'review_only_abstain': 6} with 0 expected-decision mismatches and 0 counterexamples."
       ],
       "lane_id": "epk_policy_harness",
-      "primary_outcome": "policy_frozen_review_only",
-      "recommendation": "Freeze the policy only for future review-only prospective tranches; do not activate it as a production scorer."
+      "primary_outcome": "policy_frozen_review_only_and_fresh_stress_abstains",
+      "recommendation": "Keep ligand-state policy frozen only for review-only prospective tranches; the fresh stress removes no production blocker."
     }
   ],
   "metadata": {
@@ -296,17 +1121,22 @@
     "automation_id": "catalytic-earth-work-loop",
     "canonical_countable_label_count": 682,
     "countable_label_candidate_count": 0,
-    "created_at": "2026-05-20T16:12:00Z",
+    "created_at": "2026-05-20T17:08:53Z",
     "curated_label_registry_edited": false,
     "epk_score_computed": false,
     "external_hard_negative_reaudit_scored": false,
     "fingerprint_registry_edited": false,
+    "fresh_lane_outputs_since_prior_synthesis": true,
     "git_history_edited": false,
+    "integrates_uncommitted_sibling_worktree_outputs": true,
     "lane_count": 4,
+    "lane_json_file_count": 54,
     "lane_json_validation_error_count": 0,
+    "lane_jsonl_file_count": 4,
     "main_loop_should_continue_epk_by_default": false,
     "mechanism_fingerprint_registry_edited": false,
     "method": "main_loop_research_lane_review_only_synthesis",
+    "prior_synthesis_created_at": "2026-05-20T16:12:00Z",
     "production_fingerprint_count": 8,
     "ready_for_label_import": false,
     "ready_for_production_scoring": false,
@@ -318,32 +1148,28 @@
   },
   "next_exact_experiment_if_epk_is_reopened": {
     "decision_to_start_now": false,
-    "experiment_id": "epk_fresh_nonconfounded_folded_substrate_role_identity_stress_v1_review_only",
+    "experiment_id": "pka_cftr_site_specific_acceptor_mapping_review_only",
     "preconditions": [
-      "Freeze a fresh post-policy candidate tranche before computing local features.",
-      "Compute source-free ligand-state, topology, acceptor-role, and substrate-identity features before any source validation or text review.",
-      "Keep source validation as post-feature review context only.",
-      "Include topology-clear cross-chain non-ePK ATP/Mg attacks and ATP-grasp sibling controls in the same review-only packet.",
-      "Do not calibrate thresholds, score external hard negatives, import labels, or edit registries."
+      "Freeze PKA/CFTR structures and site-specific acceptor questions before source review.",
+      "Record whether modeled CFTR phosphorylation-site residues are absent, disordered, or intentionally distant from PKA gamma.",
+      "Use source review only as review context after local geometry inspection.",
+      "Do not score ePK, select thresholds, re-audit external hard negatives as production evidence, import labels, or edit registries."
     ],
-    "reason_not_started": "Main automation has higher-priority visible small wins and current ePK evidence does not remove a production blocker.",
-    "status": "deferred_not_main_loop_default"
+    "reason_not_started": "Fresh research-lane evidence reinforces the ePK no-go; the main automation should continue non-ePK visible small wins.",
+    "source_lane": "epk_positive_evidence",
+    "status": "deferred_research_lane_only_not_main_loop_default"
   },
   "small_win_ladder_decision": {
-    "avoid": [
-      "more unbounded ePK audit/control churn",
-      "M-CSA strict pairwise Foldseek/TM split repair",
-      "artifact migration Phase 2 upload or Phase 3 removal",
-      "registry or fingerprint edits without preregistered gates"
-    ],
-    "next_main_loop_focus": "continue_non_epk_small_wins",
-    "preferred_next_rung": "prospective_external_minicampaign_or_non_epk_family_readiness_packet"
+    "integration_required_before_unrelated_work": true,
+    "integration_status": "completed_review_only_synthesis_artifact_refresh",
+    "next_main_loop_task": "glycoside_hydrolase_control_tranche_review_only_axis_scoring_and_terminal_decisions",
+    "rationale": "The prior main run preregistered a 15-row non-ePK glycoside hydrolase control tranche; current ePK synthesis changes no production decision and should not monopolize the main loop."
   },
   "synthesis_conclusion": {
     "false_positive_lane": "bounded_attacks_found_pressure_cases_but_no_topology_clear_counterexample",
     "ligand_state_policy": "frozen_only_for_future_review_only_prospective_tranches",
     "overall": "epk_remains_review_only_and_not_production_ready",
-    "policy_harness_lane": "review_only_policy_is_frozen_fail_closed_not_positive_yielding",
+    "policy_harness_lane": "fresh_folded_role_identity_stress_abstained_fail_closed",
     "positive_evidence_lane": "fresh_folded_protein_positive_not_found",
     "production_activation_decision": "no_go",
     "sibling_control_lane": "counterexamples_found_for_distance_only_or_nearest_oxygen_rules",

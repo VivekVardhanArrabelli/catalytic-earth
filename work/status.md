@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 217
-- Measured elapsed time: 6812.5 minutes (113.54 hours)
+- Entries: 218
+- Measured elapsed time: 6819.7 minutes (113.66 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 84.3 measured minutes (1.41 hours)
-- post-infra-science: 1583.4 measured minutes (26.39 hours)
+- post-infra-science: 1590.6 measured minutes (26.51 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 64.8 measured minutes (1.08 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2562
-- Evidence references logged: 2063
+- Artifact references logged: 2568
+- Evidence references logged: 2070
 
 ## Recent Entries
-
-### 2026-05-20T10:43:00+00:00 - post-infra-science
-
-- Task: ePK MEK ERK substrate-mode counteraxis stress
-- Time mode: measured
-- Measured minutes: 50.5
-- Started: 2026-05-20T09:52:30Z
-- Ended: 2026-05-20T10:43:00Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_cli.py, tests/test_leakage_closure.py, artifacts/v3_epk_mek_erk_substrate_mode_counteraxis_audit_1025.json, artifacts/v3_epk_mek_erk_substrate_mode_fresh_stress_audit_1025.json, artifacts/v3_epk_mek_erk_substrate_mode_existing_scout_gap_audit_1025.json, artifacts/v3_epk_precount_gate_status_1025.json, artifacts/v3_epk_counteraxis_sufficiency_decision_1025.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 665-test unit discovery passed, startup validate passed with 682 labels, SSH deploy-key fetch pull ls-remote dry-run push passed, substrate-mode counteraxis retained five positives and blocked residual false hits 2JJ2 4HPU 7B56 7ZDT, fresh MEK ERK stress found 7M0T 7M0W 9UW4 had zero substrate-mode rule hits but all topology-confounded, existing scout gap audit found ten remaining unreviewed topology hits all same-chain topology-confounded, pre-count remains blocked_review_only, counteraxis decision remains do_not_select_threshold, final 674-test unit discovery passed, tests.test_cli plus tests.test_leakage_closure passed with 283 tests, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run guard passed with 108 rows and removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope 3 external out_of_scope, compileall passed, JSON validation passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. Phase 1 artifact migration remained guard-only and closed. No artifact upload deletion externalization Git-LFS migration history rewrite label import positive fingerprint registry edit external-hard-negative scored re-audit or removal_allowed=true.
 
 ### 2026-05-20T11:24:52.078372+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-20T16:20:48Z
 - Artifacts: artifacts/v3_akr_family_readiness_packet_20260520.json, artifacts/v3_glycoside_hydrolase_family_readiness_packet_20260520.json, artifacts/v3_sugar_phosphate_isomerase_readiness_packet_20260520.json, artifacts/v3_mechanism_family_readiness_index_20260520.json, artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: AKR packet keeps C9JRZ8 review-only needs_review and no-go for production fingerprint expansion, glycoside hydrolase packet keeps Q6NSJ0 review-only and no-go while documenting metal-hydrolase collapse risk, sugar-phosphate isomerase packet keeps P34949 review-only and no-go while documenting weak flavin top1 scope risk, readiness index prioritizes glycoside_hydrolase_vs_metal_hydrolase_control_tranche_v1_review_only, 15-row glycoside hydrolase control tranche frozen before scoring, focused artifact tests passed, full 692-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run local-file guard passed with removal_allowed=0, label invariants preserved 682 total 212 seed 470 out_of_scope and three external hard negatives unchanged, compileall passed, JSON validation passed, git diff --check passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
+
+### 2026-05-20T17:10:02.023049+00:00 - post-infra-science
+
+- Task: Refresh ePK research-lane synthesis
+- Time mode: measured
+- Measured minutes: 7.183
+- Started: 2026-05-20T17:02:50Z
+- Ended: 2026-05-20T17:10:01Z
+- Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 692-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, SSH deploy-key fetch pull ls-remote dry-run push passed, four sibling ePK research lanes read from worktrees and origin research branches, 54 JSON files and 4 JSONL ledgers validated with 0 errors, ePK remains review-only and production activation no-go, targeted synthesis test passed
 - Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, external hard-negative production score, or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -292,6 +292,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T15:32:22.885905+00:00: Next external mini-campaign work needs genuinely new preregistered sourcing or a different frozen surface; do not rerun this structurally duplicated set for import.
 - 2026-05-20T16:07:10.750132+00:00: Current ePK evidence still does not remove production blockers; the only exact future ePK experiment is deferred review-only fresh substrate-role stress.
 - 2026-05-20T16:21:03.279937+00:00: Next best non-ePK family work is scoring only the preregistered glycoside hydrolase versus metal/ser-his hydrolase review-only tranche; no family is production-ready.
+- 2026-05-20T17:10:02.023049+00:00: Fresh ePK research-lane output reinforces the no-go production decision; main-loop work should continue the preregistered glycoside hydrolase control tranche.
 
 ## Scope Adjustments
 
@@ -408,3 +409,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T15:32:22.885905+00:00: Frozen prospective mini-campaign is now closed as terminal review-only duplicate evidence rather than blocked by missing coordinate sidecars.
 - 2026-05-20T16:07:10.750132+00:00: Fresh ePK research-lane outputs are synthesized as review-only evidence; main loop should continue non-ePK small wins instead of ePK default work.
 - 2026-05-20T16:21:03.279937+00:00: Main loop has concrete non-ePK family-readiness small wins and a frozen glycoside hydrolase control tranche for the next review-only experiment.
+- 2026-05-20T17:10:02.023049+00:00: ePK lane synthesis now includes later pushed and dirty sibling-worktree evidence without copying production changes; PKA/CFTR mapping is research-lane-only if reopened.

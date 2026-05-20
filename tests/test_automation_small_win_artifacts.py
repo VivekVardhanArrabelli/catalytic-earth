@@ -59,6 +59,10 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertFalse(metadata["main_loop_should_continue_epk_by_default"])
         self.assertEqual(metadata["lane_count"], 4)
         self.assertEqual(metadata["lane_json_validation_error_count"], 0)
+        self.assertTrue(metadata["fresh_lane_outputs_since_prior_synthesis"])
+        self.assertTrue(metadata["integrates_uncommitted_sibling_worktree_outputs"])
+        self.assertEqual(metadata["lane_json_file_count"], 54)
+        self.assertEqual(metadata["lane_jsonl_file_count"], 4)
 
         self.assertEqual(
             conclusion["overall"],
@@ -68,6 +72,10 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(
             conclusion["terminal_main_loop_decision"],
             "do_not_resume_epk_as_default_main_loop_task",
+        )
+        self.assertEqual(
+            conclusion["policy_harness_lane"],
+            "fresh_folded_role_identity_stress_abstained_fail_closed",
         )
 
         lanes = {row["lane_id"]: row for row in synthesis["lane_findings"]}
@@ -87,6 +95,10 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(
             lanes["epk_sibling_controls"]["primary_outcome"],
             "counterexample_found",
+        )
+        self.assertEqual(
+            lanes["epk_policy_harness"]["primary_outcome"],
+            "policy_frozen_review_only_and_fresh_stress_abstains",
         )
         self.assertFalse(
             synthesis["next_exact_experiment_if_epk_is_reopened"][
