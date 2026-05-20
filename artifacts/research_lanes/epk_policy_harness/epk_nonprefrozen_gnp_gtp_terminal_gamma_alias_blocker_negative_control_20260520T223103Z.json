@@ -1,0 +1,331 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "alias_map_blockers_review_only": [
+      "GNP",
+      "GTP"
+    ],
+    "artifact_id": "epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z",
+    "blocker_codes_not_in_frozen_policy_ligand_map": true,
+    "blocker_codes_observed_in_coordinate_inventory": true,
+    "blocker_codes_review_only": true,
+    "blocker_observation_count": 13,
+    "candidate_ids_frozen_before_negative_control_selection": true,
+    "coordinate_ligand_codes_observed": [
+      "GNP",
+      "GTP"
+    ],
+    "created_at": "2026-05-20T22:31:03Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "nonconfounded_candidate_count_within_cutoff": 0,
+    "nonprefrozen_coordinate_ligand_codes_review_only": [
+      "GNP",
+      "GTP"
+    ],
+    "pre_frozen_coordinate_ligand_codes": [
+      "ANP",
+      "ATP"
+    ],
+    "production_claim_allowed": false,
+    "query_id": "epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_v1_review_only",
+    "query_ligand_synonyms_review_only": [
+      "AMP-PNP",
+      "AMPPNP"
+    ],
+    "query_text_not_coordinate_ligand_materialization": true,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "selected_blocker_row_count": 8,
+    "source_guard_artifact": "artifacts/research_lanes/epk_policy_harness/epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_20260520T213835Z.json",
+    "source_guard_query_id": "epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_v1_review_only",
+    "source_surface_query_contexts_review_only": [
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z.json",
+        "coordinate_ligand_codes_observed": [
+          "GNP",
+          "GTP"
+        ],
+        "query": "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "query_ligand_synonyms_review_only": [
+          "AMP-PNP",
+          "AMPPNP"
+        ],
+        "query_mode": "full_text",
+        "review_only": true,
+        "source_guard_artifact": "artifacts/research_lanes/epk_policy_harness/epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_20260520T213835Z.json"
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z.json",
+        "coordinate_ligand_codes_observed": [],
+        "query": "full_text PROTEIN KINASE AMPPNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "query_ligand_synonyms_review_only": [
+          "AMP-PNP",
+          "AMPPNP"
+        ],
+        "query_mode": "full_text",
+        "review_only": true,
+        "source_guard_artifact": "artifacts/research_lanes/epk_policy_harness/epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_20260520T213835Z.json"
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z.json",
+        "coordinate_ligand_codes_observed": [
+          "GNP",
+          "GTP"
+        ],
+        "query": "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "query_ligand_synonyms_review_only": [
+          "AMP-PNP",
+          "AMPPNP"
+        ],
+        "query_mode": "full_text",
+        "review_only": true,
+        "source_guard_artifact": "artifacts/research_lanes/epk_policy_harness/epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_20260520T213835Z.json"
+      }
+    ],
+    "terminal_gamma_rows_for_blocker_codes_excluded_from_policy_admission": true
+  },
+  "rows": [
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.864,
+      "best_cross_auth_chain_distance_angstrom": 12.361,
+      "best_cross_polymer_entity_distance_angstrom": 12.361,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GTP",
+      "ligand_code": "GTP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 3.225,
+      "nonconfounded_cross_polymer_entity_within_cutoff": false,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "9YA5",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.975,
+      "best_cross_auth_chain_distance_angstrom": 14.493,
+      "best_cross_polymer_entity_distance_angstrom": 3.975,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GTP",
+      "ligand_code": "GTP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 2.367,
+      "nonconfounded_cross_polymer_entity_within_cutoff": true,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "9YAI",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 4.48,
+      "best_cross_auth_chain_distance_angstrom": 12.71,
+      "best_cross_polymer_entity_distance_angstrom": 12.71,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GNP",
+      "ligand_code": "GNP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 3.676,
+      "nonconfounded_cross_polymer_entity_within_cutoff": false,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "9O65",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.821,
+      "best_cross_auth_chain_distance_angstrom": 19.048,
+      "best_cross_polymer_entity_distance_angstrom": 19.048,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GTP",
+      "ligand_code": "GTP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 3.223,
+      "nonconfounded_cross_polymer_entity_within_cutoff": false,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "9YMG",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.795,
+      "best_cross_auth_chain_distance_angstrom": 13.212,
+      "best_cross_polymer_entity_distance_angstrom": 6.076,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GTP",
+      "ligand_code": "GTP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 2.998,
+      "nonconfounded_cross_polymer_entity_within_cutoff": false,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "8UTN",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.134,
+      "best_cross_auth_chain_distance_angstrom": 13.12,
+      "best_cross_polymer_entity_distance_angstrom": 3.851,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GTP",
+      "ligand_code": "GTP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 2.433,
+      "nonconfounded_cross_polymer_entity_within_cutoff": true,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "8UTO",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.643,
+      "best_cross_auth_chain_distance_angstrom": 12.996,
+      "best_cross_polymer_entity_distance_angstrom": 3.643,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GTP",
+      "ligand_code": "GTP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 2.453,
+      "nonconfounded_cross_polymer_entity_within_cutoff": true,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "8UTP",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "best_any_auth_chain_relation": "same_auth_chain",
+      "best_any_ser_thr_tyr_gamma_distance_angstrom": 3.702,
+      "best_cross_auth_chain_distance_angstrom": 13.018,
+      "best_cross_polymer_entity_distance_angstrom": 5.602,
+      "fetch_status": "fetched",
+      "gamma_ligand_code": "GTP",
+      "ligand_code": "GTP",
+      "local_metal_context_review_only": true,
+      "nearest_gamma_metal_code": "MG",
+      "nearest_gamma_metal_distance_angstrom": 2.342,
+      "nonconfounded_cross_polymer_entity_within_cutoff": true,
+      "nonconfounded_inter_auth_chain_within_cutoff": false,
+      "pdb_id": "8UTQ",
+      "raw_coordinate_dump_written": false,
+      "selected_for_tranche": true,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ],
+      "terminal_gamma_atom_detected": true,
+      "terminal_gamma_atom_name": "PG"
+    },
+    {
+      "ligand_code": "GTP",
+      "pdb_id": "8UTT",
+      "selected_for_tranche": false,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ]
+    },
+    {
+      "ligand_code": "GTP",
+      "pdb_id": "8UTU",
+      "selected_for_tranche": false,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ]
+    },
+    {
+      "ligand_code": "GTP",
+      "pdb_id": "8UTY",
+      "selected_for_tranche": false,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ]
+    },
+    {
+      "ligand_code": "GNP",
+      "pdb_id": "8FO2",
+      "selected_for_tranche": false,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text PROTEIN KINASE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc",
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ]
+    },
+    {
+      "ligand_code": "GTP",
+      "pdb_id": "7TQX",
+      "selected_for_tranche": false,
+      "source_inventory_status": "nonprefrozen_terminal_gamma_blocker",
+      "source_queries_review_only": [
+        "full_text KINASE SUBSTRATE AMP-PNP MAGNESIUM sorted by rcsb_accession_info.initial_release_date desc"
+      ]
+    }
+  ]
+}

@@ -107,6 +107,15 @@ COORDINATE_LIGAND_CODE_SOURCES = {
     "mmcif_atom_site_auth_comp_id",
 }
 
+NONPREFROZEN_ALIAS_BLOCKER_CONTRACT_TRUE_FLAGS = (
+    "candidate_ids_frozen_before_negative_control_selection",
+    "blocker_codes_observed_in_coordinate_inventory",
+    "blocker_codes_review_only",
+    "blocker_codes_not_in_frozen_policy_ligand_map",
+    "query_text_not_coordinate_ligand_materialization",
+    "terminal_gamma_rows_for_blocker_codes_excluded_from_policy_admission",
+)
+
 POST_SCORE_BLOCKED_STATUSES = {
     "blocked_source_context_insufficient_review_only",
     "source_context_insufficient_or_review_only_conflict",
@@ -693,6 +702,214 @@ def validate_tranche(tranche: dict[str, Any], policy: dict[str, Any] | None = No
                     f"row {row_id} violates coordinate ligand materialization guard: "
                     "post_hoc_ligand_alias_expansion"
                 )
+    blocker_contract = metadata.get("nonprefrozen_alias_blocker_negative_control_contract")
+    if blocker_contract:
+        if not isinstance(blocker_contract, dict):
+            raise ValueError(
+                "tranche metadata.nonprefrozen_alias_blocker_negative_control_contract "
+                "must be an object"
+            )
+        for flag in NONPREFROZEN_ALIAS_BLOCKER_CONTRACT_TRUE_FLAGS:
+            if blocker_contract.get(flag) is not True:
+                raise ValueError(
+                    "nonprefrozen alias blocker negative-control contract requires "
+                    f"{flag}=true"
+                )
+
+        blocker_codes = upper_string_set(
+            blocker_contract.get("nonprefrozen_coordinate_ligand_codes_review_only"),
+            field_name=(
+                "metadata.nonprefrozen_alias_blocker_negative_control_contract."
+                "nonprefrozen_coordinate_ligand_codes_review_only"
+            ),
+        )
+        if not blocker_codes:
+            raise ValueError(
+                "nonprefrozen alias blocker negative-control contract requires "
+                "at least one blocker code"
+            )
+        pre_frozen_codes = upper_string_set(
+            blocker_contract.get("pre_frozen_coordinate_ligand_codes"),
+            field_name=(
+                "metadata.nonprefrozen_alias_blocker_negative_control_contract."
+                "pre_frozen_coordinate_ligand_codes"
+            ),
+        )
+        query_synonyms = upper_string_set(
+            blocker_contract.get("query_ligand_synonyms_review_only"),
+            field_name=(
+                "metadata.nonprefrozen_alias_blocker_negative_control_contract."
+                "query_ligand_synonyms_review_only"
+            ),
+        )
+        observed_codes = upper_string_set(
+            metadata.get("coordinate_ligand_codes_observed"),
+            field_name="metadata.coordinate_ligand_codes_observed",
+        )
+        metadata_blockers = upper_string_set(
+            metadata.get("alias_map_blockers_review_only", []),
+            field_name="metadata.alias_map_blockers_review_only",
+        )
+        if blocker_codes - observed_codes:
+            missing = sorted(blocker_codes - observed_codes)
+            raise ValueError(
+                "nonprefrozen alias blocker negative-control contract requires "
+                f"blocker codes to be observed in coordinate inventory: {missing}"
+            )
+        if blocker_codes - metadata_blockers:
+            missing = sorted(blocker_codes - metadata_blockers)
+            raise ValueError(
+                "nonprefrozen alias blocker negative-control contract requires "
+                f"blocker codes to be recorded as review-only alias-map blockers: {missing}"
+            )
+        blocker_prefrozen_overlap = sorted(blocker_codes & pre_frozen_codes)
+        if blocker_prefrozen_overlap:
+            raise ValueError(
+                "nonprefrozen alias blocker negative-control contract requires "
+                "blocker codes to stay outside the pre-frozen coordinate code set: "
+                f"{blocker_prefrozen_overlap}"
+            )
+        blocker_query_overlap = sorted(blocker_codes & query_synonyms)
+        if blocker_query_overlap:
+            raise ValueError(
+                "nonprefrozen alias blocker negative-control contract requires "
+                "blocker coordinate codes to stay distinct from query synonyms: "
+                f"{blocker_query_overlap}"
+            )
+        if policy is not None:
+            alias_map = policy["frozen_inputs"]["ligand_code_alias_map"]
+            frozen_policy_codes = {str(code).upper() for code in alias_map}
+            frozen_policy_aliases = set(frozen_policy_codes)
+            for aliases in alias_map.values():
+                frozen_policy_aliases.update(str(alias).upper() for alias in aliases)
+            undeclared_prefrozen = sorted(pre_frozen_codes - frozen_policy_codes)
+            if undeclared_prefrozen:
+                raise ValueError(
+                    "nonprefrozen alias blocker negative-control contract requires "
+                    "pre-frozen coordinate codes to be declared in the frozen policy "
+                    f"ligand map: {undeclared_prefrozen}"
+                )
+            blocker_policy_overlap = sorted(blocker_codes & frozen_policy_aliases)
+            if blocker_policy_overlap:
+                raise ValueError(
+                    "nonprefrozen alias blocker negative-control contract requires "
+                    "blocker codes to stay outside the frozen policy ligand map: "
+                    f"{blocker_policy_overlap}"
+                )
+
+        contexts = metadata.get("source_surface_query_contexts_review_only")
+        if not isinstance(contexts, list) or not contexts:
+            raise ValueError(
+                "nonprefrozen alias blocker negative-control contract requires "
+                "metadata.source_surface_query_contexts_review_only"
+            )
+        for index, context in enumerate(contexts):
+            if not isinstance(context, dict):
+                raise ValueError(
+                    "nonprefrozen alias blocker negative-control contract requires "
+                    "object contexts"
+                )
+            if context.get("review_only") is not True:
+                raise ValueError(
+                    "nonprefrozen alias blocker negative-control contract requires "
+                    f"context {index} review_only=true"
+                )
+            if not str(context.get("query") or "").strip():
+                raise ValueError(
+                    "nonprefrozen alias blocker negative-control contract requires "
+                    "non-empty query text"
+                )
+            context_observed = context.get("coordinate_ligand_codes_observed")
+            if context_observed is not None:
+                context_codes = upper_string_set(
+                    context_observed,
+                    field_name=(
+                        "metadata.source_surface_query_contexts_review_only"
+                        f"[{index}].coordinate_ligand_codes_observed"
+                    ),
+                )
+                undeclared_context_codes = sorted(context_codes - observed_codes)
+                if undeclared_context_codes:
+                    raise ValueError(
+                        "nonprefrozen alias blocker negative-control contract "
+                        "requires context observed codes to be declared in metadata: "
+                        f"{undeclared_context_codes}"
+                    )
+                non_blocker_context_codes = sorted(context_codes - blocker_codes)
+                if non_blocker_context_codes:
+                    raise ValueError(
+                        "nonprefrozen alias blocker negative-control contract "
+                        "requires context observed codes to remain blocker-only: "
+                        f"{non_blocker_context_codes}"
+                    )
+
+        for row in rows:
+            row_id = row.get("row_id") or row.get("pdb_id")
+            ligand_code = str(row.get("ligand_code_from_structure") or "").strip().upper()
+            if ligand_code not in blocker_codes:
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: ligand_code_from_structure must be "
+                    "a review-only blocker code"
+                )
+            if ligand_code in pre_frozen_codes:
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: blocker code cannot be pre-frozen"
+                )
+            if ligand_code in query_synonyms:
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: query synonym cannot materialize as "
+                    "the coordinate ligand code"
+                )
+            if row.get("coordinate_ligand_materialized_from_structure") is not True:
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: coordinate ligand must materialize "
+                    "from structure"
+                )
+            source = str(row.get("coordinate_ligand_code_source") or "").strip()
+            if source not in COORDINATE_LIGAND_CODE_SOURCES:
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: coordinate_ligand_code_source must "
+                    "be an mmCIF atom_site source"
+                )
+            if bool_feature(row, "query_ligand_synonym_used_as_coordinate_ligand"):
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: query ligand synonym was used as "
+                    "coordinate ligand"
+                )
+            if bool_feature(row, "post_hoc_ligand_alias_expansion"):
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: post_hoc_ligand_alias_expansion"
+                )
+            if bool_feature(row, "source_query_used_for_predictive_feature"):
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: source_query_used_for_predictive_feature"
+                )
+            if bool_feature(row, "source_free_acceptor_role_features"):
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: blocker rows cannot carry accepted "
+                    "source-free role features"
+                )
+            if bool_feature(row, "same_structure_co_materialization"):
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: blocker rows cannot co-materialize"
+                )
+            expected = str(row.get("expected_frozen_policy_decision") or "")
+            if not expected.startswith("review_only_abstain"):
+                raise ValueError(
+                    f"row {row_id} violates nonprefrozen alias blocker "
+                    "negative-control contract: blocker rows must expect review-only "
+                    "abstention"
+                )
     phase_contract = metadata.get("source_validation_phase_contract")
     if phase_contract:
         if not isinstance(phase_contract, dict):
@@ -889,6 +1106,11 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
             ),
             "coordinate_ligand_materialization_guard_enforced": bool(
                 tranche_metadata.get("coordinate_ligand_materialization_guard")
+            ),
+            "nonprefrozen_alias_blocker_negative_control_contract_enforced": bool(
+                tranche_metadata.get(
+                    "nonprefrozen_alias_blocker_negative_control_contract"
+                )
             ),
             "search_surface_exhausted": bool(
                 tranche_metadata.get("search_surface_exhausted", False)
@@ -1228,6 +1450,90 @@ def self_test() -> None:
         assert "frozen policy ligand map" in str(error)
     else:
         raise AssertionError("pre-frozen coordinate codes must be policy-declared")
+    blocker_row = dict(
+        passing_row,
+        row_id="nonprefrozen_gtp_blocker",
+        ligand_code_from_structure="GTP",
+        source_free_acceptor_role_features=False,
+        source_free_acceptor_role_policy_id=None,
+        same_structure_co_materialization=False,
+        coordinate_ligand_materialized_from_structure=True,
+        coordinate_ligand_code_source="mmcif_atom_site_auth_or_label_comp_id",
+        query_ligand_synonym_used_as_coordinate_ligand=False,
+        post_hoc_ligand_alias_expansion=False,
+        source_query_used_for_predictive_feature=False,
+        expected_frozen_policy_decision="review_only_abstain_nonprefrozen_alias_blocker",
+    )
+    blocker_tranche = {
+        "metadata": {
+            "review_only": True,
+            "row_count": 1,
+            "terminal_gamma_required_for_tranche": True,
+            "terminal_gamma_atom_name_required": "PG",
+            "terminal_gamma_candidate_count_reviewed": 1,
+            "source_surface_query_contexts_review_only": [
+                {
+                    "artifact": "artifacts/blocker_negative_control_self_test.json",
+                    "query": "full_text AMP-PNP self test",
+                    "query_mode": "full_text",
+                    "query_ligand_synonyms_review_only": ["AMP-PNP", "AMPPNP"],
+                    "coordinate_ligand_codes_observed": ["GTP"],
+                    "review_only": True,
+                }
+            ],
+            "coordinate_ligand_codes_observed": ["GTP"],
+            "alias_map_blockers_review_only": ["GTP"],
+            "nonprefrozen_alias_blocker_negative_control_contract": {
+                "candidate_ids_frozen_before_negative_control_selection": True,
+                "blocker_codes_observed_in_coordinate_inventory": True,
+                "blocker_codes_review_only": True,
+                "blocker_codes_not_in_frozen_policy_ligand_map": True,
+                "query_text_not_coordinate_ligand_materialization": True,
+                "terminal_gamma_rows_for_blocker_codes_excluded_from_policy_admission": True,
+                "pre_frozen_coordinate_ligand_codes": ["ANP", "ATP"],
+                "nonprefrozen_coordinate_ligand_codes_review_only": ["GTP"],
+                "query_ligand_synonyms_review_only": ["AMP-PNP", "AMPPNP"],
+            },
+        },
+        "rows": [blocker_row],
+    }
+    blocker_result = evaluate_tranche(policy, blocker_tranche)
+    assert (
+        blocker_result["metadata"][
+            "nonprefrozen_alias_blocker_negative_control_contract_enforced"
+        ]
+        is True
+    )
+    assert blocker_result["metadata"]["decision_counts"] == {"review_only_abstain": 1}
+    bad_blocker_prefrozen = json.loads(json.dumps(blocker_tranche))
+    bad_blocker_prefrozen["metadata"][
+        "nonprefrozen_alias_blocker_negative_control_contract"
+    ]["pre_frozen_coordinate_ligand_codes"] = ["ANP", "ATP", "GTP"]
+    try:
+        evaluate_tranche(policy, bad_blocker_prefrozen)
+    except ValueError as error:
+        assert "outside the pre-frozen coordinate code set" in str(error)
+    else:
+        raise AssertionError("blocker codes cannot be declared pre-frozen")
+    bad_blocker_policy_map = json.loads(json.dumps(blocker_tranche))
+    bad_blocker_policy_map["metadata"]["coordinate_ligand_codes_observed"] = ["ANP"]
+    bad_blocker_policy_map["metadata"]["alias_map_blockers_review_only"] = ["ANP"]
+    bad_blocker_policy_map["metadata"]["source_surface_query_contexts_review_only"][0][
+        "coordinate_ligand_codes_observed"
+    ] = ["ANP"]
+    bad_blocker_policy_map["metadata"][
+        "nonprefrozen_alias_blocker_negative_control_contract"
+    ]["nonprefrozen_coordinate_ligand_codes_review_only"] = ["ANP"]
+    bad_blocker_policy_map["metadata"][
+        "nonprefrozen_alias_blocker_negative_control_contract"
+    ]["pre_frozen_coordinate_ligand_codes"] = ["ATP"]
+    bad_blocker_policy_map["rows"][0]["ligand_code_from_structure"] = "ANP"
+    try:
+        evaluate_tranche(policy, bad_blocker_policy_map)
+    except ValueError as error:
+        assert "frozen policy ligand map" in str(error)
+    else:
+        raise AssertionError("policy-declared ligand codes cannot be blockers")
     bad_sibling_control = dict(
         sibling_control,
         row_id="bad_sibling_control",

@@ -1,67 +1,67 @@
 # ePK policy harness handoff
 
-Last updated: 2026-05-20T21:14:25Z
-Run started: 2026-05-20T20:24:00Z
-Run ended: 2026-05-20T21:14:25Z
-Measured minutes: 50.42
+Last updated: 2026-05-20T23:16:32Z
+Run started: 2026-05-20T22:25:28Z
+Run ended: 2026-05-20T23:16:32Z
+Measured minutes: 51.07
 Primary outcome: `policy_frozen_review_only`
-Pushed commit: not pushed; `git add tools/research_lanes/epk_policy_harness artifacts/research_lanes/epk_policy_harness work/research_lanes/epk_policy_harness` failed with `fatal: Unable to create '/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-policy-harness/index.lock': Operation not permitted`.
+Pushed commit: pending at handoff write time. Normal `git add` is blocked by linked-worktree `index.lock`; the final automation summary records whether the alternate commit/push workaround succeeded.
 
 ## Files changed
 
+This run:
 - `tools/research_lanes/epk_policy_harness/epk_policy_harness.py`
-- `tools/research_lanes/epk_policy_harness/epk_fresh_surface_scan.py`
-- `tools/research_lanes/epk_policy_harness/epk_topology_sibling_control_stress.py`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_substrate_materialized_anp_terminal_gamma_search_surface_20260520T203337Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z_tranche.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z_tranche.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z_tranche.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z_tranche.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_substrate_materialized_anp_terminal_gamma_search_surface_20260520T203337Z_tranche.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_20260520T202756Z_result.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_anp_terminal_gamma_search_surface_page2_20260520T203608Z_result.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_materialized_anp_terminal_gamma_search_surface_20260520T202756Z_result.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amppnp_alias_materialized_anp_terminal_gamma_search_surface_20260520T202914Z_result.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_fulltext_amp_pnp_substrate_materialized_anp_terminal_gamma_search_surface_20260520T203337Z_result.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z_tranche.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z_result.json`
+- `tools/research_lanes/epk_policy_harness/epk_nonprefrozen_alias_blocker_negative_control.py`
+- `artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z_tranche.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z_result.json`
 - `artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl`
 - `work/research_lanes/epk_policy_harness/handoff.md`
 
-## Policy status
+Prior dirty wrap metadata from the previous run is preserved in the JSONL ledger.
+
+## Policy Status
 
 Policy v0 remains frozen, review-only, and fail-closed. ATP/ANP/AMP-PNP may be predictive only when terminal gamma-equivalent geometry, local metal context, catalytic-site locality, source-free acceptor/role features, and same-structure co-materialization all hold under a preaccepted source-free role policy. No source-free role policy is accepted in v0.
 
-This run adds an executable query-context review-only contract to the lane harness. Source query wording, including `AMP-PNP` and `AMPPNP`, is retrieval/review context only and cannot become a matching feature or predictive ligand-state repair. Coordinate-side ligand state remains derived from mmCIF ligand materialization; the reviewed AMP-PNP/AMPPNP query surfaces materialized as ANP terminal-gamma rows.
+This run adds an executable nonprefrozen alias-blocker negative-control contract. GNP/GTP terminal-gamma coordinate materializations observed from AMP-PNP query contexts are admitted only as review-only blocker rows. They cannot be promoted by query wording, cannot be declared pre-frozen unless already present in the frozen policy ligand map, and cannot carry same-structure co-materialization under policy v0.
 
 ## Evidence
 
-- Built five compact terminal-gamma source surfaces covering ANP chem-comp pages plus AMP-PNP/AMPPNP full-text query contexts; 56 compact candidate summaries were reviewed and no raw coordinate dumps were written.
-- ANP chem-comp pages produced four cross-auth-chain geometry leads within the frozen 6.0 A cutoff: `9UUX`, `9UUR`, `9UW4`, and `9ZZR`.
-- AMP-PNP/AMPPNP query-context surfaces produced terminal-gamma controls/exhaustion surfaces with zero cross-auth-chain geometry leads.
-- Final sibling-control stress `artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z.json` paired: 9UUX->9YAI, 9UUR->9ECU, 9UW4->9OAN, 9ZZR->9OMY.
-- Final result `artifacts/research_lanes/epk_policy_harness/epk_cross_ligand_terminal_gamma_sibling_control_contract_stress_20260520T203608Z_result.json` reviewed 8 rows: 8 review-only abstentions, zero expected-decision mismatches, zero counterexamples, sibling-control contract enforced, and query-context review-only contract enforced.
-- Fault injection rejected query-derived matching features, source-derived row matching features, premature same-structure co-materialization, non-review-only query contexts, and source-query predictive flags.
-- Regression reruns for diagnostic, cutoff, and ATP sibling-control tranches stayed clean with zero expected-decision mismatches.
+- Final negative-control artifact: `artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z.json` (`sha256 ec29b3bf383b3d040ef7f863bcbbc4c6f92711b7e2389c1d6f05d02ed773dc75`).
+- Final tranche: `artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z_tranche.json` (`sha256 63f201250e382b880e7a435d2f038724277a63c2c9ab8db259b997a41765cb23`).
+- Final result: `artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z_result.json` (`sha256 6bd85f3e053bfcb9c16c3f16725e0a663ce6b926182207ac5427b9c76d82620c`).
+- Source guard artifact: `artifacts/research_lanes/epk_policy_harness/epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_20260520T213835Z.json` (`sha256 4f8322191f8ea0d7c1a13c949e7bc4dcb63da854be30ba1d304a1f2707dc9f72`).
+- Blocker observations reviewed from source guard: 13.
+- Selected terminal-gamma blocker rows: 9YA5:GTP, 9O65:GNP, 8UTP:GTP, 8UTQ:GTP, 8UTO:GTP, 8UTN:GTP, 9YAI:GTP, 9YMG:GTP.
+- Coordinate-side blocker codes observed: `GNP, GTP`.
+- Pre-frozen admitted coordinate codes remained: `ANP, ATP`.
+- Final harness result: 8 rows, decision counts `{'review_only_abstain': 8}`, zero expected-decision mismatches, zero counterexamples, query-context contract enforced, topology contract enforced, and nonprefrozen alias-blocker contract enforced.
+- Fault injection rejected blocker pre-freezing, policy-map blocker reuse, query-synonym materialization, missing blocker metadata, source-query predictive leakage, blocker co-materialization, and non-blocker context-observed codes.
+- Regression reruns for the prior AMP-PNP materialization guard, cross-ligand sibling control, and ATP sibling control stayed clean.
 
 ## Blockers
 
-- This remains review-only harness stress, not clean held-out performance evidence or production scoring evidence.
-- Query wording cannot expand the frozen ligand alias map; `AMP-PNP`/`AMPPNP` text hits reviewed here materialized as coordinate-side `ANP`.
-- No accepted source-free folded substrate-role or acceptor-identity extractor exists in policy v0.
-- The reviewed RCSB surfaces are bounded, not a global exhaustion of all ANP/AMP-PNP structures.
-- Normal `git fetch origin` and `git pull --ff-only` still fail on linked-worktree `FETCH_HEAD`; `git add tools/research_lanes/epk_policy_harness artifacts/research_lanes/epk_policy_harness work/research_lanes/epk_policy_harness` failed on linked-worktree `index.lock` with `Operation not permitted`, so commit/push could not proceed.
+- This is review-only harness pressure, not clean held-out performance evidence and not production scoring evidence.
+- The negative-control rows come from a bounded prior AMP-PNP materialization-guard surface, not a global exhaustion of every GNP/GTP or AMP-PNP route.
+- No accepted source-free folded substrate-role or acceptor-identity extractor exists in policy v0, so all rows continue to abstain.
+- GNP/GTP remain blocker evidence only; no alias-map expansion, label import, threshold calibration, or production scoring claim is allowed.
+- Normal `git fetch origin`, `git pull --ff-only`, and `git add` are blocked by linked-worktree metadata permissions on `FETCH_HEAD`/`index.lock`.
+
+## Verification
+
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_policy_harness.py --self-test`
+- Final negative-control harness run wrote `artifacts/research_lanes/epk_policy_harness/epk_nonprefrozen_gnp_gtp_terminal_gamma_alias_blocker_negative_control_20260520T223103Z_result.json`.
+- Fault injection script rejected seven nonprefrozen blocker leak classes.
+- Regression reruns wrote `/private/tmp/epk_policy_regression_nonprefrozen_guard/materialization_guard_result.json`, `/private/tmp/epk_policy_regression_nonprefrozen_guard/cross_ligand_sibling_result.json`, and `/private/tmp/epk_policy_regression_nonprefrozen_guard/atp_sibling_result.json`.
+- `git diff --check` passed before ledger/handoff writing.
+- JSON validation passed for the final negative-control artifact, tranche, result, and JSONL ledger before commit attempt.
 
 ## Exact next query
 
-`epk_amp_pnp_query_context_coordinate_ligand_materialization_guard_v1_review_only`
+`epk_adp_product_state_and_candidate_repair_tripwire_contract_v1_review_only`
 
-Run a bounded AMP-PNP/AMPPNP synonym query-context guard that inventories coordinate-side ligand component ids before any local feature review. Treat query text as review-only, do not add post-hoc ligand aliases, admit only pre-frozen coordinate ligand codes to terminal-gamma evaluation, and record any non-ANP/ATP materializations as review-only alias-map blockers.
+Use prior ADP/product-state and candidate-specific source-repair artifacts to add a review-only tripwire contract. Prove ADP/product-state rows, substrate/acceptor analog contexts, and candidate-specific source repairs cannot become predictive even if local geometry-like fields are present, and remain blocked without a future preregistered policy that survives fresh stress.
 
 ## Forbidden
 
