@@ -5,7 +5,8 @@
 - Ended: 2026-05-21T21:33:47Z
 - Measured minutes: 62.85
 - Primary outcome: regression_rows_emitted
-- Push status: pending verification/commit at handoff write time; normal linked-worktree metadata writes are still blocked.
+- Pushed evidence commit: `f8ad879d0cd9b4a57bab20a5d4d669fc0a2b97f9` via alternate-index commit/push.
+- Local checked-out HEAD remains behind origin because linked-worktree metadata writes are blocked.
 - Rule under attack: metric-seeded biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, plus the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
@@ -58,8 +59,6 @@ Evidence for continued search:
 - `9FXK`, `6TXC`, and `6TXE` are useful assembly-below-floor abstention controls.
 
 ## Verification
-
-Pending immediately after handoff write:
 
 - `python -m py_compile` for the changed metric helper.
 - `python -m json.tool` for the new metric artifacts and regression gate.
