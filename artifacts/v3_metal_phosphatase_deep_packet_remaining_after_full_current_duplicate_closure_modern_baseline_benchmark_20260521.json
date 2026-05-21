@@ -1,0 +1,231 @@
+{
+  "caveats": [
+    "Full current-countable Foldseek/TM duplicate closure clears P75792 and P0A8Y5 only for the bounded selected-structure scope; it is not UniRef-wide or external-cluster clearance.",
+    "P75792 and P0A8Y5 still lack source-free geometry scores, so the terminal decision remains needs_new_extractor_or_structure rather than mechanism-match or import-ready.",
+    "EC/keyword/protein names remain selection context only, ESM sidecars are absent, and no superiority claim is made."
+  ],
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_deep_packet_remaining_after_full_current_duplicate_closure_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 3,
+    "created_at": "2026-05-21T23:07:52Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "full_current_duplicate_closure_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json",
+    "method": "remaining_metal_phosphatase_full_current_duplicate_closure_modern_baseline_benchmark",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_full_current_duplicate_closure_20260521.json"
+  },
+  "metrics": {
+    "current_countable_high_tm_candidate_count": 1,
+    "deterministic_sequence_kmer_nearest_neighbor": {
+      "exact_current_reference_sequence_match_count": 0
+    },
+    "esm_sidecar_status": "not_available_for_this_deep_packet",
+    "foldseek_structural_sidecar": {
+      "duplicate_clear_claim_supported": false,
+      "duplicate_clear_claim_supported_for_no_hit_rows": true,
+      "high_tm_candidate_count": 1,
+      "status": "targeted_current_metal_duplicate_for_one_row_plus_full_current_countable_duplicate_clear_for_two_rows",
+      "target_subset_coordinate_count_per_no_hit_row": 672,
+      "unique_query_target_pair_count_for_no_hit_rows": 1344
+    },
+    "full_current_countable_duplicate_clear_candidate_count": 2,
+    "superiority_claim": false,
+    "targeted_current_metal_high_tm_candidate_count": 1,
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 2,
+      "terminal_rejection_duplicate_or_leakage": 1
+    }
+  },
+  "rows": [
+    {
+      "accession": "P75792",
+      "current_geometry_retrieval_triage": {
+        "exact_missing_evidence": "source_free_geometry_score_from_resolved_active_site_and_metal_or_phosphate_features",
+        "geometry_score_status": "not_scored_source_free_geometry_pending",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "deterministic_sequence_kmer_nearest_neighbor": {
+        "exact_current_reference_id": null,
+        "jaccard_to_nearest_current_reference": 0.0044,
+        "nearest_current_reference_id": "ref__P26440",
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing": {
+        "baseline_prediction": "metal_dependent_hydrolase",
+        "evidence_role": "selection_context_only_not_predictive_evidence",
+        "primary_ec": "3.1.3.23"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "caveat": "No ESM sidecar was available for this remaining metal-phosphatase deep packet; no representation-superiority claim is made."
+      },
+      "foldseek_tm_sidecar": {
+        "available": true,
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_target_count": 672,
+        "duplicate_clear_claim_supported": true,
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.7998,
+          "evidence_scope": "nonmetal_chunk006_excluding_metal_lane",
+          "max_pair_tm_score": 0.6855,
+          "qtmscore": 0.02592,
+          "raw_query_name": "pdb_1RLM_B",
+          "raw_target_name": "pdb_2PHK_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "target_entry_ids": [
+            "m_csa:35"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_id": "2PHK",
+          "target_structure_key": "pdb:2PHK",
+          "ttmscore": 0.6855
+        },
+        "role": "bounded_current_countable_duplicate_or_leakage_gate_not_predictive_mechanism_evidence",
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json",
+        "status": "bounded_current_countable_no_high_tm_duplicate_signal_detected",
+        "unique_query_target_pair_count": 672
+      },
+      "row_id": "uniprot:P75792",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "P77247",
+      "current_geometry_retrieval_triage": {
+        "geometry_score_status": "not_scored_source_free_geometry_pending",
+        "target_lane_at_or_above_floor": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "deterministic_sequence_kmer_nearest_neighbor": {
+        "exact_current_reference_id": null,
+        "jaccard_to_nearest_current_reference": 0.0051,
+        "nearest_current_reference_id": "ref__P09155",
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing": {
+        "baseline_prediction": "metal_dependent_hydrolase",
+        "evidence_role": "selection_context_only_not_predictive_evidence",
+        "primary_ec": "3.1.3.22"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "caveat": "No ESM sidecar was available for this remaining metal-phosphatase deep packet; no representation-superiority claim is made."
+      },
+      "foldseek_tm_sidecar": {
+        "available": true,
+        "duplicate_clear_claim_supported": false,
+        "high_tm_hit_count": 1,
+        "nearest_current_metal_hit": {
+          "alntmscore": 0.8175,
+          "max_pair_tm_score": 0.811,
+          "qtmscore": 0.811,
+          "raw_query_name": "pdb_1TE2_B",
+          "raw_target_name": "pdb_1RQL_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RQL.cif",
+          "target_entry_ids": [
+            "m_csa:181"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1RQL",
+          "target_structure_key": "pdb:1RQL",
+          "ttmscore": 0.7024
+        },
+        "pair_cache_complete_for_targeted_subset": true,
+        "role": "targeted_current_metal_duplicate_or_leakage_gate_not_predictive_mechanism_evidence",
+        "target_subset_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      "row_id": "uniprot:P77247",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P0A8Y5",
+      "current_geometry_retrieval_triage": {
+        "exact_missing_evidence": "source_free_geometry_score_from_resolved_active_site_and_metal_or_phosphate_features",
+        "geometry_score_status": "not_scored_source_free_geometry_pending",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "deterministic_sequence_kmer_nearest_neighbor": {
+        "exact_current_reference_id": null,
+        "jaccard_to_nearest_current_reference": 0.0049,
+        "nearest_current_reference_id": "ref__P04042",
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing": {
+        "baseline_prediction": "metal_dependent_hydrolase",
+        "evidence_role": "selection_context_only_not_predictive_evidence",
+        "primary_ec": "3.1.3.23"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "caveat": "No ESM sidecar was available for this remaining metal-phosphatase deep packet; no representation-superiority claim is made."
+      },
+      "foldseek_tm_sidecar": {
+        "available": true,
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_target_count": 672,
+        "duplicate_clear_claim_supported": true,
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.6421,
+          "evidence_scope": "current_metal_dependent_hydrolase_targets",
+          "max_pair_tm_score": 0.6392,
+          "qtmscore": 0.5034,
+          "raw_query_name": "pdb_1RKQ_A",
+          "raw_target_name": "pdb_1L7N_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+          "target_entry_ids": [
+            "m_csa:727"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1L7N",
+          "target_structure_key": "pdb:1L7N",
+          "ttmscore": 0.6392
+        },
+        "role": "bounded_current_countable_duplicate_or_leakage_gate_not_predictive_mechanism_evidence",
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json",
+        "status": "bounded_current_countable_no_high_tm_duplicate_signal_detected",
+        "unique_query_target_pair_count": 672
+      },
+      "row_id": "uniprot:P0A8Y5",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    }
+  ],
+  "task_definition": {
+    "frozen_rows": [
+      "uniprot:P75792",
+      "uniprot:P77247",
+      "uniprot:P0A8Y5"
+    ],
+    "goal": "Compare review-only duplicate/leakage triage against EC/keyword, deterministic sequence nearest-neighbor, and absent ESM sidecars on the three remaining frozen metal-phosphatase rows after bounded full-current duplicate closure for the two no-hit rows.",
+    "predictive_evidence_separation": "EC/name/source prose route selection only; Foldseek/TM is duplicate/leakage gate evidence only; source-free geometry scoring is still missing for P75792 and P0A8Y5."
+  }
+}

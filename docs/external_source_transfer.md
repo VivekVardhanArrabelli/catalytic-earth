@@ -630,6 +630,67 @@ import.
   `artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json`
   completes another 80 non-metal targets with 0 high-TM hits and nearest max
   TM `0.5232`.
+  The Q99504 closure pass then completes chunks002-007 plus the targeted
+  rescue-only structures, yielding full 672/672 bounded current-countable
+  selected-structure coverage with 0 `TM >= 0.7` hits and nearest max TM
+  `0.6185` to `pdb:1EHK`.
+  `artifacts/v3_metal_phosphatase_q99504_full_current_countable_duplicate_closure_20260521.json`
+  therefore permits only a bounded current-countable duplicate-clear statement,
+  not UniRef-wide clearance or import readiness. Because Q99504's source-free
+  metal-hydrolase geometry score remains below the `0.4115` floor (`0.3742`)
+  and only two active-site residues are resolved, the updated terminal packet
+  `artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_q99504_duplicate_closure_20260521.json`
+  converts Q99504 to `terminal_rejection_insufficient_evidence`. The updated
+  rollup
+  `artifacts/v3_external_deep_terminal_decision_rollup_post_q99504_duplicate_closure_20260521.json`
+  now indexes 49 deep-packet rows with 49 non-`needs_review` terminal outcomes,
+  0 import-ready candidates, and no registry/fingerprint edits.
+- The remaining-metal targeted screen
+  `artifacts/v3_metal_phosphatase_deep_packet_remaining_targeted_current_metal_screen_20260521.json`
+  then deepens the last three rows from the same frozen metal-phosphatase
+  campaign without adding external breadth. The selection artifact uses
+  P75792, P77247, and P0A8Y5 only after the earlier 14 rows had already been
+  selected, materializes three PDB coordinate sidecars, and screens them
+  against the 67 current-countable `metal_dependent_hydrolase` structures.
+  P77247 hits current `pdb:1RQL` at max TM `0.8110` and is terminal
+  `terminal_rejection_duplicate_or_leakage`; P75792 and P0A8Y5 do not hit the
+  targeted metal subset and remain `needs_new_extractor_or_structure` pending
+  source-free geometry plus full current-countable duplicate screening. The
+  post-screen rollup
+  `artifacts/v3_external_deep_terminal_decision_rollup_post_remaining_metal_targeted_screen_20260521.json`
+  covers 52 deep-packet rows: 47 duplicate/leakage rejections, two
+  insufficient-evidence rejections, one mechanism-match review-ready row, and
+  two exact blockers.
+- The remaining-metal duplicate-closure follow-up then completes the non-metal
+  half of those two blockers without selecting new rows.
+  `artifacts/v3_metal_phosphatase_remaining_nonmetal_chunk000_probe_20260521.json`
+  through
+  `artifacts/v3_metal_phosphatase_remaining_nonmetal_chunk007_probe_20260521.json`
+  cover 605 non-metal current-countable targets for P75792 and P0A8Y5 with
+  0 `TM >= 0.7` hits. Combined with the 67-target current-metal screen,
+  `artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json`
+  covers 672/672 bounded current-countable targets per row, 1,344 blocker-row
+  pairs total, 0 high-TM hits, nearest P75792 max TM `0.6855` to `pdb:2PHK`,
+  and nearest P0A8Y5 max TM `0.6392` to `pdb:1L7N`. The follow-up packet
+  `artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_full_current_duplicate_closure_20260521.json`
+  keeps both rows at `needs_new_extractor_or_structure` because their
+  source-free geometry scores are still missing. The exact remaining blocker is
+  `source_free_geometry_scoring_missing_for_pdb_active_site_features_after_bounded_duplicate_clearance`.
+  This closure is a bounded duplicate/leakage gate result only, not
+  mechanism-match evidence, UniRef-wide clearance, or label-import readiness.
+  The companion benchmark
+  `artifacts/v3_metal_phosphatase_deep_packet_remaining_after_full_current_duplicate_closure_modern_baseline_benchmark_20260521.json`
+  preserves the EC/sequence/ESM/Foldseek caveats and makes no superiority
+  claim.
+- The follow-up AKR readiness recheck
+  `artifacts/v3_akr_family_readiness_post_q99504_terminal_recheck_20260521.json`
+  uses existing artifacts only after the Q99504 terminal closure. It keeps
+  AKR/NADP redox at `needs_new_extractor_or_structure` for production
+  readiness: C9JRZ8 remains the only source-traced positive-like AKR row,
+  the frozen SDR/AKR control tranche still has 0 source-free axis-ready rows,
+  direct local NADP geometry is missing, broader duplicate screening is
+  unresolved for positive-like AKR rows, and EC/name/source prose remain
+  excluded from predictive evidence.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and

@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_deep_packet_remaining_targeted_current_metal_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 3,
+    "created_at": "2026-05-21T22:49:54Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "expected_query_target_pair_count": 201,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_available": true,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-remaining-targeted-a3b87331/queries /private/tmp/catalytic-earth-metal-remaining-targeted-a3b87331/metal_targets /private/tmp/catalytic-earth-metal-remaining-targeted-a3b87331/remaining_vs_current_metal_tm_scores.tsv /private/tmp/catalytic-earth-metal-remaining-targeted-a3b87331/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+    "foldseek_run_error": null,
+    "foldseek_run_status": "completed",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "high_tm_candidate_count": 1,
+    "method": "metal_phosphatase_remaining_targeted_current_metal_foldseek_screen",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_separation_guardrail": "Targeted current-metal Foldseek is duplicate/leakage gate evidence only; no EC/name/prose field is predictive evidence.",
+    "status_counts": {
+      "current_metal_target_duplicate_signal": 1,
+      "targeted_current_metal_no_duplicate_signal_detected": 2
+    },
+    "target_subset_coordinate_count": 67,
+    "target_subset_fingerprint_id": "metal_dependent_hydrolase",
+    "unique_query_target_pair_count": 201
+  },
+  "rows": [
+    {
+      "accession": "P75792",
+      "active_site_count": 1,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RLM.cif",
+      "coordinate_size_bytes": 944945,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_metal_high_tm_hit_count": 0,
+      "ec_numbers": [
+        "3.1.3.23"
+      ],
+      "entry_name": "SUPH_ECOLI",
+      "exact_blocker_if_not_terminal": "complete_full_current_countable_duplicate_screen_or_source_free_geometry_scoring",
+      "fetch_error": null,
+      "foldseek_run_status": "completed",
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 15,
+      "metal_binding_site_count": 4,
+      "nearest_current_metal_hit": {
+        "alntmscore": 0.6117,
+        "max_pair_tm_score": 0.6066,
+        "qtmscore": 0.485,
+        "raw_query_name": "pdb_1RLM_A",
+        "raw_target_name": "pdb_1L7N_A",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+        "target_entry_ids": [
+          "m_csa:727"
+        ],
+        "target_fingerprint_ids": [
+          "metal_dependent_hydrolase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_structure_id": "1L7N",
+        "target_structure_key": "pdb:1L7N",
+        "ttmscore": 0.6066
+      },
+      "pair_cache_complete_for_targeted_subset": true,
+      "pdb_ids_sample": [
+        "1RLM",
+        "1RLO",
+        "1RLT",
+        "2HF2"
+      ],
+      "primary_ec": "3.1.3.23",
+      "protein_name": "Sugar phosphatase YbiV (EC 3.1.3.23)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P75792",
+      "score_status_at_selection": "not_scored_at_remaining_deep_packet_selection",
+      "selected_pdb_id_for_probe": "1RLM",
+      "structure_id": "1RLM",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "target_subset_hit_count": 67,
+      "targeted_current_metal_screen_status": "targeted_current_metal_no_duplicate_signal_detected",
+      "terminal_decision_after_targeted_probe": "needs_new_extractor_or_structure",
+      "top_current_metal_hits": []
+    },
+    {
+      "accession": "P77247",
+      "active_site_count": 2,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1TE2.cif",
+      "coordinate_size_bytes": 488920,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_metal_high_tm_hit_count": 1,
+      "ec_numbers": [
+        "3.1.3.22",
+        "3.1.3.23",
+        "3.1.3.50",
+        "3.1.3.68"
+      ],
+      "entry_name": "HXPB_ECOLI",
+      "exact_blocker_if_not_terminal": null,
+      "fetch_error": null,
+      "foldseek_run_status": "completed",
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 16,
+      "metal_binding_site_count": 3,
+      "nearest_current_metal_hit": {
+        "alntmscore": 0.8175,
+        "max_pair_tm_score": 0.811,
+        "qtmscore": 0.811,
+        "raw_query_name": "pdb_1TE2_B",
+        "raw_target_name": "pdb_1RQL_B",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RQL.cif",
+        "target_entry_ids": [
+          "m_csa:181"
+        ],
+        "target_fingerprint_ids": [
+          "metal_dependent_hydrolase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_structure_id": "1RQL",
+        "target_structure_key": "pdb:1RQL",
+        "ttmscore": 0.7024
+      },
+      "pair_cache_complete_for_targeted_subset": true,
+      "pdb_ids_sample": [
+        "1TE2"
+      ],
+      "primary_ec": "3.1.3.22",
+      "protein_name": "Hexitol phosphatase B (2-deoxyglucose-6-phosphate phosphatase) (EC 3.1.3.68) (Mannitol-1-phosphatase) (EC 3.1.3.22) (Sorbitol-6-phosphatase) (EC 3.1.3.50) (Sugar-phosphatase) (EC 3.1.3.23)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P77247",
+      "score_status_at_selection": "not_scored_at_remaining_deep_packet_selection",
+      "selected_pdb_id_for_probe": "1TE2",
+      "structure_id": "1TE2",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "target_subset_hit_count": 67,
+      "targeted_current_metal_screen_status": "current_metal_target_duplicate_signal",
+      "terminal_decision_after_targeted_probe": "terminal_rejection_duplicate_or_leakage",
+      "top_current_metal_hits": [
+        {
+          "alntmscore": 0.8175,
+          "max_pair_tm_score": 0.811,
+          "qtmscore": 0.811,
+          "raw_query_name": "pdb_1TE2_B",
+          "raw_target_name": "pdb_1RQL_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RQL.cif",
+          "target_entry_ids": [
+            "m_csa:181"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1RQL",
+          "target_structure_key": "pdb:1RQL",
+          "ttmscore": 0.7024
+        }
+      ]
+    },
+    {
+      "accession": "P0A8Y5",
+      "active_site_count": 1,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RKQ.cif",
+      "coordinate_size_bytes": 538757,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_metal_high_tm_hit_count": 0,
+      "ec_numbers": [
+        "3.1.3.23"
+      ],
+      "entry_name": "YIDA_ECOLI",
+      "exact_blocker_if_not_terminal": "complete_full_current_countable_duplicate_screen_or_source_free_geometry_scoring",
+      "fetch_error": null,
+      "foldseek_run_status": "completed",
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 17,
+      "metal_binding_site_count": 3,
+      "nearest_current_metal_hit": {
+        "alntmscore": 0.6421,
+        "max_pair_tm_score": 0.6392,
+        "qtmscore": 0.5034,
+        "raw_query_name": "pdb_1RKQ_A",
+        "raw_target_name": "pdb_1L7N_A",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+        "target_entry_ids": [
+          "m_csa:727"
+        ],
+        "target_fingerprint_ids": [
+          "metal_dependent_hydrolase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_structure_id": "1L7N",
+        "target_structure_key": "pdb:1L7N",
+        "ttmscore": 0.6392
+      },
+      "pair_cache_complete_for_targeted_subset": true,
+      "pdb_ids_sample": [
+        "1RKQ"
+      ],
+      "primary_ec": "3.1.3.23",
+      "protein_name": "Sugar phosphatase YidA (EC 3.1.3.23)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0A8Y5",
+      "score_status_at_selection": "not_scored_at_remaining_deep_packet_selection",
+      "selected_pdb_id_for_probe": "1RKQ",
+      "structure_id": "1RKQ",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "target_subset_hit_count": 67,
+      "targeted_current_metal_screen_status": "targeted_current_metal_no_duplicate_signal_detected",
+      "terminal_decision_after_targeted_probe": "needs_new_extractor_or_structure",
+      "top_current_metal_hits": []
+    }
+  ]
+}

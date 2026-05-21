@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 269
-- Measured elapsed time: 8042.2 minutes (134.04 hours)
+- Entries: 270
+- Measured elapsed time: 8090.4 minutes (134.84 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1046.2 measured minutes (17.44 hours)
+- v3: 1094.4 measured minutes (18.24 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2924
-- Evidence references logged: 2384
+- Artifact references logged: 2928
+- Evidence references logged: 2385
 
 ## Recent Entries
-
-### 2026-05-21T16:08:32.602022+00:00 - v3
-
-- Task: FMO geometry full-current blocker localization and ePK latest synthesis
-- Time mode: measured
-- Measured minutes: 46.45
-- Started: 2026-05-21T15:21:50Z
-- Ended: 2026-05-21T16:08:17Z
-- Artifacts: artifacts/v3_epk_latest_lane_regression_synthesis_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_geometry_and_full_current_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_post_geometry_full_current_modern_baseline_benchmark_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_rescue_probe_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_size2_rescue_probe_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: latest five-lane ePK synthesis keeps no-go production decision and preserves 5UJ7 biological-assembly residual, FMO seven-row geometry scored source-free with 0 text fields and 0 target-lane top1 hits, H3JQW0 and Q6F4M8 completed full-current screening with TM>=0.7 duplicate/leakage signals, FMO terminal packet now records 5 terminal_rejection_duplicate_or_leakage and 2 needs_new_extractor_or_structure rows, O94851 chunk000 timeout surface resolved with 0 high-TM hits but remaining chunks unrun, Q7RTP6 narrowed to one timed two-target retry plus remaining unrun chunks, 789-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, migration dry-run passed with removal_allowed=0
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ### 2026-05-21T17:08:18.443673+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: 805-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
 - Notes: Final wrap for second metal phosphatase packet and Q99504 blocker narrowing; safety rails preserved.
+
+### 2026-05-21T23:19:22.103465+00:00 - v3
+
+- Task: Q99504 and remaining metal phosphatase duplicate closure
+- Time mode: measured
+- Measured minutes: 48.15
+- Started: 2026-05-21T22:30:59Z
+- Ended: 2026-05-21T23:19:08Z
+- Artifacts: artifacts/v3_metal_phosphatase_q99504_full_current_countable_duplicate_closure_20260521.json, artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_full_current_duplicate_closure_20260521.json, artifacts/v3_epk_late_handoff_only_research_lane_synthesis_20260521.json
+- Evidence: Q99504 672/672 current-countable pairs clear with source-free score below floor; P75792/P0A8Y5 1344 bounded blocker pairs clear; P77247 duplicate TM 0.8110; late ePK handoffs stay no-go
+- Notes: 805 startup tests passed before work; final 808 tests, CLI validate, compileall, migration dry-run, JSON parse, registry diff, and diff-check passed.
 
 ## Expectation Updates
 
@@ -334,6 +334,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T18:12:47.873454+00:00: Next work should run one bounded P31614 coordinate/alignment plus full-current duplicate experiment or choose another frozen nonterminal external deep-packet blocker; do not open a broad mini-campaign.
 - 2026-05-21T19:37:19.047962+00:00: Next main-loop win should implement the PLP source-free covalent cofactor extractor or choose another frozen nonterminal deep-packet blocker before adding broad external rows.
 - 2026-05-21T21:16:37.365926+00:00: Do not open a seventh broad external mini-campaign; continue terminal deepening or exact family-readiness experiments.
+- 2026-05-21T23:19:22.103465+00:00: Next metal work should build source-free geometry scoring for P75792/P0A8Y5 or move to a bounded non-ePK family-axis experiment
 
 ## Scope Adjustments
 
@@ -489,3 +490,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T18:12:47.873454+00:00: Existing frozen rows were deepened into terminal duplicate/leakage decisions or exact active-site blockers without adding broad external breadth.
 - 2026-05-21T19:37:19.047962+00:00: Recovered stale-lock work converts the final serine blocker to terminal duplicate/leakage rejection and records PLP as an exact extractor blocker without registry import or artifact migration.
 - 2026-05-21T21:16:37.365926+00:00: PLP blocker converted to terminal review-only duplicate/leakage packet; SDR remains review-only blocked on source-free NAD(P) and catalytic-axis geometry.
+- 2026-05-21T23:19:22.103465+00:00: No new external rows; deepened existing frozen metal-phosphatase decisions and synthesized ePK handoffs once without returning ePK to main-loop default

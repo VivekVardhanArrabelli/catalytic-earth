@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_deep_packet_remaining_coordinate_materialization_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 3,
+    "coordinate_dir": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521",
+    "coordinate_status_counts": {
+      "coordinate_sidecar_materialized": 3
+    },
+    "created_at": "2026-05-21T22:49:54Z",
+    "curated_label_registry_edited": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "metal_phosphatase_remaining_pdb_coordinate_materialization",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "rows": [
+    {
+      "accession": "P75792",
+      "active_site_count": 1,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RLM.cif",
+      "coordinate_size_bytes": 944945,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "3.1.3.23"
+      ],
+      "entry_name": "SUPH_ECOLI",
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 15,
+      "metal_binding_site_count": 4,
+      "pdb_ids_sample": [
+        "1RLM",
+        "1RLO",
+        "1RLT",
+        "2HF2"
+      ],
+      "primary_ec": "3.1.3.23",
+      "protein_name": "Sugar phosphatase YbiV (EC 3.1.3.23)",
+      "row_id": "uniprot:P75792",
+      "score_status_at_selection": "not_scored_at_remaining_deep_packet_selection",
+      "selected_pdb_id_for_probe": "1RLM",
+      "structure_id": "1RLM",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P77247",
+      "active_site_count": 2,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1TE2.cif",
+      "coordinate_size_bytes": 488920,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "3.1.3.22",
+        "3.1.3.23",
+        "3.1.3.50",
+        "3.1.3.68"
+      ],
+      "entry_name": "HXPB_ECOLI",
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 16,
+      "metal_binding_site_count": 3,
+      "pdb_ids_sample": [
+        "1TE2"
+      ],
+      "primary_ec": "3.1.3.22",
+      "protein_name": "Hexitol phosphatase B (2-deoxyglucose-6-phosphate phosphatase) (EC 3.1.3.68) (Mannitol-1-phosphatase) (EC 3.1.3.22) (Sorbitol-6-phosphatase) (EC 3.1.3.50) (Sugar-phosphatase) (EC 3.1.3.23)",
+      "row_id": "uniprot:P77247",
+      "score_status_at_selection": "not_scored_at_remaining_deep_packet_selection",
+      "selected_pdb_id_for_probe": "1TE2",
+      "structure_id": "1TE2",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P0A8Y5",
+      "active_site_count": 1,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RKQ.cif",
+      "coordinate_size_bytes": 538757,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "3.1.3.23"
+      ],
+      "entry_name": "YIDA_ECOLI",
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 17,
+      "metal_binding_site_count": 3,
+      "pdb_ids_sample": [
+        "1RKQ"
+      ],
+      "primary_ec": "3.1.3.23",
+      "protein_name": "Sugar phosphatase YidA (EC 3.1.3.23)",
+      "row_id": "uniprot:P0A8Y5",
+      "score_status_at_selection": "not_scored_at_remaining_deep_packet_selection",
+      "selected_pdb_id_for_probe": "1RKQ",
+      "structure_id": "1RKQ",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    }
+  ]
+}

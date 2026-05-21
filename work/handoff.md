@@ -50,6 +50,124 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T22:30:59Z main-loop run, the remaining second
+metal-phosphatase blocker is closed for the bounded current-countable selected
+structure screen. The run did not freeze new external rows. It continued the
+already selected Q99504 row from
+`artifacts/v3_metal_phosphatase_deep_packet_second_selection_20260521.json`,
+completed non-metal current-countable Foldseek chunks002-007, and wrote
+`artifacts/v3_metal_phosphatase_q99504_full_current_countable_duplicate_closure_20260521.json`.
+Across the prior metal-lane probe, the targeted rescue-only structures, and
+all eight non-metal chunks, Q99504 now has 672/672 bounded current-countable
+query-target pairs covered, 0 `TM >= 0.7` duplicate/leakage hits, and nearest
+max TM `0.6185` to `pdb:1EHK`.
+
+The updated terminal packet
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_q99504_duplicate_closure_20260521.json`
+therefore changes only Q99504's decision: it is no longer
+`needs_new_extractor_or_structure`, but it is also not a mechanism match or
+hard-negative import candidate. It is now
+`terminal_rejection_insufficient_evidence` because the source-free
+metal-hydrolase geometry score remains below the active `0.4115` floor
+(`0.3742`), only two active-site residues are resolved, and no source-free
+phosphate/substrate-binding feature is present. The companion benchmark
+`artifacts/v3_metal_phosphatase_deep_packet_second_after_q99504_duplicate_closure_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword routing, deterministic sequence/k-mer, Foldseek, and missing
+ESM sidecar caveats separated and makes no superiority claim.
+`artifacts/v3_external_deep_terminal_decision_rollup_post_q99504_duplicate_closure_20260521.json`
+now indexes 49 deep-packet rows with 49 non-`needs_review` terminal outcomes,
+0 import-ready candidates, and 0 countable labels.
+
+The same run also deepened the last three rows from the same frozen
+metal-phosphatase campaign without adding new external rows.
+`artifacts/v3_metal_phosphatase_deep_packet_remaining_selection_20260521.json`
+selects P75792, P77247, and P0A8Y5 after the earlier 14 frozen rows had been
+selected. `artifacts/v3_metal_phosphatase_deep_packet_remaining_coordinate_materialization_20260521.json`
+materializes three PDB coordinate sidecars, and
+`artifacts/v3_metal_phosphatase_deep_packet_remaining_targeted_current_metal_screen_20260521.json`
+screens them against the 67 current-countable `metal_dependent_hydrolase`
+structures. P77247 has a high-TM targeted current-metal duplicate/leakage
+signal to `pdb:1RQL` at max TM `0.8110`, so
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_targeted_metal_screen_20260521.json`
+sets it to `terminal_rejection_duplicate_or_leakage`. P75792 and P0A8Y5 remain
+`needs_new_extractor_or_structure` with exact blockers: source-free geometry
+scoring and full current-countable duplicate screening. The post-remaining
+metal rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_remaining_metal_targeted_screen_20260521.json`
+now covers 52 deep-packet rows, with 47 duplicate/leakage rejections, two
+insufficient-evidence rejections, one mechanism-match review-ready row, two
+exact blockers, 0 import-ready candidates, and 0 countable labels.
+
+The same run then completed the duplicate-screen half of those two exact
+blockers. The non-metal Foldseek chunks
+`artifacts/v3_metal_phosphatase_remaining_nonmetal_chunk000_probe_20260521.json`
+through
+`artifacts/v3_metal_phosphatase_remaining_nonmetal_chunk007_probe_20260521.json`
+cover 605 non-metal current-countable targets for P75792 and P0A8Y5, with 0
+`TM >= 0.7` hits. Combined with the 67-target current-metal screen, the closure
+artifact
+`artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json`
+now covers 672/672 bounded current-countable targets per row, 1,344 blocker-row
+pairs total, 0 high-TM duplicate/leakage hits, nearest P75792 max TM `0.6855`
+to `pdb:2PHK`, and nearest P0A8Y5 max TM `0.6392` to `pdb:1L7N`. This permits
+only a bounded current-countable duplicate-clear statement, not UniRef-wide or
+external-cluster clearance. The follow-up packet
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_full_current_duplicate_closure_20260521.json`
+keeps P75792 and P0A8Y5 at `needs_new_extractor_or_structure` because no
+source-free geometry score exists yet; their exact blocker is now
+`source_free_geometry_scoring_missing_for_pdb_active_site_features_after_bounded_duplicate_clearance`.
+The updated benchmark and rollup
+`artifacts/v3_metal_phosphatase_deep_packet_remaining_after_full_current_duplicate_closure_modern_baseline_benchmark_20260521.json`
+and
+`artifacts/v3_external_deep_terminal_decision_rollup_post_remaining_metal_full_current_duplicate_closure_20260521.json`
+make no superiority claim and keep all 52 indexed deep rows review-only with 0
+import-ready candidates.
+
+The run added the existing-evidence AKR/NADP readiness recheck
+`artifacts/v3_akr_family_readiness_post_q99504_terminal_recheck_20260521.json`.
+It preserves the production no-go: C9JRZ8 remains the only source-traced
+positive-like AKR row, the 14-row SDR/AKR tranche still has 0 source-free
+axis-ready rows, direct local NADP geometry is missing, broader duplicate
+screening remains unresolved for positive-like AKR rows, and source
+annotations/EC/name/prose are excluded from predictive evidence.
+
+Fresh ePK research-lane handoffs were synthesized once, without copying
+production changes, in
+`artifacts/v3_epk_late_handoff_only_research_lane_synthesis_20260521.json`.
+The conclusion still keeps ePK off the main-loop critical path: Haspin/H3
+`4OUC` is source-site-only with no active donor, acid/base proximity is a
+review feature rather than a substrate-role rule, `5UJ7` biological assembly 1
+remains pinned as the context-v4-only split counterexample, policy v9 now asks
+only for a real `metal_absent` review row, and the sibling lane certifies a
+119-row review-only control surface for future scorer tests. No production
+scoring, label import, threshold change, registry edit, or fingerprint
+expansion is authorized.
+
+Evidence-based confidence call: confidence is high that Q99504's previous
+duplicate-screen blocker is resolved for the bounded current-countable
+selected-structure scope because every one of the 672 staged current targets is
+covered with no high-TM hit and 0 raw-name mapping failures in the chunk
+artifacts. Confidence is medium-high that the correct terminal decision is
+`terminal_rejection_insufficient_evidence`, not mechanism-match review-ready,
+because the source-free target-lane score remains below floor and the active
+site is under-resolved. Confidence is high that P77247 is a terminal
+duplicate/leakage rejection for this review packet because the targeted
+current-metal screen completed and found a `TM >= 0.7` current-countable signal;
+confidence is high that P75792 and P0A8Y5 no longer have a bounded
+current-countable duplicate-screen blocker because all 672 staged current
+targets per row are covered with 0 high-TM signals. Confidence is lower only on
+their mechanism outcome because source-free geometry scoring is still missing.
+Confidence is high that no
+label import, registry edit,
+fingerprint edit, threshold change, artifact migration, upload/removal,
+Git-LFS migration, history rewrite, or `removal_allowed=true` occurred.
+Next work should not reopen Q99504 unless a future UniRef-wide/import-gate
+cycle is explicitly requested; the two exact metal blockers are now P75792 and
+P0A8Y5 source-free geometry scoring from resolved active-site/metal/phosphate
+features, or a single preregistered non-ePK source-free family-axis experiment.
+Do not resume ePK as the default main-loop task; use the synthesis artifact
+only to route isolated research lanes.
+
 As of the 2026-05-21T21:29:56Z main-loop run, the automation deepened the
 remaining already frozen metal-phosphatase surface instead of opening another
 external mini-campaign. The second selection artifact

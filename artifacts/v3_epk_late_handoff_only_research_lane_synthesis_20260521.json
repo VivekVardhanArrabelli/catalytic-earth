@@ -1,0 +1,131 @@
+{
+  "input_validation": {
+    "epk_false_positive_hunter": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T22:22:41Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "json_file_count": 90,
+      "json_validation_error_count": 0,
+      "jsonl_file_count": 1,
+      "jsonl_record_count": 25,
+      "jsonl_validation_error_count": 0
+    },
+    "epk_policy_harness": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T22:22:38Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "json_file_count": 269,
+      "json_validation_error_count": 0,
+      "jsonl_file_count": 1,
+      "jsonl_record_count": 26,
+      "jsonl_validation_error_count": 0
+    },
+    "epk_positive_evidence": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T22:22:14Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "json_file_count": 151,
+      "json_validation_error_count": 0,
+      "jsonl_file_count": 1,
+      "jsonl_record_count": 26,
+      "jsonl_validation_error_count": 0
+    },
+    "epk_sibling_controls": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T22:39:40Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "json_file_count": 72,
+      "json_validation_error_count": 0,
+      "jsonl_file_count": 3,
+      "jsonl_record_count": 265,
+      "jsonl_validation_error_count": 0
+    },
+    "epk_substrate_role_identity": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T22:23:50Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-substrate-role-identity/work/research_lanes/epk_substrate_role_identity/handoff.md",
+      "json_file_count": 25,
+      "json_validation_error_count": 0,
+      "jsonl_file_count": 1,
+      "jsonl_record_count": 26,
+      "jsonl_validation_error_count": 0
+    }
+  },
+  "lane_findings": [
+    {
+      "decision_effect": "no clean active-gamma or transition-analog ePK positive; no production upgrade",
+      "lane_id": "epk_positive_evidence",
+      "latest_observation": "Haspin/histone H3 recovered 4OUC and one modeled H3 Thr3 source-site row, but terminal donor fields are null and all decisions remain review_only_abstain.",
+      "next_exact_experiment": "recheck current-date canonical ePK exact-ligand surfaces and 23FC publication metadata only after a new RCSB weekly release or new source metadata",
+      "primary_outcome": "review_only_source_site_row_without_active_donor"
+    },
+    {
+      "decision_effect": "source-free substrate-role blocker remains uncleared; stop carboxylate-proximity probing as a promotion route",
+      "lane_id": "epk_substrate_role_identity",
+      "latest_observation": "220 compact acid/base proximity rows include 68 source-free acid/base signatures, but 8 mixed positive/counterexample signatures keep substrate-role identity unresolved.",
+      "next_exact_experiment": "only resume for a genuinely different source-free modality that can adjudicate ADP/product, substrate analog, reciprocal folded-chain, or same-chain biology without review-context leakage",
+      "primary_outcome": "acid_base_proximity_review_feature_not_promotion_rule"
+    },
+    {
+      "decision_effect": "assembly-level v4 remains insufficient as production safety evidence; retain review-only ePK no-go",
+      "lane_id": "epk_false_positive_hunter",
+      "latest_observation": "391 entry rows and 864 coordinate contexts across ACP/DTP continuation shards yielded zero unsafe materializer non-abstentions; 5UJ7 biological_assembly_1 remains pinned as the context-v4-only split failure.",
+      "next_exact_experiment": "move only to older ATP/ANP metric-seeded pages beyond current coverage with prior metric artifacts excluded",
+      "primary_outcome": "regression_rows_emitted_without_new_unsafe_nonabstention"
+    },
+    {
+      "decision_effect": "policy v0 remains frozen, review-only, and fail-closed",
+      "lane_id": "epk_policy_harness",
+      "latest_observation": "The v9 adapter found real ADP, ligand_absent, and unavailable_coordinate_state rows, passed scoreboard/contract gates, and identified metal_absent as the only missing real target state.",
+      "next_exact_experiment": "epk_real_lane_metal_absent_candidate_evidence_v10_review_only",
+      "primary_outcome": "v9_missing_coordinate_state_adapter_passed_review_only_contract"
+    },
+    {
+      "decision_effect": "use as future scorer-test fixtures only; not production activation or threshold evidence",
+      "lane_id": "epk_sibling_controls",
+      "latest_observation": "The 119-row sibling-control surface passed row-oracle, fail-closed, obligation, and family-surface gates with unsafe_nonabstention_count=0.",
+      "next_exact_experiment": "run any future scorer output through the certified 119-row surface and require exact blocker reason counts plus unsafe_nonabstention_count=0 before counting progress",
+      "primary_outcome": "surface_certified_for_future_source_free_active_state_candidate_attempt"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_late_handoff_only_research_lane_synthesis_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T23:11:56Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_lane_handoffs_since_prior_synthesis": true,
+    "input_json_validated_file_count": 607,
+    "input_json_validation_error_count": 0,
+    "input_jsonl_validated_file_count": 7,
+    "input_jsonl_validation_error_count": 0,
+    "lane_count": 5,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "review_only_late_epk_handoff_synthesis_after_external_deepening_check",
+    "prior_synthesis_artifact": "artifacts/v3_epk_dirty_sibling_followup_synthesis_20260521.json",
+    "prior_synthesis_created_at": "2026-05-21T01:58:50Z",
+    "production_scoring_authorized": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "safety_rails": {
+    "artifact_migration_phase_2_or_3": false,
+    "artifact_upload_or_removal": false,
+    "history_rewrite": false,
+    "label_import": false,
+    "production_fingerprint_edit": false,
+    "threshold_calibration": false
+  },
+  "synthesis_conclusion": {
+    "five_uj7_status": "already_synthesized_and_now_pinned_as_biological_assembly_1_context_v4_only_split_failure",
+    "label_import_authorized": false,
+    "main_loop_action": "do_not_resume_epk_as_default_main_loop_task; continue external terminal decision deepening",
+    "overall": "fresh_late_epk_handoffs_reinforce_review_only_no_go_and_define_research_lane_next_experiments",
+    "positive_universe_expansion_ready": false,
+    "production_scoring_authorized": false,
+    "registry_or_fingerprint_change_authorized": false
+  }
+}

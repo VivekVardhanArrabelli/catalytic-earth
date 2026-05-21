@@ -1,0 +1,441 @@
+{
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_q99504_full_current_countable_duplicate_closure_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "bounded_current_countable_duplicate_clear_claim_permitted": true,
+    "candidate_count": 1,
+    "candidate_selection_artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_selection_20260521.json",
+    "created_at": "2026-05-21T22:41:59Z",
+    "curated_label_registry_edited": false,
+    "current_countable_target_count": 672,
+    "current_metal_probe_artifact": "artifacts/v3_metal_phosphatase_q99504_current_metal_target_probe_20260521.json",
+    "duplicate_clear_scope": "current_countable_selected_structures_only_not_uniref_wide_or_external_cluster_clearance",
+    "fingerprint_registry_edited": false,
+    "foldseek_source_status_counts": {
+      "completed": 10
+    },
+    "high_tm_hit_count": 0,
+    "max_completed_tm_score": 0.6185,
+    "method": "q99504_full_current_countable_duplicate_closure_after_nonmetal_chunks",
+    "nearest_current_countable_hit": {
+      "alntmscore": 0.6289,
+      "evidence_scope": "current_nonmetal_chunk002",
+      "max_pair_tm_score": 0.6185,
+      "qtmscore": 0.05032,
+      "query_name_mapping_status": "mapped_exact_alias",
+      "raw_query_name": "afdb_Q99504",
+      "raw_target_name": "pdb_1EHK_C",
+      "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+      "target_entry_ids": [
+        "m_csa:735"
+      ],
+      "target_fingerprint_ids": [
+        "heme_peroxidase_oxidase"
+      ],
+      "target_label_types": [
+        "seed_fingerprint"
+      ],
+      "target_name_mapping_status": "mapped_chain_suffix_alias",
+      "target_structure_id": "1EHK",
+      "target_structure_key": "pdb:1EHK",
+      "ttmscore": 0.6185
+    },
+    "nonmetal_chunk_probe_artifacts": [
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk000_probe_20260521.json",
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json",
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk002_probe_20260521.json",
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk003_probe_20260521.json",
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk004_probe_20260521.json",
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk005_probe_20260521.json",
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk006_probe_20260521.json",
+      "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk007_probe_20260521.json"
+    ],
+    "pair_cache_complete_for_bounded_current_countable_screen": true,
+    "prior_terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_timeout_rescue_20260521.json",
+    "probe_decision": "terminal_rejection_insufficient_evidence",
+    "query_target_pair_coverage": 1.0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_separation_guardrail": "Foldseek/TM closure is import-gate duplicate/leakage evidence only; source-free geometry remains below the target-lane floor and no EC/name/prose field is predictive evidence.",
+    "targeted_timeout_rescue_artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_timeout_targeted_rescue_screen_20260521.json",
+    "tm_score_threshold": 0.7,
+    "unique_query_target_pair_count": 672
+  },
+  "rows": [
+    {
+      "accession": "Q99504",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 2,
+        "binding_ligand_names_sample": [
+          "Mg(2+)"
+        ],
+        "binding_site_feature_count": 3,
+        "metal_binding_feature_count": 3,
+        "metal_binding_feature_count_from_freeze": 3,
+        "phosphate_or_substrate_binding_feature_count": 0,
+        "resolved_active_site_residue_count": 2,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_target_lane_score_below_abstain_floor_0_4115",
+        "only_two_active_site_residues_resolved_for_geometry_score",
+        "no_phosphate_or_substrate_binding_feature_resolved_in_source_free_geometry",
+        "bounded_current_countable_duplicate_screen_completed_with_no_tm_ge_0_7_signal",
+        "full_hard_negative_import_gates_not_run"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 2,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.3742,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3742
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_structural_screen_status": "bounded_current_countable_no_high_tm_duplicate_signal_detected",
+        "current_countable_target_count": 672,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.6289,
+          "evidence_scope": "current_nonmetal_chunk002",
+          "max_pair_tm_score": 0.6185,
+          "qtmscore": 0.05032,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_Q99504",
+          "raw_target_name": "pdb_1EHK_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "target_entry_ids": [
+            "m_csa:735"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1EHK",
+          "target_structure_key": "pdb:1EHK",
+          "ttmscore": 0.6185
+        },
+        "pair_cache_complete": true,
+        "screen_artifact": "artifacts/v3_metal_phosphatase_q99504_full_current_countable_duplicate_closure_20260521.json",
+        "unique_query_target_pair_count": 672
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q99504",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_Q99504.cif",
+        "pdb_cross_reference_count": 1,
+        "pdb_ids_sample": [
+          "9C7T"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision_after_full_current_probe": "terminal_rejection_insufficient_evidence"
+    }
+  ],
+  "source_probe_summaries": [
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_metal_target_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5324,
+        "max_pair_tm_score": 0.5324,
+        "qtmscore": 0.2185,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1L7N_A",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+        "target_entry_ids": [
+          "m_csa:727"
+        ],
+        "target_fingerprint_ids": [
+          "metal_dependent_hydrolase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1L7N",
+        "target_structure_key": "pdb:1L7N",
+        "ttmscore": 0.5303
+      },
+      "scope": "current_metal_dependent_hydrolase_targets",
+      "status": "completed",
+      "target_count": 67,
+      "unique_pairs": 67
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_timeout_targeted_rescue_screen_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5846,
+        "max_pair_tm_score": 0.5846,
+        "qtmscore": 0.0104,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1T7D_C",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+        "target_entry_ids": [
+          "m_csa:635"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1T7D",
+        "target_structure_key": "pdb:1T7D",
+        "ttmscore": 0.4872
+      },
+      "scope": "targeted_timeout_rescue_structures_1T7D_1RTF_1ALK",
+      "status": "completed",
+      "target_count": 3,
+      "unique_pairs": 3
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk000_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5951,
+        "max_pair_tm_score": 0.5951,
+        "qtmscore": 0.1673,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1B93_C",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B93.cif",
+        "target_entry_ids": [
+          "m_csa:85"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1B93",
+        "target_structure_key": "pdb:1B93",
+        "ttmscore": 0.5332
+      },
+      "scope": "current_nonmetal_chunk000",
+      "status": "completed",
+      "target_count": 80,
+      "unique_pairs": 80
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5232,
+        "max_pair_tm_score": 0.5232,
+        "qtmscore": 0.0173,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1D8D_P",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D8D.cif",
+        "target_entry_ids": [
+          "m_csa:484"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1D8D",
+        "target_structure_key": "pdb:1D8D",
+        "ttmscore": 0.4281
+      },
+      "scope": "current_nonmetal_chunk001",
+      "status": "completed",
+      "target_count": 80,
+      "unique_pairs": 80
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk002_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.6289,
+        "max_pair_tm_score": 0.6185,
+        "qtmscore": 0.05032,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1EHK_C",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+        "target_entry_ids": [
+          "m_csa:735"
+        ],
+        "target_fingerprint_ids": [
+          "heme_peroxidase_oxidase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1EHK",
+        "target_structure_key": "pdb:1EHK",
+        "ttmscore": 0.6185
+      },
+      "scope": "current_nonmetal_chunk002",
+      "status": "completed",
+      "target_count": 80,
+      "unique_pairs": 80
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk003_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.6737,
+        "max_pair_tm_score": 0.5614,
+        "qtmscore": 0.01043,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1IR3_B",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+        "target_entry_ids": [
+          "m_csa:246"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1IR3",
+        "target_structure_key": "pdb:1IR3",
+        "ttmscore": 0.5614
+      },
+      "scope": "current_nonmetal_chunk003",
+      "status": "completed",
+      "target_count": 80,
+      "unique_pairs": 80
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk004_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5486,
+        "max_pair_tm_score": 0.5357,
+        "qtmscore": 0.2283,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1O08",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1O08.cif",
+        "target_entry_ids": [
+          "m_csa:206"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1O08",
+        "target_structure_key": "pdb:1O08",
+        "ttmscore": 0.5357
+      },
+      "scope": "current_nonmetal_chunk004",
+      "status": "completed",
+      "target_count": 80,
+      "unique_pairs": 80
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk005_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5047,
+        "max_pair_tm_score": 0.4843,
+        "qtmscore": 0.06335,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1V54_K",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+        "target_entry_ids": [
+          "m_csa:124"
+        ],
+        "target_fingerprint_ids": [
+          "heme_peroxidase_oxidase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1V54",
+        "target_structure_key": "pdb:1V54",
+        "ttmscore": 0.4843
+      },
+      "scope": "current_nonmetal_chunk005",
+      "status": "completed",
+      "target_count": 80,
+      "unique_pairs": 80
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk006_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5971,
+        "max_pair_tm_score": 0.5118,
+        "qtmscore": 0.01216,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_2PHK_B",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+        "target_entry_ids": [
+          "m_csa:35"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "2PHK",
+        "target_structure_key": "pdb:2PHK",
+        "ttmscore": 0.5118
+      },
+      "scope": "current_nonmetal_chunk006",
+      "status": "completed",
+      "target_count": 80,
+      "unique_pairs": 80
+    },
+    {
+      "artifact": "artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk007_probe_20260521.json",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.4264,
+        "max_pair_tm_score": 0.4192,
+        "qtmscore": 0.1556,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_3DFR",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3DFR.cif",
+        "target_entry_ids": [
+          "m_csa:112"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "3DFR",
+        "target_structure_key": "pdb:3DFR",
+        "ttmscore": 0.4192
+      },
+      "scope": "current_nonmetal_chunk007",
+      "status": "completed",
+      "target_count": 43,
+      "unique_pairs": 43
+    }
+  ],
+  "warnings": [
+    "Duplicate-clearance here is bounded to the 672 staged current-countable selected structures; it is not UniRef-wide duplicate clearance and not an import authorization.",
+    "Q99504 is rejected as insufficient mechanism evidence for this packet because its source-free metal-hydrolase score remains below the active floor, not because source prose was used as counterevidence."
+  ]
+}

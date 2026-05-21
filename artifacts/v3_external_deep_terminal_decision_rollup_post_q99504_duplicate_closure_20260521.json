@@ -1,0 +1,204 @@
+{
+  "metadata": {
+    "artifact_id": "v3_external_deep_terminal_decision_rollup_post_q99504_duplicate_closure_20260521",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 49,
+    "created_at": "2026-05-21T22:41:59Z",
+    "curated_label_registry_edited": false,
+    "deep_packet_count": 7,
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "method": "existing_external_deep_terminal_packet_rollup_after_q99504_duplicate_closure",
+    "new_external_rows_frozen": 0,
+    "non_needs_review_terminal_candidate_count": 49,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "terminal_decision_counts": {
+      "mechanism_match_review_ready": 1,
+      "terminal_rejection_duplicate_or_leakage": 46,
+      "terminal_rejection_insufficient_evidence": 2
+    }
+  },
+  "next_main_loop_guidance": "The Q99504 exact duplicate-screen blocker is closed for current-countable selected structures; continue deepening existing frozen rows or produce a non-ePK family-readiness packet rather than opening a broad new mini-campaign.",
+  "rows": [
+    {
+      "candidate_count": 7,
+      "closing_evidence_class": "complete_current_countable_foldseek_duplicate_leakage_screen",
+      "countable_label_candidate_count": 0,
+      "derived_non_needs_review_terminal_count": 7,
+      "import_ready_candidate_count": 0,
+      "lane_id": "metal_phosphatase",
+      "mechanism_match_review_ready_count": 0,
+      "modern_baseline_artifact": "artifacts/v3_metal_phosphatase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json",
+      "non_needs_review_terminal_count": 7,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "target_lane_at_or_above_floor_count": 0,
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+    },
+    {
+      "candidate_count": 7,
+      "closing_evidence_class": "targeted_replacement_coordinate_full_current_foldseek_duplicate_leakage_probe",
+      "countable_label_candidate_count": 0,
+      "derived_non_needs_review_terminal_count": 7,
+      "import_ready_candidate_count": 0,
+      "lane_id": "serine_hydrolase",
+      "mechanism_match_review_ready_count": 0,
+      "modern_baseline_artifact": "artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json",
+      "non_needs_review_terminal_count": 6,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "target_lane_at_or_above_floor_count": 0,
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json"
+    },
+    {
+      "candidate_count": 7,
+      "closing_evidence_class": "complete_current_countable_foldseek_duplicate_leakage_screen",
+      "countable_label_candidate_count": 0,
+      "derived_non_needs_review_terminal_count": 7,
+      "import_ready_candidate_count": 0,
+      "lane_id": "flavin_dehydrogenase_reductase",
+      "mechanism_match_review_ready_count": 0,
+      "modern_baseline_artifact": "artifacts/v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json",
+      "non_needs_review_terminal_count": 7,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "target_lane_at_or_above_floor_count": 4,
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+    },
+    {
+      "candidate_count": 7,
+      "closing_evidence_class": "targeted_chunked_current_structure_duplicate_leakage_followup",
+      "countable_label_candidate_count": 0,
+      "derived_non_needs_review_terminal_count": 7,
+      "import_ready_candidate_count": 0,
+      "lane_id": "flavin_monooxygenase",
+      "mechanism_match_review_ready_count": 0,
+      "modern_baseline_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json",
+      "non_needs_review_terminal_count": 7,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "target_lane_at_or_above_floor_count": 1,
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json"
+    },
+    {
+      "candidate_count": 7,
+      "closing_evidence_class": "mixed_duplicate_leakage_rejections_plus_one_duplicate_clear_review_ready_mechanism_match",
+      "countable_label_candidate_count": 0,
+      "derived_non_needs_review_terminal_count": 7,
+      "import_ready_candidate_count": 0,
+      "lane_id": "heme_peroxidase_oxidase",
+      "mechanism_match_review_ready_count": 1,
+      "modern_baseline_artifact": "artifacts/v3_heme_peroxidase_deep_packet_post_i2dby1_subchunk_modern_baseline_benchmark_20260521.json",
+      "non_needs_review_terminal_count": 7,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor_count": 7,
+      "terminal_decision_counts": {
+        "mechanism_match_review_ready": 1,
+        "terminal_rejection_duplicate_or_leakage": 6
+      },
+      "terminal_packet_artifact": "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json"
+    },
+    {
+      "candidate_count": 7,
+      "closing_evidence_class": "source_free_plp_active_site_anchor_then_targeted_current_plp_duplicate_leakage_screen",
+      "countable_label_candidate_count": 0,
+      "derived_non_needs_review_terminal_count": 7,
+      "import_ready_candidate_count": 0,
+      "lane_id": "plp_dependent_enzyme",
+      "mechanism_match_review_ready_count": 0,
+      "modern_baseline_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521.json",
+      "non_needs_review_terminal_count": 7,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "target_lane_at_or_above_floor_count": 6,
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 6,
+        "terminal_rejection_insufficient_evidence": 1
+      },
+      "terminal_packet_artifact": "artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json"
+    },
+    {
+      "candidate_count": 7,
+      "closing_evidence_class": "bounded_current_countable_foldseek_duplicate_leakage_screen_plus_targeted_timeout_rescue",
+      "countable_label_candidate_count": 0,
+      "derived_non_needs_review_terminal_count": 7,
+      "import_ready_candidate_count": 0,
+      "lane_id": "metal_phosphatase_second_selection_after_timeout_rescue",
+      "mechanism_match_review_ready_count": 0,
+      "modern_baseline_artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_after_timeout_rescue_modern_baseline_benchmark_20260521.json",
+      "non_needs_review_terminal_count": 7,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "target_lane_at_or_above_floor_count": 0,
+      "terminal_decision_counts": {
+        "needs_new_extractor_or_structure": 1,
+        "terminal_rejection_duplicate_or_leakage": 6
+      },
+      "terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_timeout_rescue_20260521.json"
+    }
+  ],
+  "safety_and_scope": {
+    "artifact_migration_performed": false,
+    "label_import_attempted": false,
+    "production_fingerprint_added": false,
+    "registry_mutation_performed": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "source_separation_and_baseline_caveats": {
+    "ec_keyword_protein_name_counted_as_predictive_evidence": false,
+    "esm_superiority_claim_count": 0,
+    "foldseek_tm_role": "duplicate_or_leakage_gate_evidence_not_predictive_mechanism_evidence",
+    "modern_baseline_artifact_count": 7,
+    "superiority_claim": false,
+    "superiority_claim_permitted": false
+  },
+  "synthesis": {
+    "aggregate_count_method": "derived_from_terminal_decision_counts_and_packet_candidate_counts",
+    "candidate_count": 49,
+    "countable_label_candidate_count": 0,
+    "decision_use": "planning_index_only_not_label_import_evidence",
+    "dominant_terminal_outcome": "terminal_rejection_duplicate_or_leakage",
+    "exact_blocker_candidate_count": 1,
+    "import_ready_candidate_count": 0,
+    "mechanism_match_review_ready_count": 1,
+    "needs_new_extractor_or_structure_candidate_count": 0,
+    "new_external_rows_frozen": 0,
+    "non_needs_review_terminal_candidate_count": 49,
+    "overall": "existing frozen external deep packets expanded and second metal timeout blockers closed by targeted leakage rescue"
+  }
+}
