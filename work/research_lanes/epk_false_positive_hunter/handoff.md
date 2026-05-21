@@ -5,6 +5,8 @@
 - Ended: 2026-05-21T23:25:15Z
 - Measured minutes: 52.23
 - Primary outcome: search_surface_certified
+- Pushed evidence commit: `b867e2644822b96872045102d5507c05fed3c4be` via alternate-index commit/push.
+- Local checked-out HEAD remains behind origin because linked-worktree metadata writes are blocked.
 - Rule under attack: metric-seeded ATP/ANP deposited-v4 / biological-assembly-below-floor split trap sufficiency for fake ePK active-gamma positives.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
