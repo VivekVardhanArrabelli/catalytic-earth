@@ -92,9 +92,9 @@ SOURCE_SPECS = [
     },
     {
         "path": "artifacts/research_lanes/epk_false_positive_hunter/"
-        "source_valid_later_offset_gap_audit_20260521_053401Z.json",
+        "source_valid_later_offset_gap_audit_jnk_entity_retry_20260521_121925Z.json",
         "row_key": "custom_materializer_rows",
-        "source_profile": "source_valid_epk_seed_geometry_prefilter_controls",
+        "source_profile": "source_valid_later_offset_gap_audit_controls",
     },
 ]
 
@@ -178,6 +178,28 @@ def first_hit(row: dict[str, Any]) -> dict[str, Any]:
                     "nearest_mg_distance_angstrom"
                 ),
             }
+    for hit in row.get("local_geometry_entity_mapping_evaluations", []) or []:
+        if isinstance(hit, dict):
+            return {
+                "candidate_atom_name": hit.get("candidate_atom_name"),
+                "candidate_auth_seq_id": hit.get("candidate_auth_seq_id"),
+                "candidate_chain_name": hit.get("candidate_chain_name"),
+                "candidate_residue_code": hit.get("candidate_residue_code"),
+                "gamma_associated_polymer_chain_name": hit.get(
+                    "gamma_associated_polymer_chain_name"
+                ),
+                "gamma_associated_polymer_entity_id": hit.get(
+                    "gamma_associated_polymer_entity_id"
+                ),
+                "gamma_atom_name": hit.get("gamma_atom_name"),
+                "gamma_ligand_code": hit.get("gamma_ligand_code"),
+                "nearest_gamma_distance_angstrom": hit.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                "nearest_mg_distance_angstrom": hit.get(
+                    "nearest_mg_distance_angstrom"
+                ),
+            }
     return {}
 
 
@@ -255,6 +277,11 @@ def is_non_epk(row: dict[str, Any], profile: str) -> bool:
         and row.get("source_valid_epk_seed_review_candidate")
     ):
         return False
+    if (
+        profile == "source_valid_later_offset_gap_audit_controls"
+        and row.get("source_valid_later_offset_entity_seed_review_candidate")
+    ):
+        return False
     return True
 
 
@@ -290,6 +317,14 @@ def control_class(row: dict[str, Any], profile: str) -> str:
         if row.get("known_orc_counterexample_input") or role_tokens:
             return "orc_mcm_fixed_counterexample_control"
         return "source_valid_geometry_prefilter_stress_control"
+    if profile == "source_valid_later_offset_gap_audit_controls":
+        if row.get("source_valid_later_offset_entity_seed_review_candidate"):
+            return "source_valid_later_offset_epk_seed_overblock_control"
+        if row.get("gap_audit_control"):
+            return "materializer_equivalence_gap_same_chain_entity_control"
+        if row.get("non_epk_v4_contaminant_prefilter_candidate"):
+            return "geometry_prefiltered_non_epk_v4_contaminant_control"
+        return "source_valid_later_offset_gap_audit_control"
     if profile == "atpase_transporter_topology_controls":
         return "atpase_transporter_topology_control"
     if profile == "walker_a_topology_controls":
@@ -312,6 +347,7 @@ def blocker_class(row: dict[str, Any], profile: str) -> str:
         row.get("known_epk_positive_input")
         or row.get("source_context_epk_review_candidate")
         or row.get("source_valid_epk_seed_review_candidate")
+        or row.get("source_valid_later_offset_entity_seed_review_candidate")
     ):
         return "positive_control_retention_expected"
     if row.get("context_v4_oligomeric_atp_terminals_no_mg_required_hit"):
@@ -336,6 +372,7 @@ def expected_policy_decision(row: dict[str, Any], profile: str) -> str:
         row.get("known_epk_positive_input")
         or row.get("source_context_epk_review_candidate")
         or row.get("source_valid_epk_seed_review_candidate")
+        or row.get("source_valid_later_offset_entity_seed_review_candidate")
     ):
         return "retain_or_source_validate_epk_positive_review_only"
     if blocker_class(row, profile) == "no_substrate_mode_materializer_hit":
@@ -481,6 +518,8 @@ def convert_row(
         "observed_source_decision": row.get("entry_level_guard_stress_decision")
         or row.get("custom_stress_decision")
         or row.get("source_valid_geometry_prefilter_stress_decision")
+        or row.get("gap_audit_decision")
+        or row.get("source_valid_later_offset_entity_seed_basis")
         or row.get("source_validation_status")
         or row.get("counterexample_rationale"),
         "source_query_surface_groups": row.get("query_surface_groups", []),
@@ -521,6 +560,17 @@ def convert_source(repo_root: Path, spec: dict[str, Any]) -> tuple[list[dict[str
             if isinstance(row, dict)
             and (
                 row.get("source_valid_epk_seed_review_candidate")
+                or row.get("non_epk_v4_contaminant_prefilter_candidate")
+            )
+        ]
+    if source_profile == "source_valid_later_offset_gap_audit_controls":
+        rows = [
+            row
+            for row in rows
+            if isinstance(row, dict)
+            and (
+                row.get("source_valid_later_offset_entity_seed_review_candidate")
+                or row.get("gap_audit_control")
                 or row.get("non_epk_v4_contaminant_prefilter_candidate")
             )
         ]

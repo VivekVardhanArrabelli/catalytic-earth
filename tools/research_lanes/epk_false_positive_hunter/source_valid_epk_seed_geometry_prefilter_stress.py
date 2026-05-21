@@ -283,7 +283,17 @@ def family_buckets_from_entities(entity_rows: list[dict[str, str]]) -> list[str]
         buckets.append("mek_erk_entity")
     if any(
         token in entity_text
-        for token in ["jnk", "c-jun n-terminal kinase", "mapk8", "mapk9", "mapk10"]
+        for token in [
+            "jnk",
+            "c-jun n-terminal kinase",
+            "c-jun n terminal kinase",
+            "mapk8",
+            "mapk9",
+            "mapk10",
+            "mitogen-activated protein kinase 8",
+            "mitogen-activated protein kinase 9",
+            "mitogen-activated protein kinase 10",
+        ]
     ):
         buckets.append("jnk_entity")
     if ("cyclin-dependent kinase" in entity_text or "cdk" in entity_text) and (
