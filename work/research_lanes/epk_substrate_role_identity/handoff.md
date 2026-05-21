@@ -22,8 +22,14 @@ same metadata path. The run continued from the current on-disk lane state, which
 already contained the remote lane artifacts. Local `HEAD` remains stale relative
 to `origin/research/epk-substrate-role-identity`; normal local clean and
 HEAD-equals-origin verification remain blocked until linked-worktree metadata
-can be fast-forwarded. Use the remote-tip temporary-index commit/push workaround
-if normal metadata writes remain blocked.
+can be fast-forwarded. A final `git merge --ff-only
+origin/research/epk-substrate-role-identity` attempt after remote push failed on
+the linked-worktree `ORIG_HEAD.lock` path:
+
+`/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-substrate-role-identity/ORIG_HEAD.lock`
+
+Use the remote-tip temporary-index commit/push workaround if normal metadata
+writes remain blocked.
 
 ## What Was Emitted
 
@@ -148,6 +154,8 @@ support ePK production readiness.
 - No raw `.pdb`, `.cif`, or `.mmcif` files were written in the lane paths.
 - No production label registries, mechanism fingerprints, migration manifests,
   or label imports were touched.
+- Remote-tip temporary-index push succeeded for this run; local `HEAD` remains
+  stale because linked-worktree `ORIG_HEAD.lock` prevented local fast-forward.
 
 ## Exact Next Experiment
 
