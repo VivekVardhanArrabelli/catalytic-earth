@@ -5,6 +5,7 @@
 - Ended: 2026-05-21T13:08:08Z
 - Measured minutes: 48.72
 - Primary outcome: regression_rows_emitted
+- Pushed evidence commit: b6aad5e0b98bce5342acff2acd2311e30ff421a7 via alternate-index commit/push.
 - Rule under attack: materializer equivalence on local geometry prefilters plus later-offset source-valid ePK entity v4 seed coverage; regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
@@ -51,17 +52,21 @@ Evidence against counterexamples on this run's surface:
 
 ## Verification
 
-Pending final wrap verification after this handoff update:
-
-- JSON validation for new artifacts and ledger.
-- `py_compile` for changed helpers.
-- `git diff --check` on lane files.
+- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit_20260521_121925Z.json >/dev/null`
+- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit_jnk_entity_retry_20260521_121925Z.json >/dev/null`
+- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_130730Z.json >/dev/null`
+- JSONL validation passed for `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`.
+- `python -m py_compile tools/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit.py tools/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress.py tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
+- `git diff --check -- ...lane files...`
+- Final `git fetch --no-write-fetch-head origin` succeeded and `origin/research/epk-false-positive-hunter` resolved to `b6aad5e0b98bce5342acff2acd2311e30ff421a7` after the evidence push.
 
 ## Blockers
 
 - `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git pull --ff-only origin research/epk-false-positive-hunter` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git fetch --no-write-fetch-head origin` succeeded.
+- Normal `git add --dry-run` failed creating linked-worktree `index.lock`: Operation not permitted.
+- Alternate-index commit/push succeeded.
 - Normal checked-out HEAD was behind origin at run start because linked-worktree metadata writes remain blocked.
 
 ## Next Query
