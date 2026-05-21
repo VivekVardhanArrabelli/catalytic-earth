@@ -45,7 +45,7 @@ FEDERATED_INPUT_SPECS = (
     {
         "lane_id": "epk_false_positive_hunter",
         "ref": "origin/research/epk-false-positive-hunter",
-        "path": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_051511Z.json",
+        "path": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_141548Z.json",
         "row_keys": ("rows",),
     },
     {

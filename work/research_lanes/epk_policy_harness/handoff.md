@@ -1,17 +1,18 @@
 # ePK policy harness handoff
 
-Last updated: 2026-05-21T14:15:22Z
-Run started: 2026-05-21T13:20:56Z
-Run ended: 2026-05-21T14:15:22Z
-Measured minutes: 54.43
+Last updated: 2026-05-21T15:14:00Z
+Run started: 2026-05-21T14:22:20Z
+Run ended: 2026-05-21T15:14:00Z
+Measured minutes: 51.67
 Primary outcome: `scoreboard_gate_created`
 
 ## Files changed
 
+- `tools/research_lanes/epk_policy_harness/epk_policy_harness.py`
 - `tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py`
 - `tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py`
-- `artifacts/research_lanes/epk_policy_harness/epk_candidate_evidence_schema_drafts_v1_20260521T132555Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z*.json`
+- `tools/research_lanes/epk_policy_harness/epk_federated_entry_rollup_stress.py`
+- `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z*.json`
 - `artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl`
 - `work/research_lanes/epk_policy_harness/handoff.md`
 
@@ -19,50 +20,48 @@ Primary outcome: `scoreboard_gate_created`
 
 Policy v0 remains frozen, review-only, and fail-closed. This run did not change production labels, thresholds, registries, fingerprints, migrations, or scoring.
 
-This run hardened the federated candidate scoreboard by making entry-level status an explicit derived rollup from candidate decisions. Candidate rows remain the source of truth. The rollup keeps candidate claim-status counts visible and applies fail-closed precedence: source leakage, forbidden context, sibling/control blockers, topology ambiguity, split, analog, product, missing-role policy, then review-only nonabstaining candidate. `progress_claim_allowed=false` and `production_claim_allowed=false` remain fixed.
+This run made `entry_id` first-class in policy decision rows and scoreboard rollups. The scoreboard now groups by `entry_id` before falling back to `pdb_id` and `row_id`, which lets federated candidate rows roll up shared entries even when a lane has compact candidate evidence without a stable PDB field. `entry_id`, `source_lane_id`, `source_artifact`, `source_row_key`, and `source_row_id` remain review-only provenance and are not predictive features.
 
 ## Evidence
 
-- Schema draft: `artifacts/research_lanes/epk_policy_harness/epk_candidate_evidence_schema_drafts_v1_20260521T132555Z.json` (`sha256 965358cf336d6b3eecedc9fcd32357763de4ef57cc6d0a282e59fe535648736a`).
-- Adapter report: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z.json` (`sha256 d2dcba092cff9bf2444f4b46aa4e9077d7d83a85ca41d247afc6770a3790c67d`).
-- Tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_tranche.json` (`sha256 880c6acc53105f4e3154e2156110d690795eac3c54faaa62e0c17d82c4619235`).
-- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_result.json` (`sha256 2ac1acbc12d8bf8ecf37bc99bf04aa079f949acec7afc8d68b1f56bf13ba8d1d`).
-- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_scoreboard_gate.json` (`sha256 605b5736885023291d9afb1f22323156ddf7aa35dec4acfd1166a85d45c3f6ef`).
+- Stress report: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z.json` (`sha256 ebfad90696e7f683e47337ff51fa3f4bf1ca55e7ca5915bf0732c590a60da959`).
+- Stress tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_tranche.json` (`sha256 f040857d457051ec37f5f8584fcb9886d32d4550616d9ba796dd7c72a49ccf3e`).
+- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_result.json` (`sha256 f4a5320dcf88e659a028a10a1bfa7b19b5151ce82f66bd6cae38cc3b9deab42b`).
+- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_scoreboard_gate.json` (`sha256 5bd142bfea0285eab6baaf0e700b17e3d92ff2cecc697eaaf1841b292c212188`).
 
-The compact adapter smoke still maps 10 candidate rows from four independent source lanes: `epk_positive_evidence` (2), `epk_substrate_role_identity` (3), `epk_false_positive_hunter` (3), and `epk_sibling_controls` (2).
+The compact stress fixture reviewed 16 candidate rows from four source lanes and produced 8 entry rollups. Candidate and entry coverage includes every non-forbidden claim status and every coordinate-state enum. Entry rollups show fail-closed precedence: product over active, analog over product, split over analog, sibling-control over active, topology ambiguity over active, forbidden-context over missing-role, missing-role only, and review-only nonabstaining-only.
 
-Candidate and entry claim statuses both remain review-only: 3 `review_only_abstain_missing_role_policy`, 5 `review_only_abstain_sibling_control`, 1 `review_only_abstain_product_state`, and 1 `review_only_abstain_analog_state`. The gate passed with 10 entry rollups, 8 discovery-signal rows, zero forbidden source leakage, zero unsafe control nonabstention, and zero expected claim-status mismatches.
+The positive scoreboard gate passed with 0 forbidden source-leakage rows, 0 unsafe control nonabstentions, and `production_claim_allowed=false`. Negative fixtures rejected mixed-entry forbidden source leakage, mixed-entry unsafe control nonabstention, and missing candidate/source identity.
 
-Negative fixtures rejected:
-
-- Missing candidate identity: `sha256 6ea76cd31ac5a81864d22073029a3b138d49f7978da45f672fc0e86ded14754b`.
-- Duplicate candidate identity within one source lane: `sha256 c633409ed78eefbed51eba48f5b78adf53ed54c0286c11e3f675fffb5991ceed`.
-- Copied protein/source context: `sha256 65cd79bd609c5fc07ab58b306f6a854e96be7bfbdab7c6215209b5ab56fb7d4a`.
+The federated adapter input pointer was updated to the latest false-positive compact gate `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_141548Z.json`; a dry run in `/private/tmp/epk_federated_adapter_latest_input_check` passed without adding extra repository artifacts.
 
 ## Verification
 
 - `PYTHONDONTWRITEBYTECODE=1 python -m py_compile tools/research_lanes/epk_policy_harness/*.py`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_policy_harness.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py --self-test`
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_entry_rollup_stress.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py --self-test`
-- Periodic hold-open validation repeated the self-test trio through 2026-05-21T14:14:02Z.
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection.py --self-test`
+- Latest false-positive adapter-input dry run wrote only to `/private/tmp/epk_federated_adapter_latest_input_check`.
+- Eight hold-open validation rounds repeated policy, scoreboard, entry-rollup stress, adapter self-tests, and new-artifact JSON parsing through 2026-05-21T15:12:09Z.
 - `git diff --check`
-- JSON validation parsed 214 JSON files and 17 JSONL records before ledger append.
-- Disk remained above the safety threshold: 26 GiB available at final validation.
+- JSON validation parsed 221 JSON files and 18 JSONL records before ledger append.
+- Disk remained above the safety threshold: 28 GiB available before wrap.
 
 ## Blockers and notes
 
 - Normal `git fetch origin` failed on linked-worktree `FETCH_HEAD` permissions.
 - `git fetch --no-write-fetch-head origin` succeeded.
-- `git pull --ff-only origin research/epk-policy-harness` failed on linked-worktree `FETCH_HEAD`; direct `git merge --ff-only origin/research/epk-policy-harness` failed on linked-worktree `ORIG_HEAD.lock`.
+- `git pull --ff-only origin research/epk-policy-harness` failed on linked-worktree `FETCH_HEAD`.
 - The local worktree/index remains stale and noisy because linked-worktree metadata blocks normal branch updates. Use an alternate index seeded from `origin/research/epk-policy-harness` for commit/push.
-- Only four remote ePK research lane branches are currently available, and all four are already included in the federated adapter smoke.
+- Other-lane handoffs were read as review-only inputs. No additional remote ePK lane branch was available beyond positive evidence, substrate-role identity, false-positive hunter, and sibling controls.
 
 ## Exact next query
 
-`epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_review_only`
+`epk_federated_candidate_entry_rollup_real_entry_overlap_v3_review_only`
 
-Use the entry-rollup gate as the compatibility layer for any additional compact lane outputs. Add a new lane only if it exposes candidate identity and source-free local fields without copied source text, protein names, titles, EC/Rhea, paper metadata, or prose. Continue to fail on forbidden source leakage, unsafe control nonabstention, missing candidate identity, duplicate candidate identity within source lane, and any entry rollup that attempts to convert review-only signal into progress or production claims.
+Find real overlapping entries/candidates emitted independently by the federated lanes and feed them through the entry-id-first rollup. Keep source/protein/title/EC/Rhea/paper/prose fields out of predictive rows; source review remains discovery/review context only. Continue to fail on forbidden source leakage, unsafe control nonabstention, missing candidate/source identity, duplicate candidate identity within source lane, and any entry rollup that converts review-only signal into progress or production claims.
 
 ## Forbidden
 

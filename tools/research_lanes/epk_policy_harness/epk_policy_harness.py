@@ -1860,8 +1860,10 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
         "schema_version": SCHEMA_VERSION,
         "row_id": row.get("row_id") or row.get("pdb_id"),
         "candidate_id": row.get("candidate_id") or row.get("row_id") or row.get("pdb_id"),
+        "entry_id": row.get("entry_id"),
         "source_lane_id": row.get("source_lane_id") or row.get("lane_id"),
         "source_artifact": row.get("source_artifact"),
+        "source_row_key": row.get("source_row_key"),
         "source_row_id": row.get("source_row_id"),
         "pdb_id": row.get("pdb_id"),
         "row_role": row.get("row_role"),
@@ -2128,6 +2130,8 @@ def self_test() -> None:
     assert passing_result["claim_status"] == "review_only_nonabstaining_candidate"
     assert passing_result["coordinate_state"] == "active_gamma"
     assert passing_result["expected_frozen_policy_match"] is True
+    assert "entry_id" in passing_result
+    assert "source_row_key" in passing_result
     blocked_adp_result = evaluate_row(policy, blocked_adp)
     assert blocked_adp_result["decision"] == "review_only_abstain"
     assert blocked_adp_result["claim_status"] == "review_only_abstain_product_state"

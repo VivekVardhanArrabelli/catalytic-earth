@@ -1,0 +1,613 @@
+{
+  "gate": {
+    "failed_result_artifacts": [],
+    "failure_count": 0,
+    "gate_pass": true,
+    "labels_or_fingerprints_changed": false,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false
+  },
+  "metadata": {
+    "artifact_id": "epk_candidate_policy_bridge_scoreboard_gate_v1_20260521",
+    "created_at": "2026-05-21T14:31:22+00:00",
+    "gate_pass": true,
+    "gate_version": "epk_candidate_policy_bridge_scoreboard_gate_v1_20260521",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "result_artifact_count": 1,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+    "scoreboard_row_count": 1
+  },
+  "schema_drafts": {
+    "production_claim_allowed": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+    "schemas": {
+      "epk_candidate_evidence_v1": {
+        "allowed_predictive_feature_boundary": [
+          "ligand_code_from_structure",
+          "terminal_gamma_equivalent_geometry",
+          "terminal_gamma_atom_name",
+          "nearest_gamma_acceptor_distance_angstrom",
+          "local_metal_context",
+          "catalytic_site_locality",
+          "source_free_acceptor_role_features",
+          "source_free_acceptor_role_policy_id",
+          "same_structure_co_materialization"
+        ],
+        "candidate_identity_fields": [
+          "lane_id",
+          "source_lane_id",
+          "source_artifact",
+          "source_row_key",
+          "source_row_id",
+          "row_id",
+          "candidate_id",
+          "entry_id",
+          "pdb_id",
+          "model_id",
+          "chain_or_auth_asym_id",
+          "ligand_instance_id",
+          "terminal_gamma_atom_id",
+          "acceptor_atom_id"
+        ],
+        "candidate_identity_rule": "row_id or candidate_id identifies one gamma/acceptor candidate; entry-level status is derived from candidate decisions",
+        "compact_artifact_rule": "do_not_write_large_raw_coordinate_dumps",
+        "coordinate_state_enum": [
+          "active_gamma",
+          "adp_state",
+          "ambiguous_coordinate_state",
+          "ligand_absent",
+          "metal_absent",
+          "product_state",
+          "split_state",
+          "substrate_acceptor_analog_state",
+          "unavailable_coordinate_state"
+        ],
+        "federated_source_provenance_rule": "source_lane_id/source_artifact/source_row_key/source_row_id identify review-only emitting-lane provenance and must not carry source text, protein names, titles, EC/Rhea, or paper metadata as predictive features",
+        "forbidden_predictive_flags": [
+          "candidate_specific_source_repair_used_for_predictive_feature",
+          "cross_pdb_split_state_fusion",
+          "ec_or_rhea_as_predictive_feature",
+          "homomeric_chain_choice_as_substrate_mapping",
+          "mechanism_text_as_predictive_feature",
+          "paper_metadata_as_predictive_feature",
+          "paper_title_as_predictive_feature",
+          "pdb_title_as_predictive_feature",
+          "post_hoc_ligand_alias_expansion",
+          "post_hoc_threshold_selection",
+          "protein_name_as_predictive_feature",
+          "protein_names_as_predictive_feature",
+          "query_ligand_synonym_used_as_coordinate_ligand",
+          "source_id_as_predictive_feature",
+          "source_query_used_for_predictive_feature",
+          "source_review_used_for_predictive_feature",
+          "source_text_used_for_predictive_feature",
+          "source_validation_used_for_predictive_feature",
+          "structure_title_used_for_predictive_feature",
+          "uniprot_prose_as_predictive_feature"
+        ],
+        "required_fields": [
+          "schema_version",
+          "row_id",
+          "candidate_id",
+          "pdb_id",
+          "row_role",
+          "ligand_code_from_structure",
+          "coordinate_state",
+          "terminal_gamma_equivalent_geometry",
+          "local_metal_context",
+          "catalytic_site_locality",
+          "source_free_acceptor_role_features",
+          "same_structure_co_materialization"
+        ],
+        "review_only_context_fields": [
+          "source_query",
+          "source_validation_status",
+          "source_review_status",
+          "structure_title",
+          "entity_descriptions",
+          "chain_accessions",
+          "source_lane_id",
+          "source_artifact",
+          "source_row_key",
+          "source_row_id",
+          "expert_notes",
+          "product_state_context",
+          "substrate_acceptor_analog_context",
+          "split_state_context",
+          "sibling_counterfamily_context"
+        ],
+        "scope": "candidate_level_gamma_acceptor_pair_not_pdb_level",
+        "source_leakage_predictive_flags": [
+          "ec_or_rhea_as_predictive_feature",
+          "mechanism_text_as_predictive_feature",
+          "paper_metadata_as_predictive_feature",
+          "paper_title_as_predictive_feature",
+          "pdb_title_as_predictive_feature",
+          "protein_name_as_predictive_feature",
+          "protein_names_as_predictive_feature",
+          "source_id_as_predictive_feature",
+          "source_query_used_for_predictive_feature",
+          "source_review_used_for_predictive_feature",
+          "source_text_used_for_predictive_feature",
+          "source_validation_used_for_predictive_feature",
+          "structure_title_used_for_predictive_feature",
+          "uniprot_prose_as_predictive_feature"
+        ]
+      },
+      "epk_policy_decision_v1": {
+        "candidate_provenance_fields": [
+          "candidate_id",
+          "pdb_id",
+          "entry_id",
+          "source_lane_id",
+          "source_artifact",
+          "source_row_key",
+          "source_row_id"
+        ],
+        "claim_admissibility_enum": [
+          "review_only",
+          "forbidden"
+        ],
+        "claim_status_enum": [
+          "forbidden_source_leakage",
+          "review_only_abstain_analog_state",
+          "review_only_abstain_forbidden_context",
+          "review_only_abstain_missing_role_policy",
+          "review_only_abstain_product_state",
+          "review_only_abstain_sibling_control",
+          "review_only_abstain_split_state",
+          "review_only_abstain_topology_ambiguity",
+          "review_only_nonabstaining_candidate"
+        ],
+        "coordinate_state_enum": [
+          "active_gamma",
+          "adp_state",
+          "ambiguous_coordinate_state",
+          "ligand_absent",
+          "metal_absent",
+          "product_state",
+          "split_state",
+          "substrate_acceptor_analog_state",
+          "unavailable_coordinate_state"
+        ],
+        "federated_candidate_identity_rule": "candidate/source provenance is required for federated gate tranches and remains review-only provenance, not a predictive feature",
+        "nonabstaining_is_review_only": true,
+        "production_scoring_rule": "not_production_scoring_or_label_import",
+        "required_fields": [
+          "schema_version",
+          "row_id",
+          "coordinate_state",
+          "claim_status",
+          "claim_admissibility",
+          "abstention_reasons",
+          "forbidden_predictive_context_flags",
+          "production_claim_allowed",
+          "labels_or_fingerprints_changed"
+        ]
+      },
+      "epk_scoreboard_row_v1": {
+        "entry_claim_status_precedence": [
+          "forbidden_source_leakage",
+          "review_only_abstain_forbidden_context",
+          "review_only_abstain_sibling_control",
+          "review_only_abstain_topology_ambiguity",
+          "review_only_abstain_split_state",
+          "review_only_abstain_analog_state",
+          "review_only_abstain_product_state",
+          "review_only_abstain_missing_role_policy",
+          "review_only_nonabstaining_candidate"
+        ],
+        "entry_rollup_rule": "derive entry-level status from candidate-level decisions only; keep candidate status counts visible and use fail-closed precedence for forbidden/source leakage and review-only blockers",
+        "progress_gate": "fails on forbidden source leakage or unsafe control nonabstention",
+        "required_fields": [
+          "source_result_artifact",
+          "tranche_id",
+          "rows_reviewed",
+          "entry_count",
+          "discovery_signal_row_count",
+          "claim_status_counts",
+          "entry_claim_status_counts",
+          "coordinate_state_counts",
+          "forbidden_source_leakage_count",
+          "unsafe_control_nonabstention_count",
+          "production_claim_allowed",
+          "labels_or_fingerprints_changed"
+        ],
+        "scoreboard_artifact_required_fields": [
+          "scoreboard_summary.covered_claim_status_values",
+          "scoreboard_summary.uncovered_claim_status_values",
+          "scoreboard_summary.covered_coordinate_state_values",
+          "scoreboard_summary.uncovered_coordinate_state_values",
+          "gate.gate_pass"
+        ],
+        "separates_discovery_signal_from_claim_admissibility": true
+      }
+    }
+  },
+  "scoreboard_rows": [
+    {
+      "claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_forbidden_context": 1,
+        "review_only_abstain_missing_role_policy": 3,
+        "review_only_abstain_product_state": 2,
+        "review_only_abstain_sibling_control": 1,
+        "review_only_abstain_split_state": 1,
+        "review_only_abstain_topology_ambiguity": 2,
+        "review_only_nonabstaining_candidate": 4
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 7,
+        "adp_state": 1,
+        "ambiguous_coordinate_state": 1,
+        "ligand_absent": 1,
+        "metal_absent": 1,
+        "product_state": 1,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 2,
+        "unavailable_coordinate_state": 1
+      },
+      "discovery_signal_row_count": 13,
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_forbidden_context": 1,
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 1,
+        "review_only_abstain_split_state": 1,
+        "review_only_abstain_topology_ambiguity": 1,
+        "review_only_nonabstaining_candidate": 1
+      },
+      "entry_count": 8,
+      "entry_rollup_contract": {
+        "candidate_rows_are_source_of_truth": true,
+        "claim_admissibility_separate_from_discovery_signal": true,
+        "entry_status_derived_from_candidate_decisions": true,
+        "fail_closed_claim_status_precedence": [
+          "forbidden_source_leakage",
+          "review_only_abstain_forbidden_context",
+          "review_only_abstain_sibling_control",
+          "review_only_abstain_topology_ambiguity",
+          "review_only_abstain_split_state",
+          "review_only_abstain_analog_state",
+          "review_only_abstain_product_state",
+          "review_only_abstain_missing_role_policy",
+          "review_only_nonabstaining_candidate"
+        ],
+        "production_claim_allowed": false,
+        "progress_claim_allowed": false
+      },
+      "entry_rollups": [
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_analog_over_product:epk_substrate_role_identity:product",
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_analog_over_product:epk_positive_evidence:analog"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_product_state": 1
+          },
+          "coordinate_state_counts": {
+            "product_state": 1,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_analog_state",
+          "entry_id": "entry_rollup_analog_over_product",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_counteraxis_over_active:epk_positive_evidence:active",
+            "epk_sibling_controls:synthetic_candidate_rows:entry_rollup_counteraxis_over_active:epk_sibling_controls:sibling"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_sibling_control": 1,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 2
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_sibling_control",
+          "entry_id": "entry_rollup_counteraxis_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_sibling_controls"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_forbidden_context_over_missing:epk_positive_evidence:missing",
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_forbidden_context_over_missing:epk_substrate_role_identity:repair"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_forbidden_context": 1,
+            "review_only_abstain_missing_role_policy": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 2
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_forbidden_context",
+          "entry_id": "entry_rollup_forbidden_context_over_missing",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_missing_role_only:epk_substrate_role_identity:ligand_absent",
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_missing_role_only:epk_positive_evidence:metal_absent"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_missing_role_policy": 2
+          },
+          "coordinate_state_counts": {
+            "ligand_absent": 1,
+            "metal_absent": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_missing_role_policy",
+          "entry_id": "entry_rollup_missing_role_only",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 1,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_nonabstaining_only:epk_positive_evidence:active"
+          ],
+          "claim_status_counts": {
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_nonabstaining_candidate",
+          "entry_id": "entry_rollup_nonabstaining_only",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_product_over_active:epk_positive_evidence:active",
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_product_over_active:epk_substrate_role_identity:adp"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_product_state": 1,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1,
+            "adp_state": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_product_state",
+          "entry_id": "entry_rollup_product_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_split_over_analog:epk_positive_evidence:analog",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_split_over_analog:epk_false_positive_hunter:split"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_split_state": 1
+          },
+          "coordinate_state_counts": {
+            "split_state": 1,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_split_state",
+          "entry_id": "entry_rollup_split_over_analog",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_false_positive_hunter",
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 3,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_positive_evidence:active",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_false_positive_hunter:ambiguous",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_false_positive_hunter:unavailable"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_topology_ambiguity": 2,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1,
+            "ambiguous_coordinate_state": 1,
+            "unavailable_coordinate_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_topology_ambiguity",
+          "entry_id": "entry_rollup_topology_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_false_positive_hunter",
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        }
+      ],
+      "expected_claim_status_mismatch_count": 0,
+      "expected_decision_mismatch_count": 0,
+      "forbidden_source_leakage_count": 0,
+      "forbidden_source_leakage_rows": [],
+      "gate_pass": true,
+      "labels_or_fingerprints_changed": false,
+      "missing_schema_details": [],
+      "missing_schema_row_count": 0,
+      "missing_schema_rows": [],
+      "policy_version": "epk_federated_entry_rollup_stress_fixture_review_only_not_production_20260521",
+      "production_claim_allowed": false,
+      "rows_reviewed": 16,
+      "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+      "scoreboard_schema": "epk_scoreboard_row_v1",
+      "source_result_artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_result.json",
+      "source_result_sha256": "f4a5320dcf88e659a028a10a1bfa7b19b5151ce82f66bd6cae38cc3b9deab42b",
+      "tranche_id": "epk_federated_candidate_entry_rollup_cross_lane_expansion_v2",
+      "unsafe_control_nonabstention_count": 0,
+      "unsafe_control_nonabstention_rows": []
+    }
+  ],
+  "scoreboard_summary": {
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 2,
+      "review_only_abstain_forbidden_context": 1,
+      "review_only_abstain_missing_role_policy": 3,
+      "review_only_abstain_product_state": 2,
+      "review_only_abstain_sibling_control": 1,
+      "review_only_abstain_split_state": 1,
+      "review_only_abstain_topology_ambiguity": 2,
+      "review_only_nonabstaining_candidate": 4
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 7,
+      "adp_state": 1,
+      "ambiguous_coordinate_state": 1,
+      "ligand_absent": 1,
+      "metal_absent": 1,
+      "product_state": 1,
+      "split_state": 1,
+      "substrate_acceptor_analog_state": 2,
+      "unavailable_coordinate_state": 1
+    },
+    "covered_claim_status_values": [
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "covered_coordinate_state_values": [
+      "active_gamma",
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "ligand_absent",
+      "metal_absent",
+      "product_state",
+      "split_state",
+      "substrate_acceptor_analog_state",
+      "unavailable_coordinate_state"
+    ],
+    "covered_entry_claim_status_values": [
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "discovery_signal_row_count": 13,
+    "entry_claim_status_counts": {
+      "review_only_abstain_analog_state": 1,
+      "review_only_abstain_forbidden_context": 1,
+      "review_only_abstain_missing_role_policy": 1,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 1,
+      "review_only_abstain_split_state": 1,
+      "review_only_abstain_topology_ambiguity": 1,
+      "review_only_nonabstaining_candidate": 1
+    },
+    "entry_count": 8,
+    "forbidden_source_leakage_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "production_claim_allowed": false,
+    "rows_reviewed": 16,
+    "uncovered_claim_status_values": [
+      "forbidden_source_leakage"
+    ],
+    "uncovered_coordinate_state_values": [],
+    "uncovered_entry_claim_status_values": [
+      "forbidden_source_leakage"
+    ],
+    "unsafe_control_nonabstention_count": 0
+  }
+}

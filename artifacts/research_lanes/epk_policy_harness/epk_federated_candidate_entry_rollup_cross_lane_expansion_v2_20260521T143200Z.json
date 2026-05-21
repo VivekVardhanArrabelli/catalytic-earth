@@ -1,0 +1,697 @@
+{
+  "artifacts": {
+    "negative_missing_candidate_identity": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_negative_missing_candidate_identity_result.json",
+    "negative_mixed_entry_forbidden_source_leakage": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_negative_mixed_entry_forbidden_source_leakage_result.json",
+    "negative_mixed_entry_unsafe_control_nonabstention": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_negative_mixed_entry_unsafe_control_nonabstention_result.json",
+    "result": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_result.json",
+    "scoreboard_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_scoreboard_gate.json",
+    "tranche": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_tranche.json"
+  },
+  "coverage_summary": {
+    "claim_status_allowed_values": [
+      "forbidden_source_leakage",
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "claim_status_values_covered_by_positive_or_expected_negative_fixture": [
+      "forbidden_source_leakage",
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "coordinate_state_allowed_values": [
+      "active_gamma",
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "ligand_absent",
+      "metal_absent",
+      "product_state",
+      "split_state",
+      "substrate_acceptor_analog_state",
+      "unavailable_coordinate_state"
+    ],
+    "coordinate_state_values_covered": [
+      "active_gamma",
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "ligand_absent",
+      "metal_absent",
+      "product_state",
+      "split_state",
+      "substrate_acceptor_analog_state",
+      "unavailable_coordinate_state"
+    ],
+    "coordinate_state_values_uncovered": [],
+    "entry_claim_status_values_covered_by_positive_fixture": [
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "entry_claim_status_values_uncovered_by_positive_fixture": [],
+    "forbidden_source_leakage_is_expected_gate_failure": true,
+    "labels_or_fingerprints_changed": false,
+    "missing_candidate_identity_is_expected_gate_failure": true,
+    "production_claim_allowed": false,
+    "unsafe_control_nonabstention_is_expected_gate_failure": true
+  },
+  "entry_rollup_contract": {
+    "candidate_rows_are_source_of_truth": true,
+    "claim_admissibility_separate_from_discovery_signal": true,
+    "entry_claim_status_precedence": [
+      "forbidden_source_leakage",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_abstain_split_state",
+      "review_only_abstain_analog_state",
+      "review_only_abstain_product_state",
+      "review_only_abstain_missing_role_policy",
+      "review_only_nonabstaining_candidate"
+    ],
+    "entry_id_is_first_class": true,
+    "entry_status_derived_from_candidate_decisions": true,
+    "nonabstaining_candidate_rows_remain_review_only": true,
+    "product_adp_analog_split_rows_are_review_only_state_classes": true,
+    "production_claim_allowed": false
+  },
+  "hypothesis": "Candidate rows from independent ePK lanes can be summarized to entry status only if entry_id is first-class, candidate decisions remain visible, and fail-closed precedence dominates discovery signal.",
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_cross_lane_expansion_v2",
+    "coverage_fixture_not_production_policy": true,
+    "created_at": "2026-05-21T14:31:22+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "policy_version": "epk_federated_entry_rollup_stress_fixture_review_only_not_production_20260521",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "negative_fault_injections": [
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_negative_mixed_entry_forbidden_source_leakage_result.json",
+      "entry_claim_status_counts": {
+        "forbidden_source_leakage": 1,
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_forbidden_context": 1,
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 1,
+        "review_only_abstain_split_state": 1,
+        "review_only_abstain_topology_ambiguity": 1
+      },
+      "entry_rollups": [
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_analog_over_product:epk_substrate_role_identity:product",
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_analog_over_product:epk_positive_evidence:analog"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_product_state": 1
+          },
+          "coordinate_state_counts": {
+            "product_state": 1,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_analog_state",
+          "entry_id": "entry_rollup_analog_over_product",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_counteraxis_over_active:epk_positive_evidence:active",
+            "epk_sibling_controls:synthetic_candidate_rows:entry_rollup_counteraxis_over_active:epk_sibling_controls:sibling"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_sibling_control": 1,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 2
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_sibling_control",
+          "entry_id": "entry_rollup_counteraxis_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_sibling_controls"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_forbidden_context_over_missing:epk_positive_evidence:missing",
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_forbidden_context_over_missing:epk_substrate_role_identity:repair"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_forbidden_context": 1,
+            "review_only_abstain_missing_role_policy": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 2
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_forbidden_context",
+          "entry_id": "entry_rollup_forbidden_context_over_missing",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_missing_role_only:epk_substrate_role_identity:ligand_absent",
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_missing_role_only:epk_positive_evidence:metal_absent"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_missing_role_policy": 2
+          },
+          "coordinate_state_counts": {
+            "ligand_absent": 1,
+            "metal_absent": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_missing_role_policy",
+          "entry_id": "entry_rollup_missing_role_only",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_product_over_active:epk_positive_evidence:active",
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_product_over_active:epk_substrate_role_identity:adp"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_product_state": 1,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1,
+            "adp_state": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_product_state",
+          "entry_id": "entry_rollup_product_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 1,
+          "candidate_row_ids": [
+            "fault:mixed_entry_forbidden_source_leakage"
+          ],
+          "claim_status_counts": {
+            "forbidden_source_leakage": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "forbidden",
+          "entry_claim_status": "forbidden_source_leakage",
+          "entry_id": "entry_rollup_source_leakage_blocks_all",
+          "forbidden_source_leakage_rows": [
+            "fault:mixed_entry_forbidden_source_leakage"
+          ],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_split_over_analog:epk_positive_evidence:analog",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_split_over_analog:epk_false_positive_hunter:split"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_split_state": 1
+          },
+          "coordinate_state_counts": {
+            "split_state": 1,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_split_state",
+          "entry_id": "entry_rollup_split_over_analog",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_false_positive_hunter",
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 3,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_positive_evidence:active",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_false_positive_hunter:ambiguous",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_false_positive_hunter:unavailable"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_topology_ambiguity": 2,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1,
+            "ambiguous_coordinate_state": 1,
+            "unavailable_coordinate_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_topology_ambiguity",
+          "entry_id": "entry_rollup_topology_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_false_positive_hunter",
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        }
+      ],
+      "expected_failure": "mixed_entry_forbidden_source_leakage",
+      "forbidden_source_leakage_count": 1,
+      "gate_pass": false,
+      "missing_schema_row_count": 0,
+      "rejected": true,
+      "rejection_type": "gate_failure",
+      "unsafe_control_nonabstention_count": 0
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_negative_mixed_entry_unsafe_control_nonabstention_result.json",
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_forbidden_context": 1,
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 1,
+        "review_only_abstain_split_state": 1,
+        "review_only_abstain_topology_ambiguity": 1,
+        "review_only_nonabstaining_candidate": 1
+      },
+      "entry_rollups": [
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_analog_over_product:epk_substrate_role_identity:product",
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_analog_over_product:epk_positive_evidence:analog"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_product_state": 1
+          },
+          "coordinate_state_counts": {
+            "product_state": 1,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_analog_state",
+          "entry_id": "entry_rollup_analog_over_product",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_counteraxis_over_active:epk_positive_evidence:active",
+            "epk_sibling_controls:synthetic_candidate_rows:entry_rollup_counteraxis_over_active:epk_sibling_controls:sibling"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_sibling_control": 1,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 2
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_sibling_control",
+          "entry_id": "entry_rollup_counteraxis_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_sibling_controls"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_forbidden_context_over_missing:epk_positive_evidence:missing",
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_forbidden_context_over_missing:epk_substrate_role_identity:repair"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_forbidden_context": 1,
+            "review_only_abstain_missing_role_policy": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 2
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_forbidden_context",
+          "entry_id": "entry_rollup_forbidden_context_over_missing",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_missing_role_only:epk_substrate_role_identity:ligand_absent",
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_missing_role_only:epk_positive_evidence:metal_absent"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_missing_role_policy": 2
+          },
+          "coordinate_state_counts": {
+            "ligand_absent": 1,
+            "metal_absent": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_missing_role_policy",
+          "entry_id": "entry_rollup_missing_role_only",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_product_over_active:epk_positive_evidence:active",
+            "epk_substrate_role_identity:synthetic_candidate_rows:entry_rollup_product_over_active:epk_substrate_role_identity:adp"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_product_state": 1,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1,
+            "adp_state": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_product_state",
+          "entry_id": "entry_rollup_product_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_split_over_analog:epk_positive_evidence:analog",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_split_over_analog:epk_false_positive_hunter:split"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_split_state": 1
+          },
+          "coordinate_state_counts": {
+            "split_state": 1,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_split_state",
+          "entry_id": "entry_rollup_split_over_analog",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_false_positive_hunter",
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 3,
+          "candidate_row_ids": [
+            "epk_positive_evidence:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_positive_evidence:active",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_false_positive_hunter:ambiguous",
+            "epk_false_positive_hunter:synthetic_candidate_rows:entry_rollup_topology_over_active:epk_false_positive_hunter:unavailable"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_topology_ambiguity": 2,
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1,
+            "ambiguous_coordinate_state": 1,
+            "unavailable_coordinate_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_topology_ambiguity",
+          "entry_id": "entry_rollup_topology_over_active",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_false_positive_hunter",
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 1,
+          "candidate_row_ids": [
+            "fault:mixed_entry_unsafe_control_nonabstention"
+          ],
+          "claim_status_counts": {
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_nonabstaining_candidate",
+          "entry_id": "entry_rollup_unsafe_control_nonabstention",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence"
+          ],
+          "unsafe_control_nonabstention_rows": [
+            "fault:mixed_entry_unsafe_control_nonabstention"
+          ]
+        }
+      ],
+      "expected_failure": "mixed_entry_unsafe_control_nonabstention",
+      "forbidden_source_leakage_count": 0,
+      "gate_pass": false,
+      "missing_schema_row_count": 0,
+      "rejected": true,
+      "rejection_type": "gate_failure",
+      "unsafe_control_nonabstention_count": 1
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_negative_missing_candidate_identity_result.json",
+      "entry_claim_status_counts": {
+        "review_only_nonabstaining_candidate": 1
+      },
+      "entry_rollups": [
+        {
+          "candidate_count": 1,
+          "candidate_row_ids": [
+            "fault:missing_candidate_identity"
+          ],
+          "claim_status_counts": {
+            "review_only_nonabstaining_candidate": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1
+          },
+          "discovery_signal_candidate_count": 1,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_nonabstaining_candidate",
+          "entry_id": "entry_rollup_nonabstaining_only",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 1,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [],
+          "unsafe_control_nonabstention_rows": []
+        }
+      ],
+      "expected_failure": "missing_candidate_identity",
+      "forbidden_source_leakage_count": 0,
+      "gate_pass": false,
+      "missing_schema_row_count": 1,
+      "rejected": true,
+      "rejection_type": "gate_failure",
+      "unsafe_control_nonabstention_count": 0
+    }
+  ],
+  "positive_stress": {
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 2,
+      "review_only_abstain_forbidden_context": 1,
+      "review_only_abstain_missing_role_policy": 3,
+      "review_only_abstain_product_state": 2,
+      "review_only_abstain_sibling_control": 1,
+      "review_only_abstain_split_state": 1,
+      "review_only_abstain_topology_ambiguity": 2,
+      "review_only_nonabstaining_candidate": 4
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 7,
+      "adp_state": 1,
+      "ambiguous_coordinate_state": 1,
+      "ligand_absent": 1,
+      "metal_absent": 1,
+      "product_state": 1,
+      "split_state": 1,
+      "substrate_acceptor_analog_state": 2,
+      "unavailable_coordinate_state": 1
+    },
+    "entry_claim_status_counts": {
+      "review_only_abstain_analog_state": 1,
+      "review_only_abstain_forbidden_context": 1,
+      "review_only_abstain_missing_role_policy": 1,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 1,
+      "review_only_abstain_split_state": 1,
+      "review_only_abstain_topology_ambiguity": 1,
+      "review_only_nonabstaining_candidate": 1
+    },
+    "entry_count": 8,
+    "gate_pass": true,
+    "result_artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_result.json",
+    "result_sha256": "f4a5320dcf88e659a028a10a1bfa7b19b5151ce82f66bd6cae38cc3b9deab42b",
+    "rows_reviewed": 16,
+    "scoreboard_gate_artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "5bd142bfea0285eab6baaf0e700b17e3d92ff2cecc697eaaf1841b292c212188",
+    "source_lane_counts": {
+      "epk_false_positive_hunter": 3,
+      "epk_positive_evidence": 8,
+      "epk_sibling_controls": 1,
+      "epk_substrate_role_identity": 4
+    },
+    "tranche_artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_cross_lane_expansion_v2_20260521T143200Z_tranche.json",
+    "tranche_sha256": "f040857d457051ec37f5f8584fcb9886d32d4550616d9ba796dd7c72a49ccf3e"
+  }
+}

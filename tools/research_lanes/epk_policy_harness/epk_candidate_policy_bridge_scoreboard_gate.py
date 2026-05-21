@@ -100,6 +100,7 @@ def schema_drafts() -> dict[str, Any]:
                     "source_row_id",
                     "row_id",
                     "candidate_id",
+                    "entry_id",
                     "pdb_id",
                     "model_id",
                     "chain_or_auth_asym_id",
@@ -179,8 +180,10 @@ def schema_drafts() -> dict[str, Any]:
                 "candidate_provenance_fields": [
                     "candidate_id",
                     "pdb_id",
+                    "entry_id",
                     "source_lane_id",
                     "source_artifact",
+                    "source_row_key",
                     "source_row_id",
                 ],
                 "federated_candidate_identity_rule": (
@@ -244,6 +247,9 @@ def is_control_like(row: dict[str, Any]) -> bool:
 
 
 def entry_key_for_row(row: dict[str, Any]) -> str:
+    entry_id = str(row.get("entry_id") or "").strip()
+    if entry_id:
+        return entry_id
     pdb_id = str(row.get("pdb_id") or "").strip()
     if pdb_id:
         return pdb_id
