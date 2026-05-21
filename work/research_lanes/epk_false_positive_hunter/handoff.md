@@ -1,65 +1,90 @@
 # ePK false-positive hunter handoff
 
-- Last updated: 2026-05-21T03:19:02Z
-- Started: 2026-05-21T02:30:35Z
-- Ended: 2026-05-21T03:19:02Z
-- Measured minutes: 48.45
-- Primary outcome: evidence_against
-- Pushed commit: 9a6530952dbcca394e06f5833a9ecc1ebb572a44 (remote run commit; local checked-out HEAD update is blocked by linked-worktree metadata permissions).
-- Rule under attack: entry-level any-context `v4_oligomeric_atp_terminals_no_mg_required` review-only guard risk plus current ePK substrate-mode/source-free topology rules.
+- Last updated: 2026-05-21T03:39:39Z
+- Started: 2026-05-21T03:30:57Z
+- Ended: 2026-05-21T03:39:39Z
+- Measured minutes: 8.70
+- Primary outcome: regression_rows_emitted
+- Pushed commit: pending; normal linked-worktree metadata writes are still blocked and push will use the alternate-index path if possible.
+- Rule under attack: current materializer non-abstention on ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/namespace controls and assembly-context v4 sufficiency.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
 
 ## Search Surface
 
-Executed the handoff next query in three bounded passes with compact artifacts only; no raw coordinate dumps were written.
+Converted recent false-positive hunter artifacts into lane-only `epk_candidate_evidence_v1`-style regression rows. This run did not fetch or write raw coordinates.
 
-- Helper: `tools/research_lanes/epk_false_positive_hunter/v4_entry_level_epk_overblock_later_offset_stress.py`
-- Broad source-context/later-offset pass: 340 entry rows, 750 coordinate contexts, 32 materializer contexts, 0 fetch/materializer errors.
-- Targeted RAF/MEK/ERK/JNK/mTOR kinase-complex pass: 260 entry rows, 592 coordinate contexts, 37 materializer contexts, 0 fetch/materializer errors.
-- ePK-query non-ePK contaminant pass: 160 entry rows, 349 coordinate contexts, 121 materializer contexts, 0 fetch/materializer errors.
-- Total selected review work: 760 entry rows, 1,691 coordinate contexts, 190 materializer contexts.
+- Helper: `tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
+- Primary artifact: `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_033057Z.json`
+- Source artifacts consumed: 10
+- Source rows converted: 295
+- Regression rows emitted: 295
+- Control classes covered: ATPase/transporter, Walker-A/internal-fragment, non-ePK ATP/Mg enzymes, ORC/MCM deposited and biological assembly controls, same-chain/entity-reuse controls, gamma-chain namespace controls, ligand materialization no-hit controls, auth/label gamma collision counterexamples, and source-context ePK overblock controls.
 
 ## Result
 
-Primary outcome is `evidence_against` on the explicit bounded surfaces.
+The 5UJ7 biological assembly residual is now a concrete regression fixture row.
 
-- No source-context ePK overblock hit was found. `4UX9` and `9O0V` were the only non-fixed source-context ePK entry-level guard candidates; deposited plus biological assembly contexts produced 0 substrate-mode materializer hits.
-- No later-offset non-ORC ATPase split-risk residual was found; broad and targeted later-offset passes found 0 deposited-v4/assembly-chain-floor split-risk entries.
-- The contaminant pass found 48 ePK-query non-ePK v4 contaminants, 47 with assembly-v4 contexts, but 94 contaminant materializer contexts produced 0 substrate-mode hits.
-- Fixed ORC/OCCM/MCM controls still showed 27 context-v4-blocked topology-clear non-ePK contexts.
+- `5UJ7:biological_assembly_1` is pinned as `orc_mcm_biological_assembly_split_control`.
+- Coordinate state: biological assembly.
+- Candidate: TYR174 chain C OH to ATP PG associated with chain A at 5.822 A.
+- Context guard: assembly-context v4 is false; deposited-v4/below-chain-floor split is true.
+- Topology: same-chain and reciprocal topology flags are false.
+- Observed materializer decision: topology-clear substrate-mode non-abstention.
+- Expected policy decision: block or abstain as a non-ePK ORC/MCM control.
+- Blocker row: `entry_level_any_context_v4_review_only`.
+
+The regression gate artifact distinguishes raw materializer pressure from policy safety:
+
+- Observed topology-clear non-ePK materializer non-abstentions: 82 review-only pressure rows.
+- Unsafe non-abstentions after expected policy blockers: 0.
+- Context-v4-only unsafe non-abstentions: 1, `5UJ7:biological_assembly_1`.
+- Biological-assembly split materializer counterexamples: 1, `5UJ7:biological_assembly_1`.
+- Split rows `1A49:biological_assembly_1`, `1A49:biological_assembly_2`, `1A5U:biological_assembly_1`, and `1A5U:biological_assembly_2` carried no substrate-mode materializer hit.
 
 ## Evidence For / Against
 
-Evidence against a new counterexample:
+Evidence for the regression fixture:
 
-- 760 selected entries and 1,691 coordinate contexts across source-context ePK, later-offset ATPase, and ePK-query contaminant surfaces had no residual topology-clear non-ePK counterexample and no source-context ePK overblock hit.
-- All three passes had 0 fetch errors and 0 materializer context errors.
+- The converter preserved candidate-level coordinate state, gamma/acceptor details, context/deposited guard state, topology flags, blocker class, expected policy decision, and observed materializer decision for 295 rows.
+- The emitted gate explicitly falsifies context-v4-only sufficiency via 5UJ7 while keeping the expected-policy regression gate at zero unsafe non-abstentions.
 
-Evidence for continued caution:
+Evidence against broader assembly split residuals on the converted source surface:
 
-- Full-text peptide/substrate queries are strongly contaminated by non-ePK ATPase-like structures; future ePK overblock work needs source-valid kinase classification rather than full-text alone.
-- Only two non-fixed source-context ePK guard candidates survived in these query quotas (`4UX9`, `9O0V`), so this is bounded evidence, not sufficiency.
+- No deposited-v4 / biological-assembly split materializer counterexample beyond 5UJ7 appeared in the 20 assembly-guard materializer rows converted from the deep pass.
+- The 121 ePK-query non-ePK contaminant materializer rows remained no-hit controls in the emitted gate.
+
+## Verification
+
+- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_033057Z.json >/dev/null`
+- `python -m py_compile tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
+- `git diff --check -- tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_033057Z.json`
 
 ## Blockers
 
 - `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
-- The normal linked-worktree index remains unwritable/stale: `git status` shows tracked lane files as staged deletions plus untracked replacements.
-- Alternate-index commit/push succeeded for the run commit above; local HEAD/ref cleanup still requires external permission repair.
+- `git pull --ff-only origin research/epk-false-positive-hunter` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
+- `git fetch --no-write-fetch-head origin` succeeded.
+- Local checked-out HEAD remains behind `origin/research/epk-false-positive-hunter`; normal status still reflects linked-worktree index metadata issues from prior runs.
 
 ## Next Query
 
-Build a source-valid ePK seed set from kinase-classified polymer/entity evidence rather than full-text peptide hits: RAF/MEK/ERK, JNK, CDK/cyclin, receptor tyrosine kinase dimer, and mTORC1/2 ATP/ANP assemblies with deposited-or-assembly v4 true; force the materializer on all deposited and biological assembly contexts. In parallel, prefilter non-ePK v4 contaminants for local Tyr or N-terminal Ser/Thr/Tyr gamma geometry before materialization to avoid no-hit rows. Keep production labels, thresholds, registries/fingerprints, migrations, and scoring forbidden.
+Use the emitted regression gate as the negative-control substrate for a source-valid ePK seed search: build kinase-classified polymer/entity evidence for RAF/MEK/ERK, JNK, CDK/cyclin, receptor tyrosine kinase dimer, and mTORC1/2 ATP/ANP assemblies, force deposited and biological-assembly contexts through the materializer, and join results against `epk_candidate_evidence_v1` rows. In parallel, prefilter non-ePK v4 contaminants for local Tyr or N-terminal Ser/Thr/Tyr gamma geometry before materialization. Keep production labels, thresholds, registries/fingerprints, migrations, and scoring forbidden.
 
 Production claims, label changes, threshold calibration, registry/fingerprint edits, artifact migrations, and production scoring remain forbidden.
 
 ## Files Changed
 
+- `tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
+- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_033057Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
+- `work/research_lanes/epk_false_positive_hunter/handoff.md`
+
+The alternate-index commit also preserves prior generated lane outputs that were
+present in the worktree and used as source inputs but still absent from the
+fetched remote ref:
+
 - `tools/research_lanes/epk_false_positive_hunter/v4_entry_level_epk_overblock_later_offset_stress.py`
 - `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_epk_overblock_later_offset_stress_20260521_023614Z.json`
 - `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_epk_overblock_later_offset_stress_targeted_20260521_025652Z.json`
 - `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_epk_overblock_later_offset_contaminant_stress_20260521_030753Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
-- `work/research_lanes/epk_false_positive_hunter/handoff.md`
-
-Existing uncommitted prior lane artifacts from earlier runs are still present and were not reverted.
