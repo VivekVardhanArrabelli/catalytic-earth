@@ -2764,6 +2764,83 @@ def self_test() -> None:
         assert "query context review-only contract" in str(error)
     else:
         raise AssertionError("query contexts must stay review-only")
+    federated_row_a = dict(
+        passing_row,
+        row_id="federated:lane_a:candidate_1",
+        lane_id="epk_policy_harness",
+        source_lane_id="lane_a",
+        source_artifact="artifacts/research_lanes/lane_a/candidates.json",
+        source_row_key="rows",
+        source_row_id="candidate_1",
+        candidate_id="candidate_1",
+        source_free_acceptor_role_policy_id=None,
+        clean_held_out_performance_evidence=False,
+        development_or_regression_context=True,
+    )
+    federated_row_b = dict(
+        federated_row_a,
+        row_id="federated:lane_b:candidate_2",
+        source_lane_id="lane_b",
+        source_artifact="artifacts/research_lanes/lane_b/candidates.json",
+        source_row_id="candidate_2",
+        candidate_id="candidate_2",
+        ligand_code_from_structure="ANP",
+    )
+    federated_tranche = {
+        "metadata": {
+            "review_only": True,
+            "row_count": 2,
+            "lane_id": "epk_policy_harness",
+            "source_lane_count": 2,
+            "source_lanes": ["lane_a", "lane_b"],
+            "input_summaries": [
+                {
+                    "lane_id": "lane_a",
+                    "artifact": "artifacts/research_lanes/lane_a/candidates.json",
+                    "selected_row_count": 1,
+                    "review_only_input": True,
+                },
+                {
+                    "lane_id": "lane_b",
+                    "artifact": "artifacts/research_lanes/lane_b/candidates.json",
+                    "selected_row_count": 1,
+                    "review_only_input": True,
+                },
+            ],
+            "federated_adapter_smoke_contract": {
+                "candidate_rows_from_independent_lanes": True,
+                "source_artifacts_review_only": True,
+                "source_text_and_protein_names_not_copied": True,
+                "source_review_context_not_predictive": True,
+                "raw_coordinate_dump_written": False,
+                "production_claim_allowed": False,
+                "labels_or_fingerprints_changed": False,
+            },
+        },
+        "rows": [federated_row_a, federated_row_b],
+    }
+    federated_result = evaluate_tranche(policy, federated_tranche)
+    assert federated_result["metadata"]["federated_adapter_smoke_contract_enforced"] is True
+    bad_federated_duplicate = json.loads(json.dumps(federated_tranche))
+    bad_federated_duplicate["rows"][1]["source_lane_id"] = "lane_a"
+    bad_federated_duplicate["rows"][1]["candidate_id"] = "candidate_1"
+    bad_federated_duplicate["metadata"]["source_lanes"] = ["lane_a"]
+    bad_federated_duplicate["metadata"]["source_lane_count"] = 1
+    bad_federated_duplicate["metadata"]["input_summaries"][1]["lane_id"] = "lane_a"
+    try:
+        evaluate_tranche(policy, bad_federated_duplicate)
+    except ValueError as error:
+        assert "federated adapter contract" in str(error)
+    else:
+        raise AssertionError("federated adapter requires independent candidate lanes")
+    bad_federated_source_copy = json.loads(json.dumps(federated_tranche))
+    bad_federated_source_copy["rows"][0]["protein_names"] = ["copied protein prose"]
+    try:
+        evaluate_tranche(policy, bad_federated_source_copy)
+    except ValueError as error:
+        assert "must not be copied" in str(error)
+    else:
+        raise AssertionError("federated adapter must reject copied source context")
     bad_materialization_row = dict(
         materialized_row,
         row_id="bad_query_synonym_materialization",

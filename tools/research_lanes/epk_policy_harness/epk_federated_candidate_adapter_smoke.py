@@ -531,6 +531,52 @@ def build_tranche_from_payloads(
     }
 
 
+def write_validation_rejection(
+    root: Path,
+    path: Path,
+    *,
+    expected_failure: str,
+    expected_error_fragment: str,
+    action: Callable[[], Any],
+) -> dict[str, Any]:
+    try:
+        action()
+    except ValueError as error:
+        error_message = str(error)
+    else:
+        raise AssertionError(f"{expected_failure} fault must fail validation")
+
+    rejected = expected_error_fragment in error_message
+    payload = {
+        "metadata": {
+            "artifact_id": f"{ARTIFACT_ID}_{expected_failure}",
+            "created_at": utc_now(),
+            "lane_id": LANE_ID,
+            "review_only": True,
+            "schema_version": SCHEMA_VERSION,
+            "fault_injection_expected_failure": expected_failure,
+            "rejected": rejected,
+            "production_claim_allowed": False,
+            "labels_or_fingerprints_changed": False,
+            "raw_coordinate_dump_written": False,
+        },
+        "expected_error_fragment": expected_error_fragment,
+        "observed_error": error_message,
+    }
+    write_json(path, payload, pretty=True)
+    if not rejected:
+        raise ValueError(
+            f"{expected_failure} rejected with unexpected error: {error_message}"
+        )
+    return {
+        "artifact": rel(path, root),
+        "sha256": sha256_file(path),
+        "expected_failure": expected_failure,
+        "rejected": rejected,
+        "observed_error": error_message,
+    }
+
+
 def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Path) -> dict[str, Path]:
     payloads = [
         (dict(spec), load_git_json(str(spec["ref"]), str(spec["path"])))
@@ -547,6 +593,12 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
     gate_path = output_dir / f"{stem}_scoreboard_gate.json"
     negative_identity_path = (
         output_dir / f"{stem}_negative_missing_candidate_identity_result.json"
+    )
+    negative_duplicate_path = (
+        output_dir / f"{stem}_negative_duplicate_candidate_identity_result.json"
+    )
+    negative_source_copy_path = (
+        output_dir / f"{stem}_negative_source_context_copy_result.json"
     )
     report_path = output_dir / f"{stem}.json"
 
@@ -581,6 +633,33 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
     if negative_identity_summary["gate_pass"] is not False:
         raise ValueError("missing candidate identity fault must fail the scoreboard gate")
 
+    negative_duplicate_tranche = json.loads(json.dumps(tranche))
+    negative_duplicate_tranche["rows"][1]["candidate_id"] = negative_duplicate_tranche[
+        "rows"
+    ][0]["candidate_id"]
+    negative_duplicate_tranche["rows"][1]["source_row_id"] = negative_duplicate_tranche[
+        "rows"
+    ][0]["source_row_id"]
+    negative_duplicate_rejection = write_validation_rejection(
+        root,
+        negative_duplicate_path,
+        expected_failure="duplicate_candidate_identity",
+        expected_error_fragment="candidate_id must be unique within each source lane",
+        action=lambda: evaluate_tranche(policy, negative_duplicate_tranche),
+    )
+
+    negative_source_copy_tranche = json.loads(json.dumps(tranche))
+    negative_source_copy_tranche["rows"][0]["protein_names"] = [
+        "copied source-side protein name"
+    ]
+    negative_source_copy_rejection = write_validation_rejection(
+        root,
+        negative_source_copy_path,
+        expected_failure="source_context_copy",
+        expected_error_fragment="must not be copied",
+        action=lambda: evaluate_tranche(policy, negative_source_copy_tranche),
+    )
+
     source_lane_counts: dict[str, int] = {}
     for row in tranche["rows"]:
         source_lane = row["source_lane_id"]
@@ -605,12 +684,25 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
         "federated_inputs": tranche["metadata"]["input_summaries"],
         "adapter_summary": {
             "adapted_row_count": len(tranche["rows"]),
+            "source_lane_count": len(source_lane_counts),
             "source_lane_counts": source_lane_counts,
             "candidate_identity_required": True,
+            "candidate_identity_unique_per_source_lane": True,
+            "row_id_unique": True,
+            "federated_contract_validated_by_policy_harness": True,
             "source_text_and_protein_names_copied": False,
             "discovery_signal_separate_from_claim_admissibility": True,
             "production_claim_allowed": False,
             "labels_or_fingerprints_changed": False,
+        },
+        "summary": {
+            "rows_reviewed": result["metadata"]["row_count"],
+            "source_lane_count": len(source_lane_counts),
+            "source_lane_counts": source_lane_counts,
+            "claim_status_counts": result["metadata"]["claim_status_counts"],
+            "coordinate_state_counts": result["metadata"]["coordinate_state_counts"],
+            "scoreboard_gate_pass": gate["gate"]["gate_pass"],
+            "negative_fault_injection_count": 3,
         },
         "policy_result": {
             "artifact": rel(result_path, root),
@@ -642,8 +734,15 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
                 "missing_schema_details": negative_identity_summary[
                     "missing_schema_details"
                 ],
-            }
+            },
+            negative_duplicate_rejection,
+            negative_source_copy_rejection,
         ],
+        "gate": {
+            "gate_pass": gate["gate"]["gate_pass"],
+            "progress_claim_allowed": False,
+            "production_claim_allowed": False,
+        },
         "artifacts": {
             "tranche": rel(tranche_path, root),
             "tranche_sha256": sha256_file(tranche_path),
@@ -655,6 +754,14 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
             "negative_missing_candidate_identity_sha256": sha256_file(
                 negative_identity_path
             ),
+            "negative_duplicate_candidate_identity": rel(negative_duplicate_path, root),
+            "negative_duplicate_candidate_identity_sha256": sha256_file(
+                negative_duplicate_path
+            ),
+            "negative_source_context_copy": rel(negative_source_copy_path, root),
+            "negative_source_context_copy_sha256": sha256_file(
+                negative_source_copy_path
+            ),
         },
     }
     write_json(report_path, report, pretty=True)
@@ -663,6 +770,8 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
         "result": result_path,
         "scoreboard_gate": gate_path,
         "negative_missing_candidate_identity": negative_identity_path,
+        "negative_duplicate_candidate_identity": negative_duplicate_path,
+        "negative_source_context_copy": negative_source_copy_path,
         "report": report_path,
     }
 

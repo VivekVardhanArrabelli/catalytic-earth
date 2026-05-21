@@ -9,7 +9,7 @@
   },
   "metadata": {
     "artifact_id": "epk_candidate_policy_bridge_scoreboard_gate_v1_20260521",
-    "created_at": "2026-05-21T05:44:15+00:00",
+    "created_at": "2026-05-21T12:26:37+00:00",
     "gate_pass": true,
     "gate_version": "epk_candidate_policy_bridge_scoreboard_gate_v1_20260521",
     "labels_or_fingerprints_changed": false,
@@ -224,7 +224,7 @@
       "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
       "scoreboard_schema": "epk_scoreboard_row_v1",
       "source_result_artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_result.json",
-      "source_result_sha256": "f4e7ecda9c8dbba081a7cfe990dec2246170f31a6f6d2498e68c10818a8fd026",
+      "source_result_sha256": "9a8faf485a8149ebb3f482ff2168d06568d9a269edd0cf162c6dcf1e88ad934a",
       "tranche_id": "epk_federated_lane_candidate_evidence_adapter_smoke_v1",
       "unsafe_control_nonabstention_count": 0,
       "unsafe_control_nonabstention_rows": []

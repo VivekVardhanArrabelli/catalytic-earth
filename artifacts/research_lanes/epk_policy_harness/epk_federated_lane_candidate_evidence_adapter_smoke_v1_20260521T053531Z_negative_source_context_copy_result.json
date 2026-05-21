@@ -1,0 +1,16 @@
+{
+  "expected_error_fragment": "must not be copied",
+  "metadata": {
+    "artifact_id": "epk_federated_lane_candidate_evidence_adapter_smoke_v1_source_context_copy",
+    "created_at": "2026-05-21T12:26:37+00:00",
+    "fault_injection_expected_failure": "source_context_copy",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "rejected": true,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:1QMZ:active_gamma:ATP:A:381:E:5:2 violates federated adapter contract: source text, protein names, titles, paper metadata, EC/Rhea, and prose must not be copied into predictive rows ['protein_names']"
+}

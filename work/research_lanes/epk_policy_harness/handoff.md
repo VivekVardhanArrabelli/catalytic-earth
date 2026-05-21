@@ -1,10 +1,11 @@
 # ePK policy harness handoff
 
-Last updated: 2026-05-21T12:22:54Z
+Last updated: 2026-05-21T12:27:55Z
 Run started: 2026-05-21T05:35:31Z
-Run ended: 2026-05-21T12:22:54Z
-Measured minutes: 407.38
+Run ended: 2026-05-21T12:27:55Z
+Measured minutes: 412.4
 Primary outcome: `scoreboard_gate_created`
+Pushed commits: `f48ace7ef7eccd1482717a640b6e67302f855e18`; follow-up hardening commit pending at handoff write time.
 
 ## Files changed
 
@@ -21,17 +22,19 @@ Policy v0 remains frozen, review-only, and fail-closed. This run did not change 
 
 ## Evidence
 
-- Adapter report: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z.json` (`sha256 74d2ee7f7022e6299441ada30e632354c5fc030ec78532dc83eab9b214680a78`).
-- Tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_tranche.json` (`sha256 7dd3ddd0d8fd961425aadfc80a9c4c4ea31a8fa06d0ca81957e8328f8f1eef87`).
-- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_result.json` (`sha256 f4e7ecda9c8dbba081a7cfe990dec2246170f31a6f6d2498e68c10818a8fd026`).
-- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_scoreboard_gate.json` (`sha256 38e65b551331391a2af2e6a946655b6c01aa55e11d24665fa183454ce75fe7c9`).
-- Negative missing-identity fixture: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_negative_missing_candidate_identity_result.json` (`sha256 e529033a42364b9b7f6973af3fcf4bcf57d07625db32647df83820be8c76eaa7`).
+- Adapter report: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z.json` (`sha256 d9083c4b862c90ac8c2fbff5b3713c4a92e5d745d56c36db1886f7c4cfa0efe5`).
+- Tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_tranche.json` (`sha256 edbd340ea9896c9f508329bcc3900c3b415170d001453a6eaa5460ea5079ef43`).
+- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_result.json` (`sha256 9a8faf485a8149ebb3f482ff2168d06568d9a269edd0cf162c6dcf1e88ad934a`).
+- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_scoreboard_gate.json` (`sha256 074803343edf2438b8088282aca92f0d1b58199afb8c6e58db88e50809ab156f`).
+- `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_negative_missing_candidate_identity_result.json` (`sha256 c966e21ed8c7f093cb3840d9486d2d5bd8b591fb2cc6cddb884b03f7d4a2f728`): missing_candidate_identity rejected.
+- `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_negative_duplicate_candidate_identity_result.json` (`sha256 1f739411bc3f79fda1e5f352130dd4fd3c7d7b854ad89a9001873e7c4ee4df1d`): duplicate_candidate_identity rejected.
+- `artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T053531Z_negative_source_context_copy_result.json` (`sha256 ebc8dd085caed42ebb562aa4f0dc7731441d4b905d7b28ffc592d1b21da5954c`): source_context_copy rejected.
 - Adapted rows: 10 across 4 source lanes: epk_false_positive_hunter, epk_positive_evidence, epk_sibling_controls, epk_substrate_role_identity.
 - Claim statuses: `{'review_only_abstain_analog_state': 1, 'review_only_abstain_missing_role_policy': 3, 'review_only_abstain_product_state': 1, 'review_only_abstain_sibling_control': 5}`.
 - Coordinate states: `{'active_gamma': 7, 'adp_state': 1, 'product_state': 1, 'substrate_acceptor_analog_state': 1}`.
 - Gate status: pass with zero forbidden source leakage, zero unsafe control nonabstention, and zero expected claim-status mismatches.
-- Missing candidate identity fault was rejected with missing `candidate_id`, `source_lane_id`, and `source_artifact`.
-- Source text/protein-name copy grep over new artifacts was clean for copied titles, protein names, citation titles, and `source_context` blobs.
+- Federated contract validation rejects missing candidate identity, duplicate candidate identity within a source lane, and copied source context/protein names.
+- Source text/protein-name copy grep over new artifacts was clean for copied titles, protein names, citation titles, and `source_context` blobs outside the explicit expected-failure artifact name.
 
 ## Verification
 
@@ -40,22 +43,23 @@ Policy v0 remains frozen, review-only, and fail-closed. This run did not change 
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py --self-test`
-- JSON validation before ledger append parsed 204 JSON files and 15 JSONL records.
-- `git diff --check` passed.
-- Non-writing frozen-v0 tranche stress remains 58/60 passing; the same two older interim ATP surface tranches fail the preexisting search-surface artifact citation validator.
+- JSON validation parsed 213 JSON files and 16 JSONL records after ledger update.
+- `git diff --check` passed before commit.
+- Non-writing frozen-v0 tranche stress remains 59/61 passing; the same two older interim ATP surface tranches fail the preexisting search-surface artifact citation validator.
 
 ## Blockers and notes
 
 - Normal `git fetch origin` and `git pull --ff-only origin research/epk-policy-harness` remain blocked by linked-worktree metadata permissions on `FETCH_HEAD`.
 - `git fetch --no-write-fetch-head origin research/epk-policy-harness` succeeds.
+- Local linked-worktree `HEAD` update failed on `HEAD.lock`; verify remote directly after push.
 - The normal index remains stale/noisy; use an alternate index seeded from `origin/research/epk-policy-harness` for validation and commit.
 - The adapter smoke is compatibility/gate regression evidence only, not held-out biological performance evidence, not production scoring, and not claim readiness.
 
 ## Exact next query
 
-`epk_federated_candidate_adapter_schema_contract_expand_v1_review_only`
+`epk_federated_candidate_entry_rollup_contract_v1_review_only`
 
-Expand the federated adapter schema contract to require lane-native schema provenance and a compact entry-level rollup derivation, then add expected-failure fixtures for missing source-lane provenance and entry-level status computed directly from PDB-level rows.
+Add a compact entry-level rollup derivation from candidate decisions and expected-failure fixtures for any row that computes admissibility directly from PDB-level evidence instead of candidate-level policy decisions.
 
 ## Forbidden
 
