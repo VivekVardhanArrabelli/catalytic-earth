@@ -1,0 +1,16 @@
+{
+  "expected_error_fragment": "must not be copied",
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_source_context_copy",
+    "created_at": "2026-05-21T16:31:54+00:00",
+    "fault_injection_expected_failure": "source_context_copy",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "rejected": true,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 violates federated adapter contract: source text, protein names, titles, paper metadata, EC/Rhea, and prose must not be copied into predictive rows ['protein_names']"
+}

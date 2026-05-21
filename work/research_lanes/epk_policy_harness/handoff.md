@@ -1,17 +1,15 @@
 # ePK policy harness handoff
 
-Last updated: 2026-05-21T16:14:59Z
-Run started: 2026-05-21T15:24:22Z
-Run ended: 2026-05-21T16:14:59Z
-Measured minutes: 50.62
+Last updated: 2026-05-21T17:14:46Z
+Run started: 2026-05-21T16:24:56Z
+Run ended: 2026-05-21T17:14:46Z
+Measured minutes: 49.83
 Primary outcome: `scoreboard_gate_created`
 
 ## Files changed
 
-- `tools/research_lanes/epk_policy_harness/epk_federated_real_overlap_gate.py`
-- `tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py`
-- `tools/research_lanes/epk_policy_harness/epk_federated_entry_rollup_stress.py`
-- `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z*.json`
+- `tools/research_lanes/epk_policy_harness/epk_federated_state_diversity_gate.py`
+- `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z*.json`
 - `artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl`
 - `work/research_lanes/epk_policy_harness/handoff.md`
 
@@ -19,56 +17,57 @@ Primary outcome: `scoreboard_gate_created`
 
 Policy v0 remains frozen, review-only, and fail-closed. This run did not change production labels, thresholds, registries, fingerprints, migrations, or scoring. It does not claim production ePK readiness.
 
-This run created a real-overlap federated entry gate. It scans existing review-only artifacts from positive evidence, substrate-role identity, false-positive hunter, and sibling controls; finds entries shared by at least two independent lanes; adapts one compact candidate row per represented lane/entry into the shared candidate schema; then evaluates the rows through the policy bridge and scoreboard rollup.
-
-`entry_id` is required for this real-overlap gate. The gate fails if any selected entry has candidate rows from only one source lane. Source lane provenance remains review-only context and is not predictive.
+This run added a real-overlap state-diversity v4 gate. It scans existing independent ePK lane outputs, selects compact candidate rows only for entries emitted by at least two source lanes, and requires the selected tranche to cover the coordinate states currently present in real-overlap representative rows.
 
 ## Evidence
 
-- Report: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z.json` (`sha256 60f6321568f3377de85a6d312f65139017eb4b1d166915f635d7cbe7ba491ca4`).
-- Tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_tranche.json` (`sha256 2b0dcdb23a33796c8126d391972372ef7622c50979c6db7b1eb4b3fb2e6fb300`).
-- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_result.json` (`sha256 2915ed5a34c596c146f305e52f85e341e59ba27334fcee5cf53723260e9ff8b1`).
-- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_scoreboard_gate.json` (`sha256 16b21973b0ba8944ccd8acbcfdf3b582a750f01b971684bd73763d35cd100662`).
+- Report: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z.json` (`sha256 6746c47ef5e51cc950af25ef6de0be942355bc333f1104ac0a93a480876b53bf`).
+- Tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_tranche.json` (`sha256 9037e844031c4cf775df5bd00f13ceb8fcc062de9505403e8bde60a35dba8798`).
+- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_result.json` (`sha256 4a50bf8740e7227a725d89949d9f65165e218177784a36ba7b6c88a8baec409a`).
+- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_scoreboard_gate.json` (`sha256 add4f64f4ab532837f56c6590d59397ab8c2cbd017434aad9f6901723152296e`).
 
-The scanner found 41 entries overlapping across at least two independent lane outputs and selected 12 compact entries: 6U1D, 6U1E, 9NBW, 4EKK, 7ZDU, 9UUR, 9UUX, 9UW4, 2JJ2, 5C1O, 8W2J, 1QHA. The selected tranche reviewed 26 candidate rows and 12 entry rollups. `6U1D` and `6U1E` were covered by substrate-role, false-positive, and sibling-control lanes; the remaining selected entries were two-lane overlaps.
+The scanner found 41 real cross-lane overlapping entries and selected 3QHW, 9NBW, 4HPU. The selected tranche reviewed 6 candidate rows across 3 entry rollups.
 
-The scoreboard passed with claim-status counts `{"review_only_abstain_missing_role_policy": 18, "review_only_abstain_sibling_control": 8}` and coordinate-state counts `{"active_gamma": 26}`. It had zero forbidden source-leakage rows, zero unsafe control nonabstentions, zero expected-decision mismatches, zero expected-claim-status mismatches, and `production_claim_allowed=false`.
+Selected coordinate-state counts: `{"active_gamma": 2, "adp_state": 1, "ambiguous_coordinate_state": 1, "substrate_acceptor_analog_state": 1, "unavailable_coordinate_state": 1}`. Claim-status counts: `{"review_only_abstain_analog_state": 1, "review_only_abstain_missing_role_policy": 2, "review_only_abstain_product_state": 1, "review_only_abstain_sibling_control": 1, "review_only_abstain_topology_ambiguity": 1}`.
+
+The scoreboard passed with zero forbidden source-leakage rows, zero unsafe control nonabstentions, zero expected claim-status mismatches, and `production_claim_allowed=false`.
 
 Negative fixtures rejected:
 
-- Single-lane entry drift: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_single_lane_entry_result.json`.
-- Missing `entry_id`: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_missing_entry_id_result.json`.
-- Copied source/protein context: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_source_context_copy_result.json`.
-
-The federated adapter and synthetic entry-rollup provenance pointers now reference the latest false-positive regression gate `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_152108Z.json`. A dry run wrote only to `/private/tmp/epk_federated_adapter_latest_152108_check`.
+- Single-lane entry drift: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_single_lane_entry_result.json`.
+- Missing required state diversity: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_missing_state_diversity_result.json`.
+- Copied source/protein context: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_source_context_copy_result.json`.
+- Unsafe control nonabstention: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_unsafe_control_nonabstention_result.json`.
 
 ## Verification
 
 - `PYTHONDONTWRITEBYTECODE=1 python -m py_compile tools/research_lanes/epk_policy_harness/*.py`
-- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_real_overlap_gate.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_policy_harness.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py --self-test`
-- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection.py --self-test`
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_state_diversity_gate.py --self-test`
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_real_overlap_gate.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_entry_rollup_stress.py --self-test`
-- Latest false-positive adapter-input dry run wrote only to `/private/tmp/epk_federated_adapter_latest_152108_check`.
-- Eight hold-open validation rounds repeated real-overlap, policy, and scoreboard self-tests plus real-overlap JSON parsing through 2026-05-21T16:10:18Z.
-- Final validation at 2026-05-21T16:13:29Z parsed 228 JSON files and 19 JSONL records before ledger append, then `git diff --check` passed.
-- Disk stayed above the safety threshold: 28 GiB available at start, 27 GiB available at final validation.
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection.py --self-test`
+- Nine hold-open validation rounds repeated v4, policy, and scoreboard checks plus new artifact JSON parsing through 2026-05-21T17:12:56Z.
+- JSON validation before ledger append parsed 236 JSON files and 20 JSONL records.
+- Final JSON validation after ledger append parsed 236 JSON files and 21 JSONL records.
+- `git diff --check` passed before and after ledger append.
+- Disk stayed above threshold: 27 GiB available at start and final check.
 
 ## Blockers and notes
 
 - Normal `git fetch origin` failed on linked-worktree `FETCH_HEAD` permissions.
 - `git fetch --no-write-fetch-head origin` succeeded.
 - `git pull --ff-only origin research/epk-policy-harness` failed on linked-worktree `FETCH_HEAD`.
-- The local worktree/index remains stale and noisy because linked-worktree metadata blocks normal branch updates. Use an alternate index seeded from `origin/research/epk-policy-harness` for commit/push.
-- Other-lane handoffs were read as review-only inputs. No production files, registries, fingerprints, migrations, labels, thresholds, or Git history were changed.
+- The normal worktree/index remains stale and noisy because linked-worktree metadata blocks normal branch updates. Preserve coherent lane outputs and use alternate-index commit/push if normal Git remains blocked.
+- Other-lane artifacts were read as review-only inputs. No production files, registries, fingerprints, migrations, labels, thresholds, or Git history were changed.
 
 ## Exact next query
 
-`epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_review_only`
+`epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_review_only`
 
-Find real cross-lane overlapping entries that exercise product/ADP/analog/split/topology coordinate states, not just active-gamma and sibling/missing-role cases. Preserve the real-overlap requirement that every selected entry has at least two independent source lanes, and keep source/protein/title/EC/Rhea/paper/prose fields out of predictive candidate rows.
+Find real cross-lane overlapping entries that include literal `product_state` and `split_state` coordinate rows across independent emitting lanes. Keep ADP/product-state rows review-only, preserve candidate-level evidence, and keep source/protein/title/EC/Rhea/paper/prose fields out of predictive rows.
 
 ## Forbidden
 

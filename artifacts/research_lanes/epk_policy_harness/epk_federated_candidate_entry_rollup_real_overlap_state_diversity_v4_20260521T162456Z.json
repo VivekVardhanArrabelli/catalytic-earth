@@ -1,0 +1,279 @@
+{
+  "artifacts": {
+    "negative_missing_state_diversity": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_missing_state_diversity_result.json",
+    "negative_missing_state_diversity_sha256": "999b31dbc2d8def3fc6b4a4a4b26e866a2bf1e46d32b08ba349c03b8f3c570e9",
+    "negative_single_lane_entry": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_single_lane_entry_result.json",
+    "negative_single_lane_entry_sha256": "e3bc2aefbc33681ccc2b3466c1d12e3d9f317646a02772916d4610e9f912c4f1",
+    "negative_source_context_copy": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_source_context_copy_result.json",
+    "negative_source_context_copy_sha256": "8e67df90bc180b6ce638f7d41655525322fa93de92fc4f0ae2a63f3fd9478024",
+    "negative_unsafe_control_nonabstention": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_unsafe_control_nonabstention_result.json",
+    "negative_unsafe_control_nonabstention_sha256": "e0e7ebabb62cbf01cef251023a43e5d3802954bcd602030f42e91a7ab18a27c5",
+    "result": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_result.json",
+    "result_sha256": "4a50bf8740e7227a725d89949d9f65165e218177784a36ba7b6c88a8baec409a",
+    "scoreboard_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "add4f64f4ab532837f56c6590d59397ab8c2cbd017434aad9f6901723152296e",
+    "tranche": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_tranche.json",
+    "tranche_sha256": "9037e844031c4cf775df5bd00f13ceb8fcc062de9505403e8bde60a35dba8798"
+  },
+  "federated_inputs": [
+    {
+      "artifact": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+      "available_entry_count": 48,
+      "available_overlap_entry_count": 25,
+      "available_row_count": 84,
+      "lane_id": "epk_positive_evidence",
+      "ref": "origin/research/epk-positive-evidence",
+      "review_only_input": true,
+      "row_keys": [
+        "adjudicated_candidate_rows"
+      ],
+      "selected_entry_count": 2,
+      "selected_row_count": 2
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+      "available_entry_count": 54,
+      "available_overlap_entry_count": 41,
+      "available_row_count": 211,
+      "lane_id": "epk_substrate_role_identity",
+      "ref": "origin/research/epk-substrate-role-identity",
+      "review_only_input": true,
+      "row_keys": [
+        "candidate_evidence_rows",
+        "state_only_rows"
+      ],
+      "selected_entry_count": 3,
+      "selected_row_count": 3
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_152108Z.json",
+      "available_entry_count": 133,
+      "available_overlap_entry_count": 8,
+      "available_row_count": 343,
+      "lane_id": "epk_false_positive_hunter",
+      "ref": "origin/research/epk-false-positive-hunter",
+      "review_only_input": true,
+      "row_keys": [
+        "rows"
+      ],
+      "selected_entry_count": 1,
+      "selected_row_count": 1
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+      "available_entry_count": 89,
+      "available_overlap_entry_count": 10,
+      "available_row_count": 91,
+      "lane_id": "epk_sibling_controls",
+      "ref": "origin/research/epk-sibling-controls",
+      "review_only_input": true,
+      "row_keys": [
+        "gamma_proximity_counteraxis_cases",
+        "product_phosphoryl_identity_counteraxis_cases"
+      ],
+      "selected_entry_count": 0,
+      "selected_row_count": 0
+    }
+  ],
+  "gate": {
+    "gate_pass": true,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false,
+    "state_diversity_gate_pass": true
+  },
+  "hypothesis": "Real cross-lane overlapping ePK candidate rows can exercise coordinate-state diversity only when coordinate_state remains a first-class policy-decision field and state blockers stay review-only.",
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4",
+    "created_at": "2026-05-21T16:31:54+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "negative_fault_injections": [
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_single_lane_entry_result.json",
+      "expected_failure": "single_lane_entry",
+      "observed_error": "state-diversity gate requires every selected entry to contain candidate rows from at least two source lanes: {'3QHW': ['epk_positive_evidence']}",
+      "rejected": true,
+      "sha256": "e3bc2aefbc33681ccc2b3466c1d12e3d9f317646a02772916d4610e9f912c4f1"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_missing_state_diversity_result.json",
+      "expected_failure": "missing_state_diversity",
+      "observed_error": "state-diversity gate requires coordinate-state coverage for current real-overlap states: ['adp_state']",
+      "rejected": true,
+      "sha256": "999b31dbc2d8def3fc6b4a4a4b26e866a2bf1e46d32b08ba349c03b8f3c570e9"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_source_context_copy_result.json",
+      "expected_failure": "source_context_copy",
+      "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 violates federated adapter contract: source text, protein names, titles, paper metadata, EC/Rhea, and prose must not be copied into predictive rows ['protein_names']",
+      "rejected": true,
+      "sha256": "8e67df90bc180b6ce638f7d41655525322fa93de92fc4f0ae2a63f3fd9478024"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_negative_unsafe_control_nonabstention_result.json",
+      "expected_failure": "unsafe_control_nonabstention",
+      "rejected": true,
+      "sha256": "e0e7ebabb62cbf01cef251023a43e5d3802954bcd602030f42e91a7ab18a27c5",
+      "unsafe_control_nonabstention_count": 1,
+      "unsafe_control_nonabstention_rows": [
+        "fault:state_diversity_unsafe_control_nonabstention"
+      ]
+    }
+  ],
+  "policy_result": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_result.json",
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 1,
+      "review_only_abstain_missing_role_policy": 2,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 1,
+      "review_only_abstain_topology_ambiguity": 1
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 2,
+      "adp_state": 1,
+      "ambiguous_coordinate_state": 1,
+      "substrate_acceptor_analog_state": 1,
+      "unavailable_coordinate_state": 1
+    },
+    "counterexamples_found": [],
+    "expected_claim_status_mismatch_count": 0,
+    "primary_outcome": "policy_frozen_review_only",
+    "rows_reviewed": 6,
+    "sha256": "4a50bf8740e7227a725d89949d9f65165e218177784a36ba7b6c88a8baec409a"
+  },
+  "scoreboard_gate": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_overlap_state_diversity_v4_20260521T162456Z_scoreboard_gate.json",
+    "gate_pass": true,
+    "sha256": "add4f64f4ab532837f56c6590d59397ab8c2cbd017434aad9f6901723152296e",
+    "summary": {
+      "claim_status_counts": {
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_missing_role_policy": 2,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 1,
+        "review_only_abstain_topology_ambiguity": 1
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 2,
+        "adp_state": 1,
+        "ambiguous_coordinate_state": 1,
+        "substrate_acceptor_analog_state": 1,
+        "unavailable_coordinate_state": 1
+      },
+      "covered_claim_status_values": [
+        "review_only_abstain_analog_state",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_topology_ambiguity"
+      ],
+      "covered_coordinate_state_values": [
+        "active_gamma",
+        "adp_state",
+        "ambiguous_coordinate_state",
+        "substrate_acceptor_analog_state",
+        "unavailable_coordinate_state"
+      ],
+      "covered_entry_claim_status_values": [
+        "review_only_abstain_analog_state",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_topology_ambiguity"
+      ],
+      "discovery_signal_row_count": 2,
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_sibling_control": 1,
+        "review_only_abstain_topology_ambiguity": 1
+      },
+      "entry_count": 3,
+      "forbidden_source_leakage_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "production_claim_allowed": false,
+      "rows_reviewed": 6,
+      "uncovered_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_split_state",
+        "review_only_nonabstaining_candidate"
+      ],
+      "uncovered_coordinate_state_values": [
+        "ligand_absent",
+        "metal_absent",
+        "product_state",
+        "split_state"
+      ],
+      "uncovered_entry_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_split_state",
+        "review_only_nonabstaining_candidate"
+      ],
+      "unsafe_control_nonabstention_count": 0
+    }
+  },
+  "state_diversity_summary": {
+    "available_overlap_coordinate_state_counts": {
+      "active_gamma": 74,
+      "adp_state": 2,
+      "ambiguous_coordinate_state": 1,
+      "substrate_acceptor_analog_state": 2,
+      "unavailable_coordinate_state": 5
+    },
+    "available_overlap_entry_count": 41,
+    "covered_required_real_overlap_coordinate_state_values": [
+      "active_gamma",
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "substrate_acceptor_analog_state",
+      "unavailable_coordinate_state"
+    ],
+    "labels_or_fingerprints_changed": false,
+    "literal_product_or_split_real_overlap_rows_available": false,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false,
+    "selected_coordinate_state_counts": {
+      "active_gamma": 2,
+      "adp_state": 1,
+      "ambiguous_coordinate_state": 1,
+      "substrate_acceptor_analog_state": 1,
+      "unavailable_coordinate_state": 1
+    },
+    "selected_entry_source_lanes": {
+      "3QHW": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "4HPU": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "9NBW": [
+        "epk_false_positive_hunter",
+        "epk_substrate_role_identity"
+      ]
+    },
+    "selected_overlap_entry_count": 3,
+    "selected_overlap_entry_ids": [
+      "3QHW",
+      "9NBW",
+      "4HPU"
+    ],
+    "source_text_and_protein_names_copied": false,
+    "uncovered_requested_coordinate_state_values": [
+      "ligand_absent",
+      "metal_absent",
+      "product_state",
+      "split_state"
+    ],
+    "uncovered_required_real_overlap_coordinate_state_values": []
+  }
+}
