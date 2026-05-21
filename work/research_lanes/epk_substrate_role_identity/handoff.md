@@ -18,6 +18,15 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 `origin/research/epk-substrate-role-identity`; commit/push must use the same
 remote-tip temporary-index workaround as the previous runs.
 
+Final sync: pushed signature-collision commit
+`b608bcd0849344967bcd6582a3522bb0e6871abb` to
+`origin/research/epk-substrate-role-identity`, then verified
+`origin/research/epk-substrate-role-identity` at that commit with
+`git fetch --no-write-fetch-head origin`. A temporary-index comparison against
+the remote tip was clean for the lane paths. Normal `git status` still reports
+this linked worktree as behind with lane-file changes because local `HEAD`
+remains `8d38053d85cc28b7592267e9420578ca19a98814`.
+
 ## What Was Emitted
 
 This run added a compact source-free signature-collision audit on top of the
