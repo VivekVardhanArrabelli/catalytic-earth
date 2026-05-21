@@ -1,0 +1,3625 @@
+{
+  "blocker_class_counts": {
+    "active_gamma_geometry": 72,
+    "internal_fragment_mimicry": 1,
+    "ligand_materialization": 3,
+    "none": 19,
+    "product_state_evidence": 3,
+    "substrate_role_identity": 4,
+    "topology_ambiguity": 109
+  },
+  "coordinate_state_counts": {
+    "active_gamma": 205,
+    "adp_state": 3,
+    "ambiguous_coordinate_state": 1,
+    "ligand_absent": 2
+  },
+  "feature_definitions": {
+    "source_free_unblocked_candidate_present": "True when at least one active-gamma candidate row has blocker_class=none. This is a sanity flag only.",
+    "state_blocker_matrix": "Coordinate-state by blocker-class counts from candidate rows, with review labels excluded.",
+    "triage_bucket": "Compact source-free blocker grouping for review routing; it is not a production substrate-role identity label."
+  },
+  "hypothesis": "Candidate-level source-free evidence can support compact PDB-level blocker triage without adding unsafe non-abstention, but it still cannot adjudicate product/ADP, reciprocal folded-chain, or same-chain substrate-role biology.",
+  "metadata": {
+    "artifact_id": "epk_candidate_blocker_audit_v1_20260521",
+    "candidate_specific_threshold_tuning": false,
+    "created_at": "2026-05-21T04:32:12Z",
+    "forbidden_predictive_features": [
+      "PDB title",
+      "UniProt prose",
+      "EC/Rhea",
+      "paper/source text",
+      "mechanism labels",
+      "curated substrate names",
+      "post-hoc source repair",
+      "candidate-specific threshold tuning"
+    ],
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_substrate_role_identity",
+    "method": "candidate_evidence_blocker_triage_audit",
+    "output_path": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_blocker_audit_v1_20260521.json",
+    "pdb_level_triage_row_count": 54,
+    "primary_outcome": "blocker_not_cleared_biology_ambiguity",
+    "production_claim_allowed": false,
+    "raw_coordinate_files_written": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+    "source_candidate_pair_row_count": 204,
+    "source_free_evidence_separated_from_review_context": true,
+    "source_state_only_row_count": 7,
+    "threshold_calibrated": false,
+    "workflow_started_at": "2026-05-21T03:43:58Z"
+  },
+  "pdb_level_triage_rows": [
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "none": 1
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "1IR3|gamma=A:ANP300:PG|acceptor=B:TYR10:OH",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.082,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "1IR3",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_current_positive_protein_substrate",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "1IR3|gamma=A:ANP300:PG|acceptor=B:TYR10:OH"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "none": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "product_state_evidence": 1
+      },
+      "candidate_pair_row_count": 0,
+      "coordinate_states_observed": {
+        "adp_state": 1
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": null,
+      "pdb_id": "1L0O",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_product_state_positive",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Terminal gamma transfer geometry is unavailable in product/ADP state.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "adp_state": {
+          "product_state_evidence": 1
+        }
+      },
+      "state_only_row_count": 1,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "state_specific_product_or_adp_review"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 3,
+        "none": 1,
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 5,
+      "coordinate_states_observed": {
+        "active_gamma": 5
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "1O6K|gamma=A:ANP1480:PG|acceptor=C:SER9:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.566,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "1O6K",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_review_only_positive_pkb_gsk3",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "1O6K|gamma=A:ANP1480:PG|acceptor=C:SER9:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 3,
+          "none": 1,
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "1O6K|gamma=A:ANP1480:PG|acceptor=A:THR313:OG1"
+      ],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 3,
+        "none": 1,
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 5,
+      "coordinate_states_observed": {
+        "active_gamma": 5
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "1O6L|gamma=A:ANP1480:PG|acceptor=C:SER9:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.542,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "1O6L",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_review_only_positive_pkb_gsk3",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "1O6L|gamma=A:ANP1480:PG|acceptor=C:SER9:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 3,
+          "none": 1,
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "1O6L|gamma=A:ANP1480:PG|acceptor=A:THR313:OG1"
+      ],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 6,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "1OJ4|gamma=B:ANP1285:PG|acceptor=B:THR181:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.989,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "1OJ4",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_ghmp_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 6,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "1OJ4|gamma=A:ANP1285:PG|acceptor=A:THR181:OG1",
+        "1OJ4|gamma=B:ANP1285:PG|acceptor=B:THR181:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1
+      },
+      "candidate_pair_row_count": 0,
+      "coordinate_states_observed": {
+        "active_gamma": 1
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": null,
+      "pdb_id": "1QHA",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_askha_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Active gamma is present, but no materialized hydroxyl candidate is within the row evidence.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1
+        }
+      },
+      "state_only_row_count": 1,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "active_gamma_no_near_hydroxyl_review"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "none": 2,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 6,
+      "coordinate_states_observed": {
+        "active_gamma": 6
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "1QMZ|gamma=C:ATP381:PG|acceptor=F:SER5:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.416,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "1QMZ",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "1QMZ|gamma=A:ATP381:PG|acceptor=E:SER5:OG",
+        "1QMZ|gamma=C:ATP381:PG|acceptor=F:SER5:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "none": 2,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "1QMZ|gamma=A:ATP381:PG|acceptor=A:THR14:OG1",
+        "1QMZ|gamma=C:ATP381:PG|acceptor=C:THR14:OG1"
+      ],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 4,
+        "topology_ambiguity": 4
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "1TFW|gamma=B:ATP1501:PG|acceptor=B:SER47:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.365,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "1TFW",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_topology_confounded_same_chain_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 4,
+          "topology_ambiguity": 4
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "1TFW|gamma=B:ATP1501:PG|acceptor=B:SER47:OG",
+        "1TFW|gamma=B:ATP1501:PG|acceptor=B:TYR161:OH",
+        "1TFW|gamma=D:ATP1502:PG|acceptor=D:SER47:OG",
+        "1TFW|gamma=D:ATP1502:PG|acceptor=D:TYR161:OH"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "2DRA|gamma=A:ATP501:PG|acceptor=A:SER47:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 2.993,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "2DRA",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_topology_confounded_same_chain_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "2DRA|gamma=A:ATP501:PG|acceptor=A:SER47:OG",
+        "2DRA|gamma=A:ATP501:PG|acceptor=A:TYR161:OH"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 8
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "2JJ2|gamma=I:ANP1510:PG|acceptor=I:THR176:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.296,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "2JJ2",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_atpase",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 8
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "2JJ2|gamma=A:ANP1511:PG|acceptor=A:THR176:OG1",
+        "2JJ2|gamma=B:ANP1510:PG|acceptor=B:THR176:OG1",
+        "2JJ2|gamma=C:ANP1511:PG|acceptor=C:THR176:OG1",
+        "2JJ2|gamma=F:ANP1475:PG|acceptor=F:THR163:OG1",
+        "2JJ2|gamma=I:ANP1510:PG|acceptor=I:THR176:OG1",
+        "2JJ2|gamma=J:ANP1511:PG|acceptor=J:THR176:OG1",
+        "2JJ2|gamma=M:ANP1475:PG|acceptor=I:SER344:OG",
+        "2JJ2|gamma=M:ANP1475:PG|acceptor=M:THR163:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "ligand_materialization": 1
+      },
+      "candidate_pair_row_count": 0,
+      "coordinate_states_observed": {
+        "ligand_absent": 1
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": null,
+      "pdb_id": "2OCP",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_dnk_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Ligand or coordinate materialization prevents active-gamma candidate adjudication.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "ligand_absent": {
+          "ligand_materialization": 1
+        }
+      },
+      "state_only_row_count": 1,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "coordinate_materialization_review"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "none": 1
+      },
+      "candidate_pair_row_count": 3,
+      "coordinate_states_observed": {
+        "active_gamma": 3
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "2PHK|gamma=A:ATP381:PG|acceptor=B:SER5:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.61,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "2PHK",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_current_positive_protein_substrate",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "2PHK|gamma=A:ATP381:PG|acceptor=B:SER5:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "none": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "active_gamma_geometry",
+        "candidate_id": "3CRL|gamma=B:ANP1001:PG|acceptor=B:SER309:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 7.91,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "3CRL",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_ghkl_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Terminal gamma is present, but candidate geometry does not support transfer.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "active_gamma_geometry_blocked"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 3,
+      "coordinate_states_observed": {
+        "active_gamma": 3
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "3FGU|gamma=A:ANP600:PG|acceptor=A:THR228:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "coordinate_ambiguous_or_partial",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.175,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "3FGU",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_askha_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "3FGU|gamma=A:ANP600:PG|acceptor=A:SER151:OG",
+        "3FGU|gamma=A:ANP600:PG|acceptor=A:THR228:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "substrate_role_identity": 2,
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "substrate_role_identity",
+        "candidate_id": "3Q4Z|gamma=A:ANP800:PG|acceptor=B:SER422:OG",
+        "candidate_role_class": "near_hydroxyl_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.266,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "3Q4Z",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_heteromeric_topology_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "substrate_role_identity": 2,
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [
+        "3Q4Z|gamma=A:ANP800:PG|acceptor=B:SER422:OG",
+        "3Q4Z|gamma=A:ANP800:PG|acceptor=B:THR423:OG1"
+      ],
+      "topology_ambiguity_candidate_ids": [
+        "3Q4Z|gamma=A:ANP800:PG|acceptor=A:SER281:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "product_state_evidence": 1
+      },
+      "candidate_pair_row_count": 0,
+      "coordinate_states_observed": {
+        "adp_state": 1
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": null,
+      "pdb_id": "3QHR",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_product_state_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Terminal gamma transfer geometry is unavailable in product/ADP state.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "adp_state": {
+          "product_state_evidence": 1
+        }
+      },
+      "state_only_row_count": 1,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "state_specific_product_or_adp_review"
+    },
+    {
+      "blocker_classes_observed": {
+        "product_state_evidence": 1
+      },
+      "candidate_pair_row_count": 0,
+      "coordinate_states_observed": {
+        "adp_state": 1
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": null,
+      "pdb_id": "3QHW",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_product_state_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Terminal gamma transfer geometry is unavailable in product/ADP state.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "adp_state": {
+          "product_state_evidence": 1
+        }
+      },
+      "state_only_row_count": 1,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "state_specific_product_or_adp_review"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 1,
+      "coordinate_states_observed": {
+        "active_gamma": 1
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "3R5F|gamma=A:ATP368:PG|acceptor=A:SER192:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.672,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "3R5F",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_atp_grasp",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "3R5F|gamma=A:ATP368:PG|acceptor=A:SER192:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 1,
+      "coordinate_states_observed": {
+        "active_gamma": 1
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "3TM0|gamma=A:ANP300:PG|acceptor=A:SER27:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.483,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "3TM0",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_ligand_analog_positive",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "3TM0|gamma=A:ANP300:PG|acceptor=A:SER27:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "none": 1,
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 3,
+      "coordinate_states_observed": {
+        "active_gamma": 3
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "3X2U|gamma=A:ATP501:PG|acceptor=S:SER621:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.517,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "3X2U",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "3X2U|gamma=A:ATP501:PG|acceptor=S:SER621:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "none": 1,
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "3X2U|gamma=A:ATP501:PG|acceptor=A:SER53:OG"
+      ],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "none": 1,
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "3X2V|gamma=A:ATP403:PG|acceptor=S:SER621:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.521,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "3X2V",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "3X2V|gamma=A:ATP403:PG|acceptor=S:SER621:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "none": 1,
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "3X2V|gamma=A:ATP403:PG|acceptor=A:THR201:OG1"
+      ],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "none": 1
+      },
+      "candidate_pair_row_count": 3,
+      "coordinate_states_observed": {
+        "active_gamma": 3
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "3X2W|gamma=A:ATP403:PG|acceptor=S:SER621:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "coordinate_ambiguous_or_partial",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.529,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "3X2W",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "3X2W|gamma=A:ATP403:PG|acceptor=S:SER621:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "none": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "none": 3,
+        "topology_ambiguity": 3
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "4EKK|gamma=B:ANP501:PG|acceptor=D:SER7:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.228,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "4EKK",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_exact_source_mapped_positive_with_context_ambiguity",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "4EKK|gamma=A:ANP501:PG|acceptor=C:SER7:OG",
+        "4EKK|gamma=B:ANP501:PG|acceptor=D:SER7:OG",
+        "4EKK|gamma=B:ANP501:PG|acceptor=D:THR6:OG1"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "none": 3,
+          "topology_ambiguity": 3
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "4EKK|gamma=A:ANP501:PG|acceptor=A:THR160:OG1",
+        "4EKK|gamma=A:ANP501:PG|acceptor=A:THR312:OG1",
+        "4EKK|gamma=B:ANP501:PG|acceptor=B:THR312:OG1"
+      ],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "ligand_materialization": 1
+      },
+      "candidate_pair_row_count": 0,
+      "coordinate_states_observed": {
+        "ambiguous_coordinate_state": 1
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": null,
+      "pdb_id": "4HPU",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_nonpositive_substrate_mode_rejected",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Ligand or coordinate materialization prevents active-gamma candidate adjudication.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "ambiguous_coordinate_state": {
+          "ligand_materialization": 1
+        }
+      },
+      "state_only_row_count": 1,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "coordinate_materialization_review"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "active_gamma_geometry",
+        "candidate_id": "4I94|gamma=A:ANP401:PG|acceptor=A:SER213:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "coordinate_ambiguous_or_partial",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 6.44,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "4I94",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_heteromeric_topology_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Terminal gamma is present, but candidate geometry does not support transfer.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "active_gamma_geometry_blocked"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "none": 1
+      },
+      "candidate_pair_row_count": 3,
+      "coordinate_states_observed": {
+        "active_gamma": 3
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "4IAC|gamma=A:ACP403:PG|acceptor=S:SER621:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.486,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "4IAC",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "4IAC|gamma=A:ACP403:PG|acceptor=S:SER621:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "none": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "topology_ambiguity": 3
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "5C1O|gamma=B:ANP401:PG|acceptor=B:SER151:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.047,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "5C1O",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_atp_grasp",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "topology_ambiguity": 3
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "5C1O|gamma=B:ANP401:PG|acceptor=B:SER151:OG",
+        "5C1O|gamma=C:ANP401:PG|acceptor=C:SER151:OG",
+        "5C1O|gamma=D:ANP401:PG|acceptor=D:SER151:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "none": 1
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "5HVK|gamma=C:ANP701:PG|acceptor=D:SER3:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.236,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "5HVK",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "5HVK|gamma=C:ANP701:PG|acceptor=D:SER3:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "none": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 1,
+      "coordinate_states_observed": {
+        "active_gamma": 1
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "5TT6|gamma=A:ATP403:PG|acceptor=A:TYR37:OH",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.297,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "5TT6",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_same_chain_atpase",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "5TT6|gamma=A:ATP403:PG|acceptor=A:TYR37:OH"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 6
+      },
+      "candidate_pair_row_count": 6,
+      "coordinate_states_observed": {
+        "active_gamma": 6
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "5XD6|gamma=B:ANP1000:PG|acceptor=B:SER79:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.632,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "5XD6",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_heteromeric_topology_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 6
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "5XD6|gamma=A:ANP1000:PG|acceptor=A:SER203:OG",
+        "5XD6|gamma=A:ANP1000:PG|acceptor=A:SER79:OG",
+        "5XD6|gamma=A:ANP1000:PG|acceptor=A:TYR80:OH",
+        "5XD6|gamma=B:ANP1000:PG|acceptor=B:SER203:OG",
+        "5XD6|gamma=B:ANP1000:PG|acceptor=B:SER79:OG",
+        "5XD6|gamma=B:ANP1000:PG|acceptor=B:TYR80:OH"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 4
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "active_gamma_geometry",
+        "candidate_id": "6ILT|gamma=B:ATP401:PG|acceptor=B:THR320:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 6.455,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "6ILT",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_pfkb_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Terminal gamma is present, but candidate geometry does not support transfer.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 4
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "active_gamma_geometry_blocked"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 1,
+      "coordinate_states_observed": {
+        "active_gamma": 1
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "6NOO|gamma=B:ATP501:PG|acceptor=B:THR16:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.401,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "6NOO",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_same_chain_atpase",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "6NOO|gamma=B:ATP501:PG|acceptor=B:THR16:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 6
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "6U1D|gamma=B:ATP407:PG|acceptor=B:TYR229:OH",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.5,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "6U1D",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_atp_grasp",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 6
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "6U1D|gamma=A:ATP407:PG|acceptor=A:SER159:OG",
+        "6U1D|gamma=A:ATP407:PG|acceptor=A:SER160:OG",
+        "6U1D|gamma=A:ATP407:PG|acceptor=A:TYR229:OH",
+        "6U1D|gamma=B:ATP407:PG|acceptor=B:SER159:OG",
+        "6U1D|gamma=B:ATP407:PG|acceptor=B:SER160:OG",
+        "6U1D|gamma=B:ATP407:PG|acceptor=B:TYR229:OH"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 6
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "6U1E|gamma=A:ATP407:PG|acceptor=A:SER160:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.529,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "6U1E",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_atp_grasp",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 6
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "6U1E|gamma=A:ATP407:PG|acceptor=A:SER159:OG",
+        "6U1E|gamma=A:ATP407:PG|acceptor=A:SER160:OG",
+        "6U1E|gamma=A:ATP407:PG|acceptor=A:TYR229:OH",
+        "6U1E|gamma=B:ATP407:PG|acceptor=B:SER159:OG",
+        "6U1E|gamma=B:ATP407:PG|acceptor=B:SER160:OG",
+        "6U1E|gamma=B:ATP407:PG|acceptor=B:TYR229:OH"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "none": 1,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "6Z3R|gamma=C:ATP601:PG|acceptor=C:THR253:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.109,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "6Z3R",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "6Z3R|gamma=A:ANP3701:PG|acceptor=E:SER21:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "none": 1,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "6Z3R|gamma=C:ATP601:PG|acceptor=C:SER218:OG",
+        "6Z3R|gamma=C:ATP601:PG|acceptor=C:THR253:OG1"
+      ],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "internal_fragment_mimicry": 1
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [
+        "7B56|gamma=B:ANP401:PG|acceptor=A:SER822:OG"
+      ],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "internal_fragment_mimicry",
+        "candidate_id": "7B56|gamma=B:ANP401:PG|acceptor=A:SER822:OG",
+        "candidate_role_class": "strict_cross_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.921,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "7B56",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_midlength_internal_fragment",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "N-terminal-looking acceptor is source-free internal-fragment mimicry.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "internal_fragment_mimicry": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "internal_fragment_mimicry_blocked"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "7T55|gamma=A:ATP801:PG|acceptor=A:THR526:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.096,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "7T55",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_counterexample_transporter",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "7T55|gamma=A:ATP801:PG|acceptor=A:THR526:OG1",
+        "7T55|gamma=B:ATP801:PG|acceptor=B:THR526:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 3,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 5,
+      "coordinate_states_observed": {
+        "active_gamma": 5
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "7T56|gamma=A:ATP801:PG|acceptor=A:SER521:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.951,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "7T56",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_transporter_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 3,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "7T56|gamma=A:ATP801:PG|acceptor=A:SER521:OG",
+        "7T56|gamma=B:ATP801:PG|acceptor=B:THR526:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 3,
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "7T57|gamma=B:ATP801:PG|acceptor=B:THR526:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.422,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "7T57",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_transporter_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 3,
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "7T57|gamma=B:ATP801:PG|acceptor=B:THR526:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "substrate_role_identity": 2,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "substrate_role_identity",
+        "candidate_id": "7ZDT|gamma=C:ATP602:PG|acceptor=D:SER487:OG",
+        "candidate_role_class": "near_hydroxyl_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.71,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "7ZDT",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_counterexample_transporter",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "substrate_role_identity": 2,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [
+        "7ZDT|gamma=C:ATP602:PG|acceptor=D:SER487:OG",
+        "7ZDT|gamma=C:ATP602:PG|acceptor=D:SER515:OG"
+      ],
+      "topology_ambiguity_candidate_ids": [
+        "7ZDT|gamma=C:ATP602:PG|acceptor=C:SER380:OG",
+        "7ZDT|gamma=C:ATP602:PG|acceptor=C:THR375:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "topology_ambiguity": 7
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "7ZDU|gamma=C:ATP602:PG|acceptor=D:SER487:OG",
+        "candidate_role_class": "near_hydroxyl_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.07,
+        "reciprocal_context_class": "reciprocal_active_gamma_different_entity",
+        "same_chain_topology": false
+      },
+      "pdb_id": "7ZDU",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_counterexample_transporter",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "topology_ambiguity": 7
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "7ZDU|gamma=C:ATP602:PG|acceptor=C:SER380:OG",
+        "7ZDU|gamma=C:ATP602:PG|acceptor=C:THR375:OG1",
+        "7ZDU|gamma=C:ATP602:PG|acceptor=D:SER487:OG",
+        "7ZDU|gamma=C:ATP602:PG|acceptor=D:SER515:OG",
+        "7ZDU|gamma=D:ATP602:PG|acceptor=C:SER476:OG",
+        "7ZDU|gamma=D:ATP602:PG|acceptor=D:SER385:OG",
+        "7ZDU|gamma=D:ATP602:PG|acceptor=D:SER390:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 6
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "7ZE5|gamma=C:ATP602:PG|acceptor=D:SER487:OG",
+        "candidate_role_class": "near_hydroxyl_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.876,
+        "reciprocal_context_class": "reciprocal_active_gamma_different_entity",
+        "same_chain_topology": false
+      },
+      "pdb_id": "7ZE5",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_transporter",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 6
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "7ZE5|gamma=C:ATP602:PG|acceptor=C:SER380:OG",
+        "7ZE5|gamma=C:ATP602:PG|acceptor=C:THR375:OG1",
+        "7ZE5|gamma=C:ATP602:PG|acceptor=D:SER487:OG",
+        "7ZE5|gamma=D:ANP602:PG|acceptor=C:SER476:OG",
+        "7ZE5|gamma=D:ANP602:PG|acceptor=D:SER385:OG",
+        "7ZE5|gamma=D:ANP602:PG|acceptor=D:SER390:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "none": 2
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "8OXM|gamma=B:ANP3101:PG|acceptor=F:SER15:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.482,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "8OXM",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_review_only_positive_atm_p53",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "8OXM|gamma=A:ANP3101:PG|acceptor=E:SER15:OG",
+        "8OXM|gamma=B:ANP3101:PG|acceptor=F:SER15:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "none": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "none": 2
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "none",
+        "candidate_id": "8OXO|gamma=A:ANP3101:PG|acceptor=E:SER15:OG",
+        "candidate_role_class": "strict_auth_terminal_guard_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.693,
+        "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+        "same_chain_topology": false
+      },
+      "pdb_id": "8OXO",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_review_only_positive_atm_p53",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "A source-free unblocked structural candidate is present; still evaluation-only.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [
+        "8OXO|gamma=A:ANP3101:PG|acceptor=E:SER15:OG",
+        "8OXO|gamma=B:ANP3101:PG|acceptor=F:SER15:OG"
+      ],
+      "source_free_unblocked_candidate_present": true,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "none": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "unblocked_structural_candidate_present"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 4,
+        "topology_ambiguity": 4
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "8W2H|gamma=D:ATP803:PG|acceptor=D:SER164:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.52,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "8W2H",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_pfka_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 4,
+          "topology_ambiguity": 4
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "8W2H|gamma=A:ATP803:PG|acceptor=A:SER164:OG",
+        "8W2H|gamma=B:ATP803:PG|acceptor=B:SER164:OG",
+        "8W2H|gamma=C:ATP803:PG|acceptor=C:SER164:OG",
+        "8W2H|gamma=D:ATP803:PG|acceptor=D:SER164:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 8
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "8W2J|gamma=H:ATP803:PG|acceptor=H:SER164:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.404,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "8W2J",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_pfka_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 8
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "8W2J|gamma=A:ATP803:PG|acceptor=A:SER164:OG",
+        "8W2J|gamma=B:ATP803:PG|acceptor=B:SER164:OG",
+        "8W2J|gamma=C:ATP803:PG|acceptor=C:SER164:OG",
+        "8W2J|gamma=D:ATP803:PG|acceptor=D:SER164:OG",
+        "8W2J|gamma=E:ATP803:PG|acceptor=E:SER164:OG",
+        "8W2J|gamma=F:ATP803:PG|acceptor=F:SER164:OG",
+        "8W2J|gamma=G:ATP803:PG|acceptor=G:SER164:OG",
+        "8W2J|gamma=H:ATP803:PG|acceptor=H:SER164:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 6
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "9L3M|gamma=A:ATP401:PG|acceptor=A:THR140:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.31,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "9L3M",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "fresh_counterexample_transporter",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 6
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "9L3M|gamma=A:ATP401:PG|acceptor=A:THR140:OG1",
+        "9L3M|gamma=B:ATP401:PG|acceptor=B:THR140:OG1",
+        "9L3M|gamma=C:ATP401:PG|acceptor=C:THR140:OG1",
+        "9L3M|gamma=D:ATP401:PG|acceptor=D:THR140:OG1",
+        "9L3M|gamma=E:ATP401:PG|acceptor=E:THR140:OG1",
+        "9L3M|gamma=F:ATP401:PG|acceptor=F:THR140:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 6
+      },
+      "candidate_pair_row_count": 8,
+      "coordinate_states_observed": {
+        "active_gamma": 8
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "9L3U|gamma=A:ATP401:PG|acceptor=A:THR140:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.291,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "9L3U",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_transporter_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 6
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "9L3U|gamma=A:ATP401:PG|acceptor=A:THR140:OG1",
+        "9L3U|gamma=B:ATP401:PG|acceptor=B:THR140:OG1",
+        "9L3U|gamma=D:ATP401:PG|acceptor=D:THR140:OG1",
+        "9L3U|gamma=E:ATP401:PG|acceptor=E:THR140:OG1",
+        "9L3U|gamma=F:ATP401:PG|acceptor=F:THR140:OG1",
+        "9L3U|gamma=G:ATP401:PG|acceptor=G:THR140:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "9NBW|gamma=A:ATP602:PG|acceptor=A:THR341:OG1",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 5.31,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "9NBW",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_same_chain_atpase",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "9NBW|gamma=A:ATP601:PG|acceptor=A:THR23:OG1",
+        "9NBW|gamma=A:ATP602:PG|acceptor=A:THR341:OG1"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "topology_ambiguity": 1
+      },
+      "candidate_pair_row_count": 2,
+      "coordinate_states_observed": {
+        "active_gamma": 2
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "9OAN|gamma=B:ANP201:PG|acceptor=B:TYR74:OH",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "high_b_or_context_disordered",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.12,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "9OAN",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_ndk_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "topology_ambiguity": 1
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "9OAN|gamma=B:ANP201:PG|acceptor=B:TYR74:OH"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "ligand_materialization": 1
+      },
+      "candidate_pair_row_count": 0,
+      "coordinate_states_observed": {
+        "ligand_absent": 1
+      },
+      "hard_case": false,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": null,
+      "pdb_id": "9PFY",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "nonoverlap_ndk_sibling_control",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_auth_terminal_guard_generalization_v2_20260520"
+      },
+      "review_required_reason": "Ligand or coordinate materialization prevents active-gamma candidate adjudication.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "ligand_absent": {
+          "ligand_materialization": 1
+        }
+      },
+      "state_only_row_count": 1,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [],
+      "triage_bucket": "coordinate_materialization_review"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "9UUR|gamma=B:ANP402:PG|acceptor=B:SER170:OG",
+        "candidate_role_class": "same_chain_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.126,
+        "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+        "same_chain_topology": true
+      },
+      "pdb_id": "9UUR",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "9UUR|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+        "9UUR|gamma=B:ANP402:PG|acceptor=B:SER170:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 2,
+        "topology_ambiguity": 2
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+        "candidate_role_class": "reciprocal_folded_tyr_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 3.968,
+        "reciprocal_context_class": "reciprocal_active_gamma_different_entity",
+        "same_chain_topology": false
+      },
+      "pdb_id": "9UUX",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "review_only_positive_reused",
+        "evaluation_label": "positive_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 2,
+          "topology_ambiguity": 2
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+        "9UUX|gamma=B:ANP402:PG|acceptor=B:SER170:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    },
+    {
+      "blocker_classes_observed": {
+        "active_gamma_geometry": 1,
+        "topology_ambiguity": 3
+      },
+      "candidate_pair_row_count": 4,
+      "coordinate_states_observed": {
+        "active_gamma": 4
+      },
+      "hard_case": true,
+      "internal_fragment_mimicry_candidate_ids": [],
+      "nearest_candidate_by_distance": {
+        "blocker_class": "topology_ambiguity",
+        "candidate_id": "9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+        "candidate_role_class": "reciprocal_folded_tyr_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_angstrom": 4.194,
+        "reciprocal_context_class": "reciprocal_active_gamma_different_entity",
+        "same_chain_topology": false
+      },
+      "pdb_id": "9UW4",
+      "review_context_for_evaluation_only": {
+        "evaluation_group": "counterexample_reused_topology",
+        "evaluation_label": "counterexample_not_true_substrate_acceptor",
+        "evaluation_label_used_only_for_eval": true,
+        "source_artifact_id": "epk_folded_nterminal_auth_terminal_stress_20260520"
+      },
+      "review_required_reason": "Same-chain or reciprocal folded-chain topology leaves biological substrate role ambiguous.",
+      "row_schema": "epk_candidate_blocker_audit_v1",
+      "source_free_unblocked_candidate_ids": [],
+      "source_free_unblocked_candidate_present": false,
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 1,
+          "topology_ambiguity": 3
+        }
+      },
+      "state_only_row_count": 0,
+      "substrate_role_identity_candidate_ids": [],
+      "topology_ambiguity_candidate_ids": [
+        "9UW4|gamma=A:ANP501:PG|acceptor=A:SER194:OG",
+        "9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+        "9UW4|gamma=B:ANP402:PG|acceptor=B:SER170:OG"
+      ],
+      "triage_bucket": "topology_review_required"
+    }
+  ],
+  "rules": [
+    {
+      "clears_diagnostic_tranche": false,
+      "confusion_matrix": {
+        "false_negative": 6,
+        "false_positive": 0,
+        "true_negative": 34,
+        "true_positive": 14
+      },
+      "decisions": [
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "none": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_positive",
+          "pdb_id": "1IR3",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "product_state_evidence": 1
+          },
+          "coordinate_states_observed": {
+            "adp_state": 1
+          },
+          "outcome": "false_negative",
+          "pdb_id": "1L0O",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "state_specific_product_or_adp_review"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 3,
+            "none": 1,
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 5
+          },
+          "outcome": "true_positive",
+          "pdb_id": "1O6K",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 3,
+            "none": 1,
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 5
+          },
+          "outcome": "true_positive",
+          "pdb_id": "1O6L",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 6,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "1OJ4",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 1
+          },
+          "outcome": "true_negative",
+          "pdb_id": "1QHA",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "active_gamma_no_near_hydroxyl_review"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "none": 2,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 6
+          },
+          "outcome": "true_positive",
+          "pdb_id": "1QMZ",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 4,
+            "topology_ambiguity": 4
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "1TFW",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_negative",
+          "pdb_id": "2DRA",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 8
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "2JJ2",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "ligand_materialization": 1
+          },
+          "coordinate_states_observed": {
+            "ligand_absent": 1
+          },
+          "outcome": "true_negative",
+          "pdb_id": "2OCP",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "coordinate_materialization_review"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "none": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 3
+          },
+          "outcome": "true_positive",
+          "pdb_id": "2PHK",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_negative",
+          "pdb_id": "3CRL",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "active_gamma_geometry_blocked"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 3
+          },
+          "outcome": "true_negative",
+          "pdb_id": "3FGU",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "substrate_role_identity": 2,
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_negative",
+          "pdb_id": "3Q4Z",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "product_state_evidence": 1
+          },
+          "coordinate_states_observed": {
+            "adp_state": 1
+          },
+          "outcome": "false_negative",
+          "pdb_id": "3QHR",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "state_specific_product_or_adp_review"
+        },
+        {
+          "blocker_classes_observed": {
+            "product_state_evidence": 1
+          },
+          "coordinate_states_observed": {
+            "adp_state": 1
+          },
+          "outcome": "false_negative",
+          "pdb_id": "3QHW",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "state_specific_product_or_adp_review"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 1
+          },
+          "outcome": "true_negative",
+          "pdb_id": "3R5F",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 1
+          },
+          "outcome": "false_negative",
+          "pdb_id": "3TM0",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "none": 1,
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 3
+          },
+          "outcome": "true_positive",
+          "pdb_id": "3X2U",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "none": 1,
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_positive",
+          "pdb_id": "3X2V",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "none": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 3
+          },
+          "outcome": "true_positive",
+          "pdb_id": "3X2W",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "none": 3,
+            "topology_ambiguity": 3
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_positive",
+          "pdb_id": "4EKK",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "ligand_materialization": 1
+          },
+          "coordinate_states_observed": {
+            "ambiguous_coordinate_state": 1
+          },
+          "outcome": "true_negative",
+          "pdb_id": "4HPU",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "coordinate_materialization_review"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_negative",
+          "pdb_id": "4I94",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "active_gamma_geometry_blocked"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "none": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 3
+          },
+          "outcome": "true_positive",
+          "pdb_id": "4IAC",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "topology_ambiguity": 3
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_negative",
+          "pdb_id": "5C1O",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "none": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_positive",
+          "pdb_id": "5HVK",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 1
+          },
+          "outcome": "true_negative",
+          "pdb_id": "5TT6",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 6
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 6
+          },
+          "outcome": "true_negative",
+          "pdb_id": "5XD6",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 4
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_negative",
+          "pdb_id": "6ILT",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "active_gamma_geometry_blocked"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 1
+          },
+          "outcome": "true_negative",
+          "pdb_id": "6NOO",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 6
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "6U1D",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 6
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "6U1E",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "none": 1,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_positive",
+          "pdb_id": "6Z3R",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "internal_fragment_mimicry": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_negative",
+          "pdb_id": "7B56",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "internal_fragment_mimicry_blocked"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_negative",
+          "pdb_id": "7T55",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 3,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 5
+          },
+          "outcome": "true_negative",
+          "pdb_id": "7T56",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 3,
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_negative",
+          "pdb_id": "7T57",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "substrate_role_identity": 2,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_negative",
+          "pdb_id": "7ZDT",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "topology_ambiguity": 7
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "7ZDU",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 6
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "7ZE5",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "none": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_positive",
+          "pdb_id": "8OXM",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "none": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_positive",
+          "pdb_id": "8OXO",
+          "predicted_unblocked_candidate_present": true,
+          "triage_bucket": "unblocked_structural_candidate_present"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 4,
+            "topology_ambiguity": 4
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "8W2H",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 8
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "8W2J",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 6
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "9L3M",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 6
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 8
+          },
+          "outcome": "true_negative",
+          "pdb_id": "9L3U",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_negative",
+          "pdb_id": "9NBW",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "outcome": "true_negative",
+          "pdb_id": "9OAN",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "ligand_materialization": 1
+          },
+          "coordinate_states_observed": {
+            "ligand_absent": 1
+          },
+          "outcome": "true_negative",
+          "pdb_id": "9PFY",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "coordinate_materialization_review"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "false_negative",
+          "pdb_id": "9UUR",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "false_negative",
+          "pdb_id": "9UUX",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "topology_ambiguity": 3
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "outcome": "true_negative",
+          "pdb_id": "9UW4",
+          "predicted_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        }
+      ],
+      "pdb_ids_by_outcome": {
+        "false_negative": [
+          "1L0O",
+          "3QHR",
+          "3QHW",
+          "3TM0",
+          "9UUR",
+          "9UUX"
+        ],
+        "false_positive": [],
+        "true_negative": [
+          "1OJ4",
+          "1QHA",
+          "1TFW",
+          "2DRA",
+          "2JJ2",
+          "2OCP",
+          "3CRL",
+          "3FGU",
+          "3Q4Z",
+          "3R5F",
+          "4HPU",
+          "4I94",
+          "5C1O",
+          "5TT6",
+          "5XD6",
+          "6ILT",
+          "6NOO",
+          "6U1D",
+          "6U1E",
+          "7B56",
+          "7T55",
+          "7T56",
+          "7T57",
+          "7ZDT",
+          "7ZDU",
+          "7ZE5",
+          "8W2H",
+          "8W2J",
+          "9L3M",
+          "9L3U",
+          "9NBW",
+          "9OAN",
+          "9PFY",
+          "9UW4"
+        ],
+        "true_positive": [
+          "1IR3",
+          "1O6K",
+          "1O6L",
+          "1QMZ",
+          "2PHK",
+          "3X2U",
+          "3X2V",
+          "3X2W",
+          "4EKK",
+          "4IAC",
+          "5HVK",
+          "6Z3R",
+          "8OXM",
+          "8OXO"
+        ]
+      },
+      "production_claim_allowed": false,
+      "rule_description": "PDB-level sanity triage: at least one active-gamma candidate row has blocker_class=none. This is review support only, not a production substrate-role identity rule.",
+      "rule_id": "pdb_level_unblocked_candidate_triage_v1"
+    }
+  ],
+  "run_record": {
+    "blocker_classification": {
+      "blocker_class_counts": {
+        "active_gamma_geometry": 72,
+        "internal_fragment_mimicry": 1,
+        "ligand_materialization": 3,
+        "none": 19,
+        "product_state_evidence": 3,
+        "substrate_role_identity": 4,
+        "topology_ambiguity": 109
+      },
+      "classification": "The blocker remains biology ambiguity, not data scarcity: candidate evidence is materialized, but source-free structure cannot assign biological substrate role for product/ADP, reciprocal folded-chain, and same-chain cases.",
+      "coordinate_state_counts": {
+        "active_gamma": 205,
+        "adp_state": 3,
+        "ambiguous_coordinate_state": 1,
+        "ligand_absent": 2
+      },
+      "primary_outcome": "blocker_not_cleared_biology_ambiguity",
+      "triage_bucket_counts": {
+        "active_gamma_geometry_blocked": 3,
+        "active_gamma_no_near_hydroxyl_review": 1,
+        "coordinate_materialization_review": 3,
+        "internal_fragment_mimicry_blocked": 1,
+        "state_specific_product_or_adp_review": 3,
+        "topology_review_required": 29,
+        "unblocked_structural_candidate_present": 14
+      }
+    },
+    "candidate_evidence_rows_emitted": {
+      "candidate_pair_rows_reused": 204,
+      "new_gamma_acceptor_candidate_rows_emitted": 0,
+      "pdb_level_triage_rows_emitted": 54,
+      "state_only_rows_reused": 7
+    },
+    "confusion_matrix": {
+      "false_negative": 6,
+      "false_positive": 0,
+      "true_negative": 34,
+      "true_positive": 14
+    },
+    "coordinate_states_observed": {
+      "active_gamma": 205,
+      "adp_state": 3,
+      "ambiguous_coordinate_state": 1,
+      "ligand_absent": 2
+    },
+    "decisive_counterexamples": {
+      "blocker_class_counts": {
+        "active_gamma_geometry": 72,
+        "internal_fragment_mimicry": 1,
+        "ligand_materialization": 3,
+        "none": 19,
+        "product_state_evidence": 3,
+        "substrate_role_identity": 4,
+        "topology_ambiguity": 109
+      },
+      "hard_case_digest": {
+        "1L0O": {
+          "blocker_classes_observed": {
+            "product_state_evidence": 1
+          },
+          "coordinate_states_observed": {
+            "adp_state": 1
+          },
+          "nearest_candidate_by_distance": null,
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "state_specific_product_or_adp_review"
+        },
+        "1QHA": {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 1
+          },
+          "nearest_candidate_by_distance": null,
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "active_gamma_no_near_hydroxyl_review"
+        },
+        "3QHR": {
+          "blocker_classes_observed": {
+            "product_state_evidence": 1
+          },
+          "coordinate_states_observed": {
+            "adp_state": 1
+          },
+          "nearest_candidate_by_distance": null,
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "state_specific_product_or_adp_review"
+        },
+        "3QHW": {
+          "blocker_classes_observed": {
+            "product_state_evidence": 1
+          },
+          "coordinate_states_observed": {
+            "adp_state": 1
+          },
+          "nearest_candidate_by_distance": null,
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "state_specific_product_or_adp_review"
+        },
+        "3TM0": {
+          "blocker_classes_observed": {
+            "topology_ambiguity": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 1
+          },
+          "nearest_candidate_by_distance": {
+            "blocker_class": "topology_ambiguity",
+            "candidate_id": "3TM0|gamma=A:ANP300:PG|acceptor=A:SER27:OG",
+            "candidate_role_class": "same_chain_candidate",
+            "coordinate_certainty_class": "ordered_like",
+            "coordinate_state": "active_gamma",
+            "distance_angstrom": 4.483,
+            "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+            "same_chain_topology": true
+          },
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        "7B56": {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "internal_fragment_mimicry": 1
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 2
+          },
+          "nearest_candidate_by_distance": {
+            "blocker_class": "internal_fragment_mimicry",
+            "candidate_id": "7B56|gamma=B:ANP401:PG|acceptor=A:SER822:OG",
+            "candidate_role_class": "strict_cross_chain_candidate",
+            "coordinate_certainty_class": "ordered_like",
+            "coordinate_state": "active_gamma",
+            "distance_angstrom": 3.921,
+            "reciprocal_context_class": "asymmetric_cross_chain_acceptor",
+            "same_chain_topology": false
+          },
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "internal_fragment_mimicry_blocked"
+        },
+        "9UUR": {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "nearest_candidate_by_distance": {
+            "blocker_class": "topology_ambiguity",
+            "candidate_id": "9UUR|gamma=B:ANP402:PG|acceptor=B:SER170:OG",
+            "candidate_role_class": "same_chain_candidate",
+            "coordinate_certainty_class": "ordered_like",
+            "coordinate_state": "active_gamma",
+            "distance_angstrom": 4.126,
+            "reciprocal_context_class": "same_chain_gamma_hydroxyl",
+            "same_chain_topology": true
+          },
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        "9UUX": {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 2,
+            "topology_ambiguity": 2
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "nearest_candidate_by_distance": {
+            "blocker_class": "topology_ambiguity",
+            "candidate_id": "9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+            "candidate_role_class": "reciprocal_folded_tyr_candidate",
+            "coordinate_certainty_class": "ordered_like",
+            "coordinate_state": "active_gamma",
+            "distance_angstrom": 3.968,
+            "reciprocal_context_class": "reciprocal_active_gamma_different_entity",
+            "same_chain_topology": false
+          },
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        },
+        "9UW4": {
+          "blocker_classes_observed": {
+            "active_gamma_geometry": 1,
+            "topology_ambiguity": 3
+          },
+          "coordinate_states_observed": {
+            "active_gamma": 4
+          },
+          "nearest_candidate_by_distance": {
+            "blocker_class": "topology_ambiguity",
+            "candidate_id": "9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+            "candidate_role_class": "reciprocal_folded_tyr_candidate",
+            "coordinate_certainty_class": "ordered_like",
+            "coordinate_state": "active_gamma",
+            "distance_angstrom": 4.194,
+            "reciprocal_context_class": "reciprocal_active_gamma_different_entity",
+            "same_chain_topology": false
+          },
+          "source_free_unblocked_candidate_present": false,
+          "triage_bucket": "topology_review_required"
+        }
+      },
+      "state_blocker_matrix": {
+        "active_gamma": {
+          "active_gamma_geometry": 72,
+          "internal_fragment_mimicry": 1,
+          "none": 19,
+          "substrate_role_identity": 4,
+          "topology_ambiguity": 109
+        },
+        "adp_state": {
+          "product_state_evidence": 3
+        },
+        "ambiguous_coordinate_state": {
+          "ligand_materialization": 1
+        },
+        "ligand_absent": {
+          "ligand_materialization": 2
+        }
+      },
+      "triage_bucket_counts": {
+        "active_gamma_geometry_blocked": 3,
+        "active_gamma_no_near_hydroxyl_review": 1,
+        "coordinate_materialization_review": 3,
+        "internal_fragment_mimicry_blocked": 1,
+        "state_specific_product_or_adp_review": 3,
+        "topology_review_required": 29,
+        "unblocked_structural_candidate_present": 14
+      }
+    },
+    "diagnostic_rows_added_or_reused": {
+      "added_this_run": [],
+      "reused_from_candidate_evidence_artifact": 54,
+      "total": 54
+    },
+    "ended_at": "2026-05-21T04:32:12Z",
+    "false_negative_analysis": {
+      "interpretation": "False negatives are the known review-required classes: product/ADP rows lack terminal-gamma transfer geometry, reciprocal folded-chain Tyr rows share source-free topology with the 9UW4 counterexample, and 3TM0 is same-chain/autophosphorylation-like.",
+      "pdb_level_unblocked_candidate_triage_false_negative_pdb_ids": [
+        "1L0O",
+        "3QHR",
+        "3QHW",
+        "3TM0",
+        "9UUR",
+        "9UUX"
+      ]
+    },
+    "false_positive_analysis": {
+      "interpretation": "The diagnostic audit has zero false positives for the unblocked-candidate sanity flag, but that flag remains review support because the diagnostic labels are evaluation-only and ambiguous ePK biology is still unresolved source-free.",
+      "pdb_level_unblocked_candidate_triage_false_positive_pdb_ids": []
+    },
+    "forbidden_features_respected": [
+      "PDB title",
+      "UniProt prose",
+      "EC/Rhea",
+      "paper/source text",
+      "mechanism labels",
+      "curated substrate names",
+      "post-hoc source repair",
+      "candidate-specific threshold tuning"
+    ],
+    "git_sync_status": "git fetch origin and git pull --ff-only origin research/epk-substrate-role-identity were attempted at run start but blocked by linked-worktree FETCH_HEAD permission errors; git fetch --no-write-fetch-head origin succeeded.",
+    "hypothesis": "Candidate-level source-free evidence can support compact PDB-level blocker triage without adding unsafe non-abstention, but it still cannot adjudicate product/ADP, reciprocal folded-chain, or same-chain substrate-role biology.",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_substrate_role_identity",
+    "measured_minutes": 48.23,
+    "next_query": "Use the PDB-level blocker audit for review triage and stop source-free scalar probing unless a genuinely new evidence modality becomes available.",
+    "primary_outcome": "blocker_not_cleared_biology_ambiguity",
+    "production_claim_allowed": false,
+    "recommendation": "Do not claim ePK production readiness. Keep the candidate table and PDB-level audit as review-only evidence; product/ADP, reciprocal folded-chain, and same-chain cases still require source-reviewed adjudication.",
+    "rule_results": {
+      "pdb_level_unblocked_candidate_triage_v1": {
+        "clears_diagnostic_tranche": false,
+        "confusion_matrix": {
+          "false_negative": 6,
+          "false_positive": 0,
+          "true_negative": 34,
+          "true_positive": 14
+        },
+        "pdb_ids_by_outcome": {
+          "false_negative": [
+            "1L0O",
+            "3QHR",
+            "3QHW",
+            "3TM0",
+            "9UUR",
+            "9UUX"
+          ],
+          "false_positive": [],
+          "true_negative": [
+            "1OJ4",
+            "1QHA",
+            "1TFW",
+            "2DRA",
+            "2JJ2",
+            "2OCP",
+            "3CRL",
+            "3FGU",
+            "3Q4Z",
+            "3R5F",
+            "4HPU",
+            "4I94",
+            "5C1O",
+            "5TT6",
+            "5XD6",
+            "6ILT",
+            "6NOO",
+            "6U1D",
+            "6U1E",
+            "7B56",
+            "7T55",
+            "7T56",
+            "7T57",
+            "7ZDT",
+            "7ZDU",
+            "7ZE5",
+            "8W2H",
+            "8W2J",
+            "9L3M",
+            "9L3U",
+            "9NBW",
+            "9OAN",
+            "9PFY",
+            "9UW4"
+          ],
+          "true_positive": [
+            "1IR3",
+            "1O6K",
+            "1O6L",
+            "1QMZ",
+            "2PHK",
+            "3X2U",
+            "3X2V",
+            "3X2W",
+            "4EKK",
+            "4IAC",
+            "5HVK",
+            "6Z3R",
+            "8OXM",
+            "8OXO"
+          ]
+        },
+        "production_claim_allowed": false,
+        "rule_description": "PDB-level sanity triage: at least one active-gamma candidate row has blocker_class=none. This is review support only, not a production substrate-role identity rule."
+      }
+    },
+    "source_free_features_tested": [
+      "PDB-level aggregation of candidate coordinate states",
+      "PDB-level aggregation of candidate blocker classes",
+      "source-free unblocked active-gamma candidate presence sanity triage",
+      "hard-case blocker digest for product/ADP, reciprocal folded-chain, same-chain, and internal-fragment rows"
+    ],
+    "started_at": "2026-05-21T03:43:58Z"
+  },
+  "state_blocker_matrix": {
+    "active_gamma": {
+      "active_gamma_geometry": 72,
+      "internal_fragment_mimicry": 1,
+      "none": 19,
+      "substrate_role_identity": 4,
+      "topology_ambiguity": 109
+    },
+    "adp_state": {
+      "product_state_evidence": 3
+    },
+    "ambiguous_coordinate_state": {
+      "ligand_materialization": 1
+    },
+    "ligand_absent": {
+      "ligand_materialization": 2
+    }
+  },
+  "triage_bucket_counts": {
+    "active_gamma_geometry_blocked": 3,
+    "active_gamma_no_near_hydroxyl_review": 1,
+    "coordinate_materialization_review": 3,
+    "internal_fragment_mimicry_blocked": 1,
+    "state_specific_product_or_adp_review": 3,
+    "topology_review_required": 29,
+    "unblocked_structural_candidate_present": 14
+  }
+}
