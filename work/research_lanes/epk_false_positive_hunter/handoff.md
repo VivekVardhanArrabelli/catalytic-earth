@@ -1,95 +1,85 @@
 # ePK false-positive hunter handoff
 
-- Last updated: 2026-05-21T17:44:05Z
-- Started: 2026-05-21T16:24:54Z
-- Ended: 2026-05-21T17:44:05Z
-- Measured minutes: 79.18
+- Last updated: 2026-05-21T18:56:50Z
+- Started: 2026-05-21T17:26:28Z
+- Ended: 2026-05-21T18:56:50Z
+- Measured minutes: 90.37
 - Primary outcome: evidence_against
-- Pushed evidence commit: `211000f1c61e4d119ccaccb0fab64dfa0c522739` via alternate-index commit/push.
-- Push-status commit: `e40a058ede6d832934f4bab8ffc0e1e72dc9954c`.
+- Pushed evidence commit: pending alternate-index push
 - Local checked-out HEAD remains `c444f088082208ec9de2aba575cfb1f9ddf03d15` because linked-worktree metadata writes are blocked.
-- Rule under attack: biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, plus the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
+- Rule under attack: metric-seeded biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, plus the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
 
 ## Search Surface
 
-Completed the requested retry of the remaining 207 main-pass fetch-error IDs from `v4_entry_level_assembly_guard_stress_non_orc_split_retry_20260521_152251Z.json` after subtracting the 20-ID recovery artifact.
+Preserved and extended the metric-seeded ligand-only split stress after the previous handoff reported a live-lock. The earlier non-TTY helper later completed and wrote a compact artifact; this run also completed an independent 320-ID metric pass and refreshed the regression gate. CIFs were fetched in memory and reduced to compact evidence only; no raw coordinate dumps were written.
 
-- Retry artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_remaining_fetch_error_retry_20260521_162454Z.json`
-- Refreshed regression gate: `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_172900Z.json`
-- New metric-seeded helper: `tools/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress.py`
-- Updated gate converter: `tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
-- Retry reviewed 207 entries and 436 deposited/assembly coordinate contexts.
-- Retry fetch errors: 0.
-- Retry deposited-v4 entries: 51.
-- Retry entry-level any-context-v4 guard hits: 54.
-- Retry split contexts: 0.
-- Retry selected materializer contexts: 0.
-- Raw coordinate files written: false.
+- Post-wrap completed metric artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_20260521_164900Z.json`
+- Capped metric follow-up artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_retry_20260521_182728Z.json`
+- Current metric stress artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress_20260521_172628Z.json`
+- Refreshed regression gate: `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_185303Z.json`
+- Audited prior retry artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_remaining_fetch_error_retry_20260521_162454Z.json`
+
+Metric-seeded reviewed surfaces now preserved:
+
+- `164900Z`: 320 unique IDs, 285 entry rows, 590 coordinate contexts, 35 fetch errors, 133 deposited-v4 entries, 131 non-ORC deposited-v4 prefilter entries, zero split contexts.
+- `182728Z`: 100 unique IDs, 100 entry rows, 175 coordinate contexts, zero fetch errors, 13 deposited-v4 entries, 12 non-ORC deposited-v4 prefilter entries, zero split contexts.
+- `172628Z`: 320 unique IDs, 254 entry rows, 528 coordinate contexts, 66 fetch errors, 107 deposited-v4 entries, 105 non-ORC deposited-v4 prefilter entries, zero split contexts.
 
 ## Result
 
 No new unsafe expected-policy ePK non-abstention was found.
 
-- The remaining 207-ID retry queue is exhausted as a reviewed surface.
-- Zero deposited-v4 / biological-assembly-below-floor split contexts were found in the 207-ID retry.
-- Zero non-ORC split contexts and zero pre-materializer heteromeric split contexts were found in the 207-ID retry.
+- Zero metric-seeded deposited-v4 / biological-assembly-below-floor split contexts were found across the preserved metric artifacts.
+- Zero metric-seeded materializer contexts were selected because split contexts were zero.
+- The 207-ID remaining fetch-error retry remains exhausted as a reviewed surface with zero split contexts.
 - The refreshed gate emitted 343 `epk_candidate_evidence_v1` rows from 14 source slots.
 - `unsafe_nonabstention_after_expected_policy_count` stayed 0.
 - `5UJ7:biological_assembly_1` remains the pinned context-v4-only biological-assembly split failure.
 
-## Metric-Seeded Attempt
-
-Started a ligand-component-only metric-seeded helper to avoid broad full-text buckets. It reached checkpoint `last_index=180`, `progress_entries_reviewed=145`, `progress_fetch_errors=35`, then live-locked before writing `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_20260521_164900Z.json`.
-
-Process-control blocker details:
-
-- The helper was launched without a TTY and stdin was closed, so Ctrl-C could not be sent through the session.
-- `ps`, `pgrep`, `pkill`, and `killall` process inspection/termination were denied by sandbox permissions.
-- No completed metric artifact existed at wrap time.
-- The helper has now been patched with `--max-local-geometry-atom-site-rows` defaulting to `120000` to avoid future local-geometry scans over very large atom-site contexts.
-
 ## Evidence For / Against
 
-Evidence against the retry-queue split hypothesis:
+Evidence against metric-seeded ATP recent split traps on the reviewed surface:
 
-- All 207 formerly failed IDs recovered cleanly.
-- 436 coordinate contexts contained 51 deposited-v4 entries but zero split contexts.
-- No materializer contexts were selected because there were no split contexts.
-- The expected-policy regression gate stayed green with zero unsafe non-abstentions.
+- 131, 12, and 105 non-ORC deposited-v4 prefilter entries in the three metric artifacts produced zero assembly-below-floor split contexts.
+- The capped 100-ID follow-up had zero fetch errors, so the cap path is usable for the next retry/sharding pass.
+- The regression gate stayed green under expected policy while preserving the known context-v4-only failure.
 
-Evidence for continued fixture coverage:
+Evidence for continued search:
 
-- The regression gate still includes `5UJ7:biological_assembly_1` as the pinned context-v4-only failure.
-- The converter now has a separate metric-seeded source slot, so future metric artifacts will not displace the latest non-ORC split artifact in the gate.
+- The current 320-ID stress still has 66 fetch-error IDs to retry.
+- Later ATP pages and ANP/ACP/DTP ligand-component pages were not exhausted in this run.
+- The metric source slot emits zero rows when no materializer contexts exist, so absence of rows is evidence about the split filter, not a production sufficiency claim.
 
 ## Verification
 
-- `python -m py_compile tools/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress.py tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
-- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_remaining_fetch_error_retry_20260521_162454Z.json >/dev/null`
-- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_172900Z.json >/dev/null`
-- `git diff --check -- tools/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress.py tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_remaining_fetch_error_retry_20260521_162454Z.json artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_172900Z.json`
+Pending after file writes:
+
+- JSON validation for new artifacts and run ledger.
+- `git diff --check` over lane files changed this run.
 
 ## Blockers
 
 - `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git pull --ff-only origin research/epk-false-positive-hunter` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git fetch --no-write-fetch-head origin` succeeded.
-- Normal linked-worktree index operations remain unreliable because linked-worktree metadata writes are denied.
-- Metric-seeded helper live-locked before writing a completed artifact, and process termination was denied by sandbox process-list restrictions.
+- Local checked-out HEAD remains behind origin because linked-worktree metadata writes are denied.
+- Normal worktree status remains noisy with staged deletions plus untracked replacements from linked-worktree index metadata drift.
+- The current metric pass has 66 fetch errors and does not exhaust later ATP/ANP/ACP/DTP ligand-component pages.
 
 ## Next Query
 
-Rerun the metric-seeded ligand-only assembly split helper with the new atom-site local-geometry cap and a smaller bounded surface, then retry or shard the failed/slow ligand-only page. Preserve the 207-ID retry as exhausted evidence; keep `5UJ7` pinned; avoid broad full-text buckets unless the capped metric surface is exhausted. Keep production labels, thresholds, registries/fingerprints, migrations, and scoring forbidden.
+Retry the 66 fetch-error IDs from `v4_metric_seeded_ligand_assembly_split_stress_20260521_172628Z.json` with the atom-site cap enabled, then shard ATP `start=640` and ANP/ACP/DTP ligand-component pages while excluding the `164900Z`, `182728Z`, and `172628Z` metric artifacts. Continue only metric-seeded deposited-v4 / assembly-below-floor traps with no ORC/MCM role tokens, `polymer_entity_count > 1`, and pre-materializer heteromeric local geometry. Keep `5UJ7` pinned and avoid production claims.
 
 Production claims, label changes, threshold calibration, registry/fingerprint edits, artifact migrations, and production scoring remain forbidden.
 
 ## Files Changed
 
-- `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_remaining_fetch_error_retry_20260521_162454Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_172900Z.json`
-- `tools/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress.py`
-- `tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_20260521_164900Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_retry_20260521_182728Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress_20260521_172628Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_184508Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_185303Z.json`
 - `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
 - `work/research_lanes/epk_false_positive_hunter/handoff.md`
