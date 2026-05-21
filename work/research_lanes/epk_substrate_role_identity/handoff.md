@@ -77,7 +77,17 @@ Current run sync note: `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` failed at run start because the sandbox
 could not write linked-worktree `FETCH_HEAD`. `git fetch --no-write-fetch-head
 origin` succeeded. Use the remote-tip temporary-index commit/push workaround if
-normal local metadata writes remain blocked.
+normal local metadata writes remain blocked. After the remote-tip push, a final
+`git fetch --no-write-fetch-head origin` succeeded, but local `HEAD` remained at
+`8d38053d85cc28b7592267e9420578ca19a98814` while
+`origin/research/epk-substrate-role-identity` was ahead. `git merge --ff-only
+origin/research/epk-substrate-role-identity` failed because the sandbox could
+not create:
+
+`/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-substrate-role-identity/ORIG_HEAD.lock`
+
+Local clean and `HEAD`-equals-origin verification therefore remain blocked by
+linked-worktree metadata permissions.
 
 ## Previous Run Context
 
