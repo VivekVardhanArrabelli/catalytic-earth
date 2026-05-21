@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 235
-- Measured elapsed time: 7067.1 minutes (117.79 hours)
+- Entries: 236
+- Measured elapsed time: 7075.1 minutes (117.92 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1795.3 measured minutes (29.92 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 97.9 measured minutes (1.63 hours)
+- v3: 105.9 measured minutes (1.76 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2684
-- Evidence references logged: 2188
+- Artifact references logged: 2689
+- Evidence references logged: 2189
 
 ## Recent Entries
-
-### 2026-05-20T20:55:03.996810+00:00 - post-infra-science
-
-- Task: Main-loop small wins: methyltransferase, ASKHA, ePK receipts
-- Time mode: measured
-- Measured minutes: 41.717
-- Started: 2026-05-20T20:13:02Z
-- Ended: 2026-05-20T20:54:45Z
-- Artifacts: artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json, artifacts/v3_prospective_external_methyltransferase_minicampaign_decision_packet_20260520.json, artifacts/v3_methyltransferase_minicampaign_baseline_comparison_20260520.json, artifacts/v3_methyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json, artifacts/v3_methyltransferase_minicampaign_sequence_baseline_external_20260520.fasta, artifacts/v3_askha_family_readiness_packet_20260520.json, artifacts/v3_askha_vs_atp_family_control_tranche_preregistration_20260520.json, artifacts/v3_epk_policy_harness_late_dirty_output_receipt_20260520.json, artifacts/v3_epk_fresh_research_lane_push_synthesis_20260520.json, artifacts/v3_main_loop_small_win_decision_register_20260520.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: 20-row Swiss-Prot methyltransferase surface frozen before scoring, 20 of 20 methyltransferase rows terminal review-only rejections by uncovered mechanism lane, deterministic 5-mer baseline checked 20 rows against 737 current references with 2 alerts and no decision change, ASKHA packet records 4 boundary rows 0 countable positives and no production promotion, ASKHA control tranche freezes 14 rows before scoring, 15 late policy-harness dirty JSON outputs validated with no decision change, fresh ePK substrate-role push integrated 9UW4 reciprocal entity-context counterexample and next research-only experiment, full 720-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall JSON validation and git diff check passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ### 2026-05-20T20:56:05.517765+00:00 - ops
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json, artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_main_loop_small_win_register_post_plp_aminotransferase_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: 20-row Swiss-Prot PLP aminotransferase surface frozen before scoring, 18 rows routed to needs_review under current plp_dependent_enzyme lane, 2 exact current-reference sequence duplicates terminally rejected, deterministic 5-mer baseline checked 20 rows against 737 current references with no superiority claim, focused PLP mini-campaign regression passed
 - Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
+
+### 2026-05-21T00:35:13.353330+00:00 - v3
+
+- Task: pfka_vs_neighbor_control_tranche
+- Time mode: measured
+- Measured minutes: 8.0
+- Started: 2026-05-21T00:27:03Z
+- Ended: 2026-05-21T00:35:03Z
+- Artifacts: artifacts/v3_pfka_vs_neighbor_family_control_tranche_preregistration_20260521.json, artifacts/v3_pfka_vs_neighbor_family_control_tranche_axis_decisions_20260521.json, artifacts/v3_pfka_vs_neighbor_family_control_tranche_baseline_comparison_20260521.json, artifacts/v3_atp_family_readiness_index_post_pfka_tranche_20260521.json, artifacts/v3_main_loop_small_win_register_post_pfka_tranche_20260521.json
+- Evidence: 15 frozen PfkA-neighbor rows; decisions 1 terminal_rejection 2 mechanism_match 12 out_of_scope; 0 source-free-axis-ready rows
+- Notes: focused unittest and diff check passed
 
 ## Expectation Updates
 
@@ -307,6 +307,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T23:59:52.878029+00:00: Main loop has closed NDK as review-only no-go and packaged PfkA; next bounded ATP-family step is a frozen PfkA-vs-neighbor tranche before any scoring, or a genuinely new external mini-campaign.
 - 2026-05-21T00:18:48.662111+00:00: Commit ePK synthesis integration before returning to non-ePK small-win ladder.
 - 2026-05-21T00:27:03.666400+00:00: Next bounded work can close PfkA-vs-neighbor tranche or stop for wrap if cadence is reached.
+- 2026-05-21T00:35:13.353330+00:00: continue external or non-ATP-family small wins; do not promote PfkA
 
 ## Scope Adjustments
 
@@ -435,3 +436,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T22:44:16.389654+00:00: Main loop stayed off ePK audit churn and advanced non-ePK visible small wins.
 - 2026-05-21T00:18:48.662111+00:00: ePK remains review-only no-go and out of main-loop production scope; future scorer dry-run belongs only in isolated research lane.
 - 2026-05-21T00:27:03.666400+00:00: External PLP mini-campaign is review-only; current PLP lane presence is not a mechanism-match or import claim without source-free geometry and factory gates.
+- 2026-05-21T00:35:13.353330+00:00: all non-ePK ATP-family readiness slots closed review-only no-go

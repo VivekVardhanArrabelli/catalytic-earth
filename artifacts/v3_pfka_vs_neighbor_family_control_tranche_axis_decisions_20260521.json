@@ -1,0 +1,733 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_id": "v3_pfka_vs_neighbor_family_control_tranche_axis_decisions_20260521",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T00:30:17Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 15,
+    "git_history_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "pfka_vs_neighbor_family_control_tranche_review_only_axis_decisions",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "pfka_positive_like_axis_ready_count": 0,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "atp_family_expansion": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "geometry_retrieval": "artifacts/v3_geometry_retrieval_1025.json",
+      "homolog_distance_sample": "artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfka_1025.json",
+      "pfka_readiness_packet": "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+      "tranche_freeze": "artifacts/v3_pfka_vs_neighbor_family_control_tranche_preregistration_20260521.json"
+    },
+    "source_free_pfka_axis_ready_count": 0,
+    "terminal_decision_counts": {
+      "mechanism_match": 2,
+      "out_of_scope": 12,
+      "terminal_rejection": 1
+    }
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfka",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1PFK",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ADP",
+          "FBP",
+          "MG"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3999
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "Phosphofructokinase I",
+      "family_id": "pfka",
+      "family_name": "PfkA phosphofructokinases",
+      "freeze_rank": 1,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:365",
+      "row_role": "pfka_boundary",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "PfkA source boundary row is expert-reviewed rejected current-label evidence, lacks a source-free PfkA axis, and cannot support threshold calibration."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": true,
+        "family_id": "metal_dependent_hydrolase",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1ZNB",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "NA",
+          "ZN"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5777
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "beta-lactamase (Class B1)",
+      "family_id": "metal_dependent_hydrolase",
+      "family_name": "metal-dependent hydrolase production controls",
+      "freeze_rank": 2,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "Current countable metal-dependent hydrolase control remains a mechanism match under the current 8-fingerprint baseline."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": true,
+        "family_id": "metal_dependent_hydrolase",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1BC2",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "SO4",
+          "ZN"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5929
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "beta-lactamase (Class B1)",
+      "family_id": "metal_dependent_hydrolase",
+      "family_name": "metal-dependent hydrolase production controls",
+      "freeze_rank": 3,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "Current countable metal-dependent hydrolase control remains a mechanism match under the current 8-fingerprint baseline."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "dnk",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1KIM",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "SO4",
+          "THM"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4073
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "thymidine kinase",
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "freeze_rank": 4,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:588",
+      "row_role": "dnk_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfkb",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1RK2",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ADP",
+          "ALF",
+          "MG",
+          "RIB"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2601
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "ribokinase",
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "freeze_rank": 5,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:663",
+      "row_role": "pfkb_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "ghmp",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1OJ4",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ANP",
+          "CDM",
+          "CL",
+          "MSE"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3581
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "freeze_rank": 6,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:654",
+      "row_role": "ghmp_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "askha",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "3IDH",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "GLC",
+          "K"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5769
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "glucokinase",
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "freeze_rank": 7,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:592",
+      "row_role": "askha_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "ndk",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1DEK",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "DGP",
+          "MG",
+          "OCS"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4066
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "freeze_rank": 8,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:637",
+      "row_role": "ndk_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "atp_grasp",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1E4E",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ADP",
+          "GOL",
+          "MG",
+          "PHY",
+          "SO4"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3649
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "freeze_rank": 9,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:310",
+      "row_role": "atp_grasp_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "ghkl",
+        "homolog_hydroxyl_axis_countercontrol": false,
+        "neighbor_atp_family_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "local_ligand_codes": [],
+        "pdb_id": "1I58",
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "structure_ligand_codes": [
+          "ACP",
+          "ACT",
+          "ADP",
+          "MG"
+        ],
+        "text_or_label_fields_used_for_score": false,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2704
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "protein histidine kinase (CheA)",
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "freeze_rank": 10,
+      "ready_for_label_import": false,
+      "row_id": "m_csa:327",
+      "row_role": "ghkl_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "same_chain_hydroxyl_counteraxis_context": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfka",
+        "homolog_hydroxyl_axis_countercontrol": true,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "pdb_id": "3F5M",
+        "source_artifact": "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "PfkA homolog counteraxis structure 3F5M",
+      "family_id": "pfka",
+      "family_name": "PfkA homolog source-free hydroxyl-axis controls",
+      "freeze_rank": 11,
+      "ready_for_label_import": false,
+      "row_id": "3F5M",
+      "row_role": "pfka_homolog_hydroxyl_axis_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "same_chain_hydroxyl_counteraxis_context": true,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfka",
+        "homolog_hydroxyl_axis_countercontrol": true,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "pdb_id": "4XYJ",
+        "source_artifact": "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "PfkA homolog counteraxis structure 4XYJ",
+      "family_id": "pfka",
+      "family_name": "PfkA homolog source-free hydroxyl-axis controls",
+      "freeze_rank": 12,
+      "ready_for_label_import": false,
+      "row_id": "4XYJ",
+      "row_role": "pfka_homolog_hydroxyl_axis_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "same_chain_hydroxyl_counteraxis_context": true,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfka",
+        "homolog_hydroxyl_axis_countercontrol": true,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "pdb_id": "5XZ8",
+        "source_artifact": "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "PfkA homolog counteraxis structure 5XZ8",
+      "family_id": "pfka",
+      "family_name": "PfkA homolog source-free hydroxyl-axis controls",
+      "freeze_rank": 13,
+      "ready_for_label_import": false,
+      "row_id": "5XZ8",
+      "row_role": "pfka_homolog_hydroxyl_axis_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "same_chain_hydroxyl_counteraxis_context": true,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfka",
+        "homolog_hydroxyl_axis_countercontrol": true,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "pdb_id": "8W2H",
+        "source_artifact": "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "PfkA homolog counteraxis structure 8W2H",
+      "family_id": "pfka",
+      "family_name": "PfkA homolog source-free hydroxyl-axis controls",
+      "freeze_rank": 14,
+      "ready_for_label_import": false,
+      "row_id": "8W2H",
+      "row_role": "pfka_homolog_hydroxyl_axis_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "same_chain_hydroxyl_counteraxis_context": true,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    },
+    {
+      "countable_label_candidate": false,
+      "counterfamily_axis": {
+        "current_hydrolase_control_row": false,
+        "family_id": "pfka",
+        "homolog_hydroxyl_axis_countercontrol": true,
+        "neighbor_atp_family_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "pdb_id": "8W2J",
+        "source_artifact": "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "duplicate_screen_context": {
+        "interpretation": "duplicate screening is not used to import or reject current review-only PfkA tranche rows",
+        "status": "not_run_not_import_surface_current_review_context"
+      },
+      "entry_name": "PfkA homolog counteraxis structure 8W2J",
+      "family_id": "pfka",
+      "family_name": "PfkA homolog source-free hydroxyl-axis controls",
+      "freeze_rank": 15,
+      "ready_for_label_import": false,
+      "row_id": "8W2J",
+      "row_role": "pfka_homolog_hydroxyl_axis_countercontrol",
+      "selection_frozen_before_axis_scoring": true,
+      "source_free_pfka_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "same_chain_hydroxyl_counteraxis_context": true,
+        "selected_structure_state_complete_for_calibration": false,
+        "source_free_pfka_fold_policy_ready": false,
+        "source_free_sugar_phosphate_acceptor_policy_ready": false
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "Neighbor ATP-family or PfkA homolog countercontrol is review-only counterfamily evidence, not a current production-positive PfkA label."
+    }
+  ],
+  "synthesis_conclusion": {
+    "decision": "do_not_promote_pfka_production_fingerprint",
+    "next_action": "leave ATP-family expansion closed review-only; continue non-ePK prospective external or non-ATP family readiness work",
+    "overall": "pfka_tranche_is_review_only_and_not_production_ready",
+    "reason": "PfkA has one rejected boundary row, five homolog hydroxyl-axis countercontrols, zero source-free-axis-ready rows, no calibrated threshold, no external hard-negative re-audit, and no countable positive seeds."
+  }
+}

@@ -1921,6 +1921,125 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "pfka_packet_is_review_only_and_not_production_ready",
         )
 
+    def test_pfka_control_tranche_closes_review_only(self) -> None:
+        preregistration = _load_json(
+            ARTIFACTS
+            / "v3_pfka_vs_neighbor_family_control_tranche_preregistration_20260521.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_pfka_vs_neighbor_family_control_tranche_axis_decisions_20260521.json"
+        )
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_pfka_vs_neighbor_family_control_tranche_baseline_comparison_20260521.json"
+        )
+        index = _load_json(
+            ARTIFACTS / "v3_atp_family_readiness_index_post_pfka_tranche_20260521.json"
+        )
+        register = _load_json(
+            ARTIFACTS
+            / "v3_main_loop_small_win_register_post_pfka_tranche_20260521.json"
+        )
+
+        prereg_metadata = preregistration["metadata"]
+        self.assertTrue(prereg_metadata["review_only"])
+        self.assertTrue(
+            prereg_metadata["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(prereg_metadata["frozen_row_count"], 15)
+        self.assertEqual(prereg_metadata["pfka_homolog_countercontrol_count"], 5)
+        self.assertFalse(prereg_metadata["ready_for_label_import"])
+
+        decision_metadata = decisions["metadata"]
+        self.assertTrue(decision_metadata["review_only"])
+        self.assertEqual(
+            decision_metadata["terminal_decision_counts"],
+            {"mechanism_match": 2, "out_of_scope": 12, "terminal_rejection": 1},
+        )
+        self.assertEqual(decision_metadata["source_free_pfka_axis_ready_count"], 0)
+        self.assertFalse(decision_metadata["ready_for_label_import"])
+        self.assertFalse(decision_metadata["ready_for_production_scoring"])
+        self.assertFalse(
+            decision_metadata["ready_to_expand_positive_fingerprint_universe"]
+        )
+        self.assertFalse(decision_metadata["curated_label_registry_edited"])
+        self.assertFalse(decision_metadata["fingerprint_registry_edited"])
+        self.assertFalse(decision_metadata["mechanism_fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in decisions["rows"]}
+        self.assertEqual(rows["m_csa:365"]["terminal_decision"], "terminal_rejection")
+        self.assertEqual(rows["4XYJ"]["terminal_decision"], "out_of_scope")
+        self.assertTrue(
+            all(
+                not row["source_free_pfka_axis"][
+                    "axis_ready_for_threshold_calibration"
+                ]
+                for row in rows.values()
+            )
+        )
+
+        comparison_metadata = comparison["metadata"]
+        comparison_metrics = comparison["metrics"]
+        self.assertTrue(comparison_metadata["review_only"])
+        self.assertFalse(comparison_metadata["superiority_claim_permitted"])
+        self.assertEqual(
+            comparison_metrics["review_only_terminal_axis_decisions"][
+                "terminal_decision_counts"
+            ],
+            {"mechanism_match": 2, "out_of_scope": 12, "terminal_rejection": 1},
+        )
+        self.assertEqual(
+            comparison_metrics["current_8_fingerprint_geometry_retrieval"][
+                "non_abstention_count_at_0_4115"
+            ],
+            3,
+        )
+        self.assertTrue(
+            comparison_metrics["current_8_fingerprint_geometry_retrieval"][
+                "all_m_csa_rows_top1_metal_hydrolase"
+            ]
+        )
+        self.assertEqual(
+            comparison_metrics["pfka_homolog_hydroxyl_axis_counterdiagnostic"][
+                "gamma_to_same_chain_hydroxyl_distance_min_angstrom"
+            ],
+            3.221,
+        )
+        self.assertEqual(
+            comparison_metrics["pfka_homolog_hydroxyl_axis_counterdiagnostic"][
+                "gamma_to_same_chain_hydroxyl_distance_max_angstrom"
+            ],
+            6.152,
+        )
+
+        index_metadata = index["metadata"]
+        index_rows = {row["family_id"]: row for row in index["rows"]}
+        self.assertTrue(index_metadata["review_only"])
+        self.assertEqual(index_metadata["closed_review_only_no_go_count"], 8)
+        self.assertEqual(index_metadata["packet_ready_not_frozen_count"], 0)
+        self.assertEqual(index_metadata["packet_not_started_count"], 0)
+        self.assertEqual(
+            index_rows["pfka"]["production_readiness_status"],
+            "closed_review_only_no_go",
+        )
+        self.assertEqual(
+            index["synthesis_conclusion"]["overall"],
+            "pfka_tranche_is_review_only_and_not_production_ready",
+        )
+
+        register_rows = {row["item_id"]: row for row in register["rows"]}
+        self.assertTrue(register["metadata"]["review_only"])
+        self.assertTrue(register["rollup"]["atp_family_non_epk_slots_closed_review_only"])
+        self.assertEqual(
+            register_rows["pfka_control_tranche"]["decision_status"],
+            "closed_review_only_no_go",
+        )
+        self.assertEqual(
+            register_rows["pfka_control_tranche"]["terminal_decision_counts"],
+            {"mechanism_match": 2, "out_of_scope": 12, "terminal_rejection": 1},
+        )
+
     def test_main_loop_small_win_register_rolls_up_post_atp_readiness(self) -> None:
         register = _load_json(
             ARTIFACTS

@@ -93,6 +93,27 @@ context without a superiority claim. No registry edit, label import,
 threshold, production scoring, fingerprint expansion, artifact migration,
 upload, removal, Git LFS tracking, or history rewrite was performed.
 
+The run then closes the final non-ePK ATP-family packet slot as terminal
+review-only evidence. The preregistration
+`artifacts/v3_pfka_vs_neighbor_family_control_tranche_preregistration_20260521.json`
+freezes 15 rows before axis decisions: one rejected PfkA boundary row, two
+current metal-hydrolase controls, seven neighboring ATP-family controls, and
+five PfkA homolog hydroxyl-axis countercontrols. The decision packet
+`artifacts/v3_pfka_vs_neighbor_family_control_tranche_axis_decisions_20260521.json`
+records one `terminal_rejection`, two hydrolase `mechanism_match` controls,
+and 12 `out_of_scope` neighbor/homolog countercontrols, with 0 source-free
+PfkA-axis-ready rows and 0 import-ready candidates. The no-claim baseline
+`artifacts/v3_pfka_vs_neighbor_family_control_tranche_baseline_comparison_20260521.json`
+keeps the three over-floor current-geometry hits diagnostic only and preserves
+the homolog hydroxyl distances of 3.221-6.152 Angstrom as counterdiagnostic
+context. `artifacts/v3_atp_family_readiness_index_post_pfka_tranche_20260521.json`
+now marks all non-ePK ATP-family readiness slots closed review-only no-go; ePK
+remains research-lane-only. The current rollup is
+`artifacts/v3_main_loop_small_win_register_post_pfka_tranche_20260521.json`.
+No registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
 As of the 2026-05-20T23:16:33Z automation run,
 `artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates
 the fresh dirty sibling-worktree ePK outputs that appeared after the late-lane

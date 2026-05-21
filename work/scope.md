@@ -358,8 +358,8 @@ records all 10 M-CSA rows still top1 route to `metal_dependent_hydrolase`, with
 counterdiagnostic only. NDK remains no-go for production fingerprint expansion,
 thresholding, registry edits, or label import. The post-tranche ATP-family
 index now keeps ASKHA, ATP-grasp, GHKL, dNK, PfkB, GHMP, and NDK closed as
-review-only no-go surfaces. PfkA remains the only ATP-family packet slot not yet
-packaged.
+review-only no-go surfaces. PfkA was the remaining ATP-family packet slot
+before the follow-on PfkA packet and tranche below.
 Current PfkA readiness scope:
 `artifacts/v3_pfka_family_readiness_packet_20260520.json` is review-only and
 not a production fingerprint. It uses one expert-reviewed rejected PfkA boundary
@@ -373,9 +373,24 @@ production-separated from PfkB, dNK/NDK, GHMP, ASKHA, GHKL, ATP-grasp, ePK, and
 hydrolase lanes. The post-packet ATP-family index
 `artifacts/v3_atp_family_readiness_index_post_pfka_packet_20260520.json` marks
 PfkA as `readiness_packet_no_go`; all ATP-family packet slots now have either a
-closed tranche, research-lane-only no-go, or packet-only no-go status. The only
-bounded next PfkA step is a frozen PfkA-vs-neighbor-ATP-family control tranche
-before any scoring.
+closed tranche, research-lane-only no-go, or packet-only no-go status.
+`artifacts/v3_pfka_vs_neighbor_family_control_tranche_preregistration_20260521.json`
+and
+`artifacts/v3_pfka_vs_neighbor_family_control_tranche_axis_decisions_20260521.json`
+now close the bounded PfkA-vs-neighbor ATP-family tranche as review-only
+terminal evidence. The frozen 15-row set has one PfkA boundary row, two current
+metal-hydrolase controls, seven neighboring ATP-family countercontrols, and
+five PfkA homolog hydroxyl-axis countercontrols. The decisions are one
+`terminal_rejection`, two current hydrolase `mechanism_match` rows, and 12
+neighbor/homolog `out_of_scope` rows, with 0 source-free PfkA-axis-ready rows
+and 0 import-ready candidates. The no-claim baseline
+`artifacts/v3_pfka_vs_neighbor_family_control_tranche_baseline_comparison_20260521.json`
+keeps current geometry and homolog hydroxyl distances diagnostic only; no
+superiority, production scoring, thresholding, registry edit, fingerprint
+expansion, or label import is authorized.
+`artifacts/v3_atp_family_readiness_index_post_pfka_tranche_20260521.json` now
+marks all non-ePK ATP-family readiness slots closed review-only no-go while ePK
+remains research-lane-only.
 Current ASKHA readiness scope:
 `artifacts/v3_askha_family_readiness_packet_20260520.json` is review-only and
 not a production fingerprint. It uses four expert-supported ASKHA boundary rows
