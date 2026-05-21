@@ -1,0 +1,776 @@
+{
+  "excluded_rows_sample": [
+    {
+      "accession": "Q8N8N7",
+      "entry_name": "PTGR2_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.3.1.48"
+    },
+    {
+      "accession": "Q9H903",
+      "entry_name": "MTD2L_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.5.1.15"
+    },
+    {
+      "accession": "O75828",
+      "entry_name": "CBR3_HUMAN",
+      "exclusion_reasons": [
+        "prior_external_pool_or_imported_hard_negative",
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.6.5.10"
+    },
+    {
+      "accession": "Q53FA7",
+      "entry_name": "QORX_HUMAN",
+      "exclusion_reasons": [
+        "prior_external_pool_or_imported_hard_negative",
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.6.5.5"
+    },
+    {
+      "accession": "Q99536",
+      "entry_name": "VAT1_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.6.5.5"
+    },
+    {
+      "accession": "Q9BV79",
+      "entry_name": "MECR_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.3.1.104"
+    },
+    {
+      "accession": "Q8WWV3",
+      "entry_name": "RT4I1_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.6.5.-"
+    },
+    {
+      "accession": "Q9NUI1",
+      "entry_name": "DECR2_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.3.1.124"
+    },
+    {
+      "accession": "P31213",
+      "entry_name": "S5A2_HUMAN",
+      "exclusion_reasons": [
+        "missing_active_or_binding_site_annotation",
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.3.1.22"
+    },
+    {
+      "accession": "Q8N4T8",
+      "entry_name": "CBR4_HUMAN",
+      "exclusion_reasons": [
+        "prior_external_pool_or_imported_hard_negative",
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.6.5.10"
+    },
+    {
+      "accession": "O75891",
+      "entry_name": "AL1L1_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.5.1.6"
+    },
+    {
+      "accession": "Q14914",
+      "entry_name": "PTGR1_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.3.1.48"
+    },
+    {
+      "accession": "Q9BY49",
+      "entry_name": "PECR_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.3.1.38"
+    },
+    {
+      "accession": "P51857",
+      "entry_name": "AK1D1_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.3.1.3"
+    },
+    {
+      "accession": "P13995",
+      "entry_name": "MTDC_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.5.1.15"
+    },
+    {
+      "accession": "Q08257",
+      "entry_name": "QOR_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.6.5.5"
+    },
+    {
+      "accession": "Q9UDR5",
+      "entry_name": "AASS_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.5.1.8"
+    },
+    {
+      "accession": "Q14894",
+      "entry_name": "CRYM_HUMAN",
+      "exclusion_reasons": [
+        "missing_flavin_dehydrogenase_reductase_source_context_or_excluded_oxygenase_context"
+      ],
+      "primary_ec": "1.5.1.1"
+    }
+  ],
+  "frozen_before_scoring_statement": "The flavin dehydrogenase/reductase set was selected using only UniProt source metadata and prior-pool exclusions before deterministic sequence-neighbor diagnostics or terminal decisions were computed.",
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_prospective_external_flavin_dehydrogenase_minicampaign_freeze_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 20,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T01:34:12Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_flavin_dehydrogenase_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "primary_ec_cap": 2,
+    "prior_external_pool_excluded_accession_count": 791,
+    "production_fingerprint_count": 8,
+    "production_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selection_rules": [
+      "reviewed UniProtKB/Swiss-Prot rows from EC 1.5.1.*, 1.6.5.*, or 1.3.1.* with PDB cross-reference",
+      "require catalytic-activity annotation, sequence, active-site or binding-site annotation, and at least one PDB xref",
+      "require explicit FAD/FMN/flavin plus dehydrogenase/reductase source context before outcome scoring",
+      "exclude imported hard negatives and previously used prospective external candidate accessions",
+      "exclude monooxygenase/oxygenase/peroxidase/P450 contexts from this flavin dehydrogenase-reductase lane freeze",
+      "cap at two rows per primary EC number",
+      "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+    ],
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28%28ec%3A1.5.1.%2A%29+OR+%28ec%3A1.6.5.%2A%29+OR+%28ec%3A1.3.1.%2A%29%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=200",
+    "source_rows_available": 235,
+    "source_rows_reviewed_before_freeze_stop": 200,
+    "source_tsv_sha256": "7f6cf206ba80bb85f5ee20f773831197ab8fe90e6d41c3d1c28e90b94a67910f",
+    "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+  },
+  "rows": [
+    {
+      "accession": "P30043",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.-",
+        "1.5.1.30",
+        "2.6.99.-"
+      ],
+      "entry_name": "BLVRB_HUMAN",
+      "flavin_source_context_present": true,
+      "freeze_rank": 1,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 23,
+      "pdb_ids_sample": [
+        "1HDO",
+        "1HE2",
+        "1HE3",
+        "1HE4",
+        "1HE5",
+        "5OOG",
+        "5OOH",
+        "6OPL"
+      ],
+      "primary_ec": "1.5.1.30",
+      "protein_name": "Flavin reductase (NADPH) (FR) (EC 1.5.1.30) (Biliverdin reductase B) (BVR-B) (EC 1.3.1.-) (Biliverdin-IX beta-reductase) (Green heme-binding protein) (GHBP) (NADPH-dependent diaphorase) (NADPH-flavin reductase) (FLR) (S-nitroso-CoA-assisted nitrosyltransferase) (SNO-CoA-assisted nitrosyltransferase) (EC 2.6.99.-)",
+      "row_id": "uniprot:P30043",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 206,
+      "sequence_sha256": "eb0bcc4cc33b3b3953c028aa242b95c7a6b0b6a5774e4141010eb33071fe182f"
+    },
+    {
+      "accession": "Q9BRQ8",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.6.5.-"
+      ],
+      "entry_name": "FSP1_HUMAN",
+      "flavin_source_context_present": true,
+      "freeze_rank": 2,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 6,
+      "pdb_ids_sample": [
+        "8JSC",
+        "8WIK",
+        "8YO8",
+        "8YOQ",
+        "8YOX",
+        "9M3M"
+      ],
+      "primary_ec": "1.6.5.-",
+      "protein_name": "Ferroptosis suppressor protein 1 (FSP1) (EC 1.6.5.-) (Apoptosis-inducing factor homologous mitochondrion-associated inducer of death) (AMID) (p53-responsive gene 3 protein)",
+      "row_id": "uniprot:Q9BRQ8",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 373,
+      "sequence_sha256": "35c4d4a0b852aa7d62a2f5a6430274f99048c00865ae3d80a11d35728f6371f4"
+    },
+    {
+      "accession": "Q9NX74",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.91"
+      ],
+      "entry_name": "DUS2_HUMAN",
+      "flavin_source_context_present": true,
+      "freeze_rank": 3,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 11,
+      "pdb_ids_sample": [
+        "4WFS",
+        "4WFT",
+        "4XP7",
+        "5OC4",
+        "5OC5",
+        "5OC6",
+        "6EI8",
+        "6EZA"
+      ],
+      "primary_ec": "1.3.1.91",
+      "protein_name": "tRNA-dihydrouridine(20) synthase [NAD(P)+]-like (EC 1.3.1.91) (Dihydrouridine synthase 2) (Up-regulated in lung cancer protein 8) (URLC8) (tRNA-dihydrouridine synthase 2-like) (hDUS2)",
+      "row_id": "uniprot:Q9NX74",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 493,
+      "sequence_sha256": "8d1eed54bd82ad057c8fc2f6b5c1b3561b1b80b6f20fe8f900fb6de3d46cbddc"
+    },
+    {
+      "accession": "P42898",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.5.1.53"
+      ],
+      "entry_name": "MTHR_HUMAN",
+      "flavin_source_context_present": true,
+      "freeze_rank": 4,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "6FCX",
+        "8QA4",
+        "8QA5",
+        "8QA6"
+      ],
+      "primary_ec": "1.5.1.53",
+      "protein_name": "Methylenetetrahydrofolate reductase (NADPH) (EC 1.5.1.53)",
+      "row_id": "uniprot:P42898",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 656,
+      "sequence_sha256": "afd5e62b903eb642953b991f683bae2f9fc5b6220f2ea855627910d55974d7b4"
+    },
+    {
+      "accession": "P15559",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.6.5.2"
+      ],
+      "entry_name": "NQO1_HUMAN",
+      "flavin_source_context_present": true,
+      "freeze_rank": 5,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 26,
+      "pdb_ids_sample": [
+        "1D4A",
+        "1DXO",
+        "1GG5",
+        "1H66",
+        "1H69",
+        "1KBO",
+        "1KBQ",
+        "1QBG"
+      ],
+      "primary_ec": "1.6.5.2",
+      "protein_name": "NAD(P)H dehydrogenase [quinone] 1 (EC 1.6.5.2) (Azoreductase) (DT-diaphorase) (DTD) (Menadione reductase) (NAD(P)H:quinone oxidoreductase 1) (Phylloquinone reductase) (Quinone reductase 1) (QR1)",
+      "row_id": "uniprot:P15559",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 274,
+      "sequence_sha256": "f7316e90f68b60994d35f7513e4b9b781c43b6ab0a099325aa3dbf8890800df5"
+    },
+    {
+      "accession": "Q652L6",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.6.5.4"
+      ],
+      "entry_name": "MDAR3_ORYSJ",
+      "flavin_source_context_present": true,
+      "freeze_rank": 6,
+      "organism": "Oryza sativa subsp. japonica (Rice)",
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "5JCI",
+        "5JCK",
+        "5JCL",
+        "5JCM",
+        "5JCN"
+      ],
+      "primary_ec": "1.6.5.4",
+      "protein_name": "Monodehydroascorbate reductase 3, cytosolic (OsMDAR3) (OsMDHAR3) (EC 1.6.5.4)",
+      "row_id": "uniprot:Q652L6",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 435,
+      "sequence_sha256": "bb97f854a03e6c051c1e873ca254e76ca1855a35373c653620d8d3bd7305ef5a"
+    },
+    {
+      "accession": "P94424",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.5.1.39"
+      ],
+      "entry_name": "NFRA2_BACSU",
+      "flavin_source_context_present": true,
+      "freeze_rank": 7,
+      "organism": "Bacillus subtilis (strain 168)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1ZCH"
+      ],
+      "primary_ec": "1.5.1.39",
+      "protein_name": "FMN reductase [NAD(P)H] (EC 1.5.1.39) (NAD(P)H-dependent FMN reductase) (NAD(P)H-dependent nitro/flavin reductase) (NAD(P)H-dependent nitroreductase) (NAD(P)H-dependent oxidoreductase)",
+      "row_id": "uniprot:P94424",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 249,
+      "sequence_sha256": "8472febbfd5bdf08676636d6c38f770bd1a60f94820e2e2dc2ee19d2f2c7b350"
+    },
+    {
+      "accession": "P0AGE6",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.6.-.-",
+        "1.6.5.2"
+      ],
+      "entry_name": "CHRR_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 8,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "3SVL"
+      ],
+      "primary_ec": "1.6.5.2",
+      "protein_name": "Quinone reductase (EC 1.6.5.2) (Chromate reductase) (CHRR) (EC 1.6.-.-) (NAD(P)H dehydrogenase (quinone))",
+      "row_id": "uniprot:P0AGE6",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 188,
+      "sequence_sha256": "c4f9c368d16aaee238460aae00374d3c534341c6418b6695794cb64cd2a063aa"
+    },
+    {
+      "accession": "P77258",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.-"
+      ],
+      "entry_name": "NEMA_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 9,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "8BPP",
+        "8BPQ"
+      ],
+      "primary_ec": "1.3.1.-",
+      "protein_name": "N-ethylmaleimide reductase (NEM reductase) (EC 1.3.1.-) (N-ethylmaleimide reducing enzyme)",
+      "row_id": "uniprot:P77258",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 365,
+      "sequence_sha256": "ef9b7a030cb9b1f2b1750eca3e31af96596c4a433bd016b3a373ae8645f184dc"
+    },
+    {
+      "accession": "P41407",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.6.5.-",
+        "1.7.1.17"
+      ],
+      "entry_name": "AZOR_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 10,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 8,
+      "pdb_ids_sample": [
+        "1TIK",
+        "1V4B",
+        "2D5I",
+        "2Z98",
+        "2Z9B",
+        "2Z9C",
+        "2Z9D",
+        "7N2X"
+      ],
+      "primary_ec": "1.6.5.-",
+      "protein_name": "FMN-dependent NADH:quinone oxidoreductase (EC 1.6.5.-) (Azo-dye reductase) (FMN-dependent NADH-azo compound oxidoreductase) (FMN-dependent NADH-azoreductase) (EC 1.7.1.17)",
+      "row_id": "uniprot:P41407",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 201,
+      "sequence_sha256": "8a7a0576b47db4c49339df4512d6ab467c8a5a531805b5ae4fe89515a1212c05"
+    },
+    {
+      "accession": "Q8LAH7",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.42"
+      ],
+      "entry_name": "OPR1_ARATH",
+      "flavin_source_context_present": true,
+      "freeze_rank": 11,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "1VJI",
+        "2Q3R"
+      ],
+      "primary_ec": "1.3.1.42",
+      "protein_name": "12-oxophytodienoate reductase 1 (EC 1.3.1.42) (12-oxophytodienoate-10,11-reductase 1) (AtOPR1) (OPDA-reductase 1) (FS-AT-I)",
+      "row_id": "uniprot:Q8LAH7",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 372,
+      "sequence_sha256": "2813aabccae2aa2aa9b564d466422a5a83fa163dbafe6988f4a5f21450d47bd0"
+    },
+    {
+      "accession": "P0AEN1",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.5.1.41"
+      ],
+      "entry_name": "FRE_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 12,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1QFJ"
+      ],
+      "primary_ec": "1.5.1.41",
+      "protein_name": "NAD(P)H-flavin reductase (EC 1.5.1.41) (FMN reductase) (Ferrisiderophore reductase C) (NAD(P)H:flavin oxidoreductase) (Riboflavin reductase [NAD(P)H])",
+      "row_id": "uniprot:P0AEN1",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 233,
+      "sequence_sha256": "3eb29df196c2ff592d39cb078602c6acb0fcc8eb4a0e0b064229fd66a120c1a7"
+    },
+    {
+      "accession": "Q07923",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.5.1.39"
+      ],
+      "entry_name": "LOT6_YEAST",
+      "flavin_source_context_present": true,
+      "freeze_rank": 13,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1T0I"
+      ],
+      "primary_ec": "1.5.1.39",
+      "protein_name": "NAD(P)H-dependent FMN reductase LOT6 (FMN reductase LOT6) (EC 1.5.1.39) (Azoreductase LOT6) (FMN reductase [NAD(P)H]) (Low temperature response protein 6)",
+      "row_id": "uniprot:Q07923",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 191,
+      "sequence_sha256": "ace4dcda9343ee6de7200c0f32826fe223a11a9cd3b54fadb645887079ceed6c"
+    },
+    {
+      "accession": "P0AEZ1",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.5.1.54"
+      ],
+      "entry_name": "METF_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 14,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 10,
+      "pdb_ids_sample": [
+        "1B5T",
+        "1ZP3",
+        "1ZP4",
+        "1ZPT",
+        "1ZRQ",
+        "2FMN",
+        "2FMO",
+        "3FST"
+      ],
+      "primary_ec": "1.5.1.54",
+      "protein_name": "5,10-methylenetetrahydrofolate reductase (MTHFR) (EC 1.5.1.54) (NADH-dependent 5,10-methylenetetrahydrofolate reductase)",
+      "row_id": "uniprot:P0AEZ1",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 296,
+      "sequence_sha256": "05191848ce0de194a1f2e720bf887b37a7efbc86e428ae06fa81634e416de4f4"
+    },
+    {
+      "accession": "P21375",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.6"
+      ],
+      "entry_name": "OSM1_YEAST",
+      "flavin_source_context_present": true,
+      "freeze_rank": 15,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "5GLG",
+        "5ZYN",
+        "6KU6"
+      ],
+      "primary_ec": "1.3.1.6",
+      "protein_name": "Fumarate reductase 2 (FRDS2) (EC 1.3.1.6) (NADH-dependent fumarate reductase) (Osmotic sensitivity protein 1) (Soluble fumarate reductase, mitochondrial isozyme)",
+      "row_id": "uniprot:P21375",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 501,
+      "sequence_sha256": "4e91b91cf409bdc5eeeed8e4ffa9470b20ed940c9871e307cbade7cb5ab43bbc"
+    },
+    {
+      "accession": "Q9FUP0",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.42"
+      ],
+      "entry_name": "OPR3_ARATH",
+      "flavin_source_context_present": true,
+      "freeze_rank": 16,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "1Q45",
+        "2G5W",
+        "2Q3O"
+      ],
+      "primary_ec": "1.3.1.42",
+      "protein_name": "12-oxophytodienoate reductase 3 (EC 1.3.1.42) (12-oxophytodienoate-10,11-reductase 3) (AtOPR3) (OPDA-reductase 3) (Protein DELAYED DEHISCENCE 1) [Cleaved into: 12-oxophytodienoate reductase 3, N-terminally processed]",
+      "row_id": "uniprot:Q9FUP0",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 391,
+      "sequence_sha256": "d2feaf7412c510b2233812c636a0bfd74e9e487ab71190975c3878a2590f1d1d"
+    },
+    {
+      "accession": "P33371",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.-"
+      ],
+      "entry_name": "DUSC_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 17,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "3W9Z",
+        "4BF9",
+        "4BFA",
+        "4YCO",
+        "4YCP"
+      ],
+      "primary_ec": "1.3.1.-",
+      "protein_name": "tRNA-dihydrouridine(16) synthase (EC 1.3.1.-) (U16-specific dihydrouridine synthase) (U16-specific Dus) (tRNA-dihydrouridine synthase C)",
+      "row_id": "uniprot:P33371",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 315,
+      "sequence_sha256": "0a0a9f2133f9ea75a4c4403e4c5eb56b2e18bc5b6c485b403918b4d4e20de65e"
+    },
+    {
+      "accession": "P38489",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.-.-.-",
+        "1.5.1.34"
+      ],
+      "entry_name": "NFSB_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 18,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 25,
+      "pdb_ids_sample": [
+        "1DS7",
+        "1ICR",
+        "1ICU",
+        "1ICV",
+        "1IDT",
+        "1OO5",
+        "1OO6",
+        "1OON"
+      ],
+      "primary_ec": "1.5.1.34",
+      "protein_name": "Oxygen-insensitive NAD(P)H nitroreductase (EC 1.-.-.-) (Dihydropteridine reductase) (EC 1.5.1.34) (FMN-dependent nitroreductase)",
+      "row_id": "uniprot:P38489",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 217,
+      "sequence_sha256": "29f206447ee4cb553476ef8479bd5f34ccc179bcab186c8fe1f03e0c46569e62"
+    },
+    {
+      "accession": "P32340",
+      "active_site_annotation_present": false,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.6.5.9"
+      ],
+      "entry_name": "NDI1_YEAST",
+      "flavin_source_context_present": true,
+      "freeze_rank": 19,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "pdb_count": 10,
+      "pdb_ids_sample": [
+        "4G6G",
+        "4G6H",
+        "4G73",
+        "4G74",
+        "4G9K",
+        "4GAP",
+        "4GAV",
+        "5YJW"
+      ],
+      "primary_ec": "1.6.5.9",
+      "protein_name": "Rotenone-insensitive NADH-ubiquinone oxidoreductase, mitochondrial (EC 1.6.5.9) (Internal NADH dehydrogenase) (NADH:ubiquinone reductase (non-electrogenic))",
+      "row_id": "uniprot:P32340",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 513,
+      "sequence_sha256": "d1231522f42b3a63fe75a12b11e0d711d81ebb3e3f439d51a523374335a0a18d"
+    },
+    {
+      "accession": "P42593",
+      "active_site_annotation_present": true,
+      "binding_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "dehydrogenase_reductase_source_context_present": true,
+      "ec_numbers": [
+        "1.3.1.34"
+      ],
+      "entry_name": "FADH_ECOLI",
+      "flavin_source_context_present": true,
+      "freeze_rank": 20,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1PS9"
+      ],
+      "primary_ec": "1.3.1.34",
+      "protein_name": "2,4-dienoyl-CoA reductase [(2E)-enoyl-CoA-producing] (DCR) (EC 1.3.1.34) (2,4-dienoyl-coenzyme A reductase [NADPH])",
+      "row_id": "uniprot:P42593",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot oxidoreductase row with EC 1.5.1.*, 1.6.5.*, or 1.3.1.*, catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and flavin/FAD/FMN dehydrogenase-reductase source context; prior pools and oxygenase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 672,
+      "sequence_sha256": "8aefa9c88fc02660e965e7d1a8ced409083f23b5dc5e8f94f2cb45c895dff29e"
+    }
+  ]
+}

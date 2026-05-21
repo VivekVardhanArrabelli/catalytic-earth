@@ -1,0 +1,327 @@
+{
+  "caveats": [
+    "EC/keyword routing is lane context only; it does not convert needs_review rows into mechanism_match rows.",
+    "Deterministic sequence-neighbor checks are duplicate/leakage diagnostics, not mechanism evidence.",
+    "No ESM, Foldseek, or source-free geometry sidecar was generated for this frozen set, so no superiority claim is permitted."
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_dehydrogenase_minicampaign_baseline_comparison_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_freeze_20260521.json",
+    "created_at": "2026-05-21T01:34:12Z",
+    "curated_label_registry_edited": false,
+    "decision_artifact": "artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_decision_packet_20260521.json",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 20,
+    "method": "no_claim_flavin_dehydrogenase_external_minicampaign_baseline_comparison",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "sequence_baseline_artifact": "artifacts/v3_flavin_dehydrogenase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "deterministic_5mer_nearest_neighbor": {
+      "exact_current_reference_sequence_match_count": 4,
+      "mechanism_claim_count": 0,
+      "near_neighbor_alert_count": 4,
+      "reference_sequence_count": 737,
+      "terminal_decision_changed_by_sequence_baseline": true
+    },
+    "ec_keyword_name_proxy": {
+      "detects_source_free_axis_gap": false,
+      "import_claim_count": 0,
+      "route": "flavin_dehydrogenase_reductase_lane",
+      "row_count": 20
+    },
+    "esm2_sidecar": {
+      "status": "not_available_for_this_frozen_set"
+    },
+    "foldseek_sidecar": {
+      "status": "not_run_for_this_frozen_set"
+    },
+    "geometry_retrieval_triage": {
+      "geometry_scored_external_row_count": 0,
+      "non_abstention_count_at_0_4115": 0,
+      "status": "not_run_external_source_free_geometry_missing",
+      "text_or_label_fields_used_for_score_count": 0
+    },
+    "review_only_terminal_decisions": {
+      "import_ready_candidate_count": 0,
+      "mechanism_match_count": 0,
+      "row_count": 20,
+      "terminal_decision_counts": {
+        "needs_review": 16,
+        "terminal_rejection": 4
+      }
+    }
+  },
+  "rows": [
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.004,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P12944",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P30043",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.004,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q9X9P9",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9BRQ8",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0053,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P52197",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9NX74",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0075,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0AEZ1",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P42898",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P15559",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P15559",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0051,
+      "deterministic_5mer_nearest_current_reference_id": "ref__O52942",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q652L6",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0ABP8",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P94424",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.003,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P15474",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P0AGE6",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0067,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q9FEW9",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P77258",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0045,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00334",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P41407",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0512,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q9FEW9",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q8LAH7",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.004,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P83686",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P0AEN1",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0047,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00766",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q07923",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0AEZ1",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P0AEZ1",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0074,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q07WU7",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P21375",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.186,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q9FEW9",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9FUP0",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0043,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P22887",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P33371",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P38489",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P38489",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0034,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q9X9P9",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P32340",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P42593",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "flavin_dehydrogenase_reductase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P42593",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    }
+  ],
+  "task_definition": {
+    "comparison_question": "Do simple EC/keyword and deterministic sequence-neighbor baselines change terminal review-only decisions for the frozen flavin dehydrogenase/reductase mini-campaign?",
+    "frozen_rows_source": "artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_freeze_20260521.json",
+    "positive_claim_allowed": false
+  }
+}

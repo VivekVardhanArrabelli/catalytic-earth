@@ -405,6 +405,28 @@ covers 95 frozen rows across five 2026-05-21 mini-campaigns: 87
 sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
 mechanism-match, production-score, threshold, import, registry, or fingerprint
 claim is in scope.
+Current flavin dehydrogenase/reductase external mini-campaign scope:
+`artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_freeze_20260521.json`
+freezes 20 reviewed UniProtKB/Swiss-Prot oxidoreductase rows from EC 1.5.1.*,
+1.6.5.*, or 1.3.1.* before outcome scoring for the existing
+`flavin_dehydrogenase_reductase` lane. The freeze requires catalytic activity,
+PDB cross-reference, sequence, active-site or binding-site annotation,
+explicit FAD/FMN/flavin context, and dehydrogenase/reductase source context,
+while excluding prior external-pool/imported accessions and
+oxygenase/peroxidase/P450 contexts.
+`artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_decision_packet_20260521.json`
+records 16 `needs_review` rows and four exact current-reference duplicate
+terminal rejections (`P15559`, `P0AEZ1`, `P38489`, and `P42593`), with 0
+import-ready rows. The no-claim baseline
+`artifacts/v3_flavin_dehydrogenase_minicampaign_baseline_comparison_20260521.json`
+keeps EC/keyword routing and deterministic 5-mer context diagnostic only. The
+post-flavin-dehydrogenase rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_flavin_dehydrogenase_20260521.json`
+covers 115 frozen rows across six 2026-05-21 mini-campaigns: 103
+`needs_review`, 12 exact current-reference duplicate terminal rejections, 13
+sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
+mechanism-match, production-score, threshold, import, registry, or fingerprint
+claim is in scope.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

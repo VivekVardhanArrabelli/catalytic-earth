@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "artifact_id": "v3_main_loop_small_win_register_post_flavin_dehydrogenase_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T01:34:12Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "main_loop_small_win_register_post_flavin_dehydrogenase",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true
+  },
+  "next_main_loop_step": "continue prospective external mini-campaigns or choose a non-ePK readiness packet only if external sourcing is blocked",
+  "safety_rails": {
+    "artifact_upload_or_removal": false,
+    "fingerprint_expansion": false,
+    "label_import": false,
+    "production_scoring": false,
+    "registry_edit": false,
+    "removal_allowed_set_true": false
+  },
+  "wins": [
+    {
+      "artifact": "artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_freeze_20260521.json",
+      "status": "20 flavin dehydrogenase/reductase rows frozen before scoring"
+    },
+    {
+      "artifact": "artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_decision_packet_20260521.json",
+      "status": "16 needs_review and 4 terminal rejections; 0 import-ready"
+    },
+    {
+      "artifact": "artifacts/v3_flavin_dehydrogenase_minicampaign_baseline_comparison_20260521.json",
+      "status": "EC/keyword and deterministic 5-mer baselines remain diagnostic only"
+    },
+    {
+      "artifact": "artifacts/v3_external_minicampaign_modern_baseline_rollup_post_flavin_dehydrogenase_20260521.json",
+      "status": "115 total 2026-05-21 frozen external rows across six campaigns; no superiority or import claim"
+    }
+  ]
+}

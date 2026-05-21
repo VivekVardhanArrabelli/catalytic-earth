@@ -127,6 +127,29 @@ sequence-neighbor alerts, and 0 geometry-scored external rows. The current
 register is
 `artifacts/v3_main_loop_small_win_register_post_metal_phosphatase_20260521.json`.
 
+The same run also opens a sixth current-fingerprint external surface for
+`flavin_dehydrogenase_reductase`. The freeze artifact
+`artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_freeze_20260521.json`
+locks 20 reviewed UniProtKB/Swiss-Prot oxidoreductase rows from EC 1.5.1.*,
+1.6.5.*, or 1.3.1.* before scoring, requiring catalytic activity, PDB
+cross-reference, sequence, active-site or binding-site annotation, explicit
+FAD/FMN/flavin context, and dehydrogenase/reductase source context. Prior
+external-pool accessions, imported hard negatives, and oxygenase/peroxidase/
+P450 mixed contexts are excluded. The decision packet
+`artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_decision_packet_20260521.json`
+keeps 16 rows as `needs_review` under the existing flavin redox lane and
+terminally rejects four exact current-reference sequence duplicates (`P15559`,
+`P0AEZ1`, `P38489`, and `P42593`). The baseline comparison
+`artifacts/v3_flavin_dehydrogenase_minicampaign_baseline_comparison_20260521.json`
+again records only EC/keyword and deterministic 5-mer context. The post-flavin
+dehydrogenase rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_flavin_dehydrogenase_20260521.json`
+now covers 115 frozen rows across six 2026-05-21 external mini-campaigns: 103
+`needs_review`, 12 exact current-reference duplicate terminal rejections, 13
+sequence-neighbor alerts, and 0 geometry-scored external rows. The current
+register is
+`artifacts/v3_main_loop_small_win_register_post_flavin_dehydrogenase_20260521.json`.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late
