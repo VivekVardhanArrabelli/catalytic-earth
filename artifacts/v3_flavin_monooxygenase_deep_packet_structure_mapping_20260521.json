@@ -1,0 +1,5810 @@
+{
+  "entries": [
+    {
+      "accession": "O94851",
+      "active_or_cofactor_feature_count": 6,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_O94851.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": -11.24,
+            "y": 2.971,
+            "z": -4.622
+          },
+          "chain_name": "A",
+          "code": "CYS",
+          "resid": 97,
+          "residue_node_id": "uniprot:O94851:97",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            97,
+            97
+          ]
+        },
+        {
+          "ca": {
+            "x": -18.296,
+            "y": 13.282,
+            "z": -5.42
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 116,
+          "residue_node_id": "uniprot:O94851:116",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            116,
+            118
+          ]
+        },
+        {
+          "ca": {
+            "x": -17.549,
+            "y": 16.912,
+            "z": -6.392
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 117,
+          "residue_node_id": "uniprot:O94851:117",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            116,
+            118
+          ]
+        },
+        {
+          "ca": {
+            "x": -17.637,
+            "y": 15.985,
+            "z": -10.126
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 118,
+          "residue_node_id": "uniprot:O94851:118",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            116,
+            118
+          ]
+        },
+        {
+          "ca": {
+            "x": -10.29,
+            "y": 10.394,
+            "z": -17.178
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 123,
+          "residue_node_id": "uniprot:O94851:123",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            123,
+            125
+          ]
+        },
+        {
+          "ca": {
+            "x": -9.45,
+            "y": 8.367,
+            "z": -20.334
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 124,
+          "residue_node_id": "uniprot:O94851:124",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            123,
+            125
+          ]
+        },
+        {
+          "ca": {
+            "x": -5.996,
+            "y": 7.241,
+            "z": -18.94
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 125,
+          "residue_node_id": "uniprot:O94851:125",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            123,
+            125
+          ]
+        },
+        {
+          "ca": {
+            "x": -16.879,
+            "y": 17.916,
+            "z": 1.163
+          },
+          "chain_name": "A",
+          "code": "PHE",
+          "resid": 183,
+          "residue_node_id": "uniprot:O94851:183",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            183,
+            183
+          ]
+        },
+        {
+          "ca": {
+            "x": -3.037,
+            "y": 5.199,
+            "z": -24.344
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 298,
+          "residue_node_id": "uniprot:O94851:298",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            298,
+            298
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.282,
+            "y": 7.472,
+            "z": -3.655
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 398,
+          "residue_node_id": "uniprot:O94851:398",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            398,
+            398
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 12.52,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:116"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.404,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:117"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.511,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.617,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.709,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.835,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.989,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.476,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.343,
+          "left": "uniprot:O94851:97",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.831,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:117"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.467,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.515,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.023,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.25,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.174,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.618,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.273,
+          "left": "uniprot:O94851:116",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.848,
+          "left": "uniprot:O94851:117",
+          "right": "uniprot:O94851:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.544,
+          "left": "uniprot:O94851:117",
+          "right": "uniprot:O94851:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.248,
+          "left": "uniprot:O94851:117",
+          "right": "uniprot:O94851:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.607,
+          "left": "uniprot:O94851:117",
+          "right": "uniprot:O94851:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.651,
+          "left": "uniprot:O94851:117",
+          "right": "uniprot:O94851:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.886,
+          "left": "uniprot:O94851:117",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.511,
+          "left": "uniprot:O94851:117",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.618,
+          "left": "uniprot:O94851:118",
+          "right": "uniprot:O94851:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.141,
+          "left": "uniprot:O94851:118",
+          "right": "uniprot:O94851:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.019,
+          "left": "uniprot:O94851:118",
+          "right": "uniprot:O94851:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.478,
+          "left": "uniprot:O94851:118",
+          "right": "uniprot:O94851:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.058,
+          "left": "uniprot:O94851:118",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.109,
+          "left": "uniprot:O94851:118",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.844,
+          "left": "uniprot:O94851:123",
+          "right": "uniprot:O94851:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.611,
+          "left": "uniprot:O94851:123",
+          "right": "uniprot:O94851:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.89,
+          "left": "uniprot:O94851:123",
+          "right": "uniprot:O94851:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.443,
+          "left": "uniprot:O94851:123",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.083,
+          "left": "uniprot:O94851:123",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.891,
+          "left": "uniprot:O94851:124",
+          "right": "uniprot:O94851:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.668,
+          "left": "uniprot:O94851:124",
+          "right": "uniprot:O94851:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.2,
+          "left": "uniprot:O94851:124",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.484,
+          "left": "uniprot:O94851:124",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.229,
+          "left": "uniprot:O94851:125",
+          "right": "uniprot:O94851:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.491,
+          "left": "uniprot:O94851:125",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.383,
+          "left": "uniprot:O94851:125",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 31.685,
+          "left": "uniprot:O94851:183",
+          "right": "uniprot:O94851:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.058,
+          "left": "uniprot:O94851:183",
+          "right": "uniprot:O94851:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.851,
+          "left": "uniprot:O94851:298",
+          "right": "uniprot:O94851:398"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 10,
+      "row_id": "uniprot:O94851",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "O94851",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "O15229",
+      "active_or_cofactor_feature_count": 8,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_O15229.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": -4.99,
+            "y": 5.642,
+            "z": 7.054
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 19,
+          "residue_node_id": "uniprot:O15229:19",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            19,
+            19
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.275,
+            "y": 10.318,
+            "z": 19.031
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 37,
+          "residue_node_id": "uniprot:O15229:37",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.185,
+            "y": 11.41,
+            "z": 17.01
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 38,
+          "residue_node_id": "uniprot:O15229:38",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.281,
+            "y": 10.985,
+            "z": 18.543
+          },
+          "chain_name": "A",
+          "code": "ALA",
+          "resid": 39,
+          "residue_node_id": "uniprot:O15229:39",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": 3.757,
+            "y": 13.859,
+            "z": 16.433
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 40,
+          "residue_node_id": "uniprot:O15229:40",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": 1.49,
+            "y": 6.592,
+            "z": -6.297
+          },
+          "chain_name": "A",
+          "code": "ALA",
+          "resid": 57,
+          "residue_node_id": "uniprot:O15229:57",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            57,
+            57
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.604,
+            "y": 12.361,
+            "z": 1.325
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 111,
+          "residue_node_id": "uniprot:O15229:111",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            111,
+            111
+          ]
+        },
+        {
+          "ca": {
+            "x": 0.092,
+            "y": 5.487,
+            "z": 22.869
+          },
+          "chain_name": "A",
+          "code": "LEU",
+          "resid": 136,
+          "residue_node_id": "uniprot:O15229:136",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            136,
+            136
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.082,
+            "y": -0.278,
+            "z": 19.446
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 172,
+          "residue_node_id": "uniprot:O15229:172",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            172,
+            172
+          ]
+        },
+        {
+          "ca": {
+            "x": 0.648,
+            "y": -0.552,
+            "z": 7.801
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 304,
+          "residue_node_id": "uniprot:O15229:304",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            304,
+            304
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.285,
+            "y": 3.469,
+            "z": 1.044
+          },
+          "chain_name": "A",
+          "code": "MET",
+          "resid": 317,
+          "residue_node_id": "uniprot:O15229:317",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            317,
+            318
+          ]
+        },
+        {
+          "ca": {
+            "x": -3.845,
+            "y": 2.239,
+            "z": -1.559
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 318,
+          "residue_node_id": "uniprot:O15229:318",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            317,
+            318
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 12.877,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:37"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.119,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.609,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.231,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.871,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.646,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.612,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.447,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.409,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.387,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.331,
+          "left": "uniprot:O15229:19",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.85,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.608,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.154,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.242,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.105,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.559,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.364,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.386,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.478,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.122,
+          "left": "uniprot:O15229:37",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.814,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.546,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.95,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.164,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.429,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.378,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.207,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.832,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.88,
+          "left": "uniprot:O15229:38",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.859,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.238,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.276,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.33,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.301,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.848,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.376,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.762,
+          "left": "uniprot:O15229:39",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.971,
+          "left": "uniprot:O15229:40",
+          "right": "uniprot:O15229:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.226,
+          "left": "uniprot:O15229:40",
+          "right": "uniprot:O15229:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.178,
+          "left": "uniprot:O15229:40",
+          "right": "uniprot:O15229:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.551,
+          "left": "uniprot:O15229:40",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.084,
+          "left": "uniprot:O15229:40",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.24,
+          "left": "uniprot:O15229:40",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.727,
+          "left": "uniprot:O15229:40",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.624,
+          "left": "uniprot:O15229:57",
+          "right": "uniprot:O15229:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.22,
+          "left": "uniprot:O15229:57",
+          "right": "uniprot:O15229:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.651,
+          "left": "uniprot:O15229:57",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.827,
+          "left": "uniprot:O15229:57",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.447,
+          "left": "uniprot:O15229:57",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.358,
+          "left": "uniprot:O15229:57",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.753,
+          "left": "uniprot:O15229:111",
+          "right": "uniprot:O15229:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.099,
+          "left": "uniprot:O15229:111",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.578,
+          "left": "uniprot:O15229:111",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.709,
+          "left": "uniprot:O15229:111",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.343,
+          "left": "uniprot:O15229:111",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.994,
+          "left": "uniprot:O15229:136",
+          "right": "uniprot:O15229:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.243,
+          "left": "uniprot:O15229:136",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.961,
+          "left": "uniprot:O15229:136",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.955,
+          "left": "uniprot:O15229:136",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.736,
+          "left": "uniprot:O15229:172",
+          "right": "uniprot:O15229:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.079,
+          "left": "uniprot:O15229:172",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.97,
+          "left": "uniprot:O15229:172",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.097,
+          "left": "uniprot:O15229:304",
+          "right": "uniprot:O15229:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.751,
+          "left": "uniprot:O15229:304",
+          "right": "uniprot:O15229:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.853,
+          "left": "uniprot:O15229:317",
+          "right": "uniprot:O15229:318"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 12,
+      "row_id": "uniprot:O15229",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "O15229",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "Q7RTP6",
+      "active_or_cofactor_feature_count": 6,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_Q7RTP6.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": -2.603,
+            "y": 3.686,
+            "z": -1.782
+          },
+          "chain_name": "A",
+          "code": "CYS",
+          "resid": 97,
+          "residue_node_id": "uniprot:Q7RTP6:97",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            97,
+            97
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.867,
+            "y": 14.215,
+            "z": -8.941
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 116,
+          "residue_node_id": "uniprot:Q7RTP6:116",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            116,
+            118
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.527,
+            "y": 16.748,
+            "z": -10.055
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 117,
+          "residue_node_id": "uniprot:Q7RTP6:117",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            116,
+            118
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.466,
+            "y": 18.583,
+            "z": -6.676
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 118,
+          "residue_node_id": "uniprot:Q7RTP6:118",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            116,
+            118
+          ]
+        },
+        {
+          "ca": {
+            "x": -9.202,
+            "y": 15.849,
+            "z": 3.806
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 123,
+          "residue_node_id": "uniprot:Q7RTP6:123",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            123,
+            125
+          ]
+        },
+        {
+          "ca": {
+            "x": -9.292,
+            "y": 15.895,
+            "z": 7.646
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 124,
+          "residue_node_id": "uniprot:Q7RTP6:124",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            123,
+            125
+          ]
+        },
+        {
+          "ca": {
+            "x": -11.431,
+            "y": 12.681,
+            "z": 7.987
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 125,
+          "residue_node_id": "uniprot:Q7RTP6:125",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            123,
+            125
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.681,
+            "y": 12.163,
+            "z": -16.272
+          },
+          "chain_name": "A",
+          "code": "PHE",
+          "resid": 183,
+          "residue_node_id": "uniprot:Q7RTP6:183",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            183,
+            183
+          ]
+        },
+        {
+          "ca": {
+            "x": -13.708,
+            "y": 13.23,
+            "z": 13.922
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 298,
+          "residue_node_id": "uniprot:Q7RTP6:298",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            298,
+            298
+          ]
+        },
+        {
+          "ca": {
+            "x": -10.671,
+            "y": 2.507,
+            "z": -3.626
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 398,
+          "residue_node_id": "uniprot:Q7RTP6:398",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            398,
+            398
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 12.754,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:116"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.581,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:117"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.791,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.924,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.813,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.946,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.916,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.471,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.36,
+          "left": "uniprot:Q7RTP6:97",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.838,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:117"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.565,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.797,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.251,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.503,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.116,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.766,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.583,
+          "left": "uniprot:Q7RTP6:116",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.846,
+          "left": "uniprot:Q7RTP6:117",
+          "right": "uniprot:Q7RTP6:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.656,
+          "left": "uniprot:Q7RTP6:117",
+          "right": "uniprot:Q7RTP6:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.351,
+          "left": "uniprot:Q7RTP6:117",
+          "right": "uniprot:Q7RTP6:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.741,
+          "left": "uniprot:Q7RTP6:117",
+          "right": "uniprot:Q7RTP6:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.726,
+          "left": "uniprot:Q7RTP6:117",
+          "right": "uniprot:Q7RTP6:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.915,
+          "left": "uniprot:Q7RTP6:117",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.789,
+          "left": "uniprot:Q7RTP6:117",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.823,
+          "left": "uniprot:Q7RTP6:118",
+          "right": "uniprot:Q7RTP6:123"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.35,
+          "left": "uniprot:Q7RTP6:118",
+          "right": "uniprot:Q7RTP6:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.273,
+          "left": "uniprot:Q7RTP6:118",
+          "right": "uniprot:Q7RTP6:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.548,
+          "left": "uniprot:Q7RTP6:118",
+          "right": "uniprot:Q7RTP6:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.202,
+          "left": "uniprot:Q7RTP6:118",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.5,
+          "left": "uniprot:Q7RTP6:118",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.841,
+          "left": "uniprot:Q7RTP6:123",
+          "right": "uniprot:Q7RTP6:124"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.7,
+          "left": "uniprot:Q7RTP6:123",
+          "right": "uniprot:Q7RTP6:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.908,
+          "left": "uniprot:Q7RTP6:123",
+          "right": "uniprot:Q7RTP6:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.38,
+          "left": "uniprot:Q7RTP6:123",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.343,
+          "left": "uniprot:Q7RTP6:123",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.876,
+          "left": "uniprot:Q7RTP6:124",
+          "right": "uniprot:Q7RTP6:125"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.643,
+          "left": "uniprot:Q7RTP6:124",
+          "right": "uniprot:Q7RTP6:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.124,
+          "left": "uniprot:Q7RTP6:124",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.556,
+          "left": "uniprot:Q7RTP6:124",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.186,
+          "left": "uniprot:Q7RTP6:125",
+          "right": "uniprot:Q7RTP6:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.38,
+          "left": "uniprot:Q7RTP6:125",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.458,
+          "left": "uniprot:Q7RTP6:125",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 31.533,
+          "left": "uniprot:Q7RTP6:183",
+          "right": "uniprot:Q7RTP6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.001,
+          "left": "uniprot:Q7RTP6:183",
+          "right": "uniprot:Q7RTP6:398"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.788,
+          "left": "uniprot:Q7RTP6:298",
+          "right": "uniprot:Q7RTP6:398"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 10,
+      "row_id": "uniprot:Q7RTP6",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q7RTP6",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "P25535",
+      "active_or_cofactor_feature_count": 2,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_P25535.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": 12.761,
+            "y": 1.637,
+            "z": 0.581
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 49,
+          "residue_node_id": "uniprot:P25535:49",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            49,
+            52
+          ]
+        },
+        {
+          "ca": {
+            "x": 11.242,
+            "y": 4.631,
+            "z": -1.209
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 50,
+          "residue_node_id": "uniprot:P25535:50",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            49,
+            52
+          ]
+        },
+        {
+          "ca": {
+            "x": 7.675,
+            "y": 5.258,
+            "z": -2.403
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 51,
+          "residue_node_id": "uniprot:P25535:51",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            49,
+            52
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.52,
+            "y": 7.409,
+            "z": -5.332
+          },
+          "chain_name": "A",
+          "code": "ALA",
+          "resid": 52,
+          "residue_node_id": "uniprot:P25535:52",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            49,
+            52
+          ]
+        },
+        {
+          "ca": {
+            "x": 4.133,
+            "y": -0.36,
+            "z": -10.55
+          },
+          "chain_name": "A",
+          "code": "LEU",
+          "resid": 297,
+          "residue_node_id": "uniprot:P25535:297",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            297,
+            303
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.833,
+            "y": 2.224,
+            "z": -9.635
+          },
+          "chain_name": "A",
+          "code": "ALA",
+          "resid": 298,
+          "residue_node_id": "uniprot:P25535:298",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            297,
+            303
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.46,
+            "y": 2.149,
+            "z": -5.779
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 299,
+          "residue_node_id": "uniprot:P25535:299",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            297,
+            303
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.761,
+            "y": 3.249,
+            "z": -5.712
+          },
+          "chain_name": "A",
+          "code": "GLN",
+          "resid": 300,
+          "residue_node_id": "uniprot:P25535:300",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            297,
+            303
+          ]
+        },
+        {
+          "ca": {
+            "x": 1.623,
+            "y": 0.723,
+            "z": -3.006
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 301,
+          "residue_node_id": "uniprot:P25535:301",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            297,
+            303
+          ]
+        },
+        {
+          "ca": {
+            "x": 1.436,
+            "y": 3.267,
+            "z": -0.123
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 302,
+          "residue_node_id": "uniprot:P25535:302",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            297,
+            303
+          ]
+        },
+        {
+          "ca": {
+            "x": -0.756,
+            "y": 5.666,
+            "z": -2.209
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 303,
+          "residue_node_id": "uniprot:P25535:303",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            297,
+            303
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 3.805,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:50"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.92,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:51"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.355,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:52"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.224,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:297"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.826,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.967,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:299"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.925,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:300"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.737,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.463,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.378,
+          "left": "uniprot:P25535:49",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.813,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:51"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.857,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:52"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.755,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:297"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.81,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.065,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:299"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.701,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:300"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.537,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.96,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.084,
+          "left": "uniprot:P25535:50",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.813,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:52"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.511,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:297"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.888,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 4.748,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:299"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.256,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:300"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.587,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.935,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.443,
+          "left": "uniprot:P25535:51",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.658,
+          "left": "uniprot:P25535:52",
+          "right": "uniprot:P25535:297"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.745,
+          "left": "uniprot:P25535:52",
+          "right": "uniprot:P25535:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.279,
+          "left": "uniprot:P25535:52",
+          "right": "uniprot:P25535:299"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.62,
+          "left": "uniprot:P25535:52",
+          "right": "uniprot:P25535:300"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.608,
+          "left": "uniprot:P25535:52",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.375,
+          "left": "uniprot:P25535:52",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.107,
+          "left": "uniprot:P25535:52",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.848,
+          "left": "uniprot:P25535:297",
+          "right": "uniprot:P25535:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.871,
+          "left": "uniprot:P25535:297",
+          "right": "uniprot:P25535:299"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.19,
+          "left": "uniprot:P25535:297",
+          "right": "uniprot:P25535:300"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.024,
+          "left": "uniprot:P25535:297",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.364,
+          "left": "uniprot:P25535:297",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.392,
+          "left": "uniprot:P25535:297",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.875,
+          "left": "uniprot:P25535:298",
+          "right": "uniprot:P25535:299"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.746,
+          "left": "uniprot:P25535:298",
+          "right": "uniprot:P25535:300"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.564,
+          "left": "uniprot:P25535:298",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.986,
+          "left": "uniprot:P25535:298",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.162,
+          "left": "uniprot:P25535:298",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.86,
+          "left": "uniprot:P25535:299",
+          "right": "uniprot:P25535:300"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.755,
+          "left": "uniprot:P25535:299",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.647,
+          "left": "uniprot:P25535:299",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.785,
+          "left": "uniprot:P25535:299",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.873,
+          "left": "uniprot:P25535:300",
+          "right": "uniprot:P25535:301"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.744,
+          "left": "uniprot:P25535:300",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.521,
+          "left": "uniprot:P25535:300",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.849,
+          "left": "uniprot:P25535:301",
+          "right": "uniprot:P25535:302"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.543,
+          "left": "uniprot:P25535:301",
+          "right": "uniprot:P25535:303"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.862,
+          "left": "uniprot:P25535:302",
+          "right": "uniprot:P25535:303"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 11,
+      "row_id": "uniprot:P25535",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P25535",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "O88867",
+      "active_or_cofactor_feature_count": 8,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_O88867.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": -7.443,
+            "y": 0.564,
+            "z": 6.313
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 19,
+          "residue_node_id": "uniprot:O88867:19",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            19,
+            19
+          ]
+        },
+        {
+          "ca": {
+            "x": -11.788,
+            "y": -9.55,
+            "z": 12.895
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 37,
+          "residue_node_id": "uniprot:O88867:37",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": -9.339,
+            "y": -10.779,
+            "z": 10.21
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 38,
+          "residue_node_id": "uniprot:O88867:38",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": -10.17,
+            "y": -13.79,
+            "z": 8.013
+          },
+          "chain_name": "A",
+          "code": "ALA",
+          "resid": 39,
+          "residue_node_id": "uniprot:O88867:39",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": -6.443,
+            "y": -14.621,
+            "z": 7.446
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 40,
+          "residue_node_id": "uniprot:O88867:40",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            37,
+            40
+          ]
+        },
+        {
+          "ca": {
+            "x": 3.36,
+            "y": 4.221,
+            "z": -3.122
+          },
+          "chain_name": "A",
+          "code": "ALA",
+          "resid": 57,
+          "residue_node_id": "uniprot:O88867:57",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            57,
+            57
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.519,
+            "y": -3.825,
+            "z": 2.074
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 111,
+          "residue_node_id": "uniprot:O88867:111",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            111,
+            111
+          ]
+        },
+        {
+          "ca": {
+            "x": -17.461,
+            "y": -12.679,
+            "z": 8.575
+          },
+          "chain_name": "A",
+          "code": "LEU",
+          "resid": 136,
+          "residue_node_id": "uniprot:O88867:136",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            136,
+            136
+          ]
+        },
+        {
+          "ca": {
+            "x": -18.958,
+            "y": -9.199,
+            "z": 2.798
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 172,
+          "residue_node_id": "uniprot:O88867:172",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            172,
+            172
+          ]
+        },
+        {
+          "ca": {
+            "x": -11.658,
+            "y": -0.908,
+            "z": -1.025
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 304,
+          "residue_node_id": "uniprot:O88867:304",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            304,
+            304
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.241,
+            "y": 2.819,
+            "z": 0.066
+          },
+          "chain_name": "A",
+          "code": "MET",
+          "resid": 317,
+          "residue_node_id": "uniprot:O88867:317",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            317,
+            318
+          ]
+        },
+        {
+          "ca": {
+            "x": -3.867,
+            "y": 6.64,
+            "z": 0.351
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 318,
+          "residue_node_id": "uniprot:O88867:318",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            317,
+            318
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 12.826,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:37"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.143,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.709,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.26,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.802,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.682,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.759,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.501,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.589,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.373,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.233,
+          "left": "uniprot:O88867:19",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.836,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.666,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.164,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.993,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.83,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.787,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.389,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.385,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.353,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.959,
+          "left": "uniprot:O88867:37",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.819,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.549,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.749,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.974,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.5,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.246,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.134,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.714,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.75,
+          "left": "uniprot:O88867:38",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.86,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:40"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.129,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.193,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.397,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.203,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.807,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.343,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.712,
+          "left": "uniprot:O88867:39",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.723,
+          "left": "uniprot:O88867:40",
+          "right": "uniprot:O88867:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.024,
+          "left": "uniprot:O88867:40",
+          "right": "uniprot:O88867:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.245,
+          "left": "uniprot:O88867:40",
+          "right": "uniprot:O88867:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.409,
+          "left": "uniprot:O88867:40",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.941,
+          "left": "uniprot:O88867:40",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.065,
+          "left": "uniprot:O88867:40",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.561,
+          "left": "uniprot:O88867:40",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.615,
+          "left": "uniprot:O88867:57",
+          "right": "uniprot:O88867:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.257,
+          "left": "uniprot:O88867:57",
+          "right": "uniprot:O88867:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.706,
+          "left": "uniprot:O88867:57",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.008,
+          "left": "uniprot:O88867:57",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.361,
+          "left": "uniprot:O88867:57",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.375,
+          "left": "uniprot:O88867:57",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.8,
+          "left": "uniprot:O88867:111",
+          "right": "uniprot:O88867:136"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.151,
+          "left": "uniprot:O88867:111",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.802,
+          "left": "uniprot:O88867:111",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.689,
+          "left": "uniprot:O88867:111",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.38,
+          "left": "uniprot:O88867:111",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.908,
+          "left": "uniprot:O88867:136",
+          "right": "uniprot:O88867:172"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.26,
+          "left": "uniprot:O88867:136",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.076,
+          "left": "uniprot:O88867:136",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.013,
+          "left": "uniprot:O88867:136",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.69,
+          "left": "uniprot:O88867:172",
+          "right": "uniprot:O88867:304"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.196,
+          "left": "uniprot:O88867:172",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.014,
+          "left": "uniprot:O88867:172",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.372,
+          "left": "uniprot:O88867:304",
+          "right": "uniprot:O88867:317"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.935,
+          "left": "uniprot:O88867:304",
+          "right": "uniprot:O88867:318"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.85,
+          "left": "uniprot:O88867:317",
+          "right": "uniprot:O88867:318"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 12,
+      "row_id": "uniprot:O88867",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "O88867",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "H3JQW0",
+      "active_or_cofactor_feature_count": 11,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_H3JQW0.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": -3.908,
+            "y": -3.232,
+            "z": 10.14
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 20,
+          "residue_node_id": "uniprot:H3JQW0:20",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            20,
+            20
+          ]
+        },
+        {
+          "ca": {
+            "x": -13.81,
+            "y": -7.736,
+            "z": 3.826
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 39,
+          "residue_node_id": "uniprot:H3JQW0:39",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            39,
+            39
+          ]
+        },
+        {
+          "ca": {
+            "x": -2.903,
+            "y": -5.635,
+            "z": -0.369
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 47,
+          "residue_node_id": "uniprot:H3JQW0:47",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            47,
+            50
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.284,
+            "y": -9.121,
+            "z": -0.278
+          },
+          "chain_name": "A",
+          "code": "TRP",
+          "resid": 48,
+          "residue_node_id": "uniprot:H3JQW0:48",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            47,
+            50
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.604,
+            "y": -10.812,
+            "z": -1.167
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 49,
+          "residue_node_id": "uniprot:H3JQW0:49",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            47,
+            50
+          ]
+        },
+        {
+          "ca": {
+            "x": -5.306,
+            "y": -8.491,
+            "z": -4.155
+          },
+          "chain_name": "A",
+          "code": "TRP",
+          "resid": 50,
+          "residue_node_id": "uniprot:H3JQW0:50",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            47,
+            50
+          ]
+        },
+        {
+          "ca": {
+            "x": 7.172,
+            "y": -7.92,
+            "z": -3.375
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 57,
+          "residue_node_id": "uniprot:H3JQW0:57",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            57,
+            59
+          ]
+        },
+        {
+          "ca": {
+            "x": 8.143,
+            "y": -5.76,
+            "z": -0.412
+          },
+          "chain_name": "A",
+          "code": "LEU",
+          "resid": 58,
+          "residue_node_id": "uniprot:H3JQW0:58",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            57,
+            59
+          ]
+        },
+        {
+          "ca": {
+            "x": 10.435,
+            "y": -2.721,
+            "z": -0.675
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 59,
+          "residue_node_id": "uniprot:H3JQW0:59",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            57,
+            59
+          ]
+        },
+        {
+          "ca": {
+            "x": 10.435,
+            "y": -2.721,
+            "z": -0.675
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 59,
+          "residue_node_id": "uniprot:H3JQW0:59",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            59,
+            60
+          ]
+        },
+        {
+          "ca": {
+            "x": 10.843,
+            "y": -2.782,
+            "z": 3.163
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 60,
+          "residue_node_id": "uniprot:H3JQW0:60",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            59,
+            60
+          ]
+        },
+        {
+          "ca": {
+            "x": 7.481,
+            "y": -5.086,
+            "z": 7.75
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 65,
+          "residue_node_id": "uniprot:H3JQW0:65",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            65,
+            65
+          ]
+        },
+        {
+          "ca": {
+            "x": -19.634,
+            "y": -2.051,
+            "z": 2.848
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 112,
+          "residue_node_id": "uniprot:H3JQW0:112",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            112,
+            112
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.14,
+            "y": 2.835,
+            "z": -14.839
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 193,
+          "residue_node_id": "uniprot:H3JQW0:193",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            193,
+            199
+          ]
+        },
+        {
+          "ca": {
+            "x": 5.339,
+            "y": 3.194,
+            "z": -11.113
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 194,
+          "residue_node_id": "uniprot:H3JQW0:194",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            193,
+            199
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.549,
+            "y": 0.618,
+            "z": -8.511
+          },
+          "chain_name": "A",
+          "code": "ALA",
+          "resid": 195,
+          "residue_node_id": "uniprot:H3JQW0:195",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            193,
+            199
+          ]
+        },
+        {
+          "ca": {
+            "x": 4.152,
+            "y": -2.036,
+            "z": -9.927
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 196,
+          "residue_node_id": "uniprot:H3JQW0:196",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            193,
+            199
+          ]
+        },
+        {
+          "ca": {
+            "x": 5.216,
+            "y": -1.496,
+            "z": -13.582
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 197,
+          "residue_node_id": "uniprot:H3JQW0:197",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            193,
+            199
+          ]
+        },
+        {
+          "ca": {
+            "x": 8.918,
+            "y": -1.575,
+            "z": -12.544
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 198,
+          "residue_node_id": "uniprot:H3JQW0:198",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            193,
+            199
+          ]
+        },
+        {
+          "ca": {
+            "x": 8.318,
+            "y": -5.035,
+            "z": -10.936
+          },
+          "chain_name": "A",
+          "code": "GLN",
+          "resid": 199,
+          "residue_node_id": "uniprot:H3JQW0:199",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            193,
+            199
+          ]
+        },
+        {
+          "ca": {
+            "x": 4.013,
+            "y": 8.901,
+            "z": -19.379
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 216,
+          "residue_node_id": "uniprot:H3JQW0:216",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            216,
+            217
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.665,
+            "y": 9.893,
+            "z": -16.813
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 217,
+          "residue_node_id": "uniprot:H3JQW0:217",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            216,
+            217
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.507,
+            "y": 0.34,
+            "z": 7.159
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 446,
+          "residue_node_id": "uniprot:H3JQW0:446",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            446,
+            446
+          ]
+        },
+        {
+          "ca": {
+            "x": -0.112,
+            "y": 9.957,
+            "z": -5.281
+          },
+          "chain_name": "A",
+          "code": "TRP",
+          "resid": 501,
+          "residue_node_id": "uniprot:H3JQW0:501",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ],
+          "source_feature_range": [
+            501,
+            501
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 12.578,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.827,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:47"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.252,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:48"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.63,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.296,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:50"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.094,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.216,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:58"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.971,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.971,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.324,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.784,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.375,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 27.599,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.052,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.726,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.658,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.475,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.112,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.432,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 32.883,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 31.789,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.925,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.644,
+          "left": "uniprot:H3JQW0:20",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.873,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:47"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.254,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:48"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.915,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.687,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:50"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.184,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.445,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:58"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.164,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.164,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.155,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.811,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.197,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.294,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.633,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.229,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.33,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.532,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.679,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.737,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 33.659,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 34.0,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.509,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.158,
+          "left": "uniprot:H3JQW0:39",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.845,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:48"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.507,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.316,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:50"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.759,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.047,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:58"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.656,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.656,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.476,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.193,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.41,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.05,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.165,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.955,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.413,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.051,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.449,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.425,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.91,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.557,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.029,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.584,
+          "left": "uniprot:H3JQW0:47",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.83,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.622,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:50"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.085,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.009,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:58"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.359,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.359,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.11,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.552,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.912,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.251,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.69,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.966,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.147,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.655,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.649,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.916,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.79,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.422,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.617,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.758,
+          "left": "uniprot:H3JQW0:48",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.848,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:50"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.325,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.732,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:58"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.084,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.084,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.94,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.073,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.854,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.104,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.848,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.578,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.18,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.367,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.94,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.198,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.187,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.293,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.629,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.644,
+          "left": "uniprot:H3JQW0:49",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.515,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:57"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.225,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:58"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.123,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.123,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.626,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.8,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.199,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.325,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.27,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.572,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.823,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.764,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.903,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.606,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.922,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.328,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.341,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.198,
+          "left": "uniprot:H3JQW0:50",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.793,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:58"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.706,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.706,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.09,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.484,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.138,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.753,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.666,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.983,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.31,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.218,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.286,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.173,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.432,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.319,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.176,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.398,
+          "left": "uniprot:H3JQW0:57",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.815,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.815,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.38,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.216,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.213,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.912,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.232,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.431,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.97,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.149,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.857,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.55,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.326,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.72,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.238,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.409,
+          "left": "uniprot:H3JQW0:58",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 0.0,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:59"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.86,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.236,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 30.282,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.809,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.035,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.362,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.205,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.976,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.02,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.73,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.938,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.827,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.558,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.123,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.86,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:60"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.236,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 30.282,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.809,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.035,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.362,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.205,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.976,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.02,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.73,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.938,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.827,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.558,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.123,
+          "left": "uniprot:H3JQW0:59",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.136,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:65"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 30.487,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.436,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.426,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.895,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.72,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.712,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.87,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.499,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.292,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.024,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.757,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.804,
+          "left": "uniprot:H3JQW0:60",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 27.721,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:112"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.975,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.711,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.258,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.244,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.75,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.646,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.705,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 30.719,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.782,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.385,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.301,
+          "left": "uniprot:H3JQW0:65",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 31.639,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:193"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.087,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.665,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 27.0,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.796,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 32.44,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 31.308,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 34.252,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 34.941,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.683,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.318,
+          "left": "uniprot:H3JQW0:112",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.828,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.718,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.198,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 4.603,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.695,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.051,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.87,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.348,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.435,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.46,
+          "left": "uniprot:H3JQW0:193",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.856,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:195"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.493,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.302,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.132,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.753,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.132,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.895,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.709,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.462,
+          "left": "uniprot:H3JQW0:194",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.846,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.653,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.166,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.4,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.898,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.448,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.185,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.917,
+          "left": "uniprot:H3JQW0:195",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.845,
+          "left": "uniprot:H3JQW0:196",
+          "right": "uniprot:H3JQW0:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.457,
+          "left": "uniprot:H3JQW0:196",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.231,
+          "left": "uniprot:H3JQW0:196",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.456,
+          "left": "uniprot:H3JQW0:196",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.001,
+          "left": "uniprot:H3JQW0:196",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.329,
+          "left": "uniprot:H3JQW0:196",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.55,
+          "left": "uniprot:H3JQW0:196",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.846,
+          "left": "uniprot:H3JQW0:197",
+          "right": "uniprot:H3JQW0:198"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.399,
+          "left": "uniprot:H3JQW0:197",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.965,
+          "left": "uniprot:H3JQW0:197",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.927,
+          "left": "uniprot:H3JQW0:197",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.998,
+          "left": "uniprot:H3JQW0:197",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.115,
+          "left": "uniprot:H3JQW0:197",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.862,
+          "left": "uniprot:H3JQW0:198",
+          "right": "uniprot:H3JQW0:199"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.436,
+          "left": "uniprot:H3JQW0:198",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.442,
+          "left": "uniprot:H3JQW0:198",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.808,
+          "left": "uniprot:H3JQW0:198",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.349,
+          "left": "uniprot:H3JQW0:198",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.853,
+          "left": "uniprot:H3JQW0:199",
+          "right": "uniprot:H3JQW0:216"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.128,
+          "left": "uniprot:H3JQW0:199",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.751,
+          "left": "uniprot:H3JQW0:199",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.105,
+          "left": "uniprot:H3JQW0:199",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.821,
+          "left": "uniprot:H3JQW0:216",
+          "right": "uniprot:H3JQW0:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 27.925,
+          "left": "uniprot:H3JQW0:216",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.727,
+          "left": "uniprot:H3JQW0:216",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.138,
+          "left": "uniprot:H3JQW0:217",
+          "right": "uniprot:H3JQW0:446"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.376,
+          "left": "uniprot:H3JQW0:217",
+          "right": "uniprot:H3JQW0:501"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.94,
+          "left": "uniprot:H3JQW0:446",
+          "right": "uniprot:H3JQW0:501"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 24,
+      "row_id": "uniprot:H3JQW0",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "H3JQW0",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "Q6F4M8",
+      "active_or_cofactor_feature_count": 4,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_Q6F4M8.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": 10.373,
+            "y": 0.651,
+            "z": -1.985
+          },
+          "chain_name": "A",
+          "code": "PRO",
+          "resid": 153,
+          "residue_node_id": "uniprot:Q6F4M8:153",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            153,
+            155
+          ]
+        },
+        {
+          "ca": {
+            "x": 13.143,
+            "y": 3.216,
+            "z": -1.245
+          },
+          "chain_name": "A",
+          "code": "MET",
+          "resid": 154,
+          "residue_node_id": "uniprot:Q6F4M8:154",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            153,
+            155
+          ]
+        },
+        {
+          "ca": {
+            "x": 12.873,
+            "y": 5.628,
+            "z": -4.202
+          },
+          "chain_name": "A",
+          "code": "PHE",
+          "resid": 155,
+          "residue_node_id": "uniprot:Q6F4M8:155",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            153,
+            155
+          ]
+        },
+        {
+          "ca": {
+            "x": 15.518,
+            "y": 17.21,
+            "z": 0.026
+          },
+          "chain_name": "A",
+          "code": "GLN",
+          "resid": 159,
+          "residue_node_id": "uniprot:Q6F4M8:159",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            159,
+            162
+          ]
+        },
+        {
+          "ca": {
+            "x": 19.007,
+            "y": 18.785,
+            "z": 0.039
+          },
+          "chain_name": "A",
+          "code": "PHE",
+          "resid": 160,
+          "residue_node_id": "uniprot:Q6F4M8:160",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            159,
+            162
+          ]
+        },
+        {
+          "ca": {
+            "x": 20.082,
+            "y": 22.269,
+            "z": -1.155
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 161,
+          "residue_node_id": "uniprot:Q6F4M8:161",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            159,
+            162
+          ]
+        },
+        {
+          "ca": {
+            "x": 17.795,
+            "y": 23.687,
+            "z": -3.917
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 162,
+          "residue_node_id": "uniprot:Q6F4M8:162",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            159,
+            162
+          ]
+        },
+        {
+          "ca": {
+            "x": 7.368,
+            "y": 3.357,
+            "z": 4.974
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 194,
+          "residue_node_id": "uniprot:Q6F4M8:194",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            194,
+            194
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.687,
+            "y": 13.271,
+            "z": -15.865
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 461,
+          "residue_node_id": "uniprot:Q6F4M8:461",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            461,
+            464
+          ]
+        },
+        {
+          "ca": {
+            "x": -0.183,
+            "y": 15.923,
+            "z": -18.21
+          },
+          "chain_name": "A",
+          "code": "MET",
+          "resid": 462,
+          "residue_node_id": "uniprot:Q6F4M8:462",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            461,
+            464
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.844,
+            "y": 13.629,
+            "z": -18.866
+          },
+          "chain_name": "A",
+          "code": "GLN",
+          "resid": 463,
+          "residue_node_id": "uniprot:Q6F4M8:463",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            461,
+            464
+          ]
+        },
+        {
+          "ca": {
+            "x": 0.455,
+            "y": 10.803,
+            "z": -19.991
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 464,
+          "residue_node_id": "uniprot:Q6F4M8:464",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ],
+          "source_feature_range": [
+            461,
+            464
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 3.847,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:154"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.995,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:155"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.456,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:159"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.186,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:160"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.713,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:161"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.279,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:162"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.049,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.302,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.656,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.585,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.927,
+          "left": "uniprot:Q6F4M8:153",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.826,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:155"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.251,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:159"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.686,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:160"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.277,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:161"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.162,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:162"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.488,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.125,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.037,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 22.913,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.874,
+          "left": "uniprot:Q6F4M8:154",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.61,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:159"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.123,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:160"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.39,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:161"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.72,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:162"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.939,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.16,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.741,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.484,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.743,
+          "left": "uniprot:Q6F4M8:155",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.828,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:160"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.915,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:161"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.917,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:162"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.817,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.75,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.098,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.03,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.858,
+          "left": "uniprot:Q6F4M8:159",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.837,
+          "left": "uniprot:Q6F4M8:160",
+          "right": "uniprot:Q6F4M8:161"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.415,
+          "left": "uniprot:Q6F4M8:160",
+          "right": "uniprot:Q6F4M8:162"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.946,
+          "left": "uniprot:Q6F4M8:160",
+          "right": "uniprot:Q6F4M8:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.676,
+          "left": "uniprot:Q6F4M8:160",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.636,
+          "left": "uniprot:Q6F4M8:160",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.401,
+          "left": "uniprot:Q6F4M8:160",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.445,
+          "left": "uniprot:Q6F4M8:160",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.856,
+          "left": "uniprot:Q6F4M8:161",
+          "right": "uniprot:Q6F4M8:162"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.598,
+          "left": "uniprot:Q6F4M8:161",
+          "right": "uniprot:Q6F4M8:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 27.771,
+          "left": "uniprot:Q6F4M8:161",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 27.236,
+          "left": "uniprot:Q6F4M8:161",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.182,
+          "left": "uniprot:Q6F4M8:161",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.521,
+          "left": "uniprot:Q6F4M8:161",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.517,
+          "left": "uniprot:Q6F4M8:162",
+          "right": "uniprot:Q6F4M8:194"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.116,
+          "left": "uniprot:Q6F4M8:162",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.244,
+          "left": "uniprot:Q6F4M8:162",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.413,
+          "left": "uniprot:Q6F4M8:162",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.927,
+          "left": "uniprot:Q6F4M8:162",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 24.79,
+          "left": "uniprot:Q6F4M8:194",
+          "right": "uniprot:Q6F4M8:461"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 27.43,
+          "left": "uniprot:Q6F4M8:194",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.35,
+          "left": "uniprot:Q6F4M8:194",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 26.953,
+          "left": "uniprot:Q6F4M8:194",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.846,
+          "left": "uniprot:Q6F4M8:461",
+          "right": "uniprot:Q6F4M8:462"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.446,
+          "left": "uniprot:Q6F4M8:461",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.263,
+          "left": "uniprot:Q6F4M8:461",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.854,
+          "left": "uniprot:Q6F4M8:462",
+          "right": "uniprot:Q6F4M8:463"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.458,
+          "left": "uniprot:Q6F4M8:462",
+          "right": "uniprot:Q6F4M8:464"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.868,
+          "left": "uniprot:Q6F4M8:463",
+          "right": "uniprot:Q6F4M8:464"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 12,
+      "row_id": "uniprot:Q6F4M8",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q6F4M8",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "uniprot_feature_fetch_error": null
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_structure_mapping_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_coordinate_materialization_20260521.json",
+    "created_at": "2026-05-21T14:59:26Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "mapped_candidate_count": 7,
+    "method": "flavin_monooxygenase_deep_packet_structure_mapping_review_only",
+    "partial_or_missing_candidate_count": 0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_geometry_scored_count": 0,
+    "source_method": "uniprot_active_or_cofactor_binding_positions_mapped_to_alphafold_ca",
+    "source_separation_note": "UniProt active/binding-site positions seed coordinate mapping only; EC/name/prose are review context and no geometry score or import decision is made here. Binding-site ranges are expanded residue-by-residue before CA mapping.",
+    "status_counts": {
+      "ok": 7
+    },
+    "structural_duplicate_screened_count": 0,
+    "target_current_fingerprint_lane": "flavin_monooxygenase"
+  }
+}

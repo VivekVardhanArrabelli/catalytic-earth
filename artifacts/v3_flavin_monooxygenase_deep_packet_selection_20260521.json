@@ -1,0 +1,218 @@
+{
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_selection_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T14:48:42Z",
+    "curated_label_registry_edited": false,
+    "excluded_exact_current_reference_duplicate_count": 1,
+    "fingerprint_registry_edited": false,
+    "method": "flavin_monooxygenase_deep_packet_selection",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_decision_packet_artifact": "artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json",
+    "source_freeze_artifact": "artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json",
+    "target_current_fingerprint_lane": "flavin_monooxygenase"
+  },
+  "rows": [
+    {
+      "accession": "O94851",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.003,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P16753",
+      "ec_numbers": [
+        "1.14.13.225"
+      ],
+      "entry_name": "MICA2_HUMAN",
+      "flavin_binding_annotation_present": true,
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "2E9K",
+        "5SZH",
+        "5SZI",
+        "5SZJ",
+        "5SZK"
+      ],
+      "primary_ec": "1.14.13.225",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O94851",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selection_rank": 1,
+      "selection_reason": "selected from the already frozen flavin monooxygenase mini-campaign before deep geometry/Foldseek scoring: needs_review row, explicit flavin context, PDB cross-reference, catalytic activity annotation, and no exact current-reference sequence duplicate",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "source_freeze_rank": 1,
+      "target_current_fingerprint_lane": "flavin_monooxygenase"
+    },
+    {
+      "accession": "O15229",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.005,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0A9P4",
+      "ec_numbers": [
+        "1.14.13.9"
+      ],
+      "entry_name": "KMO_HUMAN",
+      "flavin_binding_annotation_present": true,
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "5X68"
+      ],
+      "primary_ec": "1.14.13.9",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O15229",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selection_rank": 2,
+      "selection_reason": "selected from the already frozen flavin monooxygenase mini-campaign before deep geometry/Foldseek scoring: needs_review row, explicit flavin context, PDB cross-reference, catalytic activity annotation, and no exact current-reference sequence duplicate",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "source_freeze_rank": 2,
+      "target_current_fingerprint_lane": "flavin_monooxygenase"
+    },
+    {
+      "accession": "Q7RTP6",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0025,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P27002",
+      "ec_numbers": [
+        "1.14.13.225"
+      ],
+      "entry_name": "MICA3_HUMAN",
+      "flavin_binding_annotation_present": true,
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "2D88",
+        "5SZG",
+        "6ICI"
+      ],
+      "primary_ec": "1.14.13.225",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q7RTP6",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selection_rank": 3,
+      "selection_reason": "selected from the already frozen flavin monooxygenase mini-campaign before deep geometry/Foldseek scoring: needs_review row, explicit flavin context, PDB cross-reference, catalytic activity annotation, and no exact current-reference sequence duplicate",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "source_freeze_rank": 3,
+      "target_current_fingerprint_lane": "flavin_monooxygenase"
+    },
+    {
+      "accession": "P25535",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0036,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P07378",
+      "ec_numbers": [
+        "1.14.13.240"
+      ],
+      "entry_name": "UBII_ECOLI",
+      "flavin_binding_annotation_present": true,
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "4K22"
+      ],
+      "primary_ec": "1.14.13.240",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P25535",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selection_rank": 4,
+      "selection_reason": "selected from the already frozen flavin monooxygenase mini-campaign before deep geometry/Foldseek scoring: needs_review row, explicit flavin context, PDB cross-reference, catalytic activity annotation, and no exact current-reference sequence duplicate",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "source_freeze_rank": 4,
+      "target_current_fingerprint_lane": "flavin_monooxygenase"
+    },
+    {
+      "accession": "O88867",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0033,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P24630",
+      "ec_numbers": [
+        "1.14.13.9"
+      ],
+      "entry_name": "KMO_RAT",
+      "flavin_binding_annotation_present": true,
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "6LKD",
+        "6LKE"
+      ],
+      "primary_ec": "1.14.13.9",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O88867",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selection_rank": 5,
+      "selection_reason": "selected from the already frozen flavin monooxygenase mini-campaign before deep geometry/Foldseek scoring: needs_review row, explicit flavin context, PDB cross-reference, catalytic activity annotation, and no exact current-reference sequence duplicate",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "source_freeze_rank": 5,
+      "target_current_fingerprint_lane": "flavin_monooxygenase"
+    },
+    {
+      "accession": "H3JQW0",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P26297",
+      "ec_numbers": [
+        "1.14.13.160"
+      ],
+      "entry_name": "OTEMO_PSEPU",
+      "flavin_binding_annotation_present": true,
+      "pdb_count": 6,
+      "pdb_ids_sample": [
+        "3UOV",
+        "3UOX",
+        "3UOY",
+        "3UOZ",
+        "3UP4",
+        "3UP5"
+      ],
+      "primary_ec": "1.14.13.160",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:H3JQW0",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selection_rank": 6,
+      "selection_reason": "selected from the already frozen flavin monooxygenase mini-campaign before deep geometry/Foldseek scoring: needs_review row, explicit flavin context, PDB cross-reference, catalytic activity annotation, and no exact current-reference sequence duplicate",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "source_freeze_rank": 6,
+      "target_current_fingerprint_lane": "flavin_monooxygenase"
+    },
+    {
+      "accession": "Q6F4M8",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "countable_label_candidate": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0037,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P18314",
+      "ec_numbers": [
+        "1.14.13.166",
+        "1.14.13.29"
+      ],
+      "entry_name": "NPCA_RHOOP",
+      "flavin_binding_annotation_present": true,
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "9J9J"
+      ],
+      "primary_ec": "1.14.13.166",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q6F4M8",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selection_rank": 7,
+      "selection_reason": "selected from the already frozen flavin monooxygenase mini-campaign before deep geometry/Foldseek scoring: needs_review row, explicit flavin context, PDB cross-reference, catalytic activity annotation, and no exact current-reference sequence duplicate",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "source_freeze_rank": 7,
+      "target_current_fingerprint_lane": "flavin_monooxygenase"
+    }
+  ]
+}

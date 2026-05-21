@@ -1,0 +1,66 @@
+{
+  "caveats": [
+    "EC/keyword/source prose can explain candidate selection or review context only and is not counted as predictive evidence.",
+    "Structure mapping uses active/cofactor residue positions only; no geometry score has been computed from the mapped coordinates in this artifact.",
+    "Targeted current-FMO Foldseek hits reject three rows as duplicate/leakage but cannot establish duplicate-clear for any remaining row.",
+    "Full current-countable duplicate/leakage screening is still required before any mechanism-match review-ready decision for non-hit rows.",
+    "No ESM sidecar is available for this deep packet, so no ESM comparison or superiority claim is made."
+  ],
+  "frozen_rows": [
+    "uniprot:O94851",
+    "uniprot:O15229",
+    "uniprot:Q7RTP6",
+    "uniprot:P25535",
+    "uniprot:O88867",
+    "uniprot:H3JQW0",
+    "uniprot:Q6F4M8"
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_post_structure_mapping_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "created_at": "2026-05-21T14:59:26Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "flavin_monooxygenase_deep_packet_post_structure_mapping_modern_baseline_benchmark",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "structure_mapping_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_structure_mapping_20260521.json",
+    "superiority_claim_permitted": false,
+    "targeted_current_fingerprint_rescue_screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_targeted_current_fmo_rescue_screen_20260521.json",
+    "terminal_decision_packet_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_structure_mapping_20260521.json"
+  },
+  "metrics": {
+    "candidate_count": 7,
+    "deterministic_sequence_baseline_available": true,
+    "ec_keyword_routing_available": true,
+    "esm_sidecar_status": "not_available_for_this_deep_packet",
+    "foldseek_full_current_countable_screen_available": false,
+    "foldseek_targeted_current_fmo_screen_available": true,
+    "mapped_candidate_count": 7,
+    "source_free_geometry_scored_count": 0,
+    "superiority_claim": false,
+    "targeted_current_fingerprint_rescue_high_tm_candidate_count": 3,
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 4,
+      "terminal_rejection_duplicate_or_leakage": 3
+    }
+  },
+  "task_definition": {
+    "frozen_rows": [
+      "uniprot:O94851",
+      "uniprot:O15229",
+      "uniprot:Q7RTP6",
+      "uniprot:P25535",
+      "uniprot:O88867",
+      "uniprot:H3JQW0",
+      "uniprot:Q6F4M8"
+    ],
+    "selection_frozen_before_scoring": true,
+    "source_context_policy": "EC/keyword/protein/source context may explain selection but is not counted as predictive evidence.",
+    "target_current_fingerprint_lane": "flavin_monooxygenase"
+  }
+}

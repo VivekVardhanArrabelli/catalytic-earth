@@ -1,0 +1,137 @@
+{
+  "caveats": [
+    "Targeted current-fingerprint Foldseek hits are duplicate/leakage rejection evidence only; they do not establish duplicate-clear for non-hit rows.",
+    "Source-free flavin/cofactor geometry mapping has not been run, so no mechanism-match or superiority claim is permitted.",
+    "ESM sidecars are unavailable for this deep packet."
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_targeted_fmo_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_coordinate_materialization_20260521.json",
+    "created_at": "2026-05-21T14:50:43Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "flavin_monooxygenase_deep_packet_targeted_fmo_modern_baseline_benchmark",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_minicampaign_baseline_artifact": "artifacts/v3_flavin_monooxygenase_minicampaign_baseline_comparison_20260521.json",
+    "superiority_claim_permitted": false,
+    "targeted_current_fingerprint_rescue_screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_targeted_current_fmo_rescue_screen_20260521.json",
+    "terminal_decision_packet_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_targeted_fmo_rescue_screen_20260521.json"
+  },
+  "metrics": {
+    "deterministic_5mer_nearest_neighbor": {
+      "exact_current_reference_sequence_match_count": 0,
+      "near_neighbor_alert_count": 0,
+      "supports_duplicate_clear_claim": false
+    },
+    "ec_keyword_baseline": {
+      "rows_routed_to_existing_lane_count": 7,
+      "supports_mechanism_match_claim": false
+    },
+    "esm_sidecar_status": "not_available_for_this_deep_packet",
+    "foldseek_current_countable_pair_cache_complete": false,
+    "geometry_retrieval_triage": {
+      "status": "not_run_source_free_geometry_mapping_missing",
+      "supports_superiority_claim": false,
+      "text_or_label_fields_used_for_score_count": 0
+    },
+    "superiority_claim": false,
+    "targeted_current_fingerprint_rescue_high_tm_candidate_count": 3,
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 4,
+      "terminal_rejection_duplicate_or_leakage": 3
+    }
+  },
+  "rows": [
+    {
+      "accession": "O94851",
+      "esm_sidecar_status": "not_available_for_this_deep_packet",
+      "foldseek_nearest_current_countable_tm_score": 0.69,
+      "foldseek_targeted_current_fmo_status": "completed",
+      "geometry_retrieval_status": "not_run_source_free_geometry_mapping_missing",
+      "row_id": "uniprot:O94851",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "O15229",
+      "esm_sidecar_status": "not_available_for_this_deep_packet",
+      "foldseek_nearest_current_countable_tm_score": 0.8122,
+      "foldseek_targeted_current_fmo_status": "current_fmo_target_duplicate_signal",
+      "geometry_retrieval_status": "not_run_source_free_geometry_mapping_missing",
+      "row_id": "uniprot:O15229",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q7RTP6",
+      "esm_sidecar_status": "not_available_for_this_deep_packet",
+      "foldseek_nearest_current_countable_tm_score": 0.689,
+      "foldseek_targeted_current_fmo_status": "completed",
+      "geometry_retrieval_status": "not_run_source_free_geometry_mapping_missing",
+      "row_id": "uniprot:Q7RTP6",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "P25535",
+      "esm_sidecar_status": "not_available_for_this_deep_packet",
+      "foldseek_nearest_current_countable_tm_score": 0.8397,
+      "foldseek_targeted_current_fmo_status": "current_fmo_target_duplicate_signal",
+      "geometry_retrieval_status": "not_run_source_free_geometry_mapping_missing",
+      "row_id": "uniprot:P25535",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "O88867",
+      "esm_sidecar_status": "not_available_for_this_deep_packet",
+      "foldseek_nearest_current_countable_tm_score": 0.8074,
+      "foldseek_targeted_current_fmo_status": "current_fmo_target_duplicate_signal",
+      "geometry_retrieval_status": "not_run_source_free_geometry_mapping_missing",
+      "row_id": "uniprot:O88867",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "H3JQW0",
+      "esm_sidecar_status": "not_available_for_this_deep_packet",
+      "foldseek_nearest_current_countable_tm_score": 0.5056,
+      "foldseek_targeted_current_fmo_status": "completed",
+      "geometry_retrieval_status": "not_run_source_free_geometry_mapping_missing",
+      "row_id": "uniprot:H3JQW0",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "Q6F4M8",
+      "esm_sidecar_status": "not_available_for_this_deep_packet",
+      "foldseek_nearest_current_countable_tm_score": 0.3303,
+      "foldseek_targeted_current_fmo_status": "completed",
+      "geometry_retrieval_status": "not_run_source_free_geometry_mapping_missing",
+      "row_id": "uniprot:Q6F4M8",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    }
+  ],
+  "task_definition": {
+    "frozen_rows": [
+      "uniprot:O94851",
+      "uniprot:O15229",
+      "uniprot:Q7RTP6",
+      "uniprot:P25535",
+      "uniprot:O88867",
+      "uniprot:H3JQW0",
+      "uniprot:Q6F4M8"
+    ],
+    "selection_frozen_before_scoring": true,
+    "source_context_policy": "EC/keyword/protein/source context may explain selection but is not counted as predictive evidence.",
+    "target_current_fingerprint_lane": "flavin_monooxygenase"
+  }
+}

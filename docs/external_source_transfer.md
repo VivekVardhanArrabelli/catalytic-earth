@@ -362,6 +362,28 @@ import.
   import-ready or countable rows. The next serine attempt needs smaller
   current-countable target subchunks or a coordinate/replacement path for
   `P31614`.
+- `artifacts/v3_serine_hydrolase_deep_packet_targeted_current_ser_his_rescue_screen_20260521.json`
+  removes most of that serine blocker with targeted duplicate/leakage evidence.
+  It screens the six materialized serine rows against the 40 current-countable
+  `ser_his_acid_hydrolase` structures and finds high-TM duplicate/leakage
+  signals for all six. The follow-up terminal packet
+  `artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_targeted_ser_his_rescue_screen_20260521.json`
+  sets those six rows to `terminal_rejection_duplicate_or_leakage` while
+  keeping coordinate-missing `P31614` at `needs_new_extractor_or_structure`.
+  This targeted rescue does not claim duplicate-clear, mechanism-match,
+  superiority, or import readiness; its companion benchmark
+  `artifacts/v3_serine_hydrolase_deep_packet_post_targeted_ser_his_rescue_modern_baseline_benchmark_20260521.json`
+  remains diagnostic only.
+- `artifacts/v3_serine_hydrolase_p31614_pdb_replacement_coordinate_screen_20260521.json`
+  narrows the remaining serine blocker. It materializes the frozen `P31614` PDB
+  cross-references `4C7L` and `4C7W`, screens both replacement coordinates
+  against the same 40 current-countable serine-hydrolase targets, and finds
+  0 high-TM hits with max TM `0.5371`. The follow-up terminal packet
+  `artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_pdb_replacement_screen_20260521.json`
+  keeps six duplicate/leakage rejections and leaves `P31614` as the single
+  `needs_new_extractor_or_structure` row, with the exact blocker now narrowed
+  to PDB active-site residue mapping plus full-current duplicate/leakage
+  screening or replacement in a newly frozen selection.
 - `artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json`
   starts the next deepening ladder step without scoring it. It freezes seven
   nonduplicate flavin dehydrogenase/reductase rows from the existing
@@ -395,6 +417,38 @@ import.
   synthesized separately in
   `artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json` and does not
   reopen ePK production scoring, label import, or fingerprint expansion.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json`
+  opens the frozen flavin-monooxygenase deep packet without new broad sourcing.
+  It selects seven non-exact-reference rows from the existing 2026-05-21
+  mini-campaign before deep geometry/Foldseek scoring, and the coordinate
+  materialization companion stages all seven AlphaFold sidecars with 0 fetch
+  failures. The targeted current-fingerprint rescue screen
+  `artifacts/v3_flavin_monooxygenase_deep_packet_targeted_current_fmo_rescue_screen_20260521.json`
+  checks only the two current-countable `flavin_monooxygenase` structures,
+  finds three high-TM duplicate/leakage hits, and makes no duplicate-clear
+  claim. The follow-up terminal packet
+  `artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_targeted_fmo_rescue_screen_20260521.json`
+  records three `terminal_rejection_duplicate_or_leakage` rows and four
+  `needs_new_extractor_or_structure` rows, with the exact remaining blocker
+  stated as source-free flavin/cofactor geometry mapping plus full
+  current-countable duplicate/leakage screening. The benchmark
+  `artifacts/v3_flavin_monooxygenase_deep_packet_targeted_fmo_modern_baseline_benchmark_20260521.json`
+  keeps EC/keyword, deterministic sequence, geometry-not-run, Foldseek, and ESM
+  caveats diagnostic only and makes no superiority, mechanism-match, import, or
+  production-scoring claim.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_structure_mapping_20260521.json`
+  narrows that blocker by mapping active/cofactor binding positions onto all
+  seven selected AlphaFold coordinate sidecars with status `ok`. Binding-site
+  ranges are expanded residue-by-residue before CA mapping, and EC/name/prose
+  remain review context only. The follow-up terminal packet
+  `artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_structure_mapping_20260521.json`
+  preserves the three duplicate/leakage rejections and four
+  `needs_new_extractor_or_structure` rows, but the remaining blocker is now
+  source-free FMO geometry scoring from mapped flavin/cofactor coordinates plus
+  full current-countable duplicate/leakage screening. The benchmark
+  `artifacts/v3_flavin_monooxygenase_deep_packet_post_structure_mapping_modern_baseline_benchmark_20260521.json`
+  records mapped-candidate count 7, geometry-scored count 0, ESM unavailable,
+  and no superiority, mechanism-match, import, or production-scoring claim.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and
@@ -413,6 +467,18 @@ import.
   pushes are synthesized separately in
   `artifacts/v3_epk_remote_lane_followup_synthesis_20260521.json` and remain
   review-only/no-go.
+- `artifacts/v3_heme_peroxidase_deep_packet_i2dby1_full_current_subchunk_screen_20260521.json`
+  closes that single heme timeout blocker. It screens only `I2DBY1` against the
+  same 672 staged current-countable structures in 14 target chunks, maps
+  672/672 query-target pairs, finds 0 high-TM duplicate/leakage hits at
+  `TM >= 0.7`, and records max current-countable TM `0.5890`. The follow-up
+  terminal packet
+  `artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json`
+  sets `I2DBY1` to `mechanism_match_review_ready` while preserving the six
+  duplicate/leakage terminal rejections. The companion benchmark
+  `artifacts/v3_heme_peroxidase_deep_packet_post_i2dby1_subchunk_modern_baseline_benchmark_20260521.json`
+  keeps EC/keyword and deterministic sequence baselines diagnostic only, records
+  ESM as unavailable, and makes no superiority or import claim.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

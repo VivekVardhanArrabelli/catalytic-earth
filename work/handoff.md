@@ -50,6 +50,102 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T14:40:00Z automation run, the main loop closed the
+remaining heme-peroxidase deep-packet timeout blocker without opening a new
+external mini-campaign. The new subchunk screen
+`artifacts/v3_heme_peroxidase_deep_packet_i2dby1_full_current_subchunk_screen_20260521.json`
+reruns only the unresolved `I2DBY1` row against all 672 staged current-countable
+structures in 14 Foldseek target chunks. All 14 chunks complete, all 672/672
+query-target pairs map, the maximum current-countable TM score is `0.5890`,
+and 0 hits reach the `TM >= 0.7` duplicate/leakage threshold. This establishes
+full-current duplicate clearance for `I2DBY1` only; it does not revise the six
+prior high-TM duplicate rejections.
+
+The follow-up terminal packet
+`artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json`
+therefore updates the frozen heme packet to one
+`mechanism_match_review_ready` row (`I2DBY1`) plus six
+`terminal_rejection_duplicate_or_leakage` rows. The benchmark
+`artifacts/v3_heme_peroxidase_deep_packet_post_i2dby1_subchunk_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword and deterministic sequence baselines diagnostic only, records
+ESM as unavailable for this packet, and makes no geometry-superiority claim.
+No label import, registry edit, fingerprint edit, threshold change, artifact
+upload/removal, externalization, Git-LFS migration, or `removal_allowed=true`
+occurred.
+
+The same run also advanced the frozen serine-hydrolase blocker without broad
+row breadth. The targeted current-fingerprint rescue screen
+`artifacts/v3_serine_hydrolase_deep_packet_targeted_current_ser_his_rescue_screen_20260521.json`
+screens the six materialized serine rows against the 40 current-countable
+`ser_his_acid_hydrolase` structures. All six rows have high-TM
+current-countable duplicate/leakage hits, so
+`artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_targeted_ser_his_rescue_screen_20260521.json`
+converts those six rows to `terminal_rejection_duplicate_or_leakage`. The only
+remaining serine `needs_new_extractor_or_structure` row is `P31614`, whose
+coordinate sidecar failed to materialize before Foldseek screening. The
+companion benchmark
+`artifacts/v3_serine_hydrolase_deep_packet_post_targeted_ser_his_rescue_modern_baseline_benchmark_20260521.json`
+keeps the targeted rescue as duplicate/leakage rejection evidence only and
+continues to make no mechanism-match, duplicate-clear, import, or superiority
+claim.
+`artifacts/v3_serine_hydrolase_p31614_pdb_replacement_coordinate_screen_20260521.json`
+then materializes both frozen PDB cross-references (`4C7L`, `4C7W`) for
+`P31614` and runs the same targeted current-serine screen. Both PDB coordinates
+complete with 0 high-TM hits, max TM `0.5371`, and no duplicate-clear claim.
+The final serine follow-up packet
+`artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_pdb_replacement_screen_20260521.json`
+therefore keeps `P31614` as the single blocker with an exact missing-evidence
+statement: map UniProt active-site residues onto a PDB replacement coordinate
+and complete full-current duplicate/leakage screening, or replace `P31614` in a
+newly frozen selection.
+
+The run also started the next frozen flavin/heme ladder item without broad
+candidate sourcing. `artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json`
+freezes seven non-exact-reference rows from the already frozen flavin
+monooxygenase mini-campaign before deep geometry/Foldseek scoring, and
+`artifacts/v3_flavin_monooxygenase_deep_packet_coordinate_materialization_20260521.json`
+materializes all seven AlphaFold sidecars with 0 fetch failures. The targeted
+current-fingerprint rescue screen
+`artifacts/v3_flavin_monooxygenase_deep_packet_targeted_current_fmo_rescue_screen_20260521.json`
+checks only the two current-countable `flavin_monooxygenase` structures and
+finds three high-TM duplicate/leakage hits. The terminal packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_targeted_fmo_rescue_screen_20260521.json`
+sets those three rows to `terminal_rejection_duplicate_or_leakage` and leaves
+four rows at `needs_new_extractor_or_structure` with the exact blocker:
+source-free flavin/cofactor geometry mapping plus full current-countable
+duplicate/leakage screening. The benchmark
+`artifacts/v3_flavin_monooxygenase_deep_packet_targeted_fmo_modern_baseline_benchmark_20260521.json`
+records EC/keyword, deterministic sequence, geometry-not-run, Foldseek, and ESM
+caveats with no import or superiority claim.
+`artifacts/v3_flavin_monooxygenase_deep_packet_structure_mapping_20260521.json`
+then maps flavin/cofactor binding residues onto all seven AlphaFold coordinate
+sidecars with status `ok` for every row. The follow-up terminal packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_structure_mapping_20260521.json`
+keeps the same terminal counts but narrows the four non-hit blockers to:
+run source-free FMO geometry scoring from mapped flavin/cofactor features and
+complete full current-countable duplicate/leakage screening. The benchmark
+`artifacts/v3_flavin_monooxygenase_deep_packet_post_structure_mapping_modern_baseline_benchmark_20260521.json`
+records mapped-candidate count 7, geometry-scored count 0, ESM unavailable, and
+no superiority or import claim.
+
+Evidence-based confidence call: confidence is high that `I2DBY1` now has a
+source-separated, reproducible terminal decision packet with active-site/heme
+geometry evidence and complete current-countable duplicate/leakage screening.
+Confidence is high that this is review-ready only, not import-ready: the row
+still requires human/scientific review before any future countable label path,
+and the benchmark explicitly permits no superiority claim. Confidence is high
+that the six materialized serine rows are terminal duplicate/leakage
+rejections; confidence is medium on the remaining serine blocker because it is
+now specifically a PDB active-site mapping plus full-current duplicate-screen
+problem for `P31614`, not an AlphaFold fetch or targeted-serine Foldseek
+problem. Confidence is medium-high that the FMO coordinate-mapping blocker is
+closed for all seven selected rows, with the remaining exact blocker shifted to
+geometry scoring plus full-current duplicate/leakage screening for the four
+non-hit rows. Next main-loop work should run that bounded FMO geometry/full
+current-screen step, or if staying on serine, implement a bounded PDB
+active-site mapping probe for `P31614`; do not open new broad external row
+breadth.
+
 As of the 2026-05-21T13:56:00Z automation run, the main loop integrated fresh
 remote ePK research-lane pushes only as decision-changing review context, then
 returned to non-ePK deepening. The new concise synthesis

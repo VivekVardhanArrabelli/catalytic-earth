@@ -1,0 +1,481 @@
+{
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_targeted_current_fmo_rescue_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_coordinate_materialization_20260521.json",
+    "created_at": "2026-05-21T14:49:50Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/queries/O94851 /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/O94851_vs_current_fmo_tm_scores.tsv /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/tmp/O94851 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/queries/O15229 /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/O15229_vs_current_fmo_tm_scores.tsv /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/tmp/O15229 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/Q7RTP6_vs_current_fmo_tm_scores.tsv /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/tmp/Q7RTP6 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/queries/P25535 /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/P25535_vs_current_fmo_tm_scores.tsv /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/tmp/P25535 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/queries/O88867 /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/O88867_vs_current_fmo_tm_scores.tsv /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/tmp/O88867 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/queries/H3JQW0 /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/H3JQW0_vs_current_fmo_tm_scores.tsv /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/tmp/H3JQW0 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/Q6F4M8_vs_current_fmo_tm_scores.tsv /private/tmp/catalytic-earth-flavin-monooxygenase-targeted-rescue-screen/tmp/Q6F4M8 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "high_tm_candidate_count": 3,
+    "max_target_subset_tm_score": 0.8397,
+    "method": "flavin_monooxygenase_targeted_current_fingerprint_rescue_duplicate_screen",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "status_counts": {
+      "completed": 4,
+      "current_fmo_target_duplicate_signal": 3
+    },
+    "target_subset_count": 2,
+    "target_subset_fingerprint_id": "flavin_monooxygenase",
+    "tm_score_threshold": 0.7
+  },
+  "rows": [
+    {
+      "accession": "O94851",
+      "countable_label_candidate": false,
+      "current_fmo_high_tm_hit_count": 0,
+      "current_fmo_structural_screen_status": "completed",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O94851",
+      "runtime_seconds": 3.827,
+      "target_subset": "current_countable_flavin_monooxygenase_structures",
+      "target_subset_count": 2,
+      "tm_score_threshold": 0.7,
+      "top_current_fmo_hits": [
+        {
+          "alntmscore": 0.7196,
+          "max_pair_tm_score": 0.69,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.1538,
+          "raw_query_name": "afdb_O94851",
+          "raw_target_name": "pdb_1DOC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DOC",
+          "target_structure_key": "pdb:1DOC",
+          "ttmscore": 0.69
+        },
+        {
+          "alntmscore": 0.3164,
+          "max_pair_tm_score": 0.3138,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.07529,
+          "raw_query_name": "afdb_O94851",
+          "raw_target_name": "pdb_1LUC_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LUC.cif",
+          "target_entry_ids": [
+            "m_csa:132"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1LUC",
+          "target_structure_key": "pdb:1LUC",
+          "ttmscore": 0.3138
+        }
+      ],
+      "unique_query_target_pair_count": 2
+    },
+    {
+      "accession": "O15229",
+      "countable_label_candidate": false,
+      "current_fmo_high_tm_hit_count": 1,
+      "current_fmo_structural_screen_status": "current_fmo_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O15229",
+      "runtime_seconds": 0.831,
+      "target_subset": "current_countable_flavin_monooxygenase_structures",
+      "target_subset_count": 2,
+      "tm_score_threshold": 0.7,
+      "top_current_fmo_hits": [
+        {
+          "alntmscore": 0.8196,
+          "max_pair_tm_score": 0.8122,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6713,
+          "raw_query_name": "afdb_O15229",
+          "raw_target_name": "pdb_1DOC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DOC",
+          "target_structure_key": "pdb:1DOC",
+          "ttmscore": 0.8122
+        },
+        {
+          "alntmscore": 0.2934,
+          "max_pair_tm_score": 0.29,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.212,
+          "raw_query_name": "afdb_O15229",
+          "raw_target_name": "pdb_1LUC_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LUC.cif",
+          "target_entry_ids": [
+            "m_csa:132"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1LUC",
+          "target_structure_key": "pdb:1LUC",
+          "ttmscore": 0.29
+        }
+      ],
+      "unique_query_target_pair_count": 2
+    },
+    {
+      "accession": "Q7RTP6",
+      "countable_label_candidate": false,
+      "current_fmo_high_tm_hit_count": 0,
+      "current_fmo_structural_screen_status": "completed",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q7RTP6",
+      "runtime_seconds": 4.598,
+      "target_subset": "current_countable_flavin_monooxygenase_structures",
+      "target_subset_count": 2,
+      "tm_score_threshold": 0.7,
+      "top_current_fmo_hits": [
+        {
+          "alntmscore": 0.725,
+          "max_pair_tm_score": 0.689,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.1508,
+          "raw_query_name": "afdb_Q7RTP6",
+          "raw_target_name": "pdb_1DOC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DOC",
+          "target_structure_key": "pdb:1DOC",
+          "ttmscore": 0.689
+        },
+        {
+          "alntmscore": 0.3562,
+          "max_pair_tm_score": 0.3346,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.07766,
+          "raw_query_name": "afdb_Q7RTP6",
+          "raw_target_name": "pdb_1LUC_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LUC.cif",
+          "target_entry_ids": [
+            "m_csa:132"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1LUC",
+          "target_structure_key": "pdb:1LUC",
+          "ttmscore": 0.3346
+        }
+      ],
+      "unique_query_target_pair_count": 2
+    },
+    {
+      "accession": "P25535",
+      "countable_label_candidate": false,
+      "current_fmo_high_tm_hit_count": 1,
+      "current_fmo_structural_screen_status": "current_fmo_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P25535",
+      "runtime_seconds": 0.785,
+      "target_subset": "current_countable_flavin_monooxygenase_structures",
+      "target_subset_count": 2,
+      "tm_score_threshold": 0.7,
+      "top_current_fmo_hits": [
+        {
+          "alntmscore": 0.8436,
+          "max_pair_tm_score": 0.8397,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8283,
+          "raw_query_name": "afdb_P25535",
+          "raw_target_name": "pdb_1DOC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DOC",
+          "target_structure_key": "pdb:1DOC",
+          "ttmscore": 0.8397
+        },
+        {
+          "alntmscore": 0.3048,
+          "max_pair_tm_score": 0.2972,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.2536,
+          "raw_query_name": "afdb_P25535",
+          "raw_target_name": "pdb_1LUC_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LUC.cif",
+          "target_entry_ids": [
+            "m_csa:132"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1LUC",
+          "target_structure_key": "pdb:1LUC",
+          "ttmscore": 0.2972
+        }
+      ],
+      "unique_query_target_pair_count": 2
+    },
+    {
+      "accession": "O88867",
+      "countable_label_candidate": false,
+      "current_fmo_high_tm_hit_count": 1,
+      "current_fmo_structural_screen_status": "current_fmo_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O88867",
+      "runtime_seconds": 0.814,
+      "target_subset": "current_countable_flavin_monooxygenase_structures",
+      "target_subset_count": 2,
+      "tm_score_threshold": 0.7,
+      "top_current_fmo_hits": [
+        {
+          "alntmscore": 0.8146,
+          "max_pair_tm_score": 0.8074,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6783,
+          "raw_query_name": "afdb_O88867",
+          "raw_target_name": "pdb_1DOC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DOC",
+          "target_structure_key": "pdb:1DOC",
+          "ttmscore": 0.8074
+        },
+        {
+          "alntmscore": 0.2919,
+          "max_pair_tm_score": 0.2804,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.2129,
+          "raw_query_name": "afdb_O88867",
+          "raw_target_name": "pdb_1LUC_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LUC.cif",
+          "target_entry_ids": [
+            "m_csa:132"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1LUC",
+          "target_structure_key": "pdb:1LUC",
+          "ttmscore": 0.2804
+        }
+      ],
+      "unique_query_target_pair_count": 2
+    },
+    {
+      "accession": "H3JQW0",
+      "countable_label_candidate": false,
+      "current_fmo_high_tm_hit_count": 0,
+      "current_fmo_structural_screen_status": "completed",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:H3JQW0",
+      "runtime_seconds": 0.861,
+      "target_subset": "current_countable_flavin_monooxygenase_structures",
+      "target_subset_count": 2,
+      "tm_score_threshold": 0.7,
+      "top_current_fmo_hits": [
+        {
+          "alntmscore": 0.5065,
+          "max_pair_tm_score": 0.5056,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3864,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1DOC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DOC",
+          "target_structure_key": "pdb:1DOC",
+          "ttmscore": 0.5056
+        },
+        {
+          "alntmscore": 0.3207,
+          "max_pair_tm_score": 0.3129,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.2132,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1LUC_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LUC.cif",
+          "target_entry_ids": [
+            "m_csa:132"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1LUC",
+          "target_structure_key": "pdb:1LUC",
+          "ttmscore": 0.3129
+        }
+      ],
+      "unique_query_target_pair_count": 2
+    },
+    {
+      "accession": "Q6F4M8",
+      "countable_label_candidate": false,
+      "current_fmo_high_tm_hit_count": 0,
+      "current_fmo_structural_screen_status": "completed",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 3,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q6F4M8",
+      "runtime_seconds": 0.866,
+      "target_subset": "current_countable_flavin_monooxygenase_structures",
+      "target_subset_count": 2,
+      "tm_score_threshold": 0.7,
+      "top_current_fmo_hits": [
+        {
+          "alntmscore": 0.3495,
+          "max_pair_tm_score": 0.3303,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.2627,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1DOC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DOC",
+          "target_structure_key": "pdb:1DOC",
+          "ttmscore": 0.3303
+        },
+        {
+          "alntmscore": 0.32,
+          "max_pair_tm_score": 0.3133,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.2187,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1LUC_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LUC.cif",
+          "target_entry_ids": [
+            "m_csa:132"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1LUC",
+          "target_structure_key": "pdb:1LUC",
+          "ttmscore": 0.3133
+        }
+      ],
+      "unique_query_target_pair_count": 2
+    }
+  ],
+  "synthesis_conclusion": {
+    "full_current_countable_duplicate_clear_established": false,
+    "no_import_or_countable_label_authorized": true,
+    "overall": "targeted_current_fmo_subset_rescue_screen_is_duplicate_evidence_only",
+    "terminal_rejection_update_permitted_for_high_tm_hits": true
+  }
+}
