@@ -1,56 +1,54 @@
 # ePK Positive Evidence Handoff
 
-Last updated: 2026-05-21T01:42:09Z
+Last updated: 2026-05-21T03:19:00Z
 
-Pushed commit: `e38b078ea035ab7b6c4b4609026403afd06aa6ee` (primary run artifact/ledger commit created with a temporary index because the linked local gitdir still blocks normal ref updates).
+Pushed commit: `6b4f1c0ce1359dcda079d66654c4709bd2438c21` (primary run artifact/ledger commit created with a temporary index because the linked local gitdir still blocks normal ref updates). A follow-up handoff commit should be the final remote head for this run.
 
 ## Current Outcome
 
-Primary outcome: `evidence_against`.
+Primary outcome: `search_surface_exhausted`.
 
-The default handoff next query was not re-run as a duplicate weekly-release sweep: the 2026-05-21 RCSB current-release and 2026 no-source exact-ligand surfaces had been checked minutes earlier, and no later weekly release exists yet. This run instead did a bounded source-validation follow-up for the `23FC` ATR-ATRIP/Chk1 singleton across RCSB, PDBe, Europe PMC, Crossref, and RCSB full-text aliases, then expanded only within the source-linked ATR-ATRIP article family exposed by Crossref.
+The default next query required waiting for the next RCSB weekly release or new `23FC` publication metadata. No later release/metadata was available during this cycle, so this run used a bounded same-lane follow-up: paged previously unreviewed RCSB phrase offsets for transition/phosphoryl-transfer wording and added substrate-trapping, nonhydrolyzable ATP, precatalytic, and substrate-bound AMP-PNP phrase surfaces.
 
-`23FC` remains review-only. RCSB and PDBe still list the primary citation as To Be Published with no article DOI, PubMed ID, or publication year. Europe PMC exact/alias queries still do not recover a publication-metadata hit for the `23FC` title or ATR-ATRIP/Chk1 ATPgammaS aliases. Crossref confirms only the wwPDB dataset DOI `10.2210/pdb23fc/pdb` for the exact `23FC` title, which is deposition metadata rather than article source authority.
-
-Crossref also exposed related ATR-ATRIP dataset/article context (`5YZ0` and `9L4F`). The bounded RCSB DOI/title family follow-up for the related 2025 Science Bulletin ATR-ATRIP article reviewed `5YZ0`, `9L40`, `9L43`, `9L45`, `9L46`, `9L4B`, `9L4C`, `9L4D`, and `9L4F`. All are donor-only or inhibitor/ATR-ATRIP context with no named Chk1/substrate polymer entity. A transient geometry scan of those nine rows found zero local-metal non-peptide substrate candidates: `9L46` and `9L4F` were donor/analog without heteromeric acceptor, and seven rows had no active donor or transition analog.
+The primary phrase-pagination artifact reviewed 140 structures, including 118 PDB IDs not previously seen in lane artifacts, from 393 returned rows across seven surfaces. It found zero fresh local-metal peptide or non-peptide substrate candidates. The only local-metal non-peptide row was `1HE1`, already rejected by the lane as an ExoS/Rac GTPase transition-state false hit rather than ePK kinase-substrate evidence.
 
 No production labels, thresholds, registries, fingerprints, migrations, scoring paths, or production claims were changed.
 
 ## Files Changed
 
-- `artifacts/research_lanes/epk_positive_evidence/atr_chk1_publication_metadata_followup_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_timeout_metadata_followup_20260521.json`
 - `artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl`
-- `tools/research_lanes/epk_positive_evidence/atr_chk1_publication_metadata_followup.py`
+- `tools/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup.py`
 - `work/research_lanes/epk_positive_evidence/handoff.md`
 
 ## Evidence For
 
-- PDBe independently confirms the same `23FC` title, release date, deposition authors, hetero hexamer assembly, and associated EMDB map.
-- Crossref confirms the PDB dataset DOI `10.2210/pdb23fc/pdb` for the deposited `23FC` structure; this is useful provenance but not article source authority.
-- Crossref/RCSB mapped related source-published ATR-ATRIP donor-only negatives: `5YZ0` and `9L4F`, plus the compact 2025 ATR-ATRIP article family `5YZ0`, `9L40`, `9L43`, `9L45`, `9L46`, `9L4B`, `9L4C`, `9L4D`, and `9L4F`.
+- The paged phrase scout recovered only the prior local-metal non-peptide geometry in `1HE1`; this confirms the search still surfaces known non-ePK transition-state ownership risk.
+- The new helper records prior-lane PDB exposure and supports max-CIF/row-timeout guards for future broad phrase surfaces.
 
 ## Evidence Against
 
-- RCSB and PDBe still report `23FC` as To Be Published with no article DOI, PubMed ID, or year.
-- Europe PMC exact/alias queries returned no publication-metadata hit for the `23FC` title or ATR-ATRIP/Chk1 ATPgammaS aliases.
-- Crossref only yielded the wwPDB dataset DOI for the exact `23FC` title; no article/preprint DOI matching the `23FC` ATR-ATRIP/Chk1 ATPgammaS title was found in the bounded top rows.
-- RCSB full-text sibling aliases for the Chk1-containing title/aliases still return only `23FC`.
-- The related ATR-ATRIP article family contains no named Chk1/substrate polymer entity.
-- Transient geometry scan of that article family found zero local-metal non-peptide substrate candidates: status counts were `donor_or_analog_without_heteromeric_acceptor_review_only=2` and `no_active_donor_or_transition_analog_review_only=7`.
+- No fresh clean folded-protein ePK transfer-state positive was found.
+- The 140-structure primary cap found zero fresh local-metal peptide or non-peptide substrate candidates.
+- The only local-metal non-peptide row, `1HE1`, is a repeat ExoS/Rac GTPase false hit.
+- Fresh donor/analog-without-heteromeric-acceptor rows included non-ePK/ATPase or channel/transporter contexts such as `2F43` F1-ATPase, `8DUJ`/`8DVE` RyR1, and `7TBW` ABCA1.
+- Guarded timeout/source metadata checks showed fresh timeout row `8JDL` is a human cytoplasmic ribosome/tRNA/mRNA structure; repeat timeout rows `9QQL` and `9QSA` are mouse ribosome translocation-state structures.
 
 ## Counterexamples
 
-- No new production counterexample was promoted. The related ATR-ATRIP family is source-published donor-only negative context, not a distance/ownership false-positive requiring production exclusion logic.
+- No new counterexample was promoted. `1HE1` remains a repeat GTPase ownership/context false hit from prior lane review.
 
 ## Blockers
 
-- Startup `git fetch origin` still failed with `Operation not permitted` while writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`; `git fetch --no-write-fetch-head origin` succeeded.
-- Normal local `git pull --ff-only` remains blocked by the stale/dirty linked worktree metadata. The remote branch content had already materialized locally, and exact comparison showed those prior untracked lane files matched `origin/research/epk-positive-evidence`.
-- The primary commit was created and pushed with a temporary index. Because local `HEAD` is still stale, normal `git status` still shows prior remote files as untracked and the branch as behind even after remote push verification.
-- Production claims, threshold calibration, label import, registry edits, fingerprint changes, migrations, and production helper fallback remain forbidden.
+- Startup `git fetch origin` and `git pull --ff-only origin research/epk-positive-evidence` still failed with `Operation not permitted` while writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`.
+- `git fetch --no-write-fetch-head origin` succeeded, but normal local `git merge --ff-only` failed on `ORIG_HEAD.lock`; the local branch/worktree remains stale even though remote refs can be read.
+- Wrap uses temporary-index `commit-tree` commits on top of `origin/research/epk-positive-evidence` and direct push verification instead of normal local ref updates.
+- Production claims, threshold calibration, label import, registry edits, fingerprint changes, migrations, scoring, and production helper fallback remain forbidden.
 
 ## Next Query
 
-At the next RCSB weekly release, re-run the current-date and 2026 no-source canonical ePK exact-ligand surfaces plus the `23FC` publication metadata check. If `23FC` article metadata appears, source-map it before any upgrade. Otherwise, do not revisit the exhausted 2025 ATR-ATRIP Science Bulletin family unless new PDB IDs appear. Continue to source-map only new PDB IDs with non-peptide substrate entity length, explicit kinase-site ligand ownership, local MG/MN or transition-metal context, and an unmodified Ser/Thr/Tyr acceptor within 6 Angstrom.
+Run a guarded continuation only on source-rich unreviewed phrase rows after adding pre-CIF filters: require a canonical ePK EC/Pfam or explicit protein-kinase polymer plus exact `ATP`/`ANP`/`ACP`/`AGS` + `MG`/`MN` or `ADP` + `AF3`/`ALF`/`BEF`/`MGF` ligand context before CIF parsing. Prioritize remaining `protein_kinase_precatalytic_substrate_atp` and `protein_kinase_substrate_bound_amp_pnp` rows not previously seen in lane artifacts. Continue the next-week `23FC` publication/current-release check when a new RCSB release or metadata appears.
 
 Production claims/label changes remain forbidden: yes.
