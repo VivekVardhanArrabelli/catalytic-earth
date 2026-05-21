@@ -15,9 +15,16 @@ Run note: normal `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 --no-write-fetch-head origin` succeeded. Local `HEAD` remains stale relative
-to `origin/research/epk-substrate-role-identity`; final commit/push work should
-continue using the lane temporary-index workaround if normal git operations are
-still blocked.
+to `origin/research/epk-substrate-role-identity`; commit/push work used the
+lane temporary-index workaround.
+
+Final sync: pushed materiality artifact commit
+`afdba337dc3bf2a369c8954fec4e627d4e8c5609` to
+`origin/research/epk-substrate-role-identity`, then verified
+`origin/research/epk-substrate-role-identity` at that commit with
+`git fetch --no-write-fetch-head origin`. Normal `git status` still reports
+this linked worktree as behind with lane-file changes because local `HEAD`
+remains `8d38053d85cc28b7592267e9420578ca19a98814`.
 
 ## What Was Emitted
 
