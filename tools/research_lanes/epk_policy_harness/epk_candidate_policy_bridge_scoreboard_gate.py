@@ -686,6 +686,55 @@ def self_test() -> None:
     assert mixed_summary["entry_rollups"][0]["entry_claim_status"] == (
         "review_only_abstain_product_state"
     )
+    split_topology = json.loads(json.dumps(good_result))
+    split_topology["metadata"]["claim_status_counts"] = {
+        "review_only_abstain_split_state": 1,
+        "review_only_abstain_topology_ambiguity": 1,
+    }
+    split_topology["metadata"]["coordinate_state_counts"] = {
+        "ambiguous_coordinate_state": 1,
+        "split_state": 1,
+    }
+    split_topology["rows"][0]["pdb_id"] = "SPLIT_TOPOLOGY"
+    split_topology["rows"][0]["coordinate_state"] = "split_state"
+    split_topology["rows"][0]["claim_status"] = "review_only_abstain_split_state"
+    split_topology["rows"][0]["claim_admissibility"] = "review_only"
+    topology_row = json.loads(json.dumps(good_result["rows"][0]))
+    topology_row["row_id"] = "candidate:topology_ambiguity"
+    topology_row["pdb_id"] = "SPLIT_TOPOLOGY"
+    topology_row["coordinate_state"] = "ambiguous_coordinate_state"
+    topology_row["claim_status"] = "review_only_abstain_topology_ambiguity"
+    topology_row["claim_admissibility"] = "review_only"
+    split_topology["rows"].append(topology_row)
+    split_topology_summary = summarize_result(root, result_path, split_topology)
+    assert split_topology_summary["gate_pass"] is True
+    assert split_topology_summary["entry_rollups"][0]["entry_claim_status"] == (
+        "review_only_abstain_topology_ambiguity"
+    )
+    forbidden_mixed = json.loads(json.dumps(good_result))
+    forbidden_mixed["metadata"]["claim_status_counts"] = {
+        "forbidden_source_leakage": 1,
+        "review_only_abstain_sibling_control": 1,
+    }
+    forbidden_mixed["metadata"]["coordinate_state_counts"] = {
+        "active_gamma": 2,
+    }
+    forbidden_mixed["rows"][0]["pdb_id"] = "FORBIDDEN_MIXED"
+    forbidden_mixed["rows"][0]["claim_status"] = "forbidden_source_leakage"
+    forbidden_mixed["rows"][0]["claim_admissibility"] = "forbidden"
+    sibling_row = json.loads(json.dumps(good_result["rows"][0]))
+    sibling_row["row_id"] = "candidate:sibling_abstaining_control"
+    sibling_row["pdb_id"] = "FORBIDDEN_MIXED"
+    sibling_row["row_role"] = "sibling_control"
+    sibling_row["claim_status"] = "review_only_abstain_sibling_control"
+    sibling_row["claim_admissibility"] = "review_only"
+    forbidden_mixed["rows"].append(sibling_row)
+    forbidden_mixed_summary = summarize_result(root, result_path, forbidden_mixed)
+    assert forbidden_mixed_summary["gate_pass"] is False
+    assert forbidden_mixed_summary["forbidden_source_leakage_count"] == 1
+    assert forbidden_mixed_summary["entry_rollups"][0]["entry_claim_status"] == (
+        "forbidden_source_leakage"
+    )
     missing_schema = json.loads(json.dumps(good_result))
     del missing_schema["rows"][0]["schema_version"]
     del missing_schema["rows"][0]["claim_admissibility"]

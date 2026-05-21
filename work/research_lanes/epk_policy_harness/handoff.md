@@ -1,16 +1,16 @@
 # ePK policy harness handoff
 
-Last updated: 2026-05-21T18:17:48Z
-Run started: 2026-05-21T17:27:00Z
-Run ended: 2026-05-21T18:17:48Z
-Measured minutes: 50.80
+Last updated: 2026-05-21T19:16:54Z
+Run started: 2026-05-21T18:27:27Z
+Run ended: 2026-05-21T19:16:54Z
+Measured minutes: 49.45
 Primary outcome: `scoreboard_gate_created`
 
 ## Files changed
 
-- `tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py`
-- `tools/research_lanes/epk_policy_harness/epk_federated_literal_product_split_overlap_gate.py`
-- `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z*.json`
+- `tools/research_lanes/epk_policy_harness/epk_federated_entry_precedence_controls.py`
+- `tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py`
+- `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z*.json`
 - `artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl`
 - `work/research_lanes/epk_policy_harness/handoff.md`
 
@@ -18,44 +18,50 @@ Primary outcome: `scoreboard_gate_created`
 
 Policy v0 remains frozen, review-only, and fail-closed. This run did not change production labels, thresholds, registries, fingerprints, migrations, or scoring. It does not claim production ePK readiness.
 
-This run added a real-overlap literal product/split v5 gate. It uses the newer substrate-role phosphoproduct audit as a review-only emitting-lane input, keeps candidate rows visible, and admits literal `product_state` and `split_state` only as review-only policy decisions.
+This run added the v6 entry-precedence regression gate. It reuses the v5 literal product/split real-overlap rows, adds compact topology/contact and control rows from existing review-only lane outputs, and verifies that entry-level status is derived from candidate-level decisions without losing candidate-state visibility.
 
-The adapter now preserves terminal-gamma-absent nucleotide codes and nearest source-free distances for substrate-role phosphoproduct rows. Product/split chemistry remains an abstaining coordinate state, not a production substrate-role rule.
+The shared scoreboard self-test now also covers split/topology precedence and forbidden-over-sibling precedence. This keeps the entry-rollup behavior in the common gate rather than only in the v6 generator.
 
 ## Evidence
 
-- Report: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z.json` (`sha256 aa58862ea879872633c87eebbd2ed835d7fc07b0bd9badf7d2b6c4d63d6a0c27`).
-- Tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_tranche.json` (`sha256 3a15368fa3545ed4de7c4a32967c8cbe15be4b156616797ce32fe92644cdb04d`).
-- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_result.json` (`sha256 4a092f922998de0a41a6d5e99fd7e141749f0980cbc93f754761f829c8e4729c`).
-- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_scoreboard_gate.json` (`sha256 647ad143128d7fa5acb4b362e531c9a9baeadfe39d59fcfe03fcc4599eefc993`).
+- Report: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z.json` (`sha256 646cf922f2bf4c1f9f00aab31ef6832a878bdbb12ed44afbff19ddf341a21ac9`).
+- Tranche: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_tranche.json` (`sha256 c3e8a6217d04dd3af9eabe006e067f393da703c89acf425774211eaa1a5e04da`).
+- Policy result: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_result.json` (`sha256 8f08d0328134a2c9b7b0dbd43d1cb41f74df8541579014dc35117a1e5e903d47`).
+- Scoreboard gate: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_scoreboard_gate.json` (`sha256 9676bbafd767e88ce85fbffba21992fef3eda6217c6f6e60c578f50f4e679c38`).
 
-The scanner found 41 available cross-lane overlapping entries and 5 literal product/split overlap rows in the newer substrate-role audit. It selected `3QHW`, `3QHR`, and `4HPU`, each with independent `epk_positive_evidence` plus `epk_substrate_role_identity` support.
+The positive v6 scoreboard reviewed 14 candidate rows across 8 entries and passed with zero forbidden source leakage, zero unsafe control nonabstentions, and `production_claim_allowed=false`.
 
-Selected coordinate-state counts: `{"active_gamma": 1, "product_state": 4, "split_state": 1, "substrate_acceptor_analog_state": 2}`. Claim-status counts: `{"review_only_abstain_analog_state": 2, "review_only_abstain_missing_role_policy": 1, "review_only_abstain_product_state": 4, "review_only_abstain_split_state": 1}`.
+Candidate-level coordinate-state counts stayed visible: `{"active_gamma": 5, "ambiguous_coordinate_state": 1, "product_state": 5, "split_state": 1, "substrate_acceptor_analog_state": 2}`.
 
-The scoreboard passed with zero forbidden source-leakage rows, zero unsafe control nonabstentions, zero expected claim-status mismatches, and `production_claim_allowed=false`.
+Entry-level precedence assertions passed:
 
-Negative fixtures rejected:
+- `3QHR` and `3QHW`: product + analog rows roll up to `review_only_abstain_analog_state`.
+- `4HPU`: split + topology rows roll up to `review_only_abstain_topology_ambiguity`.
+- `1E4E`, `3FGU`, `4KFT`, `5UJ7`, and `9NBO`: control rows roll up to `review_only_abstain_sibling_control`.
 
-- Single-lane entry drift: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_single_lane_entry_result.json`.
-- Missing literal split-state coverage: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_missing_literal_state_result.json`.
-- Literal product/split nonabstention: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_literal_state_nonabstention_result.json`.
-- Copied source/protein context: `artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_source_context_copy_result.json`.
+Expected-failure gates:
+
+- Forbidden-source leakage result: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_negative_forbidden_source_leakage_result.json`.
+- Forbidden-source leakage scoreboard: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_negative_forbidden_source_leakage_scoreboard_gate.json` failed as expected with one `forbidden_source_leakage` row.
+- Unsafe-control nonabstention result: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_negative_unsafe_control_nonabstention_result.json`.
+- Unsafe-control nonabstention scoreboard: `artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_negative_unsafe_control_nonabstention_scoreboard_gate.json` failed as expected with five unsafe control nonabstentions.
 
 ## Verification
 
 - `PYTHONDONTWRITEBYTECODE=1 python -m py_compile tools/research_lanes/epk_policy_harness/*.py`
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_entry_precedence_controls.py --self-test`
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py --self-test`
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_policy_harness.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_literal_product_split_overlap_gate.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py --self-test`
-- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_policy_harness.py --self-test`
-- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py --self-test`
-- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_state_diversity_gate.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_real_overlap_gate.py --self-test`
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_state_diversity_gate.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_entry_rollup_stress.py --self-test`
-- Nine hold-open validation rounds repeated v5, policy, and scoreboard checks plus new artifact JSON parsing through 2026-05-21T18:17:31Z.
-- JSON validation before ledger append parsed 244 JSON files and 21 JSONL records.
-- `git diff --check` passed before ledger append.
-- Disk stayed above threshold: 24 GiB available at start and 28 GiB available in the final hold-open round.
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection.py --self-test`
+- JSON validation before ledger append parsed 252 JSON files and 22 JSONL records.
+- `git diff --check` passed for the changed v6/gate files and artifacts before ledger append.
+- Eight hold-open validation rounds repeated the v6 self-test, scoreboard self-test, v6 JSON parsing, diff check, and disk check from 2026-05-21T18:40:02Z through 2026-05-21T19:15:03Z.
+- Disk stayed above threshold: 29 GiB free at start and 30 GiB free at final validation.
 
 ## Blockers and notes
 
@@ -67,9 +73,9 @@ Negative fixtures rejected:
 
 ## Exact next query
 
-`epk_federated_literal_product_split_entry_precedence_controls_v6_review_only`
+`epk_federated_candidate_entry_rollup_schema_contract_lock_v7_review_only`
 
-Stress entry-level precedence when literal product/split candidate rows coexist with analog, sibling-control, topology, and forbidden-source contexts. Candidate-level product/split rows should remain visible and review-only, while forbidden source leakage and unsafe control nonabstention must still block progress claims.
+Lock the schema/scoreboard contract around the candidate identity, coordinate-state, claim-status, and entry-rollup fields that v3-v6 now depend on. The goal is a compact schema-contract gate that rejects missing candidate provenance, copied source context, source-derived predictive fields, invalid coordinate states, invalid claim admissibility, metadata count drift, and entry-rollup precedence drift.
 
 ## Forbidden
 
