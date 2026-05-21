@@ -449,6 +449,42 @@ import.
   `artifacts/v3_flavin_monooxygenase_deep_packet_post_structure_mapping_modern_baseline_benchmark_20260521.json`
   records mapped-candidate count 7, geometry-scored count 0, ESM unavailable,
   and no superiority, mechanism-match, import, or production-scoring claim.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json`
+  and
+  `artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json`
+  close the next FMO blocker without adding candidate breadth. The geometry
+  artifact scores all seven frozen rows from mapped local flavin/cofactor
+  coordinate evidence with 0 text/name/label fields used; only `H3JQW0` reaches
+  the FMO floor and all rows top-rank to `flavin_dehydrogenase_reductase`, so
+  no mechanism-match claim is made. The full-current screen completes for
+  `H3JQW0` and `Q6F4M8`, finding current-countable `TM >= 0.7`
+  duplicate/leakage signals, while `O94851` and `Q7RTP6` time out on their
+  first target chunk and therefore have no duplicate-clear claim. The terminal
+  packet
+  `artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_geometry_and_full_current_screen_20260521.json`
+  now records five `terminal_rejection_duplicate_or_leakage` rows and two
+  `needs_new_extractor_or_structure` rows with the exact blocker: complete the
+  full current-countable duplicate/leakage screen after the subchunk timeout or
+  pair-cache gap. The benchmark
+  `artifacts/v3_flavin_monooxygenase_deep_packet_post_geometry_full_current_modern_baseline_benchmark_20260521.json`
+  keeps EC/keyword and sequence routing diagnostic, records ESM unavailable,
+  and makes no superiority, import, production-scoring, or duplicate-clear
+  claim for incomplete rows.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_rescue_probe_20260521.json`
+  further narrows the remaining FMO duplicate-screen blocker. It splits the
+  timed-out first full-current target chunk into eight six-target subchunks for
+  `O94851` and `Q7RTP6`. `O94851` completes seven subchunks and times out only
+  on subchunk 7; `Q7RTP6` completes five subchunks and times out on subchunks
+  1, 6, and 7. The completed subchunks have 0 high-TM hits, but pair-cache
+  completeness is still false for both rows, so the artifact is blocker
+  localization only and authorizes no duplicate-clear, mechanism-match, import,
+  or superiority claim.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_size2_rescue_probe_20260521.json`
+  retries the still-timed six-target subchunks at two targets per run. It
+  resolves the `O94851` chunk-000 timeout surface with 0 high-TM hits and
+  narrows `Q7RTP6` to one still-timed two-target retry under parent subchunk 1.
+  Chunks 1-13 remain unrun for both nonterminal candidates, so this still only
+  localizes the full-current duplicate-screen blocker.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and

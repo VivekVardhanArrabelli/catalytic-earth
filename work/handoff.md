@@ -50,6 +50,76 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T15:54:00Z automation run, the main loop integrated the
+freshest ePK research-lane outputs only where they changed the no-go decision
+surface, then returned to the frozen FMO deep packet. The synthesis artifact
+`artifacts/v3_epk_latest_lane_regression_synthesis_20260521.json` keeps ePK
+review-only and not production-ready across five lanes: the positive lane emits
+0 fresh candidate rows, the false-positive lane preserves
+`5UJ7:biological_assembly_1` as the unique context-v4-only split residual while
+the 343-row regression gate stays fail-closed, sibling controls keep a
+119-row negative scenario matrix, the policy harness rolls 16 rows into eight
+entry-level review-only units, and substrate-role graph motifs localize but do
+not resolve the `9UUR`/`9UUX`/`9UW4` and `3TM0`/`6NOO` biology ambiguity. No
+ePK scorer, threshold, registry edit, label import, fingerprint expansion,
+artifact upload/removal, or main-loop ePK task is authorized.
+
+The same run closed the next FMO blocker without adding new broad external row
+surface. `artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json`
+scores all seven already frozen FMO deep-packet rows against the eight current
+fingerprints using only mapped local cofactor/active-site coordinate evidence.
+All seven score successfully with 0 text/name/label fields used; only `H3JQW0`
+barely reaches the FMO lane floor (`0.4127` versus `0.4115`), and every row is
+top-ranked instead to `flavin_dehydrogenase_reductase`, so no mechanism-match
+claim is made from geometry alone.
+
+The full-current follow-up screen
+`artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json`
+then screens the four previously unresolved FMO rows against the 672 staged
+current-countable structures in target subchunks. `H3JQW0` and `Q6F4M8`
+complete 672/672 query-target pairs each and have current-countable
+`TM >= 0.7` duplicate/leakage signals (`0.7646` and `0.8831` maximum pair TM).
+`O94851` and `Q7RTP6` time out on their first current-countable target chunk,
+so their pair caches are incomplete and no duplicate-clear claim is permitted.
+The terminal packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_geometry_and_full_current_screen_20260521.json`
+now records five `terminal_rejection_duplicate_or_leakage` rows and two
+`needs_new_extractor_or_structure` rows. The exact blocker for `O94851` and
+`Q7RTP6` is complete full current-countable duplicate/leakage screening after
+the subchunk timeout or pair-cache gap. The benchmark
+`artifacts/v3_flavin_monooxygenase_deep_packet_post_geometry_full_current_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword and sequence baselines diagnostic only, records ESM as
+unavailable, records Foldseek/TM as import-gate duplicate/leakage evidence
+only, and makes no superiority, import, or production-scoring claim.
+
+`artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_rescue_probe_20260521.json`
+narrows the two remaining FMO blockers by splitting the timed-out first
+current-countable target chunk into eight six-target subchunks per candidate.
+`O94851` completes seven subchunks and times out only on subchunk 7; `Q7RTP6`
+completes five subchunks and times out on subchunks 1, 6, and 7. No completed
+subchunk has a `TM >= 0.7` high-TM signal, but neither candidate has a complete
+pair cache, so no duplicate-clear or terminal-upgrade claim is allowed.
+`artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_size2_rescue_probe_20260521.json`
+then splits the remaining timed subchunks into two-target retries. This closes
+the chunk-000 timeout surface for `O94851` with 0 high-TM hits and narrows
+`Q7RTP6` to one still-timed two-target retry under parent subchunk 1. `Q7RTP6`
+therefore remains blocked by that exact retry plus the unrun remaining
+full-current chunks; `O94851` remains blocked by the unrun remaining
+full-current chunks.
+
+Evidence-based confidence call: confidence is high that the FMO geometry
+scores are source-separated and text-free for the seven frozen rows. Confidence
+is high that `H3JQW0` and `Q6F4M8` are terminal duplicate/leakage rejections
+under the current-countable structural screen, and high that the three earlier
+targeted-FMO rejections remain terminal. Confidence is medium on `O94851` and
+`Q7RTP6` because the blocker is now exact but unresolved: one two-target
+chunk-000 retry still times out for `Q7RTP6`, and the rest of full-current
+screening remains incomplete for both rows. Next main-loop work should either
+finish that specific `Q7RTP6` retry and then continue the remaining
+current-countable chunks for `O94851`/`Q7RTP6`, or run the bounded `P31614` PDB
+active-site mapping plus full-current duplicate-screen probe; do not open new
+broad external mini-campaign breadth.
+
 As of the 2026-05-21T14:40:00Z automation run, the main loop closed the
 remaining heme-peroxidase deep-packet timeout blocker without opening a new
 external mini-campaign. The new subchunk screen

@@ -1,0 +1,1045 @@
+{
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 4,
+    "candidate_selection_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_coordinate_materialization_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T15:31:49Z",
+    "curated_label_registry_edited": false,
+    "current_countable_coordinate_dir": "artifacts/v3_foldseek_coordinates_1000",
+    "current_countable_structural_screen_status_counts": {
+      "current_countable_structural_duplicate_signal": 2,
+      "current_countable_structural_screen_incomplete": 2
+    },
+    "current_countable_target_count": 672,
+    "duplicate_clear_candidate_count": 0,
+    "duplicate_clear_claim_permitted": false,
+    "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+    "expected_query_target_pair_count": 2688,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/foldseek/bin/foldseek",
+    "foldseek_chunk_attempt_count": 30,
+    "foldseek_chunk_run_status_counts": {
+      "completed": 28,
+      "foldseek_run_timeout": 2
+    },
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_000 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/O94851_chunk_000.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/O94851_chunk_000 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_000 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q7RTP6_chunk_000.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q7RTP6_chunk_000 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_000 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_000.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_000 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_001 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_001.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_001 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_002 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_002.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_002 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_003 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_003.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_003 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_004 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_004.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_004 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_005 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_005.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_005 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_006 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_006.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_006 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_007 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_007.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_007 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_008 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_008.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_008 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_009 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_009.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_009 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_010 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_010.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_010 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_011 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_011.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_011 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_012 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_012.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_012 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/H3JQW0 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_013 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/H3JQW0_chunk_013.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/H3JQW0_chunk_013 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_000 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_000.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_000 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_001 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_001.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_001 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_002 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_002.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_002 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_003 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_003.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_003 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_004 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_004.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_004 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_005 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_005.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_005 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_006 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_006.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_006 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_007 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_007.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_007 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_008 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_008.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_008 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_009 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_009.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_009 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_010 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_010.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_010 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_011 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_011.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_011 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_012 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_012.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_012 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q6F4M8 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_013 /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q6F4M8_chunk_013.tsv /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q6F4M8_chunk_013 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "foldseek_coordinate_readiness_artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "geometry_scores_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json",
+    "high_tm_candidate_count": 2,
+    "import_ready_candidate_count": 0,
+    "initial_target_chunk_size": 48,
+    "max_external_vs_current_countable_tm_score": 0.8831,
+    "max_runtime_seconds_per_chunk": 120,
+    "method": "flavin_monooxygenase_deep_packet_full_current_countable_subchunk_duplicate_screen",
+    "pair_cache_complete": false,
+    "query_target_pair_coverage": 0.5,
+    "raw_name_mapping_unmapped_count": 0,
+    "raw_name_mapping_unmapped_names": [],
+    "raw_result_row_count": 3662,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "screened_candidate_count": 4,
+    "source_prior_terminal_packet_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_structure_mapping_20260521.json",
+    "source_separation_enforced": true,
+    "structure_mapping_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_structure_mapping_20260521.json",
+    "tm_score_threshold": 0.7,
+    "unique_query_target_pair_count": 1344
+  },
+  "rows": [
+    {
+      "accession": "O94851",
+      "catalytic_residue_or_cofactor_evidence": {
+        "active_or_cofactor_feature_count": 6,
+        "mapped_cofactor_families": [
+          "flavin"
+        ],
+        "mapped_ligand_codes": [
+          "FAD"
+        ],
+        "mapped_residue_codes": [
+          "CYS",
+          "GLU",
+          "LYS",
+          "ARG",
+          "ARG",
+          "ASN",
+          "ASN",
+          "PHE",
+          "TYR",
+          "ASP"
+        ],
+        "mapped_residue_count": 10,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_score": 0.266,
+        "text_or_label_fields_used_for_score": false
+      },
+      "chunk_statuses": [
+        {
+          "chunk_index": 0,
+          "error": "TimeoutExpired: Command '['/private/tmp/catalytic-foldseek-env/bin/foldseek', 'easy-search', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_000', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/O94851_chunk_000.tsv', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/O94851_chunk_000', '--format-output', 'query,target,qtmscore,ttmscore,alntmscore', '--exhaustive-search', '1', '--alignment-type', '1', '--tmalign-fast', '0', '--exact-tmscore', '1', '--max-seqs', '100000', '-e', 'inf', '--threads', '1', '-v', '1']' timed out after 120 seconds",
+          "foldseek_run_status": "foldseek_run_timeout",
+          "runtime_seconds": 120.009,
+          "target_count": 48
+        }
+      ],
+      "completed_target_count": 0,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_O94851.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 0,
+      "current_countable_hit_count": 0,
+      "current_countable_structural_screen_status": "current_countable_structural_screen_incomplete",
+      "duplicate_clear_established": false,
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_chunk_run_status_counts": {
+        "foldseek_run_timeout": 1
+      },
+      "foldseek_leaf_chunk_count": 1,
+      "geometry_summary": {
+        "abstain_floor": 0.4115,
+        "geometry_score_status": "scored_all_current_fingerprints",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 4,
+        "target_lane_score": 0.266,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.648
+      },
+      "max_external_vs_current_countable_tm_score": null,
+      "nearest_current_countable_hit": null,
+      "pair_cache_complete": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O94851",
+      "runtime_seconds": 120.009,
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [],
+      "unique_query_target_pair_count": 0
+    },
+    {
+      "accession": "Q7RTP6",
+      "catalytic_residue_or_cofactor_evidence": {
+        "active_or_cofactor_feature_count": 6,
+        "mapped_cofactor_families": [
+          "flavin"
+        ],
+        "mapped_ligand_codes": [
+          "FAD"
+        ],
+        "mapped_residue_codes": [
+          "CYS",
+          "GLU",
+          "LYS",
+          "ARG",
+          "ARG",
+          "ASN",
+          "ASN",
+          "PHE",
+          "TYR",
+          "ASP"
+        ],
+        "mapped_residue_count": 10,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_score": 0.2653,
+        "text_or_label_fields_used_for_score": false
+      },
+      "chunk_statuses": [
+        {
+          "chunk_index": 0,
+          "error": "TimeoutExpired: Command '['/private/tmp/catalytic-foldseek-env/bin/foldseek', 'easy-search', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/targets_chunk_000', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/results/Q7RTP6_chunk_000.tsv', '/private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/tmp/Q7RTP6_chunk_000', '--format-output', 'query,target,qtmscore,ttmscore,alntmscore', '--exhaustive-search', '1', '--alignment-type', '1', '--tmalign-fast', '0', '--exact-tmscore', '1', '--max-seqs', '100000', '-e', 'inf', '--threads', '1', '-v', '1']' timed out after 120 seconds",
+          "foldseek_run_status": "foldseek_run_timeout",
+          "runtime_seconds": 120.007,
+          "target_count": 48
+        }
+      ],
+      "completed_target_count": 0,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_Q7RTP6.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 0,
+      "current_countable_hit_count": 0,
+      "current_countable_structural_screen_status": "current_countable_structural_screen_incomplete",
+      "duplicate_clear_established": false,
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_chunk_run_status_counts": {
+        "foldseek_run_timeout": 1
+      },
+      "foldseek_leaf_chunk_count": 1,
+      "geometry_summary": {
+        "abstain_floor": 0.4115,
+        "geometry_score_status": "scored_all_current_fingerprints",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 4,
+        "target_lane_score": 0.2653,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.6471
+      },
+      "max_external_vs_current_countable_tm_score": null,
+      "nearest_current_countable_hit": null,
+      "pair_cache_complete": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q7RTP6",
+      "runtime_seconds": 120.008,
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [],
+      "unique_query_target_pair_count": 0
+    },
+    {
+      "accession": "H3JQW0",
+      "catalytic_residue_or_cofactor_evidence": {
+        "active_or_cofactor_feature_count": 11,
+        "mapped_cofactor_families": [
+          "flavin",
+          "nad"
+        ],
+        "mapped_ligand_codes": [
+          "FAD",
+          "NADP"
+        ],
+        "mapped_residue_codes": [
+          "THR",
+          "GLU",
+          "THR",
+          "TRP",
+          "TYR",
+          "TRP",
+          "ARG",
+          "LEU",
+          "ASP",
+          "ASP",
+          "THR",
+          "TYR",
+          "VAL",
+          "THR",
+          "GLY",
+          "ALA",
+          "THR",
+          "GLY",
+          "VAL",
+          "GLN",
+          "ARG",
+          "THR",
+          "VAL",
+          "TRP"
+        ],
+        "mapped_residue_count": 24,
+        "target_lane_at_or_above_floor": true,
+        "target_lane_score": 0.4127,
+        "text_or_label_fields_used_for_score": false
+      },
+      "chunk_statuses": [
+        {
+          "chunk_index": 0,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 20.913,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 1,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 21.481,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 2,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 17.596,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 3,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 17.6,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 4,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 22.82,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 5,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 26.589,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 6,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 24.629,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 7,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 20.873,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 8,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 32.493,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 9,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 19.609,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 10,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 18.763,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 11,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 22.303,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 12,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 30.295,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 13,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 43.595,
+          "target_count": 48
+        }
+      ],
+      "completed_target_count": 672,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_H3JQW0.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 2,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "duplicate_clear_established": false,
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_chunk_run_status_counts": {
+        "completed": 14
+      },
+      "foldseek_leaf_chunk_count": 14,
+      "geometry_summary": {
+        "abstain_floor": 0.4115,
+        "geometry_score_status": "scored_all_current_fingerprints",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 2,
+        "target_lane_score": 0.4127,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.6461
+      },
+      "max_external_vs_current_countable_tm_score": 0.7646,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7646,
+        "max_pair_tm_score": 0.7646,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "qtmscore": 0.011,
+        "raw_query_name": "afdb_H3JQW0",
+        "raw_target_name": "pdb_1IR3_B",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+        "target_entry_ids": [
+          "m_csa:246"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_exact_or_chain_alias",
+        "target_structure_id": "1IR3",
+        "target_structure_key": "pdb:1IR3",
+        "ttmscore": 0.6372
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:H3JQW0",
+      "runtime_seconds": 339.561,
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.7646,
+          "max_pair_tm_score": 0.7646,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.011,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1IR3_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "target_entry_ids": [
+            "m_csa:246"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1IR3",
+          "target_structure_key": "pdb:1IR3",
+          "ttmscore": 0.6372
+        },
+        {
+          "alntmscore": 0.7027,
+          "max_pair_tm_score": 0.7027,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.052,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1EHK_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "target_entry_ids": [
+            "m_csa:735"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1EHK",
+          "target_structure_key": "pdb:1EHK",
+          "ttmscore": 0.659
+        },
+        {
+          "alntmscore": 0.6901,
+          "max_pair_tm_score": 0.6901,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.4473,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1H7X_D",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1H7X.cif",
+          "target_entry_ids": [
+            "m_csa:800"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1H7X",
+          "target_structure_key": "pdb:1H7X",
+          "ttmscore": 0.2555
+        },
+        {
+          "alntmscore": 0.6735,
+          "max_pair_tm_score": 0.6735,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.0583,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1V54_I",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "target_entry_ids": [
+            "m_csa:124"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1V54",
+          "target_structure_key": "pdb:1V54",
+          "ttmscore": 0.363
+        },
+        {
+          "alntmscore": 0.636,
+          "max_pair_tm_score": 0.636,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.0109,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1T7D_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+          "target_entry_ids": [
+            "m_csa:635"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1T7D",
+          "target_structure_key": "pdb:1T7D",
+          "ttmscore": 0.53
+        },
+        {
+          "alntmscore": 0.6334,
+          "max_pair_tm_score": 0.6334,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.4067,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_2TMD_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "target_entry_ids": [
+            "m_csa:114"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "2TMD",
+          "target_structure_key": "pdb:2TMD",
+          "ttmscore": 0.3155
+        },
+        {
+          "alntmscore": 0.6313,
+          "max_pair_tm_score": 0.6313,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.3796,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1PS9",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+          "target_entry_ids": [
+            "m_csa:108"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1PS9",
+          "target_structure_key": "pdb:1PS9",
+          "ttmscore": 0.3162
+        },
+        {
+          "alntmscore": 0.6196,
+          "max_pair_tm_score": 0.6196,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.4237,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_3H8I_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3H8I.cif",
+          "target_entry_ids": [
+            "m_csa:320"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "3H8I",
+          "target_structure_key": "pdb:3H8I",
+          "ttmscore": 0.6055
+        },
+        {
+          "alntmscore": 0.6181,
+          "max_pair_tm_score": 0.6181,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.3896,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_1TDE",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1TDE.cif",
+          "target_entry_ids": [
+            "m_csa:381"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1TDE",
+          "target_structure_key": "pdb:1TDE",
+          "ttmscore": 0.6134
+        },
+        {
+          "alntmscore": 0.6114,
+          "max_pair_tm_score": 0.6114,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.4772,
+          "raw_query_name": "afdb_H3JQW0",
+          "raw_target_name": "pdb_2NPX",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2NPX.cif",
+          "target_entry_ids": [
+            "m_csa:895"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "2NPX",
+          "target_structure_key": "pdb:2NPX",
+          "ttmscore": 0.5668
+        }
+      ],
+      "unique_query_target_pair_count": 672
+    },
+    {
+      "accession": "Q6F4M8",
+      "catalytic_residue_or_cofactor_evidence": {
+        "active_or_cofactor_feature_count": 4,
+        "mapped_cofactor_families": [
+          "flavin"
+        ],
+        "mapped_ligand_codes": [
+          "FAD"
+        ],
+        "mapped_residue_codes": [
+          "PRO",
+          "MET",
+          "PHE",
+          "GLN",
+          "PHE",
+          "ASP",
+          "ARG",
+          "THR",
+          "THR",
+          "MET",
+          "GLN",
+          "ARG"
+        ],
+        "mapped_residue_count": 12,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_score": 0.2433,
+        "text_or_label_fields_used_for_score": false
+      },
+      "chunk_statuses": [
+        {
+          "chunk_index": 0,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 16.626,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 1,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 18.003,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 2,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 16.741,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 3,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 15.696,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 4,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 22.654,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 5,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 27.074,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 6,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 24.784,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 7,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 20.176,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 8,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 30.771,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 9,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 18.601,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 10,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 17.61,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 11,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 21.718,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 12,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 28.945,
+          "target_count": 48
+        },
+        {
+          "chunk_index": 13,
+          "error": null,
+          "foldseek_run_status": "completed",
+          "runtime_seconds": 41.16,
+          "target_count": 48
+        }
+      ],
+      "completed_target_count": 672,
+      "coordinate_path": "artifacts/v3_flavin_monooxygenase_deep_packet_structural_coordinates_20260521/afdb_Q6F4M8.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 6,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "duplicate_clear_established": false,
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_chunk_run_status_counts": {
+        "completed": 14
+      },
+      "foldseek_leaf_chunk_count": 14,
+      "geometry_summary": {
+        "abstain_floor": 0.4115,
+        "geometry_score_status": "scored_all_current_fingerprints",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 3,
+        "target_lane_score": 0.2433,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.6177
+      },
+      "max_external_vs_current_countable_tm_score": 0.8831,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8831,
+        "max_pair_tm_score": 0.8831,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "qtmscore": 0.8129,
+        "raw_query_name": "afdb_Q6F4M8",
+        "raw_target_name": "pdb_1U8V_C",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1U8V.cif",
+        "target_entry_ids": [
+          "m_csa:750"
+        ],
+        "target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_exact_or_chain_alias",
+        "target_structure_id": "1U8V",
+        "target_structure_key": "pdb:1U8V",
+        "ttmscore": 0.8714
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q6F4M8",
+      "runtime_seconds": 320.564,
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.8831,
+          "max_pair_tm_score": 0.8831,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.8129,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1U8V_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1U8V.cif",
+          "target_entry_ids": [
+            "m_csa:750"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1U8V",
+          "target_structure_key": "pdb:1U8V",
+          "ttmscore": 0.8714
+        },
+        {
+          "alntmscore": 0.7991,
+          "max_pair_tm_score": 0.7991,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.5541,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1IVH_D",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IVH.cif",
+          "target_entry_ids": [
+            "m_csa:68"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1IVH",
+          "target_structure_key": "pdb:1IVH",
+          "ttmscore": 0.7331
+        },
+        {
+          "alntmscore": 0.7952,
+          "max_pair_tm_score": 0.7952,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.0607,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1EHK_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "target_entry_ids": [
+            "m_csa:735"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1EHK",
+          "target_structure_key": "pdb:1EHK",
+          "ttmscore": 0.7801
+        },
+        {
+          "alntmscore": 0.7554,
+          "max_pair_tm_score": 0.7554,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.5599,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_3X0Y_H",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif",
+          "target_entry_ids": [
+            "m_csa:973"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "3X0Y",
+          "target_structure_key": "pdb:3X0Y",
+          "ttmscore": 0.7166
+        },
+        {
+          "alntmscore": 0.7456,
+          "max_pair_tm_score": 0.7456,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.0113,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1IR3_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "target_entry_ids": [
+            "m_csa:246"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1IR3",
+          "target_structure_key": "pdb:1IR3",
+          "ttmscore": 0.6214
+        },
+        {
+          "alntmscore": 0.7167,
+          "max_pair_tm_score": 0.7167,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.0113,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1T7D_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+          "target_entry_ids": [
+            "m_csa:635"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1T7D",
+          "target_structure_key": "pdb:1T7D",
+          "ttmscore": 0.5972
+        },
+        {
+          "alntmscore": 0.6754,
+          "max_pair_tm_score": 0.6754,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.013,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1RTF_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "target_entry_ids": [
+            "m_csa:798"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1RTF",
+          "target_structure_key": "pdb:1RTF",
+          "ttmscore": 0.5789
+        },
+        {
+          "alntmscore": 0.6245,
+          "max_pair_tm_score": 0.6245,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.1101,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1EZV_H",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EZV.cif",
+          "target_entry_ids": [
+            "m_csa:208"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1EZV",
+          "target_structure_key": "pdb:1EZV",
+          "ttmscore": 0.5714
+        },
+        {
+          "alntmscore": 0.6147,
+          "max_pair_tm_score": 0.6147,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.0573,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1V54_M",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "target_entry_ids": [
+            "m_csa:124"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1V54",
+          "target_structure_key": "pdb:1V54",
+          "ttmscore": 0.54
+        },
+        {
+          "alntmscore": 0.6106,
+          "max_pair_tm_score": 0.6106,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.1301,
+          "raw_query_name": "afdb_Q6F4M8",
+          "raw_target_name": "pdb_1C17_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C17.cif",
+          "target_entry_ids": [
+            "m_csa:507"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_structure_id": "1C17",
+          "target_structure_key": "pdb:1C17",
+          "ttmscore": 0.6058
+        }
+      ],
+      "unique_query_target_pair_count": 672
+    }
+  ]
+}

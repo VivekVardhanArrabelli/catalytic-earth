@@ -1,0 +1,75 @@
+{
+  "lane_findings": [
+    {
+      "candidate_rows_emitted": 0,
+      "decision_changing_output": "no_clean_fresh_folded_protein_positive",
+      "lane_id": "epk_positive_evidence",
+      "latest_evidence": "transfer-alias and same-day release/publication rechecks emitted 0 fresh candidate rows; 23FC publication authority remains absent",
+      "primary_outcome": "search_surface_exhausted",
+      "production_claim_allowed": false,
+      "recommendation": "wait for genuinely new PDB IDs or publication metadata before more positive-lane sourcing"
+    },
+    {
+      "decision_changing_output": "context_v4_only_sufficiency_remains_falsified",
+      "lane_id": "epk_false_positive_hunter",
+      "latest_evidence": "343-row regression gate has unsafe_nonabstention_after_expected_policy_count=0 while preserving 5UJ7:biological_assembly_1 as the unique context-v4-only split residual",
+      "primary_outcome": "regression_rows_emitted",
+      "production_claim_allowed": false,
+      "recommendation": "continue non-ORC deposited-v4/assembly-below-floor split stress only as research-lane work",
+      "regression_rows_emitted": 343
+    },
+    {
+      "decision_changing_output": "future_scorer_runtime_negative_matrix_available_review_only",
+      "lane_id": "epk_sibling_controls",
+      "latest_evidence": "119-row runtime negative scenario matrix rejects proximity-only, product-state-as-active-gamma, blocker-reason drift, candidate-context digest drift, and row-surface-loss scenarios",
+      "primary_outcome": "regression_gate_passed",
+      "production_claim_allowed": false,
+      "recommendation": "use as fail-closed future scorer fixture; do not count ePK progress if any negative scenario passes",
+      "unsafe_nonabstention_count": 0
+    },
+    {
+      "decision_changing_output": "entry_id_first_class_federated_rollup_gate_review_only",
+      "lane_id": "epk_policy_harness",
+      "latest_evidence": "16 candidate rows from four lanes roll up to eight entries with 0 forbidden source leakage and 0 unsafe control nonabstentions",
+      "primary_outcome": "scoreboard_gate_created",
+      "production_claim_allowed": false,
+      "recommendation": "next exact research-lane query is real cross-lane entry overlap; no production scoring or import"
+    },
+    {
+      "decision_changing_output": "graph_motif_audit_localizes_but_does_not_clear_biology_ambiguity",
+      "lane_id": "epk_substrate_role_identity",
+      "latest_evidence": "graph motifs preserve mixed 9UUR/9UUX/9UW4 and 3TM0/6NOO collisions; topology and product-state biology still require source-reviewed adjudication",
+      "primary_outcome": "candidate_evidence_rows_emitted",
+      "production_claim_allowed": false,
+      "recommendation": "do not run another scalar rescue; require a genuinely new source-free modality before reopening"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_latest_lane_regression_synthesis_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "captures_5uj7_biological_assembly_residual": true,
+    "created_at": "2026-05-21T15:31:49Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_remote_branch_outputs_integrated": true,
+    "lane_count": 5,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "epk_latest_lane_regression_synthesis_review_only",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_separation_enforced": true
+  },
+  "synthesis_conclusion": {
+    "decision_change_summary": "fresh lanes strengthen regression/fail-closed fixtures and preserve exact blockers, but add no production-ready positive evidence",
+    "decision_changed_since_prior_main_synthesis": true,
+    "decision_to_start_now": false,
+    "next_exact_experiment_if_epk_is_reopened": "epk_federated_candidate_entry_rollup_real_entry_overlap_v3_review_only_or_true_non_orc_assembly_split_stress_in_research_lane_only",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "production_activation_decision": "no_go",
+    "terminal_main_loop_decision": "do_not_resume_epk_as_default_main_loop_task"
+  }
+}

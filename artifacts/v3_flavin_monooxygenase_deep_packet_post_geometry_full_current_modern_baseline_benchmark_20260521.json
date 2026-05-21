@@ -1,0 +1,48 @@
+{
+  "caveats": [
+    "Geometry scoring is review-only and source-separated; it is not a production scorer or label-import gate.",
+    "Foldseek/TM evidence is duplicate/leakage import-gate evidence, not positive mechanism evidence.",
+    "Full-current duplicate screening remained incomplete for O94851 and Q7RTP6 because the first target subchunk timed out; no duplicate-clear claim is made for them.",
+    "EC/keyword routing is retained only to document why rows were selected from the frozen campaign.",
+    "No ESM sidecar is available for this FMO packet, so no ESM comparison or superiority claim is made."
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_post_geometry_full_current_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T15:31:49Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_rows_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "full_current_screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json",
+    "geometry_scores_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json",
+    "method": "flavin_monooxygenase_deep_packet_modern_baseline_comparison_after_geometry_full_current",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "task_definition": "On the seven frozen FMO deep-packet rows, compare diagnostic EC/keyword routing and deterministic sequence-neighbor routing with source-separated geometry scoring and Foldseek duplicate/leakage evidence.",
+    "terminal_packet_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_geometry_and_full_current_screen_20260521.json"
+  },
+  "metrics": {
+    "deterministic_sequence_baseline_status": "available_from_prior_deep_packet_sequence_screen",
+    "deterministic_sequence_exact_current_reference_duplicate_count": 0,
+    "ec_keyword_routing_candidate_count": 7,
+    "ec_keyword_routing_caveat": "diagnostic candidate-selection/review context only; EC, keyword, protein names, and source prose were not counted as predictive evidence",
+    "esm_sidecar_status": "not_available_for_this_deep_packet",
+    "foldseek_sidecar_status": "partial_full_current_countable_subchunk_screen_two_rows_completed_two_rows_timed_out",
+    "frozen_candidate_count": 7,
+    "full_current_duplicate_clear_candidate_count": 0,
+    "full_current_high_tm_candidate_count": 2,
+    "full_current_pair_cache_complete": false,
+    "full_current_screened_candidate_count": 4,
+    "geometry_superiority_claim": "not_made",
+    "geometry_target_lane_at_or_above_floor_count": 1,
+    "geometry_top1_target_lane_count": 0,
+    "source_free_geometry_scored_count": 7,
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 2,
+      "terminal_rejection_duplicate_or_leakage": 5
+    }
+  }
+}

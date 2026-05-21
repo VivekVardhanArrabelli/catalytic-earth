@@ -278,6 +278,40 @@ Fresh remote ePK lane follow-up is additionally summarized in
 the no-go decision through exhausted positive surfaces, 0 unsafe
 non-abstentions, a federated adapter gate, and unresolved source-free
 substrate-role signature collisions; it authorizes no main-loop ePK work.
+The latest ePK lane synthesis
+`artifacts/v3_epk_latest_lane_regression_synthesis_20260521.json` keeps the
+same scope after newer lane pushes: 0 fresh positive rows, the
+`5UJ7:biological_assembly_1` context-v4-only residual preserved, a 343-row
+false-positive regression gate fail-closed, eight entry-level policy-harness
+rollups, and unresolved substrate-role graph collisions. ePK remains
+review-only/no-go and must not displace external decision-deepening work in the
+main loop.
+Current flavin monooxygenase deepening scope: source-free geometry scoring and
+a partial full-current duplicate/leakage screen are now recorded without new
+candidate breadth. `artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json`
+scores all seven frozen rows with 0 text/name/label fields used; only `H3JQW0`
+meets the FMO lane floor and all seven top-rank to
+`flavin_dehydrogenase_reductase`, so no mechanism-match claim is authorized.
+`artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json`
+converts `H3JQW0` and `Q6F4M8` to current-countable structural duplicate
+signals, while `O94851` and `Q7RTP6` remain incomplete after first-subchunk
+timeouts. The follow-up terminal packet records five
+`terminal_rejection_duplicate_or_leakage` rows and two exact
+`needs_new_extractor_or_structure` blockers. The next admissible FMO step is
+smaller or resumable full-current subchunk screening for `O94851` and
+`Q7RTP6`; no duplicate-clear, import, production-score, or superiority claim is
+in scope. The first timeout rescue probe
+`artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_rescue_probe_20260521.json`
+splits the first 48-target chunk into eight six-target subchunks per candidate:
+`O94851` still times out only on subchunk 7 and `Q7RTP6` on subchunks 1, 6, and
+7. Completed subchunks have 0 high-TM hits, but pair-cache completeness is still
+false, so the exact blocker remains narrowed rather than closed.
+`artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_size2_rescue_probe_20260521.json`
+retries those timed subchunks at two targets per run: `O94851` chunk 000 is now
+resolved with 0 high-TM hits, while `Q7RTP6` still has one timed two-target
+retry under parent subchunk 1. Because chunks 1-13 remain unrun for both
+nonterminal candidates, this is still blocker localization rather than
+duplicate-clear evidence.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

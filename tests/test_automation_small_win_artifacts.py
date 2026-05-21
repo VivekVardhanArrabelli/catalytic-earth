@@ -1754,6 +1754,284 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "not_available_for_this_deep_packet",
         )
 
+    def test_latest_epk_lane_regression_synthesis_stays_no_go(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_latest_lane_regression_synthesis_20260521.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["fresh_remote_branch_outputs_integrated"])
+        self.assertTrue(metadata["captures_5uj7_biological_assembly_residual"])
+        self.assertEqual(metadata["lane_count"], 5)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertFalse(metadata["main_loop_should_continue_epk_by_default"])
+
+        self.assertEqual(
+            conclusion["overall"],
+            "epk_remains_review_only_and_not_production_ready",
+        )
+        self.assertEqual(conclusion["production_activation_decision"], "no_go")
+        self.assertEqual(
+            conclusion["terminal_main_loop_decision"],
+            "do_not_resume_epk_as_default_main_loop_task",
+        )
+        self.assertFalse(conclusion["decision_to_start_now"])
+
+        lanes = {row["lane_id"]: row for row in synthesis["lane_findings"]}
+        self.assertEqual(
+            set(lanes),
+            {
+                "epk_positive_evidence",
+                "epk_false_positive_hunter",
+                "epk_sibling_controls",
+                "epk_policy_harness",
+                "epk_substrate_role_identity",
+            },
+        )
+        self.assertEqual(
+            lanes["epk_false_positive_hunter"]["regression_rows_emitted"], 343
+        )
+        self.assertIn(
+            "5UJ7:biological_assembly_1",
+            lanes["epk_false_positive_hunter"]["latest_evidence"],
+        )
+        self.assertIn(
+            "eight entries",
+            lanes["epk_policy_harness"]["latest_evidence"],
+        )
+        self.assertIn(
+            "mixed 9UUR/9UUX/9UW4 and 3TM0/6NOO collisions",
+            lanes["epk_substrate_role_identity"]["latest_evidence"],
+        )
+        self.assertTrue(
+            all(not row["production_claim_allowed"] for row in lanes.values())
+        )
+
+    def test_flavin_monooxygenase_geometry_full_current_screen_terminals(
+        self,
+    ) -> None:
+        geometry = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json"
+        )
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json"
+        )
+        timeout_probe = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_timeout_chunk000_rescue_probe_20260521.json"
+        )
+        size2_probe = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_timeout_chunk000_size2_rescue_probe_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_terminal_decision_packet_after_geometry_and_full_current_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_post_geometry_full_current_modern_baseline_benchmark_20260521.json"
+        )
+
+        self.assertTrue(geometry["metadata"]["review_only"])
+        self.assertEqual(geometry["metadata"]["candidate_count"], 7)
+        self.assertEqual(geometry["metadata"]["source_free_geometry_scored_count"], 7)
+        self.assertEqual(geometry["metadata"]["target_lane_at_or_above_floor_count"], 1)
+        self.assertEqual(geometry["metadata"]["top1_target_lane_count"], 0)
+        self.assertEqual(geometry["metadata"]["text_or_label_fields_used_for_score_count"], 0)
+        self.assertFalse(geometry["metadata"]["ready_for_label_import"])
+        self.assertFalse(geometry["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(geometry["metadata"]["fingerprint_registry_edited"])
+        self.assertTrue(
+            all(
+                row["status"] == "ok"
+                and row["target_lane_summary"]["geometry_score_status"]
+                == "scored_all_current_fingerprints"
+                and not row["text_or_label_fields_used_for_score"]
+                and row["target_lane_summary"]["top1_fingerprint_id"]
+                == "flavin_dehydrogenase_reductase"
+                for row in geometry["rows"]
+            )
+        )
+
+        screen_metadata = screen["metadata"]
+        self.assertTrue(screen_metadata["review_only"])
+        self.assertEqual(screen_metadata["candidate_count"], 4)
+        self.assertEqual(
+            screen_metadata["current_countable_structural_screen_status_counts"],
+            {
+                "current_countable_structural_duplicate_signal": 2,
+                "current_countable_structural_screen_incomplete": 2,
+            },
+        )
+        self.assertEqual(screen_metadata["foldseek_chunk_run_status_counts"], {"completed": 28, "foldseek_run_timeout": 2})
+        self.assertFalse(screen_metadata["pair_cache_complete"])
+        self.assertEqual(screen_metadata["query_target_pair_coverage"], 0.5)
+        self.assertEqual(screen_metadata["duplicate_clear_candidate_count"], 0)
+        self.assertFalse(screen_metadata["duplicate_clear_claim_permitted"])
+        self.assertEqual(screen_metadata["high_tm_candidate_count"], 2)
+        self.assertEqual(
+            screen_metadata["duplicate_leakage_evidence_role"],
+            "import_gate_evidence_not_predictive_mechanism_evidence",
+        )
+        self.assertFalse(screen_metadata["ready_for_label_import"])
+        self.assertFalse(screen_metadata["curated_label_registry_edited"])
+        self.assertFalse(screen_metadata["fingerprint_registry_edited"])
+        screen_rows = {row["accession"]: row for row in screen["rows"]}
+        self.assertEqual(
+            {
+                accession
+                for accession, row in screen_rows.items()
+                if row["current_countable_structural_screen_status"]
+                == "current_countable_structural_screen_incomplete"
+            },
+            {"O94851", "Q7RTP6"},
+        )
+        self.assertEqual(
+            {
+                accession
+                for accession, row in screen_rows.items()
+                if row["current_countable_structural_screen_status"]
+                == "current_countable_structural_duplicate_signal"
+            },
+            {"H3JQW0", "Q6F4M8"},
+        )
+
+        probe_metadata = timeout_probe["metadata"]
+        self.assertTrue(probe_metadata["review_only"])
+        self.assertEqual(probe_metadata["candidate_count"], 2)
+        self.assertEqual(probe_metadata["probe_subchunk_size"], 6)
+        self.assertEqual(probe_metadata["expected_subchunk_count_per_candidate"], 8)
+        self.assertEqual(
+            probe_metadata["foldseek_chunk_run_status_counts"],
+            {"completed": 12, "foldseek_run_timeout": 4},
+        )
+        self.assertEqual(probe_metadata["chunk000_complete_candidate_count"], 0)
+        self.assertEqual(probe_metadata["chunk000_timeout_persists_candidate_count"], 2)
+        self.assertEqual(probe_metadata["high_tm_candidate_count"], 0)
+        self.assertFalse(probe_metadata["duplicate_clear_claim_permitted"])
+        self.assertFalse(probe_metadata["ready_for_label_import"])
+        self.assertFalse(probe_metadata["curated_label_registry_edited"])
+        self.assertFalse(probe_metadata["fingerprint_registry_edited"])
+        probe_rows = {row["accession"]: row for row in timeout_probe["rows"]}
+        self.assertEqual(probe_rows["O94851"]["completed_subchunk_count"], 7)
+        self.assertEqual(probe_rows["O94851"]["timeout_subchunk_count"], 1)
+        self.assertEqual(probe_rows["Q7RTP6"]["completed_subchunk_count"], 5)
+        self.assertEqual(probe_rows["Q7RTP6"]["timeout_subchunk_count"], 3)
+        self.assertTrue(
+            all(row["decision_impact"] == "chunk000_timeout_persists" for row in probe_rows.values())
+        )
+        self.assertTrue(
+            all(row["high_tm_hit_count"] == 0 for row in probe_rows.values())
+        )
+
+        size2_metadata = size2_probe["metadata"]
+        self.assertTrue(size2_metadata["review_only"])
+        self.assertEqual(size2_metadata["candidate_count"], 2)
+        self.assertEqual(size2_metadata["probe_retry_subchunk_size"], 2)
+        self.assertEqual(
+            size2_metadata["foldseek_chunk_run_status_counts"],
+            {"completed": 11, "foldseek_run_timeout": 1},
+        )
+        self.assertEqual(size2_metadata["timeout_parent_subchunks_resolved_candidate_count"], 1)
+        self.assertEqual(size2_metadata["timeout_parent_subchunks_persist_candidate_count"], 1)
+        self.assertEqual(size2_metadata["high_tm_candidate_count"], 0)
+        self.assertFalse(size2_metadata["duplicate_clear_claim_permitted"])
+        self.assertFalse(size2_metadata["ready_for_label_import"])
+        self.assertFalse(size2_metadata["curated_label_registry_edited"])
+        self.assertFalse(size2_metadata["fingerprint_registry_edited"])
+        size2_rows = {row["accession"]: row for row in size2_probe["rows"]}
+        self.assertEqual(
+            size2_rows["O94851"]["decision_impact"],
+            "timeout_parent_subchunks_resolved",
+        )
+        self.assertEqual(size2_rows["O94851"]["timeout_retry_subchunk_count"], 0)
+        self.assertEqual(
+            size2_rows["Q7RTP6"]["decision_impact"],
+            "timeout_parent_subchunks_persist",
+        )
+        self.assertEqual(size2_rows["Q7RTP6"]["timeout_retry_subchunk_count"], 1)
+        self.assertTrue(
+            all(row["high_tm_hit_count"] == 0 for row in size2_rows.values())
+        )
+
+        packet_metadata = packet["metadata"]
+        self.assertTrue(packet_metadata["review_only"])
+        self.assertTrue(packet_metadata["source_separation_enforced"])
+        self.assertEqual(packet_metadata["source_free_geometry_scored_count"], 7)
+        self.assertEqual(
+            packet_metadata["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 2,
+                "terminal_rejection_duplicate_or_leakage": 5,
+            },
+        )
+        self.assertEqual(packet_metadata["mechanism_match_review_ready_count"], 0)
+        self.assertEqual(packet_metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(packet_metadata["ready_for_label_import"])
+        packet_rows = {row["accession"]: row for row in packet["rows"]}
+        self.assertEqual(
+            {
+                accession
+                for accession, row in packet_rows.items()
+                if row["terminal_decision"] == "needs_new_extractor_or_structure"
+            },
+            {"O94851", "Q7RTP6"},
+        )
+        self.assertTrue(
+            all(
+                row["exact_blocker_if_not_terminal"]
+                == "complete full current-countable duplicate/leakage screening after subchunk timeout or pair-cache gap"
+                for accession, row in packet_rows.items()
+                if accession in {"O94851", "Q7RTP6"}
+            )
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["evidence_role"]
+                == "import_gate_evidence_not_predictive_mechanism_evidence"
+                for row in packet_rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["predictive_evidence"][
+                    "ec_keyword_protein_name_counted_as_predictive_evidence"
+                ]
+                and not row["ready_for_label_import"]
+                for row in packet_rows.values()
+            )
+        )
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(
+            benchmark["metrics"]["foldseek_sidecar_status"],
+            "partial_full_current_countable_subchunk_screen_two_rows_completed_two_rows_timed_out",
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+        self.assertEqual(benchmark["metrics"]["geometry_superiority_claim"], "not_made")
+        self.assertFalse(benchmark["metrics"]["full_current_pair_cache_complete"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 2,
+                "terminal_rejection_duplicate_or_leakage": 5,
+            },
+        )
+
     def test_post_metal_epk_research_lane_synthesis_stays_no_go(self) -> None:
         synthesis = _load_json(
             ARTIFACTS / "v3_epk_post_metal_research_lane_synthesis_20260521.json"
