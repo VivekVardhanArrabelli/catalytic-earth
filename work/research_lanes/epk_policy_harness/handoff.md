@@ -5,7 +5,7 @@ Run started: 2026-05-21T05:35:31Z
 Run ended: 2026-05-21T12:27:55Z
 Measured minutes: 412.4
 Primary outcome: `scoreboard_gate_created`
-Pushed commits: `f48ace7ef7eccd1482717a640b6e67302f855e18`, `6be5d732790f25b27d0e79d3bccdb5e65fe1dacb`.
+Pushed content commits: `f48ace7ef7eccd1482717a640b6e67302f855e18`, `6be5d732790f25b27d0e79d3bccdb5e65fe1dacb`. Verify the current remote ref directly because handoff/status-only commits may follow.
 
 ## Files changed
 
@@ -51,7 +51,7 @@ Policy v0 remains frozen, review-only, and fail-closed. This run did not change 
 
 - Normal `git fetch origin` and `git pull --ff-only origin research/epk-policy-harness` remain blocked by linked-worktree metadata permissions on `FETCH_HEAD`.
 - `git fetch --no-write-fetch-head origin research/epk-policy-harness` succeeds.
-- Remote `origin/research/epk-policy-harness` verified at `6be5d732790f25b27d0e79d3bccdb5e65fe1dacb`; local linked-worktree `HEAD` update failed on `HEAD.lock`.
+- Remote push succeeded via alternate-index commits; local linked-worktree `HEAD` update failed on `HEAD.lock`, so verify `origin/research/epk-policy-harness` directly.
 - The normal index remains stale/noisy; use an alternate index seeded from `origin/research/epk-policy-harness` for validation and commit.
 - The adapter smoke is compatibility/gate regression evidence only, not held-out biological performance evidence, not production scoring, and not claim readiness.
 
