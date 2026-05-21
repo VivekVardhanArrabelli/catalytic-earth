@@ -244,6 +244,56 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(conclusion["production_activation_decision"], "no_go")
         self.assertFalse(conclusion["decision_to_start_now"])
 
+    def test_overnight_epk_lane_synthesis_stays_review_only(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_overnight_research_lane_synthesis_20260521.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["integrates_uncommitted_sibling_worktree_outputs"])
+        self.assertEqual(metadata["input_json_validated_file_count"], 11)
+        self.assertEqual(metadata["input_json_validation_error_count"], 0)
+        self.assertEqual(metadata["input_jsonl_validated_file_count"], 4)
+        self.assertEqual(metadata["input_jsonl_validation_error_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["main_loop_should_continue_epk_by_default"])
+
+        lanes = {row["lane_id"]: row for row in synthesis["lane_findings"]}
+        self.assertEqual(
+            lanes["epk_positive_evidence"]["primary_outcome"],
+            "review_only_positive_style_evidence_but_no_clean_folded_protein_positive",
+        )
+        self.assertEqual(
+            lanes["epk_false_positive_hunter"]["primary_outcome"],
+            "bounded_v4_overblock_stress_diagnostic_only",
+        )
+        self.assertEqual(
+            lanes["epk_sibling_controls"]["primary_outcome"],
+            "expected_block_oracle_ready_review_only",
+        )
+        self.assertEqual(
+            lanes["epk_policy_harness"]["primary_outcome"],
+            "adp_product_and_repair_tripwire_freezes_fail_closed_policy_context",
+        )
+        self.assertEqual(
+            conclusion["overall"],
+            "epk_remains_review_only_and_not_production_ready",
+        )
+        self.assertEqual(conclusion["production_activation_decision"], "no_go")
+        self.assertFalse(conclusion["decision_to_start_now"])
+        self.assertFalse(
+            synthesis["next_exact_experiment_if_epk_research_lane_continues"][
+                "decision_to_start_now"
+            ]
+        )
+
     def test_prospective_external_minicampaign_records_blocker_without_import(self) -> None:
         packet = _load_json(
             ARTIFACTS

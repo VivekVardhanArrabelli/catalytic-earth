@@ -96,6 +96,19 @@ GNP/GTP terminal-gamma rows as review-only abstentions. Future ePK work, if
 manual research lanes continue, should test v4 overblock risk on high-order
 assemblies in isolation. It is not a main-loop scoring, threshold, label
 import, registry edit, or fingerprint-expansion task.
+The 2026-05-21T00:17:08Z overnight synthesis in
+`artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` validates
+11 newer dirty sibling-worktree JSON outputs plus 4 JSONL ledgers with 0 parse
+errors and does not change scope. Fresh positive evidence adds `23FC` only as
+ATR/PIKK short-segment review-only stress and preserves `1L3R`/`5LIH` as
+peptide/pseudosubstrate anchors; no clean folded-protein canonical ePK
+positive appears. High-order v4 stress finds 0 lost bounded ePK positives and
+0 non-ORC residual counterexamples, but remains diagnostic. Sibling controls
+produce a 91-case expected-block oracle, and the policy harness freezes
+ADP/product-state/candidate-repair contexts as 10/10 review-only abstentions.
+ePK remains out of main-loop production scope; the only exact future ePK
+experiment is isolated research-lane scorer-fixture dry-run work, not a main
+scoring, threshold, label import, registry edit, or fingerprint-expansion task.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

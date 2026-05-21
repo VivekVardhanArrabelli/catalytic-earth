@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 233
-- Measured elapsed time: 7053.3 minutes (117.55 hours)
+- Entries: 234
+- Measured elapsed time: 7059.1 minutes (117.65 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 94.0 measured minutes (1.57 hours)
-- post-infra-science: 1781.4 measured minutes (29.69 hours)
+- post-infra-science: 1787.2 measured minutes (29.79 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 97.9 measured minutes (1.63 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2672
-- Evidence references logged: 2177
+- Artifact references logged: 2676
+- Evidence references logged: 2183
 
 ## Recent Entries
-
-### 2026-05-20T19:54:53.875623+00:00 - ops
-
-- Task: Post-status validation rerun
-- Time mode: measured
-- Measured minutes: 5.6
-- Started: 2026-05-20T19:49:00Z
-- Ended: 2026-05-20T19:54:36Z
-- Artifacts: work/progress_log.jsonl, work/status.md
-- Evidence: post-status full 714-test unit discovery passed, post-status validate passed with 682 labels and 8 fingerprints, post-status artifact migration dry-run passed with removal_allowed=0, all artifacts JSON validation passed, git diff --check passed
-- Notes: Recorded after regenerating status so the final work log reflects the last verification pass.
 
 ### 2026-05-20T20:13:02.164962+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_ndk_family_readiness_packet_20260520.json, artifacts/v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_ndk_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json, artifacts/v3_pfka_family_readiness_packet_20260520.json, artifacts/v3_main_loop_small_win_register_post_pfka_packet_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: 752-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, registry invariants preserved, NDK packet and 14-row terminal tranche closed review-only no-go, PfkA packet closed review-only no-go with all ATP-family packet slots now started
 - Notes: Continuation after ePK synthesis sulfotransferase PfkB and GHMP work. No artifact upload deletion externalization Git-LFS migration history rewrite label import registry edit production scoring threshold or removal_allowed=true.
+
+### 2026-05-21T00:18:48.662111+00:00 - post-infra-science
+
+- Task: Overnight ePK research-lane synthesis
+- Time mode: measured
+- Measured minutes: 5.8
+- Started: 2026-05-21T00:13:00Z
+- Ended: 2026-05-21T00:18:48Z
+- Artifacts: artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: 11 fresh ePK lane JSON artifacts and 4 JSONL ledgers validated with 0 errors, 23FC kept review-only as ATR/PIKK short-segment stress, high-order v4 stress diagnostic retained bounded positives with 0 non-ORC residuals, 91-case sibling expected-block oracle ready review-only, ADP product repair tripwire abstained 10 of 10, focused overnight synthesis regression passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -305,6 +305,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T22:19:09.281826+00:00: Fresh late ePK evidence strengthens the no-go decision; commit this integration, then return the main loop to non-ePK visible small wins.
 - 2026-05-20T22:44:16.389654+00:00: ePK remains review-only no-go; GHKL/dNK closed review-only; PfkB packet-only no-go.
 - 2026-05-20T23:59:52.878029+00:00: Main loop has closed NDK as review-only no-go and packaged PfkA; next bounded ATP-family step is a frozen PfkA-vs-neighbor tranche before any scoring, or a genuinely new external mini-campaign.
+- 2026-05-21T00:18:48.662111+00:00: Commit ePK synthesis integration before returning to non-ePK small-win ladder.
 
 ## Scope Adjustments
 
@@ -431,3 +432,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T20:55:03.996810+00:00: Main loop closed a new prospective external methyltransferase terminal-failure win, added ASKHA readiness plus a frozen ASKHA-vs-ATP-family tranche, and kept new ePK lane evidence research-only.
 - 2026-05-20T22:19:09.281826+00:00: ePK late-lane synthesis is integrated as review-only evidence with no production scorer threshold label import registry edit or fingerprint expansion.
 - 2026-05-20T22:44:16.389654+00:00: Main loop stayed off ePK audit churn and advanced non-ePK visible small wins.
+- 2026-05-21T00:18:48.662111+00:00: ePK remains review-only no-go and out of main-loop production scope; future scorer dry-run belongs only in isolated research lane.

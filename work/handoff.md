@@ -50,6 +50,30 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T00:17:08Z automation run,
+`artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
+the fresh dirty sibling-worktree ePK outputs created after the post-late
+synthesis. It validates 11 JSON artifacts, 4 JSONL ledgers, and 4 lane
+handoffs with 0 parse errors. The new positive lane evidence adds only
+review-only short-segment/peptide stress: `23FC` is an ATR/PIKK Chk1 segment
+lead rather than clean canonical folded-protein ePK substrate evidence, while
+`1L3R` and `5LIH` remain peptide/pseudosubstrate positives. The false-positive
+lane adds bounded high-order v4 overblock stress with 0 lost known positives,
+0 non-ORC residual counterexamples, and a fetch-error retry that adds no new
+residuals. Sibling controls add a 91-case expected-block oracle with 76 weak
+gamma/product proximity cases blocked and 0 expected unblocked weak cases. The
+policy harness adds an ADP/product-state/candidate-repair tripwire: 10/10 rows
+remain review-only abstentions with 0 expected-decision mismatches.
+
+Evidence-based confidence call: confidence remains high that ePK is still
+review-only and not production-ready. The fresh lane outputs improve future
+research-lane test fixtures, but they do not justify a scorer, threshold,
+registry edit, label import, fingerprint expansion, or main-loop resumption.
+The only exact future ePK experiment named by main is isolated research-lane
+work:
+`epk_source_free_scorer_dry_run_against_oracle_and_tripwires_v1_review_only`.
+Do not start that from the main loop.
+
 As of the 2026-05-20T23:16:33Z automation run,
 `artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates
 the fresh dirty sibling-worktree ePK outputs that appeared after the late-lane

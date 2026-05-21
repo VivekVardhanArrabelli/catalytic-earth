@@ -1,0 +1,550 @@
+{
+  "handoff_validation": [
+    {
+      "contains_forbidden_no_production_statement": true,
+      "lane_id": "epk_positive_evidence",
+      "line_count": 57,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "preview": "# ePK Positive Evidence Handoff\n\nLast updated: 2026-05-21T00:15:43Z\n\nPushed commit: `345e61e944ed6bd3000cf5016d476d990dfa66d4` (primary run artifact/ledger commit created with a temporary index/object directory). The final handoff-reference commit is reported in the automation summary because the linked local gitdir still blocks normal ref updates.\n\n## Current Outcome\n\nPrimary outcome: `evidence_for`.\n\nThis run followed the previous `Next Query` by source-mapping `1L3R`, `5LIH`, `4NU1`, and `8VMF`, then scanning same-paper/title sibling structures for non-peptide folded-substrate transition-analog positives. That 15-structure seed-family surface is exhausted for this snapshot: `1L3R` and `5LIH` remain review-only peptide/pseudosubstrate positives, while `4NU1` and `8VMF` remain GSK-3 near-miss negatives with no clean unmodified heteromeric hydroxyl acceptor.\n",
+      "sha256": "caf8e05f30628bc8f6ee39f52c773c3847ad62f2d6c4a1998633d1528a8fec5b"
+    },
+    {
+      "contains_forbidden_no_production_statement": true,
+      "lane_id": "epk_false_positive_hunter",
+      "line_count": 70,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "preview": "# ePK false-positive hunter handoff\n\n- Last updated: 2026-05-21T00:14:52Z\n- Started: 2026-05-20T23:26:27Z\n- Ended: 2026-05-21T00:14:52Z\n- Measured minutes: 48.42\n- Primary outcome: evidence_for\n- Pushed commit: blocked. `git add --dry-run` failed creating linked-worktree `index.lock`: Operation not permitted. `git fetch --no-write-fetch-head origin` succeeded before the run and local `HEAD` matched `origin/research/epk-false-positive-hunter` at `d82b17d1df3d456e6f657c517b90594d37d6503f`.\n- Rule under attack: `epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0` plus `epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0`, `build_epk_heteromeric_positive_coverage_candidate_scout`, and review-only guard candidate `v4_oligomeric_atp_terminals_no_mg_required`.\n- Production claim allowed: false\n- Labels/fingerprints changed: false\n",
+      "sha256": "1e02da18cd2147062d118d6d500bda87c34163a80ce3d29612bf35a58567cd95"
+    },
+    {
+      "contains_forbidden_no_production_statement": true,
+      "lane_id": "epk_sibling_controls",
+      "line_count": 72,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "preview": "# ePK sibling controls handoff\n\nLast updated: 2026-05-20T23:16:21Z\nRun started: 2026-05-20T22:26:57Z\nRun ended: 2026-05-20T23:16:21Z\nMeasured minutes: 49.4\n\nPushed commit: not pushed; `git fetch origin` and `git pull --ff-only origin research/epk-sibling-controls` failed opening linked-worktree `FETCH_HEAD` with `Operation not permitted` before work began. Final `git add artifacts/research_lanes/epk_sibling_controls work/research_lanes/epk_sibling_controls tools/research_lanes/epk_sibling_controls` failed creating linked-worktree `index.lock` with `Operation not permitted`, so commit/push could not be completed from this sandbox.\nPrimary outcome: `evidence_for`\n\n## What changed\n",
+      "sha256": "4d8d5344b8936be32569bd804615839cab500368e85627ab65450dd7d2eff96b"
+    },
+    {
+      "contains_forbidden_no_production_statement": true,
+      "lane_id": "epk_policy_harness",
+      "line_count": 70,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "preview": "# ePK policy harness handoff\n\nLast updated: 2026-05-21T00:14:43Z\nRun started: 2026-05-20T23:26:23Z\nRun ended: 2026-05-21T00:14:43Z\nMeasured minutes: 48.33\nPrimary outcome: `policy_frozen_review_only`\nPushed commit: pending at handoff write time; final automation summary records the pushed branch tip after the alternate-index commit/push.\n\n## Files changed\n\nThis run:",
+      "sha256": "9451efeb3614061d4aa2cd105a34b0b1673fd0001a48dfc9db9af8945d4828b9"
+    }
+  ],
+  "input_json_validation": [
+    {
+      "json_valid": true,
+      "lane_id": "epk_false_positive_hunter",
+      "mtime_utc": "2026-05-20T23:46:41.377453Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_epk_atpase_overblock_stress_20260520_232627Z.json",
+      "path_relative_to_lane": "v4_high_order_epk_atpase_overblock_stress_20260520_232627Z.json",
+      "sha256": "d2bef6c844562dda543786d4477d894e45d12d3c27d1253468482b334953c9a5",
+      "summary_fields": {
+        "epk_score_computed": false,
+        "fixed_known_epk_positive_lost_to_v4_count": 0,
+        "high_order_epk_overblock_risk_count": 0,
+        "labels_or_fingerprints_changed": false,
+        "method": "v4_high_order_epk_atpase_overblock_stress",
+        "non_epk_topology_clear_residual_after_v4_count": 0,
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "rows_reviewed": 460,
+        "threshold_calibrated": false
+      },
+      "top_level_keys": [
+        "actual_materializer_probe",
+        "fetch_errors",
+        "guard_stress_rows",
+        "high_order_epk_current_hit_retained_rows",
+        "high_order_epk_overblock_risk_rows",
+        "metadata",
+        "non_epk_topology_clear_residual_after_v4_review_only",
+        "non_orc_current_rule_counterexamples_review_only",
+        "review_rows",
+        "warnings"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_false_positive_hunter",
+      "mtime_utc": "2026-05-21T00:06:31.871697Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_epk_atpase_overblock_stress_balanced_20260520_234900Z.json",
+      "path_relative_to_lane": "v4_high_order_epk_atpase_overblock_stress_balanced_20260520_234900Z.json",
+      "sha256": "b7e20d97859024b1ef14f38c44958c6282d7c16b58cf7b5a31401c3edb6995e3",
+      "summary_fields": {
+        "epk_score_computed": false,
+        "fixed_known_epk_positive_lost_to_v4_count": 0,
+        "high_order_epk_overblock_risk_count": 0,
+        "labels_or_fingerprints_changed": false,
+        "method": "v4_high_order_epk_atpase_overblock_stress",
+        "non_epk_topology_clear_residual_after_v4_count": 0,
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "rows_reviewed": 441,
+        "threshold_calibrated": false
+      },
+      "top_level_keys": [
+        "actual_materializer_probe",
+        "fetch_errors",
+        "guard_stress_rows",
+        "high_order_epk_current_hit_retained_rows",
+        "high_order_epk_overblock_risk_rows",
+        "metadata",
+        "non_epk_topology_clear_residual_after_v4_review_only",
+        "non_orc_current_rule_counterexamples_review_only",
+        "review_rows",
+        "warnings"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_false_positive_hunter",
+      "mtime_utc": "2026-05-21T00:08:47.095870Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_fetch_error_materializer_retry_20260521_000751Z.json",
+      "path_relative_to_lane": "v4_high_order_fetch_error_materializer_retry_20260521_000751Z.json",
+      "sha256": "807a0445f99c5a7fa52bab21cacf19af0e3f7f96db6d1fc96fbb02caf67d2de2",
+      "summary_fields": {
+        "labels_or_fingerprints_changed": false,
+        "method": "v4_high_order_fetch_error_materializer_retry",
+        "production_claim_allowed": false,
+        "rows_reviewed": 17
+      },
+      "top_level_keys": [
+        "actual_materializer_probe",
+        "fetch_errors",
+        "guard_stress_rows",
+        "metadata",
+        "review_rows",
+        "warnings"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_false_positive_hunter",
+      "mtime_utc": "2026-05-21T00:07:51.310393Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_fetch_error_status_retry_20260521_000715Z.json",
+      "path_relative_to_lane": "v4_high_order_fetch_error_status_retry_20260521_000715Z.json",
+      "sha256": "3c942664b6de2740ef70b2e0a0f5c9883108c9ec35b4cf6be54af958a84a370e",
+      "summary_fields": {
+        "labels_or_fingerprints_changed": false,
+        "method": "v4_high_order_fetch_error_status_retry",
+        "production_claim_allowed": false
+      },
+      "top_level_keys": [
+        "metadata",
+        "retry_rows",
+        "warnings"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_policy_harness",
+      "mtime_utc": "2026-05-20T23:38:43.207564Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z.json",
+      "path_relative_to_lane": "epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z.json",
+      "sha256": "a58ec0a785b3d5d4195d15d23f1f22819975ab3d0df19b7f1ef6fba2e1bf921c",
+      "summary_fields": {
+        "epk_score_computed": false,
+        "geometry_like_tripwire_row_count": 7,
+        "labels_or_fingerprints_changed": false,
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "threshold_calibrated": false
+      },
+      "top_level_keys": [
+        "metadata",
+        "rows"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_policy_harness",
+      "mtime_utc": "2026-05-20T23:38:49.554755Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_result.json",
+      "path_relative_to_lane": "epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_result.json",
+      "sha256": "7e6b854b405e2ca074f69a2c0234ae1ab865b416c21ffb39cead3f1a9d8c21fe",
+      "summary_fields": {
+        "counterexamples_found": [],
+        "decision_counts": {
+          "review_only_abstain": 10
+        },
+        "epk_score_computed": false,
+        "expected_decision_mismatch_count": 0,
+        "labels_or_fingerprints_changed": false,
+        "primary_outcome": "policy_frozen_review_only",
+        "production_claim_allowed": false,
+        "search_surface_exhausted": false,
+        "threshold_calibrated": false
+      },
+      "top_level_keys": [
+        "allowed_predictive_features",
+        "forbidden_features",
+        "frozen_inputs",
+        "metadata",
+        "review_only_features",
+        "rows"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_policy_harness",
+      "mtime_utc": "2026-05-20T23:38:43.208747Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_tranche.json",
+      "path_relative_to_lane": "epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_tranche.json",
+      "sha256": "9157232884c29860b781cf057725401a93d568cbcd4c3366937c976e33fc83d5",
+      "summary_fields": {
+        "search_surface_exhausted": false
+      },
+      "top_level_keys": [
+        "metadata",
+        "rows"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_positive_evidence",
+      "mtime_utc": "2026-05-20T23:44:12.732354Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/atr_chk1_23fc_source_review_20260520.json",
+      "path_relative_to_lane": "atr_chk1_23fc_source_review_20260520.json",
+      "sha256": "9b6cac90e4ac9d977daf00494f2c6fbe11ac938396218f67ea83aaf6c8268ece",
+      "summary_fields": {
+        "counterexamples_found": [],
+        "labels_or_fingerprints_changed": false,
+        "primary_outcome": "evidence_for",
+        "production_claim_allowed": false,
+        "recommendation": "Record 23FC as review-only PIKK/short-segment stress evidence and keep production scoring, threshold calibration, label import, registries, fingerprints, migrations, and production claims closed.",
+        "search_surface_exhausted": true
+      },
+      "top_level_keys": [
+        "metadata",
+        "reviewed_candidate",
+        "sibling_queries",
+        "source_review_summary"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_positive_evidence",
+      "mtime_utc": "2026-05-20T23:41:26.057483Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/recent_epk_exact_ligand_source_scout_20260520.json",
+      "path_relative_to_lane": "recent_epk_exact_ligand_source_scout_20260520.json",
+      "sha256": "a362e9635eab7a1ae667cc9202adb6d3f5ffb6b43f6858e894e73efc3afed61b",
+      "summary_fields": {
+        "counterexamples_found": [],
+        "labels_or_fingerprints_changed": false,
+        "local_metal_nonpeptide_candidate_pdb_ids": [],
+        "local_metal_peptide_or_short_candidate_pdb_ids": [
+          "23FC"
+        ],
+        "method": "recent_epk_exact_ligand_source_scout",
+        "primary_outcome": "evidence_for",
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "recommendation": "Do not change production labels, thresholds, registries, fingerprints, migrations, or scoring. Use this recent exact-ligand surface as exhausted for the current snapshot.",
+        "search_surface_exhausted": true,
+        "unique_pdb_ids_reviewed": 19
+      },
+      "top_level_keys": [
+        "fetch_failures",
+        "metadata",
+        "rows",
+        "search_surfaces",
+        "source_review_summary"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_positive_evidence",
+      "mtime_utc": "2026-05-20T23:31:27.953701Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/transition_analog_seed_family_followup_20260520.json",
+      "path_relative_to_lane": "transition_analog_seed_family_followup_20260520.json",
+      "sha256": "b0ff9e88b500bbf477de4ebd5c78c59836fe1d040f115e564b230d739f10a763",
+      "summary_fields": {
+        "counterexamples_found": [],
+        "labels_or_fingerprints_changed": false,
+        "method": "transition_analog_seed_family_followup",
+        "nonpeptide_local_metal_candidate_pdb_ids": [],
+        "peptide_or_pseudosubstrate_local_metal_candidate_pdb_ids": [
+          "1L3R",
+          "5LIH"
+        ],
+        "primary_outcome": "search_surface_exhausted",
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "recommendation": "Keep 1L3R/5LIH as review-only stress positives and keep 4NU1/8VMF as near-miss negatives. Do not change production labels, thresholds, registries, fingerprints, migrations, or scoring.",
+        "search_surface_exhausted": true,
+        "unique_pdb_ids_reviewed": 15
+      },
+      "top_level_keys": [
+        "europepmc_source_rows",
+        "fetch_failures",
+        "metadata",
+        "rows",
+        "search_surfaces",
+        "source_review_summary"
+      ]
+    },
+    {
+      "json_valid": true,
+      "lane_id": "epk_sibling_controls",
+      "mtime_utc": "2026-05-20T23:34:23.528669Z",
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/review_only_expected_block_oracle_dry_run_20260520.json",
+      "path_relative_to_lane": "review_only_expected_block_oracle_dry_run_20260520.json",
+      "sha256": "0acd500673ef6d4730c5d9871cadff79700ba058a7cef9bf38fec6b12b375d81",
+      "summary_fields": {
+        "expected_unblocked_weak_case_count": 0,
+        "labels_or_fingerprints_changed": false,
+        "method": "epk_sibling_controls_review_only_expected_block_oracle_dry_run",
+        "predicted_blocked_weak_case_count": 76,
+        "primary_outcome": "evidence_for",
+        "production_claim_allowed": false,
+        "recommendation": "Use this only as a compact review-only dry-run fixture for future source-free scorer tests. It supports bounded evidence that the defined sibling surface can be expected-blocked, while production labels, registries, fingerprints, thresholds, and scoring claims remain forbidden.",
+        "rows_reviewed": 91
+      },
+      "top_level_keys": [
+        "assertions",
+        "case_predictions",
+        "metadata",
+        "recommendation",
+        "review_only_rule_manifest",
+        "summary"
+      ]
+    }
+  ],
+  "input_jsonl_validation": [
+    {
+      "jsonl_valid": true,
+      "lane_id": "epk_positive_evidence",
+      "latest_record": {
+        "ended_at": "2026-05-21T00:13:05Z",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_positive_evidence",
+        "measured_minutes": 49.1,
+        "next_query": "Re-check 23FC after publication metadata appears and scan future 2026 exact-ligand/date surfaces for canonical ePK kinase-domain entries with ATP/ANP/AGS/ADP plus MG/MN/AF3/MGF/BEF, requiring non-peptide substrate entity length, explicit kinase-site ligand ownership, and source-mapped unmodified Ser/Thr/Tyr acceptor before CIF source mapping.",
+        "primary_outcome": "evidence_for",
+        "production_claim_allowed": false,
+        "recommendation": "Record 23FC as review-only PIKK/short-segment stress evidence and keep 1L3R/5LIH as review-only peptide/pseudosubstrate positives. Do not activate production scoring, threshold calibration, label import, registries, fingerprints, migrations, or production claims; continue searching only through bounded source-mapped surfaces.",
+        "rows_reviewed": 38,
+        "search_surface_exhausted": true,
+        "started_at": "2026-05-20T23:23:59Z"
+      },
+      "line_count": 9,
+      "parsed_line_count": 9,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+      "sha256": "0ab4724608a5c6ef6f29c8b3b4b9c73172f5441c3b091d1a2a784404af5fad26"
+    },
+    {
+      "jsonl_valid": true,
+      "lane_id": "epk_false_positive_hunter",
+      "latest_record": {
+        "ended_at": "2026-05-21T00:14:52Z",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_false_positive_hunter",
+        "measured_minutes": 48.42,
+        "next_query": "Target assembly-level v4 overblock risk not visible in deposited atom_site asymmetric units: RCSB biological-assembly protein kinase ATP/ANP structures with at least 3 ATP-like terminal phosphates and at least 5 polymer chains in the assembly, prioritizing source-valid peptide/substrate kinase complexes such as JNK/RSK/CDPK/mTOR-family assemblies; pair with non-ORC ATPase complexes that are v4-negative only because ATP sites map to one polymer entity. Keep production labels, thresholds, registries/fingerprints, migrations, and scoring forbidden.",
+        "primary_outcome": "evidence_for",
+        "production_claim_allowed": false,
+        "recommendation": "Treat v4 as a still-review-only guard candidate with stronger bounded support on high-order ATPase surfaces; do not import labels or claim production scoring. Next stress should move to biological-assembly geometry and source-valid high-order ePK complexes before any sufficiency claim.",
+        "rows_reviewed": 458,
+        "search_surface_exhausted": true,
+        "started_at": "2026-05-20T23:26:27Z"
+      },
+      "line_count": 10,
+      "parsed_line_count": 10,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+      "sha256": "73387ccef4eb0834720d6871a29848a6218737534a6a20fa07869e38817ffd39"
+    },
+    {
+      "jsonl_valid": true,
+      "lane_id": "epk_sibling_controls",
+      "latest_record": {
+        "ended_at": "2026-05-20T23:16:21Z",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_sibling_controls",
+        "measured_minutes": 49.4,
+        "next_query": "Use artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_fixture_runtime_contract_20260520.json as the expected-block oracle when future source-free scorer tests are implemented; only reopen sibling sourcing if a specific curated seed set appears; production labels, fingerprints, registries, and threshold calibration remain forbidden.",
+        "primary_outcome": "evidence_for",
+        "production_claim_allowed": false,
+        "recommendation": "Use the matrix, readiness audit, and runtime contract only as review-only expected behavior for future source-free substrate-identity and family-boundary scorer tests; do not import labels, edit registries/fingerprints, claim production scoring, or calibrate thresholds.",
+        "rows_reviewed": 91,
+        "search_surface_exhausted": false,
+        "started_at": "2026-05-20T22:26:57Z"
+      },
+      "line_count": 9,
+      "parsed_line_count": 9,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
+      "sha256": "3aa7c9e3b2f807e5f5eccc8610505a83ab1b3ce84885b14737caab95ba6055eb"
+    },
+    {
+      "jsonl_valid": true,
+      "lane_id": "epk_policy_harness",
+      "latest_record": {
+        "ended_at": "2026-05-21T00:14:43Z",
+        "labels_or_fingerprints_changed": false,
+        "lane_id": "epk_policy_harness",
+        "measured_minutes": 48.33,
+        "next_query": "epk_fresh_adp_product_query_context_tripwire_surface_v1_review_only",
+        "primary_outcome": "policy_frozen_review_only",
+        "production_claim_allowed": false,
+        "recommendation": "policy_frozen_review_only",
+        "rows_reviewed": 10,
+        "search_surface_exhausted": false,
+        "started_at": "2026-05-20T23:26:23Z"
+      },
+      "line_count": 10,
+      "parsed_line_count": 10,
+      "path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+      "sha256": "15a9237550055f948d87ce9e5a2bbbd840ed2b2fea61800e630ab2662666b29b"
+    }
+  ],
+  "lane_findings": [
+    {
+      "decision": "review_only_no_production_activation",
+      "evidence_against": [
+        "No fresh clean non-topology-confounded folded-protein canonical ePK substrate positive was found.",
+        "Recent exact-ligand/date surfaces found 0 local-metal non-peptide candidates and 23FC lacks publication metadata/source breadth for production use."
+      ],
+      "evidence_for": [
+        "23FC places source-mapped Chk1 Ser317 near ATR-associated ATPgammaS/Mg geometry, but ATR is PIKK/atypical and Chk1 is a short modeled segment.",
+        "1L3R and 5LIH remain review-only peptide/pseudosubstrate transition-state positives with local metal context."
+      ],
+      "fresh_json_artifacts": [
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/atr_chk1_23fc_source_review_20260520.json",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/recent_epk_exact_ligand_source_scout_20260520.json",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/transition_analog_seed_family_followup_20260520.json"
+      ],
+      "lane_id": "epk_positive_evidence",
+      "next_research_only_query": "Re-check 23FC after publication metadata appears and require non-peptide substrate entity length, explicit ligand ownership, and source-mapped unmodified Ser/Thr/Tyr before any source mapping.",
+      "primary_outcome": "review_only_positive_style_evidence_but_no_clean_folded_protein_positive"
+    },
+    {
+      "decision": "diagnostic_only_no_production_activation",
+      "evidence_against": [
+        "The stress is bounded and review-only; it does not exhaust high-order ePK assemblies or non-ORC ATPase contexts.",
+        "v4 remains a candidate guard, not a production scorer, threshold, or import gate."
+      ],
+      "evidence_for": [
+        "Balanced high-order stress retained the bounded known ePK positives and produced 0 v4 overblock-risk rows.",
+        "No non-ORC topology-clear residuals were found after v4 on the bounded high-order ATPase stress surface.",
+        "The 17 fetch-error rows from the balanced run were retried successfully and added 0 residual counterexamples."
+      ],
+      "fresh_json_artifacts": [
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_epk_atpase_overblock_stress_20260520_232627Z.json",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_epk_atpase_overblock_stress_balanced_20260520_234900Z.json",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_fetch_error_materializer_retry_20260521_000751Z.json",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_fetch_error_status_retry_20260521_000715Z.json"
+      ],
+      "lane_id": "epk_false_positive_hunter",
+      "next_research_only_query": "If reopened, test v4 against a preregistered high-order ePK retention panel with fresh non-ORC ATPase surfaces, still review-only.",
+      "primary_outcome": "bounded_v4_overblock_stress_diagnostic_only"
+    },
+    {
+      "decision": "use_as_future_review_only_scorer_test_fixture_not_registry_input",
+      "evidence_against": [
+        "The fixture falsifies proximity-only ePK rules; it is expected behavior input, not production-positive evidence."
+      ],
+      "evidence_for": [
+        "The 91-case oracle dry run passed 8/8 assertions.",
+        "All 76 weak gamma/product proximity cases are expected-blocked and expected_unblocked_weak_case_count is 0.",
+        "ASKHA, ATP-grasp, dNK, GHKL, GHMP, NDK, PfkA, and PfkB are represented in the gamma fixture; ATP-grasp, dNK, PfkA, and PfkB are represented in product controls."
+      ],
+      "fresh_json_artifacts": [
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/review_only_expected_block_oracle_dry_run_20260520.json"
+      ],
+      "lane_id": "epk_sibling_controls",
+      "next_research_only_query": "Use the runtime contract and dry-run oracle only if a future source-free scorer prototype exists; do not reopen sourcing without a specific curated seed set.",
+      "primary_outcome": "expected_block_oracle_ready_review_only"
+    },
+    {
+      "decision": "policy_remains_frozen_review_only_fail_closed",
+      "evidence_against": [
+        "Rows derive from prior development artifacts and are not clean held-out performance evidence.",
+        "No accepted source-free substrate-role or acceptor-identity extractor exists in policy v0."
+      ],
+      "evidence_for": [
+        "The ADP/product-state/candidate-repair tripwire evaluated 10 rows, all review-only abstentions.",
+        "Expected-decision mismatches are 0 and ADP/product/analog/split-state/source-repair contexts cannot override review-only status."
+      ],
+      "fresh_json_artifacts": [
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z.json",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_result.json",
+        "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_tranche.json"
+      ],
+      "lane_id": "epk_policy_harness",
+      "next_research_only_query": "Only a future preregistered policy surviving fresh stress may revisit ADP/product or candidate-repair contexts; current policy keeps them non-predictive.",
+      "primary_outcome": "adp_product_and_repair_tripwire_freezes_fail_closed_policy_context"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_overnight_research_lane_synthesis_20260521",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T00:17:08Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_dirty_outputs_after_previous_synthesis": true,
+    "input_handoff_validated_count": 4,
+    "input_json_validated_file_count": 11,
+    "input_json_validation_error_count": 0,
+    "input_jsonl_validated_file_count": 4,
+    "input_jsonl_validation_error_count": 0,
+    "integrates_uncommitted_sibling_worktree_outputs": true,
+    "lane_count": 4,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "main_loop_synthesis_of_fresh_overnight_dirty_epk_research_lane_outputs",
+    "previous_synthesis_artifact": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json",
+    "previous_synthesis_created_at": "2026-05-20T23:16:33Z",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "started_at": "2026-05-21T00:13:00Z"
+  },
+  "next_exact_experiment_if_epk_research_lane_continues": {
+    "decision_to_start_now": false,
+    "description": "Only in an isolated research lane, run a source-free scorer-prototype dry run against the 91-case sibling oracle plus ADP/product/repair tripwires, with 23FC held as review-only atypical/short-segment stress. Do not calibrate thresholds or edit registries.",
+    "experiment_id": "epk_source_free_scorer_dry_run_against_oracle_and_tripwires_v1_review_only",
+    "main_loop_owner": false,
+    "success_criteria": [
+      "0 production labels or fingerprints changed",
+      "0 production scores claimed",
+      "all weak sibling controls expected-blocked",
+      "all ADP/product/repair tripwire rows abstain unless a future preregistered policy exists",
+      "fresh positives remain separated from peptide, short-segment, PIKK, ATPase, and ownership-confounded contexts"
+    ]
+  },
+  "safety_summary": {
+    "artifact_migration_phase2_or_phase3_performed": false,
+    "artifact_upload_or_removal_performed": false,
+    "external_imported_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "label_import_performed": false,
+    "production_fingerprint_universe_unchanged_expected_count": 8,
+    "production_scoring_or_threshold_calibration_performed": false,
+    "registry_unchanged_expected_label_count": 682
+  },
+  "synthesis_conclusion": {
+    "decision_to_start_now": false,
+    "external_or_high_order_stress_decision": "diagnostic_only_not_clean_performance_evidence",
+    "ligand_state_policy": "frozen_only_for_future_review_only_prospective_tranches",
+    "main_loop_decision": "do_not_resume_epk_as_default_main_loop_task",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "positive_evidence_decision": "review_only_short_or_peptide_positive_style_evidence_only",
+    "production_activation_decision": "no_go",
+    "sibling_controls_decision": "useful_as_falsification_and_future_test_fixture_not_activation_evidence",
+    "substrate_role_axis": "not_freeze_ready"
+  }
+}
