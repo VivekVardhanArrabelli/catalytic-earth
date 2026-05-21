@@ -1,0 +1,1180 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "donor_or_analog_without_heteromeric_acceptor_review_only": 2,
+      "no_active_donor_or_transition_analog_review_only": 2
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-21T00:44:51Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "local_metal_nonpeptide_candidate_pdb_ids": [],
+    "local_metal_peptide_or_short_candidate_pdb_ids": [],
+    "method": "targeted_article_alias_followup",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Targeted source-alias mapping only. It does not create labels, scores, thresholds, fingerprints, migrations, or production claims.",
+    "search_surface_count": 7,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 4,
+    "surface_total_count_reported_total": 4,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 4
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 75,
+      "atom_count_model_1": 4633,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Negative regulation of RAF kinase activity by ATP is overcome by 14-3-3-induced dimerization.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6U2G",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 394,
+        "2": 307
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: BRAF MEK1 phosphorylation asymmetric dimer ATP magnesium",
+          "rank": 1,
+          "source_article": "Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer",
+          "surface_id": "braf_mek1_phosphorylation_asymmetric_dimer"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.407,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "902",
+              "chain": "A",
+              "distance_angstrom": 4.957,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "465",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "46",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 14.232
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ACP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.515,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "900",
+              "chain": "B",
+              "distance_angstrom": 3.239,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "223",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 8.27
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ACP"
+        }
+      ],
+      "title": "BRAF-MEK complex with AMP-PCP bound to BRAF",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 146,
+      "atom_count_model_1": 9259,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AXX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 310,
+        "2": 280
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: BRAF MEK1 phosphorylation asymmetric dimer ATP magnesium",
+          "rank": 2,
+          "source_article": "Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer",
+          "surface_id": "braf_mek1_phosphorylation_asymmetric_dimer"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 3,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.602,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "A",
+              "distance_angstrom": 4.967,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "614",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "171",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 15.884
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.748,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "99",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 12.072
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "801",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.481,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "C",
+              "distance_angstrom": 4.824,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "614",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "171",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 16.152
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal structure of BRAF/MEK1 complex with NST-628 and an active RAF dimer",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 70,
+      "atom_count_model_1": 5128,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphorylation of a conserved aspartate in the catalytic site of eukaryotic elongation factor 2 kinase.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9PCQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Eukaryotic elongation factor 2 kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O00418"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B00A"
+          ],
+          "description": "Calmodulin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0DP23"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 531,
+        "2": 147
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: eukaryotic elongation factor 2 kinase conserved aspartate phosphorylation ATP",
+          "rank": 1,
+          "source_article": "Phosphorylation of a conserved aspartate in the catalytic site of eukaryotic elongation factor 2 kinase",
+          "surface_id": "ef2k_aspartate_phosphorylation"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Phosphorylation of a Conserved Aspartate at the Eukaryotic Elongation Factor 2 Kinase Catalytic Site",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 1316,
+      "atom_count_model_1": 115679,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for late maturation steps of the human mitoribosomal large subunit.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7O9K",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "0"
+          ],
+          "description": "39S ribosomal protein L32, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BYC8"
+          ]
+        },
+        "10": {
+          "auth_asym_ids": [
+            "8"
+          ],
+          "description": "39S ribosomal protein L40, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NQ50"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "9"
+          ],
+          "description": "39S ribosomal protein L41, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IXM3"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "16S rRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "13": {
+          "auth_asym_ids": [
+            "A1"
+          ],
+          "description": "5-methylcytosine rRNA methyltransferase NSUN4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96CB9"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "MT-TRNAVAL",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "15": {
+          "auth_asym_ids": [
+            "A2"
+          ],
+          "description": "Transcription termination factor 4, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7Z6M4"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Mitochondrial ribosome-associated GTPase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BT17"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "39S ribosomal protein L2, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q5T653"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "39S ribosomal protein L3, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P09001"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "39S ribosomal protein L4, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BYD3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "a"
+          ],
+          "description": "39S ribosomal protein L42, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y6G3"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "FF",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6"
+          ],
+          "description": "39S ribosomal protein L12, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P52815"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "Mitochondrial ribosome-associated GTPase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9H4K7"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "39S ribosomal protein L9, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BYD2"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "39S ribosomal protein L10, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7Z7H8"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "39S ribosomal protein L11, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y3B7"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "39S ribosomal protein L13, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BYD1"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "39S ribosomal protein L14, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1L8"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "39S ribosomal protein L15, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9P015"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "39S ribosomal protein L16, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NX20"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "39S ribosomal protein L17, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NRX2"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "1"
+          ],
+          "description": "39S ribosomal protein L33, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O75394"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Mitochondrial ribosomal protein L18, isoform CRA_b",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A8K9D2"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "39S ribosomal protein L19, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49406"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "39S ribosomal protein L20, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BYC9"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "39S ribosomal protein L21, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7Z2W9"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "39S ribosomal protein L22, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "E7ESL0"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "39S ribosomal protein L23, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q16540"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "39S ribosomal protein L24, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96A35"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "39S ribosomal protein L27, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9P0M9"
+          ]
+        },
+        "38": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "39S ribosomal protein L28, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13084"
+          ]
+        },
+        "39": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "39S ribosomal protein L47, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9HD33"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "39S ribosomal protein L34, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BQ48"
+          ]
+        },
+        "40": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "39S ribosomal protein L30, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8TCC3"
+          ]
+        },
+        "41": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "39S ribosomal protein L43, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N983"
+          ]
+        },
+        "42": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "39S ribosomal protein L44, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9H9J2"
+          ]
+        },
+        "43": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "39S ribosomal protein L45, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRJ2"
+          ]
+        },
+        "44": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "39S ribosomal protein L46, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9H2W6"
+          ]
+        },
+        "45": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "39S ribosomal protein L48, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96GC5"
+          ]
+        },
+        "46": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "39S ribosomal protein L49, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13405"
+          ]
+        },
+        "47": {
+          "auth_asym_ids": [
+            "h"
+          ],
+          "description": "39S ribosomal protein L50, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N5N7"
+          ]
+        },
+        "48": {
+          "auth_asym_ids": [
+            "i"
+          ],
+          "description": "39S ribosomal protein L51, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q4U2R6"
+          ]
+        },
+        "49": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "39S ribosomal protein L52, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q86TS9"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "3"
+          ],
+          "description": "39S ribosomal protein L35, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NZE8"
+          ]
+        },
+        "50": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "39S ribosomal protein L53, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96EL3"
+          ]
+        },
+        "51": {
+          "auth_asym_ids": [
+            "l"
+          ],
+          "description": "39S ribosomal protein L54, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P161"
+          ]
+        },
+        "52": {
+          "auth_asym_ids": [
+            "m"
+          ],
+          "description": "39S ribosomal protein L55, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7Z7F7"
+          ]
+        },
+        "53": {
+          "auth_asym_ids": [
+            "n"
+          ],
+          "description": "rRNA methyltransferase 2, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UI43"
+          ]
+        },
+        "54": {
+          "auth_asym_ids": [
+            "o"
+          ],
+          "description": "Ribosomal protein 63, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BQC6"
+          ]
+        },
+        "55": {
+          "auth_asym_ids": [
+            "p"
+          ],
+          "description": "Peptidyl-tRNA hydrolase ICT1, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q14197"
+          ]
+        },
+        "56": {
+          "auth_asym_ids": [
+            "q"
+          ],
+          "description": "Growth arrest and DNA damage-inducible proteins-interacting protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8TAE8"
+          ]
+        },
+        "57": {
+          "auth_asym_ids": [
+            "r"
+          ],
+          "description": "39S ribosomal protein S18a, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NVS2"
+          ]
+        },
+        "58": {
+          "auth_asym_ids": [
+            "s"
+          ],
+          "description": "39S ribosomal protein S30, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NP92"
+          ]
+        },
+        "59": {
+          "auth_asym_ids": [
+            "t"
+          ],
+          "description": "Elongation factor Tu, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49411"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "4"
+          ],
+          "description": "39S ribosomal protein L36, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9P0J6"
+          ]
+        },
+        "60": {
+          "auth_asym_ids": [
+            "u"
+          ],
+          "description": "Mitochondrial assembly of ribosomal large subunit protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96EH3"
+          ]
+        },
+        "61": {
+          "auth_asym_ids": [
+            "v"
+          ],
+          "description": "MIEF1 upstream open reading frame protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "L0R8F8"
+          ]
+        },
+        "62": {
+          "auth_asym_ids": [
+            "w"
+          ],
+          "description": "Acyl carrier protein, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O14561"
+          ]
+        },
+        "63": {
+          "auth_asym_ids": [
+            "UNK"
+          ],
+          "description": "UNK",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "7": {
+          "auth_asym_ids": [
+            "5"
+          ],
+          "description": "39S ribosomal protein L37, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BZE1"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "6"
+          ],
+          "description": "39S ribosomal protein L38, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96DV4"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "7"
+          ],
+          "description": "39S ribosomal protein L39, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9NYK5"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 188,
+        "10": 206,
+        "11": 137,
+        "12": 1559,
+        "13": 384,
+        "14": 69,
+        "15": 381,
+        "16": 334,
+        "17": 305,
+        "18": 348,
+        "19": 311,
+        "2": 142,
+        "20": 198,
+        "21": 414,
+        "22": 267,
+        "23": 261,
+        "24": 192,
+        "25": 178,
+        "26": 145,
+        "27": 296,
+        "28": 251,
+        "29": 175,
+        "3": 65,
+        "30": 179,
+        "31": 292,
+        "32": 149,
+        "33": 205,
+        "34": 212,
+        "35": 153,
+        "36": 216,
+        "37": 148,
+        "38": 256,
+        "39": 250,
+        "4": 92,
+        "40": 161,
+        "41": 215,
+        "42": 332,
+        "43": 306,
+        "44": 279,
+        "45": 212,
+        "46": 166,
+        "47": 158,
+        "48": 128,
+        "49": 123,
+        "5": 188,
+        "50": 112,
+        "51": 138,
+        "52": 128,
+        "53": 246,
+        "54": 102,
+        "55": 206,
+        "56": 222,
+        "57": 196,
+        "58": 439,
+        "59": 452,
+        "6": 103,
+        "60": 234,
+        "61": 70,
+        "62": 156,
+        "63": 28,
+        "7": 423,
+        "8": 380,
+        "9": 338
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: eukaryotic elongation factor 2 kinase conserved aspartate phosphorylation ATP",
+          "rank": 2,
+          "source_article": "Phosphorylation of a conserved aspartate in the catalytic site of eukaryotic elongation factor 2 kinase",
+          "surface_id": "ef2k_aspartate_phosphorylation"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Human mitochondrial ribosome large subunit assembly intermediate with MTERF4-NSUN4, MRM2, MTG1, the MALSU module, GTPBP5 and mtEF-Tu",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "6U2G",
+        "9AXX"
+      ],
+      "query_or_source": "RCSB full_text: BRAF MEK1 phosphorylation asymmetric dimer ATP magnesium",
+      "returned_count": 2,
+      "source_article": "Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer",
+      "surface_id": "braf_mek1_phosphorylation_asymmetric_dimer",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: BRAF MEK1 N-terminal acidic motif phosphorylation substrate",
+      "returned_count": 0,
+      "source_article": "Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer",
+      "surface_id": "braf_mek1_n_terminal_acidic_motif",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: p90RSK2 ERK2 complex phosphorylation substrate ATP",
+      "returned_count": 0,
+      "source_article": "Structural insights and biophysical characterization of p90RSK2:ERK2 complex",
+      "surface_id": "p90rsk2_erk2_complex",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: NleH CesT serine phosphorylation kinase ATPgammaS",
+      "returned_count": 0,
+      "source_article": "Serine phosphorylation of CesT by the type III secretion system effectors NleH1 and NleH2",
+      "surface_id": "nleh_cest_serine_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: IKK2 substrate IkappaB alpha phosphoenzyme intermediate ATP",
+      "returned_count": 0,
+      "source_article": "Dual-specific autophosphorylation of kinase IKK2 enables phosphorylation of substrate IkappaB alpha",
+      "surface_id": "ikk2_ikba_phosphoenzyme_intermediate",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: CCDC6 RET fusion ATP ADP dependent kinase substrate",
+      "returned_count": 0,
+      "source_article": "The oncogenic CCDC6-RET fusion protein is a dual ATP- and ADP-dependent kinase",
+      "surface_id": "ccdc6_ret_dual_atp_adp_kinase",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "9PCQ",
+        "7O9K"
+      ],
+      "query_or_source": "RCSB full_text: eukaryotic elongation factor 2 kinase conserved aspartate phosphorylation ATP",
+      "returned_count": 2,
+      "source_article": "Phosphorylation of a conserved aspartate in the catalytic site of eukaryotic elongation factor 2 kinase",
+      "surface_id": "ef2k_aspartate_phosphorylation",
+      "total_count": 2
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No targeted sparse-mapping article alias produced a clean folded-protein ePK transfer-state positive.",
+      "Most mapped structures were kinase-only, recruitment, non-ePK enzyme, or donor-without-heteromeric-acceptor contexts."
+    ],
+    "evidence_for": [
+      "Targeted article aliases returned RCSB rows but no local-metal ePK substrate candidate."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Use these sparse article aliases as exhausted for now. Next run should monitor newly released RCSB rows and publication metadata rather than revisit these exact aliases unless new PDB IDs appear.",
+    "search_surface_exhausted": true
+  }
+}

@@ -1,0 +1,1664 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "donor_or_analog_without_heteromeric_acceptor_review_only": 6,
+      "local_metal_peptide_or_short_candidate_review_only": 1,
+      "no_local_metal_or_short_candidate_review_only": 3
+    },
+    "current_release_date_range": {
+      "from": "2026-01-01",
+      "to": "2026-05-21"
+    },
+    "current_release_unique_count": 10,
+    "current_release_unique_pdb_ids": [
+      "23FC",
+      "9ECU",
+      "9QKZ",
+      "9R2I",
+      "9UUR",
+      "9UUX",
+      "9UW3",
+      "9UW4",
+      "9V79",
+      "9WYR"
+    ],
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-21T00:48:41Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "local_metal_nonpeptide_candidate_pdb_ids": [],
+    "local_metal_peptide_or_short_candidate_pdb_ids": [
+      "23FC"
+    ],
+    "max_unique_pdb_ids": 100,
+    "method": "current_release_epk_followup",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recent_backfill_date_range": {
+      "from": "2026-01-01",
+      "to": "2026-05-21"
+    },
+    "review_only": true,
+    "review_only_rule": "Current-release/recent-backfill search only. It does not create labels, scores, thresholds, fingerprints, migrations, or production claims.",
+    "search_surface_count": 10,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    ],
+    "surface_rows_returned_total": 25,
+    "surface_total_count_reported_total": 25,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 10
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 78,
+      "atom_count_model_1": 4762,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The MEK-RAF molecular glue IK-595 has potent antitumor activity across RAS/MAPK pathway-altered cancers.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9ECU",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 284,
+        "2": 393
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 1,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+          "rank": 1,
+          "surface_id": "current_release_gamma_substrate_phosphorylation"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 1,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.492,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "802",
+              "chain": "A",
+              "distance_angstrom": 3.248,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "222",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 9.149
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "801",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.367,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "B",
+              "distance_angstrom": 3.315,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "465",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "26",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 13.653
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal structure of the inactive BRAF/MEK1 complex bound to IK-595",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 42,
+      "atom_count_model_1": 2112,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of OsCERK1-mediated signal activation and transduction in rice immunity and symbiosis.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9V79",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Chitin elicitor receptor kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A0A0P0XII1"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 302
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 2,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 2,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.665,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "701",
+              "chain": "A",
+              "distance_angstrom": 3.378,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "702",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Structural basis of signal activation and transduction by chitin elicitor receptor kinase 1 in Oryza sativa",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 88,
+      "atom_count_model_1": 5300,
+      "candidate_status": "no_local_metal_or_short_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_entity_description": "Mitogen-activated protein kinase 3",
+          "candidate_entity_id": "2",
+          "candidate_entity_length": 388,
+          "candidate_entity_uniprot_ids": [
+            "P27361"
+          ],
+          "candidate_label_seq_id": "205",
+          "candidate_residue_code": "TYR",
+          "candidate_sequence_scheme_matches": [
+            {
+              "asym_id": "B",
+              "auth_mon_id": "TYR",
+              "auth_seq_num": "204",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "TYR",
+              "pdb_mon_id": "TYR",
+              "pdb_seq_num": "204",
+              "pdb_strand_id": "B",
+              "seq_id": "205"
+            }
+          ],
+          "candidate_source_mapped": true,
+          "donor_role": "strict_anp_pg_gamma",
+          "has_local_mg_or_mn": false,
+          "local_metals": [],
+          "nearest_terminal_distance_angstrom": 4.181,
+          "terminal_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "terminal_associated_entity_uniprot_ids": [
+            "Q02750"
+          ],
+          "terminal_associated_polymer_chain_name": "A",
+          "terminal_associated_polymer_entity_id": "1",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UUR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 403,
+        "2": 388
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 3,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+          "rank": 2,
+          "surface_id": "current_release_gamma_substrate_phosphorylation"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 3,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.29,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "204",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "205",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 4.181
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.785,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 4.467,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 17.794
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "The complex of human pMEK1 and uERK1 (ANP)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 87,
+      "atom_count_model_1": 5310,
+      "candidate_status": "no_local_metal_or_short_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_entity_description": "Mitogen-activated protein kinase 3",
+          "candidate_entity_id": "2",
+          "candidate_entity_length": 388,
+          "candidate_entity_uniprot_ids": [
+            "P27361"
+          ],
+          "candidate_label_seq_id": "205",
+          "candidate_residue_code": "TYR",
+          "candidate_sequence_scheme_matches": [
+            {
+              "asym_id": "B",
+              "auth_mon_id": "TYR",
+              "auth_seq_num": "204",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "TYR",
+              "pdb_mon_id": "TYR",
+              "pdb_seq_num": "204",
+              "pdb_strand_id": "B",
+              "seq_id": "205"
+            }
+          ],
+          "candidate_source_mapped": true,
+          "donor_role": "strict_anp_pg_gamma",
+          "has_local_mg_or_mn": false,
+          "local_metals": [],
+          "nearest_terminal_distance_angstrom": 3.968,
+          "terminal_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "terminal_associated_entity_uniprot_ids": [
+            "Q02750"
+          ],
+          "terminal_associated_polymer_chain_name": "A",
+          "terminal_associated_polymer_entity_id": "1",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UUX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 403,
+        "2": 388
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 4,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+          "rank": 3,
+          "surface_id": "current_release_gamma_substrate_phosphorylation"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 4,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.567,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "204",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "205",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 3.968
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.758,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 4.691,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 16.929
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "The complex of human pMEK1 and ERK1 pT202 (ANP)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 85,
+      "atom_count_model_1": 5204,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UW3",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 403,
+        "2": 388
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 5,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+          "rank": 4,
+          "surface_id": "current_release_gamma_substrate_phosphorylation"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 5,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.556,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "81",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "82",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 13.012
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.754,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 3.341,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 17.865
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "The complex of human pMEK1 and ERK1 pY204 (ANP)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 86,
+      "atom_count_model_1": 5269,
+      "candidate_status": "no_local_metal_or_short_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanistic insight into the phosphorylation of ERK by MEK",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OH",
+          "candidate_auth_seq_id": "204",
+          "candidate_chain_name": "B",
+          "candidate_entity_description": "Mitogen-activated protein kinase 3",
+          "candidate_entity_id": "1",
+          "candidate_entity_length": 388,
+          "candidate_entity_uniprot_ids": [
+            "P27361"
+          ],
+          "candidate_label_seq_id": "205",
+          "candidate_residue_code": "TYR",
+          "candidate_sequence_scheme_matches": [
+            {
+              "asym_id": "A",
+              "auth_mon_id": "TYR",
+              "auth_seq_num": "204",
+              "entity_id": "1",
+              "hetero": "n",
+              "mon_id": "TYR",
+              "pdb_mon_id": "TYR",
+              "pdb_seq_num": "204",
+              "pdb_strand_id": "B",
+              "seq_id": "205"
+            }
+          ],
+          "candidate_source_mapped": true,
+          "donor_role": "strict_anp_pg_gamma",
+          "has_local_mg_or_mn": false,
+          "local_metals": [],
+          "nearest_terminal_distance_angstrom": 4.194,
+          "terminal_associated_entity_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "terminal_associated_entity_uniprot_ids": [
+            "Q02750"
+          ],
+          "terminal_associated_polymer_chain_name": "A",
+          "terminal_associated_polymer_entity_id": "2",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9UW4",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Mitogen-activated protein kinase 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27361"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 388,
+        "2": 403
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 6,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+          "rank": 5,
+          "surface_id": "current_release_gamma_substrate_phosphorylation"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 6,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.741,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "B",
+              "distance_angstrom": 4.304,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "134",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 18.098
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.548,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "204",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "205",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 4.194
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "The complex of human pMEK1 and uERK1 (ANP)(from pY204ERK1)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 85,
+      "atom_count_model_1": 4303,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of OsCERK1-mediated signal activation and transduction in rice immunity and symbiosis.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9WYR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Chitin elicitor receptor kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A0A0P0XII1"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 302
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 7,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 7,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.269,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "702",
+              "chain": "A",
+              "distance_angstrom": 3.326,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "701",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.591,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "702",
+              "chain": "B",
+              "distance_angstrom": 3.402,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "701",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Structural basis of signal activation and transduction by chitin elicitor receptor kinase 1 in Oryza sativa",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 854,
+      "atom_count_model_1": 45559,
+      "candidate_status": "local_metal_peptide_or_short_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "317",
+          "candidate_chain_name": "E",
+          "candidate_entity_description": "Serine/threonine-protein kinase Chk1",
+          "candidate_entity_id": "3",
+          "candidate_entity_length": 14,
+          "candidate_entity_uniprot_ids": [
+            "O14757"
+          ],
+          "candidate_label_seq_id": "6",
+          "candidate_residue_code": "SER",
+          "candidate_sequence_scheme_matches": [
+            {
+              "asym_id": "E",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "317",
+              "entity_id": "3",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "317",
+              "pdb_strand_id": "E",
+              "seq_id": "6"
+            }
+          ],
+          "candidate_source_mapped": true,
+          "donor_role": "strict_pg_gamma",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "5003",
+              "chain": "B",
+              "distance_angstrom": 3.902,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_terminal_distance_angstrom": 5.582,
+          "terminal_associated_entity_description": "Serine/threonine-protein kinase ATR",
+          "terminal_associated_entity_uniprot_ids": [
+            "Q13535"
+          ],
+          "terminal_associated_polymer_chain_name": "B",
+          "terminal_associated_polymer_entity_id": "1",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "5001",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "AGS"
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "23FC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase ATR",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13535"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "ATR-interacting protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8WXE1"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Serine/threonine-protein kinase Chk1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O14757"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 2644,
+        "2": 791,
+        "3": 14
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 8,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 8,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.557,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "5003",
+              "chain": "A",
+              "distance_angstrom": 4.224,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "317",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "6",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 6.124
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "5001",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "AGS"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.925,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "5003",
+              "chain": "B",
+              "distance_angstrom": 3.902,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "317",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "6",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 5.582
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "5001",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "AGS"
+        }
+      ],
+      "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 176,
+      "atom_count_model_1": 18260,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of the cyclin Y/14-3-3 protein-mediated activation of CDK16.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9R2I",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "14-3-3 protein eta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q04917"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Cyclin-dependent kinase 16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q00536"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Cyclin-Y",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8ND76"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 248,
+        "2": 395,
+        "3": 346
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 9,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 9,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.116,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "501",
+              "chain": "C",
+              "distance_angstrom": 4.61,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "195",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "200",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 21.209
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "502",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "AGS"
+        }
+      ],
+      "title": "Cryo-EM structure of the complex CDK16:CCNY:14-3-3",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 5615,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of the CDK11-cyclin L-SAP30BP complex reveal mechanisms of CDK11 regulation.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9QKZ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "SAP30-binding protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UHR5"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclin-dependent kinase 11B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P21127"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Cyclin-L2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96S94"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 311,
+        "2": 442,
+        "3": 322
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 10,
+          "surface_id": "current_release_gamma_any"
+        },
+        {
+          "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 10,
+          "surface_id": "recent_backfill_gamma_any_no_source_term"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.536,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "803",
+              "chain": "B",
+              "distance_angstrom": 2.672,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "802",
+              "chain": "B",
+              "distance_angstrom": 4.589,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "132",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "135",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 27.394
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "801",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Cryo-EM structure of CDK11B-cyclin L2-SAP30BP bound to AMP-PNP",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    }
+  ],
+  "search_surfaces": [
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [
+        "9ECU",
+        "9V79",
+        "9UUR",
+        "9UUX",
+        "9UW3",
+        "9UW4",
+        "9WYR",
+        "23FC",
+        "9R2I",
+        "9QKZ"
+      ],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "requested_rows": 50,
+      "returned_count": 10,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "current_release_gamma_any",
+      "total_count": 10
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [
+        "9ECU",
+        "9UUR",
+        "9UUX",
+        "9UW3",
+        "9UW4"
+      ],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+      "requested_rows": 50,
+      "returned_count": 5,
+      "source_query": "substrate phosphorylation",
+      "start": 0,
+      "surface_id": "current_release_gamma_substrate_phosphorylation",
+      "total_count": 5
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='full-length substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "start": 0,
+      "surface_id": "current_release_gamma_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='phosphoacceptor substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "start": 0,
+      "surface_id": "current_release_gamma_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [
+        "9ECU",
+        "9V79",
+        "9UUR",
+        "9UUX",
+        "9UW3",
+        "9UW4",
+        "9WYR",
+        "23FC",
+        "9R2I",
+        "9QKZ"
+      ],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "requested_rows": 60,
+      "returned_count": 10,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "recent_backfill_gamma_any_no_source_term",
+      "total_count": 10
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "current_release_transition_any",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='substrate phosphorylation'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "substrate phosphorylation",
+      "start": 0,
+      "surface_id": "current_release_transition_substrate_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='full-length substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "start": 0,
+      "surface_id": "current_release_transition_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='phosphoacceptor substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "start": 0,
+      "surface_id": "current_release_transition_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-01-01",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-01-01..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "requested_rows": 60,
+      "returned_count": 0,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "recent_backfill_transition_any_no_source_term",
+      "total_count": 0
+    }
+  ],
+  "source_recheck_23fc": {
+    "accession_info": {
+      "deposit_date": "2026-02-04T00:00:00.000+00:00",
+      "initial_release_date": "2026-05-13T00:00:00.000+00:00",
+      "revision_date": "2026-05-13T00:00:00.000+00:00",
+      "status_code": "REL"
+    },
+    "citation": {
+      "pdbx_database_id_doi": null,
+      "pdbx_database_id_pub_med": null,
+      "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+      "year": null
+    },
+    "europepmc_checks": [
+      {
+        "query": "TITLE:\"Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1\"",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Cryo-EM+structure+of+human+ATR-ATRIP+complex+with+ATPgammaS+and+Chk1%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"23FC\" ATR Chk1",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%2223FC%22+ATR+Chk1&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"ATR-ATRIP\" \"ATPgammaS\" Chk1",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+Chk1&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"ATR-ATRIP\" \"ATPgammaS\" \"Chk1\"",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+%22Chk1%22&format=json&pageSize=3&resultType=core"
+      }
+    ],
+    "europepmc_publication_metadata_present": false,
+    "pdb_id": "23FC",
+    "publication_metadata_present_in_rcsb": false,
+    "review_decision": "publication_metadata_still_absent_review_only_23fc_status_unchanged",
+    "sibling_checks": [
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: ATR ATRIP Chk1 ATPgammaS",
+        "returned_count": 1,
+        "total_count": 1
+      },
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: human ATR-ATRIP complex ATPgammaS Chk1",
+        "returned_count": 1,
+        "total_count": 1
+      },
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+        "returned_count": 1,
+        "total_count": 1
+      }
+    ],
+    "sibling_pdb_ids": [
+      "23FC"
+    ],
+    "source_urls": [
+      "https://www.rcsb.org/structure/23FC",
+      "https://data.rcsb.org/rest/v1/core/entry/23FC",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    ]
+  },
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No clean non-topology-confounded folded-protein canonical ePK substrate positive was promoted.",
+      "23FC remains review-only unless publication metadata and folded-substrate context become available.",
+      "Current release-date rows require source-mapped non-peptide acceptor geometry before any follow-up."
+    ],
+    "evidence_for": [
+      "Current/recent release exact-ligand surfaces found review-only short/peptide candidates: 23FC."
+    ],
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "recommendation": "Do not change production labels, thresholds, registries, fingerprints, migrations, or scoring. If current-release rows remain empty, next search should move to a bounded source-text literature pass over newly published kinase-substrate structures.",
+    "search_surface_exhausted": true
+  }
+}

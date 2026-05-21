@@ -1,0 +1,521 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-21T00:48:05Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "braf_mek_alias_source_review",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/targeted_article_alias_followup_20260521.json",
+    "source_review_scope": "Source-map BRAF/MEK article-alias hits 6U2G and 9AXX for folded-protein substrate transfer geometry.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "reviewed_candidates": [
+    {
+      "citation": {
+        "doi": null,
+        "metadata_fetch_error": "URLError(gaierror(8, 'nodename nor servname provided, or not known'))",
+        "pubmed": null,
+        "title": "Negative regulation of RAF kinase activity by ATP is overcome by 14-3-3-induced dimerization.",
+        "year": 2020
+      },
+      "donor_summary": [
+        {
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "902",
+              "chain": "A",
+              "distance_angstrom": 4.957,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_acceptor_sequence_scheme_matches": [
+            {
+              "asym_id": "B",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "465",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "465",
+              "pdb_strand_id": "B",
+              "seq_id": "46"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "465",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "46",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 14.232
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ACP"
+        },
+        {
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_description": "Serine/threonine-protein kinase B-raf",
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "900",
+              "chain": "B",
+              "distance_angstrom": 3.239,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_acceptor_sequence_scheme_matches": [
+            {
+              "asym_id": "A",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "222",
+              "entity_id": "1",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "222",
+              "pdb_strand_id": "A",
+              "seq_id": "223"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "223",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 8.27
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ACP"
+        }
+      ],
+      "pdb_id": "6U2G",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 394,
+        "2": 307
+      },
+      "review_decision": "folded_protein_braf_mek_source_relevant_but_geometry_negative_review_only",
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: BRAF MEK1 phosphorylation asymmetric dimer ATP magnesium",
+          "rank": 1,
+          "source_article": "Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer",
+          "surface_id": "braf_mek1_phosphorylation_asymmetric_dimer"
+        }
+      ],
+      "source_limitations": [
+        "No kinase-associated donor places an unmodified heteromeric MEK1 Ser218/Ser222 or BRAF-site hydroxyl within 6 Angstrom.",
+        "Donor ownership is mixed across BRAF and MEK active sites, so local nucleotide/metal alone does not imply BRAF-to-MEK transfer geometry.",
+        "Review-only negative/source-validation evidence; not production scoring or label-import evidence."
+      ],
+      "source_mapped_residue_checks": [
+        {
+          "asym_id": "A",
+          "auth_mon_id": "TYR",
+          "auth_seq_num": "134",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "TYR",
+          "pdb_mon_id": "TYR",
+          "pdb_seq_num": "134",
+          "pdb_strand_id": "A",
+          "seq_id": "135"
+        },
+        {
+          "asym_id": "A",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "218",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "218",
+          "pdb_strand_id": "A",
+          "seq_id": "219"
+        },
+        {
+          "asym_id": "A",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "222",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "222",
+          "pdb_strand_id": "A",
+          "seq_id": "223"
+        },
+        {
+          "asym_id": "B",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "465",
+          "entity_id": "2",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "465",
+          "pdb_strand_id": "B",
+          "seq_id": "46"
+        },
+        {
+          "asym_id": "B",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "614",
+          "entity_id": "2",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "614",
+          "pdb_strand_id": "B",
+          "seq_id": "195"
+        }
+      ],
+      "title": "BRAF-MEK complex with AMP-PCP bound to BRAF"
+    },
+    {
+      "citation": {
+        "doi": null,
+        "metadata_fetch_error": "URLError(gaierror(8, 'nodename nor servname provided, or not known'))",
+        "pubmed": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "donor_summary": [
+        {
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "A",
+              "distance_angstrom": 4.967,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_acceptor_sequence_scheme_matches": [
+            {
+              "asym_id": "D",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "614",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "614",
+              "pdb_strand_id": "D",
+              "seq_id": "171"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "614",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "171",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 15.884
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_description": "Serine/threonine-protein kinase B-raf",
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_acceptor_sequence_scheme_matches": [
+            {
+              "asym_id": "C",
+              "auth_mon_id": "TYR",
+              "auth_seq_num": "134",
+              "entity_id": "1",
+              "hetero": "n",
+              "mon_id": "TYR",
+              "pdb_mon_id": "TYR",
+              "pdb_seq_num": "134",
+              "pdb_strand_id": "C",
+              "seq_id": "99"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "134",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "99",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 12.072
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "801",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "C",
+              "distance_angstrom": 4.824,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_acceptor_sequence_scheme_matches": [
+            {
+              "asym_id": "B",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "614",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "614",
+              "pdb_strand_id": "B",
+              "seq_id": "171"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "614",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "171",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 16.152
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "402",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "pdb_id": "9AXX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 310,
+        "2": 280
+      },
+      "review_decision": "folded_protein_braf_mek_source_relevant_but_geometry_negative_review_only",
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: BRAF MEK1 phosphorylation asymmetric dimer ATP magnesium",
+          "rank": 2,
+          "source_article": "Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer",
+          "surface_id": "braf_mek1_phosphorylation_asymmetric_dimer"
+        }
+      ],
+      "source_limitations": [
+        "No kinase-associated donor places an unmodified heteromeric MEK1 Ser218/Ser222 or BRAF-site hydroxyl within 6 Angstrom.",
+        "Donor ownership is mixed across BRAF and MEK active sites, so local nucleotide/metal alone does not imply BRAF-to-MEK transfer geometry.",
+        "Review-only negative/source-validation evidence; not production scoring or label-import evidence."
+      ],
+      "source_mapped_residue_checks": [
+        {
+          "asym_id": "A",
+          "auth_mon_id": "TYR",
+          "auth_seq_num": "134",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "TYR",
+          "pdb_mon_id": "TYR",
+          "pdb_seq_num": "134",
+          "pdb_strand_id": "A",
+          "seq_id": "99"
+        },
+        {
+          "asym_id": "A",
+          "auth_mon_id": "ALA",
+          "auth_seq_num": "218",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "ALA",
+          "pdb_mon_id": "ALA",
+          "pdb_seq_num": "218",
+          "pdb_strand_id": "A",
+          "seq_id": "183"
+        },
+        {
+          "asym_id": "A",
+          "auth_mon_id": "ALA",
+          "auth_seq_num": "222",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "ALA",
+          "pdb_mon_id": "ALA",
+          "pdb_seq_num": "222",
+          "pdb_strand_id": "A",
+          "seq_id": "187"
+        },
+        {
+          "asym_id": "B",
+          "auth_mon_id": "?",
+          "auth_seq_num": "?",
+          "entity_id": "2",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "?",
+          "pdb_seq_num": "465",
+          "pdb_strand_id": "B",
+          "seq_id": "22"
+        },
+        {
+          "asym_id": "B",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "614",
+          "entity_id": "2",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "614",
+          "pdb_strand_id": "B",
+          "seq_id": "171"
+        },
+        {
+          "asym_id": "C",
+          "auth_mon_id": "TYR",
+          "auth_seq_num": "134",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "TYR",
+          "pdb_mon_id": "TYR",
+          "pdb_seq_num": "134",
+          "pdb_strand_id": "C",
+          "seq_id": "99"
+        },
+        {
+          "asym_id": "C",
+          "auth_mon_id": "ALA",
+          "auth_seq_num": "218",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "ALA",
+          "pdb_mon_id": "ALA",
+          "pdb_seq_num": "218",
+          "pdb_strand_id": "C",
+          "seq_id": "183"
+        },
+        {
+          "asym_id": "C",
+          "auth_mon_id": "ALA",
+          "auth_seq_num": "222",
+          "entity_id": "1",
+          "hetero": "n",
+          "mon_id": "ALA",
+          "pdb_mon_id": "ALA",
+          "pdb_seq_num": "222",
+          "pdb_strand_id": "C",
+          "seq_id": "187"
+        },
+        {
+          "asym_id": "D",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "465",
+          "entity_id": "2",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "465",
+          "pdb_strand_id": "D",
+          "seq_id": "22"
+        },
+        {
+          "asym_id": "D",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "614",
+          "entity_id": "2",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "614",
+          "pdb_strand_id": "D",
+          "seq_id": "171"
+        }
+      ],
+      "title": "Crystal structure of BRAF/MEK1 complex with NST-628 and an active RAF dimer"
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "6U2G BRAF-associated ACP/Mg donor is 8.270 Angstrom from source-mapped MEK1 Ser222, outside the within-6-Angstrom local transfer window.",
+      "9AXX does not provide BRAF-to-MEK local transfer geometry: MEK Ser218/Ser222 are modeled as Ala in MEK chains, the BRAF-associated ANP lacks local Mg, and nearest heteromeric acceptors are 12.072-16.152 Angstrom away.",
+      "No clean source-mapped folded-protein ePK substrate positive is promoted from this BRAF/MEK alias surface."
+    ],
+    "evidence_for": [
+      "6U2G and 9AXX are source-relevant folded-protein BRAF/MEK complexes with nucleotide analogs and at least one local Mg-bearing donor state."
+    ],
+    "primary_outcome": "evidence_against",
+    "production_claim_allowed": false,
+    "recommendation": "Treat BRAF/MEK alias hits as source-relevant geometry-negative folded-protein evidence; keep production labels, thresholds, registries, fingerprints, migrations, and scoring closed.",
+    "search_surface_exhausted": true
+  }
+}
