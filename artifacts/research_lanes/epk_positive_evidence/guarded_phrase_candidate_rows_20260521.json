@@ -1,0 +1,168 @@
+{
+  "candidate_evidence_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_evidence_rows_emitted": 0,
+    "candidate_status_counts": {},
+    "coordinate_state_counts": {},
+    "fetch_failure_count": 0,
+    "fresh_candidate_evidence_rows_emitted": 0,
+    "generated_at": "2026-05-21T03:46:19Z",
+    "include_prior_seen": false,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "max_cif_bytes": 25000000,
+    "max_unique_pdb_ids": 80,
+    "method": "guarded_phrase_candidate_rows",
+    "prior_lane_pdb_id_count": 1825,
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Candidate evidence rows are discovery/source-review rows only. Source context is separated from source-free geometry and cannot be used as a production predictive feature.",
+    "row_timeout_seconds": 45,
+    "schema_version": "epk_candidate_evidence_v1",
+    "search_surface_count": 6,
+    "skipped_prior_seen_pdb_id_count": 17,
+    "skipped_prior_seen_pdb_ids_sample": [
+      "2QO7",
+      "2QO9",
+      "2QOC",
+      "2QOQ",
+      "6MCP",
+      "6ZXF",
+      "6ZXG",
+      "6ZXH",
+      "7JUR",
+      "7JUS",
+      "7JUU",
+      "7JUV",
+      "7JUW",
+      "7JUX",
+      "7JUY",
+      "7JV0",
+      "7JV1"
+    ],
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 17,
+    "surface_set": "phrase_continuation",
+    "surface_total_count_reported_total": 23,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 0
+  },
+  "rows": [],
+  "search_surfaces": [
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [
+        "6ZXF",
+        "6ZXG",
+        "6ZXH"
+      ],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Prior run returned 232 phrase rows but hit the global CIF cap before this surface.",
+      "requested_rows": 100,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows1_100",
+      "total_count": 3
+    },
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Continuation page for the capped precatalytic phrase surface.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 100,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows101_200",
+      "total_count": 3
+    },
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Tail page for the capped precatalytic phrase surface.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 200,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows201_232",
+      "total_count": 3
+    },
+    {
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "rationale": "Transition-analog pass with the same source phrase and ADP+metal-fluoride context.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_transition_rows1_100",
+      "total_count": 0
+    },
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [
+        "7JUU",
+        "7JUS",
+        "7JUV",
+        "7JUY",
+        "7JV0",
+        "7JUR",
+        "7JUW",
+        "7JUX",
+        "7JV1",
+        "2QO9",
+        "2QOQ",
+        "2QO7",
+        "2QOC",
+        "6MCP"
+      ],
+      "phrase": "protein kinase substrate-bound AMP-PNP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+      "requested_rows": 100,
+      "returned_count": 14,
+      "start": 0,
+      "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma",
+      "total_count": 14
+    },
+    {
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "phrase": "protein kinase substrate-bound AMP-PNP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "rationale": "Transition-analog pass for the substrate-bound AMP-PNP source phrase.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "protein_kinase_substrate_bound_amp_pnp_transition",
+      "total_count": 0
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No production-positive ePK claim is allowed; all candidate rows remain review-only abstentions.",
+      "Source context is recorded separately from source-free geometry and must not be used as a predictive coordinate feature.",
+      "The guarded phrase_continuation surface set is exhausted for fresh candidate rows under canonical ePK plus exact ligand/metal prefilters."
+    ],
+    "evidence_for": [
+      "Guarded phrase surfaces produced no fresh candidate-level geometry rows after pre-CIF filters."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "If fresh rows exist, source-adjudicate them manually before any future frozen policy. If none exist, keep the guarded phrase continuation exhausted until a new RCSB release or new publication metadata appears.",
+    "search_surface_exhausted": true
+  }
+}

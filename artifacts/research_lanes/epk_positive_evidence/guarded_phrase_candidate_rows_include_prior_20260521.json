@@ -1,0 +1,3193 @@
+{
+  "candidate_evidence_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_evidence_rows_emitted": 0,
+    "candidate_status_counts": {
+      "donor_or_analog_without_heteromeric_acceptor_review_only": 17
+    },
+    "coordinate_state_counts": {},
+    "fetch_failure_count": 0,
+    "fresh_candidate_evidence_rows_emitted": 0,
+    "generated_at": "2026-05-21T03:47:16Z",
+    "ignore_prior_pdb_ids": [],
+    "include_prior_seen": true,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "max_cif_bytes": 25000000,
+    "max_unique_pdb_ids": 40,
+    "method": "guarded_phrase_candidate_rows",
+    "prior_lane_pdb_id_count": 1825,
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Candidate evidence rows are discovery/source-review rows only. Source context is separated from source-free geometry and cannot be used as a production predictive feature.",
+    "row_timeout_seconds": 45,
+    "schema_version": "epk_candidate_evidence_v1",
+    "search_surface_count": 6,
+    "skipped_prior_seen_pdb_id_count": 0,
+    "skipped_prior_seen_pdb_ids_sample": [],
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 17,
+    "surface_set": "phrase_continuation",
+    "surface_total_count_reported_total": 23,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 17
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 695,
+      "atom_count_model_1": 80133,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the final steps of human 40S ribosome maturation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZXF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "pre-18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62847"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "Probable RNA-binding protein EIF1AD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N9N8"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "Serine/threonine-protein kinase RIO1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRS2"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "y"
+          ],
+          "description": "RNA-binding protein NOB1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9ULX3"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "Leucine-rich repeat-containing protein 47",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N1G4"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 1874,
+        "10": 194,
+        "11": 204,
+        "12": 158,
+        "13": 165,
+        "14": 151,
+        "15": 151,
+        "16": 132,
+        "17": 145,
+        "18": 135,
+        "19": 146,
+        "2": 295,
+        "20": 152,
+        "21": 145,
+        "22": 83,
+        "23": 130,
+        "24": 143,
+        "25": 133,
+        "26": 119,
+        "27": 125,
+        "28": 84,
+        "29": 69,
+        "3": 264,
+        "30": 56,
+        "31": 59,
+        "32": 156,
+        "33": 317,
+        "34": 165,
+        "35": 568,
+        "36": 412,
+        "37": 583,
+        "4": 293,
+        "5": 263,
+        "6": 243,
+        "7": 249,
+        "8": 194,
+        "9": 208
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 1,
+          "rationale": "Prior run returned 232 phrase rows but hit the global CIF cap before this surface.",
+          "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows1_100"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "z",
+          "associated_polymer_distance_angstrom": 2.756,
+          "associated_polymer_entity_id": "35",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "z",
+              "distance_angstrom": 2.316,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "602",
+              "chain": "z",
+              "distance_angstrom": 2.447,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "144",
+            "candidate_chain_name": "Q",
+            "candidate_entity_id": "19",
+            "candidate_label_seq_id": "144",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 15.51
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "603",
+          "terminal_chain_name": "z",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Cryo-EM structure of a late human pre-40S ribosomal subunit - State G",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 692,
+      "atom_count_model_1": 79865,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the final steps of human 40S ribosome maturation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZXG",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "pre-18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62847"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "Probable RNA-binding protein EIF1AD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N9N8"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "k"
+          ],
+          "description": "Leucine-rich repeat-containing protein 47",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N1G4"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "Serine/threonine-protein kinase RIO1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRS2"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "h"
+          ],
+          "description": "40S ribosomal protein S26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62854"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 1869,
+        "10": 208,
+        "11": 194,
+        "12": 204,
+        "13": 158,
+        "14": 165,
+        "15": 151,
+        "16": 151,
+        "17": 132,
+        "18": 145,
+        "19": 135,
+        "2": 295,
+        "20": 146,
+        "21": 152,
+        "22": 145,
+        "23": 83,
+        "24": 130,
+        "25": 143,
+        "26": 133,
+        "27": 119,
+        "28": 125,
+        "29": 84,
+        "3": 264,
+        "30": 69,
+        "31": 56,
+        "32": 59,
+        "33": 156,
+        "34": 317,
+        "35": 165,
+        "36": 583,
+        "37": 568,
+        "4": 293,
+        "5": 115,
+        "6": 263,
+        "7": 243,
+        "8": 249,
+        "9": 194
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 2,
+          "rationale": "Prior run returned 232 phrase rows but hit the global CIF cap before this surface.",
+          "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows1_100"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "z",
+          "associated_polymer_distance_angstrom": 2.751,
+          "associated_polymer_entity_id": "37",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "z",
+              "distance_angstrom": 3.272,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "601",
+              "chain": "z",
+              "distance_angstrom": 3.365,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "144",
+            "candidate_chain_name": "Q",
+            "candidate_entity_id": "20",
+            "candidate_label_seq_id": "144",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 15.749
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "602",
+          "terminal_chain_name": "z",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Cryo-EM structure of a late human pre-40S ribosomal subunit - State H1",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 666,
+      "atom_count_model_1": 76979,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the final steps of human 40S ribosome maturation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZXH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "pre-18S ribosomal RNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "40S ribosomal protein S8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62241"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "40S ribosomal protein S9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46781"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "40S ribosomal protein S5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46782"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "40S ribosomal protein S11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62280"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "40S ribosomal protein S10",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46783"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "N"
+          ],
+          "description": "40S ribosomal protein S13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62277"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "40S ribosomal protein S14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62263"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "40S ribosomal protein S12",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P25398"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "40S ribosomal protein S15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62841"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "40S ribosomal protein S17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08708"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "40S ribosomal protein SA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P08865"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "Q"
+          ],
+          "description": "40S ribosomal protein S16",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62249"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "40S ribosomal protein S18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62269"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "40S ribosomal protein S19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39019"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "V"
+          ],
+          "description": "40S ribosomal protein S21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63220"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "W"
+          ],
+          "description": "40S ribosomal protein S15a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62244"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "X"
+          ],
+          "description": "40S ribosomal protein S23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62266"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "Y"
+          ],
+          "description": "40S ribosomal protein S24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62847"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "40S ribosomal protein S20",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60866"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "Z"
+          ],
+          "description": "40S ribosomal protein S25",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62851"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "b"
+          ],
+          "description": "40S ribosomal protein S27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42677"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "40S ribosomal protein S3a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61247"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "c"
+          ],
+          "description": "40S ribosomal protein S28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62857"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "d"
+          ],
+          "description": "40S ribosomal protein S29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62273"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "e"
+          ],
+          "description": "40S ribosomal protein S30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62861"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "f"
+          ],
+          "description": "Ubiquitin-40S ribosomal protein S27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62979"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "g"
+          ],
+          "description": "Receptor of activated protein C kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63244"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "j"
+          ],
+          "description": "Probable RNA-binding protein EIF1AD",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8N9N8"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "z"
+          ],
+          "description": "Serine/threonine-protein kinase RIO1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BRS2"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "40S ribosomal protein S2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15880"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "h"
+          ],
+          "description": "40S ribosomal protein S26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62854"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "40S ribosomal protein S4, X isoform",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62701"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "40S ribosomal protein S3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23396"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "40S ribosomal protein S6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62753"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "40S ribosomal protein S7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62081"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 1869,
+        "10": 208,
+        "11": 194,
+        "12": 204,
+        "13": 158,
+        "14": 165,
+        "15": 151,
+        "16": 151,
+        "17": 132,
+        "18": 145,
+        "19": 135,
+        "2": 295,
+        "20": 146,
+        "21": 152,
+        "22": 145,
+        "23": 83,
+        "24": 130,
+        "25": 143,
+        "26": 133,
+        "27": 119,
+        "28": 125,
+        "29": 84,
+        "3": 264,
+        "30": 69,
+        "31": 56,
+        "32": 59,
+        "33": 156,
+        "34": 317,
+        "35": 165,
+        "36": 568,
+        "4": 293,
+        "5": 115,
+        "6": 263,
+        "7": 243,
+        "8": 249,
+        "9": 194
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_offset75_scout_20260520.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 3,
+          "rationale": "Prior run returned 232 phrase rows but hit the global CIF cap before this surface.",
+          "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows1_100"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "z",
+          "associated_polymer_distance_angstrom": 2.566,
+          "associated_polymer_entity_id": "36",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "z",
+              "distance_angstrom": 3.325,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "601",
+              "chain": "z",
+              "distance_angstrom": 3.541,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "144",
+            "candidate_chain_name": "Q",
+            "candidate_entity_id": "20",
+            "candidate_label_seq_id": "144",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 15.444
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "602",
+          "terminal_chain_name": "z",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Cryo-EM structure of a late human pre-40S ribosomal subunit - State H2",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 66,
+      "atom_count_model_1": 4738,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUU",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6VAB6"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 342,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 1,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.718,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "B",
+              "distance_angstrom": 4.462,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 14.802
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1001",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.655,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "C",
+              "distance_angstrom": 4.49,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "841",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "233",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 18.206
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR2:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor PD0325901",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 66,
+      "atom_count_model_1": 4756,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6VAB6"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 342,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 2,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.823,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "B",
+              "distance_angstrom": 4.649,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 14.808
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1001",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.366,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "503",
+              "chain": "C",
+              "distance_angstrom": 2.66,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "841",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "233",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 19.737
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "502",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR2:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor Cobimetinib",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 66,
+      "atom_count_model_1": 4777,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUV",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6VAB6"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 342,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 3,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.307,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 14.584
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1001",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.643,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "C",
+              "distance_angstrom": 3.514,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "841",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "233",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 19.525
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR2:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor APS-9-95-1",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 67,
+      "atom_count_model_1": 4763,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUY",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IVT5"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 334,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 4,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.458,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "902",
+              "chain": "B",
+              "distance_angstrom": 3.753,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 13.207
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.416,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "C",
+              "distance_angstrom": 4.217,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "788",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "223",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 17.532
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR1:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor Cobimetinib",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 67,
+      "atom_count_model_1": 4741,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JV0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Kinase suppressor of Ras 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IVT5"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 334,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 5,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.87,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "902",
+              "chain": "A",
+              "distance_angstrom": 3.688,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 13.688
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.251,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "788",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "223",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 16.787
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR1:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor PD0325901",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 66,
+      "atom_count_model_1": 4770,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6VAB6"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 342,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 6,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.705,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 14.995
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1001",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.731,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "C",
+              "distance_angstrom": 3.502,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "841",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "233",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 19.205
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR2:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor Trametinib",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 67,
+      "atom_count_model_1": 4751,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IVT5"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 334,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 7,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.769,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "902",
+              "chain": "B",
+              "distance_angstrom": 3.671,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 13.389
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.458,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "C",
+              "distance_angstrom": 4.279,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "829",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "264",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 18.007
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR1:MEK1 in complex with AMP-PNP",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 68,
+      "atom_count_model_1": 4768,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Kinase suppressor of Ras 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IVT5"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 334,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 8,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.912,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "902",
+              "chain": "A",
+              "distance_angstrom": 4.946,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 16.98
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.441,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "829",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "264",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 17.582
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR1:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor Trametinib",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 68,
+      "atom_count_model_1": 4741,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JV1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Kinase suppressor of Ras 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IVT5"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 334,
+        "2": 384
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 9,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.516,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "902",
+              "chain": "D",
+              "distance_angstrom": 4.638,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "222",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "213",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 17.022
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 1.298,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "829",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "264",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 17.814
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of KSR1:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor APS-9-95-1",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 41,
+      "atom_count_model_1": 2652,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Autoregulation by the Juxtamembrane Region of the Human Ephrin Receptor Tyrosine Kinase A3 (EphA3).",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QO9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ephrin receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29320"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 373
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 10,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.773,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1",
+              "chain": "A",
+              "distance_angstrom": 3.254,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "948",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Human EphA3 kinase and juxtamembrane region, phosphorylated, AMP-PNP bound",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 2555,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Autoregulation by the Juxtamembrane Region of the Human Ephrin Receptor Tyrosine Kinase A3 (EphA3).",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QOQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ephrin receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29320"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 373
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 11,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.802,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1",
+              "chain": "A",
+              "distance_angstrom": 3.665,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "948",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Human EphA3 kinase and juxtamembrane region, base, AMP-PNP bound structure",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 2507,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Autoregulation by the Juxtamembrane Region of the Human Ephrin Receptor Tyrosine Kinase A3 (EphA3).",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QO7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ephrin receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29320"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 373
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 12,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.762,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1",
+              "chain": "A",
+              "distance_angstrom": 3.303,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1000",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Human EphA3 kinase and juxtamembrane region, dephosphorylated, AMP-PNP bound",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 2699,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Autoregulation by the Juxtamembrane Region of the Human Ephrin Receptor Tyrosine Kinase A3 (EphA3).",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QOC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ephrin receptor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29320"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 344
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 13,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.607,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "2",
+              "chain": "A",
+              "distance_angstrom": 3.581,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "1",
+              "chain": "A",
+              "distance_angstrom": 4.133,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "949",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Human EphA3 kinase domain, phosphorylated, AMP-PNP bound structure",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 168,
+      "atom_count_model_1": 11327,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "TheLegionellakinase LegK7 exploits the Hippo pathway scaffold protein MOB1A for allostery and substrate phosphorylation.",
+        "year": 2020
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6MCP",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "LegK7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q5ZU83"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "MOB kinase activator 1A",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9H8S9"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 523,
+        "2": 187
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_domain_ec_ligand_metal_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/guarded_phrase_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/legacy_anp_pb_prior_scout_audit_20260520.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+          "rank": 14,
+          "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+          "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.286,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "601",
+              "chain": "C",
+              "distance_angstrom": 3.505,
+              "metal_code": "MN"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "74",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "45",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 26.588
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "610",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "L. pneumophila effector kinase LegK7 (AMP-PNP bound) in complex with human MOB1A",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    }
+  ],
+  "search_surfaces": [
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [
+        "6ZXF",
+        "6ZXG",
+        "6ZXH"
+      ],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Prior run returned 232 phrase rows but hit the global CIF cap before this surface.",
+      "requested_rows": 100,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows1_100",
+      "total_count": 3
+    },
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Continuation page for the capped precatalytic phrase surface.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 100,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows101_200",
+      "total_count": 3
+    },
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Tail page for the capped precatalytic phrase surface.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 200,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_gamma_rows201_232",
+      "total_count": 3
+    },
+    {
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "phrase": "protein kinase pre-catalytic substrate ATP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase pre-catalytic substrate ATP' AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "rationale": "Transition-analog pass with the same source phrase and ADP+metal-fluoride context.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp_transition_rows1_100",
+      "total_count": 0
+    },
+    {
+      "ligand_mode": "gamma",
+      "pdb_ids": [
+        "7JUU",
+        "7JUS",
+        "7JUV",
+        "7JUY",
+        "7JV0",
+        "7JUR",
+        "7JUW",
+        "7JUX",
+        "7JV1",
+        "2QO9",
+        "2QOQ",
+        "2QO7",
+        "2QOC",
+        "6MCP"
+      ],
+      "phrase": "protein kinase substrate-bound AMP-PNP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "rationale": "Prior run returned 43 phrase rows but did not reach this surface before the CIF cap.",
+      "requested_rows": 100,
+      "returned_count": 14,
+      "start": 0,
+      "surface_id": "protein_kinase_substrate_bound_amp_pnp_gamma",
+      "total_count": 14
+    },
+    {
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "phrase": "protein kinase substrate-bound AMP-PNP",
+      "query_or_source": "RCSB advanced guarded phrase: full_text='protein kinase substrate-bound AMP-PNP' AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "rationale": "Transition-analog pass for the substrate-bound AMP-PNP source phrase.",
+      "requested_rows": 100,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "protein_kinase_substrate_bound_amp_pnp_transition",
+      "total_count": 0
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No production-positive ePK claim is allowed; all candidate rows remain review-only abstentions.",
+      "Source context is recorded separately from source-free geometry and must not be used as a predictive coordinate feature.",
+      "The guarded phrase_continuation surface set is exhausted for fresh candidate rows under canonical ePK plus exact ligand/metal prefilters."
+    ],
+    "evidence_for": [
+      "Guarded phrase surfaces produced no fresh candidate-level geometry rows after pre-CIF filters."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "If fresh rows exist, source-adjudicate them manually before any future frozen policy. If none exist, keep the guarded phrase continuation exhausted until a new RCSB release or new publication metadata appears.",
+    "search_surface_exhausted": true
+  }
+}

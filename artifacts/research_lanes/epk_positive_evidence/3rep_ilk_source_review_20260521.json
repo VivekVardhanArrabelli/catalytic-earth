@@ -1,0 +1,88 @@
+{
+  "geometry_review": {
+    "candidate_evidence_row_emitted": false,
+    "coordinate_state": "active_gamma_donor_without_acceptor",
+    "nearest_heteromeric_acceptor": {
+      "candidate_atom_name": "OH",
+      "candidate_auth_seq_id": "306",
+      "candidate_chain_name": "B",
+      "candidate_entity_id": "2",
+      "candidate_label_seq_id": "63",
+      "candidate_residue_code": "TYR",
+      "nearest_terminal_distance_angstrom": 14.923
+    },
+    "terminal_donor": {
+      "associated_polymer_chain_name": "A",
+      "associated_polymer_entity_id": "1",
+      "donor_role": "strict_pg_gamma",
+      "local_metals": [
+        {
+          "auth_seq_id": "501",
+          "chain": "A",
+          "distance_angstrom": 3.338,
+          "metal_code": "MN"
+        }
+      ],
+      "terminal_atom_name": "PG",
+      "terminal_auth_seq_id": "502",
+      "terminal_chain_name": "A",
+      "terminal_ligand_code": "ATP"
+    }
+  },
+  "metadata": {
+    "generated_at": "2026-05-21T03:43:00Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "3rep_ilk_source_review",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_v1_source_context",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "policy_decision": {
+    "claim_status": "review_only_negative_support",
+    "countable_label_candidate": false,
+    "epk_score_computed": false,
+    "policy_decision": "review_only_abstain",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false
+  },
+  "source_context": {
+    "pdb_id": "3REP",
+    "source_notes": [
+      "RCSB identifies 3REP as the ILK/alpha-parvin core complex with MnATP and lists the literature status as To be published.",
+      "NCBI MMDB independently lists the biological unit as a dimer with integrin-linked kinase, alpha-parvin, manganese ion, and ATP components.",
+      "Europe PMC exact-title, ILK/alpha-parvin MnATP, and 3REP alpha-parvin queries returned zero article rows during this run.",
+      "The active-gamma source-term scout found this as the only fresh PDB ID after skipping prior lane PDB IDs; it has no within-6-Angstrom heteromeric acceptor candidate."
+    ],
+    "source_urls": [
+      "https://www.rcsb.org/structure/3REP",
+      "https://data.rcsb.org/rest/v1/core/entry/3REP",
+      "https://www.ncbi.nlm.nih.gov/Structure/pdb/3REP",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Crystal+structure+of+the+ILK%2Falpha-parvin+core+complex%22&format=json&pageSize=3&resultType=core",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ILK%2Falpha-parvin%22+MnATP&format=json&pageSize=3&resultType=core",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%223REP%22+%22alpha-parvin%22&format=json&pageSize=3&resultType=core"
+    ],
+    "structure_title": "Crystal structure of the ILK/alpha-parvin core complex (MnATP)"
+  },
+  "source_review_summary": {
+    "blockers": [
+      "nearest_heteromeric_acceptor_14_923_angstrom",
+      "no_within_6_angstrom_candidate_acceptor",
+      "source_context_not_predictive_coordinate_feature",
+      "publication_article_not_available_in_rcsb_or_europepmc",
+      "review_only_lane"
+    ],
+    "evidence_against": [
+      "3REP has an ATP PG donor and local Mn on ILK, but the nearest heteromeric alpha-parvin Tyr hydroxyl is 14.923 Angstrom away.",
+      "No candidate-level positive row is emitted because no heteromeric Ser/Thr/Tyr acceptor is within the lane's 6 Angstrom review geometry window.",
+      "The available source context supports ILK/alpha-parvin nucleotide-complex review only, not a kinase-to-substrate transfer-state claim."
+    ],
+    "evidence_for": [
+      "3REP is a fresh exact-context active-gamma donor state recovered by the guarded source-term search."
+    ],
+    "production_claim_allowed": false,
+    "recommendation": "Keep 3REP as review-only active-gamma donor-without-acceptor negative support; do not create labels, scores, thresholds, fingerprints, migrations, or production claims."
+  }
+}
