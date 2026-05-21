@@ -134,6 +134,16 @@ registry edit, label import, threshold, production scoring, fingerprint
 expansion, artifact migration, upload, removal, Git LFS tracking, or history
 rewrite was performed.
 
+The current modern-baseline rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_20260521.json`
+aggregates the PLP and flavin external mini-campaigns as a 40-row review-only
+benchmark artifact. It records 37 `needs_review` rows and three exact
+current-reference duplicate terminal rejections. EC/keyword routing only
+assigns current fingerprint-lane context, deterministic sequence-neighbor
+checks only supply duplicate/leakage caveats, and geometry/ESM/Foldseek
+sidecars remain unrun for these frozen sets. The rollup permits no superiority,
+mechanism-match, production-score, or import claim.
+
 As of the 2026-05-20T23:16:33Z automation run,
 `artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates
 the fresh dirty sibling-worktree ePK outputs that appeared after the late-lane

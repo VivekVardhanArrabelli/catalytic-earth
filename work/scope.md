@@ -313,6 +313,16 @@ deterministic 5-mer finds one exact duplicate and two near-neighbor alerts,
 and geometry, ESM, and Foldseek remain unrun. No mechanism-match, label
 import, production score, threshold calibration, registry edit, or fingerprint
 expansion is in scope.
+Current external mini-campaign modern-baseline rollup scope:
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_20260521.json`
+combines the PLP aminotransferase and flavin monooxygenase frozen external
+mini-campaigns into a 40-row review-only benchmark artifact. It records 37
+`needs_review` rows, three exact current-reference duplicate terminal
+rejections, EC/keyword lane routing for all 40 rows, and four deterministic
+sequence-neighbor alerts. Geometry retrieval, ESM, and Foldseek sidecars remain
+unrun for these newly frozen sets, so the artifact permits no superiority,
+mechanism-match, production scoring, threshold calibration, registry edit,
+fingerprint expansion, or label import claim.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

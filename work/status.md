@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 237
-- Measured elapsed time: 7081.7 minutes (118.03 hours)
+- Entries: 238
+- Measured elapsed time: 7084.2 minutes (118.07 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1795.3 measured minutes (29.92 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 112.4 measured minutes (1.87 hours)
+- v3: 114.9 measured minutes (1.91 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2694
-- Evidence references logged: 2190
+- Artifact references logged: 2698
+- Evidence references logged: 2191
 
 ## Recent Entries
-
-### 2026-05-20T22:19:09.281826+00:00 - post-infra-science
-
-- Task: Late ePK research-lane synthesis
-- Time mode: measured
-- Measured minutes: 7.933
-- Started: 2026-05-20T22:11:00Z
-- Ended: 2026-05-20T22:18:56Z
-- Artifacts: artifacts/v3_epk_late_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: startup 730-test unit discovery passed, startup validate passed with 682 labels and 8 fingerprints, 27 late ePK lane JSON artifacts and 3 JSONL ledgers validated with 0 errors, canonical ePK ligand scouts found review-only peptide positives and no fresh clean folded-protein positive, substrate orientation probe still admits 9UW4 counterexample, false-positive hunter reports ORC/OCCM/MCM ATPase topology-clear counterexamples, ePK remains review-only and production activation no-go, focused late synthesis regression passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ### 2026-05-20T22:44:16.389654+00:00 - v3
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T00:41:35Z
 - Artifacts: artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json, artifacts/v3_flavin_monooxygenase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_flavin_monooxygenase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_main_loop_small_win_register_post_flavin_monooxygenase_20260521.json
 - Evidence: 20-row Swiss-Prot EC 1.14.13.* flavin surface frozen before scoring; 19 needs_review; 1 exact current-reference duplicate terminal rejection; no superiority claim
+- Notes: focused unittest JSON validation and diff check passed
+
+### 2026-05-21T00:44:11.610704+00:00 - v3
+
+- Task: external mini-campaign modern baseline rollup
+- Time mode: measured
+- Measured minutes: 2.483
+- Started: 2026-05-21T00:41:35Z
+- Ended: 2026-05-21T00:44:04Z
+- Artifacts: artifacts/v3_external_minicampaign_modern_baseline_rollup_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: 40 frozen PLP/flavin external rows; 37 needs_review; 3 exact current-reference duplicate terminal rejections; no superiority claim
 - Notes: focused unittest JSON validation and diff check passed
 
 ## Expectation Updates
@@ -309,6 +309,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:27:03.666400+00:00: Next bounded work can close PfkA-vs-neighbor tranche or stop for wrap if cadence is reached.
 - 2026-05-21T00:35:13.353330+00:00: continue external or non-ATP-family small wins; do not promote PfkA
 - 2026-05-21T00:41:53.519062+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
+- 2026-05-21T00:44:11.610704+00:00: simple EC and sequence baselines provide routing and duplicate caveats only
 
 ## Scope Adjustments
 
@@ -439,3 +440,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:27:03.666400+00:00: External PLP mini-campaign is review-only; current PLP lane presence is not a mechanism-match or import claim without source-free geometry and factory gates.
 - 2026-05-21T00:35:13.353330+00:00: all non-ePK ATP-family readiness slots closed review-only no-go
 - 2026-05-21T00:41:53.519062+00:00: flavin monooxygenase external mini-campaign remains review-only and not import-ready
+- 2026-05-21T00:44:11.610704+00:00: modern baseline rollup is review-only and not a production/import benchmark

@@ -849,6 +849,68 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(register["synthesis_conclusion"]["superiority_claim_permitted"])
 
+    def test_external_minicampaign_modern_baseline_rollup_stays_review_only(self) -> None:
+        rollup = _load_json(
+            ARTIFACTS / "v3_external_minicampaign_modern_baseline_rollup_20260521.json"
+        )
+        metadata = rollup["metadata"]
+        metrics = rollup["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["campaign_count"], 2)
+        self.assertEqual(metadata["frozen_row_count"], 40)
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        self.assertEqual(
+            metrics["terminal_decision_counts"],
+            {"needs_review": 37, "terminal_rejection": 3},
+        )
+        self.assertEqual(
+            metrics["ec_keyword_baseline"][
+                "campaign_rows_routed_to_existing_lane_count"
+            ],
+            40,
+        )
+        self.assertFalse(
+            metrics["ec_keyword_baseline"]["supports_mechanism_match_claim"]
+        )
+        self.assertEqual(
+            metrics["deterministic_sequence_baseline"][
+                "exact_current_reference_sequence_match_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            metrics["deterministic_sequence_baseline"]["near_neighbor_alert_count"],
+            4,
+        )
+        self.assertEqual(
+            metrics["current_geometry_retrieval_triage"]["scored_row_count"],
+            0,
+        )
+        self.assertFalse(
+            metrics["esm_foldseek_sidecar_sample"]["supports_superiority_claim"]
+        )
+
+        campaigns = {row["campaign_id"]: row for row in rollup["campaigns"]}
+        self.assertEqual(
+            campaigns["plp_aminotransferase"]["terminal_decision_counts"],
+            {"needs_review": 18, "terminal_rejection": 2},
+        )
+        self.assertEqual(
+            campaigns["flavin_monooxygenase"]["terminal_decision_counts"],
+            {"needs_review": 19, "terminal_rejection": 1},
+        )
+        self.assertEqual(
+            rollup["synthesis_conclusion"]["overall"],
+            "modern_baseline_rollup_is_review_only_and_no_superiority_claim",
+        )
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]
