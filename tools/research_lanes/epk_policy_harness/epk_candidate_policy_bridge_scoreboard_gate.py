@@ -132,6 +132,22 @@ def schema_drafts() -> dict[str, Any]:
                     "same_structure_co_materialization",
                 ],
                 "coordinate_state_enum": sorted(COORDINATE_STATE_VALUES),
+                "coordinate_state_field_rules": {
+                    "ligand_absent": {
+                        "ligand_code_from_structure": "field_present_may_be_null",
+                        "coordinate_ligand_materialized_from_structure": False,
+                    },
+                    "unavailable_coordinate_state": {
+                        "ligand_code_from_structure": "field_present_may_be_null",
+                        "coordinate_ligand_materialized_from_structure": False,
+                    },
+                    "metal_absent": {
+                        "local_metal_context": False,
+                    },
+                    "adp_state": {
+                        "claim_status": "review_only_abstain_product_state",
+                    },
+                },
                 "allowed_predictive_feature_boundary": [
                     "ligand_code_from_structure",
                     "terminal_gamma_equivalent_geometry",

@@ -210,6 +210,31 @@ def validate_schema_drafts_contract(drafts: dict[str, Any]) -> dict[str, Any]:
         )
     if set(candidate.get("coordinate_state_enum") or []) != COORDINATE_STATE_VALUES:
         raise ValueError("candidate coordinate_state_enum drifted")
+    state_rules = candidate.get("coordinate_state_field_rules") or {}
+    for state in ("ligand_absent", "unavailable_coordinate_state"):
+        rule = state_rules.get(state) or {}
+        if rule.get("ligand_code_from_structure") != "field_present_may_be_null":
+            raise ValueError(
+                "candidate coordinate_state_field_rules must allow explicit "
+                f"{state} rows to carry a present-but-null ligand_code_from_structure"
+            )
+        if rule.get("coordinate_ligand_materialized_from_structure") is not False:
+            raise ValueError(
+                "candidate coordinate_state_field_rules must mark "
+                f"{state} as not coordinate-ligand materialized"
+            )
+    metal_rule = state_rules.get("metal_absent") or {}
+    if metal_rule.get("local_metal_context") is not False:
+        raise ValueError(
+            "candidate coordinate_state_field_rules must mark metal_absent "
+            "with local_metal_context=false"
+        )
+    adp_rule = state_rules.get("adp_state") or {}
+    if adp_rule.get("claim_status") != "review_only_abstain_product_state":
+        raise ValueError(
+            "candidate coordinate_state_field_rules must keep adp_state "
+            "under review_only_abstain_product_state"
+        )
     if set(decision.get("coordinate_state_enum") or []) != COORDINATE_STATE_VALUES:
         raise ValueError("decision coordinate_state_enum drifted")
     if set(decision.get("claim_status_enum") or []) != CLAIM_STATUS_VALUES:
