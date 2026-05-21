@@ -1,0 +1,150 @@
+{
+  "artifact_contract_answers": {
+    "countable_readiness_changed": false,
+    "new_status": "terminal_no_go_source_free_under_current_policy",
+    "previous_status": "review_only_abstain_topology_ambiguity_review_required",
+    "regression_gate_changed": false,
+    "review_only_taxonomy_changed": true,
+    "what_candidate_or_blocker_changed": "folded_tyr_reciprocal_context blocker class",
+    "why_tooling_was_necessary": "No new tooling was necessary; existing compact artifacts were sufficient for a terminal blocker decision."
+  },
+  "artifact_id": "epk_active_gamma_folded_tyr_terminal_blocker_decision_20260521T223100Z",
+  "candidate_or_blocker_changed": "blocker_class",
+  "candidate_or_blocker_target": "folded_tyr_reciprocal_context",
+  "countable_readiness_changed": false,
+  "counterexamples_found": [
+    {
+      "blocker_class": "topology_ambiguity",
+      "candidate_id": "9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+      "coordinate_state": "active_gamma",
+      "distance_angstrom": 4.194,
+      "pdb_id": "9UW4",
+      "role_class": "reciprocal_folded_tyr_candidate",
+      "source_free_decision_class": "abstain_biology_topology_review_required",
+      "why_it_blocks_source_free_admission": "It carries the same reciprocal folded Tyr active-gamma topology pattern as source-reviewed positives but is review-only counterexample context."
+    }
+  ],
+  "evidence_against": [
+    "The no-go is class-scoped: clean non-reciprocal active-gamma review candidates such as 8OXM remain useful future gate inputs.",
+    "Review-only source labels identify positives/counterexamples for evaluation context only and are not used as predictive features.",
+    "This decision does not exhaust all possible future source-free biology modalities; it only terminates this class under the current frozen v7/v0 policy contract."
+  ],
+  "evidence_for": [
+    "Policy v0 keeps accepted_source_free_acceptor_role_policy_ids empty and requires terminal_gamma_equivalent_geometry, local_metal_context, catalytic_site_locality, source_free_acceptor_role_features, and same_structure_co_materialization.",
+    "8OXM is the strongest cross-lane active-gamma candidate reviewed, but it still cannot become admissible without a preaccepted role policy and remains non-countable review-only evidence.",
+    "9UUX reciprocal Tyr row is active_gamma, ordered_like, cross-chain, 3.968 A, gamma-facing, and still blocker_class=topology_ambiguity with no unblocked candidate in the conflict decision row.",
+    "9UUR reciprocal Tyr row is active_gamma, ordered_like, cross-chain, 4.181 A, gamma-facing, and still blocker_class=topology_ambiguity with no unblocked candidate in the conflict decision row.",
+    "9UW4 supplies a counterexample row with the same reciprocal folded Tyr role class, active_gamma state, ordered_like coordinates, 4.194 A distance, gamma-facing orientation, and topology_ambiguity status.",
+    "Candidate conflict rows for 9UUR, 9UUX, and 9UW4 all use source_free_decision_class=abstain_biology_topology_review_required and nearest_unblocked_candidate_by_distance=null.",
+    "The latest false-positive hunter handoff reports unsafe_nonabstention_after_expected_policy_count=0, so no regression gate hardening is justified this run."
+  ],
+  "generated_at": "2026-05-21T22:38:00Z",
+  "hypothesis": "The strongest active-gamma evidence can only change policy status if existing v7 review-only rows clear source-free acceptor-role and topology requirements without source-review leakage; otherwise a precise active-gamma blocker class must be made terminal under the current policy.",
+  "labels_or_fingerprints_changed": false,
+  "lane_id": "epk_policy_harness",
+  "new_status": "terminal_no_go_source_free_under_current_policy",
+  "next_query": "Do not pursue folded Tyr reciprocal active-gamma context as a source-free admission route under policy v0/v7. If this class is revisited, require a genuinely new preregistered source-free biology modality; otherwise route reciprocal folded Tyr cases to source/biological review and use 8OXM-like non-reciprocal active-gamma rows for future gate design.",
+  "previous_status": "review_only_abstain_topology_ambiguity_review_required",
+  "primary_outcome": "candidate_class_terminal_no_go",
+  "production_claim_allowed": false,
+  "recommendation": "candidate_class_terminal_no_go",
+  "regression_gate_changed": false,
+  "review_only_taxonomy_changed": true,
+  "reviewed_compact_rows": [
+    {
+      "candidate_id": "8OXM|gamma=B:ANP3101:PG|acceptor=F:SER15:OG",
+      "role": "strongest_active_gamma_candidate",
+      "status_after_review": "not_admissible_missing_preaccepted_role_policy"
+    },
+    {
+      "candidate_id": "9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+      "role": "folded_tyr_reciprocal_positive_context",
+      "status_after_review": "terminal_no_go_class_member"
+    },
+    {
+      "candidate_id": "9UUR|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+      "role": "folded_tyr_reciprocal_positive_context",
+      "status_after_review": "terminal_no_go_class_member"
+    },
+    {
+      "candidate_id": "9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+      "role": "folded_tyr_reciprocal_counterexample_context",
+      "status_after_review": "terminal_no_go_counterexample_anchor"
+    }
+  ],
+  "source_artifacts_review_only_inputs": [
+    {
+      "branch": "origin/research/epk-policy-harness",
+      "commit": "2b15aa09db279f807876c07f387274abf8b20b56",
+      "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_v0_20260520.json",
+      "sha256": "298b2a636fe3a50b3872bb513a9d37e0151b02b71d25fe1b651da5d3854b4345"
+    },
+    {
+      "branch": "origin/research/epk-positive-evidence",
+      "commit": "2da58d955a9ce04fdc5a4ecee9431ef69e0f6d2e",
+      "path": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+      "sha256": "8f8ed710ff2d499f57652c8ea7e08a9827b9b02999f2f2a305b1e627fc80b7fe"
+    },
+    {
+      "branch": "origin/research/epk-substrate-role-identity",
+      "commit": "4670539b69837811fe9fea274e1193348ec517a8",
+      "path": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+      "sha256": "88d0dc025370cc89c346aa0fe1b736c70ba053aaab0e47c32ef630a281218754"
+    },
+    {
+      "branch": "origin/research/epk-substrate-role-identity",
+      "commit": "4670539b69837811fe9fea274e1193348ec517a8",
+      "path": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_conflict_decision_v1_20260521.json",
+      "sha256": "70174520494014492242d9b7d1088f75be984157086cc94a6e79f9b17dc38c72"
+    },
+    {
+      "branch": "origin/research/epk-substrate-role-identity",
+      "commit": "4670539b69837811fe9fea274e1193348ec517a8",
+      "path": "artifacts/research_lanes/epk_substrate_role_identity/epk_acid_base_proximity_audit_v1_20260521.json",
+      "sha256": "d5642eec10b757c97e90ee3bd7f0de0ec631110e9853b947ca579e14d99acce0"
+    },
+    {
+      "branch": "origin/research/epk-false-positive-hunter",
+      "commit": "cd8265f821302c4017fe33406de40a49bf0288fb",
+      "path": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_220200Z.json",
+      "sha256": "c2afe83e47b2cfc3aa57a738c6c3959ad0619cf1e3d5b0d7d9bbc5d0122709f7"
+    }
+  ],
+  "started_at": "2026-05-21T22:31:00Z",
+  "strongest_active_gamma_candidate_reviewed": {
+    "admissibility_blockers": [
+      "policy v0 has accepted_source_free_acceptor_role_policy_ids=[]",
+      "source support remains review-only and explicitly non-predictive",
+      "positive-evidence row remains candidate_review_only_non_countable with production_policy_abstain/review_only_lane blockers",
+      "no clean held-out production performance or label-import claim is allowed"
+    ],
+    "candidate_id": "8OXM|gamma=B:ANP3101:PG|acceptor=F:SER15:OG",
+    "coordinate_state": "active_gamma",
+    "countable_readiness_changed": false,
+    "new_status": "not_admissible_under_current_policy_missing_preaccepted_source_free_role_policy",
+    "pdb_id": "8OXM",
+    "positive_evidence_row_id": "8OXM:active_gamma:ANP:B:3101:F:15:1",
+    "previous_status": "candidate_review_only_non_countable",
+    "production_claim_allowed": false,
+    "source_free_strengths": [
+      "ANP terminal-gamma geometry within the frozen 6.0 A cutoff at 3.482 A",
+      "local Mg context present in the positive-evidence compact row",
+      "ordered-like coordinate certainty in the substrate-role identity row",
+      "strict auth-terminal candidate role with cross-chain topology and gamma-facing orientation",
+      "source-free blocker_class=none in substrate-role identity and acid/base proximity rows"
+    ]
+  },
+  "terminal_blocker_decision": {
+    "class": "folded_tyr_reciprocal_context",
+    "decision": "terminal_no_go_source_free_under_current_policy",
+    "not_a_global_active_gamma_rejection": true,
+    "rationale": [
+      "The current policy requires a preaccepted source-free acceptor-role policy before nonabstaining review-only active-gamma admission; none is accepted in policy v0.",
+      "The folded Tyr reciprocal rows remain topology_ambiguity even when active-gamma distance, ordered coordinates, and gamma-facing orientation are present.",
+      "The same source-free topology conflict signature occurs in review-only positives and a review-only counterexample, so source-free local geometry cannot distinguish the class without biological/source review.",
+      "The latest acid/base proximity audit marks the reciprocal Tyr positives and the counterexample with gamma-coupled carboxylate context, so acid/base proximity does not clear the biology blocker."
+    ],
+    "scope": "Active-gamma candidates whose apparent acceptor role depends on reciprocal folded Tyr or same-chain/autophosphorylation-like topology cannot be admitted source-free under the current frozen policy."
+  },
+  "tooling_necessity": "No new helper, schema, adapter, gate, scoreboard field, or version was created. Existing v7 policy contract fields and fetched compact lane artifacts were inspected with git-show/jq to make a blocker decision."
+}
