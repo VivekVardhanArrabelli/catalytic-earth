@@ -40,7 +40,6 @@ SOURCE_SPECS = [
     {
         "path_glob": "artifacts/research_lanes/epk_false_positive_hunter/"
         "v4_metric_seeded_ligand_assembly_split_*.json",
-        "latest_only": True,
         "row_key": "entry_level_guard_materializer_rows",
         "source_profile": "metric_seeded_ligand_assembly_split_controls",
     },
@@ -651,7 +650,7 @@ def expand_source_specs(repo_root: Path) -> list[dict[str, Any]]:
             continue
         matches = sorted(repo_root.glob(str(glob_pattern)))
         if spec.get("latest_only"):
-            matches = matches[-1:]
+            matches = sorted(matches, key=artifact_latest_key)[-1:]
         if not matches:
             missing_spec = dict(spec)
             missing_spec["path"] = str(glob_pattern)
@@ -666,6 +665,19 @@ def expand_source_specs(repo_root: Path) -> list[dict[str, Any]]:
             concrete.pop("latest_only", None)
             expanded.append(concrete)
     return expanded
+
+
+def artifact_latest_key(path: Path) -> tuple[str, str]:
+    try:
+        payload = load_json(path)
+    except Exception:  # pragma: no cover - corrupt evidence handled as missing later
+        return ("", path.name)
+    metadata = payload.get("metadata") or {}
+    for key in ("ended_at", "generated_at", "started_at"):
+        value = metadata.get(key)
+        if value:
+            return (str(value), path.name)
+    return ("", path.name)
 
 
 def main() -> int:

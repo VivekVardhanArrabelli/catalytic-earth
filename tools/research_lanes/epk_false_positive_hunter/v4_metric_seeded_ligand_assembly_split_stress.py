@@ -41,6 +41,7 @@ LIGAND_COMPONENT_QUERIES = [
     {"name": "dtp_recent_60", "ligand": "DTP", "start": 60, "rows": 60},
 ]
 DEFAULT_MAX_LOCAL_GEOMETRY_ATOM_SITE_ROWS = 120_000
+DEFAULT_MAX_CONTEXT_ATOM_SITE_ROWS_BEFORE_PARSE = 160_000
 
 DEFAULT_EXCLUDE_ARTIFACTS = [
     "artifacts/research_lanes/epk_false_positive_hunter/"
@@ -120,14 +121,28 @@ def reviewed_ids_from_artifact(repo_root: Path, rel_path: str) -> set[str]:
     return {
         str(row.get("pdb_id") or "").upper()
         for row in payload.get("entry_review_rows", [])
-        if isinstance(row, dict) and row.get("pdb_id")
+        if isinstance(row, dict)
+        and row.get("pdb_id")
+        and row.get("reviewed") is not False
     }
+
+
+def fetch_error_ids_from_artifact(repo_root: Path, rel_path: str) -> list[str]:
+    path = repo_root / rel_path
+    if not path.exists():
+        return []
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    fetch_errors = payload.get("fetch_errors") or {}
+    if not isinstance(fetch_errors, dict):
+        return []
+    return [str(pdb_id).upper() for pdb_id in fetch_errors if pdb_id]
 
 
 def collect_ids(
     repo_root: Path,
     max_unique_ids: int,
     exclude_artifacts: list[str],
+    priority_pdb_ids: list[str] | None = None,
 ) -> tuple[list[str], dict[str, list[str]], dict[str, str], dict[str, int], dict[str, int]]:
     excluded: set[str] = set()
     exclude_counts: dict[str, int] = {}
@@ -138,6 +153,11 @@ def collect_ids(
 
     ordered: list[str] = []
     id_to_queries: dict[str, list[str]] = defaultdict(list)
+    for pdb_id in priority_pdb_ids or []:
+        add_id(ordered, id_to_queries, pdb_id, "priority_fetch_error_retry")
+        if len(ordered) >= max_unique_ids:
+            return ordered, id_to_queries, {}, {}, exclude_counts
+
     query_errors: dict[str, str] = {}
     query_counts: dict[str, int] = {}
     for query in LIGAND_COMPONENT_QUERIES:
@@ -189,10 +209,11 @@ def add_metric_surface_fields(entry_row: dict[str, Any], query_names: list[str])
 
 
 def estimated_atom_site_rows(cif_text: str) -> int:
-    return sum(
-        1
-        for line in cif_text.splitlines()
-        if line.startswith("ATOM ") or line.startswith("HETATM ")
+    return (
+        cif_text.count("\nATOM ")
+        + cif_text.count("\nHETATM ")
+        + int(cif_text.startswith("ATOM "))
+        + int(cif_text.startswith("HETATM "))
     )
 
 
@@ -203,6 +224,18 @@ def add_local_geometry(
 ) -> None:
     for context_row in context_rows:
         context_name = context_row["coordinate_context"]
+        if context_name not in cif_by_context:
+            context_row["local_substrate_geometry"] = {
+                "parse_meta": context_row.get("parse_meta", {}),
+                "local_gamma_acceptor_substrate_geometry_hit_count": 0,
+                "local_gamma_acceptor_substrate_geometry_topology_clear": False,
+                "local_geometry_hits": [],
+                "local_geometry_scan_status": context_row.get("fetch_status")
+                or "skipped_no_cif_text",
+            }
+            context_row["local_geometry_entity_mapping_evaluations"] = []
+            context_row["local_geometry_materializer_equivalent_hit_count"] = 0
+            continue
         cif_text = cif_by_context[context_name]
         atom_site_rows = estimated_atom_site_rows(cif_text)
         context_row["estimated_atom_site_row_count"] = atom_site_rows
@@ -307,19 +340,39 @@ def main() -> int:
         default=DEFAULT_MAX_LOCAL_GEOMETRY_ATOM_SITE_ROWS,
     )
     parser.add_argument(
+        "--max-context-atom-site-rows-before-parse",
+        type=int,
+        default=DEFAULT_MAX_CONTEXT_ATOM_SITE_ROWS_BEFORE_PARSE,
+    )
+    parser.add_argument(
         "--exclude-artifact",
         action="append",
         default=[],
         help="Artifact whose entry_review_rows should be skipped.",
     )
+    parser.add_argument(
+        "--priority-fetch-error-artifact",
+        action="append",
+        default=[],
+        help="Artifact whose fetch_errors IDs should be retried before new IDs.",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()
     exclude_artifacts = DEFAULT_EXCLUDE_ARTIFACTS + list(args.exclude_artifact)
+    priority_pdb_ids: list[str] = []
+    priority_fetch_error_counts: dict[str, int] = {}
+    for rel_path in args.priority_fetch_error_artifact:
+        ids = fetch_error_ids_from_artifact(repo_root, rel_path)
+        priority_fetch_error_counts[rel_path] = len(ids)
+        for pdb_id in ids:
+            if pdb_id not in priority_pdb_ids:
+                priority_pdb_ids.append(pdb_id)
     ordered_ids, id_to_queries, query_errors, query_counts, exclude_counts = collect_ids(
         repo_root,
         args.max_unique_ids,
         exclude_artifacts,
+        priority_pdb_ids,
     )
 
     entry_rows: list[dict[str, Any]] = []
@@ -333,6 +386,9 @@ def main() -> int:
                 pdb_id,
                 index,
                 query_names,
+                max_context_atom_site_rows_before_parse=(
+                    args.max_context_atom_site_rows_before_parse
+                ),
             )
             add_metric_surface_fields(entry_row, query_names)
             add_local_geometry(
@@ -416,6 +472,16 @@ def main() -> int:
         for row in metric_split_context_rows
         if int(row.get("local_geometry_materializer_equivalent_hit_count") or 0) > 0
     ]
+    preparse_skipped_entry_rows = [
+        row
+        for row in entry_rows
+        if row.get("review_skip_status") == "skipped_atom_site_row_cap_before_parse"
+    ]
+    preparse_skipped_context_rows = [
+        row
+        for row in context_rows
+        if row.get("fetch_status") == "skipped_atom_site_row_cap_before_parse"
+    ]
     decision_counts = Counter(
         str(row.get("entry_level_guard_stress_decision") or "")
         for row in materializer_rows
@@ -435,11 +501,19 @@ def main() -> int:
                 "sort": "rcsb_accession_info.initial_release_date desc",
                 "exclude_artifacts": exclude_artifacts,
                 "exclude_reviewed_id_counts": exclude_counts,
+                "priority_fetch_error_artifacts": list(
+                    args.priority_fetch_error_artifact
+                ),
+                "priority_fetch_error_id_counts": priority_fetch_error_counts,
+                "priority_fetch_error_unique_id_count": len(priority_pdb_ids),
                 "max_unique_ids": args.max_unique_ids,
                 "max_assemblies_per_entry": split.MAX_ASSEMBLIES_PER_ENTRY,
                 "max_materializer_contexts": args.max_materializer_contexts,
                 "max_local_geometry_atom_site_rows": (
                     args.max_local_geometry_atom_site_rows
+                ),
+                "max_context_atom_site_rows_before_parse": (
+                    args.max_context_atom_site_rows_before_parse
                 ),
                 "deposited_prefilter": {
                     "deposited_v4_required": True,
@@ -452,7 +526,23 @@ def main() -> int:
             "query_errors": query_errors,
             "unique_pdb_ids_review_surface_count": len(ordered_ids),
             "entry_rows_reviewed": len(entry_rows),
+            "entry_rows_fully_reviewed": sum(
+                1 for row in entry_rows if row.get("reviewed") is not False
+            ),
+            "entry_rows_skipped_atom_site_row_cap_before_parse": len(
+                preparse_skipped_entry_rows
+            ),
+            "entry_rows_skipped_atom_site_row_cap_before_parse_pdb_ids": sorted(
+                row["pdb_id"] for row in preparse_skipped_entry_rows
+            ),
             "coordinate_context_rows_reviewed": len(context_rows),
+            "coordinate_context_rows_skipped_atom_site_row_cap_before_parse": len(
+                preparse_skipped_context_rows
+            ),
+            "coordinate_contexts_skipped_atom_site_row_cap_before_parse": sorted(
+                f"{row['pdb_id']}:{row['coordinate_context']}"
+                for row in preparse_skipped_context_rows
+            ),
             "fetch_error_count": len(fetch_errors),
             "deposited_v4_entry_count": sum(
                 1
