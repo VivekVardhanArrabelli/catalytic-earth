@@ -210,6 +210,23 @@ therefore keeps six `terminal_rejection_duplicate_or_leakage` rows and one
 `needs_new_extractor_or_structure` row. The exact remaining blocker is now PDB
 active-site residue mapping plus full-current duplicate/leakage screening for
 `P31614`, or replacing `P31614` in a newly frozen selection.
+`artifacts/v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521.json`
+sharpened the first half of that blocker without changing label scope. The
+replacement PDB coordinates do not carry a direct `P31614` struct-ref; residue
+45 is observed only as engineered Ser-to-Ala mutant context, and source
+charge-relay positions 342/345 are absent from the atom-site auth numbering in
+both 4C7L and 4C7W. `P31614` remains
+`needs_new_extractor_or_structure`; resolving it now requires a P31614
+coordinate or explicit sequence/structure alignment that maps all catalytic
+residues to observed atoms, followed by full current-countable duplicate
+screening. The follow-up terminal packet
+`artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_active_site_mapping_20260521.json`
+preserves the six duplicate/leakage terminal rejections and updates the
+single `P31614` blocker with this active-site mapping evidence. Its companion
+benchmark
+`artifacts/v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword, deterministic 5-mer, geometry, atom-site mapping, targeted
+Foldseek, and ESM caveats separated with no superiority claim.
 Current flavin dehydrogenase/reductase deepening scope: the third ladder step
 has a frozen selection, coordinate sidecars, active/cofactor-site mapping,
 geometry scores, a duplicate-screen blocker, a terminal packet, and a benchmark.
@@ -331,6 +348,23 @@ still keeps `O94851` and `Q7RTP6` at `needs_new_extractor_or_structure`, with
 the exact remaining blocker narrowed to current-countable chunks 003-013. No
 duplicate-clear, wrong-scope terminal, import, production-score, or superiority
 claim is in scope from the partial cache.
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk003_followup_screen_20260521.json`
+then closes the remaining terminal-decision blocker for both rows. Chunk 003
+is run as eight six-target Foldseek subchunks per candidate; all 16 subchunks
+complete, and both `O94851` and `Q7RTP6` hit current selected structure
+`pdb:1DOC` (`m_csa:131`, `flavin_monooxygenase`) at `TM >= 0.7`.
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_screen_20260521.json`
+adds corroborating partial chunk-004 high-TM signals against `pdb:1EHK` before
+some subchunks time out, but no duplicate-clear claim is made. The final FMO
+packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json`
+therefore records all seven frozen FMO rows as
+`terminal_rejection_duplicate_or_leakage`, with 0 import-ready rows and no
+mechanism-match, production-score, registry, fingerprint, upload, removal, or
+superiority claim. The companion benchmark
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword and sequence baselines diagnostic, records ESM unavailable,
+and treats Foldseek/TM only as import-gate duplicate/leakage evidence.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

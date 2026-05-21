@@ -50,35 +50,61 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-As of the 2026-05-21T16:23:26Z automation run, the main loop stayed on the
-already frozen FMO deep packet and did not add broad external row breadth.
-`artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json`
-resolves the outstanding `Q7RTP6` chunk-000 two-target retry with 0 high-TM
-hits, resolves chunks 001 and 002 for both remaining FMO rows (`O94851` and
-`Q7RTP6`) with 0 `TM >= 0.7` current-countable hits, and leaves only chunks
-003-013 unrun for both rows. The maximum new completed follow-up TM score is
-`0.6371`, below the duplicate/leakage threshold.
+As of the 2026-05-21T17:24:23Z automation run, the main loop stayed on the
+already frozen FMO deep packet and closed the two remaining nonterminal rows
+without adding external candidate breadth. The new chunk-003 follow-up
+artifact
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk003_followup_screen_20260521.json`
+screens `O94851` and `Q7RTP6` against the next 48 current selected structures
+as eight six-target Foldseek subchunks per row. All 16 subchunks complete and
+both rows find current-structure `TM >= 0.7` duplicate/leakage signals against
+`pdb:1DOC` (`m_csa:131`, `flavin_monooxygenase`): `0.7196` for `O94851` and
+`0.7250` for `Q7RTP6`. The supplemental chunk-004 artifact
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_screen_20260521.json`
+also finds high-TM signals against `pdb:1EHK` before some subchunks time out;
+it is corroborating evidence only, not a duplicate-clear claim.
 
-The follow-up terminal packet
-`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json`
-therefore keeps the FMO packet at five
-`terminal_rejection_duplicate_or_leakage` rows and two
-`needs_new_extractor_or_structure` rows. The exact blocker for `O94851` and
-`Q7RTP6` is now: run current-countable chunks 003-013, using smaller subchunks
-if a 48-target chunk times out; no duplicate-clear or wrong-scope terminal
-claim is permitted until that evidence exists. The benchmark
-`artifacts/v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521.json`
+The terminal packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json`
+now records all seven frozen FMO rows as
+`terminal_rejection_duplicate_or_leakage`. `O94851` and `Q7RTP6` no longer
+have an exact missing-evidence blocker because a current-structure high-TM
+signal is sufficient for terminal leakage rejection; pair-cache completion
+remains false and no duplicate-clear claim is made. The benchmark
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json`
 keeps EC/keyword and sequence baselines diagnostic only, records ESM as
 unavailable, treats Foldseek/TM only as import-gate duplicate/leakage evidence,
 and makes no superiority, import, or production-scoring claim.
 
-Evidence-based confidence call: confidence is high that the FMO chunk-000 and
-chunk-001 follow-up evidence is source-separated and review-only, and high that
-no new high-TM duplicate/leakage signal was found in those completed targets.
-Confidence remains medium on the two nonterminal rows because chunks 003-013
-are still unrun. Next exact main-loop work should start with chunk 003 for
-`O94851` and `Q7RTP6`, using smaller subchunks if needed; do not open a new
-broad mini-campaign or claim duplicate-clear from the partial cache.
+The same run also wrote the review-only P31614 active-site blocker artifact
+`artifacts/v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521.json`.
+It keeps the frozen `P31614` row at `needs_new_extractor_or_structure` and
+sharpens the exact missing evidence: the replacement PDB coordinates do not
+carry a direct `P31614` struct-ref, catalytic position 45 is observed as an
+engineered Ser-to-Ala mutant, and source charge-relay positions 342/345 are
+absent from the atom-site auth numbering in both 4C7L and 4C7W. The prior
+PDB-replacement Foldseek screen still contributes only targeted duplicate
+diagnostics against 40 current serine-hydrolase structures; it does not
+establish a full-current duplicate-clear claim. The updated terminal packet
+`artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_active_site_mapping_20260521.json`
+therefore preserves the six serine duplicate/leakage rejections and keeps
+`P31614` as a single exact-blocked
+`needs_new_extractor_or_structure` row. The companion benchmark
+`artifacts/v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword, 5-mer sequence, geometry, atom-site mapping, Foldseek, and
+ESM evidence surfaces separated and makes no superiority claim.
+
+Evidence-based confidence call: confidence is high that the FMO terminal
+packet is source-separated and review-only, and high that the two formerly
+blocked rows now have reproducible current-structure duplicate/leakage
+evidence under the same full-current Foldseek/TM convention used by the prior
+FMO screens. Confidence is high that this is terminal rejection evidence, not a
+mechanism-match or import path. Confidence is medium-high that `P31614` needs
+a new coordinate or explicit alignment before it can become review-ready,
+because the available PDB replacements do not resolve the source triad. Next
+main-loop work should either run that one bounded `P31614` alignment/full-current
+duplicate experiment or choose the next already frozen nonterminal external
+deep-packet blocker, rather than opening a new broad mini-campaign.
 
 As of the 2026-05-21T15:54:00Z automation run, the main loop integrated the
 freshest ePK research-lane outputs only where they changed the no-go decision

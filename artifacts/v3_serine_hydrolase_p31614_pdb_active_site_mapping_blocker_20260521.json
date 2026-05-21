@@ -1,0 +1,353 @@
+{
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_artifact": "artifacts/v3_serine_hydrolase_deep_packet_selection_20260521.json",
+    "candidate_selection_frozen_before_mapping": true,
+    "charge_relay_positions_missing_from_atom_site_count": 4,
+    "created_at": "2026-05-21T17:56:57Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "fingerprint_registry_edited": false,
+    "method": "p31614_pdb_replacement_active_site_mapping_blocker",
+    "observed_engineered_ser45_to_ala_structure_count": 2,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "p31614_direct_struct_ref_present": false,
+    "p31614_pdb_replacement_screen_artifact": "artifacts/v3_serine_hydrolase_p31614_pdb_replacement_coordinate_screen_20260521.json",
+    "pdb_replacement_coordinate_count": 2,
+    "prior_terminal_packet_artifact": "artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_pdb_replacement_screen_20260521.json",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "resolved_clean_catalytic_residue_count": 0,
+    "review_only": true,
+    "source_separation_guardrail": "UniProt/PDB annotations are review context; atom-site residue mapping and Foldseek duplicate screens are review/import-gate diagnostics, not text-derived predictive scoring.",
+    "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+  },
+  "row": {
+    "accession": "P31614",
+    "active_site_mapping_summary": {
+      "clean_triad_mapping_status": "not_resolved",
+      "direct_p31614_struct_ref_present": false,
+      "resolved_clean_catalytic_residue_count": 0,
+      "source_position_45_status": "observed_as_engineered_SER_to_ALA_mutation_in_replacement_coordinates",
+      "source_positions_342_345_status": "not_found_in_atom_site_auth_seq_id_scan_in_replacement_coordinates",
+      "text_or_label_fields_used_for_predictive_score": false
+    },
+    "counterevidence": [
+      "replacement_coordinates_do_not_reference_P31614_directly",
+      "source_position_45_engineered_SER_to_ALA_mutation",
+      "source_positions_342_345_missing_from_atom_site_auth_seq_id_scan",
+      "full_current_countable_structural_duplicate_screen_incomplete"
+    ],
+    "current_geometry_retrieval_score_summary": {
+      "abstain_threshold": 0.4115,
+      "geometry_score_status": "structure_fetch_failed",
+      "target_lane_at_or_above_floor": false,
+      "target_lane_rank": null,
+      "target_lane_score": null,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.075
+    },
+    "duplicate_leakage_screen": {
+      "duplicate_clear_claim_permitted": false,
+      "evidence_role": "pdb_replacement_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "full_current_countable_duplicate_clear_established": false,
+      "high_tm_replacement_coordinate_count": 0,
+      "max_target_subset_tm_score": 0.5371,
+      "screen_artifact": "artifacts/v3_serine_hydrolase_p31614_pdb_replacement_coordinate_screen_20260521.json",
+      "target_subset_count": 40,
+      "target_subset_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    "entry_name": "HEMA_CVMS",
+    "exact_blocker_if_not_terminal": "No clean P31614-to-PDB active-site mapping: replacement PDB struct_ref accessions are O55252/P28845 context rather than direct P31614, catalytic position 45 is an engineered Ser-to-Ala mutant, and source charge-relay positions 342/345 are absent from atom_site auth numbering in both replacements. Resolve with a P31614 coordinate or explicit sequence/structure alignment mapping all catalytic residues to observed atoms, then run full current-countable duplicate screening.",
+    "ready_for_label_import": false,
+    "row_id": "uniprot:P31614",
+    "source_active_site_feature_descriptions": [
+      "Nucleophile",
+      "Charge relay system",
+      "Charge relay system"
+    ],
+    "source_active_site_feature_positions": [
+      45,
+      342,
+      345
+    ],
+    "structure_pdb_evidence_availability": {
+      "alphafold_coordinate_path": null,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "4C7L",
+        "4C7W"
+      ],
+      "replacement_coordinate_status": "coordinate_sidecar_materialized"
+    },
+    "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+    "terminal_decision": "needs_new_extractor_or_structure"
+  },
+  "structures": [
+    {
+      "active_site_position_mappings": [
+        {
+          "atom_site_auth_seq_id_found": true,
+          "clean_catalytic_residue_mapping_status": "observed_engineered_ser_to_ala_mutation_not_countable",
+          "observed_residues_by_auth_seq_id": [
+            {
+              "auth_comp_id": "ALA",
+              "auth_seq_id": 45,
+              "chain_id": "A",
+              "label_seq_id": 21
+            },
+            {
+              "auth_comp_id": "ALA",
+              "auth_seq_id": 45,
+              "chain_id": "B",
+              "label_seq_id": 21
+            }
+          ],
+          "source_feature_description": "Nucleophile",
+          "source_position": 45,
+          "struct_ref_seq_dif_rows_at_source_position": [
+            {
+              "auth_seq_num": 45,
+              "chain_id": "A",
+              "db_accession_code": "P28845",
+              "db_mon_id": "SER",
+              "db_name": "UNP",
+              "db_seq_num": 45,
+              "details": "engineered mutation",
+              "pdb_mon_id": "ALA",
+              "pdb_seq_num": 21
+            },
+            {
+              "auth_seq_num": 45,
+              "chain_id": "B",
+              "db_accession_code": "P28845",
+              "db_mon_id": "SER",
+              "db_name": "UNP",
+              "db_seq_num": 45,
+              "details": "engineered mutation",
+              "pdb_mon_id": "ALA",
+              "pdb_seq_num": 21
+            }
+          ]
+        },
+        {
+          "atom_site_auth_seq_id_found": false,
+          "clean_catalytic_residue_mapping_status": "missing_from_atom_site_auth_seq_id_scan",
+          "observed_residues_by_auth_seq_id": [],
+          "source_feature_description": "Charge relay system",
+          "source_position": 342,
+          "struct_ref_seq_dif_rows_at_source_position": []
+        },
+        {
+          "atom_site_auth_seq_id_found": false,
+          "clean_catalytic_residue_mapping_status": "missing_from_atom_site_auth_seq_id_scan",
+          "observed_residues_by_auth_seq_id": [],
+          "source_feature_description": "Charge relay system",
+          "source_position": 345,
+          "struct_ref_seq_dif_rows_at_source_position": []
+        }
+      ],
+      "clean_triad_mapping_status": "not_resolved",
+      "coordinate_digest_sha256": "d2a813e84dbb80b161bdf21060e81f73955546e96ef3d7251b7d61f118dcec5f",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_p31614_replacement_coordinates_20260521/pdb_4C7L.cif",
+      "coordinate_size_bytes": 1192793,
+      "missing_active_site_auth_seq_windows": [
+        {
+          "chain_id": "A",
+          "missing_auth_seq_ids_330_to_350": [
+            335,
+            336,
+            337,
+            338,
+            339,
+            340,
+            341,
+            342,
+            343,
+            344,
+            345,
+            346,
+            347
+          ]
+        },
+        {
+          "chain_id": "B",
+          "missing_auth_seq_ids_330_to_350": [
+            338,
+            339,
+            340,
+            341,
+            342,
+            343,
+            344,
+            345,
+            346
+          ]
+        }
+      ],
+      "p31614_direct_struct_ref_present": false,
+      "struct_ref_db_accessions": [
+        "O55252"
+      ],
+      "struct_ref_seq_mappings": [
+        {
+          "auth_seq_align_beg": 25,
+          "auth_seq_align_end": 403,
+          "chain_id": "A",
+          "db_accession": "O55252",
+          "db_align_beg": 25,
+          "db_align_end": 403,
+          "pdb_seq_align_beg": 1,
+          "pdb_seq_align_end": 379
+        },
+        {
+          "auth_seq_align_beg": 25,
+          "auth_seq_align_end": 403,
+          "chain_id": "B",
+          "db_accession": "O55252",
+          "db_align_beg": 25,
+          "db_align_end": 403,
+          "pdb_seq_align_beg": 1,
+          "pdb_seq_align_end": 379
+        }
+      ],
+      "structure_id": "4C7L"
+    },
+    {
+      "active_site_position_mappings": [
+        {
+          "atom_site_auth_seq_id_found": true,
+          "clean_catalytic_residue_mapping_status": "observed_engineered_ser_to_ala_mutation_not_countable",
+          "observed_residues_by_auth_seq_id": [
+            {
+              "auth_comp_id": "ALA",
+              "auth_seq_id": 45,
+              "chain_id": "A",
+              "label_seq_id": 21
+            }
+          ],
+          "source_feature_description": "Nucleophile",
+          "source_position": 45,
+          "struct_ref_seq_dif_rows_at_source_position": [
+            {
+              "auth_seq_num": 45,
+              "chain_id": "A",
+              "db_accession_code": "O55252",
+              "db_mon_id": "SER",
+              "db_name": "UNP",
+              "db_seq_num": 45,
+              "details": "engineered mutation",
+              "pdb_mon_id": "ALA",
+              "pdb_seq_num": 21
+            },
+            {
+              "auth_seq_num": 45,
+              "chain_id": "B",
+              "db_accession_code": "O55252",
+              "db_mon_id": "SER",
+              "db_name": "UNP",
+              "db_seq_num": 45,
+              "details": "engineered mutation",
+              "pdb_mon_id": "ALA",
+              "pdb_seq_num": 21
+            }
+          ]
+        },
+        {
+          "atom_site_auth_seq_id_found": false,
+          "clean_catalytic_residue_mapping_status": "missing_from_atom_site_auth_seq_id_scan",
+          "observed_residues_by_auth_seq_id": [],
+          "source_feature_description": "Charge relay system",
+          "source_position": 342,
+          "struct_ref_seq_dif_rows_at_source_position": []
+        },
+        {
+          "atom_site_auth_seq_id_found": false,
+          "clean_catalytic_residue_mapping_status": "missing_from_atom_site_auth_seq_id_scan",
+          "observed_residues_by_auth_seq_id": [],
+          "source_feature_description": "Charge relay system",
+          "source_position": 345,
+          "struct_ref_seq_dif_rows_at_source_position": []
+        }
+      ],
+      "clean_triad_mapping_status": "not_resolved",
+      "coordinate_digest_sha256": "f479436ea30c1f53a77e87fa4441ac793ce117d46407be6920abc9b47bfbe727",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_p31614_replacement_coordinates_20260521/pdb_4C7W.cif",
+      "coordinate_size_bytes": 1123294,
+      "missing_active_site_auth_seq_windows": [
+        {
+          "chain_id": "A",
+          "missing_auth_seq_ids_330_to_350": [
+            335,
+            336,
+            337,
+            338,
+            339,
+            340,
+            341,
+            342,
+            343,
+            344,
+            345,
+            346,
+            347
+          ]
+        },
+        {
+          "chain_id": "B",
+          "missing_auth_seq_ids_330_to_350": [
+            333,
+            334,
+            335,
+            336,
+            337,
+            338,
+            339,
+            340,
+            341,
+            342,
+            343,
+            344,
+            345,
+            346,
+            347,
+            348,
+            349,
+            350
+          ]
+        }
+      ],
+      "p31614_direct_struct_ref_present": false,
+      "struct_ref_db_accessions": [
+        "O55252"
+      ],
+      "struct_ref_seq_mappings": [
+        {
+          "auth_seq_align_beg": 25,
+          "auth_seq_align_end": 403,
+          "chain_id": "A",
+          "db_accession": "O55252",
+          "db_align_beg": 25,
+          "db_align_end": 403,
+          "pdb_seq_align_beg": 1,
+          "pdb_seq_align_end": 379
+        },
+        {
+          "auth_seq_align_beg": 25,
+          "auth_seq_align_end": 403,
+          "chain_id": "B",
+          "db_accession": "O55252",
+          "db_align_beg": 25,
+          "db_align_end": 403,
+          "pdb_seq_align_beg": 1,
+          "pdb_seq_align_end": 379
+        }
+      ],
+      "structure_id": "4C7W"
+    }
+  ]
+}

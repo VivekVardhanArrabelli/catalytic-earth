@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 264
-- Measured elapsed time: 7888.1 minutes (131.47 hours)
+- Entries: 265
+- Measured elapsed time: 7936.2 minutes (132.27 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 894.6 measured minutes (14.91 hours)
+- v3: 942.7 measured minutes (15.71 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2867
-- Evidence references logged: 2337
+- Artifact references logged: 2878
+- Evidence references logged: 2347
 
 ## Recent Entries
-
-### 2026-05-21T05:08:54.165383+00:00 - v3
-
-- Task: serine hydrolase chunked duplicate blocker attempt
-- Time mode: measured
-- Measured minutes: 16.767
-- Started: 2026-05-21T04:51:58Z
-- Ended: 2026-05-21T05:08:44Z
-- Artifacts: artifacts/v3_serine_hydrolase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: 6 materialized serine rows attempted with 120-second per-query Foldseek chunks, 6/6 materialized queries timed out and P31614 remains coordinate-missing, terminal packet keeps 7/7 rows needs_new_extractor_or_structure with exact blocker, 0 import-ready rows and no duplicate-clear superiority registry or fingerprint claim
-- Notes: Bounded serine follow-up stopped at the exact timeout and coordinate blocker; no artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ### 2026-05-21T05:10:02.682868+00:00 - ops
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: 790-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 6 new FMO JSON artifacts parsed, git diff check passed
 - Notes: Final wrap validation after FMO chunk000-002 duplicate-screen blocker narrowing; safety rails preserved.
+
+### 2026-05-21T18:12:47.873454+00:00 - v3
+
+- Task: FMO terminal duplicate closure and P31614 active-site blocker
+- Time mode: measured
+- Measured minutes: 48.133
+- Started: 2026-05-21T17:24:23Z
+- Ended: 2026-05-21T18:12:31Z
+- Artifacts: artifacts/v3_flavin_monooxygenase_deep_packet_chunk003_followup_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json, artifacts/v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_active_site_mapping_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: FMO chunk003 completed 16/16 subchunks for O94851 and Q7RTP6 with TM>=0.7 hits to pdb:1DOC, FMO chunk004 produced corroborating high-TM pdb:1EHK signals without duplicate-clear claim, FMO terminal packet now has 7 terminal_rejection_duplicate_or_leakage rows, P31614 PDB active-site mapping found no direct P31614 struct-ref engineered Ser45-to-Ala and missing 342/345 charge relay atoms, P31614 terminal packet remains needs_new_extractor_or_structure with exact coordinate/alignment plus full-current duplicate blocker, 792-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, git diff check passed
+- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -331,6 +331,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T16:08:32.602022+00:00: Next FMO work is one Q7RTP6 two-target retry plus remaining full-current chunks for O94851 and Q7RTP6; no broad mini-campaign or duplicate-clear claim.
 - 2026-05-21T17:08:18.443673+00:00: Next exact FMO work is chunks003-013 for O94851 and Q7RTP6, using smaller subchunks when a 48-target chunk times out.
 - 2026-05-21T17:09:52.130652+00:00: Next exact work remains chunks003-013 for O94851 and Q7RTP6 before any duplicate-clear or wrong-scope terminal claim.
+- 2026-05-21T18:12:47.873454+00:00: Next work should run one bounded P31614 coordinate/alignment plus full-current duplicate experiment or choose another frozen nonterminal external deep-packet blocker; do not open a broad mini-campaign.
 
 ## Scope Adjustments
 
@@ -483,3 +484,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T15:03:50.814880+00:00: Existing frozen external rows were converted to terminal decisions or exact blockers without new broad row breadth; FMO mapping narrowed the next blocker to source-free geometry scoring plus full-current duplicate screening.
 - 2026-05-21T16:08:32.602022+00:00: External deepening stayed on frozen FMO rows: two more rows reached terminal duplicate/leakage rejection and the two unresolved rows now have exact subchunk-level blockers.
 - 2026-05-21T17:08:18.443673+00:00: FMO duplicate-screen blocker is narrowed from chunk000/chunk001 uncertainty to chunks003-013 only; no new external breadth or import path was opened.
+- 2026-05-21T18:12:47.873454+00:00: Existing frozen rows were deepened into terminal duplicate/leakage decisions or exact active-site blockers without adding broad external breadth.

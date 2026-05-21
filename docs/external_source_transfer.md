@@ -384,6 +384,21 @@ import.
   `needs_new_extractor_or_structure` row, with the exact blocker now narrowed
   to PDB active-site residue mapping plus full-current duplicate/leakage
   screening or replacement in a newly frozen selection.
+- `artifacts/v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521.json`
+  sharpens that P31614 blocker while staying review-only. The replacement PDB
+  coordinates do not carry a direct `P31614` struct-ref, catalytic position 45
+  is observed as engineered Ser-to-Ala mutant context, and source charge-relay
+  positions 342/345 are absent from atom-site auth numbering in both 4C7L and
+  4C7W. This is blocker evidence only: it does not claim duplicate-clear,
+  mechanism-match, superiority, import readiness, or any registry/fingerprint
+  edit. The follow-up terminal packet
+  `artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_active_site_mapping_20260521.json`
+  keeps six serine rows at `terminal_rejection_duplicate_or_leakage` and
+  preserves `P31614` as the single exact-blocked
+  `needs_new_extractor_or_structure` row. The companion benchmark
+  `artifacts/v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json`
+  keeps EC/keyword, deterministic 5-mer, geometry, atom-site mapping,
+  targeted Foldseek, and ESM caveats separated with no superiority claim.
 - `artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json`
   starts the next deepening ladder step without scoring it. It freezes seven
   nonduplicate flavin dehydrogenase/reductase rows from the existing
@@ -512,6 +527,22 @@ import.
   `artifacts/v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521.json`
   continues to make no duplicate-clear, superiority, import, or production
   scoring claim.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_chunk003_followup_screen_20260521.json`
+  runs the next FMO full-current duplicate/leakage chunk as smaller subchunks.
+  All 16 chunk-003 subchunks complete for `O94851` and `Q7RTP6`, and both rows
+  find current selected `pdb:1DOC` high-TM signals at `TM >= 0.7`.
+  `artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_screen_20260521.json`
+  adds supplemental high-TM signals against `pdb:1EHK` before some chunk-004
+  subchunks time out; it does not make a duplicate-clear claim. The terminal
+  packet
+  `artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json`
+  converts the last two FMO blockers to
+  `terminal_rejection_duplicate_or_leakage`, so all seven frozen FMO rows are
+  terminal duplicate/leakage rejections. The benchmark
+  `artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json`
+  keeps EC/keyword, sequence, and ESM/Foldseek comparisons diagnostic only,
+  with no import, production-score, registry, fingerprint, upload/removal, or
+  superiority claim.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and

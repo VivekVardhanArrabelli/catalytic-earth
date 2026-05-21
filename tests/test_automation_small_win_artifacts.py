@@ -1555,6 +1555,160 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "not_available_for_this_deep_packet",
         )
 
+    def test_serine_hydrolase_p31614_pdb_mapping_blocker_is_source_separated(
+        self,
+    ) -> None:
+        blocker = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521.json"
+        )
+        terminal_packet = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_active_site_mapping_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json"
+        )
+
+        metadata = blocker["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_frozen_before_mapping"])
+        self.assertFalse(metadata["p31614_direct_struct_ref_present"])
+        self.assertEqual(metadata["resolved_clean_catalytic_residue_count"], 0)
+        self.assertEqual(
+            metadata["observed_engineered_ser45_to_ala_structure_count"], 2
+        )
+        self.assertEqual(
+            metadata["charge_relay_positions_missing_from_atom_site_count"], 4
+        )
+        self.assertFalse(metadata["duplicate_clear_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertIn(
+            "not text-derived predictive scoring",
+            metadata["source_separation_guardrail"],
+        )
+
+        row = blocker["row"]
+        self.assertEqual(row["accession"], "P31614")
+        self.assertEqual(row["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(
+            row["active_site_mapping_summary"]["clean_triad_mapping_status"],
+            "not_resolved",
+        )
+        self.assertFalse(
+            row["active_site_mapping_summary"]["text_or_label_fields_used_for_predictive_score"]
+        )
+        self.assertEqual(
+            row["duplicate_leakage_screen"]["target_subset_fingerprint_id"],
+            "ser_his_acid_hydrolase",
+        )
+        self.assertEqual(
+            row["duplicate_leakage_screen"]["high_tm_replacement_coordinate_count"], 0
+        )
+        self.assertFalse(
+            row["duplicate_leakage_screen"]["duplicate_clear_claim_permitted"]
+        )
+        self.assertIn(
+            "engineered Ser-to-Ala mutant", row["exact_blocker_if_not_terminal"]
+        )
+        self.assertIn(
+            "positions 342/345 are absent", row["exact_blocker_if_not_terminal"]
+        )
+
+        self.assertEqual(
+            {structure["structure_id"] for structure in blocker["structures"]},
+            {"4C7L", "4C7W"},
+        )
+        for structure in blocker["structures"]:
+            self.assertFalse(structure["p31614_direct_struct_ref_present"])
+            self.assertEqual(structure["struct_ref_db_accessions"], ["O55252"])
+            position_rows = {
+                position["source_position"]: position
+                for position in structure["active_site_position_mappings"]
+            }
+            self.assertEqual(
+                position_rows[45]["clean_catalytic_residue_mapping_status"],
+                "observed_engineered_ser_to_ala_mutation_not_countable",
+            )
+            self.assertTrue(position_rows[45]["atom_site_auth_seq_id_found"])
+            self.assertGreaterEqual(
+                len(position_rows[45]["struct_ref_seq_dif_rows_at_source_position"]),
+                1,
+            )
+            for source_position in (342, 345):
+                self.assertFalse(
+                    position_rows[source_position]["atom_site_auth_seq_id_found"]
+                )
+                self.assertEqual(
+                    position_rows[source_position]["clean_catalytic_residue_mapping_status"],
+                    "missing_from_atom_site_auth_seq_id_scan",
+                )
+
+        self.assertEqual(
+            terminal_packet["metadata"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 1,
+                "terminal_rejection_duplicate_or_leakage": 6,
+            },
+        )
+        self.assertEqual(
+            terminal_packet["metadata"]["p31614_active_site_mapping_blocker_artifact"],
+            "artifacts/v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521.json",
+        )
+        packet_rows = {
+            candidate["accession"]: candidate for candidate in terminal_packet["rows"]
+        }
+        self.assertEqual(
+            packet_rows["P31614"]["terminal_decision"],
+            "needs_new_extractor_or_structure",
+        )
+        self.assertEqual(
+            packet_rows["P31614"]["catalytic_residue_triad_evidence"][
+                "clean_triad_mapping_status"
+            ],
+            "not_resolved",
+        )
+        self.assertEqual(
+            packet_rows["P31614"]["catalytic_residue_triad_evidence"][
+                "resolved_clean_active_site_residue_count"
+            ],
+            0,
+        )
+        self.assertIn(
+            "source_position_45_engineered_SER_to_ALA_mutation",
+            packet_rows["P31614"]["counterevidence"],
+        )
+        self.assertFalse(packet_rows["P31614"]["ready_for_label_import"])
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 1,
+                "terminal_rejection_duplicate_or_leakage": 6,
+            },
+        )
+        self.assertEqual(
+            benchmark["metrics"]["p31614_terminal_decision"],
+            "needs_new_extractor_or_structure",
+        )
+        self.assertEqual(
+            benchmark["metrics"]["active_site_atom_mapping"][
+                "clean_triad_mapping_status"
+            ],
+            "not_resolved",
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+        self.assertEqual(benchmark["metrics"]["geometry_superiority_claim"], "not_made")
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+
     def test_heme_peroxidase_i2dby1_subchunk_screen_resolves_timeout(self) -> None:
         subchunk = _load_json(
             ARTIFACTS
@@ -2124,6 +2278,130 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertEqual(benchmark["metrics"]["geometry_superiority_claim"], "not_made")
         self.assertFalse(benchmark["metrics"]["full_current_pair_cache_complete"])
+
+    def test_flavin_monooxygenase_chunk004_followup_closes_remaining_rows(
+        self,
+    ) -> None:
+        chunk3 = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_chunk003_followup_screen_20260521.json"
+        )
+        chunk4 = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_chunk004_followup_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json"
+        )
+
+        chunk3_metadata = chunk3["metadata"]
+        self.assertTrue(chunk3_metadata["review_only"])
+        self.assertTrue(chunk3_metadata["source_separation_enforced"])
+        self.assertEqual(chunk3_metadata["foldseek_chunk_run_status_counts"], {"completed": 16})
+        self.assertEqual(chunk3_metadata["terminal_duplicate_signal_candidate_count"], 2)
+        self.assertEqual(chunk3_metadata["new_high_tm_hit_count"], 2)
+        self.assertEqual(chunk3_metadata["max_completed_followup_tm_score"], 0.725)
+        self.assertEqual(
+            chunk3_metadata["max_pair_tm_score_definition"],
+            "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        )
+        self.assertFalse(chunk3_metadata["duplicate_clear_claim_permitted"])
+        self.assertTrue(chunk3_metadata["terminal_rejection_claim_permitted_for_high_tm_rows"])
+        self.assertFalse(chunk3_metadata["ready_for_label_import"])
+        self.assertFalse(chunk3_metadata["curated_label_registry_edited"])
+        self.assertFalse(chunk3_metadata["fingerprint_registry_edited"])
+        self.assertFalse(chunk3_metadata["removal_allowed_set_true"])
+        chunk3_rows = {row["accession"]: row for row in chunk3["rows"]}
+        self.assertEqual(set(chunk3_rows), {"O94851", "Q7RTP6"})
+        for row in chunk3_rows.values():
+            self.assertEqual(row["decision_impact"], "terminal_duplicate_leakage_signal_found")
+            self.assertEqual(row["chunk003_status_after_followup"], "high_tm_signal_found")
+            self.assertEqual(row["chunks004_013_status_after_followup"], "not_run_not_needed_for_terminal_duplicate_rejection")
+            self.assertIsNone(row["exact_remaining_blocker"])
+            self.assertEqual(row["new_high_tm_hit_count"], 1)
+            self.assertGreaterEqual(row["max_pair_tm_score"], 0.7)
+            self.assertEqual(row["top_current_countable_hits"][0]["target_structure_id"], "1DOC")
+            self.assertEqual(row["top_current_countable_hits"][0]["target_entry_ids"], ["m_csa:131"])
+            self.assertEqual(
+                row["top_current_countable_hits"][0]["target_fingerprint_ids"],
+                ["flavin_monooxygenase"],
+            )
+
+        chunk4_metadata = chunk4["metadata"]
+        self.assertTrue(chunk4_metadata["review_only"])
+        self.assertEqual(
+            chunk4_metadata["foldseek_chunk_run_status_counts"],
+            {"completed": 10, "foldseek_run_timeout": 6},
+        )
+        self.assertEqual(chunk4_metadata["terminal_duplicate_signal_candidate_count"], 2)
+        self.assertEqual(chunk4_metadata["new_high_tm_hit_count"], 2)
+        self.assertFalse(chunk4_metadata["duplicate_clear_claim_permitted"])
+        self.assertTrue(chunk4_metadata["terminal_rejection_claim_permitted_for_high_tm_rows"])
+        chunk4_rows = {row["accession"]: row for row in chunk4["rows"]}
+        for row in chunk4_rows.values():
+            self.assertEqual(row["decision_impact"], "terminal_duplicate_leakage_signal_found")
+            self.assertEqual(row["chunk004_status_after_followup"], "high_tm_signal_found")
+            self.assertEqual(row["chunks005_013_status_after_followup"], "not_run_not_needed_for_terminal_duplicate_rejection")
+            self.assertGreaterEqual(row["max_pair_tm_score"], 0.7)
+            self.assertEqual(row["top_current_countable_hits"][0]["target_structure_id"], "1EHK")
+
+        packet_metadata = packet["metadata"]
+        self.assertTrue(packet_metadata["review_only"])
+        self.assertTrue(packet_metadata["source_separation_enforced"])
+        self.assertEqual(
+            packet_metadata["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(packet_metadata["terminal_rejection_duplicate_or_leakage_count"], 7)
+        self.assertEqual(packet_metadata["mechanism_match_review_ready_count"], 0)
+        self.assertEqual(packet_metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(packet_metadata["ready_for_label_import"])
+        packet_rows = {row["accession"]: row for row in packet["rows"]}
+        self.assertTrue(
+            all(
+                row["terminal_decision"] == "terminal_rejection_duplicate_or_leakage"
+                for row in packet_rows.values()
+            )
+        )
+        for accession in {"O94851", "Q7RTP6"}:
+            row = packet_rows[accession]
+            screen = row["duplicate_leakage_screen"]
+            self.assertIsNone(row["exact_blocker_if_not_terminal"])
+            self.assertEqual(screen["current_countable_structural_screen_status"], "current_countable_structural_duplicate_signal")
+            self.assertEqual(screen["evidence_role"], "import_gate_evidence_not_predictive_mechanism_evidence")
+            self.assertFalse(screen["duplicate_clear_established"])
+            self.assertFalse(screen["pair_cache_complete"])
+            self.assertFalse(screen["pair_cache_complete_required_for_terminal_rejection"])
+            self.assertEqual(screen["followup_chunk003_status"], "high_tm_signal_found")
+            self.assertEqual(screen["followup_chunks005_013_status"], "not_run_not_needed_for_terminal_duplicate_rejection")
+            self.assertGreaterEqual(screen["primary_terminal_hit"]["max_pair_tm_score"], 0.7)
+            self.assertEqual(screen["primary_terminal_hit"]["target_structure_id"], "1DOC")
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(
+                row["predictive_evidence"][
+                    "ec_keyword_protein_name_counted_as_predictive_evidence"
+                ]
+            )
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+        self.assertEqual(benchmark["metrics"]["geometry_superiority_claim"], "not_made")
+        self.assertFalse(benchmark["metrics"]["full_current_pair_cache_complete"])
+        self.assertFalse(
+            benchmark["metrics"]["full_current_pair_cache_complete_required_for_terminal_rejection"]
+        )
 
     def test_post_metal_epk_research_lane_synthesis_stays_no_go(self) -> None:
         synthesis = _load_json(

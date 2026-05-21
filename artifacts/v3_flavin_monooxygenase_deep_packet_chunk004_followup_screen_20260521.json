@@ -1,0 +1,645 @@
+{
+  "evidence_tables": {
+    "chunk004_subchunk_rows": [
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_00 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_00.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_00 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": null,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": null,
+        "result_row_count": 0,
+        "returncode": null,
+        "runtime_seconds": 30.007,
+        "source_chunk_index": 4,
+        "status": "foldseek_run_timeout",
+        "stderr_tail": " timed out after 30 seconds",
+        "subchunk_index": 0,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1E4E.cif",
+          "pdb_1E5Q.cif",
+          "pdb_1E6E.cif",
+          "pdb_1E6U.cif",
+          "pdb_1EA0.cif",
+          "pdb_1EBF.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 0
+      },
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_01 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_01.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_01 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": null,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": null,
+        "result_row_count": 0,
+        "returncode": null,
+        "runtime_seconds": 30.005,
+        "source_chunk_index": 4,
+        "status": "foldseek_run_timeout",
+        "stderr_tail": " timed out after 30 seconds",
+        "subchunk_index": 1,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1EC9.cif",
+          "pdb_1ECF.cif",
+          "pdb_1ECL.cif",
+          "pdb_1EEJ.cif",
+          "pdb_1EF8.cif",
+          "pdb_1EG7.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 0
+      },
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_02 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_02.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_02 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 1,
+        "max_pair_tm_score": 0.8262,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1EHK_C",
+        "result_row_count": 18,
+        "returncode": 0,
+        "runtime_seconds": 23.157,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 2,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1EH5.cif",
+          "pdb_1EH6.cif",
+          "pdb_1EHK.cif",
+          "pdb_1EMD.cif",
+          "pdb_1EN7.cif",
+          "pdb_1EQ2.cif"
+        ],
+        "top_current_countable_hits": [
+          {
+            "alntmscore": 0.8262,
+            "max_pair_tm_score": 0.8262,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+            "qtmscore": 0.0167,
+            "raw_query_name": "afdb_O94851",
+            "raw_target_name": "pdb_1EHK_C",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+            "target_entry_ids": [
+              "m_csa:735"
+            ],
+            "target_fingerprint_ids": [
+              "heme_peroxidase_oxidase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_name_mapping_status": "mapped_exact_or_chain_alias",
+            "target_review_statuses": [
+              "review_only_non_countable"
+            ],
+            "target_structure_id": "1EHK",
+            "target_structure_key": "pdb:1EHK",
+            "ttmscore": 0.8106
+          }
+        ],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_03 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_03.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_03 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.4239,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1EXN_B",
+        "result_row_count": 7,
+        "returncode": 0,
+        "runtime_seconds": 8.037,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 3,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1ESC.cif",
+          "pdb_1ET0.cif",
+          "pdb_1EUG.cif",
+          "pdb_1EVY.cif",
+          "pdb_1EXN.cif",
+          "pdb_1EXP.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_04 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_04.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_04 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.5332,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1EZV_H",
+        "result_row_count": 24,
+        "returncode": 0,
+        "runtime_seconds": 24.901,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 4,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1EY2.cif",
+          "pdb_1EY3.cif",
+          "pdb_1EYI.cif",
+          "pdb_1EYQ.cif",
+          "pdb_1EZF.cif",
+          "pdb_1EZV.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_05 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_05.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_05 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.393,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1F2V",
+        "result_row_count": 14,
+        "returncode": 0,
+        "runtime_seconds": 23.024,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 5,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1F2D.cif",
+          "pdb_1F2V.cif",
+          "pdb_1F61.cif",
+          "pdb_1F6D.cif",
+          "pdb_1F75.cif",
+          "pdb_1F7U.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_06 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_06.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_06 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": null,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": null,
+        "result_row_count": 0,
+        "returncode": null,
+        "runtime_seconds": 30.003,
+        "source_chunk_index": 4,
+        "status": "foldseek_run_timeout",
+        "stderr_tail": " timed out after 30 seconds",
+        "subchunk_index": 6,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1F80.cif",
+          "pdb_1F8R.cif",
+          "pdb_1F8X.cif",
+          "pdb_1F9Z.cif",
+          "pdb_1FBX.cif",
+          "pdb_1FC4.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 0
+      },
+      {
+        "accession": "O94851",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_07 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_07.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_07 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.4747,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1FFT_C",
+        "result_row_count": 13,
+        "returncode": 0,
+        "runtime_seconds": 27.546,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 7,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1FCB.cif",
+          "pdb_1FCQ.cif",
+          "pdb_1FFT.cif",
+          "pdb_1FGH.cif",
+          "pdb_1FGJ.cif",
+          "pdb_1FNB.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_00 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_00.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_00 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": null,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": null,
+        "result_row_count": 0,
+        "returncode": null,
+        "runtime_seconds": 30.011,
+        "source_chunk_index": 4,
+        "status": "foldseek_run_timeout",
+        "stderr_tail": " timed out after 30 seconds",
+        "subchunk_index": 0,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1E4E.cif",
+          "pdb_1E5Q.cif",
+          "pdb_1E6E.cif",
+          "pdb_1E6U.cif",
+          "pdb_1EA0.cif",
+          "pdb_1EBF.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 0
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_01 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_01.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_01 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": null,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": null,
+        "result_row_count": 0,
+        "returncode": null,
+        "runtime_seconds": 30.048,
+        "source_chunk_index": 4,
+        "status": "foldseek_run_timeout",
+        "stderr_tail": " timed out after 30 seconds",
+        "subchunk_index": 1,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1EC9.cif",
+          "pdb_1ECF.cif",
+          "pdb_1ECL.cif",
+          "pdb_1EEJ.cif",
+          "pdb_1EF8.cif",
+          "pdb_1EG7.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 0
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_02 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_02.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_02 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 1,
+        "max_pair_tm_score": 0.8526,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1EHK_C",
+        "result_row_count": 18,
+        "returncode": 0,
+        "runtime_seconds": 27.004,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 2,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1EH5.cif",
+          "pdb_1EH6.cif",
+          "pdb_1EHK.cif",
+          "pdb_1EMD.cif",
+          "pdb_1EN7.cif",
+          "pdb_1EQ2.cif"
+        ],
+        "top_current_countable_hits": [
+          {
+            "alntmscore": 0.8526,
+            "max_pair_tm_score": 0.8526,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+            "qtmscore": 0.01638,
+            "raw_query_name": "afdb_Q7RTP6",
+            "raw_target_name": "pdb_1EHK_C",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+            "target_entry_ids": [
+              "m_csa:735"
+            ],
+            "target_fingerprint_ids": [
+              "heme_peroxidase_oxidase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_name_mapping_status": "mapped_exact_or_chain_alias",
+            "target_review_statuses": [
+              "review_only_non_countable"
+            ],
+            "target_structure_id": "1EHK",
+            "target_structure_key": "pdb:1EHK",
+            "ttmscore": 0.8348
+          }
+        ],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_03 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_03.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_03 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.3705,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1EUG",
+        "result_row_count": 7,
+        "returncode": 0,
+        "runtime_seconds": 8.661,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 3,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1ESC.cif",
+          "pdb_1ET0.cif",
+          "pdb_1EUG.cif",
+          "pdb_1EVY.cif",
+          "pdb_1EXN.cif",
+          "pdb_1EXP.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_04 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_04.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_04 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.5786,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1EZV_H",
+        "result_row_count": 24,
+        "returncode": 0,
+        "runtime_seconds": 26.51,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 4,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1EY2.cif",
+          "pdb_1EY3.cif",
+          "pdb_1EYI.cif",
+          "pdb_1EYQ.cif",
+          "pdb_1EZF.cif",
+          "pdb_1EZV.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_05 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_05.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_05 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.4394,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1F2V",
+        "result_row_count": 14,
+        "returncode": 0,
+        "runtime_seconds": 24.889,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 5,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1F2D.cif",
+          "pdb_1F2V.cif",
+          "pdb_1F61.cif",
+          "pdb_1F6D.cif",
+          "pdb_1F75.cif",
+          "pdb_1F7U.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_06 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_06.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_06 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": null,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": null,
+        "result_row_count": 0,
+        "returncode": null,
+        "runtime_seconds": 30.003,
+        "source_chunk_index": 4,
+        "status": "foldseek_run_timeout",
+        "stderr_tail": " timed out after 30 seconds",
+        "subchunk_index": 6,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1F80.cif",
+          "pdb_1F8R.cif",
+          "pdb_1F8X.cif",
+          "pdb_1F9Z.cif",
+          "pdb_1FBX.cif",
+          "pdb_1FC4.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 0
+      },
+      {
+        "accession": "Q7RTP6",
+        "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_07 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_07.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_07 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+        "high_tm_hit_count": 0,
+        "max_pair_tm_score": 0.4771,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+        "nearest_target": "pdb_1FFT_C",
+        "result_row_count": 13,
+        "returncode": 0,
+        "runtime_seconds": 29.11,
+        "source_chunk_index": 4,
+        "status": "completed",
+        "stderr_tail": "",
+        "subchunk_index": 7,
+        "target_count": 6,
+        "target_files": [
+          "pdb_1FCB.cif",
+          "pdb_1FCQ.cif",
+          "pdb_1FFT.cif",
+          "pdb_1FGH.cif",
+          "pdb_1FGJ.cif",
+          "pdb_1FNB.cif"
+        ],
+        "top_current_countable_hits": [],
+        "unique_target_result_count": 6
+      }
+    ]
+  },
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_chunk004_followup_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_accessions": [
+      "O94851",
+      "Q7RTP6"
+    ],
+    "candidate_count": 2,
+    "candidate_selection_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "chunk004_complete_no_high_tm_candidate_count": 0,
+    "chunk004_high_tm_candidate_count": 2,
+    "chunks005_013_status_after_followup": "not_run",
+    "created_at": "2026-05-21T17:46:40Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+    "exact_remaining_blocker": null,
+    "expected_subchunk_count_per_candidate": 8,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_chunk_run_status_counts": {
+      "completed": 10,
+      "foldseek_run_timeout": 6
+    },
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_00 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_00.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_00 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_01 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_01.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_01 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_02 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_02.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_02 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_03 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_03.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_03 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_04 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_04.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_04 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_05 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_05.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_05 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_06 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_06.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_06 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/O94851 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_07 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/O94851_chunk004_subchunk_07.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/O94851_chunk004_subchunk_07 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_00 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_00.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_00 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_01 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_01.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_01 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_02 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_02.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_02 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_03 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_03.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_03 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_04 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_04.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_04 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_05 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_05.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_05 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_06 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_06.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_06 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fmo-full-current-subchunk-screen/queries/Q7RTP6 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/targets_chunk004_subchunk_07 /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/results/Q7RTP6_chunk004_subchunk_07.tsv /private/tmp/catalytic-earth-fmo-chunk004-followup-screen/tmp/Q7RTP6_chunk004_subchunk_07 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "full_current_subchunk_screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json",
+    "geometry_scores_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json",
+    "max_completed_followup_tm_score": 0.8526,
+    "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+    "method": "flavin_monooxygenase_deep_packet_chunk004_subchunk_followup_duplicate_screen",
+    "new_completed_query_target_pair_count": 60,
+    "new_completed_target_count": 60,
+    "new_high_tm_hit_count": 2,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_chunk_index": 4,
+    "source_prior_screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_chunk003_followup_screen_20260521.json",
+    "source_separation_enforced": true,
+    "structure_mapping_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_structure_mapping_20260521.json",
+    "subchunk_size": 6,
+    "target_count_per_candidate_for_chunk004": 48,
+    "target_current_fingerprint_lane": "flavin_monooxygenase",
+    "terminal_duplicate_signal_candidate_count": 2,
+    "terminal_rejection_claim_permitted_for_high_tm_rows": true,
+    "tm_score_threshold": 0.7
+  },
+  "rows": [
+    {
+      "accession": "O94851",
+      "chunk000_status_after_followup": "complete_no_high_tm_signal",
+      "chunk001_status_after_followup": "complete_no_high_tm_signal",
+      "chunk002_status_after_followup": "complete_no_high_tm_signal",
+      "chunk003_status_after_followup": "complete_high_tm_signal",
+      "chunk004_status_after_followup": "high_tm_signal_found",
+      "chunks005_013_status_after_followup": "not_run_not_needed_for_terminal_duplicate_rejection",
+      "completed_subchunk_count": 5,
+      "decision_impact": "terminal_duplicate_leakage_signal_found",
+      "exact_remaining_blocker": null,
+      "expected_subchunk_count": 8,
+      "failed_subchunk_count": 0,
+      "max_pair_tm_score": 0.8262,
+      "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+      "nearest_target": "pdb_1EHK_C",
+      "new_completed_target_count": 30,
+      "new_high_tm_hit_count": 1,
+      "status_counts": {
+        "completed": 5,
+        "foldseek_run_timeout": 3
+      },
+      "timeout_subchunk_count": 3,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.8262,
+          "max_pair_tm_score": 0.8262,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.0167,
+          "raw_query_name": "afdb_O94851",
+          "raw_target_name": "pdb_1EHK_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "target_entry_ids": [
+            "m_csa:735"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_review_statuses": [
+            "review_only_non_countable"
+          ],
+          "target_structure_id": "1EHK",
+          "target_structure_key": "pdb:1EHK",
+          "ttmscore": 0.8106
+        }
+      ]
+    },
+    {
+      "accession": "Q7RTP6",
+      "chunk000_status_after_followup": "complete_no_high_tm_signal",
+      "chunk001_status_after_followup": "complete_no_high_tm_signal",
+      "chunk002_status_after_followup": "complete_no_high_tm_signal",
+      "chunk003_status_after_followup": "complete_high_tm_signal",
+      "chunk004_status_after_followup": "high_tm_signal_found",
+      "chunks005_013_status_after_followup": "not_run_not_needed_for_terminal_duplicate_rejection",
+      "completed_subchunk_count": 5,
+      "decision_impact": "terminal_duplicate_leakage_signal_found",
+      "exact_remaining_blocker": null,
+      "expected_subchunk_count": 8,
+      "failed_subchunk_count": 0,
+      "max_pair_tm_score": 0.8526,
+      "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+      "nearest_target": "pdb_1EHK_C",
+      "new_completed_target_count": 30,
+      "new_high_tm_hit_count": 1,
+      "status_counts": {
+        "completed": 5,
+        "foldseek_run_timeout": 3
+      },
+      "timeout_subchunk_count": 3,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.8526,
+          "max_pair_tm_score": 0.8526,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore, alntmscore); exact TM-score output retained separately",
+          "qtmscore": 0.01638,
+          "raw_query_name": "afdb_Q7RTP6",
+          "raw_target_name": "pdb_1EHK_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "target_entry_ids": [
+            "m_csa:735"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_or_chain_alias",
+          "target_review_statuses": [
+            "review_only_non_countable"
+          ],
+          "target_structure_id": "1EHK",
+          "target_structure_key": "pdb:1EHK",
+          "ttmscore": 0.8348
+        }
+      ]
+    }
+  ]
+}
