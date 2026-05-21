@@ -5,7 +5,7 @@
 - Ended: 2026-05-21T03:39:39Z
 - Measured minutes: 8.70
 - Primary outcome: regression_rows_emitted
-- Pushed commit: pending; normal linked-worktree metadata writes are still blocked and push will use the alternate-index path if possible.
+- Pushed commit: b06cffc043c1dd7e713d70a4179be59cadd15258 via alternate-index commit/push.
 - Rule under attack: current materializer non-abstention on ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/namespace controls and assembly-context v4 sufficiency.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
