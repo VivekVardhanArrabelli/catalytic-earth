@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-21T16:17:13-0500
+Last updated: 2026-05-21T17:20:11-0500
 
 Primary outcome: `candidate_evidence_rows_emitted`
 
@@ -8,36 +8,37 @@ Primary outcome: `candidate_evidence_rows_emitted`
 
 `labels_or_fingerprints_changed=false`
 
-Measured run time: 48.77 minutes (`2026-05-21T20:28:27Z` to
-`2026-05-21T21:17:13Z`).
+Measured run time: 49.78 minutes (`2026-05-21T21:30:24Z` to
+`2026-05-21T22:20:11Z`).
 
 Run note: disk free space was 29 GiB, above the 10 GiB stop threshold. Normal
-`git fetch origin` and `git pull --ff-only origin
-research/epk-substrate-role-identity` were attempted at run start but the
-sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
---no-write-fetch-head origin` succeeded. A direct `git merge --ff-only
-origin/research/epk-substrate-role-identity` then failed on linked-worktree
-`ORIG_HEAD.lock` permissions. Preserve outputs and use the remote-tip
-temporary-index commit/push workaround if normal metadata writes remain blocked.
-Remote-tip temporary-index pushes succeeded during wrap. Local `HEAD` remains
-stale at `8d38053d85cc28b7592267e9420578ca19a98814` while
-`origin/research/epk-substrate-role-identity` advanced; normal local clean and
-HEAD-equals-origin verification remain blocked until the linked-worktree
-metadata can be fast-forwarded.
+`git fetch origin` failed at run start because the sandbox could not write the
+linked-worktree `FETCH_HEAD`:
+
+`/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-substrate-role-identity/FETCH_HEAD`
+
+`git pull --ff-only origin research/epk-substrate-role-identity` failed on the
+same metadata path. The run continued from the current on-disk lane state, which
+already contained the remote lane artifacts. Local `HEAD` remains stale relative
+to `origin/research/epk-substrate-role-identity`; normal local clean and
+HEAD-equals-origin verification remain blocked until linked-worktree metadata
+can be fast-forwarded. Use the remote-tip temporary-index commit/push workaround
+if normal metadata writes remain blocked.
 
 ## What Was Emitted
 
-This run added one bounded source-free coordinate modality: ordered solvent
-bridging around gamma/acceptor pairs. The helper fetches model-1 coordinates in
-memory, emits compact reduced evidence, and writes no raw coordinate dumps.
+This run added one bounded source-free coordinate modality: protein Asp/Glu
+carboxylate proximity around candidate acceptor atoms, with active-gamma context
+tracked separately. The helper fetches model-1 coordinates in memory, emits
+compact reduced evidence, and writes no raw coordinate dumps.
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_ordered_solvent_bridge_audit_v1_20260521.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_acid_base_proximity_audit_v1_20260521.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/ordered_solvent_bridge_audit.py`
+`tools/research_lanes/epk_substrate_role_identity/acid_base_proximity_audit.py`
 
 Inputs:
 
@@ -47,19 +48,20 @@ Inputs:
 
 The helper reused 211 candidate/state rows, 54 PDB-level conflict rows, and 135
 phosphoproduct materialization rows. It scanned 54 diagnostic PDBs in memory and
-emitted 220 compact ordered-solvent rows:
+emitted 220 compact acid/base proximity rows:
 
 - candidate gamma/acceptor pair rows: 204
 - state-only rows: 16
 - nonterminal phosphoproduct state rows re-emitted: 9
-- source-free ordered-solvent signature rows: 63
-- mixed positive/counterexample solvent signatures: 7
-- ordered gamma/acceptor water-bridge candidate rows: 8
+- product/split rows with acceptor atom context: 5
+- active/candidate rows with gamma-context carboxylates: 70
+- source-free acid/base signature rows: 68
+- mixed positive/counterexample acid/base signatures: 8
 
 No PDB titles, UniProt prose, EC/Rhea, paper/source text, mechanism labels,
 curated substrate names, post-hoc source repair, candidate-specific threshold
-tuning, production labels, registries, fingerprints, migration manifests, or
-raw coordinate dumps were used or changed.
+tuning, production labels, registries, fingerprints, migration manifests, or raw
+coordinate dumps were used or changed.
 
 ## Evidence Summary
 
@@ -72,16 +74,15 @@ Coordinate states observed:
 - `product_state=4`
 - `split_state=1`
 
-Ordered-solvent bridge classes:
+Acid/base proximity classes:
 
-- `no_ordered_water_within_3p5a=144`
-- `acceptor_solvated_only=21`
-- `separate_ordered_waters_near_gamma_and_acceptor=19`
-- `gamma_solvated_only=12`
-- `ordered_water_bridge_between_gamma_and_acceptor=8`
-- `gamma_or_acceptor_atom_not_resolved=1`
-- state-not-applicable rows: `adp_state=5`, `ambiguous_coordinate_state=1`,
-  `ligand_absent=4`, `product_state=4`, `split_state=1`
+- `no_near_acceptor_carboxylate=85`
+- `acceptor_carboxylate_proximal_with_gamma_context=40`
+- `acceptor_carboxylate_contact_with_gamma_context=30`
+- `acceptor_carboxylate_contact_without_gamma_context=29`
+- `acceptor_carboxylate_proximal_without_gamma_context=25`
+- acceptor absent/not resolved state rows: `active_gamma=1`, `adp_state=5`,
+  `ambiguous_coordinate_state=1`, `ligand_absent=4`
 
 Blocker classes:
 
@@ -107,27 +108,29 @@ The no-promotion conflict projection remains unchanged:
 
 The blocker is not cleared source-free.
 
-Ordered solvent is useful review-routing evidence because it distinguishes
-water bridge, separate solvation, acceptor-only solvation, gamma-only solvation,
-and no ordered-water contact around candidate pairs. It still does not
+Carboxylate proximity is useful review-routing evidence because it marks whether
+candidate acceptors have nearby protein Asp/Glu oxygens and whether those
+oxygens are also within a fixed 6.0 A active-gamma shell. It still does not
 adjudicate biological substrate-role identity without review context. The
-signature audit found 7 mixed positive/counterexample ordered-solvent
-signatures.
+signature audit found 8 mixed positive/counterexample acid/base signatures.
 
-State-specific hard cases remain unchanged:
+Hard-case observations:
 
-- `1L0O`, `3QHR`, and `3QHW` remain ADP/product-state review evidence.
-- `4HPU` remains split-state review counterpressure.
-- `3TM0`, `9UUR`, and `9UUX` remain positive abstentions.
-- `7B56` and `9UW4` remain decisive counterexample pressure.
+- `9UUR` and `9UUX` reciprocal Tyr candidates have gamma-coupled carboxylate
+  contacts, but `9UW4` counterexample candidates do too.
+- `3QHR` and `3QHW` product-state acceptors are emitted as product-state review
+  evidence without active-gamma context.
+- `4HPU` split-state acceptor has carboxylate proximity evidence, but remains
+  split-state counterpressure.
+- `7B56` internal-fragment pressure remains handled by terminal/internal-fragment
+  counterevidence, not acid/base proximity.
 
 ## Interpretation
 
-The useful refinement is narrow: ordered solvent materialization can tell a
-reviewer whether water is present between or around a gamma/acceptor pair.
-Mixed signature collisions show it is not substrate-role identity. Promoting a
-solvent signature would either be a post-hoc rescue or would admit known
-counterexample pressure.
+The useful refinement is narrow: acid/base proximity materializes a compact
+candidate-level review feature for acceptor geometry. Mixed signature collisions
+show it is not substrate-role identity. Promoting a carboxylate signature would
+either be a post-hoc rescue or would admit known counterexample pressure.
 
 This is review-only blocker evidence. It is not a production rule and does not
 support ePK production readiness.
@@ -136,24 +139,21 @@ support ePK production readiness.
 
 - `python -m py_compile` passed for the new helper.
 - `python -m json.tool` passed for the new artifact.
-- Full lane JSON validation passed for 24 JSON files.
-- Full run-log JSONL validation passed for 25 records; final line has
+- Full lane JSON validation passed for 25 JSON files.
+- Full run-log JSONL validation passed for 26 records; final line has
   `primary_outcome=candidate_evidence_rows_emitted` and
-  `measured_minutes=48.77`.
+  `measured_minutes=49.78`.
 - Required run-record field validation passed.
 - `git diff --check` passed.
 - No raw `.pdb`, `.cif`, or `.mmcif` files were written in the lane paths.
 - No production label registries, mechanism fingerprints, migration manifests,
   or label imports were touched.
-- Remote-tip temporary-index pushes succeeded; local worktree status still
-  appears dirty because local `HEAD` is stale and cannot be fast-forwarded by
-  normal linked-worktree metadata operations.
 
 ## Exact Next Experiment
 
-Stop ordered-solvent bridge probing as a promotion route. Only resume this lane
-for a genuinely different source-free modality that can adjudicate ADP/product,
-substrate-analog, reciprocal folded-chain, or same-chain biology without
-review-context leakage. Otherwise preserve source-reviewed adjudication for
-product/ADP, split-state, substrate-analog, reciprocal folded-chain, and
+Stop acid/base carboxylate proximity probing as a promotion route. Only resume
+this lane for a genuinely different source-free modality that can adjudicate
+ADP/product, substrate-analog, reciprocal folded-chain, or same-chain biology
+without review-context leakage. Otherwise preserve source-reviewed adjudication
+for product/ADP, split-state, substrate-analog, reciprocal folded-chain, and
 same-chain substrate biology.
