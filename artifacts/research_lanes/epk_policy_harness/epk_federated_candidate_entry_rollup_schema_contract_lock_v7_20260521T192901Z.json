@@ -1,0 +1,224 @@
+{
+  "artifacts": {
+    "gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_schema_contract_lock_v7_20260521T192901Z_gate.json",
+    "gate_sha256": "78cb454adbd6ca66dc190c934a356cffe096258cf30fecb58bdba3489463bbe6",
+    "schema": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_schema_contract_lock_v7_20260521T192901Z_schema.json",
+    "schema_sha256": "d394802c1616a5c5c859f08f59b3b945fe24e9135677fbc4ac02709a7226b3c3"
+  },
+  "fault_injection_summary": {
+    "fault_count": 7,
+    "faults": [
+      {
+        "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 missing fields: ['source_row_id']",
+        "fault": "missing_candidate_provenance",
+        "rejected": true
+      },
+      {
+        "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 copies forbidden source context: ['protein_names']",
+        "fault": "copied_source_context",
+        "rejected": true
+      },
+      {
+        "error": "allowed_predictive_features include source-derived or forbidden fields: ['pdb_title_as_predictive_feature']",
+        "fault": "source_derived_predictive_feature",
+        "rejected": true
+      },
+      {
+        "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 has invalid coordinate_state: state_from_source_title",
+        "fault": "invalid_coordinate_state",
+        "rejected": true
+      },
+      {
+        "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 claim_admissibility drifted: forbidden != review_only",
+        "fault": "invalid_claim_admissibility",
+        "rejected": true
+      },
+      {
+        "error": "policy result claim_status_counts drifted from rows",
+        "fault": "metadata_count_drift",
+        "rejected": true
+      },
+      {
+        "error": "entry rollup 3QHR entry_claim_status drifted: review_only_abstain_product_state != review_only_abstain_analog_state",
+        "fault": "entry_rollup_precedence_drift",
+        "rejected": true
+      }
+    ],
+    "rejected_fault_count": 7
+  },
+  "gate": {
+    "gate_pass": true,
+    "labels_or_fingerprints_changed": false,
+    "primary_outcome": "schema_frozen_review_only",
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false
+  },
+  "hypothesis": "The federated candidate-evidence schema can be locked as review-only when candidate identity, coordinate state, claim admissibility, and entry rollups are validated from candidate rows and source-derived context remains non-predictive.",
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_schema_contract_lock_v7",
+    "contract_version": "epk_federated_candidate_entry_rollup_schema_contract_lock_v7",
+    "created_at": "2026-05-21T19:36:35+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "schema_frozen_review_only",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "positive_contract_summary": {
+    "candidate_evidence": {
+      "coordinate_state_counts": {
+        "active_gamma": 5,
+        "ambiguous_coordinate_state": 1,
+        "product_state": 5,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 2
+      },
+      "rows_reviewed": 14,
+      "source_lane_count": 4,
+      "source_lanes": [
+        "epk_false_positive_hunter",
+        "epk_positive_evidence",
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ]
+    },
+    "policy_result": {
+      "claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 4,
+        "review_only_abstain_sibling_control": 5,
+        "review_only_abstain_split_state": 1,
+        "review_only_abstain_topology_ambiguity": 1
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 5,
+        "ambiguous_coordinate_state": 1,
+        "product_state": 5,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 2
+      },
+      "rows_reviewed": 14,
+      "source_lane_count": 4,
+      "source_lanes": [
+        "epk_false_positive_hunter",
+        "epk_positive_evidence",
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ]
+    },
+    "schema": {
+      "candidate_required_field_count": 17,
+      "claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "coordinate_state_values": [
+        "active_gamma",
+        "adp_state",
+        "ambiguous_coordinate_state",
+        "ligand_absent",
+        "metal_absent",
+        "product_state",
+        "split_state",
+        "substrate_acceptor_analog_state",
+        "unavailable_coordinate_state"
+      ],
+      "entry_claim_status_precedence": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_abstain_split_state",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_product_state",
+        "review_only_abstain_missing_role_policy",
+        "review_only_nonabstaining_candidate"
+      ],
+      "schema_names": [
+        "epk_candidate_evidence_v1",
+        "epk_policy_decision_v1",
+        "epk_scoreboard_row_v1"
+      ]
+    },
+    "scoreboard_gate": {
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_sibling_control": 5,
+        "review_only_abstain_topology_ambiguity": 1
+      },
+      "entry_count": 8,
+      "scoreboard_gate_pass": true
+    }
+  },
+  "schema_contract": {
+    "candidate_evidence_required_fields": [
+      "schema_version",
+      "row_id",
+      "candidate_id",
+      "source_lane_id",
+      "source_artifact",
+      "source_row_key",
+      "source_row_id",
+      "entry_id",
+      "pdb_id",
+      "row_role",
+      "ligand_code_from_structure",
+      "coordinate_state",
+      "terminal_gamma_equivalent_geometry",
+      "local_metal_context",
+      "catalytic_site_locality",
+      "source_free_acceptor_role_features",
+      "same_structure_co_materialization"
+    ],
+    "candidate_identity_unique_per_source_lane": true,
+    "claim_admissibility_separate_from_discovery_signal": true,
+    "entry_rollup_required_fields": [
+      "entry_id",
+      "candidate_count",
+      "candidate_row_ids",
+      "source_lane_ids",
+      "claim_status_counts",
+      "coordinate_state_counts",
+      "entry_claim_status",
+      "entry_claim_admissibility",
+      "discovery_signal_candidate_count",
+      "nonabstaining_candidate_count",
+      "progress_claim_allowed",
+      "production_claim_allowed",
+      "labels_or_fingerprints_changed"
+    ],
+    "entry_status_derived_from_candidate_decisions": true,
+    "policy_decision_required_fields": [
+      "schema_version",
+      "row_id",
+      "candidate_id",
+      "source_lane_id",
+      "source_artifact",
+      "source_row_key",
+      "source_row_id",
+      "entry_id",
+      "pdb_id",
+      "coordinate_state",
+      "claim_status",
+      "claim_admissibility",
+      "abstention_reasons",
+      "forbidden_predictive_context_flags",
+      "production_claim_allowed",
+      "labels_or_fingerprints_changed"
+    ],
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false,
+    "source_derived_predictive_features_forbidden": true,
+    "source_text_protein_titles_ec_rhea_paper_metadata_forbidden": true
+  }
+}

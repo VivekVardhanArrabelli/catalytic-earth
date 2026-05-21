@@ -1,0 +1,162 @@
+{
+  "fault_injection_results": [
+    {
+      "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 missing fields: ['source_row_id']",
+      "fault": "missing_candidate_provenance",
+      "rejected": true
+    },
+    {
+      "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 copies forbidden source context: ['protein_names']",
+      "fault": "copied_source_context",
+      "rejected": true
+    },
+    {
+      "error": "allowed_predictive_features include source-derived or forbidden fields: ['pdb_title_as_predictive_feature']",
+      "fault": "source_derived_predictive_feature",
+      "rejected": true
+    },
+    {
+      "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 has invalid coordinate_state: state_from_source_title",
+      "fault": "invalid_coordinate_state",
+      "rejected": true
+    },
+    {
+      "error": "policy result row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 claim_admissibility drifted: forbidden != review_only",
+      "fault": "invalid_claim_admissibility",
+      "rejected": true
+    },
+    {
+      "error": "policy result claim_status_counts drifted from rows",
+      "fault": "metadata_count_drift",
+      "rejected": true
+    },
+    {
+      "error": "entry rollup 3QHR entry_claim_status drifted: review_only_abstain_product_state != review_only_abstain_analog_state",
+      "fault": "entry_rollup_precedence_drift",
+      "rejected": true
+    }
+  ],
+  "gate": {
+    "fault_rejection_count": 7,
+    "gate_pass": true,
+    "labels_or_fingerprints_changed": false,
+    "positive_contract_pass": true,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false,
+    "unexpected_fault_pass_count": 0
+  },
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_schema_contract_lock_v7_gate",
+    "contract_version": "epk_federated_candidate_entry_rollup_schema_contract_lock_v7",
+    "created_at": "2026-05-21T19:36:35+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "schema_frozen_review_only",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "positive_contract_summary": {
+    "candidate_evidence": {
+      "coordinate_state_counts": {
+        "active_gamma": 5,
+        "ambiguous_coordinate_state": 1,
+        "product_state": 5,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 2
+      },
+      "rows_reviewed": 14,
+      "source_lane_count": 4,
+      "source_lanes": [
+        "epk_false_positive_hunter",
+        "epk_positive_evidence",
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ]
+    },
+    "policy_result": {
+      "claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 4,
+        "review_only_abstain_sibling_control": 5,
+        "review_only_abstain_split_state": 1,
+        "review_only_abstain_topology_ambiguity": 1
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 5,
+        "ambiguous_coordinate_state": 1,
+        "product_state": 5,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 2
+      },
+      "rows_reviewed": 14,
+      "source_lane_count": 4,
+      "source_lanes": [
+        "epk_false_positive_hunter",
+        "epk_positive_evidence",
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ]
+    },
+    "schema": {
+      "candidate_required_field_count": 17,
+      "claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "coordinate_state_values": [
+        "active_gamma",
+        "adp_state",
+        "ambiguous_coordinate_state",
+        "ligand_absent",
+        "metal_absent",
+        "product_state",
+        "split_state",
+        "substrate_acceptor_analog_state",
+        "unavailable_coordinate_state"
+      ],
+      "entry_claim_status_precedence": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_abstain_split_state",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_product_state",
+        "review_only_abstain_missing_role_policy",
+        "review_only_nonabstaining_candidate"
+      ],
+      "schema_names": [
+        "epk_candidate_evidence_v1",
+        "epk_policy_decision_v1",
+        "epk_scoreboard_row_v1"
+      ]
+    },
+    "scoreboard_gate": {
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_sibling_control": 5,
+        "review_only_abstain_topology_ambiguity": 1
+      },
+      "entry_count": 8,
+      "scoreboard_gate_pass": true
+    }
+  },
+  "positive_inputs": {
+    "result": "artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_result.json",
+    "result_sha256": "8f08d0328134a2c9b7b0dbd43d1cb41f74df8541579014dc35117a1e5e903d47",
+    "scoreboard_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "9676bbafd767e88ce85fbffba21992fef3eda6217c6f6e60c578f50f4e679c38",
+    "tranche": "artifacts/research_lanes/epk_policy_harness/epk_federated_literal_product_split_entry_precedence_controls_v6_20260521T182727Z_tranche.json",
+    "tranche_sha256": "c3e8a6217d04dd3af9eabe006e067f393da703c89acf425774211eaa1a5e04da"
+  }
+}
