@@ -18,14 +18,13 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 relative to `origin/research/epk-substrate-role-identity`; commit/push used
 the same remote-tip temporary-index workaround as the prior runs.
 
-Final sync: pushed metal/transfer-geometry commit
+Final sync: pushed metal/transfer-geometry content commit
 `c625dd6f5bb6aab51654d1033699c8fc4566951d` to
-`origin/research/epk-substrate-role-identity`, then verified
-`origin/research/epk-substrate-role-identity` at that commit with
-`git fetch --no-write-fetch-head origin`. A temporary-index comparison against
-the remote tip was clean for the lane paths. Normal `git status` still reports
-this linked worktree as behind/dirty because local `HEAD` remains stale
-relative to the remote tip.
+`origin/research/epk-substrate-role-identity`, followed by a handoff-only sync
+commit on top. After `git fetch --no-write-fetch-head origin`, a
+temporary-index comparison against the remote tip was clean for the lane paths.
+Normal `git status` still reports this linked worktree as behind/dirty because
+local `HEAD` remains stale relative to the remote tip.
 
 ## What Was Emitted
 
