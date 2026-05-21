@@ -15,7 +15,12 @@ could not write linked-worktree `ORIG_HEAD`. The live remote ref was checked
 with `git ls-remote`: `origin/research/epk-substrate-role-identity` was at
 `ac0ffbadf6b07655c7a4bae73f8ce7c5e47d1240` before this run. The lane files
 from that commit were present in the working tree, so this run continued with
-the compact lane-local evidence only.
+the compact lane-local evidence only. Final commit
+`7bdcacd6131ef98e7660fb7918fcc3f8fd07a42c` was created and pushed with a
+temporary Git index because the checked-out linked-worktree metadata remained
+unwritable. The live remote and local `origin/research/epk-substrate-role-identity`
+ref point at that commit; local `HEAD` remains stale until the worktree Git
+metadata can be updated outside this sandbox.
 
 ## What Was Tested
 
