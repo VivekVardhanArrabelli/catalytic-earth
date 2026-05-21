@@ -306,6 +306,20 @@ import.
   outcomes; all six are review-only rejections by current-countable structural
   duplicate signal. Future prospective external work therefore needs genuinely
   new sourcing or a different frozen surface before scoring.
+- `artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_20260521.json`
+  is the first deep packet over the 2026-05-21 current-fingerprint
+  mini-campaign surfaces. It selects seven rows from the frozen
+  metal-phosphatase campaign before geometry/Foldseek outcome scoring, stages
+  seven AlphaFold sidecars, maps seven active-site residue sets, and scores all
+  seven against the current eight fingerprints with 0 text/name/label fields
+  used. The outcome is a precise review-only blocker rather than import
+  readiness: the exact current-countable Foldseek duplicate screen did not
+  complete, so all seven rows are `needs_new_extractor_or_structure` until a
+  completed structural duplicate/leakage screen exists. The companion
+  benchmark
+  `artifacts/v3_metal_phosphatase_deep_packet_modern_baseline_benchmark_20260521.json`
+  records EC/keyword, deterministic 5-mer, geometry, Foldseek, and ESM caveats
+  with no superiority, mechanism-match, or label-import claim.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

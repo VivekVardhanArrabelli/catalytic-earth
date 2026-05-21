@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 251
-- Measured elapsed time: 7142.8 minutes (119.05 hours)
+- Entries: 253
+- Measured elapsed time: 7180.6 minutes (119.68 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 101.0 measured minutes (1.68 hours)
+- ops: 104.3 measured minutes (1.74 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 157.0 measured minutes (2.62 hours)
+- v3: 191.5 measured minutes (3.19 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2756
-- Evidence references logged: 2248
+- Artifact references logged: 2771
+- Evidence references logged: 2263
 
 ## Recent Entries
-
-### 2026-05-21T01:31:38.491051+00:00 - v3
-
-- Task: prospective external metal phosphatase mini-campaign
-- Time mode: measured
-- Measured minutes: 4.15
-- Started: 2026-05-21T01:27:14Z
-- Ended: 2026-05-21T01:31:23Z
-- Artifacts: artifacts/v3_prospective_external_metal_phosphatase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_metal_phosphatase_minicampaign_decision_packet_20260521.json, artifacts/v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_metal_phosphatase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_external_minicampaign_modern_baseline_rollup_post_metal_phosphatase_20260521.json, artifacts/v3_main_loop_small_win_register_post_metal_phosphatase_20260521.json
-- Evidence: 17-row Swiss-Prot EC 3.1.3.* metal-phosphatase surface frozen before scoring, 17 rows routed to needs_review under current metal_dependent_hydrolase lane, 0 exact current-reference duplicate terminal rejections, deterministic 5-mer baseline checked 17 rows against 737 current references with no superiority claim, post-metal rollup covers 95 frozen 2026-05-21 external rows with 87 needs_review 8 terminal rejections and 0 geometry-scored rows, focused metal mini-campaign and rollup regressions passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
-
-### 2026-05-21T01:35:50.770123+00:00 - v3
-
-- Task: prospective external flavin dehydrogenase mini-campaign
-- Time mode: measured
-- Measured minutes: 4.217
-- Started: 2026-05-21T01:31:23Z
-- Ended: 2026-05-21T01:35:36Z
-- Artifacts: artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_flavin_dehydrogenase_minicampaign_decision_packet_20260521.json, artifacts/v3_flavin_dehydrogenase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_flavin_dehydrogenase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_external_minicampaign_modern_baseline_rollup_post_flavin_dehydrogenase_20260521.json, artifacts/v3_main_loop_small_win_register_post_flavin_dehydrogenase_20260521.json
-- Evidence: 20-row Swiss-Prot flavin dehydrogenase/reductase surface frozen before scoring, 16 rows routed to needs_review under current flavin_dehydrogenase_reductase lane, 4 exact current-reference duplicates terminally rejected, deterministic 5-mer baseline checked 20 rows against 737 current references with no superiority claim, post-flavin-dehydrogenase rollup covers 115 frozen 2026-05-21 external rows with 103 needs_review 12 terminal rejections and 0 geometry-scored rows, focused flavin dehydrogenase and rollup regressions passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ### 2026-05-21T01:41:08.373902+00:00 - v3
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: 774-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 53 2026-05-21 JSON artifacts parsed, git diff check passed
 - Notes: Final wrap validation after pushed radical SAM current-fingerprint benchmark source-free-geometry preregistration terminal-decision index and dirty ePK sibling synthesis commits.
+
+### 2026-05-21T02:49:40.198593+00:00 - v3
+
+- Task: metal phosphatase external deep terminal packet
+- Time mode: measured
+- Measured minutes: 34.517
+- Started: 2026-05-21T02:14:38Z
+- Ended: 2026-05-21T02:49:09Z
+- Artifacts: artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_current_countable_structural_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_foldseek_runtime_blocker_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_structure_mapping_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_geometry_scores_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: 7 frozen selected rows before scoring, 7 AlphaFold sidecars materialized, 7 active sites mapped, 7 rows scored against all 8 fingerprints with 0 text/name/label fields, Foldseek 4704-pair current-countable screen incomplete recorded as exact blocker, terminal counts needs_new_extractor_or_structure:7, benchmark records EC/keyword and deterministic sequence baselines with ESM/Foldseek caveats, 775 unit tests passed, validate passed, migration dry-run passed
+- Notes: No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, production threshold change, or removal_allowed=true.
+
+### 2026-05-21T02:52:33.159296+00:00 - ops
+
+- Task: final validation for metal phosphatase deep packet
+- Time mode: measured
+- Measured minutes: 3.233
+- Started: 2026-05-21T02:49:09Z
+- Ended: 2026-05-21T02:52:23Z
+- Artifacts: work/progress_log.jsonl, work/status.md, artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521
+- Evidence: 775-test unit discovery passed after coordinate-sidecar whitespace normalization, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, git diff cached check passed
+- Notes: No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, production threshold change, or removal_allowed=true.
 
 ## Expectation Updates
 
@@ -323,6 +323,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:55:41.795664+00:00: external small-win rows remain review-only until source-free geometry duplicate screens terminal review and factory/import gates pass
 - 2026-05-21T02:00:27.449389+00:00: ePK remains review-only no-go; next exact ePK work belongs only in isolated research lanes
 - 2026-05-21T02:02:02.049578+00:00: next main-loop work should run the 14-row source-free geometry sidecar and duplicate-screen experiment or continue non-ePK small wins
+- 2026-05-21T02:49:40.198593+00:00: No superiority or import claim is made until the duplicate/leakage screen completes; geometry top1 routed six of seven rows to metal_dependent_hydrolase but remained below the in-scope floor.
+- 2026-05-21T02:52:33.159296+00:00: next main-loop work should complete a resumable/chunked current-countable structural duplicate screen before any import or superiority claim
 
 ## Scope Adjustments
 
@@ -467,3 +469,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:55:41.795664+00:00: next exact external experiment is source-free sidecar materialization and duplicate screening for 14 frozen rows only
 - 2026-05-21T02:00:27.449389+00:00: fresh dirty sibling ePK outputs reinforce no-go production scope and do not resume ePK main-loop work
 - 2026-05-21T02:02:02.049578+00:00: wrapped after minute 48 with external small-win artifacts pushed and ePK kept review-only
+- 2026-05-21T02:49:40.198593+00:00: External deepening now has a source-separated metal-phosphatase blocker packet; next exact step is a resumable or chunked current-countable structural duplicate screen for the selected 7 rows.
+- 2026-05-21T02:52:33.159296+00:00: wrap validation keeps the metal-phosphatase blocker packet review-only and ready for the next duplicate-screen experiment

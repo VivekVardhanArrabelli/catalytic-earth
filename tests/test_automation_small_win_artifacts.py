@@ -1159,6 +1159,176 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(sequence["metadata"]["ready_for_label_import"])
 
+    def test_metal_phosphatase_deep_packet_records_exact_geometry_blocker(
+        self,
+    ) -> None:
+        selection = _load_json(
+            ARTIFACTS / "v3_metal_phosphatase_deep_packet_selection_20260521.json"
+        )
+        coordinates = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_coordinate_materialization_20260521.json"
+        )
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_current_countable_structural_screen_20260521.json"
+        )
+        mapping = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_structure_mapping_20260521.json"
+        )
+        scores = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_geometry_scores_20260521.json"
+        )
+        blocker = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_foldseek_runtime_blocker_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_terminal_decision_packet_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_modern_baseline_benchmark_20260521.json"
+        )
+
+        self.assertTrue(selection["metadata"]["review_only"])
+        self.assertTrue(
+            selection["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(selection["metadata"]["candidate_count"], 7)
+        self.assertEqual(
+            selection["metadata"]["target_current_fingerprint_lane"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertTrue(
+            all(
+                row["score_status_at_selection"]
+                == "not_scored_at_deep_packet_selection"
+                for row in selection["rows"]
+            )
+        )
+        self.assertTrue(
+            all(row["sequence_baseline_signal"] == "no_sequence_neighbor_alert" for row in selection["rows"])
+        )
+
+        self.assertTrue(coordinates["metadata"]["review_only"])
+        self.assertEqual(coordinates["metadata"]["candidate_count"], 7)
+        self.assertEqual(coordinates["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(
+            coordinates["metadata"]["coordinate_materialized_or_reused_count"], 7
+        )
+        self.assertTrue(
+            all(row["coordinate_digest_sha256"] for row in coordinates["rows"])
+        )
+
+        self.assertTrue(screen["metadata"]["review_only"])
+        self.assertFalse(screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(screen["metadata"]["expected_query_target_pair_count"], 4704)
+        self.assertEqual(
+            screen["metadata"]["current_countable_structural_screen_status_counts"],
+            {"current_countable_structural_screen_not_completed": 7},
+        )
+        self.assertFalse(screen["metadata"]["ready_for_label_import"])
+
+        self.assertTrue(blocker["metadata"]["review_only"])
+        self.assertEqual(blocker["metadata"]["candidate_count"], 7)
+        self.assertEqual(blocker["metadata"]["attempted_pair_count"], 4704)
+        self.assertIn(
+            "completed current-countable structural duplicate/leakage screen",
+            blocker["metadata"]["exact_missing_evidence"],
+        )
+        self.assertFalse(blocker["metadata"]["ready_for_label_import"])
+
+        self.assertTrue(mapping["metadata"]["review_only"])
+        self.assertEqual(mapping["metadata"]["candidate_count"], 7)
+        self.assertEqual(mapping["metadata"]["mapped_candidate_count"], 7)
+        self.assertTrue(
+            all(
+                row["geometry_mapping_status"] == "mapped_for_geometry_score"
+                for row in mapping["rows"]
+            )
+        )
+
+        self.assertTrue(scores["metadata"]["review_only_rule"])
+        self.assertEqual(scores["metadata"]["candidate_count"], 7)
+        self.assertEqual(
+            scores["metadata"]["top1_fingerprint_counts"],
+            {"metal_dependent_hydrolase": 6, "ser_his_acid_hydrolase": 1},
+        )
+        self.assertEqual(
+            scores["metadata"]["text_or_label_fields_used_for_score_count"], 0
+        )
+        self.assertFalse(scores["metadata"]["ready_for_label_import"])
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(packet["metadata"]["candidate_count"], 7)
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {"needs_new_extractor_or_structure": 7},
+        )
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        allowed = set(packet["metadata"]["allowed_terminal_decisions"])
+        self.assertLessEqual({row["terminal_decision"] for row in packet["rows"]}, allowed)
+        self.assertTrue(
+            all(
+                row["exact_blocker_if_not_terminal_or_import_ready"]
+                == "completed_current_countable_structural_duplicate_screen_missing_after_bounded_exact_foldseek_attempt"
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["nearest_current_reference_id"]
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["current_geometry_retrieval_score_summary"][
+                    "text_or_label_fields_used_for_score"
+                ]
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in packet["rows"])
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(
+            benchmark["metrics"]["geometry_retrieval_triage"][
+                "geometry_scored_external_row_count"
+            ],
+            7,
+        )
+        self.assertEqual(
+            benchmark["metrics"]["geometry_retrieval_triage"][
+                "text_or_label_fields_used_for_score_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            benchmark["metrics"]["foldseek_current_countable_sidecar"]["status"],
+            "blocked_exact_foldseek_screen_incomplete",
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar"]["status"],
+            "not_available_for_this_deep_packet",
+        )
+        self.assertEqual(
+            benchmark["metrics"]["review_only_terminal_decisions"][
+                "terminal_decision_counts"
+            ],
+            {"needs_new_extractor_or_structure": 7},
+        )
+
     def test_flavin_dehydrogenase_minicampaign_stays_review_only(self) -> None:
         freeze = _load_json(
             ARTIFACTS

@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_deep_packet_coordinate_materialization_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json",
+    "candidate_selection_before_outcome_scoring": true,
+    "coordinate_directory": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521",
+    "coordinate_materialized_or_reused_count": 7,
+    "coordinate_status_counts": {
+      "coordinate_sidecar_materialized": 7
+    },
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T02:22:35Z",
+    "curated_label_registry_edited": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "metal_phosphatase_deep_packet_coordinate_materialization",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+  },
+  "rows": [
+    {
+      "accession": "Q969T7",
+      "coordinate_byte_count": 290170,
+      "coordinate_digest_sha256": "0c19857608e31708535eacf624c8cd817cfd82d626f7b3152535fdb1423efe0d",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521/afdb_Q969T7.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969T7",
+      "pdb_cross_reference_count": 3,
+      "pdb_ids_sample": [
+        "7ZEE",
+        "7ZEG",
+        "7ZEH"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q969T7",
+      "structure_id": "Q969T7",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "Q08623",
+      "coordinate_byte_count": 218111,
+      "coordinate_digest_sha256": "2262435fadc5b6746e5c37330b832f068b652017c34fdbb64473c0373438dafb",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521/afdb_Q08623.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q08623",
+      "pdb_cross_reference_count": 3,
+      "pdb_ids_sample": [
+        "3L5K",
+        "9M7L",
+        "9M7M"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q08623",
+      "structure_id": "Q08623",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "O95861",
+      "coordinate_byte_count": 283736,
+      "coordinate_digest_sha256": "072c4a06dc0cc7559f92f4d6dee1c1bf308102cbd81d647b2ed443b3586a80c9",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521/afdb_O95861.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95861",
+      "pdb_cross_reference_count": 1,
+      "pdb_ids_sample": [
+        "2WEF"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O95861",
+      "structure_id": "O95861",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "O00167",
+      "coordinate_byte_count": 487943,
+      "coordinate_digest_sha256": "6f6ff0932752140976d371e11323bdedf17ac6b29bbb3752d4d56e3bdd061ae5",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521/afdb_O00167.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O00167",
+      "pdb_cross_reference_count": 7,
+      "pdb_ids_sample": [
+        "3GEB",
+        "3HB0",
+        "3HB1",
+        "4EGC",
+        "5ZMA",
+        "7F8G",
+        "7F8H"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O00167",
+      "structure_id": "O00167",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "P05187",
+      "coordinate_byte_count": 483371,
+      "coordinate_digest_sha256": "c2e523a45f0d9dd8686a3775c44c47e2fe639da1b5d9e69eb2dec308476d464e",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521/afdb_P05187.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P05187",
+      "pdb_cross_reference_count": 8,
+      "pdb_ids_sample": [
+        "1EW2",
+        "1ZEB",
+        "1ZED",
+        "1ZEF",
+        "2GLQ",
+        "3MK0",
+        "3MK1",
+        "3MK2"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P05187",
+      "structure_id": "P05187",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "P78330",
+      "coordinate_byte_count": 216335,
+      "coordinate_digest_sha256": "913efc11d76119797751a711ac1095ffd1e5c1f5c4b994e2d129b75c11b15782",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521/afdb_P78330.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P78330",
+      "pdb_cross_reference_count": 6,
+      "pdb_ids_sample": [
+        "1L8L",
+        "1L8O",
+        "1NNL",
+        "6HYJ",
+        "6HYY",
+        "6Q6J"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P78330",
+      "structure_id": "P78330",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "P34913",
+      "coordinate_byte_count": 516364,
+      "coordinate_digest_sha256": "1940860929ca4f1739c35d6b651bb067b46c72579f0e7795c6cb187acd3b3735",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521/afdb_P34913.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P34913",
+      "pdb_cross_reference_count": 115,
+      "pdb_ids_sample": [
+        "1S8O",
+        "1VJ5",
+        "1ZD2",
+        "1ZD3",
+        "1ZD4",
+        "1ZD5",
+        "3ANS",
+        "3ANT"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P34913",
+      "structure_id": "P34913",
+      "structure_source": "alphafold"
+    }
+  ]
+}

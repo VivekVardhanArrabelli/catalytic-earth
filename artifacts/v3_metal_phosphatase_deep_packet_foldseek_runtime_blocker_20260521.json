@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_deep_packet_foldseek_runtime_blocker_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "attempted_pair_count": 4704,
+    "attempted_screen_scope": "selected_7_external_queries_vs_672_current_countable_coordinates",
+    "attempted_tm_score_threshold": 0.7,
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_metal_phosphatase_deep_packet_coordinate_materialization_20260521.json",
+    "created_at": "2026-05-21T02:41:27Z",
+    "curated_label_registry_edited": false,
+    "exact_missing_evidence": "completed current-countable structural duplicate/leakage screen with pair-cache completeness for the 7 selected rows",
+    "fingerprint_registry_edited": false,
+    "method": "metal_phosphatase_deep_packet_foldseek_runtime_blocker",
+    "observed_status": "exact_foldseek_current_countable_screen_exceeded_bounded_runtime_and_was_not_committed",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "next_resolution_options": [
+    "rerun a resumable current-countable structural screen in chunks and aggregate pair-cache completeness",
+    "or preregister a targeted high-confidence duplicate-only screen when the goal is terminal rejection rather than duplicate-clear import readiness"
+  ],
+  "rows": [
+    {
+      "accession": "Q969T7",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "blocked_exact_foldseek_screen_incomplete",
+      "exact_missing_evidence": "complete Foldseek/TM current-countable duplicate screen or implement a resumable/targeted screen gate before terminal duplicate-clear decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q969T7",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "Q08623",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "blocked_exact_foldseek_screen_incomplete",
+      "exact_missing_evidence": "complete Foldseek/TM current-countable duplicate screen or implement a resumable/targeted screen gate before terminal duplicate-clear decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q08623",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O95861",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "blocked_exact_foldseek_screen_incomplete",
+      "exact_missing_evidence": "complete Foldseek/TM current-countable duplicate screen or implement a resumable/targeted screen gate before terminal duplicate-clear decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O95861",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "O00167",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "blocked_exact_foldseek_screen_incomplete",
+      "exact_missing_evidence": "complete Foldseek/TM current-countable duplicate screen or implement a resumable/targeted screen gate before terminal duplicate-clear decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O00167",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P05187",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "blocked_exact_foldseek_screen_incomplete",
+      "exact_missing_evidence": "complete Foldseek/TM current-countable duplicate screen or implement a resumable/targeted screen gate before terminal duplicate-clear decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P05187",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P78330",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "blocked_exact_foldseek_screen_incomplete",
+      "exact_missing_evidence": "complete Foldseek/TM current-countable duplicate screen or implement a resumable/targeted screen gate before terminal duplicate-clear decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P78330",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P34913",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "blocked_exact_foldseek_screen_incomplete",
+      "exact_missing_evidence": "complete Foldseek/TM current-countable duplicate screen or implement a resumable/targeted screen gate before terminal duplicate-clear decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P34913",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    }
+  ]
+}

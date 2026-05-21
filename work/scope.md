@@ -135,6 +135,20 @@ review-only scorer-fixture evidence, and keeps 25 fresh ADP/product
 query-context policy rows as fail-closed abstentions. ePK remains no-go for
 production scoring, threshold calibration, label import, registry edit, or
 fingerprint expansion.
+Current metal-phosphatase deepening scope: the first 2026-05-21 external
+deep packet is review-only blocker evidence, not a new import path.
+`artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes
+seven rows from the already frozen metal-phosphatase mini-campaign before
+geometry/Foldseek outcome scoring. All seven coordinate sidecars are staged and
+all seven active-site residue sets are mapped; the geometry score artifact
+scores against the eight current fingerprints with 0 text/name/label fields
+used. Six rows top1 to `metal_dependent_hydrolase`, one top1s to
+`ser_his_acid_hydrolase`, but no target-lane score reaches `0.4115` and the
+exact current-countable Foldseek duplicate screen did not complete. The
+terminal packet therefore uses `needs_new_extractor_or_structure` for all seven
+rows with one exact missing-evidence statement: complete the current-countable
+structural duplicate/leakage screen, preferably as a resumable/chunked gate,
+before any mechanism-match-review-ready or duplicate-clear decision.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

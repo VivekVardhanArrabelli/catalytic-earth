@@ -229,6 +229,48 @@ Foldseek, inverse gate, terminal-review import gate, threshold tuning, registry
 edit, label import, fingerprint expansion, artifact upload/removal, or ePK
 production scoring.
 
+As of the 2026-05-21T02:14:38Z automation run, the main loop started the
+metal-phosphatase decision-deepening ladder rather than opening more broad
+external rows. `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json`
+freezes seven rows from the existing 17-row metal-phosphatase mini-campaign
+before geometry/Foldseek outcome scoring. The selected rows all have PDB cross
+references, active-site and metal-binding source annotations, no exact
+current-reference sequence duplicate, and diverse EC 3.1.3.* coverage.
+`artifacts/v3_metal_phosphatase_deep_packet_coordinate_materialization_20260521.json`
+materializes/reuses seven AlphaFold sidecars, and
+`artifacts/v3_metal_phosphatase_deep_packet_structure_mapping_20260521.json`
+maps all seven active-site residue sets. The current geometry artifact
+`artifacts/v3_metal_phosphatase_deep_packet_geometry_scores_20260521.json`
+scores all seven rows against the eight current fingerprints with 0
+text/name/label fields used; six rows top1 to `metal_dependent_hydrolase`, one
+top1s to `ser_his_acid_hydrolase`, and no target-lane score reaches the
+`0.4115` review floor. The attempted exact current-countable Foldseek screen
+is captured as a blocker in
+`artifacts/v3_metal_phosphatase_deep_packet_current_countable_structural_screen_20260521.json`
+and
+`artifacts/v3_metal_phosphatase_deep_packet_foldseek_runtime_blocker_20260521.json`:
+the 7 x 672 exact screen did not complete with pair-cache evidence, so the
+terminal packet
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_20260521.json`
+sets all seven rows to `needs_new_extractor_or_structure` with the exact
+missing evidence named as a completed current-countable structural duplicate
+screen. The benchmark
+`artifacts/v3_metal_phosphatase_deep_packet_modern_baseline_benchmark_20260521.json`
+compares the same frozen rows against EC/keyword routing, deterministic 5-mer,
+geometry, Foldseek availability, and ESM availability, and makes no superiority
+or import claim.
+
+Evidence-based confidence call: confidence is high that the metal-phosphatase
+packet is now a reproducible source-separated blocker rather than another
+`needs_review` row list, because candidate selection, coordinate materialization,
+geometry scoring, source/context separation, and the missing duplicate-screen
+gate are all committed and tested. Confidence is low that any selected row is
+ready for mechanism-match or hard-negative import: current geometry remains
+below the review floor and the current-countable structural duplicate screen is
+the exact unresolved gate. The next main-loop step should be a resumable or
+targeted current-countable structural screen for these seven rows before moving
+to serine hydrolase.
+
 The normalized terminal-decision ledger is
 `artifacts/v3_external_minicampaign_terminal_decision_index_20260521.json`.
 It carries 136 review-only decision rows across the seven scored
