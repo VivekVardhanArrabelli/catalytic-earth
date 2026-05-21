@@ -1,0 +1,199 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-20T23:43:27Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/recent_epk_exact_ligand_source_scout_20260520.json",
+    "source_review_scope": "Adjudicate fresh 23FC ATR-ATRIP/Chk1 ATPgammaS/Mg local-metal hit from recent exact-ligand/source scout.",
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "sibling_queries": [
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query_or_source": "RCSB full_text: ATR ATRIP Chk1 ATPgammaS",
+      "returned_count": 1,
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query_or_source": "RCSB full_text: human ATR-ATRIP complex ATPgammaS Chk1",
+      "returned_count": 1,
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query_or_source": "RCSB full_text: ATR Chk1 AGS magnesium",
+      "returned_count": 1,
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query_or_source": "RCSB full_text: Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+      "returned_count": 1,
+      "total_count": 1
+    }
+  ],
+  "reviewed_candidate": {
+    "candidate_status": "fresh_review_only_atr_chk1_short_segment_gamma_positive_not_clean_epk_folded",
+    "accession_info": {
+      "deposit_date": "2026-02-04T00:00:00.000+00:00",
+      "initial_release_date": "2026-05-13T00:00:00.000+00:00",
+      "revision_date": "2026-05-13T00:00:00.000+00:00",
+      "status_code": "REL"
+    },
+    "citation": {
+      "pdbx_database_id_doi": null,
+      "pdbx_database_id_pub_med": null,
+      "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+      "year": null
+    },
+    "geometry_hit": {
+      "candidate_atom_name": "OG",
+      "candidate_auth_seq_id": "317",
+      "candidate_chain_name": "E",
+      "candidate_entity_description": "Serine/threonine-protein kinase Chk1",
+      "candidate_entity_id": "3",
+      "candidate_entity_length": 14,
+      "candidate_entity_uniprot_ids": [
+        "O14757"
+      ],
+      "candidate_label_seq_id": "6",
+      "candidate_residue_code": "SER",
+      "candidate_sequence_scheme_matches": [
+        {
+          "asym_id": "E",
+          "auth_mon_id": "SER",
+          "auth_seq_num": "317",
+          "entity_id": "3",
+          "hetero": "n",
+          "mon_id": "SER",
+          "pdb_mon_id": "SER",
+          "pdb_seq_num": "317",
+          "pdb_strand_id": "E",
+          "seq_id": "6"
+        }
+      ],
+      "candidate_source_mapped": true,
+      "local_metals": [
+        {
+          "auth_seq_id": "5003",
+          "chain": "B",
+          "distance_angstrom": 3.902,
+          "metal_code": "MG"
+        }
+      ],
+      "nearest_terminal_distance_angstrom": 5.582,
+      "terminal_associated_entity_description": "Serine/threonine-protein kinase ATR",
+      "terminal_associated_entity_id": "1",
+      "terminal_associated_entity_uniprot_ids": [
+        "Q13535"
+      ],
+      "terminal_associated_polymer_chain_name": "B",
+      "terminal_atom_name": "PG",
+      "terminal_auth_seq_id": "5001",
+      "terminal_chain_name": "B",
+      "terminal_ligand_code": "AGS"
+    },
+    "external_residue_authority": {
+      "authority": "UniProtKB",
+      "feature": {
+        "description": "Phosphoserine; by ATM and ATR",
+        "evidence_pubmed_ids": [
+          "11390642",
+          "12446774",
+          "12588868",
+          "12660173",
+          "12676583",
+          "12676962",
+          "14657349",
+          "15707391",
+          "15870257"
+        ],
+        "location": {
+          "end": 317,
+          "start": 317
+        },
+        "type": "Modified residue"
+      },
+      "source_url": "https://rest.uniprot.org/uniprotkb/O14757.json",
+      "uniprot_accession": "O14757"
+    },
+    "pdb_id": "23FC",
+    "polymer_entities": {
+      "1": {
+        "auth_asym_ids": [
+          "A",
+          "B"
+        ],
+        "description": "Serine/threonine-protein kinase ATR",
+        "polymer_type": "Protein",
+        "uniprot_ids": [
+          "Q13535"
+        ]
+      },
+      "2": {
+        "auth_asym_ids": [
+          "C",
+          "D"
+        ],
+        "description": "ATR-interacting protein",
+        "polymer_type": "Protein",
+        "uniprot_ids": [
+          "Q8WXE1"
+        ]
+      },
+      "3": {
+        "auth_asym_ids": [
+          "E",
+          "F"
+        ],
+        "description": "Serine/threonine-protein kinase Chk1",
+        "polymer_type": "Protein",
+        "uniprot_ids": [
+          "O14757"
+        ]
+      }
+    },
+    "review_decision": "review_only_short_segment_positive_style_geometry_not_clean_epk_folded_substrate",
+    "source_basis": "RCSB title and entity metadata identify human ATR-ATRIP with ATPgammaS and Chk1. CIF sequence scheme maps chain E Chk1 Ser317, UniProtKB O14757 annotates Ser317 as a phosphoserine by ATM/ATR, and the modeled Ser317 OG is 5.582 Angstrom from ATR-associated AGS PG with local Mg.",
+    "source_limitations": [
+      "ATR is a PIKK/atypical kinase rather than a canonical ePK kinase-domain positive.",
+      "Chk1 is modeled as a 14-residue segment, not a non-topology-confounded folded-protein substrate.",
+      "RCSB currently exposes no DOI, PubMed ID, or publication year for this entry, so source authority is entry metadata plus sequence scheme only.",
+      "Review-only stress evidence; not valid for production scoring, label import, thresholds, registries, or fingerprints."
+    ],
+    "source_urls": [
+      "https://www.rcsb.org/structure/23FC",
+      "https://data.rcsb.org/rest/v1/core/entry/23FC",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/23FC/3",
+      "https://files.rcsb.org/download/23FC.cif",
+      "https://rest.uniprot.org/uniprotkb/O14757.json"
+    ],
+    "structure_title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1"
+  },
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "23FC is not clean canonical ePK folded-substrate positive evidence: ATR is PIKK/atypical and the Chk1 substrate is a 14-residue segment.",
+      "No same-title or ATR/Chk1 alias sibling beyond 23FC was found in the bounded RCSB full-text sibling check."
+    ],
+    "evidence_for": [
+      "Fresh review-only short-segment positive-style geometry: 23FC ATR-associated AGS/Mg places source-mapped and UniProt phosphosite-mapped Chk1 Ser317 OG 5.582 Angstrom from AGS PG."
+    ],
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "recommendation": "Record 23FC as review-only PIKK/short-segment stress evidence and keep production scoring, threshold calibration, label import, registries, fingerprints, migrations, and production claims closed.",
+    "search_surface_exhausted": true
+  }
+}
