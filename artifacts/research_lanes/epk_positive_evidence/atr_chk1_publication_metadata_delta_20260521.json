@@ -1,0 +1,1920 @@
+{
+  "crossref_checks": [
+    {
+      "items": [
+        {
+          "created": {
+            "date-parts": [
+              [
+                2026,
+                2,
+                9
+              ]
+            ],
+            "date-time": "2026-02-09T18:08:58Z",
+            "timestamp": 1770660538000
+          },
+          "doi": "10.2210/pdb23fc/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2026,
+                5,
+                13
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2017,
+                12,
+                22
+              ]
+            ],
+            "date-time": "2017-12-22T11:41:14Z",
+            "timestamp": 1513942874000
+          },
+          "doi": "10.1038/cr.2017.158",
+          "is_pdb_dataset_doi": false,
+          "looks_like_article": true,
+          "published_online": {
+            "date-parts": [
+              [
+                2017,
+                12,
+                22
+              ]
+            ]
+          },
+          "published_print": {
+            "date-parts": [
+              [
+                2018,
+                2
+              ]
+            ]
+          },
+          "publisher": "Springer Science and Business Media LLC",
+          "title": "Cryo-EM structure of human ATR-ATRIP complex",
+          "type": "journal-article"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2018,
+                1,
+                30
+              ]
+            ],
+            "date-time": "2018-01-30T19:04:08Z",
+            "timestamp": 1517339048000
+          },
+          "doi": "10.2210/pdb5yz0/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2018,
+                1,
+                31
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "Cryo-EM Structure of human ATR-ATRIP complex",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2024,
+                12,
+                24
+              ]
+            ],
+            "date-time": "2024-12-24T13:48:07Z",
+            "timestamp": 1735048087000
+          },
+          "doi": "10.2210/pdb9l4f/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2025,
+                5,
+                21
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "ATR-ATRIP bound with ATPgammaS",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2024,
+                4,
+                16
+              ]
+            ],
+            "date-time": "2024-04-16T17:34:55Z",
+            "timestamp": 1713288895000
+          },
+          "doi": "10.2210/pdb8z1w/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2025,
+                1,
+                29
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "Cryo-EM structure of Escherichia coli DppBCDF complex bound to ATPgammaS",
+          "type": "dataset"
+        }
+      ],
+      "query": {
+        "query.title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1"
+      },
+      "returned_count": 5,
+      "source_url": "https://api.crossref.org/works?query.title=Cryo-EM+structure+of+human+ATR-ATRIP+complex+with+ATPgammaS+and+Chk1&rows=5",
+      "total_results": 5191844
+    },
+    {
+      "items": [
+        {
+          "created": {
+            "date-parts": [
+              [
+                2024,
+                12,
+                24
+              ]
+            ],
+            "date-time": "2024-12-24T13:48:07Z",
+            "timestamp": 1735048087000
+          },
+          "doi": "10.2210/pdb9l4f/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2025,
+                5,
+                21
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "ATR-ATRIP bound with ATPgammaS",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2026,
+                2,
+                9
+              ]
+            ],
+            "date-time": "2026-02-09T18:08:58Z",
+            "timestamp": 1770660538000
+          },
+          "doi": "10.2210/pdb23fc/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2026,
+                5,
+                13
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2012,
+                9,
+                19
+              ]
+            ],
+            "date-time": "2012-09-19T12:15:58Z",
+            "timestamp": 1348056958000
+          },
+          "doi": "10.3410/f.1024789.292856",
+          "is_pdb_dataset_doi": false,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2005,
+                4,
+                1
+              ]
+            ]
+          },
+          "publisher": "H1 Connect",
+          "title": "Faculty Opinions recommendation of ATRIP binding to replication protein A-single-stranded DNA promotes ATR-ATRIP localization but is dispensable for Chk1 phosphorylation.",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2005,
+                3,
+                2
+              ]
+            ],
+            "date-time": "2005-03-02T20:29:15Z",
+            "timestamp": 1109795355000
+          },
+          "doi": "10.1091/mbc.e04-11-1006",
+          "is_pdb_dataset_doi": false,
+          "looks_like_article": true,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2005,
+                5
+              ]
+            ]
+          },
+          "publisher": "American Society for Cell Biology (ASCB)",
+          "title": "ATRIP Binding to Replication Protein A-Single-stranded DNA Promotes ATR\u2013ATRIP Localization but Is Dispensable for Chk1 Phosphorylation",
+          "type": "journal-article"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2005,
+                9,
+                27
+              ]
+            ],
+            "date-time": "2005-09-27T00:12:43Z",
+            "timestamp": 1127779963000
+          },
+          "doi": "10.1074/jbc.m508673200",
+          "is_pdb_dataset_doi": false,
+          "looks_like_article": true,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2005,
+                11
+              ]
+            ]
+          },
+          "publisher": "Elsevier BV",
+          "title": "Phosphorylation of Chk1 by ATM- and Rad3-related (ATR) in Xenopus Egg Extracts Requires Binding of ATRIP to ATR but Not the Stable DNA-binding or Coiled-coil Domains of ATRIP",
+          "type": "journal-article"
+        }
+      ],
+      "query": {
+        "query.bibliographic": "\"ATR-ATRIP\" \"ATPgammaS\" Chk1"
+      },
+      "returned_count": 5,
+      "source_url": "https://api.crossref.org/works?query.bibliographic=%22ATR-ATRIP%22+%22ATPgammaS%22+Chk1&rows=5",
+      "total_results": 13860
+    },
+    {
+      "items": [
+        {
+          "created": {
+            "date-parts": [
+              [
+                2024,
+                12,
+                24
+              ]
+            ],
+            "date-time": "2024-12-24T13:48:07Z",
+            "timestamp": 1735048087000
+          },
+          "doi": "10.2210/pdb9l4f/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2025,
+                5,
+                21
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "ATR-ATRIP bound with ATPgammaS",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2026,
+                2,
+                9
+              ]
+            ],
+            "date-time": "2026-02-09T18:08:58Z",
+            "timestamp": 1770660538000
+          },
+          "doi": "10.2210/pdb23fc/pdb",
+          "is_pdb_dataset_doi": true,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2026,
+                5,
+                13
+              ]
+            ]
+          },
+          "publisher": "Worldwide Protein Data Bank",
+          "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+          "type": "dataset"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2026,
+                4,
+                3
+              ]
+            ],
+            "date-time": "2026-04-03T06:22:32Z",
+            "timestamp": 1775197352000
+          },
+          "doi": "10.70675/eb51eb1ezc51dz4737zaf38z954d1a68dbea",
+          "is_pdb_dataset_doi": false,
+          "looks_like_article": false,
+          "published_online": null,
+          "published_print": null,
+          "publisher": "Agence Bibliographique de l'Enseignement Sup\u00e9rieur",
+          "title": "Mutations de la voie ATR-CHK1, r\u00e9ponse au stress r\u00e9plicatif et cancer",
+          "type": "dissertation"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2021,
+                2,
+                6
+              ]
+            ],
+            "date-time": "2021-02-06T03:43:50Z",
+            "timestamp": 1612583030000
+          },
+          "doi": "10.1016/j.jbc.2021.100382",
+          "is_pdb_dataset_doi": false,
+          "looks_like_article": true,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2021,
+                1
+              ]
+            ]
+          },
+          "publisher": "Elsevier BV",
+          "title": "Overexpression of TopBP1, a canonical ATR/Chk1 activator, paradoxically hinders ATR/Chk1 activation in cancer",
+          "type": "journal-article"
+        },
+        {
+          "created": {
+            "date-parts": [
+              [
+                2021,
+                7,
+                1
+              ]
+            ],
+            "date-time": "2021-07-01T02:05:52Z",
+            "timestamp": 1625105152000
+          },
+          "doi": "10.1016/j.jbc.2021.100924",
+          "is_pdb_dataset_doi": false,
+          "looks_like_article": true,
+          "published_online": null,
+          "published_print": {
+            "date-parts": [
+              [
+                2021,
+                7
+              ]
+            ]
+          },
+          "publisher": "Elsevier BV",
+          "title": "Correction: Overexpression of TopBP1, a canonical ATR/Chk1 activator, paradoxically hinders ATR/Chk1 activation in\u00a0cancer",
+          "type": "journal-article"
+        }
+      ],
+      "query": {
+        "query.bibliographic": "\"Chk1\" \"Ser317\" \"ATR\" \"ATPgammaS\""
+      },
+      "returned_count": 5,
+      "source_url": "https://api.crossref.org/works?query.bibliographic=%22Chk1%22+%22Ser317%22+%22ATR%22+%22ATPgammaS%22&rows=5",
+      "total_results": 13808
+    }
+  ],
+  "europepmc_checks": [
+    {
+      "hit_count": 0,
+      "query": "TITLE:\"Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1\"",
+      "results": [],
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Cryo-EM+structure+of+human+ATR-ATRIP+complex+with+ATPgammaS+and+Chk1%22&format=json&pageSize=5&resultType=core"
+    },
+    {
+      "hit_count": 0,
+      "query": "\"23FC\" ATR Chk1",
+      "results": [],
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%2223FC%22+ATR+Chk1&format=json&pageSize=5&resultType=core"
+    },
+    {
+      "hit_count": 0,
+      "query": "\"ATR-ATRIP\" \"ATPgammaS\" Chk1",
+      "results": [],
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+Chk1&format=json&pageSize=5&resultType=core"
+    },
+    {
+      "hit_count": 0,
+      "query": "\"ATR-ATRIP\" \"ATPgammaS\" \"Chk1\"",
+      "results": [],
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+%22Chk1%22&format=json&pageSize=5&resultType=core"
+    },
+    {
+      "hit_count": 0,
+      "query": "\"Chk1\" \"Ser317\" \"ATR\" \"ATPgammaS\"",
+      "results": [],
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Chk1%22+%22Ser317%22+%22ATR%22+%22ATPgammaS%22&format=json&pageSize=5&resultType=core"
+    },
+    {
+      "hit_count": 1,
+      "query": "\"Wang\" \"Qiao\" \"ATR-ATRIP\" \"Chk1\"",
+      "results": [
+        {
+          "doi": null,
+          "journal": null,
+          "pmcid": "PMC7130267",
+          "pmid": null,
+          "pub_year": "2004",
+          "title": "Master Author Index"
+        }
+      ],
+      "returned_count": 1,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Wang%22+%22Qiao%22+%22ATR-ATRIP%22+%22Chk1%22&format=json&pageSize=5&resultType=core"
+    }
+  ],
+  "metadata": {
+    "bounded_followup_scope": "Publication/source authority triangulation for the 23FC ATR-ATRIP/Chk1 review-only singleton across RCSB, PDBe, Europe PMC, Crossref, and RCSB full-text aliases.",
+    "default_next_query_deferred_reason": "The handoff's next RCSB weekly-release query had already been run for 2026-05-21 minutes before this cycle; no later weekly release exists yet.",
+    "generated_at": "2026-05-21T13:26:02Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "atr_chk1_publication_metadata_followup",
+    "pdb_id": "23FC",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "rows_reviewed": 43,
+    "source_urls": [
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://www.ebi.ac.uk/pdbe/api/pdb/entry/summary/{pdb_id}",
+      "https://www.ebi.ac.uk/pdbe/api/pdb/entry/publications/{pdb_id}",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "https://api.crossref.org/works"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "pdbe_publications": {
+    "payload": [
+      {
+        "abstract": {
+          "background": null,
+          "conclusions": null,
+          "methods": null,
+          "objective": null,
+          "results": null,
+          "unassigned": null
+        },
+        "associated_entries": null,
+        "author_list": [
+          {
+            "full_name": "Wang, L.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Wang, M.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Zhao, L.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Rao, Q.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Wu, H.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Ma, B.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Wang, J.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Zheng, J.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Li, Y.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Xu, Y.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Guo, J.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Cheng, J.",
+            "initials": null,
+            "last_name": null
+          },
+          {
+            "full_name": "Qiao, S.",
+            "initials": null,
+            "last_name": null
+          }
+        ],
+        "doi": null,
+        "journal_info": {
+          "ISO_abbreviation": null,
+          "issue": null,
+          "pages": "-",
+          "pdb_abbreviation": "To be published",
+          "volume": null,
+          "year": null
+        },
+        "pubmed_id": null,
+        "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+        "type": "U"
+      }
+    ],
+    "source_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/publications/23fc"
+  },
+  "pdbe_summary": {
+    "payload": [
+      {
+        "assemblies": [
+          {
+            "assembly_id": "1",
+            "form": "hetero",
+            "name": "hexamer",
+            "preferred": true
+          }
+        ],
+        "deposition_date": "20260204",
+        "deposition_site": "PDBJ",
+        "entry_authors": [
+          "Wang, L.",
+          "Wang, M.",
+          "Zhao, L.",
+          "Rao, Q.",
+          "Wu, H.",
+          "Ma, B.",
+          "Wang, J.",
+          "Zheng, J.",
+          "Li, Y.",
+          "Xu, Y.",
+          "Guo, J.",
+          "Cheng, J.",
+          "Qiao, S."
+        ],
+        "experimental_method": [
+          "Electron Microscopy"
+        ],
+        "experimental_method_class": [
+          "em"
+        ],
+        "number_of_entities": {
+          "carbohydrate_polymer": 0,
+          "cyclic_pseudo_peptide": 0,
+          "dna": 0,
+          "dna/rna": 0,
+          "ligand": 3,
+          "other": 0,
+          "peptide_nucleic_acid": 0,
+          "polypeptide": 3,
+          "rna": 0,
+          "sugar": 0,
+          "water": 0
+        },
+        "processing_site": "PDBC",
+        "related_structures": [
+          {
+            "accession": "EMD-68919",
+            "relationship": "associated EM volume",
+            "resource": "EMDB"
+          }
+        ],
+        "release_date": "20260513",
+        "revision_date": "20260513",
+        "split_entry": [],
+        "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1"
+      }
+    ],
+    "source_url": "https://www.ebi.ac.uk/pdbe/api/pdb/entry/summary/23fc"
+  },
+  "rcsb_entry": {
+    "authors": [
+      "Wang, L.",
+      "Wang, M.",
+      "Zhao, L.",
+      "Rao, Q.",
+      "Wu, H.",
+      "Ma, B.",
+      "Wang, J.",
+      "Zheng, J.",
+      "Li, Y.",
+      "Xu, Y.",
+      "Guo, J.",
+      "Cheng, J.",
+      "Qiao, S."
+    ],
+    "deposit_date": "2026-02-04T00:00:00.000+00:00",
+    "initial_release_date": "2026-05-13T00:00:00.000+00:00",
+    "journal_abbrev": "To Be Published",
+    "pdb_dataset_doi": "10.2210/pdb23fc/pdb",
+    "pdbx_database_id_doi": null,
+    "pdbx_database_id_pub_med": null,
+    "revision_date": "2026-05-13T00:00:00.000+00:00",
+    "source_url": "https://data.rcsb.org/rest/v1/core/entry/23FC",
+    "status_code": "REL",
+    "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+    "year": null
+  },
+  "rcsb_full_text_sibling_checks": [
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+      "returned_count": 1,
+      "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query": "ATR ATRIP Chk1 ATPgammaS",
+      "returned_count": 1,
+      "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query": "human ATR-ATRIP complex ATPgammaS Chk1",
+      "returned_count": 1,
+      "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query": "Chk1 Ser317 ATR ATPgammaS",
+      "returned_count": 0,
+      "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "23FC"
+      ],
+      "query": "Wang Qiao ATR-ATRIP Chk1 ATPgammaS",
+      "returned_count": 1,
+      "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+      "total_count": 1
+    }
+  ],
+  "related_crossref_pdb_dataset_followups": [
+    {
+      "citation": {
+        "doi": "10.1038/cr.2017.158",
+        "journal": "Cell Res.",
+        "pubmed_id": 29271416,
+        "title": "Cryo-EM structure of human ATR-ATRIP complex.",
+        "year": 2018
+      },
+      "has_chk1_or_substrate_named_entity": false,
+      "nonpolymer_entities": [],
+      "pdb_id": "5YZ0",
+      "polymer_entities": [
+        {
+          "description": "Serine/threonine-protein kinase ATR",
+          "entity_id": "5YZ0_1",
+          "length": 2644,
+          "organism": "Homo sapiens",
+          "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/5YZ0/1",
+          "type": "polypeptide(L)"
+        },
+        {
+          "description": "ATR-interacting protein",
+          "entity_id": "5YZ0_2",
+          "length": 791,
+          "organism": "Homo sapiens",
+          "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/5YZ0/2",
+          "type": "polypeptide(L)"
+        }
+      ],
+      "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/5YZ0",
+      "title": "Cryo-EM Structure of human ATR-ATRIP complex"
+    },
+    {
+      "citation": {
+        "doi": "10.1016/j.scib.2025.05.009",
+        "journal": "Sci Bull (Beijing)",
+        "pubmed_id": 40379520,
+        "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+        "year": 2025
+      },
+      "has_chk1_or_substrate_named_entity": false,
+      "nonpolymer_entities": [
+        {
+          "comp_id": "AGS",
+          "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+          "entity_id": "9L4F_3",
+          "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L4F/3"
+        }
+      ],
+      "pdb_id": "9L4F",
+      "polymer_entities": [
+        {
+          "description": "Serine/threonine-protein kinase ATR",
+          "entity_id": "9L4F_1",
+          "length": 2644,
+          "organism": "Homo sapiens",
+          "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4F/1",
+          "type": "polypeptide(L)"
+        },
+        {
+          "description": "ATR-interacting protein",
+          "entity_id": "9L4F_2",
+          "length": 791,
+          "organism": "Homo sapiens",
+          "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4F/2",
+          "type": "polypeptide(L)"
+        }
+      ],
+      "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L4F",
+      "title": "ATR-ATRIP bound with ATPgammaS"
+    }
+  ],
+  "source_article_family_followup": {
+    "article_queries": [
+      {
+        "pdb_ids": [
+          "5YZ0"
+        ],
+        "query": "10.1038/cr.2017.158",
+        "returned_count": 1,
+        "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+        "total_count": 1
+      },
+      {
+        "pdb_ids": [
+          "5YZ0",
+          "23FC"
+        ],
+        "query": "Cryo-EM structure of human ATR-ATRIP complex.",
+        "returned_count": 2,
+        "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+        "total_count": 2
+      },
+      {
+        "pdb_ids": [
+          "9L40",
+          "9L4B",
+          "9L43",
+          "9L45",
+          "9L46",
+          "9L4C",
+          "9L4D",
+          "9L4F"
+        ],
+        "query": "10.1016/j.scib.2025.05.009",
+        "returned_count": 8,
+        "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+        "total_count": 8
+      },
+      {
+        "pdb_ids": [
+          "9L4D",
+          "9L45",
+          "9L46",
+          "9L4F",
+          "9L43",
+          "9L4C",
+          "9L40",
+          "9L4B"
+        ],
+        "query": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+        "returned_count": 8,
+        "source_url": "https://search.rcsb.org/rcsbsearch/v2/query",
+        "total_count": 8
+      }
+    ],
+    "family_pdb_ids": [
+      "5YZ0",
+      "9L40",
+      "9L43",
+      "9L45",
+      "9L46",
+      "9L4B",
+      "9L4C",
+      "9L4D",
+      "9L4F"
+    ],
+    "family_rows": [
+      {
+        "citation": {
+          "doi": "10.1038/cr.2017.158",
+          "journal": "Cell Res.",
+          "pubmed_id": 29271416,
+          "title": "Cryo-EM structure of human ATR-ATRIP complex.",
+          "year": 2018
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [],
+        "pdb_id": "5YZ0",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "5YZ0_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/5YZ0/1",
+            "type": "polypeptide(L)"
+          },
+          {
+            "description": "ATR-interacting protein",
+            "entity_id": "5YZ0_2",
+            "length": 791,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/5YZ0/2",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/5YZ0",
+        "title": "Cryo-EM Structure of human ATR-ATRIP complex"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "A1EIE",
+            "description": "VE-822",
+            "entity_id": "9L40_2",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L40/2"
+          }
+        ],
+        "pdb_id": "9L40",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L40_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L40/1",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L40",
+        "title": "kinase of ATR bound VE-822 state"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "ZN",
+            "description": "ZINC ION",
+            "entity_id": "9L43_3",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L43/3"
+          }
+        ],
+        "pdb_id": "9L43",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L43_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L43/1",
+            "type": "polypeptide(L)"
+          },
+          {
+            "description": "ATR-interacting protein",
+            "entity_id": "9L43_2",
+            "length": 791,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L43/2",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L43",
+        "title": "ATR Spiral -ATRIP bound with VE-822"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "A1EIE",
+            "description": "VE-822",
+            "entity_id": "9L45_3",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L45/3"
+          },
+          {
+            "comp_id": "ZN",
+            "description": "ZINC ION",
+            "entity_id": "9L45_4",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L45/4"
+          }
+        ],
+        "pdb_id": "9L45",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L45_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L45/1",
+            "type": "polypeptide(L)"
+          },
+          {
+            "description": "ATR-interacting protein",
+            "entity_id": "9L45_2",
+            "length": 791,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L45/2",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L45",
+        "title": "ATR-ATRIP bound with VE-822"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "AGS",
+            "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+            "entity_id": "9L46_3",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L46/3"
+          }
+        ],
+        "pdb_id": "9L46",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L46_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L46/1",
+            "type": "polypeptide(L)"
+          },
+          {
+            "description": "ATR-interacting protein",
+            "entity_id": "9L46_2",
+            "length": 791,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L46/2",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L46",
+        "title": "ATR-ATRIP-bound with AMP-PNP"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "A1EIK",
+            "description": "Camonsertib",
+            "entity_id": "9L4B_2",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L4B/2"
+          }
+        ],
+        "pdb_id": "9L4B",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L4B_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4B/1",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L4B",
+        "title": "Kinase domain of ATR bound with RP-3500"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "ZN",
+            "description": "ZINC ION",
+            "entity_id": "9L4C_3",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L4C/3"
+          }
+        ],
+        "pdb_id": "9L4C",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L4C_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4C/1",
+            "type": "polypeptide(L)"
+          },
+          {
+            "description": "ATR-interacting protein",
+            "entity_id": "9L4C_2",
+            "length": 791,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4C/2",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L4C",
+        "title": "ATR Spiral -ATRIP bound with RP-3500"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "A1EIK",
+            "description": "Camonsertib",
+            "entity_id": "9L4D_3",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L4D/3"
+          },
+          {
+            "comp_id": "ZN",
+            "description": "ZINC ION",
+            "entity_id": "9L4D_4",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L4D/4"
+          }
+        ],
+        "pdb_id": "9L4D",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L4D_1",
+            "length": 2637,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4D/1",
+            "type": "polypeptide(L)"
+          },
+          {
+            "description": "ATR-interacting protein",
+            "entity_id": "9L4D_2",
+            "length": 491,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4D/2",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L4D",
+        "title": "ATR-ATRIP bound with RP-3500"
+      },
+      {
+        "citation": {
+          "doi": "10.1016/j.scib.2025.05.009",
+          "journal": "Sci Bull (Beijing)",
+          "pubmed_id": 40379520,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "has_chk1_or_substrate_named_entity": false,
+        "nonpolymer_entities": [
+          {
+            "comp_id": "AGS",
+            "description": "PHOSPHOTHIOPHOSPHORIC ACID-ADENYLATE ESTER",
+            "entity_id": "9L4F_3",
+            "source_url": "https://data.rcsb.org/rest/v1/core/nonpolymer_entity/9L4F/3"
+          }
+        ],
+        "pdb_id": "9L4F",
+        "polymer_entities": [
+          {
+            "description": "Serine/threonine-protein kinase ATR",
+            "entity_id": "9L4F_1",
+            "length": 2644,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4F/1",
+            "type": "polypeptide(L)"
+          },
+          {
+            "description": "ATR-interacting protein",
+            "entity_id": "9L4F_2",
+            "length": 791,
+            "organism": "Homo sapiens",
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/9L4F/2",
+            "type": "polypeptide(L)"
+          }
+        ],
+        "review_decision": "related_dataset_donor_state_without_named_substrate_entity_review_only_negative",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/9L4F",
+        "title": "ATR-ATRIP bound with ATPgammaS"
+      }
+    ],
+    "geometry_candidate_status_counts": {
+      "donor_or_analog_without_heteromeric_acceptor_review_only": 2,
+      "no_active_donor_or_transition_analog_review_only": 7
+    },
+    "geometry_fetch_failures": [],
+    "geometry_local_metal_nonpeptide_candidate_pdb_ids": [],
+    "geometry_local_metal_peptide_or_short_candidate_pdb_ids": [],
+    "geometry_rows": [
+      {
+        "acceptor_atom_count": 304,
+        "atom_count_model_1": 33371,
+        "candidate_status": "no_active_donor_or_transition_analog_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Cryo-EM structure of human ATR-ATRIP complex.",
+          "year": 2018
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "5YZ0",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          },
+          "2": {
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "ATR-interacting protein",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q8WXE1"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644,
+          "2": 791
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 0,
+        "terminal_donor_records": [],
+        "title": "Cryo-EM Structure of human ATR-ATRIP complex",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 333,
+        "atom_count_model_1": 35331,
+        "candidate_status": "no_active_donor_or_transition_analog_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L40",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 0,
+        "terminal_donor_records": [],
+        "title": "kinase of ATR bound VE-822 state",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 268,
+        "atom_count_model_1": 33261,
+        "candidate_status": "no_active_donor_or_transition_analog_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L43",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          },
+          "2": {
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "ATR-interacting protein",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q8WXE1"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644,
+          "2": 791
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 0,
+        "terminal_donor_records": [],
+        "title": "ATR Spiral -ATRIP bound with VE-822",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 343,
+        "atom_count_model_1": 54714,
+        "candidate_status": "no_active_donor_or_transition_analog_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L45",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          },
+          "2": {
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "ATR-interacting protein",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q8WXE1"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644,
+          "2": 791
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 0,
+        "terminal_donor_records": [],
+        "title": "ATR-ATRIP bound with VE-822",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 0,
+        "atom_count_model_1": 25683,
+        "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L46",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          },
+          "2": {
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "ATR-interacting protein",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q8WXE1"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644,
+          "2": 791
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 2,
+        "terminal_donor_records": [
+          {
+            "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_distance_angstrom": 2.616,
+            "associated_polymer_entity_id": "1",
+            "donor_role": "strict_pg_gamma",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "2701",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_distance_angstrom": 2.511,
+            "associated_polymer_entity_id": "1",
+            "donor_role": "strict_pg_gamma",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "2701",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "title": "ATR-ATRIP-bound with AMP-PNP",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 402,
+        "atom_count_model_1": 40347,
+        "candidate_status": "no_active_donor_or_transition_analog_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L4B",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 0,
+        "terminal_donor_records": [],
+        "title": "Kinase domain of ATR bound with RP-3500",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 82,
+        "atom_count_model_1": 21507,
+        "candidate_status": "no_active_donor_or_transition_analog_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L4C",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          },
+          "2": {
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "ATR-interacting protein",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q8WXE1"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644,
+          "2": 791
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 0,
+        "terminal_donor_records": [],
+        "title": "ATR Spiral -ATRIP bound with RP-3500",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 575,
+        "atom_count_model_1": 67221,
+        "candidate_status": "no_active_donor_or_transition_analog_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L4D",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          },
+          "2": {
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "ATR-interacting protein",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q8WXE1"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2637,
+          "2": 491
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 0,
+        "terminal_donor_records": [],
+        "title": "ATR-ATRIP bound with RP-3500",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      },
+      {
+        "acceptor_atom_count": 0,
+        "atom_count_model_1": 26137,
+        "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+        "citation": {
+          "pdbx_database_id_doi": null,
+          "pdbx_database_id_pub_med": null,
+          "title": "Molecular architecture and inhibition mechanism of human ATR-ATRIP.",
+          "year": 2025
+        },
+        "countable_label_candidate": false,
+        "epk_score_computed": false,
+        "experimental_method": [
+          "ELECTRON MICROSCOPY"
+        ],
+        "heteromeric_candidate_hits": [],
+        "labels_or_fingerprints_changed": false,
+        "pdb_id": "9L4F",
+        "polymer_entities": {
+          "1": {
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Serine/threonine-protein kinase ATR",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q13535"
+            ]
+          },
+          "2": {
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "ATR-interacting protein",
+            "polymer_type": "Protein",
+            "uniprot_ids": [
+              "Q8WXE1"
+            ]
+          }
+        },
+        "polymer_entity_lengths": {
+          "1": 2644,
+          "2": 791
+        },
+        "production_claim_allowed": false,
+        "ready_for_label_import": false,
+        "ready_for_production_scoring": false,
+        "review_only": true,
+        "search_hits": [
+          {
+            "query_or_source": "RCSB full-text DOI/title family geometry scan from 23FC publication-metadata follow-up"
+          }
+        ],
+        "target_family_id": "epk",
+        "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+        "terminal_donor_atom_count": 2,
+        "terminal_donor_records": [
+          {
+            "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_distance_angstrom": 2.124,
+            "associated_polymer_entity_id": "1",
+            "donor_role": "strict_pg_gamma",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "2701",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_distance_angstrom": 2.878,
+            "associated_polymer_entity_id": "1",
+            "donor_role": "strict_pg_gamma",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "2701",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "title": "ATR-ATRIP bound with ATPgammaS",
+        "transition_analog_candidate_hits": [],
+        "transition_analog_group_count": 0,
+        "transition_analog_records": []
+      }
+    ],
+    "named_substrate_entity_pdb_ids": [],
+    "no_named_substrate_entity_pdb_ids": [
+      "5YZ0",
+      "9L40",
+      "9L43",
+      "9L45",
+      "9L46",
+      "9L4B",
+      "9L4C",
+      "9L4D",
+      "9L4F"
+    ],
+    "review_decision": "article_family_no_named_substrate_entity_review_only_negative",
+    "source_scope": "RCSB full-text DOI/title family follow-up for related ATR-ATRIP publication rows."
+  },
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "RCSB core entry still reports the primary citation as To Be Published with no article DOI, PubMed ID, or year.",
+      "PDBe publications endpoint still reports type U / To be published with no DOI, PubMed ID, or year.",
+      "Europe PMC exact and alias queries returned no publication-metadata hit for the 23FC title or ATR-ATRIP/Chk1 ATPgammaS aliases.",
+      "Crossref only yielded the wwPDB dataset DOI for the exact 23FC title; no article/preprint DOI matching ATR/Chk1 was found in the bounded top rows.",
+      "RCSB full-text sibling aliases still return only 23FC.",
+      "Crossref related PDB-dataset follow-up found donor-state sibling(s) without a named Chk1/substrate entity: 5YZ0, 9L4F.",
+      "Single-article DOI/title family follow-up reviewed related ATR-ATRIP rows with no named substrate entity: 5YZ0, 9L40, 9L43, 9L45, 9L46, 9L4B, 9L4C, 9L4D, 9L4F.",
+      "Transient geometry scan of the same article family found zero local-metal non-peptide substrate candidates; status counts: {\"donor_or_analog_without_heteromeric_acceptor_review_only\": 2, \"no_active_donor_or_transition_analog_review_only\": 7}."
+    ],
+    "evidence_for": [
+      "PDBe independently confirms the same 23FC title, release date, deposition authors, hetero hexamer assembly, and associated EMDB map.",
+      "Crossref confirms the PDB dataset DOI 10.2210/pdb23fc/pdb for the deposited structure, but that is not article source authority.",
+      "Crossref also exposed related ATR-ATRIP ATPgammaS dataset(s) with article metadata, useful as source-published donor-only negatives: 5YZ0, 9L4F.",
+      "The related ATR-ATRIP source article maps to a compact PDB family for review-only negative context: 5YZ0, 9L40, 9L43, 9L45, 9L46, 9L4B, 9L4C, 9L4D, 9L4F."
+    ],
+    "non_23fc_sibling_pdb_ids": [],
+    "primary_outcome": "evidence_against",
+    "publication_authority_present": false,
+    "recommendation": "Keep 23FC review-only as PIKK/short-segment stress evidence. Do not treat the PDB dataset DOI as publication/source authority for clean ePK positive evidence; wait for article metadata or new non-peptide canonical ePK exact-ligand rows.",
+    "search_surface_exhausted": true,
+    "sibling_pdb_ids": [
+      "23FC"
+    ]
+  }
+}

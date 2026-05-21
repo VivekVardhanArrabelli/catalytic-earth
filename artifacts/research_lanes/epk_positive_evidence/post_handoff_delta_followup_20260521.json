@@ -1,0 +1,1323 @@
+{
+  "article_records": [
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1186/s12864-026-12929-y",
+      "is_pdb_dataset_doi": false,
+      "journal": "BMC Genomics",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Springer Science and Business Media LLC",
+      "rank": 1,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Nanopore full-length sequencing reveals Nudt21 knockdown drives genome-wide 3\u2032UTR shortening and transcriptome reprogramming in mouse hepatocytes"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1080/21655979.2026.2667606",
+      "is_pdb_dataset_doi": false,
+      "journal": "Bioengineered",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Informa UK Limited",
+      "rank": 2,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Statement of Retraction: WD repeat domain 62 (WDR62) promotes resistance of colorectal cancer to oxaliplatin through modulating mitogen-activated protein kinase (MAPK) signaling"
+    },
+    {
+      "crossref_type": "posted-content",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.26434/chemrxiv.15003676/v1",
+      "is_pdb_dataset_doi": false,
+      "journal": null,
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "American Chemical Society (ACS)",
+      "rank": 3,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Quantum Chemical Microsolvation via Free Energy\u2013Based Solvation Site Identification"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1097/ajn.0000000000000319a",
+      "is_pdb_dataset_doi": false,
+      "journal": "AJN, American Journal of Nursing",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+      "rank": 4,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Discharge bundles reduce length of stay"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1103/t85q-16jp",
+      "is_pdb_dataset_doi": false,
+      "journal": "Physical Review Applied",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "American Physical Society (APS)",
+      "rank": 5,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Millisecond vectorial wavefront shaping through scattering media via full transmission-matrix measurement"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.3390/ani16101558",
+      "is_pdb_dataset_doi": false,
+      "journal": "Animals",
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "MDPI AG",
+      "rank": 2,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "N-Carbamylglutamate Improves Production Performance and Muscle Growth by Regulating Protein Digestive Function and Muscle Protein Synthesis in Broiler Chickens"
+    },
+    {
+      "crossref_type": "report",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.55277/researchhub.peol77zu",
+      "is_pdb_dataset_doi": false,
+      "journal": null,
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "ResearchHub Technologies, Inc.",
+      "rank": 3,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Development of a novel live-imaging tool for global protein translation"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.3389/fbinf.2026.1746135",
+      "is_pdb_dataset_doi": false,
+      "journal": "Frontiers in Bioinformatics",
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Frontiers Media SA",
+      "rank": 4,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Nature\u2019s economy as blueprint: regional overlap & block-based algorithm for protein design"
+    },
+    {
+      "crossref_type": "posted-content",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.26434/chemrxiv.15003310/v2",
+      "is_pdb_dataset_doi": false,
+      "journal": null,
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "American Chemical Society (ACS)",
+      "rank": 5,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Barrel Shape and Chromophore Rigidity Predict Fluorescent-Protein Photophysics"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1007/s40747-026-02328-x",
+      "is_pdb_dataset_doi": false,
+      "journal": "Complex &amp; Intelligent Systems",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Springer Science and Business Media LLC",
+      "rank": 1,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Snapshot ensemble learning with attention-enhanced CNNs for ground-level land cover classification"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1007/s11135-026-02862-3",
+      "is_pdb_dataset_doi": false,
+      "journal": "Quality &amp; Quantity",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Springer Science and Business Media LLC",
+      "rank": 2,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "When the design effect is unknown: sensitivity of logistic regression and survival models to DEFF misspecification in complex surveys"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1038/s41598-026-52512-9",
+      "is_pdb_dataset_doi": false,
+      "journal": "Scientific Reports",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Springer Science and Business Media LLC",
+      "rank": 3,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Investigation of the effects of a Kiperin Bromelain & Papain complex in normal colon, mammary, and skin cells"
+    },
+    {
+      "crossref_type": "posted-content",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.26434/chemrxiv.15003686/v1",
+      "is_pdb_dataset_doi": false,
+      "journal": null,
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "American Chemical Society (ACS)",
+      "rank": 4,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Computational Prediction of Substrate Scope of a Homogeneous Catalyst: The Case of Metal-free C-H Borylation by a Frustrated Lewis Pair Catalyst"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1007/s11082-026-08888-z",
+      "is_pdb_dataset_doi": false,
+      "journal": "Optical and Quantum Electronics",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Springer Science and Business Media LLC",
+      "rank": 5,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Chemical-free method to produce Au\u2013Ag bimetallic nanostructures on a glass substrate by nanosecond Nd: YAG laser pulses"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1364/oe.588499",
+      "is_pdb_dataset_doi": false,
+      "journal": "Optics Express",
+      "literature_surface_id": "crossref_same_day_folded_substrate_structure_phosphosite",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Optica Publishing Group",
+      "rank": 2,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Reflective-Path-Enabled Folded AWG on Thin-Film Lithium Niobate with 20 GHz Fine Channel Spacing"
+    },
+    {
+      "crossref_type": "journal-article",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.53941/mi.2026.100008",
+      "is_pdb_dataset_doi": false,
+      "journal": "Materials and Interfaces",
+      "literature_surface_id": "crossref_same_day_folded_substrate_structure_phosphosite",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Scilight Press Pty Ltd",
+      "rank": 3,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "Correction: Wang et al. Effect of Protein Loading Density on the Structure and Biopreservation Efficacy of Metal-Organic Frameworks. Mater. Interfaces 2024, 1, 47\u201357"
+    },
+    {
+      "crossref_type": "book-chapter",
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.4324/9781315524498-5",
+      "is_pdb_dataset_doi": false,
+      "journal": "Law and Resistance",
+      "literature_surface_id": "crossref_same_day_folded_substrate_structure_phosphosite",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": null,
+      "publisher": "Routledge",
+      "rank": 5,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "title": "The Courtroom as a Site of Performative Resistance"
+    }
+  ],
+  "candidate_evidence_rows": [],
+  "crossref_surfaces": [
+    {
+      "articles": [
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1186/s12864-026-12929-y",
+          "is_pdb_dataset_doi": false,
+          "journal": "BMC Genomics",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Springer Science and Business Media LLC",
+          "rank": 1,
+          "title": "Nanopore full-length sequencing reveals Nudt21 knockdown drives genome-wide 3\u2032UTR shortening and transcriptome reprogramming in mouse hepatocytes"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1080/21655979.2026.2667606",
+          "is_pdb_dataset_doi": false,
+          "journal": "Bioengineered",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Informa UK Limited",
+          "rank": 2,
+          "title": "Statement of Retraction: WD repeat domain 62 (WDR62) promotes resistance of colorectal cancer to oxaliplatin through modulating mitogen-activated protein kinase (MAPK) signaling"
+        },
+        {
+          "crossref_type": "posted-content",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.26434/chemrxiv.15003676/v1",
+          "is_pdb_dataset_doi": false,
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "American Chemical Society (ACS)",
+          "rank": 3,
+          "title": "Quantum Chemical Microsolvation via Free Energy\u2013Based Solvation Site Identification"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1097/ajn.0000000000000319a",
+          "is_pdb_dataset_doi": false,
+          "journal": "AJN, American Journal of Nursing",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+          "rank": 4,
+          "title": "Discharge bundles reduce length of stay"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1103/t85q-16jp",
+          "is_pdb_dataset_doi": false,
+          "journal": "Physical Review Applied",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "American Physical Society (APS)",
+          "rank": 5,
+          "title": "Millisecond vectorial wavefront shaping through scattering media via full transmission-matrix measurement"
+        }
+      ],
+      "hit_count": 80,
+      "query_or_source": "Crossref: \"protein kinase\" \"full-length substrate\" \"phosphorylation site\" PDB pub-date 2026-05-21..2026-05-21",
+      "returned_count": 5,
+      "source_url": "https://api.crossref.org/works?query.bibliographic=%22protein+kinase%22+%22full-length+substrate%22+%22phosphorylation+site%22+PDB&filter=from-pub-date%3A2026-05-21%2Cuntil-pub-date%3A2026-05-21&rows=5",
+      "surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb"
+    },
+    {
+      "articles": [
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1080/21655979.2026.2667606",
+          "is_pdb_dataset_doi": false,
+          "journal": "Bioengineered",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Informa UK Limited",
+          "rank": 1,
+          "title": "Statement of Retraction: WD repeat domain 62 (WDR62) promotes resistance of colorectal cancer to oxaliplatin through modulating mitogen-activated protein kinase (MAPK) signaling"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.3390/ani16101558",
+          "is_pdb_dataset_doi": false,
+          "journal": "Animals",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "MDPI AG",
+          "rank": 2,
+          "title": "N-Carbamylglutamate Improves Production Performance and Muscle Growth by Regulating Protein Digestive Function and Muscle Protein Synthesis in Broiler Chickens"
+        },
+        {
+          "crossref_type": "report",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.55277/researchhub.peol77zu",
+          "is_pdb_dataset_doi": false,
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "ResearchHub Technologies, Inc.",
+          "rank": 3,
+          "title": "Development of a novel live-imaging tool for global protein translation"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.3389/fbinf.2026.1746135",
+          "is_pdb_dataset_doi": false,
+          "journal": "Frontiers in Bioinformatics",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Frontiers Media SA",
+          "rank": 4,
+          "title": "Nature\u2019s economy as blueprint: regional overlap & block-based algorithm for protein design"
+        },
+        {
+          "crossref_type": "posted-content",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.26434/chemrxiv.15003310/v2",
+          "is_pdb_dataset_doi": false,
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "American Chemical Society (ACS)",
+          "rank": 5,
+          "title": "Barrel Shape and Chromophore Rigidity Predict Fluorescent-Protein Photophysics"
+        }
+      ],
+      "hit_count": 309,
+      "query_or_source": "Crossref: \"protein kinase\" \"protein substrate\" phosphoacceptor \"AMP-PNP\" PDB pub-date 2026-05-21..2026-05-21",
+      "returned_count": 5,
+      "source_url": "https://api.crossref.org/works?query.bibliographic=%22protein+kinase%22+%22protein+substrate%22+phosphoacceptor+%22AMP-PNP%22+PDB&filter=from-pub-date%3A2026-05-21%2Cuntil-pub-date%3A2026-05-21&rows=5",
+      "surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb"
+    },
+    {
+      "articles": [
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1007/s40747-026-02328-x",
+          "is_pdb_dataset_doi": false,
+          "journal": "Complex &amp; Intelligent Systems",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Springer Science and Business Media LLC",
+          "rank": 1,
+          "title": "Snapshot ensemble learning with attention-enhanced CNNs for ground-level land cover classification"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1007/s11135-026-02862-3",
+          "is_pdb_dataset_doi": false,
+          "journal": "Quality &amp; Quantity",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Springer Science and Business Media LLC",
+          "rank": 2,
+          "title": "When the design effect is unknown: sensitivity of logistic regression and survival models to DEFF misspecification in complex surveys"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41598-026-52512-9",
+          "is_pdb_dataset_doi": false,
+          "journal": "Scientific Reports",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Springer Science and Business Media LLC",
+          "rank": 3,
+          "title": "Investigation of the effects of a Kiperin Bromelain & Papain complex in normal colon, mammary, and skin cells"
+        },
+        {
+          "crossref_type": "posted-content",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.26434/chemrxiv.15003686/v1",
+          "is_pdb_dataset_doi": false,
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "American Chemical Society (ACS)",
+          "rank": 4,
+          "title": "Computational Prediction of Substrate Scope of a Homogeneous Catalyst: The Case of Metal-free C-H Borylation by a Frustrated Lewis Pair Catalyst"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1007/s11082-026-08888-z",
+          "is_pdb_dataset_doi": false,
+          "journal": "Optical and Quantum Electronics",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Springer Science and Business Media LLC",
+          "rank": 5,
+          "title": "Chemical-free method to produce Au\u2013Ag bimetallic nanostructures on a glass substrate by nanosecond Nd: YAG laser pulses"
+        }
+      ],
+      "hit_count": 328,
+      "query_or_source": "Crossref: \"kinase-substrate complex\" \"AMP-PNP\" PDB pub-date 2026-05-21..2026-05-21",
+      "returned_count": 5,
+      "source_url": "https://api.crossref.org/works?query.bibliographic=%22kinase-substrate+complex%22+%22AMP-PNP%22+PDB&filter=from-pub-date%3A2026-05-21%2Cuntil-pub-date%3A2026-05-21&rows=5",
+      "surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb"
+    },
+    {
+      "articles": [
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1080/21655979.2026.2667606",
+          "is_pdb_dataset_doi": false,
+          "journal": "Bioengineered",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Informa UK Limited",
+          "rank": 1,
+          "title": "Statement of Retraction: WD repeat domain 62 (WDR62) promotes resistance of colorectal cancer to oxaliplatin through modulating mitogen-activated protein kinase (MAPK) signaling"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1364/oe.588499",
+          "is_pdb_dataset_doi": false,
+          "journal": "Optics Express",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Optica Publishing Group",
+          "rank": 2,
+          "title": "Reflective-Path-Enabled Folded AWG on Thin-Film Lithium Niobate with 20 GHz Fine Channel Spacing"
+        },
+        {
+          "crossref_type": "journal-article",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.53941/mi.2026.100008",
+          "is_pdb_dataset_doi": false,
+          "journal": "Materials and Interfaces",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Scilight Press Pty Ltd",
+          "rank": 3,
+          "title": "Correction: Wang et al. Effect of Protein Loading Density on the Structure and Biopreservation Efficacy of Metal-Organic Frameworks. Mater. Interfaces 2024, 1, 47\u201357"
+        },
+        {
+          "crossref_type": "posted-content",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.26434/chemrxiv.15003676/v1",
+          "is_pdb_dataset_doi": false,
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "American Chemical Society (ACS)",
+          "rank": 4,
+          "title": "Quantum Chemical Microsolvation via Free Energy\u2013Based Solvation Site Identification"
+        },
+        {
+          "crossref_type": "book-chapter",
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.4324/9781315524498-5",
+          "is_pdb_dataset_doi": false,
+          "journal": "Law and Resistance",
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": null,
+          "publisher": "Routledge",
+          "rank": 5,
+          "title": "The Courtroom as a Site of Performative Resistance"
+        }
+      ],
+      "hit_count": 125,
+      "query_or_source": "Crossref: \"folded protein substrate\" kinase \"phosphorylation site\" structure pub-date 2026-05-21..2026-05-21",
+      "returned_count": 5,
+      "source_url": "https://api.crossref.org/works?query.bibliographic=%22folded+protein+substrate%22+kinase+%22phosphorylation+site%22+structure&filter=from-pub-date%3A2026-05-21%2Cuntil-pub-date%3A2026-05-21&rows=5",
+      "surface_id": "crossref_same_day_folded_substrate_structure_phosphosite"
+    }
+  ],
+  "fetch_failures": [],
+  "literature_surfaces": [
+    {
+      "articles": [],
+      "hit_count": 0,
+      "query_or_source": "Europe PMC: (\"protein kinase\" AND \"full-length substrate\" AND \"phosphorylation site\" AND PDB) AND FIRST_PDATE:[2026-05-21 TO 2026-05-21]",
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22protein+kinase%22+AND+%22full-length+substrate%22+AND+%22phosphorylation+site%22+AND+PDB%29+AND+FIRST_PDATE%3A%5B2026-05-21+TO+2026-05-21%5D&format=json&pageSize=5&resultType=core",
+      "surface_id": "same_day_full_length_substrate_phosphosite_pdb"
+    },
+    {
+      "articles": [],
+      "hit_count": 0,
+      "query_or_source": "Europe PMC: (\"protein kinase\" AND \"protein substrate\" AND (phosphoacceptor OR \"phosphorylation site\") AND (\"AMP-PNP\" OR ATPgammaS OR \"ATP-gamma-S\" OR \"metal fluoride\") AND PDB) AND FIRST_PDATE:[2026-05-21 TO 2026-05-21]",
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22protein+kinase%22+AND+%22protein+substrate%22+AND+%28phosphoacceptor+OR+%22phosphorylation+site%22%29+AND+%28%22AMP-PNP%22+OR+ATPgammaS+OR+%22ATP-gamma-S%22+OR+%22metal+fluoride%22%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2026-05-21+TO+2026-05-21%5D&format=json&pageSize=5&resultType=core",
+      "surface_id": "same_day_protein_substrate_transfer_analog_pdb"
+    },
+    {
+      "articles": [],
+      "hit_count": 0,
+      "query_or_source": "Europe PMC: (\"kinase-substrate complex\" AND (\"AMP-PNP\" OR ATPgammaS OR ATP OR \"metal fluoride\") AND PDB) AND FIRST_PDATE:[2026-05-21 TO 2026-05-21]",
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22kinase-substrate+complex%22+AND+%28%22AMP-PNP%22+OR+ATPgammaS+OR+ATP+OR+%22metal+fluoride%22%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2026-05-21+TO+2026-05-21%5D&format=json&pageSize=5&resultType=core",
+      "surface_id": "same_day_kinase_substrate_complex_transfer_analog_pdb"
+    },
+    {
+      "articles": [],
+      "hit_count": 0,
+      "query_or_source": "Europe PMC: (\"folded protein substrate\" AND kinase AND (\"phosphorylation site\" OR phosphoacceptor) AND structure) AND FIRST_PDATE:[2026-05-21 TO 2026-05-21]",
+      "returned_count": 0,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22folded+protein+substrate%22+AND+kinase+AND+%28%22phosphorylation+site%22+OR+phosphoacceptor%29+AND+structure%29+AND+FIRST_PDATE%3A%5B2026-05-21+TO+2026-05-21%5D&format=json&pageSize=5&resultType=core",
+      "surface_id": "same_day_folded_substrate_structure_phosphosite"
+    }
+  ],
+  "metadata": {
+    "candidate_evidence_rows_emitted": 0,
+    "candidate_status_counts": {},
+    "coordinate_state_counts": {},
+    "date_range": {
+      "from": "2026-05-21",
+      "to": "2026-05-21"
+    },
+    "epk_score_computed": false,
+    "fresh_unique_pdb_id_count": 0,
+    "fresh_unique_pdb_ids": [],
+    "generated_at": "2026-05-21T13:29:08Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "max_unique_pdb_ids": 20,
+    "method": "post_handoff_delta_followup",
+    "prior_seen_pdb_ids_observed_count": 0,
+    "prior_seen_pdb_ids_observed_sample": [],
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "rows_reviewed": 0,
+    "schema_version": "epk_candidate_evidence_v1",
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "https://api.crossref.org/works"
+    ],
+    "surface_error_count": 0
+  },
+  "prior_seen_metadata_sample": [],
+  "rcsb_maps_by_article": [
+    {
+      "article_title": "Nanopore full-length sequencing reveals Nudt21 knockdown drives genome-wide 3\u2032UTR shortening and transcriptome reprogramming in mouse hepatocytes",
+      "doi": "10.1186/s12864-026-12929-y",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1186/s12864-026-12929-y",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Nanopore full-length sequencing reveals Nudt21 knockdown drives genome-wide 3\u2032UTR shortening and transcriptome reprogramming in mouse hepatocytes",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Statement of Retraction: WD repeat domain 62 (WDR62) promotes resistance of colorectal cancer to oxaliplatin through modulating mitogen-activated protein kinase (MAPK) signaling",
+      "doi": "10.1080/21655979.2026.2667606",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1080/21655979.2026.2667606",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Statement of Retraction: WD repeat domain 62 (WDR62) promotes resistance of colorectal cancer to oxaliplatin through modulating mitogen-activated protein kinase (MAPK) signaling",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Quantum Chemical Microsolvation via Free Energy\u2013Based Solvation Site Identification",
+      "doi": "10.26434/chemrxiv.15003676/v1",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.26434/chemrxiv.15003676/v1",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Quantum Chemical Microsolvation via Free Energy\u2013Based Solvation Site Identification",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Discharge bundles reduce length of stay",
+      "doi": "10.1097/ajn.0000000000000319a",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1097/ajn.0000000000000319a",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Discharge bundles reduce length of stay",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Millisecond vectorial wavefront shaping through scattering media via full transmission-matrix measurement",
+      "doi": "10.1103/t85q-16jp",
+      "literature_surface_id": "crossref_same_day_full_length_substrate_phosphosite_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1103/t85q-16jp",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Millisecond vectorial wavefront shaping through scattering media via full transmission-matrix measurement",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "N-Carbamylglutamate Improves Production Performance and Muscle Growth by Regulating Protein Digestive Function and Muscle Protein Synthesis in Broiler Chickens",
+      "doi": "10.3390/ani16101558",
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.3390/ani16101558",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: N-Carbamylglutamate Improves Production Performance and Muscle Growth by Regulating Protein Digestive Function and Muscle Protein Synthesis in Broiler Chickens",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Development of a novel live-imaging tool for global protein translation",
+      "doi": "10.55277/researchhub.peol77zu",
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.55277/researchhub.peol77zu",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Development of a novel live-imaging tool for global protein translation",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Nature\u2019s economy as blueprint: regional overlap & block-based algorithm for protein design",
+      "doi": "10.3389/fbinf.2026.1746135",
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.3389/fbinf.2026.1746135",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Nature\u2019s economy as blueprint: regional overlap & block-based algorithm for protein design",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Barrel Shape and Chromophore Rigidity Predict Fluorescent-Protein Photophysics",
+      "doi": "10.26434/chemrxiv.15003310/v2",
+      "literature_surface_id": "crossref_same_day_protein_substrate_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.26434/chemrxiv.15003310/v2",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Barrel Shape and Chromophore Rigidity Predict Fluorescent-Protein Photophysics",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Snapshot ensemble learning with attention-enhanced CNNs for ground-level land cover classification",
+      "doi": "10.1007/s40747-026-02328-x",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1007/s40747-026-02328-x",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Snapshot ensemble learning with attention-enhanced CNNs for ground-level land cover classification",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "When the design effect is unknown: sensitivity of logistic regression and survival models to DEFF misspecification in complex surveys",
+      "doi": "10.1007/s11135-026-02862-3",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1007/s11135-026-02862-3",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: When the design effect is unknown: sensitivity of logistic regression and survival models to DEFF misspecification in complex surveys",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Investigation of the effects of a Kiperin Bromelain & Papain complex in normal colon, mammary, and skin cells",
+      "doi": "10.1038/s41598-026-52512-9",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1038/s41598-026-52512-9",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Investigation of the effects of a Kiperin Bromelain & Papain complex in normal colon, mammary, and skin cells",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Computational Prediction of Substrate Scope of a Homogeneous Catalyst: The Case of Metal-free C-H Borylation by a Frustrated Lewis Pair Catalyst",
+      "doi": "10.26434/chemrxiv.15003686/v1",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.26434/chemrxiv.15003686/v1",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Computational Prediction of Substrate Scope of a Homogeneous Catalyst: The Case of Metal-free C-H Borylation by a Frustrated Lewis Pair Catalyst",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Chemical-free method to produce Au\u2013Ag bimetallic nanostructures on a glass substrate by nanosecond Nd: YAG laser pulses",
+      "doi": "10.1007/s11082-026-08888-z",
+      "literature_surface_id": "crossref_same_day_kinase_substrate_complex_transfer_analog_pdb",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1007/s11082-026-08888-z",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Chemical-free method to produce Au\u2013Ag bimetallic nanostructures on a glass substrate by nanosecond Nd: YAG laser pulses",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Reflective-Path-Enabled Folded AWG on Thin-Film Lithium Niobate with 20 GHz Fine Channel Spacing",
+      "doi": "10.1364/oe.588499",
+      "literature_surface_id": "crossref_same_day_folded_substrate_structure_phosphosite",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1364/oe.588499",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Reflective-Path-Enabled Folded AWG on Thin-Film Lithium Niobate with 20 GHz Fine Channel Spacing",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Correction: Wang et al. Effect of Protein Loading Density on the Structure and Biopreservation Efficacy of Metal-Organic Frameworks. Mater. Interfaces 2024, 1, 47\u201357",
+      "doi": "10.53941/mi.2026.100008",
+      "literature_surface_id": "crossref_same_day_folded_substrate_structure_phosphosite",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.53941/mi.2026.100008",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Correction: Wang et al. Effect of Protein Loading Density on the Structure and Biopreservation Efficacy of Metal-Organic Frameworks. Mater. Interfaces 2024, 1, 47\u201357",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "The Courtroom as a Site of Performative Resistance",
+      "doi": "10.4324/9781315524498-5",
+      "literature_surface_id": "crossref_same_day_folded_substrate_structure_phosphosite",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.4324/9781315524498-5",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: The Courtroom as a Site of Performative Resistance",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    }
+  ],
+  "rows": [],
+  "search_surfaces": [
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "returned_count": 0,
+      "source_query": null,
+      "surface_id": "post_handoff_initial_release_gamma_any",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+      "returned_count": 0,
+      "source_query": "substrate phosphorylation",
+      "surface_id": "post_handoff_initial_release_gamma_substrate_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='full-length substrate'",
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "surface_id": "post_handoff_initial_release_gamma_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='phosphoacceptor substrate'",
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "surface_id": "post_handoff_initial_release_gamma_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='kinase-substrate complex'",
+      "returned_count": 0,
+      "source_query": "kinase-substrate complex",
+      "surface_id": "post_handoff_initial_release_gamma_kinase_substrate_complex",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "returned_count": 0,
+      "source_query": null,
+      "surface_id": "post_handoff_initial_release_transition_any",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='substrate phosphorylation'",
+      "returned_count": 0,
+      "source_query": "substrate phosphorylation",
+      "surface_id": "post_handoff_initial_release_transition_substrate_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='full-length substrate'",
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "surface_id": "post_handoff_initial_release_transition_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='phosphoacceptor substrate'",
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "surface_id": "post_handoff_initial_release_transition_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.initial_release_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.initial_release_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='kinase-substrate complex'",
+      "returned_count": 0,
+      "source_query": "kinase-substrate complex",
+      "surface_id": "post_handoff_initial_release_transition_kinase_substrate_complex",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "returned_count": 0,
+      "source_query": null,
+      "surface_id": "post_handoff_revision_gamma_any",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+      "returned_count": 0,
+      "source_query": "substrate phosphorylation",
+      "surface_id": "post_handoff_revision_gamma_substrate_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='full-length substrate'",
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "surface_id": "post_handoff_revision_gamma_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='phosphoacceptor substrate'",
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "surface_id": "post_handoff_revision_gamma_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='kinase-substrate complex'",
+      "returned_count": 0,
+      "source_query": "kinase-substrate complex",
+      "surface_id": "post_handoff_revision_gamma_kinase_substrate_complex",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "returned_count": 0,
+      "source_query": null,
+      "surface_id": "post_handoff_revision_transition_any",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='substrate phosphorylation'",
+      "returned_count": 0,
+      "source_query": "substrate phosphorylation",
+      "surface_id": "post_handoff_revision_transition_substrate_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='full-length substrate'",
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "surface_id": "post_handoff_revision_transition_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='phosphoacceptor substrate'",
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "surface_id": "post_handoff_revision_transition_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_attr": "rcsb_accession_info.revision_date",
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: rcsb_accession_info.revision_date 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='kinase-substrate complex'",
+      "returned_count": 0,
+      "source_query": "kinase-substrate complex",
+      "surface_id": "post_handoff_revision_transition_kinase_substrate_complex",
+      "total_count": 0
+    }
+  ],
+  "skipped_prior_seen": {},
+  "source_recheck_23fc": {
+    "accession_info": {
+      "deposit_date": "2026-02-04T00:00:00.000+00:00",
+      "initial_release_date": "2026-05-13T00:00:00.000+00:00",
+      "revision_date": "2026-05-13T00:00:00.000+00:00",
+      "status_code": "REL"
+    },
+    "citation": {
+      "pdbx_database_id_doi": null,
+      "pdbx_database_id_pub_med": null,
+      "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+      "year": null
+    },
+    "europepmc_checks": [
+      {
+        "query": "TITLE:\"Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1\"",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Cryo-EM+structure+of+human+ATR-ATRIP+complex+with+ATPgammaS+and+Chk1%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"23FC\" ATR Chk1",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%2223FC%22+ATR+Chk1&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"ATR-ATRIP\" \"ATPgammaS\" Chk1",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+Chk1&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"ATR-ATRIP\" \"ATPgammaS\" \"Chk1\"",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+%22Chk1%22&format=json&pageSize=3&resultType=core"
+      }
+    ],
+    "europepmc_publication_metadata_present": false,
+    "pdb_id": "23FC",
+    "publication_metadata_present_in_rcsb": false,
+    "review_decision": "publication_metadata_still_absent_review_only_23fc_status_unchanged",
+    "sibling_checks": [
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: ATR ATRIP Chk1 ATPgammaS",
+        "returned_count": 1,
+        "total_count": 1
+      },
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: human ATR-ATRIP complex ATPgammaS Chk1",
+        "returned_count": 1,
+        "total_count": 1
+      },
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+        "returned_count": 1,
+        "total_count": 1
+      }
+    ],
+    "sibling_pdb_ids": [
+      "23FC"
+    ],
+    "source_urls": [
+      "https://www.rcsb.org/structure/23FC",
+      "https://data.rcsb.org/rest/v1/core/entry/23FC",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    ]
+  },
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "23FC publication metadata remains absent in RCSB and Europe PMC checks.",
+      "Post-handoff delta surfaces emitted zero candidate evidence rows.",
+      "No genuinely new PDB ID appeared in current-date release, revision, or same-day publication surfaces."
+    ],
+    "evidence_for": [],
+    "labels_or_fingerprints_changed": false,
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Keep this as review-only delta evidence. If no fresh IDs or publication metadata appear, wait for the next RCSB release or genuinely new source metadata before rerunning exhausted broad surfaces.",
+    "search_surface_exhausted": true
+  },
+  "surface_errors": []
+}
