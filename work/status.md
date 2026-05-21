@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 247
-- Measured elapsed time: 7130.2 minutes (118.84 hours)
+- Entries: 248
+- Measured elapsed time: 7132.7 minutes (118.88 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1801.6 measured minutes (30.03 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 149.0 measured minutes (2.48 hours)
+- v3: 151.5 measured minutes (2.53 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2741
-- Evidence references logged: 2229
+- Artifact references logged: 2745
+- Evidence references logged: 2233
 
 ## Recent Entries
-
-### 2026-05-21T00:51:14.465122+00:00 - v3
-
-- Task: external mini-campaign baseline rollup post heme
-- Time mode: measured
-- Measured minutes: 1.867
-- Started: 2026-05-21T00:49:14Z
-- Ended: 2026-05-21T00:51:06Z
-- Artifacts: artifacts/v3_external_minicampaign_modern_baseline_rollup_post_heme_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: 59 frozen rows across PLP flavin and heme campaigns; 52 needs_review; 7 exact current-reference duplicate terminal rejections; 0 geometry-scored rows
-- Notes: focused unittest JSON validation and diff check passed
 
 ### 2026-05-21T00:58:14.196100+00:00 - ops
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T01:47:33Z
 - Artifacts: artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_radical_sam_minicampaign_decision_packet_20260521.json, artifacts/v3_radical_sam_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_radical_sam_minicampaign_baseline_comparison_20260521.json, artifacts/v3_external_minicampaign_modern_baseline_rollup_post_radical_sam_20260521.json, artifacts/v3_main_loop_small_win_register_post_radical_sam_20260521.json
 - Evidence: 20-row Swiss-Prot radical-SAM/PDB surface frozen before scoring, 20 rows routed to needs_review under current radical_sam_enzyme lane, 0 exact current-reference duplicates and 0 sequence-neighbor alerts, post-radical-SAM rollup covers 135 frozen 2026-05-21 external rows with 123 needs_review 12 terminal rejections 13 sequence-neighbor alerts and 0 geometry-scored rows, focused radical SAM mini-campaign and rollup regressions passed
+- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
+
+### 2026-05-21T01:50:11.872301+00:00 - v3
+
+- Task: current fingerprint external baseline benchmark
+- Time mode: measured
+- Measured minutes: 2.483
+- Started: 2026-05-21T01:47:33Z
+- Ended: 2026-05-21T01:50:02Z
+- Artifacts: artifacts/v3_current_fingerprint_external_minicampaign_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: all eight production fingerprint lanes covered by seven external mini-campaigns plus one cobalamin source-surface blocker, 135 frozen external rows with 123 needs_review 12 duplicate terminal rejections and 0 geometry-scored rows, modern baseline sections cover EC keyword deterministic 5-mer geometry ESM and Foldseek with no superiority claim, focused benchmark regression passed
 - Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -319,6 +319,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:35:50.770123+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
 - 2026-05-21T01:41:08.373902+00:00: use a different external sourcing route or wait for new cobalamin source rows; do not score one-row campaign
 - 2026-05-21T01:47:47.464485+00:00: radical SAM external mini-campaign remains review-only and not import-ready
+- 2026-05-21T01:50:11.872301+00:00: current-fingerprint external benchmark is review-only and cannot support superiority import or production scoring claims
 
 ## Scope Adjustments
 
@@ -459,3 +460,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:35:50.770123+00:00: flavin dehydrogenase external mini-campaign remains review-only and not import-ready
 - 2026-05-21T01:41:08.373902+00:00: cobalamin radical external surface is terminal review-only blocker evidence, not a scored mini-campaign
 - 2026-05-21T01:47:47.464485+00:00: all current production fingerprint lanes now have either a review-only external mini-campaign or a terminal source-surface blocker
+- 2026-05-21T01:50:11.872301+00:00: modern baseline comparison is now explicit across the current fingerprint external surfaces

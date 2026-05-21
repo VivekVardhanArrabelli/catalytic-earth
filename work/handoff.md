@@ -187,6 +187,21 @@ No registry edit, label import, production score, threshold, fingerprint
 expansion, artifact upload/removal, Git-LFS tracking, history rewrite, or
 `removal_allowed=true` occurred.
 
+The all-current-fingerprint benchmark ledger is
+`artifacts/v3_current_fingerprint_external_minicampaign_baseline_benchmark_20260521.json`.
+It treats the seven scored mini-campaigns plus the cobalamin source-surface
+blocker as one review-only modern-baseline comparison. Coverage is now explicit
+for all eight production fingerprints: seven lanes have a 10-30 row frozen
+external mini-campaign and `cobalamin_radical_rearrangement` has a terminal
+insufficient-source-surface blocker. The ledger contains 135 frozen rows, 123
+`needs_review` decisions, 12 duplicate terminal rejections, 13 terminal
+rejections including the cobalamin blocker, 12 exact current-reference sequence
+matches, 13 sequence-neighbor alerts, and 0 geometry-scored external rows. The
+EC/keyword, deterministic 5-mer, geometry/retrieval, ESM, and Foldseek sections
+all remain diagnostic and no-claim: there are 0 import-ready rows, 0 countable
+label candidates, 0 source-free external geometry scores, no superiority
+claim, and no production authorization.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late

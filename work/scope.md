@@ -459,6 +459,19 @@ covers 135 frozen rows across seven 2026-05-21 mini-campaigns: 123
 sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
 mechanism-match, production-score, threshold, import, registry, or fingerprint
 claim is in scope.
+Current all-fingerprint external benchmark scope:
+`artifacts/v3_current_fingerprint_external_minicampaign_baseline_benchmark_20260521.json`
+is the modern-baseline ledger for the 2026-05-21 current-fingerprint surfaces.
+It covers all eight production fingerprints by combining seven frozen external
+mini-campaigns with the cobalamin radical source-surface blocker. The benchmark
+defines EC/keyword routing, deterministic 5-mer nearest-neighbor, geometry/
+retrieval, ESM, and Foldseek comparisons, but all are diagnostic. The ledger
+has 135 frozen rows, 123 `needs_review`, 12 duplicate terminal rejections, 13
+terminal rejections when the cobalamin blocker is counted, 12 exact
+current-reference sequence matches, 13 sequence-neighbor alerts, 0
+geometry-scored external rows, 0 import-ready rows, and 0 countable label
+candidates. It is not a production benchmark and authorizes no superiority
+claim, scorer threshold, label import, registry edit, or fingerprint expansion.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

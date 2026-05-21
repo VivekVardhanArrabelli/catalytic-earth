@@ -1643,6 +1643,81 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(rollup["task_definition"]["positive_claim_allowed"])
 
+    def test_current_fingerprint_external_minicampaign_benchmark_is_no_claim(
+        self,
+    ) -> None:
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_current_fingerprint_external_minicampaign_baseline_benchmark_20260521.json"
+        )
+        metadata = benchmark["metadata"]
+        metrics = benchmark["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+        self.assertEqual(metadata["campaign_fingerprint_lane_count"], 7)
+        self.assertEqual(metadata["blocker_fingerprint_lane_count"], 1)
+        self.assertEqual(metadata["frozen_row_count"], 135)
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            metrics["coverage"],
+            {
+                "fingerprint_lanes_with_external_minicampaign": 7,
+                "fingerprint_lanes_with_terminal_source_surface_blocker": 1,
+                "fingerprint_lanes_without_campaign_or_blocker": 0,
+                "production_fingerprint_count": 8,
+            },
+        )
+        self.assertEqual(
+            metrics["review_only_terminal_decisions"]["terminal_decision_counts"],
+            {"needs_review": 123, "terminal_rejection": 12},
+        )
+        self.assertEqual(
+            metrics["review_only_terminal_decisions"][
+                "terminal_decision_counts_including_cobalamin_blocker"
+            ],
+            {"needs_review": 123, "terminal_rejection": 13},
+        )
+        self.assertEqual(
+            metrics["current_geometry_retrieval_triage"][
+                "geometry_scored_external_row_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            metrics["ec_keyword_name_proxy"]["supports_mechanism_match_claim"]
+        )
+        self.assertFalse(
+            metrics["deterministic_5mer_nearest_neighbor"][
+                "supports_superiority_claim"
+            ]
+        )
+        self.assertFalse(
+            metrics["esm_foldseek_sidecar_sample"]["supports_superiority_claim"]
+        )
+
+        coverage_rows = {
+            row["fingerprint_id"]: row for row in benchmark["coverage_rows"]
+        }
+        self.assertEqual(set(coverage_rows), set(metadata["production_fingerprint_universe"]))
+        self.assertEqual(
+            coverage_rows["cobalamin_radical_rearrangement"]["coverage_status"],
+            "blocked_insufficient_new_prior_pool_clean_rows",
+        )
+        self.assertEqual(len(benchmark["frozen_rows"]), 135)
+        self.assertFalse(benchmark["task_definition"]["positive_claim_allowed"])
+        self.assertFalse(
+            benchmark["synthesis_conclusion"]["production_scoring_authorized"]
+        )
+        self.assertFalse(benchmark["synthesis_conclusion"]["label_import_authorized"])
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]
