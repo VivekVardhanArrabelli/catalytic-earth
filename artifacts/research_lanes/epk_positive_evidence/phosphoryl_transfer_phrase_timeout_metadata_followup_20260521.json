@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-21T03:08:51Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "phosphoryl_transfer_phrase_timeout_metadata_followup",
+    "production_claim_allowed": false,
+    "review_only": true,
+    "source_artifact": "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+    "source_urls": [
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+  },
+  "rows": [
+    {
+      "citation_doi": "10.1016/j.cell.2023.10.026",
+      "citation_pmid": 37992713,
+      "citation_title": "Glycosylated queuosines in tRNAs optimize translational rate and post-embryonic growth.",
+      "citation_year": 2023,
+      "pdb_id": "8JDL",
+      "prior_lane_artifact_seen": false,
+      "review_decision": "fresh_timeout_metadata_negative_ribosome_not_epk",
+      "search_hit": "RCSB full_text: kinase substrate transition state PDB phosphorylation, rank 86",
+      "structure_title": "Structure of the Human cytoplasmic Ribosome with human tRNA Tyr(GalQ34) and mRNA(UAU) (non-rotated state)"
+    },
+    {
+      "citation_title": "Mouse Ribosome POST translocation state",
+      "pdb_id": "9QQL",
+      "prior_lane_artifact_seen": true,
+      "review_decision": "repeat_timeout_metadata_negative_ribosome_not_epk",
+      "search_hit": "RCSB full_text: kinase substrate transition state PDB phosphorylation, rank 96",
+      "structure_title": "Mouse RPS15 P131 Mutant Ribosome POST translocation state"
+    },
+    {
+      "citation_title": "Mouse Ribosome rotated-1 PRE state",
+      "pdb_id": "9QSA",
+      "prior_lane_artifact_seen": true,
+      "review_decision": "repeat_timeout_metadata_negative_ribosome_not_epk",
+      "search_hit": "RCSB full_text: kinase substrate transition state PDB phosphorylation, rank 97",
+      "structure_title": "Mouse Ribosome rotated-1 PRE state"
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "The only fresh guarded parser-timeout row, 8JDL, is a human cytoplasmic ribosome/tRNA/mRNA structure from a translation paper, not an ePK kinase-substrate transfer complex.",
+      "Repeat timeout rows 9QQL and 9QSA are mouse ribosome translocation-state structures, not ePK kinase-substrate transfer complexes."
+    ],
+    "evidence_for": [],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Treat the guarded timeout rows as source-metadata negatives for this lane; do not revisit unless a future query exposes kinase-domain/ligand ownership evidence."
+  }
+}
