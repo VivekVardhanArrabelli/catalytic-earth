@@ -1,81 +1,69 @@
 # ePK false-positive hunter handoff
 
-- Last updated: 2026-05-20T22:11:22Z
-- Started: 2026-05-20T21:23:00Z
-- Ended: 2026-05-20T22:11:22Z
-- Measured minutes: 48.37
-- Primary outcome: counterexample_found
-- Pushed commit: blocked for final ledger/handoff update; last observed pushed HEAD before this update was `6ed3ae4`. Final `git add` failed creating linked-worktree `index.lock`: Operation not permitted.
-- Rule under attack: `epk_mek_erk_tyr_or_n_terminal_substrate_mode_counteraxis_v0` plus `epk_mek_erk_source_free_topology_ambiguity_counteraxis_v0` and `build_epk_heteromeric_positive_coverage_candidate_scout`.
+- Last updated: 2026-05-21T02:29:09Z
+- Started: 2026-05-21T01:29:56Z
+- Ended: 2026-05-21T02:29:09Z
+- Measured minutes: 59.22
+- Primary outcome: evidence_for
+- Pushed commit: pending alternate-index commit attempt; normal linked-worktree gitdir writes are blocked.
+- Rule under attack: assembly-context `v4_oligomeric_atp_terminals_no_mg_required` sufficiency for review-only ePK substrate-mode/source-free topology false-positive control.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
 
 ## Search Surface
 
-Executed source-free ORC/Cdc6/MCM/AAA+ guard stress and repair-variant sweeps against actual materializer output:
+Executed the prior handoff next query as a deposited/biological-assembly split generalization and entry-level guard stress.
 
-- Fixed controls: prior six ORC/Cdc6/MCM counterexamples plus known ePK positives `1IR3`, `1O6K`, `1O6L`, `2PHK`, `3TM0`, `5HVK`, `6Z3R`, `8OXM`, `8OXO`, `9UUR`, `9UUX`.
-- ORC/MCM profile: 82 reviewed, 0 fetch errors.
-- ORC motor-module profile: 62 reviewed, 0 fetch errors.
-- ORC CDK-keyword profile: 43 reviewed, 0 fetch errors.
-- Broad ATPase profile: 103 reviewed plus 60 retry rows; fetch errors resolved on retry, but `walker_a_oligomer` and `p_loop_oligomer` search slices returned JSON decode errors.
-- Transport/motor profile: initial 173-ID fetch outage, then 173 retry rows reviewed with 0 fetch errors.
-- Summed review observations: 523. CIFs were fetched in memory only; no raw coordinate files were written.
+- Helper: `tools/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_stress.py`
+- Initial pass: 360 PDB entries, 777 coordinate contexts, 0 fetch errors.
+- Deep pass: 520 PDB entries, 1,132 coordinate contexts, 0 fetch errors.
+- Query sources: fixed controls, prior assembly artifacts, ORC/OCCM/MCM ATP/ANP component-text queries, non-ORC AAA+/ATPase ATP/ANP component-text queries, and ePK peptide/substrate/MAPK/mTOR safety queries.
+- Biological assemblies: reviewed deposited atom_site plus declared assemblies, capped at 12 assemblies per entry. One entry hit the cap: `3HQP`, assemblies 1-12 of 16; it was not split-risk.
+- Materializer: 20 selected split-risk/control contexts, 0 materializer context errors.
+- Raw coordinate files written: false.
 
 ## Result
 
-Counterexamples found. Actual materializer topology-clear non-ePK substrate-mode rows now cover 13 ORC/OCCM/MCM replication complexes:
+Primary outcome is `evidence_for` for the review-only entry-level guard variant.
 
-- `5UJ7`, `5UJM`: human ORC ATPase motor module rows; TYR174 near ATP PG chain A; neither same-chain nor reciprocal.
-- `6RQC`: MCM loading intermediate; TYR232 chain D near ATP PG chain A; topology-clear.
-- `7JGR`, `7JGS`, `7JK2`, `7JK3`, `7JK4`: prior Drosophila ORC/Cdc6 rows, reconfirmed.
-- `7JPO`: human ORC-O1AAA row; TYR174 chain D near ATP PG chain A; topology-clear.
-- `7TJF`, `7TJH`: S. cerevisiae ORC/ORC-Cdc6 rows; TYR232 chain D near ATP PG chain A; topology-clear.
-- `9BCX`: prior S. cerevisiae ORC-Cdc6-Mcm2-7-DNA row, reconfirmed.
-- `9GJW`: OCCM maturation intermediate; TYR232 chain D near ATP PG chain A; topology-clear and missed by Mg-site guards because no terminal ATP PG had Mg within 4.5 A.
+- Reconfirmed the known current assembly-context v4 residual: `5UJ7` biological assembly 1 has a topology-clear ORC substrate-mode hit, Tyr174 chain C OH to ATP PG associated with chain A at 5.822 A, while context-level v4 is false.
+- The entry-level any-context v4 variant closes that residual because deposited atom_site v4 is true for `5UJ7`.
+- No new split residual was found beyond `5UJ7` on the 520-entry / 1,132-coordinate-context deep surface.
+- Split-risk IDs were exactly `1A49`, `1A5U`, and `5UJ7`. `1A49` and `1A5U` had four below-chain-floor assembly contexts, all with no substrate-mode materializer hit.
 
-## Guard Stress Findings
+## Evidence For / Against
 
-- Strict Mg-site multisite guard `v0` blocks the prior six but misses `5UJ7`, `5UJM`, and `9GJW` on targeted ORC/OCCM surfaces.
-- Relaxed Mg-site guards `v1`/`v2` cover `5UJ7` and `5UJM` but still miss `9GJW`.
-- Too-broad two-site-only guard `v3` loses known ePK positives `8OXM` and `8OXO`.
-- ATP-terminal oligomer guard `v4_oligomeric_atp_terminals_no_mg_required` blocks the bounded ORC/OCCM false positives without losing bounded ePK positives in the current sweeps, but this is still only review-only bounded evidence.
-- `9I3I` is a likely ORC/MCM context confound but was not counted because the local probable-ePK heuristic flags a deposited `CDK` keyword; next run should adjudicate this explicitly.
+Evidence for the entry-level guard variant:
 
-## Evidence Against / Boundaries
+- `5UJ7:biological_assembly_1` moves from current context-v4 residual to `non_epk_counterexample_closed_by_entry_level_guard_review_only`.
+- Context-v4 still blocks 14 prior deposited ORC/OCCM/MCM counterexample contexts.
+- The entry-level variant had 0 residual non-ePK counterexamples and 0 known ePK positive losses among selected materializer contexts.
 
-- The current review-only materializer remains broken for non-ePK ORC/OCCM/MCM discovery under topology-clear Tyr substrate-mode hits.
-- Broad ATPase and transport/motor retry surfaces did not add non-ORC topology-clear non-ePK residuals, but the broad Walker/P-loop query slices had search API JSON decode failures and remain unresolved.
-- The `v4` guard has not been stressed on component-level ATP/ADP/no-Mg surfaces or broad kinase-dimer positives; it must not be promoted to production or calibration.
+Evidence against overclaiming:
+
+- This is still review-only evidence. It is not production scoring, label import, threshold calibration, or registry/fingerprint evidence.
+- The ePK overblock safety panel here is bounded and selected; the next run should expand source-valid high-order ePK biological assemblies before any sufficiency claim.
+- `3HQP` had 16 declared assemblies and only assemblies 1-12 were reviewed by cap; it was not split-risk in the reviewed contexts.
 
 ## Blockers
 
-- Normal `git fetch origin` / `git pull --ff-only` paths failed writing linked-worktree `FETCH_HEAD`; `git fetch --no-write-fetch-head origin` succeeded and HEAD matched origin at start.
-- During the run the branch advanced to pushed commits `65ceca5` and `6ed3ae4`; final wrap commit/push was attempted after this handoff update and blocked by linked-worktree `index.lock`: Operation not permitted.
-- `walker_a_oligomer` and `p_loop_oligomer` broad ATPase search slices returned non-JSON responses.
+- Normal `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
+- `git fetch --no-write-fetch-head origin` succeeded and local `HEAD` matched `origin/research/epk-false-positive-hunter` before this run.
+- Direct writes to `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-false-positive/` fail with Operation not permitted, so normal `git add`/`git commit` is expected to fail creating `index.lock`.
+- An alternate-index commit/push attempt is still pending after this handoff write.
 
 ## Next Query
 
-Stress `v4_oligomeric_atp_terminals_no_mg_required` on component-level ATP/ADP/no-Mg structures and kinase-dimer positives, and manually adjudicate ORC/MCM CDK-keyword cases such as `9I3I`. Keep production labels, threshold calibration, registry/fingerprint edits, production scoring, and artifact migrations forbidden.
+Target entry-level guard overblock risk on source-valid high-order ePK biological assemblies beyond the fixed positive panel: expand kinase/substrate-peptide assembly contexts with deposited-or-assembly v4 true and force the materializer per context, then separately probe non-ORC ATPase split-risk entries with later RCSB offsets. Keep production labels, thresholds, registries/fingerprints, migrations, and scoring forbidden.
 
-Production claims, label changes, threshold calibration, registry/fingerprint edits, and artifact migrations remain forbidden.
+Production claims, label changes, threshold calibration, registry/fingerprint edits, artifact migrations, and production scoring remain forbidden.
 
 ## Files Changed
 
-- `tools/research_lanes/epk_false_positive_hunter/orc_mcm_multisite_guard_stress.py`
-- `tools/research_lanes/epk_false_positive_hunter/orc_mcm_guard_variant_sweep.py`
-- `artifacts/research_lanes/epk_false_positive_hunter/orc_mcm_multisite_guard_stress_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/orc_mcm_guard_variant_sweep_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/orc_motor_module_multisite_guard_stress_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/orc_motor_module_guard_variant_sweep_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/orc_cdk_keyword_multisite_guard_stress_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/orc_cdk_keyword_guard_variant_sweep_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_multisite_guard_stress_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_multisite_guard_retry_fetch_errors_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_guard_variant_sweep_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/oligomeric_atpase_guard_variant_retry_fetch_errors_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/transport_motor_multisite_guard_stress_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/transport_motor_multisite_guard_retry_fetch_errors_20260520_212300Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/transport_motor_guard_variant_retry_fetch_errors_20260520_212300Z.json`
+- `tools/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_stress.py`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_stress_20260521_013529Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_stress_deep_20260521_015936Z.json`
 - `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
 - `work/research_lanes/epk_false_positive_hunter/handoff.md`
+
+Existing uncommitted prior lane artifacts from earlier runs are still present and were not reverted.

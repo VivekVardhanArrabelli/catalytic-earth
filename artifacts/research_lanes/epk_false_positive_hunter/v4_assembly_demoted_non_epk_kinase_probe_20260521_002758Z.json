@@ -1,0 +1,917 @@
+{
+  "assembly_residual_context_rows": [],
+  "fetch_errors": {},
+  "known_epk_positive_lost_rows": [],
+  "metadata": {
+    "assembly_residual_context_count": 0,
+    "assembly_residual_context_pdb_ids": [],
+    "ended_at": "2026-05-21T01:00:02Z",
+    "entry_contexts": {
+      "1A49": [
+        "deposited_atom_site",
+        "biological_assembly_1",
+        "biological_assembly_2"
+      ],
+      "1A5U": [
+        "deposited_atom_site",
+        "biological_assembly_1",
+        "biological_assembly_2"
+      ],
+      "3HQP": [
+        "deposited_atom_site",
+        "biological_assembly_1",
+        "biological_assembly_2",
+        "biological_assembly_3",
+        "biological_assembly_4",
+        "biological_assembly_5",
+        "biological_assembly_6"
+      ]
+    },
+    "epk_score_computed": false,
+    "external_hard_negative_reaudit_scored": false,
+    "fetch_error_count": 0,
+    "fixed_control_pdb_ids": [
+      "1A49",
+      "1A5U",
+      "3HQP"
+    ],
+    "fixed_known_epk_positive_count": 11,
+    "fixed_orc_counterexample_count": 14,
+    "guard_under_test": "v4_oligomeric_atp_terminals_no_mg_required",
+    "known_epk_positive_lost_context_count": 0,
+    "known_epk_positive_lost_context_pdb_ids": [],
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "max_assemblies_per_entry": 6,
+    "method": "v4_assembly_control_split_stress",
+    "production_claim_allowed": false,
+    "raw_coordinate_files_written": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "residual_context_count": 0,
+    "residual_context_pdb_ids": [],
+    "rows_reviewed": 13,
+    "rule_under_attack": "v4_oligomeric_atp_terminals_no_mg_required review guard candidate under deposited atom_site versus biological assembly coordinate contexts",
+    "selected_threshold_angstrom": null,
+    "source_free_predictive_feature_materialized": true,
+    "started_at": "2026-05-21T00:27:58Z",
+    "threshold_calibrated": false,
+    "v4_control_split_decision_counts": {
+      "no_substrate_mode_materializer_hit_review_only": 13
+    }
+  },
+  "residual_context_rows": [],
+  "rows": [
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "deposited_atom_site",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "1A49",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "A",
+            "chain_name": "A",
+            "entity_id": "5",
+            "label_chain": "M",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.9,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "C",
+            "chain_name": "C",
+            "entity_id": "5",
+            "label_chain": "U",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.163,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "D",
+            "chain_name": "D",
+            "entity_id": "5",
+            "label_chain": "Z",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.033,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "E",
+            "chain_name": "E",
+            "entity_id": "5",
+            "label_chain": "EA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.076,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "F",
+            "chain_name": "F",
+            "entity_id": "5",
+            "label_chain": "JA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.978,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "G",
+            "chain_name": "G",
+            "entity_id": "5",
+            "label_chain": "OA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.005,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 6,
+        "gamma_capable_terminal_p_near_mg_chain_count": 6,
+        "gamma_capable_terminal_p_near_mg_count": 6,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 6
+        },
+        "polymer_chain_count": 8,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": true
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_1",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "1A49",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "A",
+            "chain_name": "A",
+            "entity_id": "5",
+            "label_chain": "M",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.9,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "C",
+            "chain_name": "C",
+            "entity_id": "5",
+            "label_chain": "U",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.163,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "D",
+            "chain_name": "D",
+            "entity_id": "5",
+            "label_chain": "Z",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.033,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 3,
+        "gamma_capable_terminal_p_near_mg_chain_count": 3,
+        "gamma_capable_terminal_p_near_mg_count": 3,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 3
+        },
+        "polymer_chain_count": 4,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_2",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "1A49",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "E",
+            "chain_name": "E",
+            "entity_id": "5",
+            "label_chain": "EA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.076,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "F",
+            "chain_name": "F",
+            "entity_id": "5",
+            "label_chain": "JA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.978,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "G",
+            "chain_name": "G",
+            "entity_id": "5",
+            "label_chain": "OA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.005,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 3,
+        "gamma_capable_terminal_p_near_mg_chain_count": 3,
+        "gamma_capable_terminal_p_near_mg_count": 3,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 3
+        },
+        "polymer_chain_count": 4,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "deposited_atom_site",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "1A5U",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "A",
+            "chain_name": "A",
+            "entity_id": "5",
+            "label_chain": "M",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.724,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "C",
+            "chain_name": "C",
+            "entity_id": "5",
+            "label_chain": "U",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.189,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "D",
+            "chain_name": "D",
+            "entity_id": "5",
+            "label_chain": "Z",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.863,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "E",
+            "chain_name": "E",
+            "entity_id": "5",
+            "label_chain": "EA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.076,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "F",
+            "chain_name": "F",
+            "entity_id": "5",
+            "label_chain": "JA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.978,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "G",
+            "chain_name": "G",
+            "entity_id": "5",
+            "label_chain": "OA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.005,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 6,
+        "gamma_capable_terminal_p_near_mg_chain_count": 6,
+        "gamma_capable_terminal_p_near_mg_count": 6,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 6
+        },
+        "polymer_chain_count": 8,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": true
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_1",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "1A5U",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "A",
+            "chain_name": "A",
+            "entity_id": "5",
+            "label_chain": "M",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.724,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "C",
+            "chain_name": "C",
+            "entity_id": "5",
+            "label_chain": "U",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.189,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "D",
+            "chain_name": "D",
+            "entity_id": "5",
+            "label_chain": "Z",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.863,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 3,
+        "gamma_capable_terminal_p_near_mg_chain_count": 3,
+        "gamma_capable_terminal_p_near_mg_count": 3,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 3
+        },
+        "polymer_chain_count": 4,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_2",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "1A5U",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "E",
+            "chain_name": "E",
+            "entity_id": "5",
+            "label_chain": "EA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.076,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "F",
+            "chain_name": "F",
+            "entity_id": "5",
+            "label_chain": "JA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.978,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "G",
+            "chain_name": "G",
+            "entity_id": "5",
+            "label_chain": "OA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.005,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 3,
+        "gamma_capable_terminal_p_near_mg_chain_count": 3,
+        "gamma_capable_terminal_p_near_mg_count": 3,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 3
+        },
+        "polymer_chain_count": 4,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "deposited_atom_site",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "3HQP",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "A",
+            "chain_name": "A",
+            "entity_id": "6",
+            "label_chain": "V",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.318,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "B",
+            "chain_name": "B",
+            "entity_id": "6",
+            "label_chain": "CA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.21,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "C",
+            "chain_name": "C",
+            "entity_id": "6",
+            "label_chain": "JA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.894,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "D",
+            "chain_name": "D",
+            "entity_id": "6",
+            "label_chain": "QA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.445,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "E",
+            "chain_name": "E",
+            "entity_id": "6",
+            "label_chain": "XA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.182,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "F",
+            "chain_name": "F",
+            "entity_id": "6",
+            "label_chain": "FB",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.92,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "G",
+            "chain_name": "G",
+            "entity_id": "6",
+            "label_chain": "MB",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.341,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "H",
+            "chain_name": "H",
+            "entity_id": "6",
+            "label_chain": "UB",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.273,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "I",
+            "chain_name": "I",
+            "entity_id": "6",
+            "label_chain": "BC",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.501,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "J",
+            "chain_name": "J",
+            "entity_id": "6",
+            "label_chain": "KC",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.178,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "K",
+            "chain_name": "K",
+            "entity_id": "6",
+            "label_chain": "SC",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.2,
+            "terminal_p_atom": "PG"
+          },
+          {
+            "auth_chain": "L",
+            "chain_name": "L",
+            "entity_id": "6",
+            "label_chain": "ZC",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.193,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 15,
+        "gamma_capable_terminal_p_near_mg_chain_count": 15,
+        "gamma_capable_terminal_p_near_mg_count": 15,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 15
+        },
+        "polymer_chain_count": 16,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": true
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_1",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "3HQP",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "A",
+            "chain_name": "A",
+            "entity_id": "6",
+            "label_chain": "V",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.318,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 1,
+        "gamma_capable_terminal_p_near_mg_chain_count": 1,
+        "gamma_capable_terminal_p_near_mg_count": 1,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 1
+        },
+        "polymer_chain_count": 1,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_2",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "3HQP",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "B",
+            "chain_name": "B",
+            "entity_id": "6",
+            "label_chain": "CA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.21,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 1,
+        "gamma_capable_terminal_p_near_mg_chain_count": 1,
+        "gamma_capable_terminal_p_near_mg_count": 1,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 1
+        },
+        "polymer_chain_count": 1,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_3",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "3HQP",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "C",
+            "chain_name": "C",
+            "entity_id": "6",
+            "label_chain": "JA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.894,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 1,
+        "gamma_capable_terminal_p_near_mg_chain_count": 1,
+        "gamma_capable_terminal_p_near_mg_count": 1,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 1
+        },
+        "polymer_chain_count": 1,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_4",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "3HQP",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "D",
+            "chain_name": "D",
+            "entity_id": "6",
+            "label_chain": "QA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.445,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 1,
+        "gamma_capable_terminal_p_near_mg_chain_count": 1,
+        "gamma_capable_terminal_p_near_mg_count": 1,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 1
+        },
+        "polymer_chain_count": 1,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_5",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "3HQP",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "E",
+            "chain_name": "E",
+            "entity_id": "6",
+            "label_chain": "XA",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 3.182,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 1,
+        "gamma_capable_terminal_p_near_mg_chain_count": 1,
+        "gamma_capable_terminal_p_near_mg_count": 1,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 1
+        },
+        "polymer_chain_count": 1,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    },
+    {
+      "actual_materializer_candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "coordinate_context": "biological_assembly_6",
+      "heteromeric_candidate_hit_count": 0,
+      "known_epk_positive_input": false,
+      "known_orc_counterexample_input": false,
+      "parse_meta": {
+        "auth_asym_id_tag_present": true,
+        "auth_seq_id_tag_present": true,
+        "label_asym_id_tag_present": true,
+        "label_seq_id_tag_present": true,
+        "parse_status": "ok"
+      },
+      "pdb_id": "3HQP",
+      "reciprocal_cross_chain_topology_detected": false,
+      "same_chain_topology_detected": false,
+      "source_free_multisite_metrics": {
+        "compact_gamma_mg_sites": [
+          {
+            "auth_chain": "F",
+            "chain_name": "F",
+            "entity_id": "6",
+            "label_chain": "FB",
+            "ligand": "ATP",
+            "nearest_mg_distance_angstrom": 2.92,
+            "terminal_p_atom": "PG"
+          }
+        ],
+        "gamma_capable_terminal_p_count": 1,
+        "gamma_capable_terminal_p_near_mg_chain_count": 1,
+        "gamma_capable_terminal_p_near_mg_count": 1,
+        "gamma_capable_terminal_p_near_mg_entity_count": 1,
+        "gamma_capable_terminal_p_near_mg_ligand_counts": {
+          "ATP": 1
+        },
+        "polymer_chain_count": 1,
+        "polymer_entity_count": 1
+      },
+      "substrate_mode_materializer_hit_count": 0,
+      "substrate_mode_materializer_hits": [],
+      "topology_ambiguity_counteraxis_hit": false,
+      "topology_clear_substrate_mode_hit": false,
+      "v4_control_split_decision": "no_substrate_mode_materializer_hit_review_only",
+      "v4_oligomeric_atp_terminals_no_mg_required_hit": false
+    }
+  ],
+  "warnings": [
+    "Review-only fixed-control stress; no production scoring, labels, thresholds, registries, fingerprints, or migrations.",
+    "Assembly CIFs were fetched in memory and reduced to compact metrics and materializer-hit summaries.",
+    "Coordinate-context decisions are research evidence only and are not production scoring."
+  ]
+}

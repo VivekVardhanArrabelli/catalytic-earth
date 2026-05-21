@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "cif_retry_ok_count": 17,
+    "ended_at": "2026-05-21T00:07:51Z",
+    "entry_retry_ok_count": 17,
+    "input_fetch_error_count": 17,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "method": "v4_high_order_fetch_error_status_retry",
+    "production_claim_allowed": false,
+    "raw_coordinate_files_written": false,
+    "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/v4_high_order_epk_atpase_overblock_stress_balanced_20260520_234900Z.json",
+    "started_at": "2026-05-20T23:26:27Z"
+  },
+  "retry_rows": [
+    {
+      "cif_bytes": 1660491,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 16765,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "2DB3",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/2DB3.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x105d9cfb0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 1268054,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 17400,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "2IS4",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/2IS4.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057c82c0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 415882,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 15857,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "3G0H",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/3G0H.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057ca540>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 924869,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 17320,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "3GPL",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/3GPL.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057cb920>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 2179095,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 18655,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "4CEI",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/4CEI.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057c95e0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 2201529,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 16346,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "4CEJ",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/4CEJ.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057cbd70>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 839429,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 14417,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "4D2I",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/4D2I.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x105d9c860>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 1296989,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 12824,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "5V9X",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/5V9X.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057cbe60>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 446325,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 14112,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "5ZC9",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/5ZC9.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057cadb0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 944010,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 17361,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "6HPH",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/6HPH.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057cafc0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 1626431,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 20324,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "6HPQ",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/6HPQ.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057c8b30>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 1477276,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 14161,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "6ZNQ",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/6ZNQ.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057cb8c0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 831234,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 11760,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "9AVR",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/9AVR.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057c8a40>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 3628487,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 12979,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "9FA1",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/9FA1.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057cb050>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 3629418,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 12324,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "9FA2",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/9FA2.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057ca5d0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 492298,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 14778,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "9FB8",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/9FB8.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057ca6f0>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    },
+    {
+      "cif_bytes": 912237,
+      "cif_ok": true,
+      "cif_status_code": 200,
+      "entry_bytes": 15089,
+      "entry_ok": true,
+      "entry_status_code": 200,
+      "pdb_id": "9FI9",
+      "prior_error": "ConnectionError(MaxRetryError('HTTPSConnectionPool(host=\\'files.rcsb.org\\', port=443): Max retries exceeded with url: /download/9FI9.cif (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x1057caa50>: Failed to resolve \\'files.rcsb.org\\' ([Errno 8] nodename nor servname p"
+    }
+  ],
+  "warnings": [
+    "Compact status retry only; successful byte counts were not materialized into review rows."
+  ]
+}
