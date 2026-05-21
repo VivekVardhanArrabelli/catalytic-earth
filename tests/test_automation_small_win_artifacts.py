@@ -737,6 +737,118 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(sequence["metadata"]["ready_for_label_import"])
 
+    def test_flavin_monooxygenase_minicampaign_stays_review_only(self) -> None:
+        freeze = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json"
+        )
+        baseline = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_minicampaign_baseline_comparison_20260521.json"
+        )
+        sequence = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_minicampaign_sequence_baseline_diagnostic_20260521.json"
+        )
+        register = _load_json(
+            ARTIFACTS
+            / "v3_main_loop_small_win_register_post_flavin_monooxygenase_20260521.json"
+        )
+
+        self.assertTrue(freeze["metadata"]["review_only"])
+        self.assertTrue(
+            freeze["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(freeze["metadata"]["candidate_count"], 20)
+        self.assertEqual(
+            freeze["metadata"]["target_current_fingerprint_lane"],
+            "flavin_monooxygenase",
+        )
+        self.assertEqual(freeze["metadata"]["production_fingerprint_count"], 8)
+        self.assertFalse(freeze["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_at_freeze" for row in freeze["rows"])
+        )
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_count"], 20)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"needs_review": 19, "terminal_rejection": 1},
+        )
+        self.assertEqual(metadata["target_current_fingerprint_lane"], "flavin_monooxygenase")
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        terminal_rows = {
+            row["accession"]
+            for row in decisions["rows"]
+            if row["terminal_decision"] == "terminal_rejection"
+        }
+        self.assertEqual(terminal_rows, {"P15245"})
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in decisions["rows"])
+        )
+
+        self.assertTrue(baseline["metadata"]["review_only"])
+        self.assertFalse(baseline["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(baseline["metadata"]["candidate_count"], 20)
+        self.assertEqual(
+            baseline["metrics"]["terminal_decision_counts"],
+            {"needs_review": 19, "terminal_rejection": 1},
+        )
+        self.assertEqual(
+            baseline["metrics"]["ec_keyword_baseline"][
+                "routed_to_existing_current_fingerprint_lane_count"
+            ],
+            20,
+        )
+        self.assertFalse(
+            baseline["metrics"]["ec_keyword_baseline"][
+                "supports_mechanism_match_claim"
+            ]
+        )
+        self.assertEqual(
+            baseline["metrics"]["deterministic_5mer_sequence_baseline"][
+                "exact_current_reference_sequence_match_count"
+            ],
+            1,
+        )
+        self.assertFalse(
+            baseline["metrics"]["geometry_retrieval_baseline"][
+                "supports_superiority_claim"
+            ]
+        )
+
+        self.assertTrue(sequence["metadata"]["review_only"])
+        self.assertEqual(sequence["metadata"]["candidate_count"], 20)
+        self.assertEqual(sequence["metadata"]["reference_sequence_count"], 737)
+        self.assertEqual(sequence["metadata"]["near_neighbor_alert_count"], 2)
+        self.assertEqual(
+            sequence["metadata"]["exact_current_reference_sequence_match_count"], 1
+        )
+        self.assertTrue(
+            sequence["metadata"]["terminal_decision_changed_by_sequence_baseline"]
+        )
+        self.assertFalse(sequence["metadata"]["ready_for_label_import"])
+
+        register_rows = {row["item_id"]: row for row in register["rows"]}
+        self.assertTrue(register["metadata"]["review_only"])
+        self.assertEqual(
+            register_rows["flavin_monooxygenase_minicampaign"][
+                "terminal_decision_counts"
+            ],
+            {"needs_review": 19, "terminal_rejection": 1},
+        )
+        self.assertFalse(register["synthesis_conclusion"]["superiority_claim_permitted"])
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]

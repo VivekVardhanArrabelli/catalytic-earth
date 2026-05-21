@@ -1,0 +1,687 @@
+{
+  "excluded_rows_sample": [
+    {
+      "accession": "Q99807",
+      "entry_name": "COQ7_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_fad_fmn_or_flavin_context"
+      ],
+      "primary_ec": "1.14.13.253"
+    },
+    {
+      "accession": "P05181",
+      "entry_name": "CP2E1_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_fad_fmn_or_flavin_context",
+        "heme_or_p450_mixed_context_excluded"
+      ],
+      "primary_ec": "1.14.13.n7"
+    },
+    {
+      "accession": "P20813",
+      "entry_name": "CP2B6_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_fad_fmn_or_flavin_context",
+        "heme_or_p450_mixed_context_excluded"
+      ],
+      "primary_ec": "1.14.13.-"
+    },
+    {
+      "accession": "Q8TDZ2",
+      "entry_name": "MICA1_HUMAN",
+      "exclusion_reasons": [
+        "primary_ec_cap_reached"
+      ],
+      "primary_ec": "1.14.13.225"
+    },
+    {
+      "accession": "P29475",
+      "entry_name": "NOS1_HUMAN",
+      "exclusion_reasons": [
+        "prior_external_pool_or_imported_hard_negative",
+        "heme_or_p450_mixed_context_excluded"
+      ],
+      "primary_ec": "1.14.13.39"
+    },
+    {
+      "accession": "P29474",
+      "entry_name": "NOS3_HUMAN",
+      "exclusion_reasons": [
+        "heme_or_p450_mixed_context_excluded"
+      ],
+      "primary_ec": "1.14.13.39"
+    },
+    {
+      "accession": "P35228",
+      "entry_name": "NOS2_HUMAN",
+      "exclusion_reasons": [
+        "heme_or_p450_mixed_context_excluded"
+      ],
+      "primary_ec": "1.14.13.39"
+    },
+    {
+      "accession": "P29473",
+      "entry_name": "NOS3_BOVIN",
+      "exclusion_reasons": [
+        "heme_or_p450_mixed_context_excluded"
+      ],
+      "primary_ec": "1.14.13.39"
+    },
+    {
+      "accession": "P76077",
+      "entry_name": "PAAA_ECOLI",
+      "exclusion_reasons": [
+        "missing_explicit_fad_fmn_or_flavin_context"
+      ],
+      "primary_ec": "1.14.13.149"
+    },
+    {
+      "accession": "P38169",
+      "entry_name": "KMO_YEAST",
+      "exclusion_reasons": [
+        "primary_ec_cap_reached"
+      ],
+      "primary_ec": "1.14.13.9"
+    },
+    {
+      "accession": "A0A411MR89",
+      "entry_name": "SZNF_STRC2",
+      "exclusion_reasons": [
+        "missing_explicit_fad_fmn_or_flavin_context"
+      ],
+      "primary_ec": "1.14.13.250"
+    },
+    {
+      "accession": "P29476",
+      "entry_name": "NOS1_RAT",
+      "exclusion_reasons": [
+        "heme_or_p450_mixed_context_excluded"
+      ],
+      "primary_ec": "1.14.13.39"
+    }
+  ],
+  "frozen_before_scoring_statement": "The 20-row EC 1.14.13.* flavin monooxygenase set was selected using only UniProt source metadata and prior-pool exclusions before deterministic sequence-neighbor diagnostics or terminal decisions were computed.",
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 20,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T00:39:54Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_flavin_monooxygenase_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "primary_ec_cap": 2,
+    "prior_external_pool_excluded_accession_count": 458,
+    "production_fingerprint_count": 8,
+    "production_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selection_rules": [
+      "reviewed UniProtKB/Swiss-Prot rows from EC 1.14.13.* with PDB cross-reference",
+      "require catalytic-activity annotation, sequence, and at least one PDB xref",
+      "require explicit FAD, FMN, or flavin binding/source context before outcome scoring",
+      "exclude imported hard negatives and previously used prospective external candidate accessions",
+      "exclude heme/P450 mixed monooxygenase contexts",
+      "cap at two rows per primary EC number",
+      "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+    ],
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.14.13.%2A%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=200",
+    "source_rows_available": 78,
+    "source_rows_reviewed_before_freeze_stop": 39,
+    "source_tsv_sha256": "c7aca352ca12439e334ed662ca785ecb3f5b1b976144f043582471ba41a3be43",
+    "target_current_fingerprint_lane": "flavin_monooxygenase"
+  },
+  "rows": [
+    {
+      "accession": "O94851",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.225"
+      ],
+      "entry_name": "MICA2_HUMAN",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 1,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "2E9K",
+        "5SZH",
+        "5SZI",
+        "5SZJ",
+        "5SZK"
+      ],
+      "primary_ec": "1.14.13.225",
+      "protein_name": "[F-actin]-monooxygenase MICAL2 (EC 1.14.13.225) (MICAL C-terminal-like protein) (Mical-cL) (Molecule interacting with CasL protein 2) (MICAL-2)",
+      "row_id": "uniprot:O94851",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 1957,
+      "sequence_sha256": "ca4ddb04fef2dea87868106ae8fe26ef3ad7fa8f97381f807dfd1591023fc12a"
+    },
+    {
+      "accession": "O15229",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.9"
+      ],
+      "entry_name": "KMO_HUMAN",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 2,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "5X68"
+      ],
+      "primary_ec": "1.14.13.9",
+      "protein_name": "Kynurenine 3-monooxygenase (EC 1.14.13.9) (Kynurenine 3-hydroxylase)",
+      "row_id": "uniprot:O15229",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 486,
+      "sequence_sha256": "1d85f4ef06b7d5ca71e3a4bb4f874e12d7a49ecdc3b3d80234ad1e698de58135"
+    },
+    {
+      "accession": "Q7RTP6",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.225"
+      ],
+      "entry_name": "MICA3_HUMAN",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 3,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "2D88",
+        "5SZG",
+        "6ICI"
+      ],
+      "primary_ec": "1.14.13.225",
+      "protein_name": "[F-actin]-monooxygenase MICAL3 (EC 1.14.13.225) (Molecule interacting with CasL protein 3) (MICAL-3)",
+      "row_id": "uniprot:Q7RTP6",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 2002,
+      "sequence_sha256": "98cf48aa447e13a8cf461c5b6d8ea8cb0f2cd4010c1a8dddce550de7115ccd25"
+    },
+    {
+      "accession": "P25535",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.240"
+      ],
+      "entry_name": "UBII_ECOLI",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 4,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "4K22"
+      ],
+      "primary_ec": "1.14.13.240",
+      "protein_name": "2-octaprenylphenol hydroxylase (EC 1.14.13.240) (2-polyprenylphenol 6-hydroxylase)",
+      "row_id": "uniprot:P25535",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 400,
+      "sequence_sha256": "0d56462a905e41f0fe3634610fbaf4e9a463b7ddb3e4acc3ea58a9d344ad3626"
+    },
+    {
+      "accession": "O88867",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.9"
+      ],
+      "entry_name": "KMO_RAT",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 5,
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "6LKD",
+        "6LKE"
+      ],
+      "primary_ec": "1.14.13.9",
+      "protein_name": "Kynurenine 3-monooxygenase (EC 1.14.13.9) (Kynurenine 3-hydroxylase)",
+      "row_id": "uniprot:O88867",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 478,
+      "sequence_sha256": "a6614d1afb4f81c2a9d1ff53b8e488df5e3562149467df95376638acb4e3517a"
+    },
+    {
+      "accession": "H3JQW0",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.160"
+      ],
+      "entry_name": "OTEMO_PSEPU",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 6,
+      "organism": "Pseudomonas putida (Arthrobacter siderocapsulatus)",
+      "pdb_count": 6,
+      "pdb_ids_sample": [
+        "3UOV",
+        "3UOX",
+        "3UOY",
+        "3UOZ",
+        "3UP4",
+        "3UP5"
+      ],
+      "primary_ec": "1.14.13.160",
+      "protein_name": "2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase (OTEMO) (EC 1.14.13.160) ((2,2,3-trimethyl-5-oxocyclopent-3-enyl)acetyl-CoA 1,5-monooxygenase) (MO2)",
+      "row_id": "uniprot:H3JQW0",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 545,
+      "sequence_sha256": "d2c1d71efb7c47c27e05885d2de8e7327ec94ad6b045b74363ceeadb9ad2ce7b"
+    },
+    {
+      "accession": "Q6F4M8",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.166",
+        "1.14.13.29"
+      ],
+      "entry_name": "NPCA_RHOOP",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 7,
+      "organism": "Rhodococcus opacus (Nocardia opaca)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "9J9J"
+      ],
+      "primary_ec": "1.14.13.166",
+      "protein_name": "4-nitrophenol 4-monooxygenase/4-nitrocatechol 2-monooxygenase, oxygenase component (4-NP/4-NCA monooxygenase) (EC 1.14.13.166) (EC 1.14.13.29) (PNP monooxygenase)",
+      "row_id": "uniprot:Q6F4M8",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 528,
+      "sequence_sha256": "cefb9ffe015b0848648e147acd5c9aefd9bf4528a46df0134f353d81dc7412f4"
+    },
+    {
+      "accession": "Q54530",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.180"
+      ],
+      "entry_name": "DNRF_STREF",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 8,
+      "organism": "Streptomyces purpurascens",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "3IHG"
+      ],
+      "primary_ec": "1.14.13.180",
+      "protein_name": "Aklavinone 12-hydroxylase RdmE (EC 1.14.13.180) (Aklavinone 11-hydroxylase)",
+      "row_id": "uniprot:Q54530",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 535,
+      "sequence_sha256": "796ad3d29fed616a47407a618c56e1e9122f148aae09c002424b4aea6ba819c0"
+    },
+    {
+      "accession": "B6BQB2",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.148"
+      ],
+      "entry_name": "TMM_PELS7",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 9,
+      "organism": "Pelagibacter sp. (strain HTCC7211)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "7D4K",
+        "7D4M",
+        "7D4N"
+      ],
+      "primary_ec": "1.14.13.148",
+      "protein_name": "Trimethylamine monooxygenase (TMA monooxygenase) (Tmm) (EC 1.14.13.148)",
+      "row_id": "uniprot:B6BQB2",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 444,
+      "sequence_sha256": "0e8f9665a306a778e5b10b84752b4435914505cf90549c0731229a8fe5e5f0e4"
+    },
+    {
+      "accession": "Q6SSJ6",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.23"
+      ],
+      "entry_name": "MOBA_COMTE",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 10,
+      "organism": "Comamonas testosteroni (Pseudomonas testosteroni)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "2DKH",
+        "2DKI"
+      ],
+      "primary_ec": "1.14.13.23",
+      "protein_name": "3-hydroxybenzoate 4-monooxygenase (EC 1.14.13.23) (3-hydroxybenzoate 4-hydroxylase) (M-hydroxybenzoate hydroxylase)",
+      "row_id": "uniprot:Q6SSJ6",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 639,
+      "sequence_sha256": "86623724c847a77721ccdd8e048ecd9590dfed614bf39b9cc83a780811491346"
+    },
+    {
+      "accession": "P15245",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.7"
+      ],
+      "entry_name": "PHHY_CUTCT",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 11,
+      "organism": "Cutaneotrichosporon cutaneum (Yeast) (Trichosporon cutaneum)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "1FOH",
+        "1PN0"
+      ],
+      "primary_ec": "1.14.13.7",
+      "protein_name": "Phenol hydroxylase (PHHY) (EC 1.14.13.7)",
+      "row_id": "uniprot:P15245",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 665,
+      "sequence_sha256": "e00ce116b80e34190a162a5ebea76b4e92a27a72e3b8af692a8e1fd9a5bd19a8"
+    },
+    {
+      "accession": "F8G0M4",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.163"
+      ],
+      "entry_name": "HSPB_PSEP6",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 12,
+      "organism": "Pseudomonas putida (strain DSM 28022 / S16)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "7DA9"
+      ],
+      "primary_ec": "1.14.13.163",
+      "protein_name": "6-hydroxy-3-succinoylpyridine 3-monooxygenase HspB (EC 1.14.13.163) (6-hydroxy-3-succinoylpyridine hydroxylase) (HSP hydroxylase)",
+      "row_id": "uniprot:F8G0M4",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 393,
+      "sequence_sha256": "1803b352642e48380c0a0fe99159672fcc55bbde044df513a43242283ce23daf"
+    },
+    {
+      "accession": "Q93L51",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.231"
+      ],
+      "entry_name": "TETX_BACT4",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 13,
+      "organism": "Bacteroides thetaiotaomicron",
+      "pdb_count": 10,
+      "pdb_ids_sample": [
+        "2XDO",
+        "2XYO",
+        "2Y6Q",
+        "2Y6R",
+        "3P9U",
+        "3V3N",
+        "3V3O",
+        "4A6N"
+      ],
+      "primary_ec": "1.14.13.231",
+      "protein_name": "Flavin-dependent monooxygenase (TetX monooxygenase) (TetX) (EC 1.14.13.231) (TetX2)",
+      "row_id": "uniprot:Q93L51",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 388,
+      "sequence_sha256": "c9a2632528be0558748d0e0cbb9810ebd192b3d40d2ee9b27513e0f4fb89aa30"
+    },
+    {
+      "accession": "P00438",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.2"
+      ],
+      "entry_name": "PHHY_PSEFL",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 14,
+      "organism": "Pseudomonas fluorescens",
+      "pdb_count": 17,
+      "pdb_ids_sample": [
+        "1BF3",
+        "1BGJ",
+        "1BGN",
+        "1BKW",
+        "1CC4",
+        "1CC6",
+        "1CJ2",
+        "1CJ3"
+      ],
+      "primary_ec": "1.14.13.2",
+      "protein_name": "p-hydroxybenzoate hydroxylase (PHBH) (PHBHase) (EC 1.14.13.2) (4-hydroxybenzoate 3-monooxygenase)",
+      "row_id": "uniprot:P00438",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 394,
+      "sequence_sha256": "6f0a94503d8775192c518fcfa45b5a5703de2402103803b7bd6b3543ce8416be"
+    },
+    {
+      "accession": "Q47PU3",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.92"
+      ],
+      "entry_name": "PAMO_THEFY",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 15,
+      "organism": "Thermobifida fusca (strain YX)",
+      "pdb_count": 17,
+      "pdb_ids_sample": [
+        "1W4X",
+        "2YLR",
+        "2YLS",
+        "2YLT",
+        "2YLW",
+        "2YLX",
+        "2YLZ",
+        "2YM1"
+      ],
+      "primary_ec": "1.14.13.92",
+      "protein_name": "Phenylacetone monooxygenase (PAMO) (EC 1.14.13.92) (Baeyer-Villiger monooxygenase) (BVMO)",
+      "row_id": "uniprot:Q47PU3",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 542,
+      "sequence_sha256": "f9eaa71209b5568e1227ef5bf8cbb009d76aff7f4ba946ead06a4c1ba50e4184"
+    },
+    {
+      "accession": "Q93NG3",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.10"
+      ],
+      "entry_name": "DHPH_PAENI",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 16,
+      "organism": "Paenarthrobacter nicotinovorans (Arthrobacter nicotinovorans)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "2VOU"
+      ],
+      "primary_ec": "1.14.13.10",
+      "protein_name": "2,6-dihydroxypyridine 3-monooxygenase (2,6-DHPH) (EC 1.14.13.10)",
+      "row_id": "uniprot:Q93NG3",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 397,
+      "sequence_sha256": "075866ebe9243be2e1fbc946e488933564b5320e815ebfd73feaae77a2f31f17"
+    },
+    {
+      "accession": "Q988D3",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.242"
+      ],
+      "entry_name": "MHPCO_RHILO",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 17,
+      "organism": "Mesorhizobium japonicum (strain LMG 29417 / CECT 9101 / MAFF 303099) (Mesorhizobium loti (strain MAFF 303099))",
+      "pdb_count": 13,
+      "pdb_ids_sample": [
+        "3ALJ",
+        "3ALL",
+        "3ALM",
+        "3GMB",
+        "3GMC",
+        "4GF7",
+        "4H2N",
+        "4H2P"
+      ],
+      "primary_ec": "1.14.13.242",
+      "protein_name": "3-hydroxy-2-methylpyridine-5-carboxylate monooxygenase (EC 1.14.13.242) (2-methyl-3-hydroxypyridine-5-carboxylic acid oxygenase) (MHPCO)",
+      "row_id": "uniprot:Q988D3",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 379,
+      "sequence_sha256": "8e7ac732f8132e59cf0dbf0bcf6df65ad705862a12b33cfa3f80cd43f09593e7"
+    },
+    {
+      "accession": "A6T923",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.113"
+      ],
+      "entry_name": "HPXO_KLEP7",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 18,
+      "organism": "Klebsiella pneumoniae subsp. pneumoniae (strain ATCC 700721 / MGH 78578)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "3RP6",
+        "3RP7",
+        "3RP8"
+      ],
+      "primary_ec": "1.14.13.113",
+      "protein_name": "FAD-dependent urate hydroxylase (EC 1.14.13.113) (FAD-dependent urate oxidase)",
+      "row_id": "uniprot:A6T923",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 384,
+      "sequence_sha256": "6d83ebf96a87bcb6d36f0a1b2a00e57fa90036825b657a0b3868ed3938e9f436"
+    },
+    {
+      "accession": "Q88FY2",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.114"
+      ],
+      "entry_name": "6HN3M_PSEPK",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 19,
+      "organism": "Pseudomonas putida (strain ATCC 47054 / DSM 6125 / CFBP 8728 / NCIMB 11950 / KT2440)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "5EOW",
+        "8UIQ",
+        "8UIV"
+      ],
+      "primary_ec": "1.14.13.114",
+      "protein_name": "6-hydroxynicotinate 3-monooxygenase (6-HNA monooxygenase) (EC 1.14.13.114) (Nicotinate degradation protein C)",
+      "row_id": "uniprot:Q88FY2",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 382,
+      "sequence_sha256": "0242a70a1ae38843c7fe02fb6e9d8db6513303c3e128cb02be5c8ed4d95b1e09"
+    },
+    {
+      "accession": "E9QYP0",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.14.13.196"
+      ],
+      "entry_name": "SIDA_ASPFU",
+      "flavin_binding_annotation_present": true,
+      "flavin_context_present_in_source_fields": true,
+      "freeze_rank": 20,
+      "organism": "Aspergillus fumigatus (strain ATCC MYA-4609 / CBS 101355 / FGSC A1100 / Af293) (Neosartorya fumigata)",
+      "pdb_count": 15,
+      "pdb_ids_sample": [
+        "4B63",
+        "4B64",
+        "4B65",
+        "4B66",
+        "4B67",
+        "4B68",
+        "4B69",
+        "4NZH"
+      ],
+      "primary_ec": "1.14.13.196",
+      "protein_name": "L-ornithine N(5)-monooxygenase (OMO) (EC 1.14.13.196) (L-ornithine N(5)-oxygenase) (Siderophore biosynthesis protein A)",
+      "row_id": "uniprot:E9QYP0",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.14.13.* row with catalytic activity, PDB cross-reference, and explicit FAD/FMN/flavin source context; heme/P450 mixed contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 501,
+      "sequence_sha256": "6efbf23cc1f6293dd030381577e49f9764399f052aa6ae0db915be348c1768e2"
+    }
+  ]
+}

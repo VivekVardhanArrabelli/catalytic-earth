@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 236
-- Measured elapsed time: 7075.1 minutes (117.92 hours)
+- Entries: 237
+- Measured elapsed time: 7081.7 minutes (118.03 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1795.3 measured minutes (29.92 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 105.9 measured minutes (1.76 hours)
+- v3: 112.4 measured minutes (1.87 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2689
-- Evidence references logged: 2189
+- Artifact references logged: 2694
+- Evidence references logged: 2190
 
 ## Recent Entries
-
-### 2026-05-20T20:56:05.517765+00:00 - ops
-
-- Task: Final validation for main-loop small wins
-- Time mode: measured
-- Measured minutes: 1.0
-- Started: 2026-05-20T20:54:45Z
-- Ended: 2026-05-20T20:55:45Z
-- Artifacts: work/progress_log.jsonl, work/status.md
-- Evidence: post-status full 720-test unit discovery passed, post-status validate passed with 682 labels and 8 fingerprints, post-status artifact migration dry-run passed with removal_allowed=0, JSON validation and git diff check passed before commit
-- Notes: Recorded after regenerating status so final verification is reflected.
 
 ### 2026-05-20T22:19:09.281826+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_pfka_vs_neighbor_family_control_tranche_preregistration_20260521.json, artifacts/v3_pfka_vs_neighbor_family_control_tranche_axis_decisions_20260521.json, artifacts/v3_pfka_vs_neighbor_family_control_tranche_baseline_comparison_20260521.json, artifacts/v3_atp_family_readiness_index_post_pfka_tranche_20260521.json, artifacts/v3_main_loop_small_win_register_post_pfka_tranche_20260521.json
 - Evidence: 15 frozen PfkA-neighbor rows; decisions 1 terminal_rejection 2 mechanism_match 12 out_of_scope; 0 source-free-axis-ready rows
 - Notes: focused unittest and diff check passed
+
+### 2026-05-21T00:41:53.519062+00:00 - v3
+
+- Task: prospective external flavin monooxygenase mini-campaign
+- Time mode: measured
+- Measured minutes: 6.533
+- Started: 2026-05-21T00:35:03Z
+- Ended: 2026-05-21T00:41:35Z
+- Artifacts: artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json, artifacts/v3_flavin_monooxygenase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_flavin_monooxygenase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_main_loop_small_win_register_post_flavin_monooxygenase_20260521.json
+- Evidence: 20-row Swiss-Prot EC 1.14.13.* flavin surface frozen before scoring; 19 needs_review; 1 exact current-reference duplicate terminal rejection; no superiority claim
+- Notes: focused unittest JSON validation and diff check passed
 
 ## Expectation Updates
 
@@ -308,6 +308,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:18:48.662111+00:00: Commit ePK synthesis integration before returning to non-ePK small-win ladder.
 - 2026-05-21T00:27:03.666400+00:00: Next bounded work can close PfkA-vs-neighbor tranche or stop for wrap if cadence is reached.
 - 2026-05-21T00:35:13.353330+00:00: continue external or non-ATP-family small wins; do not promote PfkA
+- 2026-05-21T00:41:53.519062+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
 
 ## Scope Adjustments
 
@@ -437,3 +438,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:18:48.662111+00:00: ePK remains review-only no-go and out of main-loop production scope; future scorer dry-run belongs only in isolated research lane.
 - 2026-05-21T00:27:03.666400+00:00: External PLP mini-campaign is review-only; current PLP lane presence is not a mechanism-match or import claim without source-free geometry and factory gates.
 - 2026-05-21T00:35:13.353330+00:00: all non-ePK ATP-family readiness slots closed review-only no-go
+- 2026-05-21T00:41:53.519062+00:00: flavin monooxygenase external mini-campaign remains review-only and not import-ready

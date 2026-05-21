@@ -114,6 +114,26 @@ No registry edit, label import, threshold, production scoring, fingerprint
 expansion, artifact migration, upload, removal, Git LFS tracking, or history
 rewrite was performed.
 
+The run also freezes a second prospective external mini-campaign, this time
+for flavin monooxygenase source rows. The freeze artifact
+`artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json`
+locks 20 reviewed UniProtKB/Swiss-Prot EC 1.14.13.* rows before scoring,
+requiring catalytic activity, PDB cross-reference, explicit FAD/FMN/flavin
+source context, prior-pool exclusions, heme/P450 mixed-context exclusions, and
+a two-row cap per primary EC. The decision packet
+`artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json`
+keeps 19 rows as `needs_review` under the existing `flavin_monooxygenase`
+fingerprint lane because external source-free geometry, duplicate-screen
+completion, terminal review, and factory/import gates are incomplete; `P15245`
+is a terminal rejection as an exact current-reference sequence duplicate. The
+baseline comparison
+`artifacts/v3_flavin_monooxygenase_minicampaign_baseline_comparison_20260521.json`
+records EC/keyword routing, deterministic 5-mer duplicate/neighbor context,
+and unrun geometry/ESM/Foldseek sidecars without a superiority claim. No
+registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
 As of the 2026-05-20T23:16:33Z automation run,
 `artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates
 the fresh dirty sibling-worktree ePK outputs that appeared after the late-lane

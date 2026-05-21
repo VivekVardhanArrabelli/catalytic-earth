@@ -295,6 +295,24 @@ is diagnostic only: EC/keyword context routes the lane, deterministic 5-mer
 finds two exact current-reference sequence duplicates, and geometry, ESM, and
 Foldseek remain unrun. No mechanism-match, label import, production score,
 threshold calibration, registry edit, or fingerprint expansion is in scope.
+Current flavin monooxygenase external mini-campaign scope:
+`artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json`
+freezes a new 20-row reviewed UniProtKB/Swiss-Prot EC 1.14.13.* surface
+before outcome scoring, requiring catalytic activity, PDB cross-reference,
+explicit FAD/FMN/flavin source context, prior external-pool exclusions,
+heme/P450 mixed-context exclusions, and a two-row cap per primary EC number.
+`artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json`
+routes 19 rows to `needs_review` under the existing `flavin_monooxygenase`
+fingerprint lane because external source-free geometry, duplicate-screen
+completion, terminal review, and factory/import gates are incomplete; `P15245`
+is a terminal rejection as an exact current-reference sequence duplicate. The
+matching
+`artifacts/v3_flavin_monooxygenase_minicampaign_baseline_comparison_20260521.json`
+is diagnostic only: EC/keyword routing over-admits all 20 rows as lane context,
+deterministic 5-mer finds one exact duplicate and two near-neighbor alerts,
+and geometry, ESM, and Foldseek remain unrun. No mechanism-match, label
+import, production score, threshold calibration, registry edit, or fingerprint
+expansion is in scope.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two
