@@ -5,7 +5,8 @@
 - Ended: 2026-05-21T12:52:45Z
 - Measured minutes: 438.73
 - Primary outcome: regression_rows_emitted
-- Commit/push status: pending alternate-index commit/push verification after this handoff update.
+- Pushed commit: f61f579b6898f11104ed6c642c0ecc0c35478a7e via alternate-index commit/push.
+- Commit/push status: primary alternate-index commit/push succeeded; status handoff commit pending.
 - Rule under attack: materializer equivalence on local geometry prefilters plus later-offset source-valid ePK entity v4 seed coverage.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
@@ -52,12 +53,16 @@ Evidence against counterexamples on this run's surface:
 - `python -m py_compile tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py tools/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit.py`
 - `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit_20260521_053401Z.json >/dev/null`
 - `python tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py --started-at 2026-05-21T05:34:01Z --output artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_125234Z.json --repo-root .`
+- JSONL validation passed for `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl` (16 lines).
+- `git diff --check -- tools/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit.py tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl work/research_lanes/epk_false_positive_hunter/handoff.md`
 
 ## Blockers
 
 - `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git pull --ff-only origin research/epk-false-positive-hunter` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git fetch --no-write-fetch-head origin` succeeded.
+- Normal `git add --dry-run` failed creating linked-worktree `index.lock`: Operation not permitted.
+- Alternate-index primary commit/push succeeded.
 - Local checked-out HEAD remains behind `origin/research/epk-false-positive-hunter`; normal status still reflects linked-worktree metadata/index issues from prior runs.
 
 ## Next Query
