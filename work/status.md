@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 254
-- Measured elapsed time: 7226.3 minutes (120.44 hours)
+- Entries: 256
+- Measured elapsed time: 7260.2 minutes (121.00 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 104.3 measured minutes (1.74 hours)
+- ops: 105.9 measured minutes (1.76 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 237.3 measured minutes (3.95 hours)
+- v3: 269.5 measured minutes (4.49 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2791
-- Evidence references logged: 2271
+- Artifact references logged: 2800
+- Evidence references logged: 2280
 
 ## Recent Entries
-
-### 2026-05-21T01:47:47.464485+00:00 - v3
-
-- Task: prospective external radical SAM mini-campaign
-- Time mode: measured
-- Measured minutes: 6.6
-- Started: 2026-05-21T01:40:57Z
-- Ended: 2026-05-21T01:47:33Z
-- Artifacts: artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_radical_sam_minicampaign_decision_packet_20260521.json, artifacts/v3_radical_sam_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_radical_sam_minicampaign_baseline_comparison_20260521.json, artifacts/v3_external_minicampaign_modern_baseline_rollup_post_radical_sam_20260521.json, artifacts/v3_main_loop_small_win_register_post_radical_sam_20260521.json
-- Evidence: 20-row Swiss-Prot radical-SAM/PDB surface frozen before scoring, 20 rows routed to needs_review under current radical_sam_enzyme lane, 0 exact current-reference duplicates and 0 sequence-neighbor alerts, post-radical-SAM rollup covers 135 frozen 2026-05-21 external rows with 123 needs_review 12 terminal rejections 13 sequence-neighbor alerts and 0 geometry-scored rows, focused radical SAM mini-campaign and rollup regressions passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
-
-### 2026-05-21T01:50:11.872301+00:00 - v3
-
-- Task: current fingerprint external baseline benchmark
-- Time mode: measured
-- Measured minutes: 2.483
-- Started: 2026-05-21T01:47:33Z
-- Ended: 2026-05-21T01:50:02Z
-- Artifacts: artifacts/v3_current_fingerprint_external_minicampaign_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: all eight production fingerprint lanes covered by seven external mini-campaigns plus one cobalamin source-surface blocker, 135 frozen external rows with 123 needs_review 12 duplicate terminal rejections and 0 geometry-scored rows, modern baseline sections cover EC keyword deterministic 5-mer geometry ESM and Foldseek with no superiority claim, focused benchmark regression passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ### 2026-05-21T01:55:41.795664+00:00 - v3
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_post_metal_research_lane_synthesis_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_selection_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_structure_mapping_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_geometry_scores_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_current_countable_structural_probe_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_duplicate_screen_blocker_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_modern_baseline_benchmark_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_structure_mapping_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_geometry_scores_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_duplicate_screen_blocker_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
 - Evidence: five ePK research lanes synthesized review-only with 5UJ7 carried forward, serine selected 7 rows and mapped 6 active-site triads with P31614 coordinate blocker, serine scored 7 rows with 0 text fields and all 7 terminal needs_new_extractor_or_structure, flavin selected 7 nonduplicate rows and materialized 7 AlphaFold sidecars, flavin mapped 7 active or cofactor-site coordinate sets and scored 7 rows with 0 text fields, flavin terminal packet records 4 target-floor hits but all 7 blocked by missing current-countable duplicate screen, focused artifact regressions and 778-test unit discovery passed, validate migration dry-run compileall JSON checks and diff check passed
 - Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
+
+### 2026-05-21T04:49:43.344663+00:00 - v3
+
+- Task: metal phosphatase chunked duplicate terminal packet
+- Time mode: measured
+- Measured minutes: 32.25
+- Started: 2026-05-21T04:16:52Z
+- Ended: 2026-05-21T04:49:07Z
+- Artifacts: artifacts/v3_metal_phosphatase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: 7 frozen metal-phosphatase deep rows screened query-by-query against 672 current-countable structures, 4704/4704 unique query-target pairs mapped with 0 raw-name failures, 7/7 rows terminal_rejection_duplicate_or_leakage by TM>=0.7 current-countable structural duplicate signal, import-ready count 0 and no registry fingerprint artifact migration or superiority claim
+- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
+
+### 2026-05-21T04:50:53.177113+00:00 - ops
+
+- Task: final validation for metal duplicate terminal packet
+- Time mode: measured
+- Measured minutes: 1.617
+- Started: 2026-05-21T04:49:07Z
+- Ended: 2026-05-21T04:50:44Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: 779-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 3 new JSON artifacts parsed
+- Notes: Final wrap validation after terminal metal-phosphatase duplicate/leakage packet.
 
 ## Expectation Updates
 

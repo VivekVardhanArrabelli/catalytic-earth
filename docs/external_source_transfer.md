@@ -320,6 +320,21 @@ import.
   `artifacts/v3_metal_phosphatase_deep_packet_modern_baseline_benchmark_20260521.json`
   records EC/keyword, deterministic 5-mer, geometry, Foldseek, and ESM caveats
   with no superiority, mechanism-match, or label-import claim.
+- `artifacts/v3_metal_phosphatase_deep_packet_chunked_current_countable_structural_screen_20260521.json`
+  closes that exact missing-evidence item with a query-chunked Foldseek/TM
+  screen. The same seven frozen rows are screened against the 672 staged
+  current-countable structures, all 4,704 unique query-target structure pairs
+  map cleanly, and all seven candidates have `TM >= 0.7` current-countable
+  structural duplicate/leakage signals. The post-screen terminal packet
+  `artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+  converts the seven rows to
+  `terminal_rejection_duplicate_or_leakage`, keeps import-ready and countable
+  candidate counts at 0, and preserves source separation: Foldseek/TM evidence
+  is an import-gate duplicate/leakage screen, not positive mechanism evidence.
+  The post-duplicate benchmark
+  `artifacts/v3_metal_phosphatase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json`
+  records EC/keyword, deterministic sequence, geometry, Foldseek, and missing
+  ESM sidecar caveats with no superiority claim.
 - `artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_20260521.json`
   is the second deep packet over the same frozen external surfaces. It selects
   seven rows from the serine-hydrolase mini-campaign before outcome scoring,

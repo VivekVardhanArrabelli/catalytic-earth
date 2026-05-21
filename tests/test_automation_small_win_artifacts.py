@@ -1329,6 +1329,123 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             {"needs_new_extractor_or_structure": 7},
         )
 
+    def test_metal_phosphatase_chunked_duplicate_screen_terminally_rejects_rows(
+        self,
+    ) -> None:
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_chunked_current_countable_structural_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json"
+        )
+
+        self.assertTrue(screen["metadata"]["review_only"])
+        self.assertTrue(screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(screen["metadata"]["candidate_count"], 7)
+        self.assertEqual(screen["metadata"]["current_countable_coordinate_count"], 672)
+        self.assertEqual(screen["metadata"]["expected_query_target_pair_count"], 4704)
+        self.assertEqual(screen["metadata"]["unique_query_target_pair_count"], 4704)
+        self.assertEqual(screen["metadata"]["query_target_pair_coverage"], 1.0)
+        self.assertEqual(screen["metadata"]["raw_name_mapping_unmapped_count"], 0)
+        self.assertEqual(
+            screen["metadata"]["foldseek_query_run_status_counts"], {"completed": 7}
+        )
+        self.assertEqual(
+            screen["metadata"]["current_countable_structural_screen_status_counts"],
+            {"current_countable_structural_duplicate_signal": 7},
+        )
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 7)
+        self.assertFalse(screen["metadata"]["ready_for_label_import"])
+        self.assertFalse(screen["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(screen["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(screen["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(screen["metadata"]["removal_allowed_set_true"])
+        self.assertTrue(
+            all(row["pair_cache_complete"] for row in screen["rows"])
+        )
+        self.assertTrue(
+            all(
+                row["current_countable_structural_screen_status"]
+                == "current_countable_structural_duplicate_signal"
+                for row in screen["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_evidence_role"]
+                == "import_gate_evidence_not_predictive_mechanism_evidence"
+                for row in screen["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                row["nearest_current_countable_hit"]["max_pair_tm_score"] >= 0.7
+                for row in screen["rows"]
+            )
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertTrue(packet["metadata"]["pair_cache_complete"])
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(packet["metadata"]["non_needs_review_terminal_count"], 7)
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        allowed = set(packet["metadata"]["allowed_terminal_decisions"])
+        self.assertLessEqual({row["terminal_decision"] for row in packet["rows"]}, allowed)
+        self.assertEqual(
+            {row["terminal_decision"] for row in packet["rows"]},
+            {"terminal_rejection_duplicate_or_leakage"},
+        )
+        self.assertTrue(
+            all(row["exact_blocker_if_not_terminal"] is None for row in packet["rows"])
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["evidence_role"]
+                == "import_gate_evidence_not_predictive_mechanism_evidence"
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["current_geometry_retrieval_score_summary"][
+                    "text_or_label_fields_used_for_score"
+                ]
+                for row in packet["rows"]
+            )
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+        self.assertEqual(benchmark["metrics"]["frozen_row_count"], 7)
+        self.assertTrue(
+            benchmark["metrics"]["foldseek_current_countable_pair_cache_complete"]
+        )
+        self.assertEqual(
+            benchmark["metrics"]["foldseek_current_countable_high_tm_candidate_count"],
+            7,
+        )
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+
     def test_post_metal_epk_research_lane_synthesis_stays_no_go(self) -> None:
         synthesis = _load_json(
             ARTIFACTS / "v3_epk_post_metal_research_lane_synthesis_20260521.json"

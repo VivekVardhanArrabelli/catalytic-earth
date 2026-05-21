@@ -149,6 +149,17 @@ terminal packet therefore uses `needs_new_extractor_or_structure` for all seven
 rows with one exact missing-evidence statement: complete the current-countable
 structural duplicate/leakage screen, preferably as a resumable/chunked gate,
 before any mechanism-match-review-ready or duplicate-clear decision.
+That exact blocker is now closed by
+`artifacts/v3_metal_phosphatase_deep_packet_chunked_current_countable_structural_screen_20260521.json`.
+The screen uses the same seven frozen rows, runs one Foldseek query at a time
+against the 672 staged current-countable structures, and maps all 4,704 unique
+query-target structure pairs with 0 raw-name mapping failures. Every row has a
+`TM >= 0.7` current-countable duplicate/leakage signal, so
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+sets all seven rows to the allowed terminal outcome
+`terminal_rejection_duplicate_or_leakage`. This closes the current packet as a
+review-only terminal rejection surface with 0 import-ready rows, 0 countable
+labels, no registry/fingerprint edits, and no superiority claim.
 Current serine-hydrolase deepening scope: the second 2026-05-21 external deep
 packet is also review-only blocker evidence, but now with active-site triad
 geometry over a different current fingerprint lane. The selection artifact

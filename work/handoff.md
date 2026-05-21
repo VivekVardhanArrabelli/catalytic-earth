@@ -50,6 +50,40 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T04:47:00Z automation run, the main loop closed the
+active metal-phosphatase deep-packet blocker without opening a new external
+mini-campaign. The new chunked screen artifact
+`artifacts/v3_metal_phosphatase_deep_packet_chunked_current_countable_structural_screen_20260521.json`
+reruns the seven already frozen metal-phosphatase deep rows one query at a
+time against the 672 current-countable staged structures. Foldseek completed
+7/7 query runs, mapped 4,704/4,704 unique query-target structure pairs, had 0
+raw-name mapping failures, and found high-TM current-countable structural
+duplicate/leakage signals for all seven rows at `TM >= 0.7`.
+
+The follow-up terminal packet
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+therefore converts all seven selected rows from
+`needs_new_extractor_or_structure` to the allowed terminal decision
+`terminal_rejection_duplicate_or_leakage`. This is a terminal review-only
+decision, not a label import or mechanism-match claim: all rows remain
+non-countable, import-ready count is 0, no registry/fingerprint artifact was
+edited, and Foldseek/TM evidence is explicitly import-gate duplicate/leakage
+evidence rather than predictive mechanism evidence. The compact benchmark
+`artifacts/v3_metal_phosphatase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword and deterministic 5-mer baselines diagnostic only, records
+ESM as unavailable for this packet, and makes no superiority claim.
+
+Evidence-based confidence call: confidence is high that the metal phosphatase
+deep packet now satisfies the primary one-month visible milestone for a
+terminal, reproducible, source-separated external decision with active-site
+evidence and duplicate/leakage screening. Confidence is also high that no
+metal-phosphatase row should move toward import or mechanism-match review from
+this packet, because every row has a current-countable high-TM leakage signal.
+The next main-loop work should apply the same chunked current-countable
+structural duplicate screen to the already frozen serine and flavin deep
+selections before any duplicate-clear, mechanism-match, import, or superiority
+claim is considered.
+
 As of the 2026-05-21T03:45:00Z automation run, the main loop has produced a
 second source-separated external deep packet, this time for the frozen serine
 hydrolase mini-campaign. The post-metal ePK lane synthesis
