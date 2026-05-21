@@ -5,7 +5,7 @@
 - Ended: 2026-05-21T03:19:02Z
 - Measured minutes: 48.45
 - Primary outcome: evidence_against
-- Pushed commit: blocked; commit/push attempt still must pass linked-worktree metadata permissions.
+- Pushed commit: 9a6530952dbcca394e06f5833a9ecc1ebb572a44 (remote run commit; local checked-out HEAD update is blocked by linked-worktree metadata permissions).
 - Rule under attack: entry-level any-context `v4_oligomeric_atp_terminals_no_mg_required` review-only guard risk plus current ePK substrate-mode/source-free topology rules.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
@@ -45,7 +45,7 @@ Evidence for continued caution:
 
 - `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - The normal linked-worktree index remains unwritable/stale: `git status` shows tracked lane files as staged deletions plus untracked replacements.
-- Commit/push is expected to require the alternate-index path or external permission repair.
+- Alternate-index commit/push succeeded for the run commit above; local HEAD/ref cleanup still requires external permission repair.
 
 ## Next Query
 
