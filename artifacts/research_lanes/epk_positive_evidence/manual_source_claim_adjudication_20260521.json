@@ -1,0 +1,2093 @@
+{
+  "manual_adjudicated_candidate_rows": [
+    {
+      "candidate_id": "1L3R:transition_analog:AF3:E:400:I:21:1",
+      "claim_status": "candidate_review_only_non_countable",
+      "coordinate_state": "transition_analog",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "input_schema_version": "epk_candidate_source_adjudication_v1",
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "manual_blockers": [
+        "transition_or_product_analog_state_not_countable",
+        "peptide_short_or_unknown_substrate_context",
+        "review_only_lane"
+      ],
+      "manual_claim_summary": "RCSB and literature metadata identify 1L3R as a PKA transition-state mimic; open PKA follow-up text maps 1L3R to an SP20/PKI-derived substrate peptide context with Ser21 discussed as the substrate serine.",
+      "manual_signal_tags": [
+        "manual_source_supported",
+        "transition_mimic",
+        "pki_derived_sp20_peptide",
+        "peptide_or_short_non_countable"
+      ],
+      "manual_source_claim_status": "source_supported_transition_or_pseudosubstrate_review_only",
+      "pdb_id": "1L3R",
+      "policy_decision": "review_only_abstain",
+      "prior_source_adjudication_status": "source_mapped_but_source_claim_unconfirmed_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "schema_version": "epk_candidate_manual_source_adjudication_v1",
+      "source_context": {
+        "associated_kinase_entity_description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+        "candidate_entity_description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+        "candidate_position_hints": [
+          {
+            "position": 21,
+            "source": "candidate_auth_seq_id"
+          },
+          {
+            "position": 17,
+            "source": "candidate_label_seq_id"
+          },
+          {
+            "position": 21,
+            "source": "pdbx_poly_seq_scheme.auth_seq_num"
+          },
+          {
+            "position": 21,
+            "source": "pdbx_poly_seq_scheme.pdb_seq_num"
+          },
+          {
+            "position": 17,
+            "source": "pdbx_poly_seq_scheme.seq_id"
+          },
+          {
+            "accession": "P63249",
+            "database": "UniProt",
+            "entity_seq_id": 17,
+            "source": "RCSB_SIFTS_alignment",
+            "uniprot_position": 22
+          }
+        ],
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "Crystal structure of a transition state mimic of the catalytic subunit of cAMP-dependent protein kinase.",
+        "structure_title": "Crystal Structure of a Transition State Mimic of the Catalytic Subunit of cAMP-dependent Protein Kinase",
+        "uniprot_feature_checks": [
+          {
+            "accession": "P63249",
+            "features_at_positions": [
+              {
+                "begin": 2,
+                "description": "cAMP-dependent protein kinase inhibitor alpha",
+                "end": 76,
+                "evidences": [],
+                "type": "Chain"
+              }
+            ],
+            "protein_name": "cAMP-dependent protein kinase inhibitor alpha",
+            "queried_positions": [
+              22
+            ],
+            "source_url": "https://rest.uniprot.org/uniprotkb/P63249.json"
+          }
+        ]
+      },
+      "source_free_geometry": {
+        "analog_auth_seq_id": "400",
+        "analog_chain_name": "E",
+        "analog_ligand_code": "AF3",
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "21",
+        "candidate_chain_name": "I",
+        "candidate_label_seq_id": "17",
+        "candidate_residue_code": "SER",
+        "coordinate_state": "transition_analog",
+        "has_local_mg_or_mn": true,
+        "local_metals": [
+          {
+            "auth_seq_id": "391",
+            "chain": "E",
+            "distance_angstrom": 1.965,
+            "metal_code": "MG",
+            "nearest_analog_atom": "F2"
+          },
+          {
+            "auth_seq_id": "392",
+            "chain": "E",
+            "distance_angstrom": 1.971,
+            "metal_code": "MG",
+            "nearest_analog_atom": "F1"
+          }
+        ],
+        "nearest_analog_atom": "AL",
+        "nearest_analog_distance_angstrom": 2.268
+      },
+      "source_review_not_predictive_coordinate_feature": true,
+      "source_support_level": "review_only_positive_support"
+    },
+    {
+      "candidate_id": "4DFX:active_gamma:ANP:E:402:I:21:1",
+      "claim_status": "candidate_review_only_non_countable",
+      "coordinate_state": "active_gamma",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "input_schema_version": "epk_candidate_source_adjudication_v1",
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "manual_blockers": [
+        "peptide_short_or_unknown_substrate_context",
+        "review_only_lane"
+      ],
+      "manual_claim_summary": "The primary structures are PKA/SP20/AMP-PNP ternary complexes. Open follow-up PKA phosphoryl-transfer text describes SP20 as a PKI-derived peptide mutated from inhibitor to substrate and cites 4DG0 as substrate-bound active-site context; 4DFX is the same SP20/AMP-PNP/Mg ternary family.",
+      "manual_signal_tags": [
+        "manual_source_supported",
+        "sp20_substrate_peptide",
+        "active_gamma",
+        "local_metal",
+        "peptide_or_short_non_countable"
+      ],
+      "manual_source_claim_status": "source_supported_sp20_substrate_peptide_review_only",
+      "pdb_id": "4DFX",
+      "policy_decision": "review_only_abstain",
+      "prior_source_adjudication_status": "source_mapped_but_source_claim_unconfirmed_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "schema_version": "epk_candidate_manual_source_adjudication_v1",
+      "source_context": {
+        "associated_kinase_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+        "candidate_entity_description": "cAMP-dependent protein kinase inhibitor alpha",
+        "candidate_position_hints": [
+          {
+            "position": 21,
+            "source": "candidate_auth_seq_id"
+          },
+          {
+            "position": 17,
+            "source": "candidate_label_seq_id"
+          },
+          {
+            "position": 21,
+            "source": "pdbx_poly_seq_scheme.auth_seq_num"
+          },
+          {
+            "position": 21,
+            "source": "pdbx_poly_seq_scheme.pdb_seq_num"
+          },
+          {
+            "position": 17,
+            "source": "pdbx_poly_seq_scheme.seq_id"
+          },
+          {
+            "accession": "P63248",
+            "database": "UniProt",
+            "entity_seq_id": 17,
+            "source": "RCSB_SIFTS_alignment",
+            "uniprot_position": 22
+          }
+        ],
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "Role of N-terminal myristylation in the structure and regulation of cAMP-dependent protein kinase.",
+        "structure_title": "Crystal structure of myristoylated K7C catalytic subunit of cAMP-dependent protein kinase in complex with SP20 and AMP-PNP",
+        "uniprot_feature_checks": [
+          {
+            "accession": "P63248",
+            "features_at_positions": [
+              {
+                "begin": 2,
+                "description": "cAMP-dependent protein kinase inhibitor alpha",
+                "end": 76,
+                "evidences": [],
+                "type": "Chain"
+              }
+            ],
+            "protein_name": "cAMP-dependent protein kinase inhibitor alpha",
+            "queried_positions": [
+              22
+            ],
+            "source_url": "https://rest.uniprot.org/uniprotkb/P63248.json"
+          }
+        ]
+      },
+      "source_free_geometry": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "21",
+        "candidate_chain_name": "I",
+        "candidate_label_seq_id": "17",
+        "candidate_residue_code": "SER",
+        "coordinate_state": "active_gamma",
+        "donor_role": "strict_anp_pg_gamma",
+        "has_local_mg_or_mn": true,
+        "local_metals": [
+          {
+            "auth_seq_id": "403",
+            "chain": "E",
+            "distance_angstrom": 2.918,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "404",
+            "chain": "E",
+            "distance_angstrom": 3.13,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_terminal_distance_angstrom": 3.533,
+        "terminal_associated_polymer_chain_name": "E",
+        "terminal_associated_polymer_entity_id": "1",
+        "terminal_atom_name": "PG",
+        "terminal_auth_seq_id": "402",
+        "terminal_chain_name": "E",
+        "terminal_instance_inferred_from_associated_polymer": false,
+        "terminal_ligand_code": "ANP"
+      },
+      "source_review_not_predictive_coordinate_feature": true,
+      "source_support_level": "review_only_positive_support"
+    },
+    {
+      "candidate_id": "4DG0:active_gamma:ANP:E:402:I:21:1",
+      "claim_status": "candidate_review_only_non_countable",
+      "coordinate_state": "active_gamma",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "input_schema_version": "epk_candidate_source_adjudication_v1",
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "manual_blockers": [
+        "peptide_short_or_unknown_substrate_context",
+        "review_only_lane"
+      ],
+      "manual_claim_summary": "The primary structures are PKA/SP20/AMP-PNP ternary complexes. Open follow-up PKA phosphoryl-transfer text describes SP20 as a PKI-derived peptide mutated from inhibitor to substrate and cites 4DG0 as substrate-bound active-site context; 4DFX is the same SP20/AMP-PNP/Mg ternary family.",
+      "manual_signal_tags": [
+        "manual_source_supported",
+        "sp20_substrate_peptide",
+        "active_gamma",
+        "local_metal",
+        "peptide_or_short_non_countable"
+      ],
+      "manual_source_claim_status": "source_supported_sp20_substrate_peptide_review_only",
+      "pdb_id": "4DG0",
+      "policy_decision": "review_only_abstain",
+      "prior_source_adjudication_status": "source_mapped_but_source_claim_unconfirmed_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "schema_version": "epk_candidate_manual_source_adjudication_v1",
+      "source_context": {
+        "associated_kinase_entity_description": "cAMP-dependent protein kinase catalytic subunit alpha",
+        "candidate_entity_description": "cAMP-dependent protein kinase inhibitor alpha",
+        "candidate_position_hints": [
+          {
+            "position": 21,
+            "source": "candidate_auth_seq_id"
+          },
+          {
+            "position": 17,
+            "source": "candidate_label_seq_id"
+          },
+          {
+            "position": 21,
+            "source": "pdbx_poly_seq_scheme.auth_seq_num"
+          },
+          {
+            "position": 21,
+            "source": "pdbx_poly_seq_scheme.pdb_seq_num"
+          },
+          {
+            "position": 17,
+            "source": "pdbx_poly_seq_scheme.seq_id"
+          },
+          {
+            "accession": "P63248",
+            "database": "UniProt",
+            "entity_seq_id": 17,
+            "source": "RCSB_SIFTS_alignment",
+            "uniprot_position": 22
+          }
+        ],
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "Role of N-terminal myristylation in the structure and regulation of cAMP-dependent protein kinase.",
+        "structure_title": "Crystal structure of myristoylated WT catalytic subunit of cAMP-dependent protein kinase in complex with SP20 and AMP-PNP",
+        "uniprot_feature_checks": [
+          {
+            "accession": "P63248",
+            "features_at_positions": [
+              {
+                "begin": 2,
+                "description": "cAMP-dependent protein kinase inhibitor alpha",
+                "end": 76,
+                "evidences": [],
+                "type": "Chain"
+              }
+            ],
+            "protein_name": "cAMP-dependent protein kinase inhibitor alpha",
+            "queried_positions": [
+              22
+            ],
+            "source_url": "https://rest.uniprot.org/uniprotkb/P63248.json"
+          }
+        ]
+      },
+      "source_free_geometry": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "21",
+        "candidate_chain_name": "I",
+        "candidate_label_seq_id": "17",
+        "candidate_residue_code": "SER",
+        "coordinate_state": "active_gamma",
+        "donor_role": "strict_anp_pg_gamma",
+        "has_local_mg_or_mn": true,
+        "local_metals": [
+          {
+            "auth_seq_id": "404",
+            "chain": "E",
+            "distance_angstrom": 2.741,
+            "metal_code": "MG"
+          },
+          {
+            "auth_seq_id": "403",
+            "chain": "E",
+            "distance_angstrom": 3.079,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_terminal_distance_angstrom": 3.463,
+        "terminal_associated_polymer_chain_name": "E",
+        "terminal_associated_polymer_entity_id": "1",
+        "terminal_atom_name": "PG",
+        "terminal_auth_seq_id": "402",
+        "terminal_chain_name": "E",
+        "terminal_instance_inferred_from_associated_polymer": false,
+        "terminal_ligand_code": "ANP"
+      },
+      "source_review_not_predictive_coordinate_feature": true,
+      "source_support_level": "review_only_positive_support"
+    },
+    {
+      "candidate_id": "4EKK:active_gamma:ANP:B:associated_entity_1:D:6:3",
+      "claim_status": "candidate_review_only_non_countable",
+      "coordinate_state": "active_gamma",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "input_schema_version": "epk_candidate_source_adjudication_v1",
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "manual_blockers": [
+        "candidate_residue_not_source_phosphosite",
+        "no_local_mg_or_mn",
+        "review_only_lane"
+      ],
+      "manual_claim_summary": "The candidate maps to GSK3-beta Thr8, adjacent to the source-supported Akt/GSK3 Ser9 site. UniProt feature context supports Ser9, not Thr8; this row also lacks local Mg/Mn, so it remains non-countable negative support for candidate-level residue specificity.",
+      "manual_signal_tags": [
+        "manual_source_refuted",
+        "adjacent_nonphosphosite",
+        "no_local_metal",
+        "residue_specificity_counterexample"
+      ],
+      "manual_source_claim_status": "source_refuted_adjacent_nonphosphosite_no_local_metal_review_only",
+      "pdb_id": "4EKK",
+      "policy_decision": "review_only_abstain",
+      "prior_source_adjudication_status": "source_mapped_but_source_claim_unconfirmed_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "schema_version": "epk_candidate_manual_source_adjudication_v1",
+      "source_context": {
+        "associated_kinase_entity_description": "RAC-alpha serine/threonine-protein kinase",
+        "candidate_entity_description": "Glycogen synthase kinase-3 beta",
+        "candidate_position_hints": [
+          {
+            "position": 6,
+            "source": "candidate_auth_seq_id"
+          },
+          {
+            "position": 6,
+            "source": "pdbx_poly_seq_scheme.auth_seq_num"
+          },
+          {
+            "position": 6,
+            "source": "pdbx_poly_seq_scheme.pdb_seq_num"
+          },
+          {
+            "position": 6,
+            "source": "pdbx_poly_seq_scheme.seq_id"
+          },
+          {
+            "accession": "P49841",
+            "database": "UniProt",
+            "entity_seq_id": 6,
+            "source": "RCSB_SIFTS_alignment",
+            "uniprot_position": 8
+          }
+        ],
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "An ATP-Site On-Off Switch That Restricts Phosphatase Accessibility of Akt.",
+        "structure_title": "Akt1 with AMP-PNP",
+        "uniprot_feature_checks": [
+          {
+            "accession": "P49841",
+            "features_at_positions": [
+              {
+                "begin": 1,
+                "description": "Glycogen synthase kinase-3 beta",
+                "end": 420,
+                "evidences": [],
+                "type": "Chain"
+              },
+              {
+                "begin": 1,
+                "description": "Disordered",
+                "end": 53,
+                "evidences": [
+                  {
+                    "evidence_code": "ECO:0000256",
+                    "id": "MobiDB-lite",
+                    "source": "SAM"
+                  }
+                ],
+                "type": "Region"
+              },
+              {
+                "begin": 1,
+                "description": "Polar residues",
+                "end": 22,
+                "evidences": [
+                  {
+                    "evidence_code": "ECO:0000256",
+                    "id": "MobiDB-lite",
+                    "source": "SAM"
+                  }
+                ],
+                "type": "Compositional bias"
+              }
+            ],
+            "protein_name": "Glycogen synthase kinase-3 beta",
+            "queried_positions": [
+              8
+            ],
+            "source_url": "https://rest.uniprot.org/uniprotkb/P49841.json"
+          }
+        ]
+      },
+      "source_free_geometry": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "6",
+        "candidate_chain_name": "D",
+        "candidate_label_seq_id": null,
+        "candidate_residue_code": "THR",
+        "coordinate_state": "active_gamma",
+        "donor_role": null,
+        "has_local_mg_or_mn": false,
+        "local_metals": [],
+        "nearest_terminal_distance_angstrom": 5.039,
+        "terminal_associated_polymer_chain_name": "B",
+        "terminal_associated_polymer_entity_id": "1",
+        "terminal_atom_name": "PG",
+        "terminal_auth_seq_id": "associated_entity_1",
+        "terminal_chain_name": "B",
+        "terminal_instance_inferred_from_associated_polymer": true,
+        "terminal_ligand_code": "ANP"
+      },
+      "source_review_not_predictive_coordinate_feature": true,
+      "source_support_level": "evidence_against_candidate_claim"
+    },
+    {
+      "candidate_id": "7B56:active_gamma:ANP:B:401:A:822:1",
+      "claim_status": "candidate_review_only_non_countable",
+      "coordinate_state": "active_gamma",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "input_schema_version": "epk_candidate_source_adjudication_v1",
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "manual_blockers": [
+        "source_claim_absent",
+        "candidate_mapping_not_sifts_confirmed_for_auth_ser822",
+        "review_only_lane"
+      ],
+      "manual_claim_summary": "RCSB exposes a CaMKII/alpha-actinin AMPPNP structure without article DOI/PubMed metadata. Exact Europe PMC Ser822/7B56 surfaces found no phosphoacceptor claim, and later CaMKII/actinin preprint and peer-reviewed article metadata frame the complex as structural actinin binding rather than an alpha-actinin Ser822 transfer-state substrate claim.",
+      "manual_signal_tags": [
+        "manual_source_unconfirmed",
+        "actinin_binding_context",
+        "no_exact_ser822_source_claim",
+        "active_gamma_local_geometry_non_countable"
+      ],
+      "manual_source_claim_status": "source_absent_actinin_binding_context_review_only",
+      "pdb_id": "7B56",
+      "policy_decision": "review_only_abstain",
+      "prior_source_adjudication_status": "source_mapped_but_source_claim_unconfirmed_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "schema_version": "epk_candidate_manual_source_adjudication_v1",
+      "source_context": {
+        "associated_kinase_entity_description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+        "candidate_entity_description": "Alpha-actinin-2",
+        "candidate_position_hints": [
+          {
+            "position": 822,
+            "source": "candidate_auth_seq_id"
+          },
+          {
+            "position": 1,
+            "source": "candidate_label_seq_id"
+          },
+          {
+            "position": 822,
+            "source": "pdbx_poly_seq_scheme.auth_seq_num"
+          },
+          {
+            "position": 822,
+            "source": "pdbx_poly_seq_scheme.pdb_seq_num"
+          },
+          {
+            "position": 1,
+            "source": "pdbx_poly_seq_scheme.seq_id"
+          }
+        ],
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "Crystal structure of CaMKII-actinin complex bound to MES",
+        "structure_title": "Crystal structure of CaMKII-actinin complex bound to AMPPNP",
+        "uniprot_feature_checks": [
+          {
+            "accession": "P35609",
+            "features_at_positions": [
+              {
+                "begin": 1,
+                "description": "Alpha-actinin-2",
+                "end": 894,
+                "evidences": [],
+                "type": "Chain"
+              },
+              {
+                "begin": 789,
+                "description": "EF-hand 2",
+                "end": 824,
+                "evidences": [
+                  {
+                    "evidence_code": "ECO:0000255",
+                    "id": "PRU00448",
+                    "source": "PROSITE-ProRule"
+                  }
+                ],
+                "type": "Domain"
+              },
+              {
+                "begin": 1,
+                "description": "Actin-binding",
+                "end": 254,
+                "evidences": [],
+                "type": "Region"
+              }
+            ],
+            "protein_name": "Alpha-actinin-2",
+            "queried_positions": [
+              1,
+              822
+            ],
+            "source_url": "https://rest.uniprot.org/uniprotkb/P35609.json"
+          }
+        ]
+      },
+      "source_free_geometry": {
+        "candidate_atom_name": "OG",
+        "candidate_auth_seq_id": "822",
+        "candidate_chain_name": "A",
+        "candidate_label_seq_id": "1",
+        "candidate_residue_code": "SER",
+        "coordinate_state": "active_gamma",
+        "donor_role": "strict_anp_pg_gamma",
+        "has_local_mg_or_mn": true,
+        "local_metals": [
+          {
+            "auth_seq_id": "402",
+            "chain": "B",
+            "distance_angstrom": 3.192,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_terminal_distance_angstrom": 3.92,
+        "terminal_associated_polymer_chain_name": "B",
+        "terminal_associated_polymer_entity_id": "1",
+        "terminal_atom_name": "PG",
+        "terminal_auth_seq_id": "401",
+        "terminal_chain_name": "B",
+        "terminal_instance_inferred_from_associated_polymer": false,
+        "terminal_ligand_code": "ANP"
+      },
+      "source_review_not_predictive_coordinate_feature": true,
+      "source_support_level": "source_absent_or_unconfirmed"
+    },
+    {
+      "candidate_id": "7KL1:active_gamma:ATP:C:1401:A:176:2",
+      "claim_status": "candidate_review_only_non_countable",
+      "coordinate_state": "active_gamma",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "input_schema_version": "epk_candidate_source_adjudication_v1",
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "manual_blockers": [
+        "candidate_residue_is_kinase_domain_not_substrate_site",
+        "source_substrate_is_glun2b_s1303d_not_camkii_thr176",
+        "review_only_lane"
+      ],
+      "manual_claim_summary": "The source-supported substrate context is GluN2B, specifically a phosphomimetic S1303D peptide in 7KL1. The candidate rows instead map the acceptor to CaMKII Thr176 inside the kinase domain, so they are donor/acceptor ownership false positives rather than substrate phosphoacceptor evidence.",
+      "manual_signal_tags": [
+        "manual_counterexample",
+        "wrong_acceptor_chain",
+        "donor_ownership_confounded",
+        "glun2b_s1303d_phosphomimetic_context"
+      ],
+      "manual_source_claim_status": "counterexample_wrong_acceptor_or_donor_ownership_review_only",
+      "pdb_id": "7KL1",
+      "policy_decision": "review_only_abstain",
+      "prior_source_adjudication_status": "source_mapped_but_source_claim_unconfirmed_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "schema_version": "epk_candidate_manual_source_adjudication_v1",
+      "source_context": {
+        "associated_kinase_entity_description": "Glutamate receptor ionotropic, NMDA 2B",
+        "candidate_entity_description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+        "candidate_position_hints": [
+          {
+            "position": 176,
+            "source": "candidate_auth_seq_id"
+          },
+          {
+            "position": 170,
+            "source": "candidate_label_seq_id"
+          },
+          {
+            "position": 176,
+            "source": "pdbx_poly_seq_scheme.auth_seq_num"
+          },
+          {
+            "position": 176,
+            "source": "pdbx_poly_seq_scheme.pdb_seq_num"
+          },
+          {
+            "position": 170,
+            "source": "pdbx_poly_seq_scheme.seq_id"
+          },
+          {
+            "accession": "Q9UQM7",
+            "database": "UniProt",
+            "entity_seq_id": 170,
+            "source": "RCSB_SIFTS_alignment",
+            "uniprot_position": 176
+          }
+        ],
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "CaMKII binds both substrates and activators at the active site.",
+        "structure_title": "Cocrystal structure of human CaMKII-alpha (CAMK2A)kinase domain and GluN2B(S1303D)",
+        "uniprot_feature_checks": [
+          {
+            "accession": "Q9UQM7",
+            "features_at_positions": [
+              {
+                "begin": 1,
+                "description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+                "end": 478,
+                "evidences": [],
+                "type": "Chain"
+              },
+              {
+                "begin": 13,
+                "description": "Protein kinase",
+                "end": 271,
+                "evidences": [
+                  {
+                    "evidence_code": "ECO:0000255",
+                    "id": "PRU00159",
+                    "source": "PROSITE-ProRule"
+                  }
+                ],
+                "type": "Domain"
+              }
+            ],
+            "protein_name": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+            "queried_positions": [
+              176
+            ],
+            "source_url": "https://rest.uniprot.org/uniprotkb/Q9UQM7.json"
+          }
+        ]
+      },
+      "source_free_geometry": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "176",
+        "candidate_chain_name": "A",
+        "candidate_label_seq_id": "170",
+        "candidate_residue_code": "THR",
+        "coordinate_state": "active_gamma",
+        "donor_role": "strict_pg_gamma",
+        "has_local_mg_or_mn": true,
+        "local_metals": [
+          {
+            "auth_seq_id": "302",
+            "chain": "A",
+            "distance_angstrom": 4.274,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_terminal_distance_angstrom": 5.516,
+        "terminal_associated_polymer_chain_name": "C",
+        "terminal_associated_polymer_entity_id": "2",
+        "terminal_atom_name": "PG",
+        "terminal_auth_seq_id": "1401",
+        "terminal_chain_name": "C",
+        "terminal_instance_inferred_from_associated_polymer": false,
+        "terminal_ligand_code": "ATP"
+      },
+      "source_review_not_predictive_coordinate_feature": true,
+      "source_support_level": "counterexample"
+    },
+    {
+      "candidate_id": "7KL1:active_gamma:ATP:D:1401:B:176:1",
+      "claim_status": "candidate_review_only_non_countable",
+      "coordinate_state": "active_gamma",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "input_schema_version": "epk_candidate_source_adjudication_v1",
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "manual_blockers": [
+        "candidate_residue_is_kinase_domain_not_substrate_site",
+        "source_substrate_is_glun2b_s1303d_not_camkii_thr176",
+        "review_only_lane"
+      ],
+      "manual_claim_summary": "The source-supported substrate context is GluN2B, specifically a phosphomimetic S1303D peptide in 7KL1. The candidate rows instead map the acceptor to CaMKII Thr176 inside the kinase domain, so they are donor/acceptor ownership false positives rather than substrate phosphoacceptor evidence.",
+      "manual_signal_tags": [
+        "manual_counterexample",
+        "wrong_acceptor_chain",
+        "donor_ownership_confounded",
+        "glun2b_s1303d_phosphomimetic_context"
+      ],
+      "manual_source_claim_status": "counterexample_wrong_acceptor_or_donor_ownership_review_only",
+      "pdb_id": "7KL1",
+      "policy_decision": "review_only_abstain",
+      "prior_source_adjudication_status": "source_mapped_but_source_claim_unconfirmed_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "schema_version": "epk_candidate_manual_source_adjudication_v1",
+      "source_context": {
+        "associated_kinase_entity_description": "Glutamate receptor ionotropic, NMDA 2B",
+        "candidate_entity_description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+        "candidate_position_hints": [
+          {
+            "position": 176,
+            "source": "candidate_auth_seq_id"
+          },
+          {
+            "position": 170,
+            "source": "candidate_label_seq_id"
+          },
+          {
+            "position": 176,
+            "source": "pdbx_poly_seq_scheme.auth_seq_num"
+          },
+          {
+            "position": 176,
+            "source": "pdbx_poly_seq_scheme.pdb_seq_num"
+          },
+          {
+            "position": 170,
+            "source": "pdbx_poly_seq_scheme.seq_id"
+          },
+          {
+            "accession": "Q9UQM7",
+            "database": "UniProt",
+            "entity_seq_id": 170,
+            "source": "RCSB_SIFTS_alignment",
+            "uniprot_position": 176
+          }
+        ],
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "CaMKII binds both substrates and activators at the active site.",
+        "structure_title": "Cocrystal structure of human CaMKII-alpha (CAMK2A)kinase domain and GluN2B(S1303D)",
+        "uniprot_feature_checks": [
+          {
+            "accession": "Q9UQM7",
+            "features_at_positions": [
+              {
+                "begin": 1,
+                "description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+                "end": 478,
+                "evidences": [],
+                "type": "Chain"
+              },
+              {
+                "begin": 13,
+                "description": "Protein kinase",
+                "end": 271,
+                "evidences": [
+                  {
+                    "evidence_code": "ECO:0000255",
+                    "id": "PRU00159",
+                    "source": "PROSITE-ProRule"
+                  }
+                ],
+                "type": "Domain"
+              }
+            ],
+            "protein_name": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+            "queried_positions": [
+              176
+            ],
+            "source_url": "https://rest.uniprot.org/uniprotkb/Q9UQM7.json"
+          }
+        ]
+      },
+      "source_free_geometry": {
+        "candidate_atom_name": "OG1",
+        "candidate_auth_seq_id": "176",
+        "candidate_chain_name": "B",
+        "candidate_label_seq_id": "170",
+        "candidate_residue_code": "THR",
+        "coordinate_state": "active_gamma",
+        "donor_role": "strict_pg_gamma",
+        "has_local_mg_or_mn": true,
+        "local_metals": [
+          {
+            "auth_seq_id": "303",
+            "chain": "B",
+            "distance_angstrom": 4.7,
+            "metal_code": "MG"
+          }
+        ],
+        "nearest_terminal_distance_angstrom": 5.193,
+        "terminal_associated_polymer_chain_name": "D",
+        "terminal_associated_polymer_entity_id": "2",
+        "terminal_atom_name": "PG",
+        "terminal_auth_seq_id": "1401",
+        "terminal_chain_name": "D",
+        "terminal_instance_inferred_from_associated_polymer": false,
+        "terminal_ligand_code": "ATP"
+      },
+      "source_review_not_predictive_coordinate_feature": true,
+      "source_support_level": "counterexample"
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-05-21T12:21:20Z",
+    "input_artifact": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "manual_source_claim_adjudication",
+    "production_claim_allowed": false,
+    "raw_article_text_stored": false,
+    "raw_coordinates_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_manual_source_adjudication_v1",
+    "source_review_not_predictive_coordinate_feature": true,
+    "target_candidate_ids": [
+      "1L3R:transition_analog:AF3:E:400:I:21:1",
+      "4DFX:active_gamma:ANP:E:402:I:21:1",
+      "4DG0:active_gamma:ANP:E:402:I:21:1",
+      "4EKK:active_gamma:ANP:B:associated_entity_1:D:6:3",
+      "7B56:active_gamma:ANP:B:401:A:822:1",
+      "7KL1:active_gamma:ATP:C:1401:A:176:2",
+      "7KL1:active_gamma:ATP:D:1401:B:176:1"
+    ]
+  },
+  "source_surfaces": {
+    "europepmc_metadata_queries": [
+      {
+        "hit_count": 1,
+        "query": "DOI:\"10.1038/nsb780\"",
+        "results": [
+          {
+            "doi": "10.1038/nsb780",
+            "id": "11896404",
+            "in_europe_pmc": "N",
+            "is_open_access": "N",
+            "pmcid": null,
+            "pmid": "11896404",
+            "pub_year": "2002",
+            "title": "Crystal structure of a transition state mimic of the catalytic subunit of cAMP-dependent protein kinase."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1038%2Fnsb780%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 2,
+        "query": "\"1L3R\" \"PKI\" \"Ser21\"",
+        "results": [
+          {
+            "doi": "10.1074/jbc.m115.643213",
+            "id": "25925954",
+            "in_europe_pmc": "Y",
+            "is_open_access": "N",
+            "pmcid": "PMC4505467",
+            "pmid": "25925954",
+            "pub_year": "2015",
+            "title": "Phosphoryl Transfer Reaction Snapshots in Crystals: INSIGHTS INTO THE MECHANISM OF PROTEIN KINASE A CATALYTIC SUBUNIT."
+          },
+          {
+            "doi": "10.1021/ja312237q",
+            "id": "23458248",
+            "in_europe_pmc": "Y",
+            "is_open_access": "N",
+            "pmcid": "PMC3663052",
+            "pmid": "23458248",
+            "pub_year": "2013",
+            "title": "Phosphoryl transfer by protein kinase A is captured in a crystal lattice."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%221L3R%22+%22PKI%22+%22Ser21%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 1,
+        "query": "DOI:\"10.1016/j.jmb.2012.05.021\"",
+        "results": [
+          {
+            "doi": "10.1016/j.jmb.2012.05.021",
+            "id": "22617327",
+            "in_europe_pmc": "Y",
+            "is_open_access": "N",
+            "pmcid": "PMC3597442",
+            "pmid": "22617327",
+            "pub_year": "2012",
+            "title": "Role of N-terminal myristylation in the structure and regulation of cAMP-dependent protein kinase."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2Fj.jmb.2012.05.021%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 9,
+        "query": "\"4DFX\" OR \"4DG0\" \"SP20\" \"AMP-PNP\"",
+        "results": [
+          {
+            "doi": "10.3390/cells9061548",
+            "id": "32630525",
+            "in_europe_pmc": "Y",
+            "is_open_access": "Y",
+            "pmcid": "PMC7361990",
+            "pmid": "32630525",
+            "pub_year": "2020",
+            "title": "Molecular Basis for Ser/Thr Specificity in PKA Signaling."
+          },
+          {
+            "doi": "10.1016/j.jmb.2012.05.021",
+            "id": "22617327",
+            "in_europe_pmc": "Y",
+            "is_open_access": "N",
+            "pmcid": "PMC3597442",
+            "pmid": "22617327",
+            "pub_year": "2012",
+            "title": "Role of N-terminal myristylation in the structure and regulation of cAMP-dependent protein kinase."
+          },
+          {
+            "doi": "10.1021/ja312237q",
+            "id": "23458248",
+            "in_europe_pmc": "Y",
+            "is_open_access": "N",
+            "pmcid": "PMC3663052",
+            "pmid": "23458248",
+            "pub_year": "2013",
+            "title": "Phosphoryl transfer by protein kinase A is captured in a crystal lattice."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%224DFX%22+OR+%224DG0%22+%22SP20%22+%22AMP-PNP%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 1,
+        "query": "DOI:\"10.1126/scisignal.2002618\"",
+        "results": [
+          {
+            "doi": "10.1126/scisignal.2002618",
+            "id": "22569334",
+            "in_europe_pmc": "N",
+            "is_open_access": "N",
+            "pmcid": null,
+            "pmid": "22569334",
+            "pub_year": "2012",
+            "title": "An ATP-site on-off switch that restricts phosphatase accessibility of Akt."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1126%2Fscisignal.2002618%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 0,
+        "query": "\"GSK3 beta\" \"Thr8\" Akt phosphorylation",
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22GSK3+beta%22+%22Thr8%22+Akt+phosphorylation&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 82,
+        "query": "\"GSK3 beta\" \"Ser9\" Akt phosphorylation",
+        "results": [
+          {
+            "doi": "10.1159/000550889",
+            "id": "41697916",
+            "in_europe_pmc": "Y",
+            "is_open_access": "Y",
+            "pmcid": "PMC13048724",
+            "pmid": "41697916",
+            "pub_year": "2026",
+            "title": "Modular Phosphoprotein Signatures Link Rac1 Inhibition to Neurite Morphogenesis in a Dose-Dependent Manner."
+          },
+          {
+            "doi": "10.1186/s13041-025-01206-w",
+            "id": "40329396",
+            "in_europe_pmc": "Y",
+            "is_open_access": "Y",
+            "pmcid": "PMC12057146",
+            "pmid": "40329396",
+            "pub_year": "2025",
+            "title": "GAS reduced inflammatory responses in activated microglia by regulating the Ccr2/Akt/Gsk-3\u03b2 pathway."
+          },
+          {
+            "doi": "10.1007/s10787-025-01695-0",
+            "id": "40108007",
+            "in_europe_pmc": "Y",
+            "is_open_access": "Y",
+            "pmcid": "PMC11991970",
+            "pmid": "40108007",
+            "pub_year": "2025",
+            "title": "Modulation of the cognitive impairment associated with Alzheimer's disease by valproic acid: possible drug repurposing."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22GSK3+beta%22+%22Ser9%22+Akt+phosphorylation&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 0,
+        "query": "\"7B56\" \"Ser822\"",
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%227B56%22+%22Ser822%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 0,
+        "query": "\"alpha-actinin-2\" \"Ser822\" phosphorylation",
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22alpha-actinin-2%22+%22Ser822%22+phosphorylation&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 0,
+        "query": "\"CaMKII\" \"alpha-actinin\" \"Ser822\"",
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22CaMKII%22+%22alpha-actinin%22+%22Ser822%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 1,
+        "query": "DOI:\"10.1523/JNEUROSCI.0795-25.2025\"",
+        "results": [
+          {
+            "doi": "10.1523/jneurosci.0795-25.2025",
+            "id": "41130800",
+            "in_europe_pmc": "N",
+            "is_open_access": "N",
+            "pmcid": null,
+            "pmid": "41130800",
+            "pub_year": "2025",
+            "title": "Widely Used CaMKII Regulatory Segment Mutations Cause Tight Actinin Binding and Dendritic Spine Enlargement in Unstimulated Neurons."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1523%2FJNEUROSCI.0795-25.2025%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 1,
+        "query": "\"Widely used CaMKII regulatory segment mutations cause tight actinin binding\" \"7B56\"",
+        "results": [
+          {
+            "doi": "10.1101/2025.03.18.643923",
+            "id": "PPR990784",
+            "in_europe_pmc": "Y",
+            "is_open_access": "Y",
+            "pmcid": null,
+            "pmid": null,
+            "pub_year": "2025",
+            "title": "Widely used CaMKII regulatory segment mutations cause tight actinin binding and dendritic spine enlargement in unstimulated neurons"
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22Widely+used+CaMKII+regulatory+segment+mutations+cause+tight+actinin+binding%22+%227B56%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 2,
+        "query": "\"CaMKII binds both substrates and activators at the active site\"",
+        "results": [
+          {
+            "doi": "10.1101/2020.10.25.354241",
+            "id": "PPR230118",
+            "in_europe_pmc": "N",
+            "is_open_access": "N",
+            "pmcid": null,
+            "pmid": null,
+            "pub_year": "2020",
+            "title": "CaMKII binds both substrates and activators at the active site"
+          },
+          {
+            "doi": "10.1016/j.celrep.2022.111064",
+            "id": "35830796",
+            "in_europe_pmc": "Y",
+            "is_open_access": "Y",
+            "pmcid": "PMC9336311",
+            "pmid": "35830796",
+            "pub_year": "2022",
+            "title": "CaMKII binds both substrates and activators at the active site."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22CaMKII+binds+both+substrates+and+activators+at+the+active+site%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "hit_count": 1,
+        "query": "\"7KL1\" \"GluN2B\" \"S1303D\"",
+        "results": [
+          {
+            "doi": "10.1016/j.celrep.2022.111064",
+            "id": "35830796",
+            "in_europe_pmc": "Y",
+            "is_open_access": "Y",
+            "pmcid": "PMC9336311",
+            "pmid": "35830796",
+            "pub_year": "2022",
+            "title": "CaMKII binds both substrates and activators at the active site."
+          }
+        ],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%227KL1%22+%22GluN2B%22+%22S1303D%22&format=json&pageSize=3&resultType=core"
+      }
+    ],
+    "pmc_term_checks": [
+      {
+        "pmcid": "PMC4505467",
+        "raw_text_stored": false,
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4505467/",
+        "term_counts": {
+          "1L3R": 4,
+          "ADP": 70,
+          "MgF": 19,
+          "PKI": 2,
+          "SP20": 81,
+          "substrate": 46,
+          "transition state": 28
+        },
+        "text_length_checked": 63223
+      },
+      {
+        "pmcid": "PMC3663052",
+        "raw_text_stored": false,
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3663052/",
+        "term_counts": {
+          "1L3R": 1,
+          "4DG0": 4,
+          "AMP-PNP": 63,
+          "PKI": 3,
+          "SP20": 22,
+          "Ser21": 2,
+          "substrate": 51,
+          "transition state": 21
+        },
+        "text_length_checked": 65793
+      },
+      {
+        "pmcid": "PMC3597442",
+        "raw_text_stored": false,
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3597442/",
+        "term_counts": {},
+        "text_length_checked": 11313
+      },
+      {
+        "pmcid": "PMC9336311",
+        "raw_text_stored": false,
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9336311/",
+        "term_counts": {},
+        "text_length_checked": 11311
+      }
+    ],
+    "rcsb_entry_metadata": [
+      {
+        "citation_doi": "10.1038/nsb780",
+        "citation_pubmed_id": 11896404,
+        "citation_title": "Crystal structure of a transition state mimic of the catalytic subunit of cAMP-dependent protein kinase.",
+        "citation_year": 2002,
+        "deposition_date": "2002-02-28T00:00:00.000+00:00",
+        "initial_release_date": "2002-03-20T00:00:00.000+00:00",
+        "pdb_id": "1L3R",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/1L3R",
+        "structure_title": "Crystal Structure of a Transition State Mimic of the Catalytic Subunit of cAMP-dependent Protein Kinase"
+      },
+      {
+        "citation_doi": "10.1016/j.jmb.2012.05.021",
+        "citation_pubmed_id": 22617327,
+        "citation_title": "Role of N-terminal myristylation in the structure and regulation of cAMP-dependent protein kinase.",
+        "citation_year": 2012,
+        "deposition_date": "2012-01-24T00:00:00.000+00:00",
+        "initial_release_date": "2012-06-06T00:00:00.000+00:00",
+        "pdb_id": "4DFX",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/4DFX",
+        "structure_title": "Crystal structure of myristoylated K7C catalytic subunit of cAMP-dependent protein kinase in complex with SP20 and AMP-PNP"
+      },
+      {
+        "citation_doi": "10.1016/j.jmb.2012.05.021",
+        "citation_pubmed_id": 22617327,
+        "citation_title": "Role of N-terminal myristylation in the structure and regulation of cAMP-dependent protein kinase.",
+        "citation_year": 2012,
+        "deposition_date": "2012-01-24T00:00:00.000+00:00",
+        "initial_release_date": "2012-06-06T00:00:00.000+00:00",
+        "pdb_id": "4DG0",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/4DG0",
+        "structure_title": "Crystal structure of myristoylated WT catalytic subunit of cAMP-dependent protein kinase in complex with SP20 and AMP-PNP"
+      },
+      {
+        "citation_doi": "10.1126/scisignal.2002618",
+        "citation_pubmed_id": 22569334,
+        "citation_title": "An ATP-Site On-Off Switch That Restricts Phosphatase Accessibility of Akt.",
+        "citation_year": 2012,
+        "deposition_date": "2012-04-09T00:00:00.000+00:00",
+        "initial_release_date": "2012-05-23T00:00:00.000+00:00",
+        "pdb_id": "4EKK",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/4EKK",
+        "structure_title": "Akt1 with AMP-PNP"
+      },
+      {
+        "citation_doi": null,
+        "citation_pubmed_id": null,
+        "citation_title": "Crystal structure of CaMKII-actinin complex bound to MES",
+        "citation_year": null,
+        "deposition_date": "2020-12-03T00:00:00.000+00:00",
+        "initial_release_date": "2022-06-22T00:00:00.000+00:00",
+        "pdb_id": "7B56",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/7B56",
+        "structure_title": "Crystal structure of CaMKII-actinin complex bound to AMPPNP"
+      },
+      {
+        "citation_doi": "10.1016/j.celrep.2022.111064",
+        "citation_pubmed_id": 35830796,
+        "citation_title": "CaMKII binds both substrates and activators at the active site.",
+        "citation_year": 2022,
+        "deposition_date": "2020-10-28T00:00:00.000+00:00",
+        "initial_release_date": "2020-12-23T00:00:00.000+00:00",
+        "pdb_id": "7KL1",
+        "source_url": "https://data.rcsb.org/rest/v1/core/entry/7KL1",
+        "structure_title": "Cocrystal structure of human CaMKII-alpha (CAMK2A)kinase domain and GluN2B(S1303D)"
+      }
+    ],
+    "rcsb_polymer_entity_context": [
+      {
+        "entry_source_url": "https://data.rcsb.org/rest/v1/core/entry/1L3R",
+        "pdb_id": "1L3R",
+        "polymer_entities": [
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 350,
+                    "ref_beg_seq_id": 2
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P05132",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "A"
+            ],
+            "auth_asym_ids": [
+              "E"
+            ],
+            "description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+            "entity_id": "1",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P05132",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.9971509971509972
+              }
+            ],
+            "sample_sequence_length": 350,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1L3R/1",
+            "uniprot_ids": [
+              "P05132"
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 20,
+                    "ref_beg_seq_id": 6
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P63249",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "B"
+            ],
+            "auth_asym_ids": [
+              "I"
+            ],
+            "description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+            "entity_id": "2",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P63249",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.2631578947368421
+              }
+            ],
+            "sample_sequence_length": 20,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1L3R/2",
+            "uniprot_ids": [
+              "P63249"
+            ]
+          }
+        ]
+      },
+      {
+        "entry_source_url": "https://data.rcsb.org/rest/v1/core/entry/4DFX",
+        "pdb_id": "4DFX",
+        "polymer_entities": [
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 350,
+                    "ref_beg_seq_id": 2
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P05132",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "A"
+            ],
+            "auth_asym_ids": [
+              "E"
+            ],
+            "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+            "entity_id": "1",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P05132",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.9971509971509972
+              }
+            ],
+            "sample_sequence_length": 350,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/4DFX/1",
+            "uniprot_ids": [
+              "P05132"
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 20,
+                    "ref_beg_seq_id": 6
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P63248",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "B"
+            ],
+            "auth_asym_ids": [
+              "I"
+            ],
+            "description": "cAMP-dependent protein kinase inhibitor alpha",
+            "entity_id": "2",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P63248",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.2631578947368421
+              }
+            ],
+            "sample_sequence_length": 20,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/4DFX/2",
+            "uniprot_ids": [
+              "P63248"
+            ]
+          }
+        ]
+      },
+      {
+        "entry_source_url": "https://data.rcsb.org/rest/v1/core/entry/4DG0",
+        "pdb_id": "4DG0",
+        "polymer_entities": [
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 350,
+                    "ref_beg_seq_id": 2
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P05132",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "A"
+            ],
+            "auth_asym_ids": [
+              "E"
+            ],
+            "description": "cAMP-dependent protein kinase catalytic subunit alpha",
+            "entity_id": "1",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P05132",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.9971509971509972
+              }
+            ],
+            "sample_sequence_length": 350,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/4DG0/1",
+            "uniprot_ids": [
+              "P05132"
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 20,
+                    "ref_beg_seq_id": 6
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P63248",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "B"
+            ],
+            "auth_asym_ids": [
+              "I"
+            ],
+            "description": "cAMP-dependent protein kinase inhibitor alpha",
+            "entity_id": "2",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P63248",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.2631578947368421
+              }
+            ],
+            "sample_sequence_length": 20,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/4DG0/2",
+            "uniprot_ids": [
+              "P63248"
+            ]
+          }
+        ]
+      },
+      {
+        "entry_source_url": "https://data.rcsb.org/rest/v1/core/entry/4EKK",
+        "pdb_id": "4EKK",
+        "polymer_entities": [
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 5,
+                    "length": 337,
+                    "ref_beg_seq_id": 144
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P31749",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "A",
+              "B"
+            ],
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "RAC-alpha serine/threonine-protein kinase",
+            "entity_id": "1",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P31749",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 0.9882697947214076,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.7020833333333333
+              }
+            ],
+            "sample_sequence_length": 341,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/4EKK/1",
+            "uniprot_ids": [
+              "P31749"
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 10,
+                    "ref_beg_seq_id": 3
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P49841",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "C",
+              "D"
+            ],
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "Glycogen synthase kinase-3 beta",
+            "entity_id": "2",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P49841",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.023809523809523808
+              }
+            ],
+            "sample_sequence_length": 10,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/4EKK/2",
+            "uniprot_ids": [
+              "P49841"
+            ]
+          }
+        ]
+      },
+      {
+        "entry_source_url": "https://data.rcsb.org/rest/v1/core/entry/7B56",
+        "pdb_id": "7B56",
+        "polymer_entities": [
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 3,
+                    "length": 315,
+                    "ref_beg_seq_id": 1
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P11798",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "A"
+            ],
+            "auth_asym_ids": [
+              "B"
+            ],
+            "description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+            "entity_id": "1",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P11798",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 0.9936908517350158,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.6589958158995816
+              }
+            ],
+            "sample_sequence_length": 317,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/7B56/1",
+            "uniprot_ids": [
+              "P11798"
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 4,
+                    "length": 70,
+                    "ref_beg_seq_id": 825
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "P35609",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "B"
+            ],
+            "auth_asym_ids": [
+              "A"
+            ],
+            "description": "Alpha-actinin-2",
+            "entity_id": "2",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "P35609",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 0.958904109589041,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.07829977628635347
+              }
+            ],
+            "sample_sequence_length": 73,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/7B56/2",
+            "uniprot_ids": [
+              "P35609"
+            ]
+          }
+        ]
+      },
+      {
+        "entry_source_url": "https://data.rcsb.org/rest/v1/core/entry/7KL1",
+        "pdb_id": "7KL1",
+        "polymer_entities": [
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 268,
+                    "ref_beg_seq_id": 7
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "Q9UQM7",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "A",
+              "B"
+            ],
+            "auth_asym_ids": [
+              "A",
+              "B"
+            ],
+            "description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+            "entity_id": "1",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "Q9UQM7",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.5606694560669456
+              }
+            ],
+            "sample_sequence_length": 268,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/7KL1/1",
+            "uniprot_ids": [
+              "Q9UQM7"
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "aligned_regions": [
+                  {
+                    "entity_beg_seq_id": 1,
+                    "length": 22,
+                    "ref_beg_seq_id": 1289
+                  }
+                ],
+                "provenance_source": "SIFTS",
+                "reference_database_accession": "Q13224",
+                "reference_database_name": "UniProt"
+              }
+            ],
+            "asym_ids": [
+              "C",
+              "D"
+            ],
+            "auth_asym_ids": [
+              "C",
+              "D"
+            ],
+            "description": "Glutamate receptor ionotropic, NMDA 2B",
+            "entity_id": "2",
+            "raw_sequence_stored": false,
+            "reference_sequence_identifiers": [
+              {
+                "database_accession": "Q13224",
+                "database_name": "UniProt",
+                "entity_sequence_coverage": 1.0,
+                "provenance_source": "SIFTS",
+                "reference_sequence_coverage": 0.014824797843665768
+              }
+            ],
+            "sample_sequence_length": 22,
+            "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/7KL1/2",
+            "uniprot_ids": [
+              "Q13224"
+            ]
+          }
+        ]
+      }
+    ],
+    "uniprot_site_authority_checks": [
+      {
+        "accession": "P63249",
+        "features_at_positions": [
+          {
+            "begin": 2,
+            "description": "cAMP-dependent protein kinase inhibitor alpha",
+            "end": 76,
+            "evidences": [],
+            "type": "Chain"
+          }
+        ],
+        "positions": [
+          22
+        ],
+        "protein_name": "cAMP-dependent protein kinase inhibitor alpha",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P63249.json"
+      },
+      {
+        "accession": "P63248",
+        "features_at_positions": [
+          {
+            "begin": 2,
+            "description": "cAMP-dependent protein kinase inhibitor alpha",
+            "end": 76,
+            "evidences": [],
+            "type": "Chain"
+          }
+        ],
+        "positions": [
+          22
+        ],
+        "protein_name": "cAMP-dependent protein kinase inhibitor alpha",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P63248.json"
+      },
+      {
+        "accession": "P49841",
+        "features_at_positions": [
+          {
+            "begin": 1,
+            "description": "Glycogen synthase kinase-3 beta",
+            "end": 420,
+            "evidences": [],
+            "type": "Chain"
+          },
+          {
+            "begin": 1,
+            "description": "Disordered",
+            "end": 53,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000256",
+                "id": "MobiDB-lite",
+                "source": "SAM"
+              }
+            ],
+            "type": "Region"
+          },
+          {
+            "begin": 1,
+            "description": "Polar residues",
+            "end": 22,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000256",
+                "id": "MobiDB-lite",
+                "source": "SAM"
+              }
+            ],
+            "type": "Compositional bias"
+          },
+          {
+            "begin": 9,
+            "description": "Phosphoserine; by PKB/AKT1, RPS6KA3, SGK3 and NME7",
+            "end": 9,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "12054501",
+                "source": "PubMed"
+              },
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "16484495",
+                "source": "PubMed"
+              },
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "20937854",
+                "source": "PubMed"
+              },
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "24391509",
+                "source": "PubMed"
+              },
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "25169422",
+                "source": "PubMed"
+              }
+            ],
+            "type": "Modified residue"
+          },
+          {
+            "begin": 9,
+            "description": "Loss of phosphorylation; abolished inhibition of activity, leading to constitutively active.",
+            "end": 9,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "17050006",
+                "source": "PubMed"
+              },
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "28992046",
+                "source": "PubMed"
+              },
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "7980435",
+                "source": "PubMed"
+              }
+            ],
+            "type": "Mutagenesis"
+          }
+        ],
+        "positions": [
+          8,
+          9
+        ],
+        "protein_name": "Glycogen synthase kinase-3 beta",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P49841.json"
+      },
+      {
+        "accession": "P35609",
+        "features_at_positions": [
+          {
+            "begin": 1,
+            "description": "Alpha-actinin-2",
+            "end": 894,
+            "evidences": [],
+            "type": "Chain"
+          },
+          {
+            "begin": 789,
+            "description": "EF-hand 2",
+            "end": 824,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000255",
+                "id": "PRU00448",
+                "source": "PROSITE-ProRule"
+              }
+            ],
+            "type": "Domain"
+          }
+        ],
+        "positions": [
+          822
+        ],
+        "protein_name": "Alpha-actinin-2",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P35609.json"
+      },
+      {
+        "accession": "Q9UQM7",
+        "features_at_positions": [
+          {
+            "begin": 1,
+            "description": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+            "end": 478,
+            "evidences": [],
+            "type": "Chain"
+          },
+          {
+            "begin": 13,
+            "description": "Protein kinase",
+            "end": 271,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000255",
+                "id": "PRU00159",
+                "source": "PROSITE-ProRule"
+              }
+            ],
+            "type": "Domain"
+          }
+        ],
+        "positions": [
+          176
+        ],
+        "protein_name": "Calcium/calmodulin-dependent protein kinase type II subunit alpha",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q9UQM7.json"
+      },
+      {
+        "accession": "Q13224",
+        "features_at_positions": [
+          {
+            "begin": 27,
+            "description": "Glutamate receptor ionotropic, NMDA 2B",
+            "end": 1484,
+            "evidences": [],
+            "type": "Chain"
+          },
+          {
+            "begin": 836,
+            "description": "Cytoplasmic",
+            "end": 1484,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000269",
+                "id": "34321660",
+                "source": "PubMed"
+              },
+              {
+                "evidence_code": "ECO:0007744",
+                "id": "7EU8",
+                "source": "PDB"
+              }
+            ],
+            "type": "Topological domain"
+          },
+          {
+            "begin": 1292,
+            "description": "Interaction with DAPK1",
+            "end": 1304,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000250",
+                "id": "Q01097",
+                "source": "UniProtKB"
+              }
+            ],
+            "type": "Region"
+          },
+          {
+            "begin": 1303,
+            "description": "Phosphoserine; by DAPK1",
+            "end": 1303,
+            "evidences": [
+              {
+                "evidence_code": "ECO:0000250",
+                "id": "Q01097",
+                "source": "UniProtKB"
+              }
+            ],
+            "type": "Modified residue"
+          }
+        ],
+        "positions": [
+          1303
+        ],
+        "protein_name": "Glutamate receptor ionotropic, NMDA 2B",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q13224.json"
+      }
+    ]
+  },
+  "summary": {
+    "candidate_evidence_rows_emitted": 0,
+    "candidate_rows_reviewed": 7,
+    "coordinate_state_counts": {
+      "active_gamma": 6,
+      "transition_analog": 1
+    },
+    "counterexample_or_refuted_candidate_ids": [
+      "4EKK:active_gamma:ANP:B:associated_entity_1:D:6:3",
+      "7KL1:active_gamma:ATP:C:1401:A:176:2",
+      "7KL1:active_gamma:ATP:D:1401:B:176:1"
+    ],
+    "counterexamples_found": [
+      "7KL1 wrong acceptor/donor-ownership CaMKII Thr176 rows",
+      "4EKK GSK3 Thr8 adjacent-nonphosphosite/no-local-metal row"
+    ],
+    "evidence_against": [
+      "4EKK D:6 maps to GSK3-beta Thr8, adjacent to source-supported Ser9, and lacks local Mg/Mn.",
+      "7KL1 candidate rows map the acceptor to CaMKII Thr176 while the source-supported substrate context is GluN2B S1303D, so donor/acceptor ownership is confounded.",
+      "7B56 retains source-absent status: no exact Ser822/CaMKII-actinin source claim was found, and RCSB has no article DOI/PubMed metadata for the structure.",
+      "No folded-protein local-metal active-gamma row was upgraded to countable or production-ready evidence."
+    ],
+    "evidence_for": [
+      "1L3R is source-supported as a PKA transition-state/pseudosubstrate SP20/PKI-derived peptide row, but remains transition-analog review-only.",
+      "4DFX and 4DG0 are source-supported as PKA/SP20/AMP-PNP local-metal peptide rows; SP20 support is review-only and non-countable."
+    ],
+    "explicit_zero_hit_source_surfaces": [
+      "\"GSK3 beta\" \"Thr8\" Akt phosphorylation",
+      "\"7B56\" \"Ser822\"",
+      "\"alpha-actinin-2\" \"Ser822\" phosphorylation",
+      "\"CaMKII\" \"alpha-actinin\" \"Ser822\""
+    ],
+    "labels_or_fingerprints_changed": false,
+    "manual_status_counts": {
+      "counterexample_wrong_acceptor_or_donor_ownership_review_only": 2,
+      "source_absent_actinin_binding_context_review_only": 1,
+      "source_refuted_adjacent_nonphosphosite_no_local_metal_review_only": 1,
+      "source_supported_sp20_substrate_peptide_review_only": 2,
+      "source_supported_transition_or_pseudosubstrate_review_only": 1
+    },
+    "next_query": "At the next RCSB weekly release, rerun current-date and 2026 canonical ePK exact-ligand surfaces plus the 23FC publication metadata check. If no new release/metadata appears, prioritize new PDB IDs with source-published non-peptide substrate phosphoacceptor mapping and exact ATP/ANP/ACP/AGS+MG/MN or ADP+AF3/ALF/BEF/MGF context; do not revisit the seven manually adjudicated rows unless new source metadata appears.",
+    "primary_outcome": "evidence_for",
+    "production_claim_allowed": false,
+    "recommendation": "Treat 1L3R/4DFX/4DG0 as review-only peptide/transition support, 7KL1 and 4EKK D6 as candidate-level counterexamples, and 7B56 as source-absent local-geometry evidence. Do not import labels, tune thresholds, edit registries/fingerprints, run production scoring, or claim ePK readiness.",
+    "search_surface_exhausted": true,
+    "source_absent_or_unconfirmed_candidate_ids": [
+      "7B56:active_gamma:ANP:B:401:A:822:1"
+    ],
+    "source_supported_review_only_candidate_ids": [
+      "1L3R:transition_analog:AF3:E:400:I:21:1",
+      "4DFX:active_gamma:ANP:E:402:I:21:1",
+      "4DG0:active_gamma:ANP:E:402:I:21:1"
+    ]
+  }
+}
