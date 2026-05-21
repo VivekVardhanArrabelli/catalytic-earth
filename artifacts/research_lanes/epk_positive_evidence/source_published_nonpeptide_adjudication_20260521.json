@@ -1,0 +1,2850 @@
+{
+  "metadata": {
+    "adjudication_status_counts": {
+      "fresh_source_mapped_geometry_negative_review_only": 10,
+      "non_epk_or_non_phosphoryl_transfer_source_mismatch_review_only": 1,
+      "source_keyword_mapping_noise_review_only": 2,
+      "source_published_folded_protein_geometry_negative_review_only": 11
+    },
+    "blocker_counts": {
+      "keyword_article_mapping_not_epk_substrate_transfer_state": 2,
+      "no_active_gamma_or_transition_analog_state": 2,
+      "no_local_mg_or_mn_on_relevant_donor": 3,
+      "no_within_6_angstrom_heteromeric_acceptor": 17,
+      "non_epk_pseudokinase_ampylation_context": 1,
+      "production_policy_abstain": 24,
+      "review_only_lane": 24,
+      "source_published_raf_mek_geometry_negative": 11
+    },
+    "candidate_evidence_rows_emitted": 0,
+    "generated_at": "2026-05-21T12:36:01Z",
+    "input_artifact": "artifacts/research_lanes/epk_positive_evidence/source_published_nonpeptide_literature_include_prior_20260521.json",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "source_published_nonpeptide_adjudication",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Adjudication summarizes source context separately from source-free geometry and does not create production labels or scoring features.",
+    "rows_reviewed": 24
+  },
+  "rows": [
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5HVJ",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "LIM domain kinase 1",
+          "entity_id": "1",
+          "length": 315,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53667"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+          "doi": "10.1016/j.molcel.2016.04.001",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "27153537",
+          "query_or_source": "RCSB full_text: 10.1016/j.molcel.2016.04.001"
+        },
+        {
+          "article_title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+          "doi": "10.1016/j.molcel.2016.04.001",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "27153537",
+          "query_or_source": "RCSB full_text: Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of LIMK1 D460N mutant in complex with AMP-PNP"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain"
+      ],
+      "candidate_status": "no_local_metal_or_short_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+        "year": 2016
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5HVK",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "LIM domain kinase 1",
+          "entity_id": "1",
+          "length": 315,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53667"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cofilin-1",
+          "entity_id": "2",
+          "length": 165,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Cofilin-1",
+          "entity_id": "3",
+          "length": 165,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23528"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "1002",
+                "chain": "A",
+                "distance_angstrom": 4.466,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "119",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "118",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 15.468
+            },
+            "terminal_atom_name": "PB",
+            "terminal_auth_seq_id": "1001",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "3",
+              "candidate_chain_name": "D",
+              "candidate_entity_id": "3",
+              "candidate_label_seq_id": "2",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 4.236
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 1,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+          "doi": "10.1016/j.molcel.2016.04.001",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "27153537",
+          "query_or_source": "RCSB full_text: 10.1016/j.molcel.2016.04.001"
+        },
+        {
+          "article_title": "Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases.",
+          "doi": "10.1016/j.molcel.2016.04.001",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "27153537",
+          "query_or_source": "RCSB full_text: Structural Basis for Noncanonical Substrate Recognition of Cofilin/ADF Proteins by LIM Kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of LIMK1 mutant D460N in complex with full-length cofilin-1"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of PINK1 and mechanisms of Parkinson's disease associated mutations.",
+        "year": 2017
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5OAT",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "description": "Serine/threonine-protein kinase PINK1, mitochondrial-like Protein",
+          "entity_id": "1",
+          "length": 411,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "D6WMX4"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structure of PINK1 and mechanisms of Parkinson's disease-associated mutations.",
+          "doi": "10.7554/elife.29985",
+          "literature_surface_id": "kinase_substrate_complex_full_length_transfer_analog_pdb_2015_2026",
+          "pmid": "28980524",
+          "query_or_source": "RCSB full_text: 10.7554/elife.29985"
+        },
+        {
+          "article_title": "Structure of PINK1 and mechanisms of Parkinson's disease-associated mutations.",
+          "doi": "10.7554/elife.29985",
+          "literature_surface_id": "kinase_substrate_complex_full_length_transfer_analog_pdb_2015_2026",
+          "pmid": "28980524",
+          "query_or_source": "RCSB full_text: Structure of PINK1 and mechanisms of Parkinson's disease-associated mutations."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "PINK1 structure"
+    },
+    {
+      "adjudication_status": "non_epk_or_non_phosphoryl_transfer_source_mismatch_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "non_epk_pseudokinase_ampylation_context"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Protein AMPylation by an Evolutionarily Conserved Pseudokinase.",
+        "year": 2018
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6EAC",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "SelO",
+          "entity_id": "1",
+          "length": 488,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q87VB1"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "501",
+                "chain": "A",
+                "distance_angstrom": 3.457,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "506",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "501",
+                "chain": "B",
+                "distance_angstrom": 3.553,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "507",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "501",
+                "chain": "C",
+                "distance_angstrom": 3.495,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "506",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "D",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "501",
+                "chain": "D",
+                "distance_angstrom": 3.413,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "506",
+            "terminal_chain_name": "D",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 4,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Protein AMPylation by an Evolutionarily Conserved Pseudokinase.",
+          "doi": "10.1016/j.cell.2018.08.046",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "30270044",
+          "query_or_source": "RCSB full_text: 10.1016/j.cell.2018.08.046"
+        },
+        {
+          "article_title": "Protein AMPylation by an Evolutionarily Conserved Pseudokinase.",
+          "doi": "10.1016/j.cell.2018.08.046",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "30270044",
+          "query_or_source": "RCSB full_text: Protein AMPylation by an Evolutionarily Conserved Pseudokinase."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Pseudomonas syringae SelO"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The 3.2- angstrom resolution structure of human mTORC2.",
+        "year": 2020
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZWM",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "entity_id": "1",
+          "length": 2549,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "entity_id": "2",
+          "length": 326,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "entity_id": "3",
+          "length": 1708,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "entity_id": "4",
+          "length": 522,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "62",
+              "candidate_chain_name": "C",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "62",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 25.801
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "2601",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "62",
+              "candidate_chain_name": "D",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "62",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 25.806
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "2601",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "E",
+            "associated_polymer_entity_id": "3",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "1220",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "1220",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 28.368
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "4802",
+            "terminal_chain_name": "E",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "F",
+            "associated_polymer_entity_id": "3",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "1220",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "1220",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 28.504
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "4802",
+            "terminal_chain_name": "F",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 4,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The 3.2-\u00c5 resolution structure of human mTORC2.",
+          "doi": "10.1126/sciadv.abc1251",
+          "literature_surface_id": "full_length_substrate_phosphorylation_site_pdb_2015_2026",
+          "pmid": "33158864",
+          "query_or_source": "RCSB full_text: 10.1126/sciadv.abc1251"
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "cryo-EM structure of human mTOR complex 2, overall refinement"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The 3.2- angstrom resolution structure of human mTORC2.",
+        "year": 2020
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZWO",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase mTOR",
+          "entity_id": "1",
+          "length": 2549,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42345"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Target of rapamycin complex subunit LST8",
+          "entity_id": "2",
+          "length": 326,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BVC4"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "Rapamycin-insensitive companion of mTOR",
+          "entity_id": "3",
+          "length": 1708,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6R327"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "Target of rapamycin complex 2 subunit MAPKAP1",
+          "entity_id": "4",
+          "length": 521,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BPZ7"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "62",
+              "candidate_chain_name": "D",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "62",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 25.821
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "2601",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "F",
+            "associated_polymer_entity_id": "3",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "1220",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "1220",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 28.341
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "4802",
+            "terminal_chain_name": "F",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The 3.2-\u00c5 resolution structure of human mTORC2.",
+          "doi": "10.1126/sciadv.abc1251",
+          "literature_surface_id": "full_length_substrate_phosphorylation_site_pdb_2015_2026",
+          "pmid": "33158864",
+          "query_or_source": "RCSB full_text: 10.1126/sciadv.abc1251"
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "cryo-EM structure of human mTOR complex 2, focused on one half"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUS",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 2",
+          "entity_id": "1",
+          "length": 342,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6VAB6"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 384,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "1002",
+                "chain": "B",
+                "distance_angstrom": 4.649,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "222",
+              "candidate_chain_name": "C",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "213",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 14.808
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "1001",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "503",
+                "chain": "C",
+                "distance_angstrom": 2.66,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "841",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "233",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 19.737
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "502",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+          "doi": "10.1038/s41586-020-2760-4",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "32927473",
+          "query_or_source": "RCSB full_text: 10.1038/s41586-020-2760-4"
+        },
+        {
+          "article_title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+          "doi": "10.1038/s41586-020-2760-4",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "32927473",
+          "query_or_source": "RCSB full_text: Structural basis for the action of the drug trametinib at KSR-bound MEK."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of KSR2:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor Cobimetinib"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUU",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 2",
+          "entity_id": "1",
+          "length": 342,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6VAB6"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 384,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "1002",
+                "chain": "B",
+                "distance_angstrom": 4.462,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "222",
+              "candidate_chain_name": "C",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "213",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 14.802
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "1001",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "C",
+                "distance_angstrom": 4.49,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "841",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "233",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 18.206
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "401",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+          "doi": "10.1038/s41586-020-2760-4",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "32927473",
+          "query_or_source": "RCSB full_text: 10.1038/s41586-020-2760-4"
+        },
+        {
+          "article_title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+          "doi": "10.1038/s41586-020-2760-4",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "32927473",
+          "query_or_source": "RCSB full_text: Structural basis for the action of the drug trametinib at KSR-bound MEK."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of KSR2:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor PD0325901"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+        "year": 2020
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7JUV",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Kinase suppressor of Ras 2",
+          "entity_id": "1",
+          "length": 342,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6VAB6"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 384,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P29678"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "222",
+              "candidate_chain_name": "C",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "213",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 14.584
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "1001",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "C",
+                "distance_angstrom": 3.514,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "841",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "233",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 19.525
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "401",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+          "doi": "10.1038/s41586-020-2760-4",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "32927473",
+          "query_or_source": "RCSB full_text: 10.1038/s41586-020-2760-4"
+        },
+        {
+          "article_title": "Structural basis for the action of the drug trametinib at KSR-bound MEK.",
+          "doi": "10.1038/s41586-020-2760-4",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "32927473",
+          "query_or_source": "RCSB full_text: Structural basis for the action of the drug trametinib at KSR-bound MEK."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of KSR2:MEK1 in complex with AMP-PNP, and allosteric MEK inhibitor APS-9-95-1"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Insights into an indolicidin-derived low-toxic anti-microbial peptide's efficacy against bacterial cells while preserving eukaryotic cell viability.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8IS3",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Indolicidin-like antimicrobial peptide",
+          "entity_id": "1",
+          "length": 10,
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Chemically reprogramming the phospho-transfer reaction to crosslink protein kinases to their substrates.",
+          "doi": "10.1002/pro.3570",
+          "literature_surface_id": "kinase_substrate_complex_full_length_transfer_analog_pdb_2015_2026",
+          "pmid": "30636329",
+          "query_or_source": "RCSB full_text: 10.1002/pro.3570"
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structural model for the micelle-bound indolicidin-like peptide in solution"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3X",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "entity_id": "1",
+          "length": 356,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "entity_id": "2",
+          "length": 20,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_complex_full_length_transfer_analog_pdb_2015_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: 10.1038/s41594-024-01425-0"
+        },
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_complex_full_length_transfer_analog_pdb_2015_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of aPKC Iota kinase domain with LLGL2 peptide"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3Y",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Protein kinase C iota type",
+          "entity_id": "1",
+          "length": 338,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Lethal(2) giant larvae protein homolog 1",
+          "entity_id": "2",
+          "length": 937,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15334"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Partitioning defective 6 homolog alpha",
+          "entity_id": "3",
+          "length": 99,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "R4GMM2"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "I",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "655",
+              "candidate_chain_name": "L",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "641",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 12.56
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "601",
+            "terminal_chain_name": "I",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 1,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_complex_full_length_transfer_analog_pdb_2015_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: 10.1038/s41594-024-01425-0"
+        },
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_complex_full_length_transfer_analog_pdb_2015_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryo EM structure of a stable LGL/aPKC Iota/Par-6 complex"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AXA",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "GST26/CRAF chimera",
+          "entity_id": "1",
+          "length": 563,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049",
+            "P08515"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 394,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "14-3-3 protein sigma",
+          "entity_id": "3",
+          "length": 248,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P31947"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CryoEM structure of activated CRAF/MEK/14-3-3 complex with NST-628"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AXC",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "GST26/CRAF chimera",
+          "entity_id": "1",
+          "length": 563,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049",
+            "P08515"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 394,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Activated CRAF/MEK heterotetramer from focused refinement of CRAF/MEK/14-3-3 complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AXH",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "1",
+          "length": 310,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Kinase suppressor of Ras 1",
+          "entity_id": "2",
+          "length": 283,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IVT5"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "A",
+                "distance_angstrom": 4.83,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "829",
+              "candidate_chain_name": "D",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "230",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 17.34
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "B",
+                "distance_angstrom": 4.293,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "788",
+              "candidate_chain_name": "C",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "189",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 16.193
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "902",
+                "chain": "C",
+                "distance_angstrom": 4.858,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "222",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "187",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 12.957
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "901",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "D",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "222",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "187",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 12.34
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "901",
+            "terminal_chain_name": "D",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 4,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of KSR1/MEK1 complex heterotetramer with NST-628"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AXM",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "1",
+          "length": 310,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Serine/threonine-protein kinase A-Raf",
+          "entity_id": "2",
+          "length": 280,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P10398"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "402",
+                "chain": "A",
+                "distance_angstrom": 3.491,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "469",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "173",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 16.418
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "403",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "601",
+                "chain": "B",
+                "distance_angstrom": 3.906,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "134",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "99",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 17.433
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "602",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of ARAF/MEK1 complex with NST-628 and a RAF dimer"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative",
+        "no_local_mg_or_mn_on_relevant_donor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AXX",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "1",
+          "length": 310,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "entity_id": "2",
+          "length": 280,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "A",
+                "distance_angstrom": 4.967,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "614",
+              "candidate_chain_name": "D",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "171",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 15.884
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OH",
+              "candidate_auth_seq_id": "134",
+              "candidate_chain_name": "C",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "99",
+              "candidate_residue_code": "TYR",
+              "nearest_terminal_distance_angstrom": 12.072
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "801",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "C",
+                "distance_angstrom": 4.824,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "614",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "171",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 16.152
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 3,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of BRAF/MEK1 complex with NST-628 and an active RAF dimer"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative",
+        "no_local_mg_or_mn_on_relevant_donor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AXY",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "entity_id": "1",
+          "length": 280,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 394,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "802",
+                "chain": "A",
+                "distance_angstrom": 3.413,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "226",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "227",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 18.127
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "801",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "465",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "22",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 15.586
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of BRAF/MEK complex with NST-628 and inactive RAF"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AY7",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "RAF proto-oncogene serine/threonine-protein kinase",
+          "entity_id": "1",
+          "length": 280,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 394,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "702",
+                "chain": "A",
+                "distance_angstrom": 3.46,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "226",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "227",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 17.481
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "B",
+                "distance_angstrom": 4.788,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "357",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "22",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 13.869
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of CRAF/MEK1 complex with NST-628 and inactive RAF"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9AYA",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "RAF proto-oncogene serine/threonine-protein kinase",
+          "entity_id": "1",
+          "length": 280,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 310,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "B",
+                "distance_angstrom": 4.608,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "506",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "171",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 14.809
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ANP"
+          },
+          {
+            "associated_polymer_chain_name": "D",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "403",
+                "chain": "D",
+                "distance_angstrom": 4.897,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "506",
+              "candidate_chain_name": "C",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "171",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 13.835
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "402",
+            "terminal_chain_name": "D",
+            "terminal_ligand_code": "ANP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: 10.1158/2159-8290.cd-24-0139"
+        },
+        {
+          "article_title": "The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers.",
+          "doi": "10.1158/2159-8290.cd-24-0139",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "38588399",
+          "query_or_source": "RCSB full_text: The Pan-RAF-MEK Nondegrading Molecular Glue NST-628 Is a Potent and Brain-Penetrant Inhibitor of the RAS-MAPK Pathway with Activity across Diverse RAS- and RAF-Driven Cancers."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of CRAF/MEK complex with NST-628 and active RAF dimer"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative",
+        "no_local_mg_or_mn_on_relevant_donor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9MMP",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "14-3-3 protein zeta",
+          "entity_id": "1",
+          "length": 247,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q2F637"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "RAF proto-oncogene serine/threonine-protein kinase",
+          "entity_id": "2",
+          "length": 683,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "3",
+          "length": 415,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "226",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "3",
+              "candidate_label_seq_id": "248",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 16.792
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "3",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "506",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "528",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 13.855
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-63227-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryo-EM structure of CRAF/MEK1/14-3-3 complex (autoinhibited conformation)"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9MMQ",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "RAF proto-oncogene serine/threonine-protein kinase",
+          "entity_id": "1",
+          "length": 681,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 415,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "702",
+                "chain": "A",
+                "distance_angstrom": 4.823,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "226",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "248",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 15.84
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "702",
+                "chain": "B",
+                "distance_angstrom": 4.733,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "506",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "528",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 14.246
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-63227-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryo-EM structure of CRAF/MEK1 complex (kinase domain)"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9MMR",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "RAF proto-oncogene serine/threonine-protein kinase",
+          "entity_id": "1",
+          "length": 681,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 415,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "14-3-3 protein zeta",
+          "entity_id": "3",
+          "length": 247,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q2F637"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "702",
+                "chain": "A",
+                "distance_angstrom": 4.106,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "226",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "248",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 16.193
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "702",
+                "chain": "B",
+                "distance_angstrom": 3.702,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "506",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "528",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 13.917
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-63227-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryo-EM structure of CRAF/MEK1/14-3-3 complex (open monomer conformation, CRAF Y340D/Y341D mutant)"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9MMS",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "RAF proto-oncogene serine/threonine-protein kinase",
+          "entity_id": "1",
+          "length": 681,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04049"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dual specificity mitogen-activated protein kinase kinase 1",
+          "entity_id": "2",
+          "length": 415,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02750"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [
+              {
+                "auth_seq_id": "702",
+                "chain": "A",
+                "distance_angstrom": 4.858,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "226",
+              "candidate_chain_name": "B",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "248",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 15.266
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "2",
+            "local_metals": [
+              {
+                "auth_seq_id": "702",
+                "chain": "B",
+                "distance_angstrom": 4.605,
+                "metal_code": "MG"
+              }
+            ],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "357",
+              "candidate_chain_name": "A",
+              "candidate_entity_id": "1",
+              "candidate_label_seq_id": "379",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 14.07
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "701",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 2,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-63227-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation.",
+          "doi": "10.1038/s41467-025-63227-2",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "40890113",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of CRAF/MEK1/14-3-3 complexes in autoinhibited and open-monomer states reveal features of RAF regulation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryo-EM structure of CRAF/MEK1 complex (kinase domain, CRAF Y340D/Y341D mutant)"
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [
+      "Non-ePK/non-phosphoryl-transfer source mismatches: 6EAC",
+      "Source-published folded-protein geometry negatives: 9AXA, 9AXC, 9AXM, 9AXX, 9AXY, 9AY7, 9AYA, 9MMP, 9MMQ, 9MMR, 9MMS"
+    ],
+    "evidence_against": [
+      "No fresh row contains a within-6-Angstrom heteromeric Ser/Thr/Tyr acceptor candidate.",
+      "Fresh donor/analog rows without a local heteromeric acceptor: 6EAC, 6ZWM, 6ZWO, 7JUS, 7JUU, 7JUV, 8R3Y, 9AXH, 9AXM, 9AXX, 9AXY, 9AY7, 9AYA, 9MMP, 9MMQ, 9MMR, 9MMS.",
+      "Source-published folded-protein rows are geometry-negative rather than positive transfer states: 9AXA, 9AXC, 9AXM, 9AXX, 9AXY, 9AY7, 9AYA, 9MMP, 9MMQ, 9MMR, 9MMS.",
+      "Fresh source mappings include non-ePK or non-phosphoryl-transfer mismatches: 6EAC.",
+      "2 fresh mappings are source-keyword noise without active ePK donor-to-substrate geometry."
+    ],
+    "evidence_for": [
+      "Adjudicated 24 fresh source-published/literature-mapped PDB rows from the non-peptide phosphosite follow-up."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Use these fresh rows as review-only negative source-surface evidence. Do not promote any production label, threshold, registry, fingerprint, migration, scoring feature, or readiness claim.",
+    "search_surface_exhausted": true
+  }
+}

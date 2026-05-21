@@ -1,0 +1,1732 @@
+{
+  "europepmc_source_rows": [],
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "local_metal_peptide_or_pseudosubstrate_candidate_review_only": 2,
+      "no_heteromeric_transition_analog_candidate_review_only": 3,
+      "no_transition_analog_group_review_only": 10
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-21T12:37:49Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "max_unique_pdb_ids": 25,
+    "method": "transition_analog_seed_family_followup",
+    "nonpeptide_local_metal_candidate_pdb_ids": [],
+    "peptide_or_pseudosubstrate_local_metal_candidate_pdb_ids": [
+      "1L3R",
+      "5LIH"
+    ],
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Seed-family follow-up for 1L3R/5LIH/4NU1/8VMF. Same-paper, family, and non-peptide phrase surfaces are bounded; mmCIF coordinates are transient; output is source-validation evidence only.",
+    "search_surface_count": 11,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    ],
+    "surface_rows_returned_total": 19,
+    "surface_total_count_reported_total": 19,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 15
+  },
+  "rows": [
+    {
+      "atom_count_model_1": 3160,
+      "candidate_status": "local_metal_peptide_or_pseudosubstrate_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of a transition state mimic of the catalytic subunit of cAMP-dependent protein kinase.",
+        "year": 2002
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1L3R",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63249"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "fixed seed from handoff",
+          "rank": 0,
+          "surface_id": "fixed_seed"
+        },
+        {
+          "query_or_source": "RCSB full_text: 10.1038/nsb780",
+          "rank": 1,
+          "surface_id": "doi_10_1038_nsb780"
+        },
+        {
+          "query_or_source": "RCSB full_text: cAMP-dependent protein kinase PKI transition state mimic ADP AlF3",
+          "rank": 1,
+          "surface_id": "pka_pki_transition_state_mimic"
+        }
+      ],
+      "seed_residue_source_maps": [
+        {
+          "auth_seq_id": "21",
+          "chain": "I",
+          "expected_comp": "SER",
+          "pdb_id": "1L3R",
+          "scheme_matches": [
+            {
+              "asym_id": "B",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "21",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "21",
+              "pdb_strand_id": "I",
+              "seq_id": "17"
+            }
+          ],
+          "source_mapped": true,
+          "source_role": "PKI-alpha Ser21 in synthetic inhibitor/substrate-site peptide"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal Structure of a Transition State Mimic of the Catalytic Subunit of cAMP-dependent Protein Kinase",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+          "analog_associated_entity_uniprot_ids": [
+            "P05132"
+          ],
+          "analog_associated_polymer_chain_name": "E",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "400",
+          "analog_chain_name": "E",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "21",
+          "candidate_chain_name": "I",
+          "candidate_entity_description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "P63249"
+          ],
+          "candidate_label_seq_id": "17",
+          "candidate_residue_code": "SER",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "391",
+              "chain": "E",
+              "distance_angstrom": 1.965,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F2"
+            },
+            {
+              "auth_seq_id": "392",
+              "chain": "E",
+              "distance_angstrom": 1.971,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F1"
+            }
+          ],
+          "nearest_analog_atom": "AL",
+          "nearest_analog_distance_angstrom": 2.268
+        }
+      ],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "400",
+          "analog_chain_name": "E",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "CAMP-DEPENDENT PROTEIN KINASE, ALPHA-CATALYTIC SUBUNIT",
+          "associated_entity_uniprot_ids": [
+            "P05132"
+          ],
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.667,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "391",
+              "chain": "E",
+              "distance_angstrom": 1.965,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F2"
+            },
+            {
+              "auth_seq_id": "392",
+              "chain": "E",
+              "distance_angstrom": 1.971,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F1"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "21",
+            "candidate_chain_name": "I",
+            "candidate_entity_description": "CAMP-DEPENDENT PROTEIN KINASE INHIBITOR, MUSCLE/BRAIN FORM",
+            "candidate_entity_id": "2",
+            "candidate_entity_uniprot_ids": [
+              "P63249"
+            ],
+            "candidate_label_seq_id": "17",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "AL",
+            "nearest_analog_distance_angstrom": 2.268
+          }
+        }
+      ]
+    },
+    {
+      "atom_count_model_1": 5293,
+      "candidate_status": "local_metal_peptide_or_pseudosubstrate_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5LIH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "F",
+            "G"
+          ],
+          "description": "PKC Epsilon pseudo substrate sequence",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02156"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "fixed seed from handoff",
+          "rank": 0,
+          "surface_id": "fixed_seed"
+        },
+        {
+          "query_or_source": "RCSB full_text: 10.1016/j.devcel.2016.07.018",
+          "rank": 3,
+          "surface_id": "doi_10_1016_j_devcel_2016_07_018"
+        }
+      ],
+      "seed_residue_source_maps": [
+        {
+          "auth_seq_id": "11",
+          "chain": "F",
+          "expected_comp": "SER",
+          "pdb_id": "5LIH",
+          "scheme_matches": [
+            {
+              "asym_id": "C",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "11",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "11",
+              "pdb_strand_id": "F",
+              "seq_id": "11"
+            }
+          ],
+          "source_mapped": true,
+          "source_role": "PKC epsilon pseudosubstrate Ser11 in synthetic peptide chain F"
+        },
+        {
+          "auth_seq_id": "11",
+          "chain": "G",
+          "expected_comp": "SER",
+          "pdb_id": "5LIH",
+          "scheme_matches": [
+            {
+              "asym_id": "D",
+              "auth_mon_id": "SER",
+              "auth_seq_num": "11",
+              "entity_id": "2",
+              "hetero": "n",
+              "mon_id": "SER",
+              "pdb_mon_id": "SER",
+              "pdb_seq_num": "11",
+              "pdb_strand_id": "G",
+              "seq_id": "11"
+            }
+          ],
+          "source_mapped": true,
+          "source_role": "PKC epsilon pseudosubstrate Ser11 in synthetic peptide chain G"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a peptide-substrate bound to PKCiota core kinase domain",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "Protein kinase C iota type",
+          "analog_associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "analog_associated_polymer_chain_name": "B",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "11",
+          "candidate_chain_name": "G",
+          "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "Q02156"
+          ],
+          "candidate_label_seq_id": "11",
+          "candidate_residue_code": "SER",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "B",
+              "distance_angstrom": 1.901,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F1"
+            },
+            {
+              "auth_seq_id": "604",
+              "chain": "B",
+              "distance_angstrom": 2.073,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F3"
+            }
+          ],
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 2.419
+        },
+        {
+          "analog_associated_entity_description": "Protein kinase C iota type",
+          "analog_associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "analog_associated_polymer_chain_name": "A",
+          "analog_associated_polymer_entity_id": "1",
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "11",
+          "candidate_chain_name": "F",
+          "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+          "candidate_entity_id": "2",
+          "candidate_entity_uniprot_ids": [
+            "Q02156"
+          ],
+          "candidate_label_seq_id": "11",
+          "candidate_residue_code": "SER",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "A",
+              "distance_angstrom": 1.961,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F1"
+            },
+            {
+              "auth_seq_id": "604",
+              "chain": "A",
+              "distance_angstrom": 2.014,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F3"
+            }
+          ],
+          "nearest_analog_atom": "F3",
+          "nearest_analog_distance_angstrom": 2.624
+        }
+      ],
+      "transition_analog_group_count": 4,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "602",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "Protein kinase C iota type",
+          "associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.715,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "F",
+            "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+            "candidate_entity_id": "2",
+            "candidate_entity_uniprot_ids": [
+              "Q02156"
+            ],
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 8.518
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "Protein kinase C iota type",
+          "associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.467,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "A",
+              "distance_angstrom": 1.961,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F1"
+            },
+            {
+              "auth_seq_id": "604",
+              "chain": "A",
+              "distance_angstrom": 2.014,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F3"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "F",
+            "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+            "candidate_entity_id": "2",
+            "candidate_entity_uniprot_ids": [
+              "Q02156"
+            ],
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 2.624
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "602",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "Protein kinase C iota type",
+          "associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 3.155,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "G",
+            "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+            "candidate_entity_id": "2",
+            "candidate_entity_uniprot_ids": [
+              "Q02156"
+            ],
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 9.113
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "605",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "Protein kinase C iota type",
+          "associated_entity_uniprot_ids": [
+            "P41743"
+          ],
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.428,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "603",
+              "chain": "B",
+              "distance_angstrom": 1.901,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F1"
+            },
+            {
+              "auth_seq_id": "604",
+              "chain": "B",
+              "distance_angstrom": 2.073,
+              "metal_code": "MN",
+              "nearest_analog_atom": "F3"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "11",
+            "candidate_chain_name": "G",
+            "candidate_entity_description": "PKC Epsilon pseudo substrate sequence",
+            "candidate_entity_id": "2",
+            "candidate_entity_uniprot_ids": [
+              "Q02156"
+            ],
+            "candidate_label_seq_id": "11",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F3",
+            "nearest_analog_distance_angstrom": 2.419
+          }
+        }
+      ]
+    },
+    {
+      "atom_count_model_1": 3082,
+      "candidate_status": "no_heteromeric_transition_analog_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4NU1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9WV60"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "fixed seed from handoff",
+          "rank": 0,
+          "surface_id": "fixed_seed"
+        },
+        {
+          "query_or_source": "RCSB full_text: Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6",
+          "rank": 5,
+          "surface_id": "gsk3_inhibition_source_title"
+        },
+        {
+          "query_or_source": "RCSB full_text: GSK-3 Axin transition state mimic AF3",
+          "rank": 1,
+          "surface_id": "gsk3_axin_transition_state_mimic"
+        }
+      ],
+      "seed_residue_source_maps": [
+        {
+          "auth_seq_id": "9",
+          "chain": "A",
+          "expected_comp": "SEP",
+          "pdb_id": "4NU1",
+          "scheme_matches": [
+            {
+              "asym_id": "A",
+              "auth_mon_id": "SEP",
+              "auth_seq_num": "9",
+              "entity_id": "1",
+              "hetero": "n",
+              "mon_id": "SEP",
+              "pdb_mon_id": "SEP",
+              "pdb_seq_num": "9",
+              "pdb_strand_id": "A",
+              "seq_id": "9"
+            }
+          ],
+          "source_mapped": true,
+          "source_role": "GSK-3 beta autoinhibitory phosphorylated Ser9 product-state residue"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of a transition state mimic of the GSK-3/Axin complex bound to phosphorylated N-terminal auto-inhibitory pS9 peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "406",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "Glycogen synthase kinase-3 beta",
+          "associated_entity_uniprot_ids": [
+            "Q9WV60"
+          ],
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.57,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "403",
+              "chain": "A",
+              "distance_angstrom": 2.116,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F1"
+            },
+            {
+              "auth_seq_id": "404",
+              "chain": "A",
+              "distance_angstrom": 2.702,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F2"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "atom_count_model_1": 3180,
+      "candidate_status": "no_heteromeric_transition_analog_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural and functional effects of phosphopriming and scaffolding in the kinase GSK-3 beta.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8VMF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9WV60"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Catenin beta-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P35222"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "fixed seed from handoff",
+          "rank": 0,
+          "surface_id": "fixed_seed"
+        },
+        {
+          "query_or_source": "RCSB full_text: 10.1126/scisignal.ado0881",
+          "rank": 3,
+          "surface_id": "doi_10_1126_scisignal_ado0881"
+        },
+        {
+          "query_or_source": "RCSB full_text: GSK-3 Axin transition state mimic AF3",
+          "rank": 2,
+          "surface_id": "gsk3_axin_transition_state_mimic"
+        },
+        {
+          "query_or_source": "RCSB full_text: GSK-3 beta-catenin S45D transition-state mimic",
+          "rank": 1,
+          "surface_id": "gsk3_beta_catenin_s45d_transition_state"
+        }
+      ],
+      "seed_residue_source_maps": [
+        {
+          "auth_seq_id": "45",
+          "chain": "C",
+          "expected_comp": "ASP",
+          "pdb_id": "8VMF",
+          "scheme_matches": [
+            {
+              "asym_id": "C",
+              "auth_mon_id": "ASP",
+              "auth_seq_num": "45",
+              "entity_id": "3",
+              "hetero": "n",
+              "mon_id": "ASP",
+              "pdb_mon_id": "ASP",
+              "pdb_seq_num": "45",
+              "pdb_strand_id": "C",
+              "seq_id": "12"
+            }
+          ],
+          "source_mapped": true,
+          "source_role": "beta-catenin S45D phosphomimetic residue, not a hydroxyl acceptor"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of a transition-state mimic of the GSK-3/Axin complex bound to a beta-catenin S45D peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "503",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "Glycogen synthase kinase-3 beta",
+          "associated_entity_uniprot_ids": [
+            "Q9WV60"
+          ],
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.384,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "A",
+              "distance_angstrom": 2.836,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F2"
+            },
+            {
+              "auth_seq_id": "501",
+              "chain": "A",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG",
+              "nearest_analog_atom": "AL"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "atom_count_model_1": 5002,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dynamic Features of cAMP-dependent Protein Kinase Revealed by Apoenzyme Crystal Structure",
+        "year": 2003
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1J3H",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "cAMP-dependent protein kinase, alpha-catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: 10.1038/nsb780",
+          "rank": 2,
+          "surface_id": "doi_10_1038_nsb780"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of apoenzyme cAMP-dependent protein kinase catalytic subunit",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 3378,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structure of a cAMP-dependent Protein Kinase Mutant at 1.26A: New Insights into the Catalytic Mechanism.",
+        "year": 2004
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1RDQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase, alpha-catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "cAMP-dependent protein kinase inhibitor, alpha form",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: 10.1038/nsb780",
+          "rank": 3,
+          "surface_id": "doi_10_1038_nsb780"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Hydrolysis of ATP in the crystal of Y204A mutant of cAMP-dependent protein kinase",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 3073,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5LI1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Par-3 partitioning defective 3 homolog (C. elegans)",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q28E03"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: 10.1016/j.devcel.2016.07.018",
+          "rank": 1,
+          "surface_id": "doi_10_1016_j_devcel_2016_07_018"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a Par3-inhibitory peptide bound to PKCiota core kinase domain",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 2993,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "aPKC Inhibition by Par3 CR3 Flanking Regions Controls Substrate Access and Underpins Apical-Junctional Polarization.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5LI9",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: 10.1016/j.devcel.2016.07.018",
+          "rank": 2,
+          "surface_id": "doi_10_1016_j_devcel_2016_07_018"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Structure of a nucleotide-bound form of PKCiota core kinase domain",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 6840,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural and functional effects of phosphopriming and scaffolding in the kinase GSK-3 beta.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8VMG",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9WV60"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: 10.1126/scisignal.ado0881",
+          "rank": 1,
+          "surface_id": "doi_10_1126_scisignal_ado0881"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of GSK-3 26-383 bound to Axin 383-435",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 3285,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural and functional effects of phosphopriming and scaffolding in the kinase GSK-3 beta.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8VME",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9WV60"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Catenin beta-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P35222"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: 10.1126/scisignal.ado0881",
+          "rank": 2,
+          "surface_id": "doi_10_1126_scisignal_ado0881"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of the GSK-3/Axin complex bound to a phosphorylated beta-catenin T41A peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 3135,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4NM7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "GSK3B protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Phosphorylated Wnt receptor LRP6 e-motif",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O75581"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6",
+          "rank": 1,
+          "surface_id": "gsk3_inhibition_source_title"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of GSK-3/Axin complex bound to phosphorylated Wnt receptor LRP6 e-motif",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 3192,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4NM5",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "GSK3B protein",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Phosphorylated Wnt receptor LRP6 c-motif",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O75581"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6",
+          "rank": 2,
+          "surface_id": "gsk3_inhibition_source_title"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of GSK-3/Axin complex bound to phosphorylated Wnt receptor LRP6 c-motif",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 3213,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4NM3",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6",
+          "rank": 3,
+          "surface_id": "gsk3_inhibition_source_title"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of GSK-3/Axin complex bound to phosphorylated N-terminal auto-inhibitory pS9 peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 3166,
+      "candidate_status": "no_transition_analog_group_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6.",
+        "year": 2014
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4NM0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6",
+          "rank": 4,
+          "surface_id": "gsk3_inhibition_source_title"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "Crystal structure of peptide inhibitor-free GSK-3/Axin complex",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "atom_count_model_1": 6226,
+      "candidate_status": "no_heteromeric_transition_analog_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "GTPase IN COMPLEX WITH GDP.MGF3-",
+        "year": null
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7QSC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Rho GTPase-activating protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07960"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Transforming protein RhoA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61586"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: protein kinase protein substrate transition-state analog ADP metal fluoride",
+          "rank": 1,
+          "surface_id": "protein_substrate_transition_analog_metal_fluoride"
+        }
+      ],
+      "seed_residue_source_maps": [],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "title": "GTPase IN COMPLEX WITH GDP.MGF3-",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 2,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "202",
+          "analog_chain_name": "B",
+          "analog_ligand_code": "MGF",
+          "associated_entity_description": "Transforming protein RhoA",
+          "associated_entity_uniprot_ids": [
+            "P61586"
+          ],
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.748,
+          "associated_polymer_entity_id": "2",
+          "local_metals": [
+            {
+              "auth_seq_id": "203",
+              "chain": "B",
+              "distance_angstrom": 1.894,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F1"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "87",
+            "candidate_chain_name": "A",
+            "candidate_entity_description": "Rho GTPase-activating protein 1",
+            "candidate_entity_id": "1",
+            "candidate_entity_uniprot_ids": [
+              "Q07960"
+            ],
+            "candidate_label_seq_id": "89",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F2",
+            "nearest_analog_distance_angstrom": 7.492
+          }
+        },
+        {
+          "analog_atom_names": [
+            "F1",
+            "F2",
+            "F3",
+            "MG"
+          ],
+          "analog_auth_seq_id": "202",
+          "analog_chain_name": "D",
+          "analog_ligand_code": "MGF",
+          "associated_entity_description": "Transforming protein RhoA",
+          "associated_entity_uniprot_ids": [
+            "P61586"
+          ],
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.676,
+          "associated_polymer_entity_id": "2",
+          "local_metals": [
+            {
+              "auth_seq_id": "203",
+              "chain": "D",
+              "distance_angstrom": 1.793,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F1"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "87",
+            "candidate_chain_name": "C",
+            "candidate_entity_description": "Rho GTPase-activating protein 1",
+            "candidate_entity_id": "1",
+            "candidate_entity_uniprot_ids": [
+              "Q07960"
+            ],
+            "candidate_label_seq_id": "89",
+            "candidate_residue_code": "SER",
+            "nearest_analog_atom": "F2",
+            "nearest_analog_distance_angstrom": 6.991
+          }
+        }
+      ]
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "1L3R",
+        "1J3H",
+        "1RDQ"
+      ],
+      "query_or_source": "RCSB full_text: 10.1038/nsb780",
+      "requested_rows": 20,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "doi_10_1038_nsb780",
+      "total_count": 3
+    },
+    {
+      "pdb_ids": [
+        "5LI1",
+        "5LI9",
+        "5LIH"
+      ],
+      "query_or_source": "RCSB full_text: 10.1016/j.devcel.2016.07.018",
+      "requested_rows": 20,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "doi_10_1016_j_devcel_2016_07_018",
+      "total_count": 3
+    },
+    {
+      "pdb_ids": [
+        "8VMG",
+        "8VME",
+        "8VMF"
+      ],
+      "query_or_source": "RCSB full_text: 10.1126/scisignal.ado0881",
+      "requested_rows": 20,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "doi_10_1126_scisignal_ado0881",
+      "total_count": 3
+    },
+    {
+      "pdb_ids": [
+        "4NM7",
+        "4NM5",
+        "4NM3",
+        "4NM0",
+        "4NU1"
+      ],
+      "query_or_source": "RCSB full_text: Structural basis of GSK-3 inhibition by N-terminal phosphorylation and by the Wnt receptor LRP6",
+      "requested_rows": 25,
+      "returned_count": 5,
+      "start": 0,
+      "surface_id": "gsk3_inhibition_source_title",
+      "total_count": 5
+    },
+    {
+      "pdb_ids": [
+        "4NU1",
+        "8VMF"
+      ],
+      "query_or_source": "RCSB full_text: GSK-3 Axin transition state mimic AF3",
+      "requested_rows": 25,
+      "returned_count": 2,
+      "start": 0,
+      "surface_id": "gsk3_axin_transition_state_mimic",
+      "total_count": 2
+    },
+    {
+      "pdb_ids": [
+        "8VMF"
+      ],
+      "query_or_source": "RCSB full_text: GSK-3 beta-catenin S45D transition-state mimic",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "gsk3_beta_catenin_s45d_transition_state",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [
+        "1L3R"
+      ],
+      "query_or_source": "RCSB full_text: cAMP-dependent protein kinase PKI transition state mimic ADP AlF3",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "pka_pki_transition_state_mimic",
+      "total_count": 1
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: PKC iota pseudosubstrate transition state analog AF3",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "pkciota_pseudosubstrate_transition_state",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase full-length substrate transition state aluminum fluoride",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "full_length_substrate_transition_state_af3",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase folded protein substrate transition state mimic ADP",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "folded_protein_substrate_transition_state_adp",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "7QSC"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase protein substrate transition-state analog ADP metal fluoride",
+      "requested_rows": 50,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "protein_substrate_transition_analog_metal_fluoride",
+      "total_count": 1
+    }
+  ],
+  "source_review_summary": {
+    "candidate_status_counts": {
+      "local_metal_peptide_or_pseudosubstrate_candidate_review_only": 2,
+      "no_heteromeric_transition_analog_candidate_review_only": 3,
+      "no_transition_analog_group_review_only": 10
+    },
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No non-peptide folded substrate analog state with unmodified source-mapped Ser/Thr/Tyr acceptor near kinase-associated AF3/MGF/BEF/ALF and local Mg/Mn was found in this bounded sibling/family surface.",
+      "4NU1 remains a phosphorylated GSK-3 Ser9 autoinhibitory/product-state near miss; 8VMF remains a beta-catenin S45D phosphomimetic near miss."
+    ],
+    "evidence_for": [
+      "1L3R and 5LIH remain source-mapped review-only peptide/pseudosubstrate transition-state positives with local metal.",
+      "Same-paper and family searches recovered only peptide/pseudosubstrate local-metal positives, not a clean folded-protein substrate positive."
+    ],
+    "next_query": "Search newly deposited 2025-2026 ePK structures by exact ligand families ATP/ANP/ADP plus MG/MN/AF3/MGF/BEF and source terms 'substrate'/'phosphorylation site', but require non-peptide substrate entity length and explicit kinase-site ligand ownership before CIF source mapping.",
+    "nonpeptide_local_metal_candidate_pdb_ids": [],
+    "peptide_or_pseudosubstrate_local_metal_candidate_pdb_ids": [
+      "1L3R",
+      "5LIH"
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Keep 1L3R/5LIH as review-only stress positives and keep 4NU1/8VMF as near-miss negatives. Do not change production labels, thresholds, registries, fingerprints, migrations, or scoring.",
+    "search_surface_exhausted": true,
+    "surfaces_reviewed": [
+      "doi_10_1038_nsb780",
+      "doi_10_1016_j_devcel_2016_07_018",
+      "doi_10_1126_scisignal_ado0881",
+      "gsk3_inhibition_source_title",
+      "gsk3_axin_transition_state_mimic",
+      "gsk3_beta_catenin_s45d_transition_state",
+      "pka_pki_transition_state_mimic",
+      "pkciota_pseudosubstrate_transition_state",
+      "full_length_substrate_transition_state_af3",
+      "folded_protein_substrate_transition_state_adp",
+      "protein_substrate_transition_analog_metal_fluoride"
+    ]
+  }
+}

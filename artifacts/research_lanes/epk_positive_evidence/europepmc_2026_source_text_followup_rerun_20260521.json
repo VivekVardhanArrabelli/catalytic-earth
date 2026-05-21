@@ -1,0 +1,5299 @@
+{
+  "article_records": [
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1021/acs.jmedchem.5c03226",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC13071872",
+      "pmid": "41849779",
+      "pub_year": "2026",
+      "rank": 1,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "9YKI"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": false
+      },
+      "title": "Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1126/science.adw0053",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC7618291",
+      "pmid": "41100585",
+      "pub_year": "2025",
+      "rank": 2,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "9I9I",
+        "9I9J",
+        "9I9K",
+        "9QCV",
+        "9QCX",
+        "9SKQ"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1107/s2053230x25008428",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12576689",
+      "pmid": "41070915",
+      "pub_year": "2025",
+      "rank": 3,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "9P6Q"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": false
+      },
+      "title": "Conformational changes in ketohexokinase are conserved across isozymes and species."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1038/s41467-025-67376-2",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12816671",
+      "pmid": "41444611",
+      "pub_year": "2025",
+      "rank": 4,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "9IGW",
+        "9IGX",
+        "9Q80",
+        "9Q8X",
+        "9Q9F",
+        "9QCR",
+        "9QCS",
+        "9QMS"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.3390/biom16030381",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC13023470",
+      "pmid": "41897316",
+      "pub_year": "2026",
+      "rank": 5,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "Halogen-Containing Drugs in 2025: A Record Year for the Therapeutic Use and Synthesis of FDA-Approved Small Molecules."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1038/s42003-025-08401-4",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12216845",
+      "pmid": "40595028",
+      "pub_year": "2025",
+      "rank": 6,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "9EJK",
+        "9EJL",
+        "9EJM"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": false
+      },
+      "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1126/sciadv.aea2726",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12893324",
+      "pmid": "41671371",
+      "pub_year": "2026",
+      "rank": 7,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": false
+      },
+      "title": "The allosteric landscape of the Src kinase."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1042/bst20253059",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12326152",
+      "pmid": "40613782",
+      "pub_year": "2025",
+      "rank": 8,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": false
+      },
+      "title": "Molecular insight on the role of the phosphoinositide PIP3 in regulating the protein kinases Akt, PDK1, and BTK."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1111/nph.70067",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12018781",
+      "pmid": "40065491",
+      "pub_year": "2025",
+      "rank": 9,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "8PS7"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.52225/narra.v5i1.1382",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12059826",
+      "pmid": "40352177",
+      "pub_year": "2025",
+      "rank": 10,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": true,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "Ethanol extract from <i>Ziziphus nummularia</i> stem inhibits MCF-7 breast cancer cell proliferation through TP53 regulating kinase (TP53RK)-mediated p53 activation: In silico and genes expression investigations."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1038/s41421-025-00786-0",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC11933327",
+      "pmid": "40128540",
+      "pub_year": "2025",
+      "rank": 11,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "9IZ0",
+        "9IZ7"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1021/acsomega.5c11981",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmcid": "PMC12961541",
+      "pmid": "41799114",
+      "pub_year": "2026",
+      "rank": 12,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "EGFR Mutations and Tyrosine Kinase Inhibitors: Structural Insights and Therapeutic Advances."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1016/j.isci.2026.115360",
+      "journal": null,
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmcid": "PMC13066744",
+      "pmid": "41971996",
+      "pub_year": "2026",
+      "rank": 3,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": false
+      },
+      "title": "hnRNPUL1 has a dead polynucleotide kinase domain that regulates RNA and protein interactions."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1038/s41594-024-01425-0",
+      "journal": null,
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmcid": "PMC11996676",
+      "pmid": "39762628",
+      "pub_year": "2025",
+      "rank": 4,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "8R3X",
+        "8R3Y"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": true,
+        "kinase-substrate": true,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": true
+      },
+      "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1021/acscentsci.5c02202",
+      "journal": null,
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmcid": "PMC13107213",
+      "pmid": "42038481",
+      "pub_year": "2026",
+      "rank": 5,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": true
+      },
+      "title": "Proximity-Induced Rewiring of Oncogenic Kinase Triggers Apoptosis."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1101/2025.07.09.663707",
+      "journal": null,
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": "2025",
+      "rank": 6,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": true
+      },
+      "title": "A complex of MAST1 and 14-3-3\u03b7 regulates Tau phosphorylation in the developing cortex"
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1101/2025.06.13.659082",
+      "journal": null,
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": "2025",
+      "rank": 7,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": true
+      },
+      "title": "Proximity-induced rewiring of oncogenic kinase triggers apoptosis"
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1038/s41467-025-56937-0",
+      "journal": null,
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmcid": "PMC11836120",
+      "pmid": "39966396",
+      "pub_year": "2025",
+      "rank": 8,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [
+        "9GR8",
+        "9GRH",
+        "9GRN",
+        "9GRO"
+      ],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": false,
+        "substrate": true
+      },
+      "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1016/j.apsb.2025.09.002",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_full_length_substrate_pdb_2025_2026",
+      "pmcid": "PMC12648105",
+      "pmid": "41311405",
+      "pub_year": "2025",
+      "rank": 1,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": false
+      },
+      "title": "DNAzyme targeting RIP3 suppresses NLRP3-mediated necroinflammation for the treatment of inflammatory diseases."
+    },
+    {
+      "direct_pdb_ids_in_title_or_abstract": [],
+      "doi": "10.1101/2025.03.18.643923",
+      "journal": null,
+      "literature_surface_id": "protein_kinase_substrate_peptide_amp_pnp_pdb_2025_2026",
+      "pmcid": null,
+      "pmid": null,
+      "pub_year": "2025",
+      "rank": 5,
+      "rcsb_map_count": 2,
+      "rcsb_mapped_pdb_ids": [],
+      "term_flags": {
+        "AMP-PNP": false,
+        "ATPgammaS": false,
+        "PDB": false,
+        "full-length": false,
+        "kinase-substrate": false,
+        "metal fluoride": false,
+        "protein kinase": true,
+        "substrate": false
+      },
+      "title": "Widely used CaMKII regulatory segment mutations cause tight actinin binding and dendritic spine enlargement in unstimulated neurons"
+    }
+  ],
+  "fetch_failures": [],
+  "literature_surfaces": [
+    {
+      "articles": [
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1021/acs.jmedchem.5c03226",
+          "journal": null,
+          "pmcid": "PMC13071872",
+          "pmid": "41849779",
+          "pub_year": "2026",
+          "rank": 1,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1126/science.adw0053",
+          "journal": null,
+          "pmcid": "PMC7618291",
+          "pmid": "41100585",
+          "pub_year": "2025",
+          "rank": 2,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1107/s2053230x25008428",
+          "journal": null,
+          "pmcid": "PMC12576689",
+          "pmid": "41070915",
+          "pub_year": "2025",
+          "rank": 3,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Conformational changes in ketohexokinase are conserved across isozymes and species."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41467-025-67376-2",
+          "journal": null,
+          "pmcid": "PMC12816671",
+          "pmid": "41444611",
+          "pub_year": "2025",
+          "rank": 4,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.3390/biom16030381",
+          "journal": null,
+          "pmcid": "PMC13023470",
+          "pmid": "41897316",
+          "pub_year": "2026",
+          "rank": 5,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Halogen-Containing Drugs in 2025: A Record Year for the Therapeutic Use and Synthesis of FDA-Approved Small Molecules."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s42003-025-08401-4",
+          "journal": null,
+          "pmcid": "PMC12216845",
+          "pmid": "40595028",
+          "pub_year": "2025",
+          "rank": 6,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1126/sciadv.aea2726",
+          "journal": null,
+          "pmcid": "PMC12893324",
+          "pmid": "41671371",
+          "pub_year": "2026",
+          "rank": 7,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "The allosteric landscape of the Src kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1042/bst20253059",
+          "journal": null,
+          "pmcid": "PMC12326152",
+          "pmid": "40613782",
+          "pub_year": "2025",
+          "rank": 8,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Molecular insight on the role of the phosphoinositide PIP3 in regulating the protein kinases Akt, PDK1, and BTK."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1111/nph.70067",
+          "journal": null,
+          "pmcid": "PMC12018781",
+          "pmid": "40065491",
+          "pub_year": "2025",
+          "rank": 9,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.52225/narra.v5i1.1382",
+          "journal": null,
+          "pmcid": "PMC12059826",
+          "pmid": "40352177",
+          "pub_year": "2025",
+          "rank": 10,
+          "term_flags": {
+            "AMP-PNP": true,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Ethanol extract from <i>Ziziphus nummularia</i> stem inhibits MCF-7 breast cancer cell proliferation through TP53 regulating kinase (TP53RK)-mediated p53 activation: In silico and genes expression investigations."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41421-025-00786-0",
+          "journal": null,
+          "pmcid": "PMC11933327",
+          "pmid": "40128540",
+          "pub_year": "2025",
+          "rank": 11,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1021/acsomega.5c11981",
+          "journal": null,
+          "pmcid": "PMC12961541",
+          "pmid": "41799114",
+          "pub_year": "2026",
+          "rank": 12,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "EGFR Mutations and Tyrosine Kinase Inhibitors: Structural Insights and Therapeutic Advances."
+        }
+      ],
+      "hit_count": 40,
+      "query_or_source": "Europe PMC: (\"protein kinase\" AND substrate AND (ATPgammaS OR \"ATP-gamma-S\" OR \"AMP-PNP\" OR \"metal fluoride\" OR AlF3 OR BeF3) AND PDB) AND FIRST_PDATE:[2025-01-01 TO 2026-12-31]",
+      "returned_count": 12,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22protein+kinase%22+AND+substrate+AND+%28ATPgammaS+OR+%22ATP-gamma-S%22+OR+%22AMP-PNP%22+OR+%22metal+fluoride%22+OR+AlF3+OR+BeF3%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2025-01-01+TO+2026-12-31%5D&format=json&pageSize=12&resultType=core",
+      "surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026"
+    },
+    {
+      "articles": [
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.52225/narra.v5i1.1382",
+          "journal": null,
+          "pmcid": "PMC12059826",
+          "pmid": "40352177",
+          "pub_year": "2025",
+          "rank": 1,
+          "term_flags": {
+            "AMP-PNP": true,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Ethanol extract from <i>Ziziphus nummularia</i> stem inhibits MCF-7 breast cancer cell proliferation through TP53 regulating kinase (TP53RK)-mediated p53 activation: In silico and genes expression investigations."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s42003-025-08401-4",
+          "journal": null,
+          "pmcid": "PMC12216845",
+          "pmid": "40595028",
+          "pub_year": "2025",
+          "rank": 2,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1016/j.isci.2026.115360",
+          "journal": null,
+          "pmcid": "PMC13066744",
+          "pmid": "41971996",
+          "pub_year": "2026",
+          "rank": 3,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "hnRNPUL1 has a dead polynucleotide kinase domain that regulates RNA and protein interactions."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41594-024-01425-0",
+          "journal": null,
+          "pmcid": "PMC11996676",
+          "pmid": "39762628",
+          "pub_year": "2025",
+          "rank": 4,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": true,
+            "kinase-substrate": true,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": true
+          },
+          "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1021/acscentsci.5c02202",
+          "journal": null,
+          "pmcid": "PMC13107213",
+          "pmid": "42038481",
+          "pub_year": "2026",
+          "rank": 5,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Proximity-Induced Rewiring of Oncogenic Kinase Triggers Apoptosis."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1101/2025.07.09.663707",
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": "2025",
+          "rank": 6,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "A complex of MAST1 and 14-3-3\u03b7 regulates Tau phosphorylation in the developing cortex"
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1101/2025.06.13.659082",
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": "2025",
+          "rank": 7,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Proximity-induced rewiring of oncogenic kinase triggers apoptosis"
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41467-025-56937-0",
+          "journal": null,
+          "pmcid": "PMC11836120",
+          "pmid": "39966396",
+          "pub_year": "2025",
+          "rank": 8,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis."
+        }
+      ],
+      "hit_count": 8,
+      "query_or_source": "Europe PMC: (\"kinase-substrate\" AND (ATPgammaS OR \"AMP-PNP\" OR \"transition state\") AND PDB) AND FIRST_PDATE:[2025-01-01 TO 2026-12-31]",
+      "returned_count": 8,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22kinase-substrate%22+AND+%28ATPgammaS+OR+%22AMP-PNP%22+OR+%22transition+state%22%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2025-01-01+TO+2026-12-31%5D&format=json&pageSize=12&resultType=core",
+      "surface_id": "kinase_substrate_transition_state_pdb_2025_2026"
+    },
+    {
+      "articles": [
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1016/j.apsb.2025.09.002",
+          "journal": null,
+          "pmcid": "PMC12648105",
+          "pmid": "41311405",
+          "pub_year": "2025",
+          "rank": 1,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "DNAzyme targeting RIP3 suppresses NLRP3-mediated necroinflammation for the treatment of inflammatory diseases."
+        }
+      ],
+      "hit_count": 1,
+      "query_or_source": "Europe PMC: (\"protein kinase\" AND \"full-length substrate\" AND (ATP OR ANP OR AMP-PNP OR ATPgammaS) AND PDB) AND FIRST_PDATE:[2025-01-01 TO 2026-12-31]",
+      "returned_count": 1,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22protein+kinase%22+AND+%22full-length+substrate%22+AND+%28ATP+OR+ANP+OR+AMP-PNP+OR+ATPgammaS%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2025-01-01+TO+2026-12-31%5D&format=json&pageSize=12&resultType=core",
+      "surface_id": "protein_kinase_full_length_substrate_pdb_2025_2026"
+    },
+    {
+      "articles": [
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41421-025-00786-0",
+          "journal": null,
+          "pmcid": "PMC11933327",
+          "pmid": "40128540",
+          "pub_year": "2025",
+          "rank": 1,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s42003-025-08401-4",
+          "journal": null,
+          "pmcid": "PMC12216845",
+          "pmid": "40595028",
+          "pub_year": "2025",
+          "rank": 2,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1126/sciadv.aea2726",
+          "journal": null,
+          "pmcid": "PMC12893324",
+          "pmid": "41671371",
+          "pub_year": "2026",
+          "rank": 3,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "The allosteric landscape of the Src kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41594-024-01425-0",
+          "journal": null,
+          "pmcid": "PMC11996676",
+          "pmid": "39762628",
+          "pub_year": "2025",
+          "rank": 4,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": true,
+            "kinase-substrate": true,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": true
+          },
+          "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1101/2025.03.18.643923",
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": "2025",
+          "rank": 5,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Widely used CaMKII regulatory segment mutations cause tight actinin binding and dendritic spine enlargement in unstimulated neurons"
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1016/j.jbc.2025.108348",
+          "journal": null,
+          "pmcid": "PMC11982978",
+          "pmid": "40015635",
+          "pub_year": "2025",
+          "rank": 6,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": true
+          },
+          "title": "Cancer hotspot mutations rewire ERK2 specificity by selective exclusion of docking interactions."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1007/s11030-025-11132-7",
+          "journal": null,
+          "pmcid": "PMC12638386",
+          "pmid": "40009150",
+          "pub_year": "2025",
+          "rank": 7,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Structural insights of AKT and its activation mechanism for drug development."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.7554/elife.98009",
+          "journal": null,
+          "pmcid": "PMC12208667",
+          "pmid": "40586777",
+          "pub_year": "2025",
+          "rank": 8,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Dual-specific autophosphorylation of kinase IKK2 enables phosphorylation of substrate I\u03baB\u03b1 through a phosphoenzyme intermediate."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1039/d5md00211g",
+          "journal": null,
+          "pmcid": "PMC12587315",
+          "pmid": "41199994",
+          "pub_year": "2025",
+          "rank": 9,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Structure-activity relationship of GSK-3\u03b2 inhibitors: insight into drug design for Alzheimer's disease."
+        }
+      ],
+      "hit_count": 9,
+      "query_or_source": "Europe PMC: (\"protein kinase\" AND \"substrate peptide\" AND (\"AMP-PNP\" OR ANP OR ATPgammaS) AND PDB) AND FIRST_PDATE:[2025-01-01 TO 2026-12-31]",
+      "returned_count": 9,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22protein+kinase%22+AND+%22substrate+peptide%22+AND+%28%22AMP-PNP%22+OR+ANP+OR+ATPgammaS%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2025-01-01+TO+2026-12-31%5D&format=json&pageSize=12&resultType=core",
+      "surface_id": "protein_kinase_substrate_peptide_amp_pnp_pdb_2025_2026"
+    },
+    {
+      "articles": [
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41421-025-00786-0",
+          "journal": null,
+          "pmcid": "PMC11933327",
+          "pmid": "40128540",
+          "pub_year": "2025",
+          "rank": 1,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Asymmetric activation of dimeric ATM/Tel1 kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1042/bst20253059",
+          "journal": null,
+          "pmcid": "PMC12326152",
+          "pmid": "40613782",
+          "pub_year": "2025",
+          "rank": 2,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "Molecular insight on the role of the phosphoinositide PIP3 in regulating the protein kinases Akt, PDK1, and BTK."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1002/cbic.202500095",
+          "journal": null,
+          "pmcid": "PMC12118331",
+          "pmid": "40267247",
+          "pub_year": "2025",
+          "rank": 3,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Recent Advances in Enzymes and Chemoenzymatic Synthesis of Tetrasaccharide Linkage Region of Proteoglycans."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1039/d5cb00149h",
+          "journal": null,
+          "pmcid": "PMC12445297",
+          "pmid": "40978460",
+          "pub_year": "2025",
+          "rank": 4,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Dynamics of single enzymes confined inside a nanopore."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1073/pnas.2419096122",
+          "journal": null,
+          "pmcid": "PMC12184503",
+          "pmid": "40498448",
+          "pub_year": "2025",
+          "rank": 5,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Structural basis of the catalytic and allosteric mechanism of bacterial acetyltransferase PatZ."
+        }
+      ],
+      "hit_count": 5,
+      "query_or_source": "Europe PMC: (\"folded protein substrate\" OR \"protein substrate\") AND kinase AND (ATPgammaS OR \"AMP-PNP\" OR \"metal fluoride\") AND structure AND FIRST_PDATE:[2025-01-01 TO 2026-12-31]",
+      "returned_count": 5,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22folded+protein+substrate%22+OR+%22protein+substrate%22%29+AND+kinase+AND+%28ATPgammaS+OR+%22AMP-PNP%22+OR+%22metal+fluoride%22%29+AND+structure+AND+FIRST_PDATE%3A%5B2025-01-01+TO+2026-12-31%5D&format=json&pageSize=12&resultType=core",
+      "surface_id": "folded_protein_substrate_kinase_structure_2025_2026"
+    },
+    {
+      "articles": [
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1128/iai.00027-26",
+          "journal": null,
+          "pmcid": "PMC13081723",
+          "pmid": "41746158",
+          "pub_year": "2026",
+          "rank": 1,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Serine phosphorylation of CesT by the type III secretion system effectors NleH1 and NleH2 regulates antagonization of CsrA in enteropathogenic <i>Escherichia coli</i>."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41467-026-68478-1",
+          "journal": null,
+          "pmcid": "PMC12917000",
+          "pmid": "41565662",
+          "pub_year": "2026",
+          "rank": 2,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "A stochastic mechanism drives fast substrate translocation in the AAA+ machine ClpB."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41598-026-42811-6",
+          "journal": null,
+          "pmcid": "PMC13087191",
+          "pmid": "41795027",
+          "pub_year": "2026",
+          "rank": 3,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "The deubiquitinating enzyme Otu1 releases substrates from the conserved initiation complex of the Cdc48/p97 ATPase for proteasomal degradation."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s42003-026-09584-0",
+          "journal": null,
+          "pmcid": "PMC12957308",
+          "pmid": "41606312",
+          "pub_year": "2026",
+          "rank": 4,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Structural insights into WRN helicase reveal conformational states and opportunities for MSI-H cancer drug discovery."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41467-025-61732-y",
+          "journal": null,
+          "pmcid": "PMC12297293",
+          "pmid": "40715061",
+          "pub_year": "2025",
+          "rank": 5,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Comprehensive profiling of the catalytic conformations of human Guanylate kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1016/j.molcel.2026.04.020",
+          "journal": null,
+          "pmcid": "PMC13182991",
+          "pmid": "42140189",
+          "pub_year": "2026",
+          "rank": 6,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "The E. coli DnaX clamp loader sharply bends DNA to load \u03b2-clamp at nicks and small gaps."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1002/pro.70372",
+          "journal": null,
+          "pmcid": "PMC12723719",
+          "pmid": "41432315",
+          "pub_year": "2026",
+          "rank": 7,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "An open axial channel of the AAA ClpXP protease enhances degradation of specific classes of protein substrates."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1021/acsnano.5c07468",
+          "journal": null,
+          "pmcid": "PMC12818574",
+          "pmid": "41014640",
+          "pub_year": "2025",
+          "rank": 8,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Selective Identification of Allosteric Inhibitors and Co-Drug Combinations Targeting Kinases by Using a Nanopore Tweezer Approach."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1002/pro.70445",
+          "journal": null,
+          "pmcid": "PMC12817277",
+          "pmid": "41556501",
+          "pub_year": "2026",
+          "rank": 9,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Recognition of small Tim chaperones by the mitochondrial Yme1 protease."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s42003-026-09788-4",
+          "journal": null,
+          "pmcid": "PMC13076628",
+          "pmid": "41781680",
+          "pub_year": "2026",
+          "rank": 10,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": true,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Mechanistic insights into the structure and function of the RecA C-terminal tail."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s42003-025-08955-3",
+          "journal": null,
+          "pmcid": "PMC12623860",
+          "pmid": "41249510",
+          "pub_year": "2025",
+          "rank": 11,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Cryo-EM analysis of the Staphylococcus aureus phenol-soluble modulin exporter PmtCD apo form in detergent micelles, nanodiscs and peptidiscs."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1126/science.adv7111",
+          "journal": null,
+          "pmcid": "PMC12830033",
+          "pmid": "41308123",
+          "pub_year": "2026",
+          "rank": 12,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": true
+          },
+          "title": "Structural basis for the recruitment and selective phosphorylation of Akt by mTORC2."
+        }
+      ],
+      "hit_count": 64,
+      "query_or_source": "Europe PMC: (kinase AND substrate AND (ATPyS OR \"ATP gamma S\" OR \"ATP-gamma-S\" OR \"ATP\\u03b3S\") AND PDB) AND FIRST_PDATE:[2025-01-01 TO 2026-12-31]",
+      "returned_count": 12,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28kinase+AND+substrate+AND+%28ATPyS+OR+%22ATP+gamma+S%22+OR+%22ATP-gamma-S%22+OR+%22ATP%5Cu03b3S%22%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2025-01-01+TO+2026-12-31%5D&format=json&pageSize=12&resultType=core",
+      "surface_id": "kinase_substrate_atpys_aliases_pdb_2025_2026"
+    },
+    {
+      "articles": [
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1042/bcj20253110",
+          "journal": null,
+          "pmcid": "PMC12614931",
+          "pmid": "40737028",
+          "pub_year": "2025",
+          "rank": 1,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": true,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Structural insights and biophysical characterization of p90RSK2:ERK2 complex."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1002/pro.70442",
+          "journal": null,
+          "pmcid": "PMC12724008",
+          "pmid": "41432361",
+          "pub_year": "2026",
+          "rank": 2,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": true,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": true
+          },
+          "title": "Phosphorylation of a conserved aspartate in the catalytic site of eukaryotic elongation factor 2 kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1101/2025.11.27.691040",
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": "2025",
+          "rank": 3,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "An inositol pyrophosphate interaction screen provides insight into the regulation of plant casein kinase II"
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41467-025-66871-w",
+          "journal": null,
+          "pmcid": "PMC12717137",
+          "pmid": "41360793",
+          "pub_year": "2025",
+          "rank": 4,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Structure, function, and implications of fucosyltransferases in health and disease."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41467-026-69833-y",
+          "journal": null,
+          "pmcid": "PMC13096542",
+          "pmid": "41792117",
+          "pub_year": "2026",
+          "rank": 5,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "The oncogenic CCDC6-RET fusion protein is a dual ATP- and ADP-dependent kinase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1038/s41467-025-56207-z",
+          "journal": null,
+          "pmcid": "PMC11754801",
+          "pmid": "39843453",
+          "pub_year": "2025",
+          "rank": 6,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "The molecular basis of Human FN3K mediated phosphorylation of glycated substrates."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1039/d3sc05016e",
+          "journal": null,
+          "pmcid": "PMC10685318",
+          "pmid": "38033892",
+          "pub_year": "2023",
+          "rank": 7,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "<i>Trans</i>-cyclosulfamidate mannose-configured cyclitol allows isoform-dependent inhibition of GH47 \u03b1-d-mannosidases through a bump-hole strategy."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.2147/dddt.s500004",
+          "journal": null,
+          "pmcid": "PMC11784279",
+          "pmid": "39896936",
+          "pub_year": "2025",
+          "rank": 8,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": true
+          },
+          "title": "Peptide Design for Enhanced Anti-Melanogenesis: Optimizing Molecular Weight, Polarity, and Cyclization."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1021/acs.jcim.3c01600",
+          "journal": null,
+          "pmcid": "PMC10865347",
+          "pmid": "38282538",
+          "pub_year": "2024",
+          "rank": 9,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Multiscale <i>In Silico</i> Study of the Mechanism of Activation of the RtcB Ligase by the PTP1B Phosphatase."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1016/j.apsb.2025.09.002",
+          "journal": null,
+          "pmcid": "PMC12648105",
+          "pmid": "41311405",
+          "pub_year": "2025",
+          "rank": 10,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": false
+          },
+          "title": "DNAzyme targeting RIP3 suppresses NLRP3-mediated necroinflammation for the treatment of inflammatory diseases."
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1101/2025.09.26.678760",
+          "journal": null,
+          "pmcid": null,
+          "pmid": null,
+          "pub_year": "2025",
+          "rank": 11,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": true,
+            "substrate": true
+          },
+          "title": "Mechanism of MEK1 phosphorylation by the N-terminal acidic motif-mediated asymmetric BRAF dimer"
+        },
+        {
+          "direct_pdb_ids_in_title_or_abstract": [],
+          "doi": "10.1371/journal.pone.0325143",
+          "journal": null,
+          "pmcid": "PMC12136456",
+          "pmid": "40465779",
+          "pub_year": "2025",
+          "rank": 12,
+          "term_flags": {
+            "AMP-PNP": false,
+            "ATPgammaS": false,
+            "PDB": false,
+            "full-length": false,
+            "kinase-substrate": false,
+            "metal fluoride": false,
+            "protein kinase": false,
+            "substrate": false
+          },
+          "title": "Polypyrimidine tract binding proteins PTBP1 and PTBP2 associate with distinct proteins and have distinct post-translational modifications in neuronal nuclear extract."
+        }
+      ],
+      "hit_count": 46,
+      "query_or_source": "Europe PMC: (\"protein kinase\" AND substrate AND (\"Michaelis complex\" OR \"pre-catalytic\" OR precatalytic) AND PDB) AND FIRST_PDATE:[2020-01-01 TO 2026-12-31]",
+      "returned_count": 12,
+      "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28%22protein+kinase%22+AND+substrate+AND+%28%22Michaelis+complex%22+OR+%22pre-catalytic%22+OR+precatalytic%29+AND+PDB%29+AND+FIRST_PDATE%3A%5B2020-01-01+TO+2026-12-31%5D&format=json&pageSize=12&resultType=core",
+      "surface_id": "protein_kinase_michaelis_precatalytic_substrate_pdb_2020_2026"
+    }
+  ],
+  "metadata": {
+    "articles_reviewed": 20,
+    "candidate_status_counts": {
+      "donor_or_analog_without_heteromeric_acceptor_review_only": 4,
+      "no_active_donor_or_transition_analog_review_only": 23,
+      "no_local_metal_or_short_candidate_review_only": 1
+    },
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-21T12:24:02Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "literature_surface_count": 7,
+    "local_metal_nonpeptide_candidate_pdb_ids": [],
+    "local_metal_peptide_or_short_candidate_pdb_ids": [],
+    "max_articles": 20,
+    "max_unique_pdb_ids": 30,
+    "method": "europepmc_2026_source_text_followup",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Literature/source-text mapping only. It does not create labels, scores, thresholds, fingerprints, migrations, or production claims.",
+    "source_urls": [
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 28
+  },
+  "rcsb_maps_by_article": [
+    {
+      "article_title": "Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK.",
+      "doi": "10.1021/acs.jmedchem.5c03226",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "41849779",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "9YKI"
+          ],
+          "query_or_source": "RCSB full_text: 10.1021/acs.jmedchem.5c03226",
+          "returned_count": 1,
+          "total_count": 1
+        },
+        {
+          "pdb_ids": [
+            "9YKI"
+          ],
+          "query_or_source": "RCSB full_text: Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK.",
+          "returned_count": 1,
+          "total_count": 1
+        }
+      ]
+    },
+    {
+      "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+      "doi": "10.1126/science.adw0053",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "41100585",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "9I9I",
+            "9I9J",
+            "9I9K",
+            "9QCV",
+            "9QCX",
+            "9SKQ"
+          ],
+          "query_or_source": "RCSB full_text: 10.1126/science.adw0053",
+          "returned_count": 6,
+          "total_count": 6
+        },
+        {
+          "pdb_ids": [
+            "9I9I",
+            "9I9K",
+            "9I9J",
+            "9QCV",
+            "9QCX",
+            "9SKQ"
+          ],
+          "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "returned_count": 6,
+          "total_count": 6
+        }
+      ]
+    },
+    {
+      "article_title": "Conformational changes in ketohexokinase are conserved across isozymes and species.",
+      "doi": "10.1107/s2053230x25008428",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "41070915",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "9P6Q"
+          ],
+          "query_or_source": "RCSB full_text: 10.1107/s2053230x25008428",
+          "returned_count": 1,
+          "total_count": 1
+        },
+        {
+          "pdb_ids": [
+            "9P6Q"
+          ],
+          "query_or_source": "RCSB full_text: Conformational changes in ketohexokinase are conserved across isozymes and species.",
+          "returned_count": 1,
+          "total_count": 1
+        }
+      ]
+    },
+    {
+      "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+      "doi": "10.1038/s41467-025-67376-2",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "41444611",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "9IGW",
+            "9Q80",
+            "9Q8X",
+            "9IGX",
+            "9QCR",
+            "9Q9F",
+            "9QCS",
+            "9QMS"
+          ],
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2",
+          "returned_count": 8,
+          "total_count": 8
+        },
+        {
+          "pdb_ids": [
+            "9IGW",
+            "9Q80",
+            "9Q8X",
+            "9IGX",
+            "9Q9F",
+            "9QCR",
+            "9QCS",
+            "9QMS"
+          ],
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "returned_count": 8,
+          "total_count": 8
+        }
+      ]
+    },
+    {
+      "article_title": "Halogen-Containing Drugs in 2025: A Record Year for the Therapeutic Use and Synthesis of FDA-Approved Small Molecules.",
+      "doi": "10.3390/biom16030381",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "41897316",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.3390/biom16030381",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Halogen-Containing Drugs in 2025: A Record Year for the Therapeutic Use and Synthesis of FDA-Approved Small Molecules.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+      "doi": "10.1038/s42003-025-08401-4",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "40595028",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "9EJM",
+            "9EJK",
+            "9EJL"
+          ],
+          "query_or_source": "RCSB full_text: 10.1038/s42003-025-08401-4",
+          "returned_count": 3,
+          "total_count": 3
+        },
+        {
+          "pdb_ids": [
+            "9EJK",
+            "9EJM",
+            "9EJL"
+          ],
+          "query_or_source": "RCSB full_text: Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+          "returned_count": 3,
+          "total_count": 3
+        }
+      ]
+    },
+    {
+      "article_title": "The allosteric landscape of the Src kinase.",
+      "doi": "10.1126/sciadv.aea2726",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "41671371",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1126/sciadv.aea2726",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: The allosteric landscape of the Src kinase.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Molecular insight on the role of the phosphoinositide PIP3 in regulating the protein kinases Akt, PDK1, and BTK.",
+      "doi": "10.1042/bst20253059",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "40613782",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1042/bst20253059",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Molecular insight on the role of the phosphoinositide PIP3 in regulating the protein kinases Akt, PDK1, and BTK.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity.",
+      "doi": "10.1111/nph.70067",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "40065491",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "8PS7"
+          ],
+          "query_or_source": "RCSB full_text: 10.1111/nph.70067",
+          "returned_count": 1,
+          "total_count": 1
+        },
+        {
+          "pdb_ids": [
+            "8PS7"
+          ],
+          "query_or_source": "RCSB full_text: The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity.",
+          "returned_count": 1,
+          "total_count": 1
+        }
+      ]
+    },
+    {
+      "article_title": "Ethanol extract from <i>Ziziphus nummularia</i> stem inhibits MCF-7 breast cancer cell proliferation through TP53 regulating kinase (TP53RK)-mediated p53 activation: In silico and genes expression investigations.",
+      "doi": "10.52225/narra.v5i1.1382",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "40352177",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.52225/narra.v5i1.1382",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Ethanol extract from <i>Ziziphus nummularia</i> stem inhibits MCF-7 breast cancer cell proliferation through TP53 regulating kinase (TP53RK)-mediated p53 activation: In silico and genes expression investigations.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+      "doi": "10.1038/s41421-025-00786-0",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "40128540",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "9IZ7",
+            "9IZ0"
+          ],
+          "query_or_source": "RCSB full_text: 10.1038/s41421-025-00786-0",
+          "returned_count": 2,
+          "total_count": 2
+        },
+        {
+          "pdb_ids": [
+            "9IZ7",
+            "9IZ0"
+          ],
+          "query_or_source": "RCSB full_text: Asymmetric activation of dimeric ATM/Tel1 kinase.",
+          "returned_count": 2,
+          "total_count": 2
+        }
+      ]
+    },
+    {
+      "article_title": "EGFR Mutations and Tyrosine Kinase Inhibitors: Structural Insights and Therapeutic Advances.",
+      "doi": "10.1021/acsomega.5c11981",
+      "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+      "pmid": "41799114",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1021/acsomega.5c11981",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: EGFR Mutations and Tyrosine Kinase Inhibitors: Structural Insights and Therapeutic Advances.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "hnRNPUL1 has a dead polynucleotide kinase domain that regulates RNA and protein interactions.",
+      "doi": "10.1016/j.isci.2026.115360",
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmid": "41971996",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1016/j.isci.2026.115360",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: hnRNPUL1 has a dead polynucleotide kinase domain that regulates RNA and protein interactions.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+      "doi": "10.1038/s41594-024-01425-0",
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmid": "39762628",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "8R3X",
+            "8R3Y"
+          ],
+          "query_or_source": "RCSB full_text: 10.1038/s41594-024-01425-0",
+          "returned_count": 2,
+          "total_count": 2
+        },
+        {
+          "pdb_ids": [
+            "8R3X",
+            "8R3Y"
+          ],
+          "query_or_source": "RCSB full_text: Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "returned_count": 2,
+          "total_count": 2
+        }
+      ]
+    },
+    {
+      "article_title": "Proximity-Induced Rewiring of Oncogenic Kinase Triggers Apoptosis.",
+      "doi": "10.1021/acscentsci.5c02202",
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmid": "42038481",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1021/acscentsci.5c02202",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Proximity-Induced Rewiring of Oncogenic Kinase Triggers Apoptosis.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "A complex of MAST1 and 14-3-3\u03b7 regulates Tau phosphorylation in the developing cortex",
+      "doi": "10.1101/2025.07.09.663707",
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1101/2025.07.09.663707",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: A complex of MAST1 and 14-3-3\u03b7 regulates Tau phosphorylation in the developing cortex",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Proximity-induced rewiring of oncogenic kinase triggers apoptosis",
+      "doi": "10.1101/2025.06.13.659082",
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1101/2025.06.13.659082",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Proximity-induced rewiring of oncogenic kinase triggers apoptosis",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+      "doi": "10.1038/s41467-025-56937-0",
+      "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+      "pmid": "39966396",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [
+            "9GRH",
+            "9GR8",
+            "9GRO",
+            "9GRN"
+          ],
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-56937-0",
+          "returned_count": 4,
+          "total_count": 4
+        },
+        {
+          "pdb_ids": [
+            "9GRH",
+            "9GR8",
+            "9GRO",
+            "9GRN"
+          ],
+          "query_or_source": "RCSB full_text: A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "returned_count": 4,
+          "total_count": 4
+        }
+      ]
+    },
+    {
+      "article_title": "DNAzyme targeting RIP3 suppresses NLRP3-mediated necroinflammation for the treatment of inflammatory diseases.",
+      "doi": "10.1016/j.apsb.2025.09.002",
+      "literature_surface_id": "protein_kinase_full_length_substrate_pdb_2025_2026",
+      "pmid": "41311405",
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1016/j.apsb.2025.09.002",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: DNAzyme targeting RIP3 suppresses NLRP3-mediated necroinflammation for the treatment of inflammatory diseases.",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    },
+    {
+      "article_title": "Widely used CaMKII regulatory segment mutations cause tight actinin binding and dendritic spine enlargement in unstimulated neurons",
+      "doi": "10.1101/2025.03.18.643923",
+      "literature_surface_id": "protein_kinase_substrate_peptide_amp_pnp_pdb_2025_2026",
+      "pmid": null,
+      "rcsb_maps": [
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: 10.1101/2025.03.18.643923",
+          "returned_count": 0,
+          "total_count": 0
+        },
+        {
+          "pdb_ids": [],
+          "query_or_source": "RCSB full_text: Widely used CaMKII regulatory segment mutations cause tight actinin binding and dendritic spine enlargement in unstimulated neurons",
+          "returned_count": 0,
+          "total_count": 0
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "acceptor_atom_count": 32,
+      "atom_count_model_1": 2442,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9YKI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase pim-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P11309"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 313
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK.",
+          "doi": "10.1021/acs.jmedchem.5c03226",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41849779",
+          "query_or_source": "RCSB full_text: 10.1021/acs.jmedchem.5c03226"
+        },
+        {
+          "article_title": "Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK.",
+          "doi": "10.1021/acs.jmedchem.5c03226",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41849779",
+          "query_or_source": "RCSB full_text: Identification and Validation of an Inhibitor of the Protein Kinases PIM and DYRK."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of human PIM1 kinase bound with CSH-4044 inhibitor",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 132,
+      "atom_count_model_1": 7344,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9I9I",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Isoform 7 of Cyclin-dependent kinase 11B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P21127"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 442,
+        "2": 328,
+        "3": 324,
+        "4": 391
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: 10.1126/science.adw0053"
+        },
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Cryo-EM structure of CAK-CDK11",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 121,
+      "atom_count_model_1": 7053,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9I9J",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 328,
+        "2": 324,
+        "3": 391,
+        "4": 301
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: 10.1126/science.adw0053"
+        },
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Cryo-EM structure of CAK-CDK2 (determined in the presence of ADP-nitrate)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 129,
+      "atom_count_model_1": 7492,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9I9K",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 328,
+        "2": 324,
+        "3": 391,
+        "4": 301
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: 10.1126/science.adw0053"
+        },
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Cryo-EM structure of CAK-CDK2 (determined in the presence of ADP-AlFx)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 181,
+      "atom_count_model_1": 9759,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9QCV",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 301,
+        "2": 435,
+        "3": 328,
+        "4": 324,
+        "5": 391
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: 10.1126/science.adw0053"
+        },
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "K",
+          "associated_polymer_distance_angstrom": 2.22,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "302",
+              "chain": "K",
+              "distance_angstrom": 3.983,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "49",
+            "candidate_chain_name": "J",
+            "candidate_entity_id": "5",
+            "candidate_label_seq_id": "94",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 9.747
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "301",
+          "terminal_chain_name": "K",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "J",
+          "associated_polymer_distance_angstrom": 2.771,
+          "associated_polymer_entity_id": "5",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "J",
+              "distance_angstrom": 4.259,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "14",
+            "candidate_chain_name": "K",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "17",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 11.752
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "J",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Cryo-EM structure of CAK-CDK2-cyclin A2 bound to AMP-PNP",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 181,
+      "atom_count_model_1": 9625,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9QCX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 328,
+        "2": 324,
+        "3": 391,
+        "4": 301,
+        "5": 435
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: 10.1126/science.adw0053"
+        },
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Cryo-EM structure of apo-CAK-CDK2-cyclin A2",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 180,
+      "atom_count_model_1": 9750,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9SKQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "CDK-activating kinase assembly factor MAT1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51948"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Cyclin-H",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P51946"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cyclin-dependent kinase 7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cyclin-dependent kinase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06493"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "G2/mitotic-specific cyclin-B1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P14635"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 328,
+        "2": 324,
+        "3": 391,
+        "4": 302,
+        "5": 438
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: 10.1126/science.adw0053"
+        },
+        {
+          "article_title": "Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase.",
+          "doi": "10.1126/science.adw0053",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41100585",
+          "query_or_source": "RCSB full_text: Structural basis of T-loop-independent recognition and activation of CDKs by the CDK-activating kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "J",
+          "associated_polymer_distance_angstrom": 2.769,
+          "associated_polymer_entity_id": "3",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "J",
+              "distance_angstrom": 4.318,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "14",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "4",
+            "candidate_label_seq_id": "19",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 12.359
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "401",
+          "terminal_chain_name": "J",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.212,
+          "associated_polymer_entity_id": "4",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "25",
+            "candidate_chain_name": "J",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "70",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 12.501
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "301",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Cryo-EM structure of CAK-CDK1-cyclin B1",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 37,
+      "atom_count_model_1": 2605,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conformational changes in ketohexokinase are conserved across isozymes and species.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9P6Q",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Ketohexokinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 318
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Conformational changes in ketohexokinase are conserved across isozymes and species.",
+          "doi": "10.1107/s2053230x25008428",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41070915",
+          "query_or_source": "RCSB full_text: 10.1107/s2053230x25008428"
+        },
+        {
+          "article_title": "Conformational changes in ketohexokinase are conserved across isozymes and species.",
+          "doi": "10.1107/s2053230x25008428",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41070915",
+          "query_or_source": "RCSB full_text: Conformational changes in ketohexokinase are conserved across isozymes and species."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Mouse Ketohexokinase-A without ligand",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 237,
+      "atom_count_model_1": 18912,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IGW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "E"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C",
+            "G"
+          ],
+          "description": "Histone H2A type 1-B/E",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04908"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D",
+            "H"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "DNA Chain 1",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "8": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "DNA Chain 2",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 136,
+        "2": 103,
+        "3": 130,
+        "4": 126,
+        "5": 609,
+        "6": 732,
+        "7": 147,
+        "8": 147
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Ku70/80 bound to 147 bp nucleosome",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 384,
+      "atom_count_model_1": 27768,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9Q80",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K",
+            "M"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L",
+            "N"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C",
+            "G"
+          ],
+          "description": "Histone H2AX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P16104"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D",
+            "H"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "A",
+            "E"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "8": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 609,
+        "2": 732,
+        "3": 143,
+        "4": 126,
+        "5": 136,
+        "6": 103,
+        "7": 153,
+        "8": 153
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Ku70/80 with Ku70 linker and SAP domain bound to a 153 bp H2AX nucleosome",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 382,
+      "atom_count_model_1": 27507,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9Q8X",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K",
+            "M"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L",
+            "N"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C",
+            "G"
+          ],
+          "description": "Histone H2AX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P16104"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D",
+            "H"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "A",
+            "E"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "8": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 609,
+        "2": 732,
+        "3": 143,
+        "4": 126,
+        "5": 136,
+        "6": 103,
+        "7": 153,
+        "8": 153
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Ku70/80 bound to a 153 bp H2AX nucleosome",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 384,
+      "atom_count_model_1": 27719,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IGX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L",
+            "N"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C",
+            "G"
+          ],
+          "description": "Histone H2A type 1-B/E",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04908"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D",
+            "H"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "A",
+            "E"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "153 bp DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "9": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "153 bp DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 501,
+        "2": 540,
+        "3": 110,
+        "4": 97,
+        "5": 97,
+        "6": 84,
+        "7": 501,
+        "8": 153,
+        "9": 153
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Ku70/80 bound to 153 bp nucleosome",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 757,
+      "atom_count_model_1": 46641,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9QCR",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "DNA-dependent protein kinase catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P78527"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C",
+            "G"
+          ],
+          "description": "Histone H2AX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P16104"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "D",
+            "H"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "A",
+            "E"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "153 bp DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "9": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "153 bp DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 609,
+        "2": 732,
+        "3": 4128,
+        "4": 143,
+        "5": 126,
+        "6": 136,
+        "7": 103,
+        "8": 153,
+        "9": 153
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "DNA-PK bound to 153 bp H2AX nucleosome model 2",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 754,
+      "atom_count_model_1": 46624,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9Q9F",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "4": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "5": {
+          "auth_asym_ids": [
+            "O"
+          ],
+          "description": "DNA-dependent protein kinase catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P78527"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "C",
+            "G"
+          ],
+          "description": "Histone H2AX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P16104"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "D",
+            "H"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "A",
+            "E"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 609,
+        "2": 732,
+        "3": 153,
+        "4": 153,
+        "5": 4128,
+        "6": 143,
+        "7": 126,
+        "8": 136,
+        "9": 103
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "DNA-PK bound to a 153 bp H2AX nucleosome model 1",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 1513,
+      "atom_count_model_1": 94128,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9QCS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "O",
+            "o"
+          ],
+          "description": "DNA-dependent protein kinase catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P78527"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D",
+            "H",
+            "d",
+            "h"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C",
+            "G",
+            "c",
+            "g"
+          ],
+          "description": "Histone H2AX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P16104"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "A",
+            "E",
+            "a",
+            "e"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "B",
+            "F",
+            "b",
+            "f"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "I",
+            "i"
+          ],
+          "description": "153 bp DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "7": {
+          "auth_asym_ids": [
+            "J",
+            "j"
+          ],
+          "description": "153 bp DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "8": {
+          "auth_asym_ids": [
+            "K",
+            "M"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "L",
+            "N"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 4128,
+        "2": 126,
+        "3": 143,
+        "4": 136,
+        "5": 103,
+        "6": 153,
+        "7": 153,
+        "8": 609,
+        "9": 732
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Ku80 mediated DNA-PK dimer bound to 153 bp H2AX nucleosome",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 1781,
+      "atom_count_model_1": 113260,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9QMS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "O",
+            "o"
+          ],
+          "description": "DNA-dependent protein kinase catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P78527"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L",
+            "N",
+            "l",
+            "n"
+          ],
+          "description": "X-ray repair cross-complementing protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P13010"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C",
+            "G",
+            "c",
+            "g"
+          ],
+          "description": "Histone H2AX",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P16104"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D",
+            "H",
+            "d",
+            "h"
+          ],
+          "description": "Histone H2B type 1-J",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P06899"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "A",
+            "E",
+            "a",
+            "e"
+          ],
+          "description": "Histone H3.1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68431"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "B",
+            "F",
+            "b",
+            "f"
+          ],
+          "description": "Histone H4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62805"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "K",
+            "M",
+            "k",
+            "m"
+          ],
+          "description": "X-ray repair cross-complementing protein 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P12956"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "I",
+            "i"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        },
+        "9": {
+          "auth_asym_ids": [
+            "J",
+            "j"
+          ],
+          "description": "DNA",
+          "polymer_type": "DNA",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 4128,
+        "2": 732,
+        "3": 143,
+        "4": 126,
+        "5": 136,
+        "6": 103,
+        "7": 609,
+        "8": 153,
+        "9": 153
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-67376-2"
+        },
+        {
+          "article_title": "Cryo-EM structures of NHEJ assemblies with nucleosomes.",
+          "doi": "10.1038/s41467-025-67376-2",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "41444611",
+          "query_or_source": "RCSB full_text: Cryo-EM structures of NHEJ assemblies with nucleosomes."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "DNA-PK bound to 153 bp H2AX nucleosome with ATPyS",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 184,
+      "atom_count_model_1": 10056,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJM",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 980,
+        "2": 596,
+        "3": 383
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+          "doi": "10.1038/s42003-025-08401-4",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40595028",
+          "query_or_source": "RCSB full_text: 10.1038/s42003-025-08401-4"
+        },
+        {
+          "article_title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+          "doi": "10.1038/s42003-025-08401-4",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40595028",
+          "query_or_source": "RCSB full_text: Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Lgl2 bound to the aPKCiota-Par6B complex in its ADP-bound form",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 181,
+      "atom_count_model_1": 9854,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9JK83"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 980,
+        "2": 596,
+        "3": 383
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+          "doi": "10.1038/s42003-025-08401-4",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40595028",
+          "query_or_source": "RCSB full_text: 10.1038/s42003-025-08401-4"
+        },
+        {
+          "article_title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+          "doi": "10.1038/s42003-025-08401-4",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40595028",
+          "query_or_source": "RCSB full_text: Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Lgl2 bound to the aPKCiota-Par6b complex in nucleotide-free form. Head sub-complex region subtracted",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 196,
+      "atom_count_model_1": 11764,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EJL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Partitioning defective 6 homolog beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9JK83"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 980,
+        "2": 596,
+        "3": 383
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+          "doi": "10.1038/s42003-025-08401-4",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40595028",
+          "query_or_source": "RCSB full_text: 10.1038/s42003-025-08401-4"
+        },
+        {
+          "article_title": "Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC.",
+          "doi": "10.1038/s42003-025-08401-4",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40595028",
+          "query_or_source": "RCSB full_text: Polarity protein Par6 facilitates the processive phosphorylation of Lgl via a dynamic interaction with aPKC."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Lgl2 bound to the aPKCiota-Par6B complex in nucleotide-free form. Conformation with visible head sub-complex.",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 77,
+      "atom_count_model_1": 4680,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8PS7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "LysM-domain receptor-like kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "G7K7K0"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity.",
+          "doi": "10.1111/nph.70067",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40065491",
+          "query_or_source": "RCSB full_text: 10.1111/nph.70067"
+        },
+        {
+          "article_title": "The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity.",
+          "doi": "10.1111/nph.70067",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40065491",
+          "query_or_source": "RCSB full_text: The Medicago truncatula LYR4 intracellular domain serves as a scaffold in immunity signaling independent of its phosphorylation activity."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.188,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "704",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 1.936,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "703",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal structure of Medicago truncatula LYR4 kinase domain",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 1,
+      "atom_count_model_1": 12996,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IZ7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O74630"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 2812
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+          "doi": "10.1038/s41421-025-00786-0",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40128540",
+          "query_or_source": "RCSB full_text: 10.1038/s41421-025-00786-0"
+        },
+        {
+          "article_title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+          "doi": "10.1038/s41421-025-00786-0",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40128540",
+          "query_or_source": "RCSB full_text: Asymmetric activation of dimeric ATM/Tel1 kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "ATM/Tel1 in Basal state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 448,
+      "atom_count_model_1": 32048,
+      "candidate_status": "no_local_metal_or_short_candidate_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "68",
+          "candidate_chain_name": "F",
+          "candidate_entity_description": "VAL-SER-THR-GLN-GLU-LEU-TYR-SER",
+          "candidate_entity_id": "1",
+          "candidate_entity_length": 8,
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "3",
+          "candidate_residue_code": "THR",
+          "candidate_sequence_scheme_matches": [
+            {
+              "asym_id": "A",
+              "auth_mon_id": "THR",
+              "auth_seq_num": "68",
+              "entity_id": "1",
+              "hetero": "n",
+              "mon_id": "THR",
+              "pdb_mon_id": "THR",
+              "pdb_seq_num": "68",
+              "pdb_strand_id": "F",
+              "seq_id": "3"
+            }
+          ],
+          "candidate_source_mapped": true,
+          "donor_role": "strict_anp_pg_gamma",
+          "has_local_mg_or_mn": false,
+          "local_metals": [],
+          "nearest_terminal_distance_angstrom": 4.383,
+          "terminal_associated_entity_description": "Serine/threonine-protein kinase tel1",
+          "terminal_associated_entity_uniprot_ids": [
+            "O74630"
+          ],
+          "terminal_associated_polymer_chain_name": "A",
+          "terminal_associated_polymer_entity_id": "2",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "2901",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9IZ0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "VAL-SER-THR-GLN-GLU-LEU-TYR-SER",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase tel1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O74630"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 8,
+        "2": 2812
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+          "doi": "10.1038/s41421-025-00786-0",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40128540",
+          "query_or_source": "RCSB full_text: 10.1038/s41421-025-00786-0"
+        },
+        {
+          "article_title": "Asymmetric activation of dimeric ATM/Tel1 kinase.",
+          "doi": "10.1038/s41421-025-00786-0",
+          "literature_surface_id": "protein_kinase_substrate_transition_analog_pdb_2025_2026",
+          "pmid": "40128540",
+          "query_or_source": "RCSB full_text: Asymmetric activation of dimeric ATM/Tel1 kinase."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 1.433,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "68",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "3",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 4.383
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "2901",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.366,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "73",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "8",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 66.832
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "2901",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "ATM/Tel1 bound to CHK2 peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 5714,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3X",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "LLGL scribble cell polarity complex component 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6P1M3"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 356,
+        "2": 20
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: 10.1038/s41594-024-01425-0"
+        },
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of aPKC Iota kinase domain with LLGL2 peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 187,
+      "atom_count_model_1": 20120,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8R3Y",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "Protein kinase C iota type",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P41743"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "L"
+          ],
+          "description": "Lethal(2) giant larvae protein homolog 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15334"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Partitioning defective 6 homolog alpha",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "R4GMM2"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 338,
+        "2": 937,
+        "3": 99
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: 10.1038/s41594-024-01425-0"
+        },
+        {
+          "article_title": "Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl.",
+          "doi": "10.1038/s41594-024-01425-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39762628",
+          "query_or_source": "RCSB full_text: Capture, mutual inhibition and release mechanism for aPKC-Par6 and its multisite polarity substrate Lgl."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "I",
+          "associated_polymer_distance_angstrom": 1.668,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "655",
+            "candidate_chain_name": "L",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "641",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 12.56
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "601",
+          "terminal_chain_name": "I",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Cryo EM structure of a stable LGL/aPKC Iota/Par-6 complex",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 250,
+      "atom_count_model_1": 31731,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9GRH",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Inositol hexakisphosphate and diphosphoinositol-pentakisphosphate kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q06685"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 574
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-56937-0"
+        },
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of the C-terminal phosphatase domain from Saccharomyces cerevisiae Vip1 (apo)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 6624,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9GR8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Inositol hexakisphosphate and diphosphoinositol-pentakisphosphate kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q06685"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 337
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-56937-0"
+        },
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of the N-terminal kinase domain from Saccharomyces cerevisiae Vip1 in complex with ADP.",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 126,
+      "atom_count_model_1": 16267,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9GRO",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Inositol hexakisphosphate and diphosphoinositol-pentakisphosphate kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q06685"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 507
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-56937-0"
+        },
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of the engineered C-terminal phosphatase domain from Saccharomyces cerevisiae Vip1 in complex with 1,5-InsP8 (phosphatase dead mutant, loop deletion residues 848-918)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 245,
+      "atom_count_model_1": 31764,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9GRN",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Inositol hexakisphosphate and diphosphoinositol-pentakisphosphate kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q06685"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 507
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: 10.1038/s41467-025-56937-0"
+        },
+        {
+          "article_title": "A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis.",
+          "doi": "10.1038/s41467-025-56937-0",
+          "literature_surface_id": "kinase_substrate_transition_state_pdb_2025_2026",
+          "pmid": "39966396",
+          "query_or_source": "RCSB full_text: A small signaling domain controls PPIP5K phosphatase activity in phosphate homeostasis."
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of the engineered C-terminal phosphatase domain from Saccharomyces cerevisiae Vip1 (apo, loop deletion residues 848-918)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No clean folded-protein canonical ePK substrate transfer-state positive was promoted from this literature surface.",
+      "RCSB title/DOI mapping is sparse for many current Europe PMC articles, so absent PDB mappings are not negative structural evidence."
+    ],
+    "evidence_for": [
+      "Bounded Europe PMC source-text mapping produced articles and/or RCSB rows but no local-metal ePK substrate candidate."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Continue bounded source-text searches only; source-map any future article-to-PDB hit with local-metal non-peptide geometry before treating it as evidence. Keep production paths closed.",
+    "search_surface_exhausted": true
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {},
+    "current_release_date_range": {
+      "from": "2026-05-21",
+      "to": "2026-05-21"
+    },
+    "current_release_unique_count": 0,
+    "current_release_unique_pdb_ids": [],
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-21T12:21:34Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "local_metal_nonpeptide_candidate_pdb_ids": [],
+    "local_metal_peptide_or_short_candidate_pdb_ids": [],
+    "max_unique_pdb_ids": 30,
+    "method": "current_release_epk_followup",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "recent_backfill_date_range": {
+      "from": "2026-05-21",
+      "to": "2026-05-21"
+    },
+    "review_only": true,
+    "review_only_rule": "Current-release/recent-backfill search only. It does not create labels, scores, thresholds, fingerprints, migrations, or production claims.",
+    "search_surface_count": 10,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    ],
+    "surface_rows_returned_total": 0,
+    "surface_total_count_reported_total": 0,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 0
+  },
+  "rows": [],
+  "search_surfaces": [
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "current_release_gamma_any",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='substrate phosphorylation'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "substrate phosphorylation",
+      "start": 0,
+      "surface_id": "current_release_gamma_substrate_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='full-length substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "start": 0,
+      "surface_id": "current_release_gamma_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN AND full_text='phosphoacceptor substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "start": 0,
+      "surface_id": "current_release_gamma_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "gamma",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ATP/ANP/ACP/AGS+MG/MN",
+      "requested_rows": 60,
+      "returned_count": 0,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "recent_backfill_gamma_any_no_source_term",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "current_release_transition_any",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='substrate phosphorylation'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "substrate phosphorylation",
+      "start": 0,
+      "surface_id": "current_release_transition_substrate_phosphorylation",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='full-length substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "full-length substrate",
+      "start": 0,
+      "surface_id": "current_release_transition_full_length_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF AND full_text='phosphoacceptor substrate'",
+      "requested_rows": 50,
+      "returned_count": 0,
+      "source_query": "phosphoacceptor substrate",
+      "start": 0,
+      "surface_id": "current_release_transition_phosphoacceptor_substrate",
+      "total_count": 0
+    },
+    {
+      "date_from": "2026-05-21",
+      "date_to": "2026-05-21",
+      "ligand_mode": "transition",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: released 2026-05-21..2026-05-21 AND canonical ePK AND ADP+AF3/ALF/BEF/MGF",
+      "requested_rows": 60,
+      "returned_count": 0,
+      "source_query": null,
+      "start": 0,
+      "surface_id": "recent_backfill_transition_any_no_source_term",
+      "total_count": 0
+    }
+  ],
+  "source_recheck_23fc": {
+    "accession_info": {
+      "deposit_date": "2026-02-04T00:00:00.000+00:00",
+      "initial_release_date": "2026-05-13T00:00:00.000+00:00",
+      "revision_date": "2026-05-13T00:00:00.000+00:00",
+      "status_code": "REL"
+    },
+    "citation": {
+      "pdbx_database_id_doi": null,
+      "pdbx_database_id_pub_med": null,
+      "title": "Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+      "year": null
+    },
+    "europepmc_checks": [
+      {
+        "query": "TITLE:\"Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1\"",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Cryo-EM+structure+of+human+ATR-ATRIP+complex+with+ATPgammaS+and+Chk1%22&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"23FC\" ATR Chk1",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%2223FC%22+ATR+Chk1&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"ATR-ATRIP\" \"ATPgammaS\" Chk1",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+Chk1&format=json&pageSize=3&resultType=core"
+      },
+      {
+        "query": "\"ATR-ATRIP\" \"ATPgammaS\" \"Chk1\"",
+        "result_count": 0,
+        "results": [],
+        "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%22ATR-ATRIP%22+%22ATPgammaS%22+%22Chk1%22&format=json&pageSize=3&resultType=core"
+      }
+    ],
+    "europepmc_publication_metadata_present": false,
+    "pdb_id": "23FC",
+    "publication_metadata_present_in_rcsb": false,
+    "review_decision": "publication_metadata_still_absent_review_only_23fc_status_unchanged",
+    "sibling_checks": [
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: ATR ATRIP Chk1 ATPgammaS",
+        "returned_count": 1,
+        "total_count": 1
+      },
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: human ATR-ATRIP complex ATPgammaS Chk1",
+        "returned_count": 1,
+        "total_count": 1
+      },
+      {
+        "pdb_ids": [
+          "23FC"
+        ],
+        "query_or_source": "RCSB full_text: Cryo-EM structure of human ATR-ATRIP complex with ATPgammaS and Chk1",
+        "returned_count": 1,
+        "total_count": 1
+      }
+    ],
+    "sibling_pdb_ids": [
+      "23FC"
+    ],
+    "source_urls": [
+      "https://www.rcsb.org/structure/23FC",
+      "https://data.rcsb.org/rest/v1/core/entry/23FC",
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    ]
+  },
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No clean non-topology-confounded folded-protein canonical ePK substrate positive was promoted.",
+      "23FC remains review-only unless publication metadata and folded-substrate context become available.",
+      "Current release-date rows require source-mapped non-peptide acceptor geometry before any follow-up."
+    ],
+    "evidence_for": [
+      "23FC publication metadata remains absent and current/recent exact-ligand surfaces added no local-metal candidate."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Do not change production labels, thresholds, registries, fingerprints, migrations, or scoring. If current-release rows remain empty, next search should move to a bounded source-text literature pass over newly published kinase-substrate structures.",
+    "search_surface_exhausted": true
+  }
+}

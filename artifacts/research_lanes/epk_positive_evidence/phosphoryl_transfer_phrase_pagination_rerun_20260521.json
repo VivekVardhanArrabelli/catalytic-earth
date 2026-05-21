@@ -1,0 +1,3979 @@
+{
+  "fetch_failures": [
+    {
+      "error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "pdb_id": "8DVE"
+    },
+    {
+      "error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "pdb_id": "6ZV6"
+    },
+    {
+      "error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "pdb_id": "8IB8"
+    },
+    {
+      "error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "pdb_id": "6ZUO"
+    }
+  ],
+  "metadata": {
+    "candidate_status_counts": {
+      "donor_or_analog_without_heteromeric_acceptor_review_only": 3,
+      "fetch_or_parse_failed_review_only": 4,
+      "local_metal_nonpeptide_candidate_source_validation_pending_review_only": 1,
+      "no_active_donor_or_transition_analog_review_only": 22
+    },
+    "fetch_failure_count": 4,
+    "fresh_candidate_status_counts": {},
+    "fresh_local_metal_nonpeptide_candidate_pdb_ids": [],
+    "fresh_local_metal_peptide_or_short_candidate_pdb_ids": [],
+    "fresh_unique_pdb_ids_reviewed": 0,
+    "generated_at": "2026-05-21T12:27:47Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "local_metal_nonpeptide_candidate_pdb_ids": [
+      "1HE1"
+    ],
+    "local_metal_peptide_or_short_candidate_pdb_ids": [],
+    "max_cif_bytes": 3000000,
+    "method": "phosphoryl_transfer_phrase_pagination_followup",
+    "prior_lane_pdb_id_count": 1837,
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Phrase pagination/source discovery only. It does not create labels, scores, thresholds, fingerprints, migrations, or production claims.",
+    "row_timeout_seconds": 8,
+    "search_surface_count": 7,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 393,
+    "surface_total_count_reported_total": 993,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 30
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 100,
+      "atom_count_model_1": 5524,
+      "candidate_status": "local_metal_nonpeptide_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "How the Pseudomonas Aeruginosa Exos Toxin Downregulates Rac",
+        "year": 2001
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1HE1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "EXOENZYME S",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q51451"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "RAS-RELATED C3 BOTULINUM TOXIN SUBSTRATE 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63000"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 135,
+        "2": 176
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 51,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of the complex between the GAP domain of the Pseudomonas aeruginosa ExoS toxin and human Rac",
+      "transition_analog_candidate_hits": [
+        {
+          "analog_associated_entity_description": "RAS-RELATED C3 BOTULINUM TOXIN SUBSTRATE 1",
+          "analog_associated_entity_uniprot_ids": [
+            "P63000"
+          ],
+          "analog_associated_polymer_chain_name": "D",
+          "analog_associated_polymer_entity_id": "2",
+          "analog_auth_seq_id": "201",
+          "analog_chain_name": "D",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "150",
+          "candidate_chain_name": "B",
+          "candidate_entity_description": "EXOENZYME S",
+          "candidate_entity_id": "1",
+          "candidate_entity_length": 135,
+          "candidate_entity_uniprot_ids": [
+            "Q51451"
+          ],
+          "candidate_label_seq_id": "56",
+          "candidate_residue_code": "THR",
+          "candidate_sequence_scheme_matches": [
+            {
+              "asym_id": "B",
+              "auth_mon_id": "THR",
+              "auth_seq_num": "150",
+              "entity_id": "1",
+              "hetero": "n",
+              "mon_id": "THR",
+              "pdb_mon_id": "THR",
+              "pdb_seq_num": "150",
+              "pdb_strand_id": "B",
+              "seq_id": "56"
+            }
+          ],
+          "candidate_source_mapped": true,
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "202",
+              "chain": "D",
+              "distance_angstrom": 1.911,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F1"
+            }
+          ],
+          "nearest_analog_atom": "F2",
+          "nearest_analog_distance_angstrom": 4.431
+        },
+        {
+          "analog_associated_entity_description": "RAS-RELATED C3 BOTULINUM TOXIN SUBSTRATE 1",
+          "analog_associated_entity_uniprot_ids": [
+            "P63000"
+          ],
+          "analog_associated_polymer_chain_name": "C",
+          "analog_associated_polymer_entity_id": "2",
+          "analog_auth_seq_id": "201",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "AF3",
+          "candidate_atom_name": "OG1",
+          "candidate_auth_seq_id": "150",
+          "candidate_chain_name": "A",
+          "candidate_entity_description": "EXOENZYME S",
+          "candidate_entity_id": "1",
+          "candidate_entity_length": 135,
+          "candidate_entity_uniprot_ids": [
+            "Q51451"
+          ],
+          "candidate_label_seq_id": "56",
+          "candidate_residue_code": "THR",
+          "candidate_sequence_scheme_matches": [
+            {
+              "asym_id": "A",
+              "auth_mon_id": "THR",
+              "auth_seq_num": "150",
+              "entity_id": "1",
+              "hetero": "n",
+              "mon_id": "THR",
+              "pdb_mon_id": "THR",
+              "pdb_seq_num": "150",
+              "pdb_strand_id": "A",
+              "seq_id": "56"
+            }
+          ],
+          "candidate_source_mapped": true,
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "202",
+              "chain": "C",
+              "distance_angstrom": 1.987,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F3"
+            }
+          ],
+          "nearest_analog_atom": "F1",
+          "nearest_analog_distance_angstrom": 4.504
+        }
+      ],
+      "transition_analog_group_count": 2,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "201",
+          "analog_chain_name": "C",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "RAS-RELATED C3 BOTULINUM TOXIN SUBSTRATE 1",
+          "associated_entity_uniprot_ids": [
+            "P63000"
+          ],
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.499,
+          "associated_polymer_entity_id": "2",
+          "local_metals": [
+            {
+              "auth_seq_id": "202",
+              "chain": "C",
+              "distance_angstrom": 1.987,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F3"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "150",
+            "candidate_chain_name": "A",
+            "candidate_entity_description": "EXOENZYME S",
+            "candidate_entity_id": "1",
+            "candidate_entity_uniprot_ids": [
+              "Q51451"
+            ],
+            "candidate_label_seq_id": "56",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "F1",
+            "nearest_analog_distance_angstrom": 4.504
+          }
+        },
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "201",
+          "analog_chain_name": "D",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "RAS-RELATED C3 BOTULINUM TOXIN SUBSTRATE 1",
+          "associated_entity_uniprot_ids": [
+            "P63000"
+          ],
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.648,
+          "associated_polymer_entity_id": "2",
+          "local_metals": [
+            {
+              "auth_seq_id": "202",
+              "chain": "D",
+              "distance_angstrom": 1.911,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F1"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "150",
+            "candidate_chain_name": "B",
+            "candidate_entity_description": "EXOENZYME S",
+            "candidate_entity_id": "1",
+            "candidate_entity_uniprot_ids": [
+              "Q51451"
+            ],
+            "candidate_label_seq_id": "56",
+            "candidate_residue_code": "THR",
+            "nearest_analog_atom": "F2",
+            "nearest_analog_distance_angstrom": 4.431
+          }
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 712,
+      "atom_count_model_1": 38587,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "RhoG facilitates a conformational transition in the guanine nucleotide exchange factor complex DOCK5/ELMO1 to an open state.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8ZJ2",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B",
+            "F"
+          ],
+          "description": "Dedicator of cytokinesis protein 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9H7D0"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "G"
+          ],
+          "description": "Ras-related C3 botulinum toxin substrate 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63000"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "A",
+            "E"
+          ],
+          "description": "Engulfment and cell motility protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q92556"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Rho-related GTP-binding protein RhoG",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P84095"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 1648,
+        "2": 184,
+        "3": 733,
+        "4": 203
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 52,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Cryo-EM structure of the RhoG/DOCK5/ELMO1/Rac1 complex",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 411,
+      "atom_count_model_1": 23752,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "CSN5i-3 is an orthosteric molecular glue inhibitor of COP9 signalosome.",
+        "year": 2026
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9EG1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "COP9 signalosome complex subunit 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61201"
+          ]
+        },
+        "10": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "COP9 signalosome complex subunit 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UNS2"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "NEDD8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15843"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "COP9 signalosome complex subunit 4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BT78"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "COP9 signalosome complex subunit 5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q92905"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "F"
+          ],
+          "description": "COP9 signalosome complex subunit 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7L5N1"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "COP9 signalosome complex subunit 7b",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9H9Q2"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "COP9 signalosome complex subunit 8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q99627"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Cullin-5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q93034"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "RING-box protein 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UBF6"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "COP9 signalosome complex subunit 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13098"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 443,
+        "10": 423,
+        "11": 81,
+        "2": 406,
+        "3": 334,
+        "4": 327,
+        "5": 264,
+        "6": 209,
+        "7": 780,
+        "8": 113,
+        "9": 491
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 53,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "COP9 signalosome deneddylation complex with cullin-5",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2600,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6OL4",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 296
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 54,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), F182A mutant, apo state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2671,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6OMY",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 55,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), P180A mutant, apo state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2618,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Optogenetic Analysis of Allosteric Control in Protein Tyrosine Phosphatases.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7KEN",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 329
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 56,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B, D289A mutant, apo state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 44,
+      "atom_count_model_1": 2559,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conserved conformational dynamics determine enzyme activity.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7MKZ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 308
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 57,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "PTP1B F225Y mutant, open state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 88,
+      "atom_count_model_1": 4859,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural basis for the activation and inhibition of Sirtuin 6 by quercetin and its derivatives.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6QCN",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "NAD-dependent protein deacetylase sirtuin-2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IXJ6"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 304
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 58,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Human Sirt2 in complex with ADP-ribose and the inhibitor quercetin",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 159,
+      "atom_count_model_1": 8234,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mitochondrial ATP synthase: Crystal structure of the catalytic F1 unit in a vanadate-induced transition-like state and implications for mechanism.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2F43",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "ATP synthase alpha chain, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15999"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "ATP synthase beta chain, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P10719"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "G"
+          ],
+          "description": "ATP synthase gamma chain, mitochondrial",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P35435"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 510,
+        "2": 479,
+        "3": 273
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 59,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.668,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "602",
+              "chain": "A",
+              "distance_angstrom": 3.154,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "354",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "354",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 7.687
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "603",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Rat liver F1-ATPase",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2663,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6OLQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 60,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), P188A mutant, apo state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 42,
+      "atom_count_model_1": 2533,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6OLV",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 296
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 61,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), P185A mutant, apo state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 2558,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6PFW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 62,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), T177A mutant, apo state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2683,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6PG0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 63,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), P188A mutant, vanadate bound state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 2703,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6PGT",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 298
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 64,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), T177A mutant, vanadate bound state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2624,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6PHA",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 65,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), F182A mutant, vanadate bound state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2555,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6PHS",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 66,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), P185A mutant, vanadate bound state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 2724,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Uncovering the Molecular Interactions in the Catalytic Loop That Modulate the Conformational Dynamics in Protein Tyrosine Phosphatase 1B.",
+        "year": 2019
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6PM8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 297
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 67,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Protein Tyrosine Phosphatase 1B (1-301), P180A mutant, vanadate bound state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 43,
+      "atom_count_model_1": 2444,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Conserved conformational dynamics determine enzyme activity.",
+        "year": 2022
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7MNE",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18031"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 308
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 68,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "PTP1B P206G mutation, open state",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 231,
+      "atom_count_model_1": 12530,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Ubiquitin ligation to F-box protein targets by SCF-RBR E3-E3 super-assembly.",
+        "year": 2021
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7B5M",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Cullin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13616"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "H"
+          ],
+          "description": "E3 ubiquitin-protein ligase ARIH1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y4X5"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "S-phase kinase-associated protein 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13309"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Cyclin-dependent kinases regulatory subunit 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61024"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "S"
+          ],
+          "description": "S-phase kinase-associated protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63208"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "Polyubiquitin-C",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0CG48"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "R"
+          ],
+          "description": "E3 ubiquitin-protein ligase RBX1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62877"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "P"
+          ],
+          "description": "Cyclin-dependent kinase inhibitor 1B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46527"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 776,
+        "2": 557,
+        "3": 424,
+        "4": 79,
+        "5": 163,
+        "6": 75,
+        "7": 108,
+        "8": 198
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 69,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Ubiquitin ligation to F-box protein substrates by SCF-RBR E3-E3 super-assembly: CUL1-RBX1-SKP1-SKP2-CKSHS1-p27~Ub~ARIH1. Transition State 2",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 86,
+      "atom_count_model_1": 2975,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Initiation of T Cell Signaling by Cd45 Segregation at 'Close Contacts'.",
+        "year": 2016
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5FN8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "RECEPTOR-TYPE TYROSINE-PROTEIN PHOSPHATASE C",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P04157"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 190
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 70,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of rat CD45 extracellular region, domains d3-d4",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 1035,
+      "atom_count_model_1": 145041,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "UFM1 E3 ligase promotes recycling of 60S ribosomal subunits from the ER.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8OJ5",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "5"
+          ],
+          "description": "28S rRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "10": {
+          "auth_asym_ids": [
+            "LC"
+          ],
+          "description": "60S ribosomal protein L4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P36578"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "LD"
+          ],
+          "description": "60S ribosomal protein L5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46777"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "LE"
+          ],
+          "description": "60S ribosomal protein L6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02878"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "LF"
+          ],
+          "description": "60S ribosomal protein L7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18124"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "LG"
+          ],
+          "description": "60S ribosomal protein L7a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62424"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "LH"
+          ],
+          "description": "60S ribosomal protein L9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P32969"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "LI"
+          ],
+          "description": "Ribosomal protein uL16-like",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96L21"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "LJ"
+          ],
+          "description": "60S ribosomal protein L11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62913"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "LL"
+          ],
+          "description": "60S ribosomal protein L13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P26373"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "LM"
+          ],
+          "description": "60S ribosomal protein L14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50914"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "7"
+          ],
+          "description": "5S rRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "20": {
+          "auth_asym_ids": [
+            "LN"
+          ],
+          "description": "60S ribosomal protein L15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61313"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "LO"
+          ],
+          "description": "60S ribosomal protein L13a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P40429"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "LP"
+          ],
+          "description": "60S ribosomal protein L17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18621"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "LQ"
+          ],
+          "description": "60S ribosomal protein L18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07020"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "LR"
+          ],
+          "description": "60S ribosomal protein L19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P84098"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "LS"
+          ],
+          "description": "60S ribosomal protein L18a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02543"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "LT"
+          ],
+          "description": "60S ribosomal protein L21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46778"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "LU"
+          ],
+          "description": "60S ribosomal protein L22",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P35268"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "LV"
+          ],
+          "description": "60S ribosomal protein L23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62829"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "LW"
+          ],
+          "description": "60S ribosomal protein L24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P83731"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "8"
+          ],
+          "description": "5.8S rRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "30": {
+          "auth_asym_ids": [
+            "LX"
+          ],
+          "description": "60S ribosomal protein L23a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62750"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "LY"
+          ],
+          "description": "60S ribosomal protein L26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61254"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "LZ"
+          ],
+          "description": "60S ribosomal protein L27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61353"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "La"
+          ],
+          "description": "60S ribosomal protein L27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46776"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "Lb"
+          ],
+          "description": "60S ribosomal protein L29",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P47914"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "Ld"
+          ],
+          "description": "60S ribosomal protein L31",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62899"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "Le"
+          ],
+          "description": "60S ribosomal protein L32",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62910"
+          ]
+        },
+        "38": {
+          "auth_asym_ids": [
+            "Lf"
+          ],
+          "description": "60S ribosomal protein L35a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18077"
+          ]
+        },
+        "39": {
+          "auth_asym_ids": [
+            "Lg"
+          ],
+          "description": "60S ribosomal protein L34",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49207"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "E3 UFM1-protein ligase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O94874"
+          ]
+        },
+        "40": {
+          "auth_asym_ids": [
+            "Lh"
+          ],
+          "description": "60S ribosomal protein L35",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42766"
+          ]
+        },
+        "41": {
+          "auth_asym_ids": [
+            "Li"
+          ],
+          "description": "60S ribosomal protein L36",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y3U8"
+          ]
+        },
+        "42": {
+          "auth_asym_ids": [
+            "Lj"
+          ],
+          "description": "60S ribosomal protein L37",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61927"
+          ]
+        },
+        "43": {
+          "auth_asym_ids": [
+            "Lk"
+          ],
+          "description": "60S ribosomal protein L38",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63173"
+          ]
+        },
+        "44": {
+          "auth_asym_ids": [
+            "Ll"
+          ],
+          "description": "60S ribosomal protein L39",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62891"
+          ]
+        },
+        "45": {
+          "auth_asym_ids": [
+            "Lm"
+          ],
+          "description": "Ubiquitin-60S ribosomal protein L40",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62987"
+          ]
+        },
+        "46": {
+          "auth_asym_ids": [
+            "Lo"
+          ],
+          "description": "60S ribosomal protein L36a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P83881"
+          ]
+        },
+        "47": {
+          "auth_asym_ids": [
+            "Lp"
+          ],
+          "description": "60S ribosomal protein L37a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61513"
+          ]
+        },
+        "48": {
+          "auth_asym_ids": [
+            "Lr"
+          ],
+          "description": "60S ribosomal protein L28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46779"
+          ]
+        },
+        "49": {
+          "auth_asym_ids": [
+            "Lz"
+          ],
+          "description": "60S ribosomal protein L10a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62906"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "CDK5 regulatory subunit-associated protein 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96JB5"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "DDRGK domain-containing protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96HY6"
+          ]
+        },
+        "7": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Ubiquitin-fold modifier 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61960"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "LA"
+          ],
+          "description": "60S ribosomal protein L8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62917"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "LB"
+          ],
+          "description": "60S ribosomal protein L3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39023"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 5070,
+        "10": 427,
+        "11": 297,
+        "12": 288,
+        "13": 248,
+        "14": 266,
+        "15": 192,
+        "16": 214,
+        "17": 178,
+        "18": 211,
+        "19": 215,
+        "2": 121,
+        "20": 204,
+        "21": 203,
+        "22": 184,
+        "23": 188,
+        "24": 196,
+        "25": 176,
+        "26": 160,
+        "27": 128,
+        "28": 140,
+        "29": 157,
+        "3": 157,
+        "30": 156,
+        "31": 145,
+        "32": 136,
+        "33": 148,
+        "34": 159,
+        "36": 125,
+        "37": 135,
+        "38": 110,
+        "39": 117,
+        "4": 794,
+        "40": 123,
+        "41": 105,
+        "42": 97,
+        "43": 70,
+        "44": 51,
+        "45": 128,
+        "46": 106,
+        "47": 92,
+        "48": 137,
+        "49": 217,
+        "5": 506,
+        "6": 314,
+        "7": 85,
+        "8": 257,
+        "9": 403
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 71,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "60S ribosomal subunit bound to the E3-UFM1 complex - state 3 (in-vitro reconstitution)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 1141,
+      "atom_count_model_1": 150098,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "UFM1 E3 ligase promotes recycling of 60S ribosomal subunits from the ER.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8OJ0",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "1"
+          ],
+          "description": "Protein transport protein Sec61 subunit alpha isoform 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61619"
+          ]
+        },
+        "10": {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "Ubiquitin-fold modifier 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61960"
+          ]
+        },
+        "11": {
+          "auth_asym_ids": [
+            "K"
+          ],
+          "description": "Eukaryotic translation initiation factor 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P56537"
+          ]
+        },
+        "12": {
+          "auth_asym_ids": [
+            "LA"
+          ],
+          "description": "60S ribosomal protein L8",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62917"
+          ]
+        },
+        "13": {
+          "auth_asym_ids": [
+            "LB"
+          ],
+          "description": "60S ribosomal protein L3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P39023"
+          ]
+        },
+        "14": {
+          "auth_asym_ids": [
+            "LC"
+          ],
+          "description": "60S ribosomal protein L4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P36578"
+          ]
+        },
+        "15": {
+          "auth_asym_ids": [
+            "LD"
+          ],
+          "description": "60S ribosomal protein L5",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46777"
+          ]
+        },
+        "16": {
+          "auth_asym_ids": [
+            "LE"
+          ],
+          "description": "60S ribosomal protein L6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02878"
+          ]
+        },
+        "17": {
+          "auth_asym_ids": [
+            "LF"
+          ],
+          "description": "60S ribosomal protein L7",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18124"
+          ]
+        },
+        "18": {
+          "auth_asym_ids": [
+            "LG"
+          ],
+          "description": "60S ribosomal protein L7a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62424"
+          ]
+        },
+        "19": {
+          "auth_asym_ids": [
+            "LH"
+          ],
+          "description": "60S ribosomal protein L9",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P32969"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "2"
+          ],
+          "description": "Protein transport protein Sec61 subunit gamma",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60059"
+          ]
+        },
+        "20": {
+          "auth_asym_ids": [
+            "LI"
+          ],
+          "description": "Ribosomal protein uL16-like",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96L21"
+          ]
+        },
+        "21": {
+          "auth_asym_ids": [
+            "LJ"
+          ],
+          "description": "60S ribosomal protein L11",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62913"
+          ]
+        },
+        "22": {
+          "auth_asym_ids": [
+            "LL"
+          ],
+          "description": "60S ribosomal protein L13",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P26373"
+          ]
+        },
+        "23": {
+          "auth_asym_ids": [
+            "LM"
+          ],
+          "description": "60S ribosomal protein L14",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50914"
+          ]
+        },
+        "24": {
+          "auth_asym_ids": [
+            "LN"
+          ],
+          "description": "60S ribosomal protein L15",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61313"
+          ]
+        },
+        "25": {
+          "auth_asym_ids": [
+            "LO"
+          ],
+          "description": "60S ribosomal protein L13a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P40429"
+          ]
+        },
+        "26": {
+          "auth_asym_ids": [
+            "LP"
+          ],
+          "description": "60S ribosomal protein L17",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18621"
+          ]
+        },
+        "27": {
+          "auth_asym_ids": [
+            "LQ"
+          ],
+          "description": "60S ribosomal protein L18",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07020"
+          ]
+        },
+        "28": {
+          "auth_asym_ids": [
+            "LR"
+          ],
+          "description": "60S ribosomal protein L19",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P84098"
+          ]
+        },
+        "29": {
+          "auth_asym_ids": [
+            "LS"
+          ],
+          "description": "60S ribosomal protein L18a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q02543"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "3"
+          ],
+          "description": "Protein transport protein Sec61 subunit beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60468"
+          ]
+        },
+        "30": {
+          "auth_asym_ids": [
+            "LT"
+          ],
+          "description": "60S ribosomal protein L21",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46778"
+          ]
+        },
+        "31": {
+          "auth_asym_ids": [
+            "LU"
+          ],
+          "description": "60S ribosomal protein L22",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P35268"
+          ]
+        },
+        "32": {
+          "auth_asym_ids": [
+            "LV"
+          ],
+          "description": "60S ribosomal protein L23",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62829"
+          ]
+        },
+        "33": {
+          "auth_asym_ids": [
+            "LW"
+          ],
+          "description": "60S ribosomal protein L24",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P83731"
+          ]
+        },
+        "34": {
+          "auth_asym_ids": [
+            "LX"
+          ],
+          "description": "60S ribosomal protein L23a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62750"
+          ]
+        },
+        "35": {
+          "auth_asym_ids": [
+            "LY"
+          ],
+          "description": "60S ribosomal protein L26",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61254"
+          ]
+        },
+        "36": {
+          "auth_asym_ids": [
+            "LZ"
+          ],
+          "description": "60S ribosomal protein L27",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61353"
+          ]
+        },
+        "37": {
+          "auth_asym_ids": [
+            "La"
+          ],
+          "description": "60S ribosomal protein L27a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46776"
+          ]
+        },
+        "39": {
+          "auth_asym_ids": [
+            "Lc"
+          ],
+          "description": "60S ribosomal protein L30",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62888"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "5"
+          ],
+          "description": "28S rRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "40": {
+          "auth_asym_ids": [
+            "Ld"
+          ],
+          "description": "60S ribosomal protein L31",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62899"
+          ]
+        },
+        "41": {
+          "auth_asym_ids": [
+            "Le"
+          ],
+          "description": "60S ribosomal protein L32",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62910"
+          ]
+        },
+        "42": {
+          "auth_asym_ids": [
+            "Lf"
+          ],
+          "description": "60S ribosomal protein L35a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P18077"
+          ]
+        },
+        "43": {
+          "auth_asym_ids": [
+            "Lg"
+          ],
+          "description": "60S ribosomal protein L34",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49207"
+          ]
+        },
+        "44": {
+          "auth_asym_ids": [
+            "Lh"
+          ],
+          "description": "60S ribosomal protein L35",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P42766"
+          ]
+        },
+        "45": {
+          "auth_asym_ids": [
+            "Li"
+          ],
+          "description": "60S ribosomal protein L36",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Y3U8"
+          ]
+        },
+        "46": {
+          "auth_asym_ids": [
+            "Lj"
+          ],
+          "description": "60S ribosomal protein L37",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61927"
+          ]
+        },
+        "47": {
+          "auth_asym_ids": [
+            "Lk"
+          ],
+          "description": "60S ribosomal protein L38",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63173"
+          ]
+        },
+        "48": {
+          "auth_asym_ids": [
+            "Ll"
+          ],
+          "description": "60S ribosomal protein L39",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62891"
+          ]
+        },
+        "49": {
+          "auth_asym_ids": [
+            "Lm"
+          ],
+          "description": "Ubiquitin-60S ribosomal protein L40",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62987"
+          ]
+        },
+        "5": {
+          "auth_asym_ids": [
+            "7"
+          ],
+          "description": "5S rRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "50": {
+          "auth_asym_ids": [
+            "Lo"
+          ],
+          "description": "60S ribosomal protein L36a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P83881"
+          ]
+        },
+        "51": {
+          "auth_asym_ids": [
+            "Lp"
+          ],
+          "description": "60S ribosomal protein L37a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61513"
+          ]
+        },
+        "52": {
+          "auth_asym_ids": [
+            "Lr"
+          ],
+          "description": "60S ribosomal protein L28",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P46779"
+          ]
+        },
+        "53": {
+          "auth_asym_ids": [
+            "Lz"
+          ],
+          "description": "60S ribosomal protein L10a",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P62906"
+          ]
+        },
+        "6": {
+          "auth_asym_ids": [
+            "8"
+          ],
+          "description": "5.8S rRNA",
+          "polymer_type": "RNA",
+          "uniprot_ids": []
+        },
+        "7": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "E3 UFM1-protein ligase 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O94874"
+          ]
+        },
+        "8": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "CDK5 regulatory subunit-associated protein 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96JB5"
+          ]
+        },
+        "9": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "DDRGK domain-containing protein 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96HY6"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 476,
+        "10": 85,
+        "11": 245,
+        "12": 257,
+        "13": 403,
+        "14": 427,
+        "15": 297,
+        "16": 288,
+        "17": 248,
+        "18": 266,
+        "19": 192,
+        "2": 68,
+        "20": 214,
+        "21": 178,
+        "22": 211,
+        "23": 215,
+        "24": 204,
+        "25": 203,
+        "26": 184,
+        "27": 188,
+        "28": 196,
+        "29": 176,
+        "3": 96,
+        "30": 160,
+        "31": 128,
+        "32": 140,
+        "33": 157,
+        "34": 156,
+        "35": 145,
+        "36": 136,
+        "37": 148,
+        "39": 115,
+        "4": 5070,
+        "40": 125,
+        "41": 135,
+        "42": 110,
+        "43": 117,
+        "44": 123,
+        "45": 105,
+        "46": 97,
+        "47": 70,
+        "48": 51,
+        "49": 128,
+        "5": 121,
+        "50": 106,
+        "51": 92,
+        "52": 137,
+        "53": 217,
+        "6": 157,
+        "7": 794,
+        "8": 506,
+        "9": 314
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 72,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "60S ribosomal subunit bound to the E3-UFM1 complex - state 2 (native)",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 136,
+      "atom_count_model_1": 9380,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A model for decoding resistance in precision oncology: acquired resistance to FGFR inhibitors in cholangiocarcinoma.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8W38",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Fibroblast growth factor receptor 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P21802"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 324
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 73,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "TAS-120 covalent structure with FGFR2 molecular brake mutant",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 128,
+      "atom_count_model_1": 9346,
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "A model for decoding resistance in precision oncology: acquired resistance to FGFR inhibitors in cholangiocarcinoma.",
+        "year": 2025
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8W3B",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Fibroblast growth factor receptor 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P21802"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 324
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 74,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "TAS-120 covalent structure with FGFR2 molecular brake mutant",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "acceptor_atom_count": 60,
+      "atom_count_model_1": 3180,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural and functional effects of phosphopriming and scaffolding in the kinase GSK-3 beta.",
+        "year": 2024
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8VMF",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9WV60"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Axin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15169"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Catenin beta-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P35222"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 364,
+        "2": 24,
+        "3": 28
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_adp_transition_analog_scout_20260520.json",
+        "artifacts/research_lanes/epk_positive_evidence/canonical_epk_adp_transition_analog_scout_20260520.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 75,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Crystal structure of a transition-state mimic of the GSK-3/Axin complex bound to a beta-catenin S45D peptide",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 1,
+      "transition_analog_records": [
+        {
+          "analog_atom_names": [
+            "AL",
+            "F1",
+            "F2",
+            "F3"
+          ],
+          "analog_auth_seq_id": "503",
+          "analog_chain_name": "A",
+          "analog_ligand_code": "AF3",
+          "associated_entity_description": "Glycogen synthase kinase-3 beta",
+          "associated_entity_uniprot_ids": [
+            "Q9WV60"
+          ],
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.384,
+          "associated_polymer_entity_id": "1",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "A",
+              "distance_angstrom": 2.836,
+              "metal_code": "MG",
+              "nearest_analog_atom": "F2"
+            },
+            {
+              "auth_seq_id": "501",
+              "chain": "A",
+              "distance_angstrom": 3.446,
+              "metal_code": "MG",
+              "nearest_analog_atom": "AL"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null
+        }
+      ]
+    },
+    {
+      "acceptor_atom_count": 1301,
+      "atom_count_model_1": 105895,
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryo-EM analysis of scorpion toxin binding to Ryanodine Receptors reveals subconductance that is abolished by PKA phosphorylation.",
+        "year": 2023
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "experimental_method": [
+        "ELECTRON MICROSCOPY"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8DUJ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "M"
+          ],
+          "description": "Imperacalcin",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P59868"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "A",
+            "D",
+            "G",
+            "J"
+          ],
+          "description": "Ryanodine receptor 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P11716"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "B",
+            "E",
+            "H",
+            "K"
+          ],
+          "description": "Peptidyl-prolyl cis-trans isomerase FKBP1B",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P68106"
+          ]
+        },
+        "4": {
+          "auth_asym_ids": [
+            "C",
+            "F",
+            "I",
+            "L"
+          ],
+          "description": "Calmodulin-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0DP23"
+          ]
+        }
+      },
+      "polymer_entity_lengths": {
+        "1": 33,
+        "2": 5037,
+        "3": 107,
+        "4": null
+      },
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 76,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 4,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.355,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "26",
+            "candidate_chain_name": "M",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "26",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 34.901
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "5103",
+          "terminal_chain_name": "G",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.45,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "26",
+            "candidate_chain_name": "M",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "26",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 44.575
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "5103",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.293,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "26",
+            "candidate_chain_name": "M",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "26",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 36.517
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "5103",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "J",
+          "associated_polymer_distance_angstrom": 2.432,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "26",
+            "candidate_chain_name": "M",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "26",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 28.08
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "5103",
+          "terminal_chain_name": "J",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Global map in C1 of RyR1 particles in complex with ImperaCalcin",
+      "transition_analog_candidate_hits": [],
+      "transition_analog_group_count": 0,
+      "transition_analog_records": []
+    },
+    {
+      "candidate_status": "fetch_or_parse_failed_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8DVE",
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 77,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "fetch_or_parse_failed_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZV6",
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 78,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "fetch_or_parse_failed_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8IB8",
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 79,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    },
+    {
+      "candidate_status": "fetch_or_parse_failed_review_only",
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "fetch_error": "RowTimeoutError('row scan exceeded per-row timeout')",
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6ZUO",
+      "prior_lane_artifact_seen": true,
+      "prior_lane_artifact_sources_sample": [
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_followup_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json",
+        "artifacts/research_lanes/epk_positive_evidence/phosphoryl_transfer_phrase_pagination_guarded_20260521.json"
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+          "rank": 80,
+          "rationale": "Completes the previously first-50-only transition-state phrase page.",
+          "surface_id": "transition_state_pdb_phosphorylation_rows51_98"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "pdb_ids": [
+        "1HE1",
+        "8ZJ2",
+        "9EG1",
+        "6OL4",
+        "6OMY",
+        "7KEN",
+        "7MKZ",
+        "6QCN",
+        "2F43",
+        "6OLQ",
+        "6OLV",
+        "6PFW",
+        "6PG0",
+        "6PGT",
+        "6PHA",
+        "6PHS",
+        "6PM8",
+        "7MNE",
+        "7B5M",
+        "5FN8",
+        "8OJ5",
+        "8OJ0",
+        "8W38",
+        "8W3B",
+        "8VMF",
+        "8DUJ",
+        "8DVE",
+        "6ZV6",
+        "8IB8",
+        "6ZUO",
+        "7A09",
+        "6Y57",
+        "6ZVJ",
+        "8JDM",
+        "8PJ1",
+        "8JDL",
+        "6Y2L",
+        "6Y0G",
+        "5AJ0",
+        "7QP6",
+        "7QP7",
+        "9KZU",
+        "9KZX",
+        "9QQP",
+        "9QWT",
+        "9QQL",
+        "9QSA",
+        "9QOH"
+      ],
+      "query_or_source": "RCSB full_text: kinase substrate transition state PDB phosphorylation",
+      "rationale": "Completes the previously first-50-only transition-state phrase page.",
+      "requested_rows": 50,
+      "returned_count": 48,
+      "start": 50,
+      "surface_id": "transition_state_pdb_phosphorylation_rows51_98",
+      "total_count": 98
+    },
+    {
+      "pdb_ids": [
+        "4IAF",
+        "4IAI",
+        "4IAK",
+        "4IAY",
+        "4IAZ",
+        "2MSC",
+        "6W4F",
+        "3U2C",
+        "1F8R",
+        "8DR9",
+        "3K4L",
+        "1TDN",
+        "4NMB",
+        "6DEL",
+        "7TBW",
+        "5K2O",
+        "1TDO",
+        "3UKL",
+        "1OW3",
+        "1US0",
+        "8XMM",
+        "1E96",
+        "3HE3",
+        "3K4M",
+        "8JM1",
+        "25II",
+        "9DK5",
+        "4IAD",
+        "4IB0",
+        "4IB1",
+        "4IB3",
+        "8FHD",
+        "3PL8",
+        "6T3P",
+        "25IH",
+        "1PBC",
+        "1PBF",
+        "3RJA",
+        "6SYW",
+        "6T7Q",
+        "6TD8",
+        "6TUC",
+        "6TUF",
+        "6TXP",
+        "6XUM",
+        "6Y1P",
+        "8AUU",
+        "8B3N",
+        "8B3R",
+        "8B66",
+        "8CNF",
+        "8CNP",
+        "8OZ2",
+        "8P2R",
+        "2I16",
+        "2I17",
+        "2PEV",
+        "2PF8",
+        "2PFH",
+        "2QXW",
+        "3GHR",
+        "3GHS",
+        "3GHT",
+        "3GHU",
+        "4ZCC",
+        "8WEJ",
+        "6CWA",
+        "1X96",
+        "1X98",
+        "2AGT",
+        "3BCJ",
+        "3LEP",
+        "3ONB",
+        "3ONC",
+        "3T42",
+        "1REO",
+        "8IJM",
+        "8A1V",
+        "3GDN",
+        "6AUI",
+        "3D2D",
+        "4MOL",
+        "8BJL",
+        "3LBO",
+        "3LD5",
+        "3LQL",
+        "3LZ3",
+        "3LZ5",
+        "3M4H",
+        "4PUW",
+        "4QBX",
+        "6T27",
+        "6T5G",
+        "6Y03",
+        "8A1W",
+        "2IID",
+        "2BS3",
+        "2BS4",
+        "1N60",
+        "6DLL"
+      ],
+      "query_or_source": "RCSB full_text: kinase substrate complex phosphoryl transfer",
+      "rationale": "Pages the prior broad phosphoryl-transfer phrase surface beyond the first 100 rows.",
+      "requested_rows": 100,
+      "returned_count": 100,
+      "start": 100,
+      "surface_id": "phosphoryl_transfer_complex_rows101_200",
+      "total_count": 298
+    },
+    {
+      "pdb_ids": [
+        "6CLZ",
+        "6CM1",
+        "8VJK",
+        "9NMN",
+        "9NMO",
+        "7XVE",
+        "7XVF",
+        "8THG",
+        "9NMP",
+        "9NMQ",
+        "9VVO",
+        "9VIZ",
+        "2FAH",
+        "7ET1",
+        "8WA5",
+        "9C4Q",
+        "6U9W",
+        "1F8S",
+        "9KCG",
+        "9KCJ",
+        "5AWV",
+        "8G1A",
+        "8C08",
+        "6JXJ",
+        "1H7X",
+        "8VK4",
+        "2E2X",
+        "5AHS",
+        "6FCX",
+        "4HSU",
+        "8IJV",
+        "8IJW",
+        "8IJX",
+        "8JMN",
+        "3NVY",
+        "6U9V",
+        "6JXH",
+        "6JXI",
+        "9CUI",
+        "9CUK",
+        "1FFU",
+        "7DGZ",
+        "7DH0",
+        "9LJU",
+        "9LJW",
+        "8TRJ",
+        "9TU0",
+        "9E3N",
+        "8ZYJ",
+        "7X21",
+        "7X22",
+        "7X24",
+        "8IJL",
+        "9VJ2",
+        "9TYG",
+        "9TYH",
+        "9TYI",
+        "7WYS",
+        "8JBK",
+        "8JBL",
+        "8JBM",
+        "7DGQ",
+        "7WYT",
+        "7DDF",
+        "7DDH",
+        "7DDI",
+        "7DDK",
+        "7DDL",
+        "7D91",
+        "7D92",
+        "7D93",
+        "7D94",
+        "7PUB",
+        "7DGR",
+        "7DGS",
+        "7DKF",
+        "8K2W",
+        "8G6J",
+        "8SS8",
+        "8SS9",
+        "8PJ3",
+        "8G60",
+        "8SS2",
+        "8SS3",
+        "8SS6",
+        "8SS7",
+        "9KCI",
+        "8X2L",
+        "7FD2",
+        "8GZ3",
+        "8SZH",
+        "8SZI",
+        "9HEU",
+        "9SZT",
+        "9SZV",
+        "1F20",
+        "8SZG",
+        "7N2C"
+      ],
+      "query_or_source": "RCSB full_text: kinase substrate complex phosphoryl transfer",
+      "rationale": "Completes the bounded tail of the prior broad phosphoryl-transfer phrase surface.",
+      "requested_rows": 100,
+      "returned_count": 98,
+      "start": 200,
+      "surface_id": "phosphoryl_transfer_complex_rows201_298",
+      "total_count": 298
+    },
+    {
+      "pdb_ids": [],
+      "query_or_source": "RCSB full_text: protein kinase nonhydrolyzable ATP substrate",
+      "rationale": "Targets source wording for ATP analog states without relying on ligand aliases.",
+      "requested_rows": 80,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "protein_kinase_nonhydrolyzable_atp_substrate",
+      "total_count": 0
+    },
+    {
+      "pdb_ids": [
+        "5M13",
+        "5M14",
+        "5M15",
+        "7C70",
+        "3F6X",
+        "8T2V",
+        "9DEQ",
+        "4HXJ",
+        "3ORZ",
+        "3OTU",
+        "3ORX",
+        "2Q6W",
+        "8SS8",
+        "8SS9",
+        "8SS2",
+        "8SS6",
+        "8SS3",
+        "8SS7",
+        "7OTC",
+        "9DXS",
+        "9DXT",
+        "7OCA",
+        "7OCE",
+        "7UG7"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase substrate trapping ATP",
+      "rationale": "Targets substrate-trapping language that can describe Michaelis-like complexes.",
+      "requested_rows": 80,
+      "returned_count": 24,
+      "start": 0,
+      "surface_id": "protein_kinase_substrate_trapping_atp",
+      "total_count": 24
+    },
+    {
+      "pdb_ids": [
+        "1M0W",
+        "1MAU",
+        "4MV3",
+        "4MV4",
+        "4MV8",
+        "2HGS",
+        "2IO8",
+        "3C66",
+        "9YX2",
+        "9YX4",
+        "1GSO",
+        "6OG1",
+        "2J9G",
+        "3VPD",
+        "4OHY",
+        "2QF7",
+        "9YX5",
+        "4M9U",
+        "4JX5",
+        "4JX6",
+        "1DQS",
+        "4MA5",
+        "3OUU",
+        "9BXC",
+        "3BRB",
+        "6OAX",
+        "9OMQ",
+        "3OUZ",
+        "5ZAK",
+        "9BXS",
+        "9BXT",
+        "9BXX",
+        "9BXZ",
+        "9BY0",
+        "8PBE",
+        "8PBH",
+        "9FS2",
+        "4C6D",
+        "4C6I",
+        "4C6J",
+        "4C6K",
+        "4C6N",
+        "4C6Q",
+        "4C6E",
+        "4C6F",
+        "5ZAL",
+        "5ZAM",
+        "3Q1K",
+        "8Z1Z",
+        "8PBJ",
+        "8PBM",
+        "8PBT",
+        "8PBP",
+        "2KYL",
+        "4WUA",
+        "8Z1Y",
+        "6HFD",
+        "6HFE",
+        "6HFF",
+        "6HFH",
+        "6HFI",
+        "6HFJ",
+        "6HFK",
+        "6HFL",
+        "6HFN",
+        "6HFP",
+        "6HFR",
+        "6HFS",
+        "6HFU",
+        "6HG2",
+        "6HG3",
+        "8PBG",
+        "8PBI",
+        "8PBQ",
+        "8PBR",
+        "8PBU",
+        "9FS1",
+        "4C6B",
+        "4C6C",
+        "4C6L"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase pre-catalytic substrate ATP",
+      "rationale": "Targets precatalytic wording not covered by current-release exact-ligand surfaces.",
+      "requested_rows": 80,
+      "returned_count": 80,
+      "start": 0,
+      "surface_id": "protein_kinase_precatalytic_substrate_atp",
+      "total_count": 232
+    },
+    {
+      "pdb_ids": [
+        "6TQE",
+        "4JZ8",
+        "4JZ9",
+        "9OAN",
+        "1V1A",
+        "4OHY",
+        "4OLC",
+        "2QO9",
+        "2QOQ",
+        "1M0W",
+        "6MCP",
+        "2QOC",
+        "2QO7",
+        "7ZE5",
+        "9YA5",
+        "9YAI",
+        "7JUU",
+        "7JUZ",
+        "7JUY",
+        "7JV0",
+        "7JUS",
+        "7JUV",
+        "7JUR",
+        "7JUW",
+        "7JUX",
+        "7JV1",
+        "8UTN",
+        "8UTO",
+        "8UTQ",
+        "8UTT",
+        "8UTU",
+        "8UTY",
+        "6WWH",
+        "6WWL",
+        "8UTP",
+        "6WWO",
+        "6WWS",
+        "7LVQ",
+        "7TQX",
+        "7TR0",
+        "9YMG",
+        "7TR1",
+        "6ZMD"
+      ],
+      "query_or_source": "RCSB full_text: protein kinase substrate-bound AMP-PNP",
+      "rationale": "Targets hyphenated substrate-bound AMP-PNP wording.",
+      "requested_rows": 80,
+      "returned_count": 43,
+      "start": 0,
+      "surface_id": "protein_kinase_substrate_bound_amp_pnp",
+      "total_count": 43
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [],
+    "evidence_against": [
+      "No clean folded-protein ePK transfer-state positive is promoted by this phrase-pagination scout.",
+      "Fresh structures without local-metal non-peptide candidate geometry remain negative for the lane objective."
+    ],
+    "evidence_for": [
+      "Phrase-pagination recovered only prior lane local-metal candidates: 1HE1."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Source-map any fresh non-peptide local-metal candidate before upgrade; otherwise treat these paged phrase surfaces as exhausted for clean folded-protein ePK positives.",
+    "search_surface_exhausted": true
+  }
+}

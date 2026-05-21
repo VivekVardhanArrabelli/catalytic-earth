@@ -1,0 +1,5346 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_status_counts": {
+      "local_metal_heteromeric_candidate_source_validation_pending_review_only": 2,
+      "no_heteromeric_candidate_hit_review_only": 36,
+      "no_terminal_donor_atom_review_only": 2
+    },
+    "excluded_context_terms": [
+      "aaa",
+      "abc",
+      "bcs1",
+      "bip",
+      "chaperone",
+      "clpp",
+      "clpx",
+      "clpxp",
+      "cyd",
+      "cydc",
+      "dnaj",
+      "dnak",
+      "hsp70",
+      "lon",
+      "msp1",
+      "pcat",
+      "proteasome",
+      "transport",
+      "transporter"
+    ],
+    "fetch_failure_count": 0,
+    "generated_at": "2026-05-21T12:36:33Z",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "legacy_anp_pb_fallback_candidate_pdb_ids": [],
+    "local_metal_candidate_pdb_ids": [
+      "1QMZ",
+      "2CCI"
+    ],
+    "local_metal_candidate_structure_count": 2,
+    "max_unique_pdb_ids": 40,
+    "method": "canonical_epk_domain_ec_ligand_metal_bounded_scout",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "This lane-local scout combines RCSB EC/Pfam canonical ePK filters with nucleotide and Mg/Mn ligand filters, then transiently scans mmCIF geometry for heteromeric Ser/Thr/Tyr acceptors. ANP PB is recorded only as explicit review-only fallback when no ANP PG atom exists in that ligand group. It does not create labels, scores, thresholds, fingerprints, or production claims.",
+    "search_surface_count": 20,
+    "source_urls": [
+      "https://search.rcsb.org/rcsbsearch/v2/query",
+      "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+      "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+      "https://files.rcsb.org/download/{pdb_id}.cif"
+    ],
+    "surface_rows_returned_total": 348,
+    "surface_total_count_reported_total": 880,
+    "target_family_id": "epk",
+    "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+    "unique_pdb_ids_reviewed": 40
+  },
+  "rows": [
+    {
+      "acceptor_atom_count": 496,
+      "atom_count_model_1": 34001,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of the bis(Mg2+)-ATP-oxalate complex of the rabbit muscle pyruvate kinase at 2.1 A resolution: ATP binding over a barrel.",
+        "year": 1998
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A49",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "description": "PYRUVATE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P11974"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 1,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ATP AND metal=MG",
+          "rank": 1,
+          "surface_id": "ec_2_7_10_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 6,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.555,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "536",
+              "chain": "A",
+              "distance_angstrom": 2.9,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "534",
+              "chain": "A",
+              "distance_angstrom": 3.517,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "535",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.619,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1736",
+              "chain": "C",
+              "distance_angstrom": 3.163,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "1734",
+              "chain": "C",
+              "distance_angstrom": 3.375,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1735",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.581,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "2336",
+              "chain": "D",
+              "distance_angstrom": 3.033,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "2334",
+              "chain": "D",
+              "distance_angstrom": 3.271,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "2335",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.624,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "3536",
+              "chain": "E",
+              "distance_angstrom": 3.076,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3534",
+              "chain": "E",
+              "distance_angstrom": 3.293,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "3535",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.396,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "4136",
+              "chain": "F",
+              "distance_angstrom": 2.978,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "4134",
+              "chain": "F",
+              "distance_angstrom": 3.346,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "4135",
+          "terminal_chain_name": "F",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.405,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "4736",
+              "chain": "G",
+              "distance_angstrom": 3.005,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "4734",
+              "chain": "G",
+              "distance_angstrom": 3.419,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "4735",
+          "terminal_chain_name": "G",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "BIS MG-ATP-K-OXALATE COMPLEX OF PYRUVATE KINASE"
+    },
+    {
+      "acceptor_atom_count": 496,
+      "atom_count_model_1": 33890,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of the bis(Mg2+)-ATP-oxalate complex of the rabbit muscle pyruvate kinase at 2.1 A resolution: ATP binding over a barrel.",
+        "year": 1998
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1A5U",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "description": "PYRUVATE KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P11974"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 2,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ATP AND metal=MG",
+          "rank": 2,
+          "surface_id": "ec_2_7_10_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 6,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.591,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "536",
+              "chain": "A",
+              "distance_angstrom": 2.724,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "534",
+              "chain": "A",
+              "distance_angstrom": 3.532,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "535",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.329,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1736",
+              "chain": "C",
+              "distance_angstrom": 3.189,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "1734",
+              "chain": "C",
+              "distance_angstrom": 3.237,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1735",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.542,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "2336",
+              "chain": "D",
+              "distance_angstrom": 2.863,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "2334",
+              "chain": "D",
+              "distance_angstrom": 3.336,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "2335",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.612,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "3536",
+              "chain": "E",
+              "distance_angstrom": 3.076,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "3534",
+              "chain": "E",
+              "distance_angstrom": 3.293,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "3535",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.566,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "4136",
+              "chain": "F",
+              "distance_angstrom": 2.978,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "4134",
+              "chain": "F",
+              "distance_angstrom": 3.346,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "4135",
+          "terminal_chain_name": "F",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "G",
+          "associated_polymer_distance_angstrom": 2.411,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "4736",
+              "chain": "G",
+              "distance_angstrom": 3.005,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "4734",
+              "chain": "G",
+              "distance_angstrom": 3.419,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "4735",
+          "terminal_chain_name": "G",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "PYRUVATE KINASE COMPLEX WITH BIS MG-ATP-NA-OXALATE"
+    },
+    {
+      "acceptor_atom_count": 39,
+      "atom_count_model_1": 2576,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Effects of phosphorylation of threonine 160 on cyclin-dependent kinase 2 structure and activity.",
+        "year": 1999
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1B38",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PROTEIN (CELL DIVISION PROTEIN KINASE 2)",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 3,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 1,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.44,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "382",
+              "chain": "A",
+              "distance_angstrom": 3.394,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "381",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "HUMAN CYCLIN-DEPENDENT KINASE 2"
+    },
+    {
+      "acceptor_atom_count": 39,
+      "atom_count_model_1": 2515,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Effects of phosphorylation of threonine 160 on cyclin-dependent kinase 2 structure and activity.",
+        "year": 1999
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1B39",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PROTEIN (CELL DIVISION PROTEIN KINASE 2)",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 4,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 2,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.423,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "382",
+              "chain": "A",
+              "distance_angstrom": 3.433,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "381",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "HUMAN CYCLIN-DEPENDENT KINASE 2 PHOSPHORYLATED ON THR 160"
+    },
+    {
+      "acceptor_atom_count": 42,
+      "atom_count_model_1": 2531,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of casein kinase-1, a phosphate-directed protein kinase.",
+        "year": 1995
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1CSN",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "CASEIN KINASE-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P40233"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 5,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 3,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.658,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "300",
+              "chain": "A",
+              "distance_angstrom": 3.227,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "299",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "BINARY COMPLEX OF CASEIN KINASE-1 WITH MGATP"
+    },
+    {
+      "acceptor_atom_count": 72,
+      "atom_count_model_1": 3853,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Phosphoprotein-protein interactions revealed by the crystal structure of kinase-associated phosphatase in complex with phosphoCDK2.",
+        "year": 2001
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1FQ1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "CYCLIN-DEPENDENT KINASE INHIBITOR 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q16667"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "CELL DIVISION PROTEIN KINASE 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 6,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 4,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.452,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "383",
+              "chain": "B",
+              "distance_angstrom": 2.824,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "141",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "141",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 17.651
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "381",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "CRYSTAL STRUCTURE OF KINASE ASSOCIATED PHOSPHATASE (KAP) IN COMPLEX WITH PHOSPHO-CDK2"
+    },
+    {
+      "acceptor_atom_count": 49,
+      "atom_count_model_1": 3012,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mutation of position 52 in ERK2 creates a nonproductive binding mode for adenosine 5'-triphosphate.",
+        "year": 1996
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1GOL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "EXTRACELLULAR REGULATED KINASE 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63086"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 7,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 5,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.433,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "582",
+              "chain": "A",
+              "distance_angstrom": 3.555,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "581",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "COORDINATES OF RAT MAP KINASE ERK2 WITH AN ARGININE MUTATION AT POSITION 52"
+    },
+    {
+      "acceptor_atom_count": 174,
+      "atom_count_model_1": 9284,
+      "candidate_status": "no_terminal_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Studies on Phospho-Cdk2/Cyclin a Bound to Nitrate, a Transition State Analogue: Implications for the Protein Kinase Mechanism",
+        "year": 2002
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1GY3",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "CELL DIVISION PROTEIN KINASE 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "CYCLIN A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "SUBSTRATE PEPTIDE",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 8,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 6,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "pCDK2/cyclin A in complex with MgADP, nitrate and peptide substrate"
+    },
+    {
+      "acceptor_atom_count": 40,
+      "atom_count_model_1": 2506,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "High-resolution crystal structures of human cyclin-dependent kinase 2 with and without ATP: bound waters and natural ligand as guides for inhibitor design.",
+        "year": 1996
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1HCK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "HUMAN CYCLIN-DEPENDENT KINASE 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 9,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 7,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.509,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 3.191,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "400",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "HUMAN CYCLIN-DEPENDENT KINASE 2"
+    },
+    {
+      "acceptor_atom_count": 46,
+      "atom_count_model_1": 3105,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mutants of protein kinase A that mimic the ATP-binding site of protein kinase B (AKT)",
+        "year": 2003
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1Q24",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "cAMP-dependent Protein Kinase, alpha-catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P00517"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "cAMP-dependent Protein Kinase Inhibitor, alpha form",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q71U53"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 10,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 8,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.483,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 3.626,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "16",
+            "candidate_chain_name": "I",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "12",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 17.468
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "400",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "PKA double mutant model of PKB in complex with MgATP"
+    },
+    {
+      "acceptor_atom_count": 85,
+      "atom_count_model_1": 5940,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Nucleotide-Induced Conformational Changes in the Saccharomyces cerevisiae SR Protein Kinase, Sky1p, Revealed by X-ray Crystallography",
+        "year": 2003
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1Q97",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "SR protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q03656"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 11,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 9,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.812,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "743",
+              "chain": "A",
+              "distance_angstrom": 2.769,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "744",
+              "chain": "A",
+              "distance_angstrom": 3.178,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "485",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "The structure of the Saccharomyces cerevisiae SR protein kinase, Sky1p, with bound ATP"
+    },
+    {
+      "acceptor_atom_count": 176,
+      "atom_count_model_1": 9889,
+      "candidate_status": "local_metal_heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Structural Basis for Specificity of Substrate and Recruitment Peptides for Cyclin-Dependent Kinases",
+        "year": 1999
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "5",
+          "candidate_chain_name": "F",
+          "candidate_entity_description": "SUBSTRATE PEPTIDE",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "4",
+          "candidate_residue_code": "SER",
+          "donor_role": "strict_pg_gamma",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "383",
+              "chain": "C",
+              "distance_angstrom": 2.356,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_terminal_distance_angstrom": 3.416,
+          "terminal_associated_entity_description": "CELL DIVISION PROTEIN KINASE 2",
+          "terminal_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "terminal_associated_polymer_chain_name": "C",
+          "terminal_associated_polymer_entity_id": "1",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "381",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "5",
+          "candidate_chain_name": "E",
+          "candidate_entity_description": "SUBSTRATE PEPTIDE",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [],
+          "candidate_label_seq_id": "4",
+          "candidate_residue_code": "SER",
+          "donor_role": "strict_pg_gamma",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "383",
+              "chain": "A",
+              "distance_angstrom": 2.565,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_terminal_distance_angstrom": 3.68,
+          "terminal_associated_entity_description": "CELL DIVISION PROTEIN KINASE 2",
+          "terminal_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "terminal_associated_polymer_chain_name": "A",
+          "terminal_associated_polymer_entity_id": "1",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "381",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1QMZ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "CELL DIVISION PROTEIN KINASE 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "G2/MITOTIC-SPECIFIC CYCLIN A",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E",
+            "F"
+          ],
+          "description": "SUBSTRATE PEPTIDE",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 12,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 10,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.573,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "383",
+              "chain": "A",
+              "distance_angstrom": 2.565,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "5",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "4",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 3.68
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "381",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.499,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "383",
+              "chain": "C",
+              "distance_angstrom": 2.356,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "5",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "4",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 3.416
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "381",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "PHOSPHORYLATED CDK2-CYCLYIN A-SUBSTRATE PEPTIDE COMPLEX"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 3378,
+      "candidate_status": "no_terminal_donor_atom_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structure of a cAMP-dependent Protein Kinase Mutant at 1.26A: New Insights into the Catalytic Mechanism.",
+        "year": 2004
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1RDQ",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "cAMP-dependent protein kinase, alpha-catalytic subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P05132"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "I"
+          ],
+          "description": "cAMP-dependent protein kinase inhibitor, alpha form",
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 13,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 11,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 0,
+      "terminal_donor_records": [],
+      "title": "Hydrolysis of ATP in the crystal of Y204A mutant of cAMP-dependent protein kinase"
+    },
+    {
+      "acceptor_atom_count": 60,
+      "atom_count_model_1": 4015,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structures of the ADP and ATP Bound Forms of the Bacillus Anti-sigma Factor SpoIIAB in Complex with the Anti-anti-sigma SpoIIAA.",
+        "year": 2004
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1TID",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Anti-sigma F factor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O32727"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Anti-sigma F factor antagonist",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O32726"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 14,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.326,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "300",
+              "chain": "A",
+              "distance_angstrom": 3.288,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "59",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 7.009
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "200",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.49,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "301",
+              "chain": "C",
+              "distance_angstrom": 2.954,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "59",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 6.207
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "201",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal Structures of the ADP and ATP bound forms of the Bacillus Anti-sigma factor SpoIIAB in complex with the Anti-anti-sigma SpoIIAA: Poised for phosphorylation complex with ATP, crystal form I"
+    },
+    {
+      "acceptor_atom_count": 91,
+      "atom_count_model_1": 6248,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structures of the ADP and ATP Bound Forms of the Bacillus Anti-sigma Factor SpoIIAB in Complex with the Anti-anti-sigma SpoIIAA.",
+        "year": 2004
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1TIL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C",
+            "E"
+          ],
+          "description": "Anti-sigma F factor",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O32727"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D",
+            "F"
+          ],
+          "description": "Anti-sigma F factor antagonist",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O32726"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 15,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 3,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.663,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "300",
+              "chain": "A",
+              "distance_angstrom": 3.641,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "59",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 6.4
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "200",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.594,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "301",
+              "chain": "C",
+              "distance_angstrom": 3.331,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "59",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 6.071
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "201",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.495,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "302",
+              "chain": "E",
+              "distance_angstrom": 3.481,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "59",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "62",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 6.318
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "202",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal Structures of the ADP and ATP bound forms of the Bacillus Anti-sigma factor SpoIIAB in complex with the Anti-anti-sigma SpoIIAA:Poised for phosphorylation complex with ATP, crystal form II"
+    },
+    {
+      "acceptor_atom_count": 76,
+      "atom_count_model_1": 5431,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structure of the TAO2 Kinase Domain; Activation and Specificity of a Ste20p MAP3K.",
+        "year": 2004
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1U5R",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "serine/threonine protein kinase TAO2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9JLS3"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 16,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 14,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.688,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "502",
+              "chain": "A",
+              "distance_angstrom": 3.586,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "501",
+              "chain": "A",
+              "distance_angstrom": 4.895,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "411",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.832,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "503",
+              "chain": "B",
+              "distance_angstrom": 3.618,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "412",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal Structure of the TAO2 Kinase Domain: Activation and Specifity of a Ste20p MAP3K"
+    },
+    {
+      "acceptor_atom_count": 470,
+      "atom_count_model_1": 23375,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of key phosphorylation sites in the circadian clock protein KaiC by crystallographic and mutagenetic analyses",
+        "year": 2004
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1U9I",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "E",
+            "F"
+          ],
+          "description": "KaiC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q79PF4"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "KaiC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q79PF4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 17,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 12,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.407,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "520",
+              "chain": "A",
+              "distance_angstrom": 3.289,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "424",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "424",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 28.04
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "521",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.47,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "157",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "157",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 27.067
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "522",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.433,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "520",
+              "chain": "B",
+              "distance_angstrom": 3.58,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "431",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "431",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 8.319
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "521",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.236,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "201",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "201",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 10.449
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "522",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.444,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "520",
+              "chain": "C",
+              "distance_angstrom": 2.969,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "290",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "290",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 23.004
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "521",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.491,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 21.971
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "522",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.422,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "520",
+              "chain": "D",
+              "distance_angstrom": 2.974,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "434",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "434",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 9.721
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "521",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.473,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "201",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "201",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 10.361
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "522",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.412,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "520",
+              "chain": "E",
+              "distance_angstrom": 3.625,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "290",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "290",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 22.977
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "601",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.474,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 22.209
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "603",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.439,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "520",
+              "chain": "F",
+              "distance_angstrom": 3.36,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "493",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "493",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 34.898
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "701",
+          "terminal_chain_name": "F",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.506,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "157",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "157",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 37.642
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "703",
+          "terminal_chain_name": "F",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal Structure of Circadian Clock Protein KaiC with Phosphorylation Sites"
+    },
+    {
+      "acceptor_atom_count": 47,
+      "atom_count_model_1": 3237,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Role of phosphate chain mobility of MgATP in completing the 3-phosphoglycerate kinase catalytic site: binding, kinetic, and crystallographic studies with ATP and MgATP.",
+        "year": 2004
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1VJC",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "phosphoglycerate kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7SIB7"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 18,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.5,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "418",
+              "chain": "A",
+              "distance_angstrom": 3.275,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "417",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Structure of pig muscle PGK complexed with MgATP"
+    },
+    {
+      "acceptor_atom_count": 78,
+      "atom_count_model_1": 3937,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of pyruvate dehydrogenase kinase 3 bound to lipoyl domain 2 of human pyruvate dehydrogenase complex.",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1Y8P",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "[Pyruvate dehydrogenase [lipoamide]] kinase isozyme 3",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15120"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Dihydrolipoyllysine-residue acetyltransferase component of pyruvate dehydrogenase complex",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P10515"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 19,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.697,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "501",
+              "chain": "A",
+              "distance_angstrom": 3.031,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "175",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "70",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 36.235
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "504",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal structure of the PDK3-L2 complex"
+    },
+    {
+      "acceptor_atom_count": 79,
+      "atom_count_model_1": 4446,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Autoinhibition and Mutational Activation of Eukaryotic Initiation Factor 2{alpha} Protein Kinase GCN2",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1ZYD",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase GCN2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15442"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 20,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 15,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.489,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "305",
+              "chain": "A",
+              "distance_angstrom": 3.042,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "306",
+              "chain": "A",
+              "distance_angstrom": 3.34,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "303",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.476,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "307",
+              "chain": "B",
+              "distance_angstrom": 3.157,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "308",
+              "chain": "B",
+              "distance_angstrom": 3.199,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "304",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal Structure of eIF2alpha Protein Kinase GCN2: Wild-Type Complexed with ATP."
+    },
+    {
+      "acceptor_atom_count": 65,
+      "atom_count_model_1": 3033,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Regulatory Roles of the N-Terminal Domain Based on Crystal Structures of Human Pyruvate Dehydrogenase Kinase 2 Containing Physiological and Synthetic Ligands.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2BU2",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PYRUVATE DEHYDROGENSAE KINASE ISOENZYME 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15119"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 21,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.897,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1388",
+              "chain": "A",
+              "distance_angstrom": 3.076,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1386",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "crystal structures of human pyruvate dehydrogenase kinase 2 containing physiological and synthetic ligands"
+    },
+    {
+      "acceptor_atom_count": 178,
+      "atom_count_model_1": 9391,
+      "candidate_status": "local_metal_heteromeric_candidate_source_validation_pending_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The role of the phospho-CDK2/cyclin A recruitment site in substrate recognition.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "70",
+          "candidate_chain_name": "I",
+          "candidate_entity_description": "Cell division control protein 6 homolog",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "Q99741"
+          ],
+          "candidate_label_seq_id": "4",
+          "candidate_residue_code": "SER",
+          "donor_role": "strict_pg_gamma",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "1298",
+              "chain": "C",
+              "distance_angstrom": 2.943,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_terminal_distance_angstrom": 5.821,
+          "terminal_associated_entity_description": "Cyclin-dependent kinase 2",
+          "terminal_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "terminal_associated_polymer_chain_name": "C",
+          "terminal_associated_polymer_entity_id": "1",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1297",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "candidate_atom_name": "OG",
+          "candidate_auth_seq_id": "70",
+          "candidate_chain_name": "F",
+          "candidate_entity_description": "Cell division control protein 6 homolog",
+          "candidate_entity_id": "3",
+          "candidate_entity_uniprot_ids": [
+            "Q99741"
+          ],
+          "candidate_label_seq_id": "4",
+          "candidate_residue_code": "SER",
+          "donor_role": "strict_pg_gamma",
+          "has_local_mg_or_mn": true,
+          "local_metals": [
+            {
+              "auth_seq_id": "1298",
+              "chain": "A",
+              "distance_angstrom": 3.553,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_terminal_distance_angstrom": 5.995,
+          "terminal_associated_entity_description": "Cyclin-dependent kinase 2",
+          "terminal_associated_entity_uniprot_ids": [
+            "P24941"
+          ],
+          "terminal_associated_polymer_chain_name": "A",
+          "terminal_associated_polymer_entity_id": "1",
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1297",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2CCI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Cyclin-dependent kinase 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "Cyclin-A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "F",
+            "I"
+          ],
+          "description": "Cell division control protein 6 homolog",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q99741"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 22,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 16,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.52,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1298",
+              "chain": "A",
+              "distance_angstrom": 3.553,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "70",
+            "candidate_chain_name": "F",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "4",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 5.995
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1297",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.586,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1298",
+              "chain": "C",
+              "distance_angstrom": 2.943,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "70",
+            "candidate_chain_name": "I",
+            "candidate_entity_id": "3",
+            "candidate_label_seq_id": "4",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 5.821
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1297",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal structure of phospho-CDK2 Cyclin A in complex with a peptide containing both the substrate and recruitment sites of CDC6"
+    },
+    {
+      "acceptor_atom_count": 168,
+      "atom_count_model_1": 9528,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "How Tyrosine 15 Phosphorylation Inhibits the Activity of Cyclin-Dependent Kinase 2-Cyclin A.",
+        "year": 2007
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2CJM",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "CELL DIVISION PROTEIN KINASE 2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24941"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "CYCLIN A2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20248"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 23,
+          "surface_id": "ec_2_7_11_atp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+          "rank": 17,
+          "surface_id": "pfam_pkinase_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.42,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1295",
+              "chain": "A",
+              "distance_angstrom": 4.907,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "271",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "97",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 19.53
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1294",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.425,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "238",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "64",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 19.136
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1298",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Mechanism of CDK inhibition by active site phosphorylation: CDK2 Y15p T160p in complex with cyclin A structure"
+    },
+    {
+      "acceptor_atom_count": 484,
+      "atom_count_model_1": 23872,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Analysis of KaiA-KaiC protein interactions in the cyano-bacterial circadian clock using hybrid structural methods.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2GBL",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "E",
+            "F"
+          ],
+          "description": "Circadian clock protein kinase kaiC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q79PF4"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Circadian clock protein kinase kaiC",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q79PF4"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 24,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 12,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.434,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "801",
+              "chain": "A",
+              "distance_angstrom": 3.203,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "424",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "424",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 27.692
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.343,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "157",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "157",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 26.993
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "903",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.467,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "802",
+              "chain": "B",
+              "distance_angstrom": 3.73,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "431",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "431",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 9.335
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.514,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "201",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "201",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 10.186
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "903",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.503,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "803",
+              "chain": "C",
+              "distance_angstrom": 3.09,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "290",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "290",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 22.783
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.425,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 22.103
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "903",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.542,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "804",
+              "chain": "D",
+              "distance_angstrom": 3.151,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "434",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "434",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 9.611
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 2.498,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "201",
+            "candidate_chain_name": "E",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "201",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 10.045
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "903",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.427,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "805",
+              "chain": "E",
+              "distance_angstrom": 3.19,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "290",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "290",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 23.011
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.535,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 22.221
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "903",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.397,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "806",
+              "chain": "F",
+              "distance_angstrom": 3.363,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "493",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "493",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 34.804
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "901",
+          "terminal_chain_name": "F",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "F",
+          "associated_polymer_distance_angstrom": 2.563,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "157",
+            "candidate_chain_name": "C",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "157",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 37.342
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "903",
+          "terminal_chain_name": "F",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal Structure of Full Length Circadian Clock Protein KaiC with Phosphorylation Sites"
+    },
+    {
+      "acceptor_atom_count": 88,
+      "atom_count_model_1": 4114,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for AMP Binding to Mammalian AMP-Activated Protein Kinase",
+        "year": 2007
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2V9J",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "5'-AMP-ACTIVATED PROTEIN KINASE CATALYTIC SUBUNIT ALPHA-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P54645"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "5'-AMP-ACTIVATED PROTEIN KINASE SUBUNIT BETA-2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O43741"
+          ]
+        },
+        "3": {
+          "auth_asym_ids": [
+            "E"
+          ],
+          "description": "5'-AMP-ACTIVATED PROTEIN KINASE SUBUNIT GAMMA-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P80385"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+          "rank": 25,
+          "surface_id": "ec_2_7_11_atp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.372,
+          "associated_polymer_entity_id": "3",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1330",
+              "chain": "E",
+              "distance_angstrom": 3.329,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "269",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "84",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 20.529
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1327",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "E",
+          "associated_polymer_distance_angstrom": 2.486,
+          "associated_polymer_entity_id": "3",
+          "donor_role": "strict_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1331",
+              "chain": "E",
+              "distance_angstrom": 3.293,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OH",
+            "candidate_auth_seq_id": "269",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "84",
+            "candidate_residue_code": "TYR",
+            "nearest_terminal_distance_angstrom": 20.748
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1328",
+          "terminal_chain_name": "E",
+          "terminal_ligand_code": "ATP"
+        }
+      ],
+      "title": "Crystal structure of the regulatory fragment of mammalian AMPK in complexes with Mg.ATP-AMP"
+    },
+    {
+      "acceptor_atom_count": 84,
+      "atom_count_model_1": 5442,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structure of phosphorylated p38gamma is monomeric and reveals a conserved activation-loop conformation.",
+        "year": 1999
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1CM8",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "PHOSPHORYLATED MAP KINASE P38-GAMMA",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53778"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 1,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 1,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.745,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 2.826,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 3.774,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "400",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.752,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1401",
+              "chain": "B",
+              "distance_angstrom": 2.831,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "1402",
+              "chain": "B",
+              "distance_angstrom": 3.721,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1400",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "PHOSPHORYLATED MAP KINASE P38-GAMMA"
+    },
+    {
+      "acceptor_atom_count": 41,
+      "atom_count_model_1": 3046,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "GTP plus water mimic ATP in the active site of protein kinase CK2.",
+        "year": 1999
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1DAW",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "PROTEIN KINASE CK2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28523"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 2,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 2,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.459,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "342",
+              "chain": "A",
+              "distance_angstrom": 2.812,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "341",
+              "chain": "A",
+              "distance_angstrom": 2.849,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "340",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "CRYSTAL STRUCTURE OF A BINARY COMPLEX OF PROTEIN KINASE CK2 (ALPHA-SUBUNIT) AND MG-AMPPNP"
+    },
+    {
+      "acceptor_atom_count": 39,
+      "atom_count_model_1": 2404,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structures of the catalytic domain of human protein kinase associated with apoptosis and tumor suppression.",
+        "year": 2001
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1JKK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "DEATH-ASSOCIATED PROTEIN KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53355"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 3,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 3,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.517,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "300",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "2.4A X-RAY STRUCTURE OF TERNARY COMPLEX OF A CATALYTIC DOMAIN OF DEATH-ASSOCIATED PROTEIN KINASE WITH ATP ANALOGUE AND MG."
+    },
+    {
+      "acceptor_atom_count": 45,
+      "atom_count_model_1": 3016,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of JNK3: a kinase implicated in neuronal apoptosis.",
+        "year": 1998
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1JNK",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "C-JUN N-TERMINAL KINASE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53779"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 4,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 4,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.742,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1003",
+              "chain": "A",
+              "distance_angstrom": 2.527,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "1002",
+              "chain": "A",
+              "distance_angstrom": 3.552,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1001",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "THE C-JUN N-TERMINAL KINASE (JNK3S) COMPLEXED WITH MGAMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 41,
+      "atom_count_model_1": 3047,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Inclining the purine base binding plane in protein kinase CK2 by exchanging the flanking side-chains generates a preference for ATP as a cosubstrate.",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1LP4",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Protein kinase CK2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28523"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 5,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 5,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.684,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "342",
+              "chain": "A",
+              "distance_angstrom": 3.092,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "341",
+              "chain": "A",
+              "distance_angstrom": 3.247,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "340",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal structure of a binary complex of the catalytic subunit of protein kinase CK2 with Mg-AMPPNP"
+    },
+    {
+      "acceptor_atom_count": 116,
+      "atom_count_model_1": 5682,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural characterization of the GSK-3beta active site using selective and non-selective ATP-mimetic inhibitors",
+        "year": 2003
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1PYX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Glycogen synthase kinase-3 beta",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49841"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 6,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 6,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.639,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1002",
+              "chain": "A",
+              "distance_angstrom": 2.971,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "1003",
+              "chain": "A",
+              "distance_angstrom": 3.076,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1001",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.686,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "2002",
+              "chain": "B",
+              "distance_angstrom": 2.952,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "2003",
+              "chain": "B",
+              "distance_angstrom": 3.063,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "2001",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "GSK-3 Beta complexed with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 34,
+      "atom_count_model_1": 2315,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis of Constitutive Activity and a Unique Nucleotide Binding Mode of Human Pim-1 Kinase.",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1XR1",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Proto-oncogene serine/threonine-protein kinase Pim-1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P11309"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 7,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 7,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.935,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "401",
+              "chain": "A",
+              "distance_angstrom": 3.3,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "402",
+              "chain": "A",
+              "distance_angstrom": 4.602,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal structure of hPim-1 kinase in complex with AMP-PNP at 2.1 A Resolution"
+    },
+    {
+      "acceptor_atom_count": 77,
+      "atom_count_model_1": 4590,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Basis for Autoinhibition and Mutational Activation of Eukaryotic Initiation Factor 2{alpha} Protein Kinase GCN2",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1ZY5",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase GCN2",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15442"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 8,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 8,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.846,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "305",
+              "chain": "A",
+              "distance_angstrom": 2.973,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "303",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.894,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "306",
+              "chain": "B",
+              "distance_angstrom": 3.342,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "304",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of eIF2alpha Protein Kinase GCN2: R794G Hyperactivating Mutant Complexed with AMPPNP."
+    },
+    {
+      "acceptor_atom_count": 85,
+      "atom_count_model_1": 5216,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Higher-Order Substrate Recognition of eIF2alpha by the RNA-Dependent Protein Kinase PKR.",
+        "year": 2005
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2A19",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Eukaryotic translation initiation factor 2 alpha subunit",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20459"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "C"
+          ],
+          "description": "Interferon-induced, double-stranded RNA-activated protein kinase",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P19525"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 9,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ANP AND metal=MG",
+          "rank": 3,
+          "surface_id": "ec_2_7_10_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 9,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.779,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1642",
+              "chain": "B",
+              "distance_angstrom": 3.312,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 12.041
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1640",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.903,
+          "associated_polymer_entity_id": "2",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "2642",
+              "chain": "C",
+              "distance_angstrom": 3.214,
+              "metal_code": "MG"
+            },
+            {
+              "auth_seq_id": "2641",
+              "chain": "C",
+              "distance_angstrom": 3.55,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG",
+            "candidate_auth_seq_id": "48",
+            "candidate_chain_name": "A",
+            "candidate_entity_id": "1",
+            "candidate_label_seq_id": "48",
+            "candidate_residue_code": "SER",
+            "nearest_terminal_distance_angstrom": 55.295
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "2640",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "PKR kinase domain- eIF2alpha- AMP-PNP complex."
+    },
+    {
+      "acceptor_atom_count": 114,
+      "atom_count_model_1": 8106,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Structure of G Protein-coupled Receptor Kinase (GRK)-6 Defines a Second Lineage of GRKs.",
+        "year": 2006
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2ACX",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "G protein-coupled receptor kinase 6",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P43250"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 10,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 10,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.466,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "578",
+              "chain": "A",
+              "distance_angstrom": 3.022,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "577",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.517,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "578",
+              "chain": "B",
+              "distance_angstrom": 3.686,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "577",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of G protein coupled receptor kinase 6 bound to AMPPNP"
+    },
+    {
+      "acceptor_atom_count": 131,
+      "atom_count_model_1": 6079,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Inhibitor-bound structures of human pyruvate dehydrogenase kinase 4.",
+        "year": 2011
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2E0A",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Pyruvate dehydrogenase kinase isozyme 4",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q16654"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 11,
+          "surface_id": "ec_2_7_11_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.655,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "500",
+              "chain": "A",
+              "distance_angstrom": 3.618,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "501",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.646,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1500",
+              "chain": "B",
+              "distance_angstrom": 3.393,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1501",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal structure of human pyruvate dehydrogenase kinase 4 in complex with AMPPNP"
+    },
+    {
+      "acceptor_atom_count": 38,
+      "atom_count_model_1": 2505,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of the catalytic domain of human polo-like kinase 1.",
+        "year": 2007
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2OU7",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase PLK1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53350"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 12,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 11,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.889,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "505",
+              "chain": "A",
+              "distance_angstrom": 4.103,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "500",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Structure of the Catalytic Domain of Human Polo-like Kinase 1"
+    },
+    {
+      "acceptor_atom_count": 38,
+      "atom_count_model_1": 2511,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of the kinase domain of serum and glucocorticoid-regulated kinase 1 in complex with AMP PNP.",
+        "year": 2007
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2R5T",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein kinase Sgk1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O00141"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 13,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 12,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 1,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.544,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "600",
+              "chain": "A",
+              "distance_angstrom": 3.512,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "500",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Crystal Structure of Inactive Serum and Glucocorticoid- Regulated Kinase 1 in Complex with AMP-PNP"
+    },
+    {
+      "acceptor_atom_count": 184,
+      "atom_count_model_1": 9188,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanism of Multi-Site Phosphorylation from a Rock-I:Rhoe Complex Structure.",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2V55",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "RHO-ASSOCIATED PROTEIN KINASE 1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13464"
+          ]
+        },
+        "2": {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "RHO-RELATED GTP-BINDING PROTEIN RHOE",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61587"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 14,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 13,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 2,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.843,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1481",
+              "chain": "A",
+              "distance_angstrom": 3.939,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "68",
+            "candidate_chain_name": "B",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "68",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 19.728
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1480",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.856,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1481",
+              "chain": "C",
+              "distance_angstrom": 3.92,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": {
+            "candidate_atom_name": "OG1",
+            "candidate_auth_seq_id": "68",
+            "candidate_chain_name": "D",
+            "candidate_entity_id": "2",
+            "candidate_label_seq_id": "68",
+            "candidate_residue_code": "THR",
+            "nearest_terminal_distance_angstrom": 20.033
+          },
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1480",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Mechanism of multi-site phosphorylation from a ROCK-I:RhoE complex structure"
+    },
+    {
+      "acceptor_atom_count": 140,
+      "atom_count_model_1": 8503,
+      "candidate_status": "no_heteromeric_candidate_hit_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of the Osr1 Kinase, a Hypertension Drug Target.",
+        "year": 2008
+      },
+      "countable_label_candidate": false,
+      "epk_score_computed": false,
+      "excluded_context_terms": [],
+      "experimental_method": [
+        "X-RAY DIFFRACTION"
+      ],
+      "heteromeric_candidate_hits": [],
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2VWI",
+      "polymer_entities": {
+        "1": {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "SERINE/THREONINE-PROTEIN KINASE OSR1",
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O95747"
+          ]
+        }
+      },
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "review_only": true,
+      "search_hits": [
+        {
+          "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+          "rank": 15,
+          "surface_id": "ec_2_7_11_anp_mg"
+        },
+        {
+          "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+          "rank": 14,
+          "surface_id": "pfam_pkinase_anp_mg"
+        }
+      ],
+      "target_family_id": "epk",
+      "target_fingerprint_id_if_future_gated": "epk_atp_gamma_phosphoryl_transfer",
+      "terminal_donor_atom_count": 4,
+      "terminal_donor_records": [
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "A",
+          "associated_polymer_distance_angstrom": 2.862,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1294",
+          "terminal_chain_name": "A",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "B",
+          "associated_polymer_distance_angstrom": 2.931,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1293",
+              "chain": "B",
+              "distance_angstrom": 3.086,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1295",
+          "terminal_chain_name": "B",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "C",
+          "associated_polymer_distance_angstrom": 2.826,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [
+            {
+              "auth_seq_id": "1293",
+              "chain": "C",
+              "distance_angstrom": 4.808,
+              "metal_code": "MG"
+            }
+          ],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1294",
+          "terminal_chain_name": "C",
+          "terminal_ligand_code": "ANP"
+        },
+        {
+          "associated_polymer_basis": "ligand_author_chain_matches_polymer_author_chain",
+          "associated_polymer_chain_name": "D",
+          "associated_polymer_distance_angstrom": 3.023,
+          "associated_polymer_entity_id": "1",
+          "donor_role": "strict_anp_pg_gamma",
+          "local_metals": [],
+          "nearest_heteromeric_acceptor": null,
+          "terminal_atom_name": "PG",
+          "terminal_auth_seq_id": "1300",
+          "terminal_chain_name": "D",
+          "terminal_ligand_code": "ANP"
+        }
+      ],
+      "title": "Structure of the OSR1 kinase, a hypertension drug target"
+    }
+  ],
+  "search_surfaces": [
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.11",
+      "ligand": "ATP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1A49",
+        "1A5U",
+        "1B38",
+        "1B39",
+        "1CSN",
+        "1FQ1",
+        "1GOL",
+        "1GY3",
+        "1HCK",
+        "1Q24",
+        "1Q97",
+        "1QMZ",
+        "1RDQ",
+        "1TID",
+        "1TIL",
+        "1U5R",
+        "1U9I",
+        "1VJC",
+        "1Y8P",
+        "1ZYD",
+        "2BU2",
+        "2CCI",
+        "2CJM",
+        "2GBL",
+        "2V9J"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "ec_2_7_11_atp_mg",
+      "total_count": 145
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.11",
+      "ligand": "ANP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1CM8",
+        "1DAW",
+        "1JKK",
+        "1JNK",
+        "1LP4",
+        "1PYX",
+        "1XR1",
+        "1ZY5",
+        "2A19",
+        "2ACX",
+        "2E0A",
+        "2OU7",
+        "2R5T",
+        "2V55",
+        "2VWI",
+        "3A99",
+        "3AKL",
+        "3CRL",
+        "3DAK",
+        "3F5U",
+        "3GU5",
+        "3HKO",
+        "3IS5",
+        "3LIJ",
+        "3MIA"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "ec_2_7_11_anp_mg",
+      "total_count": 161
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.11",
+      "ligand": "ACP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1KF0",
+        "1O6Y",
+        "1U54",
+        "2X14",
+        "2Z7Q",
+        "3ZXT",
+        "4F1M",
+        "4IAC",
+        "4MNE",
+        "4NH1",
+        "5AR3",
+        "5G15",
+        "5NG0",
+        "5V60",
+        "6CPF",
+        "6EQ9",
+        "6I2P",
+        "6U2G"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ACP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 18,
+      "start": 0,
+      "surface_id": "ec_2_7_11_acp_mg",
+      "total_count": 18
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.11",
+      "ligand": "AGS",
+      "metal": "MG",
+      "pdb_ids": [
+        "1GJV",
+        "1MRU",
+        "23FC",
+        "2W5B",
+        "4CRS",
+        "4DN5",
+        "4JSP",
+        "4KRC",
+        "4TL8",
+        "4TL9",
+        "4TLB",
+        "4TLC",
+        "4TLD",
+        "4TLE",
+        "4UYA",
+        "4Y12",
+        "5NZZ",
+        "6NYB",
+        "6Q0J",
+        "6Q0T",
+        "6SKY",
+        "6SKZ",
+        "6SL0",
+        "6SL1",
+        "6XBZ"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=AGS AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "ec_2_7_11_ags_mg",
+      "total_count": 40
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.10",
+      "ligand": "ATP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1A49",
+        "1A5U",
+        "3BU5",
+        "3DKC",
+        "4FVQ",
+        "4FVR",
+        "4FXF",
+        "5I4N",
+        "6BCU",
+        "6BCX",
+        "8C08",
+        "8PO4"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ATP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 12,
+      "start": 0,
+      "surface_id": "ec_2_7_10_atp_mg",
+      "total_count": 12
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.10",
+      "ligand": "ANP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1IR3",
+        "1JQH",
+        "2A19",
+        "2GS7",
+        "2ITN",
+        "2J0L",
+        "2OZO",
+        "2P0C",
+        "2QO7",
+        "2QO9",
+        "2QOC",
+        "2QOQ",
+        "3FXX",
+        "3GT8",
+        "3KEX",
+        "3LMG",
+        "3PLS",
+        "4FL1",
+        "4FL2",
+        "4FL3",
+        "4K2R",
+        "4RIW",
+        "4RIX",
+        "4RIY",
+        "4ZSE"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ANP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "ec_2_7_10_anp_mg",
+      "total_count": 59
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.10",
+      "ligand": "ACP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1I44",
+        "1U54",
+        "2PVF",
+        "2PY3",
+        "2PZ5",
+        "2PZP",
+        "3CLY",
+        "3GQI",
+        "4J96",
+        "4J99",
+        "4K33",
+        "4XLV",
+        "5AR3",
+        "5EG3",
+        "5NG0",
+        "5UGX",
+        "5UHN",
+        "6V6Q",
+        "7KJA",
+        "7KJC"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ACP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 20,
+      "start": 0,
+      "surface_id": "ec_2_7_10_acp_mg",
+      "total_count": 20
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.10",
+      "ligand": "AGS",
+      "metal": "MG",
+      "pdb_ids": [
+        "3DQW",
+        "4JSP",
+        "5C03"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=AGS AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 3,
+      "start": 0,
+      "surface_id": "ec_2_7_10_ags_mg",
+      "total_count": 3
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF00069",
+      "ligand": "ATP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1B38",
+        "1B39",
+        "1CSN",
+        "1FQ1",
+        "1GOL",
+        "1GY3",
+        "1HCK",
+        "1Q24",
+        "1Q97",
+        "1QMZ",
+        "1RDQ",
+        "1S9I",
+        "1S9J",
+        "1U5R",
+        "1ZYD",
+        "2CCI",
+        "2CJM",
+        "2P55",
+        "2Y4I",
+        "3BLQ",
+        "3C4W",
+        "3C4X",
+        "3DV3",
+        "3DY7",
+        "3E8N"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ATP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "pfam_pkinase_atp_mg",
+      "total_count": 83
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF00069",
+      "ligand": "ANP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1CM8",
+        "1DAW",
+        "1JKK",
+        "1JNK",
+        "1LP4",
+        "1PYX",
+        "1XR1",
+        "1ZY5",
+        "2A19",
+        "2ACX",
+        "2OU7",
+        "2R5T",
+        "2V55",
+        "2VWI",
+        "3A99",
+        "3ALN",
+        "3ALO",
+        "3DAK",
+        "3F5U",
+        "3GU5",
+        "3HKO",
+        "3LIJ",
+        "3MIA",
+        "3NSZ",
+        "3O7L"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ANP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "pfam_pkinase_anp_mg",
+      "total_count": 132
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF00069",
+      "ligand": "ACP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1O6Y",
+        "2Z7Q",
+        "3ZXT",
+        "4AN2",
+        "4AN9",
+        "4ANB",
+        "4IAC",
+        "4MNE",
+        "4NH1",
+        "4OAV",
+        "5G15",
+        "5V60",
+        "6CPF",
+        "6EQ9",
+        "6I2P",
+        "6U2G"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=ACP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 16,
+      "start": 0,
+      "surface_id": "pfam_pkinase_acp_mg",
+      "total_count": 16
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF00069",
+      "ligand": "AGS",
+      "metal": "MG",
+      "pdb_ids": [
+        "1MRU",
+        "2W5B",
+        "3EQC",
+        "3EQD",
+        "4CRS",
+        "4DN5",
+        "4KRC",
+        "4Y12",
+        "5NZZ",
+        "6NYB",
+        "6Q0J",
+        "6Q0T",
+        "6XBZ",
+        "6Z4X",
+        "7AKM",
+        "7PT6",
+        "7V3V",
+        "8DGS",
+        "8DGT",
+        "8EJ4",
+        "8P6Y",
+        "8YHW",
+        "9HIY",
+        "9MMQ",
+        "9MMR"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF00069 AND ligand=AGS AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "pfam_pkinase_ags_mg",
+      "total_count": 26
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF07714",
+      "ligand": "ATP",
+      "metal": "MG",
+      "pdb_ids": [
+        "2Y4I",
+        "3BU5",
+        "3DKC",
+        "3KMW",
+        "4FVQ",
+        "4FVR",
+        "5I4N",
+        "7XDV",
+        "8C08",
+        "8GAE",
+        "8PO4",
+        "9D5I",
+        "9WYR"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF07714 AND ligand=ATP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 13,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_atp_mg",
+      "total_count": 13
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF07714",
+      "ligand": "ANP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1IR3",
+        "1JQH",
+        "2GS7",
+        "2ITN",
+        "2J0L",
+        "2OZO",
+        "2P0C",
+        "2QO7",
+        "2QO9",
+        "2QOC",
+        "2QOQ",
+        "3FXX",
+        "3GT8",
+        "3KEX",
+        "3LMG",
+        "3PLS",
+        "4FL1",
+        "4FL2",
+        "4FL3",
+        "4I94",
+        "4K2R",
+        "4M69",
+        "4RIW",
+        "4RIX",
+        "4RIY"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF07714 AND ligand=ANP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 25,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_anp_mg",
+      "total_count": 86
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF07714",
+      "ligand": "ACP",
+      "metal": "MG",
+      "pdb_ids": [
+        "1I44",
+        "1U54",
+        "2PVF",
+        "2PY3",
+        "2PZ5",
+        "2PZP",
+        "3CLY",
+        "3GQI",
+        "4F1M",
+        "4J96",
+        "4J99",
+        "4K33",
+        "4MNE",
+        "4XLV",
+        "5AR3",
+        "5EG3",
+        "5NG0",
+        "5UGX",
+        "5UHN",
+        "6U2G",
+        "6V6Q",
+        "7KJA",
+        "7KJC"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF07714 AND ligand=ACP AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 23,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_acp_mg",
+      "total_count": 23
+    },
+    {
+      "filter_kind": "pfam",
+      "filter_value": "PF07714",
+      "ligand": "AGS",
+      "metal": "MG",
+      "pdb_ids": [
+        "3DQW",
+        "4UYA",
+        "5C03",
+        "6NYB",
+        "6Q0J",
+        "6Q0T",
+        "8DGS",
+        "8DGT",
+        "9MMQ",
+        "9MMR",
+        "9MMS"
+      ],
+      "query_or_source": "RCSB advanced: pfam=PF07714 AND ligand=AGS AND metal=MG",
+      "requested_rows": 25,
+      "returned_count": 11,
+      "start": 0,
+      "surface_id": "pfam_pkinase_tyr_ags_mg",
+      "total_count": 11
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.11",
+      "ligand": "ATP",
+      "metal": "MN",
+      "pdb_ids": [
+        "1ATP",
+        "1JST",
+        "1PHK",
+        "1QL6",
+        "1ZAO",
+        "1ZP9",
+        "2PHK",
+        "3FJQ",
+        "4AW1",
+        "8GAE",
+        "8GFT",
+        "9CKS"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ATP AND metal=MN",
+      "requested_rows": 25,
+      "returned_count": 12,
+      "start": 0,
+      "surface_id": "ec_2_7_11_atp_mn",
+      "total_count": 12
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.11",
+      "ligand": "ANP",
+      "metal": "MN",
+      "pdb_ids": [
+        "1CDK",
+        "1IG1",
+        "1O6K",
+        "1O6L",
+        "2QCS",
+        "3FHI",
+        "3IDB",
+        "3IDC",
+        "3MFU",
+        "3PVB",
+        "4EKK",
+        "5LPV",
+        "5TF9",
+        "5WDY",
+        "5WE8",
+        "6BG2",
+        "6MCP",
+        "7LV3",
+        "8SE2"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.11 AND ligand=ANP AND metal=MN",
+      "requested_rows": 25,
+      "returned_count": 19,
+      "start": 0,
+      "surface_id": "ec_2_7_11_anp_mn",
+      "total_count": 19
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.10",
+      "ligand": "ATP",
+      "metal": "MN",
+      "pdb_ids": [],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ATP AND metal=MN",
+      "requested_rows": 25,
+      "returned_count": 0,
+      "start": 0,
+      "surface_id": "ec_2_7_10_atp_mn",
+      "total_count": 0
+    },
+    {
+      "filter_kind": "ec_lineage",
+      "filter_value": "2.7.10",
+      "ligand": "ANP",
+      "metal": "MN",
+      "pdb_ids": [
+        "5LPV"
+      ],
+      "query_or_source": "RCSB advanced: ec_lineage=2.7.10 AND ligand=ANP AND metal=MN",
+      "requested_rows": 25,
+      "returned_count": 1,
+      "start": 0,
+      "surface_id": "ec_2_7_10_anp_mn",
+      "total_count": 1
+    }
+  ]
+}
