@@ -5,7 +5,8 @@
 - Ended: 2026-05-21T16:11:22Z
 - Measured minutes: 48.52
 - Primary outcome: regression_rows_emitted
-- Commit/push status: attempted after this handoff; linked-worktree metadata may still prevent local HEAD from matching origin.
+- Pushed evidence commit: `8e671e493c683c4258e8c7a6394c818ef38bca22` via alternate-index commit/push.
+- Local HEAD status: linked-worktree metadata still prevents the checked-out branch from matching origin.
 - Rule under attack: biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, with non-ORC deposited-v4 / assembly-below-floor traps and the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
