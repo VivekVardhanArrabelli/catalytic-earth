@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-21T10:09:47-0500
+Last updated: 2026-05-21T11:11:00-0500
 
 Primary outcome: `candidate_evidence_rows_emitted`
 
@@ -8,38 +8,30 @@ Primary outcome: `candidate_evidence_rows_emitted`
 
 `labels_or_fingerprints_changed=false`
 
-Measured run time: 48.35 minutes (`2026-05-21T14:21:26Z` to
-`2026-05-21T15:09:47Z`).
+Measured run time: 49.07 minutes (`2026-05-21T15:21:56Z` to
+`2026-05-21T16:11:00Z`).
 
 Run note: normal `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 --no-write-fetch-head origin` succeeded. Normal local `HEAD` remains stale
-relative to `origin/research/epk-substrate-role-identity`; commit/push used the
-remote-tip temporary-index workaround.
-
-Final sync: pushed graph-motif content commit
-`82d8f47955dcdb1328a10be5c4e802f499e7300e` to
-`origin/research/epk-substrate-role-identity`. After `git fetch
---no-write-fetch-head origin`, local checksums for the graph artifact, helper,
-run ledger, and handoff matched the remote blobs. Normal `git status` still
-reports this linked worktree as behind/dirty because local `HEAD` remains stale
-relative to the remote tip.
+relative to `origin/research/epk-substrate-role-identity`; commit/push should
+continue using the remote-tip temporary-index workaround.
 
 ## What Was Emitted
 
-This run added one compact, non-scalar source-free feature family: gamma-site
-and PDB candidate graph motifs. It reuses the existing candidate evidence table
-plus the metal/transfer-geometry overlay and emits graph rows only; it does not
-fetch coordinates or write raw coordinate dumps.
+This run added one compact source-free coordinate-state feature family:
+candidate coordinate-state taxonomy with an in-memory coordinate chemistry
+scan. The helper fetches diagnostic structures in memory, writes only reduced
+evidence, and does not write raw coordinate dumps.
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_graph_motif_audit_v1_20260521.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_coordinate_state_taxonomy_v1_20260521.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/candidate_graph_motif_audit.py`
+`tools/research_lanes/epk_substrate_role_identity/candidate_coordinate_state_taxonomy.py`
 
 Inputs:
 
@@ -47,15 +39,11 @@ Inputs:
 - `artifacts/research_lanes/epk_substrate_role_identity/epk_gamma_metal_transfer_geometry_probe_v1_20260521.json`
 - `artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_conflict_decision_v1_20260521.json`
 
-The helper reused 204 candidate-pair rows, 7 state-only rows, and 54 diagnostic
-PDB conflict rows. It emitted:
-
-- 98 gamma-site graph motif rows.
-- 7 state-materialization graph rows.
-- 54 PDB graph motif rows.
-- 37 gamma-site graph motif groups.
-- 4 state-materialization graph groups.
-- 42 PDB graph motif groups.
+The helper reused 204 candidate-pair rows, 7 state-only rows, and 54 PDB-level
+conflict rows. It emitted 211 candidate coordinate-state taxonomy rows and
+scanned all 54 diagnostic PDBs for compact coordinate chemistry evidence:
+terminal-gamma atoms, ADP, and phosphorylated SER/THR/TYR residue
+materialization.
 
 No source text, titles, UniProt prose, EC/Rhea, mechanism labels, curated
 substrate names, post-hoc source repair, candidate-specific threshold tuning,
@@ -64,7 +52,7 @@ or changed.
 
 ## Evidence Summary
 
-Coordinate states after the metal overlay:
+Coordinate states after the metal overlay and coordinate chemistry scan:
 
 - `active_gamma=187`
 - `metal_absent=18`
@@ -72,23 +60,33 @@ Coordinate states after the metal overlay:
 - `ligand_absent=2`
 - `ambiguous_coordinate_state=1`
 
-Blocker class counts after graph-row projection:
+Source-free coordinate chemistry classes:
 
-- `topology_ambiguity=103`
-- `active_gamma_geometry=79`
-- `none=18`
-- `substrate_role_identity=4`
-- `ligand_materialization=3`
-- `product_state_evidence=3`
-- `internal_fragment_mimicry=1`
+- `active_gamma_materialized_by_terminal_gamma_atom=205`
+- `adp_with_distant_phosphorylated_sty_product_not_materialized=2`
+- `adp_without_phosphorylated_sty_product_not_materialized=1`
+- `ambiguous_nucleotide_without_terminal_gamma_product_not_materialized=1`
+- `ligand_absent_product_not_materialized=2`
 
-Graph collision summary:
+The target coordinate states not materialized source-free remain:
 
-- 3 mixed positive/counterexample gamma-site graph motif groups covering 13
-  PDBs.
-- Mixed gamma-site motif blockers are `active_gamma_geometry=1` and
-  `topology_ambiguity=2`.
-- 2 mixed positive/counterexample PDB graph motif groups covering 5 PDBs.
+- `product_state`
+- `substrate_acceptor_analog_state`
+- `split_state`
+- `unavailable_coordinate_state`
+
+Source-leakage guard:
+
+- 207 rows had no product/analog review-state context.
+- 3 product-context rows were not source-free `product_state`:
+  `1L0O`, `3QHR`, `3QHW`.
+- 1 analog-context row was not source-free `substrate_acceptor_analog_state`:
+  `3TM0`.
+- The guarded candidate IDs are:
+  `1L0O|gamma=none|acceptor=none`,
+  `3QHR|gamma=none|acceptor=none`,
+  `3QHW|gamma=none|acceptor=none`, and
+  `3TM0|gamma=A:ANP300:PG|acceptor=A:SER27:OG`.
 
 The reused conservative conflict projection remains review-only and abstaining:
 
@@ -101,43 +99,40 @@ The reused conservative conflict projection remains review-only and abstaining:
 
 ## Decisive Result
 
-The graph motif audit does not clear substrate-role identity source-free.
+The blocker is not cleared source-free.
 
-The reciprocal Tyr hard trio remains inseparable by graph motif:
+The direct coordinate chemistry scan did not independently materialize
+`product_state`, `substrate_acceptor_analog_state`, or `split_state` for the
+review product/analog hard cases. Promoting those states would require review
+context leakage, which remains forbidden.
 
-- PDB graph signature `7deae36bdf7b`: `9UUR`, `9UUX`, `9UW4`
-  - review-only labels: 2 positives, 1 counterexample
-- Gamma-site graph signature `26659cc98a93`: `9UUR`, `9UUX`, `9UW4`
-  - review-only labels: 2 positives, 1 counterexample
+Hard state cases:
 
-The same-chain topology shape also remains unsafe:
+- `1L0O`, `3QHR`, and `3QHW` remain source-free `adp_state` with
+  `product_state_evidence` blockers.
+- `3TM0` remains source-free `active_gamma` with same-chain
+  `topology_ambiguity`; its ligand-analog review context is not a source-free
+  substrate-analog coordinate state.
 
-- PDB graph signature `7d3244390445`: `3TM0`, `6NOO`
-  - review-only labels: 1 positive, 1 counterexample
-- Gamma-site graph signature `dc7e7db20443`: `2JJ2`, `3TM0`, `5C1O`,
-  `6NOO`, `7T55`, `8W2J`, `9L3M`, `9L3U`, `9NBW`
-  - review-only labels: 1 positive, 31 counterexample candidate rows
+Hard topology cases also persist:
 
-The graph motif feature reduces uncertainty by localizing ambiguity to
-candidate graph structures, but it does not assign biological substrate role.
-Mixed topology and metal-absent reciprocal motifs remain review blockers.
+- `9UUR`, `9UUX`, and `9UW4` remain a reciprocal folded-chain topology blocker.
+- `3TM0` and `6NOO` remain a same-chain topology ambiguity pair under the
+  existing conflict projection.
 
 ## Interpretation
 
-The blocker is not cleared source-free. Candidate graph motifs are useful
-review-routing evidence and make coordinate states first-class after metal
-overlay, but graph topology still collides between positives and counterexamples.
-Product/ADP rows remain state-specific review-only evidence, reciprocal
-folded-chain Tyr rows remain biology ambiguity, and same-chain graph motifs
-remain unsafe because they admit counterexamples.
+Coordinate-state taxonomy is useful review-routing evidence. It makes the state
+gap explicit and prevents product/analog review labels from becoming predictive
+source-free inputs. It does not assign biological substrate role source-free,
+and it does not support production substrate-role identity.
 
-This is review-routing/blocker evidence only. It is not a production
-substrate-role identity rule and does not support ePK production readiness.
+This is review-only blocker evidence. It is not a production rule and does not
+support ePK production readiness.
 
 ## Exact Next Experiment
 
-Do not run another scalar source-free rescue on this tranche. If this lane
-resumes, require a genuinely new source-free evidence modality beyond candidate
-graph topology, metal materialization, coordinate certainty, exposure,
-orientation, and sequence context. Otherwise preserve the source-reviewed
-adjudication requirement for topology and product-state substrate biology.
+Do not add scalar rescues. If this lane resumes, require a new source-free
+coordinate modality that directly materializes product/analog chemistry without
+review-context leakage; otherwise preserve source-reviewed adjudication for
+product/ADP, reciprocal folded-chain, and same-chain substrate biology.
