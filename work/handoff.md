@@ -76,6 +76,33 @@ registry edit, label import, fingerprint expansion, or main-loop ePK task is
 authorized. The main loop should continue external mini-campaigns, modern
 baseline comparisons, terminal decisions, or non-ePK family packets.
 
+The same run then freezes a fourth 2026-05-21 prospective external
+mini-campaign, this time for the current `ser_his_acid_hydrolase` lane. The
+freeze artifact
+`artifacts/v3_prospective_external_serine_hydrolase_minicampaign_freeze_20260521.json`
+locks 19 reviewed UniProtKB/Swiss-Prot EC 3.1.1.* rows before scoring,
+requiring catalytic activity, PDB cross-reference, sequence, active-site
+annotation, and source evidence for a serine-hydrolase-like nucleophile plus
+charge-relay/triad context. Prior external-pool accessions, imported hard
+negatives, nuclease/metallo contexts, phospholipase D, and secretory
+phospholipase A2 contexts are excluded; selection uses a two-row cap per
+primary EC and does not use sequence-neighbor, Foldseek, ESM, geometry, score,
+or ePK evidence. The decision packet
+`artifacts/v3_prospective_external_serine_hydrolase_minicampaign_decision_packet_20260521.json`
+keeps 18 rows as `needs_review` under the existing serine-hydrolase lane and
+terminally rejects `P94388` as an exact current-reference sequence duplicate.
+The baseline comparison
+`artifacts/v3_serine_hydrolase_minicampaign_baseline_comparison_20260521.json`
+records EC/keyword routing and deterministic 5-mer duplicate context only; no
+geometry, ESM, Foldseek, superiority, mechanism-match, production-score,
+threshold, import, registry, or fingerprint claim is opened.
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_serine_hydrolase_20260521.json`
+now covers 78 frozen rows across the PLP, flavin, heme, and serine-hydrolase
+mini-campaigns, with 70 `needs_review`, 8 exact current-reference duplicate
+terminal rejections, 9 deterministic sequence-neighbor alerts, and 0
+geometry-scored external rows. The current register is
+`artifacts/v3_main_loop_small_win_register_post_serine_hydrolase_20260521.json`.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late

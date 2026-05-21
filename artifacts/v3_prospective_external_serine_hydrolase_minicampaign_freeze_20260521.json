@@ -1,0 +1,774 @@
+{
+  "excluded_rows_sample": [
+    {
+      "accession": "Q17R31",
+      "entry_name": "TATD3_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_catalytic_activity_annotation",
+        "missing_active_site_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.11.-"
+    },
+    {
+      "accession": "Q9BQ50",
+      "entry_name": "TREX2_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.11.2"
+    },
+    {
+      "accession": "Q6P988",
+      "entry_name": "NOTUM_HUMAN",
+      "exclusion_reasons": [
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.1.98"
+    },
+    {
+      "accession": "Q96BZ4",
+      "entry_name": "PLD4_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.16.1"
+    },
+    {
+      "accession": "Q9NZK7",
+      "entry_name": "PA2GE_HUMAN",
+      "exclusion_reasons": [
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.1.4"
+    },
+    {
+      "accession": "Q15493",
+      "entry_name": "RGN_HUMAN",
+      "exclusion_reasons": [
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.1.17"
+    },
+    {
+      "accession": "Q96AZ6",
+      "entry_name": "ISG20_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_active_site_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.13.1"
+    },
+    {
+      "accession": "Q6P1N9",
+      "entry_name": "TATD1_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_catalytic_activity_annotation",
+        "missing_active_site_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.11.-"
+    },
+    {
+      "accession": "P19835",
+      "entry_name": "CEL_HUMAN",
+      "exclusion_reasons": [
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.1.13"
+    },
+    {
+      "accession": "P28039",
+      "entry_name": "AOAH_HUMAN",
+      "exclusion_reasons": [
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.1.77"
+    },
+    {
+      "accession": "Q9Y3B8",
+      "entry_name": "ORN_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_catalytic_activity_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.15.-"
+    },
+    {
+      "accession": "P56597",
+      "entry_name": "NDK5_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_catalytic_activity_annotation",
+        "missing_active_site_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.11.-"
+    },
+    {
+      "accession": "Q8TEA8",
+      "entry_name": "DTD1_HUMAN",
+      "exclusion_reasons": [
+        "missing_active_site_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.1.96"
+    },
+    {
+      "accession": "Q9NSU2",
+      "entry_name": "TREX1_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.11.2"
+    },
+    {
+      "accession": "Q9NVH0",
+      "entry_name": "EXD2_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_active_site_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.11.1"
+    },
+    {
+      "accession": "Q9Y5B8",
+      "entry_name": "NDK7_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_active_site_annotation",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "2.7.11.1"
+    },
+    {
+      "accession": "O15496",
+      "entry_name": "PA2GX_HUMAN",
+      "exclusion_reasons": [
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.1.4"
+    },
+    {
+      "accession": "Q6L8Q7",
+      "entry_name": "PDE12_HUMAN",
+      "exclusion_reasons": [
+        "missing_ec_3_1_1_serine_hydrolase_context",
+        "missing_ser_his_acid_like_source_context_or_excluded_nuclease_phospholipase_context"
+      ],
+      "primary_ec": "3.1.13.4"
+    }
+  ],
+  "frozen_before_scoring_statement": "The EC 3.1.1.* serine-hydrolase-like set was selected using only UniProt source metadata and prior-pool exclusions before deterministic sequence-neighbor diagnostics or terminal decisions were computed.",
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_prospective_external_serine_hydrolase_minicampaign_freeze_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 19,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T01:24:05Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_serine_hydrolase_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "primary_ec_cap": 2,
+    "prior_external_pool_excluded_accession_count": 719,
+    "production_fingerprint_count": 8,
+    "production_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selection_rules": [
+      "reviewed UniProtKB/Swiss-Prot rows from EC 3.1.1.* with PDB cross-reference",
+      "require catalytic-activity annotation, sequence, and at least one PDB xref",
+      "require active-site annotation with serine-hydrolase-like nucleophile plus charge-relay/triad source context before outcome scoring",
+      "exclude imported hard negatives and previously used prospective external candidate accessions",
+      "exclude nuclease, metallo, phospholipase D, and secretory phospholipase A2 contexts from this serine-hydrolase lane freeze",
+      "cap at two rows per primary EC number",
+      "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+    ],
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A3.1.1.%2A%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=200",
+    "source_rows_available": 472,
+    "source_rows_reviewed_before_freeze_stop": 200,
+    "source_tsv_sha256": "0975547bdc73d809de4077797c4acc9665a7062dd73c272b54040934e1cf6906",
+    "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+  },
+  "rows": [
+    {
+      "accession": "Q9NWW9",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "2.3.1.-",
+        "3.1.1.32",
+        "3.1.1.4"
+      ],
+      "entry_name": "PLAT2_HUMAN",
+      "freeze_rank": 1,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "4DPZ"
+      ],
+      "primary_ec": "3.1.1.32",
+      "protein_name": "Phospholipase A and acyltransferase 2 (EC 2.3.1.-) (EC 3.1.1.32) (EC 3.1.1.4) (HRAS-like suppressor 2)",
+      "row_id": "uniprot:Q9NWW9",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 162,
+      "sequence_sha256": "bbc7a9a23a52527c8ac01ef33e4b4cae7b6252ef026f7260e22d61e5d5db58ab",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P54317",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.26",
+        "3.1.1.3"
+      ],
+      "entry_name": "LIPR2_HUMAN",
+      "freeze_rank": 2,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "2OXE",
+        "2PVS"
+      ],
+      "primary_ec": "3.1.1.26",
+      "protein_name": "Pancreatic lipase-related protein 2 (PL-RP2) (Cytotoxic T lymphocyte lipase) (Galactolipase) (EC 3.1.1.26) (Triacylglycerol lipase) (EC 3.1.1.3)",
+      "row_id": "uniprot:P54317",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 469,
+      "sequence_sha256": "f88160a40e6988acb7f2350f4276323e38bba488c0a6602af60a12d1f840af3f",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "Q9BV23",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.23"
+      ],
+      "entry_name": "ABHD6_HUMAN",
+      "freeze_rank": 3,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "7OTS"
+      ],
+      "primary_ec": "3.1.1.23",
+      "protein_name": "Monoacylglycerol lipase ABHD6 (EC 3.1.1.23) (2-arachidonoylglycerol hydrolase) (Abhydrolase domain-containing protein 6)",
+      "row_id": "uniprot:Q9BV23",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 337,
+      "sequence_sha256": "7037ad20d10c909bd9e33c3d8af531fd4ec4a54e0bcb7e1934533e029c7b83f0",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "Q9UL19",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "2.3.1.-",
+        "3.1.1.32",
+        "3.1.1.4"
+      ],
+      "entry_name": "PLAT4_HUMAN",
+      "freeze_rank": 4,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "2LKT",
+        "2MY9",
+        "7ZOT"
+      ],
+      "primary_ec": "3.1.1.32",
+      "protein_name": "Phospholipase A and acyltransferase 4 (EC 2.3.1.-) (EC 3.1.1.32) (EC 3.1.1.4) (HRAS-like suppressor 4) (HRSL4) (RAR-responsive protein TIG3) (Retinoic acid receptor responder protein 3) (Retinoid-inducible gene 1 protein) (Tazarotene-induced gene 3 protein)",
+      "row_id": "uniprot:Q9UL19",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 164,
+      "sequence_sha256": "fda17a1cb2f9d385da768f2d3f13064259403b33f1bc54a4497c8f646412ea96",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P07098",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.3"
+      ],
+      "entry_name": "LIPF_HUMAN",
+      "freeze_rank": 5,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1HLG"
+      ],
+      "primary_ec": "3.1.1.3",
+      "protein_name": "Gastric triacylglycerol lipase (GL) (Gastric lipase) (EC 3.1.1.3)",
+      "row_id": "uniprot:P07098",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 398,
+      "sequence_sha256": "231ffacb7d51ebda0d40836241fb888cbf3effc88f2e93013f7a7c612a42f6bd",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "Q99685",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.23"
+      ],
+      "entry_name": "MGLL_HUMAN",
+      "freeze_rank": 6,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 25,
+      "pdb_ids_sample": [
+        "3HJU",
+        "3JW8",
+        "3JWE",
+        "3PE6",
+        "4UUQ",
+        "5ZUN",
+        "6AX1",
+        "6BQ0"
+      ],
+      "primary_ec": "3.1.1.23",
+      "protein_name": "Monoglyceride lipase (MGL) (EC 3.1.1.23) (HU-K5) (Lysophospholipase homolog) (Lysophospholipase-like) (Monoacylglycerol lipase) (MAGL)",
+      "row_id": "uniprot:Q99685",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 303,
+      "sequence_sha256": "6e07b46dcedc0ec3990f75af51364e261ded9d1f9fd0409f771daaae0948e6f1",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P04180",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "2.3.1.43",
+        "3.1.1.47"
+      ],
+      "entry_name": "LCAT_HUMAN",
+      "freeze_rank": 7,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 7,
+      "pdb_ids_sample": [
+        "4X96",
+        "4XWG",
+        "4XX1",
+        "5BV7",
+        "5TXF",
+        "6MVD",
+        "9MXZ"
+      ],
+      "primary_ec": "3.1.1.47",
+      "protein_name": "Phosphatidylcholine-sterol acyltransferase (EC 2.3.1.43) (1-alkyl-2-acetylglycerophosphocholine esterase) (EC 3.1.1.47) (Lecithin-cholesterol acyltransferase) (Phospholipid-cholesterol acyltransferase) (Platelet-activating factor acetylhydrolase) (PAF acetylhydrolase)",
+      "row_id": "uniprot:P04180",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 440,
+      "sequence_sha256": "977372402da89ea6e318372990d1ff9b65ab0406582b68dee869dda3354dc656",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P16233",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.3"
+      ],
+      "entry_name": "LIPP_HUMAN",
+      "freeze_rank": 8,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "1GPL",
+        "1LPA",
+        "1LPB",
+        "1N8S"
+      ],
+      "primary_ec": "3.1.1.3",
+      "protein_name": "Pancreatic triacylglycerol lipase (PL) (PTL) (Pancreatic lipase) (EC 3.1.1.3)",
+      "row_id": "uniprot:P16233",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 465,
+      "sequence_sha256": "8e144ac7eadb8b0b53e0e195deec103c4626a452c2e9d6b3d76b1590d2ef1112",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P94388",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.41",
+        "3.1.1.72"
+      ],
+      "entry_name": "CAH_BACSU",
+      "freeze_rank": 9,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Bacillus subtilis (strain 168)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "1L7A",
+        "1ODS",
+        "1ODT"
+      ],
+      "primary_ec": "3.1.1.41",
+      "protein_name": "Cephalosporin-C deacetylase (EC 3.1.1.41) (Acetylxylan esterase) (EC 3.1.1.72)",
+      "row_id": "uniprot:P94388",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 318,
+      "sequence_sha256": "4cd47ab556d5becda39a5bf0e6bce1805465bde6c24227e0fa1ef8491af4b8c7",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "Q9FG13",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.-"
+      ],
+      "entry_name": "CXE15_ARATH",
+      "freeze_rank": 10,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 6,
+      "pdb_ids_sample": [
+        "8VCA",
+        "8VCD",
+        "8ZR6",
+        "8ZRF",
+        "8ZRG",
+        "8ZRO"
+      ],
+      "primary_ec": "3.1.1.-",
+      "protein_name": "Strigolactones hydrolase CXE15 (EC 3.1.1.-) (Carboxylesterase 15) (AtCXE15)",
+      "row_id": "uniprot:Q9FG13",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 329,
+      "sequence_sha256": "5371829ab467a07ea74439e9a73a317df2b728f7fe1ebb0b7b989ac8aff805b2",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P54318",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.26",
+        "3.1.1.3"
+      ],
+      "entry_name": "LIPR2_RAT",
+      "freeze_rank": 11,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1BU8"
+      ],
+      "primary_ec": "3.1.1.26",
+      "protein_name": "Pancreatic lipase-related protein 2 (PL-RP2) (Cytotoxic T lymphocyte lipase) (Galactolipase) (EC 3.1.1.26) (Secretory glycoprotein GP-3) (Triacylglycerol lipase) (EC 3.1.1.3)",
+      "row_id": "uniprot:P54318",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 468,
+      "sequence_sha256": "33dbd53933f8382c017121479b39f7045492be61ae102d9a3d4fe5fa2f1d9a80",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P0ADA1",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.2",
+        "3.1.1.5",
+        "3.1.2.14",
+        "3.1.2.2",
+        "3.4.21.-"
+      ],
+      "entry_name": "TESA_ECOLI",
+      "freeze_rank": 12,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 12,
+      "pdb_ids_sample": [
+        "1IVN",
+        "1J00",
+        "1JRL",
+        "1U8U",
+        "1V2G",
+        "5TIC",
+        "5TID",
+        "5TIE"
+      ],
+      "primary_ec": "3.1.1.2",
+      "protein_name": "Thioesterase 1/protease 1/lysophospholipase L1 (TAP) (Acyl-CoA thioesterase 1) (TESA) (EC 3.1.2.2) (Acyl-CoA thioesterase I) (Arylesterase) (EC 3.1.1.2) (Lysophospholipase L1) (EC 3.1.1.5) (Oleoyl-[acyl-carrier-protein] hydrolase) (EC 3.1.2.14) (Phospholipid degradation C) (Pldc) (Protease 1) (EC 3.4.21.-) (Protease I) (Thioesterase I/protease I) (TEP-I)",
+      "row_id": "uniprot:P0ADA1",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 208,
+      "sequence_sha256": "cb72cc0acf40ee3a23927e9758baa0f06a8cbdc66c258b2b901d5fb39cf6b9c3",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P13001",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.85"
+      ],
+      "entry_name": "BIOH_ECOLI",
+      "freeze_rank": 13,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1M33"
+      ],
+      "primary_ec": "3.1.1.85",
+      "protein_name": "Pimeloyl-[acyl-carrier protein] methyl ester esterase (EC 3.1.1.85) (Biotin synthesis protein BioH) (Carboxylesterase BioH)",
+      "row_id": "uniprot:P13001",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 256,
+      "sequence_sha256": "ef8d20b1cac9173fa28d99b4613901d2e655cb592c4188a1cb283d23edf276cb",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P31614",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.53"
+      ],
+      "entry_name": "HEMA_CVMS",
+      "freeze_rank": 14,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Murine coronavirus (strain S) (MHV-S) (Murine hepatitis virus)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "4C7L",
+        "4C7W"
+      ],
+      "primary_ec": "3.1.1.53",
+      "protein_name": "Hemagglutinin-esterase (HE protein) (EC 3.1.1.53) (E3 glycoprotein)",
+      "row_id": "uniprot:P31614",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 439,
+      "sequence_sha256": "1ecb9bb0b112b156712030dc081954db0cc276ca93cdb9609f67281499106902",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "E9LVH9",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.101",
+        "3.1.1.74"
+      ],
+      "entry_name": "PETH2_THECS",
+      "freeze_rank": 15,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Thermobifida cellulosilytica",
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "5LUJ",
+        "5LUK",
+        "5LUL",
+        "7QJS"
+      ],
+      "primary_ec": "3.1.1.101",
+      "protein_name": "Cutinase 2 (EC 3.1.1.74) (Poly(ethylene terephthalate) hydrolase) (PET hydrolase) (PETase) (EC 3.1.1.101)",
+      "row_id": "uniprot:E9LVH9",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 262,
+      "sequence_sha256": "cc22df287b07a27f8b1001783a75005360a14cd97a8e37182b355b8b36a7bc27",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "A0A0B5LB55",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.-"
+      ],
+      "entry_name": "MPAH2_PENBR",
+      "freeze_rank": 16,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Penicillium brevicompactum",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "7DBI",
+        "7DBL"
+      ],
+      "primary_ec": "3.1.1.-",
+      "protein_name": "Type I acyl-CoA thioesterase mpaH' (EC 3.1.1.-) (Mycophenolic acid biosynthesis cluster protein H')",
+      "row_id": "uniprot:A0A0B5LB55",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 433,
+      "sequence_sha256": "ffcfef752661f89c668352c9c4721d6318991a1e7c5743e39101a0f92b836fb8",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "F7IX06",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.101",
+        "3.1.1.74"
+      ],
+      "entry_name": "PETH2_THEAE",
+      "freeze_rank": 17,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Thermobifida alba (Thermomonospora alba)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "3VIS",
+        "3WYN",
+        "6AID"
+      ],
+      "primary_ec": "3.1.1.101",
+      "protein_name": "Cutinase est2 (EC 3.1.1.74) (Poly(ethylene terephthalate) hydrolase) (PET hydrolase) (PETase) (EC 3.1.1.101) (TaCut2)",
+      "row_id": "uniprot:F7IX06",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 300,
+      "sequence_sha256": "e806085a30d0427b3ece1df8dfbb0979a1f8f32a7f8f50a1fd5f29c61cc3f0a7",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "Q09LX1",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.72"
+      ],
+      "entry_name": "AXE2_GEOSE",
+      "freeze_rank": 18,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Geobacillus stearothermophilus (Bacillus stearothermophilus)",
+      "pdb_count": 8,
+      "pdb_ids_sample": [
+        "3W7V",
+        "4JHL",
+        "4JJ4",
+        "4JJ6",
+        "4JKO",
+        "4OAO",
+        "4OAP",
+        "5BN1"
+      ],
+      "primary_ec": "3.1.1.72",
+      "protein_name": "Acetylxylan esterase (EC 3.1.1.72) (Acetyl-xylooligosaccharide esterase)",
+      "row_id": "uniprot:Q09LX1",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 219,
+      "sequence_sha256": "653b664d5a7ef242366ff1dc027a5e7cd28a7520b5942238f5288251af2aa249",
+      "ser_his_acid_source_context_present": true
+    },
+    {
+      "accession": "P15776",
+      "active_site_annotation_present": true,
+      "active_site_count": 3,
+      "catalytic_activity_annotation_present": true,
+      "charge_relay_or_triad_note_present": true,
+      "ec_numbers": [
+        "3.1.1.53"
+      ],
+      "entry_name": "HEMA_CVBM",
+      "freeze_rank": 19,
+      "nucleophile_active_site_note_present": true,
+      "organism": "Bovine coronavirus (strain Mebus) (BCoV) (BCV)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "3CL4",
+        "3CL5"
+      ],
+      "primary_ec": "3.1.1.53",
+      "protein_name": "Hemagglutinin-esterase (HE protein) (EC 3.1.1.53) (E3 glycoprotein)",
+      "row_id": "uniprot:P15776",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 3.1.1.* row with catalytic activity, PDB cross-reference, sequence, active-site annotation, and source evidence for a serine-hydrolase-like nucleophile/charge-relay active-site context; prior pools and nuclease/metallo/phospholipase-D/A2 contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 424,
+      "sequence_sha256": "1e30f84117b454934ebac2c90b3a4d604ea29556c3d949a62840592f04a0bdfa",
+      "ser_his_acid_source_context_present": true
+    }
+  ]
+}

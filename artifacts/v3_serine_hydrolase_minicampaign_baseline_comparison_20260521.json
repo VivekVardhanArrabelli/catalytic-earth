@@ -1,0 +1,314 @@
+{
+  "caveats": [
+    "EC/keyword routing is lane context only; it does not convert needs_review rows into mechanism_match rows.",
+    "Deterministic sequence-neighbor checks are duplicate/leakage diagnostics, not mechanism evidence.",
+    "No ESM, Foldseek, or source-free geometry sidecar was generated for this frozen set, so no superiority claim is permitted."
+  ],
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_minicampaign_baseline_comparison_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_serine_hydrolase_minicampaign_freeze_20260521.json",
+    "created_at": "2026-05-21T01:24:05Z",
+    "curated_label_registry_edited": false,
+    "decision_artifact": "artifacts/v3_prospective_external_serine_hydrolase_minicampaign_decision_packet_20260521.json",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 19,
+    "method": "no_claim_serine_hydrolase_external_minicampaign_baseline_comparison",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "sequence_baseline_artifact": "artifacts/v3_serine_hydrolase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "deterministic_5mer_nearest_neighbor": {
+      "exact_current_reference_sequence_match_count": 1,
+      "mechanism_claim_count": 0,
+      "near_neighbor_alert_count": 1,
+      "reference_sequence_count": 737,
+      "terminal_decision_changed_by_sequence_baseline": true
+    },
+    "ec_keyword_name_proxy": {
+      "detects_source_free_axis_gap": false,
+      "import_claim_count": 0,
+      "route": "ser_his_acid_hydrolase_lane",
+      "row_count": 19
+    },
+    "esm2_sidecar": {
+      "status": "not_available_for_this_frozen_set"
+    },
+    "foldseek_sidecar": {
+      "status": "not_run_for_this_frozen_set"
+    },
+    "geometry_retrieval_triage": {
+      "geometry_scored_external_row_count": 0,
+      "non_abstention_count_at_0_4115": 0,
+      "status": "not_run_external_source_free_geometry_missing",
+      "text_or_label_fields_used_for_score_count": 0
+    },
+    "review_only_terminal_decisions": {
+      "import_ready_candidate_count": 0,
+      "mechanism_match_count": 0,
+      "row_count": 19,
+      "terminal_decision_counts": {
+        "needs_review": 18,
+        "terminal_rejection": 1
+      }
+    }
+  },
+  "rows": [
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0053,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P39594",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9NWW9",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0771,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P29183",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P54317",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0028,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P95468",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9BV23",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0032,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P15474",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9UL19",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0027,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P09367",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P07098",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0047,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P20933",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q99685",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0034,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P05725",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P04180",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.2627,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P29183",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P16233",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P94388",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P94388",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0186,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q0ZPV7",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9FG13",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0977,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P29183",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P54318",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0096,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P28012",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P0ADA1",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0037,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q9LCV9",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P13001",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0056,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P37610",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P31614",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0039,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P21310",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:E9LVH9",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0029,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0A759",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:A0A0B5LB55",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0069,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P19920",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:F7IX06",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0047,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P39304",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q09LX1",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0029,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P24289",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "ser_his_acid_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P15776",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    }
+  ],
+  "task_definition": {
+    "comparison_question": "Do simple EC/keyword and deterministic sequence-neighbor baselines change terminal review-only decisions for the frozen serine hydrolase mini-campaign?",
+    "frozen_rows_source": "artifacts/v3_prospective_external_serine_hydrolase_minicampaign_freeze_20260521.json",
+    "positive_claim_allowed": false
+  }
+}

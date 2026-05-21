@@ -365,6 +365,26 @@ current-reference duplicate terminal rejections, eight sequence-neighbor
 alerts, and 0 geometry-scored external rows. It is still review-only and does
 not authorize superiority, mechanism-match, production scoring, threshold,
 registry, fingerprint, or import claims.
+Current serine-hydrolase external mini-campaign scope:
+`artifacts/v3_prospective_external_serine_hydrolase_minicampaign_freeze_20260521.json`
+freezes 19 reviewed UniProtKB/Swiss-Prot EC 3.1.1.* rows before outcome
+scoring for the existing `ser_his_acid_hydrolase` lane. The freeze requires
+catalytic activity, PDB cross-reference, sequence, active-site annotation, and
+source evidence for a serine-hydrolase-like nucleophile plus charge-relay/triad
+context, while excluding prior external-pool/imported accessions and
+nuclease/metallo/phospholipase-D/secretory-phospholipase-A2 contexts.
+`artifacts/v3_prospective_external_serine_hydrolase_minicampaign_decision_packet_20260521.json`
+records 18 `needs_review` rows and one exact current-reference duplicate
+terminal rejection (`P94388`), with 0 import-ready rows. The no-claim baseline
+`artifacts/v3_serine_hydrolase_minicampaign_baseline_comparison_20260521.json`
+keeps EC/keyword routing and deterministic 5-mer context diagnostic only. The
+post-serine rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_serine_hydrolase_20260521.json`
+covers 78 frozen rows across four 2026-05-21 mini-campaigns: 70
+`needs_review`, 8 exact current-reference duplicate terminal rejections, 9
+sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
+mechanism-match, production-score, threshold, import, registry, or fingerprint
+claim is in scope.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two
