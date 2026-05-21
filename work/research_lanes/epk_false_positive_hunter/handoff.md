@@ -1,88 +1,76 @@
 # ePK false-positive hunter handoff
 
-- Last updated: 2026-05-21T05:22:42Z
-- Started: 2026-05-21T04:32:59Z
-- Ended: 2026-05-21T05:22:42Z
-- Measured minutes: 49.72
+- Last updated: 2026-05-21T12:52:45Z
+- Started: 2026-05-21T05:34:01Z
+- Ended: 2026-05-21T12:52:45Z
+- Measured minutes: 438.73
 - Primary outcome: regression_rows_emitted
-- Pushed commit: 1a712f04adc071a2faafb917bd0735409f17e092 via alternate-index commit/push.
-- Handoff/status commit: aca2612f65489584bcaa982a93671ed4d36ef0df via alternate-index commit/push.
-- Rule under attack: entry-level any-context v4 review-only guard overblock risk plus unsafe ePK materializer non-abstention on geometry-prefiltered non-ePK v4 contaminants.
+- Commit/push status: pending alternate-index commit/push verification after this handoff update.
+- Rule under attack: materializer equivalence on local geometry prefilters plus later-offset source-valid ePK entity v4 seed coverage.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
 
 ## Search Surface
 
-Ran a new lane-only helper over source-valid ePK entity seeds and geometry-prefiltered non-ePK v4 contaminants. CIFs were fetched in memory only and reduced to compact context/materializer evidence.
+Ran a new lane-only helper that audited the prior local-geometry/materializer gap IDs and expanded later-offset source-valid ePK entity seed queries. CIFs were fetched in memory only and reduced to compact entity/topology/materializer rows.
 
-- Helper: `tools/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress.py`
-- Primary artifact: `artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress_20260521_043259Z.json`
-- Extended gate: `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_051511Z.json`
-- V4 absence audit: `artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_v4_absence_audit_20260521_051700Z.json`
-- Entries reviewed: 404
-- Coordinate contexts reviewed: 904
-- Materializer contexts: 39
-- Source-valid family-bucket entries: 27
-- Source-valid deposited-or-assembly v4 seeds: 1, `9LGO`
-- Non-ePK v4 contaminant prefilter entries: 67
-- Local gamma-to-acceptor geometry contexts: 145
-- Geometry-prefiltered non-ePK materialized contexts: 8
+- Helper: `tools/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit.py`
+- Primary artifact: `artifacts/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit_20260521_053401Z.json`
+- Extended gate: `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_125234Z.json`
+- Entries reviewed: 307
+- Coordinate contexts reviewed: 657
+- Gap audit materializer contexts: 8
+- Later-offset source-valid ePK v4 seed entries: 0
 - Fetch errors: 0
 - Materializer context errors: 0
 
 ## Result
 
-No new unsafe ePK non-abstention was found on this bounded surface.
+The 8OOZ/9OFD/9OFE/9W1G geometry-vs-materializer gap is now explicit: all eight deposited/biological-assembly contexts had local Tyr-to-ATP gamma geometry, but every local hit mapped to the same author chain and the same polymer entity as the gamma-associated chain. The actual heteromeric materializer abstained in all eight contexts with `no_heteromeric_candidate_hit_review_only`.
 
-- `9LGO` was the only polymer/entity-classified source-valid ePK seed with deposited-or-assembly v4 true. Deposited and biological assembly contexts both returned zero substrate-mode materializer hits.
-- `8OOZ`, `9OFD`, `9OFE`, and `9W1G` had local gamma-to-acceptor geometry in deposited and biological assembly contexts, but all eight materializer probes returned `no_heteromeric_candidate_hit_review_only`.
-- The extended `epk_candidate_evidence_v1` regression gate emitted 305 rows, including 10 rows from the new source artifact: 8 geometry-prefiltered non-ePK contaminant controls and 2 source-valid ePK entity-seed controls.
-- Expected-policy unsafe non-abstentions remained 0.
-- The pinned context-v4-only assembly split failure remains `5UJ7:biological_assembly_1`.
+The later-offset CDK/cyclin, JNK, receptor tyrosine kinase, insulin receptor kinase, EGFR dimer, mTORC1, and mTORC2 full-text/component search pages returned 307 unique entries after de-duplication with the four gap controls. None became a source-valid polymer/entity-family ePK v4 seed under this helper's compact entity bucket criteria.
+
+The regression gate now emits 313 `epk_candidate_evidence_v1` rows from 12 lane sources. Expected-policy unsafe non-abstentions remain 0. The known context-v4-only residual remains `5UJ7:biological_assembly_1`.
 
 ## Evidence For / Against
 
-Evidence for the regression gate extension:
+Evidence for the added regression controls:
 
-- The new helper preserves coordinate context, local geometry, deposited/assembly v4 state, entry-level guard state, regression-gate join state, expected source/policy category, and observed materializer decision.
-- The gate now covers a sharper contaminant surface than the previous no-hit pass because non-ePK entries were prefiltered for local Tyr or N-terminal Ser/Thr/Tyr gamma geometry before materialization.
+- The gap artifact records acceptor entity, gamma-associated polymer entity, same-chain status, same-entity reuse, local distance, materializer decision, and reject reasons for every 8OOZ/9OFD/9OFE/9W1G deposited/assembly context.
+- The extended gate includes eight new `geometry_prefiltered_non_epk_v4_contaminant_control` rows; gate status remains `passes_expected_policy_gate_review_only`.
+- The explicit negative-control rule now distinguishes local geometry prefilter hits from materializer-equivalent heteromeric entity hits.
 
 Evidence against counterexamples on this run's surface:
 
-- No source-valid ePK overblock was observed because the only entity-classified v4 source seed, `9LGO`, produced no substrate-mode materializer hit.
-- No geometry-prefiltered non-ePK residual survived materialization; all eight selected contaminant contexts abstained.
-- Of 27 source-valid family-bucket entries, 26 lacked deposited-or-assembly v4 and were outside the entry-level v4 overblock surface.
+- No gap-audit context had a heteromeric-entity-eligible local hit after entity mapping.
+- No later-offset source-valid ePK v4 seed beyond the prior 9LGO surface was found across the bounded 307-entry / 657-context search.
+- No source-valid ePK entry-level overblock risk and no unsafe non-abstention were observed.
 
 ## Verification
 
-- `python -m py_compile tools/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress.py tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
-- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress_20260521_043259Z.json >/dev/null`
-- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_051511Z.json >/dev/null`
-- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_v4_absence_audit_20260521_051700Z.json >/dev/null`
-- `git diff --check -- tools/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress.py tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress_20260521_043259Z.json artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_051511Z.json artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_v4_absence_audit_20260521_051700Z.json`
+- `python -m py_compile tools/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit.py`
+- `python -m py_compile tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py tools/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit.py`
+- `python -m json.tool artifacts/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit_20260521_053401Z.json >/dev/null`
+- `python tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py --started-at 2026-05-21T05:34:01Z --output artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_125234Z.json --repo-root .`
 
 ## Blockers
 
 - `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git pull --ff-only origin research/epk-false-positive-hunter` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git fetch --no-write-fetch-head origin` succeeded.
-- Normal `git add` failed creating linked-worktree `index.lock`: Operation not permitted.
-- Alternate-index primary commit/push succeeded.
-- Alternate-index handoff/status commit/push succeeded.
 - Local checked-out HEAD remains behind `origin/research/epk-false-positive-hunter`; normal status still reflects linked-worktree metadata/index issues from prior runs.
 
 ## Next Query
 
-Audit the materializer-equivalence gap for local geometry prefilter rows `8OOZ`, `9OFD`, `9OFE`, and `9W1G`: compare local gamma-to-acceptor geometry with heteromeric entity mapping to explain why the actual materializer abstains, then expand later-offset CDK/cyclin, mTORC1/2, JNK, and receptor tyrosine kinase entity seeds to look for deposited-or-assembly v4 positives beyond `9LGO`. Keep production labels, thresholds, registries/fingerprints, migrations, and scoring forbidden.
+Generalize deposited-v4 / assembly-below-floor split traps outside the fixed ORC/OCCM/MCM set: search non-ORC AAA+/ATPase/transporter/motor entries where deposited atom_site is v4-positive, a declared biological assembly falls below the current chain floor, and compact local Tyr or N-terminal Ser/Thr/Tyr geometry is heteromeric-entity eligible before materialization. In parallel, replace full-text later-offset source-valid ePK search with polymer-entity classification or curated accession/domain seeds for CDK/cyclin, JNK, receptor tyrosine kinases, and mTOR complexes.
 
 Production claims, label changes, threshold calibration, registry/fingerprint edits, artifact migrations, and production scoring remain forbidden.
 
 ## Files Changed
 
-- `tools/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress.py`
+- `tools/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit.py`
 - `tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
-- `artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress_20260521_043259Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_051511Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_v4_absence_audit_20260521_051700Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/source_valid_later_offset_gap_audit_20260521_053401Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_125234Z.json`
 - `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
 - `work/research_lanes/epk_false_positive_hunter/handoff.md`

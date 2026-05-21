@@ -90,6 +90,12 @@ SOURCE_SPECS = [
         "row_key": "custom_materializer_rows",
         "source_profile": "source_valid_epk_seed_geometry_prefilter_controls",
     },
+    {
+        "path": "artifacts/research_lanes/epk_false_positive_hunter/"
+        "source_valid_later_offset_gap_audit_20260521_053401Z.json",
+        "row_key": "custom_materializer_rows",
+        "source_profile": "source_valid_epk_seed_geometry_prefilter_controls",
+    },
 ]
 
 
