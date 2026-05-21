@@ -1,0 +1,249 @@
+{
+  "coverage_summary": {
+    "claim_status_allowed_values": [
+      "forbidden_source_leakage",
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "claim_status_values_covered_by_positive_or_expected_negative_fixture": [
+      "forbidden_source_leakage",
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "claim_status_values_uncovered": [],
+    "coordinate_state_allowed_values": [
+      "active_gamma",
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "ligand_absent",
+      "metal_absent",
+      "product_state",
+      "split_state",
+      "substrate_acceptor_analog_state",
+      "unavailable_coordinate_state"
+    ],
+    "coordinate_state_values_covered": [
+      "active_gamma",
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "ligand_absent",
+      "metal_absent",
+      "product_state",
+      "split_state",
+      "substrate_acceptor_analog_state",
+      "unavailable_coordinate_state"
+    ],
+    "coordinate_state_values_uncovered": [],
+    "discovery_signal_separate_from_claim_admissibility": true,
+    "forbidden_source_leakage_is_expected_gate_failure": true,
+    "labels_or_fingerprints_changed": false,
+    "metadata_count_drift_is_expected_validator_error": true,
+    "missing_schema_fields_are_expected_gate_failure": true,
+    "production_claim_allowed": false,
+    "source_leakage_flag_count_audited": 14,
+    "unsafe_control_nonabstention_is_expected_gate_failure": true
+  },
+  "hypothesis": "The candidate-level bridge is regression-testable only if positive coverage exercises every review-only status and coordinate state while negative fixtures prove that source leakage, unsafe controls, missing schema fields, and metadata drift cannot pass the scoreboard gate.",
+  "metadata": {
+    "artifact_id": "epk_candidate_bridge_status_coverage_fault_injection_v2",
+    "coverage_fixture_not_production_policy": true,
+    "created_at": "2026-05-21T04:47:48+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "policy_version": "epk_candidate_bridge_status_coverage_fixture_review_only_not_production_20260521",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "negative_fault_injections": [
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_negative_forbidden_source_leakage_result.json",
+      "expected_failure": "forbidden_source_leakage",
+      "forbidden_source_leakage_count": 1,
+      "gate_pass": false,
+      "missing_schema_row_count": 0,
+      "rejected": true,
+      "rejection_type": "gate_failure",
+      "unsafe_control_nonabstention_count": 0
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_negative_unsafe_control_nonabstention_result.json",
+      "expected_failure": "unsafe_control_nonabstention",
+      "forbidden_source_leakage_count": 0,
+      "gate_pass": false,
+      "missing_schema_row_count": 0,
+      "rejected": true,
+      "rejection_type": "gate_failure",
+      "unsafe_control_nonabstention_count": 1
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_negative_missing_schema_fields_result.json",
+      "expected_failure": "missing_schema_fields",
+      "forbidden_source_leakage_count": 0,
+      "gate_pass": false,
+      "missing_schema_row_count": 1,
+      "rejected": true,
+      "rejection_type": "gate_failure",
+      "unsafe_control_nonabstention_count": 0
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_negative_metadata_count_drift_result.json",
+      "error": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_negative_metadata_count_drift_result.json metadata.claim_status_counts drifted from rows",
+      "expected_failure": "metadata_count_drift",
+      "rejected": true,
+      "rejection_type": "validator_error"
+    }
+  ],
+  "positive_coverage": {
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 1,
+      "review_only_abstain_forbidden_context": 1,
+      "review_only_abstain_missing_role_policy": 2,
+      "review_only_abstain_product_state": 2,
+      "review_only_abstain_sibling_control": 1,
+      "review_only_abstain_split_state": 1,
+      "review_only_abstain_topology_ambiguity": 2,
+      "review_only_nonabstaining_candidate": 1
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 3,
+      "adp_state": 1,
+      "ambiguous_coordinate_state": 1,
+      "ligand_absent": 1,
+      "metal_absent": 1,
+      "product_state": 1,
+      "split_state": 1,
+      "substrate_acceptor_analog_state": 1,
+      "unavailable_coordinate_state": 1
+    },
+    "covered_coordinate_state_values": [
+      "active_gamma",
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "ligand_absent",
+      "metal_absent",
+      "product_state",
+      "split_state",
+      "substrate_acceptor_analog_state",
+      "unavailable_coordinate_state"
+    ],
+    "covered_non_forbidden_claim_status_values": [
+      "review_only_abstain_analog_state",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_split_state",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "gate_pass": true,
+    "result_artifact": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_result.json",
+    "result_sha256": "cc0f8b6256ca16a2afa1e0649a4578ce0bd7d6bd221568a809e292ccad0f4edd",
+    "rows_reviewed": 11,
+    "scoreboard_gate_artifact": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "081b83f3d901bf7e63180e3a149b4fdf7bce770afdb1991856e9c60693b3b5f1",
+    "tranche_artifact": "artifacts/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection_v2_20260521T043924Z_tranche.json",
+    "tranche_sha256": "b8b9096e01a6c4ef8a9708d38a70fb0845d079079986f78eab47898c2f23c799"
+  },
+  "source_leakage_flag_audit": [
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "ec_or_rhea_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "mechanism_text_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "paper_metadata_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "paper_title_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "pdb_title_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "protein_name_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "protein_names_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "source_id_as_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "source_query_used_for_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "source_review_used_for_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "source_text_used_for_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "source_validation_used_for_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "structure_title_used_for_predictive_feature",
+      "gate_expected_failure": true
+    },
+    {
+      "claim_admissibility": "forbidden",
+      "claim_status": "forbidden_source_leakage",
+      "forbidden_source_leakage_flag": "uniprot_prose_as_predictive_feature",
+      "gate_expected_failure": true
+    }
+  ]
+}

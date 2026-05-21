@@ -9,6 +9,7 @@ from typing import Any
 from epk_policy_harness import (
     CLAIM_STATUS_VALUES,
     COORDINATE_STATE_VALUES,
+    FORBIDDEN_ROW_FLAGS,
     SCHEMA_VERSION,
     SOURCE_LEAKAGE_ROW_FLAGS,
     sha256_file,
@@ -27,6 +28,17 @@ CONTROL_ROLE_TOKENS = (
     "mcm",
     "internal_fragment",
     "internal-fragment",
+)
+POLICY_DECISION_REQUIRED_FIELDS = (
+    "schema_version",
+    "row_id",
+    "coordinate_state",
+    "claim_status",
+    "claim_admissibility",
+    "abstention_reasons",
+    "forbidden_predictive_context_flags",
+    "production_claim_allowed",
+    "labels_or_fingerprints_changed",
 )
 
 
@@ -64,6 +76,21 @@ def schema_drafts() -> dict[str, Any]:
         "schemas": {
             "epk_candidate_evidence_v1": {
                 "scope": "candidate_level_gamma_acceptor_pair_not_pdb_level",
+                "candidate_identity_fields": [
+                    "lane_id",
+                    "row_id",
+                    "candidate_id",
+                    "pdb_id",
+                    "model_id",
+                    "chain_or_auth_asym_id",
+                    "ligand_instance_id",
+                    "terminal_gamma_atom_id",
+                    "acceptor_atom_id",
+                ],
+                "candidate_identity_rule": (
+                    "row_id or candidate_id identifies one gamma/acceptor candidate; "
+                    "entry-level status is derived from candidate decisions"
+                ),
                 "required_fields": [
                     "schema_version",
                     "row_id",
@@ -102,7 +129,9 @@ def schema_drafts() -> dict[str, Any]:
                     "split_state_context",
                     "sibling_counterfamily_context",
                 ],
-                "forbidden_predictive_flags": sorted(SOURCE_LEAKAGE_ROW_FLAGS),
+                "forbidden_predictive_flags": sorted(FORBIDDEN_ROW_FLAGS),
+                "source_leakage_predictive_flags": sorted(SOURCE_LEAKAGE_ROW_FLAGS),
+                "compact_artifact_rule": "do_not_write_large_raw_coordinate_dumps",
             },
             "epk_policy_decision_v1": {
                 "required_fields": [
@@ -119,6 +148,8 @@ def schema_drafts() -> dict[str, Any]:
                 "claim_status_enum": sorted(CLAIM_STATUS_VALUES),
                 "claim_admissibility_enum": ["review_only", "forbidden"],
                 "nonabstaining_is_review_only": True,
+                "coordinate_state_enum": sorted(COORDINATE_STATE_VALUES),
+                "production_scoring_rule": "not_production_scoring_or_label_import",
             },
             "epk_scoreboard_row_v1": {
                 "required_fields": [
@@ -132,6 +163,13 @@ def schema_drafts() -> dict[str, Any]:
                     "unsafe_control_nonabstention_count",
                     "production_claim_allowed",
                     "labels_or_fingerprints_changed",
+                ],
+                "scoreboard_artifact_required_fields": [
+                    "scoreboard_summary.covered_claim_status_values",
+                    "scoreboard_summary.uncovered_claim_status_values",
+                    "scoreboard_summary.covered_coordinate_state_values",
+                    "scoreboard_summary.uncovered_coordinate_state_values",
+                    "gate.gate_pass",
                 ],
                 "separates_discovery_signal_from_claim_admissibility": True,
                 "progress_gate": "fails on forbidden source leakage or unsafe control nonabstention",
@@ -171,22 +209,54 @@ def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> d
     claim_status_counts: dict[str, int] = {}
     coordinate_state_counts: dict[str, int] = {}
     missing_schema_rows: list[str] = []
+    missing_schema_details: list[dict[str, Any]] = []
     forbidden_source_leakage_rows: list[str] = []
     unsafe_control_nonabstention_rows: list[str] = []
     discovery_signal_row_count = 0
 
     for row in rows:
         row_id = str(row.get("row_id") or row.get("pdb_id") or "unknown_row")
+        missing_fields = [
+            field for field in POLICY_DECISION_REQUIRED_FIELDS if field not in row
+        ]
+        if missing_fields:
+            missing_schema_rows.append(row_id)
+            missing_schema_details.append(
+                {"row_id": row_id, "missing_fields": missing_fields}
+            )
         claim_status = row.get("claim_status")
         coordinate_state = row.get("coordinate_state")
+        claim_admissibility = row.get("claim_admissibility")
         if row.get("schema_version") != SCHEMA_VERSION:
             missing_schema_rows.append(row_id)
+            missing_schema_details.append(
+                {"row_id": row_id, "invalid_field": "schema_version"}
+            )
         if claim_status not in CLAIM_STATUS_VALUES:
             missing_schema_rows.append(row_id)
+            missing_schema_details.append(
+                {"row_id": row_id, "invalid_field": "claim_status"}
+            )
             continue
         if coordinate_state not in COORDINATE_STATE_VALUES:
             missing_schema_rows.append(row_id)
+            missing_schema_details.append(
+                {"row_id": row_id, "invalid_field": "coordinate_state"}
+            )
             continue
+        expected_admissibility = (
+            "forbidden" if claim_status == "forbidden_source_leakage" else "review_only"
+        )
+        if claim_admissibility != expected_admissibility:
+            missing_schema_rows.append(row_id)
+            missing_schema_details.append(
+                {
+                    "row_id": row_id,
+                    "invalid_field": "claim_admissibility",
+                    "expected": expected_admissibility,
+                    "actual": claim_admissibility,
+                }
+            )
         claim_status_counts[claim_status] = claim_status_counts.get(claim_status, 0) + 1
         coordinate_state_counts[coordinate_state] = (
             coordinate_state_counts.get(coordinate_state, 0) + 1
@@ -241,6 +311,7 @@ def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> d
         "expected_claim_status_mismatch_count": expected_claim_mismatch_count,
         "missing_schema_row_count": len(set(missing_schema_rows)),
         "missing_schema_rows": sorted(set(missing_schema_rows)),
+        "missing_schema_details": missing_schema_details,
         "production_claim_allowed": False,
         "labels_or_fingerprints_changed": False,
         "gate_pass": gate_pass,
@@ -350,6 +421,11 @@ def self_test() -> None:
                 "row_role": "geometry_lead",
                 "coordinate_state": "active_gamma",
                 "claim_status": "review_only_abstain_missing_role_policy",
+                "claim_admissibility": "review_only",
+                "abstention_reasons": ["missing_required_same_structure_features"],
+                "forbidden_predictive_context_flags": [],
+                "production_claim_allowed": False,
+                "labels_or_fingerprints_changed": False,
                 "nearest_gamma_acceptor_distance_angstrom": 3.2,
             }
         ],
@@ -375,6 +451,26 @@ def self_test() -> None:
     leak_summary = summarize_result(root, result_path, source_leak)
     assert leak_summary["gate_pass"] is False
     assert leak_summary["forbidden_source_leakage_count"] == 1
+    missing_schema = json.loads(json.dumps(good_result))
+    del missing_schema["rows"][0]["schema_version"]
+    del missing_schema["rows"][0]["claim_admissibility"]
+    missing_schema_summary = summarize_result(root, result_path, missing_schema)
+    assert missing_schema_summary["gate_pass"] is False
+    assert missing_schema_summary["missing_schema_row_count"] == 1
+    assert missing_schema_summary["missing_schema_details"][0]["missing_fields"] == [
+        "schema_version",
+        "claim_admissibility",
+    ]
+    bad_admissibility = json.loads(json.dumps(good_result))
+    bad_admissibility["rows"][0]["claim_admissibility"] = "forbidden"
+    bad_admissibility_summary = summarize_result(
+        root, result_path, bad_admissibility
+    )
+    assert bad_admissibility_summary["gate_pass"] is False
+    assert any(
+        detail.get("invalid_field") == "claim_admissibility"
+        for detail in bad_admissibility_summary["missing_schema_details"]
+    )
     drift = json.loads(json.dumps(good_result))
     drift["metadata"]["claim_status_counts"] = {
         "review_only_abstain_product_state": 1,
