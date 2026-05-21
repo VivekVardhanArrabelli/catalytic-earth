@@ -40,6 +40,11 @@ POLICY_DECISION_REQUIRED_FIELDS = (
     "production_claim_allowed",
     "labels_or_fingerprints_changed",
 )
+CANDIDATE_IDENTITY_REQUIRED_FIELDS = (
+    "candidate_id",
+    "source_lane_id",
+    "source_artifact",
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -213,11 +218,16 @@ def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> d
     forbidden_source_leakage_rows: list[str] = []
     unsafe_control_nonabstention_rows: list[str] = []
     discovery_signal_row_count = 0
+    required_fields = list(POLICY_DECISION_REQUIRED_FIELDS)
+    if metadata.get("require_candidate_identity_fields") is True:
+        required_fields.extend(CANDIDATE_IDENTITY_REQUIRED_FIELDS)
 
     for row in rows:
         row_id = str(row.get("row_id") or row.get("pdb_id") or "unknown_row")
         missing_fields = [
-            field for field in POLICY_DECISION_REQUIRED_FIELDS if field not in row
+            field
+            for field in required_fields
+            if field not in row or row.get(field) in (None, "")
         ]
         if missing_fields:
             missing_schema_rows.append(row_id)
@@ -405,6 +415,7 @@ def self_test() -> None:
             "schema_version": SCHEMA_VERSION,
             "production_claim_allowed": False,
             "labels_or_fingerprints_changed": False,
+            "require_candidate_identity_fields": False,
             "tranche_id": "self_test",
             "policy_version": "self_test",
             "claim_status_counts": {
@@ -460,6 +471,16 @@ def self_test() -> None:
     assert missing_schema_summary["missing_schema_details"][0]["missing_fields"] == [
         "schema_version",
         "claim_admissibility",
+    ]
+    missing_identity = json.loads(json.dumps(good_result))
+    missing_identity["metadata"]["require_candidate_identity_fields"] = True
+    missing_identity_summary = summarize_result(root, result_path, missing_identity)
+    assert missing_identity_summary["gate_pass"] is False
+    assert missing_identity_summary["missing_schema_row_count"] == 1
+    assert missing_identity_summary["missing_schema_details"][0]["missing_fields"] == [
+        "candidate_id",
+        "source_lane_id",
+        "source_artifact",
     ]
     bad_admissibility = json.loads(json.dumps(good_result))
     bad_admissibility["rows"][0]["claim_admissibility"] = "forbidden"

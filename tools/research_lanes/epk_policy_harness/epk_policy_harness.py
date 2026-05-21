@@ -164,6 +164,38 @@ QUERY_CONTEXT_CONTRACT_TRUE_FLAGS = (
     "coordinate_ligand_code_required",
 )
 
+FEDERATED_ADAPTER_CONTRACT_TRUE_FLAGS = (
+    "candidate_rows_from_independent_lanes",
+    "source_artifacts_review_only",
+    "source_text_and_protein_names_not_copied",
+    "source_review_context_not_predictive",
+)
+
+FEDERATED_ADAPTER_CONTRACT_FALSE_FLAGS = (
+    "raw_coordinate_dump_written",
+    "production_claim_allowed",
+    "labels_or_fingerprints_changed",
+)
+
+FEDERATED_ADAPTER_FORBIDDEN_COPIED_FIELDS = (
+    "source_query",
+    "source_text",
+    "source_review_text",
+    "source_validation_text",
+    "structure_title",
+    "pdb_title",
+    "protein_name",
+    "protein_names",
+    "entity_descriptions",
+    "paper_title",
+    "paper_metadata",
+    "uniprot_prose",
+    "mechanism_text",
+    "ec_number",
+    "rhea_id",
+    "ec_or_rhea",
+)
+
 COORDINATE_LIGAND_MATERIALIZATION_GUARD_TRUE_FLAGS = (
     "coordinate_ligand_codes_inventoried_before_local_feature_review",
     "query_synonyms_review_only",
@@ -816,6 +848,164 @@ def validate_tranche(tranche: dict[str, Any], policy: dict[str, Any] | None = No
                 raise ValueError(
                     f"row {row_id} violates query context review-only contract: "
                     "source_query_used_for_predictive_feature"
+                )
+    federated_contract = metadata.get("federated_adapter_smoke_contract")
+    if federated_contract:
+        if not isinstance(federated_contract, dict):
+            raise ValueError(
+                "tranche metadata.federated_adapter_smoke_contract must be an object"
+            )
+        for flag in FEDERATED_ADAPTER_CONTRACT_TRUE_FLAGS:
+            if federated_contract.get(flag) is not True:
+                raise ValueError(f"federated adapter contract requires {flag}=true")
+        for flag in FEDERATED_ADAPTER_CONTRACT_FALSE_FLAGS:
+            if federated_contract.get(flag) is not False:
+                raise ValueError(f"federated adapter contract requires {flag}=false")
+
+        source_lanes = [
+            str(row.get("source_lane_id") or "").strip()
+            for row in rows
+        ]
+        missing_source_lane_rows = [
+            str(row.get("row_id") or row.get("pdb_id") or "unknown_row")
+            for row, source_lane in zip(rows, source_lanes)
+            if not source_lane
+        ]
+        if missing_source_lane_rows:
+            raise ValueError(
+                "federated adapter contract requires source_lane_id on every row: "
+                f"{missing_source_lane_rows}"
+            )
+        distinct_source_lanes = sorted(set(source_lanes))
+        if len(distinct_source_lanes) < 2:
+            raise ValueError(
+                "federated adapter contract requires candidate rows from at least "
+                "two independent source lanes"
+            )
+        metadata_source_lanes = metadata.get("source_lanes")
+        if not isinstance(metadata_source_lanes, list):
+            raise ValueError(
+                "federated adapter contract requires metadata.source_lanes"
+            )
+        declared_source_lanes = sorted(str(lane) for lane in metadata_source_lanes)
+        if declared_source_lanes != distinct_source_lanes:
+            raise ValueError(
+                "federated adapter contract source_lanes drifted from rows: "
+                f"{declared_source_lanes} != {distinct_source_lanes}"
+            )
+        source_lane_count = metadata.get("source_lane_count")
+        try:
+            source_lane_count_value = int(source_lane_count)
+        except (TypeError, ValueError) as error:
+            raise ValueError(
+                "federated adapter contract requires numeric source_lane_count"
+            ) from error
+        if source_lane_count_value != len(distinct_source_lanes):
+            raise ValueError(
+                "federated adapter contract source_lane_count drifted from rows: "
+                f"{source_lane_count_value} != {len(distinct_source_lanes)}"
+            )
+
+        input_summaries = metadata.get("input_summaries")
+        if not isinstance(input_summaries, list) or not input_summaries:
+            raise ValueError(
+                "federated adapter contract requires non-empty input_summaries"
+            )
+        for index, summary in enumerate(input_summaries):
+            if not isinstance(summary, dict):
+                raise ValueError(
+                    "federated adapter contract requires object input_summaries"
+                )
+            lane_id = str(summary.get("lane_id") or "").strip()
+            if lane_id not in distinct_source_lanes:
+                raise ValueError(
+                    "federated adapter contract input summary lane not represented "
+                    f"in rows at index {index}: {lane_id}"
+                )
+            if summary.get("review_only_input") is not True:
+                raise ValueError(
+                    "federated adapter contract requires every input summary "
+                    "review_only_input=true"
+                )
+            try:
+                selected_count = int(summary.get("selected_row_count"))
+            except (TypeError, ValueError) as error:
+                raise ValueError(
+                    "federated adapter contract requires numeric selected_row_count"
+                ) from error
+            if selected_count <= 0:
+                raise ValueError(
+                    "federated adapter contract requires each source lane to emit "
+                    "at least one selected row"
+                )
+
+        seen_row_ids: set[str] = set()
+        seen_candidate_keys: set[tuple[str, str]] = set()
+        harness_lane_id = str(metadata.get("lane_id") or "").strip()
+        for row in rows:
+            row_id = str(row.get("row_id") or row.get("pdb_id") or "").strip()
+            if not row_id:
+                raise ValueError("federated adapter contract requires row_id")
+            if row_id in seen_row_ids:
+                raise ValueError(
+                    f"federated adapter contract requires unique row_id: {row_id}"
+                )
+            seen_row_ids.add(row_id)
+
+            source_lane_id = str(row.get("source_lane_id") or "").strip()
+            candidate_id = str(row.get("candidate_id") or "").strip()
+            source_artifact = str(row.get("source_artifact") or "").strip()
+            source_row_key = str(row.get("source_row_key") or "").strip()
+            source_row_id = str(row.get("source_row_id") or "").strip()
+            if harness_lane_id and source_lane_id == harness_lane_id:
+                raise ValueError(
+                    f"row {row_id} violates federated adapter contract: "
+                    "source_lane_id must name the independent emitting lane"
+                )
+            missing_identity_fields = [
+                field
+                for field, value in (
+                    ("candidate_id", candidate_id),
+                    ("source_artifact", source_artifact),
+                    ("source_row_key", source_row_key),
+                    ("source_row_id", source_row_id),
+                )
+                if not value
+            ]
+            if missing_identity_fields:
+                raise ValueError(
+                    f"row {row_id} violates federated adapter contract: "
+                    "missing candidate identity fields "
+                    f"{missing_identity_fields}"
+                )
+            candidate_key = (source_lane_id, candidate_id)
+            if candidate_key in seen_candidate_keys:
+                raise ValueError(
+                    f"row {row_id} violates federated adapter contract: "
+                    "candidate_id must be unique within each source lane"
+                )
+            seen_candidate_keys.add(candidate_key)
+
+            copied_fields = [
+                field
+                for field in FEDERATED_ADAPTER_FORBIDDEN_COPIED_FIELDS
+                if row.get(field) not in (None, "", [], {}, False)
+            ]
+            if copied_fields:
+                raise ValueError(
+                    f"row {row_id} violates federated adapter contract: "
+                    "source text, protein names, titles, paper metadata, EC/Rhea, "
+                    f"and prose must not be copied into predictive rows {copied_fields}"
+                )
+            leakage_flags = [
+                flag
+                for flag in SOURCE_LEAKAGE_ROW_FLAGS
+                if bool_feature(row, flag)
+            ]
+            if leakage_flags:
+                raise ValueError(
+                    f"row {row_id} violates federated adapter contract: "
+                    f"source leakage flags must remain false {leakage_flags}"
                 )
     materialization_guard = metadata.get("coordinate_ligand_materialization_guard")
     if materialization_guard:
@@ -1669,6 +1859,10 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
     return {
         "schema_version": SCHEMA_VERSION,
         "row_id": row.get("row_id") or row.get("pdb_id"),
+        "candidate_id": row.get("candidate_id") or row.get("row_id") or row.get("pdb_id"),
+        "source_lane_id": row.get("source_lane_id") or row.get("lane_id"),
+        "source_artifact": row.get("source_artifact"),
+        "source_row_id": row.get("source_row_id"),
         "pdb_id": row.get("pdb_id"),
         "row_role": row.get("row_role"),
         "normalized_ligand_state": normalized_ligand,
@@ -1819,6 +2013,12 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
             ),
             "query_context_review_only_contract_enforced": bool(
                 tranche_metadata.get("query_context_review_only_contract")
+            ),
+            "require_candidate_identity_fields": bool(
+                tranche_metadata.get("require_candidate_identity_fields")
+            ),
+            "federated_adapter_smoke_contract_enforced": bool(
+                tranche_metadata.get("federated_adapter_smoke_contract")
             ),
             "coordinate_ligand_materialization_guard_enforced": bool(
                 tranche_metadata.get("coordinate_ligand_materialization_guard")
