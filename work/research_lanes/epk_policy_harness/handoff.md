@@ -5,7 +5,7 @@ Run started: 2026-05-20T23:26:23Z
 Run ended: 2026-05-21T00:14:43Z
 Measured minutes: 48.33
 Primary outcome: `policy_frozen_review_only`
-Pushed commit: pending at handoff write time; final automation summary records the pushed branch tip after the alternate-index commit/push.
+Pushed commit: `df3e092c76b084a595d73ad57842fcc2a6798e22` (main run commit; this handoff metadata update is committed as a follow-up wrap commit).
 
 ## Files changed
 
