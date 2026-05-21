@@ -1,0 +1,158 @@
+{
+  "input_validation": {
+    "epk_false_positive_hunter": {
+      "handoff_mtime": "2026-05-21T03:23:13Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "json_file_count": 53,
+      "json_parse_error_count": 0,
+      "json_parse_errors_sample": [],
+      "jsonl_parse_error_count": 0,
+      "jsonl_parse_errors_sample": [],
+      "jsonl_record_count": 13
+    },
+    "epk_policy_harness": {
+      "handoff_mtime": "2026-05-21T03:20:34Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "json_file_count": 184,
+      "json_parse_error_count": 0,
+      "json_parse_errors_sample": [],
+      "jsonl_parse_error_count": 0,
+      "jsonl_parse_errors_sample": [],
+      "jsonl_record_count": 13
+    },
+    "epk_positive_evidence": {
+      "handoff_mtime": "2026-05-21T03:19:35Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "json_file_count": 97,
+      "json_parse_error_count": 0,
+      "json_parse_errors_sample": [],
+      "jsonl_parse_error_count": 0,
+      "jsonl_parse_errors_sample": [],
+      "jsonl_record_count": 12
+    },
+    "epk_sibling_controls": {
+      "handoff_mtime": "2026-05-21T02:42:42Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "json_file_count": 55,
+      "json_parse_error_count": 0,
+      "json_parse_errors_sample": [],
+      "jsonl_parse_error_count": 0,
+      "jsonl_parse_errors_sample": [],
+      "jsonl_record_count": 116
+    },
+    "epk_substrate_role_identity": {
+      "handoff_mtime": "2026-05-21T03:37:13Z",
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-substrate-role-identity/work/research_lanes/epk_substrate_role_identity/handoff.md",
+      "json_file_count": 12,
+      "json_parse_error_count": 0,
+      "json_parse_errors_sample": [],
+      "jsonl_parse_error_count": 0,
+      "jsonl_parse_errors_sample": [],
+      "jsonl_record_count": 13
+    }
+  },
+  "lane_findings": [
+    {
+      "decision_effect": "no production upgrade and no main-loop ePK task",
+      "lane_id": "epk_positive_evidence",
+      "latest_observation": "23FC remains review-only because RCSB/PDBe expose no article DOI PubMed year or publication authority, and the related ATR-ATRIP article family has no named Chk1/substrate polymer entity.",
+      "next_research_lane_query": "recheck 23FC only after new RCSB weekly release or publication metadata appears",
+      "primary_outcome": "evidence_against_clean_folded_protein_positive"
+    },
+    {
+      "counterexample_pdb_ids": [
+        "5UJ7"
+      ],
+      "decision_effect": "review-only scorer-fixture direction; no threshold production or label decision opened",
+      "entry_level_guard_residual_count": 0,
+      "lane_id": "epk_false_positive_hunter",
+      "latest_observation": "5UJ7 biological assembly 1 is the known context-level assembly-v4 residual; the entry-level deposited-or-assembly guard closes it, and no new residual appeared on the 520-entry 1132-context deep surface.",
+      "next_research_lane_query": "stress entry-level guard overblock risk on source-valid high-order ePK biological assemblies",
+      "primary_outcome": "entry_level_guard_closes_5uj7_context_residual_review_only"
+    },
+    {
+      "decision_effect": "future scorer tests should assert exact blocker reason counts, not only blocked booleans",
+      "exact_blocker_reason_counts": {
+        "gamma::none_required": 15,
+        "gamma::nonpolymer_acceptor_local_to_gamma": 24,
+        "gamma::nonpolymer_or_same_chain_local_oxygen_not_ePK_protein_substrate": 33,
+        "product::free_phosphate_product": 4,
+        "product::phosphorylated_hetatm_nonpolymer_product": 15
+      },
+      "fixture_case_count": 91,
+      "lane_id": "epk_sibling_controls",
+      "latest_observation": "103 epk_candidate_evidence_v1 regression rows were emitted from the 91-case sibling fixture plus 12 ATPase-like no-hit rows; gate assertions passed with unsafe_nonabstention_count 0.",
+      "primary_outcome": "candidate_evidence_regression_rows_emitted_review_only",
+      "regression_row_count": 103,
+      "unsafe_nonabstention_count": 0
+    },
+    {
+      "decision_counts": {
+        "review_only_abstain": 213
+      },
+      "decision_effect": "ADP/product-state context remains excluded from predictive scoring without an accepted source-free role policy",
+      "expected_decision_mismatch_count": 0,
+      "lane_id": "epk_policy_harness",
+      "latest_observation": "ADP chem-comp continuation reviewed deeper pagination and kept 117 plus later 96 evaluated rows as review-only abstentions with 0 expected-decision mismatches.",
+      "next_research_lane_query": "continue low-geometry/nonmaterialized ADP pagination only as compact review-only harness pressure",
+      "primary_outcome": "adp_product_policy_frozen_review_only"
+    },
+    {
+      "blocker_counts": {
+        "active_gamma_geometry": 72,
+        "internal_fragment_mimicry": 1,
+        "ligand_materialization": 3,
+        "none": 19,
+        "product_state_evidence": 3,
+        "substrate_role_identity": 4,
+        "topology_ambiguity": 109
+      },
+      "candidate_pair_rows": 204,
+      "decision_effect": "do not promote the no-blocker sanity flag into a production substrate-role identity rule",
+      "lane_id": "epk_substrate_role_identity",
+      "latest_observation": "epk_candidate_evidence_v1 separates coordinate evidence from review labels and still requires source-reviewed adjudication for product/ADP reciprocal folded-chain same-chain and internal-fragment cases.",
+      "primary_outcome": "source_free_candidate_table_preserves_adjudication_requirement"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_post_metal_research_lane_synthesis_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T03:39:39Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_remote_branch_outputs_integrated": true,
+    "input_json_validated_file_count": 401,
+    "input_json_validation_error_count": 0,
+    "input_jsonl_validated_record_count": 167,
+    "input_jsonl_validation_error_count": 0,
+    "integrates_uncommitted_sibling_worktree_outputs": true,
+    "lane_count": 5,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "review_only_epk_research_lane_delta_synthesis_after_metal_deep_packet",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "safety_rails": {
+    "artifact_migration_phase_2_or_3": false,
+    "artifact_upload_or_removal": false,
+    "history_rewrite": false,
+    "label_import": false,
+    "production_fingerprint_edit": false,
+    "threshold_calibration": false
+  },
+  "synthesis_conclusion": {
+    "decision_to_start_now": false,
+    "exact_evidence_to_carry_forward": "5UJ7 remains the assembly-context residual, but the entry-level guard closure is review-only and needs overblock testing before any scorer design.",
+    "label_import_authorized": false,
+    "main_loop_decision": "return_to_external_decision_deepening_ladder",
+    "overall": "fresh_epk_lane_deltas_reinforce_no_go_production_decision",
+    "positive_universe_expansion_ready": false,
+    "production_activation_decision": "no_go",
+    "production_scoring_authorized": false,
+    "registry_or_fingerprint_change_authorized": false
+  }
+}

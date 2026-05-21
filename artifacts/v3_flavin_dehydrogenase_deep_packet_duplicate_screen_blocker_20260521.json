@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "artifact_id": "v3_flavin_dehydrogenase_deep_packet_duplicate_screen_blocker_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "blocked_candidate_count": 7,
+    "candidate_count": 7,
+    "created_at": "2026-05-21T03:54:21Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+    "fingerprint_registry_edited": false,
+    "method": "flavin_dehydrogenase_deep_packet_duplicate_screen_blocker",
+    "pair_cache_complete": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "screened_candidate_count": 0
+  },
+  "rows": [
+    {
+      "accession": "P30043",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P30043",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9BRQ8",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9BRQ8",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q9NX74",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9NX74",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P42898",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P42898",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "Q652L6",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q652L6",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P94424",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P94424",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P0AGE6",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0AGE6",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "fetch_failures": [
+    {
+      "accession": "P31614",
+      "error": "AlphaFold CIF fetch failed for P31614 across versions v6:HTTPError, v5:HTTPError, v4:HTTPError, v3:HTTPError, v2:HTTPError, v1:HTTPError",
+      "error_type": "ValueError",
+      "structure_id": "P31614",
+      "structure_source": "alphafold"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_deep_packet_coordinate_materialization_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_serine_hydrolase_deep_packet_selection_20260521.json",
+    "coordinate_dir": "artifacts/v3_serine_hydrolase_deep_packet_structural_coordinates_20260521",
+    "coordinate_materialized_or_reused_count": 6,
+    "created_at": "2026-05-21T03:26:41Z",
+    "curated_label_registry_edited": false,
+    "fetch_failure_count": 1,
+    "fingerprint_registry_edited": false,
+    "method": "serine_hydrolase_deep_packet_coordinate_materialization",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "rows": [
+    {
+      "accession": "P54317",
+      "coordinate_digest_sha256": "88517607d419ba2f58fcd23ff36c252582eaf7f0f4167a81f79e0c45c1782255",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_deep_packet_structural_coordinates_20260521/afdb_P54317.cif",
+      "coordinate_size_bytes": 427377,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P54317",
+      "structure_id": "P54317",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "Q9BV23",
+      "coordinate_digest_sha256": "528d012ba2a64dd0f48665a7323a051439c2936f892c76df70424141bf35eb37",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_deep_packet_structural_coordinates_20260521/afdb_Q9BV23.cif",
+      "coordinate_size_bytes": 317037,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9BV23",
+      "structure_id": "Q9BV23",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P07098",
+      "coordinate_digest_sha256": "c397bb33b8e515931ba5156735ebbcb56193362b8675d4cd2645a32ca90aca1e",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_deep_packet_structural_coordinates_20260521/afdb_P07098.cif",
+      "coordinate_size_bytes": 375064,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P07098",
+      "structure_id": "P07098",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "Q99685",
+      "coordinate_digest_sha256": "1b05aec6b21de2adcedee5045d5ec4ef4844f6fb7253fb7f286d184b6b254e3f",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_deep_packet_structural_coordinates_20260521/afdb_Q99685.cif",
+      "coordinate_size_bytes": 278859,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q99685",
+      "structure_id": "Q99685",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P04180",
+      "coordinate_digest_sha256": "210a5bdf69224e3efca1fdfae2340a29650901fa06cf2f3a950bf280a85c63e5",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_deep_packet_structural_coordinates_20260521/afdb_P04180.cif",
+      "coordinate_size_bytes": 410569,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P04180",
+      "structure_id": "P04180",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P31614",
+      "coordinate_digest_sha256": null,
+      "coordinate_path": null,
+      "coordinate_size_bytes": 0,
+      "coordinate_status": "coordinate_fetch_failed",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P31614",
+      "structure_id": "P31614",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "E9LVH9",
+      "coordinate_digest_sha256": "2ea44c76cc8d814eb2e8853d789135913d7e4e1c726e48bb008e7941945357c7",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_deep_packet_structural_coordinates_20260521/afdb_E9LVH9.cif",
+      "coordinate_size_bytes": 242362,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:E9LVH9",
+      "structure_id": "E9LVH9",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    }
+  ]
+}

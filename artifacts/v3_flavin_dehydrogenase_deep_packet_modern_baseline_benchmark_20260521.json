@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "artifact_id": "v3_flavin_dehydrogenase_deep_packet_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json",
+    "created_at": "2026-05-21T03:54:21Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "flavin_dehydrogenase_deep_packet_modern_baseline_benchmark",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "task_definition": "compare source-separated active/cofactor-site geometry retrieval against EC/keyword routing, deterministic 5-mer, Foldseek duplicate availability, and any available ESM sidecar on the same frozen flavin rows",
+    "terminal_decision_packet": "artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_20260521.json"
+  },
+  "metrics": {
+    "deterministic_5mer_nearest_neighbor": {
+      "exact_current_reference_sequence_match_count": 0,
+      "mechanism_claim_count": 0,
+      "near_neighbor_alert_count": 0,
+      "reference_sequence_count": 737,
+      "row_count": 7
+    },
+    "ec_keyword_name_proxy": {
+      "detects_duplicate_leakage": false,
+      "detects_source_free_geometry_axis_gap": false,
+      "import_claim_count": 0,
+      "route": "flavin_dehydrogenase_reductase_lane",
+      "row_count": 7
+    },
+    "esm_sidecar": {
+      "status": "not_available_for_this_deep_packet",
+      "superiority_claim_count": 0
+    },
+    "foldseek_current_countable_sidecar": {
+      "duplicate_clear_claim_permitted": false,
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "high_confidence_duplicate_signal_count": 0,
+      "pair_cache_complete": false,
+      "status": "blocked_not_run_pair_cache_required"
+    },
+    "geometry_retrieval_triage": {
+      "abstain_threshold": 0.4115,
+      "geometry_scored_external_row_count": 7,
+      "production_authorization_count": 0,
+      "target_lane_score_at_or_above_0_4115_count": 4,
+      "target_lane_top1_count": 6,
+      "text_or_label_fields_used_for_score_count": 0
+    },
+    "review_only_terminal_decisions": {
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "terminal_decision_counts": {
+        "needs_new_extractor_or_structure": 7
+      }
+    }
+  }
+}

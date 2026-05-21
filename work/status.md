@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 253
-- Measured elapsed time: 7180.6 minutes (119.68 hours)
+- Entries: 254
+- Measured elapsed time: 7226.3 minutes (120.44 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 191.5 measured minutes (3.19 hours)
+- v3: 237.3 measured minutes (3.95 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2771
-- Evidence references logged: 2263
+- Artifact references logged: 2791
+- Evidence references logged: 2271
 
 ## Recent Entries
-
-### 2026-05-21T01:41:08.373902+00:00 - v3
-
-- Task: cobalamin radical external campaign blocker review
-- Time mode: measured
-- Measured minutes: 5.35
-- Started: 2026-05-21T01:35:36Z
-- Ended: 2026-05-21T01:40:57Z
-- Artifacts: artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: adenosylcobalamin/PDB source query reviewed 56 rows, only 1 new source-context prior-pool-clean candidate survived filters, blocked below 10-row prospective campaign floor, campaign closed before sequence baseline geometry scoring terminal-review import gate or registry change, focused cobalamin blocker regression passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ### 2026-05-21T01:47:47.464485+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md, artifacts/v3_metal_phosphatase_deep_packet_structural_coordinates_20260521
 - Evidence: 775-test unit discovery passed after coordinate-sidecar whitespace normalization, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, git diff cached check passed
 - Notes: No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, production threshold change, or removal_allowed=true.
+
+### 2026-05-21T04:01:42.976219+00:00 - v3
+
+- Task: serine and flavin external deep terminal packets
+- Time mode: measured
+- Measured minutes: 45.767
+- Started: 2026-05-21T03:15:26Z
+- Ended: 2026-05-21T04:01:12Z
+- Artifacts: artifacts/v3_epk_post_metal_research_lane_synthesis_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_selection_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_structure_mapping_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_geometry_scores_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_current_countable_structural_probe_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_duplicate_screen_blocker_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_modern_baseline_benchmark_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_structure_mapping_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_geometry_scores_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_duplicate_screen_blocker_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: five ePK research lanes synthesized review-only with 5UJ7 carried forward, serine selected 7 rows and mapped 6 active-site triads with P31614 coordinate blocker, serine scored 7 rows with 0 text fields and all 7 terminal needs_new_extractor_or_structure, flavin selected 7 nonduplicate rows and materialized 7 AlphaFold sidecars, flavin mapped 7 active or cofactor-site coordinate sets and scored 7 rows with 0 text fields, flavin terminal packet records 4 target-floor hits but all 7 blocked by missing current-countable duplicate screen, focused artifact regressions and 778-test unit discovery passed, validate migration dry-run compileall JSON checks and diff check passed
+- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -325,6 +325,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T02:02:02.049578+00:00: next main-loop work should run the 14-row source-free geometry sidecar and duplicate-screen experiment or continue non-ePK small wins
 - 2026-05-21T02:49:40.198593+00:00: No superiority or import claim is made until the duplicate/leakage screen completes; geometry top1 routed six of seven rows to metal_dependent_hydrolase but remained below the in-scope floor.
 - 2026-05-21T02:52:33.159296+00:00: next main-loop work should complete a resumable/chunked current-countable structural duplicate screen before any import or superiority claim
+- 2026-05-21T04:01:42.976219+00:00: Geometry adds signal for flavin but no import or mechanism-match claim is allowed until pair-cache-complete duplicate screening exists.
 
 ## Scope Adjustments
 
@@ -471,3 +472,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T02:02:02.049578+00:00: wrapped after minute 48 with external small-win artifacts pushed and ePK kept review-only
 - 2026-05-21T02:49:40.198593+00:00: External deepening now has a source-separated metal-phosphatase blocker packet; next exact step is a resumable or chunked current-countable structural duplicate screen for the selected 7 rows.
 - 2026-05-21T02:52:33.159296+00:00: wrap validation keeps the metal-phosphatase blocker packet review-only and ready for the next duplicate-screen experiment
+- 2026-05-21T04:01:42.976219+00:00: External deepening now has serine and flavin source-separated terminal blocker packets after the metal packet; next work is current-countable structural duplicate screening not row breadth.

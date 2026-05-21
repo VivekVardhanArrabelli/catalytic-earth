@@ -50,6 +50,56 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T03:45:00Z automation run, the main loop has produced a
+second source-separated external deep packet, this time for the frozen serine
+hydrolase mini-campaign. The post-metal ePK lane synthesis
+`artifacts/v3_epk_post_metal_research_lane_synthesis_20260521.json` integrates
+five sibling research-lane outputs, including the `5UJ7` biological-assembly
+residual counterexample, and keeps ePK review-only/no-go with 401 JSON files
+and 167 JSONL records validated at 0 parse errors. It authorizes no scorer,
+threshold, registry edit, label import, fingerprint expansion, artifact upload,
+or main-loop ePK task; the main-loop decision is explicitly to return to the
+external decision-deepening ladder.
+
+The serine packet starts from the already frozen
+`v3_prospective_external_serine_hydrolase_minicampaign_*_20260521` surface and
+selects seven PDB-linked rows before scoring: `P54317`, `Q9BV23`, `P07098`,
+`Q99685`, `P04180`, `P31614`, and `E9LVH9`, while excluding exact current
+reference duplicate `P94388`. Six AlphaFold coordinate sidecars are
+materialized; `P31614` is blocked at coordinate materialization. Six selected
+rows map Ser/Asp/His active-site residue sets and score against all eight
+current fingerprints with 0 text/name/label fields. Six top-rank the target
+`ser_his_acid_hydrolase` lane, one top-ranks `metal_dependent_hydrolase`, and
+all target-lane scores remain below the `0.4115` in-scope floor. The duplicate
+screen is deliberately not claimed complete: the exact current-countable
+structural probe is a blocker artifact with pair-cache completeness false,
+screened-candidate count 0, and no duplicate-clear claim.
+
+Evidence-based confidence call: confidence is high that ePK remains out of
+main-loop production scope, and high that the serine packet is a real
+source-separated small win rather than another broad row list. It is also
+blocked from import or mechanism-match review readiness: all seven rows use
+the allowed terminal decision `needs_new_extractor_or_structure`. The next
+exact experiment is a resumable/chunked current-countable structural
+duplicate/leakage screen for the six materialized serine rows plus a PDB or
+replacement-coordinate path for `P31614`; no superiority, duplicate-clear,
+mechanism-match, or label-import claim is permitted before that evidence.
+The next ladder step also has a terminal blocker packet:
+`artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json` freezes
+seven nonduplicate flavin dehydrogenase/reductase rows from the existing
+20-row campaign. It excludes exact current-reference duplicates `P15559`,
+`P0AEZ1`, `P38489`, and `P42593`, uses PDB/catalytic/active-or-binding-site/
+flavin context only for selection, and its coordinate materialization companion
+stages all seven AlphaFold sidecars. The follow-on structure-mapping artifact
+resolves active/cofactor-site coordinates for all seven rows as review-only
+mapping evidence. The all-8 geometry score artifact top-ranks six rows to
+`flavin_dehydrogenase_reductase`, with four target-lane scores above the
+`0.4115` floor, but the terminal packet still uses
+`needs_new_extractor_or_structure` for all seven rows because pair-cache
+complete current-countable duplicate evidence is absent. The benchmark records
+EC/keyword, deterministic 5-mer, geometry, Foldseek, and ESM caveats with no
+superiority or import claim.
+
 As of the 2026-05-21T01:18:23Z automation run,
 `artifacts/v3_epk_post_overnight_remote_lane_synthesis_20260521.json`
 integrates fresh remote ePK research-branch pushes since the overnight

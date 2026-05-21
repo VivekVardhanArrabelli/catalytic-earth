@@ -149,6 +149,46 @@ terminal packet therefore uses `needs_new_extractor_or_structure` for all seven
 rows with one exact missing-evidence statement: complete the current-countable
 structural duplicate/leakage screen, preferably as a resumable/chunked gate,
 before any mechanism-match-review-ready or duplicate-clear decision.
+Current serine-hydrolase deepening scope: the second 2026-05-21 external deep
+packet is also review-only blocker evidence, but now with active-site triad
+geometry over a different current fingerprint lane. The selection artifact
+`artifacts/v3_serine_hydrolase_deep_packet_selection_20260521.json` freezes
+seven rows from the existing serine hydrolase mini-campaign before outcome
+scoring and excludes the exact current-reference duplicate `P94388`. Six rows
+materialize AlphaFold sidecars and map Ser/Asp/His active-site residue sets;
+`P31614` fails coordinate materialization and therefore cannot be duplicate
+screened yet. The geometry score artifact uses 0 text/name/label fields: six
+rows top1 to `ser_his_acid_hydrolase`, one top1s to
+`metal_dependent_hydrolase`, and every target-lane score remains below the
+`0.4115` in-scope floor. The duplicate/leakage screen is not claimed complete:
+`artifacts/v3_serine_hydrolase_deep_packet_current_countable_structural_probe_20260521.json`
+records pair-cache completeness false, screened-candidate count 0, and no
+duplicate-clear claim. The terminal packet therefore uses
+`needs_new_extractor_or_structure` for all seven rows. The next admissible
+serine step is a resumable/chunked current-countable structural duplicate
+screen for the six materialized rows plus a PDB/replacement-coordinate path for
+`P31614`; no import, threshold, production scorer, or mechanism-match review
+claim is in scope before that evidence exists.
+Current flavin dehydrogenase/reductase deepening scope: the third ladder step
+has a frozen selection, coordinate sidecars, active/cofactor-site mapping,
+geometry scores, a duplicate-screen blocker, a terminal packet, and a benchmark.
+`artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json`
+selects seven needs-review rows from the existing 20-row campaign after
+excluding four exact current-reference sequence duplicates. Selection is based
+on already frozen PDB cross-references, catalytic annotation,
+active/binding-site annotation, and explicit flavin dehydrogenase/reductase
+source context; Foldseek/TM, ESM, production thresholds, and ePK evidence are
+not used. The coordinate materialization artifact stages all seven AlphaFold
+sidecars with 0 fetch failures, and the structure-mapping artifact resolves
+active/cofactor-site coordinates for all seven rows. The geometry score
+artifact evaluates all seven rows against the eight current fingerprints with
+text fields excluded: six top1 to the target lane and four target-lane scores
+are above the `0.4115` floor. This does not authorize a mechanism-match or
+import claim because the current-countable structural duplicate screen is not
+run. The terminal packet therefore uses `needs_new_extractor_or_structure` for
+all seven rows. The next admissible step is current-countable structural
+duplicate screening with pair-cache completeness, then terminal re-evaluation
+on the same seven rows.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

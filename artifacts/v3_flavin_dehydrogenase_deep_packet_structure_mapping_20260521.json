@@ -1,0 +1,1826 @@
+{
+  "entries": [
+    {
+      "accession": "P30043",
+      "active_or_cofactor_feature_count": 10,
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_deep_packet_structural_coordinates_20260521/afdb_P30043.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": 1.696,
+            "y": 1.302,
+            "z": -2.887
+          },
+          "chain_name": "A",
+          "code": "CYS",
+          "resid": 109,
+          "residue_node_id": "uniprot:P30043:109",
+          "roles": [
+            "Active site",
+            "S-nitroso-cysteine intermediate; for S-nitroso-CoA-dependent nitrosyltransferase activity",
+            "",
+            ""
+          ]
+        },
+        {
+          "ca": {
+            "x": -6.384,
+            "y": 9.301,
+            "z": -2.117
+          },
+          "chain_name": "A",
+          "code": "CYS",
+          "resid": 188,
+          "residue_node_id": "uniprot:P30043:188",
+          "roles": [
+            "Active site",
+            "S-nitroso-cysteine intermediate; for S-nitroso-CoA-dependent nitrosyltransferase activity",
+            "",
+            ""
+          ]
+        },
+        {
+          "ca": {
+            "x": 4.651,
+            "y": -0.334,
+            "z": 6.621
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 10,
+          "residue_node_id": "uniprot:P30043:10",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": 8.46,
+            "y": 2.236,
+            "z": 9.694
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 12,
+          "residue_node_id": "uniprot:P30043:12",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": 9.539,
+            "y": 2.308,
+            "z": 5.981
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 13,
+          "residue_node_id": "uniprot:P30043:13",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": 11.065,
+            "y": 5.313,
+            "z": 4.111
+          },
+          "chain_name": "A",
+          "code": "GLN",
+          "resid": 14,
+          "residue_node_id": "uniprot:P30043:14",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": 7.659,
+            "y": 6.439,
+            "z": 2.695
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 15,
+          "residue_node_id": "uniprot:P30043:15",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": 7.102,
+            "y": -5.613,
+            "z": 13.862
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 35,
+          "residue_node_id": "uniprot:P30043:35",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": 11.657,
+            "y": 1.019,
+            "z": 18.422
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 38,
+          "residue_node_id": "uniprot:P30043:38",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": 11.749,
+            "y": 1.814,
+            "z": 14.643
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 39,
+          "residue_node_id": "uniprot:P30043:39",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 11.396,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:188"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.09,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:10"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.315,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:12"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.881,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:13"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.363,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:14"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.649,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:15"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.91,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:35"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.524,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.214,
+          "left": "uniprot:P30043:109",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.057,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:10"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.242,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:12"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.184,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:13"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.952,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:14"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.118,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:15"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.683,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:35"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 28.564,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.802,
+          "left": "uniprot:P30043:188",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.528,
+          "left": "uniprot:P30043:10",
+          "right": "uniprot:P30043:12"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.593,
+          "left": "uniprot:P30043:10",
+          "right": "uniprot:P30043:13"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.907,
+          "left": "uniprot:P30043:10",
+          "right": "uniprot:P30043:14"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.387,
+          "left": "uniprot:P30043:10",
+          "right": "uniprot:P30043:15"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.29,
+          "left": "uniprot:P30043:10",
+          "right": "uniprot:P30043:35"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.791,
+          "left": "uniprot:P30043:10",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.925,
+          "left": "uniprot:P30043:10",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.867,
+          "left": "uniprot:P30043:12",
+          "right": "uniprot:P30043:13"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.886,
+          "left": "uniprot:P30043:12",
+          "right": "uniprot:P30043:14"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.203,
+          "left": "uniprot:P30043:12",
+          "right": "uniprot:P30043:15"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.99,
+          "left": "uniprot:P30043:12",
+          "right": "uniprot:P30043:35"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.374,
+          "left": "uniprot:P30043:12",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.957,
+          "left": "uniprot:P30043:12",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.854,
+          "left": "uniprot:P30043:13",
+          "right": "uniprot:P30043:14"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.603,
+          "left": "uniprot:P30043:13",
+          "right": "uniprot:P30043:15"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.436,
+          "left": "uniprot:P30043:13",
+          "right": "uniprot:P30043:35"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.686,
+          "left": "uniprot:P30043:13",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.953,
+          "left": "uniprot:P30043:13",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.857,
+          "left": "uniprot:P30043:14",
+          "right": "uniprot:P30043:15"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.171,
+          "left": "uniprot:P30043:14",
+          "right": "uniprot:P30043:35"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.953,
+          "left": "uniprot:P30043:14",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.119,
+          "left": "uniprot:P30043:14",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.44,
+          "left": "uniprot:P30043:15",
+          "right": "uniprot:P30043:35"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.108,
+          "left": "uniprot:P30043:15",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.449,
+          "left": "uniprot:P30043:15",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.248,
+          "left": "uniprot:P30043:35",
+          "right": "uniprot:P30043:38"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.796,
+          "left": "uniprot:P30043:35",
+          "right": "uniprot:P30043:39"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.863,
+          "left": "uniprot:P30043:38",
+          "right": "uniprot:P30043:39"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 10,
+      "row_id": "uniprot:P30043",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P30043",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "Q9BRQ8",
+      "active_or_cofactor_feature_count": 10,
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_deep_packet_structural_coordinates_20260521/afdb_Q9BRQ8.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": -1.958,
+            "y": -4.161,
+            "z": 8.301
+          },
+          "chain_name": "A",
+          "code": "PHE",
+          "resid": 21,
+          "residue_node_id": "uniprot:Q9BRQ8:21",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -4.937,
+            "y": -3.084,
+            "z": 10.487
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 22,
+          "residue_node_id": "uniprot:Q9BRQ8:22",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -10.286,
+            "y": -10.475,
+            "z": 2.328
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 41,
+          "residue_node_id": "uniprot:Q9BRQ8:41",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -10.494,
+            "y": -10.837,
+            "z": -1.475
+          },
+          "chain_name": "A",
+          "code": "MET",
+          "resid": 42,
+          "residue_node_id": "uniprot:Q9BRQ8:42",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -6.873,
+            "y": -12.204,
+            "z": -1.412
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 43,
+          "residue_node_id": "uniprot:Q9BRQ8:43",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": 2.947,
+            "y": -3.687,
+            "z": 0.589
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 49,
+          "residue_node_id": "uniprot:Q9BRQ8:49",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -17.324,
+            "y": -7.978,
+            "z": 0.32
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 82,
+          "residue_node_id": "uniprot:Q9BRQ8:82",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -6.797,
+            "y": 1.877,
+            "z": -0.12
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 111,
+          "residue_node_id": "uniprot:Q9BRQ8:111",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -0.564,
+            "y": -1.68,
+            "z": -4.564
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 118,
+          "residue_node_id": "uniprot:Q9BRQ8:118",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        },
+        {
+          "ca": {
+            "x": -5.709,
+            "y": -4.631,
+            "z": -6.107
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 120,
+          "residue_node_id": "uniprot:Q9BRQ8:120",
+          "roles": [
+            "Binding site",
+            "",
+            "6-hydroxy-FAD",
+            "ChEBI:CHEBI:60470"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 3.849,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:22"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.037,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:41"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.595,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:42"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.535,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:43"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.152,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.731,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:82"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.436,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.176,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.896,
+          "left": "uniprot:Q9BRQ8:21",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.24,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:41"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.3,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:42"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.117,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:43"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.669,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.756,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:82"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.857,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.736,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.684,
+          "left": "uniprot:Q9BRQ8:22",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.826,
+          "left": "uniprot:Q9BRQ8:41",
+          "right": "uniprot:Q9BRQ8:42"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.35,
+          "left": "uniprot:Q9BRQ8:41",
+          "right": "uniprot:Q9BRQ8:43"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.974,
+          "left": "uniprot:Q9BRQ8:41",
+          "right": "uniprot:Q9BRQ8:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.733,
+          "left": "uniprot:Q9BRQ8:41",
+          "right": "uniprot:Q9BRQ8:82"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.067,
+          "left": "uniprot:Q9BRQ8:41",
+          "right": "uniprot:Q9BRQ8:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.811,
+          "left": "uniprot:Q9BRQ8:41",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.236,
+          "left": "uniprot:Q9BRQ8:41",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 3.871,
+          "left": "uniprot:Q9BRQ8:42",
+          "right": "uniprot:Q9BRQ8:43"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.364,
+          "left": "uniprot:Q9BRQ8:42",
+          "right": "uniprot:Q9BRQ8:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.619,
+          "left": "uniprot:Q9BRQ8:42",
+          "right": "uniprot:Q9BRQ8:82"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.31,
+          "left": "uniprot:Q9BRQ8:42",
+          "right": "uniprot:Q9BRQ8:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.856,
+          "left": "uniprot:Q9BRQ8:42",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.103,
+          "left": "uniprot:Q9BRQ8:42",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.152,
+          "left": "uniprot:Q9BRQ8:43",
+          "right": "uniprot:Q9BRQ8:49"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.405,
+          "left": "uniprot:Q9BRQ8:43",
+          "right": "uniprot:Q9BRQ8:82"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.14,
+          "left": "uniprot:Q9BRQ8:43",
+          "right": "uniprot:Q9BRQ8:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.669,
+          "left": "uniprot:Q9BRQ8:43",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.986,
+          "left": "uniprot:Q9BRQ8:43",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.722,
+          "left": "uniprot:Q9BRQ8:49",
+          "right": "uniprot:Q9BRQ8:82"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.243,
+          "left": "uniprot:Q9BRQ8:49",
+          "right": "uniprot:Q9BRQ8:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.55,
+          "left": "uniprot:Q9BRQ8:49",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.984,
+          "left": "uniprot:Q9BRQ8:49",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 14.427,
+          "left": "uniprot:Q9BRQ8:82",
+          "right": "uniprot:Q9BRQ8:111"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 18.558,
+          "left": "uniprot:Q9BRQ8:82",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.69,
+          "left": "uniprot:Q9BRQ8:82",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.441,
+          "left": "uniprot:Q9BRQ8:111",
+          "right": "uniprot:Q9BRQ8:118"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.91,
+          "left": "uniprot:Q9BRQ8:111",
+          "right": "uniprot:Q9BRQ8:120"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 6.129,
+          "left": "uniprot:Q9BRQ8:118",
+          "right": "uniprot:Q9BRQ8:120"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 10,
+      "row_id": "uniprot:Q9BRQ8",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q9BRQ8",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "Q9NX74",
+      "active_or_cofactor_feature_count": 5,
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_deep_packet_structural_coordinates_20260521/afdb_Q9NX74.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": -1.537,
+            "y": -6.721,
+            "z": -11.69
+          },
+          "chain_name": "A",
+          "code": "CYS",
+          "resid": 116,
+          "residue_node_id": "uniprot:Q9NX74:116",
+          "roles": [
+            "Active site",
+            "Proton donor",
+            "",
+            ""
+          ]
+        },
+        {
+          "ca": {
+            "x": -7.015,
+            "y": -1.612,
+            "z": -6.621
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 43,
+          "residue_node_id": "uniprot:Q9NX74:43",
+          "roles": [
+            "Binding site",
+            "",
+            "FMN",
+            "ChEBI:CHEBI:58210"
+          ]
+        },
+        {
+          "ca": {
+            "x": -7.733,
+            "y": 2.81,
+            "z": -9.118
+          },
+          "chain_name": "A",
+          "code": "GLN",
+          "resid": 87,
+          "residue_node_id": "uniprot:Q9NX74:87",
+          "roles": [
+            "Binding site",
+            "",
+            "FMN",
+            "ChEBI:CHEBI:58210"
+          ]
+        },
+        {
+          "ca": {
+            "x": -0.955,
+            "y": 1.778,
+            "z": -14.754
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 155,
+          "residue_node_id": "uniprot:Q9NX74:155",
+          "roles": [
+            "Binding site",
+            "",
+            "FMN",
+            "ChEBI:CHEBI:58210"
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.185,
+            "y": -0.276,
+            "z": -13.851
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 183,
+          "residue_node_id": "uniprot:Q9NX74:183",
+          "roles": [
+            "Binding site",
+            "",
+            "FMN",
+            "ChEBI:CHEBI:58210"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 9.045,
+          "left": "uniprot:Q9NX74:116",
+          "right": "uniprot:Q9NX74:43"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.655,
+          "left": "uniprot:Q9NX74:116",
+          "right": "uniprot:Q9NX74:87"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.053,
+          "left": "uniprot:Q9NX74:116",
+          "right": "uniprot:Q9NX74:155"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.288,
+          "left": "uniprot:Q9NX74:116",
+          "right": "uniprot:Q9NX74:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 5.129,
+          "left": "uniprot:Q9NX74:43",
+          "right": "uniprot:Q9NX74:87"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.694,
+          "left": "uniprot:Q9NX74:43",
+          "right": "uniprot:Q9NX74:155"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.11,
+          "left": "uniprot:Q9NX74:43",
+          "right": "uniprot:Q9NX74:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.875,
+          "left": "uniprot:Q9NX74:87",
+          "right": "uniprot:Q9NX74:155"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.021,
+          "left": "uniprot:Q9NX74:87",
+          "right": "uniprot:Q9NX74:183"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 7.484,
+          "left": "uniprot:Q9NX74:155",
+          "right": "uniprot:Q9NX74:183"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 5,
+      "row_id": "uniprot:Q9NX74",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q9NX74",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "P42898",
+      "active_or_cofactor_feature_count": 5,
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_deep_packet_structural_coordinates_20260521/afdb_P42898.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": 7.995,
+            "y": 0.141,
+            "z": -12.827
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 63,
+          "residue_node_id": "uniprot:P42898:63",
+          "roles": [
+            "Active site",
+            "Proton donor/acceptor",
+            "",
+            ""
+          ]
+        },
+        {
+          "ca": {
+            "x": 3.14,
+            "y": -4.009,
+            "z": -20.6
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 127,
+          "residue_node_id": "uniprot:P42898:127",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        },
+        {
+          "ca": {
+            "x": 17.25,
+            "y": 2.048,
+            "z": -26.695
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 197,
+          "residue_node_id": "uniprot:P42898:197",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        },
+        {
+          "ca": {
+            "x": 17.049,
+            "y": 1.129,
+            "z": -34.894
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 210,
+          "residue_node_id": "uniprot:P42898:210",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        },
+        {
+          "ca": {
+            "x": 6.446,
+            "y": 2.437,
+            "z": -34.357
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 217,
+          "residue_node_id": "uniprot:P42898:217",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 10.06,
+          "left": "uniprot:P42898:63",
+          "right": "uniprot:P42898:127"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.781,
+          "left": "uniprot:P42898:63",
+          "right": "uniprot:P42898:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.873,
+          "left": "uniprot:P42898:63",
+          "right": "uniprot:P42898:210"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 21.707,
+          "left": "uniprot:P42898:63",
+          "right": "uniprot:P42898:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.521,
+          "left": "uniprot:P42898:127",
+          "right": "uniprot:P42898:197"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.596,
+          "left": "uniprot:P42898:127",
+          "right": "uniprot:P42898:210"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.548,
+          "left": "uniprot:P42898:127",
+          "right": "uniprot:P42898:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 8.253,
+          "left": "uniprot:P42898:197",
+          "right": "uniprot:P42898:210"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.251,
+          "left": "uniprot:P42898:197",
+          "right": "uniprot:P42898:217"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 10.697,
+          "left": "uniprot:P42898:210",
+          "right": "uniprot:P42898:217"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 5,
+      "row_id": "uniprot:P42898",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P42898",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "Q652L6",
+      "active_or_cofactor_feature_count": 10,
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_deep_packet_structural_coordinates_20260521/afdb_Q652L6.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": 0.792,
+            "y": -9.731,
+            "z": 12.031
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 41,
+          "residue_node_id": "uniprot:Q652L6:41",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        },
+        {
+          "ca": {
+            "x": 5.166,
+            "y": -0.251,
+            "z": 5.827
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 48,
+          "residue_node_id": "uniprot:Q652L6:48",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        },
+        {
+          "ca": {
+            "x": 13.425,
+            "y": 0.224,
+            "z": 0.58
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 53,
+          "residue_node_id": "uniprot:Q652L6:53",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        },
+        {
+          "ca": {
+            "x": -10.392,
+            "y": -12.119,
+            "z": 12.384
+          },
+          "chain_name": "A",
+          "code": "ILE",
+          "resid": 96,
+          "residue_node_id": "uniprot:Q652L6:96",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        },
+        {
+          "ca": {
+            "x": 1.662,
+            "y": -0.494,
+            "z": -19.791
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 196,
+          "residue_node_id": "uniprot:Q652L6:196",
+          "roles": [
+            "Binding site",
+            "",
+            "NAD(+)",
+            "ChEBI:CHEBI:57540"
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.541,
+            "y": 5.948,
+            "z": -12.955
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 202,
+          "residue_node_id": "uniprot:Q652L6:202",
+          "roles": [
+            "Binding site",
+            "",
+            "NAD(+)",
+            "ChEBI:CHEBI:57540"
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.541,
+            "y": 5.948,
+            "z": -12.955
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 202,
+          "residue_node_id": "uniprot:Q652L6:202",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.268,
+            "y": -3.956,
+            "z": -7.442
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 261,
+          "residue_node_id": "uniprot:Q652L6:261",
+          "roles": [
+            "Binding site",
+            "",
+            "NAD(+)",
+            "ChEBI:CHEBI:57540"
+          ]
+        },
+        {
+          "ca": {
+            "x": -1.268,
+            "y": -3.956,
+            "z": -7.442
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 261,
+          "residue_node_id": "uniprot:Q652L6:261",
+          "roles": [
+            "Binding site",
+            "",
+            "NADP(+)",
+            "ChEBI:CHEBI:58349"
+          ]
+        },
+        {
+          "ca": {
+            "x": -6.573,
+            "y": 1.919,
+            "z": 1.838
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 298,
+          "residue_node_id": "uniprot:Q652L6:298",
+          "roles": [
+            "Binding site",
+            "",
+            "FAD",
+            "ChEBI:CHEBI:57692"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca",
+          "distance": 12.145,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:48"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 19.744,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:53"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.442,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:96"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 33.147,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.59,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.59,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.415,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.415,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.142,
+          "left": "uniprot:Q652L6:41",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.796,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:53"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.637,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:96"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 25.858,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.885,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.885,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.205,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 15.205,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.587,
+          "left": "uniprot:Q652L6:48",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 29.308,
+          "left": "uniprot:Q652L6:53",
+          "right": "uniprot:Q652L6:96"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.534,
+          "left": "uniprot:Q652L6:53",
+          "right": "uniprot:Q652L6:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.975,
+          "left": "uniprot:Q652L6:53",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.975,
+          "left": "uniprot:Q652L6:53",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.254,
+          "left": "uniprot:Q652L6:53",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.254,
+          "left": "uniprot:Q652L6:53",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 20.109,
+          "left": "uniprot:Q652L6:53",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 36.272,
+          "left": "uniprot:Q652L6:96",
+          "right": "uniprot:Q652L6:196"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 32.355,
+          "left": "uniprot:Q652L6:96",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 32.355,
+          "left": "uniprot:Q652L6:96",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.301,
+          "left": "uniprot:Q652L6:96",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.301,
+          "left": "uniprot:Q652L6:96",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 17.969,
+          "left": "uniprot:Q652L6:96",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.924,
+          "left": "uniprot:Q652L6:196",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 9.924,
+          "left": "uniprot:Q652L6:196",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.156,
+          "left": "uniprot:Q652L6:196",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 13.156,
+          "left": "uniprot:Q652L6:196",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 23.269,
+          "left": "uniprot:Q652L6:196",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 0.0,
+          "left": "uniprot:Q652L6:202",
+          "right": "uniprot:Q652L6:202"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.338,
+          "left": "uniprot:Q652L6:202",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.338,
+          "left": "uniprot:Q652L6:202",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.137,
+          "left": "uniprot:Q652L6:202",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.338,
+          "left": "uniprot:Q652L6:202",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 11.338,
+          "left": "uniprot:Q652L6:202",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 16.137,
+          "left": "uniprot:Q652L6:202",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 0.0,
+          "left": "uniprot:Q652L6:261",
+          "right": "uniprot:Q652L6:261"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.197,
+          "left": "uniprot:Q652L6:261",
+          "right": "uniprot:Q652L6:298"
+        },
+        {
+          "coordinate_type": "ca",
+          "distance": 12.197,
+          "left": "uniprot:Q652L6:261",
+          "right": "uniprot:Q652L6:298"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 10,
+      "row_id": "uniprot:Q652L6",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q652L6",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "P94424",
+      "active_or_cofactor_feature_count": 1,
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_deep_packet_structural_coordinates_20260521/afdb_P94424.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": 4.723,
+            "y": -2.23,
+            "z": 15.465
+          },
+          "chain_name": "A",
+          "code": "GLN",
+          "resid": 67,
+          "residue_node_id": "uniprot:P94424:67",
+          "roles": [
+            "Binding site",
+            "",
+            "FMN",
+            "ChEBI:CHEBI:58210"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 1,
+      "row_id": "uniprot:P94424",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P94424",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "P0AGE6",
+      "active_or_cofactor_feature_count": 1,
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_deep_packet_structural_coordinates_20260521/afdb_P0AGE6.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "ca": {
+            "x": 9.646,
+            "y": 5.35,
+            "z": -11.536
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 117,
+          "residue_node_id": "uniprot:P0AGE6:117",
+          "roles": [
+            "Binding site",
+            "",
+            "FMN",
+            "ChEBI:CHEBI:58210"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 1,
+      "row_id": "uniprot:P0AGE6",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P0AGE6",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "uniprot_feature_fetch_error": null
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_dehydrogenase_deep_packet_structure_mapping_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_flavin_dehydrogenase_deep_packet_coordinate_materialization_20260521.json",
+    "created_at": "2026-05-21T03:50:46Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "mapped_candidate_count": 7,
+    "method": "flavin_dehydrogenase_deep_packet_structure_mapping_review_only",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_geometry_scored_count": 0,
+    "source_method": "uniprot_active_or_cofactor_binding_positions_mapped_to_alphafold_ca",
+    "source_separation_note": "UniProt active/binding-site positions seed coordinate mapping only; EC/name/prose are review context and no geometry score or import decision is made here.",
+    "status_counts": {
+      "ok": 7
+    },
+    "structural_duplicate_screened_count": 0,
+    "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+  }
+}

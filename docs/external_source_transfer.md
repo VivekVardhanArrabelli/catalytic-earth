@@ -320,6 +320,39 @@ import.
   `artifacts/v3_metal_phosphatase_deep_packet_modern_baseline_benchmark_20260521.json`
   records EC/keyword, deterministic 5-mer, geometry, Foldseek, and ESM caveats
   with no superiority, mechanism-match, or label-import claim.
+- `artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_20260521.json`
+  is the second deep packet over the same frozen external surfaces. It selects
+  seven rows from the serine-hydrolase mini-campaign before outcome scoring,
+  excludes exact current-reference duplicate `P94388`, materializes six
+  AlphaFold sidecars, and maps six Ser/Asp/His active-site triads. Geometry
+  scoring uses 0 text/name/label fields; six rows top-rank the target
+  `ser_his_acid_hydrolase` lane, but every target-lane score remains below the
+  `0.4115` floor. The exact current-countable structural duplicate/leakage
+  evidence is not complete: the blocker/probe artifacts record pair-cache
+  completeness false, screened-candidate count 0, and no duplicate-clear
+  claim, while `P31614` lacks a materialized coordinate sidecar. All seven rows
+  therefore have the allowed terminal decision `needs_new_extractor_or_structure`.
+  The companion benchmark
+  `artifacts/v3_serine_hydrolase_deep_packet_modern_baseline_benchmark_20260521.json`
+  compares EC/keyword routing, deterministic 5-mer, geometry, Foldseek, and ESM
+  availability on the same frozen rows, with no superiority, mechanism-match,
+  or label-import claim.
+- `artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json`
+  starts the next deepening ladder step without scoring it. It freezes seven
+  nonduplicate flavin dehydrogenase/reductase rows from the existing
+  mini-campaign after excluding exact current-reference duplicates `P15559`,
+  `P0AEZ1`, `P38489`, and `P42593`. Selection uses the already frozen
+  PDB/catalytic/active-or-binding-site/flavin context. The coordinate
+  materialization companion stages all seven AlphaFold sidecars with 0 fetch
+  failures, and the structure-mapping companion resolves active/cofactor-site
+  coordinates for all seven rows as review-only mapping evidence. Geometry
+  scoring then top-ranks six rows to `flavin_dehydrogenase_reductase`, with
+  four target-lane scores above the `0.4115` floor and 0 text/name/label fields
+  used. The terminal packet still records all seven as
+  `needs_new_extractor_or_structure`, because Foldseek/TM current-countable
+  duplicate evidence is not run and no duplicate-clear claim is allowed. The
+  benchmark records EC/keyword, deterministic 5-mer, geometry, Foldseek, and
+  ESM caveats with no superiority, mechanism-match, or label-import claim.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_deep_packet_duplicate_screen_blocker_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "blocked_candidate_count": 7,
+    "candidate_count": 7,
+    "created_at": "2026-05-21T03:39:39Z",
+    "curated_label_registry_edited": false,
+    "exact_missing_evidence": "completed current-countable structural duplicate/leakage screen with pair-cache completeness for the selected nonduplicate rows",
+    "fingerprint_registry_edited": false,
+    "method": "serine_hydrolase_deep_packet_duplicate_screen_blocker",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "next_resolution_options": [
+    "run a resumable all-current-countable Foldseek/TM duplicate screen in chunks and aggregate pair-cache completeness",
+    "materialize P31614 from a PDB cross-reference or replace it in a newly frozen selection before rerunning geometry"
+  ],
+  "rows": [
+    {
+      "accession": "P54317",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P54317",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "Q9BV23",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9BV23",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P07098",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P07098",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "Q99685",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q99685",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P04180",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P04180",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P31614",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "structure_coordinate_materialization_failed_before_foldseek_probe",
+      "exact_missing_evidence": "materialize an AlphaFold or PDB coordinate sidecar for the selected row before current-countable structural duplicate screening",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P31614",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "E9LVH9",
+      "countable_label_candidate": false,
+      "current_countable_structural_screen_status": "not_run_full_current_countable_screen_required",
+      "exact_missing_evidence": "complete current-countable structural duplicate/leakage screen with pair-cache completeness before duplicate-clear or mechanism-match decisions",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:E9LVH9",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    }
+  ]
+}
