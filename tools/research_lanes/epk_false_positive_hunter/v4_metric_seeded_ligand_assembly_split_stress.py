@@ -142,6 +142,7 @@ def collect_ids(
     repo_root: Path,
     max_unique_ids: int,
     exclude_artifacts: list[str],
+    ligand_queries: list[dict[str, Any]],
     priority_pdb_ids: list[str] | None = None,
 ) -> tuple[list[str], dict[str, list[str]], dict[str, str], dict[str, int], dict[str, int]]:
     excluded: set[str] = set()
@@ -160,7 +161,7 @@ def collect_ids(
 
     query_errors: dict[str, str] = {}
     query_counts: dict[str, int] = {}
-    for query in LIGAND_COMPONENT_QUERIES:
+    for query in ligand_queries:
         name = str(query["name"])
         ligand = str(query["ligand"])
         try:
@@ -185,6 +186,37 @@ def collect_ids(
             break
         time.sleep(0.12)
     return ordered[:max_unique_ids], id_to_queries, query_errors, query_counts, exclude_counts
+
+
+def parse_extra_ligand_query(value: str) -> dict[str, Any]:
+    """Parse name:ligand:start:rows into a ligand component query."""
+    parts = [part.strip() for part in value.split(":")]
+    if len(parts) != 4:
+        raise argparse.ArgumentTypeError(
+            "--extra-ligand-query must be name:ligand:start:rows"
+        )
+    name, ligand, start, rows = parts
+    if not name or not ligand:
+        raise argparse.ArgumentTypeError(
+            "--extra-ligand-query requires non-empty name and ligand"
+        )
+    try:
+        start_int = int(start)
+        rows_int = int(rows)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(
+            "--extra-ligand-query start and rows must be integers"
+        ) from exc
+    if start_int < 0 or rows_int <= 0:
+        raise argparse.ArgumentTypeError(
+            "--extra-ligand-query requires start >= 0 and rows > 0"
+        )
+    return {
+        "name": name,
+        "ligand": ligand.upper(),
+        "start": start_int,
+        "rows": rows_int,
+    }
 
 
 def add_metric_surface_fields(entry_row: dict[str, Any], query_names: list[str]) -> None:
@@ -356,10 +388,18 @@ def main() -> int:
         default=[],
         help="Artifact whose fetch_errors IDs should be retried before new IDs.",
     )
+    parser.add_argument(
+        "--extra-ligand-query",
+        action="append",
+        type=parse_extra_ligand_query,
+        default=[],
+        help="Additional ligand component page as name:ligand:start:rows.",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()
     exclude_artifacts = DEFAULT_EXCLUDE_ARTIFACTS + list(args.exclude_artifact)
+    ligand_queries = LIGAND_COMPONENT_QUERIES + list(args.extra_ligand_query)
     priority_pdb_ids: list[str] = []
     priority_fetch_error_counts: dict[str, int] = {}
     for rel_path in args.priority_fetch_error_artifact:
@@ -372,6 +412,7 @@ def main() -> int:
         repo_root,
         args.max_unique_ids,
         exclude_artifacts,
+        ligand_queries,
         priority_pdb_ids,
     )
 
@@ -497,7 +538,8 @@ def main() -> int:
                 "split traps without broad full-text bucket dependence"
             ),
             "query_surface": {
-                "ligand_component_queries": LIGAND_COMPONENT_QUERIES,
+                "ligand_component_queries": ligand_queries,
+                "extra_ligand_component_queries": list(args.extra_ligand_query),
                 "sort": "rcsb_accession_info.initial_release_date desc",
                 "exclude_artifacts": exclude_artifacts,
                 "exclude_reviewed_id_counts": exclude_counts,

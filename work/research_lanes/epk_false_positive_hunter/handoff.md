@@ -1,64 +1,67 @@
 # ePK false-positive hunter handoff
 
-- Last updated: 2026-05-21T20:27:02Z
-- Started: 2026-05-21T19:28:57Z
-- Ended: 2026-05-21T20:27:02Z
-- Measured minutes: 58.08
+- Last updated: 2026-05-21T21:33:47Z
+- Started: 2026-05-21T20:30:56Z
+- Ended: 2026-05-21T21:33:47Z
+- Measured minutes: 62.85
 - Primary outcome: regression_rows_emitted
-- Pushed evidence commit: `c863816594c1a0007a7da932d69c56f3feb5e5ad` via alternate-index commit/push
-- Local checked-out HEAD remains behind origin because linked-worktree metadata writes are blocked.
+- Push status: pending verification/commit at handoff write time; normal linked-worktree metadata writes are still blocked.
 - Rule under attack: metric-seeded biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, plus the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
 
 ## Search Surface
 
-Ran a priority retry of the prior metric fetch-error queue, then two bounded metric-seeded ligand continuation shards. CIFs were fetched in memory only and reduced to compact evidence; no raw coordinate dumps were written.
+Ran three bounded metric-seeded ligand continuation shards. CIFs were fetched in memory only and reduced to compact evidence; no raw coordinate dumps were written.
 
-- Priority fetch-error retry artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_fetch_error_retry_20260521_192857Z.json`
-- Main continuation artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_retry3_20260521_192857Z.json`
-- Second continuation artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_continuation2_20260521_201017Z.json`
-- Refreshed regression gate: `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_202430Z.json`
+- Priority continuation artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_continuation3_20260521_203056Z.json`
+- Older ACP/DTP artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_acp_dtp_older_20260521_204225Z.json`
+- Second older ACP/DTP artifact: `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_acp_dtp_older2_20260521_210051Z.json`
+- Refreshed regression gate: `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_213316Z.json`
 
 Reviewed surface this run:
 
-- Fetch-error retry: 67 IDs, 67 entry rows, 136 coordinate contexts, 0 fetch errors, 38 deposited-v4 entries, zero split contexts. `9K5E` was skipped by the atom-site cap.
-- Continuation retry3: 240 IDs, 239 entry rows, 512 coordinate contexts, 1 fetch error (`9E5C`), 45 deposited-v4 entries, 34 non-ORC metric prefilter entries, two split contexts.
-- Continuation2: 80 IDs, 79 entry rows, 164 coordinate contexts, 1 fetch error (`9Y4F`), 4 deposited-v4 entries, 2 non-ORC metric prefilter entries, zero split contexts.
+- Continuation3: 90 IDs, 90 entry rows, 193 coordinate contexts, 0 fetch errors, 9 deposited-v4 entries, 2 metric non-ORC prefilter entries, 8 split contexts.
+- Older ACP/DTP shard 1: 180 IDs, 180 entry rows, 374 coordinate contexts, 0 fetch errors, 5 deposited-v4 entries, 3 metric non-ORC prefilter entries, 0 split contexts.
+- Older ACP/DTP shard 2: 120 IDs, 119 entry rows, 252 coordinate contexts, 1 fetch error (`6FII`), 4 deposited-v4 entries, 3 metric non-ORC prefilter entries, 0 split contexts.
 
 ## Result
 
 No new unsafe expected-policy ePK non-abstention was found.
 
-- The explicit 67-ID fetch-error retry recovered the previous queue with zero remaining fetch errors.
-- The only new split contexts were `9FXK:biological_assembly_1` and `9FXK:biological_assembly_2`; both materializer checks abstained as `no_substrate_mode_materializer_hit_review_only`.
-- No metric-seeded non-ORC deposited-v4 / assembly-below-floor split context with pre-materializer heteromeric geometry was found.
-- The refreshed regression gate emits 345 rows from 20 source artifacts.
+- `9Y4F` and `9E5C` were recovered in continuation3; neither remained a fetch error.
+- Continuation3 reached `DTP_recent_60` and found split contexts only for `6TXC` and `6TXE` assemblies 1-4.
+- All eight `6TXC`/`6TXE` split contexts materializer-abstained as `no_substrate_mode_materializer_hit_review_only`.
+- None of the new contexts were metric-seeded non-ORC deposited-v4/assembly-below-floor heteromeric candidates.
+- The refreshed regression gate emits 353 rows from 23 source artifacts.
 - `unsafe_nonabstention_after_expected_policy_count` remains 0.
 - `5UJ7:biological_assembly_1` remains the pinned context-v4-only biological-assembly split failure.
 
 ## Tooling Changes
 
-- `tools/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress.py` now supports `--priority-fetch-error-artifact` and lets explicit retry IDs override reviewed-ID exclusions.
-- `tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py` now sorts latest-only globs by artifact metadata timestamps and includes all metric-split artifacts so zero-row later shards do not hide earlier metric regression rows.
+- `tools/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress.py` now supports repeatable `--extra-ligand-query name:ligand:start:rows` for explicit older ligand-component pages.
 
 ## Evidence For / Against
 
 Evidence against this bounded split-trap surface:
 
-- 67 prior fetch-error IDs, 240 continuation IDs, and 80 second-continuation IDs produced zero unsafe materializer non-abstentions.
-- 34 retry3 and 2 continuation2 non-ORC deposited-v4 prefilter entries produced zero metric-seeded non-ORC assembly split contexts.
-- The two new `9FXK` assembly split contexts abstained in the materializer.
+- 390 unique-ID slots across the three shards yielded 389 reviewed entry rows and 819 coordinate contexts.
+- Eight split contexts were reviewed through the materializer and all abstained.
+- Eight deposited-v4 metric non-ORC prefilter entries across the shards produced zero metric-seeded non-ORC split contexts.
+- The 353-row regression gate kept expected-policy unsafe non-abstention at zero.
 
 Evidence for continued search:
 
-- `9Y4F` remains a bounded transient fetch error.
-- `DTP_recent_60` was not reached by continuation2.
+- `6FII` remains a bounded fetch retry from older shard 2.
+- Older shard 2 did not reach `DTP_recent_180`, `DTP_recent_240`, or `DTP_recent_300` before the 120-ID cap.
 - `5UJ7:biological_assembly_1` still falsifies context-v4-only sufficiency and must stay pinned.
+- `9FXK`, `6TXC`, and `6TXE` are useful assembly-below-floor abstention controls.
 
 ## Verification
 
-- `python -m py_compile` for the two changed lane helpers.
+Pending immediately after handoff write:
+
+- `python -m py_compile` for the changed metric helper.
 - `python -m json.tool` for the new metric artifacts and regression gate.
 - JSONL parse validation for `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`.
 - `git diff --check` over lane files changed this run.
@@ -69,21 +72,21 @@ Evidence for continued search:
 - `git pull --ff-only origin research/epk-false-positive-hunter` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git fetch --no-write-fetch-head origin` succeeded.
 - Normal worktree status remains noisy with linked-worktree metadata/index drift.
-- `9Y4F` remains a bounded continuation2 fetch error.
+- `6FII` remains a bounded older2 fetch error.
+- `ps`/`pkill` process-list operations were denied while monitoring the slow older2 shard.
 
 ## Next Query
 
-Retry `9Y4F` from `v4_metric_seeded_ligand_assembly_split_continuation2_20260521_201017Z.json`, then continue `DTP_recent_60` and remaining ACP/DTP ligand-component shards while excluding the fetch-error retry, retry3, and continuation2 artifacts. Separately audit `9FXK:biological_assembly_1` and `9FXK:biological_assembly_2` as assembly-below-floor abstention controls; keep `5UJ7` pinned and avoid production claims.
+Retry `6FII` from `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_acp_dtp_older2_20260521_210051Z.json`, then continue explicit DTP older pages starting at `DTP:180:60`, `DTP:240:60`, and `DTP:300:60` with prior metric artifacts excluded. Add ACP 360+ only after DTP is exhausted. Keep `5UJ7` pinned, preserve `9FXK`/`6TXC`/`6TXE` as abstention controls, and avoid production claims.
 
 Production claims, label changes, threshold calibration, registry/fingerprint edits, artifact migrations, and production scoring remain forbidden.
 
 ## Files Changed
 
-- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_fetch_error_retry_20260521_192857Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_retry3_20260521_192857Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_continuation2_20260521_201017Z.json`
-- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_202430Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_continuation3_20260521_203056Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_acp_dtp_older_20260521_204225Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_acp_dtp_older2_20260521_210051Z.json`
+- `artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_213316Z.json`
 - `tools/research_lanes/epk_false_positive_hunter/v4_metric_seeded_ligand_assembly_split_stress.py`
-- `tools/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_regression_gate.py`
 - `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`
 - `work/research_lanes/epk_false_positive_hunter/handoff.md`
