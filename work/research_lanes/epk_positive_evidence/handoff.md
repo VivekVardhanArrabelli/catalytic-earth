@@ -2,7 +2,7 @@
 
 Last updated: 2026-05-21T04:17:26Z
 
-Pushed commit: pending wrap. Normal local git metadata writes are still expected to fail in this linked worktree; use the temporary-index/direct-push path if normal commit/push remains blocked.
+Pushed commit: `5f0c21c02e089f6cc8068107beaf7b9d2cc9e645` (primary run artifacts/ledger commit created with a temporary index because the linked local gitdir still blocks normal ref updates). A follow-up handoff commit should be the final remote head for this run.
 
 ## Current Outcome
 
