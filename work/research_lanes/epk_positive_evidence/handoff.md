@@ -4,7 +4,7 @@ Last updated: 2026-05-21T12:19:56Z
 
 Primary outcome: `evidence_for`.
 
-Pushed commit: `8f703cf9df9347c4c964c137f8399264adf240ca`.
+Pushed evidence commit: `8f703cf9df9347c4c964c137f8399264adf240ca`. A follow-up handoff-only commit was also pushed after that evidence commit; use `git ls-remote origin refs/heads/research/epk-positive-evidence` for the exact remote tip because the local branch ref remains stale.
 
 This run manually adjudicated the seven `source_mapped_but_source_claim_unconfirmed_review_only` candidate rows from the prior all-row adjudication, then ran a bounded same-day exact-ligand/23FC metadata probe and a small Europe PMC source-text rerun. The new source-claim artifact keeps source context separate from source-free geometry and keeps every row review-only/non-countable.
 
@@ -50,7 +50,7 @@ No production labels, thresholds, registries, fingerprints, migrations, scoring 
 - Startup `git fetch origin` failed with `Operation not permitted` while writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`.
 - `git fetch --no-write-fetch-head origin` succeeded.
 - `git pull --ff-only origin research/epk-positive-evidence` failed with the same `FETCH_HEAD` permission blocker.
-- Temporary-index/ref-safe commit and push succeeded; `refs/heads/research/epk-positive-evidence` on origin resolves to `8f703cf9df9347c4c964c137f8399264adf240ca`.
+- Temporary-index/ref-safe commit and push succeeded for the evidence commit and a follow-up handoff-only update.
 - The local worktree `HEAD` remains `8fed206e29064b1fdb1e0597773cc8c7af926241` and still reports behind because the local linked-worktree branch ref was not advanced.
 
 ## Next Query
