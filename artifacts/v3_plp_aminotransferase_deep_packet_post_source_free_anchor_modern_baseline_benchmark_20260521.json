@@ -1,0 +1,110 @@
+{
+  "caveats": [
+    "All rows remain review-only and not import-ready.",
+    "Targeted Foldseek high-TM hits are sufficient for terminal duplicate/leakage rejection but do not establish duplicate-clear for any row.",
+    "The source-free PLP extractor uses coordinate atoms only; EC, names, UniProt prose, and PLP-binding annotations remain review/selection context."
+  ],
+  "frozen_rows": [
+    {
+      "accession": "Q8TD30",
+      "row_id": "uniprot:Q8TD30",
+      "selected_pdb_id": "3IHJ",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q9NZ45",
+      "row_id": "uniprot:Q9NZ45",
+      "selected_pdb_id": "2QD0",
+      "terminal_decision": "terminal_rejection_insufficient_evidence"
+    },
+    {
+      "accession": "Q9Y617",
+      "row_id": "uniprot:Q9Y617",
+      "selected_pdb_id": "3E77",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "O07566",
+      "row_id": "uniprot:O07566",
+      "selected_pdb_id": "4K2B",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P53555",
+      "row_id": "uniprot:P53555",
+      "selected_pdb_id": "3DOD",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q9S7N2",
+      "row_id": "uniprot:Q9S7N2",
+      "selected_pdb_id": "3BWN",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P50457",
+      "row_id": "uniprot:P50457",
+      "selected_pdb_id": "7JH3",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "candidate_selection_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json",
+    "created_at": "2026-05-21T20:46:27Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "geometry_scores_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json",
+    "method": "plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "targeted_current_plp_screen_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json",
+    "terminal_packet_artifact": "artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json"
+  },
+  "metrics": {
+    "current_geometry_retrieval_triage": {
+      "geometry_signal_added_beyond_ec_sequence_on_frozen_rows": true,
+      "plp_like_cofactor_absent_count": 1,
+      "scored_row_count": 6,
+      "source_free_active_site_ready_count": 6,
+      "superiority_claim_supported": false,
+      "target_lane_at_or_above_floor_count": 6,
+      "text_or_label_fields_used_for_score_any": false
+    },
+    "deterministic_sequence_5mer_baseline": {
+      "computed_from_existing_minicampaign_diagnostic": true,
+      "exact_current_reference_duplicate_count": 0,
+      "limitation": "The 5-mer baseline gives no exact current-reference duplicate alerts for these seven rows but does not score PLP active-site geometry.",
+      "near_neighbor_alert_count": 0,
+      "selected_row_count": 7
+    },
+    "ec_keyword_simple_routing_baseline": {
+      "counted_as_predictive_evidence": false,
+      "limitation": "EC/name/PLP annotation routes all seven rows to the review lane and cannot distinguish the selected PDB with no PLP-like coordinate evidence.",
+      "would_route_to_plp_review_queue_count": 7
+    },
+    "esm2_representation": {
+      "computed_in_this_artifact": false,
+      "reason": "no ESM sidecar is available for this PLP deep packet",
+      "superiority_claim_supported": false
+    },
+    "foldseek_structural_sidecar": {
+      "computed_in_this_artifact": true,
+      "duplicate_clear_claim_supported": false,
+      "evidence_role": "import-gate duplicate/leakage evidence only, not positive mechanism evidence",
+      "high_tm_candidate_count": 6,
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30
+    },
+    "superiority_claim": false,
+    "terminal_decision_counts": {
+      "terminal_rejection_duplicate_or_leakage": 6,
+      "terminal_rejection_insufficient_evidence": 1
+    }
+  },
+  "task_definition": "Compare PLP deep-packet current geometry/retrieval triage against EC/keyword routing, deterministic sequence 5-mer nearest neighbor, targeted Foldseek duplicate evidence, and ESM availability on the same frozen seven rows."
+}

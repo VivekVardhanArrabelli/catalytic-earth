@@ -571,6 +571,31 @@ import.
   records EC/keyword, deterministic sequence, coordinate-token, Foldseek, and
   ESM caveats as diagnostic only with no import, production-score, registry,
   fingerprint, upload/removal, or superiority claim.
+- The follow-up PLP extractor/screen closes that blocker as terminal
+  review-only rejection evidence. `src/catalytic_earth/plp_active_site.py`
+  extracts coordinate-only PLP/LLP/PMP/P5P-like cofactors, lysine anchors,
+  acid/base residues, and phosphate binders without using EC, names, UniProt
+  prose, PLP annotations, or labels as predictive inputs. The geometry artifact
+  `artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json`
+  resolves six complete PLP active-site triplets and scores all six above the
+  current PLP floor; `Q9NZ45`/`2QD0` has no selected-PDB PLP-like coordinate
+  evidence. The targeted current-PLP Foldseek screen
+  `artifacts/v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json`
+  finds `TM >= 0.7` current-countable PLP duplicate/leakage signals for all
+  six scored rows. The terminal packet
+  `artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json`
+  therefore records six `terminal_rejection_duplicate_or_leakage` rows and one
+  `terminal_rejection_insufficient_evidence` row, with 0 import-ready rows and
+  no superiority claim in the companion benchmark.
+- The post-PLP rollup
+  `artifacts/v3_external_deep_terminal_decision_rollup_post_plp_20260521.json`
+  is planning context only. It summarizes the six existing deep-packet lanes
+  without freezing new external rows: 42 frozen rows have non-`needs_review`
+  terminal outcomes, with 40 duplicate/leakage rejections, one
+  insufficient-evidence rejection, and one review-only
+  `mechanism_match_review_ready` heme row. It derives aggregate counts from
+  terminal-decision maps, records the stale serine summary-counter mismatch,
+  and keeps import-ready and countable-label counts at 0.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and

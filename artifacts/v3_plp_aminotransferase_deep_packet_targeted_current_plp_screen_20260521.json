@@ -1,0 +1,1514 @@
+{
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json",
+    "coordinate_directory": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T20:39:21Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/foldseek/bin/foldseek",
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/queries/Q8TD30 /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/current_plp_targets /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/results/Q8TD30_vs_current_plp.tsv /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/tmp/Q8TD30 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/queries/Q9Y617 /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/current_plp_targets /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/results/Q9Y617_vs_current_plp.tsv /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/tmp/Q9Y617 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/queries/O07566 /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/current_plp_targets /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/results/O07566_vs_current_plp.tsv /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/tmp/O07566 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/queries/P53555 /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/current_plp_targets /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/results/P53555_vs_current_plp.tsv /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/tmp/P53555 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/queries/Q9S7N2 /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/current_plp_targets /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/results/Q9S7N2_vs_current_plp.tsv /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/tmp/Q9S7N2 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/queries/P50457 /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/current_plp_targets /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/results/P50457_vs_current_plp.tsv /private/tmp/catalytic-earth-plp-targeted-current-plp-screen/tmp/P50457 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "foldseek_query_run_status_counts": {
+      "completed": 6,
+      "not_run": 1
+    },
+    "foldseek_reporting_mode": "per_external_pdb_query_vs_current_countable_plp_targets_exact_tmscore",
+    "high_tm_candidate_count": 6,
+    "import_ready_candidate_count": 0,
+    "leakage_screen_role": "targeted_current_countable_plp_structural_duplicate_screen",
+    "method": "plp_aminotransferase_deep_packet_targeted_current_plp_screen",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "raw_result_row_count": 1300,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_geometry_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json",
+    "source_separation_guardrail": "Foldseek/TM duplicate evidence is import-gate leakage evidence only and is not counted as positive mechanism evidence.",
+    "target_current_fingerprint_lane": "plp_dependent_enzyme",
+    "target_subset_count": 30,
+    "target_subset_entry_ids": [
+      "m_csa:147",
+      "m_csa:186",
+      "m_csa:195",
+      "m_csa:205",
+      "m_csa:213",
+      "m_csa:249",
+      "m_csa:286",
+      "m_csa:305",
+      "m_csa:330",
+      "m_csa:358",
+      "m_csa:383",
+      "m_csa:410",
+      "m_csa:411",
+      "m_csa:418",
+      "m_csa:419",
+      "m_csa:424",
+      "m_csa:430",
+      "m_csa:449",
+      "m_csa:482",
+      "m_csa:545",
+      "m_csa:66",
+      "m_csa:742",
+      "m_csa:759",
+      "m_csa:762",
+      "m_csa:854",
+      "m_csa:855",
+      "m_csa:860",
+      "m_csa:933",
+      "m_csa:937",
+      "m_csa:956"
+    ],
+    "tm_score_threshold": 0.7
+  },
+  "rows": [
+    {
+      "accession": "Q8TD30",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_3IHJ.cif",
+      "current_plp_structural_screen_status": "current_plp_structural_duplicate_signal",
+      "duplicate_clear_claim_permitted": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "high_tm_hit_count": 4,
+      "nearest_current_plp_hit": {
+        "alntmscore": 0.8159,
+        "max_pair_tm_score": 0.8071,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+        "qtmscore": 0.7434,
+        "query_base_name": "pdb_3IHJ",
+        "raw_query_name": "pdb_3IHJ",
+        "raw_target_name": "pdb_1B8G_A",
+        "target_base_name": "pdb_1B8G",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+        "target_entry_ids": [
+          "m_csa:418"
+        ],
+        "target_fingerprint_ids": [
+          "plp_dependent_enzyme"
+        ],
+        "target_label_types": [],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1B8G",
+        "target_structure_key": "pdb:1B8G",
+        "ttmscore": 0.8071
+      },
+      "raw_result_row_count": 65,
+      "ready_for_label_import": false,
+      "review_status": "targeted_current_plp_screen_review_only",
+      "row_id": "uniprot:Q8TD30",
+      "selected_pdb_id": "3IHJ",
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30,
+      "tm_score_threshold": 0.7,
+      "top_current_plp_hits": [
+        {
+          "alntmscore": 0.8159,
+          "max_pair_tm_score": 0.8071,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7434,
+          "query_base_name": "pdb_3IHJ",
+          "raw_query_name": "pdb_3IHJ",
+          "raw_target_name": "pdb_1B8G_A",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.8071
+        },
+        {
+          "alntmscore": 0.8133,
+          "max_pair_tm_score": 0.8029,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7458,
+          "query_base_name": "pdb_3IHJ",
+          "raw_query_name": "pdb_3IHJ",
+          "raw_target_name": "pdb_1B8G_B",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.8029
+        },
+        {
+          "alntmscore": 0.7862,
+          "max_pair_tm_score": 0.7773,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6682,
+          "query_base_name": "pdb_3IHJ",
+          "raw_query_name": "pdb_3IHJ",
+          "raw_target_name": "pdb_1AY4_B",
+          "target_base_name": "pdb_1AY4",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AY4.cif",
+          "target_entry_ids": [
+            "m_csa:411"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1AY4",
+          "target_structure_key": "pdb:1AY4",
+          "ttmscore": 0.7773
+        },
+        {
+          "alntmscore": 0.7873,
+          "max_pair_tm_score": 0.7767,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6753,
+          "query_base_name": "pdb_3IHJ",
+          "raw_query_name": "pdb_3IHJ",
+          "raw_target_name": "pdb_1AY4_A",
+          "target_base_name": "pdb_1AY4",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AY4.cif",
+          "target_entry_ids": [
+            "m_csa:411"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1AY4",
+          "target_structure_key": "pdb:1AY4",
+          "ttmscore": 0.7767
+        }
+      ]
+    },
+    {
+      "accession": "Q9NZ45",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_2QD0.cif",
+      "current_plp_structural_screen_status": "not_run_source_free_plp_active_site_not_ready",
+      "duplicate_clear_claim_permitted": false,
+      "foldseek_run_status": "not_run",
+      "high_tm_hit_count": 0,
+      "nearest_current_plp_hit": null,
+      "raw_result_row_count": 0,
+      "ready_for_label_import": false,
+      "review_status": "targeted_current_plp_screen_review_only",
+      "row_id": "uniprot:Q9NZ45",
+      "selected_pdb_id": "2QD0",
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30,
+      "top_current_plp_hits": []
+    },
+    {
+      "accession": "Q9Y617",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_3E77.cif",
+      "current_plp_structural_screen_status": "current_plp_structural_duplicate_signal",
+      "duplicate_clear_claim_permitted": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "high_tm_hit_count": 65,
+      "nearest_current_plp_hit": {
+        "alntmscore": 0.9498,
+        "max_pair_tm_score": 0.9473,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+        "qtmscore": 0.9422,
+        "query_base_name": "pdb_3E77",
+        "raw_query_name": "pdb_3E77_C",
+        "raw_target_name": "pdb_1BJO_A",
+        "target_base_name": "pdb_1BJO",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJO.cif",
+        "target_entry_ids": [
+          "m_csa:424"
+        ],
+        "target_fingerprint_ids": [
+          "plp_dependent_enzyme"
+        ],
+        "target_label_types": [],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1BJO",
+        "target_structure_key": "pdb:1BJO",
+        "ttmscore": 0.9473
+      },
+      "raw_result_row_count": 195,
+      "ready_for_label_import": false,
+      "review_status": "targeted_current_plp_screen_review_only",
+      "row_id": "uniprot:Q9Y617",
+      "selected_pdb_id": "3E77",
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30,
+      "tm_score_threshold": 0.7,
+      "top_current_plp_hits": [
+        {
+          "alntmscore": 0.9498,
+          "max_pair_tm_score": 0.9473,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9422,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_C",
+          "raw_target_name": "pdb_1BJO_A",
+          "target_base_name": "pdb_1BJO",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJO.cif",
+          "target_entry_ids": [
+            "m_csa:424"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BJO",
+          "target_structure_key": "pdb:1BJO",
+          "ttmscore": 0.9473
+        },
+        {
+          "alntmscore": 0.9489,
+          "max_pair_tm_score": 0.9463,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9412,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_C",
+          "raw_target_name": "pdb_1BJO_B",
+          "target_base_name": "pdb_1BJO",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJO.cif",
+          "target_entry_ids": [
+            "m_csa:424"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BJO",
+          "target_structure_key": "pdb:1BJO",
+          "ttmscore": 0.9463
+        },
+        {
+          "alntmscore": 0.9479,
+          "max_pair_tm_score": 0.9454,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9403,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_B",
+          "raw_target_name": "pdb_1BJO_A",
+          "target_base_name": "pdb_1BJO",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJO.cif",
+          "target_entry_ids": [
+            "m_csa:424"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BJO",
+          "target_structure_key": "pdb:1BJO",
+          "ttmscore": 0.9454
+        },
+        {
+          "alntmscore": 0.9478,
+          "max_pair_tm_score": 0.9453,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9377,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_A",
+          "raw_target_name": "pdb_1BJO_A",
+          "target_base_name": "pdb_1BJO",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJO.cif",
+          "target_entry_ids": [
+            "m_csa:424"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BJO",
+          "target_structure_key": "pdb:1BJO",
+          "ttmscore": 0.9453
+        },
+        {
+          "alntmscore": 0.9471,
+          "max_pair_tm_score": 0.9445,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9395,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_B",
+          "raw_target_name": "pdb_1BJO_B",
+          "target_base_name": "pdb_1BJO",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJO.cif",
+          "target_entry_ids": [
+            "m_csa:424"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BJO",
+          "target_structure_key": "pdb:1BJO",
+          "ttmscore": 0.9445
+        },
+        {
+          "alntmscore": 0.9466,
+          "max_pair_tm_score": 0.9441,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9365,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_A",
+          "raw_target_name": "pdb_1BJO_B",
+          "target_base_name": "pdb_1BJO",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BJO.cif",
+          "target_entry_ids": [
+            "m_csa:424"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BJO",
+          "target_structure_key": "pdb:1BJO",
+          "ttmscore": 0.9441
+        },
+        {
+          "alntmscore": 0.7873,
+          "max_pair_tm_score": 0.7854,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7854,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_C",
+          "raw_target_name": "pdb_1I29",
+          "target_base_name": "pdb_1I29",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1I29.cif",
+          "target_entry_ids": [
+            "m_csa:855"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1I29",
+          "target_structure_key": "pdb:1I29",
+          "ttmscore": 0.7111
+        },
+        {
+          "alntmscore": 0.784,
+          "max_pair_tm_score": 0.7821,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7821,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_A",
+          "raw_target_name": "pdb_1I29",
+          "target_base_name": "pdb_1I29",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1I29.cif",
+          "target_entry_ids": [
+            "m_csa:855"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1I29",
+          "target_structure_key": "pdb:1I29",
+          "ttmscore": 0.7102
+        },
+        {
+          "alntmscore": 0.7794,
+          "max_pair_tm_score": 0.7776,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7776,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_B",
+          "raw_target_name": "pdb_1I29",
+          "target_base_name": "pdb_1I29",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1I29.cif",
+          "target_entry_ids": [
+            "m_csa:855"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1I29",
+          "target_structure_key": "pdb:1I29",
+          "ttmscore": 0.7047
+        },
+        {
+          "alntmscore": 0.7764,
+          "max_pair_tm_score": 0.7726,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7726,
+          "query_base_name": "pdb_3E77",
+          "raw_query_name": "pdb_3E77_C",
+          "raw_target_name": "pdb_1QZ9",
+          "target_base_name": "pdb_1QZ9",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QZ9.cif",
+          "target_entry_ids": [
+            "m_csa:742"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1QZ9",
+          "target_structure_key": "pdb:1QZ9",
+          "ttmscore": 0.7017
+        }
+      ]
+    },
+    {
+      "accession": "O07566",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_4K2B.cif",
+      "current_plp_structural_screen_status": "current_plp_structural_duplicate_signal",
+      "duplicate_clear_claim_permitted": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "high_tm_hit_count": 9,
+      "nearest_current_plp_hit": {
+        "alntmscore": 0.8892,
+        "max_pair_tm_score": 0.8675,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+        "qtmscore": 0.768,
+        "query_base_name": "pdb_4K2B",
+        "raw_query_name": "pdb_4K2B_A",
+        "raw_target_name": "pdb_1B9H",
+        "target_base_name": "pdb_1B9H",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B9H.cif",
+        "target_entry_ids": [
+          "m_csa:419"
+        ],
+        "target_fingerprint_ids": [
+          "plp_dependent_enzyme"
+        ],
+        "target_label_types": [],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1B9H",
+        "target_structure_key": "pdb:1B9H",
+        "ttmscore": 0.8675
+      },
+      "raw_result_row_count": 130,
+      "ready_for_label_import": false,
+      "review_status": "targeted_current_plp_screen_review_only",
+      "row_id": "uniprot:O07566",
+      "selected_pdb_id": "4K2B",
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30,
+      "tm_score_threshold": 0.7,
+      "top_current_plp_hits": [
+        {
+          "alntmscore": 0.8892,
+          "max_pair_tm_score": 0.8675,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.768,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_A",
+          "raw_target_name": "pdb_1B9H",
+          "target_base_name": "pdb_1B9H",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B9H.cif",
+          "target_entry_ids": [
+            "m_csa:419"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B9H",
+          "target_structure_key": "pdb:1B9H",
+          "ttmscore": 0.8675
+        },
+        {
+          "alntmscore": 0.8888,
+          "max_pair_tm_score": 0.867,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7643,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_B",
+          "raw_target_name": "pdb_1B9H",
+          "target_base_name": "pdb_1B9H",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B9H.cif",
+          "target_entry_ids": [
+            "m_csa:419"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B9H",
+          "target_structure_key": "pdb:1B9H",
+          "ttmscore": 0.867
+        },
+        {
+          "alntmscore": 0.7708,
+          "max_pair_tm_score": 0.7163,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6357,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_A",
+          "raw_target_name": "pdb_1BS0",
+          "target_base_name": "pdb_1BS0",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BS0.cif",
+          "target_entry_ids": [
+            "m_csa:430"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BS0",
+          "target_structure_key": "pdb:1BS0",
+          "ttmscore": 0.7163
+        },
+        {
+          "alntmscore": 0.7689,
+          "max_pair_tm_score": 0.7147,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6318,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_B",
+          "raw_target_name": "pdb_1BS0",
+          "target_base_name": "pdb_1BS0",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BS0.cif",
+          "target_entry_ids": [
+            "m_csa:430"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1BS0",
+          "target_structure_key": "pdb:1BS0",
+          "ttmscore": 0.7147
+        },
+        {
+          "alntmscore": 0.7054,
+          "max_pair_tm_score": 0.7021,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6256,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_A",
+          "raw_target_name": "pdb_1CS1_A",
+          "target_base_name": "pdb_1CS1",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CS1.cif",
+          "target_entry_ids": [
+            "m_csa:759"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1CS1",
+          "target_structure_key": "pdb:1CS1",
+          "ttmscore": 0.7021
+        },
+        {
+          "alntmscore": 0.7029,
+          "max_pair_tm_score": 0.7013,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6255,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_A",
+          "raw_target_name": "pdb_1CS1_D",
+          "target_base_name": "pdb_1CS1",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CS1.cif",
+          "target_entry_ids": [
+            "m_csa:759"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1CS1",
+          "target_structure_key": "pdb:1CS1",
+          "ttmscore": 0.7013
+        },
+        {
+          "alntmscore": 0.7036,
+          "max_pair_tm_score": 0.7004,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6243,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_A",
+          "raw_target_name": "pdb_1CS1_C",
+          "target_base_name": "pdb_1CS1",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CS1.cif",
+          "target_entry_ids": [
+            "m_csa:759"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1CS1",
+          "target_structure_key": "pdb:1CS1",
+          "ttmscore": 0.7004
+        },
+        {
+          "alntmscore": 0.7034,
+          "max_pair_tm_score": 0.7002,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6243,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_A",
+          "raw_target_name": "pdb_1CS1_B",
+          "target_base_name": "pdb_1CS1",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CS1.cif",
+          "target_entry_ids": [
+            "m_csa:759"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1CS1",
+          "target_structure_key": "pdb:1CS1",
+          "ttmscore": 0.7002
+        },
+        {
+          "alntmscore": 0.7034,
+          "max_pair_tm_score": 0.7001,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6215,
+          "query_base_name": "pdb_4K2B",
+          "raw_query_name": "pdb_4K2B_B",
+          "raw_target_name": "pdb_1CS1_A",
+          "target_base_name": "pdb_1CS1",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CS1.cif",
+          "target_entry_ids": [
+            "m_csa:759"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1CS1",
+          "target_structure_key": "pdb:1CS1",
+          "ttmscore": 0.7001
+        }
+      ]
+    },
+    {
+      "accession": "P53555",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_3DOD.cif",
+      "current_plp_structural_screen_status": "current_plp_structural_duplicate_signal",
+      "duplicate_clear_claim_permitted": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "high_tm_hit_count": 30,
+      "nearest_current_plp_hit": {
+        "alntmscore": 0.8973,
+        "max_pair_tm_score": 0.8953,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+        "qtmscore": 0.8953,
+        "query_base_name": "pdb_3DOD",
+        "raw_query_name": "pdb_3DOD_A",
+        "raw_target_name": "pdb_1DTY_B",
+        "target_base_name": "pdb_1DTY",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DTY.cif",
+        "target_entry_ids": [
+          "m_csa:249"
+        ],
+        "target_fingerprint_ids": [
+          "plp_dependent_enzyme"
+        ],
+        "target_label_types": [],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1DTY",
+        "target_structure_key": "pdb:1DTY",
+        "ttmscore": 0.8712
+      },
+      "raw_result_row_count": 130,
+      "ready_for_label_import": false,
+      "review_status": "targeted_current_plp_screen_review_only",
+      "row_id": "uniprot:P53555",
+      "selected_pdb_id": "3DOD",
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30,
+      "tm_score_threshold": 0.7,
+      "top_current_plp_hits": [
+        {
+          "alntmscore": 0.8973,
+          "max_pair_tm_score": 0.8953,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8953,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_A",
+          "raw_target_name": "pdb_1DTY_B",
+          "target_base_name": "pdb_1DTY",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DTY.cif",
+          "target_entry_ids": [
+            "m_csa:249"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1DTY",
+          "target_structure_key": "pdb:1DTY",
+          "ttmscore": 0.8712
+        },
+        {
+          "alntmscore": 0.8968,
+          "max_pair_tm_score": 0.8947,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8947,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_B",
+          "raw_target_name": "pdb_1DTY_B",
+          "target_base_name": "pdb_1DTY",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DTY.cif",
+          "target_entry_ids": [
+            "m_csa:249"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1DTY",
+          "target_structure_key": "pdb:1DTY",
+          "ttmscore": 0.869
+        },
+        {
+          "alntmscore": 0.8964,
+          "max_pair_tm_score": 0.8944,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8944,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_A",
+          "raw_target_name": "pdb_1DTY_A",
+          "target_base_name": "pdb_1DTY",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DTY.cif",
+          "target_entry_ids": [
+            "m_csa:249"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1DTY",
+          "target_structure_key": "pdb:1DTY",
+          "ttmscore": 0.8703
+        },
+        {
+          "alntmscore": 0.8965,
+          "max_pair_tm_score": 0.8944,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8944,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_B",
+          "raw_target_name": "pdb_1DTY_A",
+          "target_base_name": "pdb_1DTY",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DTY.cif",
+          "target_entry_ids": [
+            "m_csa:249"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1DTY",
+          "target_structure_key": "pdb:1DTY",
+          "ttmscore": 0.8684
+        },
+        {
+          "alntmscore": 0.8952,
+          "max_pair_tm_score": 0.8869,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8869,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_A",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.8592
+        },
+        {
+          "alntmscore": 0.8937,
+          "max_pair_tm_score": 0.8855,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8855,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_B",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.8559
+        },
+        {
+          "alntmscore": 0.8549,
+          "max_pair_tm_score": 0.8433,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8433,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_B",
+          "raw_target_name": "pdb_1OHV_D",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.7651
+        },
+        {
+          "alntmscore": 0.8546,
+          "max_pair_tm_score": 0.8429,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8429,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_B",
+          "raw_target_name": "pdb_1OHV_A",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.7648
+        },
+        {
+          "alntmscore": 0.8505,
+          "max_pair_tm_score": 0.8428,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8428,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_B",
+          "raw_target_name": "pdb_1OHV_C",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.7648
+        },
+        {
+          "alntmscore": 0.8503,
+          "max_pair_tm_score": 0.8426,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8426,
+          "query_base_name": "pdb_3DOD",
+          "raw_query_name": "pdb_3DOD_A",
+          "raw_target_name": "pdb_1OHV_C",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.7663
+        }
+      ]
+    },
+    {
+      "accession": "Q9S7N2",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_3BWN.cif",
+      "current_plp_structural_screen_status": "current_plp_structural_duplicate_signal",
+      "duplicate_clear_claim_permitted": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "high_tm_hit_count": 48,
+      "nearest_current_plp_hit": {
+        "alntmscore": 0.8121,
+        "max_pair_tm_score": 0.81,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+        "qtmscore": 0.81,
+        "query_base_name": "pdb_3BWN",
+        "raw_query_name": "pdb_3BWN_C",
+        "raw_target_name": "pdb_1B8G_A",
+        "target_base_name": "pdb_1B8G",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+        "target_entry_ids": [
+          "m_csa:418"
+        ],
+        "target_fingerprint_ids": [
+          "plp_dependent_enzyme"
+        ],
+        "target_label_types": [],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1B8G",
+        "target_structure_key": "pdb:1B8G",
+        "ttmscore": 0.7026
+      },
+      "raw_result_row_count": 390,
+      "ready_for_label_import": false,
+      "review_status": "targeted_current_plp_screen_review_only",
+      "row_id": "uniprot:Q9S7N2",
+      "selected_pdb_id": "3BWN",
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30,
+      "tm_score_threshold": 0.7,
+      "top_current_plp_hits": [
+        {
+          "alntmscore": 0.8121,
+          "max_pair_tm_score": 0.81,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.81,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_C",
+          "raw_target_name": "pdb_1B8G_A",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.7026
+        },
+        {
+          "alntmscore": 0.812,
+          "max_pair_tm_score": 0.8099,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8099,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_D",
+          "raw_target_name": "pdb_1B8G_A",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.6988
+        },
+        {
+          "alntmscore": 0.812,
+          "max_pair_tm_score": 0.8099,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8099,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_F",
+          "raw_target_name": "pdb_1B8G_B",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.6946
+        },
+        {
+          "alntmscore": 0.8118,
+          "max_pair_tm_score": 0.8098,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8098,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_C",
+          "raw_target_name": "pdb_1B8G_B",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.6963
+        },
+        {
+          "alntmscore": 0.8118,
+          "max_pair_tm_score": 0.8097,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8097,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_A",
+          "raw_target_name": "pdb_1B8G_A",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.7042
+        },
+        {
+          "alntmscore": 0.8116,
+          "max_pair_tm_score": 0.8095,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8095,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_D",
+          "raw_target_name": "pdb_1B8G_B",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.6924
+        },
+        {
+          "alntmscore": 0.8113,
+          "max_pair_tm_score": 0.8092,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8092,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_A",
+          "raw_target_name": "pdb_1B8G_B",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.6977
+        },
+        {
+          "alntmscore": 0.8132,
+          "max_pair_tm_score": 0.809,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.809,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_F",
+          "raw_target_name": "pdb_1B8G_A",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.6998
+        },
+        {
+          "alntmscore": 0.8121,
+          "max_pair_tm_score": 0.8079,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8079,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_E",
+          "raw_target_name": "pdb_1B8G_B",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.6965
+        },
+        {
+          "alntmscore": 0.8093,
+          "max_pair_tm_score": 0.8073,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8073,
+          "query_base_name": "pdb_3BWN",
+          "raw_query_name": "pdb_3BWN_B",
+          "raw_target_name": "pdb_1B8G_A",
+          "target_base_name": "pdb_1B8G",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B8G.cif",
+          "target_entry_ids": [
+            "m_csa:418"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1B8G",
+          "target_structure_key": "pdb:1B8G",
+          "ttmscore": 0.7146
+        }
+      ]
+    },
+    {
+      "accession": "P50457",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521/pdb_7JH3.cif",
+      "current_plp_structural_screen_status": "current_plp_structural_duplicate_signal",
+      "duplicate_clear_claim_permitted": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "high_tm_hit_count": 90,
+      "nearest_current_plp_hit": {
+        "alntmscore": 0.9451,
+        "max_pair_tm_score": 0.9429,
+        "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+        "qtmscore": 0.9429,
+        "query_base_name": "pdb_7JH3",
+        "raw_query_name": "pdb_7JH3_A",
+        "raw_target_name": "pdb_1D7R",
+        "target_base_name": "pdb_1D7R",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+        "target_entry_ids": [
+          "m_csa:482"
+        ],
+        "target_fingerprint_ids": [
+          "plp_dependent_enzyme"
+        ],
+        "target_label_types": [],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1D7R",
+        "target_structure_key": "pdb:1D7R",
+        "ttmscore": 0.9196
+      },
+      "raw_result_row_count": 390,
+      "ready_for_label_import": false,
+      "review_status": "targeted_current_plp_screen_review_only",
+      "row_id": "uniprot:P50457",
+      "selected_pdb_id": "7JH3",
+      "target_subset": "current_countable_plp_dependent_enzyme_structures",
+      "target_subset_count": 30,
+      "tm_score_threshold": 0.7,
+      "top_current_plp_hits": [
+        {
+          "alntmscore": 0.9451,
+          "max_pair_tm_score": 0.9429,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9429,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_A",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.9196
+        },
+        {
+          "alntmscore": 0.945,
+          "max_pair_tm_score": 0.9428,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9428,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_D",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.9196
+        },
+        {
+          "alntmscore": 0.9447,
+          "max_pair_tm_score": 0.9425,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9425,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_F",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.9192
+        },
+        {
+          "alntmscore": 0.9443,
+          "max_pair_tm_score": 0.9421,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9421,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_E",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.9188
+        },
+        {
+          "alntmscore": 0.9442,
+          "max_pair_tm_score": 0.942,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.942,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_B",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.9188
+        },
+        {
+          "alntmscore": 0.9441,
+          "max_pair_tm_score": 0.9419,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9419,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_C",
+          "raw_target_name": "pdb_1D7R",
+          "target_base_name": "pdb_1D7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D7R.cif",
+          "target_entry_ids": [
+            "m_csa:482"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1D7R",
+          "target_structure_key": "pdb:1D7R",
+          "ttmscore": 0.9186
+        },
+        {
+          "alntmscore": 0.8985,
+          "max_pair_tm_score": 0.8964,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8964,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_E",
+          "raw_target_name": "pdb_1OHV_B",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.8199
+        },
+        {
+          "alntmscore": 0.8982,
+          "max_pair_tm_score": 0.8962,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8962,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_E",
+          "raw_target_name": "pdb_1OHV_D",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.8197
+        },
+        {
+          "alntmscore": 0.8982,
+          "max_pair_tm_score": 0.8961,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8961,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_E",
+          "raw_target_name": "pdb_1OHV_C",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.8196
+        },
+        {
+          "alntmscore": 0.8978,
+          "max_pair_tm_score": 0.8958,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8958,
+          "query_base_name": "pdb_7JH3",
+          "raw_query_name": "pdb_7JH3_E",
+          "raw_target_name": "pdb_1OHV_A",
+          "target_base_name": "pdb_1OHV",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OHV.cif",
+          "target_entry_ids": [
+            "m_csa:854"
+          ],
+          "target_fingerprint_ids": [
+            "plp_dependent_enzyme"
+          ],
+          "target_label_types": [],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1OHV",
+          "target_structure_key": "pdb:1OHV",
+          "ttmscore": 0.8195
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "artifact_id": "v3_sdr_family_readiness_post_plp_terminal_review_packet_20260521",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T20:53:12Z",
+    "curated_label_registry_edited": false,
+    "family_id": "sdr_nad_p_redox",
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "method": "sdr_family_readiness_recheck_after_plp_terminal_packet_existing_evidence_only",
+    "new_external_rows_frozen": 0,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_sdr_family_readiness_packet_20260520.json",
+      "artifacts/v3_external_sdr_ec_1_1_1_consistency_check_1025.json",
+      "artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json",
+      "artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json"
+    ],
+    "source_free_sdr_axis_ready_count": 0,
+    "uses_existing_artifacts_only": true
+  },
+  "evidence_summary": {
+    "active_site_and_cofactor_evidence": {
+      "current_status": "source_traced_not_source_free",
+      "direct_local_nad_p_ligand_geometry_ready": false,
+      "representative_positive_like_row": {
+        "accession": "O14756",
+        "entry_id": "uniprot:O14756",
+        "source_active_site_positions": [
+          176
+        ],
+        "source_traced_catalytic_axis": "YCVSK overlaps the source active-site Tyr position",
+        "source_traced_nad_p_proxy": "TGCDSGFG glycine-rich motif",
+        "source_free_position_policy_ready": false
+      },
+      "predictive_evidence_separation": {
+        "ec_keyword_or_protein_name_counted_as_predictive_evidence": false,
+        "rhea_or_uniprot_prose_counted_as_predictive_evidence": false,
+        "current_label_or_target_fingerprint_counted_as_predictive_evidence": false
+      }
+    },
+    "current_eight_fingerprint_context": {
+      "clean_sdr_abstention_count": 36,
+      "sdr_false_non_abstention_count": 0,
+      "top1_fingerprint_counts_for_clean_abstentions": {
+        "flavin_dehydrogenase_reductase": 2,
+        "heme_peroxidase_oxidase": 34
+      },
+      "interpretation": "Useful stress context for current abstention behavior, not positive SDR scorer calibration evidence."
+    },
+    "control_tranche_context": {
+      "control_tranche_row_count": 14,
+      "source_traced_positive_like_count": 2,
+      "source_free_sdr_akr_axis_ready_count": 0,
+      "terminal_decision_counts": {
+        "ambiguous": 4,
+        "mechanism_match": 8,
+        "needs_review": 2
+      },
+      "interpretation": "The existing tranche is a review-only boundary/control surface; it does not clear the SDR source-free geometry blocker."
+    },
+    "post_plp_lesson_applied": {
+      "lesson": "The PLP packet became terminal only after coordinate-only active-site extraction was paired with targeted current-structure leakage screening.",
+      "sdr_implication": "SDR should not be promoted from source-traced motif/prose evidence; it needs the same preregistered source-free local-axis extractor and duplicate screen discipline."
+    }
+  },
+  "decision": {
+    "current_decision": "do_not_promote_production_fingerprint",
+    "terminal_decision": "needs_new_extractor_or_structure",
+    "exact_missing_evidence": [
+      "source_free_nad_p_ligand_or_cofactor_proxy_geometry_axis_missing",
+      "source_free_catalytic_ser_tyr_lys_local_axis_policy_missing",
+      "broader_duplicate_screening_unresolved_for_positive_like_rows",
+      "terminal_external_review_decision_packet_not_built",
+      "full_label_factory_gate_not_run"
+    ],
+    "import_ready_candidate_count": 0,
+    "mechanism_match_review_ready_count": 0,
+    "next_decision": "run_one_exact_preregistered_review_only_experiment_or_do_not_continue_sdr"
+  },
+  "modern_baseline_caveats": {
+    "ec_keyword_routing": "selection_context_only_not_predictive_evidence",
+    "sequence_motif_baseline": "TGxxxGxG and YxxxK are useful controls but are not local geometry evidence",
+    "current_geometry_retrieval": "current 8-fingerprint scores are abstention/collapse context because SDR is not in the production fingerprint universe",
+    "esm_sidecar": "not_available_for_this_readiness_recheck",
+    "foldseek_sidecar": "not_run_for_this_readiness_recheck",
+    "superiority_claim": false,
+    "superiority_claim_permitted": false
+  },
+  "likely_failure_modes": [
+    {
+      "id": "sequence_motif_overgeneralization",
+      "risk": "YxxxK and glycine-rich motifs can appear in non-SDR redox proteins without the correct local cofactor geometry.",
+      "required_control": "AKR/NADP, flavin, heme, and EC 1.1.1 non-SDR controls frozen before scoring."
+    },
+    {
+      "id": "source_position_leakage",
+      "risk": "Using source active-site positions would repeat source-traced evidence instead of source-free prediction.",
+      "required_control": "Extractor must operate from coordinates and sequence-derived local context without source residue annotations."
+    },
+    {
+      "id": "current_fingerprint_collision",
+      "risk": "Clean SDR-like rows currently route below threshold mostly toward heme or flavin lanes.",
+      "required_control": "Benchmark must report EC, sequence, current geometry, ESM if available, and Foldseek caveats on the same frozen rows."
+    }
+  ],
+  "next_exact_experiment": {
+    "decision_to_start_now": false,
+    "experiment_id": "sdr_source_free_nad_p_catalytic_axis_design_v1_review_only",
+    "selection_freeze_required_before_scoring": true,
+    "target_rows": "10-20 total rows balanced across SDR positives, AKR/NADP siblings, flavin/heme redox current-fingerprint controls, and EC 1.1.1 non-SDR controls",
+    "allowed_predictive_inputs": [
+      "source-free NAD(P) ligand or cofactor-proxy geometry",
+      "source-free local Ser/Tyr/Lys catalytic-axis geometry",
+      "sequence-derived glycine-rich motif as a baseline/control only",
+      "pre-frozen duplicate and current-reference screen status"
+    ],
+    "excluded_predictive_inputs": [
+      "protein names",
+      "EC labels",
+      "Rhea identifiers or reaction prose",
+      "UniProt function prose",
+      "source active-site residue annotations",
+      "current label or target fingerprint ids"
+    ],
+    "success_criteria": [
+      "candidate selection artifact exists before scoring",
+      "source-free local-axis extractor emits explicit leak checks",
+      "duplicate/leakage screen is run or records an exact blocker",
+      "all rows receive terminal or exact-blocker decisions",
+      "no registry edit, label import, threshold change, or production scorer is attempted"
+    ]
+  },
+  "safety_and_scope": {
+    "review_only": true,
+    "countable_label_candidate_count": 0,
+    "label_import_attempted": false,
+    "production_fingerprint_added": false,
+    "registry_mutation_performed": false,
+    "artifact_migration_performed": false,
+    "removal_allowed_set_true": false
+  }
+}

@@ -1907,6 +1907,266 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(benchmark["metrics"]["superiority_claim"])
 
+    def test_plp_aminotransferase_source_free_anchor_packet_is_terminal(self) -> None:
+        geometry = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json"
+        )
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521.json"
+        )
+
+        geometry_meta = geometry["metadata"]
+        self.assertTrue(geometry_meta["review_only"])
+        self.assertTrue(geometry_meta["candidate_selection_frozen_before_scoring"])
+        self.assertEqual(geometry_meta["coordinate_sidecar_count"], 7)
+        self.assertEqual(geometry_meta["source_free_active_site_ready_count"], 6)
+        self.assertEqual(geometry_meta["target_lane_at_or_above_floor_count"], 6)
+        self.assertEqual(geometry_meta["production_fingerprint_scored_candidate_count"], 0)
+        self.assertFalse(geometry_meta["text_or_label_fields_used_for_score_any"])
+        self.assertFalse(geometry_meta["ready_for_label_import"])
+        self.assertFalse(geometry_meta["curated_label_registry_edited"])
+        self.assertFalse(geometry_meta["fingerprint_registry_edited"])
+        self.assertFalse(geometry_meta["removal_allowed_set_true"])
+        self.assertEqual(
+            geometry_meta["plp_active_site_extraction_status_counts"],
+            {
+                "plp_like_cofactor_absent": 1,
+                "source_free_plp_active_site_ready": 6,
+            },
+        )
+        q9nz45_geometry = {row["accession"]: row for row in geometry["rows"]}[
+            "Q9NZ45"
+        ]
+        self.assertEqual(
+            q9nz45_geometry["source_free_active_site_extraction"]["status"],
+            "plp_like_cofactor_absent",
+        )
+        for row in geometry["rows"]:
+            summary = row["current_geometry_retrieval_score_summary"]
+            self.assertFalse(summary["text_or_label_fields_used_for_score"])
+            if row["accession"] != "Q9NZ45":
+                self.assertEqual(summary["top1_fingerprint_id"], "plp_dependent_enzyme")
+                self.assertGreaterEqual(summary["target_lane_score"], 0.4115)
+
+        screen_meta = screen["metadata"]
+        self.assertTrue(screen_meta["review_only"])
+        self.assertEqual(screen_meta["target_subset_count"], 30)
+        self.assertEqual(screen_meta["high_tm_candidate_count"], 6)
+        self.assertFalse(screen_meta["duplicate_clear_claim_permitted"])
+        self.assertEqual(
+            screen_meta["foldseek_query_run_status_counts"],
+            {"completed": 6, "not_run": 1},
+        )
+        screen_rows = {row["accession"]: row for row in screen["rows"]}
+        self.assertEqual(
+            screen_rows["Q9NZ45"]["current_plp_structural_screen_status"],
+            "not_run_source_free_plp_active_site_not_ready",
+        )
+        for accession, row in screen_rows.items():
+            if accession == "Q9NZ45":
+                continue
+            self.assertEqual(
+                row["current_plp_structural_screen_status"],
+                "current_plp_structural_duplicate_signal",
+            )
+            self.assertGreaterEqual(
+                row["nearest_current_plp_hit"]["max_pair_tm_score"],
+                0.7,
+            )
+
+        packet_meta = packet["metadata"]
+        self.assertTrue(packet_meta["review_only"])
+        self.assertTrue(packet_meta["source_separation_enforced"])
+        self.assertEqual(
+            packet_meta["terminal_decision_counts"],
+            {
+                "terminal_rejection_duplicate_or_leakage": 6,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertEqual(packet_meta["mechanism_match_review_ready_count"], 0)
+        self.assertEqual(packet_meta["import_ready_candidate_count"], 0)
+        self.assertFalse(packet_meta["ready_for_label_import"])
+        self.assertFalse(packet_meta["curated_label_registry_edited"])
+        self.assertFalse(packet_meta["fingerprint_registry_edited"])
+        self.assertFalse(packet_meta["removal_allowed_set_true"])
+        allowed = set(packet_meta["terminal_decision_vocabulary"])
+        self.assertLessEqual({row["terminal_decision"] for row in packet["rows"]}, allowed)
+        packet_rows = {row["accession"]: row for row in packet["rows"]}
+        self.assertEqual(
+            packet_rows["Q9NZ45"]["terminal_decision"],
+            "terminal_rejection_insufficient_evidence",
+        )
+        self.assertIn(
+            "selected_pdb_lacks_source_free_plp_like_active_site_evidence",
+            packet_rows["Q9NZ45"]["counterevidence"],
+        )
+        self.assertIsNotNone(
+            packet_rows["Q9NZ45"]["exact_blocker_if_not_terminal_import_ready"]
+        )
+        for accession, row in packet_rows.items():
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(
+                row["predictive_evidence"][
+                    "ec_keyword_protein_name_counted_as_predictive_evidence"
+                ]
+            )
+            self.assertFalse(
+                row["predictive_evidence"][
+                    "uniprot_prose_or_plp_annotation_counted_as_predictive_evidence"
+                ]
+            )
+            if accession == "Q9NZ45":
+                continue
+            self.assertEqual(row["terminal_decision"], "terminal_rejection_duplicate_or_leakage")
+            self.assertEqual(
+                row["duplicate_leakage_screen"]["current_plp_structural_screen_status"],
+                "current_plp_structural_duplicate_signal",
+            )
+            self.assertGreater(row["duplicate_leakage_screen"]["high_tm_hit_count"], 0)
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {
+                "terminal_rejection_duplicate_or_leakage": 6,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertTrue(
+            benchmark["metrics"]["current_geometry_retrieval_triage"][
+                "geometry_signal_added_beyond_ec_sequence_on_frozen_rows"
+            ]
+        )
+        self.assertFalse(
+            benchmark["metrics"]["foldseek_structural_sidecar"][
+                "duplicate_clear_claim_supported"
+            ]
+        )
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+
+    def test_external_deep_terminal_rollup_post_plp_stays_review_only(self) -> None:
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_plp_20260521.json"
+        )
+        metadata = rollup["metadata"]
+        synthesis = rollup["synthesis"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["deep_packet_count"], 6)
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["terminal_candidate_count"], 42)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 1,
+                "terminal_rejection_duplicate_or_leakage": 40,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(synthesis["non_needs_review_terminal_candidate_count"], 42)
+        self.assertEqual(
+            synthesis["aggregate_count_method"],
+            "derived_from_terminal_decision_counts_to_avoid_stale_source_packet_summary_counts",
+        )
+        self.assertEqual(synthesis["mechanism_match_review_ready_count"], 1)
+        self.assertEqual(synthesis["import_ready_candidate_count"], 0)
+        self.assertEqual(synthesis["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            synthesis["dominant_terminal_outcome"],
+            "terminal_rejection_duplicate_or_leakage",
+        )
+
+        rows = {row["lane_id"]: row for row in rollup["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "metal_phosphatase",
+                "serine_hydrolase",
+                "flavin_dehydrogenase_reductase",
+                "flavin_monooxygenase",
+                "heme_peroxidase_oxidase",
+                "plp_dependent_enzyme",
+            },
+        )
+        self.assertEqual(
+            rows["plp_dependent_enzyme"]["terminal_decision_counts"],
+            {
+                "terminal_rejection_duplicate_or_leakage": 6,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertEqual(
+            rows["heme_peroxidase_oxidase"]["mechanism_match_review_ready_count"],
+            1,
+        )
+        self.assertEqual(
+            rows["serine_hydrolase"]["derived_non_needs_review_terminal_count"],
+            7,
+        )
+        consistency = rollup["source_packet_consistency_checks"]
+        self.assertEqual(consistency["summary_count_mismatch_count"], 1)
+        self.assertEqual(
+            consistency["mismatch_findings"][0]["lane_id"],
+            "serine_hydrolase",
+        )
+        self.assertEqual(
+            consistency["aggregate_count_policy"],
+            "derive_from_terminal_decision_counts_not_optional_packet_summary_fields",
+        )
+        self.assertTrue(all(row["source_separation_flag"] for row in rows.values()))
+        self.assertTrue(
+            all(row["import_ready_candidate_count"] == 0 for row in rows.values())
+        )
+        self.assertTrue(all(not row["ready_for_label_import"] for row in rows.values()))
+
+        caveats = rollup["source_separation_and_baseline_caveats"]
+        self.assertFalse(caveats["ec_keyword_protein_name_counted_as_predictive_evidence"])
+        self.assertFalse(caveats["superiority_claim"])
+        self.assertFalse(caveats["superiority_claim_permitted"])
+        self.assertTrue(
+            rollup["next_main_loop_guidance"]["do_not_start_broad_external_minicampaign"]
+        )
+        self.assertFalse(rollup["safety_and_scope"]["label_import_attempted"])
+        self.assertFalse(rollup["safety_and_scope"]["production_fingerprint_added"])
+
+    def test_default_label_factory_gate_check_does_not_authorize_import(self) -> None:
+        gate_check = _load_json(ARTIFACTS / "v3_label_factory_gate_check.json")
+        metadata = gate_check["metadata"]
+
+        self.assertEqual(metadata["method"], "label_factory_gate_check")
+        self.assertEqual(metadata["label_count"], 682)
+        self.assertEqual(metadata["gate_count"], 17)
+        self.assertLess(metadata["passed_gate_count"], metadata["gate_count"])
+        self.assertFalse(metadata["automation_ready_for_next_label_batch"])
+        self.assertEqual(
+            metadata["review_only_import_safety_audit_total_new_countable_label_count"],
+            0,
+        )
+        self.assertEqual(metadata["artifact_lineage"]["slice_id"], 500)
+        self.assertEqual(
+            metadata["artifact_lineage"]["method"],
+            "label_factory_gate_cli_lineage_validation",
+        )
+
     def test_heme_peroxidase_i2dby1_subchunk_screen_resolves_timeout(self) -> None:
         subchunk = _load_json(
             ARTIFACTS
@@ -4363,6 +4623,72 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             any(mode["id"] == "single_positive_like_row" for mode in packet["likely_failure_modes"])
         )
         self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+
+    def test_sdr_post_plp_readiness_recheck_stays_existing_evidence_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_sdr_family_readiness_post_plp_terminal_review_packet_20260521.json"
+        )
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        caveats = packet["modern_baseline_caveats"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+        self.assertEqual(metadata["source_free_sdr_axis_ready_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            decision["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(decision["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertIn(
+            "source_free_nad_p_ligand_or_cofactor_proxy_geometry_axis_missing",
+            decision["exact_missing_evidence"],
+        )
+        self.assertIn(
+            "broader_duplicate_screening_unresolved_for_positive_like_rows",
+            decision["exact_missing_evidence"],
+        )
+
+        evidence = packet["evidence_summary"]["active_site_and_cofactor_evidence"]
+        self.assertEqual(evidence["current_status"], "source_traced_not_source_free")
+        self.assertFalse(evidence["direct_local_nad_p_ligand_geometry_ready"])
+        self.assertFalse(
+            evidence["predictive_evidence_separation"][
+                "ec_keyword_or_protein_name_counted_as_predictive_evidence"
+            ]
+        )
+        self.assertEqual(
+            packet["evidence_summary"]["current_eight_fingerprint_context"][
+                "sdr_false_non_abstention_count"
+            ],
+            0,
+        )
+
+        self.assertFalse(caveats["superiority_claim"])
+        self.assertFalse(caveats["superiority_claim_permitted"])
+        self.assertEqual(caveats["esm_sidecar"], "not_available_for_this_readiness_recheck")
+        self.assertFalse(packet["next_exact_experiment"]["decision_to_start_now"])
+        self.assertTrue(
+            packet["next_exact_experiment"]["selection_freeze_required_before_scoring"]
+        )
+        self.assertIn(
+            "source active-site residue annotations",
+            packet["next_exact_experiment"]["excluded_predictive_inputs"],
+        )
+        self.assertFalse(packet["safety_and_scope"]["label_import_attempted"])
+        self.assertFalse(packet["safety_and_scope"]["production_fingerprint_added"])
 
     def test_akr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_akr_family_readiness_packet_20260520.json")

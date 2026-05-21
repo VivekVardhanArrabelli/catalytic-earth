@@ -50,6 +50,80 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T20:27:57Z main-loop run, the frozen PLP
+aminotransferase blocker is no longer an extractor-missing surface. The new
+source-free extractor module `src/catalytic_earth/plp_active_site.py` maps
+PLP/LLP/PMP/P5P-like coordinate sites, covalent or modified lysine anchors,
+nearby acid/base residues, and phosphate-binding residues without using EC,
+protein names, UniProt prose, PLP annotations, or curated labels as predictive
+input. It is regression-tested in `tests/test_plp_active_site.py`.
+
+The PLP deep packet now has three review-only evidence layers. First,
+`artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json`
+materializes the seven selected PDB coordinate sidecars, resolves complete
+source-free PLP active-site triplets for six rows, and scores all six to the
+current `plp_dependent_enzyme` lane above the `0.4115` floor with top1 PLP and
+0 text/label fields used. `Q9NZ45`/`2QD0` has no PLP-like coordinate site and
+is not scored. Second,
+`artifacts/v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json`
+screens the six source-free-ready rows against the 30 current countable PLP
+structures with Foldseek exact TM-score; all six have targeted current-PLP
+`TM >= 0.7` duplicate/leakage signals (`Q8TD30` 0.8071 to `pdb:1B8G`,
+`Q9Y617` 0.9473 to `pdb:1BJO`, `O07566` 0.8675 to `pdb:1B9H`, `P53555`
+0.8953 to `pdb:1DTY`, `Q9S7N2` 0.8100 to `pdb:1B8G`, and `P50457` 0.9429 to
+`pdb:1D7R`). Targeted Foldseek is import-gate leakage evidence only and does
+not establish duplicate-clear.
+
+The terminal packet
+`artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json`
+therefore records six `terminal_rejection_duplicate_or_leakage` rows and one
+`terminal_rejection_insufficient_evidence` row (`Q9NZ45`). The companion
+benchmark
+`artifacts/v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword routing, deterministic 5-mer sequence nearest-neighbor,
+Foldseek/TM, and missing ESM sidecar caveats separate and makes no superiority
+claim. No label import, registry edit, fingerprint edit, threshold change,
+artifact upload/removal, externalization, Git-LFS migration, history rewrite,
+or `removal_allowed=true` occurred.
+
+Evidence-based confidence call: confidence is high that the PLP extractor
+removed the exact source-free active-site blocker for six frozen rows because
+the coordinate-only PLP/LLP anchor triplets score the PLP lane without text
+fields and all six then hit current countable PLP structures above the leakage
+threshold. Confidence is also high that these are terminal rejection packets,
+not mechanism-match evidence, because targeted high-TM current-PLP leakage
+supersedes the above-floor PLP geometry signal. `Q9NZ45` is a terminal
+insufficient-evidence rejection for the selected frozen PDB, not a clean
+hard-negative or wrong-scope import row; any future attempt would need a newly
+frozen alternate coordinate source with observed PLP-like active-site evidence.
+
+The same run added the review-only SDR readiness recheck
+`artifacts/v3_sdr_family_readiness_post_plp_terminal_review_packet_20260521.json`
+using existing artifacts only. It freezes no new external rows and explicitly
+keeps SDR at `needs_new_extractor_or_structure`: source-traced O14756
+YxxxK/NAD(P) proxy evidence, 36/36 clean SDR abstention context, and the
+14-row SDR/AKR/NADP control tranche are useful review context, but there is
+still no source-free NAD(P) ligand/proxy geometry axis, no source-free
+Ser/Tyr/Lys local catalytic-axis policy, no broader duplicate screen for
+positive-like rows, and no terminal external decision packet. The next exact
+SDR experiment is preregistered design only, not started now.
+
+For planning continuity, the run also wrote
+`artifacts/v3_external_deep_terminal_decision_rollup_post_plp_20260521.json`.
+It rolls up the six existing deep-packet lanes without freezing new rows:
+42 frozen external rows now have non-`needs_review` terminal outcomes across
+metal phosphatase, serine hydrolase, flavin dehydrogenase/reductase, flavin
+monooxygenase, heme peroxidase, and PLP. The aggregate is 40
+`terminal_rejection_duplicate_or_leakage`, one
+`terminal_rejection_insufficient_evidence`, and one
+`mechanism_match_review_ready` review-only heme row. Import-ready count remains
+0 and the rollup is planning context only. The rollup deliberately derives
+aggregate terminal counts from terminal-decision maps, and records the stale
+serine summary-counter mismatch it found as a consistency check.
+Next main-loop work should continue deepening existing frozen/nonterminal
+surfaces or write a concise family-readiness packet, not open another broad
+external mini-campaign.
+
 As of the 2026-05-21T19:26:53Z recovery/wrap run, the main loop preserved and
 validated the coherent stale-lock dirty work rather than opening another broad
 external mini-campaign. The late ePK synthesis artifact

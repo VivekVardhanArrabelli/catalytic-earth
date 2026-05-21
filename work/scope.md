@@ -394,6 +394,14 @@ controls, EC/keyword lanes are routing context only, k-mer and ESM-2 are
 sequence-neighbor controls, and Foldseek context comes from the existing all-30
 sidecar rather than the new mini-campaign. No superiority claim, label import,
 or production fingerprint change is in scope.
+Post-PLP rollup scope:
+`artifacts/v3_external_deep_terminal_decision_rollup_post_plp_20260521.json`
+summarizes six existing deep-packet lanes without adding candidate breadth.
+Across metal phosphatase, serine hydrolase, flavin dehydrogenase/reductase,
+flavin monooxygenase, heme peroxidase, and PLP, 42 frozen external rows now
+have non-`needs_review` terminal outcomes: 40 duplicate/leakage rejections,
+one insufficient-evidence rejection, and one review-only heme
+`mechanism_match_review_ready`. Import-ready count remains 0.
 Current SDR family-readiness scope: the SDR/NAD(P) packet in
 `artifacts/v3_sdr_family_readiness_packet_20260520.json` is review-only and
 not a production fingerprint. It uses O14756 as the only direct positive-like
@@ -403,6 +411,13 @@ controls. It does not authorize a registry edit, label import, threshold, or
 production scorer. The next admissible SDR step is one preregistered
 review-only tranche that freezes 10-20 SDR/AKR/flavin/heme control rows before
 any source-free local-axis scoring.
+The post-PLP recheck in
+`artifacts/v3_sdr_family_readiness_post_plp_terminal_review_packet_20260521.json`
+keeps this scope unchanged and more explicit: no new external rows were frozen,
+no production scorer is authorized, and SDR remains blocked on source-free
+NAD(P) ligand/proxy geometry, source-free Ser/Tyr/Lys local catalytic-axis
+policy, broader duplicate screening for positive-like rows, and a terminal
+decision packet.
 Current AKR family-readiness scope: the AKR/NADP packet in
 `artifacts/v3_akr_family_readiness_packet_20260520.json` is review-only and not
 a production fingerprint. It uses C9JRZ8 as the only direct positive-like AKR
@@ -581,6 +596,24 @@ selection. The companion benchmark
 `artifacts/v3_plp_aminotransferase_deep_blocker_modern_baseline_benchmark_20260521.json`
 keeps EC/keyword, deterministic sequence, coordinate-token, Foldseek, and ESM
 caveats diagnostic only with no superiority or import claim.
+That extractor experiment is now complete as review-only evidence, still with
+no import path. `src/catalytic_earth/plp_active_site.py` maps coordinate-only
+PLP/LLP/PMP/P5P-like cofactors, lysine anchors, acid/base residues, and
+phosphate binders; `tests/test_plp_active_site.py` pins the source-free
+contract. The scored artifact
+`artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json`
+resolves complete PLP active-site triplets for six of seven frozen rows and
+routes all six to top1 `plp_dependent_enzyme` above the `0.4115` floor with 0
+text fields used; `Q9NZ45`/`2QD0` has no PLP-like coordinate evidence and is
+not scored. The targeted duplicate screen
+`artifacts/v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json`
+then finds `TM >= 0.7` current-countable PLP hits for those six rows, so
+`artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json`
+sets six rows to `terminal_rejection_duplicate_or_leakage` and `Q9NZ45` to
+`terminal_rejection_insufficient_evidence`. This is terminal rejection
+evidence, not mechanism-match or duplicate-clear evidence; the companion
+benchmark keeps EC/sequence/Foldseek/ESM surfaces separate and makes no
+superiority claim.
 Current flavin monooxygenase external mini-campaign scope:
 `artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json`
 freezes a new 20-row reviewed UniProtKB/Swiss-Prot EC 1.14.13.* surface

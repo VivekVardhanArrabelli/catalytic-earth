@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 266
-- Measured elapsed time: 7945.8 minutes (132.43 hours)
+- Entries: 267
+- Measured elapsed time: 7994.2 minutes (133.24 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 952.3 measured minutes (15.87 hours)
+- v3: 1000.7 measured minutes (16.68 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2891
-- Evidence references logged: 2360
+- Artifact references logged: 2906
+- Evidence references logged: 2366
 
 ## Recent Entries
-
-### 2026-05-21T12:24:08.992494+00:00 - v3
-
-- Task: flavin duplicate terminal packet and ePK follow-up synthesis
-- Time mode: measured
-- Measured minutes: 426.183
-- Started: 2026-05-21T05:17:46Z
-- Ended: 2026-05-21T12:23:57Z
-- Artifacts: artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: fresh ePK lane outputs synthesized review-only with 5UJ7 and 119-row scorer contract preserved, 7 frozen flavin dehydrogenase rows screened against 672 current-countable structures, 4704/4704 unique query-target pairs mapped with 0 raw-name failures, 7/7 rows terminal_rejection_duplicate_or_leakage by TM>=0.7 current-countable structural signal, 782-test unit discovery passed, CLI validate passed, artifact migration dry-run passed with removal_allowed=0
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ### 2026-05-21T14:06:11.129182+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_late_lane_decision_synthesis_20260521.json, artifacts/v3_serine_hydrolase_p31614_full_current_alignment_duplicate_probe_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json, artifacts/v3_plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe_20260521.json, artifacts/v3_plp_aminotransferase_deep_blocker_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: stale lock recovered with coherent dirty work, late ePK five-lane synthesis preserves no-go and 5UJ7 residual, P31614 replacement full-current probe completed 1344 of 1344 pairs, P31614 4C7L has current-countable TM 0.7213 to pdb:1IR3, serine terminal packet has seven terminal_rejection_duplicate_or_leakage rows, PLP seven-row selection frozen before deep outcome scoring, PLP blocker records seven needs_new_extractor_or_structure rows pending source-free covalent cofactor extractor, 795-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 7 new JSON artifacts parsed, git diff check passed
 - Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
+
+### 2026-05-21T21:16:37.365926+00:00 - v3
+
+- Task: PLP source-free terminal packet and SDR readiness recheck
+- Time mode: measured
+- Measured minutes: 48.417
+- Started: 2026-05-21T20:27:57Z
+- Ended: 2026-05-21T21:16:22Z
+- Artifacts: src/catalytic_earth/plp_active_site.py, tests/test_plp_active_site.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521, artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json, artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_plp_20260521.json, artifacts/v3_sdr_family_readiness_post_plp_terminal_review_packet_20260521.json, artifacts/v3_label_factory_gate_check.json, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/status.md
+- Evidence: 804 unit tests passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed removal_allowed=0, external transfer gate 68/68, PLP extractor reproduces seven sidecar statuses, no registry or fingerprint diffs
+- Notes: Normal locked measured run; no label import, registry edit, fingerprint edit, artifact migration, upload, removal, Git-LFS change, or history rewrite.
 
 ## Expectation Updates
 
@@ -333,6 +333,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T17:09:52.130652+00:00: Next exact work remains chunks003-013 for O94851 and Q7RTP6 before any duplicate-clear or wrong-scope terminal claim.
 - 2026-05-21T18:12:47.873454+00:00: Next work should run one bounded P31614 coordinate/alignment plus full-current duplicate experiment or choose another frozen nonterminal external deep-packet blocker; do not open a broad mini-campaign.
 - 2026-05-21T19:37:19.047962+00:00: Next main-loop win should implement the PLP source-free covalent cofactor extractor or choose another frozen nonterminal deep-packet blocker before adding broad external rows.
+- 2026-05-21T21:16:37.365926+00:00: Do not open a seventh broad external mini-campaign; continue terminal deepening or exact family-readiness experiments.
 
 ## Scope Adjustments
 
@@ -487,3 +488,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T17:08:18.443673+00:00: FMO duplicate-screen blocker is narrowed from chunk000/chunk001 uncertainty to chunks003-013 only; no new external breadth or import path was opened.
 - 2026-05-21T18:12:47.873454+00:00: Existing frozen rows were deepened into terminal duplicate/leakage decisions or exact active-site blockers without adding broad external breadth.
 - 2026-05-21T19:37:19.047962+00:00: Recovered stale-lock work converts the final serine blocker to terminal duplicate/leakage rejection and records PLP as an exact extractor blocker without registry import or artifact migration.
+- 2026-05-21T21:16:37.365926+00:00: PLP blocker converted to terminal review-only duplicate/leakage packet; SDR remains review-only blocked on source-free NAD(P) and catalytic-axis geometry.
