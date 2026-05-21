@@ -57,7 +57,7 @@ The generic v7 entry-precedence fault injection was recorded as inapplicable for
 - `git fetch --no-write-fetch-head origin` succeeded.
 - `git pull --ff-only origin research/epk-policy-harness` failed on linked-worktree `FETCH_HEAD` permissions.
 - `git merge --ff-only origin/research/epk-policy-harness` failed on linked-worktree `ORIG_HEAD.lock` permissions.
-- The local worktree/index remains stale and noisy because linked-worktree metadata blocks normal branch updates. Alternate-index commit/push will be attempted after this handoff is written.
+- The local worktree/index remains stale and noisy because linked-worktree metadata blocks normal branch updates. Alternate-index content commit pushed to `origin/research/epk-policy-harness` as `f7cbb1d99a77fbe609a57b9a2538be62be82bfd3`; local `HEAD` remains stale because normal linked-worktree ref updates are blocked.
 - Other-lane source artifacts were read from fetched Git refs only. No production files, registries, fingerprints, migrations, labels, thresholds, or Git history were changed.
 
 ## Exact next query
