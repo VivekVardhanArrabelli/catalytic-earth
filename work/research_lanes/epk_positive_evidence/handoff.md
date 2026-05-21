@@ -1,57 +1,60 @@
 # ePK Positive Evidence Handoff
 
-Last updated: 2026-05-21T00:15:43Z
+Last updated: 2026-05-21T01:13:53Z
 
-Pushed commit: `345e61e944ed6bd3000cf5016d476d990dfa66d4` (primary run artifact/ledger commit created with a temporary index/object directory). The final handoff-reference commit is reported in the automation summary because the linked local gitdir still blocks normal ref updates.
+Pushed commit: `43f330f4a67d9aa91be7b2f9de98edcb7483b3e6` (primary run artifact/ledger commit created with a temporary index because the linked local gitdir still blocks normal ref updates).
 
 ## Current Outcome
 
-Primary outcome: `evidence_for`.
+Primary outcome: `evidence_against`.
 
-This run followed the previous `Next Query` by source-mapping `1L3R`, `5LIH`, `4NU1`, and `8VMF`, then scanning same-paper/title sibling structures for non-peptide folded-substrate transition-analog positives. That 15-structure seed-family surface is exhausted for this snapshot: `1L3R` and `5LIH` remain review-only peptide/pseudosubstrate positives, while `4NU1` and `8VMF` remain GSK-3 near-miss negatives with no clean unmodified heteromeric hydroxyl acceptor.
+This run followed the handoff next query by re-checking `23FC` publication metadata and scanning current/future 2026 exact-ligand/date surfaces for canonical ePK-style entries with ATP/ANP/ACP/AGS plus MG/MN or ADP plus AF3/ALF/BEF/MGF. No canonical ePK rows were released on `2026-05-21`, and the narrow `2026-05-13..2026-05-21` backfill returned zero rows. `23FC` still has no DOI/PubMed/year in RCSB and no Europe PMC exact/alias metadata hit.
 
-A second recent exact-ligand/date/source scout covered 2025-2026 canonical ePK EC/Pfam rows with ATP/ANP/ACP/AGS plus Mg/Mn and ADP plus AF3/ALF/BEF/MGF. It reviewed 19 unique structures and found zero local-metal non-peptide folded-substrate candidates. It did surface one fresh review-only short-segment positive-style row, `23FC`: human ATR-ATRIP with ATPgammaS/Mg and a 14-residue Chk1 segment. `23FC` maps Chk1 Ser317 by CIF sequence scheme, UniProtKB O14757 annotates Ser317 as a phosphoserine by ATM/ATR, and the modeled Ser317 OG is 5.582 Angstrom from ATR-associated AGS PG with local Mg.
+A broader 2026 no-source exact-ligand backfill reviewed 10 current-year rows. It recovered `23FC` as the only local-metal short-segment positive-style row and found zero local-metal non-peptide folded-substrate candidates. Non-`23FC` rows were MEK/ERK no-local-metal repeats, BRAF/MEK or receptor/CDK donor-without-acceptor contexts, or kinase-only states.
 
-The evidence remains review-only. No production labels, thresholds, registries, fingerprints, migrations, scoring paths, or production claims were changed.
+A bounded 2025-2026 Europe PMC source-text pass reviewed 50 articles and mapped 67 PDB IDs through RCSB DOI/title/direct-token checks. It found zero local-metal peptide or non-peptide substrate candidates. Targeted sparse article aliases then reviewed `6U2G`, `9AXX`, `9PCQ`, and `7O9K`; none had local transfer geometry.
+
+The most useful fresh folded-protein evidence is negative: source-relevant BRAF/MEK structures `6U2G` and `9AXX` contain nucleotide analog states and local metal on at least one donor, but source-mapped or nearest heteromeric acceptors are outside the within-6-Angstrom local transfer window. No production labels, thresholds, registries, fingerprints, migrations, scoring paths, or production claims were changed.
 
 ## Files Changed
 
-- `artifacts/research_lanes/epk_positive_evidence/transition_analog_seed_family_followup_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/recent_epk_exact_ligand_source_scout_20260520.json`
-- `artifacts/research_lanes/epk_positive_evidence/atr_chk1_23fc_source_review_20260520.json`
+- `artifacts/research_lanes/epk_positive_evidence/current_release_epk_followup_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/canonical_epk_2026_no_source_backfill_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/europepmc_2026_source_text_followup_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/targeted_article_alias_followup_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/braf_mek_alias_source_review_20260521.json`
 - `artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl`
-- `tools/research_lanes/epk_positive_evidence/transition_analog_seed_family_followup.py`
-- `tools/research_lanes/epk_positive_evidence/recent_epk_exact_ligand_source_scout.py`
+- `tools/research_lanes/epk_positive_evidence/current_release_epk_followup.py`
+- `tools/research_lanes/epk_positive_evidence/europepmc_2026_source_text_followup.py`
+- `tools/research_lanes/epk_positive_evidence/targeted_article_alias_followup.py`
 - `work/research_lanes/epk_positive_evidence/handoff.md`
 
 ## Evidence For
 
-- Fresh review-only short-segment positive-style geometry: `23FC` ATR-associated AGS/Mg places source-mapped and UniProt phosphosite-mapped Chk1 Ser317 OG 5.582 Angstrom from AGS PG.
-- `23FC` exact-title and ATR/Chk1/ATPgammS alias sibling checks returned only `23FC`, so it is a singleton lead for now.
-- `1L3R` remains source-mapped review-only PKA/PKI-alpha peptide evidence: PKI-alpha Ser21 is 2.268 Angstrom from AF3 Al with local Mg.
-- `5LIH` remains source-mapped review-only PKCiota/PKC-epsilon pseudosubstrate evidence: Ser11 is 2.419-2.624 Angstrom from active AF3 groups with local Mn.
+- `23FC` remains review-only short-segment positive-style evidence: ATR-associated AGS/Mg places source-mapped Chk1 Ser317 OG 5.582 Angstrom from AGS PG, but the substrate entity length is 14 residues and publication metadata is still absent.
+- `6U2G` and `9AXX` are source-relevant folded-protein BRAF/MEK complexes with nucleotide analogs and at least one local Mg-bearing donor state, making them useful folded-protein source-validation negatives.
 
 ## Evidence Against
 
-- No clean non-topology-confounded folded-protein canonical ePK substrate positive was found.
-- The 15-structure seed-family sibling surface for `1L3R`, `5LIH`, `4NU1`, and `8VMF` found no non-peptide folded-substrate transition-analog positive.
-- The 19-structure recent exact ePK-family/date/ligand/source surface found zero local-metal non-peptide candidates; non-short rows were MEK/ERK no-local-metal repeats, RAF/MEK or mTOR/CAK/GRK/CDK kinase-only states, or donor/analog-without-heteromeric-acceptor contexts.
-- `23FC` is not clean canonical ePK folded-substrate evidence: ATR is PIKK/atypical, the Chk1 substrate is only a 14-residue segment, and no DOI/PubMed/publication year is exposed yet by RCSB or Europe PMC exact/alias checks.
-- `4NU1` remains a phosphorylated GSK-3 Ser9 autoinhibitory/product-state near miss; `8VMF` remains a beta-catenin S45D phosphomimetic near miss.
+- No current-date `2026-05-21` canonical release rows and no `2026-05-13..2026-05-21` canonical backfill rows were found.
+- The 2026 no-source canonical backfill reviewed 10 structures and found zero local-metal non-peptide folded-substrate candidates; only `23FC` passed as a short-segment review-only hit.
+- The expanded Europe PMC source-text route reviewed 50 articles and 67 mapped PDB IDs with zero local-metal substrate candidates; mapped rows were kinase-only, recruitment, non-ePK enzyme, or donor-without-heteromeric-acceptor contexts.
+- `6U2G` BRAF-associated ACP/Mg donor is 8.270 Angstrom from source-mapped MEK1 Ser222, outside the within-6-Angstrom local transfer window.
+- `9AXX` does not provide BRAF-to-MEK local transfer geometry: MEK Ser218/Ser222 are modeled as Ala in MEK chains, the BRAF-associated ANP lacks local Mg, and nearest heteromeric acceptors are 12.072-16.152 Angstrom away.
 
 ## Counterexamples
 
-- No new counterexample was promoted in this run. `23FC` is recorded as review-only PIKK/short-segment stress evidence, not a false positive counterexample.
+- No new counterexample was promoted. The BRAF/MEK rows are source-relevant geometry-negative folded-protein evidence, not ownership/context false positives requiring new exclusion logic.
 
 ## Blockers
 
-- Startup `git fetch origin` failed with `Operation not permitted` while writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`; the requested normal `git pull --ff-only` could not be completed.
-- The linked local gitdir still blocks normal local ref advancement. Commits were created and pushed through a temporary index/object-directory workflow.
-- Because the local ref is stale, normal `git status` may still show prior remote files as untracked and the branch as behind even after remote push verification.
+- Startup `git fetch origin` and `git pull --ff-only origin research/epk-positive-evidence` failed with `Operation not permitted` while writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`.
+- The linked local gitdir still blocks normal local ref advancement, so the primary commit was created and pushed with a temporary index.
+- Because local `HEAD` is stale, normal `git status` still shows prior remote files as untracked and the branch as behind even after remote push verification.
 - Production claims, threshold calibration, label import, registry edits, fingerprint changes, migrations, and production helper fallback remain forbidden.
 
 ## Next Query
 
-Re-check `23FC` after publication metadata appears and scan future 2026 exact-ligand/date surfaces for canonical ePK kinase-domain entries with ATP/ANP/AGS/ADP plus MG/MN/AF3/MGF/BEF, requiring non-peptide substrate entity length, explicit kinase-site ligand ownership, and source-mapped unmodified Ser/Thr/Tyr acceptor before CIF source mapping.
+At the next RCSB weekly release, re-run the current-date and 2026 no-source canonical ePK exact-ligand surfaces plus the `23FC` publication metadata check. Source-map only new PDB IDs with non-peptide substrate entity length, explicit kinase-site ligand ownership, local MG/MN or transition-metal context, and an unmodified Ser/Thr/Tyr acceptor within 6 Angstrom. Do not revisit the exhausted BRAF/MEK, CAK/CDK, aPKC/Lgl, mTORC2/Akt, eEF2K, or FN3K aliases unless new PDB IDs or publication metadata appear.
 
 Production claims/label changes remain forbidden: yes.
