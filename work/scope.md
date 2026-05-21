@@ -125,6 +125,16 @@ must stay review-required. The policy-harness remote push only materializes the
 already integrated ADP/product-state candidate-repair tripwire. No ePK scorer,
 threshold, label import, registry edit, fingerprint expansion, or main-loop
 ePK task is in scope.
+The 2026-05-21 dirty sibling follow-up synthesis in
+`artifacts/v3_epk_dirty_sibling_followup_synthesis_20260521.json` does not
+change ePK scope. It validates dirty sibling-worktree handoffs and artifacts
+with 0 parse errors, keeps `23FC` review-only because article/source authority
+is still absent, records `5UJ7` biological assembly 1 as an assembly-v4
+sufficiency counterexample, preserves sibling-control weak-rule ablation as
+review-only scorer-fixture evidence, and keeps 25 fresh ADP/product
+query-context policy rows as fail-closed abstentions. ePK remains no-go for
+production scoring, threshold calibration, label import, registry edit, or
+fingerprint expansion.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

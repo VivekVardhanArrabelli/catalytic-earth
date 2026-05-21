@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 249
-- Measured elapsed time: 7138.2 minutes (118.97 hours)
+- Entries: 250
+- Measured elapsed time: 7141.3 minutes (119.02 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 99.5 measured minutes (1.66 hours)
-- post-infra-science: 1801.6 measured minutes (30.03 hours)
+- post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 157.0 measured minutes (2.62 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2750
-- Evidence references logged: 2237
+- Artifact references logged: 2754
+- Evidence references logged: 2242
 
 ## Recent Entries
-
-### 2026-05-21T01:19:56.798534+00:00 - post-infra-science
-
-- Task: Post-overnight ePK remote lane synthesis
-- Time mode: measured
-- Measured minutes: 6.383
-- Started: 2026-05-21T01:13:23Z
-- Ended: 2026-05-21T01:19:46Z
-- Artifacts: artifacts/v3_epk_post_overnight_remote_lane_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: 9 remote ePK JSON artifacts and 3 JSONL ledgers validated with 0 errors, current-day RCSB ePK surface returned 0 rows, 23FC remains short-segment PIKK review-only stress, BRAF/MEK alias rows are geometry-negative, source-free substrate-role gate has 14 TP 34 TN 0 FP 6 FN but requires review on blocker classes, policy tripwire remains 10 review-only abstentions with 0 mismatches, focused synthesis regression passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ### 2026-05-21T01:27:27.260565+00:00 - v3
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T01:55:30Z
 - Artifacts: artifacts/v3_external_minicampaign_source_free_geometry_preregistration_20260521.json, artifacts/v3_external_minicampaign_terminal_decision_index_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: 14-row source-free-geometry follow-up preregistered from seven source-complete external mini-campaigns before coordinate materialization or scoring, terminal-decision index normalized 136 review-only rows to 123 needs_review and 13 terminal_rejection, registry invariant regression pins 682 labels 212 seed 470 out_of_scope and exactly three external out-of-scope UniProt labels, focused preregistration terminal-index and registry-invariant regressions passed
+- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
+
+### 2026-05-21T02:00:27.449389+00:00 - post-infra-science
+
+- Task: Dirty sibling ePK follow-up synthesis
+- Time mode: measured
+- Measured minutes: 3.083
+- Started: 2026-05-21T01:57:12Z
+- Ended: 2026-05-21T02:00:17Z
+- Artifacts: artifacts/v3_epk_dirty_sibling_followup_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: dirty sibling ePK lane JSON validated with 327 JSON files and 44 JSONL records and 0 parse errors, positive lane keeps 23FC review-only due missing publication authority, false-positive lane records 5UJ7 biological assembly 1 assembly-v4 sufficiency counterexample, sibling controls preserve 76 weak-case ablation and policy harness keeps 25 ADP/product rows as review-only abstentions, focused dirty-sibling synthesis regression passed
 - Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -321,6 +321,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:47:47.464485+00:00: radical SAM external mini-campaign remains review-only and not import-ready
 - 2026-05-21T01:50:11.872301+00:00: current-fingerprint external benchmark is review-only and cannot support superiority import or production scoring claims
 - 2026-05-21T01:55:41.795664+00:00: external small-win rows remain review-only until source-free geometry duplicate screens terminal review and factory/import gates pass
+- 2026-05-21T02:00:27.449389+00:00: ePK remains review-only no-go; next exact ePK work belongs only in isolated research lanes
 
 ## Scope Adjustments
 
@@ -463,3 +464,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:47:47.464485+00:00: all current production fingerprint lanes now have either a review-only external mini-campaign or a terminal source-surface blocker
 - 2026-05-21T01:50:11.872301+00:00: modern baseline comparison is now explicit across the current fingerprint external surfaces
 - 2026-05-21T01:55:41.795664+00:00: next exact external experiment is source-free sidecar materialization and duplicate screening for 14 frozen rows only
+- 2026-05-21T02:00:27.449389+00:00: fresh dirty sibling ePK outputs reinforce no-go production scope and do not resume ePK main-loop work

@@ -1,0 +1,100 @@
+{
+  "input_validation": {
+    "epk_false_positive_hunter": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T01:18:30Z",
+      "handoff_path": "../catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "json_file_count": 48,
+      "jsonl_record_count": 11,
+      "parse_error_count": 0
+    },
+    "epk_policy_harness": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T01:20:34Z",
+      "handoff_path": "../catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "json_file_count": 135,
+      "jsonl_record_count": 11,
+      "parse_error_count": 0
+    },
+    "epk_positive_evidence": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T01:42:39Z",
+      "handoff_path": "../catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "json_file_count": 91,
+      "jsonl_record_count": 11,
+      "parse_error_count": 0
+    },
+    "epk_sibling_controls": {
+      "errors": [],
+      "handoff_mtime": "2026-05-21T01:19:26Z",
+      "handoff_path": "../catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "json_file_count": 53,
+      "jsonl_record_count": 11,
+      "parse_error_count": 0
+    }
+  },
+  "lane_summaries": {
+    "epk_false_positive_hunter": {
+      "decision_effect": "assembly-level v4 is not sufficient as production safety evidence; retain review-only status",
+      "latest_handoff": "../catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "latest_observation": "5UJ7 biological assembly 1 remains a topology-clear ORC substrate-mode residual because assembly-level v4 misses contexts below the polymer-chain floor while deposited atom_site v4 blocks the entry.",
+      "next_research_lane_query": "generalize the 5UJ7 biological-assembly split failure and test an entry-level deposited-plus-assembly guard variant review-only",
+      "primary_outcome": "counterexample_found"
+    },
+    "epk_policy_harness": {
+      "decision_effect": "ADP/product-state policy remains frozen review-only and fail-closed; no accepted source-free substrate-role extractor exists",
+      "latest_handoff": "../catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "latest_observation": "Fresh ADP/product query-context tripwire reviewed 42 candidates, materialized 32 ADP candidates, evaluated 25 rows, and kept 25/25 as review-only abstentions with 0 mismatches.",
+      "next_research_lane_query": "epk_fresh_adp_chemcomp_pagination_continuation_product_tripwire_v1_review_only",
+      "primary_outcome": "policy_frozen_review_only"
+    },
+    "epk_positive_evidence": {
+      "decision_effect": "no clean folded-protein canonical ePK positive; no production upgrade",
+      "latest_handoff": "../catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "latest_observation": "23FC remains review-only: RCSB/PDBe still have no article DOI/PubMed/year, Crossref exposes only the PDB dataset DOI, and the related ATR-ATRIP article family has no named Chk1/substrate polymer entity.",
+      "next_research_lane_query": "recheck 23FC publication metadata only at the next RCSB weekly release or when new source metadata appears",
+      "primary_outcome": "evidence_against"
+    },
+    "epk_sibling_controls": {
+      "decision_effect": "use as future scorer-test fixtures only; not production activation or threshold evidence",
+      "latest_handoff": "../catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "latest_observation": "91 sibling controls were adjudicated; blocker-aware oracle blocks all 76 weak cases, while disabling source-free blockers unblocks 76/76 and reason counts matter because family-boundary fallback can mask branch loss.",
+      "next_research_lane_query": "assert blocker reason counts as well as blocked/unblocked outcomes in any future review-only scorer tests",
+      "primary_outcome": "evidence_for_review_only_test_fixtures"
+    }
+  },
+  "metadata": {
+    "artifact_id": "v3_epk_dirty_sibling_followup_synthesis_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T01:58:50Z",
+    "curated_label_registry_edited": false,
+    "dirty_sibling_worktrees_read": true,
+    "fingerprint_registry_edited": false,
+    "method": "review_only_dirty_sibling_research_lane_followup_synthesis",
+    "production_scoring_authorized": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "safety_rails": {
+    "artifact_migration_phase_2_or_3": false,
+    "artifact_upload_or_removal": false,
+    "history_rewrite": false,
+    "label_import": false,
+    "production_fingerprint_edit": false,
+    "threshold_calibration": false
+  },
+  "synthesis_conclusion": {
+    "label_import_authorized": false,
+    "ligand_state_policy_status": "frozen_review_only_fail_closed_for_future_prospective_tranches",
+    "main_loop_action": "do_not_resume_epk_as_main_loop_task; continue external mini-campaign geometry follow-up or non-ePK small wins",
+    "overall": "dirty_sibling_followups_reinforce_epk_no_go_production_decision",
+    "positive_universe_expansion_ready": false,
+    "production_scoring_authorized": false,
+    "registry_or_fingerprint_change_authorized": false,
+    "sibling_controls_use": "review_only_scorer_test_fixture_design_and_falsification_only",
+    "substrate_role_axis_freeze_ready": false
+  }
+}

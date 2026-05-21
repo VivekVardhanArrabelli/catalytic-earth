@@ -76,6 +76,20 @@ registry edit, label import, fingerprint expansion, or main-loop ePK task is
 authorized. The main loop should continue external mini-campaigns, modern
 baseline comparisons, terminal decisions, or non-ePK family packets.
 
+Later dirty sibling-worktree ePK outputs are summarized in
+`artifacts/v3_epk_dirty_sibling_followup_synthesis_20260521.json` without
+copying production changes. It validates 91 positive-lane JSON files, 48
+false-positive JSON files, 53 sibling-control JSON files, 135 policy-harness
+JSON files, and 44 total JSONL records with 0 parse errors. The positive lane
+keeps `23FC` review-only because publication authority is still absent and the
+related ATR-ATRIP article family has no named Chk1/substrate polymer entity.
+The false-positive lane finds `5UJ7` biological assembly 1 as an assembly-v4
+sufficiency counterexample. Sibling controls show 76/76 weak gamma/product
+cases unblock when source-free blockers are disabled, and policy harness keeps
+25/25 fresh ADP/product query-context rows as review-only abstentions with 0
+mismatches. This reinforces the no-go production decision; any next ePK work is
+research-lane-only fixture/guard design, not a main-loop task.
+
 The same run then freezes a fourth 2026-05-21 prospective external
 mini-campaign, this time for the current `ser_his_acid_hydrolase` lane. The
 freeze artifact

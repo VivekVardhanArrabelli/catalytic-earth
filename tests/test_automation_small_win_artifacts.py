@@ -1841,6 +1841,48 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 "label_factory_v1_8fp",
             )
 
+    def test_epk_dirty_sibling_followup_synthesis_stays_review_only(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_dirty_sibling_followup_synthesis_20260521.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["dirty_sibling_worktrees_read"])
+        self.assertFalse(metadata["production_scoring_authorized"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(set(synthesis["input_validation"]), {
+            "epk_false_positive_hunter",
+            "epk_policy_harness",
+            "epk_positive_evidence",
+            "epk_sibling_controls",
+        })
+        for validation in synthesis["input_validation"].values():
+            self.assertEqual(validation["parse_error_count"], 0)
+            self.assertGreater(validation["json_file_count"], 0)
+            self.assertGreater(validation["jsonl_record_count"], 0)
+
+        self.assertEqual(
+            conclusion["overall"],
+            "dirty_sibling_followups_reinforce_epk_no_go_production_decision",
+        )
+        self.assertFalse(conclusion["positive_universe_expansion_ready"])
+        self.assertFalse(conclusion["substrate_role_axis_freeze_ready"])
+        self.assertFalse(conclusion["production_scoring_authorized"])
+        self.assertFalse(conclusion["label_import_authorized"])
+        self.assertFalse(conclusion["registry_or_fingerprint_change_authorized"])
+        self.assertEqual(
+            conclusion["main_loop_action"],
+            "do_not_resume_epk_as_main_loop_task; continue external mini-campaign geometry follow-up or non-ePK small wins",
+        )
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]
