@@ -1,0 +1,317 @@
+{
+  "artifacts": {
+    "contract_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_contract_gate.json",
+    "contract_gate_sha256": "2c3eeecf9e13a1f9c1753ae92242fe041b66146b22b3278ed34c0f9104bbfe23",
+    "negative_missing_candidate_identity": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_negative_missing_candidate_identity_result.json",
+    "negative_missing_candidate_identity_sha256": "cd3240cd576c9c633676305008cd64ffb372275b78d8bd5585e8ab22c53b47a0",
+    "negative_missing_present_null_ligand": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_negative_missing_present_null_ligand_result.json",
+    "negative_missing_present_null_ligand_sha256": "36fa2e36fb4b7db6312b1ce2a6f5d51015df296bc6bdc893a24e1cf1e92b379c",
+    "negative_source_context_copy": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_negative_source_context_copy_result.json",
+    "negative_source_context_copy_sha256": "87233f6a272e8d20c80add0d9253f9c9c2360ccd75e57c3a084aa191b61cea8a",
+    "result": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_result.json",
+    "result_sha256": "9d715255f43a4d9395fa3c5b2d4624b5b40cc7e54c0bfe442e969ad952f7d884",
+    "scoreboard_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "0e0803e5b634336335143b5bc3fd1dbe31069c18eb386505e89daaf18aac41a0",
+    "tranche": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_tranche.json",
+    "tranche_sha256": "fcab455797fe8d9c0b3f84938a21051ba3200a56c90f64e5ec9c132251db0d63"
+  },
+  "contract_gate": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_contract_gate.json",
+    "gate_pass": true,
+    "sha256": "2c3eeecf9e13a1f9c1753ae92242fe041b66146b22b3278ed34c0f9104bbfe23"
+  },
+  "federated_inputs": [
+    {
+      "artifact": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+      "available_coordinate_state_counts": {
+        "active_gamma": 66,
+        "substrate_acceptor_analog_state": 18
+      },
+      "available_entry_count": 48,
+      "available_row_count": 84,
+      "available_target_coordinate_state_counts": {},
+      "available_target_row_count": 0,
+      "lane_id": "epk_positive_evidence",
+      "ref": "origin/research/epk-positive-evidence",
+      "review_only_input": true,
+      "row_keys": [
+        "adjudicated_candidate_rows"
+      ],
+      "selected_entry_count": 0,
+      "selected_row_count": 0
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+      "available_coordinate_state_counts": {
+        "active_gamma": 205,
+        "adp_state": 3,
+        "ambiguous_coordinate_state": 1,
+        "ligand_absent": 2
+      },
+      "available_entry_count": 54,
+      "available_row_count": 211,
+      "available_target_coordinate_state_counts": {
+        "adp_state": 3,
+        "ligand_absent": 2
+      },
+      "available_target_row_count": 5,
+      "lane_id": "epk_substrate_role_identity",
+      "ref": "origin/research/epk-substrate-role-identity",
+      "review_only_input": true,
+      "row_keys": [
+        "candidate_evidence_rows",
+        "state_only_rows"
+      ],
+      "selected_entry_count": 2,
+      "selected_row_count": 2
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+      "available_coordinate_state_counts": {
+        "active_gamma": 121,
+        "unavailable_coordinate_state": 222
+      },
+      "available_entry_count": 133,
+      "available_row_count": 343,
+      "available_target_coordinate_state_counts": {
+        "unavailable_coordinate_state": 222
+      },
+      "available_target_row_count": 222,
+      "lane_id": "epk_false_positive_hunter",
+      "ref": "origin/research/epk-false-positive-hunter",
+      "review_only_input": true,
+      "row_keys": [
+        "rows"
+      ],
+      "selected_entry_count": 1,
+      "selected_row_count": 1
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+      "available_coordinate_state_counts": {
+        "active_gamma": 72,
+        "product_state": 19
+      },
+      "available_entry_count": 89,
+      "available_row_count": 91,
+      "available_target_coordinate_state_counts": {},
+      "available_target_row_count": 0,
+      "lane_id": "epk_sibling_controls",
+      "ref": "origin/research/epk-sibling-controls",
+      "review_only_input": true,
+      "row_keys": [
+        "gamma_proximity_counteraxis_cases",
+        "product_phosphoryl_identity_counteraxis_cases"
+      ],
+      "selected_entry_count": 0,
+      "selected_row_count": 0
+    }
+  ],
+  "gate": {
+    "all_target_states_covered_by_real_rows": false,
+    "gate_pass": true,
+    "labels_or_fingerprints_changed": false,
+    "primary_outcome": "next_query_defined",
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false,
+    "scoreboard_gate_pass": true
+  },
+  "hypothesis": "Real federated lane rows can replace synthetic missing-coordinate fixtures only for states that source lanes actually emit as candidate-level rows; absent target states must become explicit next-query gaps, not synthetic progress.",
+  "metadata": {
+    "artifact_id": "epk_federated_real_lane_missing_coordinate_state_adapter_v9",
+    "created_at": "2026-05-21T21:37:23+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "next_query_defined",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "negative_fault_injections": [
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_negative_source_context_copy_result.json",
+      "expected_failure": "source_context_copy",
+      "observed_error": "row epk_substrate_role_identity:state_only_rows:1L0O|gamma=none|acceptor=none violates federated adapter contract: source text, protein names, titles, paper metadata, EC/Rhea, and prose must not be copied into predictive rows ['protein_names']",
+      "rejected": true,
+      "sha256": "87233f6a272e8d20c80add0d9253f9c9c2360ccd75e57c3a084aa191b61cea8a"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_negative_missing_present_null_ligand_result.json",
+      "expected_failure": "missing_present_null_ligand",
+      "observed_error": "v9 adapter requires present-but-null ligand_code_from_structure for ligand_absent: epk_substrate_role_identity:state_only_rows:2OCP|gamma=none|acceptor=none",
+      "rejected": true,
+      "sha256": "36fa2e36fb4b7db6312b1ce2a6f5d51015df296bc6bdc893a24e1cf1e92b379c"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_negative_missing_candidate_identity_result.json",
+      "expected_failure": "missing_candidate_identity",
+      "observed_error": "row epk_substrate_role_identity:state_only_rows:1L0O|gamma=none|acceptor=none violates federated adapter contract: missing candidate identity fields ['source_row_id']",
+      "rejected": true,
+      "sha256": "cd3240cd576c9c633676305008cd64ffb372275b78d8bd5585e8ab22c53b47a0"
+    }
+  ],
+  "policy_result": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_result.json",
+    "claim_status_counts": {
+      "review_only_abstain_missing_role_policy": 1,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 1
+    },
+    "coordinate_state_counts": {
+      "adp_state": 1,
+      "ligand_absent": 1,
+      "unavailable_coordinate_state": 1
+    },
+    "counterexamples_found": [],
+    "expected_claim_status_mismatch_count": 0,
+    "primary_outcome": "policy_frozen_review_only",
+    "rows_reviewed": 3,
+    "sha256": "9d715255f43a4d9395fa3c5b2d4624b5b40cc7e54c0bfe442e969ad952f7d884"
+  },
+  "real_lane_adapter_summary": {
+    "available_target_coordinate_state_counts": {
+      "adp_state": 3,
+      "ligand_absent": 2,
+      "unavailable_coordinate_state": 222
+    },
+    "ligand_absent_present_null_ligand_code": true,
+    "metal_absent_real_row_observed": false,
+    "missing_real_target_coordinate_state_values": [
+      "metal_absent"
+    ],
+    "next_query": "epk_real_lane_metal_absent_candidate_evidence_v10_review_only",
+    "observed_real_target_coordinate_state_values": [
+      "adp_state",
+      "ligand_absent",
+      "unavailable_coordinate_state"
+    ],
+    "selected_coordinate_state_counts": {
+      "adp_state": 1,
+      "ligand_absent": 1,
+      "unavailable_coordinate_state": 1
+    },
+    "selected_expected_claim_status_counts": {
+      "review_only_abstain_missing_role_policy": 1,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 1
+    },
+    "selected_rows_compact": [
+      {
+        "candidate_id": "1L0O|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": true,
+        "coordinate_state": "adp_state",
+        "entry_id": "1L0O",
+        "expected_claim_status": "review_only_abstain_product_state",
+        "ligand_code_from_structure": "ADP",
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:1L0O|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "2OCP|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "ligand_absent",
+        "entry_id": "2OCP",
+        "expected_claim_status": "review_only_abstain_missing_role_policy",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:2OCP|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A49",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      }
+    ],
+    "source_text_and_protein_names_copied": false,
+    "target_coordinate_state_values": [
+      "adp_state",
+      "ligand_absent",
+      "metal_absent",
+      "unavailable_coordinate_state"
+    ],
+    "unavailable_present_null_ligand_code": true
+  },
+  "scoreboard_gate": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_real_lane_missing_coordinate_state_adapter_v9_20260521T213723Z_scoreboard_gate.json",
+    "gate_pass": true,
+    "sha256": "0e0803e5b634336335143b5bc3fd1dbe31069c18eb386505e89daaf18aac41a0",
+    "summary": {
+      "claim_status_counts": {
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 1
+      },
+      "coordinate_state_counts": {
+        "adp_state": 1,
+        "ligand_absent": 1,
+        "unavailable_coordinate_state": 1
+      },
+      "covered_claim_status_values": [
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control"
+      ],
+      "covered_coordinate_state_values": [
+        "adp_state",
+        "ligand_absent",
+        "unavailable_coordinate_state"
+      ],
+      "covered_entry_claim_status_values": [
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control"
+      ],
+      "discovery_signal_row_count": 0,
+      "entry_claim_status_counts": {
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 1
+      },
+      "entry_count": 3,
+      "forbidden_source_leakage_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "production_claim_allowed": false,
+      "rows_reviewed": 3,
+      "uncovered_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "uncovered_coordinate_state_values": [
+        "active_gamma",
+        "ambiguous_coordinate_state",
+        "metal_absent",
+        "product_state",
+        "split_state",
+        "substrate_acceptor_analog_state"
+      ],
+      "uncovered_entry_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "unsafe_control_nonabstention_count": 0
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "expected_error_fragment": "present-but-null ligand_code_from_structure",
+  "metadata": {
+    "artifact_id": "epk_federated_real_lane_missing_coordinate_state_adapter_v9_missing_present_null_ligand",
+    "created_at": "2026-05-21T21:37:23+00:00",
+    "fault_injection_expected_failure": "missing_present_null_ligand",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "rejected": true,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "observed_error": "v9 adapter requires present-but-null ligand_code_from_structure for ligand_absent: epk_substrate_role_identity:state_only_rows:2OCP|gamma=none|acceptor=none"
+}

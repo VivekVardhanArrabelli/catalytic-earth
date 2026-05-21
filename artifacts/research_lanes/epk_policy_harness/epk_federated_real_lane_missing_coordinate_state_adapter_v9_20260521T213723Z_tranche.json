@@ -1,0 +1,581 @@
+{
+  "metadata": {
+    "all_scanned_input_summaries": [
+      {
+        "artifact": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+        "available_coordinate_state_counts": {
+          "active_gamma": 66,
+          "substrate_acceptor_analog_state": 18
+        },
+        "available_entry_count": 48,
+        "available_row_count": 84,
+        "available_target_coordinate_state_counts": {},
+        "available_target_row_count": 0,
+        "lane_id": "epk_positive_evidence",
+        "ref": "origin/research/epk-positive-evidence",
+        "review_only_input": true,
+        "row_keys": [
+          "adjudicated_candidate_rows"
+        ],
+        "selected_entry_count": 0,
+        "selected_row_count": 0
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "available_coordinate_state_counts": {
+          "active_gamma": 205,
+          "adp_state": 3,
+          "ambiguous_coordinate_state": 1,
+          "ligand_absent": 2
+        },
+        "available_entry_count": 54,
+        "available_row_count": 211,
+        "available_target_coordinate_state_counts": {
+          "adp_state": 3,
+          "ligand_absent": 2
+        },
+        "available_target_row_count": 5,
+        "lane_id": "epk_substrate_role_identity",
+        "ref": "origin/research/epk-substrate-role-identity",
+        "review_only_input": true,
+        "row_keys": [
+          "candidate_evidence_rows",
+          "state_only_rows"
+        ],
+        "selected_entry_count": 2,
+        "selected_row_count": 2
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "available_coordinate_state_counts": {
+          "active_gamma": 121,
+          "unavailable_coordinate_state": 222
+        },
+        "available_entry_count": 133,
+        "available_row_count": 343,
+        "available_target_coordinate_state_counts": {
+          "unavailable_coordinate_state": 222
+        },
+        "available_target_row_count": 222,
+        "lane_id": "epk_false_positive_hunter",
+        "ref": "origin/research/epk-false-positive-hunter",
+        "review_only_input": true,
+        "row_keys": [
+          "rows"
+        ],
+        "selected_entry_count": 1,
+        "selected_row_count": 1
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+        "available_coordinate_state_counts": {
+          "active_gamma": 72,
+          "product_state": 19
+        },
+        "available_entry_count": 89,
+        "available_row_count": 91,
+        "available_target_coordinate_state_counts": {},
+        "available_target_row_count": 0,
+        "lane_id": "epk_sibling_controls",
+        "ref": "origin/research/epk-sibling-controls",
+        "review_only_input": true,
+        "row_keys": [
+          "gamma_proximity_counteraxis_cases",
+          "product_phosphoryl_identity_counteraxis_cases"
+        ],
+        "selected_entry_count": 0,
+        "selected_row_count": 0
+      }
+    ],
+    "available_target_coordinate_state_counts": {
+      "adp_state": 3,
+      "ligand_absent": 2,
+      "unavailable_coordinate_state": 222
+    },
+    "available_target_rows_compact": [
+      {
+        "candidate_id": "1L0O|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": true,
+        "coordinate_state": "adp_state",
+        "entry_id": "1L0O",
+        "expected_claim_status": "review_only_abstain_product_state",
+        "ligand_code_from_structure": "ADP",
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:1L0O|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "3QHR|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": true,
+        "coordinate_state": "adp_state",
+        "entry_id": "3QHR",
+        "expected_claim_status": "review_only_abstain_product_state",
+        "ligand_code_from_structure": "ADP",
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:3QHR|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "3QHW|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": true,
+        "coordinate_state": "adp_state",
+        "entry_id": "3QHW",
+        "expected_claim_status": "review_only_abstain_product_state",
+        "ligand_code_from_structure": "ADP",
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:3QHW|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "2OCP|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "ligand_absent",
+        "entry_id": "2OCP",
+        "expected_claim_status": "review_only_abstain_missing_role_policy",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:2OCP|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "9PFY|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "ligand_absent",
+        "entry_id": "9PFY",
+        "expected_claim_status": "review_only_abstain_missing_role_policy",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:9PFY|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A49",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A49",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A49:biological_assembly_2:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A49",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A49:biological_assembly_2:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A49:biological_assembly_2:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A49",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A49:biological_assembly_2:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A5U:biological_assembly_1:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A5U",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A5U:biological_assembly_1:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A5U:biological_assembly_1:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A5U",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A5U:biological_assembly_1:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A5U:biological_assembly_2:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A5U",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A5U:biological_assembly_2:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      }
+    ],
+    "covered_real_target_coordinate_state_values": [
+      "adp_state",
+      "ligand_absent",
+      "unavailable_coordinate_state"
+    ],
+    "created_at": "2026-05-21T21:37:23+00:00",
+    "federated_adapter_smoke_contract": {
+      "candidate_rows_from_independent_lanes": true,
+      "labels_or_fingerprints_changed": false,
+      "production_claim_allowed": false,
+      "raw_coordinate_dump_written": false,
+      "source_artifacts_review_only": true,
+      "source_review_context_not_predictive": true,
+      "source_text_and_protein_names_not_copied": true
+    },
+    "input_summaries": [
+      {
+        "artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "available_coordinate_state_counts": {
+          "active_gamma": 205,
+          "adp_state": 3,
+          "ambiguous_coordinate_state": 1,
+          "ligand_absent": 2
+        },
+        "available_entry_count": 54,
+        "available_row_count": 211,
+        "available_target_coordinate_state_counts": {
+          "adp_state": 3,
+          "ligand_absent": 2
+        },
+        "available_target_row_count": 5,
+        "lane_id": "epk_substrate_role_identity",
+        "ref": "origin/research/epk-substrate-role-identity",
+        "review_only_input": true,
+        "row_keys": [
+          "candidate_evidence_rows",
+          "state_only_rows"
+        ],
+        "selected_entry_count": 2,
+        "selected_row_count": 2
+      },
+      {
+        "artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "available_coordinate_state_counts": {
+          "active_gamma": 121,
+          "unavailable_coordinate_state": 222
+        },
+        "available_entry_count": 133,
+        "available_row_count": 343,
+        "available_target_coordinate_state_counts": {
+          "unavailable_coordinate_state": 222
+        },
+        "available_target_row_count": 222,
+        "lane_id": "epk_false_positive_hunter",
+        "ref": "origin/research/epk-false-positive-hunter",
+        "review_only_input": true,
+        "row_keys": [
+          "rows"
+        ],
+        "selected_entry_count": 1,
+        "selected_row_count": 1
+      }
+    ],
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "ligand_absent_present_null_ligand_code": true,
+    "metal_absent_real_row_observed": false,
+    "missing_real_target_coordinate_state_values": [
+      "metal_absent"
+    ],
+    "next_query": "epk_real_lane_metal_absent_candidate_evidence_v10_review_only",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "real_missing_coordinate_state_adapter_contract": {
+      "labels_or_fingerprints_changed": false,
+      "metal_absent_absence_recorded_as_next_query": true,
+      "present_null_ligand_code_for_ligand_absent": true,
+      "present_null_ligand_code_for_unavailable_coordinate_state": true,
+      "production_claim_allowed": false,
+      "progress_claim_allowed": false,
+      "selected_rows_are_candidate_level": true,
+      "source_rows_loaded_from_git_refs": true,
+      "source_text_and_protein_names_not_copied": true,
+      "synthetic_fixture_rows_excluded": true
+    },
+    "require_candidate_identity_fields": true,
+    "required_real_target_coordinate_state_values": [
+      "adp_state",
+      "ligand_absent",
+      "unavailable_coordinate_state"
+    ],
+    "review_only": true,
+    "row_count": 3,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+    "selected_coordinate_state_counts": {
+      "adp_state": 1,
+      "ligand_absent": 1,
+      "unavailable_coordinate_state": 1
+    },
+    "selected_entry_ids": [
+      "1L0O",
+      "2OCP",
+      "1A49"
+    ],
+    "selected_expected_claim_status_counts": {
+      "review_only_abstain_missing_role_policy": 1,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 1
+    },
+    "selected_rows_compact": [
+      {
+        "candidate_id": "1L0O|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": true,
+        "coordinate_state": "adp_state",
+        "entry_id": "1L0O",
+        "expected_claim_status": "review_only_abstain_product_state",
+        "ligand_code_from_structure": "ADP",
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:1L0O|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "2OCP|gamma=none|acceptor=none",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "ligand_absent",
+        "entry_id": "2OCP",
+        "expected_claim_status": "review_only_abstain_missing_role_policy",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_substrate_role_identity:state_only_rows:2OCP|gamma=none|acceptor=none",
+        "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+        "source_lane_id": "epk_substrate_role_identity",
+        "source_row_key": "state_only_rows"
+      },
+      {
+        "candidate_id": "epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "coordinate_ligand_materialized_from_structure": false,
+        "coordinate_state": "unavailable_coordinate_state",
+        "entry_id": "1A49",
+        "expected_claim_status": "review_only_abstain_sibling_control",
+        "ligand_code_from_structure": null,
+        "local_metal_context": false,
+        "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+        "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+        "source_lane_id": "epk_false_positive_hunter",
+        "source_row_key": "rows"
+      }
+    ],
+    "source_lane_count": 2,
+    "source_lanes": [
+      "epk_false_positive_hunter",
+      "epk_substrate_role_identity"
+    ],
+    "target_coordinate_state_values": [
+      "adp_state",
+      "ligand_absent",
+      "metal_absent",
+      "unavailable_coordinate_state"
+    ],
+    "tranche_id": "epk_federated_real_lane_missing_coordinate_state_adapter_v9",
+    "unavailable_present_null_ligand_code": true
+  },
+  "rows": [
+    {
+      "candidate_id": "1L0O|gamma=none|acceptor=none",
+      "candidate_specific_source_repair_used_for_predictive_feature": false,
+      "catalytic_site_locality": false,
+      "clean_held_out_performance_evidence": false,
+      "coordinate_ligand_code_source": "lane_adapter_compact_source_free_fields",
+      "coordinate_ligand_materialized_from_structure": true,
+      "coordinate_state": "adp_state",
+      "cross_pdb_split_state_fusion": false,
+      "development_or_regression_context": true,
+      "ec_or_rhea_as_predictive_feature": false,
+      "entry_id": "1L0O",
+      "expected_claim_status": "review_only_abstain_product_state",
+      "expected_frozen_policy_decision": "review_only_abstain",
+      "homomeric_chain_choice_as_substrate_mapping": false,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_policy_harness",
+      "ligand_code_from_structure": "ADP",
+      "local_metal_context": false,
+      "mechanism_text_as_predictive_feature": false,
+      "nearest_gamma_acceptor_distance_angstrom": null,
+      "paper_metadata_as_predictive_feature": false,
+      "paper_title_as_predictive_feature": false,
+      "pdb_id": "1L0O",
+      "pdb_title_as_predictive_feature": false,
+      "post_hoc_ligand_alias_expansion": false,
+      "post_hoc_threshold_selection": false,
+      "product_state_context": true,
+      "production_claim_allowed": false,
+      "protein_name_as_predictive_feature": false,
+      "protein_names_as_predictive_feature": false,
+      "query_ligand_synonym_used_as_coordinate_ligand": false,
+      "row_id": "epk_substrate_role_identity:state_only_rows:1L0O|gamma=none|acceptor=none",
+      "row_role": "federated_adapter_substrate_role_identity",
+      "same_structure_co_materialization": false,
+      "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+      "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+      "source_free_acceptor_role_features": false,
+      "source_free_acceptor_role_policy_id": null,
+      "source_id_as_predictive_feature": false,
+      "source_lane_id": "epk_substrate_role_identity",
+      "source_query_used_for_predictive_feature": false,
+      "source_review_status": "review_only_context_not_predictive",
+      "source_review_used_for_predictive_feature": false,
+      "source_row_id": "1L0O|gamma=none|acceptor=none",
+      "source_row_key": "state_only_rows",
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_status": "review_only_context_not_predictive",
+      "source_validation_used_for_predictive_feature": false,
+      "structure_title_used_for_predictive_feature": false,
+      "terminal_gamma_atom_name": null,
+      "terminal_gamma_equivalent_geometry": false,
+      "uniprot_prose_as_predictive_feature": false
+    },
+    {
+      "candidate_id": "2OCP|gamma=none|acceptor=none",
+      "candidate_specific_source_repair_used_for_predictive_feature": false,
+      "catalytic_site_locality": false,
+      "clean_held_out_performance_evidence": false,
+      "coordinate_ligand_code_source": "lane_adapter_compact_source_free_fields",
+      "coordinate_ligand_materialized_from_structure": false,
+      "coordinate_state": "ligand_absent",
+      "cross_pdb_split_state_fusion": false,
+      "development_or_regression_context": true,
+      "ec_or_rhea_as_predictive_feature": false,
+      "entry_id": "2OCP",
+      "expected_claim_status": "review_only_abstain_missing_role_policy",
+      "expected_frozen_policy_decision": "review_only_abstain",
+      "homomeric_chain_choice_as_substrate_mapping": false,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_policy_harness",
+      "ligand_code_from_structure": null,
+      "local_metal_context": false,
+      "mechanism_text_as_predictive_feature": false,
+      "nearest_gamma_acceptor_distance_angstrom": null,
+      "paper_metadata_as_predictive_feature": false,
+      "paper_title_as_predictive_feature": false,
+      "pdb_id": "2OCP",
+      "pdb_title_as_predictive_feature": false,
+      "post_hoc_ligand_alias_expansion": false,
+      "post_hoc_threshold_selection": false,
+      "production_claim_allowed": false,
+      "protein_name_as_predictive_feature": false,
+      "protein_names_as_predictive_feature": false,
+      "query_ligand_synonym_used_as_coordinate_ligand": false,
+      "row_id": "epk_substrate_role_identity:state_only_rows:2OCP|gamma=none|acceptor=none",
+      "row_role": "federated_adapter_substrate_role_identity",
+      "same_structure_co_materialization": false,
+      "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+      "source_artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+      "source_free_acceptor_role_features": false,
+      "source_free_acceptor_role_policy_id": null,
+      "source_id_as_predictive_feature": false,
+      "source_lane_id": "epk_substrate_role_identity",
+      "source_query_used_for_predictive_feature": false,
+      "source_review_status": "review_only_context_not_predictive",
+      "source_review_used_for_predictive_feature": false,
+      "source_row_id": "2OCP|gamma=none|acceptor=none",
+      "source_row_key": "state_only_rows",
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_status": "review_only_context_not_predictive",
+      "source_validation_used_for_predictive_feature": false,
+      "structure_title_used_for_predictive_feature": false,
+      "terminal_gamma_atom_name": null,
+      "terminal_gamma_equivalent_geometry": false,
+      "uniprot_prose_as_predictive_feature": false
+    },
+    {
+      "candidate_id": "epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+      "candidate_specific_source_repair_used_for_predictive_feature": false,
+      "catalytic_site_locality": false,
+      "clean_held_out_performance_evidence": false,
+      "coordinate_ligand_code_source": "lane_adapter_compact_source_free_fields",
+      "coordinate_ligand_materialized_from_structure": false,
+      "coordinate_state": "unavailable_coordinate_state",
+      "cross_pdb_split_state_fusion": false,
+      "development_or_regression_context": true,
+      "ec_or_rhea_as_predictive_feature": false,
+      "entry_id": "1A49",
+      "expected_claim_status": "review_only_abstain_sibling_control",
+      "expected_frozen_policy_decision": "review_only_abstain",
+      "homomeric_chain_choice_as_substrate_mapping": false,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_policy_harness",
+      "ligand_code_from_structure": null,
+      "local_metal_context": false,
+      "mechanism_text_as_predictive_feature": false,
+      "nearest_gamma_acceptor_distance_angstrom": null,
+      "paper_metadata_as_predictive_feature": false,
+      "paper_title_as_predictive_feature": false,
+      "pdb_id": "1A49",
+      "pdb_title_as_predictive_feature": false,
+      "post_hoc_ligand_alias_expansion": false,
+      "post_hoc_threshold_selection": false,
+      "production_claim_allowed": false,
+      "protein_name_as_predictive_feature": false,
+      "protein_names_as_predictive_feature": false,
+      "query_ligand_synonym_used_as_coordinate_ligand": false,
+      "row_id": "epk_false_positive_hunter:rows:epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+      "row_role": "federated_adapter_false_positive_control:biological_assembly_split_control",
+      "same_structure_co_materialization": false,
+      "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+      "sibling_control_match_status": "false_positive_control_review_only",
+      "sibling_counterfamily_context": true,
+      "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+      "source_free_acceptor_role_features": false,
+      "source_free_acceptor_role_policy_id": null,
+      "source_id_as_predictive_feature": false,
+      "source_lane_id": "epk_false_positive_hunter",
+      "source_query_used_for_predictive_feature": false,
+      "source_review_status": "review_only_context_not_predictive",
+      "source_review_used_for_predictive_feature": false,
+      "source_row_id": "epk_candidate_evidence_v1:1A49:biological_assembly_1:biological_assembly_split_control",
+      "source_row_key": "rows",
+      "source_text_used_for_predictive_feature": false,
+      "source_validation_status": "review_only_context_not_predictive",
+      "source_validation_used_for_predictive_feature": false,
+      "structure_title_used_for_predictive_feature": false,
+      "terminal_gamma_atom_name": null,
+      "terminal_gamma_equivalent_geometry": false,
+      "uniprot_prose_as_predictive_feature": false
+    }
+  ]
+}
