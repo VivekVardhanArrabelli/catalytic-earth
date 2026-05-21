@@ -6,7 +6,7 @@
 - Measured minutes: 438.73
 - Primary outcome: regression_rows_emitted
 - Pushed commit: f61f579b6898f11104ed6c642c0ecc0c35478a7e via alternate-index commit/push.
-- Commit/push status: primary alternate-index commit/push succeeded; status handoff commit pending.
+- Commit/push status: primary and follow-up status alternate-index commits pushed; local checked-out HEAD update remains blocked by linked-worktree metadata.
 - Rule under attack: materializer equivalence on local geometry prefilters plus later-offset source-valid ePK entity v4 seed coverage.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
