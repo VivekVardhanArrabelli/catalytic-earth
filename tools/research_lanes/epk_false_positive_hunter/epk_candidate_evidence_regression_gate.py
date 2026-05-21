@@ -92,7 +92,7 @@ SOURCE_SPECS = [
     },
     {
         "path": "artifacts/research_lanes/epk_false_positive_hunter/"
-        "source_valid_later_offset_gap_audit_jnk_entity_retry_20260521_121925Z.json",
+        "source_valid_later_offset_gap_audit_expanded_20260521_132125Z.json",
         "row_key": "custom_materializer_rows",
         "source_profile": "source_valid_later_offset_gap_audit_controls",
     },

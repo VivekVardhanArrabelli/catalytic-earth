@@ -35,32 +35,113 @@ REGRESSION_GATE_PATH = Path(
 )
 
 LATER_OFFSET_EPK_SEED_QUERIES = [
+    {"name": "cdk_cyclin_atp_start_0", "phrase": "CDK cyclin", "ligand": "ATP", "start": 0, "rows": 45},
     {"name": "cdk_cyclin_atp_start_45", "phrase": "CDK cyclin", "ligand": "ATP", "start": 45, "rows": 45},
     {"name": "cdk_cyclin_atp_start_90", "phrase": "CDK cyclin", "ligand": "ATP", "start": 90, "rows": 45},
+    {"name": "cdk_cyclin_atp_start_135", "phrase": "CDK cyclin", "ligand": "ATP", "start": 135, "rows": 45},
+    {"name": "cdk_cyclin_anp_start_0", "phrase": "CDK cyclin", "ligand": "ANP", "start": 0, "rows": 45},
     {"name": "cdk_cyclin_anp_start_45", "phrase": "CDK cyclin", "ligand": "ANP", "start": 45, "rows": 45},
+    {"name": "cdk2_cyclin_a_atp_start_0", "phrase": "CDK2 cyclin A", "ligand": "ATP", "start": 0, "rows": 45},
+    {"name": "cdk2_cyclin_a_anp_start_0", "phrase": "CDK2 cyclin A", "ligand": "ANP", "start": 0, "rows": 45},
+    {"name": "cyclin_dependent_kinase_cyclin_atp_start_0", "phrase": "cyclin-dependent kinase cyclin", "ligand": "ATP", "start": 0, "rows": 45},
     {"name": "cyclin_dependent_kinase_cyclin_atp_start_45", "phrase": "cyclin-dependent kinase cyclin", "ligand": "ATP", "start": 45, "rows": 45},
     {"name": "cyclin_dependent_kinase_cyclin_atp_start_90", "phrase": "cyclin-dependent kinase cyclin", "ligand": "ATP", "start": 90, "rows": 45},
+    {"name": "cyclin_dependent_kinase_cyclin_atp_start_135", "phrase": "cyclin-dependent kinase cyclin", "ligand": "ATP", "start": 135, "rows": 45},
+    {"name": "cyclin_dependent_kinase_cyclin_anp_start_0", "phrase": "cyclin-dependent kinase cyclin", "ligand": "ANP", "start": 0, "rows": 45},
     {"name": "cyclin_dependent_kinase_cyclin_anp_start_45", "phrase": "cyclin-dependent kinase cyclin", "ligand": "ANP", "start": 45, "rows": 45},
+    {"name": "jnk_kinase_atp_start_0", "phrase": "JNK kinase", "ligand": "ATP", "start": 0, "rows": 40},
     {"name": "jnk_kinase_atp_start_40", "phrase": "JNK kinase", "ligand": "ATP", "start": 40, "rows": 40},
     {"name": "jnk_kinase_atp_start_80", "phrase": "JNK kinase", "ligand": "ATP", "start": 80, "rows": 40},
+    {"name": "jnk_kinase_anp_start_0", "phrase": "JNK kinase", "ligand": "ANP", "start": 0, "rows": 40},
     {"name": "jnk_kinase_anp_start_40", "phrase": "JNK kinase", "ligand": "ANP", "start": 40, "rows": 40},
+    {"name": "jnk_c_jun_atp_start_0", "phrase": "JNK c-Jun", "ligand": "ATP", "start": 0, "rows": 40},
+    {"name": "jnk_mkk7_atp_start_0", "phrase": "JNK MKK7", "ligand": "ATP", "start": 0, "rows": 40},
     {"name": "c_jun_n_terminal_kinase_atp_start_35", "phrase": "c-Jun N-terminal kinase", "ligand": "ATP", "start": 35, "rows": 35},
     {"name": "c_jun_n_terminal_kinase_anp_start_0", "phrase": "c-Jun N-terminal kinase", "ligand": "ANP", "start": 0, "rows": 35},
+    {"name": "mapk8_atp_start_0", "phrase": "MAPK8", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "mapk9_atp_start_0", "phrase": "MAPK9", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "mapk10_atp_start_0", "phrase": "MAPK10", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "mitogen_activated_protein_kinase_8_atp_start_0", "phrase": "mitogen-activated protein kinase 8", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "mitogen_activated_protein_kinase_9_atp_start_0", "phrase": "mitogen-activated protein kinase 9", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "receptor_tyrosine_kinase_dimer_atp_start_0", "phrase": "receptor tyrosine kinase dimer", "ligand": "ATP", "start": 0, "rows": 45},
     {"name": "receptor_tyrosine_kinase_dimer_atp_start_45", "phrase": "receptor tyrosine kinase dimer", "ligand": "ATP", "start": 45, "rows": 45},
     {"name": "receptor_tyrosine_kinase_dimer_atp_start_90", "phrase": "receptor tyrosine kinase dimer", "ligand": "ATP", "start": 90, "rows": 45},
+    {"name": "receptor_tyrosine_kinase_dimer_atp_start_135", "phrase": "receptor tyrosine kinase dimer", "ligand": "ATP", "start": 135, "rows": 45},
+    {"name": "receptor_tyrosine_kinase_dimer_anp_start_0", "phrase": "receptor tyrosine kinase dimer", "ligand": "ANP", "start": 0, "rows": 45},
     {"name": "receptor_tyrosine_kinase_dimer_anp_start_45", "phrase": "receptor tyrosine kinase dimer", "ligand": "ANP", "start": 45, "rows": 45},
     {"name": "egfr_kinase_dimer_atp_start_0", "phrase": "EGFR kinase dimer", "ligand": "ATP", "start": 0, "rows": 45},
     {"name": "egfr_kinase_dimer_anp_start_0", "phrase": "EGFR kinase dimer", "ligand": "ANP", "start": 0, "rows": 45},
+    {"name": "egfr_atp_start_0", "phrase": "EGFR", "ligand": "ATP", "start": 0, "rows": 45},
+    {"name": "epidermal_growth_factor_receptor_kinase_atp_start_0", "phrase": "epidermal growth factor receptor kinase", "ligand": "ATP", "start": 0, "rows": 45},
+    {"name": "fgfr_kinase_atp_start_0", "phrase": "FGFR kinase", "ligand": "ATP", "start": 0, "rows": 45},
+    {"name": "vegfr_kinase_atp_start_0", "phrase": "VEGFR kinase", "ligand": "ATP", "start": 0, "rows": 45},
+    {"name": "tyrosine_kinase_domain_atp_start_45", "phrase": "tyrosine kinase domain", "ligand": "ATP", "start": 45, "rows": 45},
+    {"name": "insulin_receptor_kinase_atp_start_0", "phrase": "insulin receptor kinase", "ligand": "ATP", "start": 0, "rows": 35},
     {"name": "insulin_receptor_kinase_atp_start_35", "phrase": "insulin receptor kinase", "ligand": "ATP", "start": 35, "rows": 35},
     {"name": "insulin_receptor_kinase_atp_start_70", "phrase": "insulin receptor kinase", "ligand": "ATP", "start": 70, "rows": 35},
+    {"name": "insulin_receptor_kinase_anp_start_0", "phrase": "insulin receptor kinase", "ligand": "ANP", "start": 0, "rows": 35},
     {"name": "insulin_receptor_kinase_anp_start_35", "phrase": "insulin receptor kinase", "ligand": "ANP", "start": 35, "rows": 35},
+    {"name": "mtor_kinase_atp_start_0", "phrase": "mTOR kinase", "ligand": "ATP", "start": 0, "rows": 35},
     {"name": "mtor_kinase_atp_start_35", "phrase": "mTOR kinase", "ligand": "ATP", "start": 35, "rows": 35},
+    {"name": "mtor_kinase_anp_start_0", "phrase": "mTOR kinase", "ligand": "ANP", "start": 0, "rows": 35},
     {"name": "mtor_kinase_anp_start_35", "phrase": "mTOR kinase", "ligand": "ANP", "start": 35, "rows": 35},
+    {"name": "mechanistic_target_of_rapamycin_atp_start_0", "phrase": "mechanistic target of rapamycin", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "mammalian_target_of_rapamycin_atp_start_0", "phrase": "mammalian target of rapamycin", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "mtorc1_atp_start_0", "phrase": "mTORC1", "ligand": "ATP", "start": 0, "rows": 35},
     {"name": "mtorc1_atp_start_35", "phrase": "mTORC1", "ligand": "ATP", "start": 35, "rows": 35},
     {"name": "mtorc1_anp_start_0", "phrase": "mTORC1", "ligand": "ANP", "start": 0, "rows": 35},
+    {"name": "mtorc2_atp_start_0", "phrase": "mTORC2", "ligand": "ATP", "start": 0, "rows": 35},
     {"name": "mtorc2_atp_start_35", "phrase": "mTORC2", "ligand": "ATP", "start": 35, "rows": 35},
     {"name": "mtorc2_anp_start_0", "phrase": "mTORC2", "ligand": "ANP", "start": 0, "rows": 35},
+    {"name": "raptor_mtor_atp_start_0", "phrase": "RAPTOR mTOR", "ligand": "ATP", "start": 0, "rows": 35},
+    {"name": "rictor_mtor_atp_start_0", "phrase": "RICTOR mTOR", "ligand": "ATP", "start": 0, "rows": 35},
 ]
+
+LATER_OFFSET_FAMILY_BUCKET_PATTERNS = {
+    "jnk_entity": [
+        "jnk",
+        "c-jun n-terminal kinase",
+        "c-jun n terminal kinase",
+        "mapk8",
+        "mapk9",
+        "mapk10",
+        "mitogen-activated protein kinase 8",
+        "mitogen-activated protein kinase 9",
+        "mitogen-activated protein kinase 10",
+    ],
+    "cdk_cyclin_entity": [
+        "cyclin-dependent kinase",
+        "cyclin dependent kinase",
+        "cdk2",
+        "cdk4",
+        "cdk6",
+        "cdk7",
+        "cdk9",
+    ],
+    "receptor_tyrosine_kinase_entity": [
+        "receptor tyrosine kinase",
+        "epidermal growth factor receptor",
+        "egfr",
+        "insulin receptor",
+        "fgfr",
+        "vegfr",
+        "pdgfr",
+        "kit kinase",
+        "proto-oncogene tyrosine-protein kinase kit",
+        "hepatocyte growth factor receptor",
+        "met receptor",
+        "tyrosine kinase domain",
+    ],
+    "mtorc_entity": [
+        "mechanistic target of rapamycin",
+        "mammalian target of rapamycin",
+        "mtor",
+        "mtorc1",
+        "mtorc2",
+        "raptor",
+        "rictor",
+    ],
+}
 
 
 def now_utc() -> str:
@@ -211,13 +292,65 @@ def entity_gap_evaluations(
     return evaluations
 
 
+def normalized_text_parts(values: list[Any]) -> str:
+    parts = []
+    for value in values:
+        if isinstance(value, dict):
+            parts.extend(str(item) for item in value.values())
+        elif isinstance(value, list):
+            parts.extend(str(item) for item in value)
+        else:
+            parts.append(str(value))
+    return " ".join(parts).lower()
+
+
+def later_offset_family_buckets_from_text(text: str) -> list[str]:
+    buckets = []
+    for bucket, patterns in LATER_OFFSET_FAMILY_BUCKET_PATTERNS.items():
+        if bucket == "cdk_cyclin_entity":
+            cdk_hit = any(pattern in text for pattern in patterns)
+            if cdk_hit and "cyclin" in text:
+                buckets.append(bucket)
+            continue
+        if any(pattern in text for pattern in patterns):
+            buckets.append(bucket)
+    return sorted(set(buckets))
+
+
 def annotate_later_offset_entry(
     entry: dict[str, Any],
     context_rows: list[dict[str, Any]],
     deposited_cif: str,
 ) -> dict[str, Any]:
     annotated = prior_seed.annotate_entry(entry, context_rows, deposited_cif)
-    family_buckets = annotated.get("source_valid_epk_seed_family_buckets", [])
+    evidence = annotated.get("polymer_entity_evidence") or {}
+    entity_rows = evidence.get("entity_rows_compact") or []
+    entity_text = normalized_text_parts(
+        [row.get("description") for row in entity_rows if isinstance(row, dict)]
+    )
+    title_text = normalized_text_parts(
+        [
+            entry.get("title", ""),
+            entry.get("keywords", {}),
+            entry.get("entity_descriptions_compact", []),
+        ]
+    )
+    entity_buckets = set(annotated.get("source_valid_epk_seed_family_buckets", []) or [])
+    entity_fallback_buckets = set(later_offset_family_buckets_from_text(entity_text))
+    title_fallback_buckets = set(later_offset_family_buckets_from_text(title_text))
+    family_buckets = sorted(
+        entity_buckets | entity_fallback_buckets | title_fallback_buckets
+    )
+    bucket_sources = {}
+    for bucket in family_buckets:
+        sources = []
+        if bucket in entity_buckets:
+            sources.append("prior_polymer_entity_bucket")
+        if bucket in entity_fallback_buckets:
+            sources.append("polymer_entity_text_fallback")
+        if bucket in title_fallback_buckets:
+            sources.append("entry_title_keyword_fallback")
+        bucket_sources[bucket] = sources
     any_context_v4 = bool(
         annotated.get("entry_level_any_context_v4_guard_hit_review_only")
         or any(
@@ -226,11 +359,20 @@ def annotate_later_offset_entry(
         )
     )
     later_offset_seed = bool(family_buckets and any_context_v4)
+    if isinstance(evidence, dict):
+        evidence = dict(evidence)
+        evidence["later_offset_family_bucket_sources"] = bucket_sources
+        annotated["polymer_entity_evidence"] = evidence
+    annotated["source_valid_epk_seed_family_buckets"] = family_buckets
     annotated["source_valid_later_offset_entity_seed_review_candidate"] = (
         later_offset_seed
     )
+    annotated["source_valid_later_offset_family_seed_review_candidate"] = (
+        later_offset_seed
+    )
+    annotated["source_valid_later_offset_family_bucket_sources"] = bucket_sources
     annotated["source_valid_later_offset_entity_seed_basis"] = (
-        "polymer_entity_family_bucket_and_deposited_or_assembly_v4"
+        "polymer_entity_or_title_family_bucket_and_deposited_or_assembly_v4"
         if later_offset_seed
         else "not_source_valid_v4_seed_on_this_surface"
     )
