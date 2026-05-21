@@ -1,68 +1,61 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-21T00:34:34-0500
+Last updated: 2026-05-21T07:29:20-0500
 
-Primary outcome: `blocker_not_cleared_biology_ambiguity`
+Primary outcome: `candidate_evidence_rows_emitted`
 
 `production_claim_allowed=false`
 
 `labels_or_fingerprints_changed=false`
 
-Measured run time: 49.08 minutes (`2026-05-21T04:45:29Z` to
-`2026-05-21T05:34:34Z`).
+Measured run time: 401.87 minutes (`2026-05-21T05:47:28Z` to
+`2026-05-21T12:29:20Z`).
 
 Run note: normal `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 --no-write-fetch-head origin` succeeded. Local `HEAD` remains stale relative
-to `origin/research/epk-substrate-role-identity`; final commit/push work used
-the lane temporary-index workaround.
-
-Final sync: pushed conflict-decision commit
-`62494fedd56d38f63e14924e1079ccc59b119f91` to
-`origin/research/epk-substrate-role-identity`, then verified
-`origin/research/epk-substrate-role-identity` at that commit with
-`git fetch --no-write-fetch-head origin`. A temporary-index comparison against
-the remote tip was clean. Normal `git status` still reports this linked
-worktree as behind with lane-file changes because local `HEAD` remains
-`8d38053d85cc28b7592267e9420578ca19a98814`.
+to `origin/research/epk-substrate-role-identity`; final commit/push work should
+continue using the lane temporary-index workaround if normal git operations are
+still blocked.
 
 ## What Was Emitted
 
-This run added a compact candidate-conflict decision artifact on top of the
-existing candidate evidence table. It did not add a scalar source-free rescue
-threshold and did not promote any review-only class to production identity.
+This run added a candidate-level materiality manifest on top of the existing
+source-free candidate evidence and PDB-level conflict decision artifacts. It
+does not introduce a scalar rescue threshold, does not use source/review text
+as a predictive input, and does not promote any review-only class to production
+identity.
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_conflict_decision_v1_20260521.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_materiality_manifest_v1_20260521.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/candidate_conflict_decision.py`
+`tools/research_lanes/epk_substrate_role_identity/candidate_materiality_manifest.py`
 
-Input artifact:
+Input artifacts:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json`
+- `artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json`
+- `artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_conflict_decision_v1_20260521.json`
 
-The helper reused:
+The helper emitted 211 compact materiality rows:
 
-- 204 gamma/acceptor candidate-pair rows.
-- 7 state-only rows.
-- 54 diagnostic PDBs.
+- 204 reused gamma/acceptor candidate-pair rows.
+- 7 reused state-only rows.
+- 54 diagnostic PDBs covered through inherited conflict decisions.
 
-It emitted 54 PDB-level candidate-conflict rows with:
+Each materiality row keeps source-free evidence separate from
+`review_context_for_evaluation_only` and includes:
 
-- source-free conflict signatures from coordinate states, blockers, and
-  candidate role classes,
-- state-by-blocker and role-by-blocker matrices,
-- nearest candidate, nearest unblocked candidate, and nearest topology
-  candidate digests,
-- abstention decision classes for topology and state-specific biology,
-- hard-case digests for `7B56`, `9UUR`, `9UUX`, `9UW4`, `3QHR`, `3QHW`,
-  `1L0O`, `3TM0`, and `1QHA`.
+- candidate ID with PDB, gamma ligand/atom, and acceptor residue/atom,
+- first-class coordinate state,
+- blocker class,
+- candidate materiality class and reason,
+- compact distance/topology/reciprocal/exposure/orientation/certainty evidence,
+- inherited PDB conflict class and review-only abstention decision.
 
-Review labels remain only under `review_context_for_evaluation_only`.
 Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
 EC/Rhea, paper/source text, mechanism labels, curated substrate names,
 post-hoc source repair, candidate-specific threshold tuning, production label
@@ -87,26 +80,20 @@ Blocker classes across reused candidate/state rows:
 - `ligand_materialization=3`
 - `internal_fragment_mimicry=1`
 
-Conflict classes across 54 PDB-level rows:
+Candidate materiality classes:
 
-- `topology_conflict_same_chain=26`
-- `unblocked_support_low_conflict=7`
-- `unblocked_support_with_competing_ambiguous_candidates=7`
-- `active_gamma_geometry_conflict=3`
-- `coordinate_materialization_conflict=3`
-- `state_specific_product_or_adp_conflict=3`
-- `topology_conflict_reciprocal_and_same_chain=3`
-- `active_gamma_no_near_hydroxyl_conflict=1`
-- `internal_fragment_mimicry_conflict=1`
+- `material_topology_abstention_driver=98`
+- `secondary_geometry_within_topology_abstention=42`
+- `competing_blocked_candidate_nonfatal=20`
+- `material_unblocked_structural_support=19`
+- `competing_ambiguous_candidate_nonfatal=11`
+- `material_active_gamma_geometry_counterevidence=10`
+- `material_substrate_role_abstention_driver=4`
+- `material_coordinate_materialization_driver=3`
+- `material_state_abstention_driver=3`
+- `material_internal_fragment_counterevidence=1`
 
-Decision classes:
-
-- `source_free_structural_support_review_only=14`
-- `source_free_blocked_counterevidence_review_only=8`
-- `abstain_biology_topology_review_required=29`
-- `abstain_state_specific_review_required=3`
-
-The review-only abstention routing matrix was:
+The inherited review-only abstention routing matrix remains:
 
 - TP=14
 - FP=0
@@ -115,7 +102,7 @@ The review-only abstention routing matrix was:
 - abstained positives=6
 - abstained negatives=26
 
-Abstained positive hard cases are the known review-required classes:
+Abstained positive hard cases remain the known review-required classes:
 
 - product/ADP state rows: `3QHR`, `3QHW`, `1L0O`
 - reciprocal folded-chain rows: `9UUR`, `9UUX`
@@ -123,33 +110,31 @@ Abstained positive hard cases are the known review-required classes:
 
 Hard-case interpretation:
 
-- `7B56`: `internal_fragment_mimicry_conflict`, blocked review-only
-  counterevidence.
-- `9UUR`, `9UUX`, `9UW4`: shared
-  `topology_conflict_reciprocal_and_same_chain`, therefore source-free
-  abstention.
-- `3QHR`, `3QHW`, `1L0O`: `state_specific_product_or_adp_conflict`, therefore
-  source-free abstention.
-- `3TM0`: `topology_conflict_same_chain`, therefore source-free abstention.
-- `1QHA`: `active_gamma_no_near_hydroxyl_conflict`, blocked review-only
-  counterevidence.
+- `7B56`: internal-fragment mimicry plus active-gamma geometry
+  counterevidence; review-only blocked counterevidence.
+- `9UUR`, `9UUX`, `9UW4`: shared topology-abstention materiality, so the
+  source-free evidence still cannot separate true reciprocal folded-chain
+  positives from the decisive topology counterexample.
+- `3QHR`, `3QHW`, `1L0O`: material state-abstention rows; terminal-gamma
+  transfer geometry is unavailable.
+- `3TM0`: same-chain topology-abstention row.
+- `1QHA`: active-gamma geometry counterevidence row.
 
 ## Interpretation
 
-The blocker is not cleared source-free. Candidate conflict routing can separate
-22 non-abstaining review-only cases without diagnostic false positives or false
-negatives, but it must abstain on 32 PDBs. The abstention set includes all
-product/ADP positives and the reciprocal/same-chain topology positives, and it
-also includes the decisive topology counterexample `9UW4`.
+The new manifest makes row-level evidence materiality explicit, but it does
+not clear the source-free substrate-role blocker. It preserves the prior safe
+behavior: source-free rows can route review support or hard counterevidence,
+but product/ADP, reciprocal folded-chain, same-chain, and folded-role substrate
+biology still require abstention or source-reviewed adjudication.
 
-This supports review routing, not production substrate-role identity. Do not
-claim ePK production readiness. Do not import labels, edit production
-fingerprints, calibrate thresholds, or promote the conflict decision classes
-into production identity labels.
+No production readiness claim is allowed. Do not import labels, edit production
+fingerprints, calibrate thresholds, or promote candidate materiality classes
+into production substrate-role identity.
 
 ## Exact Next Experiment
 
-Use `epk_candidate_conflict_decision_v1_20260521.json` for review routing and
-blocker reporting. Stop source-free substrate-role identity probing unless a
-genuinely new evidence modality can reduce the topology/state abstention set
+Use `epk_candidate_materiality_manifest_v1_20260521.json` for review routing
+and blocker reporting. Stop source-free substrate-role identity probing unless
+a genuinely new evidence modality can reduce the topology/state abstention set
 without admitting `9UW4`-like counterexamples.
