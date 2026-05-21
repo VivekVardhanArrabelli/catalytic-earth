@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T20:30:43-0500
+Last updated: 2026-05-20T21:33:02-0500
 
 Primary outcome: `counterexample_found`
 
@@ -11,30 +11,30 @@ Primary outcome: `counterexample_found`
 Run note: normal `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
---no-write-fetch-head origin` succeeded, and the lane files in the working tree
-were byte-matched against `origin/research/epk-substrate-role-identity` before
-new work. The linked-worktree metadata remains stale/unwritable, so final push
-uses the lane's temporary-index workaround rather than updating local `HEAD`.
+--no-write-fetch-head origin` succeeded. The linked-worktree metadata remains
+stale/unwritable, so the final push uses the lane's temporary-index workaround
+rather than updating local `HEAD`.
 
 ## What Was Tested
 
 This run introduced a new source-free evidence modality:
 
-`epk_coordinate_certainty_probe_v1_review_only`
+`epk_sequence_context_probe_v1_review_only`
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_coordinate_certainty_probe_v1_20260521.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_sequence_context_probe_v1_20260521.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/coordinate_certainty_probe.py`
+`tools/research_lanes/epk_substrate_role_identity/sequence_context_probe.py`
 
 The helper reused the frozen 54-row state/topology diagnostic set and fetched
-PDB coordinate text in memory only. It wrote compact reduced evidence for the
-already-selected hydroxyl/gamma atom pair: occupancy, alternate-location count,
-B-factor, and relative B-factor ratios versus same-chain, local 8 A, and global
-protein contexts. It did not write raw coordinate dumps.
+PDB coordinate text in memory only. It wrote compact reduced evidence around
+the selected candidate hydroxyl residue: resolved polymer sequence windows
+from -5..+5 and -3..+3, plus-one/plus-two Pro indicators, upstream/downstream
+basic counts, acidic/hydrophobic/polar counts, and generic residue-chemistry
+support classes. It did not write raw coordinate dumps.
 
 Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
 EC/Rhea, paper/source text, mechanism labels, curated substrate names,
@@ -46,72 +46,75 @@ imports, and production threshold calibration.
 Frozen 54-row decision matrix:
 
 - Prior conservative source-free claim gate reused: TP=14, FP=0, TN=34, FN=6.
-- Coordinate-ordered claim gate: TP=9, FP=0, TN=34, FN=11.
-- Coordinate-ordered reciprocal folded-Tyr rescue: TP=16, FP=1, TN=33, FN=4.
-- Coordinate-ordered reciprocal-or-same-chain rescue: TP=17, FP=18, TN=16,
-  FN=3.
+- Sequence-context reciprocal folded-Tyr rescue: TP=16, FP=1, TN=33, FN=4.
+- Sequence-context ambiguous reciprocal-or-same-chain rescue: TP=17, FP=15,
+  TN=19, FN=3.
+- Proline-directed ambiguous rescue: TP=15, FP=1, TN=33, FN=5.
+- Charged-context ambiguous rescue: TP=17, FP=14, TN=20, FN=3.
 
-Hard reciprocal folded-Tyr trio:
+Decisive reciprocal folded-Tyr counterexample:
 
-- `9UUR`: positive, ordered-like, full occupancy, no altloc; acceptor
-  B/same-chain median ratio 1.045, local 8 A ratio 1.139, gamma/protein ratio
-  1.300.
-- `9UUX`: positive, ordered-like, full occupancy, no altloc; acceptor
-  B/same-chain median ratio 0.981, local 8 A ratio 1.179, gamma/protein ratio
-  1.307.
-- `9UW4`: counterexample, ordered-like, full occupancy, no altloc; acceptor
-  B/same-chain median ratio 0.982, local 8 A ratio 1.150, gamma/protein ratio
-  1.264.
+- `9UUR`: positive, selected Tyr204, window `GFLTEYVATRW`, support class
+  `tyr_adjacent_pro_or_charged_context`.
+- `9UUX`: positive, selected Tyr204, window `TGFLEYVATRW`, support class
+  `tyr_adjacent_pro_or_charged_context`.
+- `9UW4`: counterexample, selected Tyr204, window `GFLTEYVATRW`, support
+  class `tyr_adjacent_pro_or_charged_context`.
 
-Decisive result: the same generic coordinate-ordered class that recovers
-`9UUR` and `9UUX` also admits `9UW4`. Coordinate certainty therefore does not
-separate the biological substrate role in the hard reciprocal folded-chain
-case.
+Exact-window collision:
 
-Same-chain stress result: admitting ordered same-chain/autophosphorylation-like
-rows recovers `3TM0`, but also admits 18 counterexamples:
+- `GFLTEYVATRW` contains both positive `9UUR` and counterexample `9UW4`.
 
-`2JJ2`, `7ZE5`, `9UW4`, `6U1D`, `6U1E`, `5TT6`, `6NOO`, `9NBW`, `7ZDT`,
-`7ZDU`, `9L3M`, `7T55`, `7T57`, `5XD6`, `8W2H`, `8W2J`, `1TFW`, `2DRA`.
+Thus the sequence-context rule that recovers `9UUR` and `9UUX` also admits
+`9UW4`. A stricter proline-only rule avoids the reciprocal Tyr false positive
+but loses both reciprocal Tyr positives and still admits same-chain
+counterexample `1OJ4`.
+
+Same-chain stress remains unresolved. Broad ambiguous sequence-context rescue
+recovers `3TM0` but admits 15 counterexamples:
+
+`2JJ2`, `7ZE5`, `9UW4`, `5C1O`, `6U1D`, `5TT6`, `7ZDU`, `9L3M`, `7T55`,
+`7T57`, `9L3U`, `8W2H`, `8W2J`, `9OAN`, `1OJ4`.
 
 Product/ADP rows remain unavailable to terminal-gamma transfer geometry:
-`3QHR`, `3QHW`, and `1L0O` stay false negatives under coordinate-ordered
-rescue rules.
+`3QHR`, `3QHW`, and `1L0O` stay false negatives under sequence-context rescue
+rules.
 
-`7B56` remains locally rejected by the auth-terminal/internal-fragment
-counterevidence. It is also coordinate-ordered, so coordinate certainty is not
-the feature that separates it.
+`7B56` remains rejected by prior auth-terminal/internal-fragment
+counterevidence. Its selected Ser822 sequence window has no generic
+sequence-context signal, so sequence context is not the feature that repairs
+or generalizes the `7B56` blocker.
 
 ## Interpretation
 
-Coordinate certainty is useful compact review evidence, but it is not a
-source-free substrate-role identity rule. The hard blocker is still biological
-role ambiguity in structure-only evidence:
+Sequence context is useful compact review evidence, but it is not a
+source-free substrate-role identity rule. The hard blocker remains biological
+role ambiguity in structure-derived evidence:
 
-1. Product/ADP structures lack terminal gamma transfer geometry.
-2. Reciprocal folded-Tyr topology is shared by true positives (`9UUR`, `9UUX`)
-   and the counterexample `9UW4`.
+1. Exact or generic acceptor sequence context can be shared by a true substrate
+   positive and a counterexample (`9UUR`/`9UW4`).
+2. Product/ADP structures lack terminal gamma transfer geometry.
 3. Same-chain/autophosphorylation-like topology recovers `3TM0` only by
    admitting many counterexamples in the same source-free class.
 
 Within this lane, comparable blockers have now failed to clear with
 nearest-atom, terminal-index, reciprocal-context, local-exposure,
-active-site-orientation, state/topology, abstention-gate, and coordinate-
-certainty/ordering features.
+active-site-orientation, state/topology, abstention-gate, coordinate-
+certainty/ordering, and sequence-context features.
 
 ## Current Decision
 
 Do not claim ePK production readiness. Do not import labels, edit production
-fingerprints, calibrate thresholds, or turn coordinate certainty into a
-production identity rule.
+fingerprints, calibrate thresholds, or turn sequence context into a production
+identity rule.
 
-Use coordinate certainty only as review-only evidence. A true production
+Use sequence context only as review-only evidence. A true production
 substrate-role identity decision still requires hybrid source-reviewed
 adjudication, with source evidence excluded from predictive features.
 
 ## Exact Next Experiment
 
-Stop source-free scalar/coordinate probing unless a genuinely new evidence
-modality is introduced. Preserve product/ADP, reciprocal folded-chain, and
+Do not add another scalar source-free probe unless a genuinely new evidence
+modality is available. Preserve product/ADP, reciprocal folded-chain, and
 same-chain/autophosphorylation-like cases as source-reviewed adjudication
 requirements rather than production source-free claims.
