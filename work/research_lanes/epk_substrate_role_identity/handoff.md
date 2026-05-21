@@ -15,8 +15,16 @@ Run note: normal `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 --no-write-fetch-head origin` succeeded. Normal local `HEAD` remains stale
-relative to `origin/research/epk-substrate-role-identity`; commit/push should
-use the remote-tip temporary-index workaround.
+relative to `origin/research/epk-substrate-role-identity`; commit/push used the
+remote-tip temporary-index workaround.
+
+Final sync: pushed graph-motif content commit
+`82d8f47955dcdb1328a10be5c4e802f499e7300e` to
+`origin/research/epk-substrate-role-identity`. After `git fetch
+--no-write-fetch-head origin`, local checksums for the graph artifact, helper,
+run ledger, and handoff matched the remote blobs. Normal `git status` still
+reports this linked worktree as behind/dirty because local `HEAD` remains stale
+relative to the remote tip.
 
 ## What Was Emitted
 
