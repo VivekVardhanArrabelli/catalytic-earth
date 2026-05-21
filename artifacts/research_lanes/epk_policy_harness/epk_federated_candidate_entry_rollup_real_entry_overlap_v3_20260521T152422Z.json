@@ -1,0 +1,276 @@
+{
+  "artifacts": {
+    "negative_missing_entry_id": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_missing_entry_id_result.json",
+    "negative_missing_entry_id_sha256": "b9b619bea23c2bde18c2f0bee0a8de4e3566036980957727a2ecdec49067d72c",
+    "negative_single_lane_entry": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_single_lane_entry_result.json",
+    "negative_single_lane_entry_sha256": "e76756b3ea582ac097f5df54e2dc861c545b57efca5d4fcc60b0217c7df7e904",
+    "negative_source_context_copy": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_source_context_copy_result.json",
+    "negative_source_context_copy_sha256": "bc147c7b614e8b568e84e1197b8cc24804954cb7773601d3059227134f6be62f",
+    "result": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_result.json",
+    "result_sha256": "2915ed5a34c596c146f305e52f85e341e59ba27334fcee5cf53723260e9ff8b1",
+    "scoreboard_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "16b21973b0ba8944ccd8acbcfdf3b582a750f01b971684bd73763d35cd100662",
+    "tranche": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_tranche.json",
+    "tranche_sha256": "2b0dcdb23a33796c8126d391972372ef7622c50979c6db7b1eb4b3fb2e6fb300"
+  },
+  "federated_inputs": [
+    {
+      "artifact": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+      "available_entry_count": 48,
+      "available_overlap_entry_count": 25,
+      "available_row_count": 84,
+      "lane_id": "epk_positive_evidence",
+      "ref": "origin/research/epk-positive-evidence",
+      "review_only_input": true,
+      "row_keys": [
+        "adjudicated_candidate_rows"
+      ],
+      "selected_entry_count": 6,
+      "selected_row_count": 6
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+      "available_entry_count": 54,
+      "available_overlap_entry_count": 41,
+      "available_row_count": 211,
+      "lane_id": "epk_substrate_role_identity",
+      "ref": "origin/research/epk-substrate-role-identity",
+      "review_only_input": true,
+      "row_keys": [
+        "candidate_evidence_rows",
+        "state_only_rows"
+      ],
+      "selected_entry_count": 12,
+      "selected_row_count": 12
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_152108Z.json",
+      "available_entry_count": 133,
+      "available_overlap_entry_count": 8,
+      "available_row_count": 343,
+      "lane_id": "epk_false_positive_hunter",
+      "ref": "origin/research/epk-false-positive-hunter",
+      "review_only_input": true,
+      "row_keys": [
+        "rows"
+      ],
+      "selected_entry_count": 3,
+      "selected_row_count": 3
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+      "available_entry_count": 89,
+      "available_overlap_entry_count": 10,
+      "available_row_count": 91,
+      "lane_id": "epk_sibling_controls",
+      "ref": "origin/research/epk-sibling-controls",
+      "review_only_input": true,
+      "row_keys": [
+        "gamma_proximity_counteraxis_cases",
+        "product_phosphoryl_identity_counteraxis_cases"
+      ],
+      "selected_entry_count": 5,
+      "selected_row_count": 5
+    }
+  ],
+  "gate": {
+    "gate_pass": true,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false,
+    "real_overlap_gate_pass": true
+  },
+  "hypothesis": "Real entries emitted by at least two independent ePK lanes can be rolled up only when candidate-level decisions remain visible and each selected entry keeps multi-lane support.",
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_real_entry_overlap_v3",
+    "created_at": "2026-05-21T15:31:50+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "negative_fault_injections": [
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_single_lane_entry_result.json",
+      "expected_failure": "single_lane_entry",
+      "observed_error": "real-overlap gate requires every selected entry to contain candidate rows from at least two source lanes: {'6U1D': ['epk_substrate_role_identity']}",
+      "rejected": true,
+      "sha256": "e76756b3ea582ac097f5df54e2dc861c545b57efca5d4fcc60b0217c7df7e904"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_missing_entry_id_result.json",
+      "expected_failure": "missing_entry_id",
+      "observed_error": "real-overlap gate requires entry_id on every row: epk_positive_evidence:adjudicated_candidate_rows:4EKK:active_gamma:ANP:A:associated_entity_1:C:7:2",
+      "rejected": true,
+      "sha256": "b9b619bea23c2bde18c2f0bee0a8de4e3566036980957727a2ecdec49067d72c"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_negative_source_context_copy_result.json",
+      "expected_failure": "source_context_copy",
+      "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:4EKK:active_gamma:ANP:A:associated_entity_1:C:7:2 violates federated adapter contract: source text, protein names, titles, paper metadata, EC/Rhea, and prose must not be copied into predictive rows ['protein_names']",
+      "rejected": true,
+      "sha256": "bc147c7b614e8b568e84e1197b8cc24804954cb7773601d3059227134f6be62f"
+    }
+  ],
+  "policy_result": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_result.json",
+    "claim_status_counts": {
+      "review_only_abstain_missing_role_policy": 18,
+      "review_only_abstain_sibling_control": 8
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 26
+    },
+    "counterexamples_found": [],
+    "expected_claim_status_mismatch_count": 0,
+    "primary_outcome": "policy_frozen_review_only",
+    "rows_reviewed": 26,
+    "sha256": "2915ed5a34c596c146f305e52f85e341e59ba27334fcee5cf53723260e9ff8b1"
+  },
+  "real_overlap_summary": {
+    "all_selected_entries_have_multi_lane_support": true,
+    "available_overlap_entry_count": 41,
+    "labels_or_fingerprints_changed": false,
+    "production_claim_allowed": false,
+    "selected_entry_source_lanes": {
+      "1QHA": [
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ],
+      "2JJ2": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "4EKK": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "5C1O": [
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ],
+      "6U1D": [
+        "epk_false_positive_hunter",
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ],
+      "6U1E": [
+        "epk_false_positive_hunter",
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ],
+      "7ZDU": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "8W2J": [
+        "epk_sibling_controls",
+        "epk_substrate_role_identity"
+      ],
+      "9NBW": [
+        "epk_false_positive_hunter",
+        "epk_substrate_role_identity"
+      ],
+      "9UUR": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "9UUX": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "9UW4": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ]
+    },
+    "selected_overlap_entry_count": 12,
+    "selected_overlap_entry_ids": [
+      "6U1D",
+      "6U1E",
+      "9NBW",
+      "4EKK",
+      "7ZDU",
+      "9UUR",
+      "9UUX",
+      "9UW4",
+      "2JJ2",
+      "5C1O",
+      "8W2J",
+      "1QHA"
+    ],
+    "source_lane_counts": {
+      "epk_false_positive_hunter": 3,
+      "epk_positive_evidence": 6,
+      "epk_sibling_controls": 5,
+      "epk_substrate_role_identity": 12
+    },
+    "source_text_and_protein_names_copied": false
+  },
+  "scoreboard_gate": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_real_entry_overlap_v3_20260521T152422Z_scoreboard_gate.json",
+    "gate_pass": true,
+    "sha256": "16b21973b0ba8944ccd8acbcfdf3b582a750f01b971684bd73763d35cd100662",
+    "summary": {
+      "claim_status_counts": {
+        "review_only_abstain_missing_role_policy": 18,
+        "review_only_abstain_sibling_control": 8
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 26
+      },
+      "covered_claim_status_values": [
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_sibling_control"
+      ],
+      "covered_coordinate_state_values": [
+        "active_gamma"
+      ],
+      "covered_entry_claim_status_values": [
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_sibling_control"
+      ],
+      "discovery_signal_row_count": 26,
+      "entry_claim_status_counts": {
+        "review_only_abstain_missing_role_policy": 6,
+        "review_only_abstain_sibling_control": 6
+      },
+      "entry_count": 12,
+      "forbidden_source_leakage_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "production_claim_allowed": false,
+      "rows_reviewed": 26,
+      "uncovered_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_product_state",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "uncovered_coordinate_state_values": [
+        "adp_state",
+        "ambiguous_coordinate_state",
+        "ligand_absent",
+        "metal_absent",
+        "product_state",
+        "split_state",
+        "substrate_acceptor_analog_state",
+        "unavailable_coordinate_state"
+      ],
+      "uncovered_entry_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_product_state",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "unsafe_control_nonabstention_count": 0
+    }
+  }
+}

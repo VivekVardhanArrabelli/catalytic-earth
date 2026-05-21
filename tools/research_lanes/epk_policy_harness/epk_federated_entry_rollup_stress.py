@@ -46,7 +46,7 @@ SOURCE_LANE_ARTIFACTS = {
     ),
     "epk_false_positive_hunter": (
         "artifacts/research_lanes/epk_false_positive_hunter/"
-        "epk_candidate_evidence_v1_regression_gate_20260521_141548Z.json"
+        "epk_candidate_evidence_v1_regression_gate_20260521_152108Z.json"
     ),
     "epk_sibling_controls": (
         "artifacts/research_lanes/epk_sibling_controls/"
