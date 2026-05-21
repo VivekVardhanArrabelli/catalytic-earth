@@ -19,6 +19,32 @@ REVIEW_ONLY_LIGAND_CONTEXTS = {
     "POST_HOC_REPAIR",
 }
 
+SCHEMA_VERSION = "epk_candidate_evidence_review_only_schema_v1_20260521"
+
+CLAIM_STATUS_VALUES = {
+    "review_only_nonabstaining_candidate",
+    "review_only_abstain_product_state",
+    "review_only_abstain_analog_state",
+    "review_only_abstain_split_state",
+    "review_only_abstain_sibling_control",
+    "review_only_abstain_topology_ambiguity",
+    "review_only_abstain_missing_role_policy",
+    "review_only_abstain_forbidden_context",
+    "forbidden_source_leakage",
+}
+
+COORDINATE_STATE_VALUES = {
+    "active_gamma",
+    "product_state",
+    "adp_state",
+    "substrate_acceptor_analog_state",
+    "split_state",
+    "ligand_absent",
+    "metal_absent",
+    "unavailable_coordinate_state",
+    "ambiguous_coordinate_state",
+}
+
 FORBIDDEN_ROW_FLAGS = (
     "source_review_used_for_predictive_feature",
     "source_validation_used_for_predictive_feature",
@@ -26,6 +52,10 @@ FORBIDDEN_ROW_FLAGS = (
     "mechanism_text_as_predictive_feature",
     "pdb_title_as_predictive_feature",
     "structure_title_used_for_predictive_feature",
+    "protein_name_as_predictive_feature",
+    "protein_names_as_predictive_feature",
+    "paper_title_as_predictive_feature",
+    "paper_metadata_as_predictive_feature",
     "uniprot_prose_as_predictive_feature",
     "ec_or_rhea_as_predictive_feature",
     "source_id_as_predictive_feature",
@@ -37,6 +67,45 @@ FORBIDDEN_ROW_FLAGS = (
     "cross_pdb_split_state_fusion",
     "homomeric_chain_choice_as_substrate_mapping",
 )
+
+SOURCE_LEAKAGE_ROW_FLAGS = (
+    "source_review_used_for_predictive_feature",
+    "source_validation_used_for_predictive_feature",
+    "mechanism_text_as_predictive_feature",
+    "pdb_title_as_predictive_feature",
+    "structure_title_used_for_predictive_feature",
+    "protein_name_as_predictive_feature",
+    "protein_names_as_predictive_feature",
+    "paper_title_as_predictive_feature",
+    "paper_metadata_as_predictive_feature",
+    "uniprot_prose_as_predictive_feature",
+    "ec_or_rhea_as_predictive_feature",
+    "source_id_as_predictive_feature",
+    "source_query_used_for_predictive_feature",
+    "source_text_used_for_predictive_feature",
+)
+
+SOURCE_DERIVED_ALLOWED_FEATURE_DENYLIST = {
+    "source_review",
+    "source_validation",
+    "source_query",
+    "source_text",
+    "source_id",
+    "structure_title",
+    "pdb_title",
+    "pdb_title_as_predictive_feature",
+    "protein_name",
+    "protein_names",
+    "paper_title",
+    "paper_metadata",
+    "mechanism_text",
+    "uniprot_prose",
+    "ec_or_rhea",
+    "ec_number",
+    "rhea_id",
+    "production_label",
+    "curated_mechanism_label",
+}
 
 SOURCE_VALIDATION_PHASE_CONTRACT_TRUE_FLAGS = (
     "candidate_ids_frozen_before_local_feature_review",
@@ -80,9 +149,11 @@ SOURCE_DERIVED_FEATURE_TOKENS = (
 )
 
 PRIMARY_OUTCOMES = {
+    "schema_frozen_review_only",
     "policy_frozen_review_only",
     "policy_falsified",
     "counterexample_found",
+    "scoreboard_gate_created",
     "search_surface_exhausted",
     "next_query_defined",
 }
@@ -264,6 +335,97 @@ def accepted_role_policy(policy: dict[str, Any], row: dict[str, Any]) -> bool:
     return bool(policy_id and policy_id in accepted)
 
 
+def explicit_coordinate_state(row: dict[str, Any]) -> str | None:
+    raw_state = row.get("coordinate_state")
+    if raw_state is None:
+        return None
+    coordinate_state = str(raw_state).strip()
+    if coordinate_state not in COORDINATE_STATE_VALUES:
+        return "ambiguous_coordinate_state"
+    return coordinate_state
+
+
+def coordinate_state_for_row(
+    policy: dict[str, Any], row: dict[str, Any], normalized_ligand: str | None
+) -> str:
+    explicit_state = explicit_coordinate_state(row)
+    if explicit_state is not None:
+        return explicit_state
+
+    if (
+        bool_feature(row, "unavailable_coordinate_state")
+        or row.get("coordinate_ligand_materialized_from_structure") is False
+    ):
+        return "unavailable_coordinate_state"
+    if (
+        bool_feature(row, "ambiguous_coordinate_state")
+        or bool_feature(row, "coordinate_state_ambiguous")
+    ):
+        return "ambiguous_coordinate_state"
+    if bool_feature(row, "split_state_context"):
+        return "split_state"
+    if bool_feature(row, "substrate_acceptor_analog_context"):
+        return "substrate_acceptor_analog_state"
+    if bool_feature(row, "product_state_context"):
+        return "product_state"
+    if str(row.get("ligand_code_from_structure") or "").strip().upper() == "ADP":
+        return "adp_state"
+    if not str(row.get("ligand_code_from_structure") or "").strip():
+        return "ligand_absent"
+    if row.get("local_metal_context") is False or bool_feature(row, "metal_absent"):
+        return "metal_absent"
+
+    active_ligands = set(policy["frozen_inputs"]["ligand_code_alias_map"])
+    if (
+        normalized_ligand in active_ligands
+        and bool_feature(row, "terminal_gamma_equivalent_geometry")
+    ):
+        return "active_gamma"
+    return "ambiguous_coordinate_state"
+
+
+def claim_status_for_row(
+    row: dict[str, Any],
+    *,
+    coordinate_state: str,
+    reasons: list[str],
+    missing_features: list[str],
+    forbidden_flags: list[str],
+) -> str:
+    source_leak_flags = set(forbidden_flags) & set(SOURCE_LEAKAGE_ROW_FLAGS)
+    if source_leak_flags:
+        return "forbidden_source_leakage"
+    if forbidden_flags or bool_feature(row, "candidate_specific_source_repair"):
+        return "review_only_abstain_forbidden_context"
+    if bool_feature(row, "sibling_counterfamily_context"):
+        return "review_only_abstain_sibling_control"
+    if coordinate_state == "split_state" or bool_feature(row, "split_state_context"):
+        return "review_only_abstain_split_state"
+    if (
+        coordinate_state == "substrate_acceptor_analog_state"
+        or bool_feature(row, "substrate_acceptor_analog_context")
+    ):
+        return "review_only_abstain_analog_state"
+    if coordinate_state in {"product_state", "adp_state"}:
+        return "review_only_abstain_product_state"
+    topology_status = str(row.get("topology_ambiguity_status") or "").lower()
+    if (
+        coordinate_state in {"unavailable_coordinate_state", "ambiguous_coordinate_state"}
+        or "ambiguous" in topology_status
+    ):
+        return "review_only_abstain_topology_ambiguity"
+    if (
+        "source_free_acceptor_role_features" in missing_features
+        or "same_structure_co_materialization" in missing_features
+        or "source_free_acceptor_role_policy_not_preaccepted" in reasons
+        or "missing_required_same_structure_features" in reasons
+    ):
+        return "review_only_abstain_missing_role_policy"
+    if reasons:
+        return "review_only_abstain_forbidden_context"
+    return "review_only_nonabstaining_candidate"
+
+
 def tripwire_contexts_for_row(row: dict[str, Any]) -> set[str]:
     contexts: set[str] = set()
     raw_context = str(row.get("ligand_context") or "").strip().upper()
@@ -312,6 +474,15 @@ def expected_decision_match(row: dict[str, Any], decision: str) -> bool | None:
     return str(expected).startswith(decision)
 
 
+def expected_claim_status_match(row: dict[str, Any], claim_status: str) -> bool | None:
+    expected = row.get("expected_claim_status")
+    if expected is None:
+        expected = row.get("expected_policy_claim_status")
+    if expected is None:
+        return None
+    return str(expected) == claim_status
+
+
 def validate_policy(policy: dict[str, Any]) -> None:
     metadata = policy.get("metadata", {})
     if metadata.get("review_only") is not True:
@@ -344,6 +515,12 @@ def validate_policy(policy: dict[str, Any]) -> None:
     if allowed & REVIEW_ONLY_BLOCKER_FEATURES:
         overlap = sorted(allowed & REVIEW_ONLY_BLOCKER_FEATURES)
         raise ValueError(f"predictive features include review-only blockers: {overlap}")
+    source_derived_allowed = sorted(allowed & SOURCE_DERIVED_ALLOWED_FEATURE_DENYLIST)
+    if source_derived_allowed:
+        raise ValueError(
+            "predictive features include source-derived review context: "
+            f"{source_derived_allowed}"
+        )
     if not REVIEW_ONLY_BLOCKER_FEATURES.issubset(review_only):
         missing = sorted(REVIEW_ONLY_BLOCKER_FEATURES - review_only)
         raise ValueError(f"review-only blocker features missing from policy: {missing}")
@@ -361,6 +538,24 @@ def validate_tranche(tranche: dict[str, Any], policy: dict[str, Any] | None = No
         raise ValueError(
             f"tranche metadata.row_count={expected_count} does not match {len(rows)} rows"
         )
+    for row in rows:
+        row_id = row.get("row_id") or row.get("pdb_id")
+        if "coordinate_state" in row:
+            coordinate_state = str(row.get("coordinate_state") or "").strip()
+            if coordinate_state not in COORDINATE_STATE_VALUES:
+                raise ValueError(
+                    f"row {row_id} coordinate_state must be one of "
+                    f"{sorted(COORDINATE_STATE_VALUES)}"
+                )
+        expected_claim_status = row.get("expected_claim_status")
+        if (
+            expected_claim_status is not None
+            and str(expected_claim_status) not in CLAIM_STATUS_VALUES
+        ):
+            raise ValueError(
+                f"row {row_id} expected_claim_status must be one of "
+                f"{sorted(CLAIM_STATUS_VALUES)}"
+            )
     if metadata.get("terminal_gamma_required_for_tranche") is True:
         terminal_gamma_count = metadata.get("terminal_gamma_candidate_count_reviewed")
         try:
@@ -1398,6 +1593,7 @@ def validate_tranche(tranche: dict[str, Any], policy: dict[str, Any] | None = No
 def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
     required_features = list(policy["frozen_inputs"]["required_same_structure_features"])
     normalized_ligand = normalize_ligand(policy, row)
+    coordinate_state = coordinate_state_for_row(policy, row, normalized_ligand)
     active_ligands = set(policy["frozen_inputs"]["ligand_code_alias_map"])
     reasons: list[str] = []
     flags: list[str] = []
@@ -1422,6 +1618,18 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
     raw_context = str(row.get("ligand_context", "")).upper()
     if raw_context in REVIEW_ONLY_LIGAND_CONTEXTS:
         reasons.append(f"{raw_context.lower()}_review_only")
+
+    if coordinate_state in {
+        "product_state",
+        "adp_state",
+        "substrate_acceptor_analog_state",
+        "split_state",
+        "ligand_absent",
+        "metal_absent",
+        "unavailable_coordinate_state",
+        "ambiguous_coordinate_state",
+    }:
+        reasons.append(f"{coordinate_state}_review_only")
 
     if normalized_ligand not in active_ligands:
         reasons.append("ligand_not_in_frozen_active_gamma_alias_map")
@@ -1450,16 +1658,29 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
         decision = "review_only_abstain"
     else:
         decision = "review_only_nonabstaining_candidate"
+    claim_status = claim_status_for_row(
+        row,
+        coordinate_state=coordinate_state,
+        reasons=reasons,
+        missing_features=missing_features,
+        forbidden_flags=flags,
+    )
 
     return {
+        "schema_version": SCHEMA_VERSION,
         "row_id": row.get("row_id") or row.get("pdb_id"),
         "pdb_id": row.get("pdb_id"),
         "row_role": row.get("row_role"),
         "normalized_ligand_state": normalized_ligand,
+        "coordinate_state": coordinate_state,
         "nearest_gamma_acceptor_distance_angstrom": row.get(
             "nearest_gamma_acceptor_distance_angstrom"
         ),
         "decision": decision,
+        "claim_status": claim_status,
+        "claim_admissibility": (
+            "forbidden" if claim_status == "forbidden_source_leakage" else "review_only"
+        ),
         "abstention_reasons": sorted(set(reasons)),
         "missing_required_same_structure_features": missing_features,
         "forbidden_predictive_context_flags": flags,
@@ -1481,6 +1702,8 @@ def evaluate_row(policy: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
         ),
         "expected_frozen_policy_decision": row.get("expected_frozen_policy_decision"),
         "expected_frozen_policy_match": expected_decision_match(row, decision),
+        "expected_claim_status": row.get("expected_claim_status"),
+        "expected_claim_status_match": expected_claim_status_match(row, claim_status),
         "production_claim_allowed": False,
         "labels_or_fingerprints_changed": False,
     }
@@ -1495,6 +1718,10 @@ def choose_primary_outcome(
             return "search_surface_exhausted"
         return "next_query_defined"
     if any(result.get("expected_frozen_policy_match") is False for result in row_results):
+        return "policy_falsified"
+    if any(result.get("expected_claim_status_match") is False for result in row_results):
+        return "policy_falsified"
+    if any(result.get("claim_status") == "forbidden_source_leakage" for result in row_results):
         return "policy_falsified"
     if any(result["forbidden_predictive_context_flags"] for result in row_results):
         return "policy_falsified"
@@ -1520,9 +1747,17 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
     tranche_metadata = tranche.get("metadata", {})
     row_results = [evaluate_row(policy, row) for row in rows]
     decision_counts: dict[str, int] = {}
+    claim_status_counts: dict[str, int] = {}
+    coordinate_state_counts: dict[str, int] = {}
     abstention_reason_counts: dict[str, int] = {}
     for result in row_results:
         decision_counts[result["decision"]] = decision_counts.get(result["decision"], 0) + 1
+        claim_status = result["claim_status"]
+        coordinate_state = result["coordinate_state"]
+        claim_status_counts[claim_status] = claim_status_counts.get(claim_status, 0) + 1
+        coordinate_state_counts[coordinate_state] = (
+            coordinate_state_counts.get(coordinate_state, 0) + 1
+        )
         for reason in result["abstention_reasons"]:
             abstention_reason_counts[reason] = abstention_reason_counts.get(reason, 0) + 1
 
@@ -1541,9 +1776,15 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
         for result in row_results
         if result.get("expected_frozen_policy_match") is False
     ]
+    expected_claim_status_mismatches = [
+        result["row_id"]
+        for result in row_results
+        if result.get("expected_claim_status_match") is False
+    ]
 
     return {
         "metadata": {
+            "schema_version": SCHEMA_VERSION,
             "policy_version": policy["metadata"]["policy_version"],
             "policy_id": policy["metadata"]["policy_id"],
             "tranche_id": tranche.get("metadata", {}).get("tranche_id"),
@@ -1555,10 +1796,18 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
             "threshold_calibrated": False,
             "row_count": len(rows),
             "decision_counts": decision_counts,
+            "claim_status_counts": claim_status_counts,
+            "coordinate_state_counts": coordinate_state_counts,
+            "claim_status_allowed_values": sorted(CLAIM_STATUS_VALUES),
+            "coordinate_state_allowed_values": sorted(COORDINATE_STATE_VALUES),
             "abstention_reason_counts": abstention_reason_counts,
             "counterexamples_found": counterexamples,
             "expected_decision_mismatch_count": len(expected_decision_mismatches),
             "expected_decision_mismatches": expected_decision_mismatches,
+            "expected_claim_status_mismatch_count": len(
+                expected_claim_status_mismatches
+            ),
+            "expected_claim_status_mismatches": expected_claim_status_mismatches,
             "terminal_gamma_required_for_tranche": bool(
                 tranche_metadata.get("terminal_gamma_required_for_tranche", False)
             ),
@@ -1668,24 +1917,44 @@ def self_test() -> None:
         source_validation_used_for_predictive_feature=True,
         expected_frozen_policy_decision="review_only_abstain_forbidden_context",
     )
+    paper_metadata_leak = dict(
+        passing_row,
+        row_id="paper_metadata_leak",
+        paper_metadata_as_predictive_feature=True,
+        expected_frozen_policy_decision="review_only_abstain_forbidden_context",
+    )
     passing_result = evaluate_row(policy, passing_row)
     assert passing_result["decision"] == "review_only_nonabstaining_candidate"
+    assert passing_result["claim_status"] == "review_only_nonabstaining_candidate"
+    assert passing_result["coordinate_state"] == "active_gamma"
     assert passing_result["expected_frozen_policy_match"] is True
-    assert evaluate_row(policy, blocked_adp)["decision"] == "review_only_abstain"
+    blocked_adp_result = evaluate_row(policy, blocked_adp)
+    assert blocked_adp_result["decision"] == "review_only_abstain"
+    assert blocked_adp_result["claim_status"] == "review_only_abstain_product_state"
+    assert blocked_adp_result["coordinate_state"] == "adp_state"
     far_result = evaluate_row(policy, far_distance)
     assert far_result["decision"] == "review_only_abstain"
+    assert far_result["claim_status"] == "review_only_abstain_forbidden_context"
     assert "nearest_gamma_acceptor_distance_above_frozen_cutoff" in far_result[
         "abstention_reasons"
     ]
     assert far_result["expected_frozen_policy_match"] is True
     forbidden_result = evaluate_row(policy, forbidden)
     assert forbidden_result["decision"] == "review_only_abstain"
+    assert forbidden_result["claim_status"] == "forbidden_source_leakage"
     assert "source_review_used_for_predictive_feature" in forbidden_result[
         "forbidden_predictive_context_flags"
     ]
     source_validation_leak_result = evaluate_row(policy, source_validation_leak)
     assert source_validation_leak_result["decision"] == "review_only_abstain"
+    assert source_validation_leak_result["claim_status"] == "forbidden_source_leakage"
     assert "source_validation_used_for_predictive_feature" in source_validation_leak_result[
+        "forbidden_predictive_context_flags"
+    ]
+    paper_metadata_leak_result = evaluate_row(policy, paper_metadata_leak)
+    assert paper_metadata_leak_result["decision"] == "review_only_abstain"
+    assert paper_metadata_leak_result["claim_status"] == "forbidden_source_leakage"
+    assert "paper_metadata_as_predictive_feature" in paper_metadata_leak_result[
         "forbidden_predictive_context_flags"
     ]
     result = evaluate_tranche(
@@ -1849,6 +2118,30 @@ def self_test() -> None:
     assert (
         sibling_result["metadata"]["query_context_review_only_contract_enforced"] is True
     )
+    assert sibling_result["metadata"]["claim_status_counts"] == {
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_sibling_control": 1,
+    }
+    topology_ambiguous_row = dict(
+        passing_row,
+        row_id="ambiguous_coordinate_state",
+        coordinate_state="ambiguous_coordinate_state",
+        expected_claim_status="review_only_abstain_topology_ambiguity",
+    )
+    topology_ambiguous_result = evaluate_tranche(
+        policy,
+        {
+            "metadata": {"review_only": True, "row_count": 1},
+            "rows": [topology_ambiguous_row],
+        },
+    )
+    assert topology_ambiguous_result["metadata"]["claim_status_counts"] == {
+        "review_only_abstain_topology_ambiguity": 1
+    }
+    assert (
+        topology_ambiguous_result["metadata"]["expected_claim_status_mismatch_count"]
+        == 0
+    )
     materialized_row = dict(
         passing_row,
         row_id="materialized_anp",
@@ -2007,6 +2300,15 @@ def self_test() -> None:
         tripwire_predictive_status="review_only_blocked",
         expected_frozen_policy_decision="review_only_abstain_repair_tripwire",
     )
+    split_only_row = dict(
+        passing_row,
+        row_id="tripwire_split_state",
+        split_state_context=True,
+        expected_frozen_policy_decision="review_only_abstain_split_state",
+    )
+    split_only_result = evaluate_row(policy, split_only_row)
+    assert split_only_result["claim_status"] == "review_only_abstain_split_state"
+    assert split_only_result["coordinate_state"] == "split_state"
     tripwire_tranche = {
         "metadata": {
             "review_only": True,
@@ -2041,6 +2343,16 @@ def self_test() -> None:
     )
     assert tripwire_result["metadata"]["decision_counts"] == {
         "review_only_abstain": 3
+    }
+    assert tripwire_result["metadata"]["claim_status_counts"] == {
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_forbidden_context": 1,
+        "review_only_abstain_product_state": 1,
+    }
+    assert tripwire_result["metadata"]["coordinate_state_counts"] == {
+        "product_state": 1,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 1,
     }
     adp_query_row = dict(
         passing_row,
@@ -2122,6 +2434,9 @@ def self_test() -> None:
     )
     assert adp_query_result["metadata"]["decision_counts"] == {
         "review_only_abstain": 1
+    }
+    assert adp_query_result["metadata"]["claim_status_counts"] == {
+        "review_only_abstain_product_state": 1
     }
     bad_adp_query_source_leak = json.loads(json.dumps(adp_query_tranche))
     bad_adp_query_source_leak["rows"][0][

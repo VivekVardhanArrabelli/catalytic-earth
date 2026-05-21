@@ -1,69 +1,87 @@
 # ePK policy harness handoff
 
-Last updated: 2026-05-21T03:19:10Z
-Run started: 2026-05-21T02:30:02Z
-Run ended: 2026-05-21T03:19:10Z
-Measured minutes: 49.13
-Primary outcome: `policy_frozen_review_only`
-Pushed commit: `789cee388ab3dd255ab02a8b2768302cc4539c3b` (main run commit; this handoff/ledger metadata update is committed as a follow-up wrap commit).
+Last updated: 2026-05-21T04:20:53Z
+Run started: 2026-05-21T03:31:54Z
+Run ended: 2026-05-21T04:20:53Z
+Measured minutes: 48.98
+Primary outcome: `scoreboard_gate_created`
 
 ## Files changed
 
-- `tools/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_tripwire_surface.py`
-- `tools/research_lanes/epk_policy_harness/epk_adp_chemcomp_continuation_synthesis.py`
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_low_geometry_priority_surface_round25_20260521T023349Z*.json` through `..._round40_20260521T025640Z*.json` (48 compact surface/tranche/result files)
-- `artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_chemcomp_pagination_nonmaterialized_low_geometry_continuation_synthesis_20260521T025847Z.json`
+- `tools/research_lanes/epk_policy_harness/epk_policy_harness.py`
+- `tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py`
+- `artifacts/research_lanes/epk_policy_harness/epk_candidate_evidence_schema_drafts_v1_20260521T034010Z.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_*_20260521T034010Z_result.json` (4 compact bridge regression results)
+- `artifacts/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate_20260521T034010Z.json`
 - `artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl`
 - `work/research_lanes/epk_policy_harness/handoff.md`
 
 ## Policy Status
 
-Policy v0 remains frozen, review-only, and fail-closed. ATP/ANP/AMP-PNP may be predictive only when terminal gamma-equivalent geometry, local metal context, catalytic-site locality, source-free acceptor/role features, and same-structure co-materialization all hold under a preaccepted source-free role policy. No source-free role policy is accepted in v0.
+Policy v0 remains frozen, review-only, and fail-closed. This run adds a candidate-level bridge schema layer on top of the existing harness output without changing production labels, thresholds, fingerprints, registries, migrations, or production scoring.
 
-This run adds a lane-local low-geometry continuation selector and synthesis invariant for ADP chem-comp pagination. ADP coordinate materialization, ADP product-state context, ADP product-phosphate local geometry summaries, nonmaterialized/skipped status, low-geometry priority status, query text, and source validation remain review-only. ADP/product rows are not admitted as predictive.
+The bridge emits `claim_status`, `claim_admissibility`, and first-class `coordinate_state` fields while preserving the legacy `decision` field. The allowed claim-status enum is:
+
+- `review_only_nonabstaining_candidate`
+- `review_only_abstain_product_state`
+- `review_only_abstain_analog_state`
+- `review_only_abstain_split_state`
+- `review_only_abstain_sibling_control`
+- `review_only_abstain_topology_ambiguity`
+- `review_only_abstain_missing_role_policy`
+- `review_only_abstain_forbidden_context`
+- `forbidden_source_leakage`
+
+The coordinate-state enum is:
+
+- `active_gamma`
+- `product_state`
+- `adp_state`
+- `substrate_acceptor_analog_state`
+- `split_state`
+- `ligand_absent`
+- `metal_absent`
+- `unavailable_coordinate_state`
+- `ambiguous_coordinate_state`
+
+Source text, source queries, source validation, protein names, EC/Rhea, PDB/structure titles, paper titles, paper metadata, UniProt prose, mechanism text, and source ids are forbidden as predictive features. They remain review-only context only.
 
 ## Evidence
 
-- Final synthesis artifact: `artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_chemcomp_pagination_nonmaterialized_low_geometry_continuation_synthesis_20260521T025847Z.json` (`sha256 42be29c4fb7704f09faec52afe68e251ca629c2d079db575949ca9801dcf2702`).
-- Query windows: [1360, 1420, 1480, 1540, 1600, 1660, 1720, 1780, 1840, 1900, 1960, 2020, 2080, 2140, 2200, 2260].
-- Candidate IDs reviewed: 192 fresh IDs across 16 continuation surfaces.
-- Coordinate-materialized ADP candidates: 188.
-- ADP product-phosphate local geometry-like candidates: 182.
-- Nonmaterialized/skipped ADP candidates: 4 (9N75, 9N76, 9N77, 9N74).
-- Materialized ADP candidates without local geometry-like signal: 6 (9L9B, 9DVY, 9DGT, 9DGU, 9LBV, 9MSJ).
-- Evaluated rows: 96.
-- Decision counts: `{'review_only_abstain': 96}`.
-- Expected-decision mismatches: 0.
-- Counterexamples found: `[]`.
-- Accepted-role/local-feature counterfactual: 96 review-only abstentions.
-- Fault injection rejected 5 drift modes: duplicate windows, nonmonotone windows, priority-count tampering, priority shortfall, and source-validation review-only drift.
-- Prior regression tranches reran cleanly: ADP repair, nonprefrozen blocker, AMP-PNP materialization guard, cross-ligand sibling-control, and ATP sibling-control.
+- Schema artifact: `artifacts/research_lanes/epk_policy_harness/epk_candidate_evidence_schema_drafts_v1_20260521T034010Z.json` (`sha256 eacc86b988a78495f0de5facb773a6615184361619e37569ba39ef8462ff34e1`).
+- Scoreboard/gate artifact: `artifacts/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate_20260521T034010Z.json` (`sha256 3a57164eae0e6e1fa7b2efc97d1da6a2acec7f14906ebeb2340297d4e49d3727`).
+- Compact bridge regression inputs: ADP low-geometry product-state tranche, cutoff expectation tranche, nonprefrozen GNP/GTP alias blocker negative control, and terminal-gamma sibling-control stress.
+- Rows reviewed by the scoreboard gate: 31.
+- Discovery-signal rows: 24.
+- Aggregate claim-status counts: `{'review_only_abstain_product_state': 7, 'review_only_abstain_analog_state': 1, 'review_only_abstain_missing_role_policy': 9, 'review_only_abstain_topology_ambiguity': 8, 'review_only_abstain_sibling_control': 6}`.
+- Aggregate coordinate-state counts: `{'product_state': 7, 'substrate_acceptor_analog_state': 1, 'active_gamma': 15, 'ambiguous_coordinate_state': 8}`.
+- Gate result: pass, with zero forbidden source leakage, zero unsafe control non-abstention, zero expected-decision mismatches, zero expected-claim-status mismatches, and zero schema-missing rows.
+- Self-tests cover source-leakage blocking, split-state status emission, topology ambiguity, sibling control, forbidden-context fallback, nonabstaining candidate emission, and scoreboard count-drift rejection.
 
-## Blockers
+## Blockers and Notes
 
-- This is review-only harness pressure on bounded RCSB ADP chem-comp continuation windows, not clean held-out performance evidence and not production scoring evidence.
-- The ADP chem-comp surface is not exhausted; continuation beyond query_rows 2260 remains open.
-- Priority candidates were sparse: 10 across 192 fresh IDs, including several consecutive zero-priority windows.
-- No accepted source-free folded substrate-role or acceptor-identity extractor exists in policy v0.
-- No ADP/product-state activation policy is preregistered, frozen, or production-admissible.
-- Normal `git fetch origin`, `git pull --ff-only`, `git add`, and local `HEAD` updates remain blocked by linked-worktree metadata permissions on `FETCH_HEAD`/`index.lock`; this run uses the alternate-index commit path.
+- Normal `git fetch origin` and `git pull --ff-only origin research/epk-policy-harness` remain blocked by linked-worktree metadata permissions on `FETCH_HEAD`.
+- `git fetch --no-write-fetch-head origin research/epk-policy-harness` succeeds.
+- The normal index remains stale and reports older staged deletes; validation and commit use an alternate index seeded from `origin/research/epk-policy-harness`.
+- A non-writing stress pass over 58 existing tranche artifacts found 56 validating under the updated bridge. Two older interim surface tranches still fail the preexisting `search_surface_exhausted` source-artifact citation validator; they were not scoreboard inputs.
+- This remains review-only harness evidence, not clean held-out performance evidence and not production scoring evidence.
 
 ## Verification
 
-- `PYTHONDONTWRITEBYTECODE=1 python -m py_compile tools/research_lanes/epk_policy_harness/epk_policy_harness.py tools/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_tripwire_surface.py tools/research_lanes/epk_policy_harness/epk_adp_chemcomp_continuation_synthesis.py`
+- `PYTHONDONTWRITEBYTECODE=1 python -m py_compile tools/research_lanes/epk_policy_harness/*.py`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_policy_harness.py --self-test`
-- Fresh ADP low-geometry continuation results wrote and evaluated 16 result artifacts listed by the synthesis.
-- Continuation validator accepted the final 16-surface aggregate and rejected 5 fault-injection cases.
-- Accepted-role/local-feature counterfactual still yielded 96 review-only abstentions.
-- Regression reruns wrote `/private/tmp/epk_policy_regression_low_geometry_continuation/*.json` and had zero mismatches/counterexamples.
-- JSON/JSONL validation passed before this handoff write: 184 JSON files and 12 JSONL records parsed successfully.
-- Main commit diff check passed: `git diff --check 594b147b568c27073791ddb9a792692365f1e0c0 789cee388ab3dd255ab02a8b2768302cc4539c3b`.
+- `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py --self-test`
+- Four compact bridge regression results regenerated with `epk_policy_harness.py`.
+- Scoreboard/schema assertions passed for the generated gate artifact.
+- JSON validation after wrap passed: 190 JSON files and 14 JSONL records parsed.
+- Alternate-index `git diff --cached --check origin/research/epk-policy-harness` passed.
+- Alternate-index scope check found only lane-local paths under `tools/`, `artifacts/`, and `work/research_lanes/epk_policy_harness/`.
 
 ## Exact next query
 
-`epk_fresh_adp_chemcomp_pagination_deep_sparse_priority_continuation_v2_review_only`
+`epk_candidate_bridge_status_coverage_fault_injection_v2_review_only`
 
-Continue ADP chem-comp pagination beyond the current bounded window (`query_rows` > 2260) with the frozen `low_geometry_first` selector. Predefine a compact stopping/flag rule before scanning, such as stopping after a bounded page block if consecutive windows contain zero nonmaterialized/skipped or materialized-no-geometry priority candidates. Keep candidate IDs frozen before compact coordinate review, keep ADP/product-state and query/source context review-only, admit no ADP/product row as predictive, and stop with compact artifacts only.
+Use compact synthetic and existing lane rows to exercise every claim-status and coordinate-state enum value in a single review-only bridge gate, including explicit negative fixtures for `forbidden_source_leakage`, unsafe control non-abstention, missing schema fields, and metadata count drift. Keep negative fixtures out of production and keep discovery signal separate from claim admissibility.
 
 ## Forbidden
 
