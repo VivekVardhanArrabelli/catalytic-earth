@@ -50,6 +50,72 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T21:29:56Z main-loop run, the automation deepened the
+remaining already frozen metal-phosphatase surface instead of opening another
+external mini-campaign. The second selection artifact
+`artifacts/v3_metal_phosphatase_deep_packet_second_selection_20260521.json`
+freezes seven previously unselected rows from the same 17-row metal-phosphatase
+campaign before new geometry or Foldseek scoring, with 0 new external rows
+frozen and 0 exact current-reference sequence duplicates.
+
+The run staged seven AlphaFold v6 coordinate sidecars, mapped all seven
+UniProt active-site feature sets, and scored the rows against the current
+8-fingerprint universe with 0 text/name/label fields used. The bounded
+current-countable Foldseek screen
+`artifacts/v3_metal_phosphatase_deep_packet_second_current_countable_structural_screen_20260521.json`
+completed 5/7 queries against the 672 staged current-countable structures and
+found `TM >= 0.7` duplicate/leakage signals for all five completed rows:
+`O14595`, `O15194`, `P0AF24`, `Q42546`, and `P0A8Y3`. `Q99504` and `P05186`
+timed out and remain exact blockers, not duplicate-clear or mechanism-match
+claims.
+The bounded timeout rescue
+`artifacts/v3_metal_phosphatase_deep_packet_second_timeout_targeted_rescue_screen_20260521.json`
+then tested those two timeout rows against the small homologous current subset
+`1T7D`, `1RTF`, and `1ALK`. It converted `P05186` to a targeted
+current-countable duplicate/leakage rejection and left `Q99504` as the single
+exact blocker because no targeted high-TM signal was detected.
+The follow-up Q99504 metal-lane probe
+`artifacts/v3_metal_phosphatase_q99504_current_metal_target_probe_20260521.json`
+then completed all 67 current-countable `metal_dependent_hydrolase` target
+structures with 0 high-TM hits (nearest `1L7N`, max TM `0.5324`), narrowing
+the remaining blocker to the non-metal current-countable target surface or an
+alternate coordinate/target subset.
+`artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk000_probe_20260521.json`
+then completed the first 80 non-metal current-countable targets with 0
+high-TM hits (nearest `1B93`, max TM `0.5951`). This further narrows, but does
+not clear, Q99504 duplicate risk. Chunk001
+`artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json`
+also completed 80/80 target pairs with 0 high-TM hits (nearest `1D8D`, max TM
+`0.5232`).
+
+The terminal packet
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_timeout_rescue_20260521.json`
+therefore records six `terminal_rejection_duplicate_or_leakage` rows and one
+`needs_new_extractor_or_structure` row. The modern-baseline companion
+`artifacts/v3_metal_phosphatase_deep_packet_second_after_timeout_rescue_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword routing, deterministic 5-mer sequence nearest-neighbor,
+geometry triage, Foldseek/TM, and missing ESM sidecar caveats separated and
+makes no superiority claim. The new rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_second_metal_timeout_rescue_20260521.json`
+now indexes 49 deep-packet rows across seven packet surfaces: 46
+duplicate/leakage rejections, one insufficient-evidence rejection, one
+review-only heme mechanism-match row, and one exact current-countable
+duplicate-screen blocker. Import-ready count remains 0.
+
+Evidence-based confidence call: confidence is high that the six completed or
+target-rescued second-selection metal rows are terminal duplicate/leakage rejections because
+each completed an exhaustive exact-TM current-countable screen with at least
+one `TM >= 0.7` current-countable signal and 0 raw-name mapping failures, or
+the targeted rescue found the same class of current-countable high-TM signal.
+Confidence is high that `Q99504` should remain `needs_new_extractor_or_structure`
+because the all-current query timed out and the targeted homolog subset
+completed without a high-TM hit; the metal-lane subset also completed with 0
+high-TM hits, and non-metal chunk000 completed with 0 high-TM hits. Any future
+Q99504 closure needs the remaining non-metal all-current subchunks after
+chunk001 or a different coordinate/target subset. Otherwise, continue
+deepening existing frozen nonterminal surfaces or write a family-readiness
+packet.
+
 As of the 2026-05-21T20:27:57Z main-loop run, the frozen PLP
 aminotransferase blocker is no longer an extractor-missing surface. The new
 source-free extractor module `src/catalytic_earth/plp_active_site.py` maps

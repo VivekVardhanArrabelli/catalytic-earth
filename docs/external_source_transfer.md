@@ -596,6 +596,40 @@ import.
   `mechanism_match_review_ready` heme row. It derives aggregate counts from
   terminal-decision maps, records the stale serine summary-counter mismatch,
   and keeps import-ready and countable-label counts at 0.
+- The second metal-phosphatase deep packet continues that post-PLP direction
+  without new broad sourcing. It selects seven remaining rows from the already
+  frozen 17-row metal-phosphatase campaign before new geometry/Foldseek
+  scoring, materializes seven AlphaFold v6 coordinate sidecars, maps all seven
+  active-site feature sets, and scores the current 8-fingerprint geometry
+  surface with 0 text/name/label fields used. The bounded current-countable
+  Foldseek screen completes five rows and finds `TM >= 0.7` duplicate/leakage
+  signals for all five, so
+  `artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_selection_20260521.json`
+  records five `terminal_rejection_duplicate_or_leakage` rows. `Q99504` and
+  `P05186` remain exact `needs_new_extractor_or_structure` blockers because
+  their bounded Foldseek queries timed out; no duplicate-clear claim is made
+  for them. The targeted timeout rescue
+  `artifacts/v3_metal_phosphatase_deep_packet_second_timeout_targeted_rescue_screen_20260521.json`
+  then checks only `Q99504` and `P05186` against current structures `1T7D`,
+  `1RTF`, and `1ALK`. It converts `P05186` to
+  `terminal_rejection_duplicate_or_leakage` and leaves only `Q99504` blocked
+  because the targeted subset completed with no high-TM hit. The companion
+  post-rescue rollup
+  `artifacts/v3_external_deep_terminal_decision_rollup_post_second_metal_timeout_rescue_20260521.json`
+  indexes 49 deep-packet rows across seven packet surfaces, with 48
+  non-`needs_review` terminal outcomes and 0 import-ready candidates.
+  `artifacts/v3_metal_phosphatase_q99504_current_metal_target_probe_20260521.json`
+  narrows the single remaining Q99504 blocker by completing all 67 current
+  `metal_dependent_hydrolase` target structures with 0 high-TM hits and
+  nearest max TM `0.5324`; this is not duplicate-clear because non-metal
+  current-countable targets remain unprobed after the all-current timeout.
+  `artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk000_probe_20260521.json`
+  completes the first 80 non-metal current-countable targets with 0 high-TM
+  hits and nearest max TM `0.5951`, further narrowing Q99504 to the remaining
+  non-metal subchunks or alternate coordinate evidence. Chunk001
+  `artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json`
+  completes another 80 non-metal targets with 0 high-TM hits and nearest max
+  TM `0.5232`.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and

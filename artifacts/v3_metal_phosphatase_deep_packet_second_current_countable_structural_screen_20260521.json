@@ -1,0 +1,848 @@
+{
+  "metadata": {
+    "alias_collision_count": 0,
+    "artifact_id": "v3_metal_phosphatase_deep_packet_second_current_countable_structural_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_coordinate_materialization_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T21:40:23Z",
+    "curated_label_registry_edited": false,
+    "current_countable_coordinate_count": 672,
+    "current_countable_structural_screen_status_counts": {
+      "current_countable_structural_duplicate_signal": 5,
+      "current_countable_structural_screen_incomplete": 2
+    },
+    "duplicate_clear_claim_permitted": false,
+    "expected_query_target_pair_count": 4704,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/foldseek/bin/foldseek",
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/O14595 /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/O14595_vs_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/O14595 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/O15194 /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/O15194_vs_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/O15194 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/Q99504 /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/Q99504_vs_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/Q99504 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/P05186 /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/P05186_vs_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/P05186 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/P0AF24 /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/P0AF24_vs_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/P0AF24 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/Q42546 /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/Q42546_vs_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/Q42546 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/P0A8Y3 /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/P0A8Y3_vs_current_countable_tm_scores.tsv /private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/P0A8Y3 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "foldseek_coordinate_readiness_artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    "foldseek_query_run_status_counts": {
+      "completed": 5,
+      "foldseek_run_timeout": 2
+    },
+    "foldseek_reporting_mode": "per_external_query_vs_current_countable_targets_exhaustive_exact_tmscore",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "high_tm_candidate_count": 5,
+    "import_ready_candidate_count": 0,
+    "leakage_screen_role": "duplicate_or_leakage_gate_evidence_not_predictive_mechanism_evidence",
+    "max_external_vs_current_countable_tm_score": 0.815,
+    "method": "metal_phosphatase_deep_packet_second_current_countable_structural_screen",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "pair_cache_complete": false,
+    "query_target_pair_coverage": 0.7143,
+    "raw_name_mapping_unmapped_count": 0,
+    "raw_name_mapping_unmapped_names": [],
+    "raw_result_row_count": 9155,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "screened_candidate_count": 5,
+    "source_separation_guardrail": "Foldseek/TM evidence is duplicate/leakage gate evidence only; EC, names, source prose, and UniProt feature prose are not predictive mechanism evidence.",
+    "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+    "threads": 1,
+    "tm_score_threshold": 0.7,
+    "unique_query_target_pair_count": 3360
+  },
+  "rows": [
+    {
+      "accession": "O14595",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 2,
+        "binding_ligand_names_sample": [
+          "Mg(2+)"
+        ],
+        "binding_site_feature_count": 3,
+        "metal_binding_feature_count": 3,
+        "metal_binding_feature_count_from_freeze": 3,
+        "phosphate_or_substrate_binding_feature_count": 0,
+        "resolved_active_site_residue_count": 2,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_O14595.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 2,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "geometry_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 2,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.3786,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3786
+      },
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.73,
+        "max_pair_tm_score": 0.73,
+        "qtmscore": 0.022,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_O14595",
+        "raw_target_name": "pdb_1T7D_D",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+        "target_entry_ids": [
+          "m_csa:635"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1T7D",
+        "target_structure_key": "pdb:1T7D",
+        "ttmscore": 0.6083
+      },
+      "pair_cache_complete": true,
+      "raw_result_row_count": 1831,
+      "ready_for_label_import": false,
+      "review_status": "second_selection_current_countable_structural_duplicate_screen_review_only",
+      "row_id": "uniprot:O14595",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_O14595.cif",
+        "pdb_cross_reference_count": 1,
+        "pdb_ids_sample": [
+          "2Q5E"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.73,
+          "max_pair_tm_score": 0.73,
+          "qtmscore": 0.022,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_O14595",
+          "raw_target_name": "pdb_1T7D_D",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+          "target_entry_ids": [
+            "m_csa:635"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1T7D",
+          "target_structure_key": "pdb:1T7D",
+          "ttmscore": 0.6083
+        },
+        {
+          "alntmscore": 0.7251,
+          "max_pair_tm_score": 0.7251,
+          "qtmscore": 0.0217,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_O14595",
+          "raw_target_name": "pdb_1RTF_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "target_entry_ids": [
+            "m_csa:798"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1RTF",
+          "target_structure_key": "pdb:1RTF",
+          "ttmscore": 0.518
+        }
+      ]
+    },
+    {
+      "accession": "O15194",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 2,
+        "binding_ligand_names_sample": [
+          "Mg(2+)"
+        ],
+        "binding_site_feature_count": 3,
+        "metal_binding_feature_count": 3,
+        "metal_binding_feature_count_from_freeze": 3,
+        "phosphate_or_substrate_binding_feature_count": 0,
+        "resolved_active_site_residue_count": 2,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_O15194.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "geometry_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 2,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.3768,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3768
+      },
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7231,
+        "max_pair_tm_score": 0.7231,
+        "qtmscore": 0.0213,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_O15194",
+        "raw_target_name": "pdb_1RTF_A",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+        "target_entry_ids": [
+          "m_csa:798"
+        ],
+        "target_fingerprint_ids": [
+          "ser_his_acid_hydrolase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1RTF",
+        "target_structure_key": "pdb:1RTF",
+        "ttmscore": 0.5165
+      },
+      "pair_cache_complete": true,
+      "raw_result_row_count": 1831,
+      "ready_for_label_import": false,
+      "review_status": "second_selection_current_countable_structural_duplicate_screen_review_only",
+      "row_id": "uniprot:O15194",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_O15194.cif",
+        "pdb_cross_reference_count": 1,
+        "pdb_ids_sample": [
+          "2HHL"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.7231,
+          "max_pair_tm_score": 0.7231,
+          "qtmscore": 0.0213,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_O15194",
+          "raw_target_name": "pdb_1RTF_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "target_entry_ids": [
+            "m_csa:798"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1RTF",
+          "target_structure_key": "pdb:1RTF",
+          "ttmscore": 0.5165
+        }
+      ]
+    },
+    {
+      "accession": "Q99504",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 2,
+        "binding_ligand_names_sample": [
+          "Mg(2+)"
+        ],
+        "binding_site_feature_count": 3,
+        "metal_binding_feature_count": 3,
+        "metal_binding_feature_count_from_freeze": 3,
+        "phosphate_or_substrate_binding_feature_count": 0,
+        "resolved_active_site_residue_count": 2,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_Q99504.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 0,
+      "current_countable_hit_count": 0,
+      "current_countable_structural_screen_status": "current_countable_structural_screen_incomplete",
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_run_error": "Command '['/private/tmp/catalytic-foldseek-env/bin/foldseek', 'easy-search', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/Q99504', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/Q99504_vs_current_countable_tm_scores.tsv', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/Q99504', '--format-output', 'query,target,qtmscore,ttmscore,alntmscore', '--exhaustive-search', '1', '--alignment-type', '1', '--tmalign-fast', '0', '--exact-tmscore', '1', '--max-seqs', '100000', '-e', 'inf', '--threads', '1', '-v', '1']' timed out after 240 seconds",
+      "foldseek_run_status": "foldseek_run_timeout",
+      "geometry_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 2,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.3742,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3742
+      },
+      "nearest_current_countable_hit": null,
+      "pair_cache_complete": false,
+      "raw_result_row_count": 0,
+      "ready_for_label_import": false,
+      "review_status": "second_selection_current_countable_structural_duplicate_screen_review_only",
+      "row_id": "uniprot:Q99504",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_Q99504.cif",
+        "pdb_cross_reference_count": 1,
+        "pdb_ids_sample": [
+          "9C7T"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": []
+    },
+    {
+      "accession": "P05186",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 1,
+        "binding_ligand_names_sample": [
+          "Ca(2+)",
+          "Mg(2+)",
+          "Zn(2+)"
+        ],
+        "binding_site_feature_count": 14,
+        "metal_binding_feature_count": 14,
+        "metal_binding_feature_count_from_freeze": 14,
+        "phosphate_or_substrate_binding_feature_count": 0,
+        "resolved_active_site_residue_count": 1,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P05186.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 0,
+      "current_countable_hit_count": 0,
+      "current_countable_structural_screen_status": "current_countable_structural_screen_incomplete",
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_run_error": "Command '['/private/tmp/catalytic-foldseek-env/bin/foldseek', 'easy-search', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/queries/P05186', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/current_countable_targets', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/P05186_vs_current_countable_tm_scores.tsv', '/private/tmp/catalytic-earth-metal-phosphatase-second-dup-screen-61de8jii/tmp/P05186', '--format-output', 'query,target,qtmscore,ttmscore,alntmscore', '--exhaustive-search', '1', '--alignment-type', '1', '--tmalign-fast', '0', '--exact-tmscore', '1', '--max-seqs', '100000', '-e', 'inf', '--threads', '1', '-v', '1']' timed out after 240 seconds",
+      "foldseek_run_status": "foldseek_run_timeout",
+      "geometry_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 1,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 6,
+        "target_lane_score": 0.0447,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.1223
+      },
+      "nearest_current_countable_hit": null,
+      "pair_cache_complete": false,
+      "raw_result_row_count": 0,
+      "ready_for_label_import": false,
+      "review_status": "second_selection_current_countable_structural_duplicate_screen_review_only",
+      "row_id": "uniprot:P05186",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P05186.cif",
+        "pdb_cross_reference_count": 3,
+        "pdb_ids_sample": [
+          "7YIV",
+          "7YIW",
+          "7YIX"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": []
+    },
+    {
+      "accession": "P0AF24",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 2,
+        "binding_ligand_names_sample": [
+          "Mg(2+)",
+          "substrate"
+        ],
+        "binding_site_feature_count": 7,
+        "metal_binding_feature_count": 3,
+        "metal_binding_feature_count_from_freeze": 3,
+        "phosphate_or_substrate_binding_feature_count": 4,
+        "resolved_active_site_residue_count": 2,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P0AF24.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 1,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "geometry_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 2,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.3696,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3696
+      },
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7516,
+        "max_pair_tm_score": 0.7516,
+        "qtmscore": 0.0239,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_P0AF24",
+        "raw_target_name": "pdb_1IR3_B",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+        "target_entry_ids": [
+          "m_csa:246"
+        ],
+        "target_fingerprint_ids": [],
+        "target_label_types": [
+          "out_of_scope"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1IR3",
+        "target_structure_key": "pdb:1IR3",
+        "ttmscore": 0.6263
+      },
+      "pair_cache_complete": true,
+      "raw_result_row_count": 1831,
+      "ready_for_label_import": false,
+      "review_status": "second_selection_current_countable_structural_duplicate_screen_review_only",
+      "row_id": "uniprot:P0AF24",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P0AF24.cif",
+        "pdb_cross_reference_count": 1,
+        "pdb_ids_sample": [
+          "2C4N"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.7516,
+          "max_pair_tm_score": 0.7516,
+          "qtmscore": 0.0239,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_P0AF24",
+          "raw_target_name": "pdb_1IR3_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "target_entry_ids": [
+            "m_csa:246"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1IR3",
+          "target_structure_key": "pdb:1IR3",
+          "ttmscore": 0.6263
+        }
+      ]
+    },
+    {
+      "accession": "Q42546",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 2,
+        "binding_ligand_names_sample": [
+          "AMP",
+          "Mg(2+)",
+          "adenosine 3',5'-bisphosphate"
+        ],
+        "binding_site_feature_count": 18,
+        "metal_binding_feature_count": 7,
+        "metal_binding_feature_count_from_freeze": 7,
+        "phosphate_or_substrate_binding_feature_count": 6,
+        "resolved_active_site_residue_count": 2,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_Q42546.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 5,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "geometry_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 2,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.3762,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3762
+      },
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.815,
+        "max_pair_tm_score": 0.815,
+        "qtmscore": 0.0931,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q42546",
+        "raw_target_name": "pdb_1V54_J",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+        "target_entry_ids": [
+          "m_csa:124"
+        ],
+        "target_fingerprint_ids": [
+          "heme_peroxidase_oxidase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1V54",
+        "target_structure_key": "pdb:1V54",
+        "ttmscore": 0.515
+      },
+      "pair_cache_complete": true,
+      "raw_result_row_count": 1831,
+      "ready_for_label_import": false,
+      "review_status": "second_selection_current_countable_structural_duplicate_screen_review_only",
+      "row_id": "uniprot:Q42546",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_Q42546.cif",
+        "pdb_cross_reference_count": 1,
+        "pdb_ids_sample": [
+          "8F9Y"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.815,
+          "max_pair_tm_score": 0.815,
+          "qtmscore": 0.0931,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_Q42546",
+          "raw_target_name": "pdb_1V54_J",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "target_entry_ids": [
+            "m_csa:124"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1V54",
+          "target_structure_key": "pdb:1V54",
+          "ttmscore": 0.515
+        },
+        {
+          "alntmscore": 0.8024,
+          "max_pair_tm_score": 0.8024,
+          "qtmscore": 0.0891,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_Q42546",
+          "raw_target_name": "pdb_1EHK_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "target_entry_ids": [
+            "m_csa:735"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1EHK",
+          "target_structure_key": "pdb:1EHK",
+          "ttmscore": 0.776
+        },
+        {
+          "alntmscore": 0.7512,
+          "max_pair_tm_score": 0.7512,
+          "qtmscore": 0.0169,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_Q42546",
+          "raw_target_name": "pdb_1IR3_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "target_entry_ids": [
+            "m_csa:246"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1IR3",
+          "target_structure_key": "pdb:1IR3",
+          "ttmscore": 0.626
+        },
+        {
+          "alntmscore": 0.7151,
+          "max_pair_tm_score": 0.7151,
+          "qtmscore": 0.0194,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_Q42546",
+          "raw_target_name": "pdb_1RTF_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "target_entry_ids": [
+            "m_csa:798"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1RTF",
+          "target_structure_key": "pdb:1RTF",
+          "ttmscore": 0.613
+        },
+        {
+          "alntmscore": 0.7,
+          "max_pair_tm_score": 0.7,
+          "qtmscore": 0.6861,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_Q42546",
+          "raw_target_name": "pdb_1INP",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1INP.cif",
+          "target_entry_ids": [
+            "m_csa:856"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_exact_alias",
+          "target_structure_id": "1INP",
+          "target_structure_key": "pdb:1INP",
+          "ttmscore": 0.6136
+        }
+      ]
+    },
+    {
+      "accession": "P0A8Y3",
+      "catalytic_residue_metal_phosphate_evidence": {
+        "active_site_feature_count": 1,
+        "binding_ligand_names_sample": [
+          "Mg(2+)",
+          "substrate"
+        ],
+        "binding_site_feature_count": 6,
+        "metal_binding_feature_count": 2,
+        "metal_binding_feature_count_from_freeze": 2,
+        "phosphate_or_substrate_binding_feature_count": 4,
+        "resolved_active_site_residue_count": 1,
+        "source_context_role": "review_only_context_not_predictive_score_input"
+      },
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P0A8Y3.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 6,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "duplicate_leakage_evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "geometry_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "ok",
+        "resolved_residue_count": 1,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.2898,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2898
+      },
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.8132,
+        "max_pair_tm_score": 0.8132,
+        "qtmscore": 0.0249,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_P0A8Y3",
+        "raw_target_name": "pdb_1RTF_A",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+        "target_entry_ids": [
+          "m_csa:798"
+        ],
+        "target_fingerprint_ids": [
+          "ser_his_acid_hydrolase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1RTF",
+        "target_structure_key": "pdb:1RTF",
+        "ttmscore": 0.4647
+      },
+      "pair_cache_complete": true,
+      "raw_result_row_count": 1831,
+      "ready_for_label_import": false,
+      "review_status": "second_selection_current_countable_structural_duplicate_screen_review_only",
+      "row_id": "uniprot:P0A8Y3",
+      "structure_pdb_evidence_availability": {
+        "alphafold_coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P0A8Y3.cif",
+        "pdb_cross_reference_count": 3,
+        "pdb_ids_sample": [
+          "2B0C",
+          "8PNE",
+          "8PNO"
+        ],
+        "structure_source": "alphafold_v6"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.8132,
+          "max_pair_tm_score": 0.8132,
+          "qtmscore": 0.0249,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_P0A8Y3",
+          "raw_target_name": "pdb_1RTF_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+          "target_entry_ids": [
+            "m_csa:798"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1RTF",
+          "target_structure_key": "pdb:1RTF",
+          "ttmscore": 0.4647
+        },
+        {
+          "alntmscore": 0.7897,
+          "max_pair_tm_score": 0.7897,
+          "qtmscore": 0.0296,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_P0A8Y3",
+          "raw_target_name": "pdb_1YPH_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YPH.cif",
+          "target_entry_ids": [
+            "m_csa:387"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1YPH",
+          "target_structure_key": "pdb:1YPH",
+          "ttmscore": 0.3948
+        },
+        {
+          "alntmscore": 0.7752,
+          "max_pair_tm_score": 0.7752,
+          "qtmscore": 0.0295,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_P0A8Y3",
+          "raw_target_name": "pdb_1IR3_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "target_entry_ids": [
+            "m_csa:246"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1IR3",
+          "target_structure_key": "pdb:1IR3",
+          "ttmscore": 0.646
+        },
+        {
+          "alntmscore": 0.751,
+          "max_pair_tm_score": 0.751,
+          "qtmscore": 0.7478,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_P0A8Y3",
+          "raw_target_name": "pdb_1QQ5_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QQ5.cif",
+          "target_entry_ids": [
+            "m_csa:36"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1QQ5",
+          "target_structure_key": "pdb:1QQ5",
+          "ttmscore": 0.6268
+        },
+        {
+          "alntmscore": 0.711,
+          "max_pair_tm_score": 0.711,
+          "qtmscore": 0.7081,
+          "query_name_mapping_status": "mapped_exact_alias",
+          "raw_query_name": "afdb_P0A8Y3",
+          "raw_target_name": "pdb_1RQL_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RQL.cif",
+          "target_entry_ids": [
+            "m_csa:181"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_name_mapping_status": "mapped_chain_suffix_alias",
+          "target_structure_id": "1RQL",
+          "target_structure_key": "pdb:1RQL",
+          "ttmscore": 0.5702
+        }
+      ]
+    }
+  ]
+}

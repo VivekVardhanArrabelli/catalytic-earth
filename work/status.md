@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 267
-- Measured elapsed time: 7994.2 minutes (133.24 hours)
+- Entries: 269
+- Measured elapsed time: 8042.2 minutes (134.04 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 108.7 measured minutes (1.81 hours)
+- ops: 111.2 measured minutes (1.85 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1000.7 measured minutes (16.68 hours)
+- v3: 1046.2 measured minutes (17.44 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2906
-- Evidence references logged: 2366
+- Artifact references logged: 2924
+- Evidence references logged: 2384
 
 ## Recent Entries
-
-### 2026-05-21T14:06:11.129182+00:00 - v3
-
-- Task: heme peroxidase duplicate terminal packet and ePK remote synthesis
-- Time mode: measured
-- Measured minutes: 45.917
-- Started: 2026-05-21T13:19:57Z
-- Ended: 2026-05-21T14:05:52Z
-- Artifacts: artifacts/v3_epk_remote_lane_followup_synthesis_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_structure_mapping_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_geometry_scores_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_targeted_current_heme_rescue_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: fresh ePK remote lane outputs synthesized review-only with 5UJ7 biological assembly residual preserved, 7 frozen heme rows selected before outcome scoring and scored with source-free active-site geometry, 7/7 heme rows top-ranked heme_peroxidase_oxidase above 0.4115 with 0 text fields, 6/7 heme rows terminal_rejection_duplicate_or_leakage by current-countable TM evidence, I2DBY1 remains needs_new_extractor_or_structure pending complete full-current duplicate screen, 784-test unit discovery passed, CLI validate passed, artifact migration dry-run passed with removal_allowed=0
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
-
-### 2026-05-21T15:03:50.814880+00:00 - v3
-
-- Task: heme serine flavin deep terminal packets
-- Time mode: measured
-- Measured minutes: 45.183
-- Started: 2026-05-21T14:21:32Z
-- Ended: 2026-05-21T15:06:43Z
-- Artifacts: artifacts/v3_heme_peroxidase_deep_packet_i2dby1_full_current_subchunk_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_post_i2dby1_subchunk_modern_baseline_benchmark_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_targeted_current_ser_his_rescue_screen_20260521.json, artifacts/v3_serine_hydrolase_p31614_pdb_replacement_coordinate_screen_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_pdb_replacement_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_structure_mapping_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_structure_mapping_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_post_structure_mapping_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: I2DBY1 screened against 672 current-countable structures with 0 TM>=0.7 hits and max TM 0.589, heme terminal counts mechanism_match_review_ready:1 terminal_rejection_duplicate_or_leakage:6, serine targeted current-ser-his screen converted six rows to terminal_rejection_duplicate_or_leakage, P31614 PDB replacements 4C7L and 4C7W materialized with 0 targeted high-TM hits, FMO seven-row selection frozen before deep scoring and all seven AlphaFold sidecars materialized, FMO targeted current-FMO screen converted three rows to terminal_rejection_duplicate_or_leakage, FMO cofactor residue mapping completed for all seven rows with geometry-scored count 0, 787-test unit discovery passed, CLI validate passed, migration dry-run passed, 17 new JSON artifacts validated, post-coordinate-normalization full 787-test unit discovery passed
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ### 2026-05-21T16:08:32.602022+00:00 - v3
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/plp_active_site.py, tests/test_plp_active_site.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521, artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json, artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_plp_20260521.json, artifacts/v3_sdr_family_readiness_post_plp_terminal_review_packet_20260521.json, artifacts/v3_label_factory_gate_check.json, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/status.md
 - Evidence: 804 unit tests passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed removal_allowed=0, external transfer gate 68/68, PLP extractor reproduces seven sidecar statuses, no registry or fingerprint diffs
 - Notes: Normal locked measured run; no label import, registry edit, fingerprint edit, artifact migration, upload, removal, Git-LFS change, or history rewrite.
+
+### 2026-05-21T22:15:26.911702+00:00 - v3
+
+- Task: Second metal phosphatase deep packet and Q99504 blocker narrowing
+- Time mode: measured
+- Measured minutes: 45.5
+- Started: 2026-05-21T21:29:56Z
+- Ended: 2026-05-21T22:15:26Z
+- Artifacts: artifacts/v3_metal_phosphatase_deep_packet_second_selection_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_coordinate_materialization_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_structure_mapping_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_geometry_scores_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_current_countable_structural_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_timeout_targeted_rescue_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_timeout_rescue_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_after_timeout_rescue_modern_baseline_benchmark_20260521.json, artifacts/v3_metal_phosphatase_q99504_current_metal_target_probe_20260521.json, artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk000_probe_20260521.json, artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_metal_timeout_rescue_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: 7 remaining frozen metal rows selected before new scoring, 7 AlphaFold v6 sidecars staged and active-site mapped, 0 text/name/label fields used in geometry scores, 5 all-current Foldseek-completed rows reached TM>=0.7 leakage, P05186 converted by targeted current subset rescue, Q99504 metal subset plus nonmetal chunks000-001 completed with 0 high-TM hits, final second-metal packet has 6 duplicate/leakage rejections and 1 exact blocker, rollup now indexes 49 deep rows with 48 non-needs-review terminal outcomes, 805 tests passed, CLI validate passed, migration dry-run passed removal_allowed=0
+- Notes: No label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-21T22:18:05.813032+00:00 - ops
+
+- Task: final validation and wrap for second metal packet
+- Time mode: measured
+- Measured minutes: 2.5
+- Started: 2026-05-21T22:15:26Z
+- Ended: 2026-05-21T22:17:56Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: 805-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: Final wrap for second metal phosphatase packet and Q99504 blocker narrowing; safety rails preserved.
 
 ## Expectation Updates
 

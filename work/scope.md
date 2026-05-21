@@ -160,6 +160,32 @@ sets all seven rows to the allowed terminal outcome
 `terminal_rejection_duplicate_or_leakage`. This closes the current packet as a
 review-only terminal rejection surface with 0 import-ready rows, 0 countable
 labels, no registry/fingerprint edits, and no superiority claim.
+The follow-up second metal-phosphatase packet stays on the same frozen
+mini-campaign surface and freezes no new external rows. It selects seven
+previously unselected rows before new scoring, stages AlphaFold v6 sidecars,
+maps all seven active-site feature sets, and runs the same source-separated
+geometry/duplicate-screen discipline. Five rows (`O14595`, `O15194`,
+`P0AF24`, `Q42546`, and `P0A8Y3`) now have completed current-countable
+Foldseek/TM duplicate/leakage signals and are terminal
+`terminal_rejection_duplicate_or_leakage`; `Q99504` and `P05186` were exact
+`needs_new_extractor_or_structure` blockers after the bounded Foldseek
+queries timed out. A small targeted current-subset rescue then tested those
+two rows against `1T7D`, `1RTF`, and `1ALK`; it converted `P05186` to
+`terminal_rejection_duplicate_or_leakage` and left `Q99504` blocked because
+the targeted subset completed with no high-TM signal. The second packet and
+its benchmarks remain review-only, make no duplicate-clear or superiority
+claim, and authorize no import, threshold, scorer, registry, or fingerprint
+change.
+The Q99504 blocker is now narrower: a metal-lane current-countable target
+probe completed all 67 current `metal_dependent_hydrolase` structures with 0
+high-TM hits and nearest max TM `0.5324` to `1L7N`. Future Q99504 work should
+therefore continue the smaller non-metal all-current target subchunks or use an
+alternate coordinate/target subset; it must not treat the completed metal
+subset as duplicate-clear. The first non-metal current-target chunk also
+completed 80/80 target pairs with 0 high-TM hits and nearest max TM `0.5951`
+to `1B93`, and chunk001 completed another 80/80 target pairs with 0 high-TM
+hits and nearest max TM `0.5232` to `1D8D`, further narrowing but not closing
+duplicate risk.
 Current serine-hydrolase deepening scope: the second 2026-05-21 external deep
 packet is also review-only blocker evidence, but now with active-site triad
 geometry over a different current fingerprint lane. The selection artifact

@@ -1444,6 +1444,341 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "not_available_for_this_deep_packet",
         )
 
+    def test_second_metal_phosphatase_packet_converts_more_frozen_rows(self) -> None:
+        selection = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_second_selection_20260521.json"
+        )
+        coordinates = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_second_coordinate_materialization_20260521.json"
+        )
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_second_current_countable_structural_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_terminal_decision_packet_second_selection_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_second_modern_baseline_benchmark_20260521.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_second_metal_20260521.json"
+        )
+        rescue = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_second_timeout_targeted_rescue_screen_20260521.json"
+        )
+        final_packet = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_terminal_decision_packet_second_after_timeout_rescue_20260521.json"
+        )
+        final_benchmark = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_packet_second_after_timeout_rescue_modern_baseline_benchmark_20260521.json"
+        )
+        final_rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_second_metal_timeout_rescue_20260521.json"
+        )
+        q99504_probe = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_q99504_current_metal_target_probe_20260521.json"
+        )
+        q99504_nonmetal_probe = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_q99504_current_nonmetal_chunk000_probe_20260521.json"
+        )
+        q99504_nonmetal_probe_001 = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json"
+        )
+
+        self.assertTrue(selection["metadata"]["review_only"])
+        self.assertEqual(selection["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(selection["metadata"]["candidate_count"], 7)
+        self.assertTrue(
+            selection["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertFalse(
+            selection["metadata"]["foldseek_current_countable_screen_run_at_selection"]
+        )
+        self.assertTrue(
+            all(
+                row["score_status_at_selection"]
+                == "not_scored_at_second_deep_packet_selection"
+                for row in selection["rows"]
+            )
+        )
+
+        self.assertTrue(coordinates["metadata"]["review_only"])
+        self.assertEqual(coordinates["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(
+            coordinates["metadata"]["coordinate_status_counts"],
+            {"coordinate_sidecar_materialized": 7},
+        )
+
+        self.assertTrue(screen["metadata"]["review_only"])
+        self.assertEqual(screen["metadata"]["candidate_count"], 7)
+        self.assertEqual(
+            screen["metadata"]["foldseek_query_run_status_counts"],
+            {"completed": 5, "foldseek_run_timeout": 2},
+        )
+        self.assertEqual(
+            screen["metadata"]["current_countable_structural_screen_status_counts"],
+            {
+                "current_countable_structural_duplicate_signal": 5,
+                "current_countable_structural_screen_incomplete": 2,
+            },
+        )
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 5)
+        self.assertFalse(screen["metadata"]["pair_cache_complete"])
+        self.assertFalse(screen["metadata"]["duplicate_clear_claim_permitted"])
+        self.assertEqual(screen["metadata"]["raw_name_mapping_unmapped_count"], 0)
+        self.assertFalse(screen["metadata"]["ready_for_label_import"])
+        completed_rows = [
+            row for row in screen["rows"] if row["foldseek_run_status"] == "completed"
+        ]
+        self.assertEqual(len(completed_rows), 5)
+        self.assertTrue(all(row["pair_cache_complete"] for row in completed_rows))
+        self.assertTrue(
+            all(row["current_countable_high_tm_hit_count"] > 0 for row in completed_rows)
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 2,
+                "terminal_rejection_duplicate_or_leakage": 5,
+            },
+        )
+        self.assertEqual(packet["metadata"]["non_needs_review_terminal_count"], 5)
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(packet["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(packet["metadata"]["removal_allowed_set_true"])
+        allowed = set(packet["metadata"]["allowed_terminal_decisions"])
+        self.assertLessEqual({row["terminal_decision"] for row in packet["rows"]}, allowed)
+        packet_rows = {row["accession"]: row for row in packet["rows"]}
+        self.assertEqual(
+            {
+                accession
+                for accession, row in packet_rows.items()
+                if row["terminal_decision"] == "needs_new_extractor_or_structure"
+            },
+            {"Q99504", "P05186"},
+        )
+        self.assertEqual(
+            {
+                accession
+                for accession, row in packet_rows.items()
+                if row["terminal_decision"] == "terminal_rejection_duplicate_or_leakage"
+            },
+            {"O14595", "O15194", "P0AF24", "Q42546", "P0A8Y3"},
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["evidence_role"]
+                == "import_gate_evidence_not_predictive_mechanism_evidence"
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["current_geometry_retrieval_score_summary"][
+                    "text_or_label_fields_used_for_score"
+                ]
+                for row in packet["rows"]
+            )
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 2,
+                "terminal_rejection_duplicate_or_leakage": 5,
+            },
+        )
+        self.assertEqual(
+            benchmark["metrics"]["deterministic_sequence_kmer_nearest_neighbor"][
+                "exact_current_reference_sequence_match_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            benchmark["metrics"]["foldseek_structural_sidecar"][
+                "duplicate_clear_claim_supported"
+            ]
+        )
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+
+        self.assertTrue(rollup["metadata"]["review_only"])
+        self.assertEqual(rollup["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(rollup["metadata"]["deep_packet_count"], 7)
+        self.assertEqual(rollup["metadata"]["candidate_count"], 49)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 1,
+                "needs_new_extractor_or_structure": 2,
+                "terminal_rejection_duplicate_or_leakage": 45,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertEqual(
+            rollup["synthesis"]["non_needs_review_terminal_candidate_count"],
+            47,
+        )
+        self.assertFalse(rollup["metadata"]["ready_for_label_import"])
+        self.assertFalse(rollup["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(rollup["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(rollup["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(rollup["metadata"]["removal_allowed_set_true"])
+
+        self.assertTrue(rescue["metadata"]["review_only"])
+        self.assertEqual(rescue["metadata"]["candidate_count"], 2)
+        self.assertEqual(
+            rescue["metadata"]["foldseek_query_run_status_counts"],
+            {"completed": 2},
+        )
+        self.assertEqual(
+            rescue["metadata"]["targeted_current_subset_screen_status_counts"],
+            {
+                "current_countable_targeted_duplicate_signal": 1,
+                "targeted_current_subset_no_duplicate_signal_detected": 1,
+            },
+        )
+        self.assertFalse(rescue["metadata"]["duplicate_clear_claim_permitted"])
+        self.assertFalse(rescue["metadata"]["ready_for_label_import"])
+
+        self.assertTrue(final_packet["metadata"]["review_only"])
+        self.assertEqual(
+            final_packet["metadata"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 1,
+                "terminal_rejection_duplicate_or_leakage": 6,
+            },
+        )
+        final_rows = {row["accession"]: row for row in final_packet["rows"]}
+        self.assertEqual(
+            final_rows["P05186"]["terminal_decision"],
+            "terminal_rejection_duplicate_or_leakage",
+        )
+        self.assertEqual(
+            final_rows["Q99504"]["terminal_decision"],
+            "needs_new_extractor_or_structure",
+        )
+        self.assertFalse(final_packet["metadata"]["ready_for_label_import"])
+        self.assertFalse(final_packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(final_packet["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(final_packet["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(final_packet["metadata"]["removal_allowed_set_true"])
+
+        self.assertFalse(final_benchmark["metrics"]["superiority_claim"])
+        self.assertEqual(
+            final_benchmark["metrics"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 1,
+                "terminal_rejection_duplicate_or_leakage": 6,
+            },
+        )
+        self.assertFalse(
+            final_benchmark["metrics"]["foldseek_structural_sidecar"][
+                "duplicate_clear_claim_supported"
+            ]
+        )
+
+        self.assertTrue(final_rollup["metadata"]["review_only"])
+        self.assertEqual(final_rollup["metadata"]["candidate_count"], 49)
+        self.assertEqual(final_rollup["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(
+            final_rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 1,
+                "needs_new_extractor_or_structure": 1,
+                "terminal_rejection_duplicate_or_leakage": 46,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertEqual(
+            final_rollup["synthesis"]["non_needs_review_terminal_candidate_count"],
+            48,
+        )
+        self.assertFalse(final_rollup["metadata"]["ready_for_label_import"])
+        self.assertFalse(final_rollup["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(final_rollup["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(final_rollup["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(final_rollup["metadata"]["removal_allowed_set_true"])
+
+        self.assertTrue(q99504_probe["metadata"]["review_only"])
+        self.assertEqual(q99504_probe["metadata"]["candidate_count"], 1)
+        self.assertEqual(q99504_probe["metadata"]["foldseek_run_status"], "completed")
+        self.assertEqual(q99504_probe["metadata"]["target_subset_coordinate_count"], 67)
+        self.assertEqual(q99504_probe["metadata"]["unique_query_target_pair_count"], 67)
+        self.assertEqual(q99504_probe["metadata"]["high_tm_hit_count"], 0)
+        self.assertFalse(q99504_probe["metadata"]["duplicate_clear_claim_permitted"])
+        self.assertFalse(q99504_probe["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            q99504_probe["rows"][0]["terminal_decision_after_probe"],
+            "needs_new_extractor_or_structure",
+        )
+        self.assertIsNotNone(q99504_probe["rows"][0]["exact_blocker_if_not_terminal"])
+
+        self.assertTrue(q99504_nonmetal_probe["metadata"]["review_only"])
+        self.assertEqual(q99504_nonmetal_probe["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            q99504_nonmetal_probe["metadata"]["foldseek_run_status"],
+            "completed",
+        )
+        self.assertEqual(
+            q99504_nonmetal_probe["metadata"]["target_subset_coordinate_count"],
+            80,
+        )
+        self.assertEqual(
+            q99504_nonmetal_probe["metadata"]["unique_query_target_pair_count"],
+            80,
+        )
+        self.assertEqual(q99504_nonmetal_probe["metadata"]["high_tm_hit_count"], 0)
+        self.assertFalse(
+            q99504_nonmetal_probe["metadata"]["duplicate_clear_claim_permitted"]
+        )
+        self.assertFalse(q99504_nonmetal_probe["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            q99504_nonmetal_probe["rows"][0]["terminal_decision_after_probe"],
+            "needs_new_extractor_or_structure",
+        )
+        self.assertIsNotNone(
+            q99504_nonmetal_probe["rows"][0]["exact_blocker_if_not_terminal"]
+        )
+        self.assertTrue(q99504_nonmetal_probe_001["metadata"]["review_only"])
+        self.assertEqual(q99504_nonmetal_probe_001["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            q99504_nonmetal_probe_001["metadata"]["foldseek_run_status"],
+            "completed",
+        )
+        self.assertEqual(
+            q99504_nonmetal_probe_001["metadata"]["target_subset_coordinate_count"],
+            80,
+        )
+        self.assertEqual(
+            q99504_nonmetal_probe_001["metadata"]["unique_query_target_pair_count"],
+            80,
+        )
+        self.assertEqual(q99504_nonmetal_probe_001["metadata"]["high_tm_hit_count"], 0)
+        self.assertFalse(
+            q99504_nonmetal_probe_001["metadata"]["duplicate_clear_claim_permitted"]
+        )
+        self.assertFalse(q99504_nonmetal_probe_001["metadata"]["ready_for_label_import"])
+
     def test_serine_hydrolase_targeted_rescue_converts_materialized_rows(self) -> None:
         rescue = _load_json(
             ARTIFACTS

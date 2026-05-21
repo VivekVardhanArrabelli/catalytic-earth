@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_q99504_current_metal_target_probe_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 1,
+    "created_at": "2026-05-21T22:08:05Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "expected_query_target_pair_count": 67,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/foldseek/bin/foldseek",
+    "foldseek_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-q99504-metal-target-probe-jcym0cgx/query /private/tmp/catalytic-earth-q99504-metal-target-probe-jcym0cgx/metal_targets /private/tmp/catalytic-earth-q99504-metal-target-probe-jcym0cgx/Q99504_vs_current_metal_targets_tm_scores.tsv /private/tmp/catalytic-earth-q99504-metal-target-probe-jcym0cgx/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+    "foldseek_run_error": null,
+    "foldseek_run_status": "completed",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "high_tm_hit_count": 0,
+    "method": "q99504_current_metal_dependent_hydrolase_target_subset_probe",
+    "prior_terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_timeout_rescue_20260521.json",
+    "probe_decision": "needs_new_extractor_or_structure",
+    "query_target_pair_coverage": 1.0,
+    "raw_result_row_count": 145,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_separation_guardrail": "Metal-target subset Foldseek/TM is duplicate/leakage gate evidence only; no duplicate-clear or positive mechanism claim is made.",
+    "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+    "target_subset": "current_countable_metal_dependent_hydrolase_structures",
+    "target_subset_coordinate_count": 67,
+    "tm_score_threshold": 0.7,
+    "unique_query_target_pair_count": 67
+  },
+  "rows": [
+    {
+      "accession": "Q99504",
+      "countable_label_candidate": false,
+      "exact_blocker_if_not_terminal": "complete_remaining_current_countable_duplicate_leakage_subchunks_or_find_alternate_coordinate_evidence",
+      "foldseek_run_status": "completed",
+      "high_tm_hit_count": 0,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.5324,
+        "max_pair_tm_score": 0.5324,
+        "qtmscore": 0.2185,
+        "query_name_mapping_status": "mapped_exact_alias",
+        "raw_query_name": "afdb_Q99504",
+        "raw_target_name": "pdb_1L7N_A",
+        "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+        "target_entry_ids": [
+          "m_csa:727"
+        ],
+        "target_fingerprint_ids": [
+          "metal_dependent_hydrolase"
+        ],
+        "target_label_types": [
+          "seed_fingerprint"
+        ],
+        "target_name_mapping_status": "mapped_chain_suffix_alias",
+        "target_structure_id": "1L7N",
+        "target_structure_key": "pdb:1L7N",
+        "ttmscore": 0.5303
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q99504",
+      "target_subset_hit_count": 67,
+      "terminal_decision_after_probe": "needs_new_extractor_or_structure",
+      "top_current_countable_hits": []
+    }
+  ]
+}

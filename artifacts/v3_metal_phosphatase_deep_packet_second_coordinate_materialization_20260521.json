@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_deep_packet_second_coordinate_materialization_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_selection_20260521.json",
+    "candidate_selection_before_outcome_scoring": true,
+    "coordinate_directory": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521",
+    "coordinate_materialized_or_reused_count": 7,
+    "coordinate_status_counts": {
+      "coordinate_sidecar_materialized": 7
+    },
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T21:40:23Z",
+    "curated_label_registry_edited": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "metal_phosphatase_deep_packet_second_coordinate_materialization",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+  },
+  "rows": [
+    {
+      "accession": "O14595",
+      "coordinate_byte_count": 260492,
+      "coordinate_digest_sha256": "f1f15d4eb9523e2df32d7aaa050337450bf03ff0a6d84029eb333d352d1eaa10",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_O14595.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14595",
+      "fetch_error": null,
+      "pdb_cross_reference_count": 1,
+      "pdb_ids_sample": [
+        "2Q5E"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O14595",
+      "structure_id": "O14595",
+      "structure_source": "alphafold_v6"
+    },
+    {
+      "accession": "O15194",
+      "coordinate_byte_count": 264231,
+      "coordinate_digest_sha256": "b40809c4587b10eed73dcf8a0e339f19478e7aea4e622f06c492be752b32d078",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_O15194.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15194",
+      "fetch_error": null,
+      "pdb_cross_reference_count": 1,
+      "pdb_ids_sample": [
+        "2HHL"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O15194",
+      "structure_id": "O15194",
+      "structure_source": "alphafold_v6"
+    },
+    {
+      "accession": "Q99504",
+      "coordinate_byte_count": 514667,
+      "coordinate_digest_sha256": "1044a08682e3f5c18588e2e260b811b39520edd5fb2d7bd2132ad1b9dd8d0b41",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_Q99504.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q99504",
+      "fetch_error": null,
+      "pdb_cross_reference_count": 1,
+      "pdb_ids_sample": [
+        "9C7T"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q99504",
+      "structure_id": "Q99504",
+      "structure_source": "alphafold_v6"
+    },
+    {
+      "accession": "P05186",
+      "coordinate_byte_count": 477705,
+      "coordinate_digest_sha256": "257f98bf999b9c76fe047bfff76f2ead61949d689254a5d2cfa41257c10609a5",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P05186.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P05186",
+      "fetch_error": null,
+      "pdb_cross_reference_count": 3,
+      "pdb_ids_sample": [
+        "7YIV",
+        "7YIW",
+        "7YIX"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P05186",
+      "structure_id": "P05186",
+      "structure_source": "alphafold_v6"
+    },
+    {
+      "accession": "P0AF24",
+      "coordinate_byte_count": 234201,
+      "coordinate_digest_sha256": "494614bd661b3678c760835e6fa52990795e4e8d8a61363edf7cf0bbd03a0708",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P0AF24.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P0AF24",
+      "fetch_error": null,
+      "pdb_cross_reference_count": 1,
+      "pdb_ids_sample": [
+        "2C4N"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0AF24",
+      "structure_id": "P0AF24",
+      "structure_source": "alphafold_v6"
+    },
+    {
+      "accession": "Q42546",
+      "coordinate_byte_count": 318122,
+      "coordinate_digest_sha256": "935e46671d8ae20474075a2eb0fe8eccc0bf429d705620fa2331b10a99c0f471",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_Q42546.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q42546",
+      "fetch_error": null,
+      "pdb_cross_reference_count": 1,
+      "pdb_ids_sample": [
+        "8F9Y"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q42546",
+      "structure_id": "Q42546",
+      "structure_source": "alphafold_v6"
+    },
+    {
+      "accession": "P0A8Y3",
+      "coordinate_byte_count": 197256,
+      "coordinate_digest_sha256": "dda1743aa0cb849d7847f9b93ed62ddca4d2f4d99ebdb1acae0744315fc17bf7",
+      "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_second_structural_coordinates_20260521/afdb_P0A8Y3.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P0A8Y3",
+      "fetch_error": null,
+      "pdb_cross_reference_count": 3,
+      "pdb_ids_sample": [
+        "2B0C",
+        "8PNE",
+        "8PNO"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0A8Y3",
+      "structure_id": "P0A8Y3",
+      "structure_source": "alphafold_v6"
+    }
+  ]
+}
