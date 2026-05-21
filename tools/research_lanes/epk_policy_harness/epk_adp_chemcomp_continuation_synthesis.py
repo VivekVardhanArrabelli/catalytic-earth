@@ -138,6 +138,43 @@ def surface_summary(
         result_meta.get("decision_counts") == {"review_only_abstain": len(tranche["rows"])},
         f"{result_path} did not abstain for every row",
     )
+    surface_rows = surface.get("rows", [])
+    require(isinstance(surface_rows, list), f"{surface_path} rows must be a list")
+    fetch_failure_count = int(surface_meta.get("fetch_failure_count") or 0)
+    nonmaterialized_or_skipped_ids = [
+        str(row.get("pdb_id"))
+        for row in surface_rows
+        if row.get("adp_coordinate_materialized") is not True
+    ]
+    materialized_no_geometry_ids = [
+        str(row.get("pdb_id"))
+        for row in surface_rows
+        if row.get("adp_coordinate_materialized") is True
+        and row.get("local_geometry_like_fields_present_review_only") is not True
+    ]
+    nonmaterialized_or_skipped_count = (
+        len(nonmaterialized_or_skipped_ids) + fetch_failure_count
+    )
+    materialized_no_geometry_count = len(materialized_no_geometry_ids)
+    priority_count = nonmaterialized_or_skipped_count + materialized_no_geometry_count
+    if "adp_nonmaterialized_or_skipped_candidate_count" in surface_meta:
+        require(
+            int(surface_meta["adp_nonmaterialized_or_skipped_candidate_count"])
+            == nonmaterialized_or_skipped_count,
+            f"{surface_path} nonmaterialized/skipped count does not match rows",
+        )
+    if "adp_materialized_no_geometry_like_candidate_count" in surface_meta:
+        require(
+            int(surface_meta["adp_materialized_no_geometry_like_candidate_count"])
+            == materialized_no_geometry_count,
+            f"{surface_path} materialized no-geometry count does not match rows",
+        )
+    if "nonmaterialized_or_low_geometry_priority_candidate_count" in surface_meta:
+        require(
+            int(surface_meta["nonmaterialized_or_low_geometry_priority_candidate_count"])
+            == priority_count,
+            f"{surface_path} priority candidate count does not match rows",
+        )
     for row in tranche.get("rows", []):
         require(row.get("ligand_context") == "ADP", f"{tranche_path} has non-ADP row")
         require(
@@ -173,7 +210,19 @@ def surface_summary(
         "adp_product_local_geometry_like_candidate_count": surface_meta.get(
             "adp_product_local_geometry_like_candidate_count"
         ),
-        "fetch_failure_count": surface_meta.get("fetch_failure_count"),
+        "adp_nonmaterialized_or_skipped_candidate_count": (
+            nonmaterialized_or_skipped_count
+        ),
+        "adp_materialized_no_geometry_like_candidate_count": (
+            materialized_no_geometry_count
+        ),
+        "nonmaterialized_or_low_geometry_priority_candidate_count": priority_count,
+        "nonmaterialized_or_skipped_candidate_ids": nonmaterialized_or_skipped_ids,
+        "materialized_no_geometry_like_candidate_ids": materialized_no_geometry_ids,
+        "representative_selection_mode": surface_meta.get(
+            "representative_selection_mode", "geometry_first"
+        ),
+        "fetch_failure_count": fetch_failure_count,
         "tranche_row_count": len(tranche.get("rows", [])),
         "decision_counts": result_meta.get("decision_counts"),
         "primary_outcome": result_meta.get("primary_outcome"),
@@ -239,9 +288,27 @@ def build_synthesis(args: argparse.Namespace) -> Path:
         int(summary["adp_product_local_geometry_like_candidate_count"])
         for summary in summaries
     )
+    nonmaterialized_or_skipped_count = sum(
+        int(summary["adp_nonmaterialized_or_skipped_candidate_count"])
+        for summary in summaries
+    )
+    materialized_no_geometry_count = sum(
+        int(summary["adp_materialized_no_geometry_like_candidate_count"])
+        for summary in summaries
+    )
+    priority_count = sum(
+        int(summary["nonmaterialized_or_low_geometry_priority_candidate_count"])
+        for summary in summaries
+    )
     candidate_count = sum(
         int(summary["candidate_count_reviewed"]) for summary in summaries
     )
+    if args.require_priority_candidates:
+        require(
+            priority_count >= args.min_priority_candidate_count,
+            "nonmaterialized/low-geometry priority candidate count below required "
+            f"minimum: {priority_count} < {args.min_priority_candidate_count}",
+        )
 
     artifact_dir = root / "artifacts" / "research_lanes" / LANE_ID
     output_path = artifact_dir / f"{args.output_prefix}_{timestamp_slug(args.timestamp)}.json"
@@ -263,6 +330,17 @@ def build_synthesis(args: argparse.Namespace) -> Path:
             "unique_candidate_count_reviewed": len(seen),
             "adp_materialized_candidate_count": materialized_count,
             "adp_product_local_geometry_like_candidate_count": geometry_like_count,
+            "adp_nonmaterialized_or_skipped_candidate_count": (
+                nonmaterialized_or_skipped_count
+            ),
+            "adp_materialized_no_geometry_like_candidate_count": (
+                materialized_no_geometry_count
+            ),
+            "nonmaterialized_or_low_geometry_priority_candidate_count": priority_count,
+            "nonmaterialized_or_low_geometry_focus_required": (
+                args.require_priority_candidates
+            ),
+            "min_priority_candidate_count": args.min_priority_candidate_count,
             "rows_reviewed_by_policy_harness": rows_reviewed,
             "decision_counts": dict(sorted(decision_counts.items())),
             "expected_decision_mismatch_count": sum(
@@ -288,6 +366,16 @@ def build_synthesis(args: argparse.Namespace) -> Path:
         },
         "surfaces": summaries,
         "candidate_ids_reviewed": all_ids,
+        "nonmaterialized_or_skipped_candidate_ids": [
+            pdb_id
+            for summary in summaries
+            for pdb_id in summary["nonmaterialized_or_skipped_candidate_ids"]
+        ],
+        "materialized_no_geometry_like_candidate_ids": [
+            pdb_id
+            for summary in summaries
+            for pdb_id in summary["materialized_no_geometry_like_candidate_ids"]
+        ],
     }
     write_json(output_path, payload)
     return output_path
@@ -304,6 +392,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--surface", action="append", required=True)
     parser.add_argument("--tranche", action="append", required=True)
     parser.add_argument("--result", action="append", required=True)
+    parser.add_argument("--require-priority-candidates", action="store_true")
+    parser.add_argument("--min-priority-candidate-count", type=int, default=1)
     parser.add_argument("--output-prefix", default=DEFAULT_PREFIX)
     parser.add_argument("--timestamp", default=utc_now())
     return parser.parse_args(argv)

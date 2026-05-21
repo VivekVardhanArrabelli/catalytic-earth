@@ -231,6 +231,20 @@ def sort_representative_rows(row: dict[str, Any]) -> tuple[int, float, str]:
     )
 
 
+def sort_low_geometry_representative_rows(row: dict[str, Any]) -> tuple[int, int, float, str]:
+    distance = row.get("nearest_adp_product_phosphate_acceptor_distance_angstrom")
+    try:
+        distance_value = float(distance) if distance is not None else 9999.0
+    except (TypeError, ValueError):
+        distance_value = 9999.0
+    return (
+        0 if not row.get("local_geometry_like_fields_present_review_only") else 1,
+        0 if distance is None else 1,
+        -distance_value,
+        str(row.get("pdb_id")),
+    )
+
+
 def build_tranche_row(row: dict[str, Any], *, freshness_status: str) -> dict[str, Any]:
     local_geometry_like = bool(row.get("local_geometry_like_fields_present_review_only"))
     local_metal = bool(row.get("local_metal_context_review_only"))
@@ -349,14 +363,27 @@ def build_artifacts(args: argparse.Namespace) -> tuple[Path, Path]:
     ]
     if not materialized_rows:
         raise ValueError("fresh ADP query-context surface had no materialized ADP rows")
-    representative_rows = sorted(materialized_rows, key=sort_representative_rows)[
-        : args.tranche_rows
-    ]
+    if args.representative_selection == "low_geometry_first":
+        representative_rows = sorted(
+            materialized_rows, key=sort_low_geometry_representative_rows
+        )[: args.tranche_rows]
+    else:
+        representative_rows = sorted(materialized_rows, key=sort_representative_rows)[
+            : args.tranche_rows
+        ]
     freshness_status = (
         "existing_artifact_scan_skipped_unverified"
         if args.skip_existing_scan
         else "not_present_in_lane_artifacts_before_this_surface"
     )
+    nonmaterialized_or_skipped_rows = [
+        row for row in scan_rows if row.get("adp_coordinate_materialized") is not True
+    ]
+    materialized_no_geometry_rows = [
+        row
+        for row in materialized_rows
+        if not row.get("local_geometry_like_fields_present_review_only")
+    ]
     geometry_like_count = sum(
         1
         for row in representative_rows
@@ -410,6 +437,23 @@ def build_artifacts(args: argparse.Namespace) -> tuple[Path, Path]:
                 for row in materialized_rows
                 if row.get("local_geometry_like_fields_present_review_only")
             ),
+            "adp_nonmaterialized_or_skipped_candidate_count": (
+                len(nonmaterialized_or_skipped_rows) + len(fetch_failures)
+            ),
+            "adp_materialized_no_geometry_like_candidate_count": len(
+                materialized_no_geometry_rows
+            ),
+            "nonmaterialized_or_low_geometry_priority_candidate_count": (
+                len(nonmaterialized_or_skipped_rows)
+                + len(fetch_failures)
+                + len(materialized_no_geometry_rows)
+            ),
+            "nonmaterialized_or_low_geometry_priority_candidate_ids": [
+                str(row.get("pdb_id"))
+                for row in nonmaterialized_or_skipped_rows + materialized_no_geometry_rows
+            ]
+            + [str(row.get("pdb_id")) for row in fetch_failures],
+            "representative_selection_mode": args.representative_selection,
             "candidate_distance_cutoff_angstrom": args.cutoff,
             "local_metal_context_review_cutoff_angstrom": args.local_metal_cutoff,
             "search_surface_scope": (
@@ -436,6 +480,18 @@ def build_artifacts(args: argparse.Namespace) -> tuple[Path, Path]:
             "row_count": len(representative_rows),
             "search_surface_exhausted": False,
             "search_surface_candidate_count_reviewed": len(scan_rows),
+            "adp_nonmaterialized_or_skipped_candidate_count": (
+                len(nonmaterialized_or_skipped_rows) + len(fetch_failures)
+            ),
+            "adp_materialized_no_geometry_like_candidate_count": len(
+                materialized_no_geometry_rows
+            ),
+            "nonmaterialized_or_low_geometry_priority_candidate_count": (
+                len(nonmaterialized_or_skipped_rows)
+                + len(fetch_failures)
+                + len(materialized_no_geometry_rows)
+            ),
+            "representative_selection_mode": args.representative_selection,
             "nonconfounded_candidate_count_within_cutoff": 0,
             "source_query_mode": args.query_mode,
             "chem_comp_id": args.chem_comp_id.upper(),
@@ -515,6 +571,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--max-atoms", type=int, default=120000)
     parser.add_argument("--max-existing-text-bytes", type=int, default=2_000_000)
     parser.add_argument("--skip-existing-scan", action="store_true")
+    parser.add_argument(
+        "--representative-selection",
+        choices=("geometry_first", "low_geometry_first"),
+        default="geometry_first",
+    )
     parser.add_argument("--surface-prefix", default=DEFAULT_PREFIX)
     parser.add_argument("--timestamp", default=utc_now())
     return parser.parse_args(argv)
