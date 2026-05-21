@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T18:28:19-0500
+Last updated: 2026-05-20T19:28:00-0500
 
 Primary outcome: `blocker_not_cleared_biology_ambiguity`
 
@@ -8,30 +8,32 @@ Primary outcome: `blocker_not_cleared_biology_ambiguity`
 
 `labels_or_fingerprints_changed=false`
 
-Run note: normal `git fetch origin` was attempted at run start, but the
-sandbox could not write the linked-worktree `FETCH_HEAD`. The live remote ref
-was checked with `git ls-remote`: `origin/research/epk-substrate-role-identity`
-was at `c77e6a81431002acc9039a95924585ab009d78b7`. Local `HEAD` remained one
-commit behind because the linked worktree ref could not be advanced, but the
-working tree already contained the pushed lane content from that commit.
+Run note: normal `git fetch origin` failed because the sandbox could not write
+the linked-worktree `FETCH_HEAD`. A subsequent `git merge --ff-only
+origin/research/epk-substrate-role-identity` also failed because the sandbox
+could not write linked-worktree `ORIG_HEAD`. The live remote ref was checked
+with `git ls-remote`: `origin/research/epk-substrate-role-identity` was at
+`ac0ffbadf6b07655c7a4bae73f8ce7c5e47d1240` before this run. The lane files
+from that commit were present in the working tree, so this run continued with
+the compact lane-local evidence only.
 
 ## What Was Tested
 
-This run executed the requested false-negative decision probe:
+This run executed the requested source-free adjudication decision probe:
 
-`epk_false_negative_state_topology_decision_probe_v1_review_only`
+`epk_source_free_adjudication_requirement_decision_v1_review_only`
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_false_negative_state_topology_decision_probe_v1_20260520.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_source_free_adjudication_requirement_decision_v1_20260520.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/false_negative_state_topology_decision_probe.py`
+`tools/research_lanes/epk_substrate_role_identity/source_free_adjudication_requirement_decision.py`
 
-The helper reused the 54-row active-site orientation artifact and added compact
-source-free state/topology classes only. It did not fetch or write raw
-coordinates.
+The helper reused the 54-row false-negative state/topology decision artifact.
+It did not fetch structures and wrote no raw coordinates. Source labels were
+used only for evaluation after source-free features had already been frozen.
 
 Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
 EC/Rhea, paper/source text, mechanism labels, curated substrate names,
@@ -40,79 +42,74 @@ imports, and production threshold calibration.
 
 ## Evidence
 
-Frozen 54-row diagnostic set:
+Frozen 54-row decision matrix:
 
-- `strict_auth_terminal_guard_v1_reused`: TP=14, FP=0, TN=34, FN=6.
-- `reciprocal_folded_tyr_admitted_v1_reused`: TP=16, FP=1, TN=33, FN=4.
-- `orientation_supported_folded_tyr_v1_reused`: TP=16, FP=1, TN=33, FN=4.
-- `auth_or_same_chain_candidate_5a_probe`: TP=17, FP=15, TN=19, FN=3.
-- `auth_or_same_chain_candidate_6a_probe`: TP=17, FP=26, TN=8, FN=3.
+- `source_free_claim_gate_or_review_required_v1`: TP=14, FP=0, TN=34, FN=6.
+- Positive rows: 14 source-free claimable strict/auth-terminal contexts and 6
+  review-required rows.
+- Counterexample rows: 1 internal-fragment no-claim row, 4 insufficient-context
+  no-claim rows, and 29 review-required ambiguous or unavailable rows.
+- Prior lane records checked: 6. No prior run had
+  `blocker_cleared_source_free`.
 
-Availability summary by evaluation label:
+Review-required positive rows:
 
-- Positives: 14 claimable by auth-guard strict context, 2 ambiguous reciprocal
-  folded-Tyr, 1 ambiguous same-chain/autophosphorylation-like, and 3
-  product/ADP rows with no terminal gamma-equivalent geometry.
-- Counterexamples: 25 same-chain/autophosphorylation-like ambiguous rows, 1
-  reciprocal folded-Tyr counterexample (`9UW4`), 1 internal-fragment mimic
-  (`7B56`), and several no-claim or gamma-unavailable rows.
+- `9UUR`, `9UUX`: reciprocal folded-chain Tyr context. Admitting this class
+  also admits `9UW4`.
+- `3QHR`, `3QHW`, `1L0O`: ADP/product state with no terminal gamma-equivalent
+  transfer geometry and zero near-candidate hydroxyls.
+- `3TM0`: same-chain/autophosphorylation-like context; 4.483 A Ser candidate
+  on the same folded chain.
 
-Strict/auth false-negative classes:
+Concrete blocker probes:
 
-- `9UUR`, `9UUX`: reciprocal folded-chain topology ambiguity. They can be
-  recovered by folded-Tyr reciprocal/context orientation rules, but that same
-  class admits `9UW4`.
-- `3QHR`, `3QHW`, `1L0O`: product/ADP state with no resolved terminal
-  gamma-equivalent atom and zero candidate hydroxyls within 8 A.
-- `3TM0`: active-gamma-capable ANP state, but the only near candidate is
-  same-chain, folded-chain, same-sequence-entity, and
-  autophosphorylation-like.
-
-Remaining false negatives under the orientation-supported folded-Tyr rule:
-
-- `3QHR`, `3QHW`, `1L0O`: missing terminal gamma-equivalent/product-state
-  geometry.
-- `3TM0`: same-chain/autophosphorylation-like topology.
-
-Same-chain stress result:
-
-- A 5 A same-chain rescue recovers `3TM0` at row level but admits 15
-  counterexamples, including `9UW4`.
-- A 6 A same-chain rescue admits 26 counterexamples and collapses toward
-  permissive nearest-hydroxyl behavior.
+- `7B56`: counterexample, active-gamma-capable ANP, Ser822 at 3.921 A. The
+  source-free auth-terminal/internal-fragment counterevidence rejects it because
+  the acceptor is resolved as ordinal 1 while author numbering is 822.
+- `9UUR`: positive, Tyr204 at 4.181 A, reciprocal active-gamma different entity,
+  gamma-facing active-site-like.
+- `9UUX`: positive, Tyr204 at 3.968 A, reciprocal active-gamma different entity,
+  gamma-facing active-site-like.
+- `9UW4`: counterexample, Tyr204 at 4.194 A, reciprocal active-gamma different
+  entity, gamma-facing active-site-like.
 
 ## Interpretation
 
-The blocker is no longer just a missing scalar feature. The remaining cases
-split into three source-free ambiguity classes:
+The source-free feature set can make a conservative no-false-positive claim for
+14 rows, but only by abstaining on the rows that actually define the blocker.
+`7B56` is locally separable by an internal-fragment/auth-terminal feature, but
+that feature does not identify reciprocal folded-chain positives or same-chain
+substrate-role positives.
 
-1. Product/ADP rows where the structure lacks terminal gamma transfer geometry.
-2. Reciprocal folded-chain Tyr context where true positives and `9UW4` share
-   the same accepted source-free class.
-3. Same-chain/autophosphorylation-like topology where admitting near hydroxyls
-   floods the set with false positives.
+The decisive unresolved pattern is biological role ambiguity in structure-only
+evidence:
+
+1. Product/ADP structures lack terminal gamma transfer geometry.
+2. Reciprocal folded-Tyr topology is shared by positives (`9UUR`, `9UUX`) and
+   a counterexample (`9UW4`).
+3. Same-chain/autophosphorylation-like topology recovers `3TM0` only by
+   admitting many counterexamples in the same source-free class.
 
 Within this lane, comparable ePK substrate-role blockers have not cleared with
 structure-only nearest-atom, terminal-index, reciprocal-context, local-exposure,
-active-site-orientation, or state/topology proxies. Source-free features are
-useful for compact review triage, but they do not establish production
-substrate-role identity.
+active-site-orientation, or state/topology proxies. The current result converts
+that pattern into an explicit source-reviewed adjudication requirement rather
+than another scalar feature search.
 
 ## Current Decision
 
 Do not claim ePK production readiness. Do not import labels, edit production
-fingerprints, calibrate thresholds, or turn these review-only classes into a
-production rule.
+fingerprints, calibrate thresholds, or turn the review-required classes into a
+production identity rule.
 
-Stop broad scalar feature probing unless a new source-free evidence modality is
-introduced. Preserve a source-reviewed adjudication requirement for ePK
-substrate-role identity, especially for product/ADP, reciprocal folded-chain,
-and same-chain/autophosphorylation-like cases.
+Use the structure-derived features as compact review evidence only. A true
+production substrate-role identity decision still requires hybrid
+source-reviewed adjudication, with source evidence excluded from predictive
+features.
 
 ## Exact Next Experiment
 
-Convert the lane result into a source-reviewed adjudication requirement:
-product/ADP rows, reciprocal folded-chain contexts, and
-same-chain/autophosphorylation-like contexts should remain review-only blockers
-unless a new source-free modality is introduced. Do not tune production
-thresholds from this lane.
+Stop source-free scalar probing unless a new source-free evidence modality is
+introduced. Promote this lane result into a review requirement for product/ADP,
+reciprocal folded-chain, and same-chain/autophosphorylation-like ePK
+substrate-role identity cases.
