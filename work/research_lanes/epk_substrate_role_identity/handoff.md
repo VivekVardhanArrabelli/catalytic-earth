@@ -15,8 +15,17 @@ Run note: normal `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 --no-write-fetch-head origin` succeeded. Local `HEAD` remains stale relative
-to `origin/research/epk-substrate-role-identity`; final commit/push work should
-use the lane temporary-index workaround.
+to `origin/research/epk-substrate-role-identity`; final commit/push work used
+the lane temporary-index workaround.
+
+Final sync: pushed conflict-decision commit
+`62494fedd56d38f63e14924e1079ccc59b119f91` to
+`origin/research/epk-substrate-role-identity`, then verified
+`origin/research/epk-substrate-role-identity` at that commit with
+`git fetch --no-write-fetch-head origin`. A temporary-index comparison against
+the remote tip was clean. Normal `git status` still reports this linked
+worktree as behind with lane-file changes because local `HEAD` remains
+`8d38053d85cc28b7592267e9420578ca19a98814`.
 
 ## What Was Emitted
 
