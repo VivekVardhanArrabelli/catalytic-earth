@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T22:32:29-0500
+Last updated: 2026-05-20T22:35:13-0500
 
 Primary outcome: `candidate_evidence_rows_emitted`
 
@@ -18,6 +18,14 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 remains stale relative to `origin/research/epk-substrate-role-identity`, so
 the final commit path should use the lane's temporary-index workaround rather
 than relying on a normal local fast-forward.
+
+Final sync: pushed commit `dc6813727d528a2c53b6737cf808d6456e7a4468` to
+`origin/research/epk-substrate-role-identity`; a final
+`git fetch --no-write-fetch-head origin` verified that the remote-tracking ref
+equals that commit. Local `HEAD` remains `8d38053d85cc28b7592267e9420578ca19a98814`
+and `git status` still reports the branch as behind with lane-file changes
+because this linked worktree cannot update normal metadata through the blocked
+`FETCH_HEAD` path.
 
 ## What Was Emitted
 
