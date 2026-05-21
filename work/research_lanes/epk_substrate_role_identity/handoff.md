@@ -20,11 +20,10 @@ the final commit path should use the lane's temporary-index workaround rather
 than relying on a normal local fast-forward.
 
 Final sync: pushed candidate-evidence commit
-`dc6813727d528a2c53b6737cf808d6456e7a4468`, then pushed handoff sync commit
-`3a401106cc54b2a63771d081319124f0faa1f7a6`. A final
-`git fetch --no-write-fetch-head origin` verified that
-`origin/research/epk-substrate-role-identity` equals
-`3a401106cc54b2a63771d081319124f0faa1f7a6`. Local `HEAD` remains
+`dc6813727d528a2c53b6737cf808d6456e7a4468`, followed by handoff-only sync
+commits. Final verification used `git fetch --no-write-fetch-head origin` and
+`git rev-parse origin/research/epk-substrate-role-identity` rather than local
+`HEAD`, because local `HEAD` remains
 `8d38053d85cc28b7592267e9420578ca19a98814` and `git status` still reports the
 branch as behind with lane-file changes because this linked worktree cannot
 update normal metadata through the blocked `FETCH_HEAD` path.
