@@ -51,6 +51,8 @@ The federated adapter input pointer was updated to the latest false-positive com
 
 ## Blockers and notes
 
+- Alternate-index content commit pushed: `4147c52e46c49c397f4ad26156fd15439ee5b37c`.
+- This follow-up wrap update records the push status; local `HEAD` remains stale because linked-worktree metadata writes are blocked.
 - Normal `git fetch origin` failed on linked-worktree `FETCH_HEAD` permissions.
 - `git fetch --no-write-fetch-head origin` succeeded.
 - `git pull --ff-only origin research/epk-policy-harness` failed on linked-worktree `FETCH_HEAD`.
