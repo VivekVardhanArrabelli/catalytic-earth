@@ -103,6 +103,30 @@ terminal rejections, 9 deterministic sequence-neighbor alerts, and 0
 geometry-scored external rows. The current register is
 `artifacts/v3_main_loop_small_win_register_post_serine_hydrolase_20260521.json`.
 
+The run then adds a fifth prospective external mini-campaign for the current
+`metal_dependent_hydrolase` lane. The freeze artifact
+`artifacts/v3_prospective_external_metal_phosphatase_minicampaign_freeze_20260521.json`
+locks 17 reviewed UniProtKB/Swiss-Prot EC 3.1.3.* phosphatase rows before
+scoring, requiring catalytic activity, PDB cross-reference, sequence,
+active-site annotation, metal-binding annotation, and phosphatase/
+metallophosphoesterase source context. Prior external-pool accessions,
+imported hard negatives, and transferase/kinase-like contexts are excluded;
+selection again uses a two-row cap per primary EC and no sequence-neighbor,
+Foldseek, ESM, geometry, score, or ePK evidence. The decision packet
+`artifacts/v3_prospective_external_metal_phosphatase_minicampaign_decision_packet_20260521.json`
+keeps all 17 rows as `needs_review` under the existing metal hydrolase lane:
+no exact current-reference duplicates, no geometry scoring, and 0 import-ready
+rows. The no-claim baseline
+`artifacts/v3_metal_phosphatase_minicampaign_baseline_comparison_20260521.json`
+keeps EC/keyword and deterministic 5-mer context diagnostic only. The post-
+metal rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_metal_phosphatase_20260521.json`
+now covers 95 frozen rows across five 2026-05-21 external mini-campaigns: 87
+`needs_review`, 8 exact current-reference duplicate terminal rejections, 9
+sequence-neighbor alerts, and 0 geometry-scored external rows. The current
+register is
+`artifacts/v3_main_loop_small_win_register_post_metal_phosphatase_20260521.json`.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late

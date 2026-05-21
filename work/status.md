@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 243
-- Measured elapsed time: 7109.9 minutes (118.50 hours)
+- Entries: 244
+- Measured elapsed time: 7114.1 minutes (118.57 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1801.6 measured minutes (30.03 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 128.7 measured minutes (2.15 hours)
+- v3: 132.9 measured minutes (2.21 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2719
-- Evidence references logged: 2207
+- Artifact references logged: 2725
+- Evidence references logged: 2213
 
 ## Recent Entries
-
-### 2026-05-21T00:35:13.353330+00:00 - v3
-
-- Task: pfka_vs_neighbor_control_tranche
-- Time mode: measured
-- Measured minutes: 8.0
-- Started: 2026-05-21T00:27:03Z
-- Ended: 2026-05-21T00:35:03Z
-- Artifacts: artifacts/v3_pfka_vs_neighbor_family_control_tranche_preregistration_20260521.json, artifacts/v3_pfka_vs_neighbor_family_control_tranche_axis_decisions_20260521.json, artifacts/v3_pfka_vs_neighbor_family_control_tranche_baseline_comparison_20260521.json, artifacts/v3_atp_family_readiness_index_post_pfka_tranche_20260521.json, artifacts/v3_main_loop_small_win_register_post_pfka_tranche_20260521.json
-- Evidence: 15 frozen PfkA-neighbor rows; decisions 1 terminal_rejection 2 mechanism_match 12 out_of_scope; 0 source-free-axis-ready rows
-- Notes: focused unittest and diff check passed
 
 ### 2026-05-21T00:41:53.519062+00:00 - v3
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T01:27:14Z
 - Artifacts: artifacts/v3_prospective_external_serine_hydrolase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_serine_hydrolase_minicampaign_decision_packet_20260521.json, artifacts/v3_serine_hydrolase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_serine_hydrolase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_external_minicampaign_modern_baseline_rollup_post_serine_hydrolase_20260521.json, artifacts/v3_main_loop_small_win_register_post_serine_hydrolase_20260521.json
 - Evidence: 19-row Swiss-Prot EC 3.1.1.* serine-hydrolase surface frozen before scoring, 18 rows routed to needs_review under current ser_his_acid_hydrolase lane, 1 exact current-reference duplicate P94388 terminally rejected, deterministic 5-mer baseline checked 19 rows against 737 current references with no superiority claim, post-serine rollup covers 78 frozen 2026-05-21 external rows with 70 needs_review 8 terminal rejections and 0 geometry-scored rows, focused serine mini-campaign and rollup regressions passed
+- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
+
+### 2026-05-21T01:31:38.491051+00:00 - v3
+
+- Task: prospective external metal phosphatase mini-campaign
+- Time mode: measured
+- Measured minutes: 4.15
+- Started: 2026-05-21T01:27:14Z
+- Ended: 2026-05-21T01:31:23Z
+- Artifacts: artifacts/v3_prospective_external_metal_phosphatase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_metal_phosphatase_minicampaign_decision_packet_20260521.json, artifacts/v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_metal_phosphatase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_external_minicampaign_modern_baseline_rollup_post_metal_phosphatase_20260521.json, artifacts/v3_main_loop_small_win_register_post_metal_phosphatase_20260521.json
+- Evidence: 17-row Swiss-Prot EC 3.1.3.* metal-phosphatase surface frozen before scoring, 17 rows routed to needs_review under current metal_dependent_hydrolase lane, 0 exact current-reference duplicate terminal rejections, deterministic 5-mer baseline checked 17 rows against 737 current references with no superiority claim, post-metal rollup covers 95 frozen 2026-05-21 external rows with 87 needs_review 8 terminal rejections and 0 geometry-scored rows, focused metal mini-campaign and rollup regressions passed
 - Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -315,6 +315,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:58:14.196100+00:00: external mini-campaign wins are terminal review-only evidence until source-free geometry duplicate screens terminal review and factory/import gates exist
 - 2026-05-21T01:19:56.798534+00:00: Commit ePK remote synthesis before returning to external mini-campaign small wins.
 - 2026-05-21T01:27:27.260565+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
+- 2026-05-21T01:31:38.491051+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
 
 ## Scope Adjustments
 
@@ -451,3 +452,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:58:14.196100+00:00: no registry import fingerprint edit production scoring threshold or artifact migration upload/removal
 - 2026-05-21T01:19:56.798534+00:00: ePK remains review-only no-go and out of main-loop production scope after fresh remote branch synthesis.
 - 2026-05-21T01:27:27.260565+00:00: serine hydrolase external mini-campaign remains review-only and not import-ready
+- 2026-05-21T01:31:38.491051+00:00: metal phosphatase external mini-campaign remains review-only and not import-ready

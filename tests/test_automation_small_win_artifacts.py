@@ -1072,6 +1072,93 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(sequence["metadata"]["ready_for_label_import"])
 
+    def test_metal_phosphatase_minicampaign_stays_review_only(self) -> None:
+        freeze = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_metal_phosphatase_minicampaign_freeze_20260521.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_metal_phosphatase_minicampaign_decision_packet_20260521.json"
+        )
+        baseline = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_minicampaign_baseline_comparison_20260521.json"
+        )
+        sequence = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json"
+        )
+
+        self.assertTrue(freeze["metadata"]["review_only"])
+        self.assertTrue(
+            freeze["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(freeze["metadata"]["candidate_count"], 17)
+        self.assertEqual(
+            freeze["metadata"]["target_current_fingerprint_lane"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertEqual(freeze["metadata"]["production_fingerprint_count"], 8)
+        self.assertFalse(freeze["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_at_freeze" for row in freeze["rows"])
+        )
+        self.assertTrue(
+            all(row["metal_dependent_phosphatase_source_context_present"] for row in freeze["rows"])
+        )
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_count"], 17)
+        self.assertEqual(metadata["terminal_decision_counts"], {"needs_review": 17})
+        self.assertEqual(metadata["target_current_fingerprint_lane"], "metal_dependent_hydrolase")
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertTrue(
+            all(row["terminal_decision"] == "needs_review" for row in decisions["rows"])
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in decisions["rows"])
+        )
+
+        self.assertTrue(baseline["metadata"]["review_only"])
+        self.assertFalse(baseline["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(baseline["metadata"]["frozen_row_count"], 17)
+        self.assertEqual(
+            baseline["metrics"]["review_only_terminal_decisions"][
+                "terminal_decision_counts"
+            ],
+            {"needs_review": 17},
+        )
+        self.assertEqual(
+            baseline["metrics"]["geometry_retrieval_triage"][
+                "geometry_scored_external_row_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            baseline["metrics"]["deterministic_5mer_nearest_neighbor"][
+                "near_neighbor_alert_count"
+            ],
+            0,
+        )
+
+        self.assertTrue(sequence["metadata"]["review_only"])
+        self.assertEqual(sequence["metadata"]["candidate_count"], 17)
+        self.assertEqual(sequence["metadata"]["reference_sequence_count"], 737)
+        self.assertEqual(
+            sequence["metadata"]["exact_current_reference_sequence_match_count"], 0
+        )
+        self.assertEqual(sequence["metadata"]["near_neighbor_alert_count"], 0)
+        self.assertFalse(
+            sequence["metadata"]["terminal_decision_changed_by_sequence_baseline"]
+        )
+        self.assertFalse(sequence["metadata"]["ready_for_label_import"])
+
     def test_external_minicampaign_modern_baseline_rollup_stays_review_only(self) -> None:
         rollup = _load_json(
             ARTIFACTS / "v3_external_minicampaign_modern_baseline_rollup_20260521.json"
@@ -1219,6 +1306,41 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(
             campaigns["serine_hydrolase"]["terminal_decision_counts"],
             {"needs_review": 18, "terminal_rejection": 1},
+        )
+        self.assertFalse(rollup["task_definition"]["positive_claim_allowed"])
+
+    def test_external_minicampaign_modern_baseline_rollup_post_metal_phosphatase(
+        self,
+    ) -> None:
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_minicampaign_modern_baseline_rollup_post_metal_phosphatase_20260521.json"
+        )
+        metadata = rollup["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["campaign_count"], 5)
+        self.assertEqual(metadata["frozen_row_count"], 95)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"needs_review": 87, "terminal_rejection": 8},
+        )
+        self.assertEqual(metadata["exact_current_reference_sequence_match_count"], 8)
+        self.assertEqual(metadata["near_neighbor_alert_count"], 9)
+        self.assertEqual(metadata["geometry_scored_external_row_count"], 0)
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        campaigns = {row["campaign_id"]: row for row in rollup["campaigns"]}
+        self.assertEqual(
+            campaigns["metal_phosphatase"]["terminal_decision_counts"],
+            {"needs_review": 17},
+        )
+        self.assertEqual(
+            campaigns["metal_phosphatase"]["target_current_fingerprint_lane"],
+            "metal_dependent_hydrolase",
         )
         self.assertFalse(rollup["task_definition"]["positive_claim_allowed"])
 

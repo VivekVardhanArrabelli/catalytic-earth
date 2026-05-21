@@ -385,6 +385,26 @@ covers 78 frozen rows across four 2026-05-21 mini-campaigns: 70
 sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
 mechanism-match, production-score, threshold, import, registry, or fingerprint
 claim is in scope.
+Current metal-phosphatase external mini-campaign scope:
+`artifacts/v3_prospective_external_metal_phosphatase_minicampaign_freeze_20260521.json`
+freezes 17 reviewed UniProtKB/Swiss-Prot EC 3.1.3.* rows before outcome
+scoring for the existing `metal_dependent_hydrolase` lane. The freeze requires
+catalytic activity, PDB cross-reference, sequence, active-site annotation,
+metal-binding annotation, and phosphatase/metallophosphoesterase source
+context, while excluding prior external-pool/imported accessions and
+transferase/kinase-like contexts.
+`artifacts/v3_prospective_external_metal_phosphatase_minicampaign_decision_packet_20260521.json`
+keeps all 17 rows as `needs_review`, with 0 exact current-reference duplicate
+terminal rejections and 0 import-ready rows. The no-claim baseline
+`artifacts/v3_metal_phosphatase_minicampaign_baseline_comparison_20260521.json`
+keeps EC/keyword routing and deterministic 5-mer context diagnostic only. The
+post-metal rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_metal_phosphatase_20260521.json`
+covers 95 frozen rows across five 2026-05-21 mini-campaigns: 87
+`needs_review`, 8 exact current-reference duplicate terminal rejections, 9
+sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
+mechanism-match, production-score, threshold, import, registry, or fingerprint
+claim is in scope.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

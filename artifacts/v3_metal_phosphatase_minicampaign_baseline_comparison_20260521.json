@@ -1,0 +1,287 @@
+{
+  "caveats": [
+    "EC/keyword routing is lane context only; it does not convert needs_review rows into mechanism_match rows.",
+    "Deterministic sequence-neighbor checks are duplicate/leakage diagnostics, not mechanism evidence.",
+    "No ESM, Foldseek, or source-free geometry sidecar was generated for this frozen set, so no superiority claim is permitted."
+  ],
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_minicampaign_baseline_comparison_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_metal_phosphatase_minicampaign_freeze_20260521.json",
+    "created_at": "2026-05-21T01:29:59Z",
+    "curated_label_registry_edited": false,
+    "decision_artifact": "artifacts/v3_prospective_external_metal_phosphatase_minicampaign_decision_packet_20260521.json",
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 17,
+    "method": "no_claim_metal_phosphatase_external_minicampaign_baseline_comparison",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "sequence_baseline_artifact": "artifacts/v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "deterministic_5mer_nearest_neighbor": {
+      "exact_current_reference_sequence_match_count": 0,
+      "mechanism_claim_count": 0,
+      "near_neighbor_alert_count": 0,
+      "reference_sequence_count": 737,
+      "terminal_decision_changed_by_sequence_baseline": false
+    },
+    "ec_keyword_name_proxy": {
+      "detects_source_free_axis_gap": false,
+      "import_claim_count": 0,
+      "route": "metal_dependent_hydrolase_lane",
+      "row_count": 17
+    },
+    "esm2_sidecar": {
+      "status": "not_available_for_this_frozen_set"
+    },
+    "foldseek_sidecar": {
+      "status": "not_run_for_this_frozen_set"
+    },
+    "geometry_retrieval_triage": {
+      "geometry_scored_external_row_count": 0,
+      "non_abstention_count_at_0_4115": 0,
+      "status": "not_run_external_source_free_geometry_missing",
+      "text_or_label_fields_used_for_score_count": 0
+    },
+    "review_only_terminal_decisions": {
+      "import_ready_candidate_count": 0,
+      "mechanism_match_count": 0,
+      "row_count": 17,
+      "terminal_decision_counts": {
+        "needs_review": 17
+      }
+    }
+  },
+  "rows": [
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0043,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P68390",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q969T7",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0027,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P04035",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q08623",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0058,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P21327",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:O95861",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0031,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q6NVY1",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:O14595",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0033,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P12256",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:O15194",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0032,
+      "deterministic_5mer_nearest_current_reference_id": "ref__A0A0C6DRW4",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:O00167",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P12998",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q99504",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.005,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00634",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P05187",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0081,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P09184",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P78330",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0026,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P71447",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P34913",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0041,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00634",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P05186",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0025,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0A731",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P0AF24",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0055,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q9KX40",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q42546",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0037,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P80643",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P0A8Y3",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0044,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P26440",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P75792",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0051,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P09155",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P77247",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0049,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P04042",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "metal_dependent_hydrolase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P0A8Y5",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    }
+  ],
+  "task_definition": {
+    "comparison_question": "Do simple EC/keyword and deterministic sequence-neighbor baselines change terminal review-only decisions for the frozen metal phosphatase mini-campaign?",
+    "frozen_rows_source": "artifacts/v3_prospective_external_metal_phosphatase_minicampaign_freeze_20260521.json",
+    "positive_claim_allowed": false
+  }
+}
