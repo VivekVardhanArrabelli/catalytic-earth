@@ -342,6 +342,13 @@ sequence-neighbor alerts. Geometry retrieval, ESM, and Foldseek sidecars remain
 unrun for these newly frozen sets, so the artifact permits no superiority,
 mechanism-match, production scoring, threshold calibration, registry edit,
 fingerprint expansion, or label import claim.
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_heme_20260521.json`
+extends that rollup to include the heme peroxidase/catalase campaign: 59
+frozen rows across three campaigns, 52 `needs_review` rows, seven exact
+current-reference duplicate terminal rejections, eight sequence-neighbor
+alerts, and 0 geometry-scored external rows. It is still review-only and does
+not authorize superiority, mechanism-match, production scoring, threshold,
+registry, fingerprint, or import claims.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

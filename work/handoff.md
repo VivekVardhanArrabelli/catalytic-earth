@@ -159,6 +159,13 @@ assigns current fingerprint-lane context, deterministic sequence-neighbor
 checks only supply duplicate/leakage caveats, and geometry/ESM/Foldseek
 sidecars remain unrun for these frozen sets. The rollup permits no superiority,
 mechanism-match, production-score, or import claim.
+After the heme campaign, the post-heme rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_heme_20260521.json`
+extends the same review-only benchmark to all three 2026-05-21 external
+mini-campaigns. Across 59 frozen rows it records 52 `needs_review` rows, seven
+exact current-reference duplicate terminal rejections, eight deterministic
+sequence-neighbor alerts, and 0 geometry-scored external rows. It still permits
+no superiority, mechanism-match, production-score, or import claim.
 
 As of the 2026-05-20T23:16:33Z automation run,
 `artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates

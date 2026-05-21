@@ -979,6 +979,54 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "modern_baseline_rollup_is_review_only_and_no_superiority_claim",
         )
 
+    def test_external_minicampaign_modern_baseline_rollup_post_heme(self) -> None:
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_minicampaign_modern_baseline_rollup_post_heme_20260521.json"
+        )
+        metadata = rollup["metadata"]
+        metrics = rollup["metrics"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["campaign_count"], 3)
+        self.assertEqual(metadata["frozen_row_count"], 59)
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        self.assertEqual(
+            metrics["terminal_decision_counts"],
+            {"needs_review": 52, "terminal_rejection": 7},
+        )
+        self.assertEqual(
+            metrics["deterministic_sequence_baseline"][
+                "exact_current_reference_sequence_match_count"
+            ],
+            7,
+        )
+        self.assertEqual(
+            metrics["deterministic_sequence_baseline"]["near_neighbor_alert_count"],
+            8,
+        )
+        self.assertEqual(
+            metrics["current_geometry_retrieval_triage"]["scored_row_count"],
+            0,
+        )
+        self.assertFalse(
+            metrics["esm_foldseek_sidecar_sample"]["supports_superiority_claim"]
+        )
+
+        campaigns = {row["campaign_id"]: row for row in rollup["campaigns"]}
+        self.assertEqual(
+            campaigns["heme_peroxidase"]["terminal_decision_counts"],
+            {"needs_review": 15, "terminal_rejection": 4},
+        )
+        self.assertEqual(
+            rollup["synthesis_conclusion"]["overall"],
+            "modern_baseline_rollup_post_heme_is_review_only_and_no_superiority_claim",
+        )
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 239
-- Measured elapsed time: 7088.9 minutes (118.15 hours)
+- Entries: 240
+- Measured elapsed time: 7090.8 minutes (118.18 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1795.3 measured minutes (29.92 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 119.6 measured minutes (1.99 hours)
+- v3: 121.5 measured minutes (2.02 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2703
-- Evidence references logged: 2192
+- Artifact references logged: 2707
+- Evidence references logged: 2193
 
 ## Recent Entries
-
-### 2026-05-20T23:36:29.859708+00:00 - post-infra-science
-
-- Task: Main-loop small wins: ePK synthesis, sulfotransferase, ATP-family tranches
-- Time mode: measured
-- Measured minutes: 24.7
-- Started: 2026-05-20T23:11:31Z
-- Ended: 2026-05-20T23:36:13Z
-- Artifacts: artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json, artifacts/v3_pfkb_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_prospective_external_sulfotransferase_minicampaign_freeze_20260520.json, artifacts/v3_prospective_external_sulfotransferase_minicampaign_decision_packet_20260520.json, artifacts/v3_sulfotransferase_minicampaign_baseline_comparison_20260520.json, artifacts/v3_ghmp_family_readiness_packet_20260520.json, artifacts/v3_ghmp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_main_loop_small_win_register_post_ghmp_tranche_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: 20 dirty ePK JSON plus 3 JSONL ledgers validated with 0 errors, PfkB tranche closed with 2 needs_review 2 mechanism_match 7 out_of_scope, sulfotransferase 16-row external surface frozen before scoring and terminally rejected as uncovered lane, GHMP packet and tranche closed review-only no-go, full 746-test discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, registry invariants preserved
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ### 2026-05-20T23:59:52.878029+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T00:48:49Z
 - Artifacts: artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json, artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_heme_peroxidase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_main_loop_small_win_register_post_heme_peroxidase_20260521.json
 - Evidence: 19-row Swiss-Prot EC 1.11.1.* heme peroxidase/catalase surface frozen before scoring; 15 needs_review; 4 exact current-reference duplicate terminal rejections; no superiority claim
+- Notes: focused unittest JSON validation and diff check passed
+
+### 2026-05-21T00:51:14.465122+00:00 - v3
+
+- Task: external mini-campaign baseline rollup post heme
+- Time mode: measured
+- Measured minutes: 1.867
+- Started: 2026-05-21T00:49:14Z
+- Ended: 2026-05-21T00:51:06Z
+- Artifacts: artifacts/v3_external_minicampaign_modern_baseline_rollup_post_heme_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: 59 frozen rows across PLP flavin and heme campaigns; 52 needs_review; 7 exact current-reference duplicate terminal rejections; 0 geometry-scored rows
 - Notes: focused unittest JSON validation and diff check passed
 
 ## Expectation Updates
@@ -311,6 +311,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:41:53.519062+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
 - 2026-05-21T00:44:11.610704+00:00: simple EC and sequence baselines provide routing and duplicate caveats only
 - 2026-05-21T00:49:00.721874+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
+- 2026-05-21T00:51:14.465122+00:00: 20260521 external campaign baselines are routing and duplicate diagnostics only
 
 ## Scope Adjustments
 
@@ -443,3 +444,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:41:53.519062+00:00: flavin monooxygenase external mini-campaign remains review-only and not import-ready
 - 2026-05-21T00:44:11.610704+00:00: modern baseline rollup is review-only and not a production/import benchmark
 - 2026-05-21T00:49:00.721874+00:00: heme peroxidase external mini-campaign remains review-only and not import-ready
+- 2026-05-21T00:51:14.465122+00:00: post-heme baseline rollup remains review-only with no superiority or import claim
