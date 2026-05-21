@@ -18,6 +18,14 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 to `origin/research/epk-substrate-role-identity`; final commits should keep
 using the lane temporary-index workaround.
 
+Final sync: pushed blocker-audit commit
+`bd7e225950550b7521a0576f5180d78dc787677c` to
+`origin/research/epk-substrate-role-identity`. Final verification used
+`git fetch --no-write-fetch-head origin` and
+`git rev-parse origin/research/epk-substrate-role-identity`; local `HEAD`
+remains `8d38053d85cc28b7592267e9420578ca19a98814`, so normal `git status`
+still reports this linked worktree as behind with lane-file changes.
+
 ## What Was Emitted
 
 This run added a compact blocker audit on top of the existing candidate
