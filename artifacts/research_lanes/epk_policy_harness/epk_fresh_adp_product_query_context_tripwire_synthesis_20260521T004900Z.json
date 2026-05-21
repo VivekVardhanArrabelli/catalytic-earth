@@ -1,0 +1,213 @@
+{
+  "accepted_adp_role_policy_counterfactual": {
+    "decision_counts": {
+      "review_only_abstain": 25
+    },
+    "description": "In-memory QA only: ADP was added to the active ligand map, a role policy id was accepted, and all required same-structure local fields were set true on each tranche row.",
+    "labels_or_fingerprints_changed": false,
+    "production_claim_allowed": false,
+    "rows_reviewed": 25
+  },
+  "failed_no_artifact_probe": {
+    "artifact_written": false,
+    "candidate_count_scanned": 10,
+    "materialized_adp_count": 0,
+    "query": "full_text protein kinase ADP bound magnesium sorted by rcsb_accession_info.initial_release_date desc",
+    "reason": "no materialized ADP rows for the ADP/product tripwire tranche"
+  },
+  "metadata": {
+    "accepted_adp_role_policy_counterfactual_all_abstained": true,
+    "accepted_adp_role_policy_counterfactual_rows": 25,
+    "adp_materialized_candidate_count": 32,
+    "adp_product_local_geometry_like_candidate_count": 29,
+    "adp_product_state_rows_review_only": true,
+    "artifact_id": "epk_fresh_adp_product_query_context_tripwire_synthesis_20260521T004900Z",
+    "candidate_count_reviewed": 42,
+    "counterexamples_found": [],
+    "created_at": "2026-05-21T00:49:26Z",
+    "decision_counts": {
+      "review_only_abstain": 25
+    },
+    "expected_decision_mismatch_count": 0,
+    "future_policy_activation_allowed": false,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "policy_version": "epk_review_only_policy_harness_v0_20260520",
+    "primary_outcome": "policy_frozen_review_only",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "rows_reviewed_by_policy_harness": 25,
+    "source_surface_count": 5,
+    "source_text_and_query_review_only": true
+  },
+  "surfaces": [
+    {
+      "adp_materialized_candidate_count": 1,
+      "adp_product_local_geometry_like_candidate_count": 1,
+      "adp_product_query_context_tripwire_contract_enforced": true,
+      "candidate_count_reviewed": 10,
+      "candidate_ids_reviewed": [
+        "9OEL",
+        "9OEX",
+        "9T1D",
+        "22IB",
+        "9PU1",
+        "9PU3",
+        "9PU8",
+        "9PUL",
+        "9PUN",
+        "9PUQ"
+      ],
+      "counterexamples_found": [],
+      "decision_counts": {
+        "review_only_abstain": 1
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "policy_frozen_review_only",
+      "query": "full_text protein kinase substrate ADP magnesium sorted by rcsb_accession_info.initial_release_date desc",
+      "query_mode": "full_text",
+      "raw_coordinate_dump_written": false,
+      "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_surface_20260521T003830Z_result.json",
+      "result_sha256": "3acfad1dd0f3b468901f42dc8736175488d814b21edd6eb212067bd20455a04f",
+      "search_surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_surface_20260521T003830Z.json",
+      "search_surface_sha256": "23cd9a0dbdcbd75c5ac5859647a80a2c960f655bc8c076d15a4dd2e26333dc9a",
+      "surface_id": "full_text_substrate_adp",
+      "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_surface_20260521T003830Z_tranche.json",
+      "tranche_row_count": 1,
+      "tranche_sha256": "0546188787e8987bf729058e2e8191bf1ddd121be9116c1197bb70fc971a89b1"
+    },
+    {
+      "adp_materialized_candidate_count": 8,
+      "adp_product_local_geometry_like_candidate_count": 8,
+      "adp_product_query_context_tripwire_contract_enforced": true,
+      "candidate_count_reviewed": 8,
+      "candidate_ids_reviewed": [
+        "9VCT",
+        "9VCU",
+        "21WA",
+        "21WC",
+        "9R8W",
+        "9RHI",
+        "9RHJ",
+        "9RHL"
+      ],
+      "counterexamples_found": [],
+      "decision_counts": {
+        "review_only_abstain": 6
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "policy_frozen_review_only",
+      "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ADP sorted by rcsb_accession_info.initial_release_date desc",
+      "query_mode": "chemcomp",
+      "raw_coordinate_dump_written": false,
+      "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z_result.json",
+      "result_sha256": "f474ab81921e1876807ed45375b1a9ac6cd2c2904b2b074490dd1a535a10eb26",
+      "search_surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z.json",
+      "search_surface_sha256": "a43f0b6e8938bebaff1b156273310ff8e55cf95053c6c11871d6549bcc61ad36",
+      "surface_id": "chemcomp_adp_round1",
+      "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z_tranche.json",
+      "tranche_row_count": 6,
+      "tranche_sha256": "7faa4b22a23856e3d5386741ea2903d49cfd4637264d5d9cf31001b15651c09a"
+    },
+    {
+      "adp_materialized_candidate_count": 7,
+      "adp_product_local_geometry_like_candidate_count": 7,
+      "adp_product_query_context_tripwire_contract_enforced": true,
+      "candidate_count_reviewed": 8,
+      "candidate_ids_reviewed": [
+        "9RHM",
+        "9KCF",
+        "9ODU",
+        "9OYG",
+        "9SGK",
+        "9UMT",
+        "9Y03",
+        "9Y06"
+      ],
+      "counterexamples_found": [],
+      "decision_counts": {
+        "review_only_abstain": 6
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "policy_frozen_review_only",
+      "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ADP sorted by rcsb_accession_info.initial_release_date desc",
+      "query_mode": "chemcomp",
+      "raw_coordinate_dump_written": false,
+      "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round2_20260521T004519Z_result.json",
+      "result_sha256": "e50a0d0225556ac2964a6c134691c5818bd2d5dc31fb4bca02d5088a8e4e52bd",
+      "search_surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round2_20260521T004519Z.json",
+      "search_surface_sha256": "30cb577358f2e76ca88e0eb6dd12abe3815b47739736a8aad0d9561908ce89db",
+      "surface_id": "chemcomp_adp_round2",
+      "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round2_20260521T004519Z_tranche.json",
+      "tranche_row_count": 6,
+      "tranche_sha256": "73d1b837874edd818fb64bb27341d1af8458ba94f9c86f820dd8c0b14331d0e1"
+    },
+    {
+      "adp_materialized_candidate_count": 8,
+      "adp_product_local_geometry_like_candidate_count": 8,
+      "adp_product_query_context_tripwire_contract_enforced": true,
+      "candidate_count_reviewed": 8,
+      "candidate_ids_reviewed": [
+        "9Y08",
+        "9Y0B",
+        "11VE",
+        "9AAO",
+        "9QU9",
+        "9QV0",
+        "9QV1",
+        "9QV2"
+      ],
+      "counterexamples_found": [],
+      "decision_counts": {
+        "review_only_abstain": 6
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "policy_frozen_review_only",
+      "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ADP sorted by rcsb_accession_info.initial_release_date desc",
+      "query_mode": "chemcomp",
+      "raw_coordinate_dump_written": false,
+      "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round3_20260521T004731Z_result.json",
+      "result_sha256": "599ee1e0989a54ca8ad019e660f298c2fb07cb33d4b2e50f5a07f5c23e48c6cb",
+      "search_surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round3_20260521T004731Z.json",
+      "search_surface_sha256": "e8d734cd5575980539baaa3358a849729f9c7f16318898cd569b471437866502",
+      "surface_id": "chemcomp_adp_round3",
+      "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round3_20260521T004731Z_tranche.json",
+      "tranche_row_count": 6,
+      "tranche_sha256": "74663a610b3c0ad17f1574da61141d7f768faea108e515f04255013455172999"
+    },
+    {
+      "adp_materialized_candidate_count": 8,
+      "adp_product_local_geometry_like_candidate_count": 5,
+      "adp_product_query_context_tripwire_contract_enforced": true,
+      "candidate_count_reviewed": 8,
+      "candidate_ids_reviewed": [
+        "9QV3",
+        "9QV4",
+        "9QVZ",
+        "9T7J",
+        "9T94",
+        "9QQW",
+        "9UG2",
+        "9UGG"
+      ],
+      "counterexamples_found": [],
+      "decision_counts": {
+        "review_only_abstain": 6
+      },
+      "expected_decision_mismatch_count": 0,
+      "primary_outcome": "policy_frozen_review_only",
+      "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ADP sorted by rcsb_accession_info.initial_release_date desc",
+      "query_mode": "chemcomp",
+      "raw_coordinate_dump_written": false,
+      "result": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round4_20260521T004812Z_result.json",
+      "result_sha256": "4fbdbdb6a667199063623df14324f3abf46eb18bd56ce2fe3217bf78f9613dc0",
+      "search_surface": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round4_20260521T004812Z.json",
+      "search_surface_sha256": "243cd1244c2e3397a9901ad7494c44fd07af1cdc1671ef9a537df4400b07dca3",
+      "surface_id": "chemcomp_adp_round4",
+      "tranche": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round4_20260521T004812Z_tranche.json",
+      "tranche_row_count": 6,
+      "tranche_sha256": "2b9c4c6a2ea7ac2730f950c83c8d923dc188b8218877df68aea2e7f7c1e249dc"
+    }
+  ]
+}

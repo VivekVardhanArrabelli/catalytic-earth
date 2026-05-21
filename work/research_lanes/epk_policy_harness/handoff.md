@@ -1,20 +1,33 @@
 # ePK policy harness handoff
 
-Last updated: 2026-05-21T00:14:43Z
-Run started: 2026-05-20T23:26:23Z
-Run ended: 2026-05-21T00:14:43Z
-Measured minutes: 48.33
+Last updated: 2026-05-21T01:17:22Z
+Run started: 2026-05-21T00:27:26Z
+Run ended: 2026-05-21T01:17:22Z
+Measured minutes: 49.93
 Primary outcome: `policy_frozen_review_only`
-Pushed commit: `df3e092c76b084a595d73ad57842fcc2a6798e22` (main run commit; this handoff metadata update is committed as a follow-up wrap commit).
+Pushed commit: `pending_main_run_commit` (will be updated after alternate-index push; normal git metadata writes are blocked).
 
 ## Files changed
 
 This run:
 - `tools/research_lanes/epk_policy_harness/epk_policy_harness.py`
-- `tools/research_lanes/epk_policy_harness/epk_adp_product_repair_tripwire.py`
-- `artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_tranche.json`
-- `artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_result.json`
+- `tools/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_tripwire_surface.py`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_surface_20260521T003830Z.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_surface_20260521T003830Z_tranche.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_surface_20260521T003830Z_result.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z_tranche.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z_result.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round2_20260521T004519Z.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round2_20260521T004519Z_tranche.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round2_20260521T004519Z_result.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round3_20260521T004731Z.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round3_20260521T004731Z_tranche.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round3_20260521T004731Z_result.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round4_20260521T004812Z.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round4_20260521T004812Z_tranche.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_round4_20260521T004812Z_result.json`
+- `artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_synthesis_20260521T004900Z.json`
 - `artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl`
 - `work/research_lanes/epk_policy_harness/handoff.md`
 
@@ -22,48 +35,54 @@ This run:
 
 Policy v0 remains frozen, review-only, and fail-closed. ATP/ANP/AMP-PNP may be predictive only when terminal gamma-equivalent geometry, local metal context, catalytic-site locality, source-free acceptor/role features, and same-structure co-materialization all hold under a preaccepted source-free role policy. No source-free role policy is accepted in v0.
 
-This run adds an executable ADP/product-state/candidate-repair tripwire contract. ADP/product-state rows, substrate/acceptor analog contexts, split-state repair rows, and candidate-specific source repairs remain review-only blockers even when local geometry-like fields are present. Candidate-specific source repair cannot be marked predictive, row-declared tripwire contexts must match actual row fields, and future policy activation is closed unless a separate preregistered frozen policy survives fresh stress.
+This run adds an executable fresh ADP/product query-context tripwire contract. ADP query contexts, coordinate-materialized ADP product-state rows, ADP product-phosphate local geometry summaries, source text, query text, and source validation remain review-only. Candidate-specific repair rows are not admitted in this fresh query-context contract, and future ADP/product activation remains closed unless a separate preregistered frozen policy survives fresh stress.
 
 ## Evidence
 
-- Final tripwire artifact: `artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z.json` (`sha256 a58ec0a785b3d5d4195d15d23f1f22819975ab3d0df19b7f1ef6fba2e1bf921c`).
-- Final tranche: `artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_tranche.json` (`sha256 9157232884c29860b781cf057725401a93d568cbcd4c3366937c976e33fc83d5`).
-- Final result: `artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_result.json` (`sha256 7e6b854b405e2ca074f69a2c0234ae1ab865b416c21ffb39cead3f1a9d8c21fe`).
-- Rows reviewed: 10.
-- Decision counts: `{'review_only_abstain': 10}`.
-- Context coverage: `{'ADP': 4, 'PRODUCT_STATE': 4, 'SUBSTRATE_ACCEPTOR_ANALOG': 1, 'CANDIDATE_SPECIFIC_SOURCE_REPAIR': 5, 'SPLIT_STATE': 2}`.
-- Geometry-like tripwire rows: 7.
-- Counterfactual local-feature rows: 3.
+- Synthesis artifact: `artifacts/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_context_tripwire_synthesis_20260521T004900Z.json` (`sha256 598f1f82c87df973dedf7bf384280158422351d9384d296c353962e3a21ee800`).
+- Candidate IDs reviewed: 42.
+- Coordinate-materialized ADP candidates: 32.
+- Evaluated rows: 25.
+- Decision counts: `{'review_only_abstain': 25}`.
 - Expected-decision mismatches: 0.
 - Counterexamples found: `[]`.
-- Fault injection rejected 9 representative contract violations and 30 rowwise tampering cases.
-- In-memory accepted-role-policy counterfactual still produced 10 review-only abstentions.
-- Prior materialization guard, nonprefrozen blocker, cross-ligand sibling-control, and ATP sibling-control regressions stayed clean.
+- Accepted-ADP/accepted-role-policy counterfactual: 25 review-only abstentions.
+- Fault injection rejected 9 representative ADP query-context contract violations.
+- Prior ADP/product repair, nonprefrozen blocker, materialization guard, cross-ligand sibling-control, and ATP sibling-control regressions stayed clean.
+
+## Surface Summary
+
+- `full_text_substrate_adp`: 10 candidates, 1 ADP-materialized, 1 rows, {'review_only_abstain': 1}, result sha256 `3acfad1dd0f3b468901f42dc8736175488d814b21edd6eb212067bd20455a04f`
+- `chemcomp_adp_round1`: 8 candidates, 8 ADP-materialized, 6 rows, {'review_only_abstain': 6}, result sha256 `f474ab81921e1876807ed45375b1a9ac6cd2c2904b2b074490dd1a535a10eb26`
+- `chemcomp_adp_round2`: 8 candidates, 7 ADP-materialized, 6 rows, {'review_only_abstain': 6}, result sha256 `e50a0d0225556ac2964a6c134691c5818bd2d5dc31fb4bca02d5088a8e4e52bd`
+- `chemcomp_adp_round3`: 8 candidates, 8 ADP-materialized, 6 rows, {'review_only_abstain': 6}, result sha256 `599ee1e0989a54ca8ad019e660f298c2fb07cb33d4b2e50f5a07f5c23e48c6cb`
+- `chemcomp_adp_round4`: 8 candidates, 8 ADP-materialized, 6 rows, {'review_only_abstain': 6}, result sha256 `4fbdbdb6a667199063623df14324f3abf46eb18bd56ce2fe3217bf78f9613dc0`
 
 ## Blockers
 
-- This is review-only harness pressure, not clean held-out performance evidence and not production scoring evidence.
-- The counterfactual local-feature rows are policy QA rows, not biological coordinate measurements.
+- This is review-only harness pressure on bounded RCSB surfaces, not clean held-out performance evidence and not production scoring evidence.
+- The surfaces do not exhaust all possible ADP/product-state structures.
+- One alternate source-text probe (`protein kinase ADP bound magnesium`) scanned 10 IDs but had no materialized ADP rows and wrote no artifact.
 - No accepted source-free folded substrate-role or acceptor-identity extractor exists in policy v0.
 - No ADP/product-state activation policy is preregistered, frozen, or production-admissible.
-- Normal `git fetch origin`, `git pull --ff-only`, and `git add` are still blocked by linked-worktree metadata permissions on `FETCH_HEAD`/`index.lock`.
+- Normal `git fetch origin`, `git pull --ff-only`, and `git add` remain blocked by linked-worktree metadata permissions on `FETCH_HEAD`/`index.lock`; this run uses the alternate-index commit path.
 
 ## Verification
 
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_policy_harness.py --self-test`
-- `PYTHONDONTWRITEBYTECODE=1 python -m py_compile tools/research_lanes/epk_policy_harness/epk_policy_harness.py tools/research_lanes/epk_policy_harness/epk_adp_product_repair_tripwire.py`
-- Final tripwire harness run wrote `artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_result.json`.
-- Representative fault injection rejected 9 tripwire leak classes.
-- Rowwise tripwire fault matrix rejected 30 tampering cases.
-- Regression reruns wrote `/private/tmp/epk_policy_regression_adp_tripwire_materialization_guard_result.json`, `/private/tmp/epk_policy_regression_adp_tripwire_nonprefrozen_result.json`, `/private/tmp/epk_policy_regression_adp_tripwire_cross_ligand_result.json`, and `/private/tmp/epk_policy_regression_adp_tripwire_atp_sibling_result.json`.
-- JSON and JSONL validation are rerun after this handoff write.
-- `git diff --check` is rerun with an alternate index after this handoff write.
+- `PYTHONDONTWRITEBYTECODE=1 python -m py_compile tools/research_lanes/epk_policy_harness/epk_policy_harness.py tools/research_lanes/epk_policy_harness/epk_fresh_adp_product_query_tripwire_surface.py tools/research_lanes/epk_policy_harness/epk_adp_product_repair_tripwire.py`
+- Fresh ADP/product query-context results wrote five result artifacts listed above.
+- Representative fault injection rejected 9 leak/activation/context tampering cases.
+- Accepted-ADP/accepted-role-policy counterfactual still yielded 25 review-only abstentions.
+- Regression reruns wrote `/private/tmp/epk_policy_regression_fresh_adp_query/adp_product_repair_result.json`, `/private/tmp/epk_policy_regression_fresh_adp_query/nonprefrozen_result.json`, `/private/tmp/epk_policy_regression_fresh_adp_query/materialization_guard_result.json`, `/private/tmp/epk_policy_regression_fresh_adp_query/cross_ligand_result.json`, and `/private/tmp/epk_policy_regression_fresh_adp_query/atp_sibling_result.json`.
+- JSON/JSONL validation passed after this handoff write: 16 JSON files and 11 JSONL records parsed successfully.
+- `git diff --check` passed with an alternate index after this handoff write.
 
 ## Exact next query
 
-`epk_fresh_adp_product_query_context_tripwire_surface_v1_review_only`
+`epk_fresh_adp_chemcomp_pagination_continuation_product_tripwire_v1_review_only`
 
-Run a bounded fresh ADP/product-state query-context surface under the frozen tripwire contract. Freeze candidate ids before local feature review, keep query text and source validation review-only, admit no ADP/product-state or candidate-specific repair row as predictive, and stop with compact artifacts only.
+Continue coordinate-materialized ADP chem-comp pagination under the same frozen ADP/product query-context tripwire. Freeze candidate IDs before compact coordinate review, keep ADP product-state and ADP product-phosphate geometry summaries review-only, admit no ADP/product row as predictive, and stop with compact artifacts only.
 
 ## Forbidden
 

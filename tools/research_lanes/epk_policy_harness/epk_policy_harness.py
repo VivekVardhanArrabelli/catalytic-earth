@@ -126,6 +126,25 @@ ADP_PRODUCT_REPAIR_TRIPWIRE_CONTRACT_TRUE_FLAGS = (
     "future_policy_activation_requires_fresh_preregistered_policy",
 )
 
+ADP_PRODUCT_QUERY_CONTEXT_TRIPWIRE_CONTRACT_TRUE_FLAGS = (
+    "candidate_ids_frozen_before_local_feature_review",
+    "source_free_local_features_computed_before_source_validation",
+    "source_validation_review_only",
+    "source_queries_review_only",
+    "query_text_not_matching_feature",
+    "coordinate_ligand_code_required",
+    "adp_query_contexts_review_only",
+    "adp_product_state_rows_review_only",
+    "local_geometry_like_fields_cannot_override_review_only_context",
+    "candidate_specific_source_repairs_forbidden_as_predictive_features",
+    "future_policy_activation_requires_fresh_preregistered_policy",
+)
+
+ADP_PRODUCT_QUERY_CONTEXT_REQUIRED_CONTEXTS = {
+    "ADP",
+    "PRODUCT_STATE",
+}
+
 ADP_PRODUCT_REPAIR_TRIPWIRE_REQUIRED_CONTEXTS = {
     "ADP",
     "PRODUCT_STATE",
@@ -1135,6 +1154,229 @@ def validate_tranche(tranche: dict[str, Any], policy: dict[str, Any] | None = No
                 f"does not match rows: {expected_geometry_like_count_value} != "
                 f"{geometry_like_row_count}"
             )
+    adp_query_contract = metadata.get("adp_product_query_context_tripwire_contract")
+    if adp_query_contract:
+        if not isinstance(adp_query_contract, dict):
+            raise ValueError(
+                "tranche metadata.adp_product_query_context_tripwire_contract "
+                "must be an object"
+            )
+        for flag in ADP_PRODUCT_QUERY_CONTEXT_TRIPWIRE_CONTRACT_TRUE_FLAGS:
+            if adp_query_contract.get(flag) is not True:
+                raise ValueError(
+                    "ADP/product query-context tripwire contract requires "
+                    f"{flag}=true"
+                )
+        if adp_query_contract.get("future_policy_activation_allowed") is not False:
+            raise ValueError(
+                "ADP/product query-context tripwire contract requires "
+                "future_policy_activation_allowed=false"
+            )
+
+        declared_contexts = upper_string_set(
+            adp_query_contract.get("review_only_contexts"),
+            field_name=(
+                "metadata.adp_product_query_context_tripwire_contract."
+                "review_only_contexts"
+            ),
+        )
+        missing_contexts = sorted(
+            ADP_PRODUCT_QUERY_CONTEXT_REQUIRED_CONTEXTS - declared_contexts
+        )
+        if missing_contexts:
+            raise ValueError(
+                "ADP/product query-context tripwire contract is missing "
+                f"review-only contexts: {missing_contexts}"
+            )
+        unsupported_contexts = sorted(
+            declared_contexts - ADP_PRODUCT_QUERY_CONTEXT_REQUIRED_CONTEXTS
+        )
+        if unsupported_contexts:
+            raise ValueError(
+                "ADP/product query-context tripwire contract has unsupported "
+                f"contexts: {unsupported_contexts}"
+            )
+
+        if policy is not None:
+            policy_review_only_contexts = {
+                str(context).upper()
+                for context in policy.get("review_only_ligand_contexts", [])
+            }
+            undeclared_policy_contexts = sorted(
+                ADP_PRODUCT_QUERY_CONTEXT_REQUIRED_CONTEXTS
+                - policy_review_only_contexts
+            )
+            if undeclared_policy_contexts:
+                raise ValueError(
+                    "ADP/product query-context tripwire contexts must be "
+                    "review-only in the frozen policy: "
+                    f"{undeclared_policy_contexts}"
+                )
+
+        source_contexts = metadata.get("source_surface_query_contexts_review_only")
+        if not isinstance(source_contexts, list) or not source_contexts:
+            raise ValueError(
+                "ADP/product query-context tripwire contract requires "
+                "metadata.source_surface_query_contexts_review_only"
+            )
+        for index, context in enumerate(source_contexts):
+            if not isinstance(context, dict):
+                raise ValueError(
+                    "ADP/product query-context tripwire contract requires "
+                    "object source contexts"
+                )
+            if context.get("review_only") is not True:
+                raise ValueError(
+                    "ADP/product query-context tripwire contract requires "
+                    f"context {index} review_only=true"
+                )
+            if not str(context.get("query") or "").strip():
+                raise ValueError(
+                    "ADP/product query-context tripwire contract requires "
+                    "non-empty query text"
+                )
+            synonyms = upper_string_set(
+                context.get("query_ligand_synonyms_review_only", []),
+                field_name=(
+                    "metadata.source_surface_query_contexts_review_only"
+                    f"[{index}].query_ligand_synonyms_review_only"
+                ),
+            )
+            if "ADP" not in synonyms:
+                raise ValueError(
+                    "ADP/product query-context tripwire contract requires "
+                    "ADP to remain a review-only query synonym"
+                )
+
+        geometry_like_row_count = 0
+        row_contexts_seen: set[str] = set()
+        for row in rows:
+            row_id = row.get("row_id") or row.get("pdb_id")
+            row_contexts = tripwire_contexts_for_row(row)
+            required_missing = sorted(
+                ADP_PRODUCT_QUERY_CONTEXT_REQUIRED_CONTEXTS - row_contexts
+            )
+            if required_missing:
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: missing row contexts "
+                    f"{required_missing}"
+                )
+            declared_row_contexts = row.get("tripwire_review_only_contexts")
+            if declared_row_contexts is None:
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: tripwire_review_only_contexts is required"
+                )
+            declared_row_context_set = upper_string_set(
+                declared_row_contexts,
+                field_name=f"row {row_id}.tripwire_review_only_contexts",
+            )
+            if declared_row_context_set != row_contexts:
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: declared tripwire contexts must match row "
+                    f"review-only fields {sorted(row_contexts)}"
+                )
+            unsupported_row_contexts = sorted(row_contexts - declared_contexts)
+            if unsupported_row_contexts:
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: row contexts must be declared in metadata "
+                    f"{unsupported_row_contexts}"
+                )
+            row_contexts_seen.update(row_contexts)
+
+            if str(row.get("ligand_code_from_structure") or "").upper() != "ADP":
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: ligand_code_from_structure must be ADP"
+                )
+            if row.get("candidate_specific_source_repair") is True:
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: candidate-specific repair rows are not "
+                    "admitted in this fresh query-context contract"
+                )
+            if row.get("clean_held_out_performance_evidence") is True:
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: fresh review rows cannot claim clean "
+                    "held-out performance evidence"
+                )
+            for flag in REQUIRED_POLICY_FALSE_FLAGS:
+                if row.get(flag) is True:
+                    raise ValueError(
+                        f"row {row_id} violates ADP/product query-context "
+                        f"tripwire contract: {flag}"
+                    )
+            for flag in TRIPWIRE_ROW_FALSE_FLAGS:
+                if bool_feature(row, flag):
+                    raise ValueError(
+                        f"row {row_id} violates ADP/product query-context "
+                        f"tripwire contract: {flag}"
+                    )
+            if str(row.get("source_validation_phase") or "") != (
+                "after_source_free_local_feature_review"
+            ):
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: source_validation_phase must be "
+                    "after_source_free_local_feature_review"
+                )
+            expected = str(row.get("expected_frozen_policy_decision") or "")
+            if not expected.startswith("review_only_abstain"):
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: rows must expect review-only abstention"
+                )
+            if row.get("tripwire_predictive_status") not in (
+                None,
+                "review_only_blocked",
+            ):
+                raise ValueError(
+                    f"row {row_id} violates ADP/product query-context "
+                    "tripwire contract: tripwire_predictive_status must be "
+                    "review_only_blocked"
+                )
+            if row.get("local_geometry_like_fields_present") is True or any(
+                bool_feature(row, feature)
+                for feature in (
+                    "terminal_gamma_equivalent_geometry",
+                    "local_metal_context",
+                    "catalytic_site_locality",
+                    "source_free_acceptor_role_features",
+                    "same_structure_co_materialization",
+                )
+            ):
+                geometry_like_row_count += 1
+
+        missing_row_contexts = sorted(
+            ADP_PRODUCT_QUERY_CONTEXT_REQUIRED_CONTEXTS - row_contexts_seen
+        )
+        if missing_row_contexts:
+            raise ValueError(
+                "ADP/product query-context tripwire contract requires at least "
+                f"one row for each required context: {missing_row_contexts}"
+            )
+        expected_geometry_like_count = adp_query_contract.get(
+            "geometry_like_tripwire_row_count"
+        )
+        if expected_geometry_like_count is not None:
+            try:
+                expected_geometry_like_count_value = int(expected_geometry_like_count)
+            except (TypeError, ValueError) as error:
+                raise ValueError(
+                    "ADP/product query-context tripwire contract requires numeric "
+                    "geometry_like_tripwire_row_count"
+                ) from error
+            if expected_geometry_like_count_value != geometry_like_row_count:
+                raise ValueError(
+                    "ADP/product query-context tripwire contract geometry-like "
+                    "row count does not match rows: "
+                    f"{expected_geometry_like_count_value} != "
+                    f"{geometry_like_row_count}"
+                )
     phase_contract = metadata.get("source_validation_phase_contract")
     if phase_contract:
         if not isinstance(phase_contract, dict):
@@ -1339,6 +1581,9 @@ def evaluate_tranche(policy: dict[str, Any], tranche: dict[str, Any]) -> dict[st
             ),
             "adp_product_repair_tripwire_contract_enforced": bool(
                 tranche_metadata.get("adp_product_repair_tripwire_contract")
+            ),
+            "adp_product_query_context_tripwire_contract_enforced": bool(
+                tranche_metadata.get("adp_product_query_context_tripwire_contract")
             ),
             "search_surface_exhausted": bool(
                 tranche_metadata.get("search_surface_exhausted", False)
@@ -1797,6 +2042,110 @@ def self_test() -> None:
     assert tripwire_result["metadata"]["decision_counts"] == {
         "review_only_abstain": 3
     }
+    adp_query_row = dict(
+        passing_row,
+        row_id="fresh_adp_product_query_context",
+        row_role="fresh_adp_product_query_context_tripwire_review_only",
+        ligand_code_from_structure="ADP",
+        ligand_context="ADP",
+        product_state_context=True,
+        clean_held_out_performance_evidence=False,
+        development_or_regression_context=False,
+        tripwire_review_only_contexts=["ADP", "PRODUCT_STATE"],
+        tripwire_predictive_status="review_only_blocked",
+        local_geometry_like_fields_present=True,
+        terminal_gamma_equivalent_geometry=False,
+        terminal_gamma_atom_name=None,
+        nearest_gamma_acceptor_distance_angstrom=None,
+        local_metal_context=True,
+        catalytic_site_locality=True,
+        source_free_acceptor_role_features=False,
+        source_free_acceptor_role_policy_id=None,
+        same_structure_co_materialization=False,
+        source_validation_phase="after_source_free_local_feature_review",
+        source_validation_status="not_used_for_prediction_review_only_unresolved",
+        source_query_used_for_predictive_feature=False,
+        expected_frozen_policy_decision=(
+            "review_only_abstain_adp_product_query_context_tripwire"
+        ),
+    )
+    adp_query_tranche = {
+        "metadata": {
+            "review_only": True,
+            "row_count": 1,
+            "source_surface_query_contexts_review_only": [
+                {
+                    "artifact": "artifacts/adp_product_query_context_self_test.json",
+                    "query": "full_text protein kinase substrate ADP magnesium",
+                    "query_mode": "full_text",
+                    "query_ligand_synonyms_review_only": ["ADP"],
+                    "coordinate_ligand_codes_observed": ["ADP"],
+                    "review_only": True,
+                }
+            ],
+            "query_context_review_only_contract": {
+                "source_queries_review_only": True,
+                "query_text_not_matching_feature": True,
+                "coordinate_ligand_code_required": True,
+            },
+            "source_validation_phase_contract": {
+                "candidate_ids_frozen_before_local_feature_review": True,
+                "source_free_local_features_computed_before_source_validation": True,
+                "source_validation_applied_after_local_features": True,
+                "source_validation_review_only": True,
+            },
+            "adp_product_query_context_tripwire_contract": {
+                "candidate_ids_frozen_before_local_feature_review": True,
+                "source_free_local_features_computed_before_source_validation": True,
+                "source_validation_review_only": True,
+                "source_queries_review_only": True,
+                "query_text_not_matching_feature": True,
+                "coordinate_ligand_code_required": True,
+                "adp_query_contexts_review_only": True,
+                "adp_product_state_rows_review_only": True,
+                "local_geometry_like_fields_cannot_override_review_only_context": True,
+                "candidate_specific_source_repairs_forbidden_as_predictive_features": True,
+                "future_policy_activation_requires_fresh_preregistered_policy": True,
+                "future_policy_activation_allowed": False,
+                "geometry_like_tripwire_row_count": 1,
+                "review_only_contexts": ["ADP", "PRODUCT_STATE"],
+            },
+        },
+        "rows": [adp_query_row],
+    }
+    adp_query_result = evaluate_tranche(policy, adp_query_tranche)
+    assert (
+        adp_query_result["metadata"][
+            "adp_product_query_context_tripwire_contract_enforced"
+        ]
+        is True
+    )
+    assert adp_query_result["metadata"]["decision_counts"] == {
+        "review_only_abstain": 1
+    }
+    bad_adp_query_source_leak = json.loads(json.dumps(adp_query_tranche))
+    bad_adp_query_source_leak["rows"][0][
+        "source_query_used_for_predictive_feature"
+    ] = True
+    try:
+        evaluate_tranche(policy, bad_adp_query_source_leak)
+    except ValueError as error:
+        assert (
+            "ADP/product query-context tripwire contract" in str(error)
+            or "query context review-only contract" in str(error)
+        )
+    else:
+        raise AssertionError("ADP query text cannot become predictive")
+    bad_adp_query_activation = json.loads(json.dumps(adp_query_tranche))
+    bad_adp_query_activation["metadata"][
+        "adp_product_query_context_tripwire_contract"
+    ]["future_policy_activation_allowed"] = True
+    try:
+        evaluate_tranche(policy, bad_adp_query_activation)
+    except ValueError as error:
+        assert "future_policy_activation_allowed=false" in str(error)
+    else:
+        raise AssertionError("ADP query-context activation must stay closed")
     bad_tripwire_repair_leak = json.loads(json.dumps(tripwire_tranche))
     bad_tripwire_repair_leak["rows"][2][
         "candidate_specific_source_repair_used_for_predictive_feature"

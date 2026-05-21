@@ -1,0 +1,268 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "adp_materialized_candidate_count": 8,
+    "adp_product_local_geometry_like_candidate_count": 8,
+    "artifact_id": "epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z",
+    "candidate_distance_cutoff_angstrom": 6.0,
+    "candidate_id_selection": "query_page_ids_not_seen_in_lane_artifacts_before_this_surface",
+    "candidate_ids_frozen_before_local_feature_review": true,
+    "candidate_ids_not_seen_in_lane_artifacts_before_this_surface": [
+      "9VCT",
+      "9VCU",
+      "21WA",
+      "21WC",
+      "9R8W",
+      "9RHI",
+      "9RHJ",
+      "9RHL"
+    ],
+    "candidate_ids_reviewed": [
+      "9VCT",
+      "9VCU",
+      "21WA",
+      "21WC",
+      "9R8W",
+      "9RHI",
+      "9RHJ",
+      "9RHL"
+    ],
+    "candidate_ids_seen_in_existing_lane_artifacts": [
+      "11TA",
+      "21VV",
+      "22IB",
+      "22VT",
+      "28VY",
+      "9K4J",
+      "9K4K",
+      "9K4L",
+      "9K4M",
+      "9K4O",
+      "9K4P",
+      "9K4R",
+      "9K4S",
+      "9K4T",
+      "9K4U",
+      "9K4V",
+      "9K4W",
+      "9K4X",
+      "9K4Y",
+      "9K4Z",
+      "9K50",
+      "9K51",
+      "9K53",
+      "9K54",
+      "9K55",
+      "9K56",
+      "9K57",
+      "9K58",
+      "9K59",
+      "9K5A",
+      "9K5B",
+      "9K5C",
+      "9K5D",
+      "9K5E",
+      "9NYP",
+      "9UQ0",
+      "9UXC",
+      "9VLN",
+      "9VLW"
+    ],
+    "created_at": "2026-05-21T00:38:46Z",
+    "existing_artifact_scan_scope": "lane_artifacts_and_lane_work_only",
+    "fetch_failure_count": 0,
+    "fresh_candidate_count_reviewed": 8,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "local_metal_context_review_cutoff_angstrom": 4.5,
+    "production_claim_allowed": false,
+    "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ADP sorted by rcsb_accession_info.initial_release_date desc",
+    "query_mode": "chemcomp",
+    "query_rows_requested": 80,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "search_surface_scope": "first 8 selected ids from a bounded ADP chemcomp query-context surface; this does not exhaust all possible RCSB ADP product-state structures",
+    "source": "live_rcsb_chemcomp_query_and_coordinate_api_bounded_scan",
+    "source_free_local_features_computed_before_source_validation": true,
+    "source_surface_query_contexts_review_only": [
+      {
+        "artifact": "artifacts/research_lanes/epk_policy_harness/epk_fresh_rcsb_chemcomp_adp_product_query_context_tripwire_surface_20260521T003846Z.json",
+        "candidate_id_count_reviewed": 8,
+        "coordinate_ligand_codes_observed": [
+          "ADP"
+        ],
+        "materialized_adp_count": 8,
+        "query": "chemcomp rcsb_chem_comp_container_identifiers.comp_id exact_match ADP sorted by rcsb_accession_info.initial_release_date desc",
+        "query_ligand_synonyms_review_only": [
+          "ADP"
+        ],
+        "query_mode": "chemcomp",
+        "review_only": true
+      }
+    ],
+    "source_validation_applied_after_local_features": true,
+    "source_validation_review_only": true
+  },
+  "rows": [
+    {
+      "adp_atom_count": 27,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 4856,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": false,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG1",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 3.878,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "THR",
+      "nearest_adp_product_phosphate_metal_code": "MG",
+      "nearest_adp_product_phosphate_metal_distance_angstrom": 5.314,
+      "pdb_id": "9VCT",
+      "raw_coordinate_dump_written": false
+    },
+    {
+      "adp_atom_count": 27,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 9897,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": false,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG1",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 3.699,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "THR",
+      "nearest_adp_product_phosphate_metal_code": null,
+      "nearest_adp_product_phosphate_metal_distance_angstrom": null,
+      "pdb_id": "9VCU",
+      "raw_coordinate_dump_written": false
+    },
+    {
+      "adp_atom_count": 27,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 16701,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": false,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG1",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 5.057,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "THR",
+      "nearest_adp_product_phosphate_metal_code": "MG",
+      "nearest_adp_product_phosphate_metal_distance_angstrom": 5.801,
+      "pdb_id": "21WA",
+      "raw_coordinate_dump_written": false
+    },
+    {
+      "adp_atom_count": 27,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 16838,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": false,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG1",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 6.957,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "THR",
+      "nearest_adp_product_phosphate_metal_code": "MG",
+      "nearest_adp_product_phosphate_metal_distance_angstrom": 5.549,
+      "pdb_id": "21WC",
+      "raw_coordinate_dump_written": false
+    },
+    {
+      "adp_atom_count": 108,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 33382,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": false,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 4.082,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "SER",
+      "nearest_adp_product_phosphate_metal_code": null,
+      "nearest_adp_product_phosphate_metal_distance_angstrom": null,
+      "pdb_id": "9R8W",
+      "raw_coordinate_dump_written": false
+    },
+    {
+      "adp_atom_count": 27,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 45961,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": true,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 4.557,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "SER",
+      "nearest_adp_product_phosphate_metal_code": "MG",
+      "nearest_adp_product_phosphate_metal_distance_angstrom": 2.896,
+      "pdb_id": "9RHI",
+      "raw_coordinate_dump_written": false
+    },
+    {
+      "adp_atom_count": 54,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 91686,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": true,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 4.953,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "SER",
+      "nearest_adp_product_phosphate_metal_code": "MG",
+      "nearest_adp_product_phosphate_metal_distance_angstrom": 2.906,
+      "pdb_id": "9RHJ",
+      "raw_coordinate_dump_written": false
+    },
+    {
+      "adp_atom_count": 108,
+      "adp_coordinate_materialized": true,
+      "adp_product_phosphate_atom_detected": true,
+      "adp_product_phosphate_atom_names_observed": [
+        "PB"
+      ],
+      "atom_site_row_count": 64409,
+      "fetch_status": "fetched",
+      "local_geometry_like_fields_present_review_only": true,
+      "local_metal_context_review_only": true,
+      "nearest_adp_product_phosphate_acceptor_atom_name": "OG",
+      "nearest_adp_product_phosphate_acceptor_distance_angstrom": 4.382,
+      "nearest_adp_product_phosphate_acceptor_relation": "same_auth_chain",
+      "nearest_adp_product_phosphate_acceptor_residue_code": "SER",
+      "nearest_adp_product_phosphate_metal_code": "MG",
+      "nearest_adp_product_phosphate_metal_distance_angstrom": 3.062,
+      "pdb_id": "9RHL",
+      "raw_coordinate_dump_written": false
+    }
+  ]
+}
