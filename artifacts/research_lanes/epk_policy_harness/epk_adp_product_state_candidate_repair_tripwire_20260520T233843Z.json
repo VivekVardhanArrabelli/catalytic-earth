@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "artifact_id": "epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z",
+    "candidate_contexts_frozen_before_tripwire_evaluation": true,
+    "created_at": "2026-05-20T23:38:43Z",
+    "epk_score_computed": false,
+    "geometry_like_tripwire_row_count": 7,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "policy_version": "epk_review_only_policy_harness_v0_20260520",
+    "production_claim_allowed": false,
+    "query_id": "epk_adp_product_state_and_candidate_repair_tripwire_contract_v1_review_only",
+    "raw_coordinate_dump_written": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_contexts": [
+      "ADP",
+      "PRODUCT_STATE",
+      "SUBSTRATE_ACCEPTOR_ANALOG",
+      "SPLIT_STATE",
+      "CANDIDATE_SPECIFIC_SOURCE_REPAIR"
+    ],
+    "source_artifacts": [
+      "artifacts/research_lanes/epk_policy_harness/epk_policy_v0_20260520.json",
+      "artifacts/research_lanes/epk_policy_harness/epk_policy_diagnostic_tranche_20260520.json",
+      "artifacts/v3_epk_adp_product_query_candidate_scout_1025.json",
+      "artifacts/v3_epk_adp_product_query_candidate_scout_round2_1025.json",
+      "artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json",
+      "artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json"
+    ],
+    "source_surface_query_contexts_review_only": [
+      {
+        "artifact": "artifacts/v3_epk_adp_product_query_candidate_scout_1025.json",
+        "coordinate_ligand_codes_observed": [
+          "ADP"
+        ],
+        "query": "RCSB full_text protein kinase substrate ADP magnesium first50 2026-05-20",
+        "query_ligand_synonyms_review_only": [
+          "ADP"
+        ],
+        "query_mode": "full_text",
+        "review_only": true
+      },
+      {
+        "artifact": "artifacts/v3_epk_adp_product_query_candidate_scout_round2_1025.json",
+        "coordinate_ligand_codes_observed": [
+          "ADP"
+        ],
+        "query": "RCSB full_text protein kinase substrate ADP magnesium rows50-99 2026-05-20",
+        "query_ligand_synonyms_review_only": [
+          "ADP"
+        ],
+        "query_mode": "full_text",
+        "review_only": true
+      }
+    ],
+    "threshold_calibrated": false
+  },
+  "rows": [
+    {
+      "entry_id": null,
+      "local_geometry_like_fields_present": false,
+      "pdb_id": "13PK",
+      "post_score_review_status": "no_heteromeric_candidate_hit_review_only",
+      "raw_coordinate_dump_written": false,
+      "row_id": "pdb:13PK:adp_product_query_tripwire",
+      "source_artifact": "artifacts/v3_epk_adp_product_query_candidate_scout_1025.json",
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "tripwire_review_only_contexts": [
+        "ADP",
+        "PRODUCT_STATE"
+      ]
+    },
+    {
+      "entry_id": null,
+      "local_geometry_like_fields_present": false,
+      "pdb_id": "1H74",
+      "post_score_review_status": "no_heteromeric_candidate_hit_review_only",
+      "raw_coordinate_dump_written": false,
+      "row_id": "pdb:1H74:adp_product_query_tripwire",
+      "source_artifact": "artifacts/v3_epk_adp_product_query_candidate_scout_round2_1025.json",
+      "source_validation_status": "not_applicable_no_candidate_hit",
+      "tripwire_review_only_contexts": [
+        "ADP",
+        "PRODUCT_STATE"
+      ]
+    },
+    {
+      "entry_id": null,
+      "local_geometry_like_fields_present": true,
+      "pdb_id": "1TH8",
+      "post_score_review_status": "adp_product_state_prior_diagnostic_blocker",
+      "raw_coordinate_dump_written": false,
+      "row_id": "pdb:1TH8:adp_product_geometry_tripwire",
+      "source_artifact": "artifacts/research_lanes/epk_policy_harness/epk_policy_diagnostic_tranche_20260520.json",
+      "source_validation_status": null,
+      "tripwire_review_only_contexts": [
+        "ADP",
+        "PRODUCT_STATE"
+      ]
+    },
+    {
+      "entry_id": null,
+      "local_geometry_like_fields_present": true,
+      "pdb_id": "3TM0",
+      "post_score_review_status": "policy_positive_ligand_analog_hit_review_only",
+      "raw_coordinate_dump_written": false,
+      "row_id": "pdb:3TM0:substrate_acceptor_analog_tripwire",
+      "source_artifact": "artifacts/v3_epk_analog_product_state_policy_control_reaudit_1025.json",
+      "source_validation_status": null,
+      "tripwire_review_only_contexts": [
+        "SUBSTRATE_ACCEPTOR_ANALOG"
+      ]
+    },
+    {
+      "entry_id": "m_csa:756",
+      "local_geometry_like_fields_present": false,
+      "pdb_id": null,
+      "post_score_review_status": "terminal_no_conservative_active_state_context_review_only",
+      "raw_coordinate_dump_written": false,
+      "row_id": "m_csa:756:candidate_specific_source_repair_tripwire",
+      "source_artifact": "artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json",
+      "source_validation_status": "blocked_review_only_no_active_state_atp_metal_context",
+      "tripwire_review_only_contexts": [
+        "CANDIDATE_SPECIFIC_SOURCE_REPAIR"
+      ]
+    },
+    {
+      "entry_id": "m_csa:757",
+      "local_geometry_like_fields_present": true,
+      "pdb_id": null,
+      "post_score_review_status": "terminal_active_state_without_mapped_acceptor_review_only",
+      "raw_coordinate_dump_written": false,
+      "row_id": "m_csa:757:candidate_specific_source_repair_tripwire",
+      "source_artifact": "artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json",
+      "source_validation_status": "blocked_review_only_active_state_without_mapped_substrate_acceptor",
+      "tripwire_review_only_contexts": [
+        "CANDIDATE_SPECIFIC_SOURCE_REPAIR"
+      ]
+    },
+    {
+      "entry_id": "m_csa:760",
+      "local_geometry_like_fields_present": true,
+      "pdb_id": null,
+      "post_score_review_status": "terminal_split_state_blocked_review_only",
+      "raw_coordinate_dump_written": false,
+      "row_id": "m_csa:760:candidate_specific_source_repair_tripwire",
+      "source_artifact": "artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json",
+      "source_validation_status": "blocked_review_only_split_atp_and_substrate_context",
+      "tripwire_review_only_contexts": [
+        "CANDIDATE_SPECIFIC_SOURCE_REPAIR",
+        "SPLIT_STATE"
+      ]
+    },
+    {
+      "entry_id": null,
+      "local_geometry_like_fields_present": true,
+      "pdb_id": "13PK",
+      "post_score_review_status": "counterfactual_local_features_review_only_tripwire",
+      "raw_coordinate_dump_written": false,
+      "row_id": "pdb:13PK:adp_product_all_local_features_tripwire",
+      "source_artifact": "artifacts/v3_epk_adp_product_query_candidate_scout_1025.json",
+      "source_validation_status": null,
+      "tripwire_review_only_contexts": [
+        "ADP",
+        "PRODUCT_STATE"
+      ]
+    },
+    {
+      "entry_id": "m_csa:757",
+      "local_geometry_like_fields_present": true,
+      "pdb_id": null,
+      "post_score_review_status": "counterfactual_local_features_review_only_tripwire",
+      "raw_coordinate_dump_written": false,
+      "row_id": "m_csa:757:candidate_repair_all_local_features_tripwire",
+      "source_artifact": "artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json",
+      "source_validation_status": null,
+      "tripwire_review_only_contexts": [
+        "CANDIDATE_SPECIFIC_SOURCE_REPAIR"
+      ]
+    },
+    {
+      "entry_id": "m_csa:760",
+      "local_geometry_like_fields_present": true,
+      "pdb_id": null,
+      "post_score_review_status": "counterfactual_local_features_review_only_tripwire",
+      "raw_coordinate_dump_written": false,
+      "row_id": "m_csa:760:candidate_repair_all_local_features_tripwire",
+      "source_artifact": "artifacts/v3_epk_protein_substrate_source_repair_terminal_decision_1025.json",
+      "source_validation_status": null,
+      "tripwire_review_only_contexts": [
+        "CANDIDATE_SPECIFIC_SOURCE_REPAIR",
+        "SPLIT_STATE"
+      ]
+    }
+  ]
+}
