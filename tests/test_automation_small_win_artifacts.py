@@ -1559,6 +1559,220 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "ghmp_tranche_is_review_only_and_not_production_ready",
         )
 
+    def test_ndk_family_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_ndk_family_readiness_packet_20260520.json"
+        )
+        index = _load_json(
+            ARTIFACTS / "v3_atp_family_readiness_index_post_ndk_packet_20260520.json"
+        )
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            readiness["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(readiness["boundary_row_count"], 1)
+        self.assertEqual(readiness["positive_like_boundary_row_count"], 0)
+        self.assertEqual(readiness["homolog_counteraxis_row_count"], 4)
+        self.assertEqual(readiness["countable_positive_seed_count"], 0)
+        self.assertEqual(readiness["source_free_axis_ready_count"], 0)
+        rows = {row["entry_id"]: row for row in readiness["boundary_rows"]}
+        self.assertEqual(set(rows), {"m_csa:637"})
+        self.assertEqual(rows["m_csa:637"]["top1_score"], 0.4066)
+        homologs = {
+            row["pdb_id"]: row
+            for row in readiness["homolog_counteraxis_rows"]
+        }
+        self.assertEqual(set(homologs), {"1WKL", "3Q86", "9OAN", "9PFY"})
+        self.assertEqual(
+            homologs["3Q86"]["nearest_gamma_to_mapped_histidine_distance_angstrom"],
+            2.899,
+        )
+        self.assertIn(
+            "histidine_vs_hydroxyl_axis_confusion",
+            {mode["id"] for mode in packet["likely_failure_modes"]},
+        )
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+        self.assertFalse(packet["next_experiment"]["decision_to_start_now"])
+        self.assertFalse(packet["safety_summary"]["registry_or_fingerprint_edit_performed"])
+
+        self.assertTrue(index["metadata"]["review_only"])
+        self.assertEqual(index["metadata"]["closed_review_only_no_go_count"], 6)
+        self.assertEqual(index["metadata"]["packet_ready_not_frozen_count"], 1)
+        self.assertEqual(index["metadata"]["packet_not_started_count"], 1)
+        index_rows = {row["family_id"]: row for row in index["rows"]}
+        self.assertEqual(
+            index_rows["ndk"]["production_readiness_status"],
+            "readiness_packet_no_go",
+        )
+        self.assertEqual(
+            index_rows["ndk"]["readiness_artifact"],
+            "artifacts/v3_ndk_family_readiness_packet_20260520.json",
+        )
+        self.assertEqual(index["recommended_next_main_loop_items"][0]["family_id"], "ndk")
+        self.assertEqual(
+            index["synthesis_conclusion"]["overall"],
+            "ndk_packet_is_review_only_and_not_production_ready",
+        )
+
+    def test_ndk_control_tranche_closes_review_only(self) -> None:
+        prereg = _load_json(
+            ARTIFACTS
+            / "v3_ndk_vs_neighbor_family_control_tranche_preregistration_20260520.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json"
+        )
+        comparison = _load_json(
+            ARTIFACTS
+            / "v3_ndk_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json"
+        )
+        index = _load_json(
+            ARTIFACTS / "v3_atp_family_readiness_index_post_ndk_tranche_20260520.json"
+        )
+
+        self.assertTrue(prereg["metadata"]["review_only"])
+        self.assertTrue(prereg["metadata"]["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(prereg["metadata"]["frozen_row_count"], 14)
+        self.assertEqual(prereg["metadata"]["ndk_homolog_countercontrol_count"], 4)
+        self.assertFalse(prereg["metadata"]["ready_for_label_import"])
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["terminal_decision_counts"], {
+            "terminal_rejection": 1,
+            "mechanism_match": 2,
+            "out_of_scope": 11,
+        })
+        self.assertEqual(metadata["source_free_ndk_axis_ready_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in decisions["rows"]}
+        self.assertEqual(rows["m_csa:637"]["terminal_decision"], "terminal_rejection")
+        self.assertEqual(rows["1WKL"]["terminal_decision"], "out_of_scope")
+        self.assertTrue(
+            rows["3Q86"]["source_free_ndk_axis"][
+                "mapped_catalytic_histidine_context"
+            ]
+        )
+        self.assertFalse(
+            any(
+                row["source_free_ndk_axis"]["axis_ready_for_threshold_calibration"]
+                for row in decisions["rows"]
+            )
+        )
+
+        self.assertTrue(comparison["metadata"]["review_only"])
+        self.assertFalse(comparison["metadata"]["superiority_claim_permitted"])
+        self.assertFalse(comparison["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(
+            comparison["metrics"]["review_only_terminal_axis_decisions"][
+                "terminal_decision_counts"
+            ],
+            {"terminal_rejection": 1, "mechanism_match": 2, "out_of_scope": 11},
+        )
+        self.assertEqual(
+            comparison["metrics"]["homolog_histidine_axis_counterdiagnostic"][
+                "gamma_to_mapped_histidine_distance_min_angstrom"
+            ],
+            2.899,
+        )
+
+        self.assertTrue(index["metadata"]["review_only"])
+        self.assertEqual(index["metadata"]["closed_review_only_no_go_count"], 7)
+        self.assertEqual(index["metadata"]["packet_ready_not_frozen_count"], 0)
+        index_rows = {row["family_id"]: row for row in index["rows"]}
+        self.assertEqual(
+            index_rows["ndk"]["production_readiness_status"],
+            "closed_review_only_no_go",
+        )
+        self.assertEqual(index["recommended_next_main_loop_items"][0]["family_id"], "pfka")
+        self.assertEqual(
+            index["synthesis_conclusion"]["overall"],
+            "ndk_tranche_is_review_only_and_not_production_ready",
+        )
+
+    def test_pfka_family_readiness_packet_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_pfka_family_readiness_packet_20260520.json"
+        )
+        index = _load_json(
+            ARTIFACTS / "v3_atp_family_readiness_index_post_pfka_packet_20260520.json"
+        )
+        metadata = packet["metadata"]
+        readiness = packet["family_readiness"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            readiness["current_decision"],
+            "do_not_promote_production_fingerprint",
+        )
+        self.assertEqual(readiness["boundary_row_count"], 1)
+        self.assertEqual(readiness["positive_like_boundary_row_count"], 0)
+        self.assertEqual(readiness["measured_homolog_counteraxis_row_count"], 5)
+        self.assertEqual(readiness["blocked_homolog_mapping_row_count"], 5)
+        self.assertEqual(readiness["source_free_axis_ready_count"], 0)
+        rows = {row["entry_id"]: row for row in readiness["boundary_rows"]}
+        self.assertEqual(set(rows), {"m_csa:365"})
+        self.assertEqual(rows["m_csa:365"]["top1_score"], 0.3999)
+        homologs = {
+            row["pdb_id"]: row
+            for row in readiness["measured_homolog_counteraxis_rows"]
+        }
+        self.assertEqual(set(homologs), {"3F5M", "4XYJ", "5XZ8", "8W2H", "8W2J"})
+        self.assertEqual(
+            homologs["4XYJ"]["nearest_gamma_to_same_chain_hydroxyl_distance_angstrom"],
+            3.221,
+        )
+        self.assertIn(
+            "pfka_pfkb_sugar_kinase_confusion",
+            {mode["id"] for mode in packet["likely_failure_modes"]},
+        )
+        self.assertTrue(packet["next_experiment"]["selection_freeze_required_before_scoring"])
+        self.assertFalse(packet["next_experiment"]["decision_to_start_now"])
+        self.assertFalse(packet["safety_summary"]["registry_or_fingerprint_edit_performed"])
+
+        self.assertTrue(index["metadata"]["review_only"])
+        self.assertEqual(index["metadata"]["closed_review_only_no_go_count"], 7)
+        self.assertEqual(index["metadata"]["packet_ready_not_frozen_count"], 1)
+        self.assertEqual(index["metadata"]["packet_not_started_count"], 0)
+        index_rows = {row["family_id"]: row for row in index["rows"]}
+        self.assertEqual(
+            index_rows["pfka"]["production_readiness_status"],
+            "readiness_packet_no_go",
+        )
+        self.assertEqual(
+            index_rows["pfka"]["readiness_artifact"],
+            "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+        )
+        self.assertEqual(index["recommended_next_main_loop_items"][0]["family_id"], "pfka")
+        self.assertEqual(
+            index["synthesis_conclusion"]["overall"],
+            "pfka_packet_is_review_only_and_not_production_ready",
+        )
+
     def test_main_loop_small_win_register_rolls_up_post_atp_readiness(self) -> None:
         register = _load_json(
             ARTIFACTS
@@ -1747,6 +1961,121 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(
             register["synthesis_conclusion"]["overall"],
             "visible_small_wins_and_ghmp_tranche_closed_without_production_mutation",
+        )
+        self.assertFalse(register["synthesis_conclusion"]["superiority_claim_permitted"])
+
+    def test_main_loop_register_rolls_up_ndk_packet(self) -> None:
+        register = _load_json(
+            ARTIFACTS
+            / "v3_main_loop_small_win_register_post_ndk_packet_20260520.json"
+        )
+        metadata = register["metadata"]
+        rows = {row["item_id"]: row for row in register["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            rows["ndk_readiness_packet"]["decision_status"],
+            "readiness_packet_no_go",
+        )
+        self.assertEqual(
+            rows["ndk_readiness_packet"]["primary_artifact"],
+            "artifacts/v3_ndk_family_readiness_packet_20260520.json",
+        )
+        self.assertEqual(register["rollup"]["closed_review_only_no_go_family_count"], 6)
+        self.assertEqual(register["rollup"]["packet_ready_not_frozen_family_count"], 1)
+        self.assertTrue(register["rollup"]["ndk_packet_ready_not_frozen"])
+        self.assertEqual(
+            register["recommended_next_main_loop_items"][0]["item_id"],
+            "ndk_control_tranche",
+        )
+        self.assertEqual(
+            register["synthesis_conclusion"]["overall"],
+            "visible_small_wins_and_ndk_packet_closed_without_production_mutation",
+        )
+        self.assertFalse(register["synthesis_conclusion"]["superiority_claim_permitted"])
+
+    def test_main_loop_register_rolls_up_ndk_tranche(self) -> None:
+        register = _load_json(
+            ARTIFACTS
+            / "v3_main_loop_small_win_register_post_ndk_tranche_20260520.json"
+        )
+        metadata = register["metadata"]
+        rows = {row["item_id"]: row for row in register["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            rows["ndk_control_tranche"]["decision_status"],
+            "closed_review_only_no_go",
+        )
+        self.assertEqual(
+            rows["ndk_control_tranche"]["terminal_decision_counts"],
+            {"terminal_rejection": 1, "mechanism_match": 2, "out_of_scope": 11},
+        )
+        self.assertEqual(register["rollup"]["closed_review_only_no_go_family_count"], 7)
+        self.assertEqual(register["rollup"]["packet_ready_not_frozen_family_count"], 0)
+        self.assertTrue(register["rollup"]["ndk_control_tranche_closed"])
+        self.assertEqual(
+            register["recommended_next_main_loop_items"][0]["item_id"],
+            "pfka_readiness_packet",
+        )
+        self.assertEqual(
+            register["synthesis_conclusion"]["overall"],
+            "visible_small_wins_and_ndk_tranche_closed_without_production_mutation",
+        )
+        self.assertFalse(register["synthesis_conclusion"]["superiority_claim_permitted"])
+
+    def test_main_loop_register_rolls_up_pfka_packet(self) -> None:
+        register = _load_json(
+            ARTIFACTS
+            / "v3_main_loop_small_win_register_post_pfka_packet_20260520.json"
+        )
+        metadata = register["metadata"]
+        rows = {row["item_id"]: row for row in register["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            rows["pfka_readiness_packet"]["decision_status"],
+            "readiness_packet_no_go",
+        )
+        self.assertEqual(
+            rows["pfka_readiness_packet"]["primary_artifact"],
+            "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+        )
+        self.assertEqual(register["rollup"]["closed_review_only_no_go_family_count"], 7)
+        self.assertEqual(register["rollup"]["packet_ready_not_frozen_family_count"], 1)
+        self.assertEqual(register["rollup"]["packet_not_started_family_count"], 0)
+        self.assertTrue(register["rollup"]["pfka_packet_ready_not_frozen"])
+        self.assertEqual(
+            register["recommended_next_main_loop_items"][0]["item_id"],
+            "pfka_control_tranche",
+        )
+        self.assertEqual(
+            register["synthesis_conclusion"]["overall"],
+            "visible_small_wins_and_pfka_packet_closed_without_production_mutation",
         )
         self.assertFalse(register["synthesis_conclusion"]["superiority_claim_permitted"])
 

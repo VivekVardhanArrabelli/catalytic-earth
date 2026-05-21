@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "artifact_id": "v3_ndk_vs_neighbor_family_control_tranche_baseline_comparison_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:47:00Z",
+    "method": "ndk_vs_neighbor_family_control_tranche_no_claim_baseline_comparison",
+    "review_only": true,
+    "candidate_selection_before_outcome_scoring": true,
+    "frozen_row_count": 14,
+    "superiority_claim_permitted": false,
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_artifacts": {
+      "tranche_freeze": "artifacts/v3_ndk_vs_neighbor_family_control_tranche_preregistration_20260520.json",
+      "axis_decisions": "artifacts/v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "geometry_retrieval": "artifacts/v3_geometry_retrieval_1025.json",
+      "homolog_terminal_review": "artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json"
+    }
+  },
+  "task_definition": {
+    "task_id": "ndk_vs_neighbor_atp_family_review_only_tranche",
+    "positive_claim_allowed": false,
+    "candidate_selection_before_outcome_scoring": true,
+    "frozen_row_count": 14,
+    "metric_interpretation": "diagnostic no-claim comparison only; no production superiority or import claim is permitted"
+  },
+  "metrics": {
+    "review_only_terminal_axis_decisions": {
+      "row_count": 14,
+      "terminal_decision_counts": {
+        "terminal_rejection": 1,
+        "mechanism_match": 2,
+        "out_of_scope": 11
+      },
+      "source_free_ndk_axis_ready_count": 0,
+      "import_ready_candidate_count": 0
+    },
+    "current_8_fingerprint_geometry_retrieval": {
+      "row_count": 10,
+      "top1_fingerprint_counts": {
+        "metal_dependent_hydrolase": 10
+      },
+      "non_abstention_count_at_0_4115": 3,
+      "text_or_label_fields_used_for_score_count": 0,
+      "superiority_claim_supported": false,
+      "caveat": "Current geometry retrieval is diagnostic; it routes NDK and neighboring ATP-family rows through metal-dependent hydrolase collapse and cannot define an NDK fingerprint."
+    },
+    "homolog_histidine_axis_counterdiagnostic": {
+      "row_count": 4,
+      "gamma_to_mapped_histidine_distance_min_angstrom": 2.899,
+      "gamma_to_mapped_histidine_distance_max_angstrom": 3.339,
+      "same_chain_hydroxyl_distance_min_angstrom": 3.487,
+      "same_chain_hydroxyl_distance_max_angstrom": 5.24,
+      "source_free_ndk_axis_ready_count": 0,
+      "import_ready_candidate_count": 0,
+      "superiority_claim_supported": false,
+      "caveat": "Histidine-distance measurements falsify weak hydroxyl-only rules but are not calibrated NDK production evidence."
+    },
+    "ec_keyword_family_router": {
+      "ndk_boundary_rows_detected_by_family_context": 1,
+      "homolog_rows_detected_by_family_context": 4,
+      "neighbor_atp_family_overadmit_count": 7,
+      "detects_source_free_ndk_axis": false,
+      "supports_import_decision": false
+    },
+    "deterministic_kmer_proxy": {
+      "computed_in_this_artifact": false,
+      "reason": "current M-CSA and homolog review rows are not an external import surface; sequence neighbors cannot create a source-free NDK axis",
+      "superiority_claim_supported": false
+    }
+  },
+  "rows": [
+    {
+      "row_id": "m_csa:637",
+      "row_role": "ndk_boundary",
+      "terminal_decision": "terminal_rejection",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4066
+    },
+    {
+      "row_id": "m_csa:15",
+      "row_role": "current_production_hydrolase_control",
+      "terminal_decision": "mechanism_match",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5777
+    },
+    {
+      "row_id": "m_csa:16",
+      "row_role": "current_production_hydrolase_control",
+      "terminal_decision": "mechanism_match",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5929
+    },
+    {
+      "row_id": "m_csa:588",
+      "row_role": "dnk_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4073
+    },
+    {
+      "row_id": "m_csa:365",
+      "row_role": "pfka_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3999
+    },
+    {
+      "row_id": "m_csa:663",
+      "row_role": "pfkb_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2601
+    },
+    {
+      "row_id": "m_csa:654",
+      "row_role": "ghmp_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3581
+    },
+    {
+      "row_id": "m_csa:327",
+      "row_role": "ghkl_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2704
+    },
+    {
+      "row_id": "m_csa:310",
+      "row_role": "atp_grasp_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3649
+    },
+    {
+      "row_id": "m_csa:592",
+      "row_role": "askha_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5769
+    },
+    {
+      "row_id": "1WKL",
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": null,
+      "top1_score": null
+    },
+    {
+      "row_id": "3Q86",
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": null,
+      "top1_score": null
+    },
+    {
+      "row_id": "9OAN",
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": null,
+      "top1_score": null
+    },
+    {
+      "row_id": "9PFY",
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "terminal_decision": "out_of_scope",
+      "source_free_ndk_axis_ready": false,
+      "top1_fingerprint_id": null,
+      "top1_score": null
+    }
+  ]
+}

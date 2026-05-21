@@ -1,0 +1,774 @@
+{
+  "metadata": {
+    "artifact_id": "v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:47:00Z",
+    "method": "ndk_vs_neighbor_family_control_tranche_review_only_axis_decisions",
+    "review_only": true,
+    "candidate_selection_before_outcome_scoring": true,
+    "frozen_row_count": 14,
+    "terminal_decision_counts": {
+      "terminal_rejection": 1,
+      "mechanism_match": 2,
+      "out_of_scope": 11
+    },
+    "source_free_ndk_axis_ready_count": 0,
+    "ndk_positive_like_axis_ready_count": 0,
+    "import_ready_candidate_count": 0,
+    "abstain_threshold": 0.4115,
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "source_artifacts": {
+      "tranche_freeze": "artifacts/v3_ndk_vs_neighbor_family_control_tranche_preregistration_20260520.json",
+      "ndk_readiness_packet": "artifacts/v3_ndk_family_readiness_packet_20260520.json",
+      "atp_family_expansion": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "geometry_retrieval": "artifacts/v3_geometry_retrieval_1025.json",
+      "homolog_terminal_review": "artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json"
+    }
+  },
+  "rows": [
+    {
+      "row_id": "m_csa:637",
+      "freeze_rank": 1,
+      "row_role": "ndk_boundary",
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "ndk",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": false,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1DEK",
+        "local_ligand_codes": [],
+        "structure_ligand_codes": [
+          "DGP",
+          "OCS",
+          "MG"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4066,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "terminal_rejection",
+      "terminal_decision_reason": "NDK source boundary row is expert-reviewed rejected current-label evidence, lacks a source-free NDK axis, and cannot support threshold calibration."
+    },
+    {
+      "row_id": "m_csa:15",
+      "freeze_rank": 2,
+      "row_role": "current_production_hydrolase_control",
+      "entry_name": "beta-lactamase (Class B1)",
+      "family_id": "metal_dependent_hydrolase",
+      "family_name": "metal-dependent hydrolase production controls",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "metal_dependent_hydrolase",
+        "current_hydrolase_control_row": true,
+        "neighbor_atp_family_countercontrol": false,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1ZNB",
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "NA"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5777,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production metal-dependent hydrolase control remains a mechanism match for the existing 8-fingerprint universe."
+    },
+    {
+      "row_id": "m_csa:16",
+      "freeze_rank": 3,
+      "row_role": "current_production_hydrolase_control",
+      "entry_name": "beta-lactamase (Class B1)",
+      "family_id": "metal_dependent_hydrolase",
+      "family_name": "metal-dependent hydrolase production controls",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "metal_dependent_hydrolase",
+        "current_hydrolase_control_row": true,
+        "neighbor_atp_family_countercontrol": false,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1BC2",
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "SO4"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5929,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": false,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "mechanism_match",
+      "terminal_decision_reason": "current production metal-dependent hydrolase control remains a mechanism match for the existing 8-fingerprint universe."
+    },
+    {
+      "row_id": "m_csa:588",
+      "freeze_rank": 4,
+      "row_role": "dnk_countercontrol",
+      "entry_name": "thymidine kinase",
+      "family_id": "dnk",
+      "family_name": "Deoxynucleoside kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "dnk",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": true,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1KIM",
+        "local_ligand_codes": [
+          "SO4",
+          "THM"
+        ],
+        "structure_ligand_codes": [
+          "SO4",
+          "THM"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4073,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "dnk countercontrol is out of scope for an NDK-specific axis and cannot support NDK threshold calibration."
+    },
+    {
+      "row_id": "m_csa:365",
+      "freeze_rank": 5,
+      "row_role": "pfka_countercontrol",
+      "entry_name": "Phosphofructokinase I",
+      "family_id": "pfka",
+      "family_name": "PfkA-fold phosphofructokinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "pfka",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": true,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1PFK",
+        "local_ligand_codes": [
+          "ADP",
+          "FBP",
+          "MG"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "FBP",
+          "MG"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3999,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "pfka countercontrol is out of scope for an NDK-specific axis and cannot support NDK threshold calibration."
+    },
+    {
+      "row_id": "m_csa:663",
+      "freeze_rank": 6,
+      "row_role": "pfkb_countercontrol",
+      "entry_name": "ribokinase",
+      "family_id": "pfkb",
+      "family_name": "PfkB/ribokinase-family kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "pfkb",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": true,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1RK2",
+        "local_ligand_codes": [
+          "ADP",
+          "RIB"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "RIB",
+          "MG",
+          "ALF"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2601,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "pfkb countercontrol is out of scope for an NDK-specific axis and cannot support NDK threshold calibration."
+    },
+    {
+      "row_id": "m_csa:654",
+      "freeze_rank": 7,
+      "row_role": "ghmp_countercontrol",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "family_id": "ghmp",
+      "family_name": "GHMP-superfamily kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "ghmp",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": true,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1OJ4",
+        "local_ligand_codes": [
+          "CDM"
+        ],
+        "structure_ligand_codes": [
+          "CDM",
+          "ANP",
+          "MSE",
+          "CL"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3581,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "ghmp countercontrol is out of scope for an NDK-specific axis and cannot support NDK threshold calibration."
+    },
+    {
+      "row_id": "m_csa:327",
+      "freeze_rank": 8,
+      "row_role": "ghkl_countercontrol",
+      "entry_name": "protein histidine kinase (CheA)",
+      "family_id": "ghkl",
+      "family_name": "GHKL/Bergerat ATP-binding kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "ghkl",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": true,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1I58",
+        "local_ligand_codes": [
+          "ACP",
+          "MG"
+        ],
+        "structure_ligand_codes": [
+          "ACP",
+          "MG",
+          "ACT",
+          "ADP"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.2704,
+        "top1_cofactor_evidence_level": "ligand_supported",
+        "top1_counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": true,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "ghkl countercontrol is out of scope for an NDK-specific axis and cannot support NDK threshold calibration."
+    },
+    {
+      "row_id": "m_csa:310",
+      "freeze_rank": 9,
+      "row_role": "atp_grasp_countercontrol",
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "family_id": "atp_grasp",
+      "family_name": "ATP-grasp ligases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "atp_grasp",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": true,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "1E4E",
+        "local_ligand_codes": [
+          "PHY"
+        ],
+        "structure_ligand_codes": [
+          "PHY",
+          "MG",
+          "ADP",
+          "SO4",
+          "GOL"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3649,
+        "top1_cofactor_evidence_level": "absent",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "atp grasp countercontrol is out of scope for an NDK-specific axis and cannot support NDK threshold calibration."
+    },
+    {
+      "row_id": "m_csa:592",
+      "freeze_rank": 10,
+      "row_role": "askha_countercontrol",
+      "entry_name": "glucokinase",
+      "family_id": "askha",
+      "family_name": "ASKHA sugar and acetate kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "askha",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": true,
+        "homolog_histidine_axis_countercontrol": false
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_geometry_retrieval_1025.json",
+        "pdb_id": "3IDH",
+        "local_ligand_codes": [
+          "GLC"
+        ],
+        "structure_ligand_codes": [
+          "GLC",
+          "K"
+        ],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5769,
+        "top1_cofactor_evidence_level": "role_inferred",
+        "top1_counterevidence_reasons": [],
+        "top1_exceeds_abstain_threshold_0_4115": true,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": false,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": false
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "askha countercontrol is out of scope for an NDK-specific axis and cannot support NDK threshold calibration."
+    },
+    {
+      "row_id": "1WKL",
+      "freeze_rank": 11,
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "entry_name": "Crystal Structure of Nucleoside Diphosphate Kinase from Thermus thermophilus HB8 in Complex with ATP and ADP",
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "ndk",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": false,
+        "homolog_histidine_axis_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json",
+        "pdb_id": "1WKL",
+        "local_ligand_codes": [
+          "ATP",
+          "MG"
+        ],
+        "structure_ligand_codes": [
+          "ATP",
+          "MG"
+        ],
+        "top1_fingerprint_id": null,
+        "top1_score": null,
+        "top1_cofactor_evidence_level": "not_applicable_homolog_countercontrol",
+        "top1_counterevidence_reasons": [
+          "homolog_histidine_axis_countercontrol_not_current_geometry_row"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": true,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.251,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.24
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "NDK homolog row is histidine-axis counterevidence from review-only research work, not a frozen source-positive or import surface."
+    },
+    {
+      "row_id": "3Q86",
+      "freeze_rank": 12,
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "entry_name": "Crystal structure of Staphylococcus aureus nucleoside diphosphate kinase complexed with GTP",
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "ndk",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": false,
+        "homolog_histidine_axis_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json",
+        "pdb_id": "3Q86",
+        "local_ligand_codes": [
+          "GTP",
+          "MG"
+        ],
+        "structure_ligand_codes": [
+          "GTP",
+          "MG"
+        ],
+        "top1_fingerprint_id": null,
+        "top1_score": null,
+        "top1_cofactor_evidence_level": "not_applicable_homolog_countercontrol",
+        "top1_counterevidence_reasons": [
+          "homolog_histidine_axis_countercontrol_not_current_geometry_row"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": true,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 2.899,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 3.487
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "NDK homolog row is histidine-axis counterevidence from review-only research work, not a frozen source-positive or import surface."
+    },
+    {
+      "row_id": "9OAN",
+      "freeze_rank": 13,
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "entry_name": "Crystal structure of nucleoside-diphosphate kinase from Cryptosporidium parvum in complex with with guanosine-5'-diphosphate and AMP-PNP",
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "ndk",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": false,
+        "homolog_histidine_axis_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json",
+        "pdb_id": "9OAN",
+        "local_ligand_codes": [
+          "ANP",
+          "MG"
+        ],
+        "structure_ligand_codes": [
+          "ANP",
+          "MG"
+        ],
+        "top1_fingerprint_id": null,
+        "top1_score": null,
+        "top1_cofactor_evidence_level": "not_applicable_homolog_countercontrol",
+        "top1_counterevidence_reasons": [
+          "homolog_histidine_axis_countercontrol_not_current_geometry_row"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": true,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.339,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.12
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "NDK homolog row is histidine-axis counterevidence from review-only research work, not a frozen source-positive or import surface."
+    },
+    {
+      "row_id": "9PFY",
+      "freeze_rank": 14,
+      "row_role": "ndk_homolog_histidine_axis_countercontrol",
+      "entry_name": "Crystal structure of nucleoside-diphosphate kinase Cryptosporidium parvum in complex with ATP",
+      "family_id": "ndk",
+      "family_name": "Nucleoside diphosphate kinases",
+      "selection_frozen_before_axis_scoring": true,
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "counterfamily_axis": {
+        "family_id": "ndk",
+        "current_hydrolase_control_row": false,
+        "neighbor_atp_family_countercontrol": false,
+        "homolog_histidine_axis_countercontrol": true
+      },
+      "current_retrieval_context": {
+        "source_artifact": "artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json",
+        "pdb_id": "9PFY",
+        "local_ligand_codes": [
+          "ATP",
+          "MG"
+        ],
+        "structure_ligand_codes": [
+          "ATP",
+          "MG"
+        ],
+        "top1_fingerprint_id": null,
+        "top1_score": null,
+        "top1_cofactor_evidence_level": "not_applicable_homolog_countercontrol",
+        "top1_counterevidence_reasons": [
+          "homolog_histidine_axis_countercontrol_not_current_geometry_row"
+        ],
+        "top1_exceeds_abstain_threshold_0_4115": false,
+        "text_or_label_fields_used_for_score": false
+      },
+      "source_free_ndk_axis": {
+        "axis_ready_for_threshold_calibration": false,
+        "local_gamma_capable_nucleotide_plus_metal_context": true,
+        "mapped_catalytic_histidine_context": true,
+        "source_free_ndk_fold_policy_ready": false,
+        "source_free_nucleoside_acceptor_policy_ready": false,
+        "selected_structure_state_complete_for_calibration": false,
+        "homolog_countercontrol_not_countable_source_positive": true,
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.005,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.829
+      },
+      "duplicate_screen_context": {
+        "status": "not_run_not_import_surface_current_review_context",
+        "interpretation": "duplicate screening is not used to import or reject current review-only NDK tranche rows"
+      },
+      "terminal_decision": "out_of_scope",
+      "terminal_decision_reason": "NDK homolog row is histidine-axis counterevidence from review-only research work, not a frozen source-positive or import surface."
+    }
+  ],
+  "synthesis_conclusion": {
+    "overall": "ndk_remains_review_only_and_not_production_ready",
+    "decision": "do_not_promote_ndk_production_fingerprint",
+    "reason": "The frozen tranche has 0 source-free-axis-ready NDK rows; the source boundary is terminally rejected for this axis, homolog controls are counteraxis-only, and production hydrolase controls remain unchanged."
+  }
+}

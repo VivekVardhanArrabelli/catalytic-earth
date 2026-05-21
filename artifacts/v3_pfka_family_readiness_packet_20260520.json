@@ -1,0 +1,270 @@
+{
+  "metadata": {
+    "artifact_id": "v3_pfka_family_readiness_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:54:00Z",
+    "method": "pfka_family_readiness_packet_review_only",
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_family_propagation_guardrails_950.json",
+      "artifacts/v3_epk_sibling_control_homolog_source_plan_pfka_1025.json",
+      "artifacts/v3_epk_sibling_control_homolog_mapping_review_pfka_1025.json",
+      "artifacts/v3_epk_family_specific_homolog_gamma_distance_sample_pfka_1025.json",
+      "artifacts/v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json"
+    ],
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "family_readiness": {
+    "current_decision": "do_not_promote_production_fingerprint",
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "PfkA-fold phosphofructokinases phosphorylate fructose-6-phosphate with ATP in a PFK fold; this packet separates them from dNK, NDK, PfkB, GHMP, GHKL, ATP-grasp, ASKHA, ePK, and current hydrolase lanes.",
+    "expert_supported_boundary_count": 1,
+    "boundary_row_count": 1,
+    "positive_like_boundary_row_count": 0,
+    "measured_homolog_counteraxis_row_count": 5,
+    "blocked_homolog_mapping_row_count": 5,
+    "countable_positive_seed_count": 0,
+    "source_free_axis_ready_count": 0,
+    "positive_like_boundary_rows": [],
+    "boundary_rows": [
+      {
+        "entry_id": "m_csa:365",
+        "entry_name": "Phosphofructokinase I",
+        "support_level": "expert_reviewed_rejected_current_label_boundary",
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "countable_label_candidate": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3999,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.2759,
+        "packet_pdb_id": "1PFK",
+        "packet_local_ligand_codes": [
+          "ADP",
+          "FBP",
+          "MG"
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation"
+      }
+    ],
+    "measured_homolog_counteraxis_rows": [
+      {
+        "pdb_id": "3F5M",
+        "family_id": "pfka",
+        "gamma_capable_nucleotide_codes": [
+          "ATP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 6.152,
+        "nearest_gamma_to_family_template_distance_angstrom": null,
+        "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+        "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      {
+        "pdb_id": "4XYJ",
+        "family_id": "pfka",
+        "gamma_capable_nucleotide_codes": [
+          "ATP"
+        ],
+        "metal_ligand_codes": [
+          "CO",
+          "MG"
+        ],
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 3.221,
+        "nearest_gamma_to_family_template_distance_angstrom": null,
+        "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+        "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      {
+        "pdb_id": "5XZ8",
+        "family_id": "pfka",
+        "gamma_capable_nucleotide_codes": [
+          "ANP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.013,
+        "nearest_gamma_to_family_template_distance_angstrom": null,
+        "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+        "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      {
+        "pdb_id": "8W2H",
+        "family_id": "pfka",
+        "gamma_capable_nucleotide_codes": [
+          "ATP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.52,
+        "nearest_gamma_to_family_template_distance_angstrom": null,
+        "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+        "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      {
+        "pdb_id": "8W2J",
+        "family_id": "pfka",
+        "gamma_capable_nucleotide_codes": [
+          "ATP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.404,
+        "nearest_gamma_to_family_template_distance_angstrom": null,
+        "measurement_status": "family_specific_gamma_to_acid_base_distance_measured_review_only",
+        "control_use_status": "family_specific_sibling_counteraxis_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      }
+    ]
+  },
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps one expert-reviewed PfkA boundary row, m_csa:365, as out_of_scope rather than a seed-fingerprint training label.",
+      "Current geometry retrieval routes m_csa:365 through metal_dependent_hydrolase top1 at 0.3999, below the calibrated 0.4115 floor and not source-free PfkA evidence.",
+      "The source row carries local ADP, fructose-bisphosphate, and Mg context in prior tranche metadata, but the accepted PfkA fold/substrate policy is not production-ready.",
+      "Five PfkA homolog rows have gamma-capable nucleotide plus metal context and same-chain hydroxyl distances of 3.221-6.152 Angstrom, while five additional homolog rows remain mapping-not-ready."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free PfkA fold axis exists in production code.",
+      "No calibrated policy separates fructose-6-phosphate acceptor chemistry from PfkB, dNK, GHMP, ASKHA, NDK, GHKL, ATP-grasp, or ePK lanes.",
+      "No PfkA threshold, external hard-negative re-audit, or countable positive seed set exists.",
+      "The homolog measurements were produced as ePK sibling counteraxis evidence and cannot be reused as production-positive or import evidence without a separate gated cycle."
+    ],
+    "expected_local_evidence_axes": [
+      "local ATP/ADP or transition-state nucleotide plus divalent-metal support",
+      "fructose-6-phosphate/fructose-bisphosphate acceptor identity and PfkA fold context",
+      "separation from PfkB ribokinase, dNK/NDK nucleoside kinases, GHMP, ASKHA, GHKL, ATP-grasp, ePK, and hydrolase counteraxes",
+      "duplicate/current-neighbor checks before any import claim"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "family_id": "metal_dependent_hydrolase",
+      "control_role": "current near-floor top1 collapse boundary for m_csa:365"
+    },
+    {
+      "family_id": "pfkb",
+      "control_role": "ribokinase-family sugar kinase sibling counterfamily"
+    },
+    {
+      "family_id": "dnk",
+      "control_role": "deoxynucleoside hydroxyl-acceptor kinase counterfamily"
+    },
+    {
+      "family_id": "ndk",
+      "control_role": "phosphohistidine/nucleoside-diphosphate exchange counterfamily"
+    },
+    {
+      "family_id": "ghmp",
+      "control_role": "GHMP small-molecule kinase counterfamily"
+    },
+    {
+      "family_id": "askha",
+      "control_role": "ASKHA sugar/acetate kinase counterfamily"
+    },
+    {
+      "family_id": "ghkl",
+      "control_role": "Bergerat/GHKL histidine-kinase counterfamily"
+    },
+    {
+      "family_id": "atp_grasp",
+      "control_role": "ATP-coupled ligase counterfamily"
+    },
+    {
+      "family_id": "epk",
+      "control_role": "protein-substrate kinase counterfamily; research-lane only"
+    }
+  ],
+  "likely_failure_modes": [
+    {
+      "id": "pfka_pfkb_sugar_kinase_confusion",
+      "risk": "PfkA and PfkB both use small-molecule sugar/hydroxyl acceptors with nucleotide context"
+    },
+    {
+      "id": "near_floor_hydrolase_top1_collapse",
+      "risk": "m_csa:365 currently routes to metal_dependent_hydrolase at 0.3999 rather than to a PfkA-specific axis"
+    },
+    {
+      "id": "homolog_counteraxis_reuse_as_positive_evidence",
+      "risk": "PfkA homolog measurements are review-only sibling counteraxis data, not frozen source positives"
+    },
+    {
+      "id": "fructose_acceptor_policy_gap",
+      "risk": "fructose phosphate identity is not calibrated as a source-free production feature"
+    },
+    {
+      "id": "single_boundary_row_fragility",
+      "risk": "only one expert-reviewed source boundary row exists in the current ATP-family expansion surface"
+    }
+  ],
+  "next_experiment": {
+    "experiment_id": "pfka_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "decision_to_start_now": false,
+    "selection_freeze_required_before_scoring": true,
+    "recommended_row_count": "10-14",
+    "reason_not_started": "readiness packet first; no production gates are open and the row set must be frozen before any axis scoring",
+    "preregistered_axes_to_freeze": [
+      "local nucleotide plus metal state",
+      "PfkA fold/family context and fructose-phosphate acceptor identity",
+      "negative PfkB, dNK/NDK, GHMP, ASKHA, GHKL, ATP-grasp, ePK, and hydrolase counteraxes",
+      "duplicate/current-neighbor checks before any import claim"
+    ],
+    "row_plan": [
+      "1 PfkA boundary row from the family expansion artifact",
+      "5 review-only PfkA homolog counteraxis rows with measured hydroxyl distances",
+      "2 current metal-hydrolase controls",
+      "2 PfkB/dNK/NDK neighboring kinase controls",
+      "2 GHMP/ASKHA/GHKL/ATP-grasp neighboring ATP-family controls",
+      "optional ePK context only as review-only counteraxis evidence"
+    ]
+  },
+  "safety_summary": {
+    "registry_or_fingerprint_edit_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false
+  }
+}

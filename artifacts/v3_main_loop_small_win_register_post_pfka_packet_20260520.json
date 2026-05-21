@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "artifact_id": "v3_main_loop_small_win_register_post_pfka_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:54:00Z",
+    "method": "main_loop_small_win_register_post_pfka_packet",
+    "review_only": true,
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_artifacts": [
+      "artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json",
+      "artifacts/v3_pfkb_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_sulfotransferase_minicampaign_baseline_comparison_20260520.json",
+      "artifacts/v3_sulfotransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+      "artifacts/v3_atp_family_readiness_index_post_pfkb_tranche_20260520.json",
+      "artifacts/v3_ghmp_family_readiness_packet_20260520.json",
+      "artifacts/v3_atp_family_readiness_index_post_ghmp_packet_20260520.json",
+      "artifacts/v3_ghmp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_ghmp_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json",
+      "artifacts/v3_atp_family_readiness_index_post_ghmp_tranche_20260520.json",
+      "artifacts/v3_ndk_family_readiness_packet_20260520.json",
+      "artifacts/v3_atp_family_readiness_index_post_ndk_packet_20260520.json",
+      "artifacts/v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "artifacts/v3_ndk_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json",
+      "artifacts/v3_atp_family_readiness_index_post_ndk_tranche_20260520.json",
+      "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+      "artifacts/v3_atp_family_readiness_index_post_pfka_packet_20260520.json"
+    ]
+  },
+  "rows": [
+    {
+      "item_id": "post_late_dirty_epk_research_lane_synthesis",
+      "small_win_ladder_slot": "research_lane_integration",
+      "decision_status": "research_lane_only_no_go",
+      "terminal_decision": "no_production_activation",
+      "primary_artifact": "artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "keep ePK out of the main-loop critical path; future ePK work belongs in isolated research lanes"
+    },
+    {
+      "item_id": "pfkb_control_tranche",
+      "small_win_ladder_slot": "family_readiness_terminal_decision",
+      "decision_status": "closed_review_only_no_go",
+      "terminal_decision_counts": {
+        "needs_review": 2,
+        "mechanism_match": 2,
+        "out_of_scope": 7
+      },
+      "primary_artifact": "artifacts/v3_pfkb_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "supporting_artifact": "artifacts/v3_pfkb_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "preserve PfkB needs-review boundary evidence; do not promote fingerprint"
+    },
+    {
+      "item_id": "sulfotransferase_external_minicampaign",
+      "small_win_ladder_slot": "prospective_external_mini_campaign",
+      "decision_status": "terminal_review_only_rejections_preserved",
+      "terminal_decision_counts": {
+        "terminal_rejection": 16
+      },
+      "primary_artifact": "artifacts/v3_prospective_external_sulfotransferase_minicampaign_decision_packet_20260520.json",
+      "supporting_artifact": "artifacts/v3_sulfotransferase_minicampaign_baseline_comparison_20260520.json",
+      "sequence_diagnostic_artifact": "artifacts/v3_sulfotransferase_minicampaign_sequence_baseline_diagnostic_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "preserve terminal sulfotransferase uncovered-lane blocker; do not treat sequence-neighbor context as import evidence"
+    },
+    {
+      "item_id": "ghmp_readiness_packet",
+      "small_win_ladder_slot": "family_readiness_packet",
+      "decision_status": "readiness_packet_no_go",
+      "terminal_decision": "not_terminal_tranche_yet",
+      "primary_artifact": "artifacts/v3_ghmp_family_readiness_packet_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "freeze GHMP-vs-neighbor ATP-family tranche before any scoring"
+    },
+    {
+      "item_id": "ghmp_control_tranche",
+      "small_win_ladder_slot": "family_readiness_terminal_decision",
+      "decision_status": "closed_review_only_no_go",
+      "terminal_decision_counts": {
+        "needs_review": 1,
+        "mechanism_match": 2,
+        "out_of_scope": 7
+      },
+      "primary_artifact": "artifacts/v3_ghmp_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "supporting_artifact": "artifacts/v3_ghmp_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "preserve GHMP needs-review boundary evidence; do not promote fingerprint"
+    },
+    {
+      "item_id": "ndk_readiness_packet",
+      "small_win_ladder_slot": "family_readiness_packet",
+      "decision_status": "readiness_packet_no_go",
+      "terminal_decision": "not_terminal_tranche_yet",
+      "primary_artifact": "artifacts/v3_ndk_family_readiness_packet_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "freeze NDK-vs-neighbor ATP-family tranche before any scoring"
+    },
+    {
+      "item_id": "ndk_control_tranche",
+      "small_win_ladder_slot": "family_readiness_terminal_decision",
+      "decision_status": "closed_review_only_no_go",
+      "terminal_decision_counts": {
+        "terminal_rejection": 1,
+        "mechanism_match": 2,
+        "out_of_scope": 11
+      },
+      "primary_artifact": "artifacts/v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json",
+      "supporting_artifact": "artifacts/v3_ndk_vs_neighbor_family_control_tranche_baseline_comparison_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "preserve NDK terminal tranche evidence; do not promote fingerprint"
+    },
+    {
+      "item_id": "pfka_readiness_packet",
+      "small_win_ladder_slot": "family_readiness_packet",
+      "decision_status": "readiness_packet_no_go",
+      "terminal_decision": "not_terminal_tranche_yet",
+      "primary_artifact": "artifacts/v3_pfka_family_readiness_packet_20260520.json",
+      "production_claim_allowed": false,
+      "import_claim_allowed": false,
+      "next_action": "freeze PfkA-vs-neighbor ATP-family tranche before any scoring"
+    }
+  ],
+  "rollup": {
+    "closed_review_only_no_go_family_count": 7,
+    "packet_ready_not_frozen_family_count": 1,
+    "external_minicampaign_terminal_rejection_preserved": true,
+    "external_minicampaign_candidate_count": 16,
+    "epk_production_no_go_preserved": true,
+    "registry_label_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_or_3_performed": false,
+    "ghmp_packet_ready_not_frozen": false,
+    "ghmp_control_tranche_closed": true,
+    "packet_not_started_family_count": 0,
+    "ndk_packet_ready_not_frozen": false,
+    "ndk_control_tranche_closed": true,
+    "pfka_packet_ready_not_frozen": true
+  },
+  "recommended_next_main_loop_items": [
+    {
+      "item_id": "pfka_control_tranche",
+      "next_action": "freeze PfkA-vs-neighbor ATP-family tranche before any scoring"
+    },
+    {
+      "item_id": "prospective_external_minicampaign",
+      "next_action": "freeze another genuinely new 10-30 row external protein set only if not repetitive"
+    }
+  ],
+  "synthesis_conclusion": {
+    "overall": "visible_small_wins_and_pfka_packet_closed_without_production_mutation",
+    "production_activation_decision": "no_go_for_epk_and_atp_family_packets",
+    "import_decision": "no_external_import_ready_rows",
+    "superiority_claim_permitted": false
+  }
+}

@@ -140,6 +140,57 @@ No registry edit, label import, threshold, production scoring, fingerprint
 expansion, artifact migration, upload, removal, Git LFS tracking, or history
 rewrite was performed.
 
+The main loop then used the remaining cadence window to package NDK readiness
+without scoring. `artifacts/v3_ndk_family_readiness_packet_20260520.json`
+records one expert-reviewed rejected NDK boundary row (`m_csa:637`), 0
+countable positive seeds, 0 source-free-axis-ready rows, hydrolase top1
+collapse at 0.4066, and four review-only homolog histidine-axis controls
+(`1WKL`, `3Q86`, `9OAN`, `9PFY`) with gamma-to-mapped-histidine distances of
+2.899-3.339 Angstrom. Those homologs remain counteraxis evidence, not import or
+production-positive evidence, because hydroxyl-axis confusion and
+phosphohistidine specificity are unresolved. `artifacts/v3_atp_family_readiness_index_post_ndk_packet_20260520.json`
+marks NDK as `readiness_packet_no_go` and recommends only a frozen
+NDK-vs-neighbor ATP-family tranche before any scoring. The current rollup is
+`artifacts/v3_main_loop_small_win_register_post_ndk_packet_20260520.json`.
+No registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
+That NDK tranche is also now frozen and closed. The preregistration
+`artifacts/v3_ndk_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+locks 14 rows before axis decisions: one NDK boundary row, four NDK homolog
+histidine-axis controls, two current metal-hydrolase controls, and seven
+neighboring ATP-family countercontrols. The decision packet
+`artifacts/v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+terminally rejects the source NDK boundary row, preserves two hydrolase
+`mechanism_match` controls, routes 11 homolog/neighbor rows to `out_of_scope`,
+and finds 0 source-free NDK-axis-ready rows. The no-claim baseline records all
+10 M-CSA rows still top1 route to `metal_dependent_hydrolase`, 3 rows over the
+0.4115 floor, and the four homolog histidine-distance measurements as
+counterdiagnostic only. The post-tranche ATP-family index now marks ASKHA,
+ATP-grasp, GHKL, dNK, PfkB, GHMP, and NDK closed review-only no-go; PfkA is the
+only remaining ATP-family packet slot. The current rollup is
+`artifacts/v3_main_loop_small_win_register_post_ndk_tranche_20260520.json`.
+No registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
+The remaining ATP-family packet slot is now also packaged. `artifacts/v3_pfka_family_readiness_packet_20260520.json`
+records one expert-reviewed rejected PfkA boundary row (`m_csa:365`), 0
+countable positive seeds, 0 source-free-axis-ready rows, hydrolase top1
+collapse at 0.3999, five measured PfkA homolog counteraxis rows with
+same-chain hydroxyl distances of 3.221-6.152 Angstrom, and five additional
+homolog rows that remain mapping-not-ready. The packet is review-only and does
+not reuse ePK sibling-control measurements as production-positive or import
+evidence. `artifacts/v3_atp_family_readiness_index_post_pfka_packet_20260520.json`
+marks PfkA as `readiness_packet_no_go`, leaves no ATP-family packet slots
+unstarted, and recommends only a frozen PfkA-vs-neighbor ATP-family tranche
+before any scoring. The current rollup is
+`artifacts/v3_main_loop_small_win_register_post_pfka_packet_20260520.json`.
+No registry edit, label import, threshold, production scoring, fingerprint
+expansion, artifact migration, upload, removal, Git LFS tracking, or history
+rewrite was performed.
+
 As of the 2026-05-20T22:17:26Z automation run,
 `artifacts/v3_epk_late_research_lane_synthesis_20260520.json` integrates the
 fresh late ePK research-lane surface without copying production changes. It

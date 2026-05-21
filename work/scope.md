@@ -302,7 +302,50 @@ all 10 rows still top1 route to `metal_dependent_hydrolase`, with 3 rows above
 the 0.4115 floor. GHMP remains no-go for production fingerprint expansion,
 thresholding, registry edits, or label import. The post-tranche ATP-family
 index now keeps ASKHA, ATP-grasp, GHKL, dNK, PfkB, and GHMP closed as
-review-only no-go surfaces; NDK and PfkA still need packets before any scoring.
+review-only no-go surfaces; NDK and PfkA were the remaining packet slots before
+the follow-on NDK packet below.
+Current NDK readiness scope:
+`artifacts/v3_ndk_family_readiness_packet_20260520.json` is review-only and not
+a production fingerprint. It uses one expert-reviewed rejected NDK boundary row
+(`m_csa:637`), four NDK homolog histidine-axis controls (`1WKL`, `3Q86`,
+`9OAN`, `9PFY`), 0 countable positive seeds, 0 source-free-axis-ready rows, no
+calibrated threshold, and no external hard-negative re-audit. The packet records
+local gamma-capable nucleotide plus metal evidence in the homolog controls, but
+keeps those rows as counteraxis evidence because catalytic phosphohistidine
+identity and nearby hydroxyl-axis confusion are not production-separated. The
+post-packet ATP-family index
+`artifacts/v3_atp_family_readiness_index_post_ndk_packet_20260520.json` marks
+NDK as `readiness_packet_no_go`; the only bounded next NDK step is a frozen
+NDK-vs-neighbor-ATP-family control tranche before any scoring.
+`artifacts/v3_ndk_vs_neighbor_family_control_tranche_preregistration_20260520.json`
+and `artifacts/v3_ndk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json`
+now close that frozen tranche as review-only terminal evidence. The decisions
+are one NDK boundary `terminal_rejection`, two current hydrolase
+`mechanism_match` rows, and 11 homolog/neighbor countercontrol `out_of_scope`
+rows. The source-free NDK-axis-ready count is 0, and the no-claim baseline
+records all 10 M-CSA rows still top1 route to `metal_dependent_hydrolase`, with
+3 rows above the 0.4115 floor; four NDK homolog histidine-distance rows remain
+counterdiagnostic only. NDK remains no-go for production fingerprint expansion,
+thresholding, registry edits, or label import. The post-tranche ATP-family
+index now keeps ASKHA, ATP-grasp, GHKL, dNK, PfkB, GHMP, and NDK closed as
+review-only no-go surfaces. PfkA remains the only ATP-family packet slot not yet
+packaged.
+Current PfkA readiness scope:
+`artifacts/v3_pfka_family_readiness_packet_20260520.json` is review-only and
+not a production fingerprint. It uses one expert-reviewed rejected PfkA boundary
+row (`m_csa:365`), five measured PfkA homolog counteraxis rows, five additional
+mapping-not-ready homolog rows, 0 countable positive seeds, 0
+source-free-axis-ready rows, no calibrated threshold, and no external
+hard-negative re-audit. The packet records local ADP/FBP/Mg source context and
+homolog gamma-capable nucleotide plus metal evidence, but keeps those rows as
+counteraxis context because PfkA fold/fructose-phosphate identity is not
+production-separated from PfkB, dNK/NDK, GHMP, ASKHA, GHKL, ATP-grasp, ePK, and
+hydrolase lanes. The post-packet ATP-family index
+`artifacts/v3_atp_family_readiness_index_post_pfka_packet_20260520.json` marks
+PfkA as `readiness_packet_no_go`; all ATP-family packet slots now have either a
+closed tranche, research-lane-only no-go, or packet-only no-go status. The only
+bounded next PfkA step is a frozen PfkA-vs-neighbor-ATP-family control tranche
+before any scoring.
 Current ASKHA readiness scope:
 `artifacts/v3_askha_family_readiness_packet_20260520.json` is review-only and
 not a production fingerprint. It uses four expert-supported ASKHA boundary rows

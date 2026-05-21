@@ -1,0 +1,246 @@
+{
+  "metadata": {
+    "artifact_id": "v3_ndk_family_readiness_packet_20260520",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-20T23:51:00Z",
+    "method": "ndk_family_readiness_packet_review_only",
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+      "artifacts/v3_family_propagation_guardrails_950.json",
+      "artifacts/v3_epk_sibling_control_homolog_source_plan_ndk_1025.json",
+      "artifacts/v3_epk_sibling_control_homolog_mapping_review_ndk_1025.json",
+      "artifacts/v3_epk_sibling_control_homolog_gamma_distance_sample_ndk_1025.json",
+      "artifacts/v3_epk_sibling_control_homolog_terminal_review_ndk_1025.json"
+    ],
+    "production_fingerprint_count": 8,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "ready_for_label_import": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "family_readiness": {
+    "current_decision": "do_not_promote_production_fingerprint",
+    "readiness_status": "review_only_packet_ready_for_control_tranche_not_scoring",
+    "scope_note": "NDK/nucleoside-diphosphate kinases use a ping-pong phosphohistidine transfer axis for nucleoside phosphate exchange; this packet separates them from dNK, PfkA, PfkB, GHMP, GHKL, ATP-grasp, ePK, and current hydrolase lanes.",
+    "expert_supported_boundary_count": 1,
+    "boundary_row_count": 1,
+    "positive_like_boundary_row_count": 0,
+    "homolog_counteraxis_row_count": 4,
+    "countable_positive_seed_count": 0,
+    "source_free_axis_ready_count": 0,
+    "positive_like_boundary_rows": [],
+    "boundary_rows": [
+      {
+        "entry_id": "m_csa:637",
+        "entry_name": "(deoxy)nucleoside-phosphate kinase",
+        "support_level": "expert_reviewed_rejected_current_label_boundary",
+        "decision_action": "reject_label",
+        "decision_label_type": "out_of_scope",
+        "countable_label_candidate": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.4066,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.2768,
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "non_countable_blockers": [
+          "expert_confirmed_out_of_scope_boundary",
+          "expert_rejected_current_label_candidate",
+          "not_seed_fingerprint_training_label",
+          "review_only_reaction_substrate_mismatch_lane"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation"
+      }
+    ],
+    "homolog_counteraxis_rows": [
+      {
+        "pdb_id": "1WKL",
+        "structure_title": "Crystal Structure of Nucleoside Diphosphate Kinase from Thermus thermophilus HB8 in Complex with ATP and ADP",
+        "family_id": "ndk",
+        "gamma_capable_nucleotide_codes": [
+          "ATP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.251,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 5.24,
+        "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+        "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      {
+        "pdb_id": "3Q86",
+        "structure_title": "Crystal structure of Staphylococcus aureus nucleoside diphosphate kinase complexed with GTP",
+        "family_id": "ndk",
+        "gamma_capable_nucleotide_codes": [
+          "GTP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 2.899,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 3.487,
+        "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+        "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      {
+        "pdb_id": "9OAN",
+        "structure_title": "Crystal structure of nucleoside-diphosphate kinase from Cryptosporidium parvum in complex with with guanosine-5'-diphosphate and AMP-PNP",
+        "family_id": "ndk",
+        "gamma_capable_nucleotide_codes": [
+          "ANP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.339,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.12,
+        "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+        "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      {
+        "pdb_id": "9PFY",
+        "structure_title": "Crystal structure of nucleoside-diphosphate kinase Cryptosporidium parvum in complex with ATP",
+        "family_id": "ndk",
+        "gamma_capable_nucleotide_codes": [
+          "ATP"
+        ],
+        "metal_ligand_codes": [
+          "MG"
+        ],
+        "nearest_gamma_to_mapped_histidine_distance_angstrom": 3.005,
+        "nearest_gamma_to_same_chain_hydroxyl_distance_angstrom": 4.829,
+        "measurement_status": "homolog_gamma_to_mapped_histidine_distance_measured_review_only",
+        "control_use_status": "homolog_histidine_axis_counterevidence_review_only_not_calibration",
+        "countable_label_candidate": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      }
+    ]
+  },
+  "cofactors_and_active_site_evidence": {
+    "available_review_only_evidence": [
+      "Family expansion maps one expert-reviewed NDK boundary row, m_csa:637, as out_of_scope rather than a seed-fingerprint training label.",
+      "Current geometry retrieval routes m_csa:637 through metal_dependent_hydrolase top1 at 0.4066, below the calibrated 0.4115 floor and not source-free NDK evidence.",
+      "Four homolog controls, 1WKL, 3Q86, 9OAN, and 9PFY, carry gamma-capable nucleotide plus Mg context and measured gamma-to-mapped-histidine distances of 2.899-3.339 Angstrom.",
+      "The same homolog controls also show same-chain hydroxyl distances of 3.487-5.240 Angstrom, which documents the hydroxyl-axis confusion risk instead of licensing a production scorer."
+    ],
+    "blocked_or_missing_evidence": [
+      "No accepted source-free NDK fold or phosphohistidine axis exists in production code.",
+      "No calibrated policy separates catalytic histidine transfer from generic nearby hydroxyl residues across current production fingerprints.",
+      "No NDK threshold, external hard-negative re-audit, or countable positive seed set exists.",
+      "The four homolog rows were generated as ePK sibling counteraxis evidence and cannot be reused as import or production-positive evidence without a separate gated cycle."
+    ],
+    "expected_local_evidence_axes": [
+      "local ATP/GTP/ANP gamma-capable nucleotide plus divalent-metal support",
+      "mapped catalytic histidine identity and phosphohistidine intermediate context",
+      "nucleoside mono/diphosphate donor-acceptor identity separate from protein- or sugar-substrate kinases",
+      "negative dNK, PfkA, PfkB, GHMP, GHKL, ATP-grasp, ePK, and hydrolase counteraxes"
+    ]
+  },
+  "counterfamilies_and_controls": [
+    {
+      "family_id": "metal_dependent_hydrolase",
+      "control_role": "current near-floor top1 collapse boundary for m_csa:637"
+    },
+    {
+      "family_id": "dnk",
+      "control_role": "nucleoside hydroxyl-acceptor kinase sibling counterfamily"
+    },
+    {
+      "family_id": "pfka",
+      "control_role": "PfkA-fold phosphofructokinase counterfamily"
+    },
+    {
+      "family_id": "pfkb",
+      "control_role": "ribokinase-family small-molecule kinase counterfamily"
+    },
+    {
+      "family_id": "ghmp",
+      "control_role": "GHMP small-molecule kinase counterfamily"
+    },
+    {
+      "family_id": "ghkl",
+      "control_role": "Bergerat/GHKL histidine-kinase counterfamily"
+    },
+    {
+      "family_id": "atp_grasp",
+      "control_role": "ATP-coupled ligase counterfamily"
+    },
+    {
+      "family_id": "epk",
+      "control_role": "protein-substrate kinase counterfamily; research-lane only"
+    }
+  ],
+  "likely_failure_modes": [
+    {
+      "id": "histidine_vs_hydroxyl_axis_confusion",
+      "risk": "nearby Ser/Thr/Tyr hydroxyl distances can look positive unless catalytic histidine identity is explicit"
+    },
+    {
+      "id": "near_floor_hydrolase_top1_collapse",
+      "risk": "m_csa:637 currently routes to metal_dependent_hydrolase at 0.4066 rather than to an NDK-specific axis"
+    },
+    {
+      "id": "homolog_control_reuse_as_positive_evidence",
+      "risk": "the four NDK homolog structures are counteraxis controls from ePK research work, not frozen source positives"
+    },
+    {
+      "id": "nucleotide_state_overgeneralization",
+      "risk": "ATP/GTP/ANP gamma-capable state alone is shared across multiple ATP-family lanes"
+    },
+    {
+      "id": "single_boundary_row_fragility",
+      "risk": "only one expert-reviewed source boundary row exists in the current ATP-family expansion surface"
+    }
+  ],
+  "next_experiment": {
+    "experiment_id": "ndk_vs_neighbor_atp_family_control_tranche_v1_review_only",
+    "decision_to_start_now": false,
+    "selection_freeze_required_before_scoring": true,
+    "recommended_row_count": "10-14",
+    "reason_not_started": "readiness packet first; no production gates are open and the row set must be frozen before any axis scoring",
+    "preregistered_axes_to_freeze": [
+      "local gamma-capable nucleotide plus metal state",
+      "mapped catalytic histidine and phosphohistidine intermediate context",
+      "nucleoside phosphate donor-acceptor identity",
+      "negative dNK, PfkA, PfkB, GHMP, GHKL, ATP-grasp, ePK, and hydrolase counteraxes",
+      "duplicate/current-neighbor checks before any import claim"
+    ],
+    "row_plan": [
+      "1 NDK boundary row from the family expansion artifact",
+      "4 review-only NDK homolog histidine-axis controls from the existing terminal review",
+      "2 current metal-hydrolase controls",
+      "2 dNK/PfkA/PfkB neighboring kinase controls",
+      "2 GHMP/GHKL/ATP-grasp neighboring ATP-family controls",
+      "optional ePK context only as review-only counteraxis evidence"
+    ]
+  },
+  "safety_summary": {
+    "registry_or_fingerprint_edit_performed": false,
+    "label_registry_count_changed": false,
+    "production_fingerprint_universe_changed": false,
+    "artifact_migration_phase_2_upload_performed": false,
+    "artifact_migration_phase_3_removal_performed": false
+  }
+}
