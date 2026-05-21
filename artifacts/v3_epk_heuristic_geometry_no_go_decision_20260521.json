@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "artifact_id": "v3_epk_heuristic_geometry_no_go_decision_20260521",
+    "created_at": "2026-05-21T22:35:00Z",
+    "method": "manual_research_director_synthesis_from_epk_subagents_and_research_lanes",
+    "target_family_id": "epk",
+    "target_fingerprint_id": "epk_atp_gamma_phosphoryl_transfer",
+    "review_only": true,
+    "production_claim_allowed": false,
+    "countable_label_candidate_count": 0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "labels_or_fingerprints_changed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "git_history_edited": false
+  },
+  "decision": {
+    "heuristic_geometry_only_epk_production_activation": "no_go",
+    "heuristics_future_role": "candidate_generation_and_safety_guards_only",
+    "recommended_operational_action": "pause_current_epk_heuristic_research_agents",
+    "not_abandoned": true,
+    "restart_only_for": [
+      "learned_context_model_pilot",
+      "clean_active_state_candidate_search",
+      "terminal_candidate_class_decision",
+      "wet_lab_or_expert_adjudication_bridge"
+    ]
+  },
+  "core_metrics": {
+    "strict_source_free_rule": {
+      "tp": 7,
+      "fp": 1,
+      "tn": 10,
+      "fn": 4,
+      "decisive_false_positive": "7B56"
+    },
+    "permissive_nearest_hydroxyl_rule": {
+      "tp": 9,
+      "fp": 11,
+      "tn": 0,
+      "fn": 2
+    },
+    "federated_policy_latest_summary": {
+      "rows_integrated": 14,
+      "entries_integrated": 8,
+      "forbidden_source_leakage_count": 0,
+      "unsafe_control_nonabstention_count": 0,
+      "production_claim_allowed": false,
+      "progress_claim_allowed": false
+    },
+    "false_positive_hunter_latest_summary": {
+      "regression_rows": 355,
+      "unsafe_nonabstention_after_expected_policy_count": 0,
+      "pinned_context_failure": "5UJ7:biological_assembly_1"
+    },
+    "sibling_controls_latest_summary": {
+      "runtime_oracle_rows": 119,
+      "weak_proximity_false_positive_controls": 85,
+      "product_adp_analog_split_review_only_controls": 24,
+      "unsafe_nonabstention_count": 0
+    }
+  },
+  "decisive_rows": {
+    "positive_pressure": [
+      "1IR3",
+      "5HVK",
+      "6Z3R",
+      "8OXM",
+      "8OXO",
+      "1O6K",
+      "1O6L",
+      "9UUR",
+      "9UUX"
+    ],
+    "counterexample_pressure": [
+      "7B56",
+      "2JJ2",
+      "4HPU",
+      "7CAG",
+      "8BMS",
+      "7ZDT",
+      "7ZE5",
+      "9UW4",
+      "5UJ7:biological_assembly_1"
+    ]
+  },
+  "scientific_findings": [
+    "Distance/proximity-only evidence is unsafe for ePK substrate-role identity.",
+    "Stricter source-free geometry reduces false positives but misses real positives.",
+    "Product, ADP, analog, and split-state rows must remain review-only under current evidence.",
+    "Sibling ATP-dependent families overlap ePK-like gamma geometry and require hard controls.",
+    "Folded-protein substrate-role identity is underdetermined by compact coordinate features tested so far.",
+    "Policy and regression gates prevent false progress but have not produced countable ePK positives."
+  ],
+  "blocked_activities": [
+    "new ePK schema versions",
+    "generic federated scoreboard expansion",
+    "broad review-only audit generation",
+    "new heuristic proximity/contact/backbone/orientation/acid-base feature probes",
+    "broad source-surface scans that only emit review-only rows",
+    "sibling or false-positive gate growth without a real unsafe route"
+  ],
+  "future_path": {
+    "learned_context_model": {
+      "candidate_enumeration": "deterministic gamma/acceptor enumeration from structure",
+      "candidate_features": [
+        "local phosphate and metal graph",
+        "kinase fold context",
+        "acceptor-chain local sequence window",
+        "interface geometry",
+        "chain and entity relationship",
+        "active-site residue arrangement",
+        "structure-neighbor context",
+        "sequence embeddings",
+        "sibling-family hard-negative tags"
+      ],
+      "policy_requirements": [
+        "source leakage blocked",
+        "product/analog/split misuse blocked",
+        "sibling unsafe non-abstention blocked",
+        "threshold tuning blocked",
+        "candidate-specific repair blocked"
+      ]
+    }
+  },
+  "primary_document": "docs/epk_heuristic_geometry_no_go_20260521.md"
+}

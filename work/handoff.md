@@ -9383,3 +9383,13 @@ Known blockers:
   JSON artifacts, `PYTHONPATH=src python -m catalytic_earth.cli validate`,
   `PYTHONPATH=src python -m unittest discover -s tests` with 198 tests, and
   `PYTHONPATH=src python -m compileall -q src tests`.
+
+- 2026-05-21 ePK pause/no-go synthesis: `docs/epk_heuristic_geometry_no_go_20260521.md`
+  and `artifacts/v3_epk_heuristic_geometry_no_go_decision_20260521.json`
+  record the research-director decision that heuristic geometry-only ePK
+  production activation is a no-go. Current ePK agents should be paused rather
+  than allowed to keep building review-only machinery. Future ePK work should
+  restart only for a learned-context pilot, a clean active-state candidate
+  search, a terminal candidate-class decision, or a wet-lab/expert-adjudication
+  bridge. No labels, fingerprints, thresholds, production scorers, imports, or
+  migration state changed.
