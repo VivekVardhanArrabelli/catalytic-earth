@@ -6,6 +6,7 @@
 - Measured minutes: 49.72
 - Primary outcome: regression_rows_emitted
 - Pushed commit: 1a712f04adc071a2faafb917bd0735409f17e092 via alternate-index commit/push.
+- Handoff/status commit: aca2612f65489584bcaa982a93671ed4d36ef0df via alternate-index commit/push.
 - Rule under attack: entry-level any-context v4 review-only guard overblock risk plus unsafe ePK materializer non-abstention on geometry-prefiltered non-ePK v4 contaminants.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
@@ -67,6 +68,7 @@ Evidence against counterexamples on this run's surface:
 - `git fetch --no-write-fetch-head origin` succeeded.
 - Normal `git add` failed creating linked-worktree `index.lock`: Operation not permitted.
 - Alternate-index primary commit/push succeeded.
+- Alternate-index handoff/status commit/push succeeded.
 - Local checked-out HEAD remains behind `origin/research/epk-false-positive-hunter`; normal status still reflects linked-worktree metadata/index issues from prior runs.
 
 ## Next Query
