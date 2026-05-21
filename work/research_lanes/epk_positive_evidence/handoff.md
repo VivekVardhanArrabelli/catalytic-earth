@@ -1,67 +1,63 @@
 # ePK Positive Evidence Handoff
 
-Last updated: 2026-05-21T04:17:26Z
+Last updated: 2026-05-21T05:19:08Z
 
-Pushed commit: `5f0c21c02e089f6cc8068107beaf7b9d2cc9e645` (primary run artifacts/ledger commit created with a temporary index because the linked local gitdir still blocks normal ref updates). A follow-up handoff commit should be the final remote head for this run.
+Primary outcome: `evidence_for`.
 
-## Current Outcome
-
-Primary outcome: `candidate_evidence_rows_emitted`.
-
-This run completed the handoff's guarded continuation for source-rich phrase rows, then converted prior compact hits into candidate-level evidence rows. The fresh guarded searches did not find a new clean folded-protein ePK transfer-state positive. The candidate-row backfill emitted 84 `epk_candidate_evidence_v1` rows for review-only adjudication and stress testing.
-
-All candidate rows separate `source_free_geometry` from `source_context`. Source review fields are discovery context only and must not become predictive coordinate features. Every emitted row keeps `policy_decision=review_only_abstain`, `countable_label_candidate=false`, `production_claim_allowed=false`, and `ready_for_production_scoring=false`.
+This run source-adjudicated the full 84-row `epk_candidate_evidence_v1` backfill rather than emitting production labels or production scoring artifacts. The new all-row adjudication artifact keeps source review separate from source-free geometry and keeps every row review-only/non-countable.
 
 No production labels, thresholds, registries, fingerprints, migrations, scoring paths, or production claims were changed.
 
 ## Files Changed
 
-- `artifacts/research_lanes/epk_positive_evidence/3rep_ilk_source_review_20260521.json`
-- `artifacts/research_lanes/epk_positive_evidence/active_gamma_source_candidate_rows_20260521.json`
-- `artifacts/research_lanes/epk_positive_evidence/bound_state_source_candidate_rows_20260521.json`
-- `artifacts/research_lanes/epk_positive_evidence/guarded_phrase_candidate_rows_20260521.json`
-- `artifacts/research_lanes/epk_positive_evidence/guarded_phrase_candidate_rows_include_prior_20260521.json`
-- `artifacts/research_lanes/epk_positive_evidence/prior_candidate_evidence_rows_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_20260521.json`
+- `artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json`
 - `artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl`
-- `tools/research_lanes/epk_positive_evidence/guarded_phrase_candidate_rows.py`
-- `tools/research_lanes/epk_positive_evidence/prior_candidate_evidence_row_backfill.py`
+- `tools/research_lanes/epk_positive_evidence/candidate_source_adjudication.py`
 - `work/research_lanes/epk_positive_evidence/handoff.md`
 
 ## Evidence For
 
-- `prior_candidate_evidence_rows_20260521.json` emitted 84 candidate-level rows from 121 prior compact source rows: 66 `active_gamma` and 18 `transition_analog`.
-- The backfill includes 43 folded-protein or folded-protein-length-unknown candidate rows and 28 local-metal candidate rows for review-only source adjudication.
-- The guarded helper now supports surface sets, pre-CIF exact ligand/metal filters, prior-PDB skipping, current-run prior ignores, row timeouts, CIF size guards, and candidate-row source/geometry separation.
-- `3REP` was a fresh active-gamma source-term donor state: ILK/alpha-parvin with ATP/Mn on ILK.
+- `candidate_source_adjudication_all_20260521.json` reviews all 84 backfilled candidate rows across 48 unique PDB IDs.
+- Coordinate states observed: 66 `active_gamma` and 18 `transition_analog`.
+- The all-row pass found 39 source-supported review-only rows:
+  - 17 active-gamma peptide/fragment rows with local metal.
+  - 6 transition/pseudosubstrate rows.
+  - 16 source-supported rows blocked by no-local-metal or equivalent non-countable context.
+- Named stress anchors were covered: `23FC`, `5HVK`, `9UUR`/`9UUX`, `3X2U`/`3X2V`/`3X2W`, `1QMZ`, `1L3R`, `5LIH`, and `1HE1`.
+- RCSB entry/polymer/mmCIF refresh plus UniProt feature checks reduced source-mapping/claim unresolved rows to zero. The remaining manual-review set is source-mapped but source-claim-unconfirmed.
 
 ## Evidence Against
 
-- No fresh candidate-level positive row was emitted by the guarded searches.
-- The phrase continuation returned 17 exact-context PDB IDs, all prior-seen; repeat-inclusive review found only donor-or-analog-without-heteromeric-acceptor rows.
-- The active-gamma source-term set returned 324 rows across 13 surfaces; after skipping 192 prior-seen IDs, only fresh `3REP` was reviewed, and its nearest alpha-parvin Tyr306 hydroxyl was 14.923 Angstrom from ILK ATP PG.
-- The bound-state wording set returned 487 rows across 12 surfaces and all IDs were prior-seen under the pre-CIF guard.
-- `3REP` has no article DOI/PubMed metadata in RCSB, and Europe PMC exact-title/alias checks returned zero article rows.
+- No source-supported folded-protein local-metal active-gamma candidate was upgraded. Folded or folded-like support remains no-local-metal, source-unconfirmed, or non-ePK ownership.
+- The all-row pass found 38 counterexample/non-ePK ownership rows, dominated by MCM helicase ATPase, CydDC ABC transporter, 26S proteasome ATPase, F1-ATPase, KaiC, and ExoS/Rac GTPase contexts.
+- Seven source-mapped rows remain source-claim-unconfirmed: `1L3R`, `4DFX`, `4DG0`, one `4EKK` row, `7B56`, and two `7KL1` rows.
+- All adjudicated rows retain `policy_decision=review_only_abstain`, `countable_label_candidate=false`, `production_claim_allowed=false`, and `source_review_not_predictive_coordinate_feature=true`.
 
 ## Candidate-Row Notes
 
-- Candidate-level rows are not PDB-level assertions. A row binds one donor/analog site to one acceptor candidate where compact prior geometry existed.
-- Discovery signal tags and `discovery_signal_score` are review triage only. They are not production scoring features.
-- Product/transition-analog rows remain `review_only_abstain` unless a future frozen policy is preregistered and survives stress review.
-- Rows with `source_mapping_pending`, `candidate_entity_length_unknown`, `no_local_mg_or_mn`, or `transition_or_product_analog_state_not_countable` should not be treated as countable positives.
+- Source support is review context only. It must not become a predictive coordinate feature.
+- Product, analog, transition, no-local-metal, peptide/fragment, and ownership-confounded rows remain non-countable unless a future frozen policy is preregistered and survives stress review.
+- The all-row artifact is the current review surface for the 84 backfilled rows. Prefer it over the sampled priority artifact unless specifically auditing first-priority rows.
 
 ## Blockers
 
-- Startup `git fetch origin` and `git pull --ff-only origin research/epk-positive-evidence` failed with `Operation not permitted` while writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`.
-- `git fetch --no-write-fetch-head origin research/epk-positive-evidence` succeeded.
-- The local branch/worktree remains stale relative to `origin/research/epk-positive-evidence`; normal local ref/index updates may still fail. Use temporary-index `commit-tree` on top of `origin/research/epk-positive-evidence` and direct push verification if needed.
-- Production claims, threshold calibration, label import, registry edits, fingerprint changes, migrations, scoring, and production helper fallback remain forbidden.
+- Startup `git fetch origin` failed with `Operation not permitted` while writing `.git/worktrees/catalytic-earth-epk-positive/FETCH_HEAD`.
+- `git fetch --no-write-fetch-head origin` succeeded.
+- `git pull --ff-only origin research/epk-positive-evidence` failed with the same `FETCH_HEAD` permission blocker.
+- `git merge --ff-only origin/research/epk-positive-evidence` failed while creating `.git/worktrees/catalytic-earth-epk-positive/ORIG_HEAD.lock`.
+- The local branch still reports behind `origin/research/epk-positive-evidence`; use temporary-index/ref-safe commit/push handling if normal git continues to reject linked-worktree metadata writes.
 
 ## Next Query
 
-Source-adjudicate the `epk_candidate_evidence_v1` backfill rows by priority:
+Manually adjudicate the seven source-mapped but source-claim-unconfirmed rows:
 
-- First: local-metal `active_gamma` rows and folded-protein/folded-protein-length-unknown rows with `source_mapping_pending`.
-- Then: known stress anchors `23FC`, `5HVK`, `9UUR`/`9UUX`, `3X2U`/`3X2V`/`3X2W`, `1QMZ`, `1L3R`, `5LIH`, and `1HE1` as a counterexample.
-- At the next RCSB weekly release, re-run current-date/2026 exact-ligand surfaces and the `23FC` publication metadata check.
+- `1L3R` PKI transition mimic.
+- `4DFX`/`4DG0` SP20 PKA inhibitor rows.
+- `4EKK` Akt/GSK3 row `D:6`.
+- `7B56` CaMKII/alpha-actinin Ser822.
+- `7KL1` CaMKII/GluN2B donor-ownership rows.
+
+At the next RCSB weekly release, rerun current-date/2026 exact-ligand surfaces and the `23FC` publication metadata check.
 
 Production claims/label changes remain forbidden: yes.
