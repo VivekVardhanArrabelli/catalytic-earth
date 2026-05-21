@@ -19,6 +19,11 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 origin/research/epk-substrate-role-identity` then failed on linked-worktree
 `ORIG_HEAD.lock` permissions. Preserve outputs and use the remote-tip
 temporary-index commit/push workaround if normal metadata writes remain blocked.
+Remote-tip temporary-index pushes succeeded during wrap. Local `HEAD` remains
+stale at `8d38053d85cc28b7592267e9420578ca19a98814` while
+`origin/research/epk-substrate-role-identity` advanced; normal local clean and
+HEAD-equals-origin verification remain blocked until the linked-worktree
+metadata can be fast-forwarded.
 
 ## What Was Emitted
 
@@ -140,6 +145,9 @@ support ePK production readiness.
 - No raw `.pdb`, `.cif`, or `.mmcif` files were written in the lane paths.
 - No production label registries, mechanism fingerprints, migration manifests,
   or label imports were touched.
+- Remote-tip temporary-index pushes succeeded; local worktree status still
+  appears dirty because local `HEAD` is stale and cannot be fast-forwarded by
+  normal linked-worktree metadata operations.
 
 ## Exact Next Experiment
 
