@@ -160,6 +160,33 @@ closed before scoring as
 sequence baseline, geometry scoring, terminal-review import gate, registry
 edit, label import, or fingerprint change.
 
+The next source-complete current-fingerprint surface is radical SAM.
+`artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json`
+freezes 20 reviewed UniProtKB/Swiss-Prot radical-SAM/PDB rows before scoring,
+requiring catalytic activity, sequence, active-site or binding-site annotation,
+PDB cross-reference, and radical-SAM or SAM/Fe-S source context. The freeze
+excludes imported hard negatives, prior external-pool accessions, and
+cobalamin/coenzyme-B12/adenosylcobalamin overlap contexts, uses a two-row cap
+per primary EC, and does not use sequence-neighbor, Foldseek, ESM, geometry,
+score, or ePK evidence for selection. The decision packet
+`artifacts/v3_prospective_external_radical_sam_minicampaign_decision_packet_20260521.json`
+keeps all 20 rows as `needs_review` under the current `radical_sam_enzyme`
+lane: deterministic 5-mer screening finds 0 exact current-reference matches
+and 0 near-neighbor alerts, but source-free external geometry, terminal-review,
+and factory/import gates are still absent. The baseline comparison
+`artifacts/v3_radical_sam_minicampaign_baseline_comparison_20260521.json`
+therefore makes no superiority or mechanism-match claim. The post-radical-SAM
+rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_radical_sam_20260521.json`
+now covers 135 frozen rows across seven 2026-05-21 external mini-campaigns:
+123 `needs_review`, 12 exact current-reference duplicate terminal rejections,
+13 sequence-neighbor alerts, and 0 geometry-scored external rows. The current
+register is
+`artifacts/v3_main_loop_small_win_register_post_radical_sam_20260521.json`.
+No registry edit, label import, production score, threshold, fingerprint
+expansion, artifact upload/removal, Git-LFS tracking, history rewrite, or
+`removal_allowed=true` occurred.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late

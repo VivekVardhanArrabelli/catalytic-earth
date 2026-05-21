@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "artifact_id": "v3_main_loop_small_win_register_post_radical_sam_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T01:43:41Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "main_loop_small_win_register_post_radical_sam",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true
+  },
+  "next_main_loop_step": "wrap validation if cadence reached; otherwise continue a new source-complete external campaign",
+  "safety_rails": {
+    "artifact_upload_or_removal": false,
+    "fingerprint_expansion": false,
+    "label_import": false,
+    "production_scoring": false,
+    "registry_edit": false,
+    "removal_allowed_set_true": false
+  },
+  "wins": [
+    {
+      "artifact": "artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json",
+      "status": "20 radical SAM rows frozen before scoring"
+    },
+    {
+      "artifact": "artifacts/v3_prospective_external_radical_sam_minicampaign_decision_packet_20260521.json",
+      "status": "20 needs_review and 0 terminal rejections; 0 import-ready"
+    },
+    {
+      "artifact": "artifacts/v3_radical_sam_minicampaign_baseline_comparison_20260521.json",
+      "status": "EC/keyword and deterministic 5-mer baselines remain diagnostic only"
+    },
+    {
+      "artifact": "artifacts/v3_external_minicampaign_modern_baseline_rollup_post_radical_sam_20260521.json",
+      "status": "135 total 2026-05-21 frozen external rows across seven scored campaigns plus one cobalamin blocker; no superiority or import claim"
+    }
+  ]
+}

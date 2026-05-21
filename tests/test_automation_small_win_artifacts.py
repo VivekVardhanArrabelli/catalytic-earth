@@ -1289,6 +1289,104 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertFalse(conclusion["production_scoring_authorized"])
         self.assertFalse(conclusion["label_import_authorized"])
 
+    def test_radical_sam_minicampaign_stays_review_only(self) -> None:
+        freeze = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_radical_sam_minicampaign_decision_packet_20260521.json"
+        )
+        baseline = _load_json(
+            ARTIFACTS / "v3_radical_sam_minicampaign_baseline_comparison_20260521.json"
+        )
+        sequence = _load_json(
+            ARTIFACTS
+            / "v3_radical_sam_minicampaign_sequence_baseline_diagnostic_20260521.json"
+        )
+
+        self.assertTrue(freeze["metadata"]["review_only"])
+        self.assertTrue(
+            freeze["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(freeze["metadata"]["candidate_count"], 20)
+        self.assertEqual(
+            freeze["metadata"]["target_current_fingerprint_lane"],
+            "radical_sam_enzyme",
+        )
+        self.assertEqual(freeze["metadata"]["production_fingerprint_count"], 8)
+        self.assertFalse(freeze["metadata"]["ready_for_label_import"])
+        self.assertFalse(freeze["metadata"]["ready_for_production_scoring"])
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_at_freeze" for row in freeze["rows"])
+        )
+        self.assertTrue(
+            all(row["radical_sam_source_context_present"] for row in freeze["rows"])
+        )
+        self.assertTrue(
+            all(row["fe_s_or_sam_source_context_present"] for row in freeze["rows"])
+        )
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_count"], 20)
+        self.assertEqual(metadata["terminal_decision_counts"], {"needs_review": 20})
+        self.assertEqual(
+            metadata["target_current_fingerprint_lane"], "radical_sam_enzyme"
+        )
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertTrue(
+            all(row["terminal_decision"] == "needs_review" for row in decisions["rows"])
+        )
+        self.assertFalse(
+            decisions["synthesis_conclusion"]["production_scoring_authorized"]
+        )
+        self.assertFalse(
+            decisions["synthesis_conclusion"][
+                "registry_or_fingerprint_change_authorized"
+            ]
+        )
+
+        self.assertTrue(baseline["metadata"]["review_only"])
+        self.assertFalse(baseline["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(baseline["metadata"]["frozen_row_count"], 20)
+        self.assertEqual(
+            baseline["metrics"]["review_only_terminal_decisions"][
+                "terminal_decision_counts"
+            ],
+            {"needs_review": 20},
+        )
+        self.assertEqual(
+            baseline["metrics"]["geometry_retrieval_triage"][
+                "geometry_scored_external_row_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            baseline["metrics"]["deterministic_5mer_nearest_neighbor"][
+                "exact_current_reference_sequence_match_count"
+            ],
+            0,
+        )
+
+        self.assertTrue(sequence["metadata"]["review_only"])
+        self.assertEqual(sequence["metadata"]["candidate_count"], 20)
+        self.assertEqual(sequence["metadata"]["reference_sequence_count"], 737)
+        self.assertEqual(
+            sequence["metadata"]["exact_current_reference_sequence_match_count"], 0
+        )
+        self.assertEqual(sequence["metadata"]["near_neighbor_alert_count"], 0)
+        self.assertFalse(
+            sequence["metadata"]["terminal_decision_changed_by_sequence_baseline"]
+        )
+        self.assertFalse(sequence["metadata"]["ready_for_label_import"])
+
     def test_external_minicampaign_modern_baseline_rollup_stays_review_only(self) -> None:
         rollup = _load_json(
             ARTIFACTS / "v3_external_minicampaign_modern_baseline_rollup_20260521.json"
@@ -1506,6 +1604,42 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(
             campaigns["flavin_dehydrogenase"]["target_current_fingerprint_lane"],
             "flavin_dehydrogenase_reductase",
+        )
+        self.assertFalse(rollup["task_definition"]["positive_claim_allowed"])
+
+    def test_external_minicampaign_modern_baseline_rollup_post_radical_sam(
+        self,
+    ) -> None:
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_minicampaign_modern_baseline_rollup_post_radical_sam_20260521.json"
+        )
+        metadata = rollup["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["campaign_count"], 7)
+        self.assertEqual(metadata["frozen_row_count"], 135)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"needs_review": 123, "terminal_rejection": 12},
+        )
+        self.assertEqual(metadata["exact_current_reference_sequence_match_count"], 12)
+        self.assertEqual(metadata["near_neighbor_alert_count"], 13)
+        self.assertEqual(metadata["geometry_scored_external_row_count"], 0)
+        self.assertFalse(metadata["superiority_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        campaigns = {row["campaign_id"]: row for row in rollup["campaigns"]}
+        self.assertEqual(len(campaigns), 7)
+        self.assertEqual(
+            campaigns["radical_sam"]["terminal_decision_counts"],
+            {"needs_review": 20},
+        )
+        self.assertEqual(
+            campaigns["radical_sam"]["target_current_fingerprint_lane"],
+            "radical_sam_enzyme",
         )
         self.assertFalse(rollup["task_definition"]["positive_claim_allowed"])
 

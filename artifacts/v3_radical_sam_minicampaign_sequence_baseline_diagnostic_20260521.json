@@ -1,0 +1,258 @@
+{
+  "caveats": [
+    "The 5-mer baseline is deterministic duplicate/leakage context only.",
+    "It does not replace source-free geometry, structural duplicate screening, terminal review, or factory/import gates."
+  ],
+  "metadata": {
+    "artifact_id": "v3_radical_sam_minicampaign_sequence_baseline_diagnostic_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 20,
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T01:43:41Z",
+    "curated_label_registry_edited": false,
+    "exact_current_reference_sequence_match_count": 0,
+    "external_fasta": "artifacts/v3_radical_sam_minicampaign_sequence_baseline_external_20260521.fasta",
+    "external_fasta_sha256": "636377654d0868faff1f5181696da732b8b396d23c202883ecaa8af4a5bb0745",
+    "fingerprint_registry_edited": false,
+    "kmer_k": 5,
+    "method": "deterministic_5mer_nearest_current_reference_diagnostic",
+    "near_neighbor_alert_count": 0,
+    "near_neighbor_alert_threshold_jaccard": 0.35,
+    "ready_for_label_import": false,
+    "reference_fasta": "artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta",
+    "reference_sequence_count": 737,
+    "review_only": true,
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/stream?query=accession%3AA0A1M6T2I7+OR+accession%3AQ8G907+OR+accession%3AQ9A6Q5+OR+accession%3AO43766+OR+accession%3AO31677+OR+accession%3AP12996+OR+accession%3AP0A9N4+OR+accession%3AA0A0H3KB22+OR+accession%3AQ9H9T3+OR+accession%3AP36979+OR+accession%3AQ9ZGH1+OR+accession%3AP32131+OR+accession%3AA0A1C7D1B7+OR+accession%3AQ8CBB9+OR+accession%3AQ0TTH1+OR+accession%3AP69848+OR+accession%3AO82392+OR+accession%3AO58832+OR+accession%3AP71517+OR+accession%3AQ8THG6&format=fasta",
+    "superiority_claim_permitted": false,
+    "terminal_decision_changed_by_sequence_baseline": false
+  },
+  "rows": [
+    {
+      "accession": "A0A1M6T2I7",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0039,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q00511",
+      "entry_name": "TIGE_PARC5",
+      "exact_current_reference_id": null,
+      "primary_ec": "4.1.-.-",
+      "row_id": "uniprot:A0A1M6T2I7",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "Q8G907",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0026,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P27213",
+      "entry_name": "BTRN_NIACI",
+      "exact_current_reference_id": null,
+      "primary_ec": "1.1.99.38",
+      "row_id": "uniprot:Q8G907",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "Q9A6Q5",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0034,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0AGE9",
+      "entry_name": "THIC_CAUVC",
+      "exact_current_reference_id": null,
+      "primary_ec": "4.1.99.17",
+      "row_id": "uniprot:Q9A6Q5",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "O43766",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0033,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P48534",
+      "entry_name": "LIAS_HUMAN",
+      "exact_current_reference_id": null,
+      "primary_ec": "2.8.1.8",
+      "row_id": "uniprot:O43766",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "O31677",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0034,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P69327",
+      "entry_name": "QUEE_BACSU",
+      "exact_current_reference_id": null,
+      "primary_ec": "4.3.99.3",
+      "row_id": "uniprot:O31677",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "P12996",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0053,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P37268",
+      "entry_name": "BIOB_ECOLI",
+      "exact_current_reference_id": null,
+      "primary_ec": "2.8.1.6",
+      "row_id": "uniprot:P12996",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "P0A9N4",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.004,
+      "deterministic_5mer_nearest_current_reference_id": "ref__O76290",
+      "entry_name": "PFLA_ECOLI",
+      "exact_current_reference_id": null,
+      "primary_ec": "1.97.1.4",
+      "row_id": "uniprot:P0A9N4",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "A0A0H3KB22",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.006,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P50057",
+      "entry_name": "QUEE_BURM1",
+      "exact_current_reference_id": null,
+      "primary_ec": "4.3.99.3",
+      "row_id": "uniprot:A0A0H3KB22",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "Q9H9T3",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0038,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P52708",
+      "entry_name": "ELP3_HUMAN",
+      "exact_current_reference_id": null,
+      "primary_ec": "2.3.1.311",
+      "row_id": "uniprot:Q9H9T3",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "P36979",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0037,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P42676",
+      "entry_name": "RLMN_ECOLI",
+      "exact_current_reference_id": null,
+      "primary_ec": "2.1.1.192",
+      "row_id": "uniprot:P36979",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "Q9ZGH1",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0033,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P77836",
+      "entry_name": "DESII_STRVZ",
+      "exact_current_reference_id": null,
+      "primary_ec": "1.1.99.-",
+      "row_id": "uniprot:Q9ZGH1",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "P32131",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0028,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P32400",
+      "entry_name": "HEMN_ECOLI",
+      "exact_current_reference_id": null,
+      "primary_ec": "1.3.98.3",
+      "row_id": "uniprot:P32131",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "A0A1C7D1B7",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0037,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P27170",
+      "entry_name": "ELP3_DEHMC",
+      "exact_current_reference_id": null,
+      "primary_ec": "2.3.1.311",
+      "row_id": "uniprot:A0A1C7D1B7",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "Q8CBB9",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0047,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P14604",
+      "entry_name": "RSAD2_MOUSE",
+      "exact_current_reference_id": null,
+      "primary_ec": "4.2.-.-",
+      "row_id": "uniprot:Q8CBB9",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "Q0TTH1",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P09850",
+      "entry_name": "ANSME_CLOP1",
+      "exact_current_reference_id": null,
+      "primary_ec": "1.8.98.7",
+      "row_id": "uniprot:Q0TTH1",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "P69848",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0047,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P68698",
+      "entry_name": "MOAA_STAA8",
+      "exact_current_reference_id": null,
+      "primary_ec": "4.1.99.22",
+      "row_id": "uniprot:P69848",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "O82392",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0033,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0AGE9",
+      "entry_name": "THIC_ARATH",
+      "exact_current_reference_id": null,
+      "primary_ec": "4.1.99.17",
+      "row_id": "uniprot:O82392",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "O58832",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0041,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P36507",
+      "entry_name": "DPH2_PYRHO",
+      "exact_current_reference_id": null,
+      "primary_ec": "2.5.1.108",
+      "row_id": "uniprot:O58832",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "P71517",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0043,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00963",
+      "entry_name": "PQQE_METEA",
+      "exact_current_reference_id": null,
+      "primary_ec": "1.21.98.4",
+      "row_id": "uniprot:P71517",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    },
+    {
+      "accession": "Q8THG6",
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0028,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00862",
+      "entry_name": "MCRAM_METAC",
+      "exact_current_reference_id": null,
+      "primary_ec": "2.1.1.379",
+      "row_id": "uniprot:Q8THG6",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "terminal_decision_input_status": "review_only_duplicate_caveat"
+    }
+  ],
+  "task_definition": {
+    "decision_use": "exact sequence duplicates may become terminal rejections; non-exact nearest-neighbor scores are review-only caveats and not mechanism evidence.",
+    "positive_claim_allowed": false,
+    "task": "Run deterministic 5-mer nearest-current-reference diagnostic after freezing the radical SAM mini-campaign."
+  }
+}

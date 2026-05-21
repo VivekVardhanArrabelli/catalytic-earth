@@ -437,6 +437,28 @@ terminal review-only negative result:
 baseline, geometry scoring, terminal-review import gate, threshold, registry
 edit, label import, or fingerprint change is in scope for this cobalamin
 surface.
+Current radical SAM mini-campaign scope:
+`artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json`
+freezes 20 reviewed radical-SAM/PDB rows before scoring under the current
+`radical_sam_enzyme` lane. Selection is source-only: catalytic activity,
+sequence, PDB cross-reference, active-site or binding-site annotation, radical
+SAM or SAM/Fe-S source context, prior-pool/imported-hard-negative exclusions,
+cobalamin-overlap exclusions, and a two-row primary-EC cap. The decision
+packet
+`artifacts/v3_prospective_external_radical_sam_minicampaign_decision_packet_20260521.json`
+keeps all 20 rows as `needs_review`, with 0 exact current-reference sequence
+duplicates and 0 near-neighbor alerts in
+`artifacts/v3_radical_sam_minicampaign_sequence_baseline_diagnostic_20260521.json`.
+The no-claim baseline
+`artifacts/v3_radical_sam_minicampaign_baseline_comparison_20260521.json`
+records EC/keyword and deterministic 5-mer context only. The post-radical-SAM
+rollup
+`artifacts/v3_external_minicampaign_modern_baseline_rollup_post_radical_sam_20260521.json`
+covers 135 frozen rows across seven 2026-05-21 mini-campaigns: 123
+`needs_review`, 12 exact current-reference duplicate terminal rejections, 13
+sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
+mechanism-match, production-score, threshold, import, registry, or fingerprint
+claim is in scope.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two
