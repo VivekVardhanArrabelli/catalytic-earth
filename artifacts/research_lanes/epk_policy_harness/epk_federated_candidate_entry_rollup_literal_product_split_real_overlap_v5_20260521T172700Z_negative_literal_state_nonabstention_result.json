@@ -1,0 +1,16 @@
+{
+  "expected_error_fragment": "must expect review-only state abstention",
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_literal_state_nonabstention",
+    "created_at": "2026-05-21T17:34:18+00:00",
+    "fault_injection_expected_failure": "literal_state_nonabstention",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "rejected": true,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "observed_error": "literal product/split target rows must expect review-only state abstention: epk_substrate_role_identity:phosphoproduct_materialization_rows:3QHW|gamma=none|acceptor=A:TPO160:OG1|nucleotide=A:ADP297"
+}

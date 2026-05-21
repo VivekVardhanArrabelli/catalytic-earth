@@ -1,0 +1,446 @@
+{
+  "gate": {
+    "failed_result_artifacts": [],
+    "failure_count": 0,
+    "gate_pass": true,
+    "labels_or_fingerprints_changed": false,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false
+  },
+  "metadata": {
+    "artifact_id": "epk_candidate_policy_bridge_scoreboard_gate_v1_20260521",
+    "created_at": "2026-05-21T17:34:18+00:00",
+    "gate_pass": true,
+    "gate_version": "epk_candidate_policy_bridge_scoreboard_gate_v1_20260521",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "result_artifact_count": 1,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+    "scoreboard_row_count": 1
+  },
+  "schema_drafts": {
+    "production_claim_allowed": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+    "schemas": {
+      "epk_candidate_evidence_v1": {
+        "allowed_predictive_feature_boundary": [
+          "ligand_code_from_structure",
+          "terminal_gamma_equivalent_geometry",
+          "terminal_gamma_atom_name",
+          "nearest_gamma_acceptor_distance_angstrom",
+          "local_metal_context",
+          "catalytic_site_locality",
+          "source_free_acceptor_role_features",
+          "source_free_acceptor_role_policy_id",
+          "same_structure_co_materialization"
+        ],
+        "candidate_identity_fields": [
+          "lane_id",
+          "source_lane_id",
+          "source_artifact",
+          "source_row_key",
+          "source_row_id",
+          "row_id",
+          "candidate_id",
+          "entry_id",
+          "pdb_id",
+          "model_id",
+          "chain_or_auth_asym_id",
+          "ligand_instance_id",
+          "terminal_gamma_atom_id",
+          "acceptor_atom_id"
+        ],
+        "candidate_identity_rule": "row_id or candidate_id identifies one gamma/acceptor candidate; entry-level status is derived from candidate decisions",
+        "compact_artifact_rule": "do_not_write_large_raw_coordinate_dumps",
+        "coordinate_state_enum": [
+          "active_gamma",
+          "adp_state",
+          "ambiguous_coordinate_state",
+          "ligand_absent",
+          "metal_absent",
+          "product_state",
+          "split_state",
+          "substrate_acceptor_analog_state",
+          "unavailable_coordinate_state"
+        ],
+        "federated_source_provenance_rule": "source_lane_id/source_artifact/source_row_key/source_row_id identify review-only emitting-lane provenance and must not carry source text, protein names, titles, EC/Rhea, or paper metadata as predictive features",
+        "forbidden_predictive_flags": [
+          "candidate_specific_source_repair_used_for_predictive_feature",
+          "cross_pdb_split_state_fusion",
+          "ec_or_rhea_as_predictive_feature",
+          "homomeric_chain_choice_as_substrate_mapping",
+          "mechanism_text_as_predictive_feature",
+          "paper_metadata_as_predictive_feature",
+          "paper_title_as_predictive_feature",
+          "pdb_title_as_predictive_feature",
+          "post_hoc_ligand_alias_expansion",
+          "post_hoc_threshold_selection",
+          "protein_name_as_predictive_feature",
+          "protein_names_as_predictive_feature",
+          "query_ligand_synonym_used_as_coordinate_ligand",
+          "source_id_as_predictive_feature",
+          "source_query_used_for_predictive_feature",
+          "source_review_used_for_predictive_feature",
+          "source_text_used_for_predictive_feature",
+          "source_validation_used_for_predictive_feature",
+          "structure_title_used_for_predictive_feature",
+          "uniprot_prose_as_predictive_feature"
+        ],
+        "required_fields": [
+          "schema_version",
+          "row_id",
+          "candidate_id",
+          "pdb_id",
+          "row_role",
+          "ligand_code_from_structure",
+          "coordinate_state",
+          "terminal_gamma_equivalent_geometry",
+          "local_metal_context",
+          "catalytic_site_locality",
+          "source_free_acceptor_role_features",
+          "same_structure_co_materialization"
+        ],
+        "review_only_context_fields": [
+          "source_query",
+          "source_validation_status",
+          "source_review_status",
+          "structure_title",
+          "entity_descriptions",
+          "chain_accessions",
+          "source_lane_id",
+          "source_artifact",
+          "source_row_key",
+          "source_row_id",
+          "expert_notes",
+          "product_state_context",
+          "substrate_acceptor_analog_context",
+          "split_state_context",
+          "sibling_counterfamily_context"
+        ],
+        "scope": "candidate_level_gamma_acceptor_pair_not_pdb_level",
+        "source_leakage_predictive_flags": [
+          "ec_or_rhea_as_predictive_feature",
+          "mechanism_text_as_predictive_feature",
+          "paper_metadata_as_predictive_feature",
+          "paper_title_as_predictive_feature",
+          "pdb_title_as_predictive_feature",
+          "protein_name_as_predictive_feature",
+          "protein_names_as_predictive_feature",
+          "source_id_as_predictive_feature",
+          "source_query_used_for_predictive_feature",
+          "source_review_used_for_predictive_feature",
+          "source_text_used_for_predictive_feature",
+          "source_validation_used_for_predictive_feature",
+          "structure_title_used_for_predictive_feature",
+          "uniprot_prose_as_predictive_feature"
+        ]
+      },
+      "epk_policy_decision_v1": {
+        "candidate_provenance_fields": [
+          "candidate_id",
+          "pdb_id",
+          "entry_id",
+          "source_lane_id",
+          "source_artifact",
+          "source_row_key",
+          "source_row_id"
+        ],
+        "claim_admissibility_enum": [
+          "review_only",
+          "forbidden"
+        ],
+        "claim_status_enum": [
+          "forbidden_source_leakage",
+          "review_only_abstain_analog_state",
+          "review_only_abstain_forbidden_context",
+          "review_only_abstain_missing_role_policy",
+          "review_only_abstain_product_state",
+          "review_only_abstain_sibling_control",
+          "review_only_abstain_split_state",
+          "review_only_abstain_topology_ambiguity",
+          "review_only_nonabstaining_candidate"
+        ],
+        "coordinate_state_enum": [
+          "active_gamma",
+          "adp_state",
+          "ambiguous_coordinate_state",
+          "ligand_absent",
+          "metal_absent",
+          "product_state",
+          "split_state",
+          "substrate_acceptor_analog_state",
+          "unavailable_coordinate_state"
+        ],
+        "federated_candidate_identity_rule": "candidate/source provenance is required for federated gate tranches and remains review-only provenance, not a predictive feature",
+        "nonabstaining_is_review_only": true,
+        "production_scoring_rule": "not_production_scoring_or_label_import",
+        "required_fields": [
+          "schema_version",
+          "row_id",
+          "coordinate_state",
+          "claim_status",
+          "claim_admissibility",
+          "abstention_reasons",
+          "forbidden_predictive_context_flags",
+          "production_claim_allowed",
+          "labels_or_fingerprints_changed"
+        ]
+      },
+      "epk_scoreboard_row_v1": {
+        "entry_claim_status_precedence": [
+          "forbidden_source_leakage",
+          "review_only_abstain_forbidden_context",
+          "review_only_abstain_sibling_control",
+          "review_only_abstain_topology_ambiguity",
+          "review_only_abstain_split_state",
+          "review_only_abstain_analog_state",
+          "review_only_abstain_product_state",
+          "review_only_abstain_missing_role_policy",
+          "review_only_nonabstaining_candidate"
+        ],
+        "entry_rollup_rule": "derive entry-level status from candidate-level decisions only; keep candidate status counts visible and use fail-closed precedence for forbidden/source leakage and review-only blockers",
+        "progress_gate": "fails on forbidden source leakage or unsafe control nonabstention",
+        "required_fields": [
+          "source_result_artifact",
+          "tranche_id",
+          "rows_reviewed",
+          "entry_count",
+          "discovery_signal_row_count",
+          "claim_status_counts",
+          "entry_claim_status_counts",
+          "coordinate_state_counts",
+          "forbidden_source_leakage_count",
+          "unsafe_control_nonabstention_count",
+          "production_claim_allowed",
+          "labels_or_fingerprints_changed"
+        ],
+        "scoreboard_artifact_required_fields": [
+          "scoreboard_summary.covered_claim_status_values",
+          "scoreboard_summary.uncovered_claim_status_values",
+          "scoreboard_summary.covered_coordinate_state_values",
+          "scoreboard_summary.uncovered_coordinate_state_values",
+          "gate.gate_pass"
+        ],
+        "separates_discovery_signal_from_claim_admissibility": true
+      }
+    }
+  },
+  "scoreboard_rows": [
+    {
+      "claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 4,
+        "review_only_abstain_split_state": 1
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 1,
+        "product_state": 4,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 2
+      },
+      "discovery_signal_row_count": 6,
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_split_state": 1
+      },
+      "entry_count": 3,
+      "entry_rollup_contract": {
+        "candidate_rows_are_source_of_truth": true,
+        "claim_admissibility_separate_from_discovery_signal": true,
+        "entry_status_derived_from_candidate_decisions": true,
+        "fail_closed_claim_status_precedence": [
+          "forbidden_source_leakage",
+          "review_only_abstain_forbidden_context",
+          "review_only_abstain_sibling_control",
+          "review_only_abstain_topology_ambiguity",
+          "review_only_abstain_split_state",
+          "review_only_abstain_analog_state",
+          "review_only_abstain_product_state",
+          "review_only_abstain_missing_role_policy",
+          "review_only_nonabstaining_candidate"
+        ],
+        "production_claim_allowed": false,
+        "progress_claim_allowed": false
+      },
+      "entry_rollups": [
+        {
+          "candidate_count": 3,
+          "candidate_row_ids": [
+            "epk_positive_evidence:adjudicated_candidate_rows:3QHR:transition_analog:MGF:A:300:K:0:1",
+            "epk_substrate_role_identity:phosphoproduct_materialization_rows:3QHR|gamma=none|acceptor=A:TPO160:OG1|nucleotide=A:ADP297",
+            "epk_substrate_role_identity:phosphoproduct_materialization_rows:3QHR|gamma=none|acceptor=C:TPO160:OG1|nucleotide=C:ADP297"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_product_state": 2
+          },
+          "coordinate_state_counts": {
+            "product_state": 2,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_analog_state",
+          "entry_id": "3QHR",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 3,
+          "candidate_row_ids": [
+            "epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2",
+            "epk_substrate_role_identity:phosphoproduct_materialization_rows:3QHW|gamma=none|acceptor=A:TPO160:OG1|nucleotide=A:ADP297",
+            "epk_substrate_role_identity:phosphoproduct_materialization_rows:3QHW|gamma=none|acceptor=C:TPO160:OG1|nucleotide=C:ADP297"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_analog_state": 1,
+            "review_only_abstain_product_state": 2
+          },
+          "coordinate_state_counts": {
+            "product_state": 2,
+            "substrate_acceptor_analog_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_analog_state",
+          "entry_id": "3QHW",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        },
+        {
+          "candidate_count": 2,
+          "candidate_row_ids": [
+            "epk_positive_evidence:adjudicated_candidate_rows:4HPU:active_gamma:ANP:I:associated_entity_2:E:201:2",
+            "epk_substrate_role_identity:phosphoproduct_materialization_rows:4HPU|gamma=none|acceptor=I:SEP21:OG|nucleotide=E:ANP402"
+          ],
+          "claim_status_counts": {
+            "review_only_abstain_missing_role_policy": 1,
+            "review_only_abstain_split_state": 1
+          },
+          "coordinate_state_counts": {
+            "active_gamma": 1,
+            "split_state": 1
+          },
+          "discovery_signal_candidate_count": 2,
+          "entry_claim_admissibility": "review_only",
+          "entry_claim_status": "review_only_abstain_split_state",
+          "entry_id": "4HPU",
+          "forbidden_source_leakage_rows": [],
+          "labels_or_fingerprints_changed": false,
+          "nonabstaining_candidate_count": 0,
+          "production_claim_allowed": false,
+          "progress_claim_allowed": false,
+          "source_lane_ids": [
+            "epk_positive_evidence",
+            "epk_substrate_role_identity"
+          ],
+          "unsafe_control_nonabstention_rows": []
+        }
+      ],
+      "expected_claim_status_mismatch_count": 0,
+      "expected_decision_mismatch_count": 0,
+      "forbidden_source_leakage_count": 0,
+      "forbidden_source_leakage_rows": [],
+      "gate_pass": true,
+      "labels_or_fingerprints_changed": false,
+      "missing_schema_details": [],
+      "missing_schema_row_count": 0,
+      "missing_schema_rows": [],
+      "policy_version": "epk_review_only_policy_harness_v0_20260520",
+      "production_claim_allowed": false,
+      "rows_reviewed": 8,
+      "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521",
+      "scoreboard_schema": "epk_scoreboard_row_v1",
+      "source_result_artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_result.json",
+      "source_result_sha256": "4a092f922998de0a41a6d5e99fd7e141749f0980cbc93f754761f829c8e4729c",
+      "tranche_id": "epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5",
+      "unsafe_control_nonabstention_count": 0,
+      "unsafe_control_nonabstention_rows": []
+    }
+  ],
+  "scoreboard_summary": {
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 2,
+      "review_only_abstain_missing_role_policy": 1,
+      "review_only_abstain_product_state": 4,
+      "review_only_abstain_split_state": 1
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 1,
+      "product_state": 4,
+      "split_state": 1,
+      "substrate_acceptor_analog_state": 2
+    },
+    "covered_claim_status_values": [
+      "review_only_abstain_analog_state",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_split_state"
+    ],
+    "covered_coordinate_state_values": [
+      "active_gamma",
+      "product_state",
+      "split_state",
+      "substrate_acceptor_analog_state"
+    ],
+    "covered_entry_claim_status_values": [
+      "review_only_abstain_analog_state",
+      "review_only_abstain_split_state"
+    ],
+    "discovery_signal_row_count": 6,
+    "entry_claim_status_counts": {
+      "review_only_abstain_analog_state": 2,
+      "review_only_abstain_split_state": 1
+    },
+    "entry_count": 3,
+    "forbidden_source_leakage_count": 0,
+    "labels_or_fingerprints_changed": false,
+    "production_claim_allowed": false,
+    "rows_reviewed": 8,
+    "uncovered_claim_status_values": [
+      "forbidden_source_leakage",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "uncovered_coordinate_state_values": [
+      "adp_state",
+      "ambiguous_coordinate_state",
+      "ligand_absent",
+      "metal_absent",
+      "unavailable_coordinate_state"
+    ],
+    "uncovered_entry_claim_status_values": [
+      "forbidden_source_leakage",
+      "review_only_abstain_forbidden_context",
+      "review_only_abstain_missing_role_policy",
+      "review_only_abstain_product_state",
+      "review_only_abstain_sibling_control",
+      "review_only_abstain_topology_ambiguity",
+      "review_only_nonabstaining_candidate"
+    ],
+    "unsafe_control_nonabstention_count": 0
+  }
+}

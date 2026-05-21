@@ -1,0 +1,265 @@
+{
+  "artifacts": {
+    "negative_literal_state_nonabstention": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_literal_state_nonabstention_result.json",
+    "negative_literal_state_nonabstention_sha256": "09a78394280c71b1abc35cb5a997d32743df296c866aa4142355504b4d9e668f",
+    "negative_missing_literal_state": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_missing_literal_state_result.json",
+    "negative_missing_literal_state_sha256": "9b45722a784006b7128a70a3874601d4ee4d377c557fa24ec3f822ae6e334353",
+    "negative_single_lane_entry": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_single_lane_entry_result.json",
+    "negative_single_lane_entry_sha256": "a14a999d0247459ef9d2f08965f1d8cedf6fe0ef5407b35d38f39a6d8b9e931a",
+    "negative_source_context_copy": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_source_context_copy_result.json",
+    "negative_source_context_copy_sha256": "b675ee184ad77eab51436faf7403e7a327c76566d02f1427e7db7d298207cf19",
+    "result": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_result.json",
+    "result_sha256": "4a092f922998de0a41a6d5e99fd7e141749f0980cbc93f754761f829c8e4729c",
+    "scoreboard_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "647ad143128d7fa5acb4b362e531c9a9baeadfe39d59fcfe03fcc4599eefc993",
+    "tranche": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_tranche.json",
+    "tranche_sha256": "3a15368fa3545ed4de7c4a32967c8cbe15be4b156616797ce32fe92644cdb04d"
+  },
+  "federated_inputs": [
+    {
+      "artifact": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+      "available_entry_count": 48,
+      "available_literal_overlap_row_count": 0,
+      "available_overlap_entry_count": 25,
+      "available_row_count": 84,
+      "lane_id": "epk_positive_evidence",
+      "ref": "origin/research/epk-positive-evidence",
+      "review_only_input": true,
+      "row_keys": [
+        "adjudicated_candidate_rows"
+      ],
+      "selected_entry_count": 3,
+      "selected_row_count": 3
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_phosphoproduct_materialization_audit_v1_20260521.json",
+      "available_entry_count": 54,
+      "available_literal_overlap_row_count": 5,
+      "available_overlap_entry_count": 41,
+      "available_row_count": 135,
+      "lane_id": "epk_substrate_role_identity",
+      "ref": "origin/research/epk-substrate-role-identity",
+      "review_only_input": true,
+      "row_keys": [
+        "phosphoproduct_materialization_rows"
+      ],
+      "selected_entry_count": 3,
+      "selected_row_count": 5
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_160349Z.json",
+      "available_entry_count": 133,
+      "available_literal_overlap_row_count": 0,
+      "available_overlap_entry_count": 8,
+      "available_row_count": 343,
+      "lane_id": "epk_false_positive_hunter",
+      "ref": "origin/research/epk-false-positive-hunter",
+      "review_only_input": true,
+      "row_keys": [
+        "rows"
+      ],
+      "selected_entry_count": 0,
+      "selected_row_count": 0
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+      "available_entry_count": 89,
+      "available_literal_overlap_row_count": 0,
+      "available_overlap_entry_count": 10,
+      "available_row_count": 91,
+      "lane_id": "epk_sibling_controls",
+      "ref": "origin/research/epk-sibling-controls",
+      "review_only_input": true,
+      "row_keys": [
+        "gamma_proximity_counteraxis_cases",
+        "product_phosphoryl_identity_counteraxis_cases"
+      ],
+      "selected_entry_count": 0,
+      "selected_row_count": 0
+    }
+  ],
+  "gate": {
+    "gate_pass": true,
+    "literal_product_split_gate_pass": true,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false
+  },
+  "hypothesis": "Literal product_state and split_state coordinate rows from an independent source-free lane can be admitted only as review-only candidate evidence when the selected entries also have independent cross-lane support.",
+  "literal_product_split_summary": {
+    "available_literal_overlap_coordinate_state_counts": {
+      "product_state": 4,
+      "split_state": 1
+    },
+    "available_literal_overlap_row_count": 5,
+    "available_overlap_entry_count": 41,
+    "covered_literal_target_coordinate_state_values": [
+      "product_state",
+      "split_state"
+    ],
+    "labels_or_fingerprints_changed": false,
+    "literal_product_or_split_rows_nonabstaining": false,
+    "literal_target_coordinate_state_counts": {
+      "product_state": 4,
+      "split_state": 1
+    },
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false,
+    "selected_coordinate_state_counts": {
+      "active_gamma": 1,
+      "product_state": 4,
+      "split_state": 1,
+      "substrate_acceptor_analog_state": 2
+    },
+    "selected_entry_source_lanes": {
+      "3QHR": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "3QHW": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ],
+      "4HPU": [
+        "epk_positive_evidence",
+        "epk_substrate_role_identity"
+      ]
+    },
+    "selected_overlap_entry_ids": [
+      "3QHW",
+      "3QHR",
+      "4HPU"
+    ],
+    "source_text_and_protein_names_copied": false,
+    "uncovered_literal_target_coordinate_state_values": []
+  },
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5",
+    "created_at": "2026-05-21T17:34:18+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "negative_fault_injections": [
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_single_lane_entry_result.json",
+      "expected_failure": "single_lane_entry",
+      "observed_error": "literal product/split gate requires every selected entry to contain candidate rows from at least two source lanes: {'3QHW': ['epk_positive_evidence']}",
+      "rejected": true,
+      "sha256": "a14a999d0247459ef9d2f08965f1d8cedf6fe0ef5407b35d38f39a6d8b9e931a"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_missing_literal_state_result.json",
+      "expected_failure": "missing_literal_state",
+      "observed_error": "literal product/split gate requires literal coordinate-state coverage: ['split_state']",
+      "rejected": true,
+      "sha256": "9b45722a784006b7128a70a3874601d4ee4d377c557fa24ec3f822ae6e334353"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_literal_state_nonabstention_result.json",
+      "expected_failure": "literal_state_nonabstention",
+      "observed_error": "literal product/split target rows must expect review-only state abstention: epk_substrate_role_identity:phosphoproduct_materialization_rows:3QHW|gamma=none|acceptor=A:TPO160:OG1|nucleotide=A:ADP297",
+      "rejected": true,
+      "sha256": "09a78394280c71b1abc35cb5a997d32743df296c866aa4142355504b4d9e668f"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_negative_source_context_copy_result.json",
+      "expected_failure": "source_context_copy",
+      "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:3QHW:transition_analog:MGF:A:300:J:0:2 violates federated adapter contract: source text, protein names, titles, paper metadata, EC/Rhea, and prose must not be copied into predictive rows ['protein_names']",
+      "rejected": true,
+      "sha256": "b675ee184ad77eab51436faf7403e7a327c76566d02f1427e7db7d298207cf19"
+    }
+  ],
+  "policy_result": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_result.json",
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 2,
+      "review_only_abstain_missing_role_policy": 1,
+      "review_only_abstain_product_state": 4,
+      "review_only_abstain_split_state": 1
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 1,
+      "product_state": 4,
+      "split_state": 1,
+      "substrate_acceptor_analog_state": 2
+    },
+    "counterexamples_found": [],
+    "expected_claim_status_mismatch_count": 0,
+    "primary_outcome": "policy_frozen_review_only",
+    "rows_reviewed": 8,
+    "sha256": "4a092f922998de0a41a6d5e99fd7e141749f0980cbc93f754761f829c8e4729c"
+  },
+  "scoreboard_gate": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_scoreboard_gate.json",
+    "gate_pass": true,
+    "sha256": "647ad143128d7fa5acb4b362e531c9a9baeadfe39d59fcfe03fcc4599eefc993",
+    "summary": {
+      "claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_missing_role_policy": 1,
+        "review_only_abstain_product_state": 4,
+        "review_only_abstain_split_state": 1
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 1,
+        "product_state": 4,
+        "split_state": 1,
+        "substrate_acceptor_analog_state": 2
+      },
+      "covered_claim_status_values": [
+        "review_only_abstain_analog_state",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_split_state"
+      ],
+      "covered_coordinate_state_values": [
+        "active_gamma",
+        "product_state",
+        "split_state",
+        "substrate_acceptor_analog_state"
+      ],
+      "covered_entry_claim_status_values": [
+        "review_only_abstain_analog_state",
+        "review_only_abstain_split_state"
+      ],
+      "discovery_signal_row_count": 6,
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 2,
+        "review_only_abstain_split_state": 1
+      },
+      "entry_count": 3,
+      "forbidden_source_leakage_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "production_claim_allowed": false,
+      "rows_reviewed": 8,
+      "uncovered_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "uncovered_coordinate_state_values": [
+        "adp_state",
+        "ambiguous_coordinate_state",
+        "ligand_absent",
+        "metal_absent",
+        "unavailable_coordinate_state"
+      ],
+      "uncovered_entry_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "unsafe_control_nonabstention_count": 0
+    }
+  }
+}

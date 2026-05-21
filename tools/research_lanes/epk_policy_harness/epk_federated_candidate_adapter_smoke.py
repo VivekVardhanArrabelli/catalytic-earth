@@ -258,16 +258,21 @@ def adapt_substrate_role_identity(
 ) -> dict[str, Any]:
     evidence = row.get("source_free_evidence") or {}
     terminal = evidence.get("terminal_gamma_atom") or {}
+    nucleotide = evidence.get("nucleotide_anchor_atom") or evidence.get(
+        "nearest_nucleotide_atom"
+    ) or {}
     acceptor = evidence.get("acceptor_atom") or {}
     coordinate_state = normalize_coordinate_state(evidence.get("coordinate_state"))
     ligand_code = first_present(
         terminal.get("residue_code"),
+        nucleotide.get("residue_code"),
         ligand_from_state(evidence.get("ligand_state")),
     )
     distance = numeric(
         first_present(
             evidence.get("distance_angstrom"),
             evidence.get("nearest_protein_hydroxyl_distance_angstrom"),
+            evidence.get("nearest_distance_angstrom"),
         )
     )
     blocker = str(evidence.get("blocker_class") or "")

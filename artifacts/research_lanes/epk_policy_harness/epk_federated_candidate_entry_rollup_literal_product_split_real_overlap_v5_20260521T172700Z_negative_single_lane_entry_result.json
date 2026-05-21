@@ -1,0 +1,16 @@
+{
+  "expected_error_fragment": "at least two source lanes",
+  "metadata": {
+    "artifact_id": "epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_single_lane_entry",
+    "created_at": "2026-05-21T17:34:18+00:00",
+    "fault_injection_expected_failure": "single_lane_entry",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "rejected": true,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "observed_error": "literal product/split gate requires every selected entry to contain candidate rows from at least two source lanes: {'3QHW': ['epk_positive_evidence']}"
+}
