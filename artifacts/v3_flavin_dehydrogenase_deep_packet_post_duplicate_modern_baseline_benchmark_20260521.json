@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "artifact_id": "v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_artifact": "artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json",
+    "created_at": "2026-05-21T05:48:46Z",
+    "curated_label_registry_edited": false,
+    "current_countable_structural_screen_artifact": "artifacts/v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json",
+    "fingerprint_registry_edited": false,
+    "method": "flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "task_definition": "compare same frozen seven flavin-dehydrogenase deep rows across EC/keyword route, deterministic 5-mer nearest-neighbor context, source-free geometry retrieval, ESM sidecar availability, and current-countable Foldseek duplicate/leakage screen",
+    "terminal_decision_packet_artifact": "artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+  },
+  "metrics": {
+    "caveats": [
+      "EC/keyword routing uses source annotation and is not predictive source-free evidence.",
+      "Deterministic sequence baseline is a duplicate-control diagnostic, not mechanism evidence.",
+      "Foldseek high-TM signals are duplicate/leakage blockers, not positive mechanism evidence.",
+      "ESM sidecar is absent for this deep packet; no ESM superiority or disagreement claim is made."
+    ],
+    "deterministic_5mer_exact_current_reference_duplicate_count": 0,
+    "deterministic_5mer_near_neighbor_alert_count": 0,
+    "ec_keyword_routing_target_lane_count": 7,
+    "esm_sidecar_status": "not_available_for_this_deep_packet",
+    "foldseek_current_countable_high_tm_candidate_count": 7,
+    "foldseek_current_countable_pair_cache_complete": true,
+    "frozen_row_count": 7,
+    "source_free_geometry_scored_count": 7,
+    "source_free_geometry_target_lane_at_or_above_floor_count": 4,
+    "source_free_geometry_target_lane_top1_count": 6,
+    "superiority_claim": false,
+    "terminal_decision_counts": {
+      "terminal_rejection_duplicate_or_leakage": 7
+    }
+  },
+  "rows": [
+    {
+      "accession": "P30043",
+      "deterministic_5mer_sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "ec_keyword_route": "flavin_dehydrogenase_reductase",
+      "foldseek_current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "foldseek_pair_cache_complete": true,
+      "geometry_target_lane_at_or_above_floor": false,
+      "geometry_target_lane_score": 0.2928,
+      "geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "row_id": "uniprot:P30043",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q9BRQ8",
+      "deterministic_5mer_sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "ec_keyword_route": "flavin_dehydrogenase_reductase",
+      "foldseek_current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "foldseek_pair_cache_complete": true,
+      "geometry_target_lane_at_or_above_floor": true,
+      "geometry_target_lane_score": 0.545,
+      "geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "uniprot:Q9BRQ8",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q9NX74",
+      "deterministic_5mer_sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "ec_keyword_route": "flavin_dehydrogenase_reductase",
+      "foldseek_current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "foldseek_pair_cache_complete": true,
+      "geometry_target_lane_at_or_above_floor": true,
+      "geometry_target_lane_score": 0.7566,
+      "geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "uniprot:Q9NX74",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P42898",
+      "deterministic_5mer_sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "ec_keyword_route": "flavin_dehydrogenase_reductase",
+      "foldseek_current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "foldseek_pair_cache_complete": true,
+      "geometry_target_lane_at_or_above_floor": true,
+      "geometry_target_lane_score": 0.7248,
+      "geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "uniprot:P42898",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q652L6",
+      "deterministic_5mer_sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "ec_keyword_route": "flavin_dehydrogenase_reductase",
+      "foldseek_current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "foldseek_pair_cache_complete": true,
+      "geometry_target_lane_at_or_above_floor": true,
+      "geometry_target_lane_score": 0.5221,
+      "geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "uniprot:Q652L6",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P94424",
+      "deterministic_5mer_sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "ec_keyword_route": "flavin_dehydrogenase_reductase",
+      "foldseek_current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "foldseek_pair_cache_complete": true,
+      "geometry_target_lane_at_or_above_floor": false,
+      "geometry_target_lane_score": 0.3717,
+      "geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "uniprot:P94424",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P0AGE6",
+      "deterministic_5mer_sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "ec_keyword_route": "flavin_dehydrogenase_reductase",
+      "foldseek_current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+      "foldseek_pair_cache_complete": true,
+      "geometry_target_lane_at_or_above_floor": false,
+      "geometry_target_lane_score": 0.3717,
+      "geometry_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "uniprot:P0AGE6",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    }
+  ]
+}

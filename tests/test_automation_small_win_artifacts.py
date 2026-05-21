@@ -1366,9 +1366,7 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertFalse(screen["metadata"]["fingerprint_registry_edited"])
         self.assertFalse(screen["metadata"]["artifact_upload_or_removal_performed"])
         self.assertFalse(screen["metadata"]["removal_allowed_set_true"])
-        self.assertTrue(
-            all(row["pair_cache_complete"] for row in screen["rows"])
-        )
+        self.assertTrue(all(row["pair_cache_complete"] for row in screen["rows"]))
         self.assertTrue(
             all(
                 row["current_countable_structural_screen_status"]
@@ -2004,6 +2002,114 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 "terminal_decision_counts"
             ],
             {"needs_new_extractor_or_structure": 7},
+        )
+
+    def test_flavin_dehydrogenase_chunked_duplicate_screen_rejects_leakage(
+        self,
+    ) -> None:
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json"
+        )
+
+        self.assertTrue(screen["metadata"]["review_only"])
+        self.assertEqual(screen["metadata"]["candidate_count"], 7)
+        self.assertEqual(screen["metadata"]["screened_candidate_count"], 7)
+        self.assertTrue(screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(screen["metadata"]["unique_query_target_pair_count"], 4704)
+        self.assertEqual(
+            screen["metadata"]["foldseek_query_run_status_counts"],
+            {"completed": 7},
+        )
+        self.assertEqual(
+            screen["metadata"]["current_countable_structural_screen_status_counts"],
+            {"current_countable_structural_duplicate_signal": 7},
+        )
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 7)
+        self.assertGreaterEqual(
+            screen["metadata"]["max_external_vs_current_countable_tm_score"],
+            0.9,
+        )
+        self.assertFalse(screen["metadata"]["ready_for_label_import"])
+        self.assertFalse(screen["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(screen["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(screen["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(screen["metadata"]["removal_allowed_set_true"])
+        self.assertTrue(
+            all(row["pair_cache_complete"] for row in screen["rows"])
+        )
+        self.assertTrue(
+            all(
+                row["current_countable_high_tm_hit_count"] >= 1
+                for row in screen["rows"]
+            )
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(packet["metadata"]["non_needs_review_terminal_count"], 7)
+        self.assertEqual(packet["metadata"]["mechanism_match_review_ready_count"], 0)
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            {row["terminal_decision"] for row in packet["rows"]},
+            {"terminal_rejection_duplicate_or_leakage"},
+        )
+        self.assertTrue(
+            all(
+                row["exact_blocker_if_not_terminal_import_ready"] is None
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                "current_countable_structural_duplicate_screen_incomplete"
+                not in row["counterevidence"]
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                "current_countable_high_tm_duplicate_or_leakage_signal"
+                in row["counterevidence"]
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["evidence_role"]
+                == "import_gate_evidence_not_predictive_mechanism_evidence"
+                for row in packet["rows"]
+            )
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+        self.assertTrue(
+            benchmark["metrics"]["foldseek_current_countable_pair_cache_complete"]
+        )
+        self.assertEqual(
+            benchmark["metrics"]["foldseek_current_countable_high_tm_candidate_count"],
+            7,
+        )
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
         )
 
     def test_flavin_dehydrogenase_minicampaign_stays_review_only(self) -> None:
@@ -2729,6 +2835,64 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             conclusion["main_loop_action"],
             "do_not_resume_epk_as_main_loop_task; continue external mini-campaign geometry follow-up or non-ePK small wins",
         )
+
+    def test_epk_fresh_lane_followup_synthesis_stays_review_only(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_fresh_lane_followup_synthesis_20260521.json"
+        )
+        metadata = synthesis["metadata"]
+        decision = synthesis["synthesis_decision"]
+        lanes = {row["lane"]: row for row in synthesis["lane_summaries"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["fresh_lane_output_since_post_metal_synthesis"])
+        self.assertEqual(metadata["source_lane_count"], 5)
+        self.assertEqual(
+            metadata["main_loop_decision"], "do_not_resume_epk_as_main_loop_task"
+        )
+        self.assertFalse(metadata["production_claim_allowed"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertFalse(metadata["external_hard_negative_reaudit_scored"])
+        self.assertFalse(metadata["threshold_calibrated"])
+
+        self.assertEqual(
+            lanes["epk_positive_evidence"]["candidate_rows_reviewed"], 84
+        )
+        self.assertEqual(
+            lanes["epk_positive_evidence"]["source_supported_review_only_rows"], 39
+        )
+        self.assertEqual(
+            lanes["epk_false_positive_hunter"][
+                "biological_assembly_split_counterexamples"
+            ],
+            ["5UJ7:biological_assembly_1"],
+        )
+        self.assertEqual(
+            lanes["epk_false_positive_hunter"][
+                "unsafe_nonabstention_after_expected_policy_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            lanes["epk_sibling_controls"]["regression_rows_pinned"], 119
+        )
+        self.assertEqual(
+            lanes["epk_sibling_controls"]["contract_assertions_passed"], 13
+        )
+        self.assertEqual(
+            lanes["epk_policy_harness"]["forbidden_source_leakage_count"], 0
+        )
+        self.assertEqual(
+            decision["terminal_review_recommendation"],
+            "continue_review_only_no_go_for_epk_production_activation",
+        )
+        self.assertIn("label import", decision["forbidden_in_main_loop"])
 
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")

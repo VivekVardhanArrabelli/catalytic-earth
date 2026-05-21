@@ -1,0 +1,151 @@
+{
+  "lane_summaries": [
+    {
+      "candidate_rows_reviewed": 84,
+      "counterexample_or_non_epk_ownership_rows": 38,
+      "decision_relevance": "No folded-protein local-metal active-gamma row was upgraded; positives stay peptide/fragment, transition/pseudosubstrate, no-local-metal, or source-unconfirmed review evidence.",
+      "exact_next_research_lane_step": "Manually adjudicate 1L3R, 4DFX, 4DG0, 4EKK:D6, 7B56, and two 7KL1 source-claim-unconfirmed rows.",
+      "lane": "epk_positive_evidence",
+      "scan_failure_count": 0,
+      "source_claim_unconfirmed_rows": 7,
+      "source_supported_review_only_rows": 39,
+      "status": "review_only_source_adjudication_complete_for_backfill",
+      "unique_pdb_ids_reviewed": 48
+    },
+    {
+      "biological_assembly_split_counterexamples": [
+        "5UJ7:biological_assembly_1"
+      ],
+      "context_v4_only_unsafe_nonabstention_count": 1,
+      "decision_relevance": "5UJ7 remains the pinned biological-assembly residual; expected policy blockers keep unsafe nonabstentions at zero, and the only source-valid seed found is a review-only CDK/cyclin 9LGO surface.",
+      "geometry_prefiltered_non_epk_residual_counterexample_count": 0,
+      "lane": "epk_false_positive_hunter",
+      "regression_rows_emitted": 305,
+      "source_valid_epk_entry_level_overblock_risk_count": 0,
+      "source_valid_epk_seed_pdb_ids": [
+        "9LGO"
+      ],
+      "status": "regression_gate_and_prefilter_stress_review_only",
+      "unsafe_nonabstention_after_expected_policy_count": 0,
+      "v4_absence_family_bucket_without_deposited_or_assembly_v4_count": 26
+    },
+    {
+      "contract_assertion_count": 13,
+      "contract_assertions_passed": 13,
+      "decision_relevance": "The scorer-test contract is useful only as a future research-lane harness; it does not authorize threshold calibration or production scoring.",
+      "lane": "epk_sibling_controls",
+      "product_state_rows_pinned": 24,
+      "regression_rows_pinned": 119,
+      "status": "future_source_free_scorer_test_contract_ready_review_only",
+      "unsafe_nonabstention_count": 0
+    },
+    {
+      "decision_relevance": "Bridge claim-status and coordinate-state fields clarify review-only admissibility but are not predictive features or label gates.",
+      "expected_decision_mismatch_count": 0,
+      "failure_count": 0,
+      "forbidden_source_leakage_count": 0,
+      "gate_pass": true,
+      "lane": "epk_policy_harness",
+      "rows_reviewed_by_scoreboard_gate": 31,
+      "status": "candidate_policy_bridge_schema_review_only",
+      "unsafe_control_nonabstention_count": 0
+    },
+    {
+      "decision_relevance": "Prior substrate-role blockers remain in force; no new substrate-role lane output was needed for this synthesis.",
+      "lane": "epk_substrate_role_identity",
+      "status": "no_fresh_local_change_after_prior_synthesis_detected"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_fresh_lane_followup_synthesis_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T05:37:48Z",
+    "curated_label_registry_edited": false,
+    "decision_change_summary": "Fresh lane outputs convert ePK follow-up from open audit churn to explicit review-only source adjudication, regression-fixture, and future scorer-test inputs while preserving the no-go production decision.",
+    "decision_changing_output": true,
+    "external_hard_negative_reaudit_scored": false,
+    "fingerprint_registry_edited": false,
+    "fresh_lane_output_since_post_metal_synthesis": true,
+    "main_loop_decision": "do_not_resume_epk_as_main_loop_task",
+    "method": "main_loop_review_only_epk_lane_followup_synthesis",
+    "next_main_loop_task": "continue_non_epk_external_duplicate_screening_and_terminal_packets",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_lane_count": 5,
+    "source_separation_guardrail": "Source text, names, EC/Rhea, paper metadata, UniProt/PDB prose, and lane adjudication are review-only context, not source-free predictive scoring evidence.",
+    "threshold_calibrated": false
+  },
+  "source_artifacts": [
+    {
+      "bytes": 676759,
+      "json_parse_ok": true,
+      "key": "positive_all_adjudication",
+      "path": "catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+      "sha256": "8f8ed710ff2d499f57652c8ea7e08a9827b9b02999f2f2a305b1e627fc80b7fe"
+    },
+    {
+      "bytes": 1044016,
+      "json_parse_ok": true,
+      "key": "false_positive_regression_gate",
+      "path": "catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_051511Z.json",
+      "sha256": "aa41f878910b7f643080c4a27820f97a4fa106b0d6aab06c8edd2c569135e0b4"
+    },
+    {
+      "bytes": 3738964,
+      "json_parse_ok": true,
+      "key": "false_positive_prefilter_stress",
+      "path": "catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress_20260521_043259Z.json",
+      "sha256": "b11792513d50a0e02fa49a79046f07ef56d7fd9c99ad255402c75822eb705a29"
+    },
+    {
+      "bytes": 22736,
+      "json_parse_ok": true,
+      "key": "false_positive_v4_absence",
+      "path": "catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_v4_absence_audit_20260521_051700Z.json",
+      "sha256": "ecd0d54b9bc08ae7003621e0720f405d599a8db5f46d2b99d18c1905662c6590"
+    },
+    {
+      "bytes": 179202,
+      "json_parse_ok": true,
+      "key": "sibling_scorer_contract",
+      "path": "catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/epk_candidate_evidence_v1_source_free_scorer_test_contract_20260521.json",
+      "sha256": "19a04710dd9ddfa42f371d364c5bee22d5d53aa0ab857a70d633dcf2633e1d3e"
+    },
+    {
+      "bytes": 11940,
+      "json_parse_ok": true,
+      "key": "policy_bridge_gate",
+      "path": "catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate_20260521T034010Z.json",
+      "sha256": "3a57164eae0e6e1fa7b2efc97d1da6a2acec7f14906ebeb2340297d4e49d3727"
+    },
+    {
+      "bytes": 5539,
+      "json_parse_ok": null,
+      "key": "substrate_role_handoff",
+      "path": "catalytic-earth-epk-substrate-role-identity/work/research_lanes/epk_substrate_role_identity/handoff.md",
+      "sha256": "a782bde2142b21c3bb7f2a33f00fa5d0e900612451c46c636dc03e4997e5331f"
+    }
+  ],
+  "synthesis_decision": {
+    "allowed_future_work": [
+      "research_lane_only_source_claim_adjudication_for_seven_unconfirmed_positive_rows",
+      "research_lane_only_fault_injection_for_candidate bridge status coverage",
+      "research_lane_only scorer dry-run against the 119-row sibling contract and 305-row false-positive gate"
+    ],
+    "forbidden_in_main_loop": [
+      "production scorer threshold calibration",
+      "registry or fingerprint edits",
+      "label import",
+      "external hard-negative scored ePK re-audit",
+      "artifact upload or removal",
+      "treating source prose or paper metadata as predictive evidence"
+    ],
+    "main_loop_next_action": "return_to_flavin_or_serine_external_duplicate_screening",
+    "terminal_review_recommendation": "continue_review_only_no_go_for_epk_production_activation"
+  }
+}

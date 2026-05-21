@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 258
-- Measured elapsed time: 7278.2 minutes (121.30 hours)
+- Entries: 259
+- Measured elapsed time: 7704.3 minutes (128.41 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 286.3 measured minutes (4.77 hours)
+- v3: 712.5 measured minutes (11.87 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2809
-- Evidence references logged: 2289
+- Artifact references logged: 2817
+- Evidence references logged: 2296
 
 ## Recent Entries
-
-### 2026-05-21T02:02:02.049578+00:00 - ops
-
-- Task: final validation for 2026-05-21 small-win main loop
-- Time mode: measured
-- Measured minutes: 1.55
-- Started: 2026-05-21T02:00:17Z
-- Ended: 2026-05-21T02:01:50Z
-- Artifacts: work/progress_log.jsonl, work/status.md
-- Evidence: 774-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 53 2026-05-21 JSON artifacts parsed, git diff check passed
-- Notes: Final wrap validation after pushed radical SAM current-fingerprint benchmark source-free-geometry preregistration terminal-decision index and dirty ePK sibling synthesis commits.
 
 ### 2026-05-21T02:49:40.198593+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: 780-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 6 post-duplicate JSON artifacts parsed
 - Notes: Final wrap validation after metal terminal duplicate packet and serine timeout blocker packet.
+
+### 2026-05-21T12:24:08.992494+00:00 - v3
+
+- Task: flavin duplicate terminal packet and ePK follow-up synthesis
+- Time mode: measured
+- Measured minutes: 426.183
+- Started: 2026-05-21T05:17:46Z
+- Ended: 2026-05-21T12:23:57Z
+- Artifacts: artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: fresh ePK lane outputs synthesized review-only with 5UJ7 and 119-row scorer contract preserved, 7 frozen flavin dehydrogenase rows screened against 672 current-countable structures, 4704/4704 unique query-target pairs mapped with 0 raw-name failures, 7/7 rows terminal_rejection_duplicate_or_leakage by TM>=0.7 current-countable structural signal, 782-test unit discovery passed, CLI validate passed, artifact migration dry-run passed with removal_allowed=0
+- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -473,3 +473,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T02:49:40.198593+00:00: External deepening now has a source-separated metal-phosphatase blocker packet; next exact step is a resumable or chunked current-countable structural duplicate screen for the selected 7 rows.
 - 2026-05-21T02:52:33.159296+00:00: wrap validation keeps the metal-phosphatase blocker packet review-only and ready for the next duplicate-screen experiment
 - 2026-05-21T04:01:42.976219+00:00: External deepening now has serine and flavin source-separated terminal blocker packets after the metal packet; next work is current-countable structural duplicate screening not row breadth.
+- 2026-05-21T12:24:08.992494+00:00: Flavin dehydrogenase deep packet is now terminal duplicate/leakage evidence; ePK remains review-only no-go and main loop should not open new broad external breadth.

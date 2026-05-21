@@ -378,6 +378,23 @@ import.
   duplicate evidence is not run and no duplicate-clear claim is allowed. The
   benchmark records EC/keyword, deterministic 5-mer, geometry, Foldseek, and
   ESM caveats with no superiority, mechanism-match, or label-import claim.
+- `artifacts/v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json`
+  now removes that exact duplicate-screen blocker. The same seven frozen rows
+  are screened one query at a time against 672 current-countable structures,
+  all 4,704 unique query-target structure pairs map with 0 raw-name failures,
+  and all seven rows have `TM >= 0.7` current-countable duplicate/leakage
+  signals. The terminal packet
+  `artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+  converts all seven rows to
+  `terminal_rejection_duplicate_or_leakage`, keeps import-ready/countable
+  counts at 0, and preserves Foldseek/TM as import-gate duplicate/leakage
+  evidence rather than source-free positive mechanism evidence. The
+  post-duplicate benchmark
+  `artifacts/v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json`
+  remains review-only and makes no superiority claim. Fresh ePK follow-up is
+  synthesized separately in
+  `artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json` and does not
+  reopen ePK production scoring, label import, or fingerprint expansion.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

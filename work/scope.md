@@ -207,6 +207,20 @@ run. The terminal packet therefore uses `needs_new_extractor_or_structure` for
 all seven rows. The next admissible step is current-countable structural
 duplicate screening with pair-cache completeness, then terminal re-evaluation
 on the same seven rows.
+That duplicate evidence is now resolved by
+`artifacts/v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json`.
+The same seven frozen rows were screened query-by-query against 672 staged
+current-countable structures; all 4,704 unique query-target pairs mapped and
+all seven rows have `TM >= 0.7` current-countable duplicate/leakage signals.
+The post-screen terminal packet
+`artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+sets all seven rows to `terminal_rejection_duplicate_or_leakage`, with 0
+import-ready rows and 0 countable candidates. Foldseek/TM remains import-gate
+duplicate/leakage evidence only, not positive mechanism evidence, and the
+post-duplicate benchmark preserves the no-superiority/no-import caveats.
+Fresh ePK lane follow-up is separately synthesized in
+`artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json`; it reinforces
+the ePK review-only/no-go decision and does not reopen main-loop ePK work.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

@@ -50,6 +50,47 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T12:24:00Z automation run, the main loop returned to
+non-ePK external decision deepening after a concise fresh-lane ePK synthesis.
+`artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json` integrates the
+new positive-evidence, false-positive, sibling-control, policy-harness, and
+substrate-role lane state without copying production changes. The synthesis
+keeps ePK review-only/no-go: the positive lane adjudicates all 84 candidate
+backfill rows with 39 source-supported review-only rows but no upgraded
+folded-protein local-metal active-gamma positive; false-positive evidence pins
+`5UJ7:biological_assembly_1` as the context-v4-only assembly residual while
+expected policy blockers keep unsafe non-abstentions at 0; sibling controls
+pin a 119-row future scorer-test contract with 13/13 assertions passing; the
+policy bridge gate covers 31 rows with 0 forbidden source leakage and 0 unsafe
+control non-abstentions. No ePK scorer, threshold, registry edit, label import,
+fingerprint expansion, artifact upload/removal, or main-loop ePK task is
+authorized.
+
+The same run then completed the already frozen flavin dehydrogenase/reductase
+deep-packet duplicate screen. The new screen artifact
+`artifacts/v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json`
+runs the seven selected flavin rows one query at a time against the 672
+current-countable staged structures. Foldseek completed 7/7 query runs, mapped
+4,704/4,704 unique query-target structure pairs with 0 raw-name mapping
+failures, and found `TM >= 0.7` current-countable duplicate/leakage signals for
+all seven rows. The strongest signal is `P42898` against current structure
+`1ZP3` at max pair TM `0.9448`.
+
+`artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+therefore converts all seven flavin rows from
+`needs_new_extractor_or_structure` to
+`terminal_rejection_duplicate_or_leakage`. The post-duplicate benchmark
+`artifacts/v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword and deterministic sequence baselines diagnostic only, records
+ESM as unavailable, and makes no superiority claim. Evidence-based confidence
+call: confidence is high that flavin dehydrogenase now has a reproducible,
+source-separated terminal duplicate/leakage packet; confidence is high that no
+row from this packet should move toward mechanism-match review or import,
+because all seven are current-countable structural leakage signals. The next
+main-loop step should either subchunk the serine current-countable target set
+to remove the timeout blocker, or continue to another already frozen
+flavin/heme packet; do not open new broad mini-campaign breadth.
+
 As of the 2026-05-21T04:47:00Z automation run, the main loop closed the
 active metal-phosphatase deep-packet blocker without opening a new external
 mini-campaign. The new chunked screen artifact
