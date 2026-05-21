@@ -38,6 +38,13 @@ SOURCE_SPECS = [
         "source_profile": "non_orc_assembly_below_floor_split_controls",
     },
     {
+        "path_glob": "artifacts/research_lanes/epk_false_positive_hunter/"
+        "v4_metric_seeded_ligand_assembly_split_*.json",
+        "latest_only": True,
+        "row_key": "entry_level_guard_materializer_rows",
+        "source_profile": "metric_seeded_ligand_assembly_split_controls",
+    },
+    {
         "path": "artifacts/research_lanes/epk_false_positive_hunter/"
         "v4_entry_level_epk_overblock_later_offset_stress_targeted_20260521_025652Z.json",
         "row_key": "custom_materializer_rows",
@@ -310,6 +317,25 @@ def control_class(row: dict[str, Any], profile: str) -> str:
         ):
             return "non_orc_deposited_v4_assembly_below_floor_split_control"
         return "biological_assembly_split_control"
+    if profile == "metric_seeded_ligand_assembly_split_controls":
+        if row.get("known_epk_positive_input"):
+            return "source_valid_epk_positive_overblock_control"
+        if row.get("known_orc_counterexample_input") or role_tokens:
+            if context.startswith("biological_assembly"):
+                return "orc_mcm_biological_assembly_split_control"
+            return "orc_mcm_deposited_coordinate_control"
+        if row.get(
+            "metric_seeded_non_orc_deposited_v4_assembly_below_floor_heteromeric_candidate"
+        ) or row.get("non_orc_deposited_v4_assembly_below_floor_heteromeric_candidate"):
+            return "metric_seeded_non_orc_deposited_v4_assembly_below_floor_heteromeric_control"
+        if row.get(
+            "metric_seeded_non_orc_deposited_v4_assembly_below_floor_candidate"
+        ) or (
+            row.get("deposited_v4_context_below_chain_floor")
+            and "metric_seeded_ligand_component" in groups
+        ):
+            return "metric_seeded_non_orc_deposited_v4_assembly_below_floor_split_control"
+        return "metric_seeded_ligand_assembly_split_control"
     if profile == "biological_assembly_split":
         if row.get("known_epk_positive_input"):
             return "source_valid_epk_positive_overblock_control"
