@@ -313,6 +313,25 @@ deterministic 5-mer finds one exact duplicate and two near-neighbor alerts,
 and geometry, ESM, and Foldseek remain unrun. No mechanism-match, label
 import, production score, threshold calibration, registry edit, or fingerprint
 expansion is in scope.
+Current heme peroxidase external mini-campaign scope:
+`artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json`
+freezes a new 19-row reviewed UniProtKB/Swiss-Prot EC 1.11.1.* surface before
+outcome scoring, requiring catalytic activity, PDB cross-reference, explicit
+heme/iron context, peroxidase/catalase name context, prior external-pool
+exclusions, globin/peroxiredoxin/dual-oxidase mixed-context exclusions, and a
+two-row cap per primary EC number.
+`artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json`
+routes 15 rows to `needs_review` under the existing `heme_peroxidase_oxidase`
+fingerprint lane because external source-free geometry, duplicate-screen
+completion, terminal review, and factory/import gates are incomplete; four
+rows are terminal rejections as exact current-reference sequence duplicates.
+The matching
+`artifacts/v3_heme_peroxidase_minicampaign_baseline_comparison_20260521.json`
+is diagnostic only: EC/keyword routing over-admits the frozen rows as lane
+context, deterministic 5-mer finds four exact duplicate/near-neighbor alerts,
+and geometry, ESM, and Foldseek remain unrun. No mechanism-match, label
+import, production score, threshold calibration, registry edit, or fingerprint
+expansion is in scope.
 Current external mini-campaign modern-baseline rollup scope:
 `artifacts/v3_external_minicampaign_modern_baseline_rollup_20260521.json`
 combines the PLP aminotransferase and flavin monooxygenase frozen external

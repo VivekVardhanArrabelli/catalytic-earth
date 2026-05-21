@@ -1,0 +1,684 @@
+{
+  "excluded_rows_sample": [
+    {
+      "accession": "Q99735",
+      "entry_name": "MGST2_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context"
+      ],
+      "primary_ec": "1.11.1.-"
+    },
+    {
+      "accession": "Q8WWM9",
+      "entry_name": "CYGB_HUMAN",
+      "exclusion_reasons": [
+        "globin_peroxiredoxin_or_dual_oxidase_context_excluded"
+      ],
+      "primary_ec": "1.11.1.-"
+    },
+    {
+      "accession": "P58004",
+      "entry_name": "SESN2_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context",
+        "missing_peroxidase_or_catalase_name_context"
+      ],
+      "primary_ec": "1.11.1.-"
+    },
+    {
+      "accession": "Q96SL4",
+      "entry_name": "GPX7_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context"
+      ],
+      "primary_ec": "1.11.1.9"
+    },
+    {
+      "accession": "P18283",
+      "entry_name": "GPX2_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context"
+      ],
+      "primary_ec": "1.11.1.12"
+    },
+    {
+      "accession": "P22352",
+      "entry_name": "GPX3_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context"
+      ],
+      "primary_ec": "1.11.1.9"
+    },
+    {
+      "accession": "P02144",
+      "entry_name": "MYG_HUMAN",
+      "exclusion_reasons": [
+        "globin_peroxiredoxin_or_dual_oxidase_context_excluded"
+      ],
+      "primary_ec": "1.11.1.-"
+    },
+    {
+      "accession": "Q8TED1",
+      "entry_name": "GPX8_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context"
+      ],
+      "primary_ec": "1.11.1.9"
+    },
+    {
+      "accession": "O15247",
+      "entry_name": "CLIC2_HUMAN",
+      "exclusion_reasons": [
+        "prior_external_pool_or_imported_hard_negative",
+        "missing_explicit_heme_or_iron_context"
+      ],
+      "primary_ec": "1.11.1.-"
+    },
+    {
+      "accession": "P30048",
+      "entry_name": "PRDX3_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context",
+        "missing_peroxidase_or_catalase_name_context",
+        "globin_peroxiredoxin_or_dual_oxidase_context_excluded"
+      ],
+      "primary_ec": "1.11.1.24"
+    },
+    {
+      "accession": "O14684",
+      "entry_name": "PTGES_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context"
+      ],
+      "primary_ec": "1.11.1.-"
+    },
+    {
+      "accession": "Q13162",
+      "entry_name": "PRDX4_HUMAN",
+      "exclusion_reasons": [
+        "missing_explicit_heme_or_iron_context",
+        "globin_peroxiredoxin_or_dual_oxidase_context_excluded"
+      ],
+      "primary_ec": "1.11.1.24"
+    }
+  ],
+  "frozen_before_scoring_statement": "The EC 1.11.1.* heme peroxidase/catalase set was selected using only UniProt source metadata and prior-pool exclusions before deterministic sequence-neighbor diagnostics or terminal decisions were computed.",
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 19,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T00:47:41Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_heme_peroxidase_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "primary_ec_cap": 2,
+    "prior_external_pool_excluded_accession_count": 489,
+    "production_fingerprint_count": 8,
+    "production_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selection_rules": [
+      "reviewed UniProtKB/Swiss-Prot rows from EC 1.11.1.* with PDB cross-reference",
+      "require catalytic-activity annotation, sequence, and at least one PDB xref",
+      "require explicit heme/iron context and peroxidase/catalase name context before outcome scoring",
+      "exclude imported hard negatives and previously used prospective external candidate accessions",
+      "exclude globin, peroxiredoxin, and dual oxidase mixed contexts",
+      "cap at two rows per primary EC number",
+      "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+    ],
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A1.11.1.%2A%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=200",
+    "source_rows_available": 158,
+    "source_rows_reviewed_before_freeze_stop": 158,
+    "source_tsv_sha256": "bc437d495ed08bd49f18a750a3f74310a8db92efd19506e4b59d081c285447e7",
+    "target_current_fingerprint_lane": "heme_peroxidase_oxidase"
+  },
+  "rows": [
+    {
+      "accession": "P11678",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.7"
+      ],
+      "entry_name": "PERE_HUMAN",
+      "freeze_rank": 1,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "8OGI"
+      ],
+      "primary_ec": "1.11.1.7",
+      "protein_name": "Eosinophil peroxidase (EPO) (EC 1.11.1.7) [Cleaved into: Eosinophil peroxidase light chain; Eosinophil peroxidase heavy chain]",
+      "row_id": "uniprot:P11678",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 715,
+      "sequence_sha256": "380a93a7225ab4c73f85ff5b41a21222a316dd12cba2885cfc86521d1e5c890a"
+    },
+    {
+      "accession": "P04040",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.6"
+      ],
+      "entry_name": "CATA_HUMAN",
+      "freeze_rank": 2,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 16,
+      "pdb_ids_sample": [
+        "1DGB",
+        "1DGF",
+        "1DGG",
+        "1DGH",
+        "1F4J",
+        "1QQW",
+        "7P8W",
+        "7VD9"
+      ],
+      "primary_ec": "1.11.1.6",
+      "protein_name": "Catalase (EC 1.11.1.6)",
+      "row_id": "uniprot:P04040",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 527,
+      "sequence_sha256": "951dbab1434ad896001a66d740e1c12097b8fa327966e4875969411c92a5ed88"
+    },
+    {
+      "accession": "P39597",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.-",
+        "4.98.1.1"
+      ],
+      "entry_name": "EFEB_BACSU",
+      "freeze_rank": 3,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Bacillus subtilis (strain 168)",
+      "pdb_count": 6,
+      "pdb_ids_sample": [
+        "6KMM",
+        "6KMN",
+        "7DLK",
+        "7E5Q",
+        "7PKX",
+        "7PL0"
+      ],
+      "primary_ec": "1.11.1.-",
+      "protein_name": "Deferrochelatase (EC 4.98.1.1) (Dye-decolorizing peroxidase) (Peroxidase EfeB) (EC 1.11.1.-)",
+      "row_id": "uniprot:P39597",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 416,
+      "sequence_sha256": "b49426e230555e17e89474f15f161358fde4d8b68aad06c3ae15db4d25fa7953"
+    },
+    {
+      "accession": "P31545",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.-",
+        "4.98.1.1"
+      ],
+      "entry_name": "EFEB_ECOLI",
+      "freeze_rank": 4,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "2Y4D",
+        "2Y4E",
+        "2Y4F"
+      ],
+      "primary_ec": "1.11.1.-",
+      "protein_name": "Deferrochelatase (EC 4.98.1.1) (Peroxidase EfeB) (EC 1.11.1.-)",
+      "row_id": "uniprot:P31545",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 423,
+      "sequence_sha256": "0c150445435ea0415ac409d903398bc8d65813aa1859eef4c328172a9f9fcf07"
+    },
+    {
+      "accession": "Q39034",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.7"
+      ],
+      "entry_name": "PER59_ARATH",
+      "freeze_rank": 5,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1QGJ"
+      ],
+      "primary_ec": "1.11.1.7",
+      "protein_name": "Peroxidase 59 (Atperox P59) (EC 1.11.1.7) (ATPN) (Peroxidase N)",
+      "row_id": "uniprot:Q39034",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 328,
+      "sequence_sha256": "004eb53c797c014c41d95aa65d275315c84f017b9e531658237be1c7dc83cdc4"
+    },
+    {
+      "accession": "P21179",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.6"
+      ],
+      "entry_name": "CATE_ECOLI",
+      "freeze_rank": 6,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 46,
+      "pdb_ids_sample": [
+        "1CF9",
+        "1GG9",
+        "1GGE",
+        "1GGF",
+        "1GGH",
+        "1GGJ",
+        "1GGK",
+        "1IPH"
+      ],
+      "primary_ec": "1.11.1.6",
+      "protein_name": "Catalase HPII (EC 1.11.1.6) (Hydroxyperoxidase II)",
+      "row_id": "uniprot:P21179",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 753,
+      "sequence_sha256": "73d0229f6cf733f82efd11378174c3fcbe50a5adcbadae2a5f0e84eb82e02e3e"
+    },
+    {
+      "accession": "P13029",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.21"
+      ],
+      "entry_name": "KATG_ECOLI",
+      "freeze_rank": 7,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "1U2J",
+        "1U2K",
+        "1U2L"
+      ],
+      "primary_ec": "1.11.1.21",
+      "protein_name": "Catalase-peroxidase (CP) (EC 1.11.1.21) (Hydroperoxidase I) (HPI) (Peroxidase/catalase)",
+      "row_id": "uniprot:P13029",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 726,
+      "sequence_sha256": "ef6343b758b7989ab1edd319ac606b5f17ca3a08ea176f1d06537e83f3af533f"
+    },
+    {
+      "accession": "P00431",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.5"
+      ],
+      "entry_name": "CCPR_YEAST",
+      "freeze_rank": 8,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Saccharomyces cerevisiae (strain ATCC 204508 / S288c) (Baker's yeast)",
+      "pdb_count": 191,
+      "pdb_ids_sample": [
+        "1A2F",
+        "1A2G",
+        "1AA4",
+        "1AC4",
+        "1AC8",
+        "1AEB",
+        "1AED",
+        "1AEE"
+      ],
+      "primary_ec": "1.11.1.5",
+      "protein_name": "Cytochrome c peroxidase, mitochondrial (CCP) (EC 1.11.1.5)",
+      "row_id": "uniprot:P00431",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 361,
+      "sequence_sha256": "69015ce85d2df834dc2396f20eec97c17ee81981532b7dcc6fc1c4174933c028"
+    },
+    {
+      "accession": "K7N5M8",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.16",
+        "1.11.1.19",
+        "1.11.1.7"
+      ],
+      "entry_name": "DYP2_AMYS7",
+      "freeze_rank": 9,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Amycolatopsis sp. (strain ATCC 39116 / 75iv2)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "4G2C"
+      ],
+      "primary_ec": "1.11.1.16",
+      "protein_name": "Multifunctional dye peroxidase DyP2 (EC 1.11.1.16) (EC 1.11.1.19) (EC 1.11.1.7) (Dye decolorizing peroxidase 2) (DyP2) (Manganese peroxidase)",
+      "row_id": "uniprot:K7N5M8",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 464,
+      "sequence_sha256": "ac01f3d105ea0b3b05fe5bbce51d54f70a5c0ef8f620fb574a3b35d33f830eb9"
+    },
+    {
+      "accession": "I2DBY1",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.19",
+        "1.11.1.7"
+      ],
+      "entry_name": "DYP_AURAJ",
+      "freeze_rank": 10,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Auricularia auricula-judae (Judas ear fungus) (Tremella auricula-judae)",
+      "pdb_count": 12,
+      "pdb_ids_sample": [
+        "4AU9",
+        "4UZI",
+        "4W7J",
+        "4W7K",
+        "4W7L",
+        "4W7M",
+        "4W7N",
+        "4W7O"
+      ],
+      "primary_ec": "1.11.1.19",
+      "protein_name": "Dye-decolorizing peroxidase AauDyP1 (EC 1.11.1.19) (EC 1.11.1.7) (AjP I) (Manganese-independent peroxidase I) [Cleaved into: Dye-decolorizing peroxidase AauDyP2 (EC 1.11.1.19) (EC 1.11.1.7) (AjP II) (Manganese-independent peroxidase II)]",
+      "row_id": "uniprot:I2DBY1",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 509,
+      "sequence_sha256": "3922a407c453485de3311bb657be7f13d1c3e474a24b8decf9206d758e232c29"
+    },
+    {
+      "accession": "P04963",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.10"
+      ],
+      "entry_name": "PRXC_LEPFU",
+      "freeze_rank": 11,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Leptoxyphium fumago (Caldariomyces fumago)",
+      "pdb_count": 14,
+      "pdb_ids_sample": [
+        "1CPO",
+        "2CIV",
+        "2CIW",
+        "2CIX",
+        "2CIY",
+        "2CIZ",
+        "2CJ0",
+        "2CJ1"
+      ],
+      "primary_ec": "1.11.1.10",
+      "protein_name": "Chloroperoxidase (EC 1.11.1.10) (Chloride peroxidase) (CPO)",
+      "row_id": "uniprot:P04963",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 373,
+      "sequence_sha256": "3b648eaede996ad505dc4d208b5ca5ee0dfd9644090fecfbb0491c047100dadd"
+    },
+    {
+      "accession": "Q9UR19",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.16"
+      ],
+      "entry_name": "VPL1_PLEER",
+      "freeze_rank": 12,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Pleurotus eryngii (Boletus of the steppes)",
+      "pdb_count": 7,
+      "pdb_ids_sample": [
+        "4BLK",
+        "4BLL",
+        "4BLN",
+        "4BLX",
+        "4BLY",
+        "4BLZ",
+        "4BM0"
+      ],
+      "primary_ec": "1.11.1.16",
+      "protein_name": "Versatile peroxidase VPL1 (EC 1.11.1.16) (Versatile liquid phase peroxidase 1)",
+      "row_id": "uniprot:Q9UR19",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 361,
+      "sequence_sha256": "7e95d1ec85bf72234180fde6beec96812c8a91c0b6a00f7f2694e4fc565370ae"
+    },
+    {
+      "accession": "Q47KB1",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.19"
+      ],
+      "entry_name": "DYP_THEFY",
+      "freeze_rank": 13,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Thermobifida fusca (strain YX)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "5FW4"
+      ],
+      "primary_ec": "1.11.1.19",
+      "protein_name": "Dye-decolorizing peroxidase Tfu_3078 (DyP) (EC 1.11.1.19) (Peroxidase Tfu_3078)",
+      "row_id": "uniprot:Q47KB1",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 430,
+      "sequence_sha256": "8c1dbe392671c0fa70474cdbb77262496811f0245ba61c1773b36af7c39f2824"
+    },
+    {
+      "accession": "P48534",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.11"
+      ],
+      "entry_name": "APX1_PEA",
+      "freeze_rank": 14,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Pisum sativum (Garden pea) (Lathyrus oleraceus)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1APX"
+      ],
+      "primary_ec": "1.11.1.11",
+      "protein_name": "L-ascorbate peroxidase, cytosolic (AP) (EC 1.11.1.11) (PsAPx01)",
+      "row_id": "uniprot:P48534",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 250,
+      "sequence_sha256": "b5b1929d69fe080d3a9a8c07dafcf148141c989fb1491cec6819626820991eaa"
+    },
+    {
+      "accession": "P49012",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.14"
+      ],
+      "entry_name": "LIG2_PHACH",
+      "freeze_rank": 15,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Phanerodontia chrysosporium (White-rot fungus) (Sporotrichum pruinosum)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "1LGA",
+        "1LLP"
+      ],
+      "primary_ec": "1.11.1.14",
+      "protein_name": "Ligninase LG2 (EC 1.11.1.14) (Diarylpropane peroxidase) (Lignin peroxidase)",
+      "row_id": "uniprot:P49012",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 371,
+      "sequence_sha256": "07d198e4872ce2717e7177e293ca9aa73ac2e3c55cf32fa548378a96fa3b3be7"
+    },
+    {
+      "accession": "Q02567",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.13"
+      ],
+      "entry_name": "PEM1_PHACH",
+      "freeze_rank": 16,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Phanerodontia chrysosporium (White-rot fungus) (Sporotrichum pruinosum)",
+      "pdb_count": 9,
+      "pdb_ids_sample": [
+        "1MN1",
+        "1MN2",
+        "1MNP",
+        "1YYD",
+        "1YYG",
+        "1YZP",
+        "1YZR",
+        "3M5Q"
+      ],
+      "primary_ec": "1.11.1.13",
+      "protein_name": "Manganese peroxidase 1 (MnP-1) (MnP1) (EC 1.11.1.13) (Manganese peroxidase isozyme 1) (Peroxidase manganese-dependent 1) (Peroxidase manganese-dependent I)",
+      "row_id": "uniprot:Q02567",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 378,
+      "sequence_sha256": "b994a3b9aa22f2c21cb44923654df8a0f4d9f842aac86370886192d45375d5fd"
+    },
+    {
+      "accession": "P06181",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.14"
+      ],
+      "entry_name": "LIG8_PHACH",
+      "freeze_rank": 17,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Phanerodontia chrysosporium (White-rot fungus) (Sporotrichum pruinosum)",
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "1B80",
+        "1B82",
+        "1B85",
+        "6A6Q",
+        "6ISS"
+      ],
+      "primary_ec": "1.11.1.14",
+      "protein_name": "Ligninase H8 (EC 1.11.1.14) (Diarylpropane peroxidase) (Lignin peroxidase)",
+      "row_id": "uniprot:P06181",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 372,
+      "sequence_sha256": "b727d325607dc8a38727c86c9b35ddfe7d5bda892fa47b64a9e9824c323fba60"
+    },
+    {
+      "accession": "Q939D2",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.21"
+      ],
+      "entry_name": "KATG_BURPS",
+      "freeze_rank": 18,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Burkholderia pseudomallei (strain K96243)",
+      "pdb_count": 27,
+      "pdb_ids_sample": [
+        "5L02",
+        "5L05",
+        "5SW4",
+        "5SW5",
+        "5SW6",
+        "5SX0",
+        "5SX1",
+        "5SX2"
+      ],
+      "primary_ec": "1.11.1.21",
+      "protein_name": "Catalase-peroxidase (CP) (EC 1.11.1.21) (Peroxidase/catalase)",
+      "row_id": "uniprot:Q939D2",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 728,
+      "sequence_sha256": "80f96d8f74b05b19641e5776bfc289aa0e912871b5ffda6712ed0929dbd6c0d0"
+    },
+    {
+      "accession": "P14532",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "1.11.1.5"
+      ],
+      "entry_name": "CCPR_PSEAE",
+      "freeze_rank": 19,
+      "heme_or_iron_binding_annotation_present": true,
+      "heme_or_iron_context_present_in_source_fields": true,
+      "organism": "Pseudomonas aeruginosa (strain ATCC 15692 / DSM 22644 / CIP 104116 / JCM 14847 / LMG 12228 / 1C / PRS 101 / PAO1)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "1EB7",
+        "2VHD"
+      ],
+      "primary_ec": "1.11.1.5",
+      "protein_name": "Cytochrome c551 peroxidase (CCP) (Cytochrome c peroxidase) (EC 1.11.1.5)",
+      "row_id": "uniprot:P14532",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 1.11.1.* row with catalytic activity, PDB cross-reference, peroxidase/catalase name context, and explicit heme/iron source context; globin, peroxiredoxin, and dual oxidase contexts excluded; deterministic cap max two rows per primary EC.",
+      "sequence_length": 346,
+      "sequence_sha256": "67aedcbf2df7b6954fb8d0321acbdf6edc8d437827081324a1ac288905143ae7"
+    }
+  ]
+}

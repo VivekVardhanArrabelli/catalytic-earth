@@ -1,0 +1,247 @@
+{
+  "caveats": [
+    "Deterministic 5-mer nearest-neighbor diagnostics are duplicate and leakage caveats, not mechanism evidence.",
+    "No ESM, Foldseek, or source-free geometry sidecar was generated for this frozen set.",
+    "Exact current-reference sequence matches are terminal duplicate rejections before any import gate."
+  ],
+  "metadata": {
+    "artifact_id": "v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "candidate_count": 19,
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T00:47:41Z",
+    "curated_label_registry_edited": false,
+    "exact_current_reference_sequence_match_count": 4,
+    "external_fasta": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_external_20260521.fasta",
+    "external_fasta_sha256": "b70406663d0c93efd2ef1aa3e1776a1396066b55e56c80bf2e51c55f012ac751",
+    "fingerprint_registry_edited": false,
+    "kmer_k": 5,
+    "method": "deterministic_5mer_nearest_current_reference_diagnostic",
+    "near_neighbor_alert_count": 4,
+    "near_neighbor_alert_threshold_jaccard": 0.35,
+    "ready_for_label_import": false,
+    "reference_fasta": "artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta",
+    "reference_sequence_count": 737,
+    "review_only": true,
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/stream?query=accession%3AP11678+OR+accession%3AP04040+OR+accession%3AP39597+OR+accession%3AP31545+OR+accession%3AQ39034+OR+accession%3AP21179+OR+accession%3AP13029+OR+accession%3AP00431+OR+accession%3AK7N5M8+OR+accession%3AI2DBY1+OR+accession%3AP04963+OR+accession%3AQ9UR19+OR+accession%3AQ47KB1+OR+accession%3AP48534+OR+accession%3AP49012+OR+accession%3AQ02567+OR+accession%3AP06181+OR+accession%3AQ939D2+OR+accession%3AP14532&format=fasta",
+    "superiority_claim_permitted": false,
+    "terminal_decision_changed_by_sequence_baseline": true
+  },
+  "rows": [
+    {
+      "accession": "P11678",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.1562,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P05164",
+      "primary_ec": "1.11.1.7",
+      "row_id": "uniprot:P11678",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P04040",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0184,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P21179",
+      "primary_ec": "1.11.1.6",
+      "row_id": "uniprot:P04040",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P39597",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0048,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P61517",
+      "primary_ec": "1.11.1.-",
+      "row_id": "uniprot:P39597",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P31545",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.003,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P40881",
+      "primary_ec": "1.11.1.-",
+      "row_id": "uniprot:P31545",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "Q39034",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0259,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P00433",
+      "primary_ec": "1.11.1.7",
+      "row_id": "uniprot:Q39034",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P21179",
+      "current_reference_exact_sequence_match": true,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "exact_current_reference_id": "ref__P21179",
+      "near_neighbor_alert": true,
+      "nearest_current_reference_id": "ref__P21179",
+      "primary_ec": "1.11.1.6",
+      "row_id": "uniprot:P21179",
+      "sequence_decision_signal": "exact_current_reference_duplicate"
+    },
+    {
+      "accession": "P13029",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0041,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P48534",
+      "primary_ec": "1.11.1.21",
+      "row_id": "uniprot:P13029",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P00431",
+      "current_reference_exact_sequence_match": true,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "exact_current_reference_id": "ref__P00431",
+      "near_neighbor_alert": true,
+      "nearest_current_reference_id": "ref__P00431",
+      "primary_ec": "1.11.1.5",
+      "row_id": "uniprot:P00431",
+      "sequence_decision_signal": "exact_current_reference_duplicate"
+    },
+    {
+      "accession": "K7N5M8",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0037,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__Q44297",
+      "primary_ec": "1.11.1.16",
+      "row_id": "uniprot:K7N5M8",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "I2DBY1",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P0A9Q9",
+      "primary_ec": "1.11.1.19",
+      "row_id": "uniprot:I2DBY1",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P04963",
+      "current_reference_exact_sequence_match": true,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "exact_current_reference_id": "ref__P04963",
+      "near_neighbor_alert": true,
+      "nearest_current_reference_id": "ref__P04963",
+      "primary_ec": "1.11.1.10",
+      "row_id": "uniprot:P04963",
+      "sequence_decision_signal": "exact_current_reference_duplicate"
+    },
+    {
+      "accession": "Q9UR19",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P05414",
+      "primary_ec": "1.11.1.16",
+      "row_id": "uniprot:Q9UR19",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "Q47KB1",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P27002",
+      "primary_ec": "1.11.1.19",
+      "row_id": "uniprot:Q47KB1",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P48534",
+      "current_reference_exact_sequence_match": true,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "exact_current_reference_id": "ref__P48534",
+      "near_neighbor_alert": true,
+      "nearest_current_reference_id": "ref__P48534",
+      "primary_ec": "1.11.1.11",
+      "row_id": "uniprot:P48534",
+      "sequence_decision_signal": "exact_current_reference_duplicate"
+    },
+    {
+      "accession": "P49012",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0032,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P52197",
+      "primary_ec": "1.11.1.14",
+      "row_id": "uniprot:P49012",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "Q02567",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__Q96C23",
+      "primary_ec": "1.11.1.13",
+      "row_id": "uniprot:Q02567",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P06181",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0041,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P50057",
+      "primary_ec": "1.11.1.14",
+      "row_id": "uniprot:P06181",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "Q939D2",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P48534",
+      "primary_ec": "1.11.1.21",
+      "row_id": "uniprot:Q939D2",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    },
+    {
+      "accession": "P14532",
+      "current_reference_exact_sequence_match": false,
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+      "exact_current_reference_id": null,
+      "near_neighbor_alert": false,
+      "nearest_current_reference_id": "ref__P0A794",
+      "primary_ec": "1.11.1.5",
+      "row_id": "uniprot:P14532",
+      "sequence_decision_signal": "no_sequence_neighbor_alert"
+    }
+  ],
+  "task_definition": {
+    "positive_claim_allowed": false,
+    "superiority_claim_allowed": false,
+    "task_id": "heme_peroxidase_external_minicampaign_sequence_baseline_v1_review_only"
+  }
+}

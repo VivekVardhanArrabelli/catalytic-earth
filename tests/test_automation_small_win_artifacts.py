@@ -849,6 +849,74 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(register["synthesis_conclusion"]["superiority_claim_permitted"])
 
+    def test_heme_peroxidase_minicampaign_stays_review_only(self) -> None:
+        freeze = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json"
+        )
+        baseline = _load_json(
+            ARTIFACTS / "v3_heme_peroxidase_minicampaign_baseline_comparison_20260521.json"
+        )
+        sequence = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json"
+        )
+
+        self.assertTrue(freeze["metadata"]["review_only"])
+        self.assertTrue(
+            freeze["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(freeze["metadata"]["candidate_count"], 19)
+        self.assertEqual(
+            freeze["metadata"]["target_current_fingerprint_lane"],
+            "heme_peroxidase_oxidase",
+        )
+        self.assertFalse(freeze["metadata"]["ready_for_label_import"])
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_count"], 19)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"needs_review": 15, "terminal_rejection": 4},
+        )
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in decisions["rows"])
+        )
+
+        self.assertFalse(baseline["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(baseline["metadata"]["candidate_count"], 19)
+        self.assertEqual(
+            baseline["metrics"]["deterministic_5mer_sequence_baseline"][
+                "exact_current_reference_sequence_match_count"
+            ],
+            4,
+        )
+        self.assertFalse(
+            baseline["metrics"]["geometry_retrieval_baseline"][
+                "supports_superiority_claim"
+            ]
+        )
+
+        self.assertTrue(sequence["metadata"]["review_only"])
+        self.assertEqual(sequence["metadata"]["candidate_count"], 19)
+        self.assertEqual(
+            sequence["metadata"]["exact_current_reference_sequence_match_count"], 4
+        )
+        self.assertEqual(sequence["metadata"]["near_neighbor_alert_count"], 4)
+        self.assertTrue(
+            sequence["metadata"]["terminal_decision_changed_by_sequence_baseline"]
+        )
+        self.assertFalse(sequence["metadata"]["ready_for_label_import"])
+
     def test_external_minicampaign_modern_baseline_rollup_stays_review_only(self) -> None:
         rollup = _load_json(
             ARTIFACTS / "v3_external_minicampaign_modern_baseline_rollup_20260521.json"

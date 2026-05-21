@@ -134,6 +134,22 @@ registry edit, label import, threshold, production scoring, fingerprint
 expansion, artifact migration, upload, removal, Git LFS tracking, or history
 rewrite was performed.
 
+The final external mini-campaign opened in this run targets the current
+`heme_peroxidase_oxidase` lane. The freeze artifact
+`artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json`
+locks 19 reviewed UniProtKB/Swiss-Prot EC 1.11.1.* peroxidase/catalase rows
+before scoring, with catalytic activity, PDB cross-reference, explicit
+heme/iron source context, prior-pool exclusions, mixed globin/peroxiredoxin/
+dual-oxidase exclusions, and a two-row cap per primary EC. The decision packet
+`artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json`
+keeps 15 rows as `needs_review` under the existing heme lane and terminally
+rejects four exact current-reference sequence duplicates. The baseline
+comparison
+`artifacts/v3_heme_peroxidase_minicampaign_baseline_comparison_20260521.json`
+keeps EC/keyword and deterministic 5-mer context diagnostic only; no geometry,
+ESM, Foldseek, superiority, scoring, threshold, import, registry, or
+fingerprint claim is opened.
+
 The current modern-baseline rollup
 `artifacts/v3_external_minicampaign_modern_baseline_rollup_20260521.json`
 aggregates the PLP and flavin external mini-campaigns as a 40-row review-only

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 238
-- Measured elapsed time: 7084.2 minutes (118.07 hours)
+- Entries: 239
+- Measured elapsed time: 7088.9 minutes (118.15 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1795.3 measured minutes (29.92 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 114.9 measured minutes (1.91 hours)
+- v3: 119.6 measured minutes (1.99 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2698
-- Evidence references logged: 2191
+- Artifact references logged: 2703
+- Evidence references logged: 2192
 
 ## Recent Entries
-
-### 2026-05-20T22:44:16.389654+00:00 - v3
-
-- Task: main-loop small wins: glyco baseline, GHKL/dNK terminal tranches, PfkB packet
-- Time mode: measured
-- Measured minutes: 33.1
-- Started: 2026-05-20T22:11:00Z
-- Ended: 2026-05-20T22:44:06Z
-- Artifacts: artifacts/v3_glycosyltransferase_minicampaign_sequence_baseline_diagnostic_20260520.json, artifacts/v3_ghkl_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_dnk_vs_neighbor_family_control_tranche_axis_decisions_20260520.json, artifacts/v3_pfkb_family_readiness_packet_20260520.json, artifacts/v3_main_loop_small_win_register_post_atp_readiness_20260520.json
-- Evidence: 736+ targeted/unit tests, registry invariant check, artifact migration guard
-- Notes: No registry edit, label import, fingerprint expansion, artifact upload/removal, or migration phase 2/3.
 
 ### 2026-05-20T23:36:29.859708+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T00:44:04Z
 - Artifacts: artifacts/v3_external_minicampaign_modern_baseline_rollup_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: 40 frozen PLP/flavin external rows; 37 needs_review; 3 exact current-reference duplicate terminal rejections; no superiority claim
+- Notes: focused unittest JSON validation and diff check passed
+
+### 2026-05-21T00:49:00.721874+00:00 - v3
+
+- Task: prospective external heme peroxidase mini-campaign
+- Time mode: measured
+- Measured minutes: 4.75
+- Started: 2026-05-21T00:44:04Z
+- Ended: 2026-05-21T00:48:49Z
+- Artifacts: artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json, artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_heme_peroxidase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_main_loop_small_win_register_post_heme_peroxidase_20260521.json
+- Evidence: 19-row Swiss-Prot EC 1.11.1.* heme peroxidase/catalase surface frozen before scoring; 15 needs_review; 4 exact current-reference duplicate terminal rejections; no superiority claim
 - Notes: focused unittest JSON validation and diff check passed
 
 ## Expectation Updates
@@ -310,6 +310,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:35:13.353330+00:00: continue external or non-ATP-family small wins; do not promote PfkA
 - 2026-05-21T00:41:53.519062+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
 - 2026-05-21T00:44:11.610704+00:00: simple EC and sequence baselines provide routing and duplicate caveats only
+- 2026-05-21T00:49:00.721874+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
 
 ## Scope Adjustments
 
@@ -441,3 +442,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:35:13.353330+00:00: all non-ePK ATP-family readiness slots closed review-only no-go
 - 2026-05-21T00:41:53.519062+00:00: flavin monooxygenase external mini-campaign remains review-only and not import-ready
 - 2026-05-21T00:44:11.610704+00:00: modern baseline rollup is review-only and not a production/import benchmark
+- 2026-05-21T00:49:00.721874+00:00: heme peroxidase external mini-campaign remains review-only and not import-ready

@@ -1,0 +1,314 @@
+{
+  "caveats": [
+    "EC/keyword routing is lane context only and over-admits all frozen rows as plausible heme peroxidase/oxidase cases.",
+    "Deterministic sequence-neighbor evidence identifies duplicate/leakage caveats but is not mechanism evidence.",
+    "No superiority claim is permitted because geometry, ESM, and Foldseek sidecars were not generated for this frozen set."
+  ],
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_heme_peroxidase_minicampaign_baseline_comparison_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 19,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T00:47:41Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "mechanism_fingerprint_registry_edited": false,
+    "method": "heme_peroxidase_minicampaign_no_claim_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "candidate_freeze": "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+      "decision_packet": "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+      "sequence_baseline": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json"
+    },
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "deterministic_5mer_sequence_baseline": {
+      "exact_current_reference_sequence_match_count": 4,
+      "near_neighbor_alert_count": 4,
+      "near_neighbor_alert_threshold_jaccard": 0.35,
+      "reference_sequence_count": 737,
+      "supports_superiority_claim": false
+    },
+    "ec_keyword_baseline": {
+      "routed_to_existing_current_fingerprint_lane_count": 19,
+      "supports_import_claim": false,
+      "supports_mechanism_match_claim": false
+    },
+    "esm_foldseek_sidecars": {
+      "esm_status": "not_available_for_this_frozen_set",
+      "foldseek_status": "not_run_for_this_frozen_set",
+      "supports_superiority_claim": false
+    },
+    "geometry_retrieval_baseline": {
+      "current_abstain_threshold": 0.4115,
+      "status": "not_run_for_external_source_free_geometry_missing",
+      "supports_superiority_claim": false
+    },
+    "terminal_decision_counts": {
+      "needs_review": 15,
+      "terminal_rejection": 4
+    }
+  },
+  "rows": [
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.1562,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P05164",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P11678",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0184,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P21179",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P04040",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0048,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P61517",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P39597",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.003,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P40881",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P31545",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0259,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00433",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q39034",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P21179",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P21179",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0041,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P48534",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P13029",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P00431",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P00431",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0037,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q44297",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:K7N5M8",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0A9Q9",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:I2DBY1",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P04963",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P04963",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P05414",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q9UR19",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P27002",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q47KB1",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P48534",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P48534",
+      "sequence_baseline_signal": "exact_current_reference_duplicate",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0032,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P52197",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P49012",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "deterministic_5mer_nearest_current_reference_id": "ref__Q96C23",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q02567",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0041,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P50057",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P06181",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0042,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P48534",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:Q939D2",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    },
+    {
+      "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+      "deterministic_5mer_nearest_current_reference_id": "ref__P0A794",
+      "ec_keyword_baseline_import_claim": false,
+      "ec_keyword_baseline_route": "heme_peroxidase_oxidase_lane",
+      "esm_sidecar_status": "not_available_for_this_frozen_set",
+      "foldseek_sidecar_status": "not_run_for_this_frozen_set",
+      "geometry_retrieval_status": "not_run_external_source_free_geometry_missing",
+      "row_id": "uniprot:P14532",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "superiority_claim_supported": false,
+      "terminal_decision": "needs_review"
+    }
+  ],
+  "task_definition": {
+    "positive_claim_allowed": false,
+    "superiority_claim_allowed": false,
+    "task_id": "heme_peroxidase_external_minicampaign_baseline_comparison_v1_review_only"
+  }
+}
