@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 241
-- Measured elapsed time: 7096.3 minutes (118.27 hours)
+- Entries: 242
+- Measured elapsed time: 7102.7 minutes (118.38 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 99.5 measured minutes (1.66 hours)
-- post-infra-science: 1795.3 measured minutes (29.92 hours)
+- post-infra-science: 1801.6 measured minutes (30.03 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 121.5 measured minutes (2.02 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2709
-- Evidence references logged: 2194
+- Artifact references logged: 2713
+- Evidence references logged: 2201
 
 ## Recent Entries
-
-### 2026-05-21T00:18:48.662111+00:00 - post-infra-science
-
-- Task: Overnight ePK research-lane synthesis
-- Time mode: measured
-- Measured minutes: 5.8
-- Started: 2026-05-21T00:13:00Z
-- Ended: 2026-05-21T00:18:48Z
-- Artifacts: artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: 11 fresh ePK lane JSON artifacts and 4 JSONL ledgers validated with 0 errors, 23FC kept review-only as ATR/PIKK short-segment stress, high-order v4 stress diagnostic retained bounded positives with 0 non-ORC residuals, 91-case sibling expected-block oracle ready review-only, ADP product repair tripwire abstained 10 of 10, focused overnight synthesis regression passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ### 2026-05-21T00:27:03.666400+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: 759-test unit discovery passed; validate passed with 682 labels and 8 fingerprints; artifact migration dry-run passed with removal_allowed=0; git diff check passed; worktree clean before final status update
 - Notes: Final wrap validation after pushed ePK PLP PfkA flavin heme and baseline-rollup commits
+
+### 2026-05-21T01:19:56.798534+00:00 - post-infra-science
+
+- Task: Post-overnight ePK remote lane synthesis
+- Time mode: measured
+- Measured minutes: 6.383
+- Started: 2026-05-21T01:13:23Z
+- Ended: 2026-05-21T01:19:46Z
+- Artifacts: artifacts/v3_epk_post_overnight_remote_lane_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: 9 remote ePK JSON artifacts and 3 JSONL ledgers validated with 0 errors, current-day RCSB ePK surface returned 0 rows, 23FC remains short-segment PIKK review-only stress, BRAF/MEK alias rows are geometry-negative, source-free substrate-role gate has 14 TP 34 TN 0 FP 6 FN but requires review on blocker classes, policy tripwire remains 10 review-only abstentions with 0 mismatches, focused synthesis regression passed
+- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -313,6 +313,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:49:00.721874+00:00: future movement needs source-free geometry duplicate screens terminal review and factory/import gates
 - 2026-05-21T00:51:14.465122+00:00: 20260521 external campaign baselines are routing and duplicate diagnostics only
 - 2026-05-21T00:58:14.196100+00:00: external mini-campaign wins are terminal review-only evidence until source-free geometry duplicate screens terminal review and factory/import gates exist
+- 2026-05-21T01:19:56.798534+00:00: Commit ePK remote synthesis before returning to external mini-campaign small wins.
 
 ## Scope Adjustments
 
@@ -447,3 +448,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T00:49:00.721874+00:00: heme peroxidase external mini-campaign remains review-only and not import-ready
 - 2026-05-21T00:51:14.465122+00:00: post-heme baseline rollup remains review-only with no superiority or import claim
 - 2026-05-21T00:58:14.196100+00:00: no registry import fingerprint edit production scoring threshold or artifact migration upload/removal
+- 2026-05-21T01:19:56.798534+00:00: ePK remains review-only no-go and out of main-loop production scope after fresh remote branch synthesis.

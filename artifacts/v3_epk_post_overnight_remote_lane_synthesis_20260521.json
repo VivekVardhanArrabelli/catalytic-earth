@@ -1,0 +1,309 @@
+{
+  "fresh_remote_commits": [
+    {
+      "commit": "2ce92277ce50b437bd550e155cbc4ee9af97d234",
+      "committer_date": "2026-05-20T19:18:26-05:00",
+      "remote_ref": "origin/research/epk-policy-harness",
+      "subject": "Record pushed ADP tripwire run metadata"
+    },
+    {
+      "commit": "df3e092c76b084a595d73ad57842fcc2a6798e22",
+      "committer_date": "2026-05-20T19:17:38-05:00",
+      "remote_ref": "origin/research/epk-policy-harness",
+      "subject": "Freeze ADP product repair tripwire harness"
+    },
+    {
+      "commit": "15fb73c8f23b282338ab5ffb1a19d51c5ce1bfea",
+      "committer_date": "2026-05-20T20:17:12-05:00",
+      "remote_ref": "origin/research/epk-positive-evidence",
+      "subject": "Record ePK evidence handoff"
+    },
+    {
+      "commit": "43f330f4a67d9aa91be7b2f9de98edcb7483b3e6",
+      "committer_date": "2026-05-20T20:15:43-05:00",
+      "remote_ref": "origin/research/epk-positive-evidence",
+      "subject": "Record ePK current-release evidence negatives"
+    },
+    {
+      "commit": "f97440f25d84570bb725185554f032416ff9694c",
+      "committer_date": "2026-05-20T19:32:58-05:00",
+      "remote_ref": "origin/research/epk-substrate-role-identity",
+      "subject": "Clarify ePK handoff sync status"
+    },
+    {
+      "commit": "7bdcacd6131ef98e7660fb7918fcc3f8fd07a42c",
+      "committer_date": "2026-05-20T19:31:57-05:00",
+      "remote_ref": "origin/research/epk-substrate-role-identity",
+      "subject": "Record ePK source-free adjudication decision"
+    }
+  ],
+  "input_json_validation": [
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_policy_harness",
+      "method": null,
+      "path": "artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z.json",
+      "primary_outcome": null,
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-policy-harness",
+      "review_only": true,
+      "sha256": "a58ec0a785b3d5d4195d15d23f1f22819975ab3d0df19b7f1ef6fba2e1bf921c"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_policy_harness",
+      "method": null,
+      "path": "artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_result.json",
+      "primary_outcome": "policy_frozen_review_only",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-policy-harness",
+      "review_only": true,
+      "sha256": "7e6b854b405e2ca074f69a2c0234ae1ab865b416c21ffb39cead3f1a9d8c21fe"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_policy_harness",
+      "method": null,
+      "path": "artifacts/research_lanes/epk_policy_harness/epk_adp_product_state_candidate_repair_tripwire_20260520T233843Z_tranche.json",
+      "primary_outcome": null,
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-policy-harness",
+      "review_only": true,
+      "sha256": "9157232884c29860b781cf057725401a93d568cbcd4c3366937c976e33fc83d5"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "method": "braf_mek_alias_source_review",
+      "path": "artifacts/research_lanes/epk_positive_evidence/braf_mek_alias_source_review_20260521.json",
+      "primary_outcome": "evidence_against",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-positive-evidence",
+      "review_only": true,
+      "sha256": "2ce72bcd30ad801e047281051c71823e0152892efcc0393561e9aeb63bd9af68"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "method": "current_release_epk_followup",
+      "path": "artifacts/research_lanes/epk_positive_evidence/canonical_epk_2026_no_source_backfill_20260521.json",
+      "primary_outcome": "evidence_for",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-positive-evidence",
+      "review_only": true,
+      "sha256": "da064dc0162f51dde58e9f1fe9dd524f1ce090353e91270e16809013e1b01031"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "method": "current_release_epk_followup",
+      "path": "artifacts/research_lanes/epk_positive_evidence/current_release_epk_followup_20260521.json",
+      "primary_outcome": "search_surface_exhausted",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-positive-evidence",
+      "review_only": true,
+      "sha256": "b88d62e2cf262c20c68deddf43a7730eb9044086938e2358bb1202c1a359ee12"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "method": "europepmc_2026_source_text_followup",
+      "path": "artifacts/research_lanes/epk_positive_evidence/europepmc_2026_source_text_followup_20260521.json",
+      "primary_outcome": "search_surface_exhausted",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-positive-evidence",
+      "review_only": true,
+      "sha256": "aa0f805c1cb320f4266f629ed1598624539d5eba0b959ff2e6073f44b07439b3"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_positive_evidence",
+      "method": "targeted_article_alias_followup",
+      "path": "artifacts/research_lanes/epk_positive_evidence/targeted_article_alias_followup_20260521.json",
+      "primary_outcome": "search_surface_exhausted",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-positive-evidence",
+      "review_only": true,
+      "sha256": "1febc4c7cd5d55fded494b500c392532636d177ef2891ab34d969993cdcafeee"
+    },
+    {
+      "json_valid": true,
+      "labels_or_fingerprints_changed": false,
+      "lane_id": "epk_substrate_role_identity",
+      "method": "review_only_source_free_adjudication_requirement_decision",
+      "path": "artifacts/research_lanes/epk_substrate_role_identity/epk_source_free_adjudication_requirement_decision_v1_20260520.json",
+      "primary_outcome": "blocker_not_cleared_biology_ambiguity",
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "remote_ref": "origin/research/epk-substrate-role-identity",
+      "review_only": true,
+      "sha256": "9f33cd74d24d6d339cc1621a7f9536c7116ce07e24dce78016c76936fbd0796b"
+    }
+  ],
+  "input_jsonl_validation": [
+    {
+      "jsonl_valid": true,
+      "lane_id": "epk_policy_harness",
+      "latest_labels_or_fingerprints_changed": false,
+      "latest_primary_outcome": "policy_frozen_review_only",
+      "latest_production_claim_allowed": false,
+      "path": "artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+      "record_count": 10,
+      "remote_ref": "origin/research/epk-policy-harness"
+    },
+    {
+      "jsonl_valid": true,
+      "lane_id": "epk_positive_evidence",
+      "latest_labels_or_fingerprints_changed": false,
+      "latest_primary_outcome": "evidence_against",
+      "latest_production_claim_allowed": false,
+      "path": "artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+      "record_count": 10,
+      "remote_ref": "origin/research/epk-positive-evidence"
+    },
+    {
+      "jsonl_valid": true,
+      "lane_id": "epk_substrate_role_identity",
+      "latest_labels_or_fingerprints_changed": false,
+      "latest_primary_outcome": "blocker_not_cleared_biology_ambiguity",
+      "latest_production_claim_allowed": false,
+      "path": "artifacts/research_lanes/epk_substrate_role_identity/epk_substrate_role_identity_runs.jsonl",
+      "record_count": 10,
+      "remote_ref": "origin/research/epk-substrate-role-identity"
+    }
+  ],
+  "lane_findings": [
+    {
+      "braf_mek_geometry_negative_rows": [
+        "6U2G",
+        "9AXX"
+      ],
+      "canonical_2026_unique_pdb_count": 10,
+      "canonical_2026_unique_pdb_ids": [
+        "23FC",
+        "9ECU",
+        "9QKZ",
+        "9R2I",
+        "9UUR",
+        "9UUX",
+        "9UW3",
+        "9UW4",
+        "9V79",
+        "9WYR"
+      ],
+      "current_day_surface_returned_rows": 0,
+      "decision_impact": "No clean non-topology-confounded folded-protein canonical ePK substrate positive was found; 23FC remains short-segment/PIKK review-only stress, and BRAF/MEK alias rows are geometry-negative.",
+      "europepmc_article_count": 50,
+      "europepmc_mapped_pdb_count": 67,
+      "lane_id": "epk_positive_evidence",
+      "primary_outcome": "evidence_against_clean_folded_protein_positive",
+      "production_claim_allowed": false,
+      "recommendation": "do_not_start_main_loop_epk_scoring_or_thresholding",
+      "review_only": true,
+      "short_or_peptide_positive_style_rows": [
+        "23FC"
+      ],
+      "targeted_alias_mapped_pdb_ids": [
+        "6U2G",
+        "7O9K",
+        "9AXX",
+        "9PCQ"
+      ]
+    },
+    {
+      "confusion_matrix": {
+        "false_negative": 6,
+        "false_positive": 0,
+        "true_negative": 34,
+        "true_positive": 14
+      },
+      "decision_impact": "Source-free structure features support a review requirement, not a production substrate-role identity rule; product/ADP, reciprocal folded-chain, and same-chain/autophosphorylation-like contexts remain blockers.",
+      "hard_reciprocal_trio": null,
+      "lane_id": "epk_substrate_role_identity",
+      "primary_outcome": "blocker_not_cleared_biology_ambiguity",
+      "production_claim_allowed": false,
+      "recommendation": "stop_source_free_scalar_probing_unless_new_modality_exists",
+      "review_only": true,
+      "review_required_counterexample_count": 0,
+      "review_required_positive_count": 0
+    },
+    {
+      "already_reflected_by_overnight_dirty_synthesis": true,
+      "decision_counts": {
+        "review_only_abstain": 10
+      },
+      "decision_impact": "Remote push materializes the ADP/product-state candidate-repair tripwire already summarized by the overnight synthesis; it remains fail-closed with 10 review-only abstentions.",
+      "expected_decision_mismatch_count": 0,
+      "lane_id": "epk_policy_harness",
+      "primary_outcome": "policy_frozen_review_only",
+      "production_claim_allowed": false,
+      "recommendation": "keep_policy_harness_research_only",
+      "review_only": true
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_post_overnight_remote_lane_synthesis_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T01:18:23Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_remote_branch_outputs_integrated": true,
+    "input_json_validated_file_count": 9,
+    "input_json_validation_error_count": 0,
+    "input_jsonl_validated_file_count": 3,
+    "input_jsonl_validation_error_count": 0,
+    "integrates_uncommitted_sibling_worktree_outputs": false,
+    "lane_count": 3,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "main_loop_review_only_remote_lane_synthesis",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "synthesizes_research_branch_commits_since": "2026-05-21T00:17:08Z"
+  },
+  "next_exact_experiment_if_epk_is_reopened": {
+    "decision_to_start_now": false,
+    "experiment_id": "none_for_main_loop_after_post_overnight_remote_synthesis",
+    "reason": "Fresh remote lane outputs either add negative/review-only evidence or remote-materialize already integrated tripwire evidence. Main should continue external mini-campaigns or non-ePK readiness packets."
+  },
+  "synthesis_conclusion": {
+    "decision_to_start_now": false,
+    "label_import_authorized": false,
+    "main_loop_decision": "do_not_resume_epk_as_default_main_loop_task",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "policy_harness_lane": "adp_product_candidate_repair_tripwire_fail_closed",
+    "positive_evidence_lane": "no_clean_folded_protein_positive_found",
+    "production_activation_decision": "no_go",
+    "production_scoring_authorized": false,
+    "registry_or_fingerprint_change_authorized": false,
+    "substrate_role_lane": "source_free_blocker_not_cleared_review_requirement"
+  }
+}

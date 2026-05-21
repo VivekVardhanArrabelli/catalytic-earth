@@ -109,6 +109,22 @@ ADP/product-state/candidate-repair contexts as 10/10 review-only abstentions.
 ePK remains out of main-loop production scope; the only exact future ePK
 experiment is isolated research-lane scorer-fixture dry-run work, not a main
 scoring, threshold, label import, registry edit, or fingerprint-expansion task.
+The 2026-05-21T01:18:23Z post-overnight remote synthesis in
+`artifacts/v3_epk_post_overnight_remote_lane_synthesis_20260521.json` keeps the
+same boundary after fresh remote research-branch pushes. Nine JSON artifacts
+and three JSONL ledgers validate cleanly. Positive-evidence follow-ups add
+negative current-release/source-text evidence rather than a clean folded
+protein positive: current-day RCSB release surfaces return 0 rows, `23FC`
+remains short-segment/PIKK review-only stress, BRAF/MEK alias rows are
+geometry-negative, and Europe PMC/targeted alias scans find no clean
+transfer-state positive. The substrate-role lane reports a conservative
+source-free gate with 14 true positives, 34 true negatives, 0 false positives,
+and 6 false negatives, but the 6 misses are exactly the product/ADP,
+reciprocal folded-chain, and same-chain/autophosphorylation-like classes that
+must stay review-required. The policy-harness remote push only materializes the
+already integrated ADP/product-state candidate-repair tripwire. No ePK scorer,
+threshold, label import, registry edit, fingerprint expansion, or main-loop
+ePK task is in scope.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

@@ -294,6 +294,68 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             ]
         )
 
+    def test_post_overnight_remote_epk_synthesis_stays_review_only(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS
+            / "v3_epk_post_overnight_remote_lane_synthesis_20260521.json"
+        )
+        metadata = synthesis["metadata"]
+        conclusion = synthesis["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["fresh_remote_branch_outputs_integrated"])
+        self.assertEqual(metadata["lane_count"], 3)
+        self.assertEqual(metadata["input_json_validated_file_count"], 9)
+        self.assertEqual(metadata["input_json_validation_error_count"], 0)
+        self.assertEqual(metadata["input_jsonl_validated_file_count"], 3)
+        self.assertEqual(metadata["input_jsonl_validation_error_count"], 0)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["main_loop_should_continue_epk_by_default"])
+
+        lanes = {row["lane_id"]: row for row in synthesis["lane_findings"]}
+        self.assertEqual(
+            lanes["epk_positive_evidence"]["primary_outcome"],
+            "evidence_against_clean_folded_protein_positive",
+        )
+        self.assertEqual(lanes["epk_positive_evidence"]["current_day_surface_returned_rows"], 0)
+        self.assertIn("23FC", lanes["epk_positive_evidence"]["short_or_peptide_positive_style_rows"])
+        self.assertEqual(
+            lanes["epk_substrate_role_identity"]["primary_outcome"],
+            "blocker_not_cleared_biology_ambiguity",
+        )
+        self.assertEqual(
+            lanes["epk_substrate_role_identity"]["confusion_matrix"],
+            {"false_negative": 6, "false_positive": 0, "true_negative": 34, "true_positive": 14},
+        )
+        self.assertEqual(
+            lanes["epk_policy_harness"]["decision_counts"],
+            {"review_only_abstain": 10},
+        )
+        self.assertTrue(
+            lanes["epk_policy_harness"]["already_reflected_by_overnight_dirty_synthesis"]
+        )
+
+        self.assertEqual(
+            conclusion["overall"],
+            "epk_remains_review_only_and_not_production_ready",
+        )
+        self.assertEqual(conclusion["production_activation_decision"], "no_go")
+        self.assertEqual(
+            conclusion["main_loop_decision"],
+            "do_not_resume_epk_as_default_main_loop_task",
+        )
+        self.assertFalse(conclusion["decision_to_start_now"])
+        self.assertFalse(
+            synthesis["next_exact_experiment_if_epk_is_reopened"][
+                "decision_to_start_now"
+            ]
+        )
+
     def test_prospective_external_minicampaign_records_blocker_without_import(self) -> None:
         packet = _load_json(
             ARTIFACTS

@@ -50,6 +50,32 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T01:18:23Z automation run,
+`artifacts/v3_epk_post_overnight_remote_lane_synthesis_20260521.json`
+integrates fresh remote ePK research-branch pushes since the overnight
+synthesis. It validates 9 JSON artifacts and 3 JSONL ledgers with 0 parse
+errors, without copying production changes from the research branches. The
+positive-evidence lane adds current-release/source-text negative evidence:
+the current-day release surface returned 0 rows, the 2026 canonical backfill
+keeps `23FC` as short-segment/PIKK review-only stress, BRAF/MEK alias rows
+`6U2G` and `9AXX` are source-relevant but geometry-negative, and Europe PMC
+plus targeted-article alias scans found no clean folded-protein transfer-state
+positive. The substrate-role lane converts the source-free substrate identity
+problem into an explicit review requirement: the conservative gate has 14 true
+positives, 34 true negatives, 0 false positives, and 6 false negatives, but it
+clears that only by abstaining on product/ADP, reciprocal folded-chain, and
+same-chain/autophosphorylation-like contexts. The policy-harness push
+materializes the ADP/product-state candidate-repair tripwire already reflected
+by the overnight dirty-worktree synthesis; all 10 rows remain review-only
+abstentions with 0 expected-decision mismatches.
+
+Evidence-based confidence call: confidence is high that ePK remains
+review-only and not production-ready. Fresh remote evidence strengthens the
+no-go decision rather than reopening production work: no scorer, threshold,
+registry edit, label import, fingerprint expansion, or main-loop ePK task is
+authorized. The main loop should continue external mini-campaigns, modern
+baseline comparisons, terminal decisions, or non-ePK family packets.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late
