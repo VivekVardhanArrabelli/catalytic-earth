@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 250
-- Measured elapsed time: 7141.3 minutes (119.02 hours)
+- Entries: 251
+- Measured elapsed time: 7142.8 minutes (119.05 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,7 +14,7 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 99.5 measured minutes (1.66 hours)
+- ops: 101.0 measured minutes (1.68 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2754
-- Evidence references logged: 2242
+- Artifact references logged: 2756
+- Evidence references logged: 2248
 
 ## Recent Entries
-
-### 2026-05-21T01:27:27.260565+00:00 - v3
-
-- Task: prospective external serine hydrolase mini-campaign
-- Time mode: measured
-- Measured minutes: 7.233
-- Started: 2026-05-21T01:20:00Z
-- Ended: 2026-05-21T01:27:14Z
-- Artifacts: artifacts/v3_prospective_external_serine_hydrolase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_serine_hydrolase_minicampaign_decision_packet_20260521.json, artifacts/v3_serine_hydrolase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_serine_hydrolase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_external_minicampaign_modern_baseline_rollup_post_serine_hydrolase_20260521.json, artifacts/v3_main_loop_small_win_register_post_serine_hydrolase_20260521.json
-- Evidence: 19-row Swiss-Prot EC 3.1.1.* serine-hydrolase surface frozen before scoring, 18 rows routed to needs_review under current ser_his_acid_hydrolase lane, 1 exact current-reference duplicate P94388 terminally rejected, deterministic 5-mer baseline checked 19 rows against 737 current references with no superiority claim, post-serine rollup covers 78 frozen 2026-05-21 external rows with 70 needs_review 8 terminal rejections and 0 geometry-scored rows, focused serine mini-campaign and rollup regressions passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ### 2026-05-21T01:31:38.491051+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_dirty_sibling_followup_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: dirty sibling ePK lane JSON validated with 327 JSON files and 44 JSONL records and 0 parse errors, positive lane keeps 23FC review-only due missing publication authority, false-positive lane records 5UJ7 biological assembly 1 assembly-v4 sufficiency counterexample, sibling controls preserve 76 weak-case ablation and policy harness keeps 25 ADP/product rows as review-only abstentions, focused dirty-sibling synthesis regression passed
 - Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
+
+### 2026-05-21T02:02:02.049578+00:00 - ops
+
+- Task: final validation for 2026-05-21 small-win main loop
+- Time mode: measured
+- Measured minutes: 1.55
+- Started: 2026-05-21T02:00:17Z
+- Ended: 2026-05-21T02:01:50Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: 774-test unit discovery passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 53 2026-05-21 JSON artifacts parsed, git diff check passed
+- Notes: Final wrap validation after pushed radical SAM current-fingerprint benchmark source-free-geometry preregistration terminal-decision index and dirty ePK sibling synthesis commits.
 
 ## Expectation Updates
 
@@ -322,6 +322,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:50:11.872301+00:00: current-fingerprint external benchmark is review-only and cannot support superiority import or production scoring claims
 - 2026-05-21T01:55:41.795664+00:00: external small-win rows remain review-only until source-free geometry duplicate screens terminal review and factory/import gates pass
 - 2026-05-21T02:00:27.449389+00:00: ePK remains review-only no-go; next exact ePK work belongs only in isolated research lanes
+- 2026-05-21T02:02:02.049578+00:00: next main-loop work should run the 14-row source-free geometry sidecar and duplicate-screen experiment or continue non-ePK small wins
 
 ## Scope Adjustments
 
@@ -465,3 +466,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:50:11.872301+00:00: modern baseline comparison is now explicit across the current fingerprint external surfaces
 - 2026-05-21T01:55:41.795664+00:00: next exact external experiment is source-free sidecar materialization and duplicate screening for 14 frozen rows only
 - 2026-05-21T02:00:27.449389+00:00: fresh dirty sibling ePK outputs reinforce no-go production scope and do not resume ePK main-loop work
+- 2026-05-21T02:02:02.049578+00:00: wrapped after minute 48 with external small-win artifacts pushed and ePK kept review-only

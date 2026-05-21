@@ -238,6 +238,14 @@ decision vocabulary. Counts are 123 `needs_review` and 13
 `countable_label_candidate=false`. This is a handoff/regression input only, not
 a production benchmark, import request, or scoring authorization.
 
+Wrap validation for the 2026-05-21 small-win main loop passed after minute 48:
+774 unit tests, `PYTHONPATH=src python -m catalytic_earth.cli validate`, the
+artifact-migration dry-run guard with `removal_allowed=0`, `compileall`, 53
+same-day JSON parses, and `git diff --check` all passed. `HEAD` was pushed to
+`origin/main` after the radical-SAM, current-fingerprint benchmark,
+source-free geometry preregistration, terminal-decision index, and dirty ePK
+sibling synthesis commits.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late
