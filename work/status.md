@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 256
-- Measured elapsed time: 7260.2 minutes (121.00 hours)
+- Entries: 258
+- Measured elapsed time: 7278.2 minutes (121.30 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 105.9 measured minutes (1.76 hours)
+- ops: 107.1 measured minutes (1.78 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 269.5 measured minutes (4.49 hours)
+- v3: 286.3 measured minutes (4.77 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2800
-- Evidence references logged: 2280
+- Artifact references logged: 2809
+- Evidence references logged: 2289
 
 ## Recent Entries
-
-### 2026-05-21T01:55:41.795664+00:00 - v3
-
-- Task: external mini-campaign next experiment preregistration
-- Time mode: measured
-- Measured minutes: 5.467
-- Started: 2026-05-21T01:50:02Z
-- Ended: 2026-05-21T01:55:30Z
-- Artifacts: artifacts/v3_external_minicampaign_source_free_geometry_preregistration_20260521.json, artifacts/v3_external_minicampaign_terminal_decision_index_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: 14-row source-free-geometry follow-up preregistered from seven source-complete external mini-campaigns before coordinate materialization or scoring, terminal-decision index normalized 136 review-only rows to 123 needs_review and 13 terminal_rejection, registry invariant regression pins 682 labels 212 seed 470 out_of_scope and exactly three external out-of-scope UniProt labels, focused preregistration terminal-index and registry-invariant regressions passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
-
-### 2026-05-21T02:00:27.449389+00:00 - post-infra-science
-
-- Task: Dirty sibling ePK follow-up synthesis
-- Time mode: measured
-- Measured minutes: 3.083
-- Started: 2026-05-21T01:57:12Z
-- Ended: 2026-05-21T02:00:17Z
-- Artifacts: artifacts/v3_epk_dirty_sibling_followup_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
-- Evidence: dirty sibling ePK lane JSON validated with 327 JSON files and 44 JSONL records and 0 parse errors, positive lane keeps 23FC review-only due missing publication authority, false-positive lane records 5UJ7 biological assembly 1 assembly-v4 sufficiency counterexample, sibling controls preserve 76 weak-case ablation and policy harness keeps 25 ADP/product rows as review-only abstentions, focused dirty-sibling synthesis regression passed
-- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ### 2026-05-21T02:02:02.049578+00:00 - ops
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/progress_log.jsonl, work/status.md
 - Evidence: 779-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 3 new JSON artifacts parsed
 - Notes: Final wrap validation after terminal metal-phosphatase duplicate/leakage packet.
+
+### 2026-05-21T05:08:54.165383+00:00 - v3
+
+- Task: serine hydrolase chunked duplicate blocker attempt
+- Time mode: measured
+- Measured minutes: 16.767
+- Started: 2026-05-21T04:51:58Z
+- Ended: 2026-05-21T05:08:44Z
+- Artifacts: artifacts/v3_serine_hydrolase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: 6 materialized serine rows attempted with 120-second per-query Foldseek chunks, 6/6 materialized queries timed out and P31614 remains coordinate-missing, terminal packet keeps 7/7 rows needs_new_extractor_or_structure with exact blocker, 0 import-ready rows and no duplicate-clear superiority registry or fingerprint claim
+- Notes: Bounded serine follow-up stopped at the exact timeout and coordinate blocker; no artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
+
+### 2026-05-21T05:10:02.682868+00:00 - ops
+
+- Task: final validation for post-duplicate deep packets
+- Time mode: measured
+- Measured minutes: 1.2
+- Started: 2026-05-21T05:08:44Z
+- Ended: 2026-05-21T05:09:56Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: 780-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 6 post-duplicate JSON artifacts parsed
+- Notes: Final wrap validation after metal terminal duplicate packet and serine timeout blocker packet.
 
 ## Expectation Updates
 

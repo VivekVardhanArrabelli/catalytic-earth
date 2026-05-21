@@ -79,10 +79,18 @@ terminal, reproducible, source-separated external decision with active-site
 evidence and duplicate/leakage screening. Confidence is also high that no
 metal-phosphatase row should move toward import or mechanism-match review from
 this packet, because every row has a current-countable high-TM leakage signal.
-The next main-loop work should apply the same chunked current-countable
-structural duplicate screen to the already frozen serine and flavin deep
-selections before any duplicate-clear, mechanism-match, import, or superiority
-claim is considered.
+The same run attempted the next ladder step for the already frozen serine
+selection in
+`artifacts/v3_serine_hydrolase_deep_packet_chunked_current_countable_structural_screen_20260521.json`.
+That produced a precise blocker rather than a terminal upgrade: the six
+materialized serine rows each hit the bounded 120-second Foldseek query
+timeout, and `P31614` remains coordinate-missing. The follow-up packet
+`artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+therefore keeps all seven rows at `needs_new_extractor_or_structure`. The next
+main-loop work should either split serine targets into smaller current-countable
+subchunks or move to the already materialized flavin duplicate screen before
+any duplicate-clear, mechanism-match, import, or superiority claim is
+considered.
 
 As of the 2026-05-21T03:45:00Z automation run, the main loop has produced a
 second source-separated external deep packet, this time for the frozen serine

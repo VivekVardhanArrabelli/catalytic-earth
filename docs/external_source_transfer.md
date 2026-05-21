@@ -352,6 +352,16 @@ import.
   compares EC/keyword routing, deterministic 5-mer, geometry, Foldseek, and ESM
   availability on the same frozen rows, with no superiority, mechanism-match,
   or label-import claim.
+- `artifacts/v3_serine_hydrolase_deep_packet_chunked_current_countable_structural_screen_20260521.json`
+  attempts the next serine duplicate-screen step with bounded one-query
+  Foldseek chunks. It is a blocker artifact, not a duplicate-clear artifact:
+  all six materialized serine queries time out at 120 seconds and `P31614`
+  remains coordinate-missing. The follow-up terminal packet
+  `artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+  keeps all seven rows at `needs_new_extractor_or_structure`, with 0
+  import-ready or countable rows. The next serine attempt needs smaller
+  current-countable target subchunks or a coordinate/replacement path for
+  `P31614`.
 - `artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json`
   starts the next deepening ladder step without scoring it. It freezes seven
   nonduplicate flavin dehydrogenase/reductase rows from the existing

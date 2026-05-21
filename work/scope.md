@@ -180,6 +180,13 @@ serine step is a resumable/chunked current-countable structural duplicate
 screen for the six materialized rows plus a PDB/replacement-coordinate path for
 `P31614`; no import, threshold, production scorer, or mechanism-match review
 claim is in scope before that evidence exists.
+The first bounded chunked duplicate-screen attempt is now recorded in
+`artifacts/v3_serine_hydrolase_deep_packet_chunked_current_countable_structural_screen_20260521.json`.
+It does not remove the blocker: all six materialized Foldseek queries timed out
+at 120 seconds and `P31614` remains coordinate-missing. The post-attempt packet
+keeps all seven rows at `needs_new_extractor_or_structure`. The next serine
+step needs smaller current-countable target subchunks or a different
+coordinate/replacement path, not a duplicate-clear claim.
 Current flavin dehydrogenase/reductase deepening scope: the third ladder step
 has a frozen selection, coordinate sidecars, active/cofactor-site mapping,
 geometry scores, a duplicate-screen blocker, a terminal packet, and a benchmark.

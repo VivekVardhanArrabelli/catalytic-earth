@@ -1726,6 +1726,87 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             {"needs_new_extractor_or_structure": 7},
         )
 
+    def test_serine_hydrolase_chunked_duplicate_screen_records_timeout_blocker(
+        self,
+    ) -> None:
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_deep_packet_chunked_current_countable_structural_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json"
+        )
+
+        self.assertTrue(screen["metadata"]["review_only"])
+        self.assertEqual(screen["metadata"]["candidate_count"], 7)
+        self.assertEqual(screen["metadata"]["screened_candidate_count"], 6)
+        self.assertEqual(screen["metadata"]["coordinate_missing_candidate_count"], 1)
+        self.assertFalse(screen["metadata"]["materialized_pair_cache_complete"])
+        self.assertFalse(screen["metadata"]["all_selected_pair_cache_complete"])
+        self.assertEqual(
+            screen["metadata"]["foldseek_query_run_status_counts"],
+            {"foldseek_run_timeout": 6, "not_run_coordinate_missing": 1},
+        )
+        self.assertEqual(
+            screen["metadata"]["current_countable_structural_screen_status_counts"],
+            {
+                "current_countable_structural_screen_incomplete": 6,
+                "structure_coordinate_materialization_failed_before_foldseek_probe": 1,
+            },
+        )
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 0)
+        self.assertFalse(screen["metadata"]["ready_for_label_import"])
+        self.assertFalse(screen["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(screen["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(screen["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(screen["metadata"]["removal_allowed_set_true"])
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {"needs_new_extractor_or_structure": 7},
+        )
+        self.assertEqual(packet["metadata"]["non_needs_review_terminal_count"], 0)
+        self.assertFalse(packet["metadata"]["materialized_pair_cache_complete"])
+        self.assertFalse(packet["metadata"]["all_selected_pair_cache_complete"])
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            {row["terminal_decision"] for row in packet["rows"]},
+            {"needs_new_extractor_or_structure"},
+        )
+        self.assertTrue(
+            all(row["exact_blocker_if_not_terminal"] for row in packet["rows"])
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["evidence_role"]
+                == "import_gate_evidence_not_predictive_mechanism_evidence"
+                for row in packet["rows"]
+            )
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {"needs_new_extractor_or_structure": 7},
+        )
+        self.assertFalse(
+            benchmark["metrics"][
+                "foldseek_current_countable_materialized_pair_cache_complete"
+            ]
+        )
+        self.assertEqual(benchmark["metrics"]["coordinate_missing_candidate_count"], 1)
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+
     def test_flavin_dehydrogenase_deep_selection_is_frozen_before_scoring(
         self,
     ) -> None:
