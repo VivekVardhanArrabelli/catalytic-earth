@@ -18,11 +18,13 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 relative to `origin/research/epk-substrate-role-identity`; commit/push should
 continue using the remote-tip temporary-index workaround.
 
-Final sync notes: pending until wrap verification. Use the remote-tip
-temporary-index flow for this run's artifact/helper/handoff/ledger commit, then
-refresh this section if a handoff-only sync commit is needed. Normal `git
-status` may still report stale/dirty because local `HEAD` is behind the remote
-tip.
+Final sync notes: pushed phosphoproduct materialization content commit
+`0ad386cfbec61ed2f8a13477ebd49d35ad1872a9` to
+`origin/research/epk-substrate-role-identity`. After `git fetch
+--no-write-fetch-head origin`, `origin/research/epk-substrate-role-identity`
+resolved to that content commit before this handoff-only sync note. Normal
+`git status` may still report stale/dirty because local `HEAD` is behind the
+remote tip and linked-worktree metadata rejects normal `FETCH_HEAD` writes.
 
 ## What Was Emitted
 
