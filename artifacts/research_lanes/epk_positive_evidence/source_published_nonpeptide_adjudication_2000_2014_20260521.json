@@ -1,0 +1,3659 @@
+{
+  "metadata": {
+    "adjudication_status_counts": {
+      "fresh_source_mapped_geometry_negative_review_only": 38,
+      "source_keyword_mapping_noise_review_only": 10,
+      "source_published_folded_protein_geometry_negative_review_only": 2
+    },
+    "blocker_counts": {
+      "keyword_article_mapping_not_epk_substrate_transfer_state": 10,
+      "no_active_gamma_or_transition_analog_state": 35,
+      "no_within_6_angstrom_heteromeric_acceptor": 3,
+      "production_policy_abstain": 50,
+      "review_only_lane": 50,
+      "source_published_raf_mek_geometry_negative": 2
+    },
+    "candidate_evidence_rows_emitted": 0,
+    "generated_at": "2026-05-21T12:35:01Z",
+    "input_artifact": "artifacts/research_lanes/epk_positive_evidence/source_published_nonpeptide_literature_followup_2000_2014_20260521.json",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_positive_evidence",
+    "method": "source_published_nonpeptide_adjudication",
+    "production_claim_allowed": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "review_only": true,
+    "review_only_rule": "Adjudication summarizes source context separately from source-free geometry and does not create production labels or scoring features.",
+    "rows_reviewed": 50
+  },
+  "rows": [
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure of the human cell cycle protein CksHs1: single domain fold with similarity to kinase N-lobe domain.",
+        "year": 1995
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1DKT",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "CYCLIN DEPENDENT KINASE SUBUNIT, TYPE 1",
+          "entity_id": "1",
+          "length": 79,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P61024"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CKSHS1: HUMAN CYCLIN DEPENDENT KINASE SUBUNIT, TYPE 1 COMPLEX WITH METAVANADATE"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of P. Falciparum Pfpk5 Test the Cdk Regulation Paradigm and Suggest Mechanisms of Small Molecule Inhibition",
+        "year": 2003
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1OB3",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "CELL DIVISION CONTROL PROTEIN 2 HOMOLOG",
+          "entity_id": "1",
+          "length": 288,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07785"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of P. falciparum PfPK5"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal structure and mutational analysis of the Saccharomyces cerevisiae cell cycle regulatory protein Cks1: implications for domain swapping, anion binding and protein interactions.",
+        "year": 2000
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1QB3",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C"
+          ],
+          "description": "CYCLIN-DEPENDENT KINASES REGULATORY SUBUNIT",
+          "entity_id": "1",
+          "length": 150,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20486"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CRYSTAL STRUCTURE OF THE CELL CYCLE REGULATORY PROTEIN CKS1"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The Crystal Structure of Human CDK7 and Its Protein Recognition Properties",
+        "year": 2004
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1UA2",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Cell division protein kinase 7",
+          "entity_id": "1",
+          "length": 346,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P50613"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "381",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ATP"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "382",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "ATP"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "383",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "ATP"
+          },
+          {
+            "associated_polymer_chain_name": "D",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "384",
+            "terminal_chain_name": "D",
+            "terminal_ligand_code": "ATP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 4,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of Human CDK7"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of P. Falciparum Pfpk5 Test the Cdk Regulation Paradigm and Suggest Mechanisms of Small Molecule Inhibition",
+        "year": 2003
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1V0B",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "CELL DIVISION CONTROL PROTEIN 2 HOMOLOG",
+          "entity_id": "1",
+          "length": 288,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07785"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of the t198a mutant of pfpk5"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of P. Falciparum Pfpk5 Test the Cdk Regulation Paradigm and Suggest Mechanisms of Small Molecule Inhibition",
+        "year": 2003
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1V0O",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "CELL DIVISION CONTROL PROTEIN 2 HOMOLOG",
+          "entity_id": "1",
+          "length": 288,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07785"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of P. falciparum PfPK5-Indirubin-5-sulphonate ligand complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structures of P. Falciparum Pfpk5 Test the Cdk Regulation Paradigm and Suggest Mechanisms of Small Molecule Inhibition",
+        "year": 2003
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "1V0P",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "CELL DIVISION CONTROL PROTEIN 2 HOMOLOG",
+          "entity_id": "1",
+          "length": 288,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q07785"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of P. falciparum PfPK5-Purvalanol B ligand complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryptosporidium parvum cyclin-dependent kinase cgd5_2510 with indirubin 3'-monoxime bound.",
+        "year": null
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "2QKR",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cdc2-like CDK2/CDC28 like protein kinase",
+          "entity_id": "1",
+          "length": 313,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q5CRJ8"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryptosporidium parvum cyclin-dependent kinase cgd5_2510 with indirubin 3'-monoxime bound"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of a cyclin-dependent kinase from Giardia lamblia.",
+        "year": 2011
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3GBZ",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Kinase, CMGC CDK",
+          "entity_id": "1",
+          "length": 329,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A8BZ95"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of the CMGC CDK Kinase from Giardia lamblia"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cryptosporidium parvum cyclin-dependent kinase cgd5_2510 with ADP bound.",
+        "year": null
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3NIZ",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Rhodanese family protein",
+          "entity_id": "1",
+          "length": 311,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q5CRJ8"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryptosporidium parvum cyclin-dependent kinase cgd5_2510 with ADP bound."
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The crystal structure of BRAF in complex with an organoruthenium inhibitor reveals a mechanism for inhibition of an active form of BRAF kinase.",
+        "year": 2009
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3Q4C",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "entity_id": "1",
+          "length": 307,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "The crystal structure of BRAF in complex with an organoruthenium inhibitor reveals a mechanism for inhibition of an active form of BRAF kinase.",
+          "doi": "10.1021/bi802067u",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "19371126",
+          "query_or_source": "RCSB full_text: 10.1021/bi802067u"
+        },
+        {
+          "article_title": "The crystal structure of BRAF in complex with an organoruthenium inhibitor reveals a mechanism for inhibition of an active form of BRAF kinase.",
+          "doi": "10.1021/bi802067u",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "19371126",
+          "query_or_source": "RCSB full_text: The crystal structure of BRAF in complex with an organoruthenium inhibitor reveals a mechanism for inhibition of an active form of BRAF kinase."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of Wild Type BRAF kinase domain in complex with organometallic inhibitor CNS292"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "The structure of a monomeric mutant cks protein reveals multiple functions for a conserved hinge-region proline.",
+        "year": 2011
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3QY2",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Cyclin-dependent kinases regulatory subunit",
+          "entity_id": "1",
+          "length": 117,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20486"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of the P93A monomer mutant of S. cerevisiae Cks1"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "CDKL Family Kinases Have Evolved Distinct Structural Features and Ciliary Function.",
+        "year": 2018
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "3ZDU",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "CYCLIN-DEPENDENT KINASE-LIKE 3",
+          "entity_id": "1",
+          "length": 325,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q8IVW4"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of the human CDKL3 kinase domain"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Allosteric Regulation of Protein Kinase Pkczeta by the N-Terminal C1 Domain and Small Compounds to the Pif-Pocket.",
+        "year": 2011
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4A06",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "3-PHOSPHOINOSITIDE-DEPENDENT PROTEIN KINASE 1",
+          "entity_id": "1",
+          "length": 311,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O15530"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": null,
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "500",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "ATP"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 1,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-cyclin-dependent kinase regulatory response is linked to substrate recognition.",
+          "doi": "10.1074/jbc.m110.173872",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "21233209",
+          "query_or_source": "RCSB full_text: Cyclin-cyclin-dependent kinase regulatory response is linked to substrate recognition."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Human PDK1 Kinase Domain in Complex with Allosteric Activator PS114 Bound to the PIF-Pocket"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "CDKL Family Kinases Have Evolved Distinct Structural Features and Ciliary Function.",
+        "year": 2018
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4AAA",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "CYCLIN-DEPENDENT KINASE-LIKE 2",
+          "entity_id": "1",
+          "length": 331,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q92772"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of the human CDKL2 kinase domain"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "CDKL Family Kinases Have Evolved Distinct Structural Features and Ciliary Function.",
+        "year": 2018
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4AGU",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C"
+          ],
+          "description": "CYCLIN-DEPENDENT KINASE-LIKE 1",
+          "entity_id": "1",
+          "length": 311,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q00532"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CRYSTAL STRUCTURE OF THE HUMAN CDKL1 KINASE DOMAIN"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "CDKL Family Kinases Have Evolved Distinct Structural Features and Ciliary Function.",
+        "year": 2018
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4BBM",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "CYCLIN-DEPENDENT KINASE-LIKE 2",
+          "entity_id": "1",
+          "length": 331,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q92772"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CRYSTAL STRUCTURE OF THE HUMAN CDKL2 KINASE DOMAIN WITH BOUND TCS 2312"
+    },
+    {
+      "adjudication_status": "source_published_folded_protein_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "source_published_raf_mek_geometry_negative"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Identification of a Novel Family of BRAF(V600E) Inhibitors.",
+        "year": 2012
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4E26",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Serine/threonine-protein kinase B-raf",
+          "entity_id": "1",
+          "length": 307,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15056"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Identification of a novel family of BRAF(V600E) inhibitors.",
+          "doi": "10.1021/jm3004416",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "22537109",
+          "query_or_source": "RCSB full_text: 10.1021/jm3004416"
+        },
+        {
+          "article_title": "Identification of a novel family of BRAF(V600E) inhibitors.",
+          "doi": "10.1021/jm3004416",
+          "literature_surface_id": "braf_mek_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "22537109",
+          "query_or_source": "RCSB full_text: Identification of a novel family of BRAF(V600E) inhibitors."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "BRAF in complex with an organic inhibitor 7898734"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Mechanisms of Allostery and Autoinhibition in JNK Family Kinases.",
+        "year": 2012
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4H36",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 10",
+          "entity_id": "1",
+          "length": 356,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53779"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclic AMP-dependent transcription factor ATF-2",
+          "entity_id": "2",
+          "length": 8,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P15336"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural mechanisms of allostery and autoinhibition in JNK family kinases.",
+          "doi": "10.1016/j.str.2012.09.021",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "23142346",
+          "query_or_source": "RCSB full_text: 10.1016/j.str.2012.09.021"
+        },
+        {
+          "article_title": "Structural mechanisms of allostery and autoinhibition in JNK family kinases.",
+          "doi": "10.1016/j.str.2012.09.021",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "23142346",
+          "query_or_source": "RCSB full_text: Structural mechanisms of allostery and autoinhibition in JNK family kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of JNK3 in Complex with ATF2 Peptide"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Mechanisms of Allostery and Autoinhibition in JNK Family Kinases.",
+        "year": 2012
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4H39",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 10",
+          "entity_id": "1",
+          "length": 356,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53779"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "C-Jun-amino-terminal kinase-interacting protein 1",
+          "entity_id": "2",
+          "length": 10,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UQF2"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural mechanisms of allostery and autoinhibition in JNK family kinases.",
+          "doi": "10.1016/j.str.2012.09.021",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "23142346",
+          "query_or_source": "RCSB full_text: 10.1016/j.str.2012.09.021"
+        },
+        {
+          "article_title": "Structural mechanisms of allostery and autoinhibition in JNK family kinases.",
+          "doi": "10.1016/j.str.2012.09.021",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "23142346",
+          "query_or_source": "RCSB full_text: Structural mechanisms of allostery and autoinhibition in JNK family kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of JNK3 in Complex with JIP1 Peptide"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural Mechanisms of Allostery and Autoinhibition in JNK Family Kinases.",
+        "year": 2012
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4H3B",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Mitogen-activated protein kinase 10",
+          "entity_id": "1",
+          "length": 356,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53779"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "SH3 domain-binding protein 5",
+          "entity_id": "2",
+          "length": 10,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O60239"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structural mechanisms of allostery and autoinhibition in JNK family kinases.",
+          "doi": "10.1016/j.str.2012.09.021",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "23142346",
+          "query_or_source": "RCSB full_text: 10.1016/j.str.2012.09.021"
+        },
+        {
+          "article_title": "Structural mechanisms of allostery and autoinhibition in JNK family kinases.",
+          "doi": "10.1016/j.str.2012.09.021",
+          "literature_surface_id": "protein_substrate_phosphoacceptor_transfer_analog_pdb_2015_2026",
+          "pmid": "23142346",
+          "query_or_source": "RCSB full_text: Structural mechanisms of allostery and autoinhibition in JNK family kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal Structure of JNK3 in Complex with SAB Peptide"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+        "year": 2013
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4IZ5",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "entity_id": "1",
+          "length": 356,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28482"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "description": "Astrocytic phosphoprotein PEA-15",
+          "entity_id": "2",
+          "length": 133,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15121"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+          "doi": "10.1038/ncomms2687",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "23575685",
+          "query_or_source": "RCSB full_text: 10.1038/ncomms2687"
+        },
+        {
+          "article_title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+          "doi": "10.1038/ncomms2687",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "23575685",
+          "query_or_source": "RCSB full_text: Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of the complex between ERK2 phosphomimetic mutant and PEA-15"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+        "year": 2013
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4IZ7",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "entity_id": "1",
+          "length": 356,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28482"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Astrocytic phosphoprotein PEA-15",
+          "entity_id": "2",
+          "length": 97,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9Z297"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+          "doi": "10.1038/ncomms2687",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "23575685",
+          "query_or_source": "RCSB full_text: 10.1038/ncomms2687"
+        },
+        {
+          "article_title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+          "doi": "10.1038/ncomms2687",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "23575685",
+          "query_or_source": "RCSB full_text: Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of Non-Phosphorylated ERK2 bound to the PEA-15 Death Effector Domain"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+        "year": 2013
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4IZA",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "entity_id": "1",
+          "length": 356,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28482"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Astrocytic phosphoprotein PEA-15",
+          "entity_id": "2",
+          "length": 97,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15121"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+          "doi": "10.1038/ncomms2687",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "23575685",
+          "query_or_source": "RCSB full_text: 10.1038/ncomms2687"
+        },
+        {
+          "article_title": "Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK.",
+          "doi": "10.1038/ncomms2687",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "23575685",
+          "query_or_source": "RCSB full_text: Structure of ERK2 bound to PEA-15 reveals a mechanism for rapid release of activated MAPK."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of Dually Phosphorylated ERK2 bound to the PEA-15 Death Effector Domain"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Cks confers specificity to phosphorylation-dependent CDK signaling pathways.",
+        "year": 2013
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4LPA",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Cyclin-dependent kinases regulatory subunit",
+          "entity_id": "1",
+          "length": 119,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P20486"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of a Cdc6 phosphopeptide in complex with Cks1"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Caffeic Acid Directly Targets ERK1/2 to Attenuate Solar UV-Induced Skin Carcinogenesis.",
+        "year": 2014
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "4N0S",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Mitogen-activated protein kinase 1",
+          "entity_id": "1",
+          "length": 360,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P28482"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Caffeic acid directly targets ERK1/2 to attenuate solar UV-induced skin carcinogenesis.",
+          "doi": "10.1158/1940-6207.capr-14-0141",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "25104643",
+          "query_or_source": "RCSB full_text: 10.1158/1940-6207.capr-14-0141"
+        },
+        {
+          "article_title": "Caffeic acid directly targets ERK1/2 to attenuate solar UV-induced skin carcinogenesis.",
+          "doi": "10.1158/1940-6207.capr-14-0141",
+          "literature_surface_id": "mek_erk_source_site_transfer_analog_pdb_2015_2026",
+          "pmid": "25104643",
+          "query_or_source": "RCSB full_text: Caffeic acid directly targets ERK1/2 to attenuate solar UV-induced skin carcinogenesis."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Complex of ERK2 with caffeic acid"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structures and Thermodynamic Analysis Reveal Distinct Mechanisms of CD28 Phosphopeptide Binding to the Src Homology 2 (SH2) Domains of Three Adaptor Proteins",
+        "year": 2017
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5AUL",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Phosphatidylinositol 3-kinase regulatory subunit alpha",
+          "entity_id": "1",
+          "length": 109,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27986"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "T-cell-specific surface glycoprotein CD28",
+          "entity_id": "2",
+          "length": 8,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P10747"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "PI3K p85 C-terminal SH2 domain/CD28-derived peptide complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Discovery of Potent, Selective, and Orally Bioavailable Small-Molecule Modulators of the Mediator Complex-Associated Kinases CDK8 and CDK19.",
+        "year": 2016
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5FGK",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cyclin-dependent kinase 8",
+          "entity_id": "1",
+          "length": 364,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49336"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclin-C",
+          "entity_id": "2",
+          "length": 266,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24863"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CDK8-CYCC IN COMPLEX WITH 8-[3-(3-Amino-1H-indazol-6-yl)-5-chloro- pyridine-4-yl]-2,8-diaza-spiro[4.5]decan-1-one"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structures and Thermodynamic Analysis Reveal Distinct Mechanisms of CD28 Phosphopeptide Binding to the Src Homology 2 (SH2) Domains of Three Adaptor Proteins",
+        "year": 2017
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5GJH",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "GRB2-related adapter protein 2",
+          "entity_id": "1",
+          "length": 100,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O75791"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "T-cell-specific surface glycoprotein CD28",
+          "entity_id": "2",
+          "length": 8,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P10747"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Gads SH2 domain/CD28-derived peptide complex"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Crystal Structures and Thermodynamic Analysis Reveal Distinct Mechanisms of CD28 Phosphopeptide Binding to the Src Homology 2 (SH2) Domains of Three Adaptor Proteins",
+        "year": 2017
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5GJI",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Phosphatidylinositol 3-kinase regulatory subunit alpha",
+          "entity_id": "1",
+          "length": 108,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P27986"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "T-cell-specific surface glycoprotein CD28",
+          "entity_id": "2",
+          "length": 8,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P10747"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "PI3K p85 N-terminal SH2 domain/CD28-derived peptide complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Discovery of Potent, Selective, and Orally Bioavailable Small-Molecule Modulators of the Mediator Complex-Associated Kinases CDK8 and CDK19.",
+        "year": 2016
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5HBE",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cyclin-dependent kinase 8",
+          "entity_id": "1",
+          "length": 364,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49336"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclin-C",
+          "entity_id": "2",
+          "length": 266,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24863"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CDK8-CYCC IN COMPLEX WITH 8-[3-Chloro-5-(1-methyl-2,2-dioxo-2, 3-dihydro-1H-2l6-benzo[c]isothiazol-5-yl)-pyridin- 4-yl]-1-oxa-3,8-diaza-spiro[4.5]decan-2-one"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Discovery of Potent, Selective, and Orally Bioavailable Small-Molecule Modulators of the Mediator Complex-Associated Kinases CDK8 and CDK19.",
+        "year": 2016
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5HBH",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cyclin-dependent kinase 8",
+          "entity_id": "1",
+          "length": 364,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49336"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclin-C",
+          "entity_id": "2",
+          "length": 270,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24863"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CDK8-CYCC IN COMPLEX WITH 5-{5-Chloro-4-[1-(2-methoxy-ethyl)-1,8-diaza-spiro[4.5]dec-8-yl]-pyridin-3-yl}-1-methyl-1,3-dihydro-benzo[c]isothiazole 2,2-dioxide"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Discovery of Potent, Selective, and Orally Bioavailable Small-Molecule Modulators of the Mediator Complex-Associated Kinases CDK8 and CDK19.",
+        "year": 2016
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5HBJ",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Cyclin-dependent kinase 8",
+          "entity_id": "1",
+          "length": 364,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P49336"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Cyclin-C",
+          "entity_id": "2",
+          "length": 270,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P24863"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-dependent kinases.",
+          "doi": "10.1186/gb4184",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "25180339",
+          "query_or_source": "RCSB full_text: Cyclin-dependent kinases."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CDK8-CYCC IN COMPLEX WITH 8-[2-Amino-3-chloro-5-(1-methyl-1H-indazol-5-yl)-pyridin-4-yl]-2,8-diaza-spiro[4.5]decan-1-one"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Dose and Schedule Determine Distinct Molecular Mechanisms Underlying the Efficacy of the p53-MDM2 Inhibitor HDM201.",
+        "year": 2018
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5OC8",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "E3 ubiquitin-protein ligase Mdm2",
+          "entity_id": "1",
+          "length": 96,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q00987"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "HDM2 (17-111, WILD TYPE) COMPLEXED WITH NVP-HDM201 AT 1.56A"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Mechanisms of mTORC1 activation by RHEB and inhibition by PRAS40.",
+        "year": 2017
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "5WBK",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Regulatory-associated protein of TOR 1",
+          "entity_id": "1",
+          "length": 1287,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q93YQ1"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "T"
+          ],
+          "description": "Ribosomal protein S6 kinase beta-1",
+          "entity_id": "2",
+          "length": 14,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23443"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of the arabidopsis thaliana Raptor in complex with the TOS peptide of human S6K1"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "GGTase3 is a newly identified geranylgeranyltransferase targeting a ubiquitin ligase.",
+        "year": 2019
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6O60",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Protein prenyltransferase alpha subunit repeat-containing protein 1",
+          "entity_id": "1",
+          "length": 407,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q7Z6K3"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Geranylgeranyl transferase type-2 subunit beta",
+          "entity_id": "2",
+          "length": 332,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P53611"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "F-box/LRR-repeat protein 2",
+          "entity_id": "3",
+          "length": 424,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UKC9"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "D"
+          ],
+          "description": "S-phase kinase-associated protein 1",
+          "entity_id": "4",
+          "length": 164,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P63208"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "Cyclin-cyclin-dependent kinase regulatory response is linked to substrate recognition.",
+          "doi": "10.1074/jbc.m110.173872",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "21233209",
+          "query_or_source": "RCSB full_text: Cyclin-cyclin-dependent kinase regulatory response is linked to substrate recognition."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of GGTase3-FBXL2-SKP1 complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Allosteric SHP2 Inhibitor, IACS-13909, Overcomes EGFR-Dependent and EGFR-Independent Resistance Mechanisms toward Osimertinib.",
+        "year": 2020
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6WU8",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Tyrosine-protein phosphatase non-receptor type 11",
+          "entity_id": "1",
+          "length": 536,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q06124"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of human SHP2 in complex with inhibitor IACS-13909"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular mechanisms of assembly and TRIP13-mediated remodeling of the human Shieldin complex.",
+        "year": 2021
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6WW9",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "Mitotic spindle assembly checkpoint protein MAD2B",
+          "entity_id": "1",
+          "length": 211,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UI95"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "X",
+            "Y"
+          ],
+          "description": "Shieldin complex subunit 3",
+          "entity_id": "2",
+          "length": 35,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6ZNX1"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of human REV7(R124A)-SHLD3(35-58) complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular mechanisms of assembly and TRIP13-mediated remodeling of the human Shieldin complex.",
+        "year": 2021
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "6WWA",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "description": "Mitotic spindle assembly checkpoint protein MAD2B",
+          "entity_id": "1",
+          "length": 211,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UI95"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "X",
+            "Y"
+          ],
+          "description": "Shieldin complex subunit 2,Shieldin complex subunit 3 chimera",
+          "entity_id": "2",
+          "length": 99,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6ZNX1",
+            "Q86V20"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of human SHLD2-SHLD3-REV7 complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_within_6_angstrom_heteromeric_acceptor"
+      ],
+      "candidate_status": "donor_or_analog_without_heteromeric_acceptor_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular mechanisms of assembly and TRIP13-mediated remodeling of the human Shieldin complex.",
+        "year": 2021
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7L9P",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "description": "Pachytene checkpoint protein 2 homolog",
+          "entity_id": "1",
+          "length": 432,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15645"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "G",
+            "I",
+            "J",
+            "K"
+          ],
+          "description": "Mitotic spindle assembly checkpoint protein MAD2B",
+          "entity_id": "2",
+          "length": 211,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UI95"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "X",
+            "Y"
+          ],
+          "description": "Shieldin complex subunit 2, Shieldin complex subunit 3 chimera",
+          "entity_id": "3",
+          "length": 99,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q6ZNX1",
+            "Q86V20"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [
+          {
+            "associated_polymer_chain_name": "A",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "117",
+              "candidate_chain_name": "I",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "117",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 37.394
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "901",
+            "terminal_chain_name": "A",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "B",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "152",
+              "candidate_chain_name": "I",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "152",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 42.186
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "901",
+            "terminal_chain_name": "B",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "C",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "194",
+              "candidate_chain_name": "I",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "194",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 43.664
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "901",
+            "terminal_chain_name": "C",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "D",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG",
+              "candidate_auth_seq_id": "194",
+              "candidate_chain_name": "I",
+              "candidate_entity_id": "2",
+              "candidate_label_seq_id": "194",
+              "candidate_residue_code": "SER",
+              "nearest_terminal_distance_angstrom": 41.754
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "901",
+            "terminal_chain_name": "D",
+            "terminal_ligand_code": "AGS"
+          },
+          {
+            "associated_polymer_chain_name": "E",
+            "associated_polymer_entity_id": "1",
+            "local_metals": [],
+            "nearest_heteromeric_acceptor": {
+              "candidate_atom_name": "OG1",
+              "candidate_auth_seq_id": "48",
+              "candidate_chain_name": "Y",
+              "candidate_entity_id": "3",
+              "candidate_label_seq_id": "48",
+              "candidate_residue_code": "THR",
+              "nearest_terminal_distance_angstrom": 34.302
+            },
+            "terminal_atom_name": "PG",
+            "terminal_auth_seq_id": "901",
+            "terminal_chain_name": "E",
+            "terminal_ligand_code": "AGS"
+          }
+        ],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 5,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Structure of human SHLD2-SHLD3-REV7-TRIP13(E253Q) complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural mechanisms of calmodulin activation of Shigella effector OspC3 to ADP-riboxanate caspase-4/11 and block pyroptosis.",
+        "year": 2023
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7WR3",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "MBP-fused OspC3",
+          "entity_id": "1",
+          "length": 806,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "A0A0H2US87",
+            "P0AEX9"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "Calmodulin-1",
+          "entity_id": "2",
+          "length": 153,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P0DP23"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of MBP-fused OspC3 in complex with calmodulin"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Functional E3 ligase hotspots and resistance mechanisms to small-molecule degraders.",
+        "year": 2023
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "7ZNT",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "D"
+          ],
+          "description": "Elongin-B",
+          "entity_id": "1",
+          "length": 104,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15370"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "E"
+          ],
+          "description": "Elongin-C",
+          "entity_id": "2",
+          "length": 97,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q15369"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C",
+            "F"
+          ],
+          "description": "von Hippel-Lindau disease tumor suppressor",
+          "entity_id": "3",
+          "length": 162,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P40337"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "G",
+            "H"
+          ],
+          "description": "Bromodomain-containing protein 4",
+          "entity_id": "4",
+          "length": 130,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "O60885"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CRYSTAL STRUCTURE OF AT7 IN COMPLEX WITH THE SECOND BROMODOMAIN OF HUMAN BRD4 AND PVHL:ELONGINC:ELONGINB"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Unveiling the structural mechanisms behind high affinity and selectivity in phosphorylated epitope-specific rabbit antibodies.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8JOW",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C"
+          ],
+          "description": "Antibody (scFv)",
+          "entity_id": "1",
+          "length": 246,
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D"
+          ],
+          "description": "ARG-PRO-HIS-PHE-PRO-GLN-PHE-SEP-TYR-SER-ALA-SER",
+          "entity_id": "2",
+          "length": 12,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P31749"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of rabbit antibody with phosphorylated peptide bound"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular mechanisms of inorganic-phosphate release from the core and barbed end of actin filaments.",
+        "year": 2023
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8OI8",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "description": "Actin, cytoplasmic 1",
+          "entity_id": "1",
+          "length": 375,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60709"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryo-EM structure of ADP-bound, filamentous beta-actin harboring the R183W mutation"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Molecular mechanisms of inorganic-phosphate release from the core and barbed end of actin filaments.",
+        "year": 2023
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8OID",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "description": "Actin, cytoplasmic 1, N-terminally processed",
+          "entity_id": "1",
+          "length": 375,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60709"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Cryo-EM structure of ADP-bound, filamentous beta-actin harboring the N111S mutation"
+    },
+    {
+      "adjudication_status": "source_keyword_mapping_noise_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "keyword_article_mapping_not_epk_substrate_transfer_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Unveiling the structural mechanisms behind high affinity and selectivity in phosphorylated epitope-specific rabbit antibodies.",
+        "year": 2024
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "8ZPU",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "B"
+          ],
+          "description": "scFv",
+          "entity_id": "1",
+          "length": 257,
+          "polymer_type": "Protein",
+          "uniprot_ids": []
+        },
+        {
+          "auth_asym_ids": [
+            "C",
+            "D"
+          ],
+          "description": "PHE-PRO-GLN-PHE-SEP-TYR-SER",
+          "entity_id": "2",
+          "length": 12,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P31749"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Crystal structure of the anti-phosphorylated peptide C7 scFv antibody with peptide bound"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural mechanisms for centrosomal recruitment and organization of the microtubule nucleator gamma-TuRC.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9I8G",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C",
+            "E",
+            "G",
+            "M"
+          ],
+          "description": "Gamma-tubulin complex component 2",
+          "entity_id": "1",
+          "length": 902,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BSJ2"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D",
+            "F",
+            "H",
+            "R",
+            "T"
+          ],
+          "description": "Gamma-tubulin complex component 3",
+          "entity_id": "2",
+          "length": 907,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96CW5"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "I",
+            "K"
+          ],
+          "description": "Gamma-tubulin complex component 4",
+          "entity_id": "3",
+          "length": 667,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UGJ1"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Gamma-tubulin complex component 5",
+          "entity_id": "4",
+          "length": 1024,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96RT8"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "L",
+            "P"
+          ],
+          "description": "Gamma-tubulin complex component 6",
+          "entity_id": "5",
+          "length": 1819,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96RT7"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "Actin, cytoplasmic 1",
+          "entity_id": "6",
+          "length": 376,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60709"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "Q",
+            "S"
+          ],
+          "description": "Mitotic-spindle organizing protein 1",
+          "entity_id": "7",
+          "length": 82,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q08AG7"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "t"
+          ],
+          "description": "Tubulin gamma-1 chain",
+          "entity_id": "8",
+          "length": 451,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23258"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Inwards conformation' of the human gamma-TuRC from purified centrosomes obtained by rigid body docking"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Structural mechanisms for centrosomal recruitment and organization of the microtubule nucleator gamma-TuRC.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9I8H",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A",
+            "C",
+            "E",
+            "G",
+            "M"
+          ],
+          "description": "Gamma-tubulin complex component 2",
+          "entity_id": "1",
+          "length": 902,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9BSJ2"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B",
+            "D",
+            "F",
+            "H",
+            "R",
+            "T"
+          ],
+          "description": "Gamma-tubulin complex component 3",
+          "entity_id": "2",
+          "length": 907,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96CW5"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "I",
+            "K"
+          ],
+          "description": "Gamma-tubulin complex component 4",
+          "entity_id": "3",
+          "length": 667,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q9UGJ1"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "J"
+          ],
+          "description": "Gamma-tubulin complex component 5",
+          "entity_id": "4",
+          "length": 1024,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96RT8"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "L",
+            "P"
+          ],
+          "description": "Gamma-tubulin complex component 6",
+          "entity_id": "5",
+          "length": 1819,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q96RT7"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "U"
+          ],
+          "description": "Actin, cytoplasmic 1",
+          "entity_id": "6",
+          "length": 376,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P60709"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "Q",
+            "S"
+          ],
+          "description": "Mitotic-spindle organizing protein 1",
+          "entity_id": "7",
+          "length": 82,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q08AG7"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "t"
+          ],
+          "description": "Tubulin gamma-1 chain",
+          "entity_id": "8",
+          "length": 451,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P23258"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "Outwards conformation' of the human gamma-TuRC from purified centrosomes obtained by rigid body docking"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Regulatory mechanisms of PP2A complex assembly driven by physicochemical differences in A-subunit isoforms.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9MF5",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein phosphatase 2A 65 kDa regulatory subunit A beta isoform",
+          "entity_id": "1",
+          "length": 601,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P30154"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein phosphatase 2A 56 kDa regulatory subunit gamma isoform",
+          "entity_id": "2",
+          "length": 524,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13362"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Serine/threonine-protein phosphatase 2A catalytic subunit alpha isoform",
+          "entity_id": "3",
+          "length": 309,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P67775"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CryoEM structure of the Protein Phosphatase 2A (Abeta-B56gamma-Calpha) holoenzyme complex"
+    },
+    {
+      "adjudication_status": "fresh_source_mapped_geometry_negative_review_only",
+      "blockers": [
+        "review_only_lane",
+        "production_policy_abstain",
+        "no_active_gamma_or_transition_analog_state"
+      ],
+      "candidate_status": "no_active_donor_or_transition_analog_review_only",
+      "citation": {
+        "pdbx_database_id_doi": null,
+        "pdbx_database_id_pub_med": null,
+        "title": "Regulatory mechanisms of PP2A complex assembly driven by physicochemical differences in A-subunit isoforms.",
+        "year": 2025
+      },
+      "claim_status": "candidate_review_only_non_countable",
+      "epk_score_computed": false,
+      "labels_or_fingerprints_changed": false,
+      "pdb_id": "9MIP",
+      "policy_decision": "review_only_abstain",
+      "polymer_entities": [
+        {
+          "auth_asym_ids": [
+            "A"
+          ],
+          "description": "Serine/threonine-protein phosphatase 2A 65 kDa regulatory subunit A alpha isoform",
+          "entity_id": "1",
+          "length": 589,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P30153"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "B"
+          ],
+          "description": "Serine/threonine-protein phosphatase 2A 56 kDa regulatory subunit gamma isoform",
+          "entity_id": "2",
+          "length": 524,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "Q13362"
+          ]
+        },
+        {
+          "auth_asym_ids": [
+            "C"
+          ],
+          "description": "Serine/threonine-protein phosphatase 2A catalytic subunit alpha isoform",
+          "entity_id": "3",
+          "length": 309,
+          "polymer_type": "Protein",
+          "uniprot_ids": [
+            "P67775"
+          ]
+        }
+      ],
+      "production_claim_allowed": false,
+      "ready_for_label_import": false,
+      "ready_for_production_scoring": false,
+      "source_free_geometry_summary": {
+        "donor_or_analog_summaries": [],
+        "heteromeric_candidate_hit_count": 0,
+        "terminal_donor_atom_count": 0,
+        "transition_analog_candidate_hit_count": 0,
+        "transition_analog_group_count": 0
+      },
+      "source_hits": [
+        {
+          "article_title": "On the molecular mechanisms of mitotic kinase activation.",
+          "doi": "10.1098/rsob.120136",
+          "literature_surface_id": "cdk_activating_kinase_cdk_tloop_transfer_analog_pdb_2015_2026",
+          "pmid": "23226601",
+          "query_or_source": "RCSB full_text: On the molecular mechanisms of mitotic kinase activation."
+        }
+      ],
+      "source_review_not_predictive_coordinate_feature": true,
+      "structure_title": "CryoEM structure of the Protein Phasphatase 2A (Aalpha-B56gamma-Calpha) holoenzyme complex"
+    }
+  ],
+  "source_review_summary": {
+    "counterexamples_found": [
+      "Source-published folded-protein geometry negatives: 3Q4C, 4E26"
+    ],
+    "evidence_against": [
+      "No fresh row contains a within-6-Angstrom heteromeric Ser/Thr/Tyr acceptor candidate.",
+      "Fresh donor/analog rows without a local heteromeric acceptor: 1UA2, 4A06, 7L9P.",
+      "Source-published folded-protein rows are geometry-negative rather than positive transfer states: 3Q4C, 4E26.",
+      "10 fresh mappings are source-keyword noise without active ePK donor-to-substrate geometry."
+    ],
+    "evidence_for": [
+      "Adjudicated 50 fresh source-published/literature-mapped PDB rows from the non-peptide phosphosite follow-up."
+    ],
+    "primary_outcome": "search_surface_exhausted",
+    "production_claim_allowed": false,
+    "recommendation": "Use these fresh rows as review-only negative source-surface evidence. Do not promote any production label, threshold, registry, fingerprint, migration, scoring feature, or readiness claim.",
+    "search_surface_exhausted": true
+  }
+}
