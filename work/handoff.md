@@ -167,6 +167,16 @@ exact current-reference duplicate terminal rejections, eight deterministic
 sequence-neighbor alerts, and 0 geometry-scored external rows. It still permits
 no superiority, mechanism-match, production-score, or import claim.
 
+Evidence-based confidence call after wrap validation: confidence is high that
+the current small-win loop produced visible review-only decisions without
+mutating science baselines. The registry remains 682 labels, the production
+fingerprint universe remains 8 fingerprints, the artifact-migration dry-run
+keeps `removal_allowed=0`, and the full unit suite plus CLI validation pass.
+The next main-loop work should continue prospective external mini-campaigns or
+non-ePK family readiness/terminal-decision packets; no current artifact
+authorizes production scoring, threshold calibration, label import, registry
+edit, or fingerprint expansion.
+
 As of the 2026-05-20T23:16:33Z automation run,
 `artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates
 the fresh dirty sibling-worktree ePK outputs that appeared after the late-lane
