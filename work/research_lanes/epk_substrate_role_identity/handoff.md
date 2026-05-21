@@ -1,120 +1,120 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-20T21:33:02-0500
+Last updated: 2026-05-20T22:32:29-0500
 
-Primary outcome: `counterexample_found`
+Primary outcome: `candidate_evidence_rows_emitted`
 
 `production_claim_allowed=false`
 
 `labels_or_fingerprints_changed=false`
 
+Measured run time: 48.8 minutes (`2026-05-21T02:43:33Z` to
+`2026-05-21T03:32:21Z`).
+
 Run note: normal `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
---no-write-fetch-head origin` succeeded. The linked-worktree metadata remains
-stale/unwritable, so the final push uses the lane's temporary-index workaround
-rather than updating local `HEAD`.
+--no-write-fetch-head origin` succeeded. The local linked-worktree `HEAD`
+remains stale relative to `origin/research/epk-substrate-role-identity`, so
+the final commit path should use the lane's temporary-index workaround rather
+than relying on a normal local fast-forward.
 
-## What Was Tested
+## What Was Emitted
 
-This run introduced a new source-free evidence modality:
-
-`epk_sequence_context_probe_v1_review_only`
+This run introduced candidate-level source-free evidence rows rather than
+another scalar rescue rule.
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_sequence_context_probe_v1_20260521.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/sequence_context_probe.py`
+`tools/research_lanes/epk_substrate_role_identity/candidate_evidence_rows.py`
 
-The helper reused the frozen 54-row state/topology diagnostic set and fetched
-PDB coordinate text in memory only. It wrote compact reduced evidence around
-the selected candidate hydroxyl residue: resolved polymer sequence windows
-from -5..+5 and -3..+3, plus-one/plus-two Pro indicators, upstream/downstream
-basic counts, acidic/hydrophobic/polar counts, and generic residue-chemistry
-support classes. It did not write raw coordinate dumps.
+The helper reused the frozen 54-row orientation diagnostic set and emitted:
+
+- 204 gamma/acceptor candidate-pair rows.
+- 7 state-only rows where no materialized gamma/acceptor pair exists.
+- 0 duplicate candidate IDs.
+
+Candidate IDs are of the form:
+
+`PDB|gamma=<chain>:<ligand><auth_seq>:<atom>|acceptor=<chain>:<residue><auth_seq>:<atom>`
+
+The artifact separates source-free coordinate evidence from review/source
+context:
+
+- `source_free_evidence` holds ligand state, coordinate state, distance,
+  topology, auth-terminal/internal-fragment evidence, reciprocal context,
+  local exposure, active-site orientation, coordinate certainty, and blocker
+  class.
+- `review_context_for_evaluation_only` holds evaluation labels/groups. These
+  labels were not used to construct predictive features.
+
+Coordinates were fetched in memory only for compact occupancy, altloc, and
+B-factor certainty metrics. No raw coordinate dumps were written.
 
 Forbidden predictive inputs remained excluded: PDB title, UniProt prose,
 EC/Rhea, paper/source text, mechanism labels, curated substrate names,
 post-hoc source repair, candidate-specific threshold tuning, production label
 imports, and production threshold calibration.
 
-## Evidence
+## Evidence Summary
 
-Frozen 54-row decision matrix:
+Coordinate states observed:
 
-- Prior conservative source-free claim gate reused: TP=14, FP=0, TN=34, FN=6.
-- Sequence-context reciprocal folded-Tyr rescue: TP=16, FP=1, TN=33, FN=4.
-- Sequence-context ambiguous reciprocal-or-same-chain rescue: TP=17, FP=15,
-  TN=19, FN=3.
-- Proline-directed ambiguous rescue: TP=15, FP=1, TN=33, FN=5.
-- Charged-context ambiguous rescue: TP=17, FP=14, TN=20, FN=3.
+- Candidate-pair rows: `active_gamma=204`.
+- State-only rows: `active_gamma=1`, `adp_state=3`,
+  `ambiguous_coordinate_state=1`, `ligand_absent=2`.
 
-Decisive reciprocal folded-Tyr counterexample:
+Combined blocker counts:
 
-- `9UUR`: positive, selected Tyr204, window `GFLTEYVATRW`, support class
-  `tyr_adjacent_pro_or_charged_context`.
-- `9UUX`: positive, selected Tyr204, window `TGFLEYVATRW`, support class
-  `tyr_adjacent_pro_or_charged_context`.
-- `9UW4`: counterexample, selected Tyr204, window `GFLTEYVATRW`, support
-  class `tyr_adjacent_pro_or_charged_context`.
+- `topology_ambiguity=109`
+- `active_gamma_geometry=72`
+- `none=19`
+- `substrate_role_identity=4`
+- `product_state_evidence=3`
+- `ligand_materialization=3`
+- `internal_fragment_mimicry=1`
 
-Exact-window collision:
+Coordinate certainty for candidate-pair rows:
 
-- `GFLTEYVATRW` contains both positive `9UUR` and counterexample `9UW4`.
+- `ordered_like=156`
+- `high_b_or_context_disordered=41`
+- `coordinate_ambiguous_or_partial=7`
 
-Thus the sequence-context rule that recovers `9UUR` and `9UUX` also admits
-`9UW4`. A stricter proline-only rule avoids the reciprocal Tyr false positive
-but loses both reciprocal Tyr positives and still admits same-chain
-counterexample `1OJ4`.
+Hard-case rows preserve the current blocker interpretation:
 
-Same-chain stress remains unresolved. Broad ambiguous sequence-context rescue
-recovers `3TM0` but admits 15 counterexamples:
-
-`2JJ2`, `7ZE5`, `9UW4`, `5C1O`, `6U1D`, `5TT6`, `7ZDU`, `9L3M`, `7T55`,
-`7T57`, `9L3U`, `8W2H`, `8W2J`, `9OAN`, `1OJ4`.
-
-Product/ADP rows remain unavailable to terminal-gamma transfer geometry:
-`3QHR`, `3QHW`, and `1L0O` stay false negatives under sequence-context rescue
-rules.
-
-`7B56` remains rejected by prior auth-terminal/internal-fragment
-counterevidence. Its selected Ser822 sequence window has no generic
-sequence-context signal, so sequence context is not the feature that repairs
-or generalizes the `7B56` blocker.
+- `7B56`: active-gamma candidate remains `internal_fragment_mimicry`
+  for `7B56|gamma=B:ANP401:PG|acceptor=A:SER822:OG`.
+- `9UUR`, `9UUX`, `9UW4`: reciprocal folded-chain Tyr candidates remain
+  `topology_ambiguity`, and all are ordered-like by generic coordinate
+  certainty.
+- `3QHR`, `3QHW`, `1L0O`: `adp_state` state-only rows with
+  `product_state_evidence`, not active-gamma false negatives.
+- `3TM0`: same-chain active-gamma candidate remains `topology_ambiguity`.
+- `1QHA`: active-gamma state-only row with no near hydroxyl candidate,
+  classified as `active_gamma_geometry`.
 
 ## Interpretation
 
-Sequence context is useful compact review evidence, but it is not a
-source-free substrate-role identity rule. The hard blocker remains biological
-role ambiguity in structure-derived evidence:
-
-1. Exact or generic acceptor sequence context can be shared by a true substrate
-   positive and a counterexample (`9UUR`/`9UW4`).
-2. Product/ADP structures lack terminal gamma transfer geometry.
-3. Same-chain/autophosphorylation-like topology recovers `3TM0` only by
-   admitting many counterexamples in the same source-free class.
-
-Within this lane, comparable blockers have now failed to clear with
-nearest-atom, terminal-index, reciprocal-context, local-exposure,
-active-site-orientation, state/topology, abstention-gate, coordinate-
-certainty/ordering, and sequence-context features.
-
-## Current Decision
+The candidate evidence table is review-support infrastructure, not a
+production substrate-role identity rule. It makes the source-free evidence
+explicit at candidate granularity while preserving the known blocker:
+structure-derived distance, orientation, exposure, coordinate certainty,
+auth-terminal/internal-fragment, and reciprocal context still do not resolve
+biological substrate role for product/ADP, reciprocal folded-chain, or
+same-chain/autophosphorylation-like rows.
 
 Do not claim ePK production readiness. Do not import labels, edit production
-fingerprints, calibrate thresholds, or turn sequence context into a production
-identity rule.
-
-Use sequence context only as review-only evidence. A true production
-substrate-role identity decision still requires hybrid source-reviewed
-adjudication, with source evidence excluded from predictive features.
+fingerprints, calibrate thresholds, or promote the candidate no-blocker sanity
+flag into a production identity rule.
 
 ## Exact Next Experiment
 
-Do not add another scalar source-free probe unless a genuinely new evidence
-modality is available. Preserve product/ADP, reciprocal folded-chain, and
-same-chain/autophosphorylation-like cases as source-reviewed adjudication
-requirements rather than production source-free claims.
+Use `epk_candidate_evidence_v1_20260521.json` for review triage and blocker
+reporting. Do not add more scalar source-free probes unless a genuinely new
+evidence modality is available. Preserve product/ADP, reciprocal folded-chain,
+and same-chain/autophosphorylation-like cases as source-reviewed adjudication
+requirements.
