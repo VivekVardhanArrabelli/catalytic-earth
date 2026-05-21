@@ -20,11 +20,11 @@ lane temporary-index workaround.
 
 Final sync: pushed materiality artifact commit
 `afdba337dc3bf2a369c8954fec4e627d4e8c5609` to
-`origin/research/epk-substrate-role-identity`, then verified
-`origin/research/epk-substrate-role-identity` at that commit with
-`git fetch --no-write-fetch-head origin`. Normal `git status` still reports
-this linked worktree as behind with lane-file changes because local `HEAD`
-remains `8d38053d85cc28b7592267e9420578ca19a98814`.
+`origin/research/epk-substrate-role-identity`, then pushed handoff-only sync
+commit(s) on top. `git fetch --no-write-fetch-head origin` verified the remote
+branch could be refreshed without writing `FETCH_HEAD`. Normal `git status`
+still reports this linked worktree as behind with lane-file changes because
+local `HEAD` remains `8d38053d85cc28b7592267e9420578ca19a98814`.
 
 ## What Was Emitted
 
