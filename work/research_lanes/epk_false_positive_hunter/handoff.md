@@ -5,6 +5,8 @@
 - Ended: 2026-05-21T20:27:02Z
 - Measured minutes: 58.08
 - Primary outcome: regression_rows_emitted
+- Pushed evidence commit: `c863816594c1a0007a7da932d69c56f3feb5e5ad` via alternate-index commit/push
+- Local checked-out HEAD remains behind origin because linked-worktree metadata writes are blocked.
 - Rule under attack: metric-seeded biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, plus the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
