@@ -5,7 +5,7 @@
 - Ended: 2026-05-21T18:56:50Z
 - Measured minutes: 90.37
 - Primary outcome: evidence_against
-- Pushed evidence commit: pending alternate-index push
+- Pushed evidence commit: `acde35fa81c1951079297c06deabf64859dc463d` via alternate-index commit/push
 - Local checked-out HEAD remains `c444f088082208ec9de2aba575cfb1f9ddf03d15` because linked-worktree metadata writes are blocked.
 - Rule under attack: metric-seeded biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, plus the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
@@ -54,9 +54,8 @@ Evidence for continued search:
 
 ## Verification
 
-Pending after file writes:
-
-- JSON validation for new artifacts and run ledger.
+- `python -m json.tool` for the new metric artifacts and regression gates.
+- JSONL parse validation for `artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl`.
 - `git diff --check` over lane files changed this run.
 
 ## Blockers
