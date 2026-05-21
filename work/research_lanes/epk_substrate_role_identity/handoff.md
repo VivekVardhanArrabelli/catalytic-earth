@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-21T14:18:37-0500
+Last updated: 2026-05-21T15:15:23-0500
 
 Primary outcome: `candidate_evidence_rows_emitted`
 
@@ -8,32 +8,32 @@ Primary outcome: `candidate_evidence_rows_emitted`
 
 `labels_or_fingerprints_changed=false`
 
-Measured run time: 52.97 minutes (`2026-05-21T18:25:26Z` to
-`2026-05-21T19:18:24Z`).
+Measured run time: 48.48 minutes (`2026-05-21T19:26:54Z` to
+`2026-05-21T20:15:23Z`).
 
-Run note: disk free space was 29 GiB, above the 10 GiB stop threshold. Normal
+Run note: disk free space was 30 GiB, above the 10 GiB stop threshold. Normal
 `git fetch origin` and `git pull --ff-only origin
 research/epk-substrate-role-identity` were attempted at run start but the
 sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
---no-write-fetch-head origin` succeeded. Local `HEAD` still appears stale and
-dirty relative to `origin/research/epk-substrate-role-identity`; continue using
-the remote-tip temporary-index commit/push workaround if normal git metadata
-operations remain blocked.
+--no-write-fetch-head origin` succeeded. The local worktree still appears stale
+and dirty relative to `origin/research/epk-substrate-role-identity`; use the
+remote-tip temporary-index commit/push workaround if normal git metadata
+operations remain blocked. Local `HEAD` equality and clean-branch verification
+are not possible unless the linked-worktree metadata can be fast-forwarded.
 
 ## What Was Emitted
 
-This run added one bounded source-free coordinate modality: reciprocal
-active-site competition plus ligand-chain ordinal/auth counterpart context. The
-helper fetches model-1 coordinates in memory, emits compact reduced evidence,
-and writes no raw coordinate dumps.
+This run added one bounded source-free coordinate modality: acceptor backbone
+continuity. The helper fetches model-1 coordinates in memory, emits compact
+reduced evidence, and writes no raw coordinate dumps.
 
 Artifact:
 
-`artifacts/research_lanes/epk_substrate_role_identity/epk_reciprocal_active_site_competition_audit_v1_20260521.json`
+`artifacts/research_lanes/epk_substrate_role_identity/epk_acceptor_backbone_continuity_audit_v1_20260521.json`
 
 Helper:
 
-`tools/research_lanes/epk_substrate_role_identity/reciprocal_active_site_competition_audit.py`
+`tools/research_lanes/epk_substrate_role_identity/acceptor_backbone_continuity_audit.py`
 
 Inputs:
 
@@ -43,15 +43,13 @@ Inputs:
 
 The helper reused 211 candidate/state rows, 54 PDB-level conflict rows, and 135
 phosphoproduct materialization rows. It scanned 54 diagnostic PDBs in memory and
-emitted 220 compact competition rows:
+emitted 220 compact backbone-continuity rows:
 
 - candidate gamma/acceptor pair rows: 204
 - state-only rows: 16
-- reciprocal folded candidate rows: 10
-- competition signature rows: 58
-- mixed competition signature rows: 9
-- reciprocal-only signature rows: 8
-- mixed reciprocal-only signature rows: 0
+- nonterminal phosphoproduct state rows re-emitted: 9
+- source-free backbone signature rows: 23
+- mixed positive/counterexample backbone signatures: 2
 
 No PDB titles, UniProt prose, EC/Rhea, paper/source text, mechanism labels,
 curated substrate names, post-hoc source repair, candidate-specific threshold
@@ -69,21 +67,27 @@ Coordinate states observed:
 - `product_state=4`
 - `split_state=1`
 
-Reciprocal competition classes:
+Backbone continuity classes:
 
-- `not_reciprocal_folded_candidate=195`
-- `no_same_chain_competitor_within_preexisting_6a_shell=2`
-- `reciprocal_closer_than_same_chain_competitor=4`
-- `reciprocal_same_chain_distance_tie_at_0_001a=1`
-- `same_chain_competitor_closer_than_reciprocal=3`
-- state/not-applicable rows: 15
+- `internal_backbone_continuous=206`
+- `state_or_candidate_without_acceptor_atom=11`
+- `backbone_break_or_missing_atom_context=2`
+- `resolved_n_terminal_backbone_boundary=1`
 
-Ligand-chain ordinal counterpart classes:
+Backbone materiality classes:
 
-- `counterpart_ser_thr_hydroxyl=153`
-- `counterpart_not_sty_hydroxyl=38`
-- `counterpart_tyr_hydroxyl=13`
-- `counterpart_not_applicable=16`
+- `same_chain_internal_continuous_backbone=162`
+- `cross_chain_folded_internal_continuous_backbone=23`
+- `reciprocal_folded_internal_continuous_backbone=10`
+- `cross_chain_internal_fragment_continuous_backbone=6`
+- `adp_state_backbone_context_review_only=5`
+- `ligand_absent_no_active_gamma_backbone_context=4`
+- `product_state_backbone_context_review_only=4`
+- `chain_break_or_missing_backbone_context=2`
+- `ambiguous_coordinate_state_no_active_gamma_backbone_context=1`
+- `internal_fragment_n_boundary_backbone=1`
+- `split_state_backbone_context_review_only=1`
+- `state_or_candidate_without_acceptor_atom=1`
 
 Blocker classes:
 
@@ -93,8 +97,8 @@ Blocker classes:
 - `active_gamma_geometry=7`
 - `ligand_materialization=5`
 - `substrate_role_identity=4`
-- `split_state_evidence=1`
 - `internal_fragment_mimicry=1`
+- `split_state_evidence=1`
 
 The no-promotion conflict projection remains unchanged:
 
@@ -109,52 +113,49 @@ The no-promotion conflict projection remains unchanged:
 
 The blocker is not cleared source-free.
 
-Reciprocal competition is useful review-routing evidence. It separates the hard
-reciprocal Tyr rows in this tranche:
+Acceptor backbone continuity is useful review-routing evidence but does not
+adjudicate biological substrate-role identity. The decisive mixed signatures
+are:
 
-- `9UUR|gamma=A:ANP501:PG|acceptor=B:TYR204:OH` and
-  `9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH` share a positive-only
-  reciprocal competition signature with no same-chain competitor within the
-  preexisting 6A shell.
-- `9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH` is separated by a same-gamma
-  same-chain competitor tie against `A:SER194:OG`.
-
-That split is not a source-free production rule. Promoting the isolated
-reciprocal Tyr signature would be a narrow post-hoc distance/order rescue and
-would not address product/ADP, same-chain, or analog-state biology. Across the
-full competition audit, nine broader signatures still mix positives and
-counterexamples, especially same-chain rows. The decisive same-chain mixed
-signature `d7bf11628a44` is shared by `3TM0`, `9UUR`, `9UUX`, `9UW4`, and many
-counterexamples.
+- `2c6cf40812f1`: same-chain internal continuous backbone, 149 candidates
+  across 44 PDBs, with 33 review-positive rows and 116 counterexample rows. It
+  includes hard cases `3TM0`, `7B56`, `9UUR`, `9UUX`, and `9UW4`.
+- `e705e11d14c1`: reciprocal folded Tyr internal continuous backbone shared by
+  `9UUR|gamma=A:ANP501:PG|acceptor=B:TYR204:OH`,
+  `9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH`, and counterexample
+  `9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH`.
 
 State-specific hard cases remain unchanged:
 
 - `1L0O` remains ADP-only product-state review evidence.
-- `3QHR` and `3QHW` remain source-free `product_state` chemistry rows, but
-  product chemistry is review-only biological context.
-- `4HPU` remains split-state counterpressure against promoting product/split
-  chemistry into positive substrate-role calls.
-- `7B56` remains blocked by internal-fragment mimicry.
+- `3QHR` and `3QHW` materialize product-state phosphoacceptor backbone rows,
+  but product chemistry is review-only biological context.
+- `4HPU` materializes a split-state phosphoacceptor backbone row, which remains
+  counterpressure against promoting product/split chemistry.
+- `7B56` is now explicitly represented as an
+  `internal_fragment_n_boundary_backbone` row and remains blocked by
+  `internal_fragment_mimicry`.
 
 ## Interpretation
 
-The useful refinement is narrow: source-free coordinates can show whether a
-reciprocal folded acceptor is isolated at its gamma site or tied with same-chain
-competition, and can record simple ligand-chain ordinal/auth counterparts. This
-reduces review uncertainty for the 9UUR/9UUX/9UW4 trio, but it is not general
-biological substrate-role identity.
+The useful refinement is narrow: coordinates can show whether an acceptor is an
+internal continuous backbone residue, a resolved boundary, or a chain-break
+context. That helps review triage for internal-fragment and state-specific rows,
+but the internal continuous-backbone signature is broad and mixed across true
+substrate candidates and counterexamples.
 
 This is review-only blocker evidence. It is not a production rule and does not
 support ePK production readiness.
 
 ## Verification
 
+- `python -m py_compile` passed for the new helper.
 - `python -m json.tool` passed for the new artifact.
+- Full lane JSON validation passed for 23 JSON files.
 - Full run-log JSONL validation passed; final line has
   `primary_outcome=candidate_evidence_rows_emitted` and
-  `measured_minutes=52.97`.
+  `measured_minutes=48.48`.
 - Required run-record field validation passed.
-- `python -m py_compile` passed for the new helper.
 - `git diff --check` passed.
 - No raw `.pdb`, `.cif`, or `.mmcif` files were written in the lane paths.
 - No production label registries, mechanism fingerprints, migration manifests,
@@ -162,8 +163,9 @@ support ePK production readiness.
 
 ## Exact Next Experiment
 
-Do not add reciprocal distance/order rescue rules. Only resume this lane for a
-genuinely different source-free modality that can adjudicate state-specific or
-reciprocal folded-chain biology without review-context leakage. Otherwise
-preserve source-reviewed adjudication for product/ADP, split-state,
-substrate-analog, reciprocal folded-chain, and same-chain substrate biology.
+Stop backbone-continuity probing as a promotion route. Only resume this lane for
+a genuinely different source-free modality that can adjudicate ADP/product,
+substrate-analog, reciprocal folded-chain, or same-chain biology without
+review-context leakage. Otherwise preserve source-reviewed adjudication for
+product/ADP, split-state, substrate-analog, reciprocal folded-chain, and
+same-chain substrate biology.
