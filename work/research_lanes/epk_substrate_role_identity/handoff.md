@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-21T15:15:23-0500
+Last updated: 2026-05-21T15:17:19-0500
 
 Primary outcome: `candidate_evidence_rows_emitted`
 
@@ -18,8 +18,12 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 --no-write-fetch-head origin` succeeded. The local worktree still appears stale
 and dirty relative to `origin/research/epk-substrate-role-identity`; use the
 remote-tip temporary-index commit/push workaround if normal git metadata
-operations remain blocked. Local `HEAD` equality and clean-branch verification
-are not possible unless the linked-worktree metadata can be fast-forwarded.
+operations remain blocked. The remote-tip temporary-index push succeeded during
+final wrap. Local `HEAD` equality and clean-branch verification are still not
+possible unless the linked-worktree metadata can be fast-forwarded; after the
+push, local `HEAD` remained at `8d38053d85cc28b7592267e9420578ca19a98814`
+while `origin/research/epk-substrate-role-identity` was updated past
+`ee96d2592b8572c9ee24c787776c544d3faeb421`.
 
 ## What Was Emitted
 
@@ -160,6 +164,8 @@ support ePK production readiness.
 - No raw `.pdb`, `.cif`, or `.mmcif` files were written in the lane paths.
 - No production label registries, mechanism fingerprints, migration manifests,
   or label imports were touched.
+- Remote-tip temporary-index push succeeded; normal local clean/HEAD-equals-
+  origin verification remains blocked by the stale linked worktree.
 
 ## Exact Next Experiment
 
