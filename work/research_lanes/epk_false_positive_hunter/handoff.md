@@ -5,6 +5,7 @@
 - Ended: 2026-05-21T15:22:40Z
 - Measured minutes: 60.73
 - Primary outcome: regression_rows_emitted
+- Pushed evidence commit: 2ae54774aeb8552aef8261c828a1f83be9b16996 via alternate-index commit/push.
 - Rule under attack: biological-assembly context-v4 sufficiency, entry-level any-context v4 review blocker, and the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
