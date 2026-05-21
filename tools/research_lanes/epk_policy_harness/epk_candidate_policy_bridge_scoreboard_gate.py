@@ -83,6 +83,10 @@ def schema_drafts() -> dict[str, Any]:
                 "scope": "candidate_level_gamma_acceptor_pair_not_pdb_level",
                 "candidate_identity_fields": [
                     "lane_id",
+                    "source_lane_id",
+                    "source_artifact",
+                    "source_row_key",
+                    "source_row_id",
                     "row_id",
                     "candidate_id",
                     "pdb_id",
@@ -99,6 +103,7 @@ def schema_drafts() -> dict[str, Any]:
                 "required_fields": [
                     "schema_version",
                     "row_id",
+                    "candidate_id",
                     "pdb_id",
                     "row_role",
                     "ligand_code_from_structure",
@@ -128,12 +133,22 @@ def schema_drafts() -> dict[str, Any]:
                     "structure_title",
                     "entity_descriptions",
                     "chain_accessions",
+                    "source_lane_id",
+                    "source_artifact",
+                    "source_row_key",
+                    "source_row_id",
                     "expert_notes",
                     "product_state_context",
                     "substrate_acceptor_analog_context",
                     "split_state_context",
                     "sibling_counterfamily_context",
                 ],
+                "federated_source_provenance_rule": (
+                    "source_lane_id/source_artifact/source_row_key/source_row_id "
+                    "identify review-only emitting-lane provenance and must not "
+                    "carry source text, protein names, titles, EC/Rhea, or paper "
+                    "metadata as predictive features"
+                ),
                 "forbidden_predictive_flags": sorted(FORBIDDEN_ROW_FLAGS),
                 "source_leakage_predictive_flags": sorted(SOURCE_LEAKAGE_ROW_FLAGS),
                 "compact_artifact_rule": "do_not_write_large_raw_coordinate_dumps",
