@@ -84,6 +84,12 @@ SOURCE_SPECS = [
         "row_key": "counterexamples",
         "source_profile": "auth_label_gamma_collision_counterexamples",
     },
+    {
+        "path": "artifacts/research_lanes/epk_false_positive_hunter/"
+        "source_valid_epk_seed_geometry_prefilter_stress_20260521_043259Z.json",
+        "row_key": "custom_materializer_rows",
+        "source_profile": "source_valid_epk_seed_geometry_prefilter_controls",
+    },
 ]
 
 
@@ -238,6 +244,11 @@ def is_non_epk(row: dict[str, Any], profile: str) -> bool:
         "source_valid_epk_and_orc_controls",
     } and row.get("source_context_epk_review_candidate"):
         return False
+    if (
+        profile == "source_valid_epk_seed_geometry_prefilter_controls"
+        and row.get("source_valid_epk_seed_review_candidate")
+    ):
+        return False
     return True
 
 
@@ -265,6 +276,14 @@ def control_class(row: dict[str, Any], profile: str) -> str:
         return "entry_level_guard_control"
     if profile == "epk_query_non_epk_contaminants":
         return "ligand_materialization_non_epk_contaminant_control"
+    if profile == "source_valid_epk_seed_geometry_prefilter_controls":
+        if row.get("source_valid_epk_seed_review_candidate"):
+            return "source_valid_epk_entity_seed_overblock_control"
+        if row.get("non_epk_v4_contaminant_prefilter_candidate"):
+            return "geometry_prefiltered_non_epk_v4_contaminant_control"
+        if row.get("known_orc_counterexample_input") or role_tokens:
+            return "orc_mcm_fixed_counterexample_control"
+        return "source_valid_geometry_prefilter_stress_control"
     if profile == "atpase_transporter_topology_controls":
         return "atpase_transporter_topology_control"
     if profile == "walker_a_topology_controls":
@@ -283,7 +302,11 @@ def control_class(row: dict[str, Any], profile: str) -> str:
 
 
 def blocker_class(row: dict[str, Any], profile: str) -> str:
-    if row.get("known_epk_positive_input") or row.get("source_context_epk_review_candidate"):
+    if (
+        row.get("known_epk_positive_input")
+        or row.get("source_context_epk_review_candidate")
+        or row.get("source_valid_epk_seed_review_candidate")
+    ):
         return "positive_control_retention_expected"
     if row.get("context_v4_oligomeric_atp_terminals_no_mg_required_hit"):
         return "context_v4_oligomeric_atp_terminals_no_mg_required"
@@ -303,7 +326,11 @@ def blocker_class(row: dict[str, Any], profile: str) -> str:
 
 
 def expected_policy_decision(row: dict[str, Any], profile: str) -> str:
-    if row.get("known_epk_positive_input") or row.get("source_context_epk_review_candidate"):
+    if (
+        row.get("known_epk_positive_input")
+        or row.get("source_context_epk_review_candidate")
+        or row.get("source_valid_epk_seed_review_candidate")
+    ):
         return "retain_or_source_validate_epk_positive_review_only"
     if blocker_class(row, profile) == "no_substrate_mode_materializer_hit":
         return "abstain_no_materializer_hit"
@@ -447,6 +474,7 @@ def convert_row(
         "unsafe_nonabstention_after_expected_policy": unsafe_after_expected_policy,
         "observed_source_decision": row.get("entry_level_guard_stress_decision")
         or row.get("custom_stress_decision")
+        or row.get("source_valid_geometry_prefilter_stress_decision")
         or row.get("source_validation_status")
         or row.get("counterexample_rationale"),
         "source_query_surface_groups": row.get("query_surface_groups", []),
@@ -479,11 +507,22 @@ def convert_source(repo_root: Path, spec: dict[str, Any]) -> tuple[list[dict[str
     rows = payload.get(str(spec["row_key"]), [])
     if not isinstance(rows, list):
         rows = []
+    source_profile = str(spec["source_profile"])
+    if source_profile == "source_valid_epk_seed_geometry_prefilter_controls":
+        rows = [
+            row
+            for row in rows
+            if isinstance(row, dict)
+            and (
+                row.get("source_valid_epk_seed_review_candidate")
+                or row.get("non_epk_v4_contaminant_prefilter_candidate")
+            )
+        ]
     converted = [
         convert_row(
             row,
             source_path=rel_path,
-            source_profile=str(spec["source_profile"]),
+            source_profile=source_profile,
             source_method=source_method,
         )
         for row in rows

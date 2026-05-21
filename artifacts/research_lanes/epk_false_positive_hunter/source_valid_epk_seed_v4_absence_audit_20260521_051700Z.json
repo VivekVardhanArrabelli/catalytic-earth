@@ -1,0 +1,630 @@
+{
+  "family_bucket_with_deposited_or_assembly_v4_rows": [
+    {
+      "assembly_v4_context_count": 1,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": true,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "ATPase family gene 2 protein homolog A",
+        "ATPase family gene 2 protein homolog B",
+        "Cyclin-dependent kinase 2-interacting protein",
+        "MAGNESIUM ION",
+        "cDNA FLJ55172"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": true,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "9LGO",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": true,
+      "title": "Cryo-EM structure of the SPATA5-SPATA5L1-CINP-C1orf109 complex"
+    }
+  ],
+  "family_bucket_without_deposited_or_assembly_v4_rows": [
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "INSULIN RECEPTOR",
+        "MAGNESIUM ION",
+        "PEPTIDE SUBSTRATE",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "receptor_tyrosine_kinase_entity"
+      ],
+      "pdb_id": "1IR3",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "receptor_tyrosine_kinase_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "PHOSPHORYLATED INSULIN RECEPTOR TYROSINE KINASE IN COMPLEX WITH PEPTIDE SUBSTRATE AND ATP ANALOG"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Stress-activated protein kinase JNK",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "jnk_entity"
+      ],
+      "pdb_id": "5AWM",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "jnk_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "The Crystal Structure of JNK from Drosophila melanogaster Reveals an Evolutionarily Conserved Topology with that of Mammalian JNK Proteins."
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "C-JUN N-TERMINAL KINASE",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "jnk_entity"
+      ],
+      "pdb_id": "1JNK",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "jnk_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "THE C-JUN N-TERMINAL KINASE (JNK3S) COMPLEXED WITH MGAMP-PNP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CYCLIN A",
+        "CYCLIN-DEPENDENT KINASE 2",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "1FIN",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "CYCLIN A-CYCLIN-DEPENDENT KINASE 2 COMPLEX"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CYCLIN A",
+        "CYCLIN-DEPENDENT KINASE-2",
+        "MANGANESE (II) ION",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "1JST",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "PHOSPHORYLATED CYCLIN-DEPENDENT KINASE-2 BOUND TO CYCLIN A"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "CYCLIN-DEPENDENT KINASE 12",
+        "CYCLIN-K",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "4CXA",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Crystal structure of the human CDK12-cyclin K complex bound to AMPPNP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "CDK-activating kinase assembly factor MAT1",
+        "Cyclin-A2",
+        "Cyclin-H",
+        "Cyclin-dependent kinase 2",
+        "Cyclin-dependent kinase 7",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "9QCV",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Cryo-EM structure of CAK-CDK2-cyclin A2 bound to AMP-PNP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "CDK-activating kinase assembly factor MAT1",
+        "Cyclin-H",
+        "Cyclin-dependent kinase 1",
+        "Cyclin-dependent kinase 7",
+        "G2/mitotic-specific cyclin-B1",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "9SKQ",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Cryo-EM structure of CAK-CDK1-cyclin B1"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Cyclin-A2",
+        "Cyclin-dependent kinase 2",
+        "MAGNESIUM ION",
+        "MONOTHIOGLYCEROL",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "4EOJ",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Thr 160 phosphorylated CDK2 H84S, Q85M, K89D - human cyclin A3 complex with ATP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Cyclin-A2",
+        "Cyclin-dependent kinase 2",
+        "MAGNESIUM ION",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "4EOM",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Thr 160 phosphorylated CDK2 H84S, Q85M, Q131E - human cyclin A3 complex with ATP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Cyclin-A2",
+        "Cyclin-dependent kinase 2",
+        "MAGNESIUM ION",
+        "MONOTHIOGLYCEROL",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "4EOO",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Thr 160 phosphorylated CDK2 Q131E - human cyclin A3 complex with ATP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Cyclin-A2",
+        "Cyclin-dependent kinase 2",
+        "MAGNESIUM ION",
+        "MONOTHIOGLYCEROL",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "4EOQ",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Thr 160 phosphorylated CDK2 WT - human cyclin A3 complex with ATP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "HUMAN CYCLIN-DEPENDENT KINASE 2",
+        "MAGNESIUM ION",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "1HCK",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "HUMAN CYCLIN-DEPENDENT KINASE 2"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CELL DIVISION PROTEIN KINASE 2",
+        "CYCLIN-DEPENDENT KINASE INHIBITOR 3",
+        "MAGNESIUM ION"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "1FQ1",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "CRYSTAL STRUCTURE OF KINASE ASSOCIATED PHOSPHATASE (KAP) IN COMPLEX WITH PHOSPHO-CDK2"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "1,2-ETHANEDIOL",
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Cyclin-dependent kinase 2",
+        "MAGNESIUM ION",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "8FP5",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "CDK2 liganded with ATP and Mg2+"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CYCLIN-DEPENDENT KINASE 4",
+        "HEAT SHOCK PROTEIN HSP 90 BETA",
+        "HSP90 CO-CHAPERONE CDC37",
+        "MAGNESIUM ION"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "5FWL",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Atomic cryoEM structure of Hsp90-Cdc37-Cdk4 complex"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CYCLIN-DEPENDENT KINASE 4",
+        "HEAT SHOCK PROTEIN HSP 90 BETA",
+        "HSP90 CO-CHAPERONE CDC37",
+        "MAGNESIUM ION"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "5FWM",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Atomic cryoEM structure of Hsp90-Cdc37-Cdk4 complex"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CYCLIN-DEPENDENT KINASE 4",
+        "HEAT SHOCK PROTEIN HSP 90 BETA",
+        "HSP90 CO-CHAPERONE CDC37",
+        "MAGNESIUM ION"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "5FWK",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Atomic cryoEM structure of Hsp90-Cdc37-Cdk4 complex"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "CYCLIN-DEPENDENT KINASE 4",
+        "HEAT SHOCK PROTEIN HSP 90 BETA",
+        "HSP90 CO-CHAPERONE CDC37",
+        "MAGNESIUM ION"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "cdk_cyclin_entity"
+      ],
+      "pdb_id": "5FWP",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "cdk_cyclin_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Atomic cryoEM structure of Hsp90-Cdc37-Cdk4 complex"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "ADENOSINE-5'-TRIPHOSPHATE",
+        "Insulin receptor substrate 2",
+        "MAGNESIUM ION",
+        "insulin receptor subunit beta",
+        "water"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "receptor_tyrosine_kinase_entity"
+      ],
+      "pdb_id": "3BU5",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "receptor_tyrosine_kinase_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Crystal structure of the insulin receptor kinase in complex with IRS2 KRLB peptide and ATP"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "5'-GUANOSINE-DIPHOSPHATE-MONOTHIOPHOSPHATE",
+        "GTP-binding protein Rheb",
+        "INOSITOL HEXAKISPHOSPHATE",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Serine/threonine-protein kinase mTOR",
+        "Target of rapamycin complex subunit LST8"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "mtorc_entity"
+      ],
+      "pdb_id": "9ED7",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "mtorc_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Active state of mTOR on membrane"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "5'-GUANOSINE-DIPHOSPHATE-MONOTHIOPHOSPHATE",
+        "GTP-binding protein Rheb",
+        "INOSITOL HEXAKISPHOSPHATE",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Serine/threonine-protein kinase mTOR",
+        "Target of rapamycin complex subunit LST8"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "mtorc_entity"
+      ],
+      "pdb_id": "9ED8",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "mtorc_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "Intermediate state of mTOR on membrane"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "Eukaryotic translation initiation factor 4E-binding protein 1",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Regulatory-associated protein of mTOR",
+        "Serine/threonine-protein kinase mTOR"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "mtorc_entity"
+      ],
+      "pdb_id": "8RCN",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "mtorc_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, Focused region of mTOR and RAPTOR on one protomer copy."
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "Eukaryotic translation initiation factor 4E-binding protein 1",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Regulatory-associated protein of mTOR",
+        "Serine/threonine-protein kinase mTOR",
+        "Target of rapamycin complex subunit LST8"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "mtorc_entity"
+      ],
+      "pdb_id": "8RCK",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "mtorc_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, Focused on one protomer copy."
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "Eukaryotic translation initiation factor 4E-binding protein 1",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Regulatory-associated protein of mTOR",
+        "Serine/threonine-protein kinase mTOR",
+        "Target of rapamycin complex subunit LST8"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "mtorc_entity"
+      ],
+      "pdb_id": "8RCH",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "mtorc_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "CryoEM structure of mTORC1 with a paediatric kidney cancer-associated 1455-EWED-1458 duplication in mTOR, overall refinement"
+    },
+    {
+      "assembly_v4_context_count": 0,
+      "deposited_v4_oligomeric_atp_terminals_no_mg_required_hit": false,
+      "entity_descriptions_compact": [
+        "5'-GUANOSINE-DIPHOSPHATE-MONOTHIOPHOSPHATE",
+        "Eukaryotic translation initiation factor 4E-binding protein 1",
+        "GTP-binding protein Rheb",
+        "GUANOSINE-5'-DIPHOSPHATE",
+        "GUANOSINE-5'-TRIPHOSPHATE",
+        "INOSITOL HEXAKISPHOSPHATE",
+        "MAGNESIUM ION",
+        "PHOSPHOAMINOPHOSPHONIC ACID-ADENYLATE ESTER",
+        "Ragulator complex protein LAMTOR1",
+        "Ragulator complex protein LAMTOR2",
+        "Ragulator complex protein LAMTOR3",
+        "Ragulator complex protein LAMTOR4"
+      ],
+      "entry_level_any_context_v4_guard_hit_review_only": false,
+      "family_buckets_from_entities": [
+        "mtorc_entity"
+      ],
+      "pdb_id": "9ED4",
+      "probable_epk_from_context": true,
+      "source_valid_epk_seed_family_buckets": [
+        "mtorc_entity"
+      ],
+      "source_valid_epk_seed_review_candidate": false,
+      "title": "A composite map of mTORC1-Rag-Ragultor-4EBP1 on membrane"
+    }
+  ],
+  "metadata": {
+    "family_bucket_entry_count": 27,
+    "family_bucket_with_deposited_or_assembly_v4_count": 1,
+    "family_bucket_without_deposited_or_assembly_v4_count": 26,
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_false_positive_hunter",
+    "method": "source_valid_epk_seed_v4_absence_audit",
+    "production_claim_allowed": false,
+    "raw_coordinate_files_written": false,
+    "source_artifact": "artifacts/research_lanes/epk_false_positive_hunter/source_valid_epk_seed_geometry_prefilter_stress_20260521_043259Z.json",
+    "source_valid_epk_seed_review_candidate_count": 1
+  },
+  "warnings": [
+    "Lane-only synthesis from compact search artifact; no production scoring, threshold calibration, label import, registry edit, or fingerprint edit."
+  ]
+}
