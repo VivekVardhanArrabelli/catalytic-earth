@@ -1,6 +1,6 @@
 # ePK Substrate-Role Identity Handoff
 
-Last updated: 2026-05-21T11:11:00-0500
+Last updated: 2026-05-21T11:15:00-0500
 
 Primary outcome: `candidate_evidence_rows_emitted`
 
@@ -17,6 +17,17 @@ sandbox could not write the linked-worktree `FETCH_HEAD`. `git fetch
 --no-write-fetch-head origin` succeeded. Normal local `HEAD` remains stale
 relative to `origin/research/epk-substrate-role-identity`; commit/push should
 continue using the remote-tip temporary-index workaround.
+
+Final sync notes: pushed coordinate-state taxonomy content commit
+`edc9b0d1825393006eb59573914c2a8281d04216` to
+`origin/research/epk-substrate-role-identity`. After `git fetch
+--no-write-fetch-head origin`, `origin/research/epk-substrate-role-identity`
+resolved to that content commit before this handoff-only sync note. Local blob
+hashes for the coordinate-state artifact, helper, run ledger, and handoff were
+checked against remote blobs during wrap. Normal `git status` still reports
+this linked worktree as behind/dirty because local `HEAD` remains stale
+relative to the remote tip and linked-worktree metadata rejects normal
+`FETCH_HEAD` writes.
 
 ## What Was Emitted
 
