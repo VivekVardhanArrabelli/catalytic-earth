@@ -5,7 +5,7 @@ Run started: 2026-05-21T00:27:26Z
 Run ended: 2026-05-21T01:17:22Z
 Measured minutes: 49.93
 Primary outcome: `policy_frozen_review_only`
-Pushed commit: `pending_main_run_commit` (will be updated after alternate-index push; normal git metadata writes are blocked).
+Pushed commit: `27d1bcfd872eeb9aeed8c4f571a47f9c0e8bfde0` (main run commit; this handoff metadata update is committed as a follow-up wrap commit).
 
 ## Files changed
 
