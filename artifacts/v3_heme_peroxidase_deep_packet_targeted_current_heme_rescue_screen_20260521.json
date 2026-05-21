@@ -1,0 +1,218 @@
+{
+  "metadata": {
+    "artifact_id": "v3_heme_peroxidase_deep_packet_targeted_current_heme_rescue_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 4,
+    "created_at": "2026-05-21T13:57:45Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "fingerprint_registry_edited": false,
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/queries/Q939D2 /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/Q939D2_vs_current_heme_tm_scores.tsv /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/tmp/Q939D2 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/queries/P04040 /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/P04040_vs_current_heme_tm_scores.tsv /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/tmp/P04040 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/queries/I2DBY1 /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/I2DBY1_vs_current_heme_tm_scores.tsv /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/tmp/I2DBY1 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/queries/P13029 /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/targets /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/P13029_vs_current_heme_tm_scores.tsv /private/tmp/catalytic-earth-heme-peroxidase-targeted-rescue-screen/tmp/P13029 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "high_tm_candidate_count": 3,
+    "max_target_subset_tm_score": 0.9075,
+    "method": "heme_peroxidase_targeted_current_fingerprint_rescue_duplicate_screen",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_screen_artifact": "artifacts/v3_heme_peroxidase_deep_packet_chunked_current_countable_structural_screen_20260521.json",
+    "status_counts": {
+      "completed": 1,
+      "current_heme_target_duplicate_signal": 3
+    },
+    "target_subset_count": 20,
+    "target_subset_fingerprint_id": "heme_peroxidase_oxidase"
+  },
+  "rows": [
+    {
+      "accession": "Q939D2",
+      "countable_label_candidate": false,
+      "current_heme_high_tm_hit_count": 2,
+      "current_heme_structural_screen_status": "current_heme_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 78,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q939D2",
+      "target_subset": "current_countable_heme_peroxidase_oxidase_structures",
+      "target_subset_count": 20,
+      "tm_score_threshold": 0.7,
+      "top_current_heme_hits": [
+        {
+          "alntmscore": 0.9287,
+          "max_pair_tm_score": 0.9075,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3227,
+          "raw_query_name": "afdb_Q939D2",
+          "raw_target_name": "pdb_1APX_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1APX.cif",
+          "target_entry_ids": [
+            "m_csa:399"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1APX",
+          "target_structure_key": "pdb:1APX",
+          "ttmscore": 0.9075
+        },
+        {
+          "alntmscore": 0.9091,
+          "max_pair_tm_score": 0.8825,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3659,
+          "raw_query_name": "afdb_Q939D2",
+          "raw_target_name": "pdb_1DJ1",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DJ1.cif",
+          "target_entry_ids": [
+            "m_csa:709"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DJ1",
+          "target_structure_key": "pdb:1DJ1",
+          "ttmscore": 0.8825
+        }
+      ],
+      "unique_query_target_pair_count": 20
+    },
+    {
+      "accession": "P04040",
+      "countable_label_candidate": false,
+      "current_heme_high_tm_hit_count": 1,
+      "current_heme_structural_screen_status": "current_heme_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 78,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P04040",
+      "target_subset": "current_countable_heme_peroxidase_oxidase_structures",
+      "target_subset_count": 20,
+      "tm_score_threshold": 0.7,
+      "top_current_heme_hits": [
+        {
+          "alntmscore": 0.9536,
+          "max_pair_tm_score": 0.9009,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9009,
+          "raw_query_name": "afdb_P04040",
+          "raw_target_name": "pdb_1IPH_D",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IPH.cif",
+          "target_entry_ids": [
+            "m_csa:573"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1IPH",
+          "target_structure_key": "pdb:1IPH",
+          "ttmscore": 0.6574
+        }
+      ],
+      "unique_query_target_pair_count": 20
+    },
+    {
+      "accession": "I2DBY1",
+      "countable_label_candidate": false,
+      "current_heme_high_tm_hit_count": 0,
+      "current_heme_structural_screen_status": "completed",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 78,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:I2DBY1",
+      "target_subset": "current_countable_heme_peroxidase_oxidase_structures",
+      "target_subset_count": 20,
+      "tm_score_threshold": 0.7,
+      "top_current_heme_hits": [],
+      "unique_query_target_pair_count": 20
+    },
+    {
+      "accession": "P13029",
+      "countable_label_candidate": false,
+      "current_heme_high_tm_hit_count": 2,
+      "current_heme_structural_screen_status": "current_heme_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": true,
+      "raw_result_row_count": 78,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P13029",
+      "target_subset": "current_countable_heme_peroxidase_oxidase_structures",
+      "target_subset_count": 20,
+      "tm_score_threshold": 0.7,
+      "top_current_heme_hits": [
+        {
+          "alntmscore": 0.9265,
+          "max_pair_tm_score": 0.9053,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3231,
+          "raw_query_name": "afdb_P13029",
+          "raw_target_name": "pdb_1APX_C",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1APX.cif",
+          "target_entry_ids": [
+            "m_csa:399"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1APX",
+          "target_structure_key": "pdb:1APX",
+          "ttmscore": 0.9053
+        },
+        {
+          "alntmscore": 0.9043,
+          "max_pair_tm_score": 0.8782,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3659,
+          "raw_query_name": "afdb_P13029",
+          "raw_target_name": "pdb_1DJ1",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DJ1.cif",
+          "target_entry_ids": [
+            "m_csa:709"
+          ],
+          "target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1DJ1",
+          "target_structure_key": "pdb:1DJ1",
+          "ttmscore": 0.8782
+        }
+      ],
+      "unique_query_target_pair_count": 20
+    }
+  ],
+  "synthesis_conclusion": {
+    "full_current_countable_duplicate_clear_established": false,
+    "overall": "targeted_current_heme_subset_rescue_screen_is_duplicate_evidence_only",
+    "terminal_rejection_update_permitted_for_high_tm_hits": true
+  }
+}

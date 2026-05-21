@@ -218,9 +218,31 @@ sets all seven rows to `terminal_rejection_duplicate_or_leakage`, with 0
 import-ready rows and 0 countable candidates. Foldseek/TM remains import-gate
 duplicate/leakage evidence only, not positive mechanism evidence, and the
 post-duplicate benchmark preserves the no-superiority/no-import caveats.
+Current heme-peroxidase deepening scope: the next frozen external packet now
+has source-free geometry and duplicate/leakage evidence without opening a new
+mini-campaign. `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
+selects seven non-exact-reference rows from the frozen heme-peroxidase
+campaign before scoring. The coordinate, structure-mapping, and geometry-score
+artifacts materialize all seven AlphaFold sidecars, map all seven UniProt
+active/heme-binding feature sets, and top-rank all seven to
+`heme_peroxidase_oxidase` above the `0.4115` floor with 0 text/name/label
+fields used. The full current-countable Foldseek screen timed out on five rows
+but produced duplicate/leakage evidence for three rows; the targeted
+current-heme rescue screen adds three more high-TM current-countable heme hits
+and explicitly does not claim duplicate-clear. The terminal packet
+`artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+sets six rows to `terminal_rejection_duplicate_or_leakage` and keeps `I2DBY1`
+at `needs_new_extractor_or_structure` until a smaller full-current duplicate
+screen resolves the timeout. No import, production score, threshold,
+superiority, or mechanism-match claim is in scope.
 Fresh ePK lane follow-up is separately synthesized in
 `artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json`; it reinforces
 the ePK review-only/no-go decision and does not reopen main-loop ePK work.
+Fresh remote ePK lane follow-up is additionally summarized in
+`artifacts/v3_epk_remote_lane_followup_synthesis_20260521.json`. It strengthens
+the no-go decision through exhausted positive surfaces, 0 unsafe
+non-abstentions, a federated adapter gate, and unresolved source-free
+substrate-role signature collisions; it authorizes no main-loop ePK work.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

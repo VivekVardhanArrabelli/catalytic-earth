@@ -1,0 +1,146 @@
+{
+  "lane_findings": [
+    {
+      "candidate_evidence_rows_emitted": 0,
+      "decision_effect": "strengthens_no_go_no_fresh_folded_protein_positive",
+      "fresh_candidate_geometry": {
+        "active_gamma_candidate_rows": 0,
+        "active_gamma_donor_without_heteromeric_acceptor": 6,
+        "no_active_donor_or_transition_analog": 56,
+        "transition_analog_candidate_rows": 0
+      },
+      "key_negative_evidence": [
+        "no fresh active-gamma or transition-analog candidate-level row emitted",
+        "no fresh mapped PDB row has a within-6A heteromeric Ser/Thr/Tyr acceptor candidate",
+        "RAF/MEK and older source-published rows are geometry-negative or donor-without-acceptor contexts",
+        "6EAC is a SelO AMPylation source mismatch, not canonical ePK phosphorylation evidence"
+      ],
+      "lane_id": "epk_positive_evidence",
+      "next_exact_action": "rerun only at next RCSB weekly release or when new publication metadata/new PDB IDs appear",
+      "primary_outcome": "search_surface_exhausted",
+      "production_claim_allowed": false,
+      "rows_reviewed_latest_cycle": 62
+    },
+    {
+      "decision_effect": "extends_review_only_regression_fixture_without_authorizing_production",
+      "lane_id": "epk_false_positive_hunter",
+      "materializer_gap_explanation": "8OOZ/9OFD/9OFE/9W1G local hits reuse same author chain/entity and abstain",
+      "new_review_only_seed_or_control": "4UX9 source-valid later-offset v4 seed control, materializer abstained",
+      "next_exact_action": "broaden source-valid seed/entity buckets only in research lane",
+      "pinned_residual_counterexample": "5UJ7:biological_assembly_1",
+      "primary_outcome": "regression_rows_emitted",
+      "production_claim_allowed": false,
+      "regression_gate_rows_emitted": 318,
+      "unsafe_nonabstention_count": 0
+    },
+    {
+      "case_count": 91,
+      "decision_effect": "carry_forward_91_case_review_only_counteraxis_matrix",
+      "expected_unblocked_weak_case_count": 0,
+      "lane_id": "epk_sibling_controls",
+      "next_exact_action": "reuse as scorer-design fixture only; reopen sourcing only for a specific curated seed set",
+      "primary_outcome": "no_fresh_remote_push_since_prior_synthesis",
+      "production_claim_allowed": false,
+      "strict_product_counterexample_case_count": 19,
+      "weak_gamma_counterexample_case_count": 57
+    },
+    {
+      "adapter_candidate_rows": 10,
+      "decision_effect": "federated_candidate_evidence_adapter_ready_as_review_only_gate",
+      "expected_decision_mismatch_count": 0,
+      "forbidden_source_leakage_count": 0,
+      "lane_id": "epk_policy_harness",
+      "negative_fixtures_rejected": [
+        "missing_candidate_identity",
+        "duplicate_candidate_identity_within_source_lane",
+        "copied_protein_or_source_context"
+      ],
+      "next_exact_action": "cross-lane adapter expansion only for compact source-free rows",
+      "primary_outcome": "scoreboard_gate_created",
+      "production_claim_allowed": false,
+      "scoreboard_gate_pass": true,
+      "source_lane_counts": {
+        "epk_false_positive_hunter": 3,
+        "epk_positive_evidence": 2,
+        "epk_sibling_controls": 2,
+        "epk_substrate_role_identity": 3
+      },
+      "unsafe_control_nonabstention_count": 0
+    },
+    {
+      "abstained_positive_classes": [
+        "product_or_ADP_state",
+        "reciprocal_folded_chain",
+        "same_chain_autophosphorylation_like"
+      ],
+      "candidate_signature_group_count": 65,
+      "decision_effect": "source_free_deabstention_remains_unsafe",
+      "decisive_collision": "9UUR/9UUX reciprocal folded-chain positives collide with 9UW4 counterexample under source-free topology signatures",
+      "lane_id": "epk_substrate_role_identity",
+      "mixed_candidate_signature_group_count": 4,
+      "mixed_pdb_signature_group_count": 2,
+      "mixed_unblocked_none_blocker_signature_group_count": 0,
+      "next_exact_action": "do not run another scalar source-free rescue without a genuinely new non-source evidence modality",
+      "primary_outcome": "blocker_not_cleared_biology_ambiguity",
+      "production_claim_allowed": false
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_remote_lane_followup_synthesis_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T13:31:30Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_outputs_since_prior_synthesis": true,
+    "fresh_remote_branch_outputs_integrated": true,
+    "input_lane_count": 5,
+    "lanes_with_fresh_remote_push_count": 4,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "main_loop_review_only_remote_lane_followup_synthesis",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "remote_branch_commits_since_prior_synthesis": {
+    "epk_false_positive_hunter": [
+      "f61f579",
+      "2038d19",
+      "7d3642f",
+      "b6aad5e",
+      "b82cead"
+    ],
+    "epk_policy_harness": [
+      "6be5d73",
+      "081bf90",
+      "8b4e716",
+      "5b8dd7c",
+      "2e8aac5",
+      "c4c1ccf"
+    ],
+    "epk_positive_evidence": [
+      "ba6fba9",
+      "dc110a5",
+      "a47ee85",
+      "b8c86e2"
+    ],
+    "epk_sibling_controls": [],
+    "epk_substrate_role_identity": [
+      "afdba33",
+      "77dc6f7",
+      "bca2f84",
+      "b608bcd",
+      "4b3cb88"
+    ]
+  },
+  "synthesis_conclusion": {
+    "decision_changed_by_fresh_outputs": "no_positive_activation; no_go_strengthened_by_exhausted_positive_surfaces_and_signature_collisions",
+    "decision_to_start_now": false,
+    "main_loop_decision": "return_to_non_epk_external_decision_deepening",
+    "next_epk_work_if_manually_reopened": "research_lane_only_federated_adapter_or_new_modality_probe",
+    "overall": "epk_remains_review_only_and_not_production_ready",
+    "production_activation_decision": "no_go"
+  }
+}

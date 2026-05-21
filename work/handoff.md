@@ -50,6 +50,51 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T13:56:00Z automation run, the main loop integrated fresh
+remote ePK research-lane pushes only as decision-changing review context, then
+returned to non-ePK deepening. The new concise synthesis
+`artifacts/v3_epk_remote_lane_followup_synthesis_20260521.json` keeps ePK
+review-only/no-go: positive-evidence surfaces are exhausted with 0 fresh
+candidate rows, the false-positive lane preserves `5UJ7:biological_assembly_1`
+and extends the regression gate to 318 rows with 0 unsafe non-abstentions, the
+policy harness creates a federated adapter scoreboard gate with 0 forbidden
+source leakage, and substrate-role identity still has mixed source-free
+signature collisions including `9UUR`/`9UUX` versus `9UW4`. No ePK scorer,
+threshold, registry edit, label import, fingerprint expansion, artifact
+upload/removal, or main-loop ePK task is authorized.
+
+The same run deepened the already frozen heme-peroxidase campaign. The heme
+selection artifact
+`artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json` freezes
+seven non-exact-reference rows before geometry/Foldseek scoring. All seven
+AlphaFold sidecars materialize, all seven active/heme-binding feature sets map
+to structure, and
+`artifacts/v3_heme_peroxidase_deep_packet_geometry_scores_20260521.json`
+top-ranks all seven to `heme_peroxidase_oxidase` above the `0.4115` floor with
+0 text/name/label fields used. The all-current Foldseek duplicate screen is
+mixed: two rows complete with high-TM current-countable hits, one timed-out row
+retains a partial high-TM hit, and a targeted current-heme rescue screen adds
+three more high-TM current-countable heme hits without making any duplicate-clear
+claim. The terminal packet
+`artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+therefore records six `terminal_rejection_duplicate_or_leakage` rows and one
+`needs_new_extractor_or_structure` row (`I2DBY1`, exact blocker: complete the
+full current-countable structural duplicate/leakage screen). The benchmark
+`artifacts/v3_heme_peroxidase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword and deterministic sequence baselines diagnostic only, records
+ESM as unavailable, and makes no superiority claim.
+
+Evidence-based confidence call: confidence is high that the heme packet is a
+source-separated deep decision packet with active-site/heme geometry evidence
+and reproducible duplicate/leakage evidence for six terminal rejections.
+Confidence is medium on the remaining `I2DBY1` blocker because the targeted
+current-heme subset completed without a high-TM hit, but the full
+current-countable screen still timed out; no duplicate-clear, mechanism-match,
+import, or superiority claim is permitted for that row. Next main-loop work
+should either finish that single heme timeout blocker with smaller full-current
+target subchunks, or move to another already frozen flavin/heme packet; do not
+open new broad external mini-campaign breadth.
+
 As of the 2026-05-21T12:24:00Z automation run, the main loop returned to
 non-ePK external decision deepening after a concise fresh-lane ePK synthesis.
 `artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json` integrates the

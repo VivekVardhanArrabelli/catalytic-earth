@@ -395,6 +395,24 @@ import.
   synthesized separately in
   `artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json` and does not
   reopen ePK production scoring, label import, or fingerprint expansion.
+- `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
+  freezes seven non-exact-reference heme-peroxidase rows from the existing
+  campaign before geometry or duplicate scoring. Coordinate materialization and
+  structure mapping resolve all seven AlphaFold sidecars and active/heme-binding
+  feature sets. The source-free geometry artifact top-ranks all seven rows to
+  `heme_peroxidase_oxidase` above the `0.4115` floor with 0 text/name/label
+  fields used. The chunked all-current duplicate screen is mixed, so a targeted
+  current-heme rescue screen adds three more high-TM current-countable heme hits
+  without making a duplicate-clear claim. The terminal packet
+  `artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json`
+  records six `terminal_rejection_duplicate_or_leakage` rows and keeps `I2DBY1`
+  at `needs_new_extractor_or_structure` pending a complete full-current
+  subchunked duplicate/leakage screen. The post-duplicate benchmark records
+  EC/keyword, deterministic sequence, Foldseek, ESM, and geometry caveats with
+  no superiority, mechanism-match, or label-import claim. Fresh remote ePK lane
+  pushes are synthesized separately in
+  `artifacts/v3_epk_remote_lane_followup_synthesis_20260521.json` and remain
+  review-only/no-go.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

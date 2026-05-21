@@ -1,0 +1,3277 @@
+{
+  "entries": [
+    {
+      "accession": "Q939D2",
+      "active_or_cofactor_feature_count": 2,
+      "coordinate_path": "artifacts/v3_heme_peroxidase_deep_packet_structural_coordinates_20260521/afdb_Q939D2.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 9.978,
+            "y": 3.806,
+            "z": -11.166
+          },
+          "centroid": {
+            "x": 11.485,
+            "y": 4.243,
+            "z": -11.598
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 92,
+          "residue_node_id": "uniprot:Q939D2:92",
+          "roles": [
+            "Active site",
+            "Proton acceptor",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 16.92,
+            "y": -4.951,
+            "z": -18.765
+          },
+          "centroid": {
+            "x": 17.762,
+            "y": -4.442,
+            "z": -17.432
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 259,
+          "residue_node_id": "uniprot:Q939D2:259",
+          "roles": [
+            "Binding site",
+            "axial binding residue",
+            "heme b",
+            "Fe",
+            "heme cofactor binding",
+            "heme ligand",
+            "iron binding"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.514,
+          "left": "uniprot:Q939D2:92",
+          "right": "uniprot:Q939D2:259"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 2,
+      "row_id": "uniprot:Q939D2",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q939D2",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "P04040",
+      "active_or_cofactor_feature_count": 11,
+      "coordinate_path": "artifacts/v3_heme_peroxidase_deep_packet_structural_coordinates_20260521/afdb_P04040.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -11.028,
+            "y": 5.162,
+            "z": -5.302
+          },
+          "centroid": {
+            "x": -10.234,
+            "y": 4.03,
+            "z": -4.31
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 75,
+          "residue_node_id": "uniprot:P04040:75",
+          "roles": [
+            "Active site",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -5.381,
+            "y": 1.178,
+            "z": 2.675
+          },
+          "centroid": {
+            "x": -6.126,
+            "y": 0.752,
+            "z": 2.529
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 148,
+          "residue_node_id": "uniprot:P04040:148",
+          "roles": [
+            "Active site",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -14.545,
+            "y": -4.93,
+            "z": 12.463
+          },
+          "centroid": {
+            "x": -12.812,
+            "y": -5.203,
+            "z": 12.901
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 194,
+          "residue_node_id": "uniprot:P04040:194",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": -14.06,
+            "y": 5.695,
+            "z": 14.804
+          },
+          "centroid": {
+            "x": -13.526,
+            "y": 5.791,
+            "z": 14.238
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 201,
+          "residue_node_id": "uniprot:P04040:201",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": -9.826,
+            "y": 7.348,
+            "z": 12.014
+          },
+          "centroid": {
+            "x": -7.823,
+            "y": 5.762,
+            "z": 13.064
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 203,
+          "residue_node_id": "uniprot:P04040:203",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -0.896,
+            "y": 5.07,
+            "z": 8.544
+          },
+          "centroid": {
+            "x": -1.103,
+            "y": 4.769,
+            "z": 9.402
+          },
+          "chain_name": "A",
+          "code": "ASN",
+          "resid": 213,
+          "residue_node_id": "uniprot:P04040:213",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 3.297,
+            "y": 4.192,
+            "z": 10.245
+          },
+          "centroid": {
+            "x": 3.164,
+            "y": 3.165,
+            "z": 11.286
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 237,
+          "residue_node_id": "uniprot:P04040:237",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 14,
+          "ca": {
+            "x": -2.45,
+            "y": -10.227,
+            "z": 13.92
+          },
+          "centroid": {
+            "x": -1.069,
+            "y": -11.333,
+            "z": 11.656
+          },
+          "chain_name": "A",
+          "code": "TRP",
+          "resid": 303,
+          "residue_node_id": "uniprot:P04040:303",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 1.015,
+            "y": -6.832,
+            "z": 17.86
+          },
+          "centroid": {
+            "x": 0.748,
+            "y": -5.347,
+            "z": 17.14
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 305,
+          "residue_node_id": "uniprot:P04040:305",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 1.769,
+            "y": -8.565,
+            "z": 21.219
+          },
+          "centroid": {
+            "x": 1.4,
+            "y": -9.359,
+            "z": 23.03
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 306,
+          "residue_node_id": "uniprot:P04040:306",
+          "roles": [
+            "Binding site",
+            "NADP(+)"
+          ]
+        },
+        {
+          "atom_count": 12,
+          "ca": {
+            "x": -6.676,
+            "y": -4.686,
+            "z": -11.169
+          },
+          "centroid": {
+            "x": -6.696,
+            "y": -3.89,
+            "z": -9.053
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 358,
+          "residue_node_id": "uniprot:P04040:358",
+          "roles": [
+            "Binding site",
+            "axial binding residue",
+            "heme",
+            "Fe",
+            "heme cofactor binding",
+            "heme ligand",
+            "iron binding"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.554,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:148"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.732,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.34,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:201"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.495,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:203"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.157,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:213"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.163,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:237"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 26.075,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:303"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.729,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 32.489,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.262,
+          "left": "uniprot:P04040:75",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.734,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.583,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:201"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.043,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:203"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.349,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:213"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.904,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:237"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.282,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:303"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.321,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.134,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.09,
+          "left": "uniprot:P04040:148",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.891,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:201"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.161,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:203"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.368,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:213"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.161,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:237"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.284,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:303"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.579,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.869,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.909,
+          "left": "uniprot:P04040:194",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.333,
+          "left": "uniprot:P04040:201",
+          "right": "uniprot:P04040:203"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.59,
+          "left": "uniprot:P04040:201",
+          "right": "uniprot:P04040:213"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.009,
+          "left": "uniprot:P04040:201",
+          "right": "uniprot:P04040:237"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.725,
+          "left": "uniprot:P04040:201",
+          "right": "uniprot:P04040:303"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.837,
+          "left": "uniprot:P04040:201",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.25,
+          "left": "uniprot:P04040:201",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.929,
+          "left": "uniprot:P04040:201",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.848,
+          "left": "uniprot:P04040:203",
+          "right": "uniprot:P04040:213"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.613,
+          "left": "uniprot:P04040:203",
+          "right": "uniprot:P04040:237"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.155,
+          "left": "uniprot:P04040:203",
+          "right": "uniprot:P04040:303"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.782,
+          "left": "uniprot:P04040:203",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.735,
+          "left": "uniprot:P04040:203",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 26.31,
+          "left": "uniprot:P04040:203",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 4.609,
+          "left": "uniprot:P04040:213",
+          "right": "uniprot:P04040:237"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.288,
+          "left": "uniprot:P04040:213",
+          "right": "uniprot:P04040:303"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.235,
+          "left": "uniprot:P04040:213",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.806,
+          "left": "uniprot:P04040:213",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.742,
+          "left": "uniprot:P04040:213",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.951,
+          "left": "uniprot:P04040:237",
+          "right": "uniprot:P04040:303"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.591,
+          "left": "uniprot:P04040:237",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.897,
+          "left": "uniprot:P04040:237",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.236,
+          "left": "uniprot:P04040:237",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.249,
+          "left": "uniprot:P04040:303",
+          "right": "uniprot:P04040:305"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.593,
+          "left": "uniprot:P04040:303",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 26.039,
+          "left": "uniprot:P04040:303",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.854,
+          "left": "uniprot:P04040:305",
+          "right": "uniprot:P04040:306"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.107,
+          "left": "uniprot:P04040:305",
+          "right": "uniprot:P04040:358"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 33.695,
+          "left": "uniprot:P04040:306",
+          "right": "uniprot:P04040:358"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 11,
+      "row_id": "uniprot:P04040",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P04040",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "I2DBY1",
+      "active_or_cofactor_feature_count": 2,
+      "coordinate_path": "artifacts/v3_heme_peroxidase_deep_packet_structural_coordinates_20260521/afdb_I2DBY1.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 3.604,
+            "y": -2.802,
+            "z": -4.646
+          },
+          "centroid": {
+            "x": 2.673,
+            "y": -2.55,
+            "z": -4.319
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 229,
+          "residue_node_id": "uniprot:I2DBY1:229",
+          "roles": [
+            "Active site",
+            "Proton acceptor",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 2.154,
+            "y": 6.296,
+            "z": -12.52
+          },
+          "centroid": {
+            "x": 1.157,
+            "y": 5.413,
+            "z": -11.247
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 365,
+          "residue_node_id": "uniprot:I2DBY1:365",
+          "roles": [
+            "Binding site",
+            "axial binding residue",
+            "heme",
+            "Fe",
+            "heme cofactor binding",
+            "heme ligand",
+            "iron binding"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.119,
+          "left": "uniprot:I2DBY1:229",
+          "right": "uniprot:I2DBY1:365"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 2,
+      "row_id": "uniprot:I2DBY1",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "I2DBY1",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "Q02567",
+      "active_or_cofactor_feature_count": 14,
+      "coordinate_path": "artifacts/v3_heme_peroxidase_deep_packet_structural_coordinates_20260521/afdb_Q02567.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 3.897,
+            "y": -1.022,
+            "z": -3.276
+          },
+          "centroid": {
+            "x": 3.174,
+            "y": -2.22,
+            "z": -2.466
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 67,
+          "residue_node_id": "uniprot:Q02567:67",
+          "roles": [
+            "Active site",
+            "Proton acceptor",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": -10.7,
+            "y": -7.294,
+            "z": -7.626
+          },
+          "centroid": {
+            "x": -9.956,
+            "y": -8.024,
+            "z": -6.907
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 56,
+          "residue_node_id": "uniprot:Q02567:56",
+          "roles": [
+            "Binding site",
+            "Mn(2+)"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": -4.89,
+            "y": -5.132,
+            "z": -6.691
+          },
+          "centroid": {
+            "x": -4.511,
+            "y": -6.126,
+            "z": -6.102
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 60,
+          "residue_node_id": "uniprot:Q02567:60",
+          "roles": [
+            "Binding site",
+            "Mn(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 6.025,
+            "y": 0.125,
+            "z": -6.293
+          },
+          "centroid": {
+            "x": 6.386,
+            "y": 0.62,
+            "z": -7.237
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 68,
+          "residue_node_id": "uniprot:Q02567:68",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 4,
+          "ca": {
+            "x": 10.307,
+            "y": 4.53,
+            "z": -5.809
+          },
+          "centroid": {
+            "x": 10.173,
+            "y": 3.889,
+            "z": -6.509
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 83,
+          "residue_node_id": "uniprot:Q02567:83",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 9.95,
+            "y": 3.003,
+            "z": -11.026
+          },
+          "centroid": {
+            "x": 10.7,
+            "y": 2.139,
+            "z": -10.449
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 85,
+          "residue_node_id": "uniprot:Q02567:85",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 10.714,
+            "y": -2.358,
+            "z": -10.25
+          },
+          "centroid": {
+            "x": 10.492,
+            "y": -2.554,
+            "z": -9.735
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 87,
+          "residue_node_id": "uniprot:Q02567:87",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -8.832,
+            "y": 1.179,
+            "z": 1.902
+          },
+          "centroid": {
+            "x": -7.562,
+            "y": 0.7,
+            "z": 2.867
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 194,
+          "residue_node_id": "uniprot:Q02567:194",
+          "roles": [
+            "Binding site",
+            "axial binding residue",
+            "heme b",
+            "Fe",
+            "heme cofactor binding",
+            "heme ligand",
+            "iron binding"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": -12.426,
+            "y": 2.267,
+            "z": 0.997
+          },
+          "centroid": {
+            "x": -12.88,
+            "y": 2.419,
+            "z": 0.503
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 195,
+          "residue_node_id": "uniprot:Q02567:195",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -6.733,
+            "y": -12.21,
+            "z": 0.717
+          },
+          "centroid": {
+            "x": -6.798,
+            "y": -12.207,
+            "z": -0.227
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 200,
+          "residue_node_id": "uniprot:Q02567:200",
+          "roles": [
+            "Binding site",
+            "Mn(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -15.385,
+            "y": -1.395,
+            "z": 4.762
+          },
+          "centroid": {
+            "x": -15.517,
+            "y": -0.829,
+            "z": 3.604
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 212,
+          "residue_node_id": "uniprot:Q02567:212",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": -18.727,
+            "y": -0.606,
+            "z": 0.39
+          },
+          "centroid": {
+            "x": -18.621,
+            "y": 0.167,
+            "z": 0.457
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 214,
+          "residue_node_id": "uniprot:Q02567:214",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": -17.289,
+            "y": 2.703,
+            "z": -3.829
+          },
+          "centroid": {
+            "x": -17.676,
+            "y": 2.871,
+            "z": -3.274
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 217,
+          "residue_node_id": "uniprot:Q02567:217",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -16.444,
+            "y": 6.81,
+            "z": -0.042
+          },
+          "centroid": {
+            "x": -16.947,
+            "y": 5.903,
+            "z": 0.537
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 219,
+          "residue_node_id": "uniprot:Q02567:219",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.472,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:56"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.284,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:60"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.866,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:68"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.85,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:83"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.626,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:85"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.843,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:87"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.917,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.191,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.941,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.894,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.923,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.518,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.035,
+          "left": "uniprot:Q02567:67",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.269,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:60"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.345,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:68"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.174,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:83"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.324,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:85"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.132,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:87"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.887,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.99,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.465,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.499,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.169,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.561,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.013,
+          "left": "uniprot:Q02567:56",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.122,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:68"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.03,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:83"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.47,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:85"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.243,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:87"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.367,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.063,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.41,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.978,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.189,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.944,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.897,
+          "left": "uniprot:Q02567:60",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.162,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:83"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.789,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:85"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.619,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:87"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.0,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.954,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.08,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.144,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.649,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.585,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.261,
+          "left": "uniprot:Q02567:68",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.448,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:85"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.206,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:87"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.904,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.838,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.762,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.407,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.129,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 27.727,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 27.46,
+          "left": "uniprot:Q02567:83",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.47,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:87"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.874,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.412,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.449,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.174,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 31.076,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.175,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.841,
+          "left": "uniprot:Q02567:85",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.286,
+          "left": "uniprot:Q02567:87",
+          "right": "uniprot:Q02567:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 26.141,
+          "left": "uniprot:Q02567:87",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.842,
+          "left": "uniprot:Q02567:87",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.124,
+          "left": "uniprot:Q02567:87",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 31.354,
+          "left": "uniprot:Q02567:87",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 29.172,
+          "left": "uniprot:Q02567:87",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.427,
+          "left": "uniprot:Q02567:87",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.863,
+          "left": "uniprot:Q02567:194",
+          "right": "uniprot:Q02567:195"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.604,
+          "left": "uniprot:Q02567:194",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.599,
+          "left": "uniprot:Q02567:194",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.168,
+          "left": "uniprot:Q02567:194",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.329,
+          "left": "uniprot:Q02567:194",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.666,
+          "left": "uniprot:Q02567:194",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.559,
+          "left": "uniprot:Q02567:195",
+          "right": "uniprot:Q02567:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.028,
+          "left": "uniprot:Q02567:195",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.952,
+          "left": "uniprot:Q02567:195",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.865,
+          "left": "uniprot:Q02567:195",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.153,
+          "left": "uniprot:Q02567:195",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.429,
+          "left": "uniprot:Q02567:200",
+          "right": "uniprot:Q02567:212"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.692,
+          "left": "uniprot:Q02567:200",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.828,
+          "left": "uniprot:Q02567:200",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.369,
+          "left": "uniprot:Q02567:200",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.559,
+          "left": "uniprot:Q02567:212",
+          "right": "uniprot:Q02567:214"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.707,
+          "left": "uniprot:Q02567:212",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.567,
+          "left": "uniprot:Q02567:212",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.551,
+          "left": "uniprot:Q02567:214",
+          "right": "uniprot:Q02567:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.771,
+          "left": "uniprot:Q02567:214",
+          "right": "uniprot:Q02567:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.65,
+          "left": "uniprot:Q02567:217",
+          "right": "uniprot:Q02567:219"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 14,
+      "row_id": "uniprot:Q02567",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q02567",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "Q9UR19",
+      "active_or_cofactor_feature_count": 15,
+      "coordinate_path": "artifacts/v3_heme_peroxidase_deep_packet_structural_coordinates_20260521/afdb_Q9UR19.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -9.482,
+            "y": -5.272,
+            "z": -1.079
+          },
+          "centroid": {
+            "x": -8.069,
+            "y": -5.917,
+            "z": -1.472
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 77,
+          "residue_node_id": "uniprot:Q9UR19:77",
+          "roles": [
+            "Active site",
+            "Proton acceptor",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 14,
+          "ca": {
+            "x": -6.789,
+            "y": 8.178,
+            "z": -9.629
+          },
+          "centroid": {
+            "x": -8.686,
+            "y": 10.005,
+            "z": -10.724
+          },
+          "chain_name": "A",
+          "code": "TRP",
+          "resid": 194,
+          "residue_node_id": "uniprot:Q9UR19:194",
+          "roles": [
+            "Active site",
+            "Tryptophan radical intermediate",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 4.564,
+            "y": -0.969,
+            "z": 5.864
+          },
+          "centroid": {
+            "x": 4.453,
+            "y": -2.112,
+            "z": 5.281
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 66,
+          "residue_node_id": "uniprot:Q9UR19:66",
+          "roles": [
+            "Binding site",
+            "Mn(2+)"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": -0.964,
+            "y": -2.499,
+            "z": 3.847
+          },
+          "centroid": {
+            "x": -0.342,
+            "y": -3.655,
+            "z": 4.724
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 70,
+          "residue_node_id": "uniprot:Q9UR19:70",
+          "roles": [
+            "Binding site",
+            "Mn(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -12.477,
+            "y": -4.861,
+            "z": 1.308
+          },
+          "centroid": {
+            "x": -13.248,
+            "y": -4.403,
+            "z": 1.992
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 78,
+          "residue_node_id": "uniprot:Q9UR19:78",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 4,
+          "ca": {
+            "x": -18.265,
+            "y": -3.548,
+            "z": -0.555
+          },
+          "centroid": {
+            "x": -17.948,
+            "y": -3.877,
+            "z": 0.274
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 90,
+          "residue_node_id": "uniprot:Q9UR19:90",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -18.242,
+            "y": -3.59,
+            "z": 5.009
+          },
+          "centroid": {
+            "x": -18.387,
+            "y": -4.827,
+            "z": 4.727
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 92,
+          "residue_node_id": "uniprot:Q9UR19:92",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": -16.066,
+            "y": -8.678,
+            "z": 5.31
+          },
+          "centroid": {
+            "x": -15.747,
+            "y": -8.806,
+            "z": 4.835
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 94,
+          "residue_node_id": "uniprot:Q9UR19:94",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 1.035,
+            "y": 2.87,
+            "z": -5.545
+          },
+          "centroid": {
+            "x": 0.45,
+            "y": 1.608,
+            "z": -6.471
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 199,
+          "residue_node_id": "uniprot:Q9UR19:199",
+          "roles": [
+            "Binding site",
+            "axial binding residue",
+            "heme b",
+            "Fe",
+            "heme cofactor binding",
+            "heme ligand",
+            "iron binding"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 3.185,
+            "y": 5.98,
+            "z": -4.701
+          },
+          "centroid": {
+            "x": 3.35,
+            "y": 6.473,
+            "z": -4.25
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 200,
+          "residue_node_id": "uniprot:Q9UR19:200",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 5.882,
+            "y": -8.97,
+            "z": -0.962
+          },
+          "centroid": {
+            "x": 5.686,
+            "y": -8.749,
+            "z": -0.168
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 205,
+          "residue_node_id": "uniprot:Q9UR19:205",
+          "roles": [
+            "Binding site",
+            "Mn(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 8.475,
+            "y": 3.896,
+            "z": -7.008
+          },
+          "centroid": {
+            "x": 8.03,
+            "y": 4.651,
+            "z": -6.064
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 217,
+          "residue_node_id": "uniprot:Q9UR19:217",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": 9.848,
+            "y": 7.315,
+            "z": -2.796
+          },
+          "centroid": {
+            "x": 9.36,
+            "y": 7.869,
+            "z": -3.096
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 219,
+          "residue_node_id": "uniprot:Q9UR19:219",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": 6.06,
+            "y": 10.064,
+            "z": 0.114
+          },
+          "centroid": {
+            "x": 6.446,
+            "y": 10.311,
+            "z": -0.428
+          },
+          "chain_name": "A",
+          "code": "VAL",
+          "resid": 222,
+          "residue_node_id": "uniprot:Q9UR19:222",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 3.868,
+            "y": 12.225,
+            "z": -4.907
+          },
+          "centroid": {
+            "x": 4.854,
+            "y": 11.688,
+            "z": -5.166
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 224,
+          "residue_node_id": "uniprot:Q9UR19:224",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.163,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:194"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.248,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:66"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.223,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:70"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.852,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:78"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.966,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:90"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.8,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:92"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.786,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.03,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.326,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.803,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.016,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.131,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.867,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.339,
+          "left": "uniprot:Q9UR19:77",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.274,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:66"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.153,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:70"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.944,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:78"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.749,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:90"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.998,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:92"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.359,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.299,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.34,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.016,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.068,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.006,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.235,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.339,
+          "left": "uniprot:Q9UR19:194",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.08,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:70"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.064,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:78"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.854,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:90"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.972,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:92"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.03,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.544,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.72,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.599,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.306,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.097,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.531,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.046,
+          "left": "uniprot:Q9UR19:66",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.024,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:78"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.883,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:90"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.351,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:92"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.383,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.001,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.735,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.577,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.742,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.042,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.869,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.798,
+          "left": "uniprot:Q9UR19:70",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.221,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:90"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.968,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:92"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.593,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.009,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.973,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.95,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.183,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.759,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.829,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.448,
+          "left": "uniprot:Q9UR19:78",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.564,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:92"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.096,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.942,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.834,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.752,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.497,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.222,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 27.883,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 27.524,
+          "left": "uniprot:Q9UR19:90",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.542,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.907,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.397,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.428,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.237,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 31.127,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.302,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.936,
+          "left": "uniprot:Q9UR19:92",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.316,
+          "left": "uniprot:Q9UR19:94",
+          "right": "uniprot:Q9UR19:199"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 26.185,
+          "left": "uniprot:Q9UR19:94",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.828,
+          "left": "uniprot:Q9UR19:94",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.201,
+          "left": "uniprot:Q9UR19:94",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 31.512,
+          "left": "uniprot:Q9UR19:94",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 29.459,
+          "left": "uniprot:Q9UR19:94",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.638,
+          "left": "uniprot:Q9UR19:94",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.874,
+          "left": "uniprot:Q9UR19:199",
+          "right": "uniprot:Q9UR19:200"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.59,
+          "left": "uniprot:Q9UR19:199",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.652,
+          "left": "uniprot:Q9UR19:199",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.246,
+          "left": "uniprot:Q9UR19:199",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.442,
+          "left": "uniprot:Q9UR19:199",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.795,
+          "left": "uniprot:Q9UR19:199",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.645,
+          "left": "uniprot:Q9UR19:200",
+          "right": "uniprot:Q9UR19:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.136,
+          "left": "uniprot:Q9UR19:200",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.057,
+          "left": "uniprot:Q9UR19:200",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.937,
+          "left": "uniprot:Q9UR19:200",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.286,
+          "left": "uniprot:Q9UR19:200",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.45,
+          "left": "uniprot:Q9UR19:205",
+          "right": "uniprot:Q9UR19:217"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.861,
+          "left": "uniprot:Q9UR19:205",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.065,
+          "left": "uniprot:Q9UR19:205",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.653,
+          "left": "uniprot:Q9UR19:205",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.596,
+          "left": "uniprot:Q9UR19:217",
+          "right": "uniprot:Q9UR19:219"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.726,
+          "left": "uniprot:Q9UR19:217",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.747,
+          "left": "uniprot:Q9UR19:217",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.511,
+          "left": "uniprot:Q9UR19:219",
+          "right": "uniprot:Q9UR19:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.02,
+          "left": "uniprot:Q9UR19:219",
+          "right": "uniprot:Q9UR19:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.889,
+          "left": "uniprot:Q9UR19:222",
+          "right": "uniprot:Q9UR19:224"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 15,
+      "row_id": "uniprot:Q9UR19",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "Q9UR19",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "P06181",
+      "active_or_cofactor_feature_count": 11,
+      "coordinate_path": "artifacts/v3_heme_peroxidase_deep_packet_structural_coordinates_20260521/afdb_P06181.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -12.912,
+            "y": 6.093,
+            "z": -1.144
+          },
+          "centroid": {
+            "x": -12.807,
+            "y": 5.891,
+            "z": -2.747
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 75,
+          "residue_node_id": "uniprot:P06181:75",
+          "roles": [
+            "Active site",
+            "Proton acceptor",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -14.588,
+            "y": 5.457,
+            "z": 2.272
+          },
+          "centroid": {
+            "x": -14.795,
+            "y": 5.124,
+            "z": 3.342
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 76,
+          "residue_node_id": "uniprot:P06181:76",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 4,
+          "ca": {
+            "x": -14.353,
+            "y": 9.635,
+            "z": 6.917
+          },
+          "centroid": {
+            "x": -14.969,
+            "y": 8.9,
+            "z": 6.808
+          },
+          "chain_name": "A",
+          "code": "GLY",
+          "resid": 94,
+          "residue_node_id": "uniprot:P06181:94",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -17.2,
+            "y": 5.11,
+            "z": 8.765
+          },
+          "centroid": {
+            "x": -18.101,
+            "y": 5.782,
+            "z": 8.154
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 96,
+          "residue_node_id": "uniprot:P06181:96",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": -20.733,
+            "y": 5.144,
+            "z": 4.56
+          },
+          "centroid": {
+            "x": -20.503,
+            "y": 5.377,
+            "z": 4.085
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 98,
+          "residue_node_id": "uniprot:P06181:98",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -1.177,
+            "y": 2.22,
+            "z": -7.447
+          },
+          "centroid": {
+            "x": -1.968,
+            "y": 3.597,
+            "z": -7.919
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 204,
+          "residue_node_id": "uniprot:P06181:204",
+          "roles": [
+            "Binding site",
+            "axial binding residue",
+            "heme b",
+            "Fe",
+            "heme cofactor binding",
+            "heme ligand",
+            "iron binding"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 1.724,
+            "y": -0.353,
+            "z": -7.386
+          },
+          "centroid": {
+            "x": 1.978,
+            "y": -0.939,
+            "z": -7.143
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 205,
+          "residue_node_id": "uniprot:P06181:205",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 2.631,
+            "y": -0.613,
+            "z": -13.342
+          },
+          "centroid": {
+            "x": 2.681,
+            "y": -1.383,
+            "z": -12.301
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 222,
+          "residue_node_id": "uniprot:P06181:222",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": 4.021,
+            "y": -5.67,
+            "z": -11.418
+          },
+          "centroid": {
+            "x": 4.488,
+            "y": -5.355,
+            "z": -10.891
+          },
+          "chain_name": "A",
+          "code": "THR",
+          "resid": 224,
+          "residue_node_id": "uniprot:P06181:224",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 3.823,
+            "y": -6.954,
+            "z": -6.016
+          },
+          "centroid": {
+            "x": 4.471,
+            "y": -7.101,
+            "z": -6.448
+          },
+          "chain_name": "A",
+          "code": "ILE",
+          "resid": 227,
+          "residue_node_id": "uniprot:P06181:227",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 7.208,
+            "y": -2.286,
+            "z": -5.053
+          },
+          "centroid": {
+            "x": 7.061,
+            "y": -2.452,
+            "z": -6.229
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 229,
+          "residue_node_id": "uniprot:P06181:229",
+          "roles": [
+            "Binding site",
+            "Ca(2+)"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.858,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:76"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.922,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.842,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:96"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.726,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:98"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.872,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:204"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.168,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.865,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.036,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.772,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.143,
+          "left": "uniprot:P06181:75",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.252,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:94"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.007,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:96"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.565,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:98"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.876,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:204"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.827,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.024,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.642,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.7,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.263,
+          "left": "uniprot:P06181:76",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.657,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:96"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.15,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:98"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.855,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:204"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.724,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.353,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.133,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 27.8,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 27.391,
+          "left": "uniprot:P06181:94",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.492,
+          "left": "uniprot:P06181:96",
+          "right": "uniprot:P06181:98"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.976,
+          "left": "uniprot:P06181:96",
+          "right": "uniprot:P06181:204"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.472,
+          "left": "uniprot:P06181:96",
+          "right": "uniprot:P06181:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.245,
+          "left": "uniprot:P06181:96",
+          "right": "uniprot:P06181:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 31.207,
+          "left": "uniprot:P06181:96",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.39,
+          "left": "uniprot:P06181:96",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 29.007,
+          "left": "uniprot:P06181:96",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 23.133,
+          "left": "uniprot:P06181:98",
+          "right": "uniprot:P06181:204"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 26.024,
+          "left": "uniprot:P06181:98",
+          "right": "uniprot:P06181:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 29.992,
+          "left": "uniprot:P06181:98",
+          "right": "uniprot:P06181:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 31.385,
+          "left": "uniprot:P06181:98",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 29.346,
+          "left": "uniprot:P06181:98",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 30.468,
+          "left": "uniprot:P06181:98",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.878,
+          "left": "uniprot:P06181:204",
+          "right": "uniprot:P06181:205"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.568,
+          "left": "uniprot:P06181:204",
+          "right": "uniprot:P06181:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.249,
+          "left": "uniprot:P06181:204",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.546,
+          "left": "uniprot:P06181:204",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.815,
+          "left": "uniprot:P06181:204",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.03,
+          "left": "uniprot:P06181:205",
+          "right": "uniprot:P06181:222"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.057,
+          "left": "uniprot:P06181:205",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.061,
+          "left": "uniprot:P06181:205",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.265,
+          "left": "uniprot:P06181:205",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.586,
+          "left": "uniprot:P06181:222",
+          "right": "uniprot:P06181:224"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.762,
+          "left": "uniprot:P06181:222",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.615,
+          "left": "uniprot:P06181:222",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.556,
+          "left": "uniprot:P06181:224",
+          "right": "uniprot:P06181:227"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.882,
+          "left": "uniprot:P06181:224",
+          "right": "uniprot:P06181:229"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.846,
+          "left": "uniprot:P06181:227",
+          "right": "uniprot:P06181:229"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 11,
+      "row_id": "uniprot:P06181",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P06181",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "uniprot_feature_fetch_error": null
+    },
+    {
+      "accession": "P13029",
+      "active_or_cofactor_feature_count": 2,
+      "coordinate_path": "artifacts/v3_heme_peroxidase_deep_packet_structural_coordinates_20260521/afdb_P13029.cif",
+      "countable_label_candidate": false,
+      "mapped_residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 4.823,
+            "y": 4.552,
+            "z": -12.731
+          },
+          "centroid": {
+            "x": 6.255,
+            "y": 5.182,
+            "z": -13.131
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 106,
+          "residue_node_id": "uniprot:P13029:106",
+          "roles": [
+            "Active site",
+            "Proton acceptor",
+            "acid base"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 13.175,
+            "y": -3.321,
+            "z": -19.656
+          },
+          "centroid": {
+            "x": 13.809,
+            "y": -2.697,
+            "z": -18.261
+          },
+          "chain_name": "A",
+          "code": "HIS",
+          "resid": 267,
+          "residue_node_id": "uniprot:P13029:267",
+          "roles": [
+            "Binding site",
+            "axial binding residue",
+            "heme b",
+            "Fe",
+            "heme cofactor binding",
+            "heme ligand",
+            "iron binding"
+          ]
+        }
+      ],
+      "missing_feature_count": 0,
+      "missing_features": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.405,
+          "left": "uniprot:P13029:106",
+          "right": "uniprot:P13029:267"
+        }
+      ],
+      "ready_for_geometry_scoring_after_review": true,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 2,
+      "row_id": "uniprot:P13029",
+      "source_context_not_counted_as_predictive_score": true,
+      "status": "ok",
+      "structure_id": "P13029",
+      "structure_source": "alphafold",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "uniprot_feature_fetch_error": null
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_heme_peroxidase_deep_packet_structure_mapping_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_heme_peroxidase_deep_packet_coordinate_materialization_20260521.json",
+    "created_at": "2026-05-21T13:31:30Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "mapped_candidate_count": 7,
+    "method": "heme_peroxidase_deep_packet_structure_mapping_review_only",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_geometry_scored_count": 0,
+    "source_method": "uniprot_active_or_heme_binding_positions_mapped_to_alphafold_ca",
+    "source_separation_note": "UniProt active/heme-binding positions seed coordinate mapping only; EC/name/prose are review context and no geometry score or import decision is made here.",
+    "status_counts": {
+      "ok": 7
+    },
+    "structural_duplicate_screened_count": 0,
+    "target_current_fingerprint_lane": "heme_peroxidase_oxidase"
+  }
+}

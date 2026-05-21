@@ -1,0 +1,75 @@
+{
+  "caveats": [
+    "Geometry/retrieval scores are diagnostic review-only evidence until duplicate/leakage and factory gates pass.",
+    "Foldseek/TM evidence is duplicate/leakage import-gate evidence, not positive mechanism evidence.",
+    "ESM sidecar is absent for this heme deep packet; no ESM comparison or superiority claim is made."
+  ],
+  "metadata": {
+    "artifact_id": "v3_heme_peroxidase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json",
+    "created_at": "2026-05-21T13:31:30Z",
+    "curated_label_registry_edited": false,
+    "current_countable_structural_screen_artifact": "artifacts/v3_heme_peroxidase_deep_packet_chunked_current_countable_structural_screen_20260521.json",
+    "fingerprint_registry_edited": false,
+    "geometry_scores_artifact": "artifacts/v3_heme_peroxidase_deep_packet_geometry_scores_20260521.json",
+    "method": "heme_peroxidase_deep_packet_post_duplicate_modern_baseline_comparison",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "targeted_current_fingerprint_rescue_screen_artifact": "artifacts/v3_heme_peroxidase_deep_packet_targeted_current_heme_rescue_screen_20260521.json",
+    "terminal_decision_packet_artifact": "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+  },
+  "metrics": {
+    "deterministic_5mer_nearest_neighbor": {
+      "exact_current_reference_sequence_match_count": 0,
+      "near_neighbor_alert_count": 0,
+      "supports_duplicate_clear_claim": false
+    },
+    "ec_keyword_baseline": {
+      "caveat": "EC/name/source context selected the lane but is review context only, not source-free predictive evidence.",
+      "rows_routed_to_existing_lane_count": 7,
+      "supports_mechanism_match_claim": false
+    },
+    "esm_sidecar_status": "not_available_for_this_deep_packet",
+    "foldseek_current_countable_high_tm_candidate_count": 6,
+    "foldseek_current_countable_pair_cache_complete": false,
+    "foldseek_current_countable_status_counts": {
+      "current_countable_structural_duplicate_signal": 6,
+      "foldseek_query_timeout": 1
+    },
+    "geometry_retrieval_triage": {
+      "scored_row_count": 7,
+      "supports_superiority_claim": false,
+      "target_lane_score_at_or_above_0_4115_count": 7,
+      "text_or_label_fields_used_for_score_count": 0,
+      "top1_fingerprint_counts": {
+        "heme_peroxidase_oxidase": 7
+      }
+    },
+    "superiority_claim": false,
+    "targeted_current_fingerprint_rescue_high_tm_candidate_count": 3,
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 1,
+      "terminal_rejection_duplicate_or_leakage": 6
+    }
+  },
+  "task_definition": {
+    "frozen_rows": [
+      "uniprot:Q939D2",
+      "uniprot:P04040",
+      "uniprot:I2DBY1",
+      "uniprot:Q02567",
+      "uniprot:Q9UR19",
+      "uniprot:P06181",
+      "uniprot:P13029"
+    ],
+    "positive_claim_allowed": false,
+    "selection_frozen_before_scoring": true,
+    "source_context_policy": "EC/keyword/protein names/source prose may explain selection or review context but are not counted as predictive evidence.",
+    "target_current_fingerprint_lane": "heme_peroxidase_oxidase"
+  }
+}

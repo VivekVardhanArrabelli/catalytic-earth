@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 259
-- Measured elapsed time: 7704.3 minutes (128.41 hours)
+- Entries: 260
+- Measured elapsed time: 7750.3 minutes (129.17 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 712.5 measured minutes (11.87 hours)
+- v3: 758.4 measured minutes (12.64 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2817
-- Evidence references logged: 2296
+- Artifact references logged: 2830
+- Evidence references logged: 2304
 
 ## Recent Entries
-
-### 2026-05-21T02:49:40.198593+00:00 - v3
-
-- Task: metal phosphatase external deep terminal packet
-- Time mode: measured
-- Measured minutes: 34.517
-- Started: 2026-05-21T02:14:38Z
-- Ended: 2026-05-21T02:49:09Z
-- Artifacts: artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_current_countable_structural_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_foldseek_runtime_blocker_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_structure_mapping_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_geometry_scores_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: 7 frozen selected rows before scoring, 7 AlphaFold sidecars materialized, 7 active sites mapped, 7 rows scored against all 8 fingerprints with 0 text/name/label fields, Foldseek 4704-pair current-countable screen incomplete recorded as exact blocker, terminal counts needs_new_extractor_or_structure:7, benchmark records EC/keyword and deterministic sequence baselines with ESM/Foldseek caveats, 775 unit tests passed, validate passed, migration dry-run passed
-- Notes: No artifact migration Phase 2/3 action, upload, deletion, externalization, Git-LFS migration, history rewrite, registry edit, label import, production fingerprint edit, production threshold change, or removal_allowed=true.
 
 ### 2026-05-21T02:52:33.159296+00:00 - ops
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T12:23:57Z
 - Artifacts: artifacts/v3_epk_fresh_lane_followup_synthesis_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
 - Evidence: fresh ePK lane outputs synthesized review-only with 5UJ7 and 119-row scorer contract preserved, 7 frozen flavin dehydrogenase rows screened against 672 current-countable structures, 4704/4704 unique query-target pairs mapped with 0 raw-name failures, 7/7 rows terminal_rejection_duplicate_or_leakage by TM>=0.7 current-countable structural signal, 782-test unit discovery passed, CLI validate passed, artifact migration dry-run passed with removal_allowed=0
+- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
+
+### 2026-05-21T14:06:11.129182+00:00 - v3
+
+- Task: heme peroxidase duplicate terminal packet and ePK remote synthesis
+- Time mode: measured
+- Measured minutes: 45.917
+- Started: 2026-05-21T13:19:57Z
+- Ended: 2026-05-21T14:05:52Z
+- Artifacts: artifacts/v3_epk_remote_lane_followup_synthesis_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_structure_mapping_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_geometry_scores_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_targeted_current_heme_rescue_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_heme_peroxidase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: fresh ePK remote lane outputs synthesized review-only with 5UJ7 biological assembly residual preserved, 7 frozen heme rows selected before outcome scoring and scored with source-free active-site geometry, 7/7 heme rows top-ranked heme_peroxidase_oxidase above 0.4115 with 0 text fields, 6/7 heme rows terminal_rejection_duplicate_or_leakage by current-countable TM evidence, I2DBY1 remains needs_new_extractor_or_structure pending complete full-current duplicate screen, 784-test unit discovery passed, CLI validate passed, artifact migration dry-run passed with removal_allowed=0
 - Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -326,6 +326,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T02:49:40.198593+00:00: No superiority or import claim is made until the duplicate/leakage screen completes; geometry top1 routed six of seven rows to metal_dependent_hydrolase but remained below the in-scope floor.
 - 2026-05-21T02:52:33.159296+00:00: next main-loop work should complete a resumable/chunked current-countable structural duplicate screen before any import or superiority claim
 - 2026-05-21T04:01:42.976219+00:00: Geometry adds signal for flavin but no import or mechanism-match claim is allowed until pair-cache-complete duplicate screening exists.
+- 2026-05-21T14:06:11.129182+00:00: Next exact heme work is smaller full-current subchunk duplicate screening for I2DBY1 before any duplicate-clear or mechanism-match claim.
 
 ## Scope Adjustments
 
@@ -474,3 +475,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T02:52:33.159296+00:00: wrap validation keeps the metal-phosphatase blocker packet review-only and ready for the next duplicate-screen experiment
 - 2026-05-21T04:01:42.976219+00:00: External deepening now has serine and flavin source-separated terminal blocker packets after the metal packet; next work is current-countable structural duplicate screening not row breadth.
 - 2026-05-21T12:24:08.992494+00:00: Flavin dehydrogenase deep packet is now terminal duplicate/leakage evidence; ePK remains review-only no-go and main loop should not open new broad external breadth.
+- 2026-05-21T14:06:11.129182+00:00: External deepening produced a mostly terminal heme packet without new broad row breadth; ePK remains review-only no-go.
