@@ -472,6 +472,26 @@ current-reference sequence matches, 13 sequence-neighbor alerts, 0
 geometry-scored external rows, 0 import-ready rows, and 0 countable label
 candidates. It is not a production benchmark and authorizes no superiority
 claim, scorer threshold, label import, registry edit, or fingerprint expansion.
+Current source-free geometry follow-up scope:
+`artifacts/v3_external_minicampaign_source_free_geometry_preregistration_20260521.json`
+freezes the exact next experiment before scoring: 14 rows, two `needs_review`
+rows from each source-complete external mini-campaign, excluding exact
+current-reference duplicates and deterministic 5-mer near-neighbor alerts. This
+artifact does not run geometry, Foldseek, inverse-gate scoring, terminal
+review, or import gates. A future bounded task may only materialize sidecars
+for those exact accessions, run duplicate screens, and then decide whether any
+row is eligible for the existing all-8 inverse gate. Cobalamin remains outside
+this follow-up until its source-surface blocker is cleared. No production
+scoring, threshold tuning, label import, registry edit, or fingerprint
+expansion is in scope now.
+Current terminal-decision ledger scope:
+`artifacts/v3_external_minicampaign_terminal_decision_index_20260521.json`
+normalizes every 2026-05-21 external mini-campaign decision plus the cobalamin
+blocker into the allowed terminal vocabulary. It has 136 review-only rows: 123
+`needs_review` and 13 `terminal_rejection`. The index is for handoff and
+regression hardening only; every row remains non-countable and not
+import-ready, and it authorizes no production scoring or label/fingerprint
+change.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

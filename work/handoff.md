@@ -202,6 +202,28 @@ all remain diagnostic and no-claim: there are 0 import-ready rows, 0 countable
 label candidates, 0 source-free external geometry scores, no superiority
 claim, and no production authorization.
 
+The exact next experiment is preregistered but not run in
+`artifacts/v3_external_minicampaign_source_free_geometry_preregistration_20260521.json`.
+It freezes 14 rows, exactly two `needs_review` rows from each source-complete
+mini-campaign, excluding exact current-reference duplicates and deterministic
+5-mer near-neighbor alerts. Cobalamin is deliberately excluded until its
+source-surface blocker is cleared. The only authorized later bounded operation
+is to materialize structure sidecars for those exact accessions, run
+current-countable duplicate screens, and only then consider the existing all-8
+inverse gate and terminal review. The preregistration itself runs no geometry,
+Foldseek, inverse gate, terminal-review import gate, threshold tuning, registry
+edit, label import, fingerprint expansion, artifact upload/removal, or ePK
+production scoring.
+
+The normalized terminal-decision ledger is
+`artifacts/v3_external_minicampaign_terminal_decision_index_20260521.json`.
+It carries 136 review-only decision rows across the seven scored
+mini-campaigns plus the cobalamin blocker, normalized to the allowed terminal
+decision vocabulary. Counts are 123 `needs_review` and 13
+`terminal_rejection`; every row has `ready_for_label_import=false` and
+`countable_label_candidate=false`. This is a handoff/regression input only, not
+a production benchmark, import request, or scoring authorization.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late

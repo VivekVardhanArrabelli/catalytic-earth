@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 248
-- Measured elapsed time: 7132.7 minutes (118.88 hours)
+- Entries: 249
+- Measured elapsed time: 7138.2 minutes (118.97 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1801.6 measured minutes (30.03 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 151.5 measured minutes (2.53 hours)
+- v3: 157.0 measured minutes (2.62 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2745
-- Evidence references logged: 2233
+- Artifact references logged: 2750
+- Evidence references logged: 2237
 
 ## Recent Entries
-
-### 2026-05-21T00:58:14.196100+00:00 - ops
-
-- Task: final validation for 2026-05-21 small-win loop
-- Time mode: measured
-- Measured minutes: 5.517
-- Started: 2026-05-21T00:52:30Z
-- Ended: 2026-05-21T00:58:01Z
-- Artifacts: work/progress_log.jsonl, work/status.md
-- Evidence: 759-test unit discovery passed; validate passed with 682 labels and 8 fingerprints; artifact migration dry-run passed with removal_allowed=0; git diff check passed; worktree clean before final status update
-- Notes: Final wrap validation after pushed ePK PLP PfkA flavin heme and baseline-rollup commits
 
 ### 2026-05-21T01:19:56.798534+00:00 - post-infra-science
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-21T01:50:02Z
 - Artifacts: artifacts/v3_current_fingerprint_external_minicampaign_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: all eight production fingerprint lanes covered by seven external mini-campaigns plus one cobalamin source-surface blocker, 135 frozen external rows with 123 needs_review 12 duplicate terminal rejections and 0 geometry-scored rows, modern baseline sections cover EC keyword deterministic 5-mer geometry ESM and Foldseek with no superiority claim, focused benchmark regression passed
+- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
+
+### 2026-05-21T01:55:41.795664+00:00 - v3
+
+- Task: external mini-campaign next experiment preregistration
+- Time mode: measured
+- Measured minutes: 5.467
+- Started: 2026-05-21T01:50:02Z
+- Ended: 2026-05-21T01:55:30Z
+- Artifacts: artifacts/v3_external_minicampaign_source_free_geometry_preregistration_20260521.json, artifacts/v3_external_minicampaign_terminal_decision_index_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: 14-row source-free-geometry follow-up preregistered from seven source-complete external mini-campaigns before coordinate materialization or scoring, terminal-decision index normalized 136 review-only rows to 123 needs_review and 13 terminal_rejection, registry invariant regression pins 682 labels 212 seed 470 out_of_scope and exactly three external out-of-scope UniProt labels, focused preregistration terminal-index and registry-invariant regressions passed
 - Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -320,6 +320,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:41:08.373902+00:00: use a different external sourcing route or wait for new cobalamin source rows; do not score one-row campaign
 - 2026-05-21T01:47:47.464485+00:00: radical SAM external mini-campaign remains review-only and not import-ready
 - 2026-05-21T01:50:11.872301+00:00: current-fingerprint external benchmark is review-only and cannot support superiority import or production scoring claims
+- 2026-05-21T01:55:41.795664+00:00: external small-win rows remain review-only until source-free geometry duplicate screens terminal review and factory/import gates pass
 
 ## Scope Adjustments
 
@@ -461,3 +462,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T01:41:08.373902+00:00: cobalamin radical external surface is terminal review-only blocker evidence, not a scored mini-campaign
 - 2026-05-21T01:47:47.464485+00:00: all current production fingerprint lanes now have either a review-only external mini-campaign or a terminal source-surface blocker
 - 2026-05-21T01:50:11.872301+00:00: modern baseline comparison is now explicit across the current fingerprint external surfaces
+- 2026-05-21T01:55:41.795664+00:00: next exact external experiment is source-free sidecar materialization and duplicate screening for 14 frozen rows only

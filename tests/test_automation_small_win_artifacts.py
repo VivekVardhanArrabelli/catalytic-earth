@@ -1718,6 +1718,129 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(benchmark["synthesis_conclusion"]["label_import_authorized"])
 
+    def test_external_minicampaign_source_free_geometry_preregistration_is_frozen(
+        self,
+    ) -> None:
+        preregistration = _load_json(
+            ARTIFACTS
+            / "v3_external_minicampaign_source_free_geometry_preregistration_20260521.json"
+        )
+        metadata = preregistration["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_next_experiment_scoring"])
+        self.assertEqual(metadata["candidate_count"], 14)
+        self.assertEqual(metadata["campaign_count"], 7)
+        self.assertEqual(metadata["fingerprint_lane_count"], 7)
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(
+            set(metadata["candidate_count_per_campaign"].values()),
+            {2},
+        )
+
+        rows = preregistration["rows"]
+        self.assertEqual(len(rows), 14)
+        self.assertTrue(
+            all(row["prior_normalized_terminal_decision"] == "needs_review" for row in rows)
+        )
+        self.assertTrue(
+            all(row["sequence_baseline_signal"] == "no_sequence_neighbor_alert" for row in rows)
+        )
+        self.assertTrue(
+            all(row["source_free_geometry_status"] == "not_materialized" for row in rows)
+        )
+        self.assertTrue(
+            all(
+                row["foldseek_current_countable_screen_status"]
+                == "not_run_preregistered_future_step"
+                for row in rows
+            )
+        )
+        self.assertTrue(all(not row["ready_for_label_import"] for row in rows))
+        self.assertTrue(all(not row["countable_label_candidate"] for row in rows))
+        self.assertFalse(preregistration["task_definition"]["positive_claim_allowed"])
+        self.assertFalse(
+            preregistration["synthesis_conclusion"][
+                "production_scoring_authorized_now"
+            ]
+        )
+        self.assertFalse(
+            preregistration["synthesis_conclusion"]["label_import_authorized_now"]
+        )
+
+    def test_external_minicampaign_terminal_decision_index_is_review_only(
+        self,
+    ) -> None:
+        index = _load_json(
+            ARTIFACTS / "v3_external_minicampaign_terminal_decision_index_20260521.json"
+        )
+        metadata = index["metadata"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["row_count"], 136)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"needs_review": 123, "terminal_rejection": 13},
+        )
+        self.assertEqual(metadata["campaign_count"], 7)
+        self.assertTrue(metadata["includes_cobalamin_source_surface_blocker"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        allowed = set(index["task_definition"]["allowed_decisions"])
+        self.assertLessEqual({row["terminal_decision"] for row in index["rows"]}, allowed)
+        self.assertTrue(all(not row["ready_for_label_import"] for row in index["rows"]))
+        self.assertTrue(all(not row["countable_label_candidate"] for row in index["rows"]))
+        blocker_rows = [
+            row for row in index["rows"] if row["campaign_id"] == "cobalamin_radical_blocker"
+        ]
+        self.assertEqual(len(blocker_rows), 1)
+        self.assertEqual(
+            blocker_rows[0]["target_current_fingerprint_lane"],
+            "cobalamin_radical_rearrangement",
+        )
+        self.assertFalse(index["task_definition"]["positive_claim_allowed"])
+        self.assertEqual(index["synthesis_conclusion"]["import_ready_candidate_count"], 0)
+        self.assertFalse(index["synthesis_conclusion"]["label_import_authorized"])
+
+    def test_current_external_small_wins_preserve_label_registry_invariants(
+        self,
+    ) -> None:
+        labels = _load_json(ROOT / "data/registries/curated_mechanism_labels.json")
+        by_type: dict[str, int] = {}
+        for label in labels:
+            by_type[label["label_type"]] = by_type.get(label["label_type"], 0) + 1
+
+        self.assertEqual(len(labels), 682)
+        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 212})
+
+        labels_by_entry = {label["entry_id"]: label for label in labels}
+        self.assertEqual(
+            {
+                entry_id
+                for entry_id in labels_by_entry
+                if entry_id.startswith("uniprot:")
+            },
+            {"uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"},
+        )
+        for entry_id in ("uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"):
+            label = labels_by_entry[entry_id]
+            self.assertEqual(label["label_type"], "out_of_scope")
+            self.assertIsNone(label["fingerprint_id"])
+            self.assertEqual(
+                label["ontology_version_at_decision"],
+                "label_factory_v1_8fp",
+            )
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]
