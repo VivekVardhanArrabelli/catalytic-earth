@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_deep_packet_selection_20260521",
+    "artifact_migration_upload_or_removal_performed": false,
+    "candidate_selection_frozen_before_scoring": true,
+    "created_at": "2026-05-21T18:46:34Z",
+    "curated_label_registry_edited": false,
+    "excluded_exact_current_reference_accessions": [
+      "P12995",
+      "P19938"
+    ],
+    "fingerprint_registry_edited": false,
+    "method": "plp_aminotransferase_deep_packet_selection",
+    "production_fingerprint_scored_candidate_count": 0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selected_accessions": [
+      "Q8TD30",
+      "Q9NZ45",
+      "Q9Y617",
+      "O07566",
+      "P53555",
+      "Q9S7N2",
+      "P50457"
+    ],
+    "selected_candidate_count": 7,
+    "source_decision_packet": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json",
+    "source_freeze_artifact": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json",
+    "source_sequence_baseline_diagnostic": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+    "target_current_fingerprint_lane": "plp_dependent_enzyme"
+  },
+  "rows": [
+    {
+      "accession": "Q8TD30",
+      "active_site_annotation_present": false,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.6.1.2"
+      ],
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 519,
+        "reference_5mer_count": 614,
+        "reference_accession": "ref__P23395",
+        "reference_header": "ref__P23395",
+        "reference_length": 618,
+        "shared_5mer_count": 3
+      },
+      "pdb_count": 1,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3IHJ"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.2",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "Alanine aminotransferase 2 (ALT2) (EC 2.6.1.2) (Glutamate pyruvate transaminase 2) (GPT 2) (Glutamic--alanine transaminase 2) (Glutamic--pyruvic transaminase 2)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q8TD30",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3IHJ",
+      "selection_rank": 1,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 523,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "f492addd800c57d349c63bdc4543b9a2f48cb61d877000373b3151f183fb4c8a",
+      "source_freeze_rank": 1,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q9NZ45",
+      "active_site_annotation_present": true,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.6.1.3"
+      ],
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0045,
+        "query_5mer_count": 104,
+        "reference_5mer_count": 563,
+        "reference_accession": "ref__P18314",
+        "reference_header": "ref__P18314",
+        "reference_length": 567,
+        "shared_5mer_count": 3
+      },
+      "pdb_count": 12,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "2QD0",
+        "2QH7",
+        "2R13",
+        "3EW0",
+        "3LPQ",
+        "3REE",
+        "4EZF",
+        "4F1E"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.3",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "CDGSH iron-sulfur domain-containing protein 1 (Cysteine transaminase CISD1) (EC 2.6.1.3) (MitoNEET)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9NZ45",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "2QD0",
+      "selection_rank": 2,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 108,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "17bb2cec3a3bbb5375f76542963759fa9fbd060398051d9fd66206f0c0310d92",
+      "source_freeze_rank": 2,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q9Y617",
+      "active_site_annotation_present": false,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.6.1.52"
+      ],
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0056,
+        "query_5mer_count": 366,
+        "reference_5mer_count": 358,
+        "reference_accession": "ref__P23721",
+        "reference_header": "ref__P23721",
+        "reference_length": 362,
+        "shared_5mer_count": 4
+      },
+      "pdb_count": 3,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3E77",
+        "8A5V",
+        "8A5W"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.52",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "Phosphoserine aminotransferase (EC 2.6.1.52) (Phosphohydroxythreonine aminotransferase) (PSAT)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9Y617",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3E77",
+      "selection_rank": 3,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 370,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "47ac6e9f63a78f48d4b7c4695d9271ae3d7b713159ee6909746fca1f43d8778f",
+      "source_freeze_rank": 3,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "O07566",
+      "active_site_annotation_present": false,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.6.1.104"
+      ],
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 437,
+        "reference_5mer_count": 307,
+        "reference_accession": "ref__P18548",
+        "reference_header": "ref__P18548",
+        "reference_length": 311,
+        "shared_5mer_count": 2
+      },
+      "pdb_count": 3,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "4K2B",
+        "4K2I",
+        "4K2M"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.104",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "3-oxo-glucose-6-phosphate:glutamate aminotransferase (EC 2.6.1.104) (3-dehydro-glucose-6-phosphate--glutamate transaminase) (Kanosamine 6-phosphate transaminase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O07566",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "4K2B",
+      "selection_rank": 4,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 441,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "5f87702e87e7bbe4c48209b143003fa567aade828f8eb6679cf7ee3a1a6ff8f7",
+      "source_freeze_rank": 4,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "P53555",
+      "active_site_annotation_present": false,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.6.1.105"
+      ],
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0105,
+        "query_5mer_count": 443,
+        "reference_5mer_count": 425,
+        "reference_accession": "ref__P12995",
+        "reference_header": "ref__P12995",
+        "reference_length": 429,
+        "shared_5mer_count": 9
+      },
+      "pdb_count": 4,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3DOD",
+        "3DRD",
+        "3DU4",
+        "6WNN"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.105",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "L-Lysine--8-amino-7-oxononanoate transaminase (EC 2.6.1.105) (7,8-diamino-pelargonic acid aminotransferase) (DAPA AT) (DAPA aminotransferase) (7,8-diaminononanoate synthase) (DANS) (Diaminopelargonic acid synthase) (L-Lysine--8-amino-7-oxononanoate aminotransferase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P53555",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3DOD",
+      "selection_rank": 5,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 448,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "ebe13ff6ec33ddd7125125c0ba5af67425db16fffc7417d0fbf162850ab1c272",
+      "source_freeze_rank": 5,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q9S7N2",
+      "active_site_annotation_present": false,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.6.1.27",
+        "2.6.1.99"
+      ],
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0038,
+        "query_5mer_count": 387,
+        "reference_5mer_count": 147,
+        "reference_accession": "ref__P00806",
+        "reference_header": "ref__P00806",
+        "reference_length": 151,
+        "shared_5mer_count": 2
+      },
+      "pdb_count": 2,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3BWN",
+        "3BWO"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.27",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "L-tryptophan--pyruvate aminotransferase 1 (EC 2.6.1.27) (EC 2.6.1.99) (Protein CYTOKININ INDUCED ROOT CURLING 1) (Protein SHADE AVOIDANCE 3) (Protein TRANSPORT INHIBITOR RESPONSE 2) (Protein TRYPTOPHAN AMINOTRANSFERASE OF ARABIDOPSIS 1) (Protein WEAK ETHYLENE INSENSITIVE 8) (Tryptophan transaminase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9S7N2",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3BWN",
+      "selection_rank": 6,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 391,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "f078283324e470cbd5f3e1b3ae2a270d20836cb86ef80e4065dffe4d23b4907c",
+      "source_freeze_rank": 6,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "P50457",
+      "active_site_annotation_present": false,
+      "countable_label_candidate": false,
+      "ec_numbers": [
+        "2.6.1.19"
+      ],
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0058,
+        "query_5mer_count": 417,
+        "reference_5mer_count": 272,
+        "reference_accession": "ref__Q3HWU8",
+        "reference_header": "ref__Q3HWU8",
+        "reference_length": 276,
+        "shared_5mer_count": 4
+      },
+      "pdb_count": 1,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "7JH3"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.19",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "4-aminobutyrate aminotransferase PuuE (EC 2.6.1.19) (GABA aminotransferase) (GABA-AT) (Gamma-amino-N-butyrate transaminase) (GABA transaminase) (Glutamate:succinic semialdehyde transaminase)",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P50457",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "7JH3",
+      "selection_rank": 7,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 421,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "52ac22f62dbdac790afee54e99d458a2230e79551a119ad90dca1873fa677460",
+      "source_freeze_rank": 7,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    }
+  ]
+}

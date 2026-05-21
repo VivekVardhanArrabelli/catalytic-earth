@@ -1,0 +1,626 @@
+{
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe_20260521",
+    "artifact_migration_upload_or_removal_performed": false,
+    "candidate_selection_frozen_before_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T18:46:39Z",
+    "curated_label_registry_edited": false,
+    "exact_next_experiment": "Implement and test a source-free PLP/LLP/PMP/P5P active-site extractor that maps the covalent cofactor anchor and catalytic residues from observed coordinates, then run full current-countable duplicate/leakage screening for this frozen selection.",
+    "fingerprint_registry_edited": false,
+    "full_current_duplicate_screen_candidate_count": 0,
+    "mechanism_match_review_ready_count": 0,
+    "method": "plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe",
+    "needs_new_extractor_or_structure_count": 7,
+    "pdb_coordinate_fetch_status_counts": {
+      "fetched_in_memory_not_written": 7
+    },
+    "pdb_coordinate_raw_files_written": false,
+    "plp_like_coordinate_probe_status_counts": {
+      "plp_like_coordinate_token_not_observed": 1,
+      "plp_like_coordinate_token_observed": 6
+    },
+    "production_fingerprint_scored_candidate_count": 0,
+    "production_threshold_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selected_candidate_count": 7,
+    "source_freeze_artifact": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json",
+    "source_selection_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json",
+    "source_separation_guardrail": "EC/name/UniProt catalytic activity and PLP binding annotations are selection/review context only; the only source-free evidence in this blocker packet is in-memory coordinate token presence for PLP-like cofactors.",
+    "target_current_fingerprint_lane": "plp_dependent_enzyme",
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 7
+    },
+    "terminal_rejection_duplicate_or_leakage_count": 0
+  },
+  "rows": [
+    {
+      "accession": "Q8TD30",
+      "active_site_annotation_present": false,
+      "catalytic_residue_or_cofactor_evidence": {
+        "atom_site_like_plp_token_line_count": 0,
+        "extractor_missing": "covalent_plp_anchor_and_catalytic_residue_geometry_extractor_not_implemented",
+        "plp_like_comp_ids_observed": [
+          "PLP"
+        ],
+        "plp_like_token_counts": {
+          "PLP": 90
+        },
+        "source_context_role": "selection_and_review_context_not_predictive_score_input",
+        "source_free_coordinate_probe_status": "plp_like_coordinate_token_observed",
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_plp_covalent_anchor_extractor_missing",
+        "full_current_countable_duplicate_screen_not_run",
+        "no_mechanism_match_or_import_claim"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "not_scored_pending_source_free_plp_active_site_extractor",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_pending_source_free_plp_active_site_extractor",
+        "duplicate_clear_established": false,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "screen_artifact": null
+      },
+      "ec_numbers": [
+        "2.6.1.2"
+      ],
+      "exact_blocker_if_not_terminal": "PLP deep packet still needs a source-free covalent PLP/LLP/PMP/P5P active-site extractor that maps the cofactor anchor and catalytic residues from observed coordinates, followed by full current-countable duplicate/leakage screening; EC/name/UniProt prose are review context only.",
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 519,
+        "reference_5mer_count": 614,
+        "reference_accession": "ref__P23395",
+        "reference_header": "ref__P23395",
+        "reference_length": 618,
+        "shared_5mer_count": 3
+      },
+      "pdb_count": 1,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3IHJ"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.2",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "Alanine aminotransferase 2 (ALT2) (EC 2.6.1.2) (Glutamate pyruvate transaminase 2) (GPT 2) (Glutamic--alanine transaminase 2) (Glutamic--pyruvic transaminase 2)",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q8TD30",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3IHJ",
+      "selection_rank": 1,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 523,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "f492addd800c57d349c63bdc4543b9a2f48cb61d877000373b3151f183fb4c8a",
+      "source_freeze_rank": 1,
+      "structure_pdb_evidence_availability": {
+        "coordinate_fetch_error": null,
+        "coordinate_fetch_status": "fetched_in_memory_not_written",
+        "coordinate_sha256_if_fetched": "ebb220601aa354c78e0385c204e8f8d80a87ab9899f09178ecbdd185846efec9",
+        "coordinate_size_bytes_if_fetched": 422918,
+        "raw_coordinate_written": false,
+        "selected_pdb_id": "3IHJ"
+      },
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "Q9NZ45",
+      "active_site_annotation_present": true,
+      "catalytic_residue_or_cofactor_evidence": {
+        "atom_site_like_plp_token_line_count": 0,
+        "extractor_missing": "covalent_plp_anchor_and_catalytic_residue_geometry_extractor_not_implemented",
+        "plp_like_comp_ids_observed": [],
+        "plp_like_token_counts": {},
+        "source_context_role": "selection_and_review_context_not_predictive_score_input",
+        "source_free_coordinate_probe_status": "plp_like_coordinate_token_not_observed",
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_plp_covalent_anchor_extractor_missing",
+        "full_current_countable_duplicate_screen_not_run",
+        "no_mechanism_match_or_import_claim",
+        "selected_pdb_has_no_observed_plp_like_coordinate_token"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "not_scored_pending_source_free_plp_active_site_extractor",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_pending_source_free_plp_active_site_extractor",
+        "duplicate_clear_established": false,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "screen_artifact": null
+      },
+      "ec_numbers": [
+        "2.6.1.3"
+      ],
+      "exact_blocker_if_not_terminal": "Selected PDB coordinate was fetched in memory but no PLP-like coordinate token was observed; choose an alternate frozen PDB cross-reference or implement a broader cofactor-state extractor before scoring.",
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0045,
+        "query_5mer_count": 104,
+        "reference_5mer_count": 563,
+        "reference_accession": "ref__P18314",
+        "reference_header": "ref__P18314",
+        "reference_length": 567,
+        "shared_5mer_count": 3
+      },
+      "pdb_count": 12,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "2QD0",
+        "2QH7",
+        "2R13",
+        "3EW0",
+        "3LPQ",
+        "3REE",
+        "4EZF",
+        "4F1E"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.3",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "CDGSH iron-sulfur domain-containing protein 1 (Cysteine transaminase CISD1) (EC 2.6.1.3) (MitoNEET)",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q9NZ45",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "2QD0",
+      "selection_rank": 2,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 108,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "17bb2cec3a3bbb5375f76542963759fa9fbd060398051d9fd66206f0c0310d92",
+      "source_freeze_rank": 2,
+      "structure_pdb_evidence_availability": {
+        "coordinate_fetch_error": null,
+        "coordinate_fetch_status": "fetched_in_memory_not_written",
+        "coordinate_sha256_if_fetched": "79773e5c945920db4ea3f5fde8d5984baad19c4e32c7beb43d25ca89b7242296",
+        "coordinate_size_bytes_if_fetched": 195777,
+        "raw_coordinate_written": false,
+        "selected_pdb_id": "2QD0"
+      },
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "Q9Y617",
+      "active_site_annotation_present": false,
+      "catalytic_residue_or_cofactor_evidence": {
+        "atom_site_like_plp_token_line_count": 0,
+        "extractor_missing": "covalent_plp_anchor_and_catalytic_residue_geometry_extractor_not_implemented",
+        "plp_like_comp_ids_observed": [
+          "PLP"
+        ],
+        "plp_like_token_counts": {
+          "PLP": 126
+        },
+        "source_context_role": "selection_and_review_context_not_predictive_score_input",
+        "source_free_coordinate_probe_status": "plp_like_coordinate_token_observed",
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_plp_covalent_anchor_extractor_missing",
+        "full_current_countable_duplicate_screen_not_run",
+        "no_mechanism_match_or_import_claim"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "not_scored_pending_source_free_plp_active_site_extractor",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_pending_source_free_plp_active_site_extractor",
+        "duplicate_clear_established": false,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "screen_artifact": null
+      },
+      "ec_numbers": [
+        "2.6.1.52"
+      ],
+      "exact_blocker_if_not_terminal": "PLP deep packet still needs a source-free covalent PLP/LLP/PMP/P5P active-site extractor that maps the cofactor anchor and catalytic residues from observed coordinates, followed by full current-countable duplicate/leakage screening; EC/name/UniProt prose are review context only.",
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0056,
+        "query_5mer_count": 366,
+        "reference_5mer_count": 358,
+        "reference_accession": "ref__P23721",
+        "reference_header": "ref__P23721",
+        "reference_length": 362,
+        "shared_5mer_count": 4
+      },
+      "pdb_count": 3,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3E77",
+        "8A5V",
+        "8A5W"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.52",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "Phosphoserine aminotransferase (EC 2.6.1.52) (Phosphohydroxythreonine aminotransferase) (PSAT)",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q9Y617",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3E77",
+      "selection_rank": 3,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 370,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "47ac6e9f63a78f48d4b7c4695d9271ae3d7b713159ee6909746fca1f43d8778f",
+      "source_freeze_rank": 3,
+      "structure_pdb_evidence_availability": {
+        "coordinate_fetch_error": null,
+        "coordinate_fetch_status": "fetched_in_memory_not_written",
+        "coordinate_sha256_if_fetched": "7bf536b5da0f998ae4fd848230d87de7be9dcf0907b6fe2a8d2852f8ac4b4171",
+        "coordinate_size_bytes_if_fetched": 881128,
+        "raw_coordinate_written": false,
+        "selected_pdb_id": "3E77"
+      },
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "O07566",
+      "active_site_annotation_present": false,
+      "catalytic_residue_or_cofactor_evidence": {
+        "atom_site_like_plp_token_line_count": 0,
+        "extractor_missing": "covalent_plp_anchor_and_catalytic_residue_geometry_extractor_not_implemented",
+        "plp_like_comp_ids_observed": [
+          "LLP"
+        ],
+        "plp_like_token_counts": {
+          "LLP": 210
+        },
+        "source_context_role": "selection_and_review_context_not_predictive_score_input",
+        "source_free_coordinate_probe_status": "plp_like_coordinate_token_observed",
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_plp_covalent_anchor_extractor_missing",
+        "full_current_countable_duplicate_screen_not_run",
+        "no_mechanism_match_or_import_claim"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "not_scored_pending_source_free_plp_active_site_extractor",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_pending_source_free_plp_active_site_extractor",
+        "duplicate_clear_established": false,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "screen_artifact": null
+      },
+      "ec_numbers": [
+        "2.6.1.104"
+      ],
+      "exact_blocker_if_not_terminal": "PLP deep packet still needs a source-free covalent PLP/LLP/PMP/P5P active-site extractor that maps the cofactor anchor and catalytic residues from observed coordinates, followed by full current-countable duplicate/leakage screening; EC/name/UniProt prose are review context only.",
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 437,
+        "reference_5mer_count": 307,
+        "reference_accession": "ref__P18548",
+        "reference_header": "ref__P18548",
+        "reference_length": 311,
+        "shared_5mer_count": 2
+      },
+      "pdb_count": 3,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "4K2B",
+        "4K2I",
+        "4K2M"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.104",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "3-oxo-glucose-6-phosphate:glutamate aminotransferase (EC 2.6.1.104) (3-dehydro-glucose-6-phosphate--glutamate transaminase) (Kanosamine 6-phosphate transaminase)",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:O07566",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "4K2B",
+      "selection_rank": 4,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 441,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "5f87702e87e7bbe4c48209b143003fa567aade828f8eb6679cf7ee3a1a6ff8f7",
+      "source_freeze_rank": 4,
+      "structure_pdb_evidence_availability": {
+        "coordinate_fetch_error": null,
+        "coordinate_fetch_status": "fetched_in_memory_not_written",
+        "coordinate_sha256_if_fetched": "d3a4b86b4ea36be0e4f6302f22b7c3e615a717eedb7f1d4166df15f658429042",
+        "coordinate_size_bytes_if_fetched": 822524,
+        "raw_coordinate_written": false,
+        "selected_pdb_id": "4K2B"
+      },
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "P53555",
+      "active_site_annotation_present": false,
+      "catalytic_residue_or_cofactor_evidence": {
+        "atom_site_like_plp_token_line_count": 0,
+        "extractor_missing": "covalent_plp_anchor_and_catalytic_residue_geometry_extractor_not_implemented",
+        "plp_like_comp_ids_observed": [
+          "PLP"
+        ],
+        "plp_like_token_counts": {
+          "PLP": 126
+        },
+        "source_context_role": "selection_and_review_context_not_predictive_score_input",
+        "source_free_coordinate_probe_status": "plp_like_coordinate_token_observed",
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_plp_covalent_anchor_extractor_missing",
+        "full_current_countable_duplicate_screen_not_run",
+        "no_mechanism_match_or_import_claim"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "not_scored_pending_source_free_plp_active_site_extractor",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_pending_source_free_plp_active_site_extractor",
+        "duplicate_clear_established": false,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "screen_artifact": null
+      },
+      "ec_numbers": [
+        "2.6.1.105"
+      ],
+      "exact_blocker_if_not_terminal": "PLP deep packet still needs a source-free covalent PLP/LLP/PMP/P5P active-site extractor that maps the cofactor anchor and catalytic residues from observed coordinates, followed by full current-countable duplicate/leakage screening; EC/name/UniProt prose are review context only.",
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0105,
+        "query_5mer_count": 443,
+        "reference_5mer_count": 425,
+        "reference_accession": "ref__P12995",
+        "reference_header": "ref__P12995",
+        "reference_length": 429,
+        "shared_5mer_count": 9
+      },
+      "pdb_count": 4,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3DOD",
+        "3DRD",
+        "3DU4",
+        "6WNN"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.105",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "L-Lysine--8-amino-7-oxononanoate transaminase (EC 2.6.1.105) (7,8-diamino-pelargonic acid aminotransferase) (DAPA AT) (DAPA aminotransferase) (7,8-diaminononanoate synthase) (DANS) (Diaminopelargonic acid synthase) (L-Lysine--8-amino-7-oxononanoate aminotransferase)",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:P53555",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3DOD",
+      "selection_rank": 5,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 448,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "ebe13ff6ec33ddd7125125c0ba5af67425db16fffc7417d0fbf162850ab1c272",
+      "source_freeze_rank": 5,
+      "structure_pdb_evidence_availability": {
+        "coordinate_fetch_error": null,
+        "coordinate_fetch_status": "fetched_in_memory_not_written",
+        "coordinate_sha256_if_fetched": "4bd5c4364ad88a0a5667aa5e058e72d4b0da4fdd19d18cd982f9bd780bddfefb",
+        "coordinate_size_bytes_if_fetched": 721880,
+        "raw_coordinate_written": false,
+        "selected_pdb_id": "3DOD"
+      },
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "Q9S7N2",
+      "active_site_annotation_present": false,
+      "catalytic_residue_or_cofactor_evidence": {
+        "atom_site_like_plp_token_line_count": 0,
+        "extractor_missing": "covalent_plp_anchor_and_catalytic_residue_geometry_extractor_not_implemented",
+        "plp_like_comp_ids_observed": [
+          "LLP",
+          "PMP"
+        ],
+        "plp_like_token_counts": {
+          "LLP": 207,
+          "PMP": 332
+        },
+        "source_context_role": "selection_and_review_context_not_predictive_score_input",
+        "source_free_coordinate_probe_status": "plp_like_coordinate_token_observed",
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_plp_covalent_anchor_extractor_missing",
+        "full_current_countable_duplicate_screen_not_run",
+        "no_mechanism_match_or_import_claim"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "not_scored_pending_source_free_plp_active_site_extractor",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_pending_source_free_plp_active_site_extractor",
+        "duplicate_clear_established": false,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "screen_artifact": null
+      },
+      "ec_numbers": [
+        "2.6.1.27",
+        "2.6.1.99"
+      ],
+      "exact_blocker_if_not_terminal": "PLP deep packet still needs a source-free covalent PLP/LLP/PMP/P5P active-site extractor that maps the cofactor anchor and catalytic residues from observed coordinates, followed by full current-countable duplicate/leakage screening; EC/name/UniProt prose are review context only.",
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0038,
+        "query_5mer_count": 387,
+        "reference_5mer_count": 147,
+        "reference_accession": "ref__P00806",
+        "reference_header": "ref__P00806",
+        "reference_length": 151,
+        "shared_5mer_count": 2
+      },
+      "pdb_count": 2,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "3BWN",
+        "3BWO"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.27",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "L-tryptophan--pyruvate aminotransferase 1 (EC 2.6.1.27) (EC 2.6.1.99) (Protein CYTOKININ INDUCED ROOT CURLING 1) (Protein SHADE AVOIDANCE 3) (Protein TRANSPORT INHIBITOR RESPONSE 2) (Protein TRYPTOPHAN AMINOTRANSFERASE OF ARABIDOPSIS 1) (Protein WEAK ETHYLENE INSENSITIVE 8) (Tryptophan transaminase)",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q9S7N2",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "3BWN",
+      "selection_rank": 6,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 391,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "f078283324e470cbd5f3e1b3ae2a270d20836cb86ef80e4065dffe4d23b4907c",
+      "source_freeze_rank": 6,
+      "structure_pdb_evidence_availability": {
+        "coordinate_fetch_error": null,
+        "coordinate_fetch_status": "fetched_in_memory_not_written",
+        "coordinate_sha256_if_fetched": "50f68c461f73adc868bb1735957c7399bc6619e4f18ff0016ef71aa7cd3e6366",
+        "coordinate_size_bytes_if_fetched": 3584228,
+        "raw_coordinate_written": false,
+        "selected_pdb_id": "3BWN"
+      },
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "P50457",
+      "active_site_annotation_present": false,
+      "catalytic_residue_or_cofactor_evidence": {
+        "atom_site_like_plp_token_line_count": 0,
+        "extractor_missing": "covalent_plp_anchor_and_catalytic_residue_geometry_extractor_not_implemented",
+        "plp_like_comp_ids_observed": [
+          "LLP"
+        ],
+        "plp_like_token_counts": {
+          "LLP": 732
+        },
+        "source_context_role": "selection_and_review_context_not_predictive_score_input",
+        "source_free_coordinate_probe_status": "plp_like_coordinate_token_observed",
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_plp_covalent_anchor_extractor_missing",
+        "full_current_countable_duplicate_screen_not_run",
+        "no_mechanism_match_or_import_claim"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "not_scored_pending_source_free_plp_active_site_extractor",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_pending_source_free_plp_active_site_extractor",
+        "duplicate_clear_established": false,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "screen_artifact": null
+      },
+      "ec_numbers": [
+        "2.6.1.19"
+      ],
+      "exact_blocker_if_not_terminal": "PLP deep packet still needs a source-free covalent PLP/LLP/PMP/P5P active-site extractor that maps the cofactor anchor and catalytic residues from observed coordinates, followed by full current-countable duplicate/leakage screening; EC/name/UniProt prose are review context only.",
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0058,
+        "query_5mer_count": 417,
+        "reference_5mer_count": 272,
+        "reference_accession": "ref__Q3HWU8",
+        "reference_header": "ref__Q3HWU8",
+        "reference_length": 276,
+        "shared_5mer_count": 4
+      },
+      "pdb_count": 1,
+      "pdb_cross_reference_present": true,
+      "pdb_ids_sample": [
+        "7JH3"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.19",
+      "prior_terminal_decision": "needs_review",
+      "protein_name": "4-aminobutyrate aminotransferase PuuE (EC 2.6.1.19) (GABA aminotransferase) (GABA-AT) (Gamma-amino-N-butyrate transaminase) (GABA transaminase) (Glutamate:succinic semialdehyde transaminase)",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:P50457",
+      "score_status": "not_scored_at_deep_packet_selection",
+      "selected_pdb_id_for_in_memory_probe": "7JH3",
+      "selection_rank": 7,
+      "selection_reason": "selected from the already frozen PLP aminotransferase campaign before deep outcome scoring: PDB cross-reference, PLP-binding annotation, no exact current-reference sequence duplicate in the existing diagnostic, and early freeze rank diversity",
+      "sequence_exact_current_reference_duplicate": false,
+      "sequence_length": 421,
+      "sequence_near_neighbor_alert": false,
+      "sequence_sha256": "52ac22f62dbdac790afee54e99d458a2230e79551a119ad90dca1873fa677460",
+      "source_freeze_rank": 7,
+      "structure_pdb_evidence_availability": {
+        "coordinate_fetch_error": null,
+        "coordinate_fetch_status": "fetched_in_memory_not_written",
+        "coordinate_sha256_if_fetched": "75a1101b8f73c30619f6e863933c59a12dc7887dfe240235e1b19b4e46b1dd43",
+        "coordinate_size_bytes_if_fetched": 4115048,
+        "raw_coordinate_written": false,
+        "selected_pdb_id": "7JH3"
+      },
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    }
+  ],
+  "warnings": [
+    "All rows remain needs_new_extractor_or_structure because PLP covalent cofactor geometry and full-current duplicate screens are not implemented here.",
+    "This artifact does not use EC, keyword, protein name, or UniProt/PDB prose as predictive evidence."
+  ]
+}

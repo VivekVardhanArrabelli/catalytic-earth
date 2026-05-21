@@ -1709,6 +1709,204 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(benchmark["metrics"]["geometry_superiority_claim"], "not_made")
         self.assertFalse(benchmark["metrics"]["superiority_claim"])
 
+    def test_serine_hydrolase_p31614_full_current_probe_is_terminal_leakage(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_p31614_full_current_alignment_duplicate_probe_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json"
+        )
+
+        metadata = probe["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_frozen_before_scoring"])
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertTrue(metadata["pair_cache_complete"])
+        self.assertEqual(metadata["unique_query_target_pair_count"], 1344)
+        self.assertEqual(metadata["expected_query_target_pair_count"], 1344)
+        self.assertEqual(metadata["current_countable_coordinate_count"], 672)
+        self.assertEqual(metadata["high_tm_replacement_coordinate_count"], 1)
+        self.assertEqual(metadata["high_tm_replacement_structure_ids"], ["4C7L"])
+        self.assertGreaterEqual(
+            metadata["max_external_vs_current_countable_tm_score"], 0.7
+        )
+        self.assertFalse(metadata["duplicate_clear_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_migration_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertFalse(
+            metadata["ec_keyword_name_source_prose_counted_as_predictive_evidence"]
+        )
+
+        structure_rows = {
+            row["structure_id"]: row for row in probe["structure_rows"]
+        }
+        self.assertEqual(
+            structure_rows["4C7L"]["current_countable_structural_screen_status"],
+            "current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            structure_rows["4C7W"]["current_countable_structural_screen_status"],
+            "no_current_countable_structural_duplicate_signal",
+        )
+        self.assertEqual(
+            structure_rows["4C7L"]["nearest_current_countable_hit"][
+                "current_selected_structure_key"
+            ],
+            "pdb:1IR3",
+        )
+        self.assertGreaterEqual(
+            structure_rows["4C7L"]["nearest_current_countable_hit"][
+                "max_pair_tm_score"
+            ],
+            0.7,
+        )
+
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(packet["metadata"]["needs_new_extractor_or_structure_count"], 0)
+        p31614 = next(row for row in packet["rows"] if row["accession"] == "P31614")
+        self.assertEqual(
+            p31614["terminal_decision"], "terminal_rejection_duplicate_or_leakage"
+        )
+        self.assertIsNone(p31614["exact_blocker_if_not_terminal"])
+        self.assertTrue(
+            p31614["duplicate_leakage_screen"]["terminal_rejection_claim_permitted"]
+        )
+        self.assertFalse(
+            p31614["duplicate_leakage_screen"]["duplicate_clear_claim_permitted"]
+        )
+        self.assertEqual(
+            p31614["catalytic_residue_triad_evidence"][
+                "clean_triad_mapping_status"
+            ],
+            "not_resolved",
+        )
+        self.assertFalse(p31614["ready_for_label_import"])
+
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(
+            benchmark["metrics"]["p31614_terminal_decision"],
+            "terminal_rejection_duplicate_or_leakage",
+        )
+        self.assertEqual(
+            benchmark["metrics"]["foldseek_full_current_status"],
+            "completed_full_current_replacement_coordinate_duplicate_signal",
+        )
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+
+    def test_plp_aminotransferase_deep_blocker_requires_extractor(self) -> None:
+        selection = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_deep_packet_selection_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_deep_blocker_modern_baseline_benchmark_20260521.json"
+        )
+
+        self.assertTrue(selection["metadata"]["review_only"])
+        self.assertTrue(
+            selection["metadata"]["candidate_selection_frozen_before_scoring"]
+        )
+        self.assertEqual(selection["metadata"]["selected_candidate_count"], 7)
+        self.assertEqual(
+            selection["metadata"]["excluded_exact_current_reference_accessions"],
+            ["P12995", "P19938"],
+        )
+        self.assertEqual(
+            selection["metadata"]["target_current_fingerprint_lane"],
+            "plp_dependent_enzyme",
+        )
+        self.assertFalse(selection["metadata"]["ready_for_label_import"])
+        self.assertFalse(selection["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(selection["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(selection["metadata"]["removal_allowed_set_true"])
+
+        metadata = packet["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_frozen_before_scoring"])
+        self.assertEqual(metadata["selected_candidate_count"], 7)
+        self.assertEqual(
+            metadata["terminal_decision_counts"],
+            {"needs_new_extractor_or_structure": 7},
+        )
+        self.assertEqual(metadata["mechanism_match_review_ready_count"], 0)
+        self.assertEqual(metadata["full_current_duplicate_screen_candidate_count"], 0)
+        self.assertEqual(metadata["production_fingerprint_scored_candidate_count"], 0)
+        self.assertEqual(
+            metadata["plp_like_coordinate_probe_status_counts"],
+            {
+                "plp_like_coordinate_token_not_observed": 1,
+                "plp_like_coordinate_token_observed": 6,
+            },
+        )
+        self.assertFalse(metadata["pdb_coordinate_raw_files_written"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_migration_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        for row in packet["rows"]:
+            self.assertEqual(row["terminal_decision"], "needs_new_extractor_or_structure")
+            self.assertIn(
+                "source_free_plp_covalent_anchor_extractor_missing",
+                row["counterevidence"],
+            )
+            self.assertEqual(
+                row["current_geometry_retrieval_score_summary"]["geometry_score_status"],
+                "not_scored_pending_source_free_plp_active_site_extractor",
+            )
+            self.assertFalse(
+                row["current_geometry_retrieval_score_summary"][
+                    "text_or_label_fields_used_for_score"
+                ]
+            )
+            self.assertEqual(
+                row["duplicate_leakage_screen"]["current_countable_structural_screen_status"],
+                "not_run_pending_source_free_plp_active_site_extractor",
+            )
+            self.assertFalse(row["duplicate_leakage_screen"]["duplicate_clear_established"])
+            self.assertFalse(row["ready_for_label_import"])
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {"needs_new_extractor_or_structure": 7},
+        )
+        self.assertEqual(
+            benchmark["metrics"]["current_geometry_retrieval_triage"]["scored_row_count"],
+            0,
+        )
+        self.assertEqual(
+            benchmark["metrics"]["deterministic_sequence_5mer_baseline"][
+                "exact_current_reference_duplicate_count"
+            ],
+            0,
+        )
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+
     def test_heme_peroxidase_i2dby1_subchunk_screen_resolves_timeout(self) -> None:
         subchunk = _load_json(
             ARTIFACTS
@@ -1967,6 +2165,65 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertTrue(
             all(not row["production_claim_allowed"] for row in lanes.values())
+        )
+
+    def test_late_epk_lane_decision_synthesis_preserves_no_go(self) -> None:
+        synthesis = _load_json(
+            ARTIFACTS / "v3_epk_late_lane_decision_synthesis_20260521.json"
+        )
+        metadata = synthesis["metadata"]
+        decision = synthesis["integrated_decision"]
+        lanes = {row["lane_id"]: row for row in synthesis["lane_summaries"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["production_claim_allowed"])
+        self.assertFalse(metadata["labels_or_fingerprints_changed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_migration_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertFalse(metadata["ePK_main_loop_resume_recommended"])
+        self.assertEqual(
+            metadata["decision_change"],
+            "ePK_no_go_preserved_with_sharper_harness_and_source_free_modality_boundaries",
+        )
+        self.assertEqual(decision["production_readiness"], "no_go_review_only")
+        self.assertEqual(
+            decision["main_loop_boundary"],
+            "Do not resume ePK as default main-loop task; continue visible non-ePK external terminal decision packets.",
+        )
+        self.assertIn(
+            "5UJ7:biological_assembly_1 remains the pinned context-v4-only biological-assembly split residual",
+            decision["pinned_counterexamples_or_controls"],
+        )
+        self.assertEqual(
+            set(lanes),
+            {
+                "epk_positive_evidence",
+                "epk_false_positive_hunter",
+                "epk_sibling_controls",
+                "epk_policy_harness",
+                "epk_substrate_role_identity",
+            },
+        )
+        self.assertTrue(
+            all(not row["production_claim_allowed"] for row in lanes.values())
+        )
+        self.assertIn(
+            "343-row regression gate",
+            lanes["epk_false_positive_hunter"]["decision_relevance"],
+        )
+        self.assertIn(
+            "119-row runtime row oracle",
+            lanes["epk_sibling_controls"]["decision_relevance"],
+        )
+        self.assertIn(
+            "product_state and split_state",
+            lanes["epk_policy_harness"]["decision_relevance"],
+        )
+        self.assertIn(
+            "blocker_not_cleared_biology_ambiguity",
+            lanes["epk_substrate_role_identity"]["decision_relevance"],
         )
 
     def test_flavin_monooxygenase_geometry_full_current_screen_terminals(

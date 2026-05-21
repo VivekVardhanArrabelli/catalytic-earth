@@ -1,0 +1,128 @@
+{
+  "integrated_decision": {
+    "main_loop_boundary": "Do not resume ePK as default main-loop task; continue visible non-ePK external terminal decision packets.",
+    "next_exact_research_experiments": [
+      "false_positive_hunter: rerun capped metric-seeded ligand-only assembly split helper on a smaller bounded surface",
+      "policy_harness: run literal product/split entry-precedence v6 controls if the research lane is reopened",
+      "sibling_controls: use the 119-row runtime row oracle as expected-good scorer-output fixture only when a future scorer output exists",
+      "substrate_role_identity: stop contact/interface scalar probing unless a new source-free modality can distinguish reciprocal folded-chain biology or ADP/analog state",
+      "positive_evidence: wait for next RCSB weekly release or genuinely new named-family source surface; do not revisit MKK4/p38, LRRK2/Rab, eIF2alpha, transfer-alias, or exhausted source surfaces without new IDs/metadata"
+    ],
+    "pinned_counterexamples_or_controls": [
+      "5UJ7:biological_assembly_1 remains the pinned context-v4-only biological-assembly split residual",
+      "9UUR/9UUX/9UW4 reciprocal folded Tyr contact signatures remain mixed positive/counterexample contact evidence",
+      "4HPU remains literal split-state/product-state pressure, not a production substrate-role positive",
+      "3ALO MKK4/p38 source-site peptide rows are far from ANP PG and review-only"
+    ],
+    "production_readiness": "no_go_review_only",
+    "reason": "Fresh lane outputs either add review-only source-site stress, fail-closed scorer harness fixtures, product/split abstention gates, or contact/interface counterevidence; none clears substrate-role identity, biological-assembly split, or external hard-negative re-audit blockers."
+  },
+  "lane_summaries": [
+    {
+      "decision_relevance": "MKK4/p38 recovered 3ALO/3ALN and emitted two source-site candidate rows, but geometry is far from ANP PG and Thr is product/pre-phosphorylated TPO; no production positive evidence.",
+      "lane_id": "epk_positive_evidence",
+      "new_artifacts": [
+        "artifacts/research_lanes/epk_positive_evidence/mkk4_p38_family_candidate_rows_20260521.json"
+      ],
+      "primary_outcome": "candidate_evidence_rows_emitted_but_review_only_abstain",
+      "production_claim_allowed": false
+    },
+    {
+      "blocker": "metric-seeded ligand-only helper live-locked before output; future rerun must use the new atom-site cap and smaller bounded surface",
+      "decision_relevance": "207-ID fetch-error retry is exhausted with zero split contexts; refreshed 343-row regression gate keeps unsafe_nonabstention_after_expected_policy_count=0; 5UJ7 remains pinned.",
+      "lane_id": "epk_false_positive_hunter",
+      "new_artifacts": [
+        "artifacts/research_lanes/epk_false_positive_hunter/v4_entry_level_assembly_guard_remaining_fetch_error_retry_20260521_162454Z.json",
+        "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_172900Z.json"
+      ],
+      "primary_outcome": "evidence_against",
+      "production_claim_allowed": false
+    },
+    {
+      "decision_relevance": "119-row runtime row oracle is useful future scorer harness evidence; it does not create a production scorer or threshold.",
+      "lane_id": "epk_sibling_controls",
+      "new_artifacts": [
+        "artifacts/research_lanes/epk_sibling_controls/epk_candidate_evidence_v1_runtime_row_oracle_20260521.jsonl",
+        "artifacts/research_lanes/epk_sibling_controls/epk_candidate_evidence_v1_runtime_row_oracle_manifest_20260521.json"
+      ],
+      "primary_outcome": "regression_rows_emitted",
+      "production_claim_allowed": false,
+      "unsafe_nonabstention_count": 0
+    },
+    {
+      "decision_relevance": "Literal product_state and split_state real-overlap v5 gate passes as abstention-only policy evidence; product/split chemistry remains review-only and non-production.",
+      "lane_id": "epk_policy_harness",
+      "new_artifacts": [
+        "artifacts/research_lanes/epk_policy_harness/epk_federated_candidate_entry_rollup_literal_product_split_real_overlap_v5_20260521T172700Z_scoreboard_gate.json"
+      ],
+      "primary_outcome": "scoreboard_gate_created",
+      "production_claim_allowed": false
+    },
+    {
+      "decision_relevance": "Active-site contact-interface audit emits 220 compact rows but mixed contact signatures preserve blocker_not_cleared_biology_ambiguity; contact materiality is not substrate-role identity.",
+      "lane_id": "epk_substrate_role_identity",
+      "new_artifacts": [
+        "artifacts/research_lanes/epk_substrate_role_identity/epk_active_site_contact_interface_audit_v1_20260521.json"
+      ],
+      "primary_outcome": "candidate_evidence_rows_emitted",
+      "production_claim_allowed": false
+    }
+  ],
+  "metadata": {
+    "artifact_migration_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T18:43:35Z",
+    "curated_label_registry_edited": false,
+    "decision_change": "ePK_no_go_preserved_with_sharper_harness_and_source_free_modality_boundaries",
+    "ePK_main_loop_resume_recommended": false,
+    "fingerprint_registry_edited": false,
+    "labels_or_fingerprints_changed": false,
+    "lane_handoff_and_ledger_digests": {
+      "epk_false_positive_hunter": {
+        "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+        "handoff_sha256": "d35e9c483c6b9a5b92d502f23072466dec28c71b8d10a1e79c2b443d62c00165",
+        "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+        "ledger_sha256": "c12fabd0c4c77c2797ef907e5066ac2c049f4867b6964775a6be9e25bbe3cbc6",
+        "remote_commit_checked": "a7fd830"
+      },
+      "epk_policy_harness": {
+        "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+        "handoff_sha256": "48fe8406b106453a8f424a9bfe5a27debf51d7410d8af2a7a14f86a5d45766e7",
+        "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+        "ledger_sha256": "0cb32c37a12c22c6827693208b98fc1974bd886c013ab7880d9511c106129550",
+        "remote_commit_checked": "9157731"
+      },
+      "epk_positive_evidence": {
+        "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+        "handoff_sha256": "1cde07582e5b6726aef1d55d4abdc8a46ea0594105275e9782e0aa934ab3d216",
+        "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+        "ledger_sha256": "51f8bc0d8994aebfca1bdb3dce6f43d3a372fede13a756bf32c319437f80f191",
+        "remote_commit_checked": "2da58d9"
+      },
+      "epk_sibling_controls": {
+        "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+        "handoff_sha256": "57f6b4e433178e87c8afc256ddde350ac94dbee90d2098c2a776c6455eeab7c0",
+        "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
+        "ledger_sha256": "ead6f1a77be2c712dacdd8c298fe2b69760e7362eddf55a000cead5080e48f5f",
+        "remote_commit_checked": "0f48cbb"
+      },
+      "epk_substrate_role_identity": {
+        "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-substrate-role-identity/work/research_lanes/epk_substrate_role_identity/handoff.md",
+        "handoff_sha256": "cea5e2d12409b5c1bcd93ed9ed3d6ae9403f7b14ba9ce5c6912e6ef5d554a83a",
+        "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-substrate-role-identity/artifacts/research_lanes/epk_substrate_role_identity/epk_substrate_role_identity_runs.jsonl",
+        "ledger_sha256": "91322bf5a7e3efc8a7cebdce2ec5b4100c3e5f853105d7c6254de5fa1bb83a39",
+        "remote_commit_checked": "eddefb8"
+      }
+    },
+    "main_loop_action_after_synthesis": "return_to_non_ePK_external_decision_deepening",
+    "method": "epk_late_research_lane_decision_synthesis",
+    "production_claim_allowed": false,
+    "production_threshold_changed": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "warnings": [
+    "Research-lane outputs are synthesized as review-only evidence only; no production branch contents were copied.",
+    "No ePK scoring threshold, fingerprint registry, label registry, import gate, artifact migration, or production readiness claim is changed by this artifact."
+  ]
+}

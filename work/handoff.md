@@ -50,6 +50,62 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T19:26:53Z recovery/wrap run, the main loop preserved and
+validated the coherent stale-lock dirty work rather than opening another broad
+external mini-campaign. The late ePK synthesis artifact
+`artifacts/v3_epk_late_lane_decision_synthesis_20260521.json` integrates five
+research-lane handoff/ledger digests, pins
+`5UJ7:biological_assembly_1` as the current context-v4-only biological-assembly
+split residual, and keeps ePK `no_go_review_only`. It explicitly recommends
+returning to non-ePK external terminal packets; no ePK scorer, threshold,
+registry edit, label import, fingerprint expansion, artifact upload/removal,
+or main-loop ePK resumption is authorized.
+
+The same recovered work closes the frozen serine-hydrolase P31614 blocker as a
+terminal duplicate/leakage rejection, not as a mechanism match. The new
+full-current replacement-coordinate duplicate probe
+`artifacts/v3_serine_hydrolase_p31614_full_current_alignment_duplicate_probe_20260521.json`
+screens P31614 PDB replacements 4C7L and 4C7W against all 672 current-countable
+selected structures and completes 1,344/1,344 query-target pairs. 4C7L finds a
+current-countable high-TM signal to `pdb:1IR3` at max pair TM `0.7213`; 4C7W
+does not. Because any high-TM current-countable signal is enough for terminal
+leakage rejection, the updated packet
+`artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json`
+sets all seven frozen serine rows to
+`terminal_rejection_duplicate_or_leakage`. The active-site triad mapping is
+still unresolved and no duplicate-clear, mechanism-match, import, or
+superiority claim is made. The companion benchmark
+`artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword, deterministic 5-mer, geometry, atom-site mapping, Foldseek,
+and missing ESM sidecar caveats separated.
+
+The recovered PLP aminotransferase follow-up is deliberately a blocker packet.
+`artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json` freezes
+seven non-exact-reference rows from the existing PLP mini-campaign before any
+deep outcome scoring. `artifacts/v3_plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe_20260521.json`
+fetches the selected PDB coordinates in memory only, observes PLP-like tokens
+for six of seven rows, writes no raw coordinate files, scores no production
+fingerprint, runs no full-current duplicate screen, and records all seven rows
+as `needs_new_extractor_or_structure`. The exact next experiment is a
+source-free PLP/LLP/PMP/P5P covalent-anchor and catalytic-residue extractor,
+then full current-countable duplicate/leakage screening on the same frozen
+selection. The companion benchmark records EC/keyword routing and sequence
+diagnostics only, with no superiority claim.
+
+Evidence-based confidence call: confidence is high that the recovered serine
+packet is now terminal for duplicate/leakage rejection because the
+full-current replacement-coordinate screen completed with a current-countable
+TM >= 0.7 signal and pair-cache completeness. Confidence is also high that the
+serine result is not mechanism-match or import evidence because the active-site
+triad mapping remains unresolved and duplicate-clear is not claimed. Confidence
+is medium-high that the PLP packet is the right next blocker artifact rather
+than a terminal mechanism decision: it confirms coordinate/PDB availability and
+PLP-like token presence, but the project still lacks the source-free covalent
+PLP active-site extractor needed before geometry scoring or duplicate-clear
+screening. Next main-loop work should implement that PLP extractor or choose
+another already frozen nonterminal deep-packet blocker; do not add broad
+external row breadth.
+
 As of the 2026-05-21T17:24:23Z automation run, the main loop stayed on the
 already frozen FMO deep packet and closed the two remaining nonterminal rows
 without adding external candidate breadth. The new chunk-003 follow-up

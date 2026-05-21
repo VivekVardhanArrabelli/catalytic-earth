@@ -227,6 +227,21 @@ benchmark
 `artifacts/v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json`
 keeps EC/keyword, deterministic 5-mer, geometry, atom-site mapping, targeted
 Foldseek, and ESM caveats separated with no superiority claim.
+`artifacts/v3_serine_hydrolase_p31614_full_current_alignment_duplicate_probe_20260521.json`
+then closes the remaining serine blocker as a terminal duplicate/leakage
+rejection. It screens the two P31614 replacement PDB coordinates against all
+672 current-countable selected structures, completes 1,344/1,344 query-target
+pairs, and finds a high-TM current-countable signal for 4C7L against
+`pdb:1IR3` at max pair TM `0.7213`. The follow-up terminal packet
+`artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json`
+therefore records all seven frozen serine rows as
+`terminal_rejection_duplicate_or_leakage`. This remains review-only
+duplicate/leakage evidence: the active-site triad mapping is still unresolved,
+duplicate-clear is not claimed, and no import, threshold, scorer, registry, or
+fingerprint change is authorized. The benchmark
+`artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword, deterministic sequence, geometry, active-site mapping,
+Foldseek, and ESM caveats separated with no superiority claim.
 Current flavin dehydrogenase/reductase deepening scope: the third ladder step
 has a frozen selection, coordinate sidecars, active/cofactor-site mapping,
 geometry scores, a duplicate-screen blocker, a terminal packet, and a benchmark.
@@ -551,6 +566,21 @@ is diagnostic only: EC/keyword context routes the lane, deterministic 5-mer
 finds two exact current-reference sequence duplicates, and geometry, ESM, and
 Foldseek remain unrun. No mechanism-match, label import, production score,
 threshold calibration, registry edit, or fingerprint expansion is in scope.
+The follow-up PLP deep blocker stays within that scope. The selection artifact
+`artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json`
+freezes seven non-exact-reference rows before deep outcome scoring. The blocker
+packet
+`artifacts/v3_plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe_20260521.json`
+fetches selected PDB coordinates in memory only, observes PLP-like coordinate
+tokens for six rows, writes no raw coordinates, scores no production
+fingerprint, runs no full-current duplicate screen, and records all seven rows
+as `needs_new_extractor_or_structure`. The exact next experiment is a
+source-free PLP/LLP/PMP/P5P covalent-anchor and catalytic-residue extractor,
+then full current-countable duplicate/leakage screening on the same frozen
+selection. The companion benchmark
+`artifacts/v3_plp_aminotransferase_deep_blocker_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword, deterministic sequence, coordinate-token, Foldseek, and ESM
+caveats diagnostic only with no superiority or import claim.
 Current flavin monooxygenase external mini-campaign scope:
 `artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_freeze_20260521.json`
 freezes a new 20-row reviewed UniProtKB/Swiss-Prot EC 1.14.13.* surface

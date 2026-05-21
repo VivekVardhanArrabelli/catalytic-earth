@@ -399,6 +399,19 @@ import.
   `artifacts/v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json`
   keeps EC/keyword, deterministic 5-mer, geometry, atom-site mapping,
   targeted Foldseek, and ESM caveats separated with no superiority claim.
+- `artifacts/v3_serine_hydrolase_p31614_full_current_alignment_duplicate_probe_20260521.json`
+  closes the last serine blocker as terminal duplicate/leakage evidence. It
+  screens the two P31614 replacement PDB coordinates against all 672
+  current-countable selected structures, completes 1,344/1,344 query-target
+  pairs, and finds a high-TM current-countable signal for 4C7L against
+  `pdb:1IR3` at max pair TM `0.7213`. The follow-up terminal packet
+  `artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json`
+  records all seven serine rows as `terminal_rejection_duplicate_or_leakage`.
+  The active-site triad mapping remains unresolved, duplicate-clear is not
+  claimed, and no mechanism-match, import, superiority, registry, or
+  fingerprint change is authorized. The benchmark
+  `artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json`
+  preserves the same source-separated caveats.
 - `artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json`
   starts the next deepening ladder step without scoring it. It freezes seven
   nonduplicate flavin dehydrogenase/reductase rows from the existing
@@ -543,6 +556,21 @@ import.
   keeps EC/keyword, sequence, and ESM/Foldseek comparisons diagnostic only,
   with no import, production-score, registry, fingerprint, upload/removal, or
   superiority claim.
+- `artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json`
+  freezes seven non-exact-reference PLP aminotransferase rows from the existing
+  mini-campaign before deep outcome scoring. The blocker packet
+  `artifacts/v3_plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe_20260521.json`
+  fetches selected PDB coordinates in memory only, observes PLP-like coordinate
+  tokens for six rows, writes no raw coordinate files, scores no production
+  fingerprint, runs no full-current duplicate screen, and records all seven
+  rows as `needs_new_extractor_or_structure`. The exact next experiment is a
+  source-free PLP/LLP/PMP/P5P covalent-anchor and catalytic-residue extractor,
+  then full current-countable duplicate/leakage screening on the same frozen
+  selection. The benchmark
+  `artifacts/v3_plp_aminotransferase_deep_blocker_modern_baseline_benchmark_20260521.json`
+  records EC/keyword, deterministic sequence, coordinate-token, Foldseek, and
+  ESM caveats as diagnostic only with no import, production-score, registry,
+  fingerprint, upload/removal, or superiority claim.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and
