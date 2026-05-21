@@ -5,7 +5,7 @@
 - Ended: 2026-05-21T02:29:09Z
 - Measured minutes: 59.22
 - Primary outcome: evidence_for
-- Pushed commit: pending alternate-index commit attempt; normal linked-worktree gitdir writes are blocked.
+- Pushed commit: `6383dc6f94eeb59e138591157faf94a06a99285a` via alternate-index commit/push. Normal linked-worktree gitdir writes remain blocked.
 - Rule under attack: assembly-context `v4_oligomeric_atp_terminals_no_mg_required` sufficiency for review-only ePK substrate-mode/source-free topology false-positive control.
 - Production claim allowed: false
 - Labels/fingerprints changed: false
@@ -50,7 +50,8 @@ Evidence against overclaiming:
 - Normal `git fetch origin` failed writing linked-worktree `FETCH_HEAD`: Operation not permitted.
 - `git fetch --no-write-fetch-head origin` succeeded and local `HEAD` matched `origin/research/epk-false-positive-hunter` before this run.
 - Direct writes to `/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git/worktrees/catalytic-earth-epk-false-positive/` fail with Operation not permitted, so normal `git add`/`git commit` is expected to fail creating `index.lock`.
-- An alternate-index commit/push attempt is still pending after this handoff write.
+- Alternate-index commit/push succeeded for evidence commit `6383dc6f94eeb59e138591157faf94a06a99285a`.
+- This final handoff/ledger pushed-commit annotation still needs the same alternate-index follow-up commit because normal `git add` remains blocked.
 
 ## Next Query
 
