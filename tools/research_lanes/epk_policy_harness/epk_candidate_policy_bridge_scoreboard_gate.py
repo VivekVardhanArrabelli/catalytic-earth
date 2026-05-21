@@ -45,6 +45,17 @@ CANDIDATE_IDENTITY_REQUIRED_FIELDS = (
     "source_lane_id",
     "source_artifact",
 )
+ENTRY_CLAIM_STATUS_PRECEDENCE = (
+    "forbidden_source_leakage",
+    "review_only_abstain_forbidden_context",
+    "review_only_abstain_sibling_control",
+    "review_only_abstain_topology_ambiguity",
+    "review_only_abstain_split_state",
+    "review_only_abstain_analog_state",
+    "review_only_abstain_product_state",
+    "review_only_abstain_missing_role_policy",
+    "review_only_nonabstaining_candidate",
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -165,6 +176,18 @@ def schema_drafts() -> dict[str, Any]:
                     "production_claim_allowed",
                     "labels_or_fingerprints_changed",
                 ],
+                "candidate_provenance_fields": [
+                    "candidate_id",
+                    "pdb_id",
+                    "source_lane_id",
+                    "source_artifact",
+                    "source_row_id",
+                ],
+                "federated_candidate_identity_rule": (
+                    "candidate/source provenance is required for federated gate "
+                    "tranches and remains review-only provenance, not a predictive "
+                    "feature"
+                ),
                 "claim_status_enum": sorted(CLAIM_STATUS_VALUES),
                 "claim_admissibility_enum": ["review_only", "forbidden"],
                 "nonabstaining_is_review_only": True,
@@ -176,8 +199,10 @@ def schema_drafts() -> dict[str, Any]:
                     "source_result_artifact",
                     "tranche_id",
                     "rows_reviewed",
+                    "entry_count",
                     "discovery_signal_row_count",
                     "claim_status_counts",
+                    "entry_claim_status_counts",
                     "coordinate_state_counts",
                     "forbidden_source_leakage_count",
                     "unsafe_control_nonabstention_count",
@@ -192,6 +217,12 @@ def schema_drafts() -> dict[str, Any]:
                     "gate.gate_pass",
                 ],
                 "separates_discovery_signal_from_claim_admissibility": True,
+                "entry_rollup_rule": (
+                    "derive entry-level status from candidate-level decisions only; "
+                    "keep candidate status counts visible and use fail-closed "
+                    "precedence for forbidden/source leakage and review-only blockers"
+                ),
+                "entry_claim_status_precedence": list(ENTRY_CLAIM_STATUS_PRECEDENCE),
                 "progress_gate": "fails on forbidden source leakage or unsafe control nonabstention",
             },
         },
@@ -210,6 +241,105 @@ def is_control_like(row: dict[str, Any]) -> bool:
         )
     )
     return any(token in haystack for token in CONTROL_ROLE_TOKENS)
+
+
+def entry_key_for_row(row: dict[str, Any]) -> str:
+    pdb_id = str(row.get("pdb_id") or "").strip()
+    if pdb_id:
+        return pdb_id
+    return str(row.get("row_id") or "unknown_entry").strip() or "unknown_entry"
+
+
+def entry_claim_status_for_counts(claim_status_counts: dict[str, int]) -> str:
+    for status in ENTRY_CLAIM_STATUS_PRECEDENCE:
+        if claim_status_counts.get(status, 0):
+            return status
+    return "review_only_abstain_topology_ambiguity"
+
+
+def build_entry_rollups(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        entry_id = entry_key_for_row(row)
+        rollup = grouped.setdefault(
+            entry_id,
+            {
+                "entry_id": entry_id,
+                "candidate_count": 0,
+                "candidate_row_ids": [],
+                "source_lane_ids": set(),
+                "claim_status_counts": {},
+                "coordinate_state_counts": {},
+                "discovery_signal_candidate_count": 0,
+                "nonabstaining_candidate_count": 0,
+                "forbidden_source_leakage_rows": [],
+                "unsafe_control_nonabstention_rows": [],
+            },
+        )
+        rollup["candidate_count"] += 1
+        rollup["candidate_row_ids"].append(row.get("row_id"))
+        source_lane_id = str(row.get("source_lane_id") or "").strip()
+        if source_lane_id:
+            rollup["source_lane_ids"].add(source_lane_id)
+
+        claim_status = str(row.get("claim_status") or "")
+        coordinate_state = str(row.get("coordinate_state") or "")
+        rollup["claim_status_counts"][claim_status] = (
+            rollup["claim_status_counts"].get(claim_status, 0) + 1
+        )
+        rollup["coordinate_state_counts"][coordinate_state] = (
+            rollup["coordinate_state_counts"].get(coordinate_state, 0) + 1
+        )
+        if (
+            coordinate_state == "active_gamma"
+            or row.get("nearest_gamma_acceptor_distance_angstrom") is not None
+        ):
+            rollup["discovery_signal_candidate_count"] += 1
+        if claim_status == "review_only_nonabstaining_candidate":
+            rollup["nonabstaining_candidate_count"] += 1
+        if claim_status == "forbidden_source_leakage":
+            rollup["forbidden_source_leakage_rows"].append(row.get("row_id"))
+        if claim_status == "review_only_nonabstaining_candidate" and is_control_like(row):
+            rollup["unsafe_control_nonabstention_rows"].append(row.get("row_id"))
+
+    entry_rollups: list[dict[str, Any]] = []
+    for entry_id in sorted(grouped):
+        rollup = grouped[entry_id]
+        entry_claim_status = entry_claim_status_for_counts(rollup["claim_status_counts"])
+        entry_rollups.append(
+            {
+                "entry_id": entry_id,
+                "candidate_count": rollup["candidate_count"],
+                "candidate_row_ids": rollup["candidate_row_ids"],
+                "source_lane_ids": sorted(rollup["source_lane_ids"]),
+                "claim_status_counts": dict(sorted(rollup["claim_status_counts"].items())),
+                "coordinate_state_counts": dict(
+                    sorted(rollup["coordinate_state_counts"].items())
+                ),
+                "entry_claim_status": entry_claim_status,
+                "entry_claim_admissibility": (
+                    "forbidden"
+                    if entry_claim_status == "forbidden_source_leakage"
+                    else "review_only"
+                ),
+                "discovery_signal_candidate_count": rollup[
+                    "discovery_signal_candidate_count"
+                ],
+                "nonabstaining_candidate_count": rollup[
+                    "nonabstaining_candidate_count"
+                ],
+                "forbidden_source_leakage_rows": rollup[
+                    "forbidden_source_leakage_rows"
+                ],
+                "unsafe_control_nonabstention_rows": rollup[
+                    "unsafe_control_nonabstention_rows"
+                ],
+                "progress_claim_allowed": False,
+                "production_claim_allowed": False,
+                "labels_or_fingerprints_changed": False,
+            }
+        )
+    return entry_rollups
 
 
 def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> dict[str, Any]:
@@ -233,6 +363,7 @@ def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> d
     forbidden_source_leakage_rows: list[str] = []
     unsafe_control_nonabstention_rows: list[str] = []
     discovery_signal_row_count = 0
+    valid_rows_for_rollup: list[dict[str, Any]] = []
     required_fields = list(POLICY_DECISION_REQUIRED_FIELDS)
     if metadata.get("require_candidate_identity_fields") is True:
         required_fields.extend(CANDIDATE_IDENTITY_REQUIRED_FIELDS)
@@ -282,6 +413,7 @@ def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> d
                     "actual": claim_admissibility,
                 }
             )
+        valid_rows_for_rollup.append(row)
         claim_status_counts[claim_status] = claim_status_counts.get(claim_status, 0) + 1
         coordinate_state_counts[coordinate_state] = (
             coordinate_state_counts.get(coordinate_state, 0) + 1
@@ -310,6 +442,13 @@ def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> d
     expected_claim_mismatch_count = int(
         metadata.get("expected_claim_status_mismatch_count") or 0
     )
+    entry_rollups = build_entry_rollups(valid_rows_for_rollup)
+    entry_claim_status_counts: dict[str, int] = {}
+    for entry_rollup in entry_rollups:
+        entry_claim_status = entry_rollup["entry_claim_status"]
+        entry_claim_status_counts[entry_claim_status] = (
+            entry_claim_status_counts.get(entry_claim_status, 0) + 1
+        )
     gate_pass = not (
         missing_schema_rows
         or forbidden_source_leakage_rows
@@ -325,9 +464,22 @@ def summarize_result(root: Path, result_path: Path, result: dict[str, Any]) -> d
         "tranche_id": metadata.get("tranche_id"),
         "policy_version": metadata.get("policy_version"),
         "rows_reviewed": len(rows),
+        "entry_count": len(entry_rollups),
         "discovery_signal_row_count": discovery_signal_row_count,
         "claim_status_counts": claim_status_counts,
+        "entry_claim_status_counts": entry_claim_status_counts,
         "coordinate_state_counts": coordinate_state_counts,
+        "entry_rollup_contract": {
+            "candidate_rows_are_source_of_truth": True,
+            "entry_status_derived_from_candidate_decisions": True,
+            "claim_admissibility_separate_from_discovery_signal": True,
+            "fail_closed_claim_status_precedence": list(
+                ENTRY_CLAIM_STATUS_PRECEDENCE
+            ),
+            "progress_claim_allowed": False,
+            "production_claim_allowed": False,
+        },
+        "entry_rollups": entry_rollups,
         "forbidden_source_leakage_count": len(forbidden_source_leakage_rows),
         "forbidden_source_leakage_rows": forbidden_source_leakage_rows,
         "unsafe_control_nonabstention_count": len(unsafe_control_nonabstention_rows),
@@ -362,10 +514,14 @@ def build_artifact(root: Path, result_paths: list[Path]) -> dict[str, Any]:
         if row["gate_pass"] is not True
     ]
     aggregate_claim_status_counts = merge_counts(scoreboard_rows, "claim_status_counts")
+    aggregate_entry_claim_status_counts = merge_counts(
+        scoreboard_rows, "entry_claim_status_counts"
+    )
     aggregate_coordinate_state_counts = merge_counts(
         scoreboard_rows, "coordinate_state_counts"
     )
     total_rows_reviewed = sum(row["rows_reviewed"] for row in scoreboard_rows)
+    total_entry_count = sum(row["entry_count"] for row in scoreboard_rows)
     total_discovery_signal_rows = sum(
         row["discovery_signal_row_count"] for row in scoreboard_rows
     )
@@ -387,8 +543,10 @@ def build_artifact(root: Path, result_paths: list[Path]) -> dict[str, Any]:
         "schema_drafts": schema_drafts(),
         "scoreboard_summary": {
             "rows_reviewed": total_rows_reviewed,
+            "entry_count": total_entry_count,
             "discovery_signal_row_count": total_discovery_signal_rows,
             "claim_status_counts": aggregate_claim_status_counts,
+            "entry_claim_status_counts": aggregate_entry_claim_status_counts,
             "coordinate_state_counts": aggregate_coordinate_state_counts,
             "forbidden_source_leakage_count": sum(
                 row["forbidden_source_leakage_count"] for row in scoreboard_rows
@@ -399,6 +557,12 @@ def build_artifact(root: Path, result_paths: list[Path]) -> dict[str, Any]:
             "covered_claim_status_values": sorted(aggregate_claim_status_counts),
             "uncovered_claim_status_values": sorted(
                 CLAIM_STATUS_VALUES - set(aggregate_claim_status_counts)
+            ),
+            "covered_entry_claim_status_values": sorted(
+                aggregate_entry_claim_status_counts
+            ),
+            "uncovered_entry_claim_status_values": sorted(
+                CLAIM_STATUS_VALUES - set(aggregate_entry_claim_status_counts)
             ),
             "covered_coordinate_state_values": sorted(aggregate_coordinate_state_counts),
             "uncovered_coordinate_state_values": sorted(
@@ -459,6 +623,14 @@ def self_test() -> None:
     write_json(result_path, good_result, pretty=False)
     good_summary = summarize_result(root, result_path, good_result)
     assert good_summary["gate_pass"] is True
+    assert good_summary["entry_count"] == 1
+    assert good_summary["entry_claim_status_counts"] == {
+        "review_only_abstain_missing_role_policy": 1,
+    }
+    assert good_summary["entry_rollups"][0]["entry_claim_status"] == (
+        "review_only_abstain_missing_role_policy"
+    )
+    assert good_summary["entry_rollups"][0]["progress_claim_allowed"] is False
     bad_result = json.loads(json.dumps(good_result))
     bad_result["rows"][0]["row_id"] = "candidate:sibling_control"
     bad_result["rows"][0]["row_role"] = "sibling_control"
@@ -469,6 +641,9 @@ def self_test() -> None:
     bad_summary = summarize_result(root, result_path, bad_result)
     assert bad_summary["gate_pass"] is False
     assert bad_summary["unsafe_control_nonabstention_count"] == 1
+    assert bad_summary["entry_rollups"][0]["unsafe_control_nonabstention_rows"] == [
+        "candidate:sibling_control",
+    ]
     source_leak = json.loads(json.dumps(good_result))
     source_leak["rows"][0]["claim_status"] = "forbidden_source_leakage"
     source_leak["metadata"]["claim_status_counts"] = {
@@ -477,6 +652,34 @@ def self_test() -> None:
     leak_summary = summarize_result(root, result_path, source_leak)
     assert leak_summary["gate_pass"] is False
     assert leak_summary["forbidden_source_leakage_count"] == 1
+    assert leak_summary["entry_claim_status_counts"] == {"forbidden_source_leakage": 1}
+    assert leak_summary["entry_rollups"][0]["entry_claim_admissibility"] == "forbidden"
+    mixed_entry = json.loads(json.dumps(good_result))
+    mixed_entry["metadata"]["claim_status_counts"] = {
+        "review_only_abstain_product_state": 1,
+        "review_only_nonabstaining_candidate": 1,
+    }
+    mixed_entry["metadata"]["coordinate_state_counts"] = {
+        "active_gamma": 1,
+        "product_state": 1,
+    }
+    mixed_entry["rows"][0]["pdb_id"] = "MIXED"
+    mixed_entry["rows"][0]["claim_status"] = "review_only_nonabstaining_candidate"
+    mixed_entry["rows"][0]["claim_admissibility"] = "review_only"
+    product_row = json.loads(json.dumps(good_result["rows"][0]))
+    product_row["row_id"] = "candidate:product_state"
+    product_row["pdb_id"] = "MIXED"
+    product_row["coordinate_state"] = "product_state"
+    product_row["claim_status"] = "review_only_abstain_product_state"
+    mixed_entry["rows"].append(product_row)
+    mixed_summary = summarize_result(root, result_path, mixed_entry)
+    assert mixed_summary["gate_pass"] is True
+    assert mixed_summary["entry_count"] == 1
+    assert mixed_summary["entry_rollups"][0]["candidate_count"] == 2
+    assert mixed_summary["entry_rollups"][0]["nonabstaining_candidate_count"] == 1
+    assert mixed_summary["entry_rollups"][0]["entry_claim_status"] == (
+        "review_only_abstain_product_state"
+    )
     missing_schema = json.loads(json.dumps(good_result))
     del missing_schema["rows"][0]["schema_version"]
     del missing_schema["rows"][0]["claim_admissibility"]

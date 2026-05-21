@@ -1,0 +1,273 @@
+{
+  "adapter_summary": {
+    "adapted_row_count": 10,
+    "candidate_identity_required": true,
+    "candidate_identity_unique_per_source_lane": true,
+    "discovery_signal_separate_from_claim_admissibility": true,
+    "entry_status_derived_from_candidate_decisions": true,
+    "federated_contract_validated_by_policy_harness": true,
+    "labels_or_fingerprints_changed": false,
+    "production_claim_allowed": false,
+    "row_id_unique": true,
+    "source_lane_count": 4,
+    "source_lane_counts": {
+      "epk_false_positive_hunter": 3,
+      "epk_positive_evidence": 2,
+      "epk_sibling_controls": 2,
+      "epk_substrate_role_identity": 3
+    },
+    "source_text_and_protein_names_copied": false
+  },
+  "artifacts": {
+    "negative_duplicate_candidate_identity": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_negative_duplicate_candidate_identity_result.json",
+    "negative_duplicate_candidate_identity_sha256": "c633409ed78eefbed51eba48f5b78adf53ed54c0286c11e3f675fffb5991ceed",
+    "negative_missing_candidate_identity": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_negative_missing_candidate_identity_result.json",
+    "negative_missing_candidate_identity_sha256": "6ea76cd31ac5a81864d22073029a3b138d49f7978da45f672fc0e86ded14754b",
+    "negative_source_context_copy": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_negative_source_context_copy_result.json",
+    "negative_source_context_copy_sha256": "65cd79bd609c5fc07ab58b306f6a854e96be7bfbdab7c6215209b5ab56fb7d4a",
+    "result": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_result.json",
+    "result_sha256": "2ac1acbc12d8bf8ecf37bc99bf04aa079f949acec7afc8d68b1f56bf13ba8d1d",
+    "scoreboard_gate": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_scoreboard_gate.json",
+    "scoreboard_gate_sha256": "605b5736885023291d9afb1f22323156ddf7aa35dec4acfd1166a85d45c3f6ef",
+    "tranche": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_tranche.json",
+    "tranche_sha256": "880c6acc53105f4e3154e2156110d690795eac3c54faaa62e0c17d82c4619235"
+  },
+  "federated_inputs": [
+    {
+      "artifact": "artifacts/research_lanes/epk_positive_evidence/candidate_source_adjudication_all_20260521.json",
+      "available_row_count": 84,
+      "lane_id": "epk_positive_evidence",
+      "ref": "origin/research/epk-positive-evidence",
+      "review_only_input": true,
+      "row_keys": [
+        "adjudicated_candidate_rows"
+      ],
+      "selected_row_count": 2
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_evidence_v1_20260521.json",
+      "available_row_count": 211,
+      "lane_id": "epk_substrate_role_identity",
+      "ref": "origin/research/epk-substrate-role-identity",
+      "review_only_input": true,
+      "row_keys": [
+        "candidate_evidence_rows",
+        "state_only_rows"
+      ],
+      "selected_row_count": 3
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_false_positive_hunter/epk_candidate_evidence_v1_regression_gate_20260521_051511Z.json",
+      "available_row_count": 305,
+      "lane_id": "epk_false_positive_hunter",
+      "ref": "origin/research/epk-false-positive-hunter",
+      "review_only_input": true,
+      "row_keys": [
+        "rows"
+      ],
+      "selected_row_count": 3
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_sibling_controls/review_only_counteraxis_scorer_test_matrix_20260520.json",
+      "available_row_count": 91,
+      "lane_id": "epk_sibling_controls",
+      "ref": "origin/research/epk-sibling-controls",
+      "review_only_input": true,
+      "row_keys": [
+        "gamma_proximity_counteraxis_cases",
+        "product_phosphoryl_identity_counteraxis_cases"
+      ],
+      "selected_row_count": 2
+    }
+  ],
+  "gate": {
+    "gate_pass": true,
+    "production_claim_allowed": false,
+    "progress_claim_allowed": false
+  },
+  "hypothesis": "Independent ePK lanes can emit compact candidate rows that map into the shared candidate-evidence schema, while source review remains review-only and claim admissibility remains governed by the policy bridge.",
+  "metadata": {
+    "artifact_id": "epk_federated_lane_candidate_evidence_adapter_smoke_v1",
+    "created_at": "2026-05-21T13:26:58+00:00",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "primary_outcome": "scoreboard_gate_created",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "negative_fault_injections": [
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_negative_missing_candidate_identity_result.json",
+      "expected_failure": "missing_candidate_identity",
+      "missing_schema_details": [
+        {
+          "missing_fields": [
+            "candidate_id",
+            "source_lane_id",
+            "source_artifact"
+          ],
+          "row_id": "epk_positive_evidence:adjudicated_candidate_rows:1QMZ:active_gamma:ATP:A:381:E:5:2"
+        }
+      ],
+      "missing_schema_row_count": 1,
+      "rejected": true,
+      "sha256": "6ea76cd31ac5a81864d22073029a3b138d49f7978da45f672fc0e86ded14754b"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_negative_duplicate_candidate_identity_result.json",
+      "expected_failure": "duplicate_candidate_identity",
+      "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:7PT7:transition_analog:BEF:3:1002:5:545:8 violates federated adapter contract: candidate_id must be unique within each source lane",
+      "rejected": true,
+      "sha256": "c633409ed78eefbed51eba48f5b78adf53ed54c0286c11e3f675fffb5991ceed"
+    },
+    {
+      "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_negative_source_context_copy_result.json",
+      "expected_failure": "source_context_copy",
+      "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:1QMZ:active_gamma:ATP:A:381:E:5:2 violates federated adapter contract: source text, protein names, titles, paper metadata, EC/Rhea, and prose must not be copied into predictive rows ['protein_names']",
+      "rejected": true,
+      "sha256": "65cd79bd609c5fc07ab58b306f6a854e96be7bfbdab7c6215209b5ab56fb7d4a"
+    }
+  ],
+  "policy_result": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_result.json",
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 1,
+      "review_only_abstain_missing_role_policy": 3,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 5
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 7,
+      "adp_state": 1,
+      "product_state": 1,
+      "substrate_acceptor_analog_state": 1
+    },
+    "counterexamples_found": [],
+    "expected_claim_status_mismatch_count": 0,
+    "primary_outcome": "policy_frozen_review_only",
+    "rows_reviewed": 10,
+    "sha256": "2ac1acbc12d8bf8ecf37bc99bf04aa079f949acec7afc8d68b1f56bf13ba8d1d"
+  },
+  "scoreboard_gate": {
+    "artifact": "artifacts/research_lanes/epk_policy_harness/epk_federated_lane_candidate_evidence_adapter_smoke_v1_20260521T132555Z_scoreboard_gate.json",
+    "entry_rollup_contract": {
+      "candidate_rows_are_source_of_truth": true,
+      "claim_admissibility_separate_from_discovery_signal": true,
+      "entry_status_derived_from_candidate_decisions": true,
+      "fail_closed_claim_status_precedence": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_sibling_control",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_abstain_split_state",
+        "review_only_abstain_analog_state",
+        "review_only_abstain_product_state",
+        "review_only_abstain_missing_role_policy",
+        "review_only_nonabstaining_candidate"
+      ],
+      "production_claim_allowed": false,
+      "progress_claim_allowed": false
+    },
+    "gate_pass": true,
+    "sha256": "605b5736885023291d9afb1f22323156ddf7aa35dec4acfd1166a85d45c3f6ef",
+    "summary": {
+      "claim_status_counts": {
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_missing_role_policy": 3,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 5
+      },
+      "coordinate_state_counts": {
+        "active_gamma": 7,
+        "adp_state": 1,
+        "product_state": 1,
+        "substrate_acceptor_analog_state": 1
+      },
+      "covered_claim_status_values": [
+        "review_only_abstain_analog_state",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control"
+      ],
+      "covered_coordinate_state_values": [
+        "active_gamma",
+        "adp_state",
+        "product_state",
+        "substrate_acceptor_analog_state"
+      ],
+      "covered_entry_claim_status_values": [
+        "review_only_abstain_analog_state",
+        "review_only_abstain_missing_role_policy",
+        "review_only_abstain_product_state",
+        "review_only_abstain_sibling_control"
+      ],
+      "discovery_signal_row_count": 8,
+      "entry_claim_status_counts": {
+        "review_only_abstain_analog_state": 1,
+        "review_only_abstain_missing_role_policy": 3,
+        "review_only_abstain_product_state": 1,
+        "review_only_abstain_sibling_control": 5
+      },
+      "entry_count": 10,
+      "forbidden_source_leakage_count": 0,
+      "labels_or_fingerprints_changed": false,
+      "production_claim_allowed": false,
+      "rows_reviewed": 10,
+      "uncovered_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "uncovered_coordinate_state_values": [
+        "ambiguous_coordinate_state",
+        "ligand_absent",
+        "metal_absent",
+        "split_state",
+        "unavailable_coordinate_state"
+      ],
+      "uncovered_entry_claim_status_values": [
+        "forbidden_source_leakage",
+        "review_only_abstain_forbidden_context",
+        "review_only_abstain_split_state",
+        "review_only_abstain_topology_ambiguity",
+        "review_only_nonabstaining_candidate"
+      ],
+      "unsafe_control_nonabstention_count": 0
+    }
+  },
+  "summary": {
+    "claim_status_counts": {
+      "review_only_abstain_analog_state": 1,
+      "review_only_abstain_missing_role_policy": 3,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 5
+    },
+    "coordinate_state_counts": {
+      "active_gamma": 7,
+      "adp_state": 1,
+      "product_state": 1,
+      "substrate_acceptor_analog_state": 1
+    },
+    "entry_claim_status_counts": {
+      "review_only_abstain_analog_state": 1,
+      "review_only_abstain_missing_role_policy": 3,
+      "review_only_abstain_product_state": 1,
+      "review_only_abstain_sibling_control": 5
+    },
+    "entry_count": 10,
+    "negative_fault_injection_count": 3,
+    "rows_reviewed": 10,
+    "scoreboard_gate_pass": true,
+    "source_lane_count": 4,
+    "source_lane_counts": {
+      "epk_false_positive_hunter": 3,
+      "epk_positive_evidence": 2,
+      "epk_sibling_controls": 2,
+      "epk_substrate_role_identity": 3
+    }
+  }
+}

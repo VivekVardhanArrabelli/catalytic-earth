@@ -690,6 +690,7 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
             "candidate_identity_unique_per_source_lane": True,
             "row_id_unique": True,
             "federated_contract_validated_by_policy_harness": True,
+            "entry_status_derived_from_candidate_decisions": True,
             "source_text_and_protein_names_copied": False,
             "discovery_signal_separate_from_claim_admissibility": True,
             "production_claim_allowed": False,
@@ -699,7 +700,11 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
             "rows_reviewed": result["metadata"]["row_count"],
             "source_lane_count": len(source_lane_counts),
             "source_lane_counts": source_lane_counts,
+            "entry_count": gate["scoreboard_summary"]["entry_count"],
             "claim_status_counts": result["metadata"]["claim_status_counts"],
+            "entry_claim_status_counts": gate["scoreboard_summary"][
+                "entry_claim_status_counts"
+            ],
             "coordinate_state_counts": result["metadata"]["coordinate_state_counts"],
             "scoreboard_gate_pass": gate["gate"]["gate_pass"],
             "negative_fault_injection_count": 3,
@@ -720,6 +725,11 @@ def build_outputs(root: Path, output_dir: Path, run_stamp: str, policy_path: Pat
             "artifact": rel(gate_path, root),
             "sha256": sha256_file(gate_path),
             "gate_pass": gate["gate"]["gate_pass"],
+            "entry_rollup_contract": (
+                gate["scoreboard_rows"][0]["entry_rollup_contract"]
+                if gate["scoreboard_rows"]
+                else {}
+            ),
             "summary": gate["scoreboard_summary"],
         },
         "negative_fault_injections": [

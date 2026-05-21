@@ -1,0 +1,16 @@
+{
+  "expected_error_fragment": "candidate_id must be unique within each source lane",
+  "metadata": {
+    "artifact_id": "epk_federated_lane_candidate_evidence_adapter_smoke_v1_duplicate_candidate_identity",
+    "created_at": "2026-05-21T13:26:58+00:00",
+    "fault_injection_expected_failure": "duplicate_candidate_identity",
+    "labels_or_fingerprints_changed": false,
+    "lane_id": "epk_policy_harness",
+    "production_claim_allowed": false,
+    "raw_coordinate_dump_written": false,
+    "rejected": true,
+    "review_only": true,
+    "schema_version": "epk_candidate_evidence_review_only_schema_v1_20260521"
+  },
+  "observed_error": "row epk_positive_evidence:adjudicated_candidate_rows:7PT7:transition_analog:BEF:3:1002:5:545:8 violates federated adapter contract: candidate_id must be unique within each source lane"
+}
