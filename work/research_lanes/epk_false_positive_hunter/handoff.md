@@ -6,7 +6,7 @@
 - Measured minutes: 79.18
 - Primary outcome: evidence_against
 - Pushed evidence commit: `211000f1c61e4d119ccaccb0fab64dfa0c522739` via alternate-index commit/push.
-- Remote branch verified at: `211000f1c61e4d119ccaccb0fab64dfa0c522739`.
+- Push-status commit: `e40a058ede6d832934f4bab8ffc0e1e72dc9954c`.
 - Local checked-out HEAD remains `c444f088082208ec9de2aba575cfb1f9ddf03d15` because linked-worktree metadata writes are blocked.
 - Rule under attack: biological-assembly/deposited-coordinate split sufficiency for review-only ePK materialization, plus the lane regression gate for ATPase/transporter/ORC-MCM/motor/same-chain/internal-fragment/ligand-materialization controls.
 - Production claim allowed: false
