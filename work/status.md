@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 234
-- Measured elapsed time: 7059.1 minutes (117.65 hours)
+- Entries: 235
+- Measured elapsed time: 7067.1 minutes (117.79 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -15,7 +15,7 @@ Generated from `work/progress_log.jsonl`.
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
 - ops: 94.0 measured minutes (1.57 hours)
-- post-infra-science: 1787.2 measured minutes (29.79 hours)
+- post-infra-science: 1795.3 measured minutes (29.92 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - v3: 97.9 measured minutes (1.63 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2676
-- Evidence references logged: 2183
+- Artifact references logged: 2684
+- Evidence references logged: 2188
 
 ## Recent Entries
-
-### 2026-05-20T20:13:02.164962+00:00 - post-infra-science
-
-- Task: Refresh ePK research-lane synthesis with terminal-gamma stress
-- Time mode: measured
-- Measured minutes: 4.017
-- Started: 2026-05-20T20:09:00Z
-- Ended: 2026-05-20T20:13:01Z
-- Artifacts: artifacts/v3_epk_research_lane_synthesis_20260520.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: 143 ePK lane JSON files and 4 JSONL ledgers validated with 0 errors, 36 fresh lane JSON files since prior synthesis integrated as review-only evidence, terminal-gamma geometry lead sibling-control stress all-abstained 12 of 12 with 0 mismatches and 0 counterexamples, ePK remains review-only and production activation no-go, targeted synthesis test passed, git diff --check passed
-- Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
 
 ### 2026-05-20T20:55:03.996810+00:00 - post-infra-science
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
 - Evidence: 11 fresh ePK lane JSON artifacts and 4 JSONL ledgers validated with 0 errors, 23FC kept review-only as ATR/PIKK short-segment stress, high-order v4 stress diagnostic retained bounded positives with 0 non-ORC residuals, 91-case sibling expected-block oracle ready review-only, ADP product repair tripwire abstained 10 of 10, focused overnight synthesis regression passed
 - Notes: Direct locked automation run with no delegation. No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit external-hard-negative production score or removal_allowed=true occurred.
+
+### 2026-05-21T00:27:03.666400+00:00 - post-infra-science
+
+- Task: Prospective external PLP aminotransferase mini-campaign
+- Time mode: measured
+- Measured minutes: 8.05
+- Started: 2026-05-20T19:19:00-05:00
+- Ended: 2026-05-21T00:27:03Z
+- Artifacts: artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json, artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json, artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json, artifacts/v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521.json, artifacts/v3_main_loop_small_win_register_post_plp_aminotransferase_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md
+- Evidence: 20-row Swiss-Prot PLP aminotransferase surface frozen before scoring, 18 rows routed to needs_review under current plp_dependent_enzyme lane, 2 exact current-reference sequence duplicates terminally rejected, deterministic 5-mer baseline checked 20 rows against 737 current references with no superiority claim, focused PLP mini-campaign regression passed
+- Notes: No artifact migration Phase 2/3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production scoring threshold or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -306,6 +306,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T22:44:16.389654+00:00: ePK remains review-only no-go; GHKL/dNK closed review-only; PfkB packet-only no-go.
 - 2026-05-20T23:59:52.878029+00:00: Main loop has closed NDK as review-only no-go and packaged PfkA; next bounded ATP-family step is a frozen PfkA-vs-neighbor tranche before any scoring, or a genuinely new external mini-campaign.
 - 2026-05-21T00:18:48.662111+00:00: Commit ePK synthesis integration before returning to non-ePK small-win ladder.
+- 2026-05-21T00:27:03.666400+00:00: Next bounded work can close PfkA-vs-neighbor tranche or stop for wrap if cadence is reached.
 
 ## Scope Adjustments
 
@@ -433,3 +434,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-20T22:19:09.281826+00:00: ePK late-lane synthesis is integrated as review-only evidence with no production scorer threshold label import registry edit or fingerprint expansion.
 - 2026-05-20T22:44:16.389654+00:00: Main loop stayed off ePK audit churn and advanced non-ePK visible small wins.
 - 2026-05-21T00:18:48.662111+00:00: ePK remains review-only no-go and out of main-loop production scope; future scorer dry-run belongs only in isolated research lane.
+- 2026-05-21T00:27:03.666400+00:00: External PLP mini-campaign is review-only; current PLP lane presence is not a mechanism-match or import claim without source-free geometry and factory gates.

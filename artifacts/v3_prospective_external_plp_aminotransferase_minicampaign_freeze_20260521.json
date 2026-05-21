@@ -1,0 +1,759 @@
+{
+  "excluded_rows_sample": [
+    {
+      "accession": "Q16773",
+      "entry_name": "KAT1_HUMAN",
+      "exclusion_reason": "prior_external_pool_accession",
+      "primary_ec": "2.6.1.64"
+    },
+    {
+      "accession": "Q8N5Z0",
+      "entry_name": "AADAT_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.39"
+    },
+    {
+      "accession": "P17735",
+      "entry_name": "ATTY_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.5"
+    },
+    {
+      "accession": "O15382",
+      "entry_name": "BCAT2_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.42"
+    },
+    {
+      "accession": "Q92643",
+      "entry_name": "GPI8_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.-"
+    },
+    {
+      "accession": "P54687",
+      "entry_name": "BCAT1_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.42"
+    },
+    {
+      "accession": "P21549",
+      "entry_name": "AGT1_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.44"
+    },
+    {
+      "accession": "P00505",
+      "entry_name": "AATM_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.1"
+    },
+    {
+      "accession": "P04181",
+      "entry_name": "OAT_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.13"
+    },
+    {
+      "accession": "P17174",
+      "entry_name": "AATC_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.1"
+    },
+    {
+      "accession": "Q06210",
+      "entry_name": "GFPT1_HUMAN",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.16"
+    },
+    {
+      "accession": "O32148",
+      "entry_name": "PUCG_BACSU",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.112"
+    },
+    {
+      "accession": "P28820",
+      "entry_name": "PABB_BACSU",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.85"
+    },
+    {
+      "accession": "B0F481",
+      "entry_name": "BIODA_ARATH",
+      "exclusion_reason": "mixed_non_aminotransferase_ec_context",
+      "primary_ec": "2.6.1.62"
+    },
+    {
+      "accession": "Q9ZQI7",
+      "entry_name": "ALD1_ARATH",
+      "exclusion_reason": "missing_catalytic_activity_pdb_or_sequence",
+      "primary_ec": "2.6.1.-"
+    },
+    {
+      "accession": "P77806",
+      "entry_name": "YBDL_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.88"
+    },
+    {
+      "accession": "Q9SIE1",
+      "entry_name": "PAT_ARATH",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.1"
+    },
+    {
+      "accession": "P04693",
+      "entry_name": "TYRB_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.107"
+    },
+    {
+      "accession": "P0AB80",
+      "entry_name": "ILVE_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.42"
+    },
+    {
+      "accession": "P0A959",
+      "entry_name": "ALAA_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.2"
+    },
+    {
+      "accession": "P00509",
+      "entry_name": "AAT_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.1"
+    },
+    {
+      "accession": "P05041",
+      "entry_name": "PABB_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.85"
+    },
+    {
+      "accession": "P27833",
+      "entry_name": "WECE_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.59"
+    },
+    {
+      "accession": "P77581",
+      "entry_name": "ASTC_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.81"
+    },
+    {
+      "accession": "P23721",
+      "entry_name": "SERC_ECOLI",
+      "exclusion_reason": "primary_ec_cap_already_reached",
+      "primary_ec": "2.6.1.52"
+    },
+    {
+      "accession": "P00903",
+      "entry_name": "PABA_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.85"
+    },
+    {
+      "accession": "P17169",
+      "entry_name": "GLMS_ECOLI",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.16"
+    },
+    {
+      "accession": "P23542",
+      "entry_name": "AATC_YEAST",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.1"
+    },
+    {
+      "accession": "P47039",
+      "entry_name": "BNA3_YEAST",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.7"
+    },
+    {
+      "accession": "P43567",
+      "entry_name": "AGX1_YEAST",
+      "exclusion_reason": "missing_plp_binding_or_active_site_annotation",
+      "primary_ec": "2.6.1.44"
+    }
+  ],
+  "frozen_before_scoring_statement": "Candidate selection was completed before outcome scoring. No geometry, sequence-neighbor, Foldseek, ESM, inverse-gate, production-fingerprint score, or ePK evidence was used to select these rows.",
+  "metadata": {
+    "abstain_threshold_if_scored_later": 0.4115,
+    "artifact_id": "v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 20,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T00:25:01Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_plp_aminotransferase_minicampaign_freeze",
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "primary_ec_cap": 2,
+    "prior_external_pool_excluded_accession_count": 472,
+    "production_fingerprint_count": 8,
+    "production_fingerprint_universe": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selection_rules": [
+      "reviewed UniProtKB/Swiss-Prot rows from EC 2.6.1.* with PDB cross-reference",
+      "require catalytic-activity annotation, sequence, and at least one PDB xref",
+      "require explicit pyridoxal 5'-phosphate binding or active-site annotation before outcome scoring",
+      "exclude imported hard negatives and previously used external candidate accessions",
+      "exclude mixed non-aminotransferase EC contexts",
+      "cap at two rows per primary EC number",
+      "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+    ],
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28ec%3A2.6.1.%2A%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=200",
+    "source_rows_available": 144,
+    "source_rows_reviewed_before_freeze_stop": 65,
+    "source_tsv_sha256": "ad54c5554c22b41a538ce072b05e07ece31a30f9653deed5db72783e0f474ce2",
+    "target_current_fingerprint_lane": "plp_dependent_enzyme"
+  },
+  "rows": [
+    {
+      "accession": "Q8TD30",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.2"
+      ],
+      "entry_name": "ALAT2_HUMAN",
+      "freeze_rank": 1,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "3IHJ"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.2",
+      "protein_name": "Alanine aminotransferase 2 (ALT2) (EC 2.6.1.2) (Glutamate pyruvate transaminase 2) (GPT 2) (Glutamic--alanine transaminase 2) (Glutamic--pyruvic transaminase 2)",
+      "row_id": "uniprot:Q8TD30",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 523,
+      "sequence_sha256": "f492addd800c57d349c63bdc4543b9a2f48cb61d877000373b3151f183fb4c8a"
+    },
+    {
+      "accession": "Q9NZ45",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.3"
+      ],
+      "entry_name": "CISD1_HUMAN",
+      "freeze_rank": 2,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 12,
+      "pdb_ids_sample": [
+        "2QD0",
+        "2QH7",
+        "2R13",
+        "3EW0",
+        "3LPQ",
+        "3REE",
+        "4EZF",
+        "4F1E"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.3",
+      "protein_name": "CDGSH iron-sulfur domain-containing protein 1 (Cysteine transaminase CISD1) (EC 2.6.1.3) (MitoNEET)",
+      "row_id": "uniprot:Q9NZ45",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 108,
+      "sequence_sha256": "17bb2cec3a3bbb5375f76542963759fa9fbd060398051d9fd66206f0c0310d92"
+    },
+    {
+      "accession": "Q9Y617",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.52"
+      ],
+      "entry_name": "SERC_HUMAN",
+      "freeze_rank": 3,
+      "organism": "Homo sapiens (Human)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "3E77",
+        "8A5V",
+        "8A5W"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.52",
+      "protein_name": "Phosphoserine aminotransferase (EC 2.6.1.52) (Phosphohydroxythreonine aminotransferase) (PSAT)",
+      "row_id": "uniprot:Q9Y617",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 370,
+      "sequence_sha256": "47ac6e9f63a78f48d4b7c4695d9271ae3d7b713159ee6909746fca1f43d8778f"
+    },
+    {
+      "accession": "O07566",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.104"
+      ],
+      "entry_name": "NTDA_BACSU",
+      "freeze_rank": 4,
+      "organism": "Bacillus subtilis (strain 168)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "4K2B",
+        "4K2I",
+        "4K2M"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.104",
+      "protein_name": "3-oxo-glucose-6-phosphate:glutamate aminotransferase (EC 2.6.1.104) (3-dehydro-glucose-6-phosphate--glutamate transaminase) (Kanosamine 6-phosphate transaminase)",
+      "row_id": "uniprot:O07566",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 441,
+      "sequence_sha256": "5f87702e87e7bbe4c48209b143003fa567aade828f8eb6679cf7ee3a1a6ff8f7"
+    },
+    {
+      "accession": "P53555",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.105"
+      ],
+      "entry_name": "BIOK_BACSU",
+      "freeze_rank": 5,
+      "organism": "Bacillus subtilis (strain 168)",
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "3DOD",
+        "3DRD",
+        "3DU4",
+        "6WNN"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.105",
+      "protein_name": "L-Lysine--8-amino-7-oxononanoate transaminase (EC 2.6.1.105) (7,8-diamino-pelargonic acid aminotransferase) (DAPA AT) (DAPA aminotransferase) (7,8-diaminononanoate synthase) (DANS) (Diaminopelargonic acid synthase) (L-Lysine--8-amino-7-oxononanoate aminotransferase)",
+      "row_id": "uniprot:P53555",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 448,
+      "sequence_sha256": "ebe13ff6ec33ddd7125125c0ba5af67425db16fffc7417d0fbf162850ab1c272"
+    },
+    {
+      "accession": "Q9S7N2",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.27",
+        "2.6.1.99"
+      ],
+      "entry_name": "TAA1_ARATH",
+      "freeze_rank": 6,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "3BWN",
+        "3BWO"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.27",
+      "protein_name": "L-tryptophan--pyruvate aminotransferase 1 (EC 2.6.1.27) (EC 2.6.1.99) (Protein CYTOKININ INDUCED ROOT CURLING 1) (Protein SHADE AVOIDANCE 3) (Protein TRANSPORT INHIBITOR RESPONSE 2) (Protein TRYPTOPHAN AMINOTRANSFERASE OF ARABIDOPSIS 1) (Protein WEAK ETHYLENE INSENSITIVE 8) (Tryptophan transaminase)",
+      "row_id": "uniprot:Q9S7N2",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 391,
+      "sequence_sha256": "f078283324e470cbd5f3e1b3ae2a270d20836cb86ef80e4065dffe4d23b4907c"
+    },
+    {
+      "accession": "P50457",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.19"
+      ],
+      "entry_name": "PUUE_ECOLI",
+      "freeze_rank": 7,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "7JH3"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.19",
+      "protein_name": "4-aminobutyrate aminotransferase PuuE (EC 2.6.1.19) (GABA aminotransferase) (GABA-AT) (Gamma-amino-N-butyrate transaminase) (GABA transaminase) (Glutamate:succinic semialdehyde transaminase)",
+      "row_id": "uniprot:P50457",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 421,
+      "sequence_sha256": "52ac22f62dbdac790afee54e99d458a2230e79551a119ad90dca1873fa677460"
+    },
+    {
+      "accession": "Q96255",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.52"
+      ],
+      "entry_name": "SERB1_ARATH",
+      "freeze_rank": 8,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "6CZX",
+        "6CZY",
+        "6CZZ"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.52",
+      "protein_name": "Phosphoserine aminotransferase 1, chloroplastic (AtPSAT1) (EC 2.6.1.52) (Phosphohydroxythreonine aminotransferase)",
+      "row_id": "uniprot:Q96255",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 430,
+      "sequence_sha256": "4b3ef69f9731ab4118378d659e4c619bb5b586bb858e01ba853fda46846e4b2c"
+    },
+    {
+      "accession": "Q56YA5",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.-",
+        "2.6.1.44",
+        "2.6.1.45",
+        "2.6.1.51"
+      ],
+      "entry_name": "SGAT_ARATH",
+      "freeze_rank": 9,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "6PK1",
+        "6PK3"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.-",
+      "protein_name": "Serine--glyoxylate aminotransferase (EC 2.6.1.45) (Alanine--glyoxylate aminotransferase) (AGT) (EC 2.6.1.44) (Asparagine aminotransferase) (EC 2.6.1.-) (Serine--pyruvate aminotransferase) (EC 2.6.1.51)",
+      "row_id": "uniprot:Q56YA5",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 401,
+      "sequence_sha256": "018df9fb3b7ce6ccf0ed3c0c17a1552487d875dd5a9594c59d76be217fb90ed3"
+    },
+    {
+      "accession": "P12995",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.62"
+      ],
+      "entry_name": "BIOA_ECOLI",
+      "freeze_rank": 10,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 12,
+      "pdb_ids_sample": [
+        "1DTY",
+        "1MGV",
+        "1MLY",
+        "1MLZ",
+        "1QJ3",
+        "1QJ5",
+        "1S06",
+        "1S07"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.62",
+      "protein_name": "Adenosylmethionine-8-amino-7-oxononanoate aminotransferase (EC 2.6.1.62) (7,8-diamino-pelargonic acid aminotransferase) (DAPA AT) (DAPA aminotransferase) (7,8-diaminononanoate synthase) (DANS) (Diaminopelargonic acid synthase)",
+      "row_id": "uniprot:P12995",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 429,
+      "sequence_sha256": "fe8c53a36cc733ca7eaeac1067d74420980767e5781caa0fb8fe21cbbbc82902"
+    },
+    {
+      "accession": "P22256",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.19",
+        "2.6.1.48"
+      ],
+      "entry_name": "GABT_ECOLI",
+      "freeze_rank": 11,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "1SF2",
+        "1SFF",
+        "1SZK",
+        "1SZS",
+        "1SZU"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.19",
+      "protein_name": "4-aminobutyrate aminotransferase GabT (EC 2.6.1.19) (5-aminovalerate transaminase) (EC 2.6.1.48) (GABA aminotransferase) (GABA-AT) (Gamma-amino-N-butyrate transaminase) (GABA transaminase) (Glutamate:succinic semialdehyde transaminase) (L-AIBAT)",
+      "row_id": "uniprot:P22256",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 426,
+      "sequence_sha256": "c32f0b4849ddded75e72f613904acd717be35e29f175961d1291ce3c6dad48b1"
+    },
+    {
+      "accession": "Q93ZN9",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.83"
+      ],
+      "entry_name": "DAPAT_ARATH",
+      "freeze_rank": 12,
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_count": 9,
+      "pdb_ids_sample": [
+        "2Z1Z",
+        "2Z20",
+        "3EI5",
+        "3EI6",
+        "3EI7",
+        "3EI8",
+        "3EI9",
+        "3EIA"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.83",
+      "protein_name": "LL-diaminopimelate aminotransferase, chloroplastic (AtDAP-AT) (DAP-AT) (DAP-aminotransferase) (LL-DAP-aminotransferase) (EC 2.6.1.83) (Protein ABERRANT GROWTH AND DEATH 2)",
+      "row_id": "uniprot:Q93ZN9",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 461,
+      "sequence_sha256": "530ad8a713bd16887368626ec1b188a1d74207b49d890c25a772f00a9f22a596"
+    },
+    {
+      "accession": "P42588",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.29",
+        "2.6.1.82"
+      ],
+      "entry_name": "PAT_ECOLI",
+      "freeze_rank": 13,
+      "organism": "Escherichia coli (strain K12)",
+      "pdb_count": 6,
+      "pdb_ids_sample": [
+        "4UOX",
+        "4UOY",
+        "5H7D",
+        "5X3F",
+        "8CPL",
+        "8R2P"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.29",
+      "protein_name": "Putrescine aminotransferase (PAT) (PATase) (EC 2.6.1.82) (Cadaverine transaminase) (Diamine transaminase) (EC 2.6.1.29) (Putrescine transaminase) (Putrescine--2-oxoglutaric acid transaminase) (Putrescine:2-OG aminotransferase)",
+      "row_id": "uniprot:P42588",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 459,
+      "sequence_sha256": "4bdf33bffaceef33713ddfc9b4411a5ca0b6c7fc03c16e218701074c48c6d7b7"
+    },
+    {
+      "accession": "H8WR05",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.-"
+      ],
+      "entry_name": "BFAT_VARPD",
+      "freeze_rank": 14,
+      "organism": "Variovorax paradoxus",
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "4AO9",
+        "4AOA"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.-",
+      "protein_name": "Beta-phenylalanine transaminase (EC 2.6.1.-) (Aromatic beta-amino acid aminotransferase) (Beta-phenylalanine aminotransferase) (VpAT)",
+      "row_id": "uniprot:H8WR05",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 434,
+      "sequence_sha256": "4676cffaed31f5037215197c674d2edc282469dd7f9b7003f26674d8420d280c"
+    },
+    {
+      "accession": "P19938",
+      "active_site_annotation_present": true,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.21"
+      ],
+      "entry_name": "DAAA_BACYM",
+      "freeze_rank": 15,
+      "organism": "Bacillus sp. (strain YM-1)",
+      "pdb_count": 9,
+      "pdb_ids_sample": [
+        "1A0G",
+        "1DAA",
+        "1G2W",
+        "2DAA",
+        "2DAB",
+        "3DAA",
+        "3LQS",
+        "4DAA"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.21",
+      "protein_name": "D-alanine aminotransferase (EC 2.6.1.21) (D-amino acid aminotransferase) (D-amino acid transaminase) (DAAT) (D-aspartate aminotransferase)",
+      "row_id": "uniprot:P19938",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 283,
+      "sequence_sha256": "c134e56735adf8e75aa50352f870af98609b7517aa3a255b3e2116e7d83f38fb"
+    },
+    {
+      "accession": "Q988B8",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.30"
+      ],
+      "entry_name": "PPAT_RHILO",
+      "freeze_rank": 16,
+      "organism": "Mesorhizobium japonicum (strain LMG 29417 / CECT 9101 / MAFF 303099) (Mesorhizobium loti (strain MAFF 303099))",
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "2Z9U",
+        "2Z9V",
+        "2Z9W",
+        "2Z9X"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.30",
+      "protein_name": "Pyridoxamine--pyruvate transaminase (EC 2.6.1.30) (Pyridoxamine-pyruvate aminotransferase)",
+      "row_id": "uniprot:Q988B8",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 393,
+      "sequence_sha256": "0196c185291e620a9647cdc35c03df4733989abebfb36c64b1cbc77f3df706bd"
+    },
+    {
+      "accession": "Q72LL6",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.39"
+      ],
+      "entry_name": "LYSN_THET2",
+      "freeze_rank": 17,
+      "organism": "Thermus thermophilus (strain ATCC BAA-163 / DSM 7039 / HB27)",
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "2EGY",
+        "2Z1Y",
+        "2ZP7",
+        "2ZYJ",
+        "3CBF"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.39",
+      "protein_name": "2-aminoadipate transaminase (EC 2.6.1.39) (2-aminoadipate aminotransferase) (Alpha-aminoadipate aminotransferase) (AAA-AT) (AadAT)",
+      "row_id": "uniprot:Q72LL6",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 397,
+      "sequence_sha256": "584def56341760d61bed7cce2d56c6104b96ecfa87583c93977cb134ca17ca14"
+    },
+    {
+      "accession": "O50131",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.13"
+      ],
+      "entry_name": "ORNAT_PYRHO",
+      "freeze_rank": 18,
+      "organism": "Pyrococcus horikoshii (strain ATCC 700860 / DSM 12428 / JCM 9974 / NBRC 100139 / OT-3)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "7VNO",
+        "7VNT",
+        "7VO1"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.13",
+      "protein_name": "Ornithine aminotransferase (Orn-AT) (EC 2.6.1.13) (Ornithine delta-aminotransferase)",
+      "row_id": "uniprot:O50131",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 454,
+      "sequence_sha256": "767af40d463d83f91e2c39450a1606746f0e02f7e0cb42fe306d7ba2a0daa465"
+    },
+    {
+      "accession": "Q8NTR2",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.1"
+      ],
+      "entry_name": "ASPAT_CORGL",
+      "freeze_rank": 19,
+      "organism": "Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / BCRC 11384 / CCUG 27702 / LMG 3730 / NBRC 12168 / NCIMB 10025 / NRRL B-2784 / 534)",
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "3PPL",
+        "5HXX",
+        "5IWQ"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.1",
+      "protein_name": "Aspartate aminotransferase (AspAT) (EC 2.6.1.1)",
+      "row_id": "uniprot:Q8NTR2",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 432,
+      "sequence_sha256": "9fa930753882b29539c188fdffa9970af10842916c75b3a9a708b8821345f2fc"
+    },
+    {
+      "accession": "P96060",
+      "active_site_annotation_present": false,
+      "catalytic_activity_annotation_present": true,
+      "ec_numbers": [
+        "2.6.1.37"
+      ],
+      "entry_name": "PHNW_SALTY",
+      "freeze_rank": 20,
+      "organism": "Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)",
+      "pdb_count": 1,
+      "pdb_ids_sample": [
+        "1M32"
+      ],
+      "plp_binding_annotation_present": true,
+      "primary_ec": "2.6.1.37",
+      "protein_name": "2-aminoethylphosphonate--pyruvate transaminase (EC 2.6.1.37) (2-aminoethylphosphonate aminotransferase) (AEP transaminase) (AEPT)",
+      "row_id": "uniprot:P96060",
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot EC 2.6.1.* row with catalytic activity, PDB cross-reference, and explicit pyridoxal 5'-phosphate binding/active-site annotation; deterministic cap max two rows per primary EC.",
+      "sequence_length": 367,
+      "sequence_sha256": "b3f02ecf3054f32af5b1ca6b9a73accb40f6923ceca5eb551df75505462226a1"
+    }
+  ]
+}

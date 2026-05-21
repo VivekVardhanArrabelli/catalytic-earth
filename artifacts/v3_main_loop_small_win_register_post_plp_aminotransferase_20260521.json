@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "artifact_id": "v3_main_loop_small_win_register_post_plp_aminotransferase_20260521",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T00:25:01Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "main_loop_small_win_register_post_plp_aminotransferase",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json",
+      "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json",
+      "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json",
+      "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+      "artifacts/v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521.json"
+    ]
+  },
+  "rollup": {
+    "artifact_upload_or_removal_count": 0,
+    "countable_label_candidate_count": 0,
+    "epk_review_only_no_go_preserved": true,
+    "external_minicampaign_candidate_count": 20,
+    "external_minicampaign_needs_review_count": 18,
+    "external_minicampaign_terminal_rejection_count": 2,
+    "registry_or_fingerprint_edit_count": 0
+  },
+  "rows": [
+    {
+      "decision_status": "research_lane_only_no_go",
+      "import_claim_allowed": false,
+      "item_id": "overnight_epk_research_lane_synthesis",
+      "next_action": "keep ePK out of the main-loop critical path; future ePK scorer dry-run belongs in isolated research lanes only",
+      "primary_artifact": "artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json",
+      "production_claim_allowed": false,
+      "small_win_ladder_slot": "research_lane_integration",
+      "terminal_decision": "no_production_activation"
+    },
+    {
+      "decision_status": "frozen_current_fingerprint_lane_needs_review",
+      "import_claim_allowed": false,
+      "item_id": "plp_aminotransferase_external_minicampaign",
+      "next_action": "source-free external PLP geometry and duplicate gates are required before any mechanism-match or import claim",
+      "primary_artifact": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json",
+      "production_claim_allowed": false,
+      "sequence_diagnostic_artifact": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+      "small_win_ladder_slot": "prospective_external_mini_campaign",
+      "supporting_artifact": "artifacts/v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521.json",
+      "terminal_decision_counts": {
+        "needs_review": 18,
+        "terminal_rejection": 2
+      }
+    }
+  ]
+}

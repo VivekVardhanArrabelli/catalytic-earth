@@ -74,6 +74,25 @@ work:
 `epk_source_free_scorer_dry_run_against_oracle_and_tripwires_v1_review_only`.
 Do not start that from the main loop.
 
+The same run opens a fresh prospective external PLP aminotransferase
+mini-campaign after the ePK integration commit. The freeze artifact
+`artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json`
+locks 20 reviewed UniProtKB/Swiss-Prot EC 2.6.1.* rows before scoring,
+requiring catalytic activity, PDB cross-reference, explicit pyridoxal
+5'-phosphate binding/active-site annotation, prior external-pool exclusions,
+mixed-EC exclusions, and a two-row cap per primary EC. The decision packet
+`artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json`
+keeps 18 rows as `needs_review` because they route to the current
+`plp_dependent_enzyme` fingerprint lane but lack source-free external geometry,
+duplicate, terminal-review, and factory/import gates; `P12995` and `P19938`
+are terminal rejections as exact current-reference sequence duplicates. The
+baseline comparison
+`artifacts/v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521.json`
+records EC/keyword, deterministic 5-mer, and unrun ESM/Foldseek/geometry
+context without a superiority claim. No registry edit, label import,
+threshold, production scoring, fingerprint expansion, artifact migration,
+upload, removal, Git LFS tracking, or history rewrite was performed.
+
 As of the 2026-05-20T23:16:33Z automation run,
 `artifacts/v3_epk_post_late_dirty_lane_synthesis_20260520.json` integrates
 the fresh dirty sibling-worktree ePK outputs that appeared after the late-lane

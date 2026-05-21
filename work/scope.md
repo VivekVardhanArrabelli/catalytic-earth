@@ -278,6 +278,23 @@ adds a deterministic 5-mer nearest-current-reference check with one alert
 across 16 rows. Geometry, ESM, and Foldseek remain unrun, and sequence-neighbor
 context is not valid performance or import evidence on this pre-scoring
 terminal surface.
+Current PLP aminotransferase external mini-campaign scope:
+`artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json`
+freezes a new 20-row reviewed UniProtKB/Swiss-Prot EC 2.6.1.* surface before
+outcome scoring, requiring catalytic activity, PDB cross-reference, explicit
+pyridoxal 5'-phosphate binding/active-site annotation, prior external-pool
+exclusions, mixed-EC exclusions, and a two-row cap per primary EC number.
+`artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json`
+routes 18 rows to `needs_review` under the existing `plp_dependent_enzyme`
+fingerprint lane because external source-free geometry, duplicate,
+terminal-review, and factory/import gates are incomplete; `P12995` and
+`P19938` are terminal rejections as exact current-reference sequence
+duplicates. The matching
+`artifacts/v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521.json`
+is diagnostic only: EC/keyword context routes the lane, deterministic 5-mer
+finds two exact current-reference sequence duplicates, and geometry, ESM, and
+Foldseek remain unrun. No mechanism-match, label import, production score,
+threshold calibration, registry edit, or fingerprint expansion is in scope.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

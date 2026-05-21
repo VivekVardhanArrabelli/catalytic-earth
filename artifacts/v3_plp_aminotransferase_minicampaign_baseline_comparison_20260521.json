@@ -1,0 +1,234 @@
+{
+  "caveats": [
+    "No production PLP score, threshold calibration, external import gate, registry edit, or fingerprint expansion was performed.",
+    "EC/keyword and UniProt PLP annotations are review-only routing context, not positive predictive evidence.",
+    "The deterministic sequence baseline is a duplicate/neighbor diagnostic only and supports no superiority claim."
+  ],
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T00:25:01Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "frozen_row_count": 20,
+    "method": "plp_aminotransferase_minicampaign_no_claim_baseline_comparison",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "sequence_baseline_diagnostic_artifact": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+    "source_artifacts": {
+      "decisions": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json",
+      "freeze": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json",
+      "sequence_diagnostic": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json"
+    },
+    "superiority_claim_permitted": false,
+    "target_current_fingerprint_lane": "plp_dependent_enzyme"
+  },
+  "metrics": {
+    "current_geometry_retrieval_triage": {
+      "production_fingerprint_scores_run": false,
+      "reason_not_scored": "external source-free active-site geometry and full import gate were not materialized for this prospective tranche",
+      "scored_row_count": 0,
+      "superiority_claim_supported": false
+    },
+    "deterministic_kmer_nearest_neighbor": {
+      "computed_row_count": 20,
+      "exact_current_reference_sequence_match_count": 2,
+      "near_neighbor_alert_count": 2,
+      "reference_sequence_count": 737,
+      "superiority_claim_supported": false,
+      "terminal_decision_changed_by_sequence_baseline": true
+    },
+    "ec_keyword_lane_router": {
+      "aminotransferase_ec_hits": 20,
+      "caveat": "EC/keyword and PLP binding context route the lane but cannot emit external mechanism-match labels without source-free geometry, duplicate, terminal-review, and factory gates.",
+      "plp_binding_annotation_hits": 20,
+      "supports_import_decision": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    "esm2_representation": {
+      "computed_in_this_artifact": false,
+      "reason": "small-win diagnostic only; source-free external PLP geometry/import gates remain the active blocker",
+      "superiority_claim_supported": false
+    },
+    "foldseek_structural_sidecar": {
+      "computed_in_this_artifact": false,
+      "reason": "small-win diagnostic only; no structural duplicate or import claim is made from this packet",
+      "superiority_claim_supported": false
+    }
+  },
+  "rows": [
+    {
+      "accession": "Q8TD30",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.2",
+      "row_id": "uniprot:Q8TD30",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q9NZ45",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.3",
+      "row_id": "uniprot:Q9NZ45",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q9Y617",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.52",
+      "row_id": "uniprot:Q9Y617",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "O07566",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.104",
+      "row_id": "uniprot:O07566",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "P53555",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.105",
+      "row_id": "uniprot:P53555",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q9S7N2",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.27",
+      "row_id": "uniprot:Q9S7N2",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "P50457",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.19",
+      "row_id": "uniprot:P50457",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q96255",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.52",
+      "row_id": "uniprot:Q96255",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q56YA5",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.-",
+      "row_id": "uniprot:Q56YA5",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "P12995",
+      "exact_current_reference_sequence_match": true,
+      "primary_ec": "2.6.1.62",
+      "row_id": "uniprot:P12995",
+      "sequence_near_neighbor_alert": true,
+      "terminal_decision": "terminal_rejection_exact_current_reference_sequence"
+    },
+    {
+      "accession": "P22256",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.19",
+      "row_id": "uniprot:P22256",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q93ZN9",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.83",
+      "row_id": "uniprot:Q93ZN9",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "P42588",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.29",
+      "row_id": "uniprot:P42588",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "H8WR05",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.-",
+      "row_id": "uniprot:H8WR05",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "P19938",
+      "exact_current_reference_sequence_match": true,
+      "primary_ec": "2.6.1.21",
+      "row_id": "uniprot:P19938",
+      "sequence_near_neighbor_alert": true,
+      "terminal_decision": "terminal_rejection_exact_current_reference_sequence"
+    },
+    {
+      "accession": "Q988B8",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.30",
+      "row_id": "uniprot:Q988B8",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q72LL6",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.39",
+      "row_id": "uniprot:Q72LL6",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "O50131",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.13",
+      "row_id": "uniprot:O50131",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "Q8NTR2",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.1",
+      "row_id": "uniprot:Q8NTR2",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    },
+    {
+      "accession": "P96060",
+      "exact_current_reference_sequence_match": false,
+      "primary_ec": "2.6.1.37",
+      "row_id": "uniprot:P96060",
+      "sequence_near_neighbor_alert": false,
+      "terminal_decision": "needs_review_current_plp_lane_without_external_import_gates"
+    }
+  ],
+  "task_definition": {
+    "positive_claim_allowed": false,
+    "superiority_claim_allowed": false,
+    "task": "Record terminal decisions and simple baseline context for a frozen external PLP aminotransferase surface without production scoring or import claims.",
+    "task_id": "prospective_external_plp_aminotransferase_minicampaign_v1_review_only"
+  }
+}

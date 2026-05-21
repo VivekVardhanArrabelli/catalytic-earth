@@ -1,0 +1,418 @@
+{
+  "caveats": [
+    "The deterministic 5-mer diagnostic is a simple baseline and duplicate alert, not a production score.",
+    "Only exact sequence matches are allowed to change terminal decisions in this packet; near-neighbor alerts remain review context."
+  ],
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "candidate_count": 20,
+    "candidate_freeze_artifact": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T00:25:01Z",
+    "curated_label_registry_edited": false,
+    "exact_current_reference_sequence_match_count": 2,
+    "external_fasta": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_external_20260521.fasta",
+    "external_fasta_sha256": "97bc14c58f6a9890d3f3ea2bd6aca89251ca06429db9ea674b3574eed8d4f8d3",
+    "fingerprint_registry_edited": false,
+    "kmer_k": 5,
+    "method": "deterministic_5mer_nearest_current_reference_diagnostic",
+    "near_neighbor_alert_count": 2,
+    "near_neighbor_alert_threshold_jaccard": 0.35,
+    "ready_for_label_import": false,
+    "reference_fasta": "artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta",
+    "reference_sequence_count": 737,
+    "review_only": true,
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/stream?query=accession%3AQ8TD30+OR+accession%3AQ9NZ45+OR+accession%3AQ9Y617+OR+accession%3AO07566+OR+accession%3AP53555+OR+accession%3AQ9S7N2+OR+accession%3AP50457+OR+accession%3AQ96255+OR+accession%3AQ56YA5+OR+accession%3AP12995+OR+accession%3AP22256+OR+accession%3AQ93ZN9+OR+accession%3AP42588+OR+accession%3AH8WR05+OR+accession%3AP19938+OR+accession%3AQ988B8+OR+accession%3AQ72LL6+OR+accession%3AO50131+OR+accession%3AQ8NTR2+OR+accession%3AP96060&format=fasta",
+    "superiority_claim_permitted": false,
+    "terminal_decision_changed_by_sequence_baseline": true
+  },
+  "rows": [
+    {
+      "accession": "Q8TD30",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 519,
+        "reference_5mer_count": 614,
+        "reference_accession": "ref__P23395",
+        "reference_header": "ref__P23395",
+        "reference_length": 618,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.6.1.2",
+      "query_header": "sp|Q8TD30|ALAT2_HUMAN",
+      "row_id": "uniprot:Q8TD30",
+      "sequence_length": 523,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q9NZ45",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0045,
+        "query_5mer_count": 104,
+        "reference_5mer_count": 563,
+        "reference_accession": "ref__P18314",
+        "reference_header": "ref__P18314",
+        "reference_length": 567,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.6.1.3",
+      "query_header": "sp|Q9NZ45|CISD1_HUMAN",
+      "row_id": "uniprot:Q9NZ45",
+      "sequence_length": 108,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q9Y617",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0056,
+        "query_5mer_count": 366,
+        "reference_5mer_count": 358,
+        "reference_accession": "ref__P23721",
+        "reference_header": "ref__P23721",
+        "reference_length": 362,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.52",
+      "query_header": "sp|Q9Y617|SERC_HUMAN",
+      "row_id": "uniprot:Q9Y617",
+      "sequence_length": 370,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "O07566",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0027,
+        "query_5mer_count": 437,
+        "reference_5mer_count": 307,
+        "reference_accession": "ref__P18548",
+        "reference_header": "ref__P18548",
+        "reference_length": 311,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.6.1.104",
+      "query_header": "sp|O07566|NTDA_BACSU",
+      "row_id": "uniprot:O07566",
+      "sequence_length": 441,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "P53555",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0105,
+        "query_5mer_count": 443,
+        "reference_5mer_count": 425,
+        "reference_accession": "ref__P12995",
+        "reference_header": "ref__P12995",
+        "reference_length": 429,
+        "shared_5mer_count": 9
+      },
+      "primary_ec": "2.6.1.105",
+      "query_header": "sp|P53555|BIOK_BACSU",
+      "row_id": "uniprot:P53555",
+      "sequence_length": 448,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q9S7N2",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0038,
+        "query_5mer_count": 387,
+        "reference_5mer_count": 147,
+        "reference_accession": "ref__P00806",
+        "reference_header": "ref__P00806",
+        "reference_length": 151,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.6.1.27",
+      "query_header": "sp|Q9S7N2|TAA1_ARATH",
+      "row_id": "uniprot:Q9S7N2",
+      "sequence_length": 391,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "P50457",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0058,
+        "query_5mer_count": 417,
+        "reference_5mer_count": 272,
+        "reference_accession": "ref__Q3HWU8",
+        "reference_header": "ref__Q3HWU8",
+        "reference_length": 276,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.19",
+      "query_header": "sp|P50457|PUUE_ECOLI",
+      "row_id": "uniprot:P50457",
+      "sequence_length": 421,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q96255",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0248,
+        "query_5mer_count": 426,
+        "reference_5mer_count": 358,
+        "reference_accession": "ref__P23721",
+        "reference_header": "ref__P23721",
+        "reference_length": 362,
+        "shared_5mer_count": 19
+      },
+      "primary_ec": "2.6.1.52",
+      "query_header": "sp|Q96255|SERB1_ARATH",
+      "row_id": "uniprot:Q96255",
+      "sequence_length": 430,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q56YA5",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0037,
+        "query_5mer_count": 397,
+        "reference_5mer_count": 146,
+        "reference_accession": "ref__Q6UV28",
+        "reference_header": "ref__Q6UV28",
+        "reference_length": 150,
+        "shared_5mer_count": 2
+      },
+      "primary_ec": "2.6.1.-",
+      "query_header": "sp|Q56YA5|SGAT_ARATH",
+      "row_id": "uniprot:Q56YA5",
+      "sequence_length": 401,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "P12995",
+      "exact_current_reference_sequence_match": true,
+      "near_neighbor_alert": true,
+      "nearest_current_reference": {
+        "jaccard_5mer": 1.0,
+        "query_5mer_count": 425,
+        "reference_5mer_count": 425,
+        "reference_accession": "ref__P12995",
+        "reference_header": "ref__P12995",
+        "reference_length": 429,
+        "shared_5mer_count": 425
+      },
+      "primary_ec": "2.6.1.62",
+      "query_header": "sp|P12995|BIOA_ECOLI",
+      "row_id": "uniprot:P12995",
+      "sequence_length": 429,
+      "terminal_decision_relevance": "exact_duplicate_terminal_rejection"
+    },
+    {
+      "accession": "P22256",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.005,
+        "query_5mer_count": 422,
+        "reference_5mer_count": 386,
+        "reference_accession": "ref__P40859",
+        "reference_header": "ref__P40859",
+        "reference_length": 390,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.19",
+      "query_header": "sp|P22256|GABT_ECOLI",
+      "row_id": "uniprot:P22256",
+      "sequence_length": 426,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q93ZN9",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0048,
+        "query_5mer_count": 456,
+        "reference_5mer_count": 390,
+        "reference_accession": "ref__P95468",
+        "reference_header": "ref__P95468",
+        "reference_length": 394,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.83",
+      "query_header": "sp|Q93ZN9|DAPAT_ARATH",
+      "row_id": "uniprot:Q93ZN9",
+      "sequence_length": 461,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "P42588",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0103,
+        "query_5mer_count": 455,
+        "reference_5mer_count": 425,
+        "reference_accession": "ref__P12995",
+        "reference_header": "ref__P12995",
+        "reference_length": 429,
+        "shared_5mer_count": 9
+      },
+      "primary_ec": "2.6.1.29",
+      "query_header": "sp|P42588|PAT_ECOLI",
+      "row_id": "uniprot:P42588",
+      "sequence_length": 459,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "H8WR05",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.013,
+        "query_5mer_count": 430,
+        "reference_5mer_count": 429,
+        "reference_accession": "ref__P24630",
+        "reference_header": "ref__P24630",
+        "reference_length": 433,
+        "shared_5mer_count": 11
+      },
+      "primary_ec": "2.6.1.-",
+      "query_header": "sp|H8WR05|BFAT_VARPD",
+      "row_id": "uniprot:H8WR05",
+      "sequence_length": 434,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "P19938",
+      "exact_current_reference_sequence_match": true,
+      "near_neighbor_alert": true,
+      "nearest_current_reference": {
+        "jaccard_5mer": 1.0,
+        "query_5mer_count": 279,
+        "reference_5mer_count": 279,
+        "reference_accession": "ref__P19938",
+        "reference_header": "ref__P19938",
+        "reference_length": 283,
+        "shared_5mer_count": 279
+      },
+      "primary_ec": "2.6.1.21",
+      "query_header": "sp|P19938|DAAA_BACYM",
+      "row_id": "uniprot:P19938",
+      "sequence_length": 283,
+      "terminal_decision_relevance": "exact_duplicate_terminal_rejection"
+    },
+    {
+      "accession": "Q988B8",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0055,
+        "query_5mer_count": 389,
+        "reference_5mer_count": 348,
+        "reference_accession": "ref__P03958",
+        "reference_header": "ref__P03958",
+        "reference_length": 352,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.30",
+      "query_header": "sp|Q988B8|PPAT_RHILO",
+      "row_id": "uniprot:Q988B8",
+      "sequence_length": 393,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q72LL6",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0043,
+        "query_5mer_count": 393,
+        "reference_5mer_count": 310,
+        "reference_accession": "ref__Q27546",
+        "reference_header": "ref__Q27546",
+        "reference_length": 315,
+        "shared_5mer_count": 3
+      },
+      "primary_ec": "2.6.1.39",
+      "query_header": "sp|Q72LL6|LYSN_THET2",
+      "row_id": "uniprot:Q72LL6",
+      "sequence_length": 397,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "O50131",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0042,
+        "query_5mer_count": 450,
+        "reference_5mer_count": 496,
+        "reference_accession": "ref__P80147",
+        "reference_header": "ref__P80147",
+        "reference_length": 500,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.13",
+      "query_header": "sp|O50131|ORNAT_PYRHO",
+      "row_id": "uniprot:O50131",
+      "sequence_length": 454,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "Q8NTR2",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0057,
+        "query_5mer_count": 428,
+        "reference_5mer_count": 279,
+        "reference_accession": "ref__Q13126",
+        "reference_header": "ref__Q13126",
+        "reference_length": 283,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.1",
+      "query_header": "sp|Q8NTR2|ASPAT_CORGL",
+      "row_id": "uniprot:Q8NTR2",
+      "sequence_length": 432,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    },
+    {
+      "accession": "P96060",
+      "exact_current_reference_sequence_match": false,
+      "near_neighbor_alert": false,
+      "nearest_current_reference": {
+        "jaccard_5mer": 0.0046,
+        "query_5mer_count": 363,
+        "reference_5mer_count": 506,
+        "reference_accession": "ref__P21310",
+        "reference_header": "ref__P21310",
+        "reference_length": 510,
+        "shared_5mer_count": 4
+      },
+      "primary_ec": "2.6.1.37",
+      "query_header": "sp|P96060|PHNW_SALTY",
+      "row_id": "uniprot:P96060",
+      "sequence_length": 367,
+      "terminal_decision_relevance": "diagnostic_only_no_terminal_change"
+    }
+  ],
+  "task_definition": {
+    "superiority_claim_allowed": false,
+    "supports_import_decision": false,
+    "task": "Run deterministic 5-mer nearest-current-reference diagnostic after freezing the PLP aminotransferase mini-campaign.",
+    "task_id": "plp_aminotransferase_sequence_baseline_v1_review_only"
+  }
+}

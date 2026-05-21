@@ -639,6 +639,104 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(sequence["metadata"]["ready_for_label_import"])
 
+    def test_plp_aminotransferase_minicampaign_stays_review_only(self) -> None:
+        freeze = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json"
+        )
+        decisions = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json"
+        )
+        baseline = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_minicampaign_baseline_comparison_20260521.json"
+        )
+        sequence = _load_json(
+            ARTIFACTS
+            / "v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json"
+        )
+
+        self.assertTrue(freeze["metadata"]["review_only"])
+        self.assertTrue(
+            freeze["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(freeze["metadata"]["candidate_count"], 20)
+        self.assertEqual(freeze["metadata"]["target_current_fingerprint_lane"], "plp_dependent_enzyme")
+        self.assertEqual(freeze["metadata"]["production_fingerprint_count"], 8)
+        self.assertFalse(freeze["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            all(row["score_status"] == "not_scored_at_freeze" for row in freeze["rows"])
+        )
+
+        metadata = decisions["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["candidate_count"], 20)
+        self.assertEqual(
+            metadata["normalized_terminal_decision_counts"],
+            {"needs_review": 18, "terminal_rejection": 2},
+        )
+        self.assertEqual(metadata["scored_candidate_count"], 0)
+        self.assertEqual(metadata["production_fingerprint_scored_candidate_count"], 0)
+        self.assertEqual(metadata["inverse_gate_scored_candidate_count"], 0)
+        self.assertEqual(metadata["target_current_fingerprint_lane"], "plp_dependent_enzyme")
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        terminal_rows = {
+            row["accession"]
+            for row in decisions["rows"]
+            if row["normalized_terminal_decision"] == "terminal_rejection"
+        }
+        self.assertEqual(terminal_rows, {"P12995", "P19938"})
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in decisions["rows"])
+        )
+
+        self.assertFalse(baseline["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(baseline["metadata"]["frozen_row_count"], 20)
+        self.assertEqual(
+            baseline["metrics"]["ec_keyword_lane_router"][
+                "target_current_fingerprint_lane"
+            ],
+            "plp_dependent_enzyme",
+        )
+        self.assertEqual(
+            baseline["metrics"]["current_geometry_retrieval_triage"][
+                "scored_row_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            baseline["metrics"]["deterministic_kmer_nearest_neighbor"][
+                "computed_row_count"
+            ],
+            20,
+        )
+        self.assertEqual(
+            baseline["metrics"]["deterministic_kmer_nearest_neighbor"][
+                "exact_current_reference_sequence_match_count"
+            ],
+            2,
+        )
+        self.assertFalse(
+            baseline["metrics"]["deterministic_kmer_nearest_neighbor"][
+                "superiority_claim_supported"
+            ]
+        )
+
+        self.assertTrue(sequence["metadata"]["review_only"])
+        self.assertEqual(sequence["metadata"]["candidate_count"], 20)
+        self.assertEqual(sequence["metadata"]["reference_sequence_count"], 737)
+        self.assertEqual(sequence["metadata"]["near_neighbor_alert_count"], 2)
+        self.assertEqual(
+            sequence["metadata"]["exact_current_reference_sequence_match_count"], 2
+        )
+        self.assertTrue(
+            sequence["metadata"]["terminal_decision_changed_by_sequence_baseline"]
+        )
+        self.assertFalse(sequence["metadata"]["ready_for_label_import"])
+
     def test_sdr_family_readiness_packet_stays_review_only(self) -> None:
         packet = _load_json(ARTIFACTS / "v3_sdr_family_readiness_packet_20260520.json")
         metadata = packet["metadata"]
