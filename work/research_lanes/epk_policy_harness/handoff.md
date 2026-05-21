@@ -60,7 +60,8 @@ Negative fixtures rejected:
 - Normal `git fetch origin` failed on linked-worktree `FETCH_HEAD` permissions.
 - `git fetch --no-write-fetch-head origin` succeeded.
 - `git pull --ff-only origin research/epk-policy-harness` failed on linked-worktree `FETCH_HEAD`.
-- The normal worktree/index remains stale and noisy because linked-worktree metadata blocks normal branch updates. Preserve coherent lane outputs and use alternate-index commit/push if normal Git remains blocked.
+- Alternate-index commit `05f43893f3938e137cb8e204ca4863db261ec910` pushed to `origin/research/epk-policy-harness`.
+- The normal worktree/index remains stale and noisy because linked-worktree metadata blocks normal branch updates, so local `HEAD` is not expected to be clean or equal to the remote branch.
 - Other-lane artifacts were read as review-only inputs. No production files, registries, fingerprints, migrations, labels, thresholds, or Git history were changed.
 
 ## Exact next query
