@@ -50,6 +50,36 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T16:23:26Z automation run, the main loop stayed on the
+already frozen FMO deep packet and did not add broad external row breadth.
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json`
+resolves the outstanding `Q7RTP6` chunk-000 two-target retry with 0 high-TM
+hits, resolves chunks 001 and 002 for both remaining FMO rows (`O94851` and
+`Q7RTP6`) with 0 `TM >= 0.7` current-countable hits, and leaves only chunks
+003-013 unrun for both rows. The maximum new completed follow-up TM score is
+`0.6371`, below the duplicate/leakage threshold.
+
+The follow-up terminal packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json`
+therefore keeps the FMO packet at five
+`terminal_rejection_duplicate_or_leakage` rows and two
+`needs_new_extractor_or_structure` rows. The exact blocker for `O94851` and
+`Q7RTP6` is now: run current-countable chunks 003-013, using smaller subchunks
+if a 48-target chunk times out; no duplicate-clear or wrong-scope terminal
+claim is permitted until that evidence exists. The benchmark
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521.json`
+keeps EC/keyword and sequence baselines diagnostic only, records ESM as
+unavailable, treats Foldseek/TM only as import-gate duplicate/leakage evidence,
+and makes no superiority, import, or production-scoring claim.
+
+Evidence-based confidence call: confidence is high that the FMO chunk-000 and
+chunk-001 follow-up evidence is source-separated and review-only, and high that
+no new high-TM duplicate/leakage signal was found in those completed targets.
+Confidence remains medium on the two nonterminal rows because chunks 003-013
+are still unrun. Next exact main-loop work should start with chunk 003 for
+`O94851` and `Q7RTP6`, using smaller subchunks if needed; do not open a new
+broad mini-campaign or claim duplicate-clear from the partial cache.
+
 As of the 2026-05-21T15:54:00Z automation run, the main loop integrated the
 freshest ePK research-lane outputs only where they changed the no-go decision
 surface, then returned to the frozen FMO deep packet. The synthesis artifact

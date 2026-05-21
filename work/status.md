@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 262
-- Measured elapsed time: 7841.9 minutes (130.70 hours)
+- Entries: 264
+- Measured elapsed time: 7888.1 minutes (131.47 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 107.1 measured minutes (1.78 hours)
+- ops: 108.7 measured minutes (1.81 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 850.0 measured minutes (14.17 hours)
+- v3: 894.6 measured minutes (14.91 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2855
-- Evidence references logged: 2325
+- Artifact references logged: 2867
+- Evidence references logged: 2337
 
 ## Recent Entries
-
-### 2026-05-21T04:49:43.344663+00:00 - v3
-
-- Task: metal phosphatase chunked duplicate terminal packet
-- Time mode: measured
-- Measured minutes: 32.25
-- Started: 2026-05-21T04:16:52Z
-- Ended: 2026-05-21T04:49:07Z
-- Artifacts: artifacts/v3_metal_phosphatase_deep_packet_chunked_current_countable_structural_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: 7 frozen metal-phosphatase deep rows screened query-by-query against 672 current-countable structures, 4704/4704 unique query-target pairs mapped with 0 raw-name failures, 7/7 rows terminal_rejection_duplicate_or_leakage by TM>=0.7 current-countable structural duplicate signal, import-ready count 0 and no registry fingerprint artifact migration or superiority claim
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
-
-### 2026-05-21T04:50:53.177113+00:00 - ops
-
-- Task: final validation for metal duplicate terminal packet
-- Time mode: measured
-- Measured minutes: 1.617
-- Started: 2026-05-21T04:49:07Z
-- Ended: 2026-05-21T04:50:44Z
-- Artifacts: work/progress_log.jsonl, work/status.md
-- Evidence: 779-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 3 new JSON artifacts parsed
-- Notes: Final wrap validation after terminal metal-phosphatase duplicate/leakage packet.
 
 ### 2026-05-21T05:08:54.165383+00:00 - v3
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_epk_latest_lane_regression_synthesis_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_geometry_and_full_current_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_post_geometry_full_current_modern_baseline_benchmark_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_rescue_probe_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_timeout_chunk000_size2_rescue_probe_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
 - Evidence: latest five-lane ePK synthesis keeps no-go production decision and preserves 5UJ7 biological-assembly residual, FMO seven-row geometry scored source-free with 0 text fields and 0 target-lane top1 hits, H3JQW0 and Q6F4M8 completed full-current screening with TM>=0.7 duplicate/leakage signals, FMO terminal packet now records 5 terminal_rejection_duplicate_or_leakage and 2 needs_new_extractor_or_structure rows, O94851 chunk000 timeout surface resolved with 0 high-TM hits but remaining chunks unrun, Q7RTP6 narrowed to one timed two-target retry plus remaining unrun chunks, 789-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, migration dry-run passed with removal_allowed=0
 - Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
+
+### 2026-05-21T17:08:18.443673+00:00 - v3
+
+- Task: FMO chunk000-002 duplicate-screen blocker narrowing
+- Time mode: measured
+- Measured minutes: 44.55
+- Started: 2026-05-21T16:23:26Z
+- Ended: 2026-05-21T17:07:59Z
+- Artifacts: artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk001_rescue_and_remaining_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk001_rescue_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk001_rescue_modern_baseline_benchmark_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: Q7RTP6 chunk000 retry resolved with 0 high-TM hits, chunks000-002 complete for O94851 and Q7RTP6 with 0 TM>=0.7 current-countable hits, max completed follow-up TM 0.6371, FMO terminal packet remains 5 duplicate/leakage rejections and 2 needs_new_extractor_or_structure rows, exact blocker narrowed to chunks003-013, EC keyword sequence and ESM baselines remain diagnostic with no superiority claim
+- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
+
+### 2026-05-21T17:09:52.130652+00:00 - ops
+
+- Task: final validation for FMO chunk002 blocker narrowing
+- Time mode: measured
+- Measured minutes: 1.633
+- Started: 2026-05-21T17:07:59Z
+- Ended: 2026-05-21T17:09:37Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: 790-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 6 new FMO JSON artifacts parsed, git diff check passed
+- Notes: Final wrap validation after FMO chunk000-002 duplicate-screen blocker narrowing; safety rails preserved.
 
 ## Expectation Updates
 
@@ -329,6 +329,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T14:06:11.129182+00:00: Next exact heme work is smaller full-current subchunk duplicate screening for I2DBY1 before any duplicate-clear or mechanism-match claim.
 - 2026-05-21T15:03:50.814880+00:00: Next main-loop work should run bounded FMO geometry scoring and full current-countable duplicate/leakage screening for the four non-hit rows, or the bounded P31614 PDB active-site mapping probe; do not open a new broad mini-campaign.
 - 2026-05-21T16:08:32.602022+00:00: Next FMO work is one Q7RTP6 two-target retry plus remaining full-current chunks for O94851 and Q7RTP6; no broad mini-campaign or duplicate-clear claim.
+- 2026-05-21T17:08:18.443673+00:00: Next exact FMO work is chunks003-013 for O94851 and Q7RTP6, using smaller subchunks when a 48-target chunk times out.
+- 2026-05-21T17:09:52.130652+00:00: Next exact work remains chunks003-013 for O94851 and Q7RTP6 before any duplicate-clear or wrong-scope terminal claim.
 
 ## Scope Adjustments
 
@@ -480,3 +482,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T14:06:11.129182+00:00: External deepening produced a mostly terminal heme packet without new broad row breadth; ePK remains review-only no-go.
 - 2026-05-21T15:03:50.814880+00:00: Existing frozen external rows were converted to terminal decisions or exact blockers without new broad row breadth; FMO mapping narrowed the next blocker to source-free geometry scoring plus full-current duplicate screening.
 - 2026-05-21T16:08:32.602022+00:00: External deepening stayed on frozen FMO rows: two more rows reached terminal duplicate/leakage rejection and the two unresolved rows now have exact subchunk-level blockers.
+- 2026-05-21T17:08:18.443673+00:00: FMO duplicate-screen blocker is narrowed from chunk000/chunk001 uncertainty to chunks003-013 only; no new external breadth or import path was opened.

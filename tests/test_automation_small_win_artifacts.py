@@ -2032,6 +2032,99 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             },
         )
 
+    def test_flavin_monooxygenase_chunk002_rescue_keeps_blocker_precise(
+        self,
+    ) -> None:
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521.json"
+        )
+
+        metadata = screen["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["source_separation_enforced"])
+        self.assertTrue(metadata["q7rtp6_chunk000_remaining_retry_resolved"])
+        self.assertEqual(metadata["chunk001_complete_candidate_count"], 2)
+        self.assertEqual(metadata["chunk002_complete_candidate_count"], 2)
+        self.assertEqual(metadata["new_high_tm_hit_count"], 0)
+        self.assertEqual(metadata["new_completed_query_target_pair_count"], 288)
+        self.assertFalse(metadata["duplicate_clear_claim_permitted"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        rows = {row["accession"]: row for row in screen["rows"]}
+        self.assertEqual(set(rows), {"O94851", "Q7RTP6"})
+        self.assertTrue(
+            all(
+                row["chunk000_status_after_followup"]
+                == "complete_no_high_tm_signal"
+                and row["chunk001_status_after_followup"]
+                == "complete_no_high_tm_signal"
+                and row["chunk002_status_after_followup"]
+                == "complete_no_high_tm_signal"
+                and row["chunks003_013_status_after_followup"] == "not_run"
+                and row["new_high_tm_hit_count"] == 0
+                for row in rows.values()
+            )
+        )
+
+        packet_metadata = packet["metadata"]
+        self.assertEqual(
+            packet_metadata["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 2,
+                "terminal_rejection_duplicate_or_leakage": 5,
+            },
+        )
+        self.assertEqual(packet_metadata["mechanism_match_review_ready_count"], 0)
+        self.assertEqual(packet_metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(packet_metadata["ready_for_label_import"])
+        packet_rows = {row["accession"]: row for row in packet["rows"]}
+        self.assertTrue(
+            all(
+                packet_rows[accession]["terminal_decision"]
+                == "needs_new_extractor_or_structure"
+                and packet_rows[accession]["duplicate_leakage_screen"][
+                    "followup_chunk001_status"
+                ]
+                == "complete_no_high_tm_signal"
+                and packet_rows[accession]["duplicate_leakage_screen"][
+                    "followup_chunk002_status"
+                ]
+                == "complete_no_high_tm_signal"
+                and not packet_rows[accession]["duplicate_leakage_screen"][
+                    "duplicate_clear_established"
+                ]
+                and packet_rows[accession]["duplicate_leakage_screen"][
+                    "evidence_role"
+                ]
+                == "import_gate_evidence_not_predictive_mechanism_evidence"
+                for accession in {"O94851", "Q7RTP6"}
+            )
+        )
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(benchmark["metrics"]["new_high_tm_hit_count"], 0)
+        self.assertEqual(
+            benchmark["metrics"]["foldseek_sidecar_status"],
+            "chunks000_002_resolved_for_O94851_Q7RTP6_no_high_tm_signal_chunks003_013_unrun",
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+        self.assertEqual(benchmark["metrics"]["geometry_superiority_claim"], "not_made")
+        self.assertFalse(benchmark["metrics"]["full_current_pair_cache_complete"])
+
     def test_post_metal_epk_research_lane_synthesis_stays_no_go(self) -> None:
         synthesis = _load_json(
             ARTIFACTS / "v3_epk_post_metal_research_lane_synthesis_20260521.json"

@@ -485,6 +485,33 @@ import.
   narrows `Q7RTP6` to one still-timed two-target retry under parent subchunk 1.
   Chunks 1-13 remain unrun for both nonterminal candidates, so this still only
   localizes the full-current duplicate-screen blocker.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk001_rescue_and_remaining_screen_20260521.json`
+  closes the outstanding `Q7RTP6` chunk-000 retry and completes chunk 001 for
+  both `O94851` and `Q7RTP6`. The completed follow-up targets have 0
+  `TM >= 0.7` current-countable hits and maximum TM `0.6315`, so they do not
+  create a duplicate/leakage rejection and still do not permit duplicate-clear.
+  Chunk 002 times out for both rows and chunks 003-013 are unrun. The updated
+  terminal packet
+  `artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk001_rescue_20260521.json`
+  therefore keeps the packet at five duplicate/leakage rejections and two
+  `needs_new_extractor_or_structure` rows, with the exact blocker now chunk-002
+  subchunking/completion plus chunks 003-013. The companion benchmark
+  `artifacts/v3_flavin_monooxygenase_deep_packet_chunk001_rescue_modern_baseline_benchmark_20260521.json`
+  keeps EC/keyword and sequence baselines diagnostic, ESM unavailable, and
+  Foldseek/TM as import-gate evidence only.
+- `artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json`
+  extends the same bounded duplicate-screen follow-up through chunk 002.
+  Chunks 000, 001, and 002 are now complete for both remaining FMO rows with
+  0 high-TM current-countable hits and maximum completed follow-up TM `0.6371`.
+  The terminal packet
+  `artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json`
+  keeps the packet at five duplicate/leakage rejections and two
+  `needs_new_extractor_or_structure` rows. The exact blocker is now chunks
+  003-013, using smaller subchunks if a 48-target chunk times out. The
+  benchmark
+  `artifacts/v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521.json`
+  continues to make no duplicate-clear, superiority, import, or production
+  scoring claim.
 - `artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json`
   freezes seven non-exact-reference heme-peroxidase rows from the existing
   campaign before geometry or duplicate scoring. Coordinate materialization and

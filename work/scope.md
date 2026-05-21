@@ -312,6 +312,25 @@ resolved with 0 high-TM hits, while `Q7RTP6` still has one timed two-target
 retry under parent subchunk 1. Because chunks 1-13 remain unrun for both
 nonterminal candidates, this is still blocker localization rather than
 duplicate-clear evidence.
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk001_rescue_and_remaining_screen_20260521.json`
+then resolves the outstanding `Q7RTP6` chunk-000 two-target retry and completes
+chunk 001 for both nonterminal rows, again with 0 high-TM hits and a maximum
+new completed follow-up TM score of `0.6315`. Chunk 002 times out for both
+rows and chunks 003-013 remain unrun, so the updated terminal packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk001_rescue_20260521.json`
+keeps `O94851` and `Q7RTP6` at `needs_new_extractor_or_structure`. The exact
+remaining blocker is chunk-002 subchunking/completion followed by chunks
+003-013; no duplicate-clear, wrong-scope terminal, import, production-score, or
+superiority claim is in scope from the partial cache.
+`artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json`
+extends that follow-up through chunk 002. Chunks 000, 001, and 002 are now
+complete for both nonterminal rows with 0 high-TM hits and maximum new
+completed follow-up TM `0.6371`. The updated terminal packet
+`artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json`
+still keeps `O94851` and `Q7RTP6` at `needs_new_extractor_or_structure`, with
+the exact remaining blocker narrowed to current-countable chunks 003-013. No
+duplicate-clear, wrong-scope terminal, import, production-score, or superiority
+claim is in scope from the partial cache.
 Current small-win scope: the first prospective external mini-campaign now has
 a frozen 12-row candidate set, completed bounded current-reference sequence
 screening, materialized candidate coordinate sidecars, and completed

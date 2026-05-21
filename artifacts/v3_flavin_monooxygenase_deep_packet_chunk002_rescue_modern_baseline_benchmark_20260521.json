@@ -1,0 +1,56 @@
+{
+  "caveats": [
+    "EC, keyword, and protein names remain review context only and are not predictive evidence.",
+    "Deterministic sequence/k-mer nearest-neighbor output is a leakage diagnostic only.",
+    "Foldseek/TM evidence is import-gate duplicate/leakage evidence, not positive mechanism evidence.",
+    "ESM sidecars are unavailable for this packet, so no ESM comparison or superiority claim is made.",
+    "O94851 and Q7RTP6 remain blocked until current-countable chunks003-013 are run."
+  ],
+  "frozen_rows": [
+    "O94851",
+    "O15229",
+    "Q7RTP6",
+    "P25535",
+    "O88867",
+    "H3JQW0",
+    "Q6F4M8"
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-21T17:06:22Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "followup_screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json",
+    "frozen_selection_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_selection_20260521.json",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_separation_enforced": true,
+    "superiority_claim_permitted": false,
+    "target_current_fingerprint_lane": "flavin_monooxygenase",
+    "task_definition": "diagnostic comparison on the same frozen FMO deep-packet rows after resolving chunks000-002 duplicate-screen blockers for O94851 and Q7RTP6",
+    "terminal_packet_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json"
+  },
+  "metrics": {
+    "chunk001_complete_candidate_count": 2,
+    "chunk002_complete_candidate_count": 2,
+    "deterministic_sequence_kmer_baseline": "diagnostic_only_not_predictive_evidence",
+    "ec_keyword_routing_baseline": "diagnostic_only_not_predictive_evidence",
+    "esm_sidecar_status": "not_available_for_this_deep_packet",
+    "foldseek_sidecar_status": "chunks000_002_resolved_for_O94851_Q7RTP6_no_high_tm_signal_chunks003_013_unrun",
+    "full_current_pair_cache_complete": false,
+    "geometry_score_status": "source_free_geometry_scored_for_all_7_rows_no_text_fields",
+    "geometry_superiority_claim": "not_made",
+    "geometry_target_lane_at_or_above_floor_count": 1,
+    "geometry_top1_target_lane_count": 0,
+    "new_completed_query_target_pair_count": 288,
+    "new_high_tm_hit_count": 0,
+    "q7rtp6_chunk000_retry_resolved": true,
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 2,
+      "terminal_rejection_duplicate_or_leakage": 5
+    }
+  }
+}
