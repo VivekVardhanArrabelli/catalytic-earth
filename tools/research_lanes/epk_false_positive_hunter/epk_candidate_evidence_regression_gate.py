@@ -31,6 +31,13 @@ SOURCE_SPECS = [
         "source_profile": "biological_assembly_split",
     },
     {
+        "path_glob": "artifacts/research_lanes/epk_false_positive_hunter/"
+        "v4_entry_level_assembly_guard_stress_non_orc_split_*.json",
+        "latest_only": True,
+        "row_key": "entry_level_guard_materializer_rows",
+        "source_profile": "non_orc_assembly_below_floor_split_controls",
+    },
+    {
         "path": "artifacts/research_lanes/epk_false_positive_hunter/"
         "v4_entry_level_epk_overblock_later_offset_stress_targeted_20260521_025652Z.json",
         "row_key": "custom_materializer_rows",
@@ -289,6 +296,20 @@ def control_class(row: dict[str, Any], profile: str) -> str:
     context = str(row.get("coordinate_context") or "deposited_atom_site")
     role_tokens = row.get("deposited_orc_mcm_role_tokens") or []
     groups = row.get("query_surface_groups") or []
+    if profile == "non_orc_assembly_below_floor_split_controls":
+        if row.get("known_epk_positive_input"):
+            return "source_valid_epk_positive_overblock_control"
+        if row.get("known_orc_counterexample_input") or role_tokens:
+            if context.startswith("biological_assembly"):
+                return "orc_mcm_biological_assembly_split_control"
+            return "orc_mcm_deposited_coordinate_control"
+        if row.get("non_orc_deposited_v4_assembly_below_floor_heteromeric_candidate"):
+            return "non_orc_deposited_v4_assembly_below_floor_heteromeric_control"
+        if row.get("deposited_v4_context_below_chain_floor") and (
+            "non_orc_aaa_atpase_component_text" in groups
+        ):
+            return "non_orc_deposited_v4_assembly_below_floor_split_control"
+        return "biological_assembly_split_control"
     if profile == "biological_assembly_split":
         if row.get("known_epk_positive_input"):
             return "source_valid_epk_positive_overblock_control"
@@ -595,6 +616,32 @@ def convert_source(repo_root: Path, spec: dict[str, Any]) -> tuple[list[dict[str
     }
 
 
+def expand_source_specs(repo_root: Path) -> list[dict[str, Any]]:
+    expanded: list[dict[str, Any]] = []
+    for spec in SOURCE_SPECS:
+        glob_pattern = spec.get("path_glob")
+        if not glob_pattern:
+            expanded.append(spec)
+            continue
+        matches = sorted(repo_root.glob(str(glob_pattern)))
+        if spec.get("latest_only"):
+            matches = matches[-1:]
+        if not matches:
+            missing_spec = dict(spec)
+            missing_spec["path"] = str(glob_pattern)
+            missing_spec.pop("path_glob", None)
+            missing_spec.pop("latest_only", None)
+            expanded.append(missing_spec)
+            continue
+        for path in matches:
+            concrete = dict(spec)
+            concrete["path"] = str(path.relative_to(repo_root))
+            concrete.pop("path_glob", None)
+            concrete.pop("latest_only", None)
+            expanded.append(concrete)
+    return expanded
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--started-at", required=True)
@@ -607,7 +654,7 @@ def main() -> int:
     ended_at = args.ended_at or now_utc()
     rows: list[dict[str, Any]] = []
     source_summaries: list[dict[str, Any]] = []
-    for spec in SOURCE_SPECS:
+    for spec in expand_source_specs(repo_root):
         converted, summary = convert_source(repo_root, spec)
         rows.extend(converted)
         source_summaries.append(summary)
@@ -636,6 +683,24 @@ def main() -> int:
         if row["control_class"] == "orc_mcm_biological_assembly_split_control"
         and row["observed_topology_clear_substrate_mode_hit"]
     ]
+    unsafe_after_expected_contexts = sorted(
+        {
+            f"{row['pdb_id']}:{row['coordinate_context']}"
+            for row in unsafe_after_expected
+        }
+    )
+    current_context_v4_failure_contexts = sorted(
+        {
+            f"{row['pdb_id']}:{row['coordinate_context']}"
+            for row in current_context_v4_failures
+        }
+    )
+    biological_split_materializer_contexts = sorted(
+        {
+            f"{row['pdb_id']}:{row['coordinate_context']}"
+            for row in biological_split_materializer_rows
+        }
+    )
     output = {
         "metadata": {
             "method": "epk_candidate_evidence_regression_gate_from_lane_artifacts",
@@ -672,25 +737,22 @@ def main() -> int:
                 and row["observed_topology_clear_substrate_mode_hit"]
             ),
             "unsafe_nonabstention_after_expected_policy_count": len(
-                unsafe_after_expected
+                unsafe_after_expected_contexts
             ),
-            "unsafe_nonabstention_after_expected_policy_pdb_contexts": sorted(
-                f"{row['pdb_id']}:{row['coordinate_context']}"
-                for row in unsafe_after_expected
+            "unsafe_nonabstention_after_expected_policy_pdb_contexts": (
+                unsafe_after_expected_contexts
             ),
             "current_context_v4_only_unsafe_nonabstention_count": len(
-                current_context_v4_failures
+                current_context_v4_failure_contexts
             ),
-            "current_context_v4_only_unsafe_nonabstention_pdb_contexts": sorted(
-                f"{row['pdb_id']}:{row['coordinate_context']}"
-                for row in current_context_v4_failures
+            "current_context_v4_only_unsafe_nonabstention_pdb_contexts": (
+                current_context_v4_failure_contexts
             ),
             "biological_assembly_split_materializer_counterexample_count": len(
-                biological_split_materializer_rows
+                biological_split_materializer_contexts
             ),
-            "biological_assembly_split_materializer_counterexample_pdb_contexts": sorted(
-                f"{row['pdb_id']}:{row['coordinate_context']}"
-                for row in biological_split_materializer_rows
+            "biological_assembly_split_materializer_counterexample_pdb_contexts": (
+                biological_split_materializer_contexts
             ),
             "regression_gate_status": (
                 "passes_expected_policy_gate_review_only"

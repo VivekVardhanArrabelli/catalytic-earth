@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import math
 import sys
 import time
 from collections import Counter, defaultdict
@@ -38,6 +39,11 @@ MAX_ASSEMBLIES_PER_ENTRY = 12
 MAX_MATERIALIZER_CONTEXTS = 180
 HIGH_ORDER_MIN_GAMMA_TERMINAL_P = 3
 HIGH_ORDER_MIN_POLYMER_CHAINS = 5
+DISTANCE_CUTOFF_ANGSTROM = 6.0
+MG_DISTANCE_CUTOFF_ANGSTROM = 4.5
+MAX_N_TERMINAL_ACCEPTOR_AUTH_SEQ_ID = 25
+MATERIALIZER_GAMMA_CODES = {"ACP", "ANP", "ATP", "DTP"}
+ACCEPTOR_ATOMS = {"SER": "OG", "THR": "OG1", "TYR": "OH"}
 
 FIXED_CONTROL_IDS = sorted(
     high_order.PRIOR_KNOWN_EPK_POSITIVE_IDS
@@ -250,6 +256,207 @@ def chain_floor_split(metrics: dict[str, Any]) -> bool:
     )
 
 
+def atom_code(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+
+
+def atom_name(atom: dict[str, Any]) -> str:
+    return (
+        str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "")
+        .upper()
+        .replace('"', "")
+    )
+
+
+def preferred_chain(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+
+
+def preferred_seq_id(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+
+
+def distance(left: dict[str, Any], right: dict[str, Any]) -> float:
+    return math.sqrt(
+        (float(left["Cartn_x"]) - float(right["Cartn_x"])) ** 2
+        + (float(left["Cartn_y"]) - float(right["Cartn_y"])) ** 2
+        + (float(left["Cartn_z"]) - float(right["Cartn_z"])) ** 2
+    )
+
+
+def polymer_entity_by_chain(cif_text: str) -> dict[str, str]:
+    atoms, _parse_meta = ns.parse_atom_site_raw(cif_text)
+    mapping: dict[str, str] = {}
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        entity_id = str(atom.get("label_entity_id") or "")
+        if not entity_id:
+            continue
+        for key in ("auth_asym_id", "label_asym_id"):
+            chain_id = str(atom.get(key) or "")
+            if chain_id and chain_id not in mapping:
+                mapping[chain_id] = entity_id
+    return mapping
+
+
+def local_substrate_geometry(cif_text: str) -> dict[str, Any]:
+    atoms, parse_meta = ns.parse_atom_site_raw(cif_text)
+    magnesium_atoms = [
+        atom
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+        and (
+            atom_code(atom) == "MG"
+            or str(atom.get("type_symbol") or "").upper() == "MG"
+        )
+    ]
+    gamma_atoms = [
+        atom
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+        and atom.get("type_symbol") == "P"
+        and atom_code(atom) in MATERIALIZER_GAMMA_CODES
+        and atom_name(atom) == "PG"
+    ]
+    acceptor_atoms = [
+        atom
+        for atom in atoms
+        if atom.get("group_PDB") == "ATOM"
+        and ACCEPTOR_ATOMS.get(atom_code(atom)) == atom_name(atom)
+    ]
+    hits: list[dict[str, Any]] = []
+    chain_pairs: list[tuple[str, str]] = []
+    for gamma_atom in gamma_atoms:
+        mg_distances = [distance(gamma_atom, mg_atom) for mg_atom in magnesium_atoms]
+        nearest_mg = min(mg_distances) if mg_distances else None
+        for acceptor in acceptor_atoms:
+            d = distance(gamma_atom, acceptor)
+            if d > DISTANCE_CUTOFF_ANGSTROM:
+                continue
+            residue = atom_code(acceptor)
+            seq_id = ns.optional_int(preferred_seq_id(acceptor))
+            tyrosine = residue == "TYR"
+            n_terminal = bool(
+                residue in ACCEPTOR_ATOMS
+                and seq_id is not None
+                and seq_id <= MAX_N_TERMINAL_ACCEPTOR_AUTH_SEQ_ID
+            )
+            if not (tyrosine or n_terminal):
+                continue
+            candidate_chain = preferred_chain(acceptor)
+            gamma_chain = preferred_chain(gamma_atom)
+            if candidate_chain and gamma_chain:
+                chain_pairs.append((candidate_chain, gamma_chain))
+            hits.append(
+                {
+                    "candidate_chain_name": candidate_chain,
+                    "candidate_auth_seq_id": preferred_seq_id(acceptor),
+                    "candidate_residue_code": residue,
+                    "candidate_atom_name": atom_name(acceptor),
+                    "candidate_label_entity_id": acceptor.get("label_entity_id"),
+                    "gamma_associated_polymer_chain_name": gamma_chain,
+                    "gamma_label_entity_id": gamma_atom.get("label_entity_id"),
+                    "gamma_ligand_code": atom_code(gamma_atom),
+                    "gamma_atom_name": atom_name(gamma_atom),
+                    "nearest_gamma_distance_angstrom": round(d, 3),
+                    "nearest_mg_distance_angstrom": (
+                        round(nearest_mg, 3) if nearest_mg is not None else None
+                    ),
+                    "tyrosine_acceptor": tyrosine,
+                    "n_terminal_acceptor": n_terminal,
+                    "near_mg": bool(
+                        nearest_mg is not None
+                        and nearest_mg <= MG_DISTANCE_CUTOFF_ANGSTROM
+                    ),
+                }
+            )
+    same_chain = any(candidate == gamma for candidate, gamma in chain_pairs)
+    reciprocal = any(
+        left_candidate == right_gamma
+        and left_gamma == right_candidate
+        and left_candidate != left_gamma
+        for index, (left_candidate, left_gamma) in enumerate(chain_pairs)
+        for right_candidate, right_gamma in chain_pairs[index + 1 :]
+    )
+    hits.sort(
+        key=lambda hit: (
+            0 if hit["tyrosine_acceptor"] else 1,
+            0 if hit["near_mg"] else 1,
+            float(hit["nearest_gamma_distance_angstrom"]),
+        )
+    )
+    return {
+        "parse_meta": parse_meta,
+        "local_gamma_acceptor_substrate_geometry_hit_count": len(hits),
+        "local_gamma_acceptor_substrate_geometry_topology_clear": bool(
+            hits and not (same_chain or reciprocal)
+        ),
+        "local_same_chain_topology_detected": same_chain,
+        "local_reciprocal_cross_chain_topology_detected": reciprocal,
+        "local_geometry_hits": hits[:8],
+    }
+
+
+def local_geometry_entity_evaluations(
+    cif_text: str,
+    local_geometry: dict[str, Any],
+) -> list[dict[str, Any]]:
+    chain_entities = polymer_entity_by_chain(cif_text)
+    evaluations = []
+    for hit in local_geometry.get("local_geometry_hits", []) or []:
+        if not isinstance(hit, dict):
+            continue
+        acceptor_chain = str(hit.get("candidate_chain_name") or "")
+        gamma_chain = str(hit.get("gamma_associated_polymer_chain_name") or "")
+        acceptor_entity = str(
+            hit.get("candidate_label_entity_id")
+            or chain_entities.get(acceptor_chain)
+            or ""
+        )
+        gamma_entity = str(chain_entities.get(gamma_chain) or "")
+        same_chain = bool(acceptor_chain and acceptor_chain == gamma_chain)
+        same_entity = bool(
+            acceptor_entity and gamma_entity and acceptor_entity == gamma_entity
+        )
+        reject_reasons = []
+        if same_chain:
+            reject_reasons.append("same_author_chain_topology")
+        if same_entity:
+            reject_reasons.append(
+                "acceptor_entity_equals_gamma_associated_polymer_entity"
+            )
+        if not gamma_entity:
+            reject_reasons.append("gamma_associated_polymer_entity_unmapped")
+        evaluations.append(
+            {
+                "candidate_chain_name": acceptor_chain,
+                "candidate_auth_seq_id": hit.get("candidate_auth_seq_id"),
+                "candidate_residue_code": hit.get("candidate_residue_code"),
+                "candidate_atom_name": hit.get("candidate_atom_name"),
+                "acceptor_entity_id": acceptor_entity or None,
+                "gamma_associated_polymer_chain_name": gamma_chain,
+                "gamma_associated_polymer_entity_id": gamma_entity or None,
+                "gamma_ligand_code": hit.get("gamma_ligand_code"),
+                "gamma_atom_name": hit.get("gamma_atom_name"),
+                "nearest_gamma_distance_angstrom": hit.get(
+                    "nearest_gamma_distance_angstrom"
+                ),
+                "nearest_mg_distance_angstrom": hit.get(
+                    "nearest_mg_distance_angstrom"
+                ),
+                "same_author_chain_topology": same_chain,
+                "same_entity_reuse_topology": same_entity,
+                "materializer_heteromeric_entity_eligible": bool(
+                    acceptor_entity and gamma_entity and not same_entity
+                ),
+                "materializer_reject_reasons": reject_reasons
+                or ["none_for_this_local_hit"],
+            }
+        )
+    return evaluations
+
+
 def limited_assembly_ids(entry_payload: dict[str, Any]) -> tuple[list[str], bool, int]:
     ids = (
         entry_payload.get("rcsb_entry_container_identifiers", {}).get("assembly_ids")
@@ -290,22 +497,29 @@ def context_priority(context: dict[str, Any]) -> tuple[int, str, str]:
     entry = context["entry_row"]
     ctx = context["context_row"]
     split = bool(ctx.get("deposited_v4_context_below_chain_floor"))
+    heteromeric_local = bool(ctx.get("local_geometry_materializer_equivalent_hit_count"))
     if entry.get("known_orc_counterexample_input") and split:
         priority = 0
-    elif entry.get("deposited_orc_mcm_role_tokens") and split:
+    elif (
+        "non_orc_aaa_atpase_component_text" in entry.get("query_surface_groups", [])
+        and split
+        and heteromeric_local
+    ):
         priority = 1
-    elif "orc_occm_mcm_component_text" in entry.get("query_surface_groups", []) and split:
+    elif entry.get("deposited_orc_mcm_role_tokens") and split:
         priority = 2
-    elif "non_orc_aaa_atpase_component_text" in entry.get("query_surface_groups", []) and split:
+    elif "orc_occm_mcm_component_text" in entry.get("query_surface_groups", []) and split:
         priority = 3
-    elif entry.get("known_epk_positive_input"):
+    elif "non_orc_aaa_atpase_component_text" in entry.get("query_surface_groups", []) and split:
         priority = 4
-    elif "epk_safety_component_text" in entry.get("query_surface_groups", []):
+    elif entry.get("known_epk_positive_input"):
         priority = 5
-    elif split:
+    elif "epk_safety_component_text" in entry.get("query_surface_groups", []):
         priority = 6
-    else:
+    elif split:
         priority = 7
+    else:
+        priority = 8
     return priority, str(entry["pdb_id"]), str(ctx["coordinate_context"])
 
 
@@ -468,6 +682,19 @@ def materializer_context_summary(
     non_epk = bool(entry.get("non_epk_for_counterexample_review"))
     context_v4 = bool(context_row.get("v4_oligomeric_atp_terminals_no_mg_required_hit"))
     entry_guard = bool(entry.get("entry_level_any_context_v4_guard_hit_review_only"))
+    local_evaluations = context_row.get("local_geometry_entity_mapping_evaluations", [])
+    local_heteromeric_count = int(
+        context_row.get("local_geometry_materializer_equivalent_hit_count") or 0
+    )
+    non_orc_split_heteromeric = bool(
+        non_epk
+        and not entry.get("known_orc_counterexample_input")
+        and not entry.get("deposited_orc_mcm_role_tokens")
+        and context_row.get("deposited_v4_context_below_chain_floor")
+        and "non_orc_aaa_atpase_component_text"
+        in entry.get("query_surface_groups", [])
+        and local_heteromeric_count > 0
+    )
 
     if known_positive and topology_clear and context_v4:
         decision = "known_epk_positive_lost_to_context_v4_review_only"
@@ -508,6 +735,13 @@ def materializer_context_summary(
         "deposited_v4_context_below_chain_floor": context_row.get(
             "deposited_v4_context_below_chain_floor"
         ),
+        "local_substrate_geometry": context_row.get("local_substrate_geometry", {}),
+        "local_geometry_entity_mapping_evaluations": local_evaluations,
+        "local_geometry_materializer_equivalent_hit_count": local_heteromeric_count,
+        "pre_materializer_heteromeric_entity_eligible": local_heteromeric_count > 0,
+        "non_orc_deposited_v4_assembly_below_floor_heteromeric_candidate": (
+            non_orc_split_heteromeric
+        ),
         "context_source_free_multisite_metrics": context_row.get(
             "source_free_multisite_metrics", {}
         ),
@@ -532,6 +766,12 @@ def main() -> int:
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--max-unique-ids", type=int, default=MAX_UNIQUE_IDS)
     parser.add_argument("--max-materializer-contexts", type=int, default=MAX_MATERIALIZER_CONTEXTS)
+    parser.add_argument(
+        "--extra-pdb-id",
+        action="append",
+        default=[],
+        help="Explicit PDB ID to include, repeatable or comma-separated.",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()
@@ -539,6 +779,15 @@ def main() -> int:
         repo_root,
         args.max_unique_ids,
     )
+    explicit_extra_ids: list[str] = []
+    for value in args.extra_pdb_id:
+        for pdb_id in str(value).split(","):
+            normalized = pdb_id.strip().upper()
+            if not normalized:
+                continue
+            explicit_extra_ids.append(normalized)
+            add_id(ordered_ids, id_to_queries, normalized, "explicit_retry_or_seed_pdb_id")
+    query_counts["explicit_retry_or_seed_pdb_ids"] = len(set(explicit_extra_ids))
     entry_rows: list[dict[str, Any]] = []
     context_rows_by_pdb: dict[str, list[dict[str, Any]]] = {}
     cif_text_by_pdb_context: dict[tuple[str, str], str] = {}
@@ -551,6 +800,23 @@ def main() -> int:
                 index,
                 id_to_queries.get(pdb_id, []),
             )
+            for context_row in context_rows:
+                context_name = context_row["coordinate_context"]
+                cif_text = cif_by_context[context_name]
+                local_geometry = local_substrate_geometry(cif_text)
+                local_evaluations = local_geometry_entity_evaluations(
+                    cif_text,
+                    local_geometry,
+                )
+                context_row["local_substrate_geometry"] = local_geometry
+                context_row["local_geometry_entity_mapping_evaluations"] = (
+                    local_evaluations
+                )
+                context_row["local_geometry_materializer_equivalent_hit_count"] = sum(
+                    1
+                    for evaluation in local_evaluations
+                    if evaluation.get("materializer_heteromeric_entity_eligible")
+                )
             entry_rows.append(entry_row)
             context_rows_by_pdb[pdb_id] = context_rows
             for context, cif_text in cif_by_context.items():
@@ -657,6 +923,30 @@ def main() -> int:
         for context_row in rows
         if context_row.get("deposited_v4_context_below_chain_floor")
     ]
+    non_orc_split_context_rows = [
+        context_row
+        for entry in entry_rows
+        for context_row in context_rows_by_pdb.get(entry["pdb_id"], [])
+        if context_row.get("deposited_v4_context_below_chain_floor")
+        and "non_orc_aaa_atpase_component_text" in entry.get("query_surface_groups", [])
+        and not entry.get("known_orc_counterexample_input")
+        and not entry.get("deposited_orc_mcm_role_tokens")
+    ]
+    heteromeric_split_context_rows = [
+        row
+        for row in split_context_rows
+        if int(row.get("local_geometry_materializer_equivalent_hit_count") or 0) > 0
+    ]
+    non_orc_heteromeric_split_context_rows = [
+        row
+        for row in non_orc_split_context_rows
+        if int(row.get("local_geometry_materializer_equivalent_hit_count") or 0) > 0
+    ]
+    non_orc_heteromeric_materializer_rows = [
+        row
+        for row in materializer_rows
+        if row.get("non_orc_deposited_v4_assembly_below_floor_heteromeric_candidate")
+    ]
 
     output = {
         "metadata": {
@@ -682,10 +972,18 @@ def main() -> int:
                 "max_unique_ids": args.max_unique_ids,
                 "max_assemblies_per_entry": MAX_ASSEMBLIES_PER_ENTRY,
                 "max_materializer_contexts": args.max_materializer_contexts,
+                "explicit_retry_or_seed_pdb_ids": sorted(set(explicit_extra_ids)),
                 "chain_floor_split_filter": {
                     "deposited_v4_required": True,
                     "assembly_terminal_p_min": HIGH_ORDER_MIN_GAMMA_TERMINAL_P,
                     "assembly_polymer_chain_lt": HIGH_ORDER_MIN_POLYMER_CHAINS,
+                    "local_geometry_filter": {
+                        "gamma_acceptor_distance_cutoff_angstrom": DISTANCE_CUTOFF_ANGSTROM,
+                        "mg_distance_cutoff_angstrom": MG_DISTANCE_CUTOFF_ANGSTROM,
+                        "n_terminal_acceptor_auth_seq_id_max": MAX_N_TERMINAL_ACCEPTOR_AUTH_SEQ_ID,
+                        "acceptor_atoms": ACCEPTOR_ATOMS,
+                        "gamma_ligand_codes": sorted(MATERIALIZER_GAMMA_CODES),
+                    },
                 },
             },
             "query_result_counts": query_counts,
@@ -706,6 +1004,21 @@ def main() -> int:
             "split_risk_entry_count": len(split_risk_rows),
             "split_risk_pdb_ids": compact_ids(split_risk_rows, "entry_split_risk_review_only"),
             "split_context_count": len(split_context_rows),
+            "split_context_with_pre_materializer_heteromeric_entity_count": len(
+                heteromeric_split_context_rows
+            ),
+            "split_context_with_pre_materializer_heteromeric_entity_pdb_contexts": sorted(
+                f"{row['pdb_id']}:{row['coordinate_context']}"
+                for row in heteromeric_split_context_rows
+            ),
+            "non_orc_split_context_count": len(non_orc_split_context_rows),
+            "non_orc_split_with_pre_materializer_heteromeric_entity_count": len(
+                non_orc_heteromeric_split_context_rows
+            ),
+            "non_orc_split_with_pre_materializer_heteromeric_entity_pdb_contexts": sorted(
+                f"{row['pdb_id']}:{row['coordinate_context']}"
+                for row in non_orc_heteromeric_split_context_rows
+            ),
             "materializer_context_input_count": len(selected_contexts),
             "materializer_context_error_count": len(materializer_context_errors),
             "materializer_decision_counts": dict(sorted(decision_counts.items())),
@@ -720,6 +1033,13 @@ def main() -> int:
             "entry_level_non_epk_counterexample_closed_pdb_contexts": sorted(
                 f"{row['pdb_id']}:{row['coordinate_context']}"
                 for row in entry_level_closed_non_epk_rows
+            ),
+            "non_orc_deposited_v4_assembly_below_floor_heteromeric_materialized_count": len(
+                non_orc_heteromeric_materializer_rows
+            ),
+            "non_orc_deposited_v4_assembly_below_floor_heteromeric_materialized_pdb_contexts": sorted(
+                f"{row['pdb_id']}:{row['coordinate_context']}"
+                for row in non_orc_heteromeric_materializer_rows
             ),
             "entry_level_residual_counterexample_count": len(entry_level_residual_rows),
             "entry_level_residual_counterexample_pdb_contexts": sorted(
@@ -763,6 +1083,9 @@ def main() -> int:
             for selected in selected_contexts
         ],
         "entry_level_guard_materializer_rows": materializer_rows,
+        "non_orc_deposited_v4_assembly_below_floor_heteromeric_materializer_rows": (
+            non_orc_heteromeric_materializer_rows
+        ),
         "current_context_v4_residual_closed_by_entry_level_rows": current_context_residual_rows,
         "entry_level_residual_counterexample_rows": entry_level_residual_rows,
         "entry_level_known_epk_positive_lost_rows": entry_level_positive_lost_rows,
