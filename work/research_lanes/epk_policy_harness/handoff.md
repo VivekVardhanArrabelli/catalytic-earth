@@ -43,9 +43,9 @@ Policy v0 remains frozen, review-only, and fail-closed. This run did not change 
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_policy_bridge_scoreboard_gate.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_candidate_bridge_status_coverage_fault_injection.py --self-test`
 - `PYTHONDONTWRITEBYTECODE=1 python tools/research_lanes/epk_policy_harness/epk_federated_candidate_adapter_smoke.py --self-test`
-- JSON validation parsed 213 JSON files and 16 JSONL records after ledger update.
+- JSON validation parsed 206 JSON files and 16 JSONL records after final cleanup.
 - `git diff --check` passed before commit.
-- Non-writing frozen-v0 tranche stress remains 59/61 passing; the same two older interim ATP surface tranches fail the preexisting search-surface artifact citation validator.
+- Non-writing frozen-v0 tranche stress remains 58/60 passing; the same two older interim ATP surface tranches fail the preexisting search-surface artifact citation validator.
 
 ## Blockers and notes
 
