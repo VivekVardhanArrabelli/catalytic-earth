@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "artifact_id": "epk_terminal_blocker_class_decisions_v1_20260521",
+    "lane_id": "epk_substrate_role_identity",
+    "created_at": "2026-05-21T23:21:11Z",
+    "created_by": "automation:epk-research-substrate-role-identity",
+    "source_artifacts_reused": [
+      "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_signature_collision_audit_v1_20260521.json",
+      "artifacts/research_lanes/epk_substrate_role_identity/epk_candidate_conflict_decision_v1_20260521.json",
+      "artifacts/research_lanes/epk_substrate_role_identity/epk_reciprocal_active_site_competition_audit_v1_20260521.json",
+      "artifacts/research_lanes/epk_substrate_role_identity/epk_phosphoproduct_materialization_audit_v1_20260521.json",
+      "artifacts/research_lanes/epk_substrate_role_identity/epk_source_free_adjudication_requirement_decision_v1_20260520.json"
+    ],
+    "new_coordinate_fetches": 0,
+    "new_feature_family_added": false,
+    "production_claim_allowed": false,
+    "labels_or_fingerprints_changed": false
+  },
+  "hypothesis": "A named source-free substrate-role class can become countable evidence only if already-available source-free features distinguish positives from counterexamples without label-conditioned rescue, source leakage, or new threshold calibration.",
+  "primary_target_candidate_class": "folded_tyr_reciprocal_kinase_context",
+  "secondary_target_candidate_classes": [
+    "product_or_adp_state_context",
+    "same_chain_autophosphorylation_like_topology",
+    "split_state_context",
+    "internal_fragment_mimicry"
+  ],
+  "decision": "candidate_class_terminal_no_go",
+  "decision_summary": "Folded Tyr reciprocal kinase context is terminal review-only under current source-free constraints. Product/ADP and same-chain topology contexts are also terminal review-only for substrate-role identity. Split-state remains blocked counterevidence/review context, and internal-fragment mimicry remains source-free blocker evidence, not an admission class.",
+  "primary_class_status_change": {
+    "candidate_class": "folded_tyr_reciprocal_kinase_context",
+    "previous_status": "unresolved_review_only_collision_between_9UUR_9UUX_and_9UW4",
+    "new_status": "terminal_review_only_no_go_unless_named_external_source_or_wet_lab_evidence_is_present",
+    "countable_source_free_evidence_allowed": false,
+    "review_routing_allowed": true,
+    "reason": "The base source-free reciprocal Tyr candidate signature is shared by 9UUR, 9UUX, and 9UW4. The only available separator is a later reciprocal-competition same-chain competitor split; promoting that split would be a narrow post-hoc rescue rather than source-free substrate-role identity."
+  },
+  "candidate_status_changes": [
+    {
+      "candidate_id": "9UUR|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+      "previous_status": "review_only_positive_abstention",
+      "new_status": "terminal_source_free_review_only",
+      "exact_missing_evidence": "Named external/source/wet-lab evidence that Tyr204 is the biological phosphoacceptor/substrate in this kinase context."
+    },
+    {
+      "candidate_id": "9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+      "previous_status": "review_only_positive_abstention",
+      "new_status": "terminal_source_free_review_only",
+      "exact_missing_evidence": "Named external/source/wet-lab evidence that Tyr204 is the biological phosphoacceptor/substrate in this kinase context."
+    },
+    {
+      "candidate_id": "9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+      "previous_status": "counterexample_pressure_for_folded_tyr_reciprocal_context",
+      "new_status": "decisive_counterexample_to_base_source_free_folded_tyr_signature",
+      "exact_missing_evidence": "Not applicable for admission; this remains the counterexample pressure row for the source-free folded Tyr signature."
+    }
+  ],
+  "decisive_reused_evidence": {
+    "base_candidate_signature_collision": {
+      "source_artifact": "epk_candidate_signature_collision_audit_v1_20260521",
+      "signature_id": "2b940edf1bf5",
+      "collision_class_for_evaluation_only": "mixed_positive_counterexample_signature",
+      "candidate_ids": [
+        "9UUR|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+        "9UUX|gamma=A:ANP501:PG|acceptor=B:TYR204:OH",
+        "9UW4|gamma=A:ANP501:PG|acceptor=B:TYR204:OH"
+      ],
+      "review_label_counts_for_evaluation_only": {
+        "positive_true_substrate_acceptor": 2,
+        "counterexample_not_true_substrate_acceptor": 1
+      },
+      "source_free_candidate_signature_fields": {
+        "acceptor_chain_size_class": "folded_like_acceptor_chain",
+        "acceptor_residue_class": "tyr_acceptor",
+        "acceptor_terminal_class": "not_resolved_n_terminal_sty",
+        "availability_class": "ambiguous_reciprocal_folded_tyr_context",
+        "blocker_class": "topology_ambiguity",
+        "candidate_chain_active_gamma_count_class": "one",
+        "candidate_chain_has_own_nucleotide_or_metal": true,
+        "candidate_role_class": "reciprocal_folded_tyr_candidate",
+        "coordinate_certainty_class": "ordered_like",
+        "coordinate_state": "active_gamma",
+        "distance_transfer_class": "within_preexisting_transfer_geometry_6a",
+        "ligand_acceptor_same_sequence_entity": false,
+        "ligand_chain_active_gamma_count_class": "one",
+        "local_exposure_profile_class": "open_or_surface_like",
+        "orientation_support_class": "gamma_facing_active_site_like",
+        "reciprocal_context_class": "reciprocal_active_gamma_different_entity",
+        "topology_class": "cross_chain_topology"
+      }
+    },
+    "reciprocal_competition_separator_rejected_for_admission": {
+      "source_artifact": "epk_reciprocal_active_site_competition_audit_v1_20260521",
+      "positive_only_signature_id_for_9UUR_9UUX": "85c4026737d9",
+      "counterexample_signature_id_for_9UW4": "c1163779f8d0",
+      "separator": "same_chain_competitor_count_le_6a_class",
+      "positive_rows": "same_chain_competitor_count_le_6a_class=zero and reciprocal_competition_class=no_same_chain_competitor_within_preexisting_6a_shell",
+      "counterexample_row": "same_chain_competitor_count_le_6a_class=one and reciprocal_competition_class=reciprocal_same_chain_distance_tie_at_0_001a",
+      "admission_status": "rejected_for_countable_source_free_evidence",
+      "rejection_reason": "This separator was emitted as review-only counterpressure after the hard-case collision was known. Freezing it as a countable rule would be label-conditioned rescue rather than independent source-free substrate-role identity."
+    },
+    "same_chain_topology_collision": {
+      "source_artifact": "epk_candidate_signature_collision_audit_v1_20260521",
+      "signature_id": "610ef66ced7b",
+      "candidate_row_count": 31,
+      "pdb_count": 15,
+      "review_label_counts_for_evaluation_only": {
+        "positive_true_substrate_acceptor": 1,
+        "counterexample_not_true_substrate_acceptor": 30
+      },
+      "status": "terminal_source_free_review_only_for_same_chain_autophosphorylation_like_topology"
+    },
+    "product_or_adp_state_context": {
+      "source_artifact": "epk_phosphoproduct_materialization_audit_v1_20260521",
+      "adp_only_review_positive": [
+        "1L0O"
+      ],
+      "source_free_product_chemistry_materialized_review_positives": [
+        "3QHR",
+        "3QHW"
+      ],
+      "status": "terminal_source_free_review_only_for_substrate_role_identity",
+      "reason": "ADP/product coordinates can materialize state or chemistry but do not identify the biological substrate role or active phosphotransfer relationship without external evidence."
+    },
+    "split_state_context": {
+      "source_artifact": "epk_phosphoproduct_materialization_audit_v1_20260521",
+      "counterexample_pdb_id": "4HPU",
+      "materialized_row": "4HPU|gamma=none|acceptor=I:SEP21:OG|nucleotide=E:ANP402",
+      "status": "blocked_counterevidence_or_review_context_not_admission_class"
+    },
+    "internal_fragment_mimicry": {
+      "source_artifact": "epk_candidate_conflict_decision_v1_20260521",
+      "counterexample_pdb_id": "7B56",
+      "blocked_candidate_id": "7B56|gamma=B:ANP401:PG|acceptor=A:SER822:OG",
+      "status": "source_free_blocked_counterevidence_preserved"
+    }
+  },
+  "terminal_policy_rule": {
+    "rule_id": "source_free_terminal_review_only_blocker_classes_v1",
+    "rule_text": "Do not promote folded Tyr reciprocal, product/ADP, same-chain/autophosphorylation-like, or split-state substrate-role identity from source-free geometry alone. These classes may route review evidence but are non-countable unless named external/source/wet-lab evidence establishes the biological substrate role, or an independently pre-registered source-free rule is validated before applying it to these hard cases.",
+    "countable_source_free_substrate_role_identity_allowed": false,
+    "review_only_evidence_allowed": true,
+    "forbidden_promotions": [
+      "Promoting the folded Tyr base signature shared by 9UUR, 9UUX, and 9UW4.",
+      "Promoting the 9UUR/9UUX reciprocal-competition same-chain competitor split as a countable rescue rule.",
+      "Promoting ADP/product chemistry rows to biological substrate-role identity.",
+      "Promoting same-chain active-gamma hydroxyl proximity or same-chain topology to substrate-role identity.",
+      "Promoting split-state phosphoproduct/nucleotide contact to active transfer substrate-role identity."
+    ]
+  },
+  "confusion_matrix_if_applicable": {
+    "existing_no_promotion_projection": {
+      "true_positive": 14,
+      "false_positive": 0,
+      "true_negative": 8,
+      "false_negative": 0,
+      "abstained_positive": 6,
+      "abstained_negative": 26
+    },
+    "folded_tyr_base_signature_if_promoted": {
+      "review_positive_rows": 2,
+      "counterexample_rows_admitted": 1,
+      "unsafe_false_positive_pdb_ids": [
+        "9UW4"
+      ]
+    },
+    "same_chain_signature_610ef66ced7b_if_promoted": {
+      "review_positive_rows": 1,
+      "counterexample_rows_admitted": 30,
+      "unsafe_counterexample_pdb_count": 14
+    }
+  },
+  "exact_missing_evidence": [
+    "Named external/source evidence that the specific residue is the biological phosphoacceptor/substrate in the named kinase context, independent of source-free geometry.",
+    "Wet-lab evidence such as phosphosite/product mapping, mutational loss of phosphorylation, kinetic transfer/substrate assay, or equivalent substrate-role experiment tied to the named candidate.",
+    "For product/ADP rows, evidence tying the materialized phosphoproduct or ADP state to the biological substrate role rather than merely product-state chemistry.",
+    "For any future source-free admission, an independently pre-registered rule validated before applying it to the 9UUR/9UUX/9UW4 collision and same-chain counterexample tranche."
+  ],
+  "run_record": {
+    "lane_id": "epk_substrate_role_identity",
+    "started_at": "2026-05-21T22:32:02Z",
+    "ended_at": "2026-05-21T23:21:11Z",
+    "measured_minutes": 49.15,
+    "hypothesis": "A named source-free substrate-role class can become countable evidence only if already-available source-free features distinguish positives from counterexamples without label-conditioned rescue, source leakage, or new threshold calibration.",
+    "target_candidate_class": "folded_tyr_reciprocal_kinase_context",
+    "secondary_target_candidate_classes": [
+      "product_or_adp_state_context",
+      "same_chain_autophosphorylation_like_topology",
+      "split_state_context",
+      "internal_fragment_mimicry"
+    ],
+    "diagnostic_rows_reused": {
+      "candidate_signature_collision_groups": 3,
+      "candidate_conflict_rows": 34,
+      "reciprocal_competition_hard_case_rows": 12,
+      "phosphoproduct_materialization_hard_case_rows": 7,
+      "new_rows_emitted": 0
+    },
+    "new_computation_if_any": "none_decision_synthesis_only_from_existing_artifacts",
+    "decision": "candidate_class_terminal_no_go",
+    "previous_status": "folded_tyr_reciprocal_context_unresolved_review_only_collision; product_or_adp_and_same_chain_contexts_review_only_abstentions",
+    "new_status": "folded_tyr_reciprocal_product_or_adp_and_same_chain_contexts_terminal_review_only_under_current_source_free_constraints; split_state_blocked_counterevidence_preserved; internal_fragment_mimicry_blocked_counterevidence_preserved",
+    "confusion_matrix_if_applicable": {
+      "existing_no_promotion_projection": {
+        "true_positive": 14,
+        "false_positive": 0,
+        "true_negative": 8,
+        "false_negative": 0,
+        "abstained_positive": 6,
+        "abstained_negative": 26
+      },
+      "folded_tyr_base_signature_if_promoted": {
+        "review_positive_rows": 2,
+        "counterexample_rows_admitted": 1,
+        "unsafe_false_positive_pdb_ids": [
+          "9UW4"
+        ]
+      },
+      "same_chain_signature_610ef66ced7b_if_promoted": {
+        "review_positive_rows": 1,
+        "counterexample_rows_admitted": 30,
+        "unsafe_counterexample_pdb_count": 14
+      }
+    },
+    "decisive_counterexamples": {
+      "folded_tyr_reciprocal_base_signature_collision": {
+        "signature_id": "2b940edf1bf5",
+        "positive_pdb_ids": [
+          "9UUR",
+          "9UUX"
+        ],
+        "counterexample_pdb_ids": [
+          "9UW4"
+        ]
+      },
+      "same_chain_topology_collision": {
+        "signature_id": "610ef66ced7b",
+        "positive_pdb_ids": [
+          "3TM0"
+        ],
+        "counterexample_row_count": 30
+      },
+      "split_state_counterpressure": [
+        "4HPU"
+      ],
+      "internal_fragment_mimicry_counterpressure": [
+        "7B56"
+      ]
+    },
+    "exact_missing_evidence": [
+      "Named external/source evidence that the specific residue is the biological phosphoacceptor/substrate in the named kinase context, independent of source-free geometry.",
+      "Wet-lab evidence such as phosphosite/product mapping, mutational loss of phosphorylation, kinetic transfer/substrate assay, or equivalent substrate-role experiment tied to the named candidate.",
+      "For product/ADP rows, evidence tying the materialized phosphoproduct or ADP state to the biological substrate role rather than merely product-state chemistry.",
+      "For any future source-free admission, an independently pre-registered rule validated before applying it to the 9UUR/9UUX/9UW4 collision and same-chain counterexample tranche."
+    ],
+    "next_query": "Stop source-free proxy expansion for folded Tyr reciprocal, product/ADP, and same-chain substrate-role identity. Only reopen these classes with named external/source/wet-lab evidence or an independently pre-registered source-free rule tested before interpretation.",
+    "production_claim_allowed": false,
+    "labels_or_fingerprints_changed": false,
+    "recommendation": "Record folded Tyr reciprocal, product/ADP, and same-chain topology as terminal review-only classes under current mission constraints. Preserve split-state and internal-fragment rows as blocker/counterevidence. Do not claim ePK production readiness or promote any of these contexts into production substrate-role calls.",
+    "primary_outcome": "candidate_class_terminal_no_go",
+    "artifact_path": "artifacts/research_lanes/epk_substrate_role_identity/epk_terminal_blocker_class_decisions_v1_20260521.json",
+    "git_sync_status": "git fetch origin and git pull --ff-only origin research/epk-substrate-role-identity failed at run start with Operation not permitted writing linked-worktree FETCH_HEAD; git fetch --no-write-fetch-head origin succeeded."
+  }
+}
