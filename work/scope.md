@@ -427,6 +427,16 @@ covers 115 frozen rows across six 2026-05-21 mini-campaigns: 103
 sequence-neighbor alerts, and 0 geometry-scored external rows. No superiority,
 mechanism-match, production-score, threshold, import, registry, or fingerprint
 claim is in scope.
+Current cobalamin radical sourcing scope:
+`artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json`
+does not open a scored mini-campaign. The reviewed adenosylcobalamin/PDB
+source query leaves only one new row after source-context, prior-pool, and cap
+filters, below the 10-row floor for a prospective campaign. The blocker is a
+terminal review-only negative result:
+`terminal_rejection_insufficient_new_source_surface_for_campaign`. No sequence
+baseline, geometry scoring, terminal-review import gate, threshold, registry
+edit, label import, or fingerprint change is in scope for this cobalamin
+surface.
 Current PfkB control-tranche scope:
 `artifacts/v3_pfkb_vs_neighbor_family_control_tranche_preregistration_20260520.json`
 freezes 11 review-only rows before axis decisions: two PfkB boundary rows, two

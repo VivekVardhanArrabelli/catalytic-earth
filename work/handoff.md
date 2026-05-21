@@ -150,6 +150,16 @@ sequence-neighbor alerts, and 0 geometry-scored external rows. The current
 register is
 `artifacts/v3_main_loop_small_win_register_post_flavin_dehydrogenase_20260521.json`.
 
+The cobalamin radical lane was checked next but not forced into an underpowered
+campaign. `artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json`
+records the terminal blocker: the reviewed adenosylcobalamin/PDB source query
+has only one new row that survives source-context, prior-pool, and cap filters,
+below the preregistered 10-row mini-campaign floor. The campaign is therefore
+closed before scoring as
+`terminal_rejection_insufficient_new_source_surface_for_campaign`, with no
+sequence baseline, geometry scoring, terminal-review import gate, registry
+edit, label import, or fingerprint change.
+
 As of the 2026-05-21T00:17:08Z automation run,
 `artifacts/v3_epk_overnight_research_lane_synthesis_20260521.json` integrates
 the fresh dirty sibling-worktree ePK outputs created after the post-late

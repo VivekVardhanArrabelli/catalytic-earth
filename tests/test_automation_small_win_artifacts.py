@@ -1252,6 +1252,43 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(sequence["metadata"]["ready_for_label_import"])
 
+    def test_cobalamin_radical_minicampaign_blocker_is_review_only(self) -> None:
+        blocker = _load_json(
+            ARTIFACTS
+            / "v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json"
+        )
+        metadata = blocker["metadata"]
+        conclusion = blocker["synthesis_conclusion"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["candidate_selection_before_outcome_scoring"])
+        self.assertFalse(metadata["campaign_opened"])
+        self.assertEqual(
+            metadata["blocker_status"],
+            "blocked_insufficient_new_prior_pool_clean_rows",
+        )
+        self.assertEqual(metadata["target_current_fingerprint_lane"], "cobalamin_radical_rearrangement")
+        self.assertEqual(metadata["minimum_campaign_size"], 10)
+        self.assertEqual(
+            metadata["eligible_new_candidate_count_after_prior_pool_exclusion_and_caps"],
+            1,
+        )
+        self.assertLess(
+            metadata["eligible_new_candidate_count_after_prior_pool_exclusion_and_caps"],
+            metadata["minimum_campaign_size"],
+        )
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(
+            conclusion["terminal_decision"],
+            "terminal_rejection_insufficient_new_source_surface_for_campaign",
+        )
+        self.assertFalse(conclusion["production_scoring_authorized"])
+        self.assertFalse(conclusion["label_import_authorized"])
+
     def test_external_minicampaign_modern_baseline_rollup_stays_review_only(self) -> None:
         rollup = _load_json(
             ARTIFACTS / "v3_external_minicampaign_modern_baseline_rollup_20260521.json"

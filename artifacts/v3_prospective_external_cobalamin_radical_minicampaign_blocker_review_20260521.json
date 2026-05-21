@@ -1,0 +1,277 @@
+{
+  "eligible_rows": [
+    {
+      "accession": "Q59490",
+      "entry_name": "RTPR_LACLE",
+      "pdb_ids_sample": [
+        "1L1L"
+      ],
+      "primary_ec": "1.17.4.2",
+      "protein_name": "Adenosylcobalamin-dependent ribonucleoside-triphosphate reductase (RTPR) (EC 1.17.4.2)",
+      "row_id": "uniprot:Q59490",
+      "score_status": "not_scored_blocker_review_only"
+    }
+  ],
+  "excluded_rows_sample": [
+    {
+      "accession": "Q05599",
+      "entry_name": "COBU_SALTY",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "2.7.1.156"
+    },
+    {
+      "accession": "P9WLH5",
+      "entry_name": "RNHPH_MYCTU",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "3.1.26.4"
+    },
+    {
+      "accession": "Q9Y4U1",
+      "entry_name": "MMAC_HUMAN",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "1.16.1.6"
+    },
+    {
+      "accession": "P22033",
+      "entry_name": "MUTA_HUMAN",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context",
+        "prior_external_pool_or_imported_hard_negative"
+      ],
+      "primary_ec": "5.4.99.2"
+    },
+    {
+      "accession": "P0AEJ6",
+      "entry_name": "EUTB_ECOLI",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "4.3.1.7"
+    },
+    {
+      "accession": "P19636",
+      "entry_name": "EUTC_ECOLI",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "4.3.1.7"
+    },
+    {
+      "accession": "Q9H3L0",
+      "entry_name": "MMAD_HUMAN",
+      "exclusion_reasons": [
+        "missing_catalytic_activity_annotation",
+        "missing_active_or_binding_site_annotation",
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": null
+    },
+    {
+      "accession": "Q96EY8",
+      "entry_name": "MMAB_HUMAN",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "2.5.1.-"
+    },
+    {
+      "accession": "P52086",
+      "entry_name": "COBC_ECOLI",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "3.1.3.73"
+    },
+    {
+      "accession": "O14678",
+      "entry_name": "ABCD4_HUMAN",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "7.6.2.8"
+    },
+    {
+      "accession": "Q58517",
+      "entry_name": "COBY_METJA",
+      "exclusion_reasons": [
+        "missing_active_or_binding_site_annotation",
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "2.7.7.62"
+    },
+    {
+      "accession": "E3PY95",
+      "entry_name": "OAME_ACESD",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "5.4.3.5"
+    },
+    {
+      "accession": "I3VE74",
+      "entry_name": "HCMB_AQUTE",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "5.4.99.64"
+    },
+    {
+      "accession": "P80078",
+      "entry_name": "GMSS_CLOCO",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context",
+        "prior_external_pool_or_imported_hard_negative"
+      ],
+      "primary_ec": "5.4.99.1"
+    },
+    {
+      "accession": "E3PRJ5",
+      "entry_name": "KAMD_ACESD",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "5.4.3.3"
+    },
+    {
+      "accession": "P11653",
+      "entry_name": "MUTB_PROFR",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "5.4.99.2"
+    },
+    {
+      "accession": "E3PRJ4",
+      "entry_name": "KAME_ACESD",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "5.4.3.3"
+    },
+    {
+      "accession": "Q8IVH4",
+      "entry_name": "MMAA_HUMAN",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "3.6.-.-"
+    },
+    {
+      "accession": "Q8ZNR5",
+      "entry_name": "PDUO_SALTY",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "2.5.1.-"
+    },
+    {
+      "accession": "Q1LRY0",
+      "entry_name": "ICMF_CUPMC",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "5.4.99.13"
+    },
+    {
+      "accession": "D5AUZ9",
+      "entry_name": "CBIM_RHOCB",
+      "exclusion_reasons": [
+        "missing_catalytic_activity_annotation",
+        "missing_active_or_binding_site_annotation",
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": null
+    },
+    {
+      "accession": "P97084",
+      "entry_name": "COBD_SALTY",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "4.1.1.81"
+    },
+    {
+      "accession": "P25924",
+      "entry_name": "CYSG_SALTY",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "1.3.1.76"
+    },
+    {
+      "accession": "P21631",
+      "entry_name": "SUMT_SINSX",
+      "exclusion_reasons": [
+        "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context"
+      ],
+      "primary_ec": "2.1.1.107"
+    }
+  ],
+  "exclusion_reason_counts": {
+    "missing_active_or_binding_site_annotation": 13,
+    "missing_adenosylcobalamin_radical_rearrangement_source_context_or_excluded_transport_biosynthesis_context": 55,
+    "missing_catalytic_activity_annotation": 5,
+    "prior_external_pool_or_imported_hard_negative": 2
+  },
+  "metadata": {
+    "artifact_id": "v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "blocker_status": "blocked_insufficient_new_prior_pool_clean_rows",
+    "campaign_opened": false,
+    "candidate_selection_before_outcome_scoring": true,
+    "created_at": "2026-05-21T01:39:53Z",
+    "curated_label_registry_edited": false,
+    "eligible_new_candidate_count_after_prior_pool_exclusion_and_caps": 1,
+    "fingerprint_registry_edited": false,
+    "method": "prospective_external_cobalamin_radical_minicampaign_blocker_review",
+    "minimum_campaign_size": 10,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28adenosylcobalamin%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=100",
+    "source_rows_available": 56,
+    "source_rows_reviewed": 56,
+    "source_tsv_sha256": "4a62bcb46c2bebcad71b2de86613da58568c05913a787e74ab215db5ecef0e8d",
+    "source_valid_candidate_count_before_prior_pool_exclusion": 1,
+    "target_current_fingerprint_lane": "cobalamin_radical_rearrangement"
+  },
+  "selection_rules": [
+    "reviewed UniProtKB/Swiss-Prot rows from adenosylcobalamin source query with PDB cross-reference",
+    "require catalytic-activity annotation, sequence, active-site or binding-site annotation, and at least one PDB xref",
+    "require mutase, ammonia-lyase, aminomutase, dehydratase, or B12-dependent RNR radical-rearrangement source context before outcome scoring",
+    "exclude imported hard negatives and previously used prospective external candidate accessions",
+    "exclude transport, binding, biosynthesis, methionine-synthase, methyltransferase-only, and reactivase contexts",
+    "cap at two rows per primary EC number",
+    "do not use fingerprint scores, sequence-neighbor outcomes, Foldseek, ESM, or ePK evidence for selection"
+  ],
+  "source_valid_candidates_before_prior_pool_exclusion": [
+    {
+      "accession": "Q59490",
+      "entry_name": "RTPR_LACLE",
+      "primary_ec": "1.17.4.2",
+      "prior_external_pool_member": false,
+      "protein_name": "Adenosylcobalamin-dependent ribonucleoside-triphosphate reductase (RTPR) (EC 1.17.4.2)",
+      "row_id": "uniprot:Q59490"
+    }
+  ],
+  "synthesis_conclusion": {
+    "label_import_authorized": false,
+    "next_action": "Use a different external sourcing route or wait for new source rows; do not score a one-row campaign.",
+    "overall": "cobalamin_radical_external_minicampaign_blocked_before_scoring",
+    "production_scoring_authorized": false,
+    "reason": "Only one new prior-pool-clean row remains after source-context, prior-pool, and cap filters, below the 10-row prospective campaign floor.",
+    "registry_or_fingerprint_change_authorized": false,
+    "terminal_decision": "terminal_rejection_insufficient_new_source_surface_for_campaign"
+  }
+}
