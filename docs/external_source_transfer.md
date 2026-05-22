@@ -242,6 +242,28 @@ import.
   keeps the seven external mechanism-match rows ready for explicit
   accept/reject/ambiguous decisions while defaulting every row to pending and
   still authorizing 0 imports.
+- `artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json`
+  consolidates the SDR and AKR NAD(P)-redox family blockers without sourcing
+  new rows. The queue records 0 source-free NAD(P)-ligand or cofactor-proxy
+  axis-ready rows, keeps SDR YxxxK motif hits and AKR source-traced VGLG/Tyr
+  context out of predictive evidence, and records the strict SDR pocket-proxy
+  pressure test
+  `artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json`.
+  That test uses only coordinate sequence/order, residue IDs, atom names, and
+  distances; it resolves `O14756` but also the external SDR control `O75828`,
+  leaves AKR `C9JRZ8` without a source-free NAD(P)/Tyr-Lys-His axis, and makes
+  no threshold or superiority claim. The source-request queue
+  `artifacts/v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json`
+  then names the exact resolution options: holo/local NAD(P)-like coordinates
+  or a source-free specificity counteraxis for `O14756`, terminal specificity
+  adjudication for `O75828`, and a source-free AKR NADP/Tyr-Lys-His axis for
+  `C9JRZ8`. The updated
+  non-ePK family index
+  `artifacts/v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json`
+  keeps broad external mini-campaigns closed by default, and
+  `artifacts/v3_post_nadp_cofactor_blocker_review_only_zero_import_gate_20260522.json`
+  validates the four new/updated artifacts as zero-import, zero-countable
+  outputs.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

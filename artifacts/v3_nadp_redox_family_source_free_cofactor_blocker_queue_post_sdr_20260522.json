@@ -1,0 +1,220 @@
+{
+  "decision": {
+    "countable_label_candidate_count": 0,
+    "current_decision": "do_not_promote_production_fingerprint",
+    "decision_rationale": "SDR and AKR both remain blocked on source-free NAD(P) cofactor evidence. The follow-on strict SDR pocket proxy pressure test resolves O14756 but also O75828, and no local NAD(P)-like ligand is present, so the proxy is review-only pressure evidence rather than a production axis.",
+    "exact_missing_evidence": [
+      "source_free_nadp_pocket_proxy_pressure_test_not_specificity_sufficient",
+      "coordinate_holo_nad_or_nadp_ligand_context_absent_for_current_sdr_probe_rows",
+      "akr_source_free_catalytic_tyr_lys_his_environment_policy_missing",
+      "sdr_strict_pocket_proxy_resolves_external_sdr_control_o75828",
+      "current_countable_duplicate_screen_missing_for_akr_positive_like_row",
+      "no_family_specific_threshold_or_label_factory_gate_open"
+    ],
+    "family_status": "blocked_with_exact_missing_evidence",
+    "import_ready_candidate_count": 0,
+    "label_import_authorized": false,
+    "production_fingerprint_promotion_authorized": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "source_free_nadp_or_proxy_axis_ready_count": 0,
+    "start_new_broad_external_minicampaign": false,
+    "terminal_decision": "needs_new_extractor_or_structure"
+  },
+  "extractor_preregistration": {
+    "accepted_predictive_inputs": [
+      "mmCIF atom coordinates",
+      "residue and ligand comp IDs",
+      "atom names",
+      "chain-local sequence order derived from coordinates",
+      "distances and local contact counts"
+    ],
+    "candidate_rows_already_frozen_before_this_artifact": true,
+    "excluded_predictive_inputs": [
+      "protein names",
+      "EC labels",
+      "Rhea equations",
+      "UniProt or source prose",
+      "source active-site annotations",
+      "curated label identity"
+    ],
+    "experiment_id": "nadp_redox_cofactor_pocket_proxy_extractor_v1_review_only",
+    "failure_result": "remain_blocked_with_exact_missing_evidence_and_do_not_start_broad_external_minicampaign",
+    "minimum_success_to_unblock_review_only_axis": [
+      "at least one target-family row resolves catalytic-axis geometry plus local NAD(P)-like ligand or preregistered NAD(P)-pocket proxy",
+      "no non-target control row resolves the same full proxy under the frozen rule",
+      "all scored rows keep source/prose fields excluded from predictive evidence",
+      "any positive-like external row still has a separate current-countable duplicate/leakage screen before import claims"
+    ],
+    "pressure_test_artifact": "artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json",
+    "pressure_test_result": "strict_proxy_resolved_positive_like_and_control_rows_not_specificity_sufficient",
+    "selection_freeze_required_before_scoring": true,
+    "status": "preregistered_and_pressure_tested_review_only",
+    "target_families": [
+      "sdr_nad_p_redox",
+      "akr_nadp_redox"
+    ]
+  },
+  "families": [
+    {
+      "active_site_evidence": {
+        "coordinate_tyr_xxx_lys_geometry_resolved_count": 5,
+        "full_axis_ready_count": 0,
+        "source_context_counted_as_predictive_count": 0
+      },
+      "cofactor_evidence": {
+        "direct_local_nad_or_nadp_ligand_site_count": 0,
+        "source_free_proxy_ready": false,
+        "source_free_proxy_tested": true,
+        "strict_pocket_proxy_control_hit_count": 1,
+        "strict_pocket_proxy_resolved_count": 2
+      },
+      "exact_missing_evidence": [
+        "strict_pocket_proxy_resolves_positive_like_o14756_but_also_o75828_control",
+        "coordinate_nad_p_like_ligand_absent_on_all_available_structures",
+        "broader_duplicate_screen_and_terminal_review_still_required_before_any_import_claim"
+      ],
+      "family_id": "sdr_nad_p_redox",
+      "family_name": "Short-chain dehydrogenase/reductase NAD(P)-dependent redox",
+      "frozen_row_count": 14,
+      "non_target_control_geometry_hit_count": 2,
+      "packet": "artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json",
+      "positive_like_entry_id": "uniprot:O14756",
+      "source_free_catalytic_axis_resolved_count": 5,
+      "source_free_nadp_or_proxy_axis_ready_count": 0,
+      "status": "blocked_with_exact_missing_evidence",
+      "structure_available_count": 12
+    },
+    {
+      "active_site_evidence": {
+        "source_context_counted_as_predictive_count": 0,
+        "source_free_catalytic_axis_ready": false,
+        "source_traced_tyr_axis_not_predictive": {
+          "positions": [
+            49
+          ],
+          "row_id": "uniprot:C9JRZ8",
+          "status": "source_traced_active_site_tyr_present_not_source_free"
+        }
+      },
+      "cofactor_evidence": {
+        "direct_local_nadp_ligand_geometry_ready": false,
+        "source_free_proxy_ready": false,
+        "source_free_proxy_tested": false,
+        "source_traced_proxy_motif_hits_not_predictive": [
+          {
+            "end": 19,
+            "motif": "VGLG",
+            "motif_type": "n_terminal_xgxg_cofactor_binding_proxy",
+            "row_id": "uniprot:C9JRZ8",
+            "start": 16
+          }
+        ]
+      },
+      "exact_missing_evidence": [
+        "source_free_local_nadp_ligand_or_proxy_geometry_axis_missing",
+        "source_free_catalytic_tyr_lys_his_environment_policy_missing",
+        "akr_specific_current_countable_duplicate_screen_missing_for_c9jrz8_or_fresh_rows",
+        "terminal_review_decision_not_accepted_for_positive_like_akr_rows",
+        "full_label_factory_gate_not_run"
+      ],
+      "family_id": "akr_nadp_redox",
+      "family_name": "Aldo-keto reductase NADP-dependent redox",
+      "packet": "artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json",
+      "positive_like_entry_id": "uniprot:C9JRZ8",
+      "positive_like_row_count": 1,
+      "source_free_akr_axis_ready_count": 0,
+      "source_free_nadp_or_proxy_axis_ready_count": 0,
+      "status": "needs_new_extractor_or_structure"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T19:36:15Z",
+    "curated_label_registry_edited": false,
+    "family_count": 2,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "nadp_redox_family_source_free_cofactor_blocker_queue_existing_rows_only",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "registry_invariant_label_count": 682,
+    "registry_invariant_label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 212
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "akr_readiness_recheck": "artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json",
+      "prior_non_epk_family_index": "artifacts/v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json",
+      "sdr_modern_baseline_benchmark": "artifacts/v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522.json",
+      "sdr_nadp_pocket_proxy_pressure_test": "artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json",
+      "sdr_source_free_axis_probe": "artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json"
+    },
+    "source_context_counted_as_predictive_count": 0,
+    "source_free_nadp_or_proxy_axis_ready_count": 0,
+    "source_free_nadp_pocket_proxy_pressure_test_control_hit_count": 1,
+    "source_free_nadp_pocket_proxy_pressure_test_resolved_count": 2,
+    "uses_existing_artifacts_only": true
+  },
+  "modern_baseline_comparison": {
+    "current_geometry_probe": {
+      "akr_source_free_axis_ready_count": 0,
+      "sdr_catalytic_axis_resolved_count": 5,
+      "sdr_full_axis_ready_count": 0,
+      "source_free_nadp_or_proxy_axis_ready_count": 0,
+      "strict_sdr_pocket_proxy_control_hit_count": 1,
+      "strict_sdr_pocket_proxy_resolved_count": 2
+    },
+    "deterministic_sequence_or_motif_baseline": {
+      "akr_source_traced_motif_hit_count": 1,
+      "caveat": "Motif or source-traced sequence evidence is insufficient without coordinate cofactor context and counterfamily controls.",
+      "predictive_use_allowed": false,
+      "sdr_non_target_control_geometry_hit_count": 2,
+      "sdr_sequence_motif_hit_count": 8
+    },
+    "ec_keyword_routing": {
+      "akr_route_available_as_review_context": true,
+      "caveat": "EC/name/prose can describe why rows were selected but cannot count as source-free evidence.",
+      "predictive_use_allowed": false,
+      "sdr_route_available_as_review_context": true
+    },
+    "esm_or_learned_embedding_sidecar": {
+      "available_for_same_frozen_rows": false,
+      "caveat": "Prior AKR representation collision context is not a same-frozen-row superiority benchmark; SDR has no ESM sidecar here."
+    },
+    "foldseek_sidecar": {
+      "available_for_same_frozen_rows": false,
+      "caveat": "No Foldseek duplicate sidecar is available for the SDR probe rows or AKR C9JRZ8 in this artifact."
+    },
+    "geometry_superiority_claim_supported": false,
+    "representation_superiority_claim_supported": false,
+    "task_definition": "On the existing SDR/AKR NAD(P)-redox readiness surface, determine whether any source-free cofactor axis exists beyond EC/name/sequence review context."
+  },
+  "safety_summary": {
+    "artifact_migration_phase_2_or_3_attempted": false,
+    "artifact_upload_or_removal_performed": false,
+    "label_import_attempted": false,
+    "production_fingerprint_added": false,
+    "registry_or_fingerprint_edit_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "source_separation_policy": {
+    "candidate_selection_may_use_review_context": true,
+    "ec_keyword_or_protein_name_counted_as_predictive": false,
+    "predictive_import_evidence_separated_from_review_context": true,
+    "predictive_inputs_limited_to_coordinates_residue_ligand_atom_names_and_distances": true,
+    "source_active_site_annotations_counted_as_predictive": false,
+    "uniprot_or_source_prose_counted_as_predictive": false
+  }
+}

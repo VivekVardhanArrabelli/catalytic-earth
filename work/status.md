@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 291
-- Measured elapsed time: 8889.0 minutes (148.15 hours)
+- Entries: 292
+- Measured elapsed time: 8913.2 minutes (148.55 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1889.8 measured minutes (31.50 hours)
+- v3: 1914.1 measured minutes (31.90 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3154
-- Evidence references logged: 2574
+- Artifact references logged: 3169
+- Evidence references logged: 2585
 
 ## Recent Entries
-
-### 2026-05-22T10:31:38.361386+00:00 - v3
-
-- Task: P15776 UniRef and seven-row seed readiness
-- Time mode: measured
-- Measured minutes: 11.55
-- Started: 2026-05-22T10:19:52Z
-- Ended: 2026-05-22T10:31:25Z
-- Artifacts: artifacts/v3_external_p15776_uniref_current_reference_screen_20260522.json, artifacts/v3_external_seed_fingerprint_seven_review_ready_import_gate_readiness_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: P15776 UniRef90 and UniRef50 current-reference screen cleared 0 overlaps against 735 current countable reference accessions, seven mechanism-match review-ready rows now have source-free geometry and UniRef clearance, seven-row readiness remains no-import with 0 import-ready and 0 countable candidates, current label-factory payload gate remains blocked on applied_label_actions_ready adapter gap, 837-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T11:35:58.020005+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/sdr_active_site.py, tests/test_sdr_active_site.py, artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json, artifacts/v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json, artifacts/v3_external_review_ready_human_decision_batch_template_post_sdr_20260522.json, artifacts/v3_external_review_ready_human_decision_batch_template_validation_post_sdr_20260522.json, artifacts/v3_post_sdr_axis_probe_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 867-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, SDR probe used 14 frozen rows and 0 new external rows, 12 of 14 rows had committed coordinates, 5 rows resolved source-free Tyr-Lys geometry, 0 rows had NADP-like ligand sites, 2 non-SDR controls had motif-only geometry, external human template keeps 7 rows pending review and no import, 875-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, review-only zero-import gate passed 5/5, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
 - Notes: Wrapped early because unblocked no-breadth queue is now human review or missing NAD(P) holo/proxy evidence. No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T19:42:57.546947+00:00 - v3
+
+- Task: NADP redox cofactor proxy blocker pressure test
+- Time mode: measured
+- Measured minutes: 24.25
+- Started: 2026-05-22T19:18:23Z
+- Ended: 2026-05-22T19:42:38Z
+- Artifacts: src/catalytic_earth/sdr_active_site.py, tests/test_sdr_active_site.py, artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json, artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json, artifacts/v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json, artifacts/v3_post_nadp_cofactor_blocker_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 875-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, strict SDR NADP pocket proxy uses only coordinate sequence/order residue IDs atom names and distances, proxy resolved O14756 and O75828 so it is pressure evidence not production axis, source request queue names exact missing holo or specificity evidence for O14756 O75828 and C9JRZ8, review-only zero-import gate passed 4/4, 882-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, no registry or fingerprint diffs
+- Notes: Wrapped before 48 minutes because the remaining no-breadth queue is human review or missing NADP holo/specificity evidence; no label import registry edit fingerprint edit artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -354,6 +354,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T15:49:13.822899+00:00: PLP non-exact frozen rows are terminal; AKR remains review-only no-go.
 - 2026-05-22T18:05:27.783477+00:00: Next action is human accept/reject review or a bounded source-free axis experiment, not label import
 - 2026-05-22T18:35:34.824679+00:00: Next action is human accept/reject review or a future preregistered NAD(P) pocket/holo-structure experiment; do not import labels
+- 2026-05-22T19:42:57.546947+00:00: Next no-breadth work should wait for human action on seven mechanism-match rows or resolve NADP holo/specificity evidence for O14756 O75828 C9JRZ8.
 
 ## Scope Adjustments
 
@@ -530,3 +531,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T16:29:06.133933+00:00: External no-breadth queue is now human-review-only; no new external mini-campaign should start before human action or a new bounded control experiment.
 - 2026-05-22T18:05:27.783477+00:00: No new broad external rows; PyMOL review cockpit and non-ePK family readiness remain review-only
 - 2026-05-22T18:35:34.824679+00:00: No new broad external rows; SDR blocker is exact and external queue is human-review-ready only
+- 2026-05-22T19:42:57.546947+00:00: NADP redox family fallback is now blocked on holo/local NADP evidence or source-free specificity controls, not another broad row freeze.

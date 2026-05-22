@@ -170,6 +170,48 @@ motif-only controls. Confidence is high that no import path opened because the
 new packets record 0 import-ready and 0 countable candidates, no registry or
 fingerprint edits, no artifact upload/removal, and no `removal_allowed=true`.
 
+As of the 2026-05-22T19:18:23Z main-loop run, the automation kept the same
+no-breadth posture and consolidated the SDR/AKR NAD(P)-redox blocker instead
+of opening another family or external tranche.
+`artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json`
+records the shared exact blocker: 0 source-free NAD(P) ligand/proxy-ready
+rows, SDR motif-only geometry is unsafe because two non-SDR controls also
+resolve YxxxK geometry, and AKR remains source-traced rather than source-free.
+The follow-on pressure test
+`artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json`
+implements the strict SDR `[ST]GxxxGxG` pocket proxy over the same 14 frozen
+rows using only mmCIF coordinates, residue/ligand comp IDs, atom names,
+coordinate-derived sequence order, distances, and local contacts. It resolves
+`O14756`, filters out the prior loose V-motif heme-control hit, but also
+resolves the external SDR control `O75828`; AKR `C9JRZ8` still lacks a
+source-free NAD(P)/Tyr-Lys-His axis. EC, names, UniProt/source prose, source
+active-site annotations, and curated labels remain excluded from predictive
+evidence.
+`artifacts/v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json`
+then converts that pressure-test result into three exact review-only evidence
+requests: holo/local NAD(P)-like coordinates or a source-free specificity
+counteraxis for `O14756`, terminal specificity adjudication for `O75828`, and
+a source-free AKR NADP/Tyr-Lys-His coordinate axis for `C9JRZ8`.
+
+`artifacts/v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json`
+keeps the six non-ePK family packets review-only and adds that cross-family
+cofactor blocker as the next exact no-breadth item. The broad external
+mini-campaign item remains `do_not_start_by_default`, while the seven
+external mechanism-match rows remain pending human accept/reject/ambiguous
+action. `artifacts/v3_post_nadp_cofactor_blocker_review_only_zero_import_gate_20260522.json`
+validates the four new/updated artifacts as 4/4 zero-import and
+zero-countable.
+
+Evidence-based confidence call: confidence is high that the NAD(P)-redox
+families are blocked on the right evidence axis because SDR and AKR now point
+to the same missing source-free cofactor ligand/proxy rather than separate
+generic `needs_review` buckets, and the strict proxy already shows why pocket
+motif evidence alone is not specific enough. Confidence is high that no import
+or production path opened because the artifacts record 0 import-ready
+candidates, 0 countable candidates, no new external rows, no
+registry/fingerprint edits, no artifact upload/removal, and no
+`removal_allowed=true`.
+
 As of the 2026-05-22T04:01:49Z main-loop run, the automation closed the
 remaining queued redox source-free geometry/structure blockers without adding
 external mini-campaign breadth. `src/catalytic_earth/redox_active_site.py`

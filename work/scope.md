@@ -413,6 +413,25 @@ sidecars were absent for this SDR probe. The post-SDR no-import gate validates
 five new artifacts with 0 import-ready and 0 countable candidates, including
 the external human-decision batch template that keeps all seven mechanism-match
 rows pending accept/reject review and still separate from label import.
+Current NAD(P)-redox blocker scope: the follow-on queue
+`artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json`
+does not open new external or family breadth. It joins SDR and AKR on a single
+exact blocker: source-free NAD(P) ligand or cofactor-pocket proxy evidence is
+absent, SDR motif-only geometry has non-SDR control hits, and AKR still depends
+on source-traced VGLG/Tyr context. The strict SDR pocket-proxy pressure test
+`artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json`
+is frozen to those existing rows and limited to mmCIF coordinates, residue/
+ligand comp IDs, atom names, coordinate-derived sequence order, distances, and
+local contacts. It resolves the positive-like SDR row `O14756` but also the
+external SDR control `O75828`, so it is not a calibrated source-free cofactor
+axis and cannot support thresholding, production scoring, or import. EC/name/
+UniProt/source prose, source active-site annotations, and curated labels remain
+review context only. The companion source-request queue records the exact
+allowed next evidence: holo/local NAD(P)-like coordinates or a source-free
+specificity counteraxis for `O14756`, terminal specificity adjudication for
+`O75828`, and a source-free AKR NADP/Tyr-Lys-His coordinate axis for `C9JRZ8`.
+The updated non-ePK index keeps broad external mini-campaigns closed by
+default and records 0 import-ready or countable candidates.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

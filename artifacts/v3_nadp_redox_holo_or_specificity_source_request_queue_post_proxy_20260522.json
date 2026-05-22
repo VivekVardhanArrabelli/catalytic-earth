@@ -1,0 +1,124 @@
+{
+  "decision": {
+    "countable_label_candidate_count": 0,
+    "exact_missing_evidence": [
+      "o14756_needs_holo_nad_or_nadp_coordinate_ligand_or_proxy_specificity_control",
+      "o75828_needs_specificity_adjudication_before_strict_sdr_proxy_can_support_any_claim",
+      "c9jrz8_needs_akr_source_free_nadp_and_tyr_lys_his_coordinate_axis",
+      "no_requested_row_authorizes_label_import_or_threshold_calibration"
+    ],
+    "family_status": "blocked_with_exact_missing_evidence",
+    "import_ready_candidate_count": 0,
+    "label_import_authorized": false,
+    "production_fingerprint_promotion_authorized": false,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "request_count": 3,
+    "start_new_broad_external_minicampaign": false,
+    "terminal_decision": "needs_new_extractor_or_structure"
+  },
+  "metadata": {
+    "artifact_id": "v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T19:39:30Z",
+    "curated_label_registry_edited": false,
+    "family_count": 2,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "nadp_redox_holo_or_specificity_source_request_queue_existing_rows_only",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "request_count": 3,
+    "review_only": true,
+    "source_artifacts": {
+      "nadp_redox_cofactor_blocker_queue": "artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json",
+      "non_epk_family_index": "artifacts/v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json",
+      "sdr_nadp_pocket_proxy_pressure_test": "artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json"
+    },
+    "source_free_nadp_or_proxy_axis_ready_count": 0,
+    "uses_existing_artifacts_only": true
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "countable_label_candidate_after_resolution": false,
+      "current_source_free_evidence": {
+        "local_nad_or_nadp_ligand_observed": false,
+        "proxy_axis_ready_for_threshold_calibration": false,
+        "selected_proxy_motif": "TGCDSGFG",
+        "strict_pocket_proxy_resolved": true
+      },
+      "exact_resolution_options": [
+        "coordinate structure or committed sidecar with local NAD/NADP/NAP/NPH near the resolved YxxxK axis",
+        "specificity-control rule that rejects O75828 and other non-target controls under the same frozen proxy",
+        "human terminal rejection or ambiguity decision if neither source-free route appears defensible"
+      ],
+      "family_id": "sdr_nad_p_redox",
+      "ready_for_label_import_after_resolution": false,
+      "request_type": "holo_nadp_or_proxy_specificity_resolution",
+      "row_id": "uniprot:O14756"
+    },
+    {
+      "accession": "O75828",
+      "countable_label_candidate_after_resolution": false,
+      "current_source_free_evidence": {
+        "local_nad_or_nadp_ligand_observed": false,
+        "proxy_axis_ready_for_threshold_calibration": false,
+        "selected_proxy_motif": "TGANRGIG",
+        "strict_pocket_proxy_resolved": true
+      },
+      "exact_resolution_options": [
+        "terminally classify this row as true SDR-family review context or non-target control before proxy reuse",
+        "add a source-free counteraxis that separates O75828 from O14756 without EC/name/prose inputs",
+        "reject the strict pocket proxy as insufficient if no non-text counteraxis exists"
+      ],
+      "family_id": "sdr_nad_p_redox_control",
+      "ready_for_label_import_after_resolution": false,
+      "request_type": "strict_proxy_specificity_control_adjudication",
+      "row_id": "uniprot:O75828"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate_after_resolution": false,
+      "current_source_free_evidence": {
+        "local_nadp_ligand_observed": false,
+        "source_free_tyr_lys_his_axis_ready": false,
+        "source_traced_vglg_motif_predictive_use_allowed": false,
+        "strict_sdr_pocket_proxy_resolved": false
+      },
+      "exact_resolution_options": [
+        "coordinate structure or committed sidecar with local NADP/NAP/NPH and source-free AKR catalytic Tyr-Lys-His geometry",
+        "AKR-vs-SDR/flavin/heme/PLP/out-of-scope counterfamily control packet before any thresholding",
+        "human terminal rejection or ambiguity decision if the row remains source-traced only"
+      ],
+      "family_id": "akr_nadp_redox",
+      "ready_for_label_import_after_resolution": false,
+      "request_type": "akr_holo_nadp_and_tyr_lys_his_axis_resolution",
+      "row_id": "uniprot:C9JRZ8"
+    }
+  ],
+  "safety_summary": {
+    "artifact_migration_phase_2_or_3_attempted": false,
+    "artifact_upload_or_removal_performed": false,
+    "label_import_attempted": false,
+    "production_fingerprint_added": false,
+    "registry_or_fingerprint_edit_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "source_separation_policy": {
+    "candidate_selection_may_use_review_context": true,
+    "ec_keyword_or_protein_name_counted_as_predictive": false,
+    "predictive_import_evidence_separated_from_review_context": true,
+    "predictive_inputs_limited_to_coordinates_residue_ligand_atom_names_and_distances": true,
+    "source_active_site_annotations_counted_as_predictive": false,
+    "uniprot_or_source_prose_counted_as_predictive": false
+  }
+}

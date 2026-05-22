@@ -55,6 +55,8 @@ ONE_LETTER = {
 NAD_P_LIKE_CODES = {"NAD", "NADH", "NADP", "NAP", "NPH"}
 CATALYTIC_TYR_LYS_DISTANCE_CUTOFF_ANGSTROM = 7.0
 NAD_P_TO_AXIS_DISTANCE_CUTOFF_ANGSTROM = 8.0
+NAD_P_POCKET_PROXY_TO_AXIS_DISTANCE_CUTOFF_ANGSTROM = 20.0
+NAD_P_POCKET_PROXY_TO_AXIS_MAX_SEQUENCE_GAP = 220
 
 
 def extract_source_free_sdr_catalytic_axis(
@@ -122,6 +124,84 @@ def extract_source_free_sdr_catalytic_axis(
             for candidate in candidates[:8]
         ],
         "nad_p_like_sites": [_public_ligand_site(site) for site in nad_sites[:8]],
+    }
+
+
+def extract_source_free_sdr_nad_p_pocket_proxy(
+    atoms: list[dict[str, Any]],
+    *,
+    row_id: str | None = None,
+    accession: str | None = None,
+    structure_id: str | None = None,
+) -> dict[str, Any]:
+    """Probe a review-only SDR NAD(P)-pocket proxy from coordinates.
+
+    This is deliberately weaker than a holo NAD(P)-ligand observation. It only
+    tests whether a strict N-terminal SDR-like [ST]GxxxGxG coordinate-sequence
+    motif is geometrically near the source-free Tyr-X-X-X-Lys catalytic axis.
+    """
+
+    axis = extract_source_free_sdr_catalytic_axis(
+        atoms,
+        row_id=row_id,
+        accession=accession,
+        structure_id=structure_id,
+    )
+    selected_axis = axis.get("selected_candidate") or {}
+    chain_id = selected_axis.get("chain_id")
+    tyr_index = selected_axis.get("sequence_index_start")
+    chains = _protein_chains(atoms)
+    residues = chains.get(str(chain_id or ""), [])
+    proxy_candidates = (
+        _chain_nad_p_pocket_proxy_candidates(
+            chain_id=str(chain_id or ""),
+            residues=residues,
+            tyr_index=tyr_index if isinstance(tyr_index, int) else None,
+            selected_axis=selected_axis if isinstance(selected_axis, dict) else {},
+        )
+        if axis["source_free_catalytic_axis_resolved"]
+        else []
+    )
+    selected_proxy = proxy_candidates[0] if proxy_candidates else None
+    status = _pocket_proxy_status(axis, selected_proxy)
+
+    return {
+        "accession": accession,
+        "entry_id": row_id or (f"uniprot:{accession}" if accession else None),
+        "structure_id": structure_id,
+        "status": status,
+        "status_reason": _pocket_proxy_status_reason(status),
+        "review_only": True,
+        "source_free_coordinate_evidence": True,
+        "text_or_label_fields_used_for_predictive_score": False,
+        "source_active_site_annotations_used": False,
+        "predictive_input_policy": (
+            "Only mmCIF atom coordinates, residue comp ids, atom names, "
+            "coordinate-derived sequence order, and distances are used; EC, "
+            "names, UniProt prose, source active-site annotations, and curated "
+            "labels are excluded."
+        ),
+        "pocket_proxy_rule": "strict [ST]GxxxGxG motif before the selected Tyr-X-X-X-Lys axis",
+        "pocket_proxy_to_axis_distance_cutoff_angstrom": (
+            NAD_P_POCKET_PROXY_TO_AXIS_DISTANCE_CUTOFF_ANGSTROM
+        ),
+        "pocket_proxy_to_axis_max_sequence_gap": (
+            NAD_P_POCKET_PROXY_TO_AXIS_MAX_SEQUENCE_GAP
+        ),
+        "source_free_catalytic_axis_resolved": axis[
+            "source_free_catalytic_axis_resolved"
+        ],
+        "source_free_nad_p_pocket_proxy_resolved": bool(
+            selected_proxy and selected_proxy["source_free_nad_p_pocket_proxy_resolved"]
+        ),
+        "proxy_axis_ready_for_threshold_calibration": False,
+        "source_free_full_sdr_axis_ready": False,
+        "selected_source_free_catalytic_axis": selected_axis or None,
+        "selected_pocket_proxy": _public_pocket_proxy(selected_proxy),
+        "pocket_proxy_candidate_count": len(proxy_candidates),
+        "pocket_proxy_candidates": [
+            _public_pocket_proxy(candidate) for candidate in proxy_candidates[:8]
+        ],
     }
 
 
@@ -206,6 +286,80 @@ def _chain_yxxxk_candidates(
             }
         )
     return candidates
+
+
+def _chain_nad_p_pocket_proxy_candidates(
+    *,
+    chain_id: str,
+    residues: list[dict[str, Any]],
+    tyr_index: int | None,
+    selected_axis: dict[str, Any],
+) -> list[dict[str, Any]]:
+    if tyr_index is None or tyr_index < 1 or tyr_index + 3 >= len(residues):
+        return []
+    tyr = residues[tyr_index - 1]
+    lys = residues[tyr_index + 3]
+    axis_atoms = tyr["atoms"] + lys["atoms"]
+    axis_centroid = residue_centroid(axis_atoms)
+    sequence = "".join(ONE_LETTER.get(str(residue["code"]), "X") for residue in residues)
+    candidates: list[dict[str, Any]] = []
+    for index in range(max(0, len(residues) - 7)):
+        motif = sequence[index : index + 8]
+        if not _is_strict_sdr_nad_p_pocket_motif(motif):
+            continue
+        start = index + 1
+        end = index + 8
+        sequence_gap = tyr_index - end
+        motif_residues = residues[index : index + 8]
+        motif_atoms = [atom for residue in motif_residues for atom in residue["atoms"]]
+        motif_centroid = residue_centroid(motif_atoms)
+        centroid_distance = _point_distance(axis_centroid, motif_centroid)
+        before_axis = sequence_gap >= 0
+        within_sequence_window = (
+            before_axis
+            and sequence_gap <= NAD_P_POCKET_PROXY_TO_AXIS_MAX_SEQUENCE_GAP
+        )
+        within_distance_window = (
+            centroid_distance is not None
+            and centroid_distance
+            <= NAD_P_POCKET_PROXY_TO_AXIS_DISTANCE_CUTOFF_ANGSTROM
+        )
+        candidates.append(
+            {
+                "chain_id": chain_id or None,
+                "motif": motif,
+                "sequence_index_start": start,
+                "sequence_index_end": end,
+                "sequence_gap_to_catalytic_tyr": sequence_gap,
+                "motif_to_axis_centroid_distance_angstrom": (
+                    round(centroid_distance, 3)
+                    if centroid_distance is not None
+                    else None
+                ),
+                "before_selected_catalytic_axis": before_axis,
+                "within_sequence_window": within_sequence_window,
+                "within_distance_window": within_distance_window,
+                "source_free_nad_p_pocket_proxy_resolved": (
+                    bool(selected_axis)
+                    and selected_axis.get("source_free_catalytic_axis_resolved")
+                    is True
+                    and within_sequence_window
+                    and within_distance_window
+                ),
+            }
+        )
+    candidates.sort(key=_pocket_proxy_sort_key)
+    return candidates
+
+
+def _is_strict_sdr_nad_p_pocket_motif(motif: str) -> bool:
+    return (
+        len(motif) == 8
+        and motif[0] in {"S", "T"}
+        and motif[1] == "G"
+        and motif[5] == "G"
+        and motif[7] == "G"
+    )
 
 
 def _nad_p_like_sites(atoms: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -303,6 +457,42 @@ def _status_reason(status: str) -> str:
     }[status]
 
 
+def _pocket_proxy_status(
+    axis: dict[str, Any],
+    selected_proxy: dict[str, Any] | None,
+) -> str:
+    if not axis["source_free_catalytic_axis_resolved"]:
+        return "no_source_free_sdr_catalytic_axis"
+    if selected_proxy is None:
+        return "source_free_sdr_catalytic_axis_without_nad_p_pocket_proxy"
+    if selected_proxy["source_free_nad_p_pocket_proxy_resolved"]:
+        return "source_free_sdr_catalytic_axis_with_nad_p_pocket_proxy_review_only"
+    return "source_free_sdr_nad_p_pocket_proxy_outside_geometry_window"
+
+
+def _pocket_proxy_status_reason(status: str) -> str:
+    return {
+        "no_source_free_sdr_catalytic_axis": (
+            "No coordinate-resolved Tyr-X-X-X-Lys catalytic axis is available."
+        ),
+        "source_free_sdr_catalytic_axis_without_nad_p_pocket_proxy": (
+            "The SDR catalytic-axis geometry is resolved, but no strict "
+            "[ST]GxxxGxG coordinate-sequence pocket proxy is present on the "
+            "same chain."
+        ),
+        "source_free_sdr_catalytic_axis_with_nad_p_pocket_proxy_review_only": (
+            "The SDR catalytic-axis geometry and a strict nearby [ST]GxxxGxG "
+            "pocket proxy are resolved from coordinates; this remains "
+            "review-only because no NAD(P)-like ligand is observed."
+        ),
+        "source_free_sdr_nad_p_pocket_proxy_outside_geometry_window": (
+            "A strict [ST]GxxxGxG pocket proxy exists but is after the selected "
+            "catalytic axis, too far in sequence, or outside the frozen "
+            "coordinate-distance window."
+        ),
+    }[status]
+
+
 def _candidate_sort_key(candidate: dict[str, Any]) -> tuple[int, float, str, str]:
     resolved_penalty = 0 if candidate["source_free_catalytic_axis_resolved"] else 1
     distance = candidate["tyr_lys_distance_angstrom"]
@@ -311,6 +501,20 @@ def _candidate_sort_key(candidate: dict[str, Any]) -> tuple[int, float, str, str
         float(distance) if distance is not None else 999.0,
         str(candidate.get("chain_id") or ""),
         str(candidate.get("tyr_resid") or ""),
+    )
+
+
+def _pocket_proxy_sort_key(candidate: dict[str, Any]) -> tuple[int, float, int, str]:
+    resolved_penalty = (
+        0 if candidate["source_free_nad_p_pocket_proxy_resolved"] else 1
+    )
+    distance = candidate["motif_to_axis_centroid_distance_angstrom"]
+    gap = candidate["sequence_gap_to_catalytic_tyr"]
+    return (
+        resolved_penalty,
+        float(distance) if distance is not None else 999.0,
+        abs(int(gap)) if isinstance(gap, int) else 10**9,
+        str(candidate.get("motif") or ""),
     )
 
 
@@ -331,6 +535,29 @@ def _public_candidate(
             "source_free_catalytic_axis_resolved"
         ],
         "nearest_nad_p_like_ligand": nearest_nad_context,
+    }
+
+
+def _public_pocket_proxy(
+    candidate: dict[str, Any] | None,
+) -> dict[str, Any] | None:
+    if candidate is None:
+        return None
+    return {
+        "chain_id": candidate["chain_id"],
+        "motif": candidate["motif"],
+        "sequence_index_start": candidate["sequence_index_start"],
+        "sequence_index_end": candidate["sequence_index_end"],
+        "sequence_gap_to_catalytic_tyr": candidate["sequence_gap_to_catalytic_tyr"],
+        "motif_to_axis_centroid_distance_angstrom": candidate[
+            "motif_to_axis_centroid_distance_angstrom"
+        ],
+        "before_selected_catalytic_axis": candidate["before_selected_catalytic_axis"],
+        "within_sequence_window": candidate["within_sequence_window"],
+        "within_distance_window": candidate["within_distance_window"],
+        "source_free_nad_p_pocket_proxy_resolved": candidate[
+            "source_free_nad_p_pocket_proxy_resolved"
+        ],
     }
 
 
@@ -412,6 +639,18 @@ def _atom_distance(
     if left_coord is None or right_coord is None:
         return None
     return math.dist(left_coord, right_coord)
+
+
+def _point_distance(
+    left: dict[str, float] | None,
+    right: dict[str, float] | None,
+) -> float | None:
+    if left is None or right is None:
+        return None
+    return math.dist(
+        [left["x"], left["y"], left["z"]],
+        [right["x"], right["y"], right["z"]],
+    )
 
 
 def _atom_coordinate(atom: dict[str, Any] | None) -> list[float] | None:

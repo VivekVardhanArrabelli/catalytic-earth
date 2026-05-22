@@ -12339,6 +12339,309 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(validation["metadata"]["pending_human_review_count"], 7)
         self.assertTrue(all(row["valid"] for row in validation["row_validation"]))
 
+    def test_nadp_redox_cofactor_blocker_queue_preserves_source_separation(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        families = {row["family_id"]: row for row in packet["families"]}
+        preregistration = packet["extractor_preregistration"]
+        baselines = packet["modern_baseline_comparison"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["family_count"], 2)
+        self.assertEqual(metadata["source_free_nadp_or_proxy_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            metadata["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+
+        self.assertEqual(decision["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(decision["family_status"], "blocked_with_exact_missing_evidence")
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertEqual(decision["source_free_nadp_or_proxy_axis_ready_count"], 0)
+        self.assertIn(
+            "source_free_nadp_pocket_proxy_pressure_test_not_specificity_sufficient",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertEqual(
+            set(families),
+            {"sdr_nad_p_redox", "akr_nadp_redox"},
+        )
+        self.assertEqual(
+            families["sdr_nad_p_redox"]["source_free_catalytic_axis_resolved_count"],
+            5,
+        )
+        self.assertEqual(
+            families["sdr_nad_p_redox"]["source_free_nadp_or_proxy_axis_ready_count"],
+            0,
+        )
+        self.assertEqual(
+            families["sdr_nad_p_redox"]["non_target_control_geometry_hit_count"],
+            2,
+        )
+        self.assertEqual(
+            families["akr_nadp_redox"]["source_free_akr_axis_ready_count"],
+            0,
+        )
+        self.assertEqual(
+            families["akr_nadp_redox"]["cofactor_evidence"][
+                "source_traced_proxy_motif_hits_not_predictive"
+            ][0]["motif"],
+            "VGLG",
+        )
+
+        self.assertEqual(
+            preregistration["experiment_id"],
+            "nadp_redox_cofactor_pocket_proxy_extractor_v1_review_only",
+        )
+        self.assertEqual(
+            preregistration["status"],
+            "preregistered_and_pressure_tested_review_only",
+        )
+        self.assertEqual(
+            preregistration["pressure_test_result"],
+            "strict_proxy_resolved_positive_like_and_control_rows_not_specificity_sufficient",
+        )
+        self.assertTrue(preregistration["selection_freeze_required_before_scoring"])
+        self.assertIn(
+            "UniProt or source prose",
+            preregistration["excluded_predictive_inputs"],
+        )
+        self.assertFalse(baselines["ec_keyword_routing"]["predictive_use_allowed"])
+        self.assertFalse(
+            baselines["deterministic_sequence_or_motif_baseline"][
+                "predictive_use_allowed"
+            ]
+        )
+        self.assertFalse(baselines["foldseek_sidecar"]["available_for_same_frozen_rows"])
+        self.assertFalse(
+            baselines["esm_or_learned_embedding_sidecar"][
+                "available_for_same_frozen_rows"
+            ]
+        )
+        self.assertFalse(baselines["geometry_superiority_claim_supported"])
+
+    def test_sdr_nadp_pocket_proxy_pressure_test_remains_blocked(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        rows = {row["row_id"]: row for row in packet["rows"]}
+        proxy_rule = packet["proxy_rule"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertEqual(metadata["source_free_nad_p_pocket_proxy_resolved_count"], 2)
+        self.assertEqual(metadata["positive_like_proxy_resolved_count"], 1)
+        self.assertEqual(metadata["non_positive_control_proxy_resolved_count"], 1)
+        self.assertEqual(metadata["proxy_axis_ready_for_threshold_calibration_count"], 0)
+        self.assertEqual(metadata["source_free_full_sdr_axis_ready_count"], 0)
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(decision["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(decision["family_status"], "blocked_with_exact_missing_evidence")
+        self.assertEqual(decision["source_free_nad_p_pocket_proxy_resolved_count"], 2)
+        self.assertEqual(decision["non_positive_control_proxy_resolved_count"], 1)
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertIn(
+            "strict_sdr_nadp_pocket_proxy_resolves_positive_like_o14756_but_also_external_sdr_control_o75828",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertEqual(
+            rows["uniprot:O14756"]["pocket_proxy_status"],
+            "source_free_sdr_catalytic_axis_with_nad_p_pocket_proxy_review_only",
+        )
+        self.assertEqual(rows["uniprot:O14756"]["selected_pocket_proxy"]["motif"], "TGCDSGFG")
+        self.assertTrue(rows["uniprot:O14756"]["source_free_nad_p_pocket_proxy_resolved"])
+        self.assertEqual(rows["uniprot:O75828"]["selected_pocket_proxy"]["motif"], "TGANRGIG")
+        self.assertTrue(rows["uniprot:O75828"]["source_free_nad_p_pocket_proxy_resolved"])
+        self.assertFalse(rows["m_csa:208"]["source_free_nad_p_pocket_proxy_resolved"])
+        self.assertEqual(
+            rows["m_csa:208"]["pocket_proxy_status"],
+            "source_free_sdr_catalytic_axis_without_nad_p_pocket_proxy",
+        )
+        self.assertFalse(proxy_rule["threshold_calibration_authorized"])
+        self.assertFalse(proxy_rule["production_scoring_authorized"])
+        self.assertIn("source active-site annotations", proxy_rule["excluded_predictive_inputs"])
+
+    def test_nadp_redox_source_request_queue_names_exact_resolution_options(self) -> None:
+        queue = _load_json(
+            ARTIFACTS
+            / "v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json"
+        )
+
+        metadata = queue["metadata"]
+        decision = queue["decision"]
+        rows = {row["row_id"]: row for row in queue["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["request_count"], 3)
+        self.assertEqual(metadata["source_free_nadp_or_proxy_axis_ready_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(decision["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(decision["family_status"], "blocked_with_exact_missing_evidence")
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertEqual(decision["request_count"], 3)
+        self.assertIn(
+            "o75828_needs_specificity_adjudication_before_strict_sdr_proxy_can_support_any_claim",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertTrue(
+            rows["uniprot:O14756"]["current_source_free_evidence"][
+                "strict_pocket_proxy_resolved"
+            ]
+        )
+        self.assertEqual(
+            rows["uniprot:O14756"]["current_source_free_evidence"][
+                "selected_proxy_motif"
+            ],
+            "TGCDSGFG",
+        )
+        self.assertTrue(
+            rows["uniprot:O75828"]["current_source_free_evidence"][
+                "strict_pocket_proxy_resolved"
+            ]
+        )
+        self.assertEqual(
+            rows["uniprot:O75828"]["request_type"],
+            "strict_proxy_specificity_control_adjudication",
+        )
+        self.assertFalse(
+            rows["uniprot:C9JRZ8"]["current_source_free_evidence"][
+                "source_traced_vglg_motif_predictive_use_allowed"
+            ]
+        )
+        for row in rows.values():
+            self.assertFalse(row["ready_for_label_import_after_resolution"])
+            self.assertFalse(row["countable_label_candidate_after_resolution"])
+
+    def test_non_epk_family_index_post_nadp_blocker_keeps_no_breadth_queue(self) -> None:
+        index = _load_json(
+            ARTIFACTS
+            / "v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json"
+        )
+
+        metadata = index["metadata"]
+        decision = index["decision"]
+        blockers = {row["blocker_id"]: row for row in index["cross_family_blockers"]}
+        next_items = {row["item"]: row for row in index["recommended_next_main_loop_items"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["family_count"], 6)
+        self.assertEqual(metadata["cross_family_blocker_count"], 1)
+        self.assertEqual(metadata["source_free_nadp_or_proxy_axis_ready_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertFalse(decision["production_fingerprint_promotion_authorized"])
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            decision["cross_family_blocker_status_counts"],
+            {"blocked_with_exact_missing_evidence": 1},
+        )
+
+        self.assertEqual(
+            blockers["nadp_redox_source_free_cofactor_axis"]["families"],
+            ["sdr_nad_p_redox", "akr_nadp_redox"],
+        )
+        self.assertEqual(
+            blockers["nadp_redox_source_free_cofactor_axis"][
+                "source_free_nadp_or_proxy_axis_ready_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            blockers["nadp_redox_source_free_cofactor_axis"]["next_exact_experiment"],
+            "source_free_nadp_proxy_specificity_or_holo_structure_review_only",
+        )
+        self.assertEqual(
+            next_items["broad_external_minicampaign"]["status"],
+            "do_not_start_by_default",
+        )
+        self.assertEqual(
+            next_items["nadp_redox_source_free_cofactor_proxy"]["status"],
+            "proxy_pressure_test_done_source_request_queue_ready",
+        )
+
+    def test_post_nadp_cofactor_blocker_zero_import_gate_passes(self) -> None:
+        gate = _load_json(
+            ARTIFACTS
+            / "v3_post_nadp_cofactor_blocker_review_only_zero_import_gate_20260522.json"
+        )
+
+        metadata = gate["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertTrue(metadata["valid"])
+        self.assertEqual(metadata["artifact_count"], 4)
+        self.assertEqual(metadata["valid_artifact_count"], 4)
+        self.assertEqual(metadata["blocker_count"], 0)
+        self.assertFalse(metadata["artifact_migration_files_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        for row in gate["rows"]:
+            self.assertTrue(row["valid"])
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertEqual(row["import_ready_candidate_count"], 0)
+            self.assertEqual(row["countable_label_candidate_count"], 0)
+            self.assertEqual(row["new_external_rows_frozen"], 0)
+            self.assertFalse(row["curated_label_registry_edited"])
+            self.assertFalse(row["fingerprint_registry_edited"])
+            self.assertFalse(row["artifact_upload_or_removal_performed"])
+
 
 if __name__ == "__main__":
     unittest.main()

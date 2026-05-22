@@ -1042,6 +1042,17 @@ PYTHONPATH=src python -m catalytic_earth.cli validate-review-only-zero-import-ar
   --out artifacts/v3_post_sdr_axis_probe_review_only_zero_import_gate_20260522.json
 ```
 
+The follow-on NAD(P)-redox cofactor blocker queue uses the same no-import gate:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli validate-review-only-zero-import-artifacts \
+  artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json \
+  artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json \
+  artifacts/v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json \
+  artifacts/v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json \
+  --out artifacts/v3_post_nadp_cofactor_blocker_review_only_zero_import_gate_20260522.json
+```
+
 `analyze-review-debt-remediation` expands review-debt triage into a
 structure-aware repair plan without making any label countable. It preserves
 every requested debt row, links it to the selected geometry structure, graph

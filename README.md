@@ -375,6 +375,20 @@ candidates. The same run adds
 for the seven external review-ready rows: every row defaults to pending human
 review, allowed terminal decisions use the existing external vocabulary, and
 human acceptance still authorizes no label import without later gates.
+`artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json`
+then consolidates the SDR and AKR blocker into one source-separated NAD(P)
+redox cofactor-axis queue. It records 0 source-free NAD(P) ligand/proxy-ready
+rows, keeps SDR motif geometry and AKR source-traced motifs out of predictive
+use, and keeps broad external mini-campaigns closed by default. The follow-on
+`artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json`
+tests the strict coordinate-only `[ST]GxxxGxG` pocket proxy on the same 14
+frozen rows: it resolves `O14756` but also the external SDR control `O75828`,
+so the result is extractor pressure rather than production evidence. The
+source-request queue
+`artifacts/v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json`
+names the exact next evidence needed for `O14756`, `O75828`, and `C9JRZ8`.
+The updated non-ePK index and zero-import gate keep the NAD(P) blocker
+review-only with 0 import-ready and 0 countable candidates.
 
 The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a

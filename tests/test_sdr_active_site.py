@@ -1,6 +1,9 @@
 import unittest
 
-from catalytic_earth.sdr_active_site import extract_source_free_sdr_catalytic_axis
+from catalytic_earth.sdr_active_site import (
+    extract_source_free_sdr_catalytic_axis,
+    extract_source_free_sdr_nad_p_pocket_proxy,
+)
 
 
 def _atom(
@@ -114,6 +117,62 @@ class SdrActiveSiteTests(unittest.TestCase):
         self.assertEqual(axis["yxxxk_candidate_count"], 0)
         self.assertFalse(axis["source_free_catalytic_axis_resolved"])
         self.assertFalse(axis["source_free_full_sdr_axis_ready"])
+
+    def test_strict_nad_p_pocket_proxy_resolves_as_review_only(self) -> None:
+        atoms = []
+        motif_codes = ["THR", "GLY", "ALA", "ALA", "ALA", "GLY", "ALA", "GLY"]
+        for offset, code in enumerate(motif_codes, start=1):
+            atoms.extend(_residue(code, "A", str(offset), "CB", float(offset), 0.0, 0.0))
+        for resid in range(9, 20):
+            atoms.extend(_residue("ALA", "A", str(resid), "CB", float(resid), 0.0, 0.0))
+        atoms.extend(_residue("TYR", "A", "20", "OH", 20.0, 0.0, 0.0))
+        atoms.extend(_residue("ALA", "A", "21", "CB", 21.0, 0.0, 0.0))
+        atoms.extend(_residue("ALA", "A", "22", "CB", 22.0, 0.0, 0.0))
+        atoms.extend(_residue("ALA", "A", "23", "CB", 23.0, 0.0, 0.0))
+        atoms.extend(_residue("LYS", "A", "24", "NZ", 24.0, 0.0, 0.0))
+
+        proxy = extract_source_free_sdr_nad_p_pocket_proxy(atoms)
+
+        self.assertEqual(
+            proxy["status"],
+            "source_free_sdr_catalytic_axis_with_nad_p_pocket_proxy_review_only",
+        )
+        self.assertTrue(proxy["source_free_catalytic_axis_resolved"])
+        self.assertTrue(proxy["source_free_nad_p_pocket_proxy_resolved"])
+        self.assertFalse(proxy["source_free_full_sdr_axis_ready"])
+        self.assertFalse(proxy["proxy_axis_ready_for_threshold_calibration"])
+        self.assertFalse(proxy["text_or_label_fields_used_for_predictive_score"])
+        self.assertFalse(proxy["source_active_site_annotations_used"])
+        self.assertEqual(proxy["selected_pocket_proxy"]["motif"], "TGAAAGAG")
+        self.assertTrue(
+            proxy["selected_pocket_proxy"][
+                "source_free_nad_p_pocket_proxy_resolved"
+            ]
+        )
+
+    def test_loose_glycine_motif_does_not_count_as_sdr_pocket_proxy(self) -> None:
+        atoms = []
+        motif_codes = ["VAL", "GLY", "VAL", "VAL", "PHE", "GLY", "SER", "GLY"]
+        for offset, code in enumerate(motif_codes, start=1):
+            atoms.extend(_residue(code, "A", str(offset), "CB", float(offset), 0.0, 0.0))
+        for resid in range(9, 20):
+            atoms.extend(_residue("ALA", "A", str(resid), "CB", float(resid), 0.0, 0.0))
+        atoms.extend(_residue("TYR", "A", "20", "OH", 20.0, 0.0, 0.0))
+        atoms.extend(_residue("ALA", "A", "21", "CB", 21.0, 0.0, 0.0))
+        atoms.extend(_residue("ALA", "A", "22", "CB", 22.0, 0.0, 0.0))
+        atoms.extend(_residue("ALA", "A", "23", "CB", 23.0, 0.0, 0.0))
+        atoms.extend(_residue("LYS", "A", "24", "NZ", 24.0, 0.0, 0.0))
+
+        proxy = extract_source_free_sdr_nad_p_pocket_proxy(atoms)
+
+        self.assertEqual(
+            proxy["status"],
+            "source_free_sdr_catalytic_axis_without_nad_p_pocket_proxy",
+        )
+        self.assertTrue(proxy["source_free_catalytic_axis_resolved"])
+        self.assertFalse(proxy["source_free_nad_p_pocket_proxy_resolved"])
+        self.assertEqual(proxy["pocket_proxy_candidate_count"], 0)
+        self.assertIsNone(proxy["selected_pocket_proxy"])
 
 
 if __name__ == "__main__":
