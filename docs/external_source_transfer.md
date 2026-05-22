@@ -412,6 +412,28 @@ import.
   fingerprint change is authorized. The benchmark
   `artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json`
   preserves the same source-separated caveats.
+- `artifacts/v3_serine_hydrolase_second_deep_packet_selection_20260521.json`
+  starts a second serine-hydrolase deep packet from five already frozen rows
+  rather than adding new mini-campaign breadth. The source-free triad extractor
+  finds coordinate-only Ser-His-Asp/Glu triads for `P16233`, `Q9FG13`,
+  `P54318`, and `P0ADA1`, while `Q9NWW9` remains insufficient evidence. The
+  targeted current-serine structural screen then compares the four above-floor
+  rows against 40 current-countable `ser_his_acid_hydrolase` structures and
+  finds duplicate/leakage signals for all four (`TM >= 0.7`, max `0.9755`).
+  `artifacts/v3_serine_hydrolase_second_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260521.json`
+  therefore converts the packet to four
+  `terminal_rejection_duplicate_or_leakage` rows plus one
+  `terminal_rejection_insufficient_evidence` row, with no import, registry,
+  fingerprint, or superiority claim.
+- `artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_serine_20260521.json`
+  records the post-rollup import gate as closed. The registry invariants remain
+  682 labels, 212 `seed_fingerprint`, 470 `out_of_scope`, and the only imported
+  external labels remain `uniprot:P06744`, `uniprot:P78549`, and
+  `uniprot:Q3LXA3` as out-of-scope/null-fingerprint
+  `label_factory_v1_8fp` rows. The 57 current deep-packet rows contain 0
+  countable candidates and 0 import-ready candidates, and the artifact
+  explicitly treats mechanism-match-review-ready rows as review packets only
+  until a full inverse-gate and label-factory payload passes.
 - `artifacts/v3_flavin_dehydrogenase_deep_packet_selection_20260521.json`
   starts the next deepening ladder step without scoring it. It freezes seven
   nonduplicate flavin dehydrogenase/reductase rows from the existing
@@ -682,6 +704,19 @@ import.
   `artifacts/v3_metal_phosphatase_deep_packet_remaining_after_full_current_duplicate_closure_modern_baseline_benchmark_20260521.json`
   preserves the EC/sequence/ESM/Foldseek caveats and makes no superiority
   claim.
+- `artifacts/v3_metal_phosphatase_remaining_source_free_geometry_scores_20260521.json`
+  closes the remaining source-free geometry gap for that same already selected
+  metal packet. P75792 and P0A8Y5 resolve coordinate-only Mg/Asp-Ser
+  metal-ligand clusters and score above the current
+  `metal_dependent_hydrolase` floor while retaining bounded current-countable
+  duplicate clearance. The terminal packet
+  `artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json`
+  marks both rows `mechanism_match_review_ready` for the broad current lane,
+  keeps P77247 at `terminal_rejection_duplicate_or_leakage`, and records that
+  phosphate/substrate specificity is not source-free and no import is
+  authorized. The rollup
+  `artifacts/v3_external_deep_terminal_decision_rollup_post_remaining_metal_source_free_geometry_20260521.json`
+  covers 52 deep rows with 0 exact blockers and 0 import-ready candidates.
 - The follow-up AKR readiness recheck
   `artifacts/v3_akr_family_readiness_post_q99504_terminal_recheck_20260521.json`
   uses existing artifacts only after the Q99504 terminal closure. It keeps

@@ -50,6 +50,74 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-21T23:32:51Z main-loop run, the remaining frozen
+metal-phosphatase blockers are closed with source-free coordinate evidence and
+the next serine-hydrolase ladder item has moved from generic review to terminal
+decision packets. The run added the coordinate-only metal-site extractor in
+`src/catalytic_earth/metal_active_site.py` and tests in
+`tests/test_metal_active_site.py`. It scores the last three rows from the
+already frozen metal-phosphatase mini-campaign in
+`artifacts/v3_metal_phosphatase_remaining_source_free_geometry_scores_20260521.json`
+without EC/name/UniProt prose or labels as predictive input. `P75792` and
+`P0A8Y5` resolve Mg/Asp-Ser metal-ligand clusters, top1 to
+`metal_dependent_hydrolase` above the `0.4115` floor (`0.6758` and `0.6774`),
+and already had bounded current-countable duplicate clearance. The updated
+terminal packet
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json`
+therefore marks them `mechanism_match_review_ready` for the broad current
+metal-dependent hydrolase lane while explicitly preserving the no-import
+caveat that no source-free phosphate/substrate ligand is present. `P77247`
+remains `terminal_rejection_duplicate_or_leakage`.
+
+The same run continued to the next ladder item without adding new external
+rows. It added `src/catalytic_earth/serine_active_site.py` plus
+`tests/test_serine_active_site.py`, selected five rows from the already frozen
+serine-hydrolase mini-campaign in
+`artifacts/v3_serine_hydrolase_second_deep_packet_selection_20260521.json`,
+materialized their PDB coordinates, and wrote
+`artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json`.
+Four rows (`P16233`, `Q9FG13`, `P54318`, and `P0ADA1`) resolve coordinate-only
+Ser-His-Asp/Glu triads and score above the `ser_his_acid_hydrolase` floor.
+The targeted current-serine Foldseek screen
+`artifacts/v3_serine_hydrolase_second_deep_packet_targeted_current_ser_his_screen_20260521.json`
+then finds `TM >= 0.7` current-countable serine-hydrolase signals for all four,
+so
+`artifacts/v3_serine_hydrolase_second_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260521.json`
+converts them to `terminal_rejection_duplicate_or_leakage`. `Q9NWW9` lacks a
+source-free triad in selected `4DPZ` and is
+`terminal_rejection_insufficient_evidence`. The latest rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_second_serine_targeted_screen_20260521.json`
+now indexes 57 deep-packet rows with 51 duplicate/leakage rejections, three
+mechanism-match-review-ready rows, three insufficient-evidence rejections, 0
+`needs_new_extractor_or_structure` rows, 0 import-ready rows, and 0 countable
+labels.
+
+The follow-up import-readiness artifact
+`artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_serine_20260521.json`
+keeps the gate closed: registry invariants remain 682 labels, 212
+`seed_fingerprint`, 470 `out_of_scope`, the only imported external labels are
+still `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`, and no current
+deep-packet row has the hard-negative inverse-gate or label-factory payload
+required for import.
+
+Evidence-based confidence call: confidence is high that the last two
+metal-phosphatase blockers are no longer extractor-missing because their
+coordinate-only Mg-ligand clusters score above floor and their bounded
+current-countable duplicate screens were already complete with 0 `TM >= 0.7`
+hits. Confidence is medium, not high, on phosphate-specific interpretation
+because no source-free phosphate/substrate ligand is present, so the packet is
+review-ready only for the broad current metal-dependent hydrolase lane and not
+label-import-ready. Confidence is high that the four second-selection serine
+rows are terminal duplicate/leakage rejections because each has a targeted
+current-serine `TM >= 0.7` hit after source-free triad scoring. Confidence is
+high that Q9NWW9 is insufficient for the selected coordinate because no
+coordinate triad met the preregistered distance cutoffs. Confidence is high
+that no label import, registry edit, fingerprint edit, threshold change,
+artifact upload/removal, Git-LFS migration, history rewrite, or
+`removal_allowed=true` occurred. Next work should continue with bounded
+existing-packet flavin/heme work or another exact blocker; do not add broad
+external rows by default.
+
 As of the 2026-05-21T22:30:59Z main-loop run, the remaining second
 metal-phosphatase blocker is closed for the bounded current-countable selected
 structure screen. The run did not freeze new external rows. It continued the

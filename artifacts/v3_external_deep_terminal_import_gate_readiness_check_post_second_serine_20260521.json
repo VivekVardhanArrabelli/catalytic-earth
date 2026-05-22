@@ -1,0 +1,227 @@
+{
+  "caveats": [
+    "This artifact does not run a new label-factory import cycle and does not authorize registry edits.",
+    "Foldseek/TM evidence remains duplicate/leakage evidence, not positive mechanism evidence.",
+    "EC, keyword, protein name, UniProt prose, and source annotations remain review-only context.",
+    "Mechanism-match review-ready candidates are terminal review packets only until full import gates pass."
+  ],
+  "import_gate_readiness": {
+    "blockers": [
+      "no_candidate_has_terminal_decision_out_of_scope_hard_negative_import_ready",
+      "all_deep_packet_rows_are_non_countable_review_only_candidates",
+      "mechanism_match_review_ready_rows_are_review_ready_only_not_label_imports",
+      "hard_negative_all_8_inverse_gate_scores_not_run_for_any_current_deep_packet_candidate",
+      "factory_import_payload_not_constructed_for_any_current_deep_packet_candidate",
+      "remaining_mechanism_match_rows_require_full_import_gate_evidence_before_any_label_action"
+    ],
+    "countable_label_candidate_count": 0,
+    "decision": "do_not_import_any_current_deep_packet_candidate",
+    "mechanism_match_review_ready_is_not_import_ready": true,
+    "required_to_open_import_gate": [
+      "candidate terminal_decision must be out_of_scope_hard_negative_import_ready or full label-factory gated equivalent",
+      "all_8_inverse_gate_scores_below_in_scope_floor_for_hard_negative_imports",
+      "no duplicate or current-label leakage after required duplicate screens",
+      "real-enzyme evidence and ontology_version_at_decision captured in a proposed label payload",
+      "baseline label-factory and external-transfer gates pass on the exact payload"
+    ],
+    "status": "blocked_no_import_ready_candidates"
+  },
+  "invariant_checks": {
+    "deep_rollup_has_zero_countable_label_candidates": true,
+    "deep_rollup_has_zero_import_ready_candidates": true,
+    "deep_rollup_is_review_only": true,
+    "external_imported_out_of_scope_labels_unchanged": true,
+    "external_imported_seed_fingerprint_labels_absent": true,
+    "external_out_of_scope_labels_are_null_fingerprint_factory_v1_8fp": true,
+    "new_external_rows_frozen_this_check": true,
+    "out_of_scope_label_count_is_470": true,
+    "production_fingerprint_count_is_8": true,
+    "registry_label_count_is_682": true,
+    "seed_fingerprint_label_count_is_212": true
+  },
+  "lane_summaries": [
+    {
+      "closing_evidence_class": "complete_current_countable_foldseek_duplicate_leakage_screen",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "metal_phosphatase",
+      "modern_baseline_artifact": "artifacts/v3_metal_phosphatase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+    },
+    {
+      "closing_evidence_class": "targeted_replacement_coordinate_full_current_foldseek_duplicate_leakage_probe",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "serine_hydrolase",
+      "modern_baseline_artifact": "artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json"
+    },
+    {
+      "closing_evidence_class": "complete_current_countable_foldseek_duplicate_leakage_screen",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "flavin_dehydrogenase_reductase",
+      "modern_baseline_artifact": "artifacts/v3_flavin_dehydrogenase_deep_packet_post_duplicate_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_flavin_dehydrogenase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+    },
+    {
+      "closing_evidence_class": "targeted_chunked_current_structure_duplicate_leakage_followup",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "flavin_monooxygenase",
+      "modern_baseline_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "flavin_monooxygenase",
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 7
+      },
+      "terminal_packet_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json"
+    },
+    {
+      "closing_evidence_class": "mixed_duplicate_leakage_rejections_plus_one_duplicate_clear_review_ready_mechanism_match",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "heme_peroxidase_oxidase",
+      "modern_baseline_artifact": "artifacts/v3_heme_peroxidase_deep_packet_post_i2dby1_subchunk_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision_counts": {
+        "mechanism_match_review_ready": 1,
+        "terminal_rejection_duplicate_or_leakage": 6
+      },
+      "terminal_packet_artifact": "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json"
+    },
+    {
+      "closing_evidence_class": "source_free_plp_active_site_anchor_then_targeted_current_plp_duplicate_leakage_screen",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "plp_dependent_enzyme",
+      "modern_baseline_artifact": "artifacts/v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 6,
+        "terminal_rejection_insufficient_evidence": 1
+      },
+      "terminal_packet_artifact": "artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json"
+    },
+    {
+      "closing_evidence_class": "bounded_current_countable_duplicate_closure_plus_below_floor_source_free_score_for_q99504",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "metal_phosphatase_second_selection_after_q99504_duplicate_closure",
+      "modern_baseline_artifact": "artifacts/v3_metal_phosphatase_deep_packet_second_after_q99504_duplicate_closure_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 6,
+        "terminal_rejection_insufficient_evidence": 1
+      },
+      "terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_q99504_duplicate_closure_20260521.json"
+    },
+    {
+      "closing_evidence_class": "source_free_coordinate_metal_site_scores_after_bounded_duplicate_clearance",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "metal_phosphatase_remaining_after_source_free_geometry",
+      "modern_baseline_artifact": "artifacts/v3_metal_phosphatase_deep_packet_remaining_after_source_free_geometry_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision_counts": {
+        "mechanism_match_review_ready": 2,
+        "terminal_rejection_duplicate_or_leakage": 1
+      },
+      "terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json"
+    },
+    {
+      "closing_evidence_class": "source_free_coordinate_ser_his_acid_triad_scores_plus_targeted_current_ser_his_duplicate_screen",
+      "countable_label_candidate_count": 0,
+      "import_ready_candidate_count": 0,
+      "lane_id": "serine_hydrolase_second_selection_after_targeted_ser_his_screen",
+      "modern_baseline_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_after_targeted_ser_his_modern_baseline_benchmark_20260521.json",
+      "source_separation_flag": true,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision_counts": {
+        "terminal_rejection_duplicate_or_leakage": 4,
+        "terminal_rejection_insufficient_evidence": 1
+      },
+      "terminal_packet_artifact": "artifacts/v3_serine_hydrolase_second_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260521.json"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_external_deep_terminal_import_gate_readiness_check_post_second_serine_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 57,
+    "created_at": "2026-05-22T00:01:54Z",
+    "curated_label_registry_edited": false,
+    "deep_packet_count": 9,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_match_review_ready_count": 3,
+    "method": "post_second_serine_external_deep_terminal_import_gate_readiness_check",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_rollup_artifact": "artifacts/v3_external_deep_terminal_decision_rollup_post_second_serine_targeted_screen_20260521.json",
+    "terminal_rejection_duplicate_or_leakage_count": 51,
+    "terminal_rejection_insufficient_evidence_count": 3
+  },
+  "registry_invariants": {
+    "external_imported_label_details": {
+      "uniprot:P06744": {
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "ontology_version_at_decision": "label_factory_v1_8fp"
+      },
+      "uniprot:P78549": {
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "ontology_version_at_decision": "label_factory_v1_8fp"
+      },
+      "uniprot:Q3LXA3": {
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "ontology_version_at_decision": "label_factory_v1_8fp"
+      }
+    },
+    "external_imported_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_imported_seed_fingerprint_labels": [],
+    "label_count": 682,
+    "label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 212
+    },
+    "production_fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ]
+  }
+}

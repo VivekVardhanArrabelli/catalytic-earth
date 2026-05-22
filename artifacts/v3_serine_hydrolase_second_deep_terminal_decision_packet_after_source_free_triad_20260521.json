@@ -1,0 +1,753 @@
+{
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_second_deep_terminal_decision_packet_after_source_free_triad_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 5,
+    "candidate_selection_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_coordinate_materialization_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-21T23:47:59Z",
+    "curated_label_registry_edited": false,
+    "exact_blocker_candidate_count": 4,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_match_review_ready_count": 0,
+    "method": "serine_hydrolase_second_terminal_packet_after_source_free_triad_scoring",
+    "new_external_rows_frozen": 0,
+    "non_needs_review_terminal_count": 1,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_triad_score_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json",
+    "source_separation_guardrail": "Source-free triad scores use coordinate atoms only; missing Foldseek duplicate screening is the exact gate blocker for above-floor rows.",
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 4,
+      "terminal_rejection_insufficient_evidence": 1
+    }
+  },
+  "rows": [
+    {
+      "accession": "Q9NWW9",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [],
+        "residues": [],
+        "resolved_residue_count": 0,
+        "selected_triad": null,
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "no_source_free_ser_his_acid_triad",
+        "source_free_active_site_status_reason": "No coordinate Ser-His-Asp/Glu triad met the distance cutoffs",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_ser_his_acid_triad_score_below_floor_or_top1_mismatch"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 3,
+        "target_lane_score": 0.0588,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.075
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_for_second_serine_selection",
+        "evidence_role": "required_import_gate_evidence_not_predictive_mechanism_evidence",
+        "exact_missing_evidence": "run bounded current-countable Foldseek/TM duplicate-leakage screen on selected PDB coordinates"
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q9NWW9",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_4DPZ.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "4DPZ"
+        ],
+        "selected_pdb_id": "4DPZ",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "terminal_rejection_insufficient_evidence"
+    },
+    {
+      "accession": "P16233",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": 40.004,
+              "y": 22.899,
+              "z": 52.775
+            },
+            "centroid": {
+              "x": 40.17,
+              "y": 22.901,
+              "z": 53.112
+            },
+            "chain_name": "A",
+            "code": "SER",
+            "resid": "152",
+            "residue_node_id": "A:152:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 3.816,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 13,
+            "ca": {
+              "x": 44.728,
+              "y": 20.895,
+              "z": 46.417
+            },
+            "centroid": {
+              "x": 44.299,
+              "y": 21.235,
+              "z": 48.223
+            },
+            "chain_name": "A",
+            "code": "HIS",
+            "resid": "263",
+            "residue_node_id": "A:263:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "acid_distance_angstrom": 2.909,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 3.816
+            }
+          },
+          {
+            "atom_count": 9,
+            "ca": {
+              "x": 38.126,
+              "y": 21.398,
+              "z": 47.538
+            },
+            "centroid": {
+              "x": 38.859,
+              "y": 20.984,
+              "z": 47.549
+            },
+            "chain_name": "A",
+            "code": "ASP",
+            "resid": "176",
+            "residue_node_id": "A:176:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "distance_angstrom": 2.909,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 6.725,
+          "his_acid_distance_angstrom": 2.909,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "152"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "263"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "176"
+            }
+          ],
+          "ser_his_distance_angstrom": 3.816
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_triad_geometry_above_floor_but_foldseek_duplicate_screen_missing",
+        "full_label_factory_import_gates_not_run"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9658,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.9658
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_for_second_serine_selection",
+        "evidence_role": "required_import_gate_evidence_not_predictive_mechanism_evidence",
+        "exact_missing_evidence": "run bounded current-countable Foldseek/TM duplicate-leakage screen on selected PDB coordinates"
+      },
+      "exact_blocker_if_not_terminal": "bounded_current_countable_duplicate_leakage_screen_missing_for_second_serine_selection",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:P16233",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_1GPL.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "1GPL",
+          "1LPA",
+          "1LPB",
+          "1N8S"
+        ],
+        "selected_pdb_id": "1GPL",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "Q9FG13",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "GLU"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": 10.719,
+              "y": 11.435,
+              "z": 13.579
+            },
+            "centroid": {
+              "x": 10.534,
+              "y": 10.913,
+              "z": 13.552
+            },
+            "chain_name": "A",
+            "code": "SER",
+            "resid": "169",
+            "residue_node_id": "A:169:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 3.646,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 8.648,
+              "y": 18.568,
+              "z": 9.999
+            },
+            "centroid": {
+              "x": 8.701,
+              "y": 16.845,
+              "z": 10.203
+            },
+            "chain_name": "A",
+            "code": "HIS",
+            "resid": "302",
+            "residue_node_id": "A:302:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OE1",
+              "acid_distance_angstrom": 2.65,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 3.646
+            }
+          },
+          {
+            "atom_count": 9,
+            "ca": {
+              "x": 4.925,
+              "y": 21.103,
+              "z": 13.207
+            },
+            "centroid": {
+              "x": 6.163,
+              "y": 20.272,
+              "z": 13.697
+            },
+            "chain_name": "A",
+            "code": "GLU",
+            "resid": "271",
+            "residue_node_id": "A:271:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OE1",
+              "distance_angstrom": 2.65,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 6.296,
+          "his_acid_distance_angstrom": 2.65,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "169"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "302"
+            },
+            {
+              "chain_name": "A",
+              "code": "GLU",
+              "resid": "271"
+            }
+          ],
+          "ser_his_distance_angstrom": 3.646
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_triad_geometry_above_floor_but_foldseek_duplicate_screen_missing",
+        "full_label_factory_import_gates_not_run"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.951,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.951
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_for_second_serine_selection",
+        "evidence_role": "required_import_gate_evidence_not_predictive_mechanism_evidence",
+        "exact_missing_evidence": "run bounded current-countable Foldseek/TM duplicate-leakage screen on selected PDB coordinates"
+      },
+      "exact_blocker_if_not_terminal": "bounded_current_countable_duplicate_leakage_screen_missing_for_second_serine_selection",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q9FG13",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_8VCA.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "8VCA",
+          "8VCD",
+          "8ZR6",
+          "8ZRF",
+          "8ZRG",
+          "8ZRO"
+        ],
+        "selected_pdb_id": "8VCA",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "P54318",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": 3.352,
+              "y": 6.605,
+              "z": 23.443
+            },
+            "centroid": {
+              "x": 3.089,
+              "y": 6.48,
+              "z": 23.041
+            },
+            "chain_name": "A",
+            "code": "SER",
+            "resid": "152",
+            "residue_node_id": "A:152:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 2.816,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 9.022,
+              "y": 11.418,
+              "z": 25.339
+            },
+            "centroid": {
+              "x": 7.712,
+              "y": 10.602,
+              "z": 24.314
+            },
+            "chain_name": "A",
+            "code": "HIS",
+            "resid": "263",
+            "residue_node_id": "A:263:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "acid_distance_angstrom": 2.724,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 2.816
+            }
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": 4.548,
+              "y": 8.283,
+              "z": 28.564
+            },
+            "centroid": {
+              "x": 4.902,
+              "y": 9.208,
+              "z": 27.983
+            },
+            "chain_name": "A",
+            "code": "ASP",
+            "resid": "176",
+            "residue_node_id": "A:176:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "distance_angstrom": 2.724,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 5.54,
+          "his_acid_distance_angstrom": 2.724,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "152"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "263"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "176"
+            }
+          ],
+          "ser_his_distance_angstrom": 2.816
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_triad_geometry_above_floor_but_foldseek_duplicate_screen_missing",
+        "full_label_factory_import_gates_not_run"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9673,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.9673
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_for_second_serine_selection",
+        "evidence_role": "required_import_gate_evidence_not_predictive_mechanism_evidence",
+        "exact_missing_evidence": "run bounded current-countable Foldseek/TM duplicate-leakage screen on selected PDB coordinates"
+      },
+      "exact_blocker_if_not_terminal": "bounded_current_countable_duplicate_leakage_screen_missing_for_second_serine_selection",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:P54318",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_1BU8.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "1BU8"
+        ],
+        "selected_pdb_id": "1BU8",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "accession": "P0ADA1",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": 10.259,
+              "y": 33.367,
+              "z": 49.151
+            },
+            "centroid": {
+              "x": 10.244,
+              "y": 33.538,
+              "z": 49.814
+            },
+            "chain_name": "A",
+            "code": "SER",
+            "resid": "10",
+            "residue_node_id": "A:10:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 3.022,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 10.992,
+              "y": 37.08,
+              "z": 55.801
+            },
+            "centroid": {
+              "x": 10.193,
+              "y": 37.623,
+              "z": 54.483
+            },
+            "chain_name": "A",
+            "code": "HIS",
+            "resid": "157",
+            "residue_node_id": "A:157:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "acid_distance_angstrom": 2.619,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 3.022
+            }
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": 8.542,
+              "y": 43.328,
+              "z": 57.174
+            },
+            "centroid": {
+              "x": 8.688,
+              "y": 42.205,
+              "z": 56.644
+            },
+            "chain_name": "A",
+            "code": "ASP",
+            "resid": "154",
+            "residue_node_id": "A:154:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "distance_angstrom": 2.619,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 5.641,
+          "his_acid_distance_angstrom": 2.619,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "10"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "157"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "154"
+            }
+          ],
+          "ser_his_distance_angstrom": 3.022
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_triad_geometry_above_floor_but_foldseek_duplicate_screen_missing",
+        "full_label_factory_import_gates_not_run"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9566,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.9566
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_for_second_serine_selection",
+        "evidence_role": "required_import_gate_evidence_not_predictive_mechanism_evidence",
+        "exact_missing_evidence": "run bounded current-countable Foldseek/TM duplicate-leakage screen on selected PDB coordinates"
+      },
+      "exact_blocker_if_not_terminal": "bounded_current_countable_duplicate_leakage_screen_missing_for_second_serine_selection",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:P0ADA1",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_1IVN.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "1IVN",
+          "1J00",
+          "1JRL",
+          "1U8U",
+          "1V2G",
+          "5TIC",
+          "5TID",
+          "5TIE"
+        ],
+        "selected_pdb_id": "1IVN",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    }
+  ],
+  "warnings": [
+    "This packet is a bounded next-ladder blocker closure for already frozen serine rows, not a new mini-campaign and not a label-import path."
+  ]
+}

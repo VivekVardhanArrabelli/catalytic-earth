@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 270
-- Measured elapsed time: 8090.4 minutes (134.84 hours)
+- Entries: 271
+- Measured elapsed time: 8138.6 minutes (135.64 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1094.4 measured minutes (18.24 hours)
+- v3: 1142.6 measured minutes (19.04 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2928
-- Evidence references logged: 2385
+- Artifact references logged: 2952
+- Evidence references logged: 2395
 
 ## Recent Entries
-
-### 2026-05-21T17:08:18.443673+00:00 - v3
-
-- Task: FMO chunk000-002 duplicate-screen blocker narrowing
-- Time mode: measured
-- Measured minutes: 44.55
-- Started: 2026-05-21T16:23:26Z
-- Ended: 2026-05-21T17:07:59Z
-- Artifacts: artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk001_rescue_and_remaining_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk001_rescue_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk001_rescue_modern_baseline_benchmark_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk000_chunk002_rescue_and_remaining_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk002_rescue_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: Q7RTP6 chunk000 retry resolved with 0 high-TM hits, chunks000-002 complete for O94851 and Q7RTP6 with 0 TM>=0.7 current-countable hits, max completed follow-up TM 0.6371, FMO terminal packet remains 5 duplicate/leakage rejections and 2 needs_new_extractor_or_structure rows, exact blocker narrowed to chunks003-013, EC keyword sequence and ESM baselines remain diagnostic with no superiority claim
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ### 2026-05-21T17:09:52.130652+00:00 - ops
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_metal_phosphatase_q99504_full_current_countable_duplicate_closure_20260521.json, artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_full_current_duplicate_closure_20260521.json, artifacts/v3_epk_late_handoff_only_research_lane_synthesis_20260521.json
 - Evidence: Q99504 672/672 current-countable pairs clear with source-free score below floor; P75792/P0A8Y5 1344 bounded blocker pairs clear; P77247 duplicate TM 0.8110; late ePK handoffs stay no-go
 - Notes: 805 startup tests passed before work; final 808 tests, CLI validate, compileall, migration dry-run, JSON parse, registry diff, and diff-check passed.
+
+### 2026-05-22T00:21:07.387970+00:00 - v3
+
+- Task: Metal source-free closure and second serine terminal packet
+- Time mode: measured
+- Measured minutes: 48.267
+- Started: 2026-05-21T23:32:51Z
+- Ended: 2026-05-22T00:21:07Z
+- Artifacts: src/catalytic_earth/metal_active_site.py, src/catalytic_earth/serine_active_site.py, tests/test_metal_active_site.py, tests/test_serine_active_site.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_metal_phosphatase_remaining_source_free_geometry_scores_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_remaining_after_source_free_geometry_modern_baseline_benchmark_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_remaining_metal_source_free_geometry_20260521.json, artifacts/v3_serine_hydrolase_second_deep_packet_selection_20260521.json, artifacts/v3_serine_hydrolase_second_deep_packet_coordinate_materialization_20260521.json, artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521, artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json, artifacts/v3_serine_hydrolase_second_deep_packet_targeted_current_ser_his_screen_20260521.json, artifacts/v3_serine_hydrolase_second_deep_terminal_decision_packet_after_source_free_triad_20260521.json, artifacts/v3_serine_hydrolase_second_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260521.json, artifacts/v3_serine_hydrolase_second_deep_packet_after_source_free_triad_modern_baseline_benchmark_20260521.json, artifacts/v3_serine_hydrolase_second_deep_packet_after_targeted_ser_his_modern_baseline_benchmark_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_serine_source_free_triad_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_serine_targeted_screen_20260521.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_serine_20260521.json, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: P75792 and P0A8Y5 source-free metal clusters scored above floor, second serine four source-free triad rows converted to duplicate leakage rejections, Q9NWW9 terminal insufficient evidence, external deep rollup now 57 non-needs-review terminal rows, import gate remains closed with 682-label registry invariant, 816-test unit discovery passed, CLI validate passed, migration dry-run passed removal_allowed=0, 15 new JSON artifacts parsed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite production threshold change or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -335,6 +335,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T19:37:19.047962+00:00: Next main-loop win should implement the PLP source-free covalent cofactor extractor or choose another frozen nonterminal deep-packet blocker before adding broad external rows.
 - 2026-05-21T21:16:37.365926+00:00: Do not open a seventh broad external mini-campaign; continue terminal deepening or exact family-readiness experiments.
 - 2026-05-21T23:19:22.103465+00:00: Next metal work should build source-free geometry scoring for P75792/P0A8Y5 or move to a bounded non-ePK family-axis experiment
+- 2026-05-22T00:21:07.387970+00:00: Continue bounded external terminal-decision deepening and import-gate readiness checks before any new broad mini-campaign.
 
 ## Scope Adjustments
 
@@ -491,3 +492,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T19:37:19.047962+00:00: Recovered stale-lock work converts the final serine blocker to terminal duplicate/leakage rejection and records PLP as an exact extractor blocker without registry import or artifact migration.
 - 2026-05-21T21:16:37.365926+00:00: PLP blocker converted to terminal review-only duplicate/leakage packet; SDR remains review-only blocked on source-free NAD(P) and catalytic-axis geometry.
 - 2026-05-21T23:19:22.103465+00:00: No new external rows; deepened existing frozen metal-phosphatase decisions and synthesized ePK handoffs once without returning ePK to main-loop default
+- 2026-05-22T00:21:07.387970+00:00: Closed existing frozen metal and serine blockers without adding broad external rows or opening imports.

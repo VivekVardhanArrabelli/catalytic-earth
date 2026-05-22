@@ -8463,6 +8463,233 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             all(row["score_status"] == "not_scored_in_this_preregistration" for row in tranche["rows"])
         )
 
+    def test_remaining_metal_phosphatase_source_free_packet_closes_blockers(self) -> None:
+        scores = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_remaining_source_free_geometry_scores_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_remaining_metal_source_free_geometry_20260521.json"
+        )
+
+        self.assertTrue(scores["metadata"]["review_only"])
+        self.assertEqual(scores["metadata"]["candidate_count"], 3)
+        self.assertEqual(scores["metadata"]["target_lane_at_or_above_floor_count"], 3)
+        self.assertEqual(scores["metadata"]["text_or_label_fields_used_for_score_count"], 0)
+        self.assertFalse(scores["metadata"]["ready_for_label_import"])
+        self.assertFalse(scores["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(scores["metadata"]["fingerprint_registry_edited"])
+
+        rows = {row["row_id"]: row for row in packet["rows"]}
+        self.assertEqual(packet["metadata"]["terminal_decision_counts"], {
+            "mechanism_match_review_ready": 2,
+            "terminal_rejection_duplicate_or_leakage": 1,
+        })
+        self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 0)
+        for row_id in ("uniprot:P75792", "uniprot:P0A8Y5"):
+            self.assertEqual(rows[row_id]["terminal_decision"], "mechanism_match_review_ready")
+            self.assertEqual(rows[row_id]["exact_blocker_if_not_terminal"], None)
+            self.assertTrue(
+                rows[row_id]["current_geometry_retrieval_score_summary"][
+                    "target_lane_at_or_above_floor"
+                ]
+            )
+            self.assertFalse(
+                rows[row_id]["current_geometry_retrieval_score_summary"][
+                    "text_or_label_fields_used_for_score"
+                ]
+            )
+            self.assertEqual(
+                rows[row_id]["duplicate_leakage_screen"][
+                    "current_countable_high_tm_hit_count"
+                ],
+                0,
+            )
+            self.assertEqual(
+                rows[row_id]["catalytic_residue_metal_phosphate_evidence"][
+                    "phosphate_like_site_count"
+                ],
+                0,
+            )
+        self.assertEqual(
+            rows["uniprot:P77247"]["terminal_decision"],
+            "terminal_rejection_duplicate_or_leakage",
+        )
+
+        self.assertEqual(rollup["metadata"]["candidate_count"], 52)
+        self.assertEqual(rollup["metadata"]["terminal_decision_counts"], {
+            "mechanism_match_review_ready": 3,
+            "terminal_rejection_duplicate_or_leakage": 47,
+            "terminal_rejection_insufficient_evidence": 2,
+        })
+        self.assertEqual(
+            rollup["synthesis"]["needs_new_extractor_or_structure_candidate_count"], 0
+        )
+        self.assertFalse(rollup["metadata"]["ready_for_label_import"])
+
+    def test_second_serine_hydrolase_packet_records_exact_duplicate_gate_blocker(self) -> None:
+        selection = _load_json(
+            ARTIFACTS / "v3_serine_hydrolase_second_deep_packet_selection_20260521.json"
+        )
+        scores = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_second_deep_terminal_decision_packet_after_source_free_triad_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_second_deep_packet_after_source_free_triad_modern_baseline_benchmark_20260521.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_second_serine_source_free_triad_20260521.json"
+        )
+
+        self.assertTrue(selection["metadata"]["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(selection["metadata"]["candidate_count"], 5)
+        self.assertEqual(selection["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(scores["metadata"]["target_lane_at_or_above_floor_count"], 4)
+        self.assertEqual(scores["metadata"]["text_or_label_fields_used_for_score_count"], 0)
+        self.assertEqual(
+            scores["metadata"]["source_free_active_site_status_counts"],
+            {
+                "no_source_free_ser_his_acid_triad": 1,
+                "ser_his_acid_triad_resolved": 4,
+            },
+        )
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 4,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 4)
+        blocked_rows = [
+            row
+            for row in packet["rows"]
+            if row["terminal_decision"] == "needs_new_extractor_or_structure"
+        ]
+        self.assertTrue(blocked_rows)
+        self.assertTrue(
+            all(
+                row["exact_blocker_if_not_terminal"]
+                == "bounded_current_countable_duplicate_leakage_screen_missing_for_second_serine_selection"
+                for row in blocked_rows
+            )
+        )
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertFalse(
+            benchmark["metrics"]["foldseek_current_countable_sidecar"]["available"]
+        )
+        self.assertEqual(rollup["metadata"]["candidate_count"], 57)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 3,
+                "needs_new_extractor_or_structure": 4,
+                "terminal_rejection_duplicate_or_leakage": 47,
+                "terminal_rejection_insufficient_evidence": 3,
+            },
+        )
+        self.assertEqual(rollup["synthesis"]["new_external_rows_frozen"], 0)
+
+    def test_second_serine_targeted_screen_converts_blockers_to_duplicate_rejections(self) -> None:
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_second_deep_packet_targeted_current_ser_his_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_second_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_second_deep_packet_after_targeted_ser_his_modern_baseline_benchmark_20260521.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_second_serine_targeted_screen_20260521.json"
+        )
+
+        self.assertEqual(screen["metadata"]["candidate_count"], 4)
+        self.assertEqual(screen["metadata"]["status_counts"], {
+            "current_ser_his_target_duplicate_signal": 4
+        })
+        self.assertFalse(screen["metadata"]["duplicate_clear_claim_permitted"])
+        self.assertEqual(packet["metadata"]["terminal_decision_counts"], {
+            "terminal_rejection_duplicate_or_leakage": 4,
+            "terminal_rejection_insufficient_evidence": 1,
+        })
+        self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 0)
+        self.assertTrue(
+            all(row["exact_blocker_if_not_terminal"] is None for row in packet["rows"])
+        )
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(rollup["metadata"]["candidate_count"], 57)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 3,
+                "terminal_rejection_duplicate_or_leakage": 51,
+                "terminal_rejection_insufficient_evidence": 3,
+            },
+        )
+        self.assertEqual(
+            rollup["synthesis"]["needs_new_extractor_or_structure_candidate_count"], 0
+        )
+
+    def test_external_deep_terminal_import_gate_readiness_stays_closed(self) -> None:
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_import_gate_readiness_check_post_second_serine_20260521.json"
+        )
+
+        self.assertTrue(readiness["metadata"]["review_only"])
+        self.assertFalse(readiness["metadata"]["ready_for_label_import"])
+        self.assertFalse(readiness["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(readiness["metadata"]["fingerprint_registry_edited"])
+        self.assertEqual(readiness["metadata"]["candidate_count"], 57)
+        self.assertEqual(readiness["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(readiness["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(readiness["registry_invariants"]["label_count"], 682)
+        self.assertEqual(
+            readiness["registry_invariants"]["label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            readiness["registry_invariants"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            readiness["registry_invariants"]["external_imported_seed_fingerprint_labels"],
+            [],
+        )
+        self.assertTrue(all(readiness["invariant_checks"].values()))
+        self.assertEqual(
+            readiness["import_gate_readiness"]["status"],
+            "blocked_no_import_ready_candidates",
+        )
+        self.assertEqual(
+            readiness["import_gate_readiness"]["decision"],
+            "do_not_import_any_current_deep_packet_candidate",
+        )
+        self.assertTrue(
+            readiness["import_gate_readiness"][
+                "mechanism_match_review_ready_is_not_import_ready"
+            ]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

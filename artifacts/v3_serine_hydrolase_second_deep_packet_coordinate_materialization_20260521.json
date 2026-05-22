@@ -1,0 +1,201 @@
+{
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_second_deep_packet_coordinate_materialization_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 5,
+    "candidate_selection_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_selection_20260521.json",
+    "coordinate_dir": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521",
+    "coordinate_status_counts": {
+      "coordinate_sidecar_materialized": 5
+    },
+    "created_at": "2026-05-21T23:47:59Z",
+    "curated_label_registry_edited": false,
+    "fetch_failure_count": 0,
+    "fingerprint_registry_edited": false,
+    "method": "serine_hydrolase_second_pdb_coordinate_materialization",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "rows": [
+    {
+      "accession": "Q9NWW9",
+      "active_site_count": 3,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_4DPZ.cif",
+      "coordinate_sha256": "7e9c69f8d9cd76a67e577599bd7e62d82bf01917d2bd11d2fb7cd41f5f9af152",
+      "coordinate_size_bytes": 240256,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "2.3.1.-",
+        "3.1.1.32",
+        "3.1.1.4"
+      ],
+      "entry_name": "PLAT2_HUMAN",
+      "exact_current_reference_id": null,
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 1,
+      "pdb_ids_sample": [
+        "4DPZ"
+      ],
+      "primary_ec": "3.1.1.32",
+      "protein_name": "Phospholipase A and acyltransferase 2 (EC 2.3.1.-) (EC 3.1.1.32) (EC 3.1.1.4) (HRAS-like suppressor 2)",
+      "row_id": "uniprot:Q9NWW9",
+      "score_status_at_selection": "not_scored_at_second_serine_deep_packet_selection",
+      "second_selection_rank": 1,
+      "selected_pdb_id_for_probe": "4DPZ",
+      "selection_reason": "Selected before source-free triad scoring from already frozen serine-hydrolase mini-campaign rows: PDB cross-reference present, three active-site source features for review context, no exact current-reference sequence duplicate, and not in prior seven-row deep packet.",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "structure_id": "4DPZ",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P16233",
+      "active_site_count": 3,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_1GPL.cif",
+      "coordinate_sha256": "2add2363f582994f0bb329f61b4c5fb4c40dc7b9302beeaf066aaa92c990e536",
+      "coordinate_size_bytes": 529902,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "3.1.1.3"
+      ],
+      "entry_name": "LIPP_HUMAN",
+      "exact_current_reference_id": null,
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 8,
+      "pdb_ids_sample": [
+        "1GPL",
+        "1LPA",
+        "1LPB",
+        "1N8S"
+      ],
+      "primary_ec": "3.1.1.3",
+      "protein_name": "Pancreatic triacylglycerol lipase (PL) (PTL) (Pancreatic lipase) (EC 3.1.1.3)",
+      "row_id": "uniprot:P16233",
+      "score_status_at_selection": "not_scored_at_second_serine_deep_packet_selection",
+      "second_selection_rank": 2,
+      "selected_pdb_id_for_probe": "1GPL",
+      "selection_reason": "Selected before source-free triad scoring from already frozen serine-hydrolase mini-campaign rows: PDB cross-reference present, three active-site source features for review context, no exact current-reference sequence duplicate, and not in prior seven-row deep packet.",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "structure_id": "1GPL",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "Q9FG13",
+      "active_site_count": 3,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_8VCA.cif",
+      "coordinate_sha256": "9a4e3f53172822599279269849c0e799b2826f8de3876510e9febe976d7b5da2",
+      "coordinate_size_bytes": 317814,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "3.1.1.-"
+      ],
+      "entry_name": "CXE15_ARATH",
+      "exact_current_reference_id": null,
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 10,
+      "pdb_ids_sample": [
+        "8VCA",
+        "8VCD",
+        "8ZR6",
+        "8ZRF",
+        "8ZRG",
+        "8ZRO"
+      ],
+      "primary_ec": "3.1.1.-",
+      "protein_name": "Strigolactones hydrolase CXE15 (EC 3.1.1.-) (Carboxylesterase 15) (AtCXE15)",
+      "row_id": "uniprot:Q9FG13",
+      "score_status_at_selection": "not_scored_at_second_serine_deep_packet_selection",
+      "second_selection_rank": 3,
+      "selected_pdb_id_for_probe": "8VCA",
+      "selection_reason": "Selected before source-free triad scoring from already frozen serine-hydrolase mini-campaign rows: PDB cross-reference present, three active-site source features for review context, no exact current-reference sequence duplicate, and not in prior seven-row deep packet.",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "structure_id": "8VCA",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P54318",
+      "active_site_count": 3,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_1BU8.cif",
+      "coordinate_sha256": "eedbc5f9ff47d2970c01827a2937db293dad9d922f23724e93111a47ee8b020b",
+      "coordinate_size_bytes": 434831,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "3.1.1.26",
+        "3.1.1.3"
+      ],
+      "entry_name": "LIPR2_RAT",
+      "exact_current_reference_id": null,
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 11,
+      "pdb_ids_sample": [
+        "1BU8"
+      ],
+      "primary_ec": "3.1.1.26",
+      "protein_name": "Pancreatic lipase-related protein 2 (PL-RP2) (Cytotoxic T lymphocyte lipase) (Galactolipase) (EC 3.1.1.26) (Secretory glycoprotein GP-3) (Triacylglycerol lipase) (EC 3.1.1.3)",
+      "row_id": "uniprot:P54318",
+      "score_status_at_selection": "not_scored_at_second_serine_deep_packet_selection",
+      "second_selection_rank": 4,
+      "selected_pdb_id_for_probe": "1BU8",
+      "selection_reason": "Selected before source-free triad scoring from already frozen serine-hydrolase mini-campaign rows: PDB cross-reference present, three active-site source features for review context, no exact current-reference sequence duplicate, and not in prior seven-row deep packet.",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "structure_id": "1BU8",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P0ADA1",
+      "active_site_count": 3,
+      "candidate_selection_before_outcome_scoring": true,
+      "coordinate_path": "artifacts/v3_serine_hydrolase_second_deep_packet_pdb_coordinates_20260521/pdb_1IVN.cif",
+      "coordinate_sha256": "66d87137a117d3ef8135fb8eb0369f8521a59d84e8729cb2ea5ba352d0d3ab1e",
+      "coordinate_size_bytes": 208279,
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "ec_numbers": [
+        "3.1.1.2",
+        "3.1.1.5",
+        "3.1.2.14",
+        "3.1.2.2",
+        "3.4.21.-"
+      ],
+      "entry_name": "TESA_ECOLI",
+      "exact_current_reference_id": null,
+      "fetch_error": null,
+      "foldseek_screen_run_at_selection": false,
+      "freeze_rank": 12,
+      "pdb_ids_sample": [
+        "1IVN",
+        "1J00",
+        "1JRL",
+        "1U8U",
+        "1V2G",
+        "5TIC",
+        "5TID",
+        "5TIE"
+      ],
+      "primary_ec": "3.1.1.2",
+      "protein_name": "Thioesterase 1/protease 1/lysophospholipase L1 (TAP) (Acyl-CoA thioesterase 1) (TESA) (EC 3.1.2.2) (Acyl-CoA thioesterase I) (Arylesterase) (EC 3.1.1.2) (Lysophospholipase L1) (EC 3.1.1.5) (Oleoyl-[acyl-carrier-protein] hydrolase) (EC 3.1.2.14) (Phospholipid degradation C) (Pldc) (Protease 1) (EC 3.4.21.-) (Protease I) (Thioesterase I/protease I) (TEP-I)",
+      "row_id": "uniprot:P0ADA1",
+      "score_status_at_selection": "not_scored_at_second_serine_deep_packet_selection",
+      "second_selection_rank": 5,
+      "selected_pdb_id_for_probe": "1IVN",
+      "selection_reason": "Selected before source-free triad scoring from already frozen serine-hydrolase mini-campaign rows: PDB cross-reference present, three active-site source features for review context, no exact current-reference sequence duplicate, and not in prior seven-row deep packet.",
+      "sequence_baseline_signal": "no_sequence_neighbor_alert",
+      "structure_id": "1IVN",
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    }
+  ]
+}

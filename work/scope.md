@@ -239,6 +239,21 @@ therefore narrows both rows to the exact terminal blocker
 This is bounded duplicate-clear evidence only, not UniRef-wide clearance,
 mechanism-match evidence, or import readiness. The updated rollup covers 52
 deep rows with 0 import-ready candidates and no registry/fingerprint edits.
+The source-free half of that exact blocker is now closed by
+`src/catalytic_earth/metal_active_site.py`,
+`tests/test_metal_active_site.py`, and
+`artifacts/v3_metal_phosphatase_remaining_source_free_geometry_scores_20260521.json`.
+P75792 and P0A8Y5 resolve coordinate-only Mg/Asp-Ser metal-ligand clusters,
+top1 to `metal_dependent_hydrolase` above the active floor, and retain 0
+bounded current-countable high-TM duplicate hits. The terminal packet
+`artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json`
+therefore marks both rows `mechanism_match_review_ready` for the broad current
+metal-dependent hydrolase lane, while explicitly preserving the no-import caveat
+that no source-free phosphate/substrate ligand is present. P77247 remains
+`terminal_rejection_duplicate_or_leakage`. The rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_remaining_metal_source_free_geometry_20260521.json`
+contains 52 deep rows with 0 `needs_new_extractor_or_structure` rows, 0
+import-ready candidates, and no registry/fingerprint edits.
 The AKR/NADP family readiness recheck
 `artifacts/v3_akr_family_readiness_post_q99504_terminal_recheck_20260521.json`
 uses existing artifacts only and keeps AKR at
@@ -328,6 +343,35 @@ fingerprint change is authorized. The benchmark
 `artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json`
 keeps EC/keyword, deterministic sequence, geometry, active-site mapping,
 Foldseek, and ESM caveats separated with no superiority claim.
+A second serine deep packet now continues within the same already frozen
+serine-hydrolase mini-campaign rather than opening new breadth.
+`src/catalytic_earth/serine_active_site.py` and
+`tests/test_serine_active_site.py` add a coordinate-only Ser-His-Asp/Glu triad
+extractor. `artifacts/v3_serine_hydrolase_second_deep_packet_selection_20260521.json`
+selects five previously unselected frozen rows before outcome scoring and
+freezes no new external rows. Four rows (`P16233`, `Q9FG13`, `P54318`, and
+`P0ADA1`) resolve source-free triads and score above the
+`ser_his_acid_hydrolase` floor in
+`artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json`.
+The targeted current-serine Foldseek screen
+`artifacts/v3_serine_hydrolase_second_deep_packet_targeted_current_ser_his_screen_20260521.json`
+finds `TM >= 0.7` current-countable signals for all four, so the final packet
+`artifacts/v3_serine_hydrolase_second_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260521.json`
+sets them to `terminal_rejection_duplicate_or_leakage`. Q9NWW9 lacks a
+source-free triad in selected 4DPZ and is
+`terminal_rejection_insufficient_evidence`. The rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_second_serine_targeted_screen_20260521.json`
+now covers 57 deep rows with 51 duplicate/leakage rejections, three
+mechanism-match-review-ready rows, three insufficient-evidence rejections, and
+0 import-ready candidates.
+
+`artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_serine_20260521.json`
+turns that into an explicit closed import-gate statement. It preserves the
+registry invariants at 682 labels, 212 `seed_fingerprint`, 470 `out_of_scope`,
+and the three existing external out-of-scope imports only. It records zero
+countable candidates and zero import-ready candidates; mechanism-match rows are
+review-ready packets only until a full inverse-gate and label-factory import
+payload passes.
 Current flavin dehydrogenase/reductase deepening scope: the third ladder step
 has a frozen selection, coordinate sidecars, active/cofactor-site mapping,
 geometry scores, a duplicate-screen blocker, a terminal packet, and a benchmark.

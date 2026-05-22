@@ -1,0 +1,544 @@
+{
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_second_deep_packet_targeted_current_ser_his_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 4,
+    "created_at": "2026-05-21T23:51:20Z",
+    "curated_label_registry_edited": false,
+    "duplicate_clear_claim_permitted": false,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-serine-second-targeted-current/queries/P16233 /private/tmp/catalytic-earth-serine-second-targeted-current/targets /private/tmp/catalytic-earth-serine-second-targeted-current/P16233_vs_current_ser_his_tm_scores.tsv /private/tmp/catalytic-earth-serine-second-targeted-current/tmp/P16233 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-serine-second-targeted-current/queries/Q9FG13 /private/tmp/catalytic-earth-serine-second-targeted-current/targets /private/tmp/catalytic-earth-serine-second-targeted-current/Q9FG13_vs_current_ser_his_tm_scores.tsv /private/tmp/catalytic-earth-serine-second-targeted-current/tmp/Q9FG13 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-serine-second-targeted-current/queries/P54318 /private/tmp/catalytic-earth-serine-second-targeted-current/targets /private/tmp/catalytic-earth-serine-second-targeted-current/P54318_vs_current_ser_his_tm_scores.tsv /private/tmp/catalytic-earth-serine-second-targeted-current/tmp/P54318 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-serine-second-targeted-current/queries/P0ADA1 /private/tmp/catalytic-earth-serine-second-targeted-current/targets /private/tmp/catalytic-earth-serine-second-targeted-current/P0ADA1_vs_current_ser_his_tm_scores.tsv /private/tmp/catalytic-earth-serine-second-targeted-current/tmp/P0ADA1 --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "high_tm_candidate_count": 4,
+    "max_target_subset_tm_score": 0.9755,
+    "method": "second_serine_hydrolase_targeted_current_fingerprint_duplicate_screen",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_triad_score_artifact": "artifacts/v3_serine_hydrolase_second_deep_packet_source_free_triad_scores_20260521.json",
+    "source_terminal_packet_artifact": "artifacts/v3_serine_hydrolase_second_deep_terminal_decision_packet_after_source_free_triad_20260521.json",
+    "status_counts": {
+      "current_ser_his_target_duplicate_signal": 4
+    },
+    "target_subset_count": 40,
+    "target_subset_fingerprint_id": "ser_his_acid_hydrolase",
+    "tm_score_threshold": 0.7
+  },
+  "rows": [
+    {
+      "accession": "P16233",
+      "countable_label_candidate": false,
+      "current_ser_his_high_tm_hit_count": 4,
+      "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": false,
+      "raw_result_row_count": 92,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P16233",
+      "runtime_seconds": 11.19,
+      "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+      "target_subset_count": 40,
+      "tm_score_threshold": 0.7,
+      "top_current_ser_his_hits": [
+        {
+          "alntmscore": 0.9777,
+          "max_pair_tm_score": 0.9755,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9755,
+          "raw_query_name": "P16233",
+          "raw_target_name": "pdb_1HPL_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HPL.cif",
+          "target_entry_ids": [
+            "m_csa:218"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1HPL",
+          "target_structure_key": "pdb:1HPL",
+          "ttmscore": 0.939
+        },
+        {
+          "alntmscore": 0.9776,
+          "max_pair_tm_score": 0.9753,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9753,
+          "raw_query_name": "P16233",
+          "raw_target_name": "pdb_1HPL_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HPL.cif",
+          "target_entry_ids": [
+            "m_csa:218"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1HPL",
+          "target_structure_key": "pdb:1HPL",
+          "ttmscore": 0.9389
+        },
+        {
+          "alntmscore": 0.7496,
+          "max_pair_tm_score": 0.7461,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3417,
+          "raw_query_name": "P16233",
+          "raw_target_name": "pdb_1R4Z_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1R4Z",
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7461
+        },
+        {
+          "alntmscore": 0.7488,
+          "max_pair_tm_score": 0.7453,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3418,
+          "raw_query_name": "P16233",
+          "raw_target_name": "pdb_1R4Z_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1R4Z",
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7453
+        },
+        {
+          "alntmscore": 0.7016,
+          "max_pair_tm_score": 0.6813,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3478,
+          "raw_query_name": "P16233",
+          "raw_target_name": "pdb_1AGY",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AGY.cif",
+          "target_entry_ids": [
+            "m_csa:631"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1AGY",
+          "target_structure_key": "pdb:1AGY",
+          "ttmscore": 0.6813
+        }
+      ],
+      "unique_query_target_pair_count": 92
+    },
+    {
+      "accession": "Q9FG13",
+      "countable_label_candidate": false,
+      "current_ser_his_high_tm_hit_count": 5,
+      "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": false,
+      "raw_result_row_count": 92,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9FG13",
+      "runtime_seconds": 7.292,
+      "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+      "target_subset_count": 40,
+      "tm_score_threshold": 0.7,
+      "top_current_ser_his_hits": [
+        {
+          "alntmscore": 0.8968,
+          "max_pair_tm_score": 0.8747,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8409,
+          "raw_query_name": "Q9FG13",
+          "raw_target_name": "pdb_2O7R",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2O7R.cif",
+          "target_entry_ids": [
+            "m_csa:407"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "2O7R",
+          "target_structure_key": "pdb:2O7R",
+          "ttmscore": 0.8747
+        },
+        {
+          "alntmscore": 0.8083,
+          "max_pair_tm_score": 0.785,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.785,
+          "raw_query_name": "Q9FG13",
+          "raw_target_name": "pdb_1JKM_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1JKM.cif",
+          "target_entry_ids": [
+            "m_csa:453"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1JKM",
+          "target_structure_key": "pdb:1JKM",
+          "ttmscore": 0.702
+        },
+        {
+          "alntmscore": 0.808,
+          "max_pair_tm_score": 0.7847,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7847,
+          "raw_query_name": "Q9FG13",
+          "raw_target_name": "pdb_1JKM_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1JKM.cif",
+          "target_entry_ids": [
+            "m_csa:453"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1JKM",
+          "target_structure_key": "pdb:1JKM",
+          "ttmscore": 0.7072
+        },
+        {
+          "alntmscore": 0.7681,
+          "max_pair_tm_score": 0.7499,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.4505,
+          "raw_query_name": "Q9FG13",
+          "raw_target_name": "pdb_1R4Z_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1R4Z",
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7499
+        },
+        {
+          "alntmscore": 0.7713,
+          "max_pair_tm_score": 0.7491,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.4489,
+          "raw_query_name": "Q9FG13",
+          "raw_target_name": "pdb_1R4Z_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1R4Z",
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7491
+        }
+      ],
+      "unique_query_target_pair_count": 92
+    },
+    {
+      "accession": "P54318",
+      "countable_label_candidate": false,
+      "current_ser_his_high_tm_hit_count": 4,
+      "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": false,
+      "raw_result_row_count": 92,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P54318",
+      "runtime_seconds": 11.69,
+      "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+      "target_subset_count": 40,
+      "tm_score_threshold": 0.7,
+      "top_current_ser_his_hits": [
+        {
+          "alntmscore": 0.9763,
+          "max_pair_tm_score": 0.9742,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.9742,
+          "raw_query_name": "P54318",
+          "raw_target_name": "pdb_1HPL_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HPL.cif",
+          "target_entry_ids": [
+            "m_csa:218"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1HPL",
+          "target_structure_key": "pdb:1HPL",
+          "ttmscore": 0.9678
+        },
+        {
+          "alntmscore": 0.9742,
+          "max_pair_tm_score": 0.972,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.972,
+          "raw_query_name": "P54318",
+          "raw_target_name": "pdb_1HPL_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HPL.cif",
+          "target_entry_ids": [
+            "m_csa:218"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1HPL",
+          "target_structure_key": "pdb:1HPL",
+          "ttmscore": 0.9657
+        },
+        {
+          "alntmscore": 0.7276,
+          "max_pair_tm_score": 0.7242,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3253,
+          "raw_query_name": "P54318",
+          "raw_target_name": "pdb_1R4Z_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1R4Z",
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7242
+        },
+        {
+          "alntmscore": 0.7268,
+          "max_pair_tm_score": 0.7234,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3253,
+          "raw_query_name": "P54318",
+          "raw_target_name": "pdb_1R4Z_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1R4Z",
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7234
+        },
+        {
+          "alntmscore": 0.6848,
+          "max_pair_tm_score": 0.6682,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.3367,
+          "raw_query_name": "P54318",
+          "raw_target_name": "pdb_1AGY",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AGY.cif",
+          "target_entry_ids": [
+            "m_csa:631"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1AGY",
+          "target_structure_key": "pdb:1AGY",
+          "ttmscore": 0.6682
+        }
+      ],
+      "unique_query_target_pair_count": 92
+    },
+    {
+      "accession": "P0ADA1",
+      "countable_label_candidate": false,
+      "current_ser_his_high_tm_hit_count": 4,
+      "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+      "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "foldseek_run_error": null,
+      "foldseek_run_status": "completed",
+      "pair_cache_complete": false,
+      "raw_result_row_count": 92,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0ADA1",
+      "runtime_seconds": 4.52,
+      "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+      "target_subset_count": 40,
+      "tm_score_threshold": 0.7,
+      "top_current_ser_his_hits": [
+        {
+          "alntmscore": 0.8076,
+          "max_pair_tm_score": 0.8038,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.8038,
+          "raw_query_name": "P0ADA1",
+          "raw_target_name": "pdb_1ESC",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ESC.cif",
+          "target_entry_ids": [
+            "m_csa:556"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1ESC",
+          "target_structure_key": "pdb:1ESC",
+          "ttmscore": 0.5058
+        },
+        {
+          "alntmscore": 0.7964,
+          "max_pair_tm_score": 0.7886,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7886,
+          "raw_query_name": "P0ADA1",
+          "raw_target_name": "pdb_1PP4_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PP4.cif",
+          "target_entry_ids": [
+            "m_csa:705"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1PP4",
+          "target_structure_key": "pdb:1PP4",
+          "ttmscore": 0.622
+        },
+        {
+          "alntmscore": 0.7962,
+          "max_pair_tm_score": 0.7884,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7884,
+          "raw_query_name": "P0ADA1",
+          "raw_target_name": "pdb_1PP4_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PP4.cif",
+          "target_entry_ids": [
+            "m_csa:705"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1PP4",
+          "target_structure_key": "pdb:1PP4",
+          "ttmscore": 0.6218
+        },
+        {
+          "alntmscore": 0.7827,
+          "max_pair_tm_score": 0.7752,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.7752,
+          "raw_query_name": "P0ADA1",
+          "raw_target_name": "pdb_1WAB",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1WAB.cif",
+          "target_entry_ids": [
+            "m_csa:94"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1WAB",
+          "target_structure_key": "pdb:1WAB",
+          "ttmscore": 0.6658
+        },
+        {
+          "alntmscore": 0.6042,
+          "max_pair_tm_score": 0.6016,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.6016,
+          "raw_query_name": "P0ADA1",
+          "raw_target_name": "pdb_1TAH_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1TAH.cif",
+          "target_entry_ids": [
+            "m_csa:519"
+          ],
+          "target_fingerprint_ids": [
+            "ser_his_acid_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1TAH",
+          "target_structure_key": "pdb:1TAH",
+          "ttmscore": 0.3764
+        }
+      ],
+      "unique_query_target_pair_count": 92
+    }
+  ],
+  "synthesis_conclusion": {
+    "decision_use": "high-TM hits can support terminal duplicate/leakage rejection; no-hit targeted subset rows do not establish full duplicate clearance",
+    "duplicate_signal_candidate_count": 4,
+    "no_hit_candidate_count": 0,
+    "overall": "targeted_current_ser_his_duplicate_screen_completed_for_second_serine_above_floor_rows"
+  }
+}
