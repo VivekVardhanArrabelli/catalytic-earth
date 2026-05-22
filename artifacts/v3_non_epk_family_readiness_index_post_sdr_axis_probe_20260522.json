@@ -1,0 +1,100 @@
+{
+  "decision": {
+    "countable_label_candidate_count": 0,
+    "family_status_counts": {
+      "blocked_with_exact_missing_evidence": 5,
+      "needs_new_extractor_or_structure": 1
+    },
+    "import_ready_candidate_count": 0,
+    "label_import_authorized": false,
+    "production_fingerprint_promotion_authorized": false,
+    "start_new_broad_external_minicampaign": false
+  },
+  "families": [
+    {
+      "countable_label_candidate_count": 0,
+      "exact_missing_evidence_summary": "source-free catalytic Tyr/Lys geometry is resolved on some rows but no NAD(P)-like ligand/proxy exists and motif-only hits non-SDR controls",
+      "family_id": "sdr_nad_p_redox",
+      "family_status": "blocked_with_exact_missing_evidence",
+      "import_ready_candidate_count": 0,
+      "packet": "artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json",
+      "positive_like_entry_id": "uniprot:O14756",
+      "source_free_axis_ready_count": 0
+    },
+    {
+      "countable_label_candidate_count": 0,
+      "exact_missing_evidence_summary": "source-free NADP/catalytic Tyr-Lys-His AKR axis plus AKR-specific duplicate screen",
+      "family_id": "akr_nadp_redox",
+      "family_status": "needs_new_extractor_or_structure",
+      "import_ready_candidate_count": 0,
+      "packet": "artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json",
+      "positive_like_entry_id": "uniprot:C9JRZ8",
+      "source_free_axis_ready_count": 0
+    },
+    {
+      "countable_label_candidate_count": 0,
+      "exact_missing_evidence_summary": "source-free acidic-dyad glycoside axis plus duplicate screen and terminal review",
+      "family_id": "glycoside_hydrolase",
+      "family_status": "blocked_with_exact_missing_evidence",
+      "import_ready_candidate_count": 0,
+      "packet": "artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json",
+      "positive_like_entry_id": "uniprot:Q6NSJ0",
+      "source_free_axis_ready_count": 0
+    },
+    {
+      "countable_label_candidate_count": 0,
+      "exact_missing_evidence_summary": "source-free sugar-phosphate pocket/basic-polar axis plus duplicate screen and terminal review",
+      "family_id": "sugar_phosphate_isomerase",
+      "family_status": "blocked_with_exact_missing_evidence",
+      "import_ready_candidate_count": 0,
+      "packet": "artifacts/v3_sugar_phosphate_isomerase_family_readiness_post_pymol_bridge_packet_20260522.json",
+      "positive_like_entry_id": "uniprot:P34949",
+      "source_free_axis_ready_count": 0
+    },
+    {
+      "countable_label_candidate_count": 0,
+      "exact_missing_evidence_summary": "source-free Tyr/Lys Schiff-base local-geometry axis plus duplicate screen and terminal review",
+      "family_id": "schiff_base_lyase",
+      "family_status": "blocked_with_exact_missing_evidence",
+      "import_ready_candidate_count": 0,
+      "packet": "artifacts/v3_schiff_base_lyase_family_readiness_post_pymol_bridge_packet_20260522.json",
+      "positive_like_entry_id": "uniprot:Q9BXD5",
+      "source_free_axis_ready_count": 0
+    },
+    {
+      "countable_label_candidate_count": 0,
+      "exact_missing_evidence_summary": "source-free catalytic Lys/DNA-lyase local-geometry axis plus duplicate screen and terminal review",
+      "family_id": "dna_glycosylase_lyase",
+      "family_status": "blocked_with_exact_missing_evidence",
+      "import_ready_candidate_count": 0,
+      "packet": "artifacts/v3_dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet_20260522.json",
+      "positive_like_entry_id": "uniprot:P06746",
+      "source_free_axis_ready_count": 0
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T18:28:32Z",
+    "curated_label_registry_edited": false,
+    "family_count": 6,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "non_epk_family_readiness_index_post_sdr_axis_probe",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "uses_existing_artifacts_only": true
+  },
+  "source_separation_policy": {
+    "ec_keyword_or_name_counted_as_predictive": false,
+    "predictive_import_evidence_separated_from_review_context": true,
+    "source_or_uniprot_prose_counted_as_predictive": false
+  }
+}

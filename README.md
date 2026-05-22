@@ -358,6 +358,23 @@ EC/name/source prose as predictive evidence and still authorizes 0 imports.
 `artifacts/v3_post_pymol_review_only_zero_import_gate_20260522.json` validates
 the nine new review-only artifacts as 9/9 zero-import, zero-countable,
 registry-safe outputs.
+`artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json` then runs
+the bounded SDR fallback experiment on the already frozen SDR/AKR/NAD(P)
+control tranche. Twelve of 14 rows have committed coordinates; five resolve a
+source-free Tyr-X-X-X-Lys geometry motif, but 0 have a local NAD(P)-like ligand
+site and two motif-only hits are non-SDR controls. The packet therefore turns
+SDR into an exact no-import blocker rather than a positive-family claim:
+source-free NAD(P) ligand/proxy evidence, duplicate screening, terminal review,
+and label-factory gates are still missing. The companion benchmark records
+EC/keyword, sequence-motif, Foldseek, and absent-ESM caveats with no geometry
+superiority claim, and
+`artifacts/v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json`
+keeps six non-ePK family packets review-only with 0 import-ready or countable
+candidates. The same run adds
+`artifacts/v3_external_review_ready_human_decision_batch_template_post_sdr_20260522.json`
+for the seven external review-ready rows: every row defaults to pending human
+review, allowed terminal decisions use the existing external vocabulary, and
+human acceptance still authorizes no label import without later gates.
 
 The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a

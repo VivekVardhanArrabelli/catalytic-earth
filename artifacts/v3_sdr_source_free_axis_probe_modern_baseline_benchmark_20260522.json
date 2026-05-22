@@ -1,0 +1,427 @@
+{
+  "caveats": [
+    "YxxxK motif geometry alone is not SDR evidence because an AKR sibling and a heme control also resolve motif-like geometry.",
+    "No NAD(P)-like ligand site is present in any available structure in this probe.",
+    "Foldseek/current-countable duplicate screening was not run for this SDR family probe.",
+    "No ESM or learned-representation sidecar is attached for this comparison."
+  ],
+  "metadata": {
+    "artifact_id": "v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T18:28:32Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "geometry_superiority_claim": false,
+    "import_ready_candidate_count": 0,
+    "method": "sdr_source_free_axis_probe_modern_baseline_benchmark",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "representation_superiority_claim": false,
+    "review_only": true,
+    "source_context_counted_as_predictive_count": 0,
+    "uses_existing_artifacts_only": true
+  },
+  "metrics": {
+    "deterministic_sequence_motif_hit_count": 8,
+    "ec_keyword_selection_context_row_count": 6,
+    "esm_or_learned_embedding_sidecar_available_count": 0,
+    "foldseek_duplicate_screen_available_count": 0,
+    "frozen_row_count": 14,
+    "geometry_superiority_claim": false,
+    "nad_p_like_ligand_present_count": 0,
+    "non_sdr_control_with_resolved_yxxxk_geometry_count": 2,
+    "representation_superiority_claim": false,
+    "source_free_full_sdr_axis_ready_count": 0,
+    "source_free_yxxxk_geometry_resolved_count": 5,
+    "structure_available_count": 12
+  },
+  "rows": [
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": true,
+        "yxxxk_candidate_count": 2
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": true
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "uniprot:O14756",
+      "row_role": "external_sdr_positive_like_candidate",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_axis_without_nad_p_ligand"
+      },
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": true,
+        "yxxxk_candidate_count": 1
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": true
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "uniprot:C9JRZ8",
+      "row_role": "external_akr_nadp_positive_like_candidate",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_axis_without_nad_p_ligand"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": true,
+        "yxxxk_candidate_count": 1
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": true
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "uniprot:O75828",
+      "row_role": "external_sdr_ec_1_1_1_clean_abstention_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_axis_without_nad_p_ligand"
+      },
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 0
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": true
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "uniprot:O75911",
+      "row_role": "external_sdr_ec_1_1_1_clean_abstention_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "coordinate_sidecar_missing_for_source_free_sdr_axis_probe"
+      },
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": true,
+        "yxxxk_candidate_count": 2
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": true
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "uniprot:P14060",
+      "row_role": "external_sdr_ec_1_1_1_clean_abstention_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_axis_without_nad_p_ligand"
+      },
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 0
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": true
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "uniprot:P14061",
+      "row_role": "external_sdr_ec_1_1_1_clean_abstention_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "coordinate_sidecar_missing_for_source_free_sdr_axis_probe"
+      },
+      "terminal_decision": "needs_new_extractor_or_structure"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 0
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:3",
+      "row_role": "current_flavin_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "no_source_free_sdr_catalytic_axis"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 0
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:6",
+      "row_role": "current_flavin_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "no_source_free_sdr_catalytic_axis"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 1
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:20",
+      "row_role": "current_flavin_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_motif_unresolved_geometry"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 4
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:68",
+      "row_role": "current_flavin_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_motif_unresolved_geometry"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 0
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:37",
+      "row_role": "current_heme_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "no_source_free_sdr_catalytic_axis"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 8
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:124",
+      "row_role": "current_heme_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_motif_unresolved_geometry"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": false,
+        "yxxxk_candidate_count": 0
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:133",
+      "row_role": "current_heme_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "no_source_free_sdr_catalytic_axis"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    },
+    {
+      "deterministic_sequence_motif_baseline": {
+        "motif_only_sufficient_for_sdr_claim": false,
+        "source_free_yxxxk_geometry_resolved": true,
+        "yxxxk_candidate_count": 4
+      },
+      "ec_keyword_routing_baseline": {
+        "predictive_use_allowed": false,
+        "used_for_selection_or_control_context_only": false
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false
+      },
+      "foldseek_or_structural_duplicate_sidecar": {
+        "available_for_this_sdr_probe": false,
+        "status": "not_run_for_this_probe"
+      },
+      "row_id": "m_csa:208",
+      "row_role": "current_heme_redox_control",
+      "source_free_geometry_probe": {
+        "full_sdr_axis_ready": false,
+        "nad_p_like_ligand_site_count": 0,
+        "source_context_counted_as_predictive": false,
+        "status": "source_free_sdr_catalytic_axis_without_nad_p_ligand"
+      },
+      "terminal_decision": "terminal_rejection_wrong_scope"
+    }
+  ],
+  "task_definition": {
+    "frozen_selection_artifact": "artifacts/v3_sdr_akr_nadp_control_tranche_preregistration_20260520.json",
+    "success_condition_for_future_import_claim": "full source-free SDR axis plus duplicate screen plus terminal review plus label-factory gates; not met here",
+    "task": "frozen SDR/AKR/NAD(P) boundary rows, source-free catalytic-axis probe plus baseline caveats"
+  }
+}

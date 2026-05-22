@@ -1030,6 +1030,18 @@ PYTHONPATH=src python -m catalytic_earth.cli validate-review-only-zero-import-ar
   --out artifacts/v3_post_pymol_review_only_zero_import_gate_20260522.json
 ```
 
+The same gate now also protects the bounded SDR source-free axis probe:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli validate-review-only-zero-import-artifacts \
+  artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json \
+  artifacts/v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522.json \
+  artifacts/v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json \
+  artifacts/v3_external_review_ready_human_decision_batch_template_post_sdr_20260522.json \
+  artifacts/v3_external_review_ready_human_decision_batch_template_validation_post_sdr_20260522.json \
+  --out artifacts/v3_post_sdr_axis_probe_review_only_zero_import_gate_20260522.json
+```
+
 `analyze-review-debt-remediation` expands review-debt triage into a
 structure-aware repair plan without making any label countable. It preserves
 every requested debt row, links it to the selected geometry structure, graph

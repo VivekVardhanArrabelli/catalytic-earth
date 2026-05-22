@@ -223,6 +223,25 @@ import.
   a source-free local NADP or NADP-proxy geometry axis, source-free
   Tyr-Lys-His local-environment policy, AKR-specific current-countable
   duplicate screening, terminal review decisions, and full label-factory gates.
+- `artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json` executes
+  the matching bounded SDR source-free axis probe on the pre-frozen
+  SDR/AKR/NAD(P) control tranche, without sourcing new rows. Twelve of the
+  fourteen frozen rows have committed coordinates and five resolve
+  coordinate-only Tyr-X-X-X-Lys geometry, but every available structure lacks a
+  local NAD(P)-like ligand site and two motif-only geometry hits are non-SDR
+  controls (`C9JRZ8` and `m_csa:208`). SDR therefore stays
+  `blocked_with_exact_missing_evidence`, with 0 source-free full SDR-axis-ready
+  rows, 0 import-ready rows, and 0 countable candidates. The benchmark artifact
+  `artifacts/v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522.json`
+  records EC/keyword, deterministic sequence-motif, Foldseek, and absent-ESM
+  caveats with no superiority claim, while
+  `artifacts/v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json`
+  updates the non-ePK family index to six review-only families. The human
+  bridge artifact
+  `artifacts/v3_external_review_ready_human_decision_batch_template_post_sdr_20260522.json`
+  keeps the seven external mechanism-match rows ready for explicit
+  accept/reject/ambiguous decisions while defaulting every row to pending and
+  still authorizing 0 imports.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

@@ -394,6 +394,25 @@ source-free evidence from EC/name/source context, and authorizes 0 imports.
 run-level artifact gate for these outputs: 9/9 new review-only artifacts pass
 with 0 import-ready rows, 0 countable rows, no registry/fingerprint edits, and
 no artifact upload/removal.
+Current SDR fallback scope: the post-PyMOL run executed one bounded
+source-free axis probe on already frozen SDR/AKR/NAD(P) control rows, not a
+new mini-campaign. `src/catalytic_earth/sdr_active_site.py` scans only
+coordinate sequence/order, residue comp ids, atom names, and distances for a
+Tyr-X-X-X-Lys catalytic-axis candidate; EC labels, names, UniProt prose,
+source active-site annotations, and curated labels stay outside predictive use.
+`artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json` records the
+result: 12/14 frozen rows have committed coordinates, 5 resolve source-free
+Tyr/Lys geometry, 0 resolve a full SDR axis because no available structure has
+a local NAD(P)-like ligand site, and two motif-only hits are non-SDR controls
+(`C9JRZ8` and `m_csa:208`). The family status remains
+`blocked_with_exact_missing_evidence`; the exact next evidence would be a
+preregistered NAD(P) ligand/pocket proxy or holo coordinate surface plus
+duplicate screening and terminal review. The companion benchmark makes no
+geometry-superiority claim because Foldseek duplicate screening and ESM/learned
+sidecars were absent for this SDR probe. The post-SDR no-import gate validates
+five new artifacts with 0 import-ready and 0 countable candidates, including
+the external human-decision batch template that keeps all seven mechanism-match
+rows pending accept/reject review and still separate from label import.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

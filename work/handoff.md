@@ -129,6 +129,47 @@ countable rows, no curated-label or fingerprint registry edits, and no
 artifact upload/removal. The corresponding reusable CLI is
 `validate-review-only-zero-import-artifacts`.
 
+As of the 2026-05-22T18:17:37Z main-loop run, the automation used that
+human-review-only external state to run one bounded non-ePK source-free axis
+experiment rather than opening new external breadth.
+`src/catalytic_earth/sdr_active_site.py` adds a review-only SDR catalytic-axis
+probe that scans coordinate sequences for Tyr-X-X-X-Lys motifs and then
+requires Tyr OH/Lys NZ geometry while excluding EC, names, UniProt prose,
+source active-site annotations, and curated labels from predictive use.
+
+`artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json` applies the
+probe to the already frozen 14-row SDR/AKR/NAD(P) control tranche. Twelve rows
+have committed coordinates, five resolve source-free Tyr/Lys geometry, and 0
+resolve a full SDR axis because every available structure lacks a local
+NAD(P)-like ligand site. The probe also catches the reason motif geometry is
+not enough: two resolved motif-only hits are non-SDR controls (`C9JRZ8` and
+`m_csa:208`). SDR is therefore converted from a generic source-free-axis gap
+to `blocked_with_exact_missing_evidence`: it needs a preregistered NAD(P)
+ligand/pocket proxy or holo coordinates, broader duplicate screening, terminal
+review, and label-factory gates before any production claim.
+
+The companion benchmark
+`artifacts/v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522.json`
+records EC/keyword routing, deterministic sequence-motif, Foldseek, and ESM
+caveats on the same frozen rows. It makes no geometry superiority claim:
+Foldseek duplicate screening and ESM/learned sidecars are absent for this SDR
+probe. `artifacts/v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json`
+adds SDR to the no-breadth family index, and
+`artifacts/v3_post_sdr_axis_probe_review_only_zero_import_gate_20260522.json`
+validates the five new review-only artifacts as 5/5 zero-import and
+zero-countable. The two extra artifacts are
+`artifacts/v3_external_review_ready_human_decision_batch_template_post_sdr_20260522.json`
+and its validation file; they turn the seven external mechanism-match rows
+into a fillable pending decision batch with the allowed terminal vocabulary
+while keeping human acceptance separate from label import.
+
+Evidence-based confidence call: confidence is high that SDR remains blocked
+for the right reason because the probe is frozen to existing rows, reports 0
+NAD(P)-like ligand sites and 0 full SDR-axis-ready rows, and exposes non-SDR
+motif-only controls. Confidence is high that no import path opened because the
+new packets record 0 import-ready and 0 countable candidates, no registry or
+fingerprint edits, no artifact upload/removal, and no `removal_allowed=true`.
+
 As of the 2026-05-22T04:01:49Z main-loop run, the automation closed the
 remaining queued redox source-free geometry/structure blockers without adding
 external mini-campaign breadth. `src/catalytic_earth/redox_active_site.py`

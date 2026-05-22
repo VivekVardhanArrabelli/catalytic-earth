@@ -12073,6 +12073,272 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertFalse(row["fingerprint_registry_edited"])
             self.assertFalse(row["artifact_upload_or_removal_performed"])
 
+    def test_sdr_source_free_axis_probe_converts_to_exact_blocker(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_sdr_source_free_axis_probe_post_pymol_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        rows = {row["row_id"]: row for row in packet["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["frozen_row_count"], 14)
+        self.assertEqual(metadata["structure_available_count"], 12)
+        self.assertEqual(metadata["source_free_catalytic_axis_resolved_count"], 5)
+        self.assertEqual(metadata["source_free_full_sdr_axis_ready_count"], 0)
+        self.assertEqual(metadata["nad_p_like_ligand_site_present_count"], 0)
+        self.assertEqual(
+            metadata["non_sdr_control_with_resolved_yxxxk_geometry_count"], 2
+        )
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(metadata["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            metadata["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+
+        self.assertEqual(decision["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(decision["family_status"], "blocked_with_exact_missing_evidence")
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "coordinate_nad_p_like_ligand_or_preregistered_cofactor_proxy_absent_on_all_available_structures",
+            decision["exact_missing_evidence"],
+        )
+        self.assertIn(
+            "motif_only_yxxxk_geometry_has_non_sdr_control_hits",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertEqual(rows["uniprot:O14756"]["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(
+            rows["uniprot:O14756"]["source_free_axis_status"],
+            "source_free_sdr_catalytic_axis_without_nad_p_ligand",
+        )
+        self.assertTrue(rows["uniprot:O14756"]["source_free_catalytic_axis_resolved"])
+        self.assertFalse(rows["uniprot:O14756"]["source_free_full_sdr_axis_ready"])
+        self.assertEqual(
+            rows["uniprot:O14756"]["selected_source_free_candidate"]["motif"],
+            "YCVSK",
+        )
+        self.assertFalse(rows["uniprot:O14756"]["source_context_counted_as_predictive"])
+        self.assertFalse(
+            rows["uniprot:O14756"]["text_or_label_fields_used_for_predictive_score"]
+        )
+
+        self.assertEqual(
+            rows["m_csa:208"]["terminal_decision"], "terminal_rejection_wrong_scope"
+        )
+        self.assertTrue(rows["m_csa:208"]["source_free_catalytic_axis_resolved"])
+        self.assertEqual(rows["m_csa:208"]["nad_p_like_ligand_site_count"], 0)
+        self.assertEqual(
+            rows["uniprot:O75911"]["source_free_axis_status"],
+            "coordinate_sidecar_missing_for_source_free_sdr_axis_probe",
+        )
+
+        for row in rows.values():
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["source_context_counted_as_predictive"])
+
+    def test_sdr_source_free_axis_benchmark_makes_no_superiority_claim(self) -> None:
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522.json"
+        )
+
+        metadata = benchmark["metadata"]
+        metrics = benchmark["metrics"]
+        rows = {row["row_id"]: row for row in benchmark["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["geometry_superiority_claim"])
+        self.assertFalse(metadata["representation_superiority_claim"])
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertEqual(metrics["frozen_row_count"], 14)
+        self.assertEqual(metrics["structure_available_count"], 12)
+        self.assertEqual(metrics["source_free_yxxxk_geometry_resolved_count"], 5)
+        self.assertEqual(metrics["source_free_full_sdr_axis_ready_count"], 0)
+        self.assertEqual(metrics["nad_p_like_ligand_present_count"], 0)
+        self.assertEqual(metrics["deterministic_sequence_motif_hit_count"], 8)
+        self.assertEqual(metrics["non_sdr_control_with_resolved_yxxxk_geometry_count"], 2)
+        self.assertEqual(metrics["foldseek_duplicate_screen_available_count"], 0)
+        self.assertEqual(metrics["esm_or_learned_embedding_sidecar_available_count"], 0)
+        self.assertFalse(metrics["geometry_superiority_claim"])
+
+        self.assertFalse(
+            rows["uniprot:O14756"]["deterministic_sequence_motif_baseline"][
+                "motif_only_sufficient_for_sdr_claim"
+            ]
+        )
+        self.assertFalse(
+            rows["uniprot:O14756"]["ec_keyword_routing_baseline"][
+                "predictive_use_allowed"
+            ]
+        )
+        self.assertFalse(
+            rows["uniprot:O14756"]["source_free_geometry_probe"][
+                "full_sdr_axis_ready"
+            ]
+        )
+        self.assertFalse(rows["uniprot:O14756"]["esm_or_learned_embedding_sidecar"]["available"])
+
+    def test_non_epk_family_readiness_index_post_sdr_probe_stays_no_import(self) -> None:
+        index = _load_json(
+            ARTIFACTS
+            / "v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json"
+        )
+
+        metadata = index["metadata"]
+        decision = index["decision"]
+        families = {row["family_id"]: row for row in index["families"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["family_count"], 6)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertFalse(decision["production_fingerprint_promotion_authorized"])
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            decision["family_status_counts"],
+            {
+                "blocked_with_exact_missing_evidence": 5,
+                "needs_new_extractor_or_structure": 1,
+            },
+        )
+
+        self.assertEqual(
+            set(families),
+            {
+                "sdr_nad_p_redox",
+                "akr_nadp_redox",
+                "glycoside_hydrolase",
+                "sugar_phosphate_isomerase",
+                "schiff_base_lyase",
+                "dna_glycosylase_lyase",
+            },
+        )
+        self.assertEqual(
+            families["sdr_nad_p_redox"]["packet"],
+            "artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json",
+        )
+        self.assertEqual(families["sdr_nad_p_redox"]["source_free_axis_ready_count"], 0)
+        for row in families.values():
+            self.assertEqual(row["import_ready_candidate_count"], 0)
+            self.assertEqual(row["countable_label_candidate_count"], 0)
+
+    def test_post_sdr_axis_probe_review_only_zero_import_gate_passes(self) -> None:
+        gate = _load_json(
+            ARTIFACTS
+            / "v3_post_sdr_axis_probe_review_only_zero_import_gate_20260522.json"
+        )
+
+        metadata = gate["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertTrue(metadata["valid"])
+        self.assertEqual(metadata["artifact_count"], 5)
+        self.assertEqual(metadata["valid_artifact_count"], 5)
+        self.assertEqual(metadata["blocker_count"], 0)
+        self.assertFalse(metadata["artifact_migration_files_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        for row in gate["rows"]:
+            self.assertTrue(row["valid"])
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertEqual(row["import_ready_candidate_count"], 0)
+            self.assertEqual(row["countable_label_candidate_count"], 0)
+            self.assertFalse(row["curated_label_registry_edited"])
+            self.assertFalse(row["fingerprint_registry_edited"])
+            self.assertFalse(row["artifact_upload_or_removal_performed"])
+
+    def test_external_human_decision_template_preserves_review_only_state(self) -> None:
+        template = _load_json(
+            ARTIFACTS
+            / "v3_external_review_ready_human_decision_batch_template_post_sdr_20260522.json"
+        )
+        validation = _load_json(
+            ARTIFACTS
+            / "v3_external_review_ready_human_decision_batch_template_validation_post_sdr_20260522.json"
+        )
+
+        metadata = template["metadata"]
+        policy = template["decision_batch_policy"]
+        decision = template["decision"]
+        rows = template["rows"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["candidate_count"], 7)
+        self.assertEqual(metadata["pending_human_review_count"], 7)
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertTrue(policy["all_rows_default_to_pending"])
+        self.assertTrue(policy["human_acceptance_is_not_label_import"])
+        self.assertFalse(policy["label_import_authorized"])
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertFalse(decision["production_fingerprint_promotion_authorized"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+
+        self.assertEqual(
+            {row["row_id"] for row in rows},
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P14532",
+                "uniprot:P39597",
+                "uniprot:P15776",
+                "uniprot:P0A8Y5",
+                "uniprot:P75792",
+            },
+        )
+        for row in rows:
+            self.assertEqual(row["human_decision_status"], "pending_human_review")
+            self.assertIn("mechanism_match_review_ready", row["allowed_terminal_decisions"])
+            self.assertIn(
+                "terminal_rejection_duplicate_or_leakage",
+                row["allowed_terminal_decisions"],
+            )
+            self.assertFalse(
+                row["source_free_evidence_summary"][
+                    "source_context_counted_as_predictive"
+                ]
+            )
+            self.assertFalse(row["ready_for_label_import_after_human_decision"])
+            self.assertFalse(row["countable_label_candidate_after_human_decision"])
+
+        self.assertTrue(validation["metadata"]["valid"])
+        self.assertEqual(validation["metadata"]["blocker_count"], 0)
+        self.assertEqual(validation["metadata"]["pending_human_review_count"], 7)
+        self.assertTrue(all(row["valid"] for row in validation["row_validation"]))
+
 
 if __name__ == "__main__":
     unittest.main()
