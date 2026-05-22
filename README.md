@@ -269,6 +269,13 @@ benchmark
 records geometry, EC/keyword routing, sequence/UniRef controls, Foldseek/TM
 duplicate screening, and absent ESM sidecars on the same frozen seven rows with
 no geometry-superiority claim.
+`artifacts/v3_plp_aminotransferase_second_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json`
+then deepens another seven already frozen PLP aminotransferase rows without
+adding external breadth. Four rows have source-free PLP active-site geometry
+above floor but are terminal duplicate/leakage rejections after targeted
+current-PLP Foldseek signals; three rows are terminal insufficient-evidence
+rejections for the selected coordinates. The PLP rollup now covers 14 deep
+rows with 0 import-ready and 0 countable candidates.
 
 The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a

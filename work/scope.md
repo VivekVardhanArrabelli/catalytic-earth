@@ -284,6 +284,19 @@ benchmark makes the modern-baseline caveats explicit on the same frozen rows:
 EC/keyword routing and sequence controls are not predictive evidence,
 Foldseek/TM is duplicate-control evidence only, no ESM sidecar is available,
 and no geometry-superiority claim is made.
+The 2026-05-22T12:57:22Z main-loop run continues the same external-deepening
+discipline on PLP without adding breadth. A second PLP aminotransferase packet
+selects the next seven non-exact-reference rows from the already frozen
+2026-05-21 PLP mini-campaign after excluding the prior PLP deep rows and exact
+sequence duplicates. Four rows resolve coordinate-only PLP active-site
+geometry above floor, but all four have targeted current-PLP high-TM duplicate
+signals and are terminal `terminal_rejection_duplicate_or_leakage`; three
+selected coordinates are terminal `terminal_rejection_insufficient_evidence`
+because the source-free PLP anchor/cofactor packet is incomplete. The PLP
+rollup now covers 14 deep rows with 10 duplicate/leakage rejections, 4
+insufficient-evidence rejections, 0 import-ready candidates, and 0 countable
+candidates. This remains review-only source-separated terminal evidence, not a
+seed-fingerprint import path.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

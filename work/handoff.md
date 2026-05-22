@@ -298,6 +298,49 @@ Confidence is high that the benchmark caveats are explicit because it records
 `geometry_superiority_claim=false`, `esm_or_learned_embedding_sidecar_available_count=0`,
 and 0 import-ready/countable candidates.
 
+As of the 2026-05-22T12:57:22Z main-loop run, the automation continued PLP
+deepening on existing frozen rows only. The new selection artifact
+`artifacts/v3_plp_aminotransferase_second_deep_packet_selection_20260522.json`
+freezes the next seven non-exact-reference PLP aminotransferase rows from the
+2026-05-21 mini-campaign (`Q96255`, `Q56YA5`, `P22256`, `Q93ZN9`, `P42588`,
+`H8WR05`, and `Q988B8`) after excluding the first seven PLP deep rows and the
+two exact current-reference sequence duplicates. It freezes 0 new external
+rows and records EC/protein-name/UniProt context as review-only selection
+context.
+
+`artifacts/v3_plp_aminotransferase_second_deep_packet_source_free_active_site_geometry_scores_20260522.json`
+materializes seven PDB coordinate sidecars and applies the existing
+coordinate-only PLP extractor. Four selected coordinates resolve complete
+source-free PLP active-site packets and score above the `plp_dependent_enzyme`
+floor with 0 text/label fields used; two have a PLP-like site without a
+resolved covalent/modified lysine anchor, and one lacks a PLP-like coordinate
+site. The targeted current-PLP Foldseek screen
+`artifacts/v3_plp_aminotransferase_second_deep_packet_targeted_current_plp_screen_20260522.json`
+then finds `TM >= 0.7` current-countable PLP duplicate/leakage signals for all
+four source-free-ready rows. The terminal packet
+`artifacts/v3_plp_aminotransferase_second_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json`
+therefore records four `terminal_rejection_duplicate_or_leakage` rows and
+three `terminal_rejection_insufficient_evidence` rows, with 0
+mechanism-match review-ready rows, 0 import-ready candidates, and 0 countable
+candidates. The companion benchmark records EC/keyword, deterministic
+sequence/k-mer, Foldseek/TM, and missing ESM sidecar caveats with no
+geometry-superiority claim. The PLP-specific rollup now covers 14 deep rows:
+10 duplicate/leakage terminal rejections and 4 insufficient-evidence terminal
+rejections.
+
+Evidence-based confidence call: confidence is high that the second PLP packet
+is source-separated because the four scored rows use only coordinate-derived
+PLP/LLP/PMP/P5P anchor/residue evidence and all rows keep EC/name/source
+context out of predictive scoring. Confidence is high that the four
+above-floor PLP rows are terminal duplicate/leakage rejections because each has
+a targeted current-countable PLP Foldseek `TM >= 0.7` signal. Confidence is
+high that the three non-scored rows are terminal insufficient-evidence
+decisions for the selected frozen coordinates, not hard negatives or
+import-ready rows. Confidence is high that safety rails were preserved: no
+label import, registry edit, fingerprint edit, threshold change, artifact
+upload/removal, Git-LFS migration, history rewrite, or `removal_allowed=true`
+occurred.
+
 Evidence-based confidence call: confidence is high that the redox geometry
 blockers are closed because all three rows have PDB coordinate sidecars,
 source-free cofactor active-site extraction, and target-lane scores above the

@@ -1,0 +1,307 @@
+{
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_second_deep_packet_selection_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_selection_frozen_before_outcome_scoring": true,
+    "created_at": "2026-05-22T12:57:22Z",
+    "curated_label_registry_edited": false,
+    "excluded_exact_current_reference_accessions": [
+      "P12995",
+      "P19938"
+    ],
+    "excluded_prior_deep_packet_accessions": [
+      "Q8TD30",
+      "Q9NZ45",
+      "Q9Y617",
+      "O07566",
+      "P53555",
+      "Q9S7N2",
+      "P50457"
+    ],
+    "fingerprint_registry_edited": false,
+    "method": "plp_aminotransferase_second_deep_packet_selection_existing_frozen_rows",
+    "new_external_rows_frozen": 0,
+    "prior_plp_deep_packet_artifact": "artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selected_accessions": [
+      "Q96255",
+      "Q56YA5",
+      "P22256",
+      "Q93ZN9",
+      "P42588",
+      "H8WR05",
+      "Q988B8"
+    ],
+    "selected_candidate_count": 7,
+    "selection_rule": "next seven previously unselected non-exact-current-reference rows by frozen PLP mini-campaign rank",
+    "source_decision_packet": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_decision_packet_20260521.json",
+    "source_freeze_artifact": "artifacts/v3_prospective_external_plp_aminotransferase_minicampaign_freeze_20260521.json",
+    "source_sequence_baseline_diagnostic": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+    "target_current_fingerprint_lane": "plp_dependent_enzyme"
+  },
+  "rows": [
+    {
+      "accession": "Q96255",
+      "coordinate_fetch_status": "coordinate_sidecar_materialized",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_6CZX.cif",
+      "coordinate_sha256": "47678391625ef4909164b9a16ccf58365cf1245cfc0a32aaee85c2d3b30a4b5f",
+      "excluded_predictive_context": [
+        "ec_numbers",
+        "protein_name",
+        "entry_name",
+        "organism",
+        "uniprot_prose",
+        "plp_binding_annotation",
+        "active_site_annotation"
+      ],
+      "freeze_rank": 8,
+      "pdb_count": 3,
+      "pdb_ids_sample": [
+        "6CZX",
+        "6CZY",
+        "6CZZ"
+      ],
+      "row_id": "uniprot:Q96255",
+      "selected_pdb_id": "6CZX",
+      "selection_basis_review_context_only": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.6.1.52"
+        ],
+        "plp_binding_annotation_present": true,
+        "primary_ec": "2.6.1.52"
+      },
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q56YA5",
+      "coordinate_fetch_status": "coordinate_sidecar_materialized",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_6PK1.cif",
+      "coordinate_sha256": "82e3c9726b9dfc887ce8dbf06dee013248f6b2633082441c05af2651639ca456",
+      "excluded_predictive_context": [
+        "ec_numbers",
+        "protein_name",
+        "entry_name",
+        "organism",
+        "uniprot_prose",
+        "plp_binding_annotation",
+        "active_site_annotation"
+      ],
+      "freeze_rank": 9,
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "6PK1",
+        "6PK3"
+      ],
+      "row_id": "uniprot:Q56YA5",
+      "selected_pdb_id": "6PK1",
+      "selection_basis_review_context_only": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.6.1.-",
+          "2.6.1.44",
+          "2.6.1.45",
+          "2.6.1.51"
+        ],
+        "plp_binding_annotation_present": true,
+        "primary_ec": "2.6.1.-"
+      },
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "P22256",
+      "coordinate_fetch_status": "coordinate_sidecar_materialized",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_1SF2.cif",
+      "coordinate_sha256": "ee094067f22f3f184fb32fdce4ce2b1d05d077a9b7b06bbd1c460209b08781c5",
+      "excluded_predictive_context": [
+        "ec_numbers",
+        "protein_name",
+        "entry_name",
+        "organism",
+        "uniprot_prose",
+        "plp_binding_annotation",
+        "active_site_annotation"
+      ],
+      "freeze_rank": 11,
+      "pdb_count": 5,
+      "pdb_ids_sample": [
+        "1SF2",
+        "1SFF",
+        "1SZK",
+        "1SZS",
+        "1SZU"
+      ],
+      "row_id": "uniprot:P22256",
+      "selected_pdb_id": "1SF2",
+      "selection_basis_review_context_only": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.6.1.19",
+          "2.6.1.48"
+        ],
+        "plp_binding_annotation_present": true,
+        "primary_ec": "2.6.1.19"
+      },
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q93ZN9",
+      "coordinate_fetch_status": "coordinate_sidecar_materialized",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_2Z1Z.cif",
+      "coordinate_sha256": "064293cb0b1ab5430eece07e3ae7e9b86303ca7c1f3049127925255860954ed0",
+      "excluded_predictive_context": [
+        "ec_numbers",
+        "protein_name",
+        "entry_name",
+        "organism",
+        "uniprot_prose",
+        "plp_binding_annotation",
+        "active_site_annotation"
+      ],
+      "freeze_rank": 12,
+      "pdb_count": 9,
+      "pdb_ids_sample": [
+        "2Z1Z",
+        "2Z20",
+        "3EI5",
+        "3EI6",
+        "3EI7",
+        "3EI8",
+        "3EI9",
+        "3EIA"
+      ],
+      "row_id": "uniprot:Q93ZN9",
+      "selected_pdb_id": "2Z1Z",
+      "selection_basis_review_context_only": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.6.1.83"
+        ],
+        "plp_binding_annotation_present": true,
+        "primary_ec": "2.6.1.83"
+      },
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "P42588",
+      "coordinate_fetch_status": "coordinate_sidecar_materialized",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_4UOX.cif",
+      "coordinate_sha256": "4ce75bfa61c3e1a3387ef873ecf66361ba9c0184dfdbf27003456ba58b30cde5",
+      "excluded_predictive_context": [
+        "ec_numbers",
+        "protein_name",
+        "entry_name",
+        "organism",
+        "uniprot_prose",
+        "plp_binding_annotation",
+        "active_site_annotation"
+      ],
+      "freeze_rank": 13,
+      "pdb_count": 6,
+      "pdb_ids_sample": [
+        "4UOX",
+        "4UOY",
+        "5H7D",
+        "5X3F",
+        "8CPL",
+        "8R2P"
+      ],
+      "row_id": "uniprot:P42588",
+      "selected_pdb_id": "4UOX",
+      "selection_basis_review_context_only": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.6.1.29",
+          "2.6.1.82"
+        ],
+        "plp_binding_annotation_present": true,
+        "primary_ec": "2.6.1.29"
+      },
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "H8WR05",
+      "coordinate_fetch_status": "coordinate_sidecar_materialized",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_4AO9.cif",
+      "coordinate_sha256": "487d4fd4830fb3d774c143ae5d406e7d5456e4437fd6d120538603a6d96b057b",
+      "excluded_predictive_context": [
+        "ec_numbers",
+        "protein_name",
+        "entry_name",
+        "organism",
+        "uniprot_prose",
+        "plp_binding_annotation",
+        "active_site_annotation"
+      ],
+      "freeze_rank": 14,
+      "pdb_count": 2,
+      "pdb_ids_sample": [
+        "4AO9",
+        "4AOA"
+      ],
+      "row_id": "uniprot:H8WR05",
+      "selected_pdb_id": "4AO9",
+      "selection_basis_review_context_only": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.6.1.-"
+        ],
+        "plp_binding_annotation_present": true,
+        "primary_ec": "2.6.1.-"
+      },
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    },
+    {
+      "accession": "Q988B8",
+      "coordinate_fetch_status": "coordinate_sidecar_materialized",
+      "coordinate_path": "artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522/pdb_2Z9U.cif",
+      "coordinate_sha256": "42bf1796ec2ef59931c042cec0758ad4ca4198acc1ed44f76dad4188f5ebf9ed",
+      "excluded_predictive_context": [
+        "ec_numbers",
+        "protein_name",
+        "entry_name",
+        "organism",
+        "uniprot_prose",
+        "plp_binding_annotation",
+        "active_site_annotation"
+      ],
+      "freeze_rank": 16,
+      "pdb_count": 4,
+      "pdb_ids_sample": [
+        "2Z9U",
+        "2Z9V",
+        "2Z9W",
+        "2Z9X"
+      ],
+      "row_id": "uniprot:Q988B8",
+      "selected_pdb_id": "2Z9U",
+      "selection_basis_review_context_only": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "ec_numbers": [
+          "2.6.1.30"
+        ],
+        "plp_binding_annotation_present": true,
+        "primary_ec": "2.6.1.30"
+      },
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "plp_dependent_enzyme"
+    }
+  ]
+}

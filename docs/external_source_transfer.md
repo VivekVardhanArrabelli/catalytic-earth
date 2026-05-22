@@ -136,6 +136,22 @@ import.
   sidecars. EC/keyword routing and sequence evidence remain review/duplicate
   context only, and the artifact explicitly makes no geometry-superiority or
   import claim.
+- `artifacts/v3_plp_aminotransferase_second_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json`
+  deepens a second seven-row PLP aminotransferase packet from the already
+  frozen 2026-05-21 PLP mini-campaign. Selection excludes the first seven PLP
+  deep rows plus the two exact current-reference duplicates before outcome
+  scoring, freezes 0 new external rows, and uses only coordinate-derived
+  PLP/LLP/PMP/P5P anchor evidence for scoring. Four rows resolve source-free
+  PLP active-site geometry above the floor and then become terminal
+  `terminal_rejection_duplicate_or_leakage` rows after targeted current-PLP
+  Foldseek signals; three rows are terminal
+  `terminal_rejection_insufficient_evidence` because the selected coordinates
+  lack a complete source-free PLP anchor/cofactor packet. The companion
+  benchmark records EC/keyword, deterministic sequence, Foldseek/TM, and
+  missing ESM caveats with no superiority or import claim. The PLP rollup now
+  covers 14 deep rows: 10 duplicate/leakage terminal rejections, 4
+  insufficient-evidence terminal rejections, 0 import-ready rows, and 0
+  countable candidates.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

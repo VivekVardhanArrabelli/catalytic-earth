@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 285
-- Measured elapsed time: 8725.1 minutes (145.42 hours)
+- Entries: 287
+- Measured elapsed time: 8770.1 minutes (146.17 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 111.2 measured minutes (1.85 hours)
+- ops: 114.4 measured minutes (1.91 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1729.1 measured minutes (28.82 hours)
+- v3: 1770.9 measured minutes (29.52 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3095
-- Evidence references logged: 2523
+- Artifact references logged: 3111
+- Evidence references logged: 2542
 
 ## Recent Entries
-
-### 2026-05-22T05:23:06.284991+00:00 - v3
-
-- Task: Review-ready seed payload dry run
-- Time mode: measured
-- Measured minutes: 2.733
-- Started: 2026-05-22T05:20:05Z
-- Ended: 2026-05-22T05:22:49Z
-- Artifacts: artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json, artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: six mechanism-match review-ready rows packaged as draft review-only seed-fingerprint payloads, zero import-ready candidates and zero countable candidates, P14532 UniRef90/50 current-reference screen cleared with 0 overlaps, metal rows retain phosphate/substrate specificity blocker, 831-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
-
-### 2026-05-22T05:25:41.522048+00:00 - v3
-
-- Task: Mechanism-match payload dry run
-- Time mode: measured
-- Measured minutes: 7.983
-- Started: 2026-05-22T05:17:30Z
-- Ended: 2026-05-22T05:25:29Z
-- Artifacts: artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json, artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: six mechanism-match review-ready rows packaged as draft_review_only_not_imported seed-fingerprint payloads, P14532 UniRef90/50 current-reference screen fetched UniRef50_P14532 and UniRef90_P14532 with 0 current-reference overlaps, all six review-ready rows now have UniRef90/50 no-overlap evidence, import remains blocked by missing external seed-fingerprint policy full label-factory payload gates and human label action, two metal rows still lack source-free phosphate/substrate specificity, 831-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, payload JSON artifacts parsed, no registry or fingerprint diffs, git diff check passed
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T08:48:17.767316+00:00 - v3
 
@@ -118,6 +96,28 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-22T11:35:43Z
 - Artifacts: artifacts/v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json, artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_check_1000_currentregistry_adapter.json, artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_rerun_no_import_decision_20260522.json, artifacts/v3_external_seed_fingerprint_nonmetal_human_review_packet_20260522.json, artifacts/v3_external_seed_fingerprint_seven_row_post_gate_modern_baseline_benchmark_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: current-682 applied-label adapter produced 682 labels preserving 212 seed_fingerprint and 470 out_of_scope, seven-row no-import label-factory payload gate rerun passed 21/21 gates with 0 blockers, seven-row decision artifact kept 0 import-ready candidates and 0 countable candidates, non-metal human-review packet separated five review-ready rows while excluding two metal phosphate-specificity blockers, post-gate benchmark recorded geometry sequence Foldseek and ESM caveats with no superiority claim, 840-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T13:05:41.322034+00:00 - v3
+
+- Task: Second PLP terminal decision packet
+- Time mode: measured
+- Measured minutes: 41.883
+- Started: 2026-05-22T12:23:33Z
+- Ended: 2026-05-22T13:05:26Z
+- Artifacts: artifacts/v3_plp_aminotransferase_second_deep_packet_selection_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522, artifacts/v3_plp_aminotransferase_second_deep_packet_source_free_active_site_geometry_scores_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_packet_targeted_current_plp_screen_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_packet_modern_baseline_benchmark_20260522.json, artifacts/v3_plp_aminotransferase_deep_terminal_decision_rollup_post_second_plp_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 840-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, seven already frozen PLP rows selected with 0 new external rows, source-free PLP coordinate scoring resolved 4 rows above floor with zero text/label predictive fields, targeted current-PLP Foldseek converted 4 rows to terminal duplicate/leakage rejections, 3 rows terminal insufficient evidence for selected coordinates, PLP rollup now covers 14 deep rows with 10 duplicate/leakage and 4 insufficient-evidence terminal rejections, 842-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard check passed from current manifest, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T13:08:53.551713+00:00 - ops
+
+- Task: Final validation for second PLP packet
+- Time mode: measured
+- Measured minutes: 3.133
+- Started: 2026-05-22T13:05:26Z
+- Ended: 2026-05-22T13:08:34Z
+- Artifacts: work/progress_log.jsonl, work/status.md
+- Evidence: post-normalization 842-test unit discovery passed, coordinate hashes match committed sidecars, CLI validate passed with 682 labels and 8 fingerprints, staged git diff check passed
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -349,6 +349,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T10:20:02.906647+00:00: Next useful work is no-import import-gate readiness for the seven review-ready rows or a bounded full-current/UniRef screen for any remaining review-ready row outside the six-row payload dry run.
 - 2026-05-22T10:31:38.361386+00:00: Next exact work is the current-682 external seed-fingerprint payload adapter and no-import label-factory gate rerun for all seven review-ready rows.
 - 2026-05-22T11:35:58.020005+00:00: Next exact decision is human/expert review for the five non-metal review-ready seed candidates; metal rows still need phosphate/substrate specificity evidence before phosphatase-specific import claims.
+- 2026-05-22T13:05:41.322034+00:00: Continue terminal deepening or exact family-readiness packets; remaining PLP breadth should only use already frozen rows.
+- 2026-05-22T13:08:53.551713+00:00: Second PLP packet is ready for review; continue existing frozen-row deepening next.
 
 ## Scope Adjustments
 
@@ -519,3 +521,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T10:20:02.906647+00:00: Closed the remaining frozen serine-hydrolase rows without adding external breadth; P15776 is review-ready but not import-ready.
 - 2026-05-22T10:31:38.361386+00:00: Advanced seven-row review-ready import-gate readiness without adding external breadth or importing labels.
 - 2026-05-22T11:35:58.020005+00:00: Closed the current-682 seed-payload adapter blocker without importing labels or adding external breadth.
+- 2026-05-22T13:05:41.322034+00:00: Second PLP packet deepens existing frozen rows only; no seed-fingerprint import path opened.
+- 2026-05-22T13:08:53.551713+00:00: Final wrap only; no additional external rows or label changes.
