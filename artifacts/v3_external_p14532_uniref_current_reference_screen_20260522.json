@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "artifact_id": "v3_external_p14532_uniref_current_reference_screen_20260522",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-22T05:22:51Z",
+    "method": "p14532_uniref90_50_current_reference_screen_for_review_ready_payload",
+    "review_only": true,
+    "new_external_rows_frozen": 0,
+    "candidate_count": 1,
+    "current_countable_reference_accession_count": 735,
+    "current_countable_reference_entry_count": 682,
+    "fetched_uniref_cluster_count": 2,
+    "fetch_failure_count": 0,
+    "uniref_current_reference_clear_count": 1,
+    "uniref_current_reference_overlap_holdout_count": 0,
+    "uniref_current_reference_incomplete_count": 0,
+    "ready_for_label_import": false,
+    "import_ready_candidate_count": 0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_sequence_clusters_artifact": "artifacts/v3_sequence_cluster_proxy_1000.json",
+    "source_terminal_packet_artifact": "artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json"
+  },
+  "rows": [
+    {
+      "row_id": "uniprot:P14532",
+      "accession": "P14532",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "candidate_uniref50_ids": [
+        "UniRef50_P14532"
+      ],
+      "candidate_uniref90_ids": [
+        "UniRef90_P14532"
+      ],
+      "candidate_uniref_cluster_summaries": [
+        {
+          "cluster_id": "UniRef50_P14532",
+          "entry_type": "UniRef50",
+          "query_url": "https://rest.uniprot.org/uniref/UniRef50_P14532?format=json",
+          "fetch_status": "ok",
+          "member_count": 539,
+          "returned_member_count": 539,
+          "accession_count": 86,
+          "member_accession_sha256": "5b19533a9a98bb5d74fc0ff9a4659f6ec457eed6edae97a4674facaed22669c6",
+          "current_reference_overlap_count": 0,
+          "overlapping_current_reference_accessions": []
+        },
+        {
+          "cluster_id": "UniRef90_P14532",
+          "entry_type": "UniRef90",
+          "query_url": "https://rest.uniprot.org/uniref/UniRef90_P14532?format=json",
+          "fetch_status": "ok",
+          "member_count": 336,
+          "returned_member_count": 336,
+          "accession_count": 9,
+          "member_accession_sha256": "c81dea0958f3ab45ac3b844ca4a9d30f596c05dd850b0ad307638a5fca8b5226",
+          "current_reference_overlap_count": 0,
+          "overlapping_current_reference_accessions": []
+        }
+      ],
+      "overlapping_current_reference_accessions": [],
+      "uniref_current_reference_blockers": [],
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "remaining_import_blockers": [
+        "external_seed_fingerprint_counting_policy_not_preregistered_for_this_row",
+        "full_label_factory_gate_not_run",
+        "mechanism_match_review_ready_is_not_label_import_ready",
+        "no_human_label_action_requested"
+      ]
+    }
+  ],
+  "warnings": [
+    "UniRef90/50 screening is import-gate duplicate/leakage evidence only, not positive mechanism evidence.",
+    "This artifact clears only the current-reference UniRef overlap blocker for P14532; it does not authorize label import."
+  ]
+}

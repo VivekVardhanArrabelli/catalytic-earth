@@ -43,6 +43,16 @@ import.
   sidecar absence. The post-closure queue has 0 source-free geometry/structure
   blockers; import remains closed by external seed-fingerprint policy,
   full label-factory payload gates, and human label action.
+- `artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json`
+  packages the six mechanism-match review-ready rows into a review-only
+  seed-fingerprint payload dry run. It imports 0 labels and keeps all rows
+  blocked: no external seed-fingerprint counting policy is preregistered, full
+  label-factory payload gates have not run, no human label action was
+  requested, and the two metal rows still lack source-free
+  phosphate/substrate specificity for phosphatase-specific import claims.
+  `artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json`
+  closes the matching UniRef90/50 current-reference overlap screen for
+  `P14532` with 0 overlaps.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

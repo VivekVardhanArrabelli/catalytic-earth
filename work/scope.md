@@ -216,6 +216,16 @@ and a complete 672/672 current-countable Foldseek/TM screen with no
 `TM >= 0.7` hit. The post-closure blocker queue has 0 source-free
 geometry/structure blockers; remaining external deep blockers are import-gate
 policy/payload blockers for mechanism-match review-ready rows only.
+`artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json`
+turns that state into a no-import payload dry run for all six mechanism-match
+rows. It keeps every draft payload `draft_review_only_not_imported` and names
+the active blockers: external seed-fingerprint counting policy is not
+preregistered, full label-factory payload gates have not run, no human label
+action was requested, and the two metal rows still lack source-free
+phosphate/substrate specificity. The companion
+`artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json`
+now gives `P14532` the same UniRef90/50 current-reference no-overlap evidence
+as the prior five rows.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

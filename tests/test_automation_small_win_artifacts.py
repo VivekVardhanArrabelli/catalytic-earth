@@ -9667,6 +9667,98 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertTrue(all(readiness["invariant_checks"].values()))
 
+    def test_review_ready_seed_fingerprint_payload_dry_run_is_blocked(self) -> None:
+        dry_run = _load_json(
+            ARTIFACTS
+            / "v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json"
+        )
+
+        self.assertTrue(dry_run["metadata"]["review_only"])
+        self.assertEqual(dry_run["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(dry_run["metadata"]["candidate_count"], 6)
+        self.assertEqual(
+            dry_run["metadata"]["target_current_fingerprint_lanes"],
+            {"heme_peroxidase_oxidase": 4, "metal_dependent_hydrolase": 2},
+        )
+        self.assertEqual(
+            dry_run["metadata"]["source_context_counted_as_predictive_count"], 0
+        )
+        self.assertEqual(dry_run["metadata"]["uniref_current_reference_clear_count"], 6)
+        self.assertEqual(dry_run["metadata"]["uniref_current_reference_missing_count"], 0)
+        self.assertFalse(dry_run["metadata"]["ready_for_label_import"])
+        self.assertEqual(dry_run["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(dry_run["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(dry_run["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(dry_run["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(dry_run["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(dry_run["metadata"]["removal_allowed_set_true"])
+        self.assertEqual(dry_run["metadata"]["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            dry_run["metadata"]["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            dry_run["metadata"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(dry_run["decision"]["payload_dry_run_status"], "blocked_no_import")
+
+        rows = {row["row_id"]: row for row in dry_run["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P0A8Y5",
+                "uniprot:P14532",
+                "uniprot:P39597",
+                "uniprot:P75792",
+            },
+        )
+        self.assertEqual(
+            rows["uniprot:P14532"]["import_gate_evidence"][
+                "uniref90_50_current_reference_status"
+            ],
+            "uniref_current_reference_screen_no_current_reference_overlap",
+        )
+        self.assertNotIn(
+            "p14532_uniref90_50_current_reference_screen_not_run",
+            rows["uniprot:P14532"]["remaining_import_blockers"],
+        )
+        self.assertTrue(
+            all(
+                row["draft_label_payload"]["payload_status"]
+                == "draft_review_only_not_imported"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["draft_label_payload"]["label_type_if_ever_imported"]
+                == "seed_fingerprint"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in rows.values())
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in rows.values())
+        )
+
+        p14532_uniref = _load_json(
+            ARTIFACTS / "v3_external_p14532_uniref_current_reference_screen_20260522.json"
+        )
+        self.assertTrue(p14532_uniref["metadata"]["review_only"])
+        self.assertEqual(
+            p14532_uniref["metadata"]["uniref_current_reference_clear_count"], 1
+        )
+        self.assertEqual(
+            p14532_uniref["rows"][0]["uniref_current_reference_screen_status"],
+            "uniref_current_reference_screen_no_current_reference_overlap",
+        )
+        self.assertFalse(p14532_uniref["rows"][0]["overlapping_current_reference_accessions"])
+
 
 if __name__ == "__main__":
     unittest.main()

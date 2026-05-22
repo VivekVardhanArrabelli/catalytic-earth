@@ -100,6 +100,18 @@ The import-readiness check preserves the 682-label registry invariant, 212
 only external imports remain `uniprot:P06744`, `uniprot:P78549`, and
 `uniprot:Q3LXA3`.
 
+The follow-up no-import payload dry run
+`artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json`
+now packages all six mechanism-match review-ready rows as draft
+seed-fingerprint payloads while keeping every row non-countable. It makes the
+next import-gate blockers explicit: no external seed-fingerprint counting
+policy is preregistered, full label-factory payload gates have not run, no
+human label action was requested, and the two metal phosphatase rows still
+lack source-free phosphate/substrate specificity for phosphatase-specific
+import claims. `artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json`
+now closes the matching UniRef90/50 current-reference overlap screen for
+`P14532` with 0 overlaps.
+
 Evidence-based confidence call: confidence is high that the redox geometry
 blockers are closed because all three rows have PDB coordinate sidecars,
 source-free cofactor active-site extraction, and target-lane scores above the
@@ -113,7 +125,11 @@ geometry is above floor and the full current-countable screen completed all
 full label-factory gates are still absent. Confidence is high that no label
 import, registry edit, fingerprint edit, threshold change, artifact
 upload/removal, Git-LFS migration, history rewrite, or `removal_allowed=true`
-occurred.
+occurred. Confidence is high that the payload dry run is non-importing because
+all six rows carry `payload_status=draft_review_only_not_imported`, all six
+now have UniRef90/50 current-reference no-overlap evidence, import-ready and
+countable candidates remain 0, and the registry invariant is unchanged at 682
+labels.
 
 As of the 2026-05-22T03:17Z main-loop run, the automation kept the main work
 on existing external decisions while doing only a concise ePK lane synthesis.
