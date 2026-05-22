@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 284
-- Measured elapsed time: 8710.5 minutes (145.18 hours)
+- Entries: 285
+- Measured elapsed time: 8725.1 minutes (145.42 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1714.5 measured minutes (28.58 hours)
+- v3: 1729.1 measured minutes (28.82 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3083
-- Evidence references logged: 2511
+- Artifact references logged: 3095
+- Evidence references logged: 2523
 
 ## Recent Entries
-
-### 2026-05-22T05:15:55.239970+00:00 - v3
-
-- Task: Redox blocker source-free closure
-- Time mode: measured
-- Measured minutes: 73.783
-- Started: 2026-05-22T04:01:49Z
-- Ended: 2026-05-22T05:15:36Z
-- Artifacts: src/catalytic_earth/redox_active_site.py, tests/test_redox_active_site.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_external_redox_third_blocker_coordinate_materialization_20260522.json, artifacts/v3_external_redox_third_blocker_source_free_geometry_scores_20260522.json, artifacts/v3_external_redox_third_blocker_targeted_current_lane_duplicate_screen_20260522.json, artifacts/v3_heme_peroxidase_p14532_full_current_countable_duplicate_screen_20260522.json, artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json, artifacts/v3_external_redox_third_blocker_modern_baseline_benchmark_20260522.json, artifacts/v3_external_deep_remaining_blocker_queue_post_redox_third_closure_20260522.json, artifacts/v3_external_deep_terminal_decision_rollup_post_redox_third_closure_20260522.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_redox_third_closure_20260522.json, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: 830-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, source-free PDB heme/flavin extraction resolved P14532 P33371 P32340 with 0 text/name/source predictive fields, P33371 and P32340 terminal duplicate/leakage via targeted current-FDR TM 0.7573 and 0.7559, P14532 mechanism_match_review_ready after source-free heme score 0.8605 and full 672/672 current-countable screen nearest TM 0.6413, artifact migration dry-run passed with removal_allowed=0, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T05:23:06.284991+00:00 - v3
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-22T10:31:25Z
 - Artifacts: artifacts/v3_external_p15776_uniref_current_reference_screen_20260522.json, artifacts/v3_external_seed_fingerprint_seven_review_ready_import_gate_readiness_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: P15776 UniRef90 and UniRef50 current-reference screen cleared 0 overlaps against 735 current countable reference accessions, seven mechanism-match review-ready rows now have source-free geometry and UniRef clearance, seven-row readiness remains no-import with 0 import-ready and 0 countable candidates, current label-factory payload gate remains blocked on applied_label_actions_ready adapter gap, 837-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T11:35:58.020005+00:00 - v3
+
+- Task: Seven-row seed payload adapter and human-review packet
+- Time mode: measured
+- Measured minutes: 14.55
+- Started: 2026-05-22T11:21:10Z
+- Ended: 2026-05-22T11:35:43Z
+- Artifacts: artifacts/v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json, artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_check_1000_currentregistry_adapter.json, artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_rerun_no_import_decision_20260522.json, artifacts/v3_external_seed_fingerprint_nonmetal_human_review_packet_20260522.json, artifacts/v3_external_seed_fingerprint_seven_row_post_gate_modern_baseline_benchmark_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: current-682 applied-label adapter produced 682 labels preserving 212 seed_fingerprint and 470 out_of_scope, seven-row no-import label-factory payload gate rerun passed 21/21 gates with 0 blockers, seven-row decision artifact kept 0 import-ready candidates and 0 countable candidates, non-metal human-review packet separated five review-ready rows while excluding two metal phosphate-specificity blockers, post-gate benchmark recorded geometry sequence Foldseek and ESM caveats with no superiority claim, 840-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -348,6 +348,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T08:51:15.302701+00:00: Metal mechanism-match rows need a holo/analog phosphate-like coordinate structure or preregistered phosphate-pocket extractor before phosphatase-specific seed import claims.
 - 2026-05-22T10:20:02.906647+00:00: Next useful work is no-import import-gate readiness for the seven review-ready rows or a bounded full-current/UniRef screen for any remaining review-ready row outside the six-row payload dry run.
 - 2026-05-22T10:31:38.361386+00:00: Next exact work is the current-682 external seed-fingerprint payload adapter and no-import label-factory gate rerun for all seven review-ready rows.
+- 2026-05-22T11:35:58.020005+00:00: Next exact decision is human/expert review for the five non-metal review-ready seed candidates; metal rows still need phosphate/substrate specificity evidence before phosphatase-specific import claims.
 
 ## Scope Adjustments
 
@@ -517,3 +518,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T08:51:15.302701+00:00: Converted the metal-row phosphate/substrate specificity blocker into an exact source-free evidence packet.
 - 2026-05-22T10:20:02.906647+00:00: Closed the remaining frozen serine-hydrolase rows without adding external breadth; P15776 is review-ready but not import-ready.
 - 2026-05-22T10:31:38.361386+00:00: Advanced seven-row review-ready import-gate readiness without adding external breadth or importing labels.
+- 2026-05-22T11:35:58.020005+00:00: Closed the current-682 seed-payload adapter blocker without importing labels or adding external breadth.

@@ -21,15 +21,17 @@ import.
   out-of-scope import.
 - The current external deepening surface has seven mechanism-match review-ready
   rows across heme, metal, and serine-hydrolase lanes, but none is import-ready.
-  Six are still the rows covered by the existing no-import seed-fingerprint
-  payload dry run. Five were already present before the redox closure:
+  The current-682 adapter/rebaseline now closes the previous
+  `applied_label_actions_ready` gate blocker for a no-import dry run, but
+  human label action is still absent and the two metal phosphatase rows still
+  lack source-free phosphate/substrate specificity. Five rows were already
+  present before the redox closure:
   `artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json`
   screens those five rows against UniRef90/50 cluster members and all 735
   current countable reference accessions. All five have 0 current-reference
-  cluster overlaps and 0 fetch failures, but the artifact remains review-only:
-  full label-factory gates, external seed-fingerprint import policy, and any
-  human label action are still absent, and the metal phosphatase rows still lack
-  source-free phosphate/substrate specificity.
+  cluster overlaps and 0 fetch failures. The newer current-registry gate rerun
+  and non-metal human-review packet keep all seven review-only with 0
+  import-ready and 0 countable candidates.
 - `artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json`
   closes the three source-free geometry/structure blockers from
   `artifacts/v3_external_deep_remaining_blocker_queue_20260522.json` without
@@ -65,10 +67,11 @@ import.
   for the post-external-import registry. The external-source transfer gate is
   still green at 68/68, all six rows retain UniRef90/50 current-reference
   no-overlap evidence, and import remains closed with 0 import-ready and 0
-  countable rows. The next exact experiment is a current-682 external
-  seed-fingerprint payload adapter/rebaseline, while `P0A8Y5` and `P75792`
-  still need source-free phosphate/substrate specificity before any
-  phosphatase-specific import claim.
+  countable rows. At that point the next exact experiment was a current-682
+  external seed-fingerprint payload adapter/rebaseline; the newer seven-row
+  gate rerun below closes that adapter blocker for a no-import dry run only.
+  `P0A8Y5` and `P75792` still need source-free phosphate/substrate specificity
+  before any phosphatase-specific import claim.
   `artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
   makes that metal-specific blocker concrete: five selected or prefrozen PDB
   structures were scanned with coordinate-only metal/phosphate context, 0
@@ -106,10 +109,33 @@ import.
   now accounts for all seven mechanism-match review-ready rows across heme,
   metal, and serine-hydrolase lanes: source-free geometry is above floor for
   7/7, UniRef current-reference clearance is 7/7, import-ready and countable
-  candidates remain 0, and the exact next blocker is still the current-682
-  external seed-fingerprint payload adapter/rebaseline followed by a no-import
-  label-factory payload gate rerun. The two metal rows still carry the
-  phosphate/substrate specificity blocker.
+  candidates remain 0. This readiness packet is superseded on the adapter
+  blocker by the current-registry no-import gate rerun below; the two metal
+  rows still carry the phosphate/substrate specificity blocker.
+- `artifacts/v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json`
+  materializes the current-682 applied-label adapter for the seven-row external
+  seed-fingerprint payload surface. The rerun gate artifact
+  `artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_check_1000_currentregistry_adapter.json`
+  passes 21/21 label-factory gates with 0 blockers, resolving the prior
+  `applied_label_actions_ready` adapter gap for this no-import dry run only.
+  `artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_rerun_no_import_decision_20260522.json`
+  keeps all seven rows non-countable: `ready_for_label_import=false`,
+  `import_ready_candidate_count=0`, `countable_label_candidate_count=0`, and
+  registry invariants remain 682 labels with 212 `seed_fingerprint`, 470
+  `out_of_scope`, and 0 external seed-fingerprint imports.
+- `artifacts/v3_external_seed_fingerprint_nonmetal_human_review_packet_20260522.json`
+  packages the five non-metal review-ready rows (`I2DBY1`, `K7N5M8`,
+  `P14532`, `P39597`, and `P15776`) for human/expert review. It excludes the
+  two metal rows because their phosphate/substrate specificity blocker remains
+  unresolved. The packet is review-only and authorizes no label import or
+  registry/fingerprint change.
+- `artifacts/v3_external_seed_fingerprint_seven_row_post_gate_modern_baseline_benchmark_20260522.json`
+  consolidates the seven review-ready rows after the gate rerun. It records
+  7/7 source-free geometry-above-floor rows, 7/7 UniRef current-reference
+  clear rows, 7/7 Foldseek duplicate-clear rows, and 0 available ESM/learned
+  sidecars. EC/keyword routing and sequence evidence remain review/duplicate
+  context only, and the artifact explicitly makes no geometry-superiority or
+  import claim.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

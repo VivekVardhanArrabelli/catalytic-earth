@@ -231,14 +231,13 @@ sequence-distance metrics.
 
 The current external seed-fingerprint surface remains review-only. Six
 mechanism-match rows have source-free geometry and UniRef90/50
-current-reference no-overlap evidence in the existing no-import payload dry run,
-but
+current-reference no-overlap evidence in the existing no-import payload dry run.
 `artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json`
 records 0 import-ready rows. Its no-import gate dry run preregisters a
-review-only policy and identifies the exact next blocker: the current
-label-factory gate passes 20/21 checks but lacks a current-682 external
-seed-fingerprint payload adapter/rebaseline (`applied_label_actions_ready`),
-while two metal rows still need source-free phosphate/substrate specificity.
+review-only policy and initially identified the current-682 external
+seed-fingerprint payload adapter/rebaseline (`applied_label_actions_ready`) as
+the exact blocker, while two metal rows still needed source-free
+phosphate/substrate specificity.
 `artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
 scans five selected/PDB-linked coordinate structures for those metal rows and
 finds 0 phosphate-like substrate/product/analog sites, leaving both blocked
@@ -253,8 +252,23 @@ clears `P15776` against UniRef90/50 current-reference overlap as duplicate
 control evidence only. `artifacts/v3_external_seed_fingerprint_seven_review_ready_import_gate_readiness_20260522.json`
 then accounts for all seven review-ready rows in one no-import readiness
 packet: 7/7 have source-free geometry and UniRef clearance, 0 are import-ready,
-and the exact next blocker is still the current-682 external seed-fingerprint
-payload adapter/rebaseline plus no-import label-factory gate rerun.
+and the exact next blocker at that point was the current-682 external
+seed-fingerprint payload adapter/rebaseline plus no-import label-factory gate
+rerun. That adapter blocker is now closed for a no-import dry run:
+`artifacts/v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json`
+materializes 682 current-registry applied labels, and
+`artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_check_1000_currentregistry_adapter.json`
+passes 21/21 label-factory gates with 0 blockers. The decision packet
+`artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_rerun_no_import_decision_20260522.json`
+still keeps all seven rows non-countable with 0 import-ready candidates, and
+`artifacts/v3_external_seed_fingerprint_nonmetal_human_review_packet_20260522.json`
+separates the five non-metal rows for human review while excluding the two
+metal rows until phosphate/substrate specificity is resolved. The companion
+benchmark
+`artifacts/v3_external_seed_fingerprint_seven_row_post_gate_modern_baseline_benchmark_20260522.json`
+records geometry, EC/keyword routing, sequence/UniRef controls, Foldseek/TM
+duplicate screening, and absent ESM sidecars on the same frozen seven rows with
+no geometry-superiority claim.
 
 The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a

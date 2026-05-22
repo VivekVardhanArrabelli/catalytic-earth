@@ -9460,6 +9460,360 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             all(not row["countable_label_candidate"] for row in rows.values())
         )
 
+    def test_external_seed_payload_currentregistry_gate_rerun_is_no_import(
+        self,
+    ) -> None:
+        adapter = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json"
+        )
+        gate = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_seven_row_payload_gate_check_1000_currentregistry_adapter.json"
+        )
+        decision = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_seven_row_payload_gate_rerun_no_import_decision_20260522.json"
+        )
+
+        self.assertEqual(adapter["metadata"]["input_label_count"], 682)
+        self.assertEqual(adapter["metadata"]["output_label_count"], 682)
+        self.assertEqual(
+            adapter["metadata"]["output_summary"]["by_type"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            sorted(
+                label["entry_id"]
+                for label in adapter["labels"]
+                if label["entry_id"].startswith("uniprot:")
+            ),
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+
+        self.assertEqual(gate["metadata"]["label_count"], 682)
+        self.assertEqual(gate["metadata"]["gate_count"], 21)
+        self.assertEqual(gate["metadata"]["passed_gate_count"], 21)
+        self.assertFalse(gate["blockers"])
+        self.assertTrue(gate["gates"]["applied_label_actions_ready"])
+        self.assertTrue(gate["metadata"]["automation_ready_for_next_label_batch"])
+        self.assertEqual(
+            gate["metadata"]["artifact_lineage"]["artifact_paths"][
+                "applied_label_factory"
+            ],
+            "artifacts/v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json",
+        )
+
+        metadata = decision["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["candidate_count"], 7)
+        self.assertEqual(metadata["mechanism_match_review_ready_count"], 7)
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertEqual(metadata["source_free_geometry_above_floor_count"], 7)
+        self.assertEqual(metadata["uniref_current_reference_clear_count"], 7)
+        self.assertEqual(metadata["applied_label_adapter_input_label_count"], 682)
+        self.assertEqual(metadata["applied_label_adapter_output_label_count"], 682)
+        self.assertEqual(metadata["label_factory_payload_gate_count"], 21)
+        self.assertEqual(metadata["label_factory_payload_gate_passed_count"], 21)
+        self.assertFalse(metadata["label_factory_payload_gate_blockers"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            metadata["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            metadata["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(metadata["external_imported_seed_fingerprint_labels"], [])
+        self.assertNotIn(
+            "external_seed_fingerprint_payload_adapter_for_current_682_registry_required",
+            metadata["remaining_import_blocker_counts"],
+        )
+        self.assertNotIn(
+            "label_factory_payload_gate_failed_applied_label_actions_ready",
+            metadata["remaining_import_blocker_counts"],
+        )
+        self.assertEqual(
+            metadata["remaining_import_blocker_counts"][
+                "human_label_action_not_requested"
+            ],
+            7,
+        )
+        self.assertEqual(
+            metadata["remaining_import_blocker_counts"][
+                "mechanism_match_review_ready_is_not_label_import_ready"
+            ],
+            7,
+        )
+        self.assertEqual(
+            metadata["remaining_import_blocker_counts"][
+                "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity"
+            ],
+            2,
+        )
+        self.assertTrue(all(decision["invariant_checks"].values()))
+        self.assertEqual(
+            decision["decision"]["payload_adapter_blocker_status"],
+            "resolved_for_current_682_no_import_gate_rerun",
+        )
+        self.assertEqual(
+            decision["decision"]["payload_gate_dry_run_status"],
+            "passed_no_import_gate_only",
+        )
+        self.assertFalse(decision["decision"]["label_import_authorized"])
+        self.assertFalse(decision["decision"]["registry_or_fingerprint_change_authorized"])
+
+        rows = {row["row_id"]: row for row in decision["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P0A8Y5",
+                "uniprot:P14532",
+                "uniprot:P15776",
+                "uniprot:P39597",
+                "uniprot:P75792",
+            },
+        )
+        self.assertTrue(
+            all(
+                row["full_label_factory_payload_gate"]["status"]
+                == "passed_currentregistry_adapter_no_import"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in rows.values())
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in rows.values())
+        )
+        self.assertIn(
+            "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+            rows["uniprot:P0A8Y5"]["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+            rows["uniprot:P75792"]["remaining_import_blockers"],
+        )
+        self.assertNotIn(
+            "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+            rows["uniprot:P15776"]["remaining_import_blockers"],
+        )
+
+    def test_nonmetal_review_ready_packet_is_human_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_nonmetal_human_review_packet_20260522.json"
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(packet["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(packet["metadata"]["source_candidate_count"], 7)
+        self.assertEqual(packet["metadata"]["candidate_count"], 5)
+        self.assertEqual(packet["metadata"]["excluded_metal_specificity_blocked_count"], 2)
+        self.assertEqual(
+            packet["metadata"]["target_current_fingerprint_lanes"],
+            {"heme_peroxidase_oxidase": 4, "ser_his_acid_hydrolase": 1},
+        )
+        self.assertEqual(
+            packet["metadata"]["source_context_counted_as_predictive_count"], 0
+        )
+        self.assertEqual(packet["metadata"]["source_free_geometry_above_floor_count"], 5)
+        self.assertEqual(packet["metadata"]["uniref_current_reference_clear_count"], 5)
+        self.assertEqual(packet["metadata"]["label_factory_payload_gate_count"], 21)
+        self.assertEqual(packet["metadata"]["label_factory_payload_gate_passed_count"], 21)
+        self.assertFalse(packet["metadata"]["label_factory_payload_gate_blockers"])
+        self.assertEqual(packet["metadata"]["ready_for_human_review_count"], 5)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["human_label_action_requested"])
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(packet["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(packet["metadata"]["removal_allowed_set_true"])
+        self.assertEqual(packet["metadata"]["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            packet["metadata"]["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            packet["metadata"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(packet["metadata"]["external_imported_seed_fingerprint_labels"], [])
+        self.assertTrue(all(packet["invariant_checks"].values()))
+        self.assertEqual(
+            packet["decision"]["packet_status"],
+            "nonmetal_human_review_ready_but_no_import_authorized",
+        )
+        self.assertFalse(packet["decision"]["label_import_authorized"])
+        self.assertFalse(packet["decision"]["registry_or_fingerprint_change_authorized"])
+
+        rows = {row["row_id"]: row for row in packet["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P14532",
+                "uniprot:P15776",
+                "uniprot:P39597",
+            },
+        )
+        self.assertTrue(
+            all(
+                row["review_packet_status"] == "human_review_ready_not_import_ready"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["terminal_decision"] == "mechanism_match_review_ready"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["label_factory_payload_gate"]["status"]
+                == "passed_currentregistry_adapter_no_import"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["source_free_predictive_evidence"][
+                    "text_or_label_fields_used_for_score"
+                ]
+                is False
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in rows.values())
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in rows.values())
+        )
+
+    def test_seven_row_post_gate_benchmark_makes_no_superiority_claim(self) -> None:
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_seven_row_post_gate_modern_baseline_benchmark_20260522.json"
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertEqual(benchmark["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(benchmark["metadata"]["candidate_count"], 7)
+        self.assertEqual(
+            benchmark["metadata"]["target_current_fingerprint_lanes"],
+            {
+                "heme_peroxidase_oxidase": 4,
+                "metal_dependent_hydrolase": 2,
+                "ser_his_acid_hydrolase": 1,
+            },
+        )
+        self.assertEqual(
+            benchmark["metadata"]["source_context_counted_as_predictive_count"], 0
+        )
+        self.assertEqual(benchmark["metadata"]["geometry_available_count"], 7)
+        self.assertEqual(benchmark["metadata"]["geometry_above_floor_count"], 7)
+        self.assertEqual(
+            benchmark["metadata"]["deterministic_sequence_baseline_available_count"],
+            7,
+        )
+        self.assertEqual(benchmark["metadata"]["uniref_current_reference_clear_count"], 7)
+        self.assertEqual(benchmark["metadata"]["foldseek_tm_screen_available_count"], 7)
+        self.assertEqual(benchmark["metadata"]["foldseek_duplicate_clear_count"], 7)
+        self.assertEqual(
+            benchmark["metadata"]["esm_or_learned_embedding_sidecar_available_count"],
+            0,
+        )
+        self.assertFalse(benchmark["metadata"]["geometry_superiority_claim"])
+        self.assertFalse(benchmark["metadata"]["ready_for_label_import"])
+        self.assertEqual(benchmark["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(benchmark["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(benchmark["metrics"]["geometry_above_floor_fraction"], 1.0)
+        self.assertEqual(
+            benchmark["metrics"]["uniref_current_reference_clear_fraction"], 1.0
+        )
+        self.assertEqual(benchmark["metrics"]["foldseek_duplicate_clear_fraction"], 1.0)
+        self.assertEqual(benchmark["metrics"]["esm_sidecar_available_fraction"], 0.0)
+        self.assertEqual(benchmark["metrics"]["import_ready_fraction"], 0.0)
+        self.assertEqual(benchmark["metrics"]["countable_label_candidate_fraction"], 0.0)
+        self.assertFalse(
+            benchmark["baseline_comparisons"]["ec_keyword_routing"][
+                "counted_as_predictive_evidence"
+            ]
+        )
+        self.assertFalse(
+            benchmark["baseline_comparisons"][
+                "deterministic_sequence_or_kmer_nearest_neighbor"
+            ]["counted_as_predictive_evidence"]
+        )
+        self.assertTrue(benchmark["baseline_comparisons"]["foldseek_tm_screen"]["available"])
+        self.assertFalse(
+            benchmark["baseline_comparisons"]["esm_or_learned_embedding_sidecar"][
+                "available"
+            ]
+        )
+        self.assertFalse(
+            benchmark["baseline_comparisons"]["geometry_retrieval"].get(
+                "superiority_claim", False
+            )
+        )
+
+        rows = {row["row_id"]: row for row in benchmark["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P0A8Y5",
+                "uniprot:P14532",
+                "uniprot:P15776",
+                "uniprot:P39597",
+                "uniprot:P75792",
+            },
+        )
+        self.assertTrue(
+            all(
+                row["current_geometry_retrieval_triage"][
+                    "text_or_label_fields_used_for_score"
+                ]
+                is False
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["ec_keyword_routing_baseline"][
+                    "counted_as_predictive_evidence"
+                ]
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["esm_or_learned_embedding_sidecar"]["available"] is False
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in rows.values())
+        )
+
     def test_external_deep_terminal_import_gate_readiness_stays_closed(self) -> None:
         readiness = _load_json(
             ARTIFACTS

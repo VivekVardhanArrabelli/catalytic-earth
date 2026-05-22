@@ -271,6 +271,19 @@ exact blocker as the current-682 external seed-fingerprint payload
 adapter/rebaseline plus no-import label-factory gate rerun. The two metal rows
 still require phosphate/substrate specificity evidence before any
 phosphatase-specific import claim.
+The 2026-05-22T11:25:41Z main-loop follow-up resolves that adapter blocker for
+a no-import dry run only. The current-registry adapter artifact has 682 applied
+labels, the seven-row label-factory payload gate rerun passes 21/21 gates with
+0 blockers, and the decision artifact still records 0 import-ready candidates,
+0 countable candidates, 0 external seed-fingerprint imports, and unchanged
+registry invariants. The remaining non-metal next step is human/expert review
+of five rows (`I2DBY1`, `K7N5M8`, `P14532`, `P39597`, and `P15776`); the two
+metal rows stay outside that review packet until source-free
+phosphate/substrate specificity is available. The post-gate seven-row
+benchmark makes the modern-baseline caveats explicit on the same frozen rows:
+EC/keyword routing and sequence controls are not predictive evidence,
+Foldseek/TM is duplicate-control evidence only, no ESM sidecar is available,
+and no geometry-superiority claim is made.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

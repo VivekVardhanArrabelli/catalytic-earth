@@ -252,11 +252,51 @@ phosphatase-specific import claim.
 Evidence-based confidence call: confidence is high that this follow-up only
 advanced gate readiness, not imports, because both new artifacts set
 `ready_for_label_import=false`, `countable_label_candidate_count=0`, no
-external seed-fingerprint labels are present, and the only label-factory
-blocker remains the preregistered adapter/rebaseline gap. Confidence is high
+external seed-fingerprint labels are present, and at that point the only
+label-factory blocker was the preregistered adapter/rebaseline gap. Confidence is high
 that the P15776 UniRef screen is source-separated because the artifact records
 UniRef as duplicate/leakage evidence only and keeps EC/name/source context out
 of predictive mechanism evidence.
+
+As of the 2026-05-22T11:25:41Z main-loop follow-up, the automation closed that
+current-682 adapter blocker as a no-import gate rerun. The new adapter artifact
+`artifacts/v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json`
+applies the 1,000-slice label-factory audit to the current 682-label registry,
+preserving 212 `seed_fingerprint`, 470 `out_of_scope`, and the three imported
+external out-of-scope labels while producing a 682-row applied-label artifact.
+The rerun gate
+`artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_check_1000_currentregistry_adapter.json`
+passes 21/21 gates with 0 blockers. The decision artifact
+`artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_rerun_no_import_decision_20260522.json`
+keeps all seven mechanism-match rows review-only with 0 import-ready and 0
+countable candidates. The adapter blocker is resolved for this no-import dry
+run, but label import remains closed because human label action was not
+requested and `mechanism_match_review_ready` is not itself an import decision.
+The metal rows (`P0A8Y5` and `P75792`) still also require source-free
+phosphate/substrate specificity. The companion packet
+`artifacts/v3_external_seed_fingerprint_nonmetal_human_review_packet_20260522.json`
+separates the five non-metal rows (`I2DBY1`, `K7N5M8`, `P14532`, `P39597`, and
+`P15776`) as human-review-ready, not import-ready. The benchmark
+`artifacts/v3_external_seed_fingerprint_seven_row_post_gate_modern_baseline_benchmark_20260522.json`
+records the same seven-row surface against EC/keyword routing, deterministic
+sequence/UniRef controls, Foldseek/TM duplicate screens, and absent ESM
+sidecars; it explicitly makes no geometry-superiority claim.
+
+Evidence-based confidence call: confidence is high that the adapter blocker is
+closed only for a no-import dry run because the rerun gate records
+`passed_gate_count=21`, `gate_count=21`, and `blockers=[]`, while the decision
+packet still sets `ready_for_label_import=false`,
+`import_ready_candidate_count=0`, and `countable_label_candidate_count=0`.
+Confidence is high that registry safety rails were preserved because the
+adapter and decision artifacts both retain 682 labels, 212 seed fingerprints,
+470 out-of-scope labels, external out-of-scope imports exactly
+`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`, and 0 external
+seed-fingerprint imports. Confidence is high that source separation remains
+intact because all packet rows keep source-free geometry as predictive evidence
+and keep EC/name/prose/source context excluded from predictive scoring.
+Confidence is high that the benchmark caveats are explicit because it records
+`geometry_superiority_claim=false`, `esm_or_learned_embedding_sidecar_available_count=0`,
+and 0 import-ready/countable candidates.
 
 Evidence-based confidence call: confidence is high that the redox geometry
 blockers are closed because all three rows have PDB coordinate sidecars,
