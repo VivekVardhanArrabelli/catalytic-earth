@@ -1005,20 +1005,48 @@ exact missing fields. The materialized-tranche queue
 `artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json`
 adds 25 frozen PDB coordinate sidecars and raises `pymol_ready_count` to 26,
 with `rows_with_verified_focus_atoms=26`. The second materialized-tranche
-queue adds another 25 bounded PDB sidecars and raises both counts to 51.
+queue adds another 25 bounded PDB sidecars and raises both counts to 51. The
+later reusable selection/materialization CLI drains the remaining
+structure-path-only blocker queue through the final 21-row twelfth tranche,
+stages 296 selected mmCIF sidecars with 0 fetch failures, and raises both
+counts to 298 while keeping 0 import-ready and 0 countable rows. A final
+21-sidecar coordinate-context pass for the exact mapping blockers removes the
+last structure-path blocker without changing readiness. The remaining 23
+blocked rows need residue/focus-pair or source graph/PDB mapping repair rather
+than coordinate materialization.
 Generated `.pml` scripts and
 manual/dry-run decision batches default to `countable_import_ready=false`;
 accepted expert decisions must still enter the existing import preview and
 label-factory gates before any countable registry change.
 
 ```bash
+PYTHONPATH=src python -m catalytic_earth.cli select-mcsa-pymol-materialization-tranche \
+  --blocker-report artifacts/v3_mcsa_pymol_remaining_blocker_report_after_second_materialization_20260522.json \
+  --tranche-id third \
+  --out artifacts/v3_mcsa_pymol_third_materialization_tranche_selection_20260522.json
+
+PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche \
+  --selection artifacts/v3_mcsa_pymol_third_materialization_tranche_selection_20260522.json \
+  --coordinate-output-dir artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522 \
+  --tranche-id third \
+  --out artifacts/v3_mcsa_pymol_third_materialization_tranche_20260522.json
+
 PYTHONPATH=src python -m catalytic_earth.cli build-mcsa-pymol-review-queue \
+  --structure-dir artifacts/v3_foldseek_coordinates_1000 \
+  --structure-dir artifacts/v3_mcsa_pymol_materialized_coordinates_20260522 \
+  --structure-dir artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522 \
+  --structure-dir artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522 \
   --write-pml \
-  --out artifacts/v3_mcsa_pymol_expert_review_queue_1025.json \
-  --pml-dir artifacts/review_pymol/mcsa_1025
+  --out artifacts/v3_mcsa_pymol_expert_review_queue_1025_third_materialized_tranche_20260522.json \
+  --pml-dir artifacts/review_pymol/mcsa_1025_third_materialized_20260522
+
+PYTHONPATH=src python -m catalytic_earth.cli build-mcsa-pymol-remaining-blocker-report \
+  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025_third_materialized_tranche_20260522.json \
+  --tranche-id third \
+  --out artifacts/v3_mcsa_pymol_remaining_blocker_report_after_third_materialization_20260522.json
 
 PYTHONPATH=src python -m catalytic_earth.cli launch-mcsa-pymol-review \
-  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025.json \
+  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025_third_materialized_tranche_20260522.json \
   --out artifacts/v3_expert_review_decision_batch_pymol_manual.json \
   --no-launch
 ```

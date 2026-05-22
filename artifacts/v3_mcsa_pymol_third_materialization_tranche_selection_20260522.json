@@ -1,0 +1,399 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_pymol_third_materialization_tranche_selection",
+    "artifact_upload_or_removal_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T22:27:30Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "mcsa_pymol_third_structure_materialization_tranche_selection",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_entry_ids": [
+      "m_csa:748",
+      "m_csa:952",
+      "m_csa:794",
+      "m_csa:673",
+      "m_csa:671",
+      "m_csa:644",
+      "m_csa:725",
+      "m_csa:963",
+      "m_csa:976",
+      "m_csa:724",
+      "m_csa:951",
+      "m_csa:880",
+      "m_csa:847",
+      "m_csa:510",
+      "m_csa:741",
+      "m_csa:962",
+      "m_csa:967",
+      "m_csa:843",
+      "m_csa:961",
+      "m_csa:982",
+      "m_csa:559",
+      "m_csa:653",
+      "m_csa:840",
+      "m_csa:641",
+      "m_csa:960"
+    ],
+    "selected_row_count": 25,
+    "selected_structure_ids": [
+      "1J7G",
+      "2HW4",
+      "1JH6",
+      "1KDG",
+      "1FO6",
+      "1NWW",
+      "2ACU",
+      "4EAY",
+      "2QMJ",
+      "1JHF",
+      "4MHX",
+      "1PMI",
+      "1EHY",
+      "1BIX",
+      "1KAE",
+      "3D47",
+      "3UXJ",
+      "1DPG",
+      "2HXT",
+      "2BLE",
+      "1JS4",
+      "1KZH",
+      "1RO7",
+      "1PWV",
+      "2QJJ"
+    ],
+    "selection_policy": "freeze the next structure-materialization candidates named by the prior blocker report before fetching or rescoring",
+    "source_blocker_report": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_second_materialization_20260522.json"
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:748",
+      "entry_name": "D-aminoacyl-tRNA deacylase",
+      "exact_measured_distance_angstrom": 5.476,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 51,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1J7G",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:952",
+      "entry_name": "phosphohistidine phosphatase",
+      "exact_measured_distance_angstrom": 13.522,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 52,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "2HW4",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:794",
+      "entry_name": "2',3'-cyclic-nucleotide 3'-phosphodiesterase",
+      "exact_measured_distance_angstrom": 16.513,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 53,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1JH6",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:673",
+      "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "exact_measured_distance_angstrom": 11.125,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 54,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1KDG",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "exact_measured_distance_angstrom": 12.982,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 55,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1FO6",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "exact_measured_distance_angstrom": 17.185,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 56,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1NWW",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:725",
+      "entry_name": "aldehyde reductase",
+      "exact_measured_distance_angstrom": 11.803,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 57,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "2ACU",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:963",
+      "entry_name": "mannonate dehydratase (uxuA)",
+      "exact_measured_distance_angstrom": 17.366,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 58,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "4EAY",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:976",
+      "entry_name": "\u03b1\u2011glucosidase maltase-glucoamylase",
+      "exact_measured_distance_angstrom": 20.114,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 59,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "2QMJ",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:724",
+      "entry_name": "repressor LexA",
+      "exact_measured_distance_angstrom": 16.208,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 60,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1JHF",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:951",
+      "entry_name": "N-sulfoglucosamine sulfohydrolase",
+      "exact_measured_distance_angstrom": 17.326,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 61,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "4MHX",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:880",
+      "entry_name": "mannose-6-phosphate isomerase (type I)",
+      "exact_measured_distance_angstrom": 20.318,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 62,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1PMI",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:847",
+      "entry_name": "epoxide hydrolase",
+      "exact_measured_distance_angstrom": 22.31,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 63,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1EHY",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "exact_measured_distance_angstrom": 14.513,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 64,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1BIX",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:741",
+      "entry_name": "histidinol dehydrogenase",
+      "exact_measured_distance_angstrom": 16.249,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 65,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1KAE",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:962",
+      "entry_name": "L-rhamnonate dehydratase",
+      "exact_measured_distance_angstrom": 14.7,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 66,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "3D47",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:967",
+      "entry_name": "NADPH-dependent 7-cyano-7-deazaguanine reductase",
+      "exact_measured_distance_angstrom": 15.385,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 67,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "3UXJ",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:843",
+      "entry_name": "glucose-6-phosphate dehydrogenase",
+      "exact_measured_distance_angstrom": 8.109,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 68,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1DPG",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:961",
+      "entry_name": "L-fuconate dehydratase",
+      "exact_measured_distance_angstrom": 18.275,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 69,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "2HXT",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:982",
+      "entry_name": "GMP reductase",
+      "exact_measured_distance_angstrom": 7.91,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 70,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "2BLE",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:559",
+      "entry_name": "cellulase (GH9)",
+      "exact_measured_distance_angstrom": 14.997,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 71,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1JS4",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:653",
+      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "exact_measured_distance_angstrom": 15.838,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 72,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1KZH",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:840",
+      "entry_name": "alpha-2,3-sialyltransferase",
+      "exact_measured_distance_angstrom": 19.531,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 73,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1RO7",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "exact_measured_distance_angstrom": 13.968,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 74,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "1PWV",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:960",
+      "entry_name": "mannonate dehydratase",
+      "exact_measured_distance_angstrom": 19.258,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 75,
+      "selection_reason": "third bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "structure_id": "2QJJ",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ]
+}

@@ -217,7 +217,10 @@ from .performance import write_local_performance_suite
 from .progress import WorkEntry, append_work_entry, write_progress_report
 from .pymol_review import (
     build_mcsa_pymol_expert_review_queue,
+    build_mcsa_pymol_remaining_blocker_report,
     launch_mcsa_pymol_review,
+    materialize_mcsa_pymol_structure_tranche,
+    select_mcsa_pymol_materialization_tranche,
     validate_mcsa_pymol_decision_batch,
     write_mcsa_pymol_scripts,
 )
@@ -4884,6 +4887,54 @@ def cmd_build_mcsa_pymol_review_queue(args: argparse.Namespace) -> int:
     print(
         "Wrote M-CSA PyMOL review queue to "
         f"{args.out} ({queue['metadata']['pymol_ready_count']} ready)"
+    )
+    return 0
+
+
+def cmd_select_mcsa_pymol_materialization_tranche(args: argparse.Namespace) -> int:
+    selection = select_mcsa_pymol_materialization_tranche(
+        blocker_report=read_json_object(Path(args.blocker_report)),
+        max_rows=args.max_rows,
+        tranche_id=args.tranche_id,
+        source_blocker_report_path=args.blocker_report,
+    )
+    write_json(Path(args.out), selection)
+    print(
+        "Wrote M-CSA PyMOL materialization tranche selection to "
+        f"{args.out} ({selection['metadata']['selected_row_count']} rows)"
+    )
+    return 0
+
+
+def cmd_materialize_mcsa_pymol_structure_tranche(args: argparse.Namespace) -> int:
+    materialization = materialize_mcsa_pymol_structure_tranche(
+        selection=read_json_object(Path(args.selection)),
+        coordinate_output_dir=Path(args.coordinate_output_dir),
+        source_selection_artifact=args.selection,
+        tranche_id=args.tranche_id,
+    )
+    write_json(Path(args.out), materialization)
+    print(
+        "Wrote M-CSA PyMOL structure materialization to "
+        f"{args.out} ({materialization['metadata']['materialized_count']} "
+        f"materialized, {materialization['metadata']['failed_count']} failed)"
+    )
+    return 0
+
+
+def cmd_build_mcsa_pymol_remaining_blocker_report(args: argparse.Namespace) -> int:
+    report = build_mcsa_pymol_remaining_blocker_report(
+        queue=read_json_object(Path(args.queue)),
+        source_queue_path=args.queue,
+        max_next_tranche_rows=args.max_next_tranche_rows,
+        max_exact_blocker_sample=args.max_exact_blocker_sample,
+        tranche_id=args.tranche_id,
+    )
+    write_json(Path(args.out), report)
+    print(
+        "Wrote M-CSA PyMOL remaining blocker report to "
+        f"{args.out} ({report['metadata']['next_tranche_candidate_count']} "
+        "next candidates)"
     )
     return 0
 
@@ -15379,6 +15430,58 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_mcsa_pymol_expert_review_queue_1025.json",
     )
     pymol_queue.set_defaults(func=cmd_build_mcsa_pymol_review_queue)
+
+    pymol_select = subparsers.add_parser(
+        "select-mcsa-pymol-materialization-tranche",
+        help="select a bounded review-only PyMOL structure materialization tranche",
+    )
+    pymol_select.add_argument(
+        "--blocker-report",
+        default="artifacts/v3_mcsa_pymol_remaining_blocker_report_after_second_materialization_20260522.json",
+    )
+    pymol_select.add_argument("--max-rows", type=int, default=25)
+    pymol_select.add_argument("--tranche-id", default="third")
+    pymol_select.add_argument(
+        "--out",
+        default="artifacts/v3_mcsa_pymol_third_materialization_tranche_selection_20260522.json",
+    )
+    pymol_select.set_defaults(func=cmd_select_mcsa_pymol_materialization_tranche)
+
+    pymol_materialize = subparsers.add_parser(
+        "materialize-mcsa-pymol-structure-tranche",
+        help="download selected PDB mmCIFs for review-only PyMOL inspection",
+    )
+    pymol_materialize.add_argument(
+        "--selection",
+        default="artifacts/v3_mcsa_pymol_third_materialization_tranche_selection_20260522.json",
+    )
+    pymol_materialize.add_argument(
+        "--coordinate-output-dir",
+        default="artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522",
+    )
+    pymol_materialize.add_argument("--tranche-id", default="third")
+    pymol_materialize.add_argument(
+        "--out",
+        default="artifacts/v3_mcsa_pymol_third_materialization_tranche_20260522.json",
+    )
+    pymol_materialize.set_defaults(func=cmd_materialize_mcsa_pymol_structure_tranche)
+
+    pymol_blockers = subparsers.add_parser(
+        "build-mcsa-pymol-remaining-blocker-report",
+        help="summarize blocked PyMOL review rows and the next materialization tranche",
+    )
+    pymol_blockers.add_argument(
+        "--queue",
+        default="artifacts/v3_mcsa_pymol_expert_review_queue_1025_third_materialized_tranche_20260522.json",
+    )
+    pymol_blockers.add_argument("--max-next-tranche-rows", type=int, default=25)
+    pymol_blockers.add_argument("--max-exact-blocker-sample", type=int, default=25)
+    pymol_blockers.add_argument("--tranche-id", default="third")
+    pymol_blockers.add_argument(
+        "--out",
+        default="artifacts/v3_mcsa_pymol_remaining_blocker_report_after_third_materialization_20260522.json",
+    )
+    pymol_blockers.set_defaults(func=cmd_build_mcsa_pymol_remaining_blocker_report)
 
     pymol_review = subparsers.add_parser(
         "launch-mcsa-pymol-review",

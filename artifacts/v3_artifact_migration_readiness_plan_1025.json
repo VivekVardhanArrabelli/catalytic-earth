@@ -1,18 +1,18 @@
 {
   "metadata": {
     "deletion_authorized_count": 0,
-    "generated_at": "2026-05-18T04:09:10Z",
+    "generated_at": "2026-05-22T23:04:24Z",
     "method": "artifact_migration_readiness_plan",
     "migration_ready_now_count": 0,
-    "planned_file_count": 108,
-    "planned_total_bytes": 1460658095,
+    "planned_file_count": 113,
+    "planned_total_bytes": 1496621954,
     "policy": "No migration, deletion, or Git history rewrite is authorized by this plan.",
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
     "producer_consumer_manifest": "artifacts/v3_artifact_producer_consumer_manifest_1025.json",
     "source_inventory": "artifacts/v3_artifact_storage_inventory_1025.json",
     "storage_class_counts": {
       "candidate_git_lfs_later": 8,
-      "candidate_object_storage_later": 9,
+      "candidate_object_storage_later": 14,
       "candidate_release_asset_later": 91
     }
   },
@@ -2663,6 +2663,42 @@
     },
     {
       "canonical_summary_preserving_conclusion": [
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "README.md",
+        "work/handoff.md"
+      ],
+      "category": "raw_cache",
+      "git_policy": "external_cache_candidate",
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready_now": false,
+      "path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_3AIE.cif",
+      "producer_command_status": "known",
+      "recommended_storage_class": "candidate_object_storage_later",
+      "required_preconditions": [
+        "explicit human approval for external object-storage migration",
+        "replacement storage URI and checksum manifest committed before any Git removal",
+        "restage/refetch workflow documented for source-only checkouts and automation",
+        "downstream Foldseek/TM consumers can resolve sidecars from the replacement location"
+      ],
+      "rollback_expectations": [
+        "restore the exact path from object storage using the recorded SHA-256",
+        "rerun Foldseek readiness or duplicate-screen checks that consume the sidecar"
+      ],
+      "sha256": "5d37a6ad7f7d33b8318965786408dec2857f432b65de0066dab46988b3bccfd9",
+      "size_bytes": 10396319,
+      "tests_to_run": [
+        "PYTHONPATH=src python -m unittest discover -s tests",
+        "PYTHONPATH=src python -m catalytic_earth.cli validate",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-storage-policy --inventory artifacts/v3_artifact_storage_inventory_1025.json --out artifacts/v3_artifact_storage_policy_check_1025.json",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard --inventory artifacts/v3_artifact_storage_inventory_1025.json --producer-consumer-manifest artifacts/v3_artifact_producer_consumer_manifest_1025.json --out artifacts/v3_artifact_admission_guard_1025.json"
+      ]
+    },
+    {
+      "canonical_summary_preserving_conclusion": [
         "README.md",
         "work/status.md",
         "artifacts/v3_label_factory_batch_summary.json",
@@ -3445,6 +3481,42 @@
     },
     {
       "canonical_summary_preserving_conclusion": [
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "README.md",
+        "work/handoff.md"
+      ],
+      "category": "raw_cache",
+      "git_policy": "external_cache_candidate",
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready_now": false,
+      "path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_1P7M.cif",
+      "producer_command_status": "known",
+      "recommended_storage_class": "candidate_object_storage_later",
+      "required_preconditions": [
+        "explicit human approval for external object-storage migration",
+        "replacement storage URI and checksum manifest committed before any Git removal",
+        "restage/refetch workflow documented for source-only checkouts and automation",
+        "downstream Foldseek/TM consumers can resolve sidecars from the replacement location"
+      ],
+      "rollback_expectations": [
+        "restore the exact path from object storage using the recorded SHA-256",
+        "rerun Foldseek readiness or duplicate-screen checks that consume the sidecar"
+      ],
+      "sha256": "d8ed17b21b2f6c06d01c4748997ea7283f3b88350e7a46e7868fca010c8d4e25",
+      "size_bytes": 6669246,
+      "tests_to_run": [
+        "PYTHONPATH=src python -m unittest discover -s tests",
+        "PYTHONPATH=src python -m catalytic_earth.cli validate",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-storage-policy --inventory artifacts/v3_artifact_storage_inventory_1025.json --out artifacts/v3_artifact_storage_policy_check_1025.json",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard --inventory artifacts/v3_artifact_storage_inventory_1025.json --producer-consumer-manifest artifacts/v3_artifact_producer_consumer_manifest_1025.json --out artifacts/v3_artifact_admission_guard_1025.json"
+      ]
+    },
+    {
+      "canonical_summary_preserving_conclusion": [
         "README.md",
         "work/status.md",
         "artifacts/v3_label_factory_batch_summary.json",
@@ -3473,6 +3545,42 @@
       ],
       "sha256": "6c39e83ced03520830a4b2c54350c1ab7e06451aef12df0c801251510ba7f500",
       "size_bytes": 6641911,
+      "tests_to_run": [
+        "PYTHONPATH=src python -m unittest discover -s tests",
+        "PYTHONPATH=src python -m catalytic_earth.cli validate",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-storage-policy --inventory artifacts/v3_artifact_storage_inventory_1025.json --out artifacts/v3_artifact_storage_policy_check_1025.json",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard --inventory artifacts/v3_artifact_storage_inventory_1025.json --producer-consumer-manifest artifacts/v3_artifact_producer_consumer_manifest_1025.json --out artifacts/v3_artifact_admission_guard_1025.json"
+      ]
+    },
+    {
+      "canonical_summary_preserving_conclusion": [
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "README.md",
+        "work/handoff.md"
+      ],
+      "category": "raw_cache",
+      "git_policy": "external_cache_candidate",
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready_now": false,
+      "path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
+      "producer_command_status": "known",
+      "recommended_storage_class": "candidate_object_storage_later",
+      "required_preconditions": [
+        "explicit human approval for external object-storage migration",
+        "replacement storage URI and checksum manifest committed before any Git removal",
+        "restage/refetch workflow documented for source-only checkouts and automation",
+        "downstream Foldseek/TM consumers can resolve sidecars from the replacement location"
+      ],
+      "rollback_expectations": [
+        "restore the exact path from object storage using the recorded SHA-256",
+        "rerun Foldseek readiness or duplicate-screen checks that consume the sidecar"
+      ],
+      "sha256": "363effb8573293dce572d7e15f3493cffa724cb2ac48dd7d4789581a449eec53",
+      "size_bytes": 6473062,
       "tests_to_run": [
         "PYTHONPATH=src python -m unittest discover -s tests",
         "PYTHONPATH=src python -m catalytic_earth.cli validate",
@@ -3519,6 +3627,42 @@
     },
     {
       "canonical_summary_preserving_conclusion": [
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "README.md",
+        "work/handoff.md"
+      ],
+      "category": "raw_cache",
+      "git_policy": "external_cache_candidate",
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready_now": false,
+      "path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_5ODI.cif",
+      "producer_command_status": "known",
+      "recommended_storage_class": "candidate_object_storage_later",
+      "required_preconditions": [
+        "explicit human approval for external object-storage migration",
+        "replacement storage URI and checksum manifest committed before any Git removal",
+        "restage/refetch workflow documented for source-only checkouts and automation",
+        "downstream Foldseek/TM consumers can resolve sidecars from the replacement location"
+      ],
+      "rollback_expectations": [
+        "restore the exact path from object storage using the recorded SHA-256",
+        "rerun Foldseek readiness or duplicate-screen checks that consume the sidecar"
+      ],
+      "sha256": "18301b6259b420ab2609921b517cb2bd82624723fc9ce1647516c21db09a1faf",
+      "size_bytes": 6276121,
+      "tests_to_run": [
+        "PYTHONPATH=src python -m unittest discover -s tests",
+        "PYTHONPATH=src python -m catalytic_earth.cli validate",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-storage-policy --inventory artifacts/v3_artifact_storage_inventory_1025.json --out artifacts/v3_artifact_storage_policy_check_1025.json",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard --inventory artifacts/v3_artifact_storage_inventory_1025.json --producer-consumer-manifest artifacts/v3_artifact_producer_consumer_manifest_1025.json --out artifacts/v3_artifact_admission_guard_1025.json"
+      ]
+    },
+    {
+      "canonical_summary_preserving_conclusion": [
         "README.md",
         "work/status.md",
         "artifacts/v3_label_factory_batch_summary.json",
@@ -3545,6 +3689,42 @@
       ],
       "sha256": "a8d3dcf2efe0c5b062d4b1b1122b38f84b98814b3476dccd1ae035459f669638",
       "size_bytes": 6182354,
+      "tests_to_run": [
+        "PYTHONPATH=src python -m unittest discover -s tests",
+        "PYTHONPATH=src python -m catalytic_earth.cli validate",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-storage-policy --inventory artifacts/v3_artifact_storage_inventory_1025.json --out artifacts/v3_artifact_storage_policy_check_1025.json",
+        "PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard --inventory artifacts/v3_artifact_storage_inventory_1025.json --producer-consumer-manifest artifacts/v3_artifact_producer_consumer_manifest_1025.json --out artifacts/v3_artifact_admission_guard_1025.json"
+      ]
+    },
+    {
+      "canonical_summary_preserving_conclusion": [
+        "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+        "README.md",
+        "work/handoff.md"
+      ],
+      "category": "raw_cache",
+      "git_policy": "external_cache_candidate",
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready_now": false,
+      "path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2VZ9.cif",
+      "producer_command_status": "known",
+      "recommended_storage_class": "candidate_object_storage_later",
+      "required_preconditions": [
+        "explicit human approval for external object-storage migration",
+        "replacement storage URI and checksum manifest committed before any Git removal",
+        "restage/refetch workflow documented for source-only checkouts and automation",
+        "downstream Foldseek/TM consumers can resolve sidecars from the replacement location"
+      ],
+      "rollback_expectations": [
+        "restore the exact path from object storage using the recorded SHA-256",
+        "rerun Foldseek readiness or duplicate-screen checks that consume the sidecar"
+      ],
+      "sha256": "86f4381fb6e886acf6bc68738e9363e32a36e49124051e537a8481a9faa8a5a8",
+      "size_bytes": 6149111,
       "tests_to_run": [
         "PYTHONPATH=src python -m unittest discover -s tests",
         "PYTHONPATH=src python -m catalytic_earth.cli validate",

@@ -84,11 +84,10 @@ rows, 0 countable candidates, 0 new external rows, and no permission to start a
 broad external mini-campaign.
 
 Do not reopen broad external mini-campaign breadth by default. The next
-highest-value action is human review on the seven external rows or the 51
+highest-value action is human review on the seven external rows or the 298
 PyMOL-ready M-CSA review rows. If human review is unavailable and the main loop
-continues M-CSA readiness, keep it bounded to the remaining blocker report's
-next-tranche candidates, fetch only selected coordinate files, verify focus CA
-atoms in committed coordinates, and preserve the zero-import gate.
+continues M-CSA readiness, the structure-path-only queue is now drained; work
+only the 23 exact mapping blockers unless new human decisions arrive.
 
 Evidence-based confidence call: confidence is high that the external queue is
 now automation-terminal but not import-ready because the packet records 7/7
@@ -96,21 +95,29 @@ source-free geometry-above-floor rows, 7/7 UniRef-clear rows, 0 high-TM
 current-countable duplicate hits, 0 import-ready candidates, 0 countable
 candidates, no registry/fingerprint edits, no artifact upload/removal, no
 `removal_allowed=true`, and a passing focused regression test plus zero-import
-gate.
+gate. Confidence is also high that the PyMOL bridge remains review-only: all
+materializable structure-path-only blocker rows were selected from existing
+blocker reports before download, 317 selected/review-context mmCIF sidecars
+were committed with 0 fetch failures, the final queue has 298/298 verified
+focus-atom selections, and the closure zero-import gate passed.
+Wrap validation passed with 893 unit tests, CLI validation at 682 labels and 8
+fingerprints, artifact migration dry-run/local-file validation at 113 rows with
+`removal_allowed=0`, and an admission guard covering all 113 large files.
 
-### Ready Now: 51-Row PyMOL Review Tranche
+### Ready Now: 298-Row PyMOL Review Tranche
 
-The PyMOL readiness target has been met twice. The latest materialized review
-queue is:
+The PyMOL structure-path readiness queue is drained. The latest materialized
+review queue is:
 
 ```text
-artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json
+artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json
 ```
 
-It scans the same 321 M-CSA expert-review rows, materializes 50 selected PDB
-mmCIF structures from two frozen rank-ordered tranches, and raises
-`pymol_ready_count` from 1 to 51. The queue verifies that both focus CA atom
-selections are present in the structure file before marking a row ready.
+It scans the same 321 M-CSA expert-review rows, materializes 296 selected PDB
+mmCIF structures from 12 frozen rank-ordered readiness tranches plus 21 exact
+mapping blocker coordinate-context sidecars, and raises `pymol_ready_count`
+from 1 to 298. The queue verifies that both focus CA atom selections are
+present in the structure file before marking a row ready.
 The first 26 ready rows are `m_csa:670`, `m_csa:643`,
 `m_csa:756`, `m_csa:757`, `m_csa:760`, `m_csa:696`, `m_csa:654`, `m_csa:663`,
 `m_csa:662`, `m_csa:751`, `m_csa:918`, `m_csa:553`, `m_csa:778`,
@@ -123,12 +130,26 @@ The second tranche adds `m_csa:684`, `m_csa:834`, `m_csa:925`, `m_csa:891`,
 `m_csa:784`, `m_csa:788`, `m_csa:806`, `m_csa:534`, `m_csa:678`,
 `m_csa:659`, `m_csa:761`, `m_csa:938`, `m_csa:807`, `m_csa:731`, and
 `m_csa:949`.
+The third tranche adds `m_csa:748`, `m_csa:952`, `m_csa:794`, `m_csa:673`,
+`m_csa:671`, `m_csa:644`, `m_csa:725`, `m_csa:963`, `m_csa:976`,
+`m_csa:724`, `m_csa:951`, `m_csa:880`, `m_csa:847`, `m_csa:510`,
+`m_csa:741`, `m_csa:962`, `m_csa:967`, `m_csa:843`, `m_csa:961`,
+`m_csa:982`, `m_csa:559`, `m_csa:653`, `m_csa:840`, `m_csa:641`, and
+`m_csa:960`.
+The fourth tranche adds `m_csa:783`, `m_csa:700`, `m_csa:828`, `m_csa:768`,
+`m_csa:999`, `m_csa:873`, `m_csa:829`, `m_csa:779`, `m_csa:755`,
+`m_csa:781`, `m_csa:817`, `m_csa:693`, `m_csa:564`, `m_csa:875`,
+`m_csa:846`, `m_csa:867`, `m_csa:848`, `m_csa:799`, `m_csa:997`,
+`m_csa:803`, `m_csa:832`, `m_csa:734`, `m_csa:858`, `m_csa:835`, and
+`m_csa:864`. Later tranches drain the remaining structure-path-only rows and
+are summarized in
+`artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json`.
 
 Run the human review loop with:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli launch-mcsa-pymol-review \
-  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json \
+  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json \
   --out artifacts/v3_expert_review_decision_batch_pymol_manual.json \
   --reviewer vivek
 ```
@@ -136,16 +157,18 @@ PYTHONPATH=src python -m catalytic_earth.cli launch-mcsa-pymol-review \
 The generated PyMOL scripts live under:
 
 ```text
-artifacts/review_pymol/mcsa_1025_second_materialized_20260522/
+artifacts/review_pymol/mcsa_1025_all_materialized_20260522/
 ```
 
 Safety status: this tranche is review-only. It imports 0 labels, creates 0
 countable candidates, edits no registries/fingerprints, and passes the
 review-only zero-import gate in
-`artifacts/v3_post_mcsa_pymol_second_materialization_review_only_zero_import_gate_20260522.json`.
-The remaining blocker report now shows 270 blocked rows: 268 still missing
-structure paths, 2 missing structure IDs, and 23 missing exact focus-pair or
-distance evidence.
+`artifacts/v3_post_mcsa_pymol_all_materializable_closure_review_only_zero_import_gate_20260522.json`.
+The remaining blocker report now shows 23 blocked rows and 0 next
+structure-materialization candidates, with no remaining structure-path
+blocker. Exact missing evidence is a focus CA atom pair/distance repair for 23
+rows, including 2 rows that also need source graph/PDB mapping repair before
+PyMOL staging.
 
 ### PyMOL Human-Review Cockpit
 

@@ -5,10 +5,12 @@ import re
 import shlex
 import shutil
 import subprocess
+import urllib.request
 from collections import Counter
 from datetime import datetime, timezone
+from hashlib import sha256
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 
 DEFAULT_STRUCTURE_DIRS = (Path("artifacts/v3_foldseek_coordinates_1000"),)
@@ -219,6 +221,271 @@ def write_mcsa_pymol_scripts(
             "script_count": len(script_rows),
         },
         "rows": script_rows,
+    }
+
+
+def select_mcsa_pymol_materialization_tranche(
+    *,
+    blocker_report: dict[str, Any],
+    max_rows: int = 25,
+    tranche_id: str = "next",
+    source_blocker_report_path: str | None = None,
+) -> dict[str, Any]:
+    candidates = [
+        row
+        for row in blocker_report.get("next_structure_materialization_candidates", [])
+        if isinstance(row, dict)
+    ][:max_rows]
+    rows: list[dict[str, Any]] = []
+    for row in candidates:
+        rows.append(
+            {
+                "rank": row.get("rank"),
+                "entry_id": row.get("entry_id"),
+                "entry_name": row.get("entry_name"),
+                "structure_id": row.get("structure_id"),
+                "target_fingerprint_id": row.get("target_fingerprint_id"),
+                "exact_measured_distance_angstrom": row.get(
+                    "exact_measured_distance_angstrom"
+                ),
+                "missing_fields": list(row.get("missing_fields", []))
+                if isinstance(row.get("missing_fields"), list)
+                else [],
+                "selection_reason": (
+                    f"{tranche_id} bounded tranche from the prior remaining-blocker "
+                    "report: highest-priority blocked rows with exact CA pair/distance "
+                    "and missing local structure path"
+                ),
+                "next_action": (
+                    "materialize PDB mmCIF into a committed review-only structure "
+                    "directory and rerun the PyMOL queue"
+                ),
+            }
+        )
+
+    return {
+        "metadata": {
+            "artifact_id": f"v3_mcsa_pymol_{tranche_id}_materialization_tranche_selection",
+            "method": f"mcsa_pymol_{tranche_id}_structure_materialization_tranche_selection",
+            "created_at": _now_iso(),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "new_external_rows_frozen": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "selected_row_count": len(rows),
+            "selected_entry_ids": [str(row.get("entry_id")) for row in rows],
+            "selected_structure_ids": [str(row.get("structure_id")) for row in rows],
+            "selection_policy": (
+                "freeze the next structure-materialization candidates named by the "
+                "prior blocker report before fetching or rescoring"
+            ),
+            "source_blocker_report": source_blocker_report_path,
+        },
+        "rows": rows,
+    }
+
+
+def materialize_mcsa_pymol_structure_tranche(
+    *,
+    selection: dict[str, Any],
+    coordinate_output_dir: Path,
+    source_selection_artifact: str | None = None,
+    tranche_id: str = "next",
+    fetcher: Callable[[str], bytes] | None = None,
+) -> dict[str, Any]:
+    coordinate_output_dir.mkdir(parents=True, exist_ok=True)
+    fetch = fetcher or _download_bytes
+    rows: list[dict[str, Any]] = []
+
+    for selected in selection.get("rows", []):
+        if not isinstance(selected, dict):
+            continue
+        structure_id = str(selected.get("structure_id") or "").upper()
+        url = f"https://files.rcsb.org/download/{structure_id}.cif"
+        local_path = coordinate_output_dir / f"pdb_{structure_id}.cif"
+        row = {
+            **selected,
+            "coordinate_source_url": url,
+            "local_structure_path": str(local_path),
+        }
+        try:
+            data = local_path.read_bytes() if local_path.exists() else fetch(url)
+            if not data:
+                raise ValueError("download returned no bytes")
+            data = _normalize_mmcif_bytes(data)
+            local_path.write_bytes(data)
+            text = data.decode("utf-8", errors="replace")
+            first_line = text.splitlines()[0] if text.splitlines() else ""
+            if not first_line.startswith("data_"):
+                raise ValueError("downloaded coordinate file is not an mmCIF data block")
+            row.update(
+                {
+                    "coordinate_normalized": True,
+                    "materialization_status": "materialized",
+                    "sha256": sha256(data).hexdigest(),
+                    "size_bytes": len(data),
+                    "first_line": first_line,
+                }
+            )
+        except Exception as exc:  # pragma: no cover - exact network failures vary.
+            row.update(
+                {
+                    "materialization_status": "failed",
+                    "error": str(exc),
+                    "sha256": None,
+                    "size_bytes": 0,
+                    "first_line": None,
+                }
+            )
+        rows.append(row)
+
+    materialized = [
+        row for row in rows if row.get("materialization_status") == "materialized"
+    ]
+    failed = [row for row in rows if row.get("materialization_status") == "failed"]
+    return {
+        "metadata": {
+            "artifact_id": f"v3_mcsa_pymol_{tranche_id}_materialization_tranche",
+            "method": f"mcsa_pymol_{tranche_id}_selected_pdb_coordinate_materialization",
+            "created_at": _now_iso(),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "new_external_rows_frozen": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "removal_allowed": False,
+            "selected_row_count": len(rows),
+            "materialized_count": len(materialized),
+            "failed_count": len(failed),
+            "materialized_entry_ids": [
+                str(row.get("entry_id")) for row in materialized
+            ],
+            "materialized_structure_ids": [
+                str(row.get("structure_id")) for row in materialized
+            ],
+            "coordinate_output_dir": str(coordinate_output_dir),
+            "fetch_source": "RCSB PDB mmCIF download endpoint",
+            "source_selection_artifact": source_selection_artifact,
+            "coordinate_normalization": "utf8_line_trailing_whitespace_stripped_lf",
+            "policy": (
+                "Bounded review-only coordinate staging for M-CSA PyMOL inspection; "
+                "no labels, registries, production scores, upload, removal, or "
+                "countable imports are authorized."
+            ),
+        },
+        "rows": rows,
+    }
+
+
+def build_mcsa_pymol_remaining_blocker_report(
+    *,
+    queue: dict[str, Any],
+    source_queue_path: str | None = None,
+    max_next_tranche_rows: int = 25,
+    max_exact_blocker_sample: int = 25,
+    tranche_id: str = "next",
+) -> dict[str, Any]:
+    rows = [
+        row for row in queue.get("rows", []) if isinstance(row, dict)
+    ]
+    blocked = [row for row in rows if not row.get("pymol_ready")]
+    next_candidates: list[dict[str, Any]] = []
+    structure_id_blockers: list[dict[str, Any]] = []
+    exact_pair_blockers: list[dict[str, Any]] = []
+
+    for row in blocked:
+        missing = set(row.get("missing_fields", []))
+        common = _blocker_row_common(row)
+        if (
+            "missing_structure_path" in missing
+            and "missing_structure_id" not in missing
+            and "missing_exact_ca_atom_pair" not in missing
+            and "missing_exact_distance" not in missing
+            and len(next_candidates) < max_next_tranche_rows
+        ):
+            next_candidates.append(
+                {
+                    **common,
+                    "next_action": (
+                        "materialize PDB mmCIF into a committed review-only structure "
+                        "directory and rerun the PyMOL queue"
+                    ),
+                }
+            )
+        if "missing_structure_id" in missing:
+            structure_id_blockers.append(
+                {
+                    **common,
+                    "exact_blocker": (
+                        "geometry artifact has no PDB id; needs source graph/PDB "
+                        "mapping repair before PyMOL staging"
+                    ),
+                }
+            )
+        if (
+            "missing_exact_ca_atom_pair" in missing
+            or "missing_exact_distance" in missing
+        ) and len(exact_pair_blockers) < max_exact_blocker_sample:
+            exact_pair_blockers.append(
+                {
+                    **common,
+                    "exact_blocker": (
+                        "geometry artifact lacks a resolved CA atom pair/distance "
+                        "for the visual focus; needs residue/atom mapping repair "
+                        "before PyMOL readiness"
+                    ),
+                }
+            )
+
+    metadata = dict(queue.get("metadata", {}))
+    missing_counts = metadata.get("missing_field_counts", {})
+    return {
+        "metadata": {
+            "artifact_id": f"v3_mcsa_pymol_remaining_blocker_report_after_{tranche_id}_materialization",
+            "method": f"mcsa_pymol_remaining_readiness_blocker_report_after_{tranche_id}_tranche",
+            "created_at": _now_iso(),
+            "review_only": True,
+            "ready_for_label_import": False,
+            "import_ready_candidate_count": 0,
+            "countable_label_candidate_count": 0,
+            "new_external_rows_frozen": 0,
+            "curated_label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "artifact_upload_or_removal_performed": False,
+            "removal_allowed": False,
+            "source_queue": source_queue_path,
+            "total_review_rows_scanned": metadata.get("total_review_rows_scanned"),
+            "pymol_ready_count": metadata.get("pymol_ready_count"),
+            "rows_with_verified_focus_atoms": metadata.get(
+                "rows_with_verified_focus_atoms"
+            ),
+            "blocked_count": metadata.get("blocked_count"),
+            "next_tranche_candidate_count": len(next_candidates),
+            "missing_field_counts": missing_counts,
+            "missing_structure_id_count": int(missing_counts.get("missing_structure_id", 0))
+            if isinstance(missing_counts, dict)
+            else 0,
+            "missing_exact_pair_or_distance_count": max(
+                int(missing_counts.get("missing_exact_ca_atom_pair", 0)),
+                int(missing_counts.get("missing_exact_distance", 0)),
+            )
+            if isinstance(missing_counts, dict)
+            else 0,
+            "decision": (
+                "human_review_ready_rows_or_continue_bounded_structure_materialization; "
+                "no labels or imports authorized"
+            ),
+        },
+        "next_structure_materialization_candidates": next_candidates,
+        "structure_id_mapping_blockers": structure_id_blockers,
+        "exact_atom_pair_mapping_blockers_sample": exact_pair_blockers,
     }
 
 
@@ -757,6 +1024,34 @@ def _with_decision_counts(batch: dict[str, Any]) -> dict[str, Any]:
     )
     batch["metadata"] = metadata
     return batch
+
+
+def _blocker_row_common(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "rank": row.get("rank"),
+        "entry_id": row.get("entry_id"),
+        "entry_name": row.get("entry_name"),
+        "structure_id": row.get("structure_id"),
+        "target_fingerprint_id": row.get("target_fingerprint_id"),
+        "exact_measured_distance_angstrom": row.get("exact_measured_distance_angstrom"),
+        "missing_fields": list(row.get("missing_fields", []))
+        if isinstance(row.get("missing_fields"), list)
+        else [],
+    }
+
+
+def _download_bytes(url: str) -> bytes:
+    with urllib.request.urlopen(url, timeout=30) as response:
+        return response.read()
+
+
+def _normalize_mmcif_bytes(data: bytes) -> bytes:
+    text = data.decode("utf-8", errors="replace")
+    lines = [line.rstrip(" \t") for line in text.splitlines()]
+    normalized = "\n".join(lines)
+    if normalized or text.endswith(("\n", "\r")):
+        normalized += "\n"
+    return normalized.encode("utf-8")
 
 
 def _terminal_context(row: dict[str, Any]) -> str:

@@ -559,6 +559,52 @@ def _producer_consumer_profile(row: dict[str, Any]) -> dict[str, Any]:
         )
         return base
 
+    if "/v3_mcsa_pymol_" in path and "_coordinates_20260522/" in path:
+        coordinate_dir = str(Path(path).parent)
+        base.update(
+            {
+                "producer_command_status": "known",
+                "likely_producer_cli_commands": [
+                    (
+                        "PYTHONPATH=src python -m catalytic_earth.cli "
+                        "materialize-mcsa-pymol-structure-tranche "
+                        "--selection <matching v3_mcsa_pymol_*selection_20260522.json> "
+                        f"--coordinate-output-dir {coordinate_dir} "
+                        "--out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+                    )
+                ],
+                "source_inputs": [
+                    "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+                    "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+                    "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json",
+                ],
+                "parameter_assumptions": [
+                    "review_only=True",
+                    "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+                    "no label import, production score, artifact upload, or removal is authorized",
+                ],
+                "downstream_consumers": [
+                    "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+                    "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+                    "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/",
+                ],
+                "canonical_summary_preserves_conclusion": True,
+                "canonical_summary_artifacts": [
+                    "README.md",
+                    "docs/label_factory.md",
+                    "work/handoff.md",
+                    "work/scope.md",
+                    "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+                ],
+                "migration_blockers": [
+                    "replacement object-storage location is not approved",
+                    "Phase 2 upload and Phase 3 removal are not authorized",
+                    "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration",
+                ],
+            }
+        )
+        return base
+
     if "/v3_foldseek_coordinates_1000/" in path:
         base.update(
             {

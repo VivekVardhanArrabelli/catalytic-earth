@@ -7,7 +7,10 @@ from pathlib import Path
 
 from catalytic_earth.pymol_review import (
     build_mcsa_pymol_expert_review_queue,
+    build_mcsa_pymol_remaining_blocker_report,
     launch_mcsa_pymol_review,
+    materialize_mcsa_pymol_structure_tranche,
+    select_mcsa_pymol_materialization_tranche,
     validate_mcsa_pymol_decision_batch,
     write_mcsa_pymol_scripts,
 )
@@ -142,6 +145,78 @@ class PyMOLReviewTests(unittest.TestCase):
         self.assertFalse(row["focus_atom_selection_verified"])
         self.assertIn("missing_left_structure_atom", row["missing_fields"])
         self.assertIn("missing_right_structure_atom", row["missing_fields"])
+
+    def test_remaining_blocker_report_selects_only_structure_path_gaps(self) -> None:
+        queue = build_mcsa_pymol_expert_review_queue(
+            expert_review_export=_review_export(),
+            review_debt_summary=_review_debt(),
+            review_evidence_gaps=_evidence_gaps(),
+            geometry_features=_geometry_features(),
+            structure_dirs=[],
+        )
+        report = build_mcsa_pymol_remaining_blocker_report(
+            queue=queue,
+            source_queue_path="queue.json",
+            max_next_tranche_rows=1,
+            tranche_id="unit",
+        )
+        selection = select_mcsa_pymol_materialization_tranche(
+            blocker_report=report,
+            max_rows=1,
+            tranche_id="unit",
+            source_blocker_report_path="blockers.json",
+        )
+
+        self.assertEqual(report["metadata"]["next_tranche_candidate_count"], 1)
+        self.assertEqual(
+            report["next_structure_materialization_candidates"][0]["entry_id"],
+            "m_csa:1",
+        )
+        self.assertEqual(
+            report["exact_atom_pair_mapping_blockers_sample"][0]["entry_id"],
+            "m_csa:2",
+        )
+        self.assertEqual(selection["metadata"]["selected_row_count"], 1)
+        self.assertFalse(selection["metadata"]["ready_for_label_import"])
+        self.assertEqual(selection["rows"][0]["structure_id"], "1ABC")
+
+    def test_structure_tranche_materialization_is_review_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "coords"
+            materialization = materialize_mcsa_pymol_structure_tranche(
+                selection={
+                    "rows": [
+                        {
+                            "entry_id": "m_csa:1",
+                            "entry_name": "alpha testase",
+                            "structure_id": "1ABC",
+                            "rank": 1,
+                            "missing_fields": ["missing_structure_path"],
+                        }
+                    ]
+                },
+                coordinate_output_dir=out_dir,
+                source_selection_artifact="selection.json",
+                tranche_id="unit",
+                fetcher=lambda _url: b"data_1ABC   \n#   \n",
+            )
+
+            row = materialization["rows"][0]
+            structure_path = Path(row["local_structure_path"])
+            materialized_bytes = structure_path.read_bytes()
+        self.assertEqual(materialization["metadata"]["materialized_count"], 1)
+        self.assertEqual(materialization["metadata"]["failed_count"], 0)
+        self.assertFalse(materialization["metadata"]["ready_for_label_import"])
+        self.assertFalse(materialization["metadata"]["removal_allowed"])
+        self.assertEqual(
+            materialization["metadata"]["coordinate_normalization"],
+            "utf8_line_trailing_whitespace_stripped_lf",
+        )
+        self.assertEqual(row["materialization_status"], "materialized")
+        self.assertTrue(row["coordinate_normalized"])
+        self.assertEqual(materialized_bytes, b"data_1ABC\n#\n")
+        self.assertEqual(len(row["sha256"]), 64)
+        self.assertEqual(row["first_line"], "data_1ABC")
 
 
 def _review_export(max_items: int | None = None) -> dict:

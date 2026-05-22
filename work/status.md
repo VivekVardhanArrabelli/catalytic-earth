@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 294
-- Measured elapsed time: 8943.9 minutes (149.07 hours)
+- Entries: 296
+- Measured elapsed time: 8991.3 minutes (149.85 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 114.4 measured minutes (1.91 hours)
+- ops: 124.6 measured minutes (2.08 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1944.8 measured minutes (32.41 hours)
+- v3: 1981.9 measured minutes (33.03 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3198
-- Evidence references logged: 2612
+- Artifact references logged: 3224
+- Evidence references logged: 2632
 
 ## Recent Entries
-
-### 2026-05-22T13:08:53.551713+00:00 - ops
-
-- Task: Final validation for second PLP packet
-- Time mode: measured
-- Measured minutes: 3.133
-- Started: 2026-05-22T13:05:26Z
-- Ended: 2026-05-22T13:08:34Z
-- Artifacts: work/progress_log.jsonl, work/status.md
-- Evidence: post-normalization 842-test unit discovery passed, coordinate hashes match committed sidecars, CLI validate passed with 682 labels and 8 fingerprints, staged git diff check passed
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
-
-### 2026-05-22T15:49:13.822899+00:00 - v3
-
-- Task: Close remaining PLP rows and narrow external review blockers
-- Time mode: measured
-- Measured minutes: 36.45
-- Started: 2026-05-22T15:12:31Z
-- Ended: 2026-05-22T15:48:58Z
-- Artifacts: artifacts/v3_plp_aminotransferase_third_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json, artifacts/v3_plp_aminotransferase_deep_terminal_decision_rollup_post_third_plp_20260522.json, artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json, artifacts/v3_external_nonmetal_human_review_acceptance_checklist_post_plp_closure_20260522.json, artifacts/v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522.json, artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json
-- Evidence: 847 tests pass, cli validate pass, artifact migration dry-run pass
-- Notes: No label imports, registry edits, fingerprint edits, artifact migration/removal, history rewrite, or removal_allowed=true.
 
 ### 2026-05-22T16:29:06.133933+00:00 - v3
 
@@ -118,6 +96,28 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-22T21:32:08Z
 - Artifacts: artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json, artifacts/v3_external_review_ready_automation_terminal_stop_packet_zero_import_gate_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json, artifacts/v3_post_external_stop_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 885-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, ePK lane freshness check found current synthesis already includes 5UJ7 and no unsynthesized outputs, seven external mechanism-match rows consolidated as automation-terminal review-ready with human action as exact blocker, non-ePK family index covers 17 review-only families with 0 import-ready and 0 countable candidates, 887-test unit discovery passed, CLI validate passed, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed, JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T22:58:31.171771+00:00 - v3
+
+- Task: Drain M-CSA PyMOL materializable review queue
+- Time mode: measured
+- Measured minutes: 37.117
+- Started: 2026-05-22T22:21:08Z
+- Ended: 2026-05-22T22:58:15Z
+- Artifacts: src/catalytic_earth/pymol_review.py, src/catalytic_earth/cli.py, src/catalytic_earth/artifact_storage.py, tests/test_pymol_review.py, tests/test_artifact_storage.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json, artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json, artifacts/v3_post_mcsa_pymol_all_materializable_closure_review_only_zero_import_gate_20260522.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_admission_guard_1025.json, README.md, docs/label_factory.md, docs/artifact_storage.md, work/handoff.md, work/scope.md, work/status.md
+- Evidence: startup 887-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, reusable PyMOL materialization CLI selected frozen tranches before download, 317 selected/review-context mmCIF sidecars materialized with 0 failures, final queue has 298 PyMOL-ready rows and 298 verified focus CA atom selections, 298-row dry-run decision batch stays non-countable, final blocker report has 0 next structure-materialization candidates and 23 exact mapping blockers, review-only zero-import gates passed, storage inventory refreshed to 113 large rows with 0 unknown-blocking producers and removal_allowed=0, compileall passed, 893-test unit discovery passed, CLI validate passed, artifact migration dry-run with local files passed
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred. Stopped expansion because the structure-materializable PyMOL queue is drained; remaining rows need mapping repair or human review.
+
+### 2026-05-22T23:08:25.796026+00:00 - ops
+
+- Task: Final validation for PyMOL queue closure
+- Time mode: measured
+- Measured minutes: 10.25
+- Started: 2026-05-22T22:58:15Z
+- Ended: 2026-05-22T23:08:30Z
+- Artifacts: src/catalytic_earth/pymol_review.py, tests/test_pymol_review.py, artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json, artifacts/v3_artifact_storage_inventory_1025.json, work/progress_log.jsonl, work/status.md
+- Evidence: normalized newly materialized PyMOL mmCIF sidecars for diff-check-safe committed review artifacts, materialization SHA-256 rows match local normalized coordinate files, 893-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, git diff check passed, no registry or fingerprint diffs
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -536,3 +536,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T19:42:57.546947+00:00: NADP redox family fallback is now blocked on holo/local NADP evidence or source-free specificity controls, not another broad row freeze.
 - 2026-05-22T20:37:21.159775+00:00: M-CSA PyMOL readiness now has 51 human-review-ready rows; next useful step is human decisions before more machinery.
 - 2026-05-22T21:32:20.016660+00:00: External review-ready rows should not trigger more automated breadth by default; next action is human review or bounded no-breadth readiness only.
+- 2026-05-22T23:08:25.796026+00:00: Final wrap only; no label import registry edit artifact removal or new external breadth.

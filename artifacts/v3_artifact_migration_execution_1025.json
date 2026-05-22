@@ -2,7 +2,7 @@
   "metadata": {
     "baseline": "current_main_three_external_hard_negatives",
     "canonical_countable_label_count": 682,
-    "current_main_commit": "072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f",
+    "current_main_commit": "fe38f2f6d7599ebd0b31a3088b84a0f5220caad5",
     "external_hard_negative_fingerprint_id": null,
     "external_hard_negative_label_type": "out_of_scope",
     "external_imported_out_of_scope_labels": [
@@ -11,7 +11,7 @@
       "uniprot:Q3LXA3"
     ],
     "external_imported_seed_fingerprint_label_count": 0,
-    "generated_at": "2026-05-18T04:11:37Z",
+    "generated_at": "2026-05-22T23:04:25Z",
     "information_loss_guard": "Phase 1 instrumentation only. This manifest records exact Git targets for current artifacts but authorizes no upload, migration, artifact removal, Git LFS migration, or history rewrite.",
     "manifest_schema_version": "artifact_migration_execution.v1",
     "method": "artifact_migration_execution_manifest",
@@ -29,12 +29,12 @@
       "heme_peroxidase_oxidase"
     ],
     "producer_status_counts": {
-      "known": 68,
+      "known": 73,
       "unavailable_with_reason": 40
     },
     "remote_sha256_verified_count": 0,
     "removal_allowed_count": 0,
-    "row_count": 108,
+    "row_count": 113,
     "slice_id": 1025,
     "source_producer_consumer_manifest": "artifacts/v3_artifact_producer_consumer_manifest_1025.json",
     "source_readiness_plan": "artifacts/v3_artifact_migration_readiness_plan_1025.json",
@@ -104,7 +104,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1000.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -162,7 +162,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1025.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1025.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -220,7 +220,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -279,7 +279,7 @@
       "source_path": "artifacts/v1_graph_1025.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1025.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_1025.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -338,7 +338,7 @@
       "source_path": "artifacts/v1_graph_1000.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_1000.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_1000.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -397,7 +397,7 @@
       "source_path": "artifacts/v1_graph_975.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_975.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_975.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -456,7 +456,7 @@
       "source_path": "artifacts/v1_graph_950.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_950.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_950.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -515,7 +515,7 @@
       "source_path": "artifacts/v1_graph_925.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_925.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_925.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -574,7 +574,7 @@
       "source_path": "artifacts/v1_graph_900.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_900.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_900.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -633,7 +633,7 @@
       "source_path": "artifacts/v1_graph_875.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_875.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_875.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -692,7 +692,7 @@
       "source_path": "artifacts/v1_graph_850.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_850.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_850.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -750,7 +750,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_975.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_975.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -809,7 +809,7 @@
       "source_path": "artifacts/v1_graph_825.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_825.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_825.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -867,7 +867,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_950.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_950.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -926,7 +926,7 @@
       "source_path": "artifacts/v1_graph_800.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_800.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_800.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -984,7 +984,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_925.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_925.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1043,7 +1043,7 @@
       "source_path": "artifacts/v1_graph_775.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_775.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_775.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1101,7 +1101,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_900.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_900.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1159,7 +1159,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_875.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_875.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1218,7 +1218,7 @@
       "source_path": "artifacts/v1_graph_750.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_750.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_750.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1279,7 +1279,7 @@
       "source_path": "artifacts/v3_geometry_features_1025.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1025.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_1025.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1338,7 +1338,7 @@
       "source_path": "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_1000_selected_pdb_override.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1399,7 +1399,7 @@
       "source_path": "artifacts/v3_geometry_features_1000.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_1000.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_1000.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1457,7 +1457,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_850.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_850.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1516,7 +1516,7 @@
       "source_path": "artifacts/v1_graph_725.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_725.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_725.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1577,7 +1577,7 @@
       "source_path": "artifacts/v3_geometry_features_975.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_975.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_975.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1635,7 +1635,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_825.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_825.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1696,7 +1696,7 @@
       "source_path": "artifacts/v3_geometry_features_950.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_950.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_950.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1755,7 +1755,7 @@
       "source_path": "artifacts/v1_graph_700.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_700.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_700.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1813,7 +1813,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_800.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_800.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1874,7 +1874,7 @@
       "source_path": "artifacts/v3_geometry_features_925.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_925.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_925.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1933,7 +1933,7 @@
       "source_path": "artifacts/v1_graph_675.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_675.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_675.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -1991,7 +1991,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_775.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_775.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2052,7 +2052,7 @@
       "source_path": "artifacts/v3_geometry_features_900.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_900.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_900.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2111,7 +2111,7 @@
       "source_path": "artifacts/v1_graph_650.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_650.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_650.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2169,7 +2169,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_750.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_750.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2230,7 +2230,7 @@
       "source_path": "artifacts/v3_geometry_features_875.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_875.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_875.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2289,7 +2289,7 @@
       "source_path": "artifacts/v1_graph_625.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_625.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_625.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2350,7 +2350,7 @@
       "source_path": "artifacts/v3_geometry_features_850.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_850.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_850.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2408,7 +2408,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_725.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_725.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2467,7 +2467,7 @@
       "source_path": "artifacts/v1_graph_600.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_600.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_600.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2528,7 +2528,7 @@
       "source_path": "artifacts/v3_geometry_features_825.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_825.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_825.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2587,7 +2587,7 @@
       "source_path": "artifacts/v1_graph_575.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_575.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_575.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2645,7 +2645,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_700.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_700.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2706,7 +2706,7 @@
       "source_path": "artifacts/v3_geometry_features_800.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_800.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_800.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2765,7 +2765,7 @@
       "source_path": "artifacts/v1_graph_550.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_550.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_550.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2823,7 +2823,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_675.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_675.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2884,7 +2884,7 @@
       "source_path": "artifacts/v3_geometry_features_775.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_775.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_775.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -2945,7 +2945,7 @@
       "source_path": "artifacts/v3_geometry_features_750.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_750.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_750.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3004,7 +3004,7 @@
       "source_path": "artifacts/v1_graph_525.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_525.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_525.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3062,7 +3062,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_650.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_650.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -3124,7 +3124,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V40.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3185,7 +3185,7 @@
       "source_path": "artifacts/v3_geometry_features_725.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_725.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_725.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3244,7 +3244,7 @@
       "source_path": "artifacts/v1_graph_500.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_500.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_500.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3302,7 +3302,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_625.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_625.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -3364,7 +3364,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_4V4E.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3425,7 +3425,7 @@
       "source_path": "artifacts/v3_geometry_features_700.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_700.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_700.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3483,7 +3483,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_600.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_600.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3542,7 +3542,7 @@
       "source_path": "artifacts/v1_graph_475.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_475.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_475.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3603,7 +3603,7 @@
       "source_path": "artifacts/v3_geometry_features_675.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_675.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_675.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3661,7 +3661,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_575.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_575.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3722,7 +3722,7 @@
       "source_path": "artifacts/v3_geometry_features_650.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_650.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_650.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3780,7 +3780,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_550.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_550.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3841,7 +3841,7 @@
       "source_path": "artifacts/v3_geometry_features_625.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_625.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_625.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3900,7 +3900,7 @@
       "source_path": "artifacts/v1_graph_450.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_450.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_450.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -3961,7 +3961,7 @@
       "source_path": "artifacts/v3_geometry_features_600.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_600.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_600.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4020,7 +4020,7 @@
       "source_path": "artifacts/v1_graph_425.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_425.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_425.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4078,7 +4078,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_525.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_525.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4139,7 +4139,7 @@
       "source_path": "artifacts/v3_geometry_features_575.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_575.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_575.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4198,7 +4198,7 @@
       "source_path": "artifacts/v1_graph_400.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_400.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_400.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4256,7 +4256,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_500.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_500.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4317,7 +4317,7 @@
       "source_path": "artifacts/v3_geometry_features_550.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_550.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_550.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4375,7 +4375,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_475.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_475.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4434,7 +4434,7 @@
       "source_path": "artifacts/v1_graph_375.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_375.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_375.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4495,7 +4495,67 @@
       "source_path": "artifacts/v3_geometry_features_525.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_525.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_525.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
+    },
+    {
+      "artifact_category": "raw_cache",
+      "baseline": "current_main_three_external_hard_negatives",
+      "canonical_countable_label_count": 682,
+      "canonical_or_noncanonical": "noncanonical",
+      "canonical_summary_path": "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+      "canonical_summary_present": true,
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "downstream_consumers_accounted_for": true,
+      "external_imported_out_of_scope_labels": [
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "external_imported_seed_fingerprint_label_count": 0,
+      "file_exists": true,
+      "migration_blockers": [
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "phase_2_remote_target_uri_not_uploaded_or_verified",
+        "phase_3_removal_not_authorized",
+        "replacement object-storage location is not approved",
+        "restore_test_not_recorded_for_external_target",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready": false,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "planned_storage_class": "candidate_object_storage_later",
+      "producer_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
+      "remote_sha256_verified": false,
+      "removal_allowed": false,
+      "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_3AIE.cif",
+      "restore_test_passed": false,
+      "restore_verification": "sha256",
+      "sha256": "5d37a6ad7f7d33b8318965786408dec2857f432b65de0066dab46988b3bccfd9",
+      "size_bytes": 10396319,
+      "slice_id": 1025,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ],
+      "source_path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_3AIE.cif",
+      "source_producer_command_status": "known",
+      "storage_class": "git",
+      "target_uri": "git:artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_3AIE.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4556,7 +4616,7 @@
       "source_path": "artifacts/v3_geometry_features_500.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_500.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_500.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4615,7 +4675,7 @@
       "source_path": "artifacts/v1_graph_350.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_350.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_350.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4673,7 +4733,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_450.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_450.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4734,7 +4794,7 @@
       "source_path": "artifacts/v3_geometry_features_475.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_475.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_475.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4793,7 +4853,7 @@
       "source_path": "artifacts/v1_graph_325.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_325.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_325.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4851,7 +4911,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_425.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_425.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4912,7 +4972,7 @@
       "source_path": "artifacts/v3_geometry_features_450.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_450.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_450.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -4971,7 +5031,7 @@
       "source_path": "artifacts/v1_graph_300.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_300.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_300.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5029,7 +5089,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_400.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_400.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5088,7 +5148,7 @@
       "source_path": "artifacts/v1_graph_275.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_275.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_275.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5149,7 +5209,7 @@
       "source_path": "artifacts/v3_geometry_features_425.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_425.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_425.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5207,7 +5267,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_375.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_375.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5268,7 +5328,7 @@
       "source_path": "artifacts/v3_geometry_features_400.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_400.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_400.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5327,7 +5387,7 @@
       "source_path": "artifacts/v1_graph_250.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_250.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_250.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5385,7 +5445,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_350.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_350.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5446,7 +5506,7 @@
       "source_path": "artifacts/v3_geometry_features_375.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_375.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_375.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5505,7 +5565,7 @@
       "source_path": "artifacts/v1_graph_225.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_225.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_225.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5563,7 +5623,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_325.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_325.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5624,7 +5684,7 @@
       "source_path": "artifacts/v3_geometry_features_350.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_350.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_350.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -5686,7 +5746,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MCZ.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -5748,7 +5808,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1MEK.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5806,7 +5866,67 @@
       "source_path": "artifacts/v3_geometry_retrieval_300.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_300.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
+    },
+    {
+      "artifact_category": "raw_cache",
+      "baseline": "current_main_three_external_hard_negatives",
+      "canonical_countable_label_count": 682,
+      "canonical_or_noncanonical": "noncanonical",
+      "canonical_summary_path": "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+      "canonical_summary_present": true,
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "downstream_consumers_accounted_for": true,
+      "external_imported_out_of_scope_labels": [
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "external_imported_seed_fingerprint_label_count": 0,
+      "file_exists": true,
+      "migration_blockers": [
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "phase_2_remote_target_uri_not_uploaded_or_verified",
+        "phase_3_removal_not_authorized",
+        "replacement object-storage location is not approved",
+        "restore_test_not_recorded_for_external_target",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready": false,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "planned_storage_class": "candidate_object_storage_later",
+      "producer_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
+      "remote_sha256_verified": false,
+      "removal_allowed": false,
+      "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_1P7M.cif",
+      "restore_test_passed": false,
+      "restore_verification": "sha256",
+      "sha256": "d8ed17b21b2f6c06d01c4748997ea7283f3b88350e7a46e7868fca010c8d4e25",
+      "size_bytes": 6669246,
+      "slice_id": 1025,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ],
+      "source_path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_1P7M.cif",
+      "source_producer_command_status": "known",
+      "storage_class": "git",
+      "target_uri": "git:artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_1P7M.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5867,7 +5987,67 @@
       "source_path": "artifacts/v3_geometry_features_325.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_325.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_325.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
+    },
+    {
+      "artifact_category": "raw_cache",
+      "baseline": "current_main_three_external_hard_negatives",
+      "canonical_countable_label_count": 682,
+      "canonical_or_noncanonical": "noncanonical",
+      "canonical_summary_path": "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+      "canonical_summary_present": true,
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "downstream_consumers_accounted_for": true,
+      "external_imported_out_of_scope_labels": [
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "external_imported_seed_fingerprint_label_count": 0,
+      "file_exists": true,
+      "migration_blockers": [
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "phase_2_remote_target_uri_not_uploaded_or_verified",
+        "phase_3_removal_not_authorized",
+        "replacement object-storage location is not approved",
+        "restore_test_not_recorded_for_external_target",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready": false,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "planned_storage_class": "candidate_object_storage_later",
+      "producer_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
+      "remote_sha256_verified": false,
+      "removal_allowed": false,
+      "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
+      "restore_test_passed": false,
+      "restore_verification": "sha256",
+      "sha256": "363effb8573293dce572d7e15f3493cffa724cb2ac48dd7d4789581a449eec53",
+      "size_bytes": 6473062,
+      "slice_id": 1025,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ],
+      "source_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
+      "source_producer_command_status": "known",
+      "storage_class": "git",
+      "target_uri": "git:artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -5929,7 +6109,67 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1OGY.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
+    },
+    {
+      "artifact_category": "raw_cache",
+      "baseline": "current_main_three_external_hard_negatives",
+      "canonical_countable_label_count": 682,
+      "canonical_or_noncanonical": "noncanonical",
+      "canonical_summary_path": "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+      "canonical_summary_present": true,
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "downstream_consumers_accounted_for": true,
+      "external_imported_out_of_scope_labels": [
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "external_imported_seed_fingerprint_label_count": 0,
+      "file_exists": true,
+      "migration_blockers": [
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "phase_2_remote_target_uri_not_uploaded_or_verified",
+        "phase_3_removal_not_authorized",
+        "replacement object-storage location is not approved",
+        "restore_test_not_recorded_for_external_target",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready": false,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "planned_storage_class": "candidate_object_storage_later",
+      "producer_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
+      "remote_sha256_verified": false,
+      "removal_allowed": false,
+      "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_5ODI.cif",
+      "restore_test_passed": false,
+      "restore_verification": "sha256",
+      "sha256": "18301b6259b420ab2609921b517cb2bd82624723fc9ce1647516c21db09a1faf",
+      "size_bytes": 6276121,
+      "slice_id": 1025,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ],
+      "source_path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_5ODI.cif",
+      "source_producer_command_status": "known",
+      "storage_class": "git",
+      "target_uri": "git:artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_5ODI.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -5987,7 +6227,67 @@
       "source_path": "artifacts/v3_geometry_retrieval_275.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_275.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
+    },
+    {
+      "artifact_category": "raw_cache",
+      "baseline": "current_main_three_external_hard_negatives",
+      "canonical_countable_label_count": 682,
+      "canonical_or_noncanonical": "noncanonical",
+      "canonical_summary_path": "artifacts/v3_mcsa_tm_holdout_feasibility_adjudication_1000.json",
+      "canonical_summary_present": true,
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "downstream_consumers_accounted_for": true,
+      "external_imported_out_of_scope_labels": [
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "external_imported_seed_fingerprint_label_count": 0,
+      "file_exists": true,
+      "migration_blockers": [
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "phase_2_remote_target_uri_not_uploaded_or_verified",
+        "phase_3_removal_not_authorized",
+        "replacement object-storage location is not approved",
+        "restore_test_not_recorded_for_external_target",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "migration_ready": false,
+      "ontology_version_at_decision": "label_factory_v1_8fp",
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "planned_storage_class": "candidate_object_storage_later",
+      "producer_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "producer_provenance_recovery_steps": [],
+      "producer_status": "known",
+      "producer_status_reason": "producer command provenance is recorded as known",
+      "remote_sha256_verified": false,
+      "removal_allowed": false,
+      "restore_command": "PYTHONPATH=src python -m catalytic_earth.cli restore-artifacts --manifest artifacts/v3_artifact_migration_execution_1025.json --path artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2VZ9.cif",
+      "restore_test_passed": false,
+      "restore_verification": "sha256",
+      "sha256": "86f4381fb6e886acf6bc68738e9363e32a36e49124051e537a8481a9faa8a5a8",
+      "size_bytes": 6149111,
+      "slice_id": 1025,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ],
+      "source_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2VZ9.cif",
+      "source_producer_command_status": "known",
+      "storage_class": "git",
+      "target_uri": "git:artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2VZ9.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6048,7 +6348,7 @@
       "source_path": "artifacts/v3_geometry_features_300.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_300.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_300.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6109,7 +6409,7 @@
       "source_path": "artifacts/v3_geometry_features_275.json",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_features_275.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_features_275.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -6171,7 +6471,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1RYP.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -6233,7 +6533,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_2PAN.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6291,7 +6591,7 @@
       "source_path": "artifacts/v3_geometry_retrieval_250.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_geometry_retrieval_250.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -6353,7 +6653,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "regenerable_intermediate",
@@ -6412,7 +6712,7 @@
       "source_path": "artifacts/v1_graph_200.json",
       "source_producer_command_status": "known",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v1_graph_200.json@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v1_graph_200.json@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     },
     {
       "artifact_category": "raw_cache",
@@ -6474,7 +6774,7 @@
       "source_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif",
       "source_producer_command_status": "unavailable_with_reason",
       "storage_class": "git",
-      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@072ce84b57e8c86c23b61b6ebe2d2c6a4c63c94f"
+      "target_uri": "git:artifacts/v3_foldseek_coordinates_1000/pdb_1S6L.cif@fe38f2f6d7599ebd0b31a3088b84a0f5220caad5"
     }
   ]
 }

@@ -1,0 +1,364 @@
+{
+  "exact_atom_pair_mapping_blockers_sample": [
+    {
+      "entry_id": "m_csa:765",
+      "entry_name": "3-dehydro-L-gulonate 2-dehydrogenase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 109,
+      "structure_id": "1S20",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "entry_id": "m_csa:730",
+      "entry_name": "threonine synthase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 133,
+      "structure_id": "1KL7",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:893",
+      "entry_name": "medium-chain acyl-CoA dehydrogenase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 202,
+      "structure_id": "3MDD",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:887",
+      "entry_name": "glutamate formimidoyltransferase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 211,
+      "structure_id": "1QD1",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 212,
+      "structure_id": "1YON",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:950",
+      "entry_name": "DDT-dehydrochlorinase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 213,
+      "structure_id": "3MAK",
+      "target_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:909",
+      "entry_name": "6,7-dimethyl-8-ribityllumazine synthase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 218,
+      "structure_id": "1RVV",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 219,
+      "structure_id": "1DL5",
+      "target_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:945",
+      "entry_name": "nicotinate-nucleotide pyrophosphorylase (carboxylating) (type II)",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 222,
+      "structure_id": "3C2E",
+      "target_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:769",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 223,
+      "structure_id": "1ZM2",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:946",
+      "entry_name": "3,6-anhydro-alpha-L-galactonate cycloisomerase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "rank": 224,
+      "structure_id": null,
+      "target_fingerprint_id": "radical_sam_enzyme"
+    },
+    {
+      "entry_id": "m_csa:813",
+      "entry_name": "branched-chain-amino-acid transaminase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 227,
+      "structure_id": "1IYD",
+      "target_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "entry_id": "m_csa:809",
+      "entry_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 232,
+      "structure_id": "1B5Q",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 235,
+      "structure_id": "1G79",
+      "target_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:773",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 236,
+      "structure_id": "1TOX",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:811",
+      "entry_name": "UDP-N-acetylglucosamine pyrophosphorylase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 237,
+      "structure_id": "1HV9",
+      "target_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:930",
+      "entry_name": "phthalate dioxygenase system",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "rank": 240,
+      "structure_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:861",
+      "entry_name": "D-galactarolactone isomerase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 242,
+      "structure_id": "4MUP",
+      "target_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:772",
+      "entry_name": "phosphopantothenate-cysteine ligase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 246,
+      "structure_id": "1U7U",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:991",
+      "entry_name": "4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (IspG)",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 255,
+      "structure_id": "4S38",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:749",
+      "entry_name": "cytochrome-c peroxidase (di-heme type)",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 261,
+      "structure_id": "1NML",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 319,
+      "structure_id": "1M54",
+      "target_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "exact_blocker": "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "rank": 321,
+      "structure_id": "1GAL",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_mcsa_pymol_remaining_blocker_report_after_all_materialized_materialization",
+    "artifact_upload_or_removal_performed": false,
+    "blocked_count": 23,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T22:50:21Z",
+    "curated_label_registry_edited": false,
+    "decision": "human_review_ready_rows_or_continue_bounded_structure_materialization; no labels or imports authorized",
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "mcsa_pymol_remaining_readiness_blocker_report_after_all_materialized_tranche",
+    "missing_exact_pair_or_distance_count": 23,
+    "missing_field_counts": {
+      "missing_exact_ca_atom_pair": 23,
+      "missing_exact_distance": 23,
+      "missing_structure_id": 2
+    },
+    "missing_structure_id_count": 2,
+    "new_external_rows_frozen": 0,
+    "next_tranche_candidate_count": 0,
+    "pymol_ready_count": 298,
+    "ready_for_label_import": false,
+    "removal_allowed": false,
+    "review_only": true,
+    "rows_with_verified_focus_atoms": 298,
+    "source_queue": "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+    "total_review_rows_scanned": 321
+  },
+  "next_structure_materialization_candidates": [],
+  "structure_id_mapping_blockers": [
+    {
+      "entry_id": "m_csa:946",
+      "entry_name": "3,6-anhydro-alpha-L-galactonate cycloisomerase",
+      "exact_blocker": "geometry artifact has no PDB id; needs source graph/PDB mapping repair before PyMOL staging",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "rank": 224,
+      "structure_id": null,
+      "target_fingerprint_id": "radical_sam_enzyme"
+    },
+    {
+      "entry_id": "m_csa:930",
+      "entry_name": "phthalate dioxygenase system",
+      "exact_blocker": "geometry artifact has no PDB id; needs source graph/PDB mapping repair before PyMOL staging",
+      "exact_measured_distance_angstrom": null,
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "rank": 240,
+      "structure_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ]
+}

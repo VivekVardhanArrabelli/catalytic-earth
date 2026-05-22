@@ -172,6 +172,19 @@ It combines 3 external review-ready mechanism families, 6 existing non-ATP
 family readiness/blocker packets, and 8 closed non-ePK ATP-family packets into
 17 review-only family rows with 0 import-ready candidates and 0 countable
 candidates.
+The 2026-05-22T22:21:08Z main-loop run keeps that no-breadth scope and advances
+only M-CSA human-review readiness. The new reusable PyMOL materialization CLI
+drains the remaining structure-path-only blocker queue from existing blocker
+reports before download, materializes 296/296 selected PDB mmCIF sidecars
+across 12 frozen tranches, then materializes 21/21 exact mapping blocker
+coordinate-context sidecars. The final queue has 298 PyMOL-ready rows and 298
+verified focus CA atom selections, the dry-run manual decision batch covers all
+298 ready rows, and review-only zero-import gates pass. It opens no label
+import, registry edit, fingerprint edit, production score, artifact
+upload/removal, or external row sourcing path. The remaining blocker report now
+names 23 blocked rows, 0 next structure-materialization candidates, no
+structure-path blocker, 23 exact focus-pair/distance repair gaps, and 2
+structure-ID mapping gaps within that same blocked set.
 Current external-deepening scope: the 2026-05-22 main-loop follow-up continued
 only already frozen 2026-05-21 external rows. It did not add a seventh broad
 mini-campaign or freeze new external breadth. The second flavin
@@ -1961,11 +1974,12 @@ Post-V2 quality work has started:
   classified before migration, SHA-256 hashes are recorded in
   `artifacts/v3_artifact_storage_inventory_1025.json`, and
   `artifacts/v3_artifact_storage_policy_check_1025.json` authorizes 0
-  deletions. The companion producer/consumer manifest covers all 108 current
-  large noncanonical rows, the migration-readiness plan ranks future storage
-  candidates without authorizing movement, the admission guard requires future
-  large noncanonical artifacts to have manifest coverage before acceptance, and
-  `docs/artifact_storage.md` documents a source-only sparse checkout path.
+  deletions. The companion producer/consumer manifest covers all 113 current
+  large noncanonical rows after PyMOL review-sidecar admission, the
+  migration-readiness plan ranks future storage candidates without authorizing
+  movement, the admission guard requires future large noncanonical artifacts to
+  have manifest coverage before acceptance, and `docs/artifact_storage.md`
+  documents a source-only sparse checkout path.
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate

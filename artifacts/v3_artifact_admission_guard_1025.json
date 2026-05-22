@@ -2,13 +2,13 @@
   "blockers": [],
   "metadata": {
     "blocker_count": 0,
-    "covered_large_file_count": 108,
+    "covered_large_file_count": 113,
     "deletion_authorized_count": 0,
-    "large_file_count": 108,
+    "large_file_count": 113,
     "large_file_threshold_bytes": 5242880,
     "method": "artifact_admission_guard",
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
-    "source_file_count": 2580,
+    "source_file_count": 6054,
     "source_inventory_method": "artifact_storage_inventory",
     "status": "passed"
   }

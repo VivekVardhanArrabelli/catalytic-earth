@@ -1,19 +1,19 @@
 {
   "metadata": {
     "category_counts": {
-      "raw_cache": 9,
+      "raw_cache": 14,
       "regenerable_intermediate": 99
     },
     "deletion_authorized_count": 0,
-    "generated_at": "2026-05-18T04:09:06Z",
-    "included_file_count": 108,
-    "included_total_bytes": 1460658095,
+    "generated_at": "2026-05-22T23:04:24Z",
+    "included_file_count": 113,
+    "included_total_bytes": 1496621954,
     "large_file_threshold_bytes": 5242880,
     "method": "artifact_producer_consumer_manifest",
-    "migration_blocker_count": 40,
+    "migration_blocker_count": 45,
     "policy_version": "artifact_storage_policy_v1_2026_05_17",
     "producer_command_status_counts": {
-      "known": 68,
+      "known": 73,
       "unavailable_with_reason": 40
     },
     "scope": "All current large raw_cache and regenerable_intermediate rows from the storage inventory. Unknown or partially inferred provenance is kept explicit and blocks migration.",
@@ -2695,6 +2695,45 @@
     {
       "canonical_summary_artifacts": [
         "README.md",
+        "docs/label_factory.md",
+        "work/handoff.md",
+        "work/scope.md",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_3AIE.cif",
+      "producer_command_status": "known",
+      "sha256": "5d37a6ad7f7d33b8318965786408dec2857f432b65de0066dab46988b3bccfd9",
+      "size_bytes": 10396319,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
         "work/status.md",
         "work/handoff.md",
         "docs/artifact_storage.md"
@@ -3487,6 +3526,45 @@
     {
       "canonical_summary_artifacts": [
         "README.md",
+        "docs/label_factory.md",
+        "work/handoff.md",
+        "work/scope.md",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_1P7M.cif",
+      "producer_command_status": "known",
+      "sha256": "d8ed17b21b2f6c06d01c4748997ea7283f3b88350e7a46e7868fca010c8d4e25",
+      "size_bytes": 6669246,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
         "work/status.md",
         "work/handoff.md",
         "docs/artifact_storage.md"
@@ -3520,6 +3598,45 @@
         "artifacts/v1_graph_325.json",
         "PDB mmCIF coordinate records fetched or cached at generation time",
         "data/registries/curated_mechanism_labels.json for countable/review context"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "docs/label_factory.md",
+        "work/handoff.md",
+        "work/scope.md",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
+      "producer_command_status": "known",
+      "sha256": "363effb8573293dce572d7e15f3493cffa724cb2ac48dd7d4789581a449eec53",
+      "size_bytes": 6473062,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
       ]
     },
     {
@@ -3564,6 +3681,45 @@
     {
       "canonical_summary_artifacts": [
         "README.md",
+        "docs/label_factory.md",
+        "work/handoff.md",
+        "work/scope.md",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_5ODI.cif",
+      "producer_command_status": "known",
+      "sha256": "18301b6259b420ab2609921b517cb2bd82624723fc9ce1647516c21db09a1faf",
+      "size_bytes": 6276121,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
         "work/status.md",
         "work/handoff.md",
         "docs/artifact_storage.md"
@@ -3593,6 +3749,45 @@
         "artifacts/v3_geometry_features_275.json",
         "data/registries/mechanism_fingerprints.json",
         "data/registries/mechanism_ontology.json"
+      ]
+    },
+    {
+      "canonical_summary_artifacts": [
+        "README.md",
+        "docs/label_factory.md",
+        "work/handoff.md",
+        "work/scope.md",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json"
+      ],
+      "canonical_summary_preserves_conclusion": true,
+      "category": "raw_cache",
+      "downstream_consumers": [
+        "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+        "artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json",
+        "artifacts/review_pymol/mcsa_1025_all_materialized_20260522/"
+      ],
+      "git_policy": "external_cache_candidate",
+      "likely_producer_cli_commands": [
+        "PYTHONPATH=src python -m catalytic_earth.cli materialize-mcsa-pymol-structure-tranche --selection <matching v3_mcsa_pymol_*selection_20260522.json> --coordinate-output-dir artifacts/v3_mcsa_pymol_materialized_coordinates_20260522 --out <matching v3_mcsa_pymol_*materialization*_20260522.json>"
+      ],
+      "migration_blockers": [
+        "replacement object-storage location is not approved",
+        "Phase 2 upload and Phase 3 removal are not authorized",
+        "review-only PyMOL coordinate sidecars must remain restorable by exact path and SHA-256 before any future migration"
+      ],
+      "parameter_assumptions": [
+        "review_only=True",
+        "coordinate files staged only for bounded M-CSA PyMOL review readiness",
+        "no label import, production score, artifact upload, or removal is authorized"
+      ],
+      "path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2VZ9.cif",
+      "producer_command_status": "known",
+      "sha256": "86f4381fb6e886acf6bc68738e9363e32a36e49124051e537a8481a9faa8a5a8",
+      "size_bytes": 6149111,
+      "source_inputs": [
+        "matching artifacts/v3_mcsa_pymol_*selection_20260522.json",
+        "public RCSB PDB mmCIF coordinate source for the sidecar PDB id",
+        "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_*_materialization_20260522.json"
       ]
     },
     {

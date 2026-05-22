@@ -37,6 +37,10 @@ class ArtifactStorageTests(unittest.TestCase):
             "artifacts/v3_foldseek_coordinates_1000/pdb_1ABC.cif",
             size_bytes=6_000_000,
         )
+        pymol_coordinate = classify_artifact_path(
+            "artifacts/v3_mcsa_pymol_sixth_materialized_coordinates_20260522/pdb_1ABC.cif",
+            size_bytes=6_000_000,
+        )
         storage_manifest = classify_artifact_path(
             "artifacts/v3_artifact_producer_consumer_manifest_1025.json",
             size_bytes=1000,
@@ -49,9 +53,51 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(geometry["git_policy"], "manifest_then_externalize_candidate")
         self.assertEqual(coordinate["category"], "raw_cache")
         self.assertEqual(coordinate["git_policy"], "external_cache_candidate")
+        self.assertEqual(pymol_coordinate["category"], "raw_cache")
+        self.assertEqual(pymol_coordinate["git_policy"], "external_cache_candidate")
         self.assertFalse(factory_gate["deletion_authorized"])
         self.assertFalse(geometry["deletion_authorized"])
         self.assertFalse(coordinate["deletion_authorized"])
+
+    def test_pymol_coordinate_sidecars_have_known_review_producer(self) -> None:
+        inventory = {
+            "metadata": {
+                "method": "artifact_storage_inventory",
+                "policy_version": "artifact_storage_policy_v1_2026_05_17",
+                "large_file_threshold_bytes": 5,
+            },
+            "rows": [
+                {
+                    "path": (
+                        "artifacts/v3_mcsa_pymol_sixth_materialized_coordinates_20260522/"
+                        "pdb_1ABC.cif"
+                    ),
+                    "size_bytes": 10,
+                    "sha256": "abc",
+                    "category": "raw_cache",
+                    "git_policy": "external_cache_candidate",
+                    "deletion_authorized": False,
+                }
+            ],
+        }
+
+        manifest = build_artifact_producer_consumer_manifest(
+            inventory,
+            inventory_path="inventory.json",
+            generated_at="2026-05-22T00:00:00Z",
+        )
+
+        row = manifest["rows"][0]
+        self.assertEqual(row["producer_command_status"], "known")
+        self.assertIn(
+            "materialize-mcsa-pymol-structure-tranche",
+            row["likely_producer_cli_commands"][0],
+        )
+        self.assertIn(
+            "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json",
+            row["downstream_consumers"],
+        )
+        self.assertTrue(row["canonical_summary_preserves_conclusion"])
 
     def test_inventory_records_hashes_without_authorizing_deletion(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -147,19 +193,19 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(
             manifest["metadata"]["method"], "artifact_producer_consumer_manifest"
         )
-        self.assertEqual(manifest["metadata"]["included_file_count"], 108)
+        self.assertEqual(manifest["metadata"]["included_file_count"], 113)
         self.assertEqual(manifest["metadata"]["deletion_authorized_count"], 0)
         self.assertNotIn(
             "partially_inferred",
             manifest["metadata"]["producer_command_status_counts"],
         )
         self.assertEqual(plan["metadata"]["method"], "artifact_migration_readiness_plan")
-        self.assertEqual(plan["metadata"]["planned_file_count"], 108)
+        self.assertEqual(plan["metadata"]["planned_file_count"], 113)
         self.assertEqual(plan["metadata"]["migration_ready_now_count"], 0)
         self.assertEqual(plan["metadata"]["deletion_authorized_count"], 0)
         self.assertEqual(guard["metadata"]["method"], "artifact_admission_guard")
         self.assertEqual(guard["metadata"]["status"], "passed")
-        self.assertEqual(guard["metadata"]["covered_large_file_count"], 108)
+        self.assertEqual(guard["metadata"]["covered_large_file_count"], 113)
         self.assertEqual(guard["blockers"], [])
 
     def test_current_execution_manifest_is_phase_one_fail_closed(self) -> None:
@@ -175,13 +221,13 @@ class ArtifactStorageTests(unittest.TestCase):
         self.assertEqual(manifest["metadata"]["manifest_schema_version"], "artifact_migration_execution.v1")
         self.assertEqual(manifest["metadata"]["baseline"], "current_main_three_external_hard_negatives")
         self.assertEqual(manifest["metadata"]["canonical_countable_label_count"], 682)
-        self.assertEqual(manifest["metadata"]["row_count"], 108)
+        self.assertEqual(manifest["metadata"]["row_count"], 113)
         self.assertEqual(manifest["metadata"]["migration_ready_count"], 0)
         self.assertEqual(manifest["metadata"]["remote_sha256_verified_count"], 0)
         self.assertEqual(manifest["metadata"]["removal_allowed_count"], 0)
         self.assertEqual(
             manifest["metadata"]["producer_status_counts"],
-            {"known": 68, "unavailable_with_reason": 40},
+            {"known": 73, "unavailable_with_reason": 40},
         )
         self.assertEqual(manifest["metadata"]["unknown_blocking_count"], 0)
         commit = manifest["metadata"]["current_main_commit"]

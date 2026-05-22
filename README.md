@@ -81,7 +81,7 @@ The repository currently contains:
     records paths, sizes, SHA-256 hashes, storage categories, and preservation
     requirements for the artifact tree; the companion policy check authorizes
     0 deletions. `artifacts/v3_artifact_producer_consumer_manifest_1025.json`
-    maps the current 108 large noncanonical artifacts to likely producers and
+    maps the current 113 large noncanonical artifacts to likely producers and
     downstream consumers, `artifacts/v3_artifact_migration_readiness_plan_1025.json`
     ranks future migration candidates without moving files, and
     `artifacts/v3_artifact_migration_execution_1025.json` records the Phase 1
@@ -95,15 +95,21 @@ The repository currently contains:
     migration-ready through metadata drift. Execution rows carry producer
     commands, source inputs, parameter assumptions, and explicit provenance
     recovery steps for any fail-closed `unknown_blocking` rows. Producer status
-    is now 68 `known`, 40 `unavailable_with_reason`, and 0
+    is now 73 `known`, 40 `unavailable_with_reason`, and 0
     `unknown_blocking`. The unavailable rows preserve path/size/SHA identity
     for 9 Foldseek coordinate sidecars plus all 31 adjacent-slice geometry
     feature artifacts whose exact historical reuse/cache closure is unavailable.
+    The five newly large PyMOL review sidecars have known review-only
+    materialization commands and remain non-removable raw-cache rows.
     Phase 1 is now treated as a closed guardrail checkpoint unless a human
     explicitly reopens Phase 2; no upload, migration, Git removal, Git LFS
     migration, or history rewrite has occurred.
     `artifacts/v3_artifact_admission_guard_1025.json` guards future large
-    artifact admission. See `docs/artifact_storage.md`.
+    artifact admission. The PyMOL review materialization refresh keeps this
+    surface fail-closed with 6,054 inventoried artifacts, 113 large files, 73
+    known producer rows, 40 explicitly unavailable producer rows, 0
+    unknown-blocking producer rows, 0 migration-ready rows, and 0
+    removal-authorized rows. See `docs/artifact_storage.md`.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
@@ -355,6 +361,18 @@ continues the same bounded path with a second frozen 25-row PDB tranche. It
 raises `pymol_ready_count` and `rows_with_verified_focus_atoms` to 51, keeps
 the 51-row dry run non-countable, and leaves 270 rows blocked with exact
 structure-path, structure-id, or focus-pair evidence gaps.
+`artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json`
+closes the structure-path-only PyMOL blocker queue without starting new label
+growth. Reusable selection/materialization commands drain the existing blocker
+reports through a final 21-row twelfth tranche, stage 296 total selected mmCIF
+sidecars plus 21 exact-mapping blocker coordinate-context sidecars with 0 fetch
+failures, verify focus CA atom presence, and raise `pymol_ready_count` plus
+`rows_with_verified_focus_atoms` to 298. The 298-row dry run remains
+non-countable; the final blocker report has 0 next structure-materialization
+candidates and only 23 exact mapping blockers left, with no remaining
+structure-path blocker.
+The closure zero-import gate passes with 0 import-ready and 0 countable
+candidates.
 `artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json`
 is the matching no-breadth family-readiness packet from existing evidence. It
 keeps glycoside hydrolase blocked with exact missing evidence: the only
