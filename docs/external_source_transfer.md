@@ -796,7 +796,9 @@ import.
   and
   `artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_full_current_screen_20260521.json`
   cover 71 deep rows with 0 exact blockers, 0 import-ready candidates, and the
-  682-label registry invariant still closed.
+  682-label registry invariant still closed. The independent rerun artifact
+  `artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_duplicate_screen_20260521.json`
+  preserves the same 3-row status split as duplicate/leakage evidence only.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

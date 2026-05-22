@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 273
-- Measured elapsed time: 8227.8 minutes (137.13 hours)
+- Entries: 274
+- Measured elapsed time: 8246.5 minutes (137.44 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1231.8 measured minutes (20.53 hours)
+- v3: 1250.5 measured minutes (20.84 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2974
-- Evidence references logged: 2409
+- Artifact references logged: 2980
+- Evidence references logged: 2413
 
 ## Recent Entries
-
-### 2026-05-21T19:37:19.047962+00:00 - v3
-
-- Task: Recover late ePK serine PLP decision packets
-- Time mode: measured
-- Measured minutes: 9.6
-- Started: 2026-05-21T19:26:53Z
-- Ended: 2026-05-21T19:36:29Z
-- Artifacts: artifacts/v3_epk_late_lane_decision_synthesis_20260521.json, artifacts/v3_serine_hydrolase_p31614_full_current_alignment_duplicate_probe_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_full_current_probe_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_post_p31614_full_current_probe_modern_baseline_benchmark_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_selection_20260521.json, artifacts/v3_plp_aminotransferase_deep_blocker_packet_after_pdb_cofactor_probe_20260521.json, artifacts/v3_plp_aminotransferase_deep_blocker_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: stale lock recovered with coherent dirty work, late ePK five-lane synthesis preserves no-go and 5UJ7 residual, P31614 replacement full-current probe completed 1344 of 1344 pairs, P31614 4C7L has current-countable TM 0.7213 to pdb:1IR3, serine terminal packet has seven terminal_rejection_duplicate_or_leakage rows, PLP seven-row selection frozen before deep outcome scoring, PLP blocker records seven needs_new_extractor_or_structure rows pending source-free covalent cofactor extractor, 795-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, 7 new JSON artifacts parsed, git diff check passed
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ### 2026-05-21T21:16:37.365926+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_full_current_screen_20260521.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_full_current_screen_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
 - Evidence: second FDR targeted screen completed 343/343 pairs and converted seven rows to terminal duplicate/leakage rejections, second heme full current screen completed 2016/2016 pairs with P31545 duplicate hit and P39597/K7N5M8 review-ready mechanism matches, external deep rollup now 71 rows with 63 duplicate rejections five mechanism-match review-ready rows three insufficient-evidence rows zero exact blockers zero import-ready candidates, 820-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, migration dry-run passed removal_allowed=0, 22 new JSON artifacts parsed, no registry or fingerprint diffs
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T02:11:28+00:00 - v3
+
+- Task: Independent second heme full-current rerun reconciliation
+- Time mode: measured
+- Measured minutes: 18.767
+- Started: 2026-05-22T01:52:42Z
+- Ended: 2026-05-22T02:11:28Z
+- Artifacts: artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_duplicate_screen_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: observed pushed commit 8744142 already closed the canonical second-heme full-current blocker, independent rerun completed 2016/2016 current-countable pairs for P39597 P31545 and K7N5M8, rerun reproduced the canonical status split: P31545 duplicate/leakage, P39597 and K7N5M8 bounded current-countable duplicate-clear, targeted regression pins the rerun as duplicate/leakage evidence only
+- Notes: Concurrent canonical closure was preserved; no label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite threshold change or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -337,6 +337,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T23:19:22.103465+00:00: Next metal work should build source-free geometry scoring for P75792/P0A8Y5 or move to a bounded non-ePK family-axis experiment
 - 2026-05-22T00:21:07.387970+00:00: Continue bounded external terminal-decision deepening and import-gate readiness checks before any new broad mini-campaign.
 - 2026-05-22T01:48:29+00:00: Next main-loop work should close the three second-heme full current-countable duplicate-screen blockers or deepen another existing frozen packet before adding broad rows.
+- 2026-05-22T02:11:28+00:00: Next main-loop work should deepen another existing frozen packet or build import-gate evidence around review-ready rows without adding broad rows.
 
 ## Scope Adjustments
 
@@ -495,3 +496,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-21T23:19:22.103465+00:00: No new external rows; deepened existing frozen metal-phosphatase decisions and synthesized ePK handoffs once without returning ePK to main-loop default
 - 2026-05-22T00:21:07.387970+00:00: Closed existing frozen metal and serine blockers without adding broad external rows or opening imports.
 - 2026-05-22T01:48:29+00:00: Recovered dirty work continues existing frozen external deepening with no new external row freeze.
+- 2026-05-22T02:11:28+00:00: Added a supplemental duplicate-screen rerun artifact instead of replacing the canonical terminal packet from the pushed closure commit.

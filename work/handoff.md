@@ -85,6 +85,10 @@ structures. `P31545` has a high-TM current-countable hit to `pdb:1IR3`
 and `0.6747`; the updated terminal packet
 `artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json`
 marks them `mechanism_match_review_ready` for review only.
+The independent rerun artifact
+`artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_duplicate_screen_20260521.json`
+reproduces the same 3-row status split and keeps the Foldseek/TM evidence
+strictly in the duplicate/leakage screen role.
 
 The latest rollup
 `artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_full_current_screen_20260521.json`

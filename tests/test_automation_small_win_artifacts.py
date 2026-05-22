@@ -4922,6 +4922,10 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             ARTIFACTS
             / "v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json"
         )
+        independent_rerun = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_full_current_countable_duplicate_screen_20260521.json"
+        )
         packet = _load_json(
             ARTIFACTS
             / "v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
@@ -4967,6 +4971,26 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             rows["P31545"]["nearest_current_countable_hit"]["max_pair_tm_score"],
             0.7,
         )
+        self.assertEqual(independent_rerun["metadata"]["candidate_count"], 3)
+        self.assertEqual(
+            independent_rerun["metadata"]["expected_query_target_pair_count"], 2016
+        )
+        self.assertEqual(
+            independent_rerun["metadata"][
+                "current_countable_structural_screen_status_counts"
+            ],
+            screen["metadata"]["current_countable_structural_screen_status_counts"],
+        )
+        self.assertEqual(
+            independent_rerun["metadata"]["candidate_with_high_tm_count"], 1
+        )
+        self.assertEqual(
+            independent_rerun["metadata"]["candidate_duplicate_clear_count"], 2
+        )
+        rerun_rows = {row["accession"]: row for row in independent_rerun["rows"]}
+        self.assertFalse(rerun_rows["P31545"]["duplicate_clear_established"])
+        self.assertTrue(rerun_rows["P39597"]["duplicate_clear_established"])
+        self.assertTrue(rerun_rows["K7N5M8"]["duplicate_clear_established"])
 
         self.assertTrue(packet["metadata"]["review_only"])
         self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 0)
