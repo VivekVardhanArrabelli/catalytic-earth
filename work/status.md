@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 288
-- Measured elapsed time: 8806.5 minutes (146.78 hours)
+- Entries: 289
+- Measured elapsed time: 8821.8 minutes (147.03 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1807.4 measured minutes (30.12 hours)
+- v3: 1822.7 measured minutes (30.38 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3117
-- Evidence references logged: 2545
+- Artifact references logged: 3129
+- Evidence references logged: 2554
 
 ## Recent Entries
-
-### 2026-05-22T08:49:45.493927+00:00 - v3
-
-- Task: Seed payload gate and metal phosphate blocker
-- Time mode: measured
-- Measured minutes: 160.8
-- Started: 2026-05-22T06:08:34Z
-- Ended: 2026-05-22T08:49:22Z
-- Artifacts: artifacts/v3_external_seed_fingerprint_label_factory_payload_gate_check_20260522.json, artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json, artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: 833-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, three new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs, seed payload dry run is blocked on applied_label_actions_ready external payload adapter, metal phosphate scan covered five PDB structures with zero phosphate-like ligand contexts
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T08:51:15.302701+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_plp_aminotransferase_third_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json, artifacts/v3_plp_aminotransferase_deep_terminal_decision_rollup_post_third_plp_20260522.json, artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json, artifacts/v3_external_nonmetal_human_review_acceptance_checklist_post_plp_closure_20260522.json, artifacts/v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522.json, artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json
 - Evidence: 847 tests pass, cli validate pass, artifact migration dry-run pass
 - Notes: No label imports, registry edits, fingerprint edits, artifact migration/removal, history rewrite, or removal_allowed=true.
+
+### 2026-05-22T16:29:06.133933+00:00 - v3
+
+- Task: Metal phosphate pocket proxy and seven-row human review packet
+- Time mode: measured
+- Measured minutes: 15.267
+- Started: 2026-05-22T16:13:35Z
+- Ended: 2026-05-22T16:28:51Z
+- Artifacts: artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json, artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json, artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json, src/catalytic_earth/metal_active_site.py, tests/test_metal_active_site.py, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: 852-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, three new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs, P0A8Y5 and P75792 resolved review-only phosphate-pocket proxies, seven review-ready rows consolidated for human review with 0 import-ready and 0 countable candidates
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -525,3 +525,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T13:05:41.322034+00:00: Second PLP packet deepens existing frozen rows only; no seed-fingerprint import path opened.
 - 2026-05-22T13:08:53.551713+00:00: Final wrap only; no additional external rows or label changes.
 - 2026-05-22T15:49:13.822899+00:00: No new broad external rows; remaining external queue is human review plus metal phosphate specificity.
+- 2026-05-22T16:29:06.133933+00:00: External no-breadth queue is now human-review-only; no new external mini-campaign should start before human action or a new bounded control experiment.

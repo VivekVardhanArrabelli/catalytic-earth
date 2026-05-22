@@ -326,6 +326,24 @@ The metal-specific next step is similarly bounded:
 preregisters a source-free phosphate/substrate-pocket extractor for only
 `P0A8Y5` and `P75792`. It is a review-only experiment design, not a score,
 threshold, import gate, or new external campaign.
+The 2026-05-22T16:13:35Z run implements that exact bounded extractor as
+`catalytic_earth.metal_active_site.extract_source_free_metal_phosphatase_pocket_proxy`
+and writes
+`artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json`.
+On the same two selected committed structures, both metal rows now have a
+source-free 6.0 Angstrom metal-adjacent polar/basic pocket proxy and stay
+`mechanism_match_review_ready` for review only. The companion benchmark
+`artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json`
+keeps EC/name routing, sequence-kmer routing, Foldseek/TM duplicate screens,
+and absent ESM sidecars as caveated baselines with no superiority claim. This
+narrows the remaining metal path to human/expert action and future controls,
+not new row sourcing.
+`artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json`
+then makes the active external no-breadth queue human-review-only: all seven
+review-ready rows have source-free geometry above floor and UniRef clearance,
+the two metal rows have the review-only pocket proxy, and both source-free
+geometry/structure blockers and metal phosphate-specificity blockers are 0.
+It remains a no-import packet with 0 countable candidates.
 The follow-on AKR fallback packet
 `artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
 uses only existing artifacts and keeps AKR family work review-only. It records

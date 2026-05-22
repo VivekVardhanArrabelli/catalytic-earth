@@ -1,0 +1,168 @@
+{
+  "caveats": [
+    "EC/keyword routing selects the rows but is not predictive mechanism evidence.",
+    "Sequence k-mer and UniRef/Foldseek evidence are duplicate/leakage controls, not positive mechanism evidence.",
+    "No ESM or learned-representation sidecar is available for these rows.",
+    "The pocket proxy is review-only and uncalibrated; it must not be used as a production score or label-import gate without separate controls."
+  ],
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522",
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 2,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T16:21:01Z",
+    "geometry_superiority_claim": false,
+    "import_ready_candidate_count": 0,
+    "method": "metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "representation_superiority_claim": false,
+    "review_only": true,
+    "source_context_counted_as_predictive_count": 0
+  },
+  "metrics": {
+    "countable_label_candidate_count": 0,
+    "ec_keyword_route_hit_count": 2,
+    "esm_or_learned_embedding_sidecar_available_count": 0,
+    "foldseek_current_countable_high_tm_hit_count": 0,
+    "frozen_row_count": 2,
+    "geometry_superiority_claim": false,
+    "import_ready_candidate_count": 0,
+    "sequence_exact_current_reference_alert_count": 0,
+    "source_free_phosphate_pocket_proxy_detected_count": 2
+  },
+  "rows": [
+    {
+      "accession": "P0A8Y5",
+      "caveat": "Pocket proxy adds a coordinate-only review feature; no superiority, import, or production-scoring claim is made.",
+      "deterministic_sequence_kmer_baseline": {
+        "artifact": "artifacts/v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "exact_current_reference_id": null,
+        "kmer_k": 5,
+        "nearest_current_reference_id": "ref__P04042",
+        "nearest_current_reference_jaccard": 0.0049,
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing_baseline": {
+        "caveat": "EC/name routing is selection/review context only and cannot score source-free active-site geometry or duplicate leakage.",
+        "keyword_hit": true,
+        "primary_ec": "3.1.3.23",
+        "route": "metal_phosphatase_candidate"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "caveat": "No ESM sidecar is available for this remaining metal-phosphatase deep packet; no representation-superiority claim is made."
+      },
+      "foldseek_current_countable_sidecar": {
+        "available": true,
+        "caveat": "Foldseek/TM is duplicate-leakage evidence, not positive mechanism evidence.",
+        "current_countable_high_tm_hit_count": 0,
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.6421,
+          "evidence_scope": "current_metal_dependent_hydrolase_targets",
+          "max_pair_tm_score": 0.6392,
+          "qtmscore": 0.5034,
+          "raw_query_name": "pdb_1RKQ_A",
+          "raw_target_name": "pdb_1L7N_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+          "target_entry_ids": [
+            "m_csa:727"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1L7N",
+          "target_structure_key": "pdb:1L7N",
+          "ttmscore": 0.6392
+        },
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json"
+      },
+      "geometry_pipeline": {
+        "pocket_contact_count": 7,
+        "polar_or_basic_non_metal_contact_count": 3,
+        "source_free_phosphate_pocket_proxy_detected": true,
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6774,
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "row_id": "uniprot:P0A8Y5",
+      "terminal_decision": "mechanism_match_review_ready"
+    },
+    {
+      "accession": "P75792",
+      "caveat": "Pocket proxy adds a coordinate-only review feature; no superiority, import, or production-scoring claim is made.",
+      "deterministic_sequence_kmer_baseline": {
+        "artifact": "artifacts/v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "exact_current_reference_id": null,
+        "kmer_k": 5,
+        "nearest_current_reference_id": "ref__P26440",
+        "nearest_current_reference_jaccard": 0.0044,
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing_baseline": {
+        "caveat": "EC/name routing is selection/review context only and cannot score source-free active-site geometry or duplicate leakage.",
+        "keyword_hit": true,
+        "primary_ec": "3.1.3.23",
+        "route": "metal_phosphatase_candidate"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "caveat": "No ESM sidecar is available for this remaining metal-phosphatase deep packet; no representation-superiority claim is made."
+      },
+      "foldseek_current_countable_sidecar": {
+        "available": true,
+        "caveat": "Foldseek/TM is duplicate-leakage evidence, not positive mechanism evidence.",
+        "current_countable_high_tm_hit_count": 0,
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.7998,
+          "evidence_scope": "nonmetal_chunk006_excluding_metal_lane",
+          "max_pair_tm_score": 0.6855,
+          "qtmscore": 0.02592,
+          "raw_query_name": "pdb_1RLM_B",
+          "raw_target_name": "pdb_2PHK_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "target_entry_ids": [
+            "m_csa:35"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_id": "2PHK",
+          "target_structure_key": "pdb:2PHK",
+          "ttmscore": 0.6855
+        },
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json"
+      },
+      "geometry_pipeline": {
+        "pocket_contact_count": 7,
+        "polar_or_basic_non_metal_contact_count": 2,
+        "source_free_phosphate_pocket_proxy_detected": true,
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6758,
+        "text_or_label_fields_used_for_predictive_score": false
+      },
+      "row_id": "uniprot:P75792",
+      "terminal_decision": "mechanism_match_review_ready"
+    }
+  ],
+  "task_definition": {
+    "frozen_rows": [
+      "uniprot:P0A8Y5",
+      "uniprot:P75792"
+    ],
+    "positive_label_for_this_benchmark": "source_free_phosphate_pocket_proxy_detected_review_only",
+    "predictive_context_excluded": [
+      "EC labels",
+      "protein names",
+      "UniProt prose",
+      "curated labels"
+    ],
+    "question": "On the same two review-ready frozen metal-phosphatase rows, does a source-free pocket proxy add a coordinate-only review feature beyond EC/keyword routing, sequence k-mers, and duplicate-screen sidecars?"
+  }
+}

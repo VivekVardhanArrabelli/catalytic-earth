@@ -237,7 +237,7 @@ records 0 import-ready rows. Its no-import gate dry run preregisters a
 review-only policy and initially identified the current-682 external
 seed-fingerprint payload adapter/rebaseline (`applied_label_actions_ready`) as
 the exact blocker, while two metal rows still needed source-free
-phosphate/substrate specificity.
+phosphate/substrate specificity at that point.
 `artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
 scans five selected/PDB-linked coordinate structures for those metal rows and
 finds 0 phosphate-like substrate/product/analog sites, leaving both blocked
@@ -299,8 +299,22 @@ dependence.
 `artifacts/v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522.json`
 does the same narrowing for the two metal rows by preregistering a review-only
 source-free phosphate/substrate-pocket extractor experiment over `P0A8Y5` and
-`P75792`; the rows remain blocked with exact missing evidence until that
-extractor or a holo/analog coordinate structure is materialized and rerun.
+`P75792`.
+`artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json`
+then implements that extractor over the selected committed coordinates only.
+Both rows resolve a source-free 6.0 Angstrom metal-adjacent polar/basic pocket
+proxy and remain `mechanism_match_review_ready` for review only; the companion
+benchmark
+`artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json`
+records EC/keyword, sequence-k-mer, Foldseek/TM, and absent-ESM caveats with
+no superiority, production-scoring, or import claim. The remaining blocker is
+human/expert action plus any future calibrated import policy, not another
+broad external row freeze.
+`artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json`
+then consolidates all seven review-ready rows, including the two metal rows,
+into one no-import human-review packet with 0 source-free geometry blockers, 0
+metal phosphate-specificity blockers, 0 import-ready candidates, and 0
+countable candidates.
 `artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
 then uses only existing AKR/SDR artifacts plus that queue to keep family work
 bounded: AKR remains review-only with one source-traced positive-like row,

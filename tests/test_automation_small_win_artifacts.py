@@ -11501,6 +11501,189 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 "target_lane_rank1_above_floor",
             )
 
+    def test_metal_phosphate_pocket_proxy_extractor_test_stays_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        extractor = packet["extractor"]
+        rows = {row["row_id"]: row for row in packet["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_rows_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["candidate_count"], 2)
+        self.assertEqual(metadata["source_free_phosphate_pocket_proxy_detected_count"], 2)
+        self.assertEqual(metadata["phosphatase_specific_review_ready_count"], 2)
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["registry_invariant_label_count"], 682)
+        self.assertEqual(metadata["external_imported_seed_fingerprint_labels"], [])
+
+        self.assertEqual(
+            decision["packet_status"],
+            "metal_phosphate_specificity_blocker_resolved_to_review_only_pocket_proxy",
+        )
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertTrue(decision["human_action_required_before_any_label_action"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+
+        self.assertEqual(
+            extractor["extractor_id"],
+            "metal_phosphatase_source_free_phosphate_pocket_v1_review_only",
+        )
+        self.assertEqual(extractor["radius_angstrom"], 6.0)
+        self.assertTrue(extractor["review_only_not_production_score"])
+        self.assertIn("EC labels", extractor["excluded_predictive_inputs"])
+
+        self.assertEqual(set(rows), {"uniprot:P0A8Y5", "uniprot:P75792"})
+        for row in rows.values():
+            proxy = row["source_free_phosphate_pocket_proxy"]
+            self.assertEqual(row["terminal_decision"], "mechanism_match_review_ready")
+            self.assertEqual(
+                row["phosphatase_specific_review_status"],
+                "source_free_phosphate_pocket_proxy_resolved_review_only",
+            )
+            self.assertTrue(proxy["proxy_detected"])
+            self.assertEqual(proxy["radius_angstrom"], 6.0)
+            self.assertGreaterEqual(proxy["non_metal_ligand_contact_count"], 2)
+            self.assertGreaterEqual(
+                proxy["polar_or_basic_non_metal_contact_count"], 2
+            )
+            self.assertFalse(
+                proxy["text_or_label_fields_used_for_predictive_score"]
+            )
+            self.assertFalse(row["source_separation"]["source_context_counted_as_predictive"])
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+
+    def test_metal_phosphate_pocket_proxy_benchmark_has_caveats(self) -> None:
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json"
+        )
+
+        metadata = benchmark["metadata"]
+        metrics = benchmark["metrics"]
+        rows = {row["row_id"]: row for row in benchmark["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["geometry_superiority_claim"])
+        self.assertFalse(metadata["representation_superiority_claim"])
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertEqual(metrics["frozen_row_count"], 2)
+        self.assertEqual(metrics["source_free_phosphate_pocket_proxy_detected_count"], 2)
+        self.assertEqual(metrics["ec_keyword_route_hit_count"], 2)
+        self.assertEqual(metrics["sequence_exact_current_reference_alert_count"], 0)
+        self.assertEqual(metrics["foldseek_current_countable_high_tm_hit_count"], 0)
+        self.assertEqual(metrics["esm_or_learned_embedding_sidecar_available_count"], 0)
+        self.assertFalse(metrics["geometry_superiority_claim"])
+        self.assertEqual(set(rows), {"uniprot:P0A8Y5", "uniprot:P75792"})
+        for row in rows.values():
+            self.assertTrue(
+                row["geometry_pipeline"][
+                    "source_free_phosphate_pocket_proxy_detected"
+                ]
+            )
+            self.assertFalse(
+                row["geometry_pipeline"][
+                    "text_or_label_fields_used_for_predictive_score"
+                ]
+            )
+            self.assertTrue(row["ec_keyword_routing_baseline"]["keyword_hit"])
+            self.assertIsNone(
+                row["deterministic_sequence_kmer_baseline"][
+                    "exact_current_reference_id"
+                ]
+            )
+            self.assertFalse(row["esm_sidecar"]["available"])
+
+    def test_all_review_ready_human_packet_includes_metal_proxy_rows(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        policy = packet["review_policy"]
+        rows = {row["row_id"]: row for row in packet["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["candidate_count"], 7)
+        self.assertEqual(metadata["source_free_geometry_above_floor_count"], 7)
+        self.assertEqual(metadata["uniref_current_reference_clear_count"], 7)
+        self.assertEqual(metadata["foldseek_current_countable_high_tm_hit_count"], 0)
+        self.assertEqual(metadata["metal_phosphate_pocket_proxy_resolved_count"], 2)
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+
+        self.assertTrue(decision["human_action_required"])
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertEqual(
+            decision["remaining_blocker_class_counts"],
+            {
+                "explicit_human_expert_label_action_required": 7,
+                "metal_phosphate_specificity_evidence_missing": 0,
+                "source_free_geometry_or_structure_missing": 0,
+            },
+        )
+        self.assertFalse(policy["source_separation"]["source_context_counted_as_predictive"])
+        self.assertIn(
+            "metal rows retain the review-only phosphate-pocket proxy or receive stronger source-free phosphate/substrate evidence",
+            policy["accept_requires_all"],
+        )
+
+        self.assertEqual(
+            set(rows),
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P14532",
+                "uniprot:P39597",
+                "uniprot:P15776",
+                "uniprot:P0A8Y5",
+                "uniprot:P75792",
+            },
+        )
+        metal_rows = {row_id: rows[row_id] for row_id in ["uniprot:P0A8Y5", "uniprot:P75792"]}
+        for row in rows.values():
+            self.assertEqual(
+                row["terminal_decision_before_human_review"],
+                "mechanism_match_review_ready",
+            )
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["source_context_counted_as_predictive"])
+            self.assertTrue(row["source_free_geometry"]["target_lane_at_or_above_floor"])
+            self.assertEqual(
+                row["uniref_current_reference_status"],
+                "uniref_current_reference_screen_no_current_reference_overlap",
+            )
+        for row in metal_rows.values():
+            self.assertEqual(
+                row["phosphate_pocket_proxy_status"],
+                "source_free_phosphate_pocket_proxy_resolved_review_only",
+            )
+            self.assertTrue(row["phosphate_pocket_proxy"]["proxy_detected"])
+            self.assertEqual(row["phosphate_pocket_proxy"]["radius_angstrom"], 6.0)
+
 
 if __name__ == "__main__":
     unittest.main()

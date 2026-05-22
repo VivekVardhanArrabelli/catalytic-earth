@@ -22,16 +22,18 @@ import.
 - The current external deepening surface has seven mechanism-match review-ready
   rows across heme, metal, and serine-hydrolase lanes, but none is import-ready.
   The current-682 adapter/rebaseline now closes the previous
-  `applied_label_actions_ready` gate blocker for a no-import dry run, but
-  human label action is still absent and the two metal phosphatase rows still
-  lack source-free phosphate/substrate specificity. Five rows were already
-  present before the redox closure:
+  `applied_label_actions_ready` gate blocker for a no-import dry run. The two
+  metal phosphatase rows now also have a review-only source-free phosphate
+  pocket-proxy packet, so the active blocker for all seven rows is human/expert
+  action and any future controlled import policy, not source-free geometry or
+  metal phosphate-specificity evidence. Five rows were already present before
+  the redox closure:
   `artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json`
   screens those five rows against UniRef90/50 cluster members and all 735
   current countable reference accessions. All five have 0 current-reference
-  cluster overlaps and 0 fetch failures. The newer current-registry gate rerun
-  and non-metal human-review packet keep all seven review-only with 0
-  import-ready and 0 countable candidates.
+  cluster overlaps and 0 fetch failures. The newer current-registry gate rerun,
+  metal pocket-proxy packet, and seven-row human-review packet keep all seven
+  review-only with 0 import-ready and 0 countable candidates.
 - `artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json`
   closes the three source-free geometry/structure blockers from
   `artifacts/v3_external_deep_remaining_blocker_queue_20260522.json` without
@@ -191,6 +193,27 @@ import.
   pocket proxy near the source-free metal cluster plus unchanged duplicate and
   UniRef clearance. It authorizes no production scoring, no import, and no
   threshold calibration from outcomes.
+- `artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json`
+  implements that preregistered source-free pocket proxy on the same two
+  selected committed coordinate sidecars (`1RKQ` for `P0A8Y5`, `1RLM` for
+  `P75792`). Both rows have a resolved metal cluster plus at least two
+  non-metal-ligand polar/basic pocket contacts within the frozen 6.0 Angstrom
+  radius, so the previous phosphate/substrate-specificity blocker is converted
+  into review-only pocket-proxy evidence. Both rows remain
+  `mechanism_match_review_ready`, not import-ready; human/expert action,
+  calibration controls, and any future full import policy remain required.
+  The companion benchmark
+  `artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json`
+  records the same frozen rows against EC/keyword routing, deterministic
+  sequence-kmer controls, Foldseek/TM duplicate screens, and absent ESM sidecars
+  with no superiority or production-scoring claim.
+- `artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json`
+  consolidates the five non-metal rows plus the two metal rows into a single
+  seven-row human-review packet. It records 7/7 source-free geometry above
+  floor, 7/7 UniRef current-reference clear rows, 0 current-countable high-TM
+  duplicate hits, 2/2 metal pocket proxies resolved, and 0 source-free geometry
+  or metal phosphate-specificity blockers. It still authorizes no import,
+  registry edit, fingerprint edit, threshold calibration, or production score.
 - `artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
   is the follow-on family-readiness fallback from existing evidence only. It
   does not freeze new rows or start a broad family tranche. AKR/NADP remains a

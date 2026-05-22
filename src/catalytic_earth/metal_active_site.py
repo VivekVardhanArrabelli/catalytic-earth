@@ -77,6 +77,17 @@ PHOSPHATE_LIKE_LIGAND_CODES = {
 METAL_COORDINATION_CUTOFF_ANGSTROM = 3.0
 METAL_TO_PHOSPHATE_CUTOFF_ANGSTROM = 5.0
 PHOSPHATE_BINDER_CUTOFF_ANGSTROM = 3.8
+PHOSPHATE_POCKET_PROXY_RADIUS_ANGSTROM = 6.0
+PHOSPHATE_POCKET_SUPPORTING_RESIDUES = {
+    "ARG",
+    "ASN",
+    "GLN",
+    "HIS",
+    "LYS",
+    "SER",
+    "THR",
+    "TYR",
+}
 
 
 def extract_source_free_metal_hydrolase_site(
@@ -127,6 +138,49 @@ def extract_source_free_metal_hydrolase_site(
     }
 
 
+def extract_source_free_metal_phosphatase_pocket_proxy(
+    atoms: list[dict[str, Any]],
+    *,
+    row_id: str | None = None,
+    accession: str | None = None,
+    structure_id: str | None = None,
+) -> dict[str, Any]:
+    """Extract a preregistered phosphate-pocket proxy from coordinates only."""
+    active_site = extract_source_free_metal_hydrolase_site(
+        atoms,
+        row_id=row_id,
+        accession=accession,
+        structure_id=structure_id,
+    )
+    selected_candidate = (
+        active_site.get("site_candidates", [None])[0]
+        if active_site.get("site_candidates")
+        else None
+    )
+    proxy = (
+        selected_candidate.get("phosphate_pocket_proxy")
+        if isinstance(selected_candidate, dict)
+        else _empty_phosphate_pocket_proxy()
+    )
+    return {
+        "accession": accession,
+        "entry_id": row_id or (f"uniprot:{accession}" if accession else None),
+        "structure_id": structure_id,
+        "source_free_coordinate_evidence": True,
+        "text_or_label_fields_used_for_predictive_score": False,
+        "predictive_input_policy": active_site["predictive_input_policy"],
+        "base_metal_site_status": active_site["status"],
+        "base_metal_site_status_reason": active_site["status_reason"],
+        "selected_site": active_site["selected_site"],
+        "metal_site_count": active_site["metal_site_count"],
+        "phosphate_like_site_count": active_site["phosphate_like_site_count"],
+        "phosphate_pocket_proxy": proxy,
+        "terminal_review_status": _phosphate_pocket_terminal_status(
+            active_site["status"], proxy
+        ),
+    }
+
+
 def _summarize_metal_site(
     metal_atom: dict[str, Any],
     protein_sites: dict[tuple[str, str, str], list[dict[str, Any]]],
@@ -144,6 +198,11 @@ def _summarize_metal_site(
     phosphate_contacts = _phosphate_binding_contacts(
         phosphate_context.get("_site_atoms") if phosphate_context else [],
         protein_sites,
+    )
+    phosphate_pocket_proxy = _phosphate_pocket_proxy(
+        metal_atom,
+        protein_sites,
+        metal_contacts,
     )
 
     residues_by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
@@ -217,7 +276,147 @@ def _summarize_metal_site(
         "residues": residues,
         "metal_contacts": metal_contacts[:12],
         "phosphate_binding_contacts": phosphate_contacts[:12],
+        "phosphate_pocket_proxy": phosphate_pocket_proxy,
     }
+
+
+def _phosphate_pocket_proxy(
+    metal_atom: dict[str, Any],
+    protein_sites: dict[tuple[str, str, str], list[dict[str, Any]]],
+    metal_contacts: list[dict[str, Any]],
+) -> dict[str, Any]:
+    metal_ligand_keys = {
+        (
+            str(contact.get("residue_code") or ""),
+            str(contact.get("residue_chain_id") or ""),
+            str(contact.get("residue_id") or ""),
+        )
+        for contact in metal_contacts
+    }
+    contacts = []
+    for (code, chain_id, residue_id), residue_atoms in protein_sites.items():
+        candidate_atoms = [
+            atom
+            for atom in residue_atoms
+            if _atom_name(atom) in PHOSPHATE_BINDING_SIDECHAIN_ATOMS.get(code, set())
+        ]
+        if not candidate_atoms:
+            continue
+        nearest = _nearest_atom_pair([metal_atom], candidate_atoms)
+        if nearest is None:
+            continue
+        distance, _, residue_atom = nearest
+        if distance > PHOSPHATE_POCKET_PROXY_RADIUS_ANGSTROM:
+            continue
+        residue_key = (code, chain_id, residue_id)
+        overlaps_metal_ligand = residue_key in metal_ligand_keys
+        if overlaps_metal_ligand:
+            contact_class = "metal_ligand_overlap"
+        elif code in PHOSPHATE_POCKET_SUPPORTING_RESIDUES:
+            contact_class = "polar_or_basic_pocket_contact"
+        else:
+            contact_class = "acidic_pocket_contact"
+        contacts.append(
+            {
+                "distance_to_metal_angstrom": round(distance, 3),
+                "residue_code": code,
+                "residue_chain_id": chain_id or None,
+                "residue_id": residue_id or None,
+                "residue_atom": _atom_name(residue_atom) or None,
+                "overlaps_metal_ligand": overlaps_metal_ligand,
+                "contact_class": contact_class,
+            }
+        )
+    contacts.sort(
+        key=lambda item: (
+            float(item["distance_to_metal_angstrom"]),
+            str(item["residue_chain_id"] or ""),
+            _natural_residue_number(item["residue_id"]),
+            str(item["residue_code"]),
+        )
+    )
+    non_metal_contacts = [
+        contact for contact in contacts if not contact["overlaps_metal_ligand"]
+    ]
+    supporting_non_metal_contacts = [
+        contact
+        for contact in non_metal_contacts
+        if contact["residue_code"] in PHOSPHATE_POCKET_SUPPORTING_RESIDUES
+    ]
+    requirements = {
+        "resolved_metal_ligand_cluster": len(metal_contacts) >= 2,
+        "non_metal_ligand_pocket_contact_count_at_least_two": (
+            len(non_metal_contacts) >= 2
+        ),
+        "polar_or_basic_non_metal_contact_count_at_least_two": (
+            len(supporting_non_metal_contacts) >= 2
+        ),
+        "radius_angstrom_preregistered": PHOSPHATE_POCKET_PROXY_RADIUS_ANGSTROM,
+        "no_threshold_calibration_from_outcomes": True,
+    }
+    proxy_detected = (
+        requirements["resolved_metal_ligand_cluster"]
+        and requirements["non_metal_ligand_pocket_contact_count_at_least_two"]
+        and requirements["polar_or_basic_non_metal_contact_count_at_least_two"]
+    )
+    return {
+        "extractor_id": "metal_phosphatase_source_free_phosphate_pocket_v1_review_only",
+        "proxy_detected": proxy_detected,
+        "proxy_status": (
+            "source_free_phosphate_pocket_proxy_resolved"
+            if proxy_detected
+            else "source_free_phosphate_pocket_proxy_not_resolved"
+        ),
+        "radius_angstrom": PHOSPHATE_POCKET_PROXY_RADIUS_ANGSTROM,
+        "contact_count": len(contacts),
+        "non_metal_ligand_contact_count": len(non_metal_contacts),
+        "polar_or_basic_non_metal_contact_count": len(supporting_non_metal_contacts),
+        "requirements": requirements,
+        "contacts": contacts[:16],
+        "text_or_label_fields_used_for_predictive_score": False,
+        "predictive_input_policy": (
+            "Only mmCIF atom coordinates, residue/ligand comp ids, atom names, "
+            "and interatomic distances are used; EC, names, UniProt prose, and "
+            "curated labels are excluded."
+        ),
+    }
+
+
+def _empty_phosphate_pocket_proxy() -> dict[str, Any]:
+    return {
+        "extractor_id": "metal_phosphatase_source_free_phosphate_pocket_v1_review_only",
+        "proxy_detected": False,
+        "proxy_status": "source_free_phosphate_pocket_proxy_not_resolved",
+        "radius_angstrom": PHOSPHATE_POCKET_PROXY_RADIUS_ANGSTROM,
+        "contact_count": 0,
+        "non_metal_ligand_contact_count": 0,
+        "polar_or_basic_non_metal_contact_count": 0,
+        "requirements": {
+            "resolved_metal_ligand_cluster": False,
+            "non_metal_ligand_pocket_contact_count_at_least_two": False,
+            "polar_or_basic_non_metal_contact_count_at_least_two": False,
+            "radius_angstrom_preregistered": PHOSPHATE_POCKET_PROXY_RADIUS_ANGSTROM,
+            "no_threshold_calibration_from_outcomes": True,
+        },
+        "contacts": [],
+        "text_or_label_fields_used_for_predictive_score": False,
+        "predictive_input_policy": (
+            "Only mmCIF atom coordinates, residue/ligand comp ids, atom names, "
+            "and interatomic distances are used; EC, names, UniProt prose, and "
+            "curated labels are excluded."
+        ),
+    }
+
+
+def _phosphate_pocket_terminal_status(
+    base_status: str,
+    proxy: dict[str, Any],
+) -> str:
+    if proxy.get("proxy_detected"):
+        return "phosphate_pocket_proxy_resolved_review_only"
+    if base_status == "metal_phosphate_site_resolved":
+        return "phosphate_like_ligand_site_resolved"
+    return "needs_new_extractor_or_structure"
 
 
 def _metal_coordination_contacts(

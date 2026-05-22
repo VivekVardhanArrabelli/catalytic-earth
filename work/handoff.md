@@ -443,6 +443,50 @@ cluster before phosphatase specificity can advance. It does not run the
 extractor, calibrate thresholds, authorize production scoring, or import
 labels.
 
+As of the 2026-05-22T16:13:35Z main-loop run, the automation implemented that
+preregistered metal phosphate-pocket proxy without opening new external
+breadth. `src/catalytic_earth/metal_active_site.py` now exposes
+`extract_source_free_metal_phosphatase_pocket_proxy`, which uses only mmCIF atom
+coordinates, residue/ligand comp IDs, atom names, chain/residue identifiers,
+and distances. It keeps EC labels, names, UniProt prose, source annotations,
+curated labels, and post-hoc threshold changes out of predictive evidence.
+Focused tests in `tests/test_metal_active_site.py` cover both proxy-resolved and
+still-blocked synthetic coordinate cases.
+
+`artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json`
+runs the extractor on the already selected committed metal-row coordinates
+only: `P0A8Y5`/`1RKQ` and `P75792`/`1RLM`. Both rows retain source-free metal
+clusters and resolve the preregistered 6.0 Angstrom polar/basic pocket proxy:
+`P0A8Y5` has 5 non-metal-ligand pocket contacts with 3 polar/basic contacts,
+and `P75792` has 4 non-metal-ligand pocket contacts with 2 polar/basic
+contacts. The rows remain `mechanism_match_review_ready` and review-only, with
+0 import-ready candidates and 0 countable candidates. The companion benchmark
+`artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json`
+records EC/keyword routing, deterministic sequence-kmer controls, Foldseek/TM
+duplicate evidence, and absent ESM sidecars for the same frozen rows, with no
+geometry-superiority or production-scoring claim.
+
+`artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json`
+then consolidates the five non-metal rows and the two metal rows into one
+no-import human-review packet. It records 7/7 source-free geometry-above-floor
+rows, 7/7 UniRef current-reference-clear rows, 0 current-countable high-TM
+duplicate hits, and 2/2 metal phosphate-pocket proxies resolved. The remaining
+blocker class is now explicit human/expert label action for all seven rows; the
+packet starts no broad external mini-campaign and authorizes no import,
+registry edit, fingerprint edit, threshold calibration, or production score.
+
+Evidence-based confidence call: confidence is high that the immediate metal
+phosphate/substrate blocker is now resolved only to review-ready status, not
+import readiness, because the new packet records 2/2 pocket proxies detected,
+0 import-ready candidates, 0 countable candidates, no registry or fingerprint
+edits, and source-context predictive usage count 0. Confidence is high that the
+active external no-breadth queue is now human-review-only because the
+seven-row packet records 0 source-free geometry/structure blockers and 0 metal
+phosphate-specificity blockers. Confidence is moderate on the scientific
+strength of the pocket proxy because it is a preregistered coordinate-only
+review feature rather than a calibrated production score; any future label path
+still needs human/expert action and controls.
+
 The fallback family-readiness packet
 `artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
 uses only existing AKR/SDR readiness artifacts plus that no-breadth queue. AKR
