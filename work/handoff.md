@@ -50,6 +50,93 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-22T03:17Z main-loop run, the automation kept the main work
+on existing external decisions while doing only a concise ePK lane synthesis.
+`artifacts/v3_epk_post_late_decision_synthesis_20260522.json` integrates the
+fresh research-lane handoffs and ledgers after the previous late synthesis.
+It records `8UYH` as one review-only clean active-state ePK candidate for
+policy-harness adjudication, preserves `5UJ7:biological_assembly_1` as the
+context-v4-only split counterexample, keeps the 119-row sibling-control surface
+as a future scorer-test fixture, and records folded-Tyr reciprocal/product/ADP
+and same-chain substrate-role classes as terminal review-only under the
+current source-free policy. No ePK production scoring, threshold calibration,
+label import, registry edit, fingerprint edit, or artifact migration action is
+authorized; the main-loop action remains external terminal-decision deepening
+and import-gate readiness.
+
+The same run advanced the existing mechanism-match review-ready external rows
+without importing labels. `artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json`
+screens all five review-ready rows from
+`artifacts/v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522.json`
+against UniRef90/50 cluster members and the 735 current countable reference
+accessions. All five (`I2DBY1`, `P75792`, `P0A8Y5`, `P39597`, and `K7N5M8`)
+have 0 current-reference cluster overlaps and 0 fetch failures, so the current
+UniRef90/50 duplicate-overlap blocker is removed for these rows. They remain
+review-only and not import-ready: full label-factory gates have not run, no
+external seed-fingerprint counting policy has been preregistered for these
+rows, no human label action was requested, and the metal phosphatase rows still
+lack source-free phosphate/substrate specificity.
+
+The run also closed the remaining frozen heme-peroxidase rows that could be
+decided from existing sequence evidence. `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
+selects the five previously unselected heme rows from the 2026-05-21 frozen
+mini-campaign. Four rows (`P21179`, `P00431`, `P04963`, and `P48534`) are exact
+current-reference sequence duplicates and are terminal
+`terminal_rejection_duplicate_or_leakage` rows without geometry scoring or
+import claims. `P14532` is not an exact sequence duplicate but remains
+`needs_new_extractor_or_structure` with one exact blocker: source-free heme
+active-site geometry scoring plus current-countable structural duplicate
+screening are still missing. The companion benchmark
+`artifacts/v3_heme_peroxidase_third_deep_packet_sequence_duplicate_closure_modern_baseline_benchmark_20260522.json`
+records that EC/keyword routing is review context only, deterministic sequence
+closed four rows, and geometry/Foldseek/ESM sidecars are absent for the
+remaining blocker, so no superiority claim is made.
+
+The run then closed the same sequence-duplicate class for the remaining frozen
+flavin dehydrogenase/reductase rows. `artifacts/v3_flavin_dehydrogenase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
+selects six previously unselected rows from the existing 2026-05-21 frozen
+mini-campaign. Four rows (`P15559`, `P0AEZ1`, `P38489`, and `P42593`) are
+exact current-reference sequence duplicates and are terminal
+`terminal_rejection_duplicate_or_leakage` rows without geometry scoring or
+import claims. `P33371` and `P32340` are not exact sequence duplicates but
+remain `needs_new_extractor_or_structure` with one exact blocker: source-free
+flavin dehydrogenase active-site geometry scoring plus current-countable
+structural duplicate screening are still missing. The companion benchmark
+`artifacts/v3_flavin_dehydrogenase_third_deep_packet_sequence_duplicate_closure_modern_baseline_benchmark_20260522.json`
+records that EC/keyword routing is review context only, deterministic sequence
+closed four rows, and geometry/Foldseek/ESM sidecars are absent for the two
+remaining blockers, so no superiority claim is made.
+
+Finally, `artifacts/v3_external_deep_remaining_blocker_queue_20260522.json`
+packages the remaining actionable external blockers without adding rows or
+opening import. It queues five mechanism-match review-ready rows behind a
+review-only label-factory payload dry run and explicit external seed-
+fingerprint policy, and queues `P14532`, `P33371`, and `P32340` for the next
+coordinate materialization, source-free geometry, and current-countable
+structural duplicate screens. The queue is non-countable, review-only, and
+explicitly excludes EC/name/source prose from predictive evidence.
+
+Evidence-based confidence call: confidence is high that the UniRef90/50
+current-reference overlap screen completed for the five review-ready rows
+because 10 candidate clusters fetched successfully and all overlap counts are
+0 against the current 735-reference accession set. Confidence is medium that
+this materially reduces duplicate/leakage risk because it is a current-
+reference cluster screen, not a full future label-factory import decision.
+Confidence is high that import remains closed because every row still carries
+explicit full-gate and policy blockers and the registry invariants remain 682
+labels, 212 `seed_fingerprint`, 470 `out_of_scope`, with external imports
+limited to `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`.
+Confidence is high that the four heme third-packet duplicate rejections are
+terminal for this scope because exact current-reference sequence identity is a
+leakage/holdout condition independent of source-free mechanism scoring.
+Confidence is high for the same reason that the four FDR third-packet
+duplicate rejections are terminal for this scope. Confidence is medium for the
+`P33371` and `P32340` blockers because they are exact missing-evidence
+statements, not terminal mechanism decisions.
+Confidence is high that the blocker queue is a planning artifact only because
+it carries 0 import-ready rows, 0 countable candidates, no registry/fingerprint
+edits, and no new frozen external breadth.
+
 As of the 2026-05-22T00:57Z main-loop run, the external deepening ladder
 continued on already frozen rows only. No new external mini-campaign rows were
 frozen. The second flavin dehydrogenase/reductase packet selected seven

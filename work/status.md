@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 275
-- Measured elapsed time: 8252.3 minutes (137.54 hours)
+- Entries: 276
+- Measured elapsed time: 8296.1 minutes (138.27 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1256.3 measured minutes (20.94 hours)
+- v3: 1300.1 measured minutes (21.67 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2986
-- Evidence references logged: 2422
+- Artifact references logged: 2997
+- Evidence references logged: 2429
 
 ## Recent Entries
-
-### 2026-05-21T22:15:26.911702+00:00 - v3
-
-- Task: Second metal phosphatase deep packet and Q99504 blocker narrowing
-- Time mode: measured
-- Measured minutes: 45.5
-- Started: 2026-05-21T21:29:56Z
-- Ended: 2026-05-21T22:15:26Z
-- Artifacts: artifacts/v3_metal_phosphatase_deep_packet_second_selection_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_coordinate_materialization_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_structure_mapping_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_geometry_scores_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_current_countable_structural_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_timeout_targeted_rescue_screen_20260521.json, artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_second_after_timeout_rescue_20260521.json, artifacts/v3_metal_phosphatase_deep_packet_second_after_timeout_rescue_modern_baseline_benchmark_20260521.json, artifacts/v3_metal_phosphatase_q99504_current_metal_target_probe_20260521.json, artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk000_probe_20260521.json, artifacts/v3_metal_phosphatase_q99504_current_nonmetal_chunk001_probe_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_metal_timeout_rescue_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: 7 remaining frozen metal rows selected before new scoring, 7 AlphaFold v6 sidecars staged and active-site mapped, 0 text/name/label fields used in geometry scores, 5 all-current Foldseek-completed rows reached TM>=0.7 leakage, P05186 converted by targeted current subset rescue, Q99504 metal subset plus nonmetal chunks000-001 completed with 0 high-TM hits, final second-metal packet has 6 duplicate/leakage rejections and 1 exact blocker, rollup now indexes 49 deep rows with 48 non-needs-review terminal outcomes, 805 tests passed, CLI validate passed, migration dry-run passed removal_allowed=0
-- Notes: No label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-21T22:18:05.813032+00:00 - ops
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-22T02:17:12Z
 - Artifacts: artifacts/v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/progress_log.jsonl, work/status.md
 - Evidence: five mechanism-match review-ready rows collected across heme and metal lanes, all five rows remain review-ready only with zero import-ready candidates and zero countable label candidates, matrix preserves 682-label registry invariant and imported external labels exactly P06744 P78549 Q3LXA3, 821-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, new JSON artifacts parsed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T03:34:56.636211+00:00 - v3
+
+- Task: Review-ready UniRef screen and duplicate-closure blocker queue
+- Time mode: measured
+- Measured minutes: 43.867
+- Started: 2026-05-22T02:50:51Z
+- Ended: 2026-05-22T03:34:43Z
+- Artifacts: artifacts/v3_epk_post_late_decision_synthesis_20260522.json, artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json, artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json, artifacts/v3_heme_peroxidase_third_deep_packet_sequence_duplicate_closure_modern_baseline_benchmark_20260522.json, artifacts/v3_flavin_dehydrogenase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json, artifacts/v3_flavin_dehydrogenase_third_deep_packet_sequence_duplicate_closure_modern_baseline_benchmark_20260522.json, artifacts/v3_external_deep_remaining_blocker_queue_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: 826-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, UniRef90/50 current-reference screen cleared all five review-ready rows with 0 overlaps, heme third packet closed four exact sequence duplicates and left P14532 with exact coordinate/geometry/structure blocker, FDR third packet closed four exact sequence duplicates and left P33371/P32340 with exact coordinate/geometry/structure blockers, artifact migration dry-run passed with removal_allowed=0, no registry or fingerprint diffs
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -339,6 +339,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T01:48:29+00:00: Next main-loop work should close the three second-heme full current-countable duplicate-screen blockers or deepen another existing frozen packet before adding broad rows.
 - 2026-05-22T02:11:28+00:00: Next main-loop work should deepen another existing frozen packet or build import-gate evidence around review-ready rows without adding broad rows.
 - 2026-05-22T02:17:12+00:00: Next main-loop work should deepen another existing frozen packet or choose one review-ready row for explicit UniRef-wide and label-factory payload work.
+- 2026-05-22T03:34:56.636211+00:00: Next main-loop work should materialize coordinates then run source-free geometry and current-countable structural duplicate screens for P14532 plus P33371/P32340, or run a no-import label-factory payload dry run for the five review-ready rows only after explicit policy preregistration.
 
 ## Scope Adjustments
 
@@ -499,3 +500,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T01:48:29+00:00: Recovered dirty work continues existing frozen external deepening with no new external row freeze.
 - 2026-05-22T02:11:28+00:00: Added a supplemental duplicate-screen rerun artifact instead of replacing the canonical terminal packet from the pushed closure commit.
 - 2026-05-22T02:17:12+00:00: Added an import-blocker matrix rather than opening new external breadth.
+- 2026-05-22T03:34:56.636211+00:00: Added import-gate evidence, sequence-duplicate terminal closures, and a non-countable blocker queue from existing frozen rows only.

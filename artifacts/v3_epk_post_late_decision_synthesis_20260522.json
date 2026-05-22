@@ -1,0 +1,108 @@
+{
+  "input_handoffs_and_ledgers_read": {
+    "epk_false_positive_hunter": {
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/work/research_lanes/epk_false_positive_hunter/handoff.md",
+      "latest_handoff_updated_at": "2026-05-21T23:25:15Z",
+      "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-false-positive/artifacts/research_lanes/epk_false_positive_hunter/epk_false_positive_hunter_runs.jsonl",
+      "source_ref_status": "pushed alternate-index evidence; origin/research/epk-false-positive-hunter at 53b0804"
+    },
+    "epk_policy_harness": {
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/work/research_lanes/epk_policy_harness/handoff.md",
+      "latest_handoff_updated_at": "2026-05-21T23:20:01Z",
+      "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-policy-harness/artifacts/research_lanes/epk_policy_harness/epk_policy_harness_runs.jsonl",
+      "source_ref_status": "pushed policy decision; origin/research/epk-policy-harness at 69db3b5"
+    },
+    "epk_positive_evidence": {
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/work/research_lanes/epk_positive_evidence/handoff.md",
+      "latest_handoff_updated_at": "2026-05-21T23:21:46Z",
+      "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-positive/artifacts/research_lanes/epk_positive_evidence/epk_positive_evidence_runs.jsonl",
+      "source_ref_status": "local linked-worktree handoff; normal fast-forward blocked; origin/research/epk-positive-evidence at 2da58d9"
+    },
+    "epk_sibling_controls": {
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/work/research_lanes/epk_sibling_controls/handoff.md",
+      "latest_handoff_updated_at": "2026-05-21T22:37:52Z",
+      "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-sibling-controls/artifacts/research_lanes/epk_sibling_controls/epk_sibling_controls_runs.jsonl",
+      "source_ref_status": "local linked-worktree handoff; origin/research/epk-sibling-controls at 0f48cbb"
+    },
+    "epk_substrate_role_identity": {
+      "handoff_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-substrate-role-identity/work/research_lanes/epk_substrate_role_identity/handoff.md",
+      "latest_handoff_updated_at": "2026-05-21T23:21:11Z",
+      "ledger_path": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-epk-substrate-role-identity/artifacts/research_lanes/epk_substrate_role_identity/epk_substrate_role_identity_runs.jsonl",
+      "source_ref_status": "pushed final sync-blocker record; origin/research/epk-substrate-role-identity at 90315a3"
+    }
+  },
+  "lane_findings": [
+    {
+      "decision_effect": "adds 8UYH as a precise policy-harness candidate, not production readiness",
+      "lane_id": "epk_positive_evidence",
+      "latest_observation": "8UYH has ANP PG on PINK1 chain A, local Mg at 3.837 A, and same-entity other-chain PINK1 Ser202 OG at 5.973 A; the existing scanner is heteromeric-only, so same-entity trans-autophosphorylation needs policy adjudication.",
+      "next_exact_experiment": "run the existing policy/federated harness on 8UYH same-entity trans-autophosphorylation without label import",
+      "primary_outcome": "clean_active_state_candidate_found_review_only"
+    },
+    {
+      "decision_effect": "older ATP/ANP metric-seeded split-trap route did not find a new unsafe non-abstention",
+      "lane_id": "epk_false_positive_hunter",
+      "latest_observation": "480 entry rows and 974 coordinate contexts produced zero assembly-below-floor split contexts, zero materializer inputs, and zero unsafe non-abstentions; 5UJ7 biological_assembly_1 remains the pinned context-v4-only residual.",
+      "next_exact_experiment": "inspect atom-site-cap skipped ATP/ANP IDs with smaller assembly-only metadata before any broader ligand-page growth, or pivot to same-chain/internal-fragment probes",
+      "primary_outcome": "search_surface_certified"
+    },
+    {
+      "decision_effect": "certifies a future scorer-test surface only; no production activation",
+      "lane_id": "epk_sibling_controls",
+      "latest_observation": "The frozen 119-row sibling-control surface passed row-oracle, fail-closed, obligation, and family-surface gates with unsafe_nonabstention_count=0.",
+      "next_exact_experiment": "run any future scorer output through the 119-row oracle/fail-closed/obligation/family-surface gates before counting ePK progress",
+      "primary_outcome": "surface_certified"
+    },
+    {
+      "decision_effect": "folded Tyr reciprocal active-gamma context is terminal no-go under current source-free policy",
+      "lane_id": "epk_policy_harness",
+      "latest_observation": "9UUR/9UUX remain topology-ambiguous and 9UW4 is the matching reciprocal folded Tyr counterexample; 8OXM-like non-reciprocal rows remain future gate-design inputs only.",
+      "next_exact_experiment": "do not pursue folded Tyr reciprocal context without a genuinely new preregistered source-free biology modality; use non-reciprocal active-gamma rows for any future gate design",
+      "primary_outcome": "candidate_class_terminal_no_go"
+    },
+    {
+      "decision_effect": "folded Tyr reciprocal, product/ADP, and same-chain topology classes stay terminal review-only under current source-free constraints",
+      "lane_id": "epk_substrate_role_identity",
+      "latest_observation": "Promoting folded Tyr reciprocal signatures would admit 9UW4; same-chain topology signatures collide across positives and counterexamples, with split-state and internal-fragment blockers preserved.",
+      "next_exact_experiment": "reopen only with named source/wet-lab evidence or an independently preregistered source-free rule tested before interpretation",
+      "primary_outcome": "candidate_class_terminal_no_go"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_epk_post_late_decision_synthesis_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-22T03:15:35Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "fresh_lane_handoffs_since_prior_synthesis": true,
+    "label_import_authorized": false,
+    "lane_count": 5,
+    "main_loop_should_continue_epk_by_default": false,
+    "method": "review_only_synthesis_of_fresh_epk_research_lane_handoffs_after_late_main_synthesis",
+    "prior_synthesis_artifact": "artifacts/v3_epk_late_handoff_only_research_lane_synthesis_20260521.json",
+    "production_scoring_authorized": false,
+    "ready_for_label_import": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "safety_rails": {
+    "artifact_migration_phase_2_or_3": false,
+    "artifact_upload_or_removal": false,
+    "curated_label_registry_edit": false,
+    "history_rewrite": false,
+    "label_import": false,
+    "production_fingerprint_edit": false,
+    "threshold_calibration": false
+  },
+  "synthesis_conclusion": {
+    "eight_uyh_status": "review_only_clean_active_state_candidate_for_policy_harness_adjudication",
+    "five_uj7_status": "pinned_as_biological_assembly_1_context_v4_only_split_failure",
+    "label_import_authorized": false,
+    "main_loop_action": "return_to_external_terminal_decision_deepening_and_import_gate_readiness",
+    "overall": "fresh ePK outputs change review-only blocker taxonomy and next exact experiments, but they do not authorize production ePK scoring or label actions",
+    "production_scoring_authorized": false,
+    "registry_or_fingerprint_change_authorized": false
+  }
+}

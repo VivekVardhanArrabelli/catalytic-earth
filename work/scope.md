@@ -146,6 +146,17 @@ pinned as the context-v4-only split counterexample, records policy v9's exact
 review-only control surface for future scorer tests. The conclusion is still
 no production ePK scoring, no label import, no registry/fingerprint edit, and
 no main-loop ePK default.
+The 2026-05-22 post-late synthesis in
+`artifacts/v3_epk_post_late_decision_synthesis_20260522.json` integrates the
+fresh lane handoffs and ledgers that arrived after that artifact without
+copying research-branch production changes. It changes only review-only
+blocker taxonomy: `8UYH` is a same-entity PINK1 trans-autophosphorylation
+candidate for policy-harness adjudication; older ATP/ANP split-trap search
+adds no unsafe non-abstentions; folded-Tyr reciprocal/product/ADP and
+same-chain substrate-role contexts are terminal review-only under the current
+source-free policy; and the 119-row sibling surface remains the future
+scorer-test fixture. ePK is still no-go for production scoring, threshold
+calibration, label import, registry edit, or fingerprint expansion.
 Current external-deepening scope: the 2026-05-22 main-loop follow-up continued
 only already frozen 2026-05-21 external rows. It did not add a seventh broad
 mini-campaign or freeze new external breadth. The second flavin
@@ -161,6 +172,38 @@ covers 71 rows with 0 exact blockers, 0 import-ready candidates, 0 countable
 label candidates, and a closed import gate. Next work should deepen another
 already frozen packet or build import-gate evidence around review-ready rows,
 not source more broad rows by default.
+The 2026-05-22 UniRef payload-plan follow-up in
+`artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json`
+does the latter without opening import: all five mechanism-match review-ready
+rows have no UniRef90/50 current-reference overlap against the 735 current
+countable reference accessions, and all five remain non-countable because full
+label-factory gates, explicit external seed-fingerprint policy, and human label
+action are absent. This removes a bounded current-reference cluster-overlap
+blocker but does not create a label-import path or superiority claim.
+The same run also deepened the five remaining frozen heme rows in
+`artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`.
+Four are exact current-reference sequence duplicates and terminal duplicate/
+leakage rejections; `P14532` is a precise
+`needs_new_extractor_or_structure` blocker for source-free heme geometry plus
+current-countable structural duplicate screening. The companion modern-baseline
+artifact records that sequence, not geometry, closed the four duplicates and
+that no ESM/Foldseek sidecar is attached for the remaining blocker.
+The same closure pass deepened the six remaining frozen flavin
+dehydrogenase/reductase rows in
+`artifacts/v3_flavin_dehydrogenase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`.
+Four are exact current-reference sequence duplicates and terminal duplicate/
+leakage rejections; `P33371` and `P32340` are precise
+`needs_new_extractor_or_structure` blockers for source-free FDR active-site
+geometry plus current-countable structural duplicate screening. The companion
+modern-baseline artifact records that sequence, not geometry, closed the four
+duplicates and that no ESM/Foldseek sidecar is attached for the remaining
+blockers.
+`artifacts/v3_external_deep_remaining_blocker_queue_20260522.json` turns the
+same outputs into a review-only next-work queue: five mechanism-match rows are
+blocked on label-factory payload policy/gates, while `P14532`, `P33371`, and
+`P32340` are blocked on coordinate materialization, source-free geometry, plus
+current-countable structural duplicate screening. It does not add external
+rows, import labels, or count any candidate.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

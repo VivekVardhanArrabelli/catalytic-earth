@@ -1,0 +1,64 @@
+{
+  "baseline_comparisons": {
+    "current_geometry_retrieval": {
+      "available": false,
+      "reason": "not run for this closure packet; exact sequence duplicates reject before geometry, and P33371/P32340 are exact geometry/structure blockers"
+    },
+    "deterministic_sequence_kmer_nearest_neighbor": {
+      "available": true,
+      "exact_current_reference_duplicate_count": 4,
+      "near_neighbor_alert_count": 4,
+      "sequence_baseline_artifact": "artifacts/v3_flavin_dehydrogenase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+      "terminal_rejection_count_from_sequence": 4
+    },
+    "esm_or_learned_embedding_sidecar": {
+      "available": false,
+      "reason": "no ESM sidecar attached to this frozen-row packet"
+    },
+    "foldseek_tm_screen": {
+      "available": false,
+      "reason": "not run for this closure packet; P33371/P32340 require future current-countable structural duplicate screening before any duplicate-clear claim"
+    },
+    "simple_ec_keyword_routing": {
+      "available": true,
+      "caveat": "EC/name/source context selected these rows but is review context only and cannot distinguish exact current-reference duplicates from usable external evidence.",
+      "routes_to_target_lane_count": 6
+    }
+  },
+  "caveats": [
+    "This packet is a terminal duplicate/leakage closure for exact sequence duplicates, not evidence that geometry outperforms sequence on these rows.",
+    "P33371 and P32340 remain blocked until source-free FDR geometry and current-countable structural duplicate screening are run."
+  ],
+  "metadata": {
+    "artifact_id": "v3_flavin_dehydrogenase_third_deep_packet_sequence_duplicate_closure_modern_baseline_benchmark_20260522",
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 6,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T03:24:50Z",
+    "method": "modern_baseline_comparison_for_fdr_third_sequence_duplicate_closure_packet",
+    "ready_for_label_import": false,
+    "review_only": true,
+    "source_terminal_packet_artifact": "artifacts/v3_flavin_dehydrogenase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json",
+    "superiority_claim_permitted": false
+  },
+  "metrics": {
+    "countable_label_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "rows_closed_by_exact_sequence_duplicate": 4,
+    "rows_with_precise_remaining_blocker": 2,
+    "superiority_claim_made": false
+  },
+  "task_definition": {
+    "duplicate_leakage_evidence_role": "terminal rejection for exact current-reference sequence duplicates",
+    "frozen_rows": [
+      "uniprot:P15559",
+      "uniprot:P0AEZ1",
+      "uniprot:P33371",
+      "uniprot:P38489",
+      "uniprot:P32340",
+      "uniprot:P42593"
+    ],
+    "positive_claim_allowed": false,
+    "task_id": "fdr_third_remaining_frozen_rows_terminal_triage_v1_review_only"
+  }
+}

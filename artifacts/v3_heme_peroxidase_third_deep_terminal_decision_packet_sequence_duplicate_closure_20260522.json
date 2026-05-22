@@ -1,0 +1,384 @@
+{
+  "metadata": {
+    "artifact_id": "v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 5,
+    "candidate_selection_artifact": "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+    "candidate_selection_frozen_before_new_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T03:22:02Z",
+    "curated_label_registry_edited": false,
+    "duplicate_or_leakage_rejection_count": 4,
+    "exact_blocker_candidate_count": 1,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "heme_peroxidase_third_deep_terminal_decisions_from_remaining_frozen_rows_sequence_duplicate_closure",
+    "new_external_rows_frozen": 0,
+    "non_needs_review_terminal_count": 4,
+    "previous_heme_terminal_packet_artifacts": [
+      "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json",
+      "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
+    ],
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "selection_scope": "remaining_unselected_rows_from_existing_20260521_heme_peroxidase_minicampaign",
+    "sequence_baseline_artifact": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+    "source_separation_enforced": true,
+    "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+    "terminal_decision_counts": {
+      "needs_new_extractor_or_structure": 1,
+      "terminal_rejection_duplicate_or_leakage": 4
+    },
+    "terminal_decision_vocabulary": [
+      "mechanism_match_review_ready",
+      "out_of_scope_hard_negative_import_ready",
+      "ambiguous_needs_expert_review",
+      "needs_new_extractor_or_structure",
+      "terminal_rejection_duplicate_or_leakage",
+      "terminal_rejection_wrong_scope",
+      "terminal_rejection_insufficient_evidence"
+    ]
+  },
+  "rows": [
+    {
+      "accession": "P21179",
+      "catalytic_residue_metal_or_cofactor_evidence": {
+        "reason": "exact sequence duplicate rows close before geometry; P14532 needs source-free heme geometry extraction and current-countable structural screening",
+        "source_context_not_counted_as_predictive": true,
+        "source_free_active_site_evidence_available": false,
+        "status": "not_source_free_scored_in_this_packet"
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "exact_current_reference_sequence_duplicate"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "geometry_score_status": "not_run_terminal_duplicate_before_geometry_scoring",
+        "target_lane_at_or_above_floor": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "current_sequence_duplicate_screen": {
+        "current_reference_exact_sequence_match": true,
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+        "exact_current_reference_id": "ref__P21179",
+        "nearest_current_reference_id": "ref__P21179",
+        "sequence_baseline_artifact": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "sequence_decision_signal": "exact_current_reference_duplicate"
+      },
+      "duplicate_leakage_screen": {
+        "duplicate_clear_established": false,
+        "evidence_role": "duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "sequence_duplicate_status": "exact_current_reference_sequence_duplicate",
+        "structural_duplicate_screen_status": "not_run_for_this_third_packet"
+      },
+      "exact_blocker_if_not_terminal_import_ready": null,
+      "excluded_context": {
+        "entry_name": "CATE_ECOLI",
+        "primary_ec": "1.11.1.6",
+        "protein_name": "Catalase HPII (EC 1.11.1.6) (Hydroxyperoxidase II)",
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "predictive_evidence": {
+        "ec_keyword_protein_name_counted_as_predictive_evidence": false,
+        "source_context_counted_as_predictive_evidence": false,
+        "source_free_geometry_score_summary": null
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P21179",
+      "selection_index": 1,
+      "structure_pdb_evidence_availability": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "heme_or_iron_binding_annotation_present": true,
+        "pdb_count": 46,
+        "pdb_ids_sample": [
+          "1CF9",
+          "1GG9",
+          "1GGE",
+          "1GGF",
+          "1GGH",
+          "1GGJ",
+          "1GGK",
+          "1IPH"
+        ],
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P00431",
+      "catalytic_residue_metal_or_cofactor_evidence": {
+        "reason": "exact sequence duplicate rows close before geometry; P14532 needs source-free heme geometry extraction and current-countable structural screening",
+        "source_context_not_counted_as_predictive": true,
+        "source_free_active_site_evidence_available": false,
+        "status": "not_source_free_scored_in_this_packet"
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "exact_current_reference_sequence_duplicate"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "geometry_score_status": "not_run_terminal_duplicate_before_geometry_scoring",
+        "target_lane_at_or_above_floor": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "current_sequence_duplicate_screen": {
+        "current_reference_exact_sequence_match": true,
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+        "exact_current_reference_id": "ref__P00431",
+        "nearest_current_reference_id": "ref__P00431",
+        "sequence_baseline_artifact": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "sequence_decision_signal": "exact_current_reference_duplicate"
+      },
+      "duplicate_leakage_screen": {
+        "duplicate_clear_established": false,
+        "evidence_role": "duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "sequence_duplicate_status": "exact_current_reference_sequence_duplicate",
+        "structural_duplicate_screen_status": "not_run_for_this_third_packet"
+      },
+      "exact_blocker_if_not_terminal_import_ready": null,
+      "excluded_context": {
+        "entry_name": "CCPR_YEAST",
+        "primary_ec": "1.11.1.5",
+        "protein_name": "Cytochrome c peroxidase, mitochondrial (CCP) (EC 1.11.1.5)",
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "predictive_evidence": {
+        "ec_keyword_protein_name_counted_as_predictive_evidence": false,
+        "source_context_counted_as_predictive_evidence": false,
+        "source_free_geometry_score_summary": null
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P00431",
+      "selection_index": 2,
+      "structure_pdb_evidence_availability": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "heme_or_iron_binding_annotation_present": true,
+        "pdb_count": 191,
+        "pdb_ids_sample": [
+          "1A2F",
+          "1A2G",
+          "1AA4",
+          "1AC4",
+          "1AC8",
+          "1AEB",
+          "1AED",
+          "1AEE"
+        ],
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P04963",
+      "catalytic_residue_metal_or_cofactor_evidence": {
+        "reason": "exact sequence duplicate rows close before geometry; P14532 needs source-free heme geometry extraction and current-countable structural screening",
+        "source_context_not_counted_as_predictive": true,
+        "source_free_active_site_evidence_available": false,
+        "status": "not_source_free_scored_in_this_packet"
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "exact_current_reference_sequence_duplicate"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "geometry_score_status": "not_run_terminal_duplicate_before_geometry_scoring",
+        "target_lane_at_or_above_floor": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "current_sequence_duplicate_screen": {
+        "current_reference_exact_sequence_match": true,
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+        "exact_current_reference_id": "ref__P04963",
+        "nearest_current_reference_id": "ref__P04963",
+        "sequence_baseline_artifact": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "sequence_decision_signal": "exact_current_reference_duplicate"
+      },
+      "duplicate_leakage_screen": {
+        "duplicate_clear_established": false,
+        "evidence_role": "duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "sequence_duplicate_status": "exact_current_reference_sequence_duplicate",
+        "structural_duplicate_screen_status": "not_run_for_this_third_packet"
+      },
+      "exact_blocker_if_not_terminal_import_ready": null,
+      "excluded_context": {
+        "entry_name": "PRXC_LEPFU",
+        "primary_ec": "1.11.1.10",
+        "protein_name": "Chloroperoxidase (EC 1.11.1.10) (Chloride peroxidase) (CPO)",
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "predictive_evidence": {
+        "ec_keyword_protein_name_counted_as_predictive_evidence": false,
+        "source_context_counted_as_predictive_evidence": false,
+        "source_free_geometry_score_summary": null
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P04963",
+      "selection_index": 3,
+      "structure_pdb_evidence_availability": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "heme_or_iron_binding_annotation_present": true,
+        "pdb_count": 14,
+        "pdb_ids_sample": [
+          "1CPO",
+          "2CIV",
+          "2CIW",
+          "2CIX",
+          "2CIY",
+          "2CIZ",
+          "2CJ0",
+          "2CJ1"
+        ],
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P48534",
+      "catalytic_residue_metal_or_cofactor_evidence": {
+        "reason": "exact sequence duplicate rows close before geometry; P14532 needs source-free heme geometry extraction and current-countable structural screening",
+        "source_context_not_counted_as_predictive": true,
+        "source_free_active_site_evidence_available": false,
+        "status": "not_source_free_scored_in_this_packet"
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "exact_current_reference_sequence_duplicate"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "geometry_score_status": "not_run_terminal_duplicate_before_geometry_scoring",
+        "target_lane_at_or_above_floor": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "current_sequence_duplicate_screen": {
+        "current_reference_exact_sequence_match": true,
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 1.0,
+        "exact_current_reference_id": "ref__P48534",
+        "nearest_current_reference_id": "ref__P48534",
+        "sequence_baseline_artifact": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "sequence_decision_signal": "exact_current_reference_duplicate"
+      },
+      "duplicate_leakage_screen": {
+        "duplicate_clear_established": false,
+        "evidence_role": "duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "sequence_duplicate_status": "exact_current_reference_sequence_duplicate",
+        "structural_duplicate_screen_status": "not_run_for_this_third_packet"
+      },
+      "exact_blocker_if_not_terminal_import_ready": null,
+      "excluded_context": {
+        "entry_name": "APX1_PEA",
+        "primary_ec": "1.11.1.11",
+        "protein_name": "L-ascorbate peroxidase, cytosolic (AP) (EC 1.11.1.11) (PsAPx01)",
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "predictive_evidence": {
+        "ec_keyword_protein_name_counted_as_predictive_evidence": false,
+        "source_context_counted_as_predictive_evidence": false,
+        "source_free_geometry_score_summary": null
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P48534",
+      "selection_index": 4,
+      "structure_pdb_evidence_availability": {
+        "active_site_annotation_present": true,
+        "catalytic_activity_annotation_present": true,
+        "heme_or_iron_binding_annotation_present": true,
+        "pdb_count": 1,
+        "pdb_ids_sample": [
+          "1APX"
+        ],
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P14532",
+      "catalytic_residue_metal_or_cofactor_evidence": {
+        "reason": "exact sequence duplicate rows close before geometry; P14532 needs source-free heme geometry extraction and current-countable structural screening",
+        "source_context_not_counted_as_predictive": true,
+        "source_free_active_site_evidence_available": false,
+        "status": "not_source_free_scored_in_this_packet"
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_geometry_not_scored",
+        "current_countable_structural_duplicate_screen_not_run"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "geometry_score_status": "not_run_exact_blocker",
+        "target_lane_at_or_above_floor": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "current_sequence_duplicate_screen": {
+        "current_reference_exact_sequence_match": false,
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+        "exact_current_reference_id": null,
+        "nearest_current_reference_id": "ref__P0A794",
+        "sequence_baseline_artifact": "artifacts/v3_heme_peroxidase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "sequence_decision_signal": "no_sequence_neighbor_alert"
+      },
+      "duplicate_leakage_screen": {
+        "duplicate_clear_established": false,
+        "evidence_role": "duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "sequence_duplicate_status": "sequence_screen_no_exact_or_near_neighbor_alert_structural_screen_not_run",
+        "structural_duplicate_screen_status": "not_run_for_this_third_packet"
+      },
+      "exact_blocker_if_not_terminal_import_ready": "source_free_heme_active_site_geometry_scoring_and_current_countable_structural_duplicate_screen_missing_for_remaining_non_exact_heme_row",
+      "excluded_context": {
+        "entry_name": "CCPR_PSEAE",
+        "primary_ec": "1.11.1.5",
+        "protein_name": "Cytochrome c551 peroxidase (CCP) (Cytochrome c peroxidase) (EC 1.11.1.5)",
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "predictive_evidence": {
+        "ec_keyword_protein_name_counted_as_predictive_evidence": false,
+        "source_context_counted_as_predictive_evidence": false,
+        "source_free_geometry_score_summary": null
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P14532",
+      "selection_index": 5,
+      "structure_pdb_evidence_availability": {
+        "active_site_annotation_present": false,
+        "catalytic_activity_annotation_present": true,
+        "heme_or_iron_binding_annotation_present": true,
+        "pdb_count": 2,
+        "pdb_ids_sample": [
+          "1EB7",
+          "2VHD"
+        ],
+        "source_context_role": "selection_and_review_context_not_predictive_score_input"
+      },
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "needs_new_extractor_or_structure"
+    }
+  ],
+  "warnings": [
+    "Exact current-reference sequence duplicates close before geometry scoring and cannot support external mechanism-match evidence.",
+    "P14532 remains a precise source-free geometry and structural duplicate-screen blocker, not a needs-review row with vague missing evidence."
+  ]
+}
