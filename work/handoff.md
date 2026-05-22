@@ -50,6 +50,30 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### Queued Human-Review Tooling Request
+
+After any current main-loop dirty work is finished, validated, committed, and
+pushed, implement the M-CSA PyMOL expert-review cockpit described in
+`work/mcsa_pymol_expert_review_cockpit_plan.md` before opening another broad
+external mini-campaign. The intent is to help the human expert inspect pending
+M-CSA review-debt rows in PyMOL, one active-site failure at a time, and write a
+manual decision batch that can later enter the existing expert-review import
+preview path.
+
+Safety constraints for this request:
+
+- Do not import labels or mutate `data/registries/curated_mechanism_labels.json`.
+- Do not generate fake residue pairs, atom names, distances, or structures; rows
+  without exact visual evidence must be marked `pymol_ready=false` with explicit
+  missing fields.
+- Do not upload, delete, externalize, Git-LFS-track, or history-rewrite
+  artifacts.
+- Default every manual decision output to `countable_import_ready=false`; later
+  label promotion must still pass existing expert-review and label-factory
+  gates.
+- Implement dry-run/no-launch mode so the tool is testable even if PyMOL is not
+  installed on the automation runner.
+
 As of the 2026-05-22T04:01:49Z main-loop run, the automation closed the
 remaining queued redox source-free geometry/structure blockers without adding
 external mini-campaign breadth. `src/catalytic_earth/redox_active_site.py`
