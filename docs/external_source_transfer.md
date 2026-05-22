@@ -53,6 +53,38 @@ import.
   `artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json`
   closes the matching UniRef90/50 current-reference overlap screen for
   `P14532` with 0 overlaps.
+- `artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json`
+  is the next no-import import-gate dry run for those same six rows. It
+  preregisters a review-only external seed-fingerprint counting policy for
+  existing `mechanism_match_review_ready` rows, keeps EC/name/prose/source
+  context excluded from predictive evidence, reruns the full label-factory
+  gate against the current 682-label registry, and records the exact blocker:
+  20/21 label-factory gates pass, but `applied_label_actions_ready` fails
+  because the current gate lacks an external seed-fingerprint payload adapter
+  for the post-external-import registry. The external-source transfer gate is
+  still green at 68/68, all six rows retain UniRef90/50 current-reference
+  no-overlap evidence, and import remains closed with 0 import-ready and 0
+  countable rows. The next exact experiment is a current-682 external
+  seed-fingerprint payload adapter/rebaseline, while `P0A8Y5` and `P75792`
+  still need source-free phosphate/substrate specificity before any
+  phosphatase-specific import claim.
+  `artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
+  makes that metal-specific blocker concrete: five selected or prefrozen PDB
+  structures were scanned with coordinate-only metal/phosphate context, 0
+  phosphate-like substrate/product/analog sites were detected, and both rows
+  stay `blocked_with_exact_missing_evidence`.
+- `artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
+  closes that ambiguity as an exact blocker rather than an import claim. It
+  scans the selected PDBs plus prefrozen sampled PDB cross-references for the
+  two review-ready metal rows: `P75792` scans `1RLM`, `1RLO`, `1RLT`, and
+  `2HF2`; `P0A8Y5` scans `1RKQ`. Across five coordinate structures, the
+  source-free metal-site extractor finds 0 phosphate-like ligand sites and 0
+  structures with source-free phosphate/substrate ligand context. Both rows
+  remain `mechanism_match_review_ready` but
+  `blocked_with_exact_missing_evidence` for phosphatase-specific import:
+  either a coordinate holo/analog phosphate-like substrate/product structure
+  or a preregistered source-free phosphate-pocket extractor is required before
+  any external seed-fingerprint import gate can count them.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

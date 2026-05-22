@@ -228,8 +228,22 @@ invariants: 682 total labels, 470 out-of-scope labels, 212
 seed-fingerprint labels, no in-scope/out-of-scope entry overlap, unchanged
 1,000-slice retained in-scope behavior, and preserved held-out
 sequence-distance metrics.
-evidence plan
-flags seven broad or incomplete EC contexts,
+
+The current external seed-fingerprint surface remains review-only: six
+mechanism-match rows now have source-free geometry and UniRef90/50
+current-reference no-overlap evidence, but
+`artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json`
+records 0 import-ready rows. Its no-import gate dry run preregisters a
+review-only policy and identifies the exact next blocker: the current
+label-factory gate passes 20/21 checks but lacks a current-682 external
+seed-fingerprint payload adapter/rebaseline (`applied_label_actions_ready`),
+while two metal rows still need source-free phosphate/substrate specificity.
+`artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
+scans five selected/PDB-linked coordinate structures for those metal rows and
+finds 0 phosphate-like substrate/product/analog sites, leaving both blocked
+with exact missing evidence.
+
+The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
 review-only active-site evidence queue with 25 ready candidates. The active-site
 feature pass finds 15 feature-supported candidates and 10 active-site-feature

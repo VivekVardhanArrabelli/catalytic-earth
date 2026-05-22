@@ -1,0 +1,579 @@
+{
+  "decision": {
+    "label_import_authorized": false,
+    "next_exact_experiment": "Find or materialize a coordinate holo/analog structure with phosphate-like substrate/product context for P75792/P0A8Y5, or preregister and test a source-free phosphate-pocket extractor before any seed-fingerprint import gate.",
+    "packet_status": "phosphatase_specific_import_blocked_with_exact_missing_evidence",
+    "registry_or_fingerprint_change_authorized": false,
+    "terminal_decision_vocabulary_preserved": [
+      "mechanism_match_review_ready"
+    ]
+  },
+  "metadata": {
+    "artifact_upload_or_removal_performed": false,
+    "blocked_with_exact_missing_evidence_count": 2,
+    "candidate_count": 2,
+    "candidate_selection_frozen_before_outcome_scoring": true,
+    "committed_coordinate_sidecar_count": 2,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T08:46:13Z",
+    "curated_label_registry_edited": false,
+    "ec_keyword_baseline_superiority_claim": false,
+    "esm_sidecar_available_count": 0,
+    "external_imported_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_imported_seed_fingerprint_labels": [],
+    "fingerprint_registry_edited": false,
+    "geometry_superiority_claim": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_match_review_ready_count": 2,
+    "method": "external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "phosphate_like_site_count_total": 0,
+    "rcsb_fetch_for_review_scan_not_saved_count": 3,
+    "ready_for_label_import": false,
+    "registry_invariant_label_count": 682,
+    "registry_invariant_label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 212
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "scan_scope": "selected_pdb_plus_prefrozen_sampled_pdb_cross_references",
+    "source_artifacts": {
+      "frozen_selection": "artifacts/v3_metal_phosphatase_deep_packet_remaining_selection_20260521.json",
+      "modern_baseline_benchmark": "artifacts/v3_metal_phosphatase_deep_packet_remaining_after_source_free_geometry_modern_baseline_benchmark_20260521.json",
+      "review_ready_payload_dry_run": "artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json",
+      "source_free_geometry_terminal_packet": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json"
+    },
+    "source_context_counted_as_predictive_count": 0,
+    "source_free_phosphate_or_substrate_ligand_detected_count": 0,
+    "source_free_phosphate_specificity_ready_count": 0,
+    "structure_scan_count": 5,
+    "structure_status_counts": {
+      "metal_cluster_without_phosphate_or_substrate_ligand": 3,
+      "metal_site_undercoordinated": 1,
+      "no_source_free_metal_site": 1
+    },
+    "structures_with_phosphate_like_ligand_count": 0,
+    "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+    "text_or_label_fields_used_for_predictive_score_count": 0
+  },
+  "rows": [
+    {
+      "accession": "P0A8Y5",
+      "candidate_selection_before_outcome_scoring": true,
+      "countable_label_candidate": false,
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_geometry_scored",
+        "matched_target_signature_roles": [
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu/Cys",
+            "required_role": "metal_ligand",
+            "role_hint_match": true
+          },
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu",
+            "required_role": "water_activator",
+            "role_hint_match": true
+          }
+        ],
+        "source_free_score_artifact": "artifacts/v3_metal_phosphatase_remaining_source_free_geometry_scores_20260521.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6774,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.6774
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_structural_screen_status": "bounded_current_countable_no_high_tm_duplicate_signal_detected",
+        "current_countable_target_count": 672,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.6421,
+          "evidence_scope": "current_metal_dependent_hydrolase_targets",
+          "max_pair_tm_score": 0.6392,
+          "qtmscore": 0.5034,
+          "raw_query_name": "pdb_1RKQ_A",
+          "raw_target_name": "pdb_1L7N_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+          "target_entry_ids": [
+            "m_csa:727"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1L7N",
+          "target_structure_key": "pdb:1L7N",
+          "ttmscore": 0.6392
+        },
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json",
+        "unique_query_target_pair_count": 672
+      },
+      "exact_missing_evidence_to_resolve": [
+        "coordinate holo structure or alternate structure with a phosphate-like substrate/product/transition-state analog within the source-free metal active-site radius",
+        "or a preregistered source-free phosphate/substrate-pocket extractor that can infer phosphatase specificity from coordinates without EC/name/UniProt prose",
+        "then rerun external seed-fingerprint payload gates and human label action before any import claim"
+      ],
+      "frozen_selection_artifact": "artifacts/v3_metal_phosphatase_deep_packet_remaining_selection_20260521.json",
+      "modern_baseline_comparison": {
+        "caveat": "The scan adds a precise negative blocker; it does not prove a model superiority claim or authorize import.",
+        "deterministic_sequence_kmer_baseline": {
+          "artifact": "artifacts/v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+          "exact_current_reference_id": null,
+          "kmer_k": 5,
+          "nearest_current_reference_id": "ref__P04042",
+          "nearest_current_reference_jaccard": 0.0049,
+          "sequence_baseline_signal": "no_sequence_neighbor_alert"
+        },
+        "ec_keyword_routing_baseline": {
+          "caveat": "EC/name routing is selection/review context only and cannot score source-free active-site geometry or duplicate leakage.",
+          "keyword_hit": true,
+          "primary_ec": "3.1.3.23",
+          "route": "metal_phosphatase_candidate"
+        },
+        "esm_sidecar": {
+          "available": false,
+          "caveat": "No ESM sidecar is available for this remaining metal-phosphatase deep packet; no representation-superiority claim is made."
+        },
+        "foldseek_current_countable_sidecar": {
+          "available": true,
+          "caveat": "Foldseek/TM is duplicate-leakage evidence, not positive mechanism evidence.",
+          "current_countable_high_tm_hit_count": 0,
+          "nearest_current_countable_hit": {
+            "alntmscore": 0.6421,
+            "evidence_scope": "current_metal_dependent_hydrolase_targets",
+            "max_pair_tm_score": 0.6392,
+            "qtmscore": 0.5034,
+            "raw_query_name": "pdb_1RKQ_A",
+            "raw_target_name": "pdb_1L7N_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+            "target_entry_ids": [
+              "m_csa:727"
+            ],
+            "target_fingerprint_ids": [
+              "metal_dependent_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1L7N",
+            "target_structure_key": "pdb:1L7N",
+            "ttmscore": 0.6392
+          },
+          "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json"
+        },
+        "geometry_triage_delta": "coordinate metal geometry supports metal-dependent hydrolase review readiness, but phosphate/substrate specificity remains absent across the selected and sampled PDB coordinate structures",
+        "superiority_claim": "none",
+        "task_definition": "On the same frozen review-ready metal rows, identify whether source-free coordinate evidence supplies phosphate/substrate specificity beyond EC/name routing, sequence k-mers, and duplicate-screen sidecars."
+      },
+      "payload_dry_run_artifact": "artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json",
+      "phosphatase_specific_import_status": "blocked_with_exact_missing_evidence",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_seed_fingerprint_counting_policy_not_preregistered_for_this_row",
+        "full_label_factory_gate_not_run",
+        "mechanism_match_review_ready_is_not_label_import_ready",
+        "no_human_label_action_requested",
+        "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity"
+      ],
+      "row_id": "uniprot:P0A8Y5",
+      "source_free_phosphate_specificity_scan": {
+        "pdb_ids_scanned": [
+          "1RKQ"
+        ],
+        "phosphate_like_site_count_total": 0,
+        "scan_scope": "selected_pdb_plus_prefrozen_sampled_pdb_cross_references",
+        "selected_structure_phosphate_like_site_count": 0,
+        "selected_structure_status": "metal_cluster_without_phosphate_or_substrate_ligand",
+        "source_free_phosphate_or_substrate_ligand_detected": false,
+        "structure_scan_count": 1,
+        "structure_scans": [
+          {
+            "atom_site_row_count": 4830,
+            "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RKQ.cif",
+            "coordinate_sha256": "143a8e7ec0d3a69d6965b54a685e971d7fe6ee377df3a8afb2e5ed49055df2a1",
+            "coordinate_source": "committed_sidecar",
+            "metal_site_count": 2,
+            "pdb_id": "1RKQ",
+            "phosphate_like_site_count": 0,
+            "predictive_input_policy": "Only mmCIF atom coordinates, residue/ligand comp ids, atom names, and interatomic distances are used; EC, names, UniProt prose, and curated labels are excluded.",
+            "residue_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "resolved_residue_count": 2,
+            "selected_for_prior_geometry_score": true,
+            "selected_site_metal": {
+              "atom_name": "MG",
+              "chain_id": "B",
+              "comp_id": "MG",
+              "coordinating_residue_count": 2,
+              "residue_id": "2273"
+            },
+            "selected_site_phosphate_like_context": null,
+            "selected_site_phosphate_like_ligand_detected": false,
+            "source_free_active_site_status": "metal_cluster_without_phosphate_or_substrate_ligand",
+            "source_free_active_site_status_reason": "a coordinate metal-ligand cluster is resolved, but no nearby phosphate-like substrate/product ligand is present",
+            "source_url": "https://files.rcsb.org/download/1RKQ.cif",
+            "text_or_label_fields_used_for_predictive_score": false
+          }
+        ],
+        "structure_status_counts": {
+          "metal_cluster_without_phosphate_or_substrate_ligand": 1
+        },
+        "structures_with_phosphate_like_ligand": []
+      },
+      "source_separation": {
+        "excluded_context": [
+          "protein_name_as_predictive_evidence",
+          "ec_or_keyword_as_predictive_evidence",
+          "uniprot_prose_as_predictive_evidence",
+          "post_hoc_threshold_selection"
+        ],
+        "predictive_evidence_allowed": [
+          "mmCIF atom coordinates",
+          "residue and ligand comp ids",
+          "atom names",
+          "interatomic distances"
+        ],
+        "review_only_context": [
+          "EC, keyword, protein name, UniProt prose, and source annotations can explain why the row was reviewed",
+          "Foldseek and UniRef screens are duplicate/leakage evidence, not positive mechanism evidence"
+        ],
+        "source_context_counted_as_predictive": false
+      },
+      "source_terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RKQ.cif",
+        "pdb_ids_sample": [
+          "1RKQ"
+        ],
+        "selected_pdb_id": "1RKQ",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision": "mechanism_match_review_ready",
+      "uniref_current_reference_screen": {
+        "artifact": "artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json",
+        "current_reference_overlap_count": 0,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "status": "uniref_current_reference_screen_no_current_reference_overlap"
+      }
+    },
+    {
+      "accession": "P75792",
+      "candidate_selection_before_outcome_scoring": true,
+      "countable_label_candidate": false,
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_geometry_scored",
+        "matched_target_signature_roles": [
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu/Cys",
+            "required_role": "metal_ligand",
+            "role_hint_match": true
+          },
+          {
+            "matched_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "required_residue": "His/Asp/Glu",
+            "required_role": "water_activator",
+            "role_hint_match": true
+          }
+        ],
+        "source_free_score_artifact": "artifacts/v3_metal_phosphatase_remaining_source_free_geometry_scores_20260521.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6758,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.6758
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_structural_screen_status": "bounded_current_countable_no_high_tm_duplicate_signal_detected",
+        "current_countable_target_count": 672,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.7998,
+          "evidence_scope": "nonmetal_chunk006_excluding_metal_lane",
+          "max_pair_tm_score": 0.6855,
+          "qtmscore": 0.02592,
+          "raw_query_name": "pdb_1RLM_B",
+          "raw_target_name": "pdb_2PHK_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "target_entry_ids": [
+            "m_csa:35"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_id": "2PHK",
+          "target_structure_key": "pdb:2PHK",
+          "ttmscore": 0.6855
+        },
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json",
+        "unique_query_target_pair_count": 672
+      },
+      "exact_missing_evidence_to_resolve": [
+        "coordinate holo structure or alternate structure with a phosphate-like substrate/product/transition-state analog within the source-free metal active-site radius",
+        "or a preregistered source-free phosphate/substrate-pocket extractor that can infer phosphatase specificity from coordinates without EC/name/UniProt prose",
+        "then rerun external seed-fingerprint payload gates and human label action before any import claim"
+      ],
+      "frozen_selection_artifact": "artifacts/v3_metal_phosphatase_deep_packet_remaining_selection_20260521.json",
+      "modern_baseline_comparison": {
+        "caveat": "The scan adds a precise negative blocker; it does not prove a model superiority claim or authorize import.",
+        "deterministic_sequence_kmer_baseline": {
+          "artifact": "artifacts/v3_metal_phosphatase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+          "exact_current_reference_id": null,
+          "kmer_k": 5,
+          "nearest_current_reference_id": "ref__P26440",
+          "nearest_current_reference_jaccard": 0.0044,
+          "sequence_baseline_signal": "no_sequence_neighbor_alert"
+        },
+        "ec_keyword_routing_baseline": {
+          "caveat": "EC/name routing is selection/review context only and cannot score source-free active-site geometry or duplicate leakage.",
+          "keyword_hit": true,
+          "primary_ec": "3.1.3.23",
+          "route": "metal_phosphatase_candidate"
+        },
+        "esm_sidecar": {
+          "available": false,
+          "caveat": "No ESM sidecar is available for this remaining metal-phosphatase deep packet; no representation-superiority claim is made."
+        },
+        "foldseek_current_countable_sidecar": {
+          "available": true,
+          "caveat": "Foldseek/TM is duplicate-leakage evidence, not positive mechanism evidence.",
+          "current_countable_high_tm_hit_count": 0,
+          "nearest_current_countable_hit": {
+            "alntmscore": 0.7998,
+            "evidence_scope": "nonmetal_chunk006_excluding_metal_lane",
+            "max_pair_tm_score": 0.6855,
+            "qtmscore": 0.02592,
+            "raw_query_name": "pdb_1RLM_B",
+            "raw_target_name": "pdb_2PHK_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+            "target_entry_ids": [
+              "m_csa:35"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "2PHK",
+            "target_structure_key": "pdb:2PHK",
+            "ttmscore": 0.6855
+          },
+          "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json"
+        },
+        "geometry_triage_delta": "coordinate metal geometry supports metal-dependent hydrolase review readiness, but phosphate/substrate specificity remains absent across the selected and sampled PDB coordinate structures",
+        "superiority_claim": "none",
+        "task_definition": "On the same frozen review-ready metal rows, identify whether source-free coordinate evidence supplies phosphate/substrate specificity beyond EC/name routing, sequence k-mers, and duplicate-screen sidecars."
+      },
+      "payload_dry_run_artifact": "artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json",
+      "phosphatase_specific_import_status": "blocked_with_exact_missing_evidence",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_seed_fingerprint_counting_policy_not_preregistered_for_this_row",
+        "full_label_factory_gate_not_run",
+        "mechanism_match_review_ready_is_not_label_import_ready",
+        "no_human_label_action_requested",
+        "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity"
+      ],
+      "row_id": "uniprot:P75792",
+      "source_free_phosphate_specificity_scan": {
+        "pdb_ids_scanned": [
+          "1RLM",
+          "1RLO",
+          "1RLT",
+          "2HF2"
+        ],
+        "phosphate_like_site_count_total": 0,
+        "scan_scope": "selected_pdb_plus_prefrozen_sampled_pdb_cross_references",
+        "selected_structure_phosphate_like_site_count": 0,
+        "selected_structure_status": "metal_cluster_without_phosphate_or_substrate_ligand",
+        "source_free_phosphate_or_substrate_ligand_detected": false,
+        "structure_scan_count": 4,
+        "structure_scans": [
+          {
+            "atom_site_row_count": 9154,
+            "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RLM.cif",
+            "coordinate_sha256": "f71e11cf15c799b6a40e81d7afdcae70721b8df34d5f0c6ddde1308aaffbb03f",
+            "coordinate_source": "committed_sidecar",
+            "metal_site_count": 4,
+            "pdb_id": "1RLM",
+            "phosphate_like_site_count": 0,
+            "predictive_input_policy": "Only mmCIF atom coordinates, residue/ligand comp ids, atom names, and interatomic distances are used; EC, names, UniProt prose, and curated labels are excluded.",
+            "residue_codes": [
+              "ASP",
+              "ASP",
+              "SER"
+            ],
+            "resolved_residue_count": 3,
+            "selected_for_prior_geometry_score": true,
+            "selected_site_metal": {
+              "atom_name": "MG",
+              "chain_id": "D",
+              "comp_id": "MG",
+              "coordinating_residue_count": 3,
+              "residue_id": "802"
+            },
+            "selected_site_phosphate_like_context": null,
+            "selected_site_phosphate_like_ligand_detected": false,
+            "source_free_active_site_status": "metal_cluster_without_phosphate_or_substrate_ligand",
+            "source_free_active_site_status_reason": "a coordinate metal-ligand cluster is resolved, but no nearby phosphate-like substrate/product ligand is present",
+            "source_url": "https://files.rcsb.org/download/1RLM.cif",
+            "text_or_label_fields_used_for_predictive_score": false
+          },
+          {
+            "atom_site_row_count": 9003,
+            "coordinate_path": null,
+            "coordinate_sha256": "19e326b94a4375b7742392e30c7e6705a6cad414c392b8376155d18cfbe1d79d",
+            "coordinate_source": "rcsb_fetch_for_review_scan_not_saved",
+            "metal_site_count": 4,
+            "pdb_id": "1RLO",
+            "phosphate_like_site_count": 0,
+            "predictive_input_policy": "Only mmCIF atom coordinates, residue/ligand comp ids, atom names, and interatomic distances are used; EC, names, UniProt prose, and curated labels are excluded.",
+            "residue_codes": [
+              "ASP"
+            ],
+            "resolved_residue_count": 1,
+            "selected_for_prior_geometry_score": false,
+            "selected_site_metal": {
+              "atom_name": "MG",
+              "chain_id": "D",
+              "comp_id": "MG",
+              "coordinating_residue_count": 1,
+              "residue_id": "804"
+            },
+            "selected_site_phosphate_like_context": null,
+            "selected_site_phosphate_like_ligand_detected": false,
+            "source_free_active_site_status": "metal_site_undercoordinated",
+            "source_free_active_site_status_reason": "a coordinate metal is present but fewer than two protein ligands are resolved within the metal-coordination cutoff",
+            "source_url": "https://files.rcsb.org/download/1RLO.cif",
+            "text_or_label_fields_used_for_predictive_score": false
+          },
+          {
+            "atom_site_row_count": 8949,
+            "coordinate_path": null,
+            "coordinate_sha256": "633eec5c873a8808594cb45cc245e00160092fa83d54b13e231b682f08069bf2",
+            "coordinate_source": "rcsb_fetch_for_review_scan_not_saved",
+            "metal_site_count": 4,
+            "pdb_id": "1RLT",
+            "phosphate_like_site_count": 0,
+            "predictive_input_policy": "Only mmCIF atom coordinates, residue/ligand comp ids, atom names, and interatomic distances are used; EC, names, UniProt prose, and curated labels are excluded.",
+            "residue_codes": [
+              "ASP",
+              "ASP"
+            ],
+            "resolved_residue_count": 2,
+            "selected_for_prior_geometry_score": false,
+            "selected_site_metal": {
+              "atom_name": "MG",
+              "chain_id": "D",
+              "comp_id": "MG",
+              "coordinating_residue_count": 2,
+              "residue_id": "808"
+            },
+            "selected_site_phosphate_like_context": null,
+            "selected_site_phosphate_like_ligand_detected": false,
+            "source_free_active_site_status": "metal_cluster_without_phosphate_or_substrate_ligand",
+            "source_free_active_site_status_reason": "a coordinate metal-ligand cluster is resolved, but no nearby phosphate-like substrate/product ligand is present",
+            "source_url": "https://files.rcsb.org/download/1RLT.cif",
+            "text_or_label_fields_used_for_predictive_score": false
+          },
+          {
+            "atom_site_row_count": 4760,
+            "coordinate_path": null,
+            "coordinate_sha256": "6ae2eabf3179856916ab27ca8165e2c5c4a0b97223c0345d00692242a7cdaa6e",
+            "coordinate_source": "rcsb_fetch_for_review_scan_not_saved",
+            "metal_site_count": 0,
+            "pdb_id": "2HF2",
+            "phosphate_like_site_count": 0,
+            "predictive_input_policy": "Only mmCIF atom coordinates, residue/ligand comp ids, atom names, and interatomic distances are used; EC, names, UniProt prose, and curated labels are excluded.",
+            "residue_codes": [],
+            "resolved_residue_count": 0,
+            "selected_for_prior_geometry_score": false,
+            "selected_site_metal": null,
+            "selected_site_phosphate_like_context": null,
+            "selected_site_phosphate_like_ligand_detected": false,
+            "source_free_active_site_status": "no_source_free_metal_site",
+            "source_free_active_site_status_reason": "no coordinate metal site was detected",
+            "source_url": "https://files.rcsb.org/download/2HF2.cif",
+            "text_or_label_fields_used_for_predictive_score": false
+          }
+        ],
+        "structure_status_counts": {
+          "metal_cluster_without_phosphate_or_substrate_ligand": 2,
+          "metal_site_undercoordinated": 1,
+          "no_source_free_metal_site": 1
+        },
+        "structures_with_phosphate_like_ligand": []
+      },
+      "source_separation": {
+        "excluded_context": [
+          "protein_name_as_predictive_evidence",
+          "ec_or_keyword_as_predictive_evidence",
+          "uniprot_prose_as_predictive_evidence",
+          "post_hoc_threshold_selection"
+        ],
+        "predictive_evidence_allowed": [
+          "mmCIF atom coordinates",
+          "residue and ligand comp ids",
+          "atom names",
+          "interatomic distances"
+        ],
+        "review_only_context": [
+          "EC, keyword, protein name, UniProt prose, and source annotations can explain why the row was reviewed",
+          "Foldseek and UniRef screens are duplicate/leakage evidence, not positive mechanism evidence"
+        ],
+        "source_context_counted_as_predictive": false
+      },
+      "source_terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RLM.cif",
+        "pdb_ids_sample": [
+          "1RLM",
+          "1RLO",
+          "1RLT",
+          "2HF2"
+        ],
+        "selected_pdb_id": "1RLM",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision": "mechanism_match_review_ready",
+      "uniref_current_reference_screen": {
+        "artifact": "artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json",
+        "current_reference_overlap_count": 0,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "status": "uniref_current_reference_screen_no_current_reference_overlap"
+      }
+    }
+  ]
+}

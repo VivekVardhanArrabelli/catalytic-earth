@@ -112,6 +112,76 @@ import claims. `artifacts/v3_external_p14532_uniref_current_reference_screen_202
 now closes the matching UniRef90/50 current-reference overlap screen for
 `P14532` with 0 overlaps.
 
+As of the 2026-05-22T07:16:17Z main-loop run, the automation advanced that
+same import-gate surface without importing labels or adding external breadth.
+`artifacts/v3_external_seed_fingerprint_label_factory_payload_gate_check_20260522.json`
+reruns the full label-factory gate against the current 682-label registry for
+the external seed-fingerprint payload dry run. It is intentionally no-import
+and records an exact blocker rather than hiding it: 20/21 gates pass, but
+`applied_label_actions_ready` fails because the current label-factory gate is
+still a 1,000-slice/M-CSA applied-label gate and lacks a current-682 external
+seed-fingerprint payload adapter/rebaseline.
+`artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json`
+preregisters a review-only external seed-fingerprint counting policy for the
+six existing `mechanism_match_review_ready` rows, keeps source-free geometry
+and duplicate evidence separated from review-only EC/name/prose/source
+context, confirms all six rows remain above the source-free geometry floor and
+UniRef90/50 current-reference-clear, and confirms the external-source transfer
+gate is still green at 68/68. Import remains closed with 0 import-ready rows,
+0 countable candidates, 0 external seed-fingerprint labels, and unchanged
+registry invariants: 682 labels, 212 `seed_fingerprint`, 470 `out_of_scope`,
+and external out-of-scope imports exactly `uniprot:P06744`, `uniprot:P78549`,
+and `uniprot:Q3LXA3`. The two metal rows (`P0A8Y5` and `P75792`) still retain
+the source-free phosphate/substrate specificity blocker before any
+phosphatase-specific import claim.
+`artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
+turns that metal blocker into an exact evidence packet: selected/PDB-linked
+coordinate scans cover five structures, detect 0 phosphate-like
+substrate/product/analog sites near the source-free metal clusters, and keep
+both metal rows `blocked_with_exact_missing_evidence` with a concrete next
+experiment: find/materialize a coordinate holo or analog structure, or
+preregister a source-free phosphate-pocket extractor.
+
+Evidence-based confidence call: confidence is high that no import occurred
+because both new artifacts set `ready_for_label_import=false`, record 0
+import-ready/countable rows, preserve external imported seed-fingerprint labels
+as `[]`, and only add review-only artifacts plus a regression test. Confidence
+is high that the next gate blocker is exact because the fresh label-factory
+gate artifact records `gate_count=21`, `passed_gate_count=20`, and blockers
+exactly `["applied_label_actions_ready"]`; the paired policy artifact names
+the required next experiment as a current-682 external seed-fingerprint payload
+adapter/rebaseline followed by another no-import gate rerun. Confidence is
+high that safety rails were preserved: no registry/fingerprint edits, no
+artifact upload/removal/externalization, no Git-LFS/history rewrite, no
+threshold change, and no `removal_allowed=true`.
+
+As of the 2026-05-22T08:46:13Z main-loop run, the automation deepened the two
+review-ready metal rows without importing labels. The new packet
+`artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
+scans the selected PDB structures plus prefrozen sampled PDB cross-references:
+`P75792` scans `1RLM`, `1RLO`, `1RLT`, and `2HF2`; `P0A8Y5` scans `1RKQ`.
+The source-free metal-site extractor uses only mmCIF atom coordinates,
+residue/ligand comp ids, atom names, and distances. Across five coordinate
+structures it finds 0 phosphate-like ligand sites and 0 source-free
+phosphate/substrate ligand contexts. Both rows remain
+`mechanism_match_review_ready`, but phosphatase-specific import is now
+`blocked_with_exact_missing_evidence`: a coordinate holo/analog structure with
+phosphate-like substrate/product context, or a preregistered source-free
+phosphate-pocket extractor, is required before any external seed-fingerprint
+payload gate can count them. The packet carries the same EC/keyword, sequence
+k-mer, Foldseek, and ESM sidecar caveats as the prior metal benchmark and makes
+no superiority claim.
+
+Evidence-based confidence call: confidence is high that the metal
+phosphate/substrate blocker is now exact for the current sampled coordinate
+surface because the packet records 5/5 scanned structures, 2 committed
+coordinate sidecars, 3 RCSB review fetches with SHA-256 hashes, 0 phosphate-like
+site counts, and 0 structures with a phosphate-like ligand. Confidence is high
+that no label action occurred because the packet records 0 import-ready rows,
+0 countable candidates, 0 external seed-fingerprint imports, and unchanged
+registry invariants at 682 labels. Confidence is high that source separation is
+preserved because all scan rows set text/name/source predictive usage to false.
+
 Evidence-based confidence call: confidence is high that the redox geometry
 blockers are closed because all three rows have PDB coordinate sidecars,
 source-free cofactor active-site extraction, and target-lane scores above the

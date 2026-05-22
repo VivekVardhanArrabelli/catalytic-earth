@@ -9759,6 +9759,301 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertFalse(p14532_uniref["rows"][0]["overlapping_current_reference_accessions"])
 
+    def test_external_seed_fingerprint_payload_gate_dry_run_has_exact_blocker(
+        self,
+    ) -> None:
+        gate_check = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_label_factory_payload_gate_check_20260522.json"
+        )
+        dry_run = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json"
+        )
+
+        self.assertEqual(gate_check["metadata"]["gate_count"], 21)
+        self.assertEqual(gate_check["metadata"]["passed_gate_count"], 20)
+        self.assertEqual(gate_check["blockers"], ["applied_label_actions_ready"])
+
+        self.assertTrue(dry_run["metadata"]["review_only"])
+        self.assertEqual(dry_run["metadata"]["new_external_rows_frozen"], 0)
+        self.assertTrue(dry_run["metadata"]["policy_preregistered"])
+        self.assertFalse(dry_run["metadata"]["policy_authorizes_import_in_this_run"])
+        self.assertEqual(dry_run["metadata"]["candidate_count"], 6)
+        self.assertEqual(dry_run["metadata"]["source_free_geometry_above_floor_count"], 6)
+        self.assertEqual(dry_run["metadata"]["uniref_current_reference_clear_count"], 6)
+        self.assertEqual(dry_run["metadata"]["label_factory_payload_gate_count"], 21)
+        self.assertEqual(dry_run["metadata"]["label_factory_payload_gate_passed_count"], 20)
+        self.assertEqual(
+            dry_run["metadata"]["label_factory_payload_gate_blockers"],
+            ["applied_label_actions_ready"],
+        )
+        self.assertEqual(dry_run["metadata"]["external_source_transfer_gate_count"], 68)
+        self.assertEqual(
+            dry_run["metadata"]["external_source_transfer_gate_passed_count"], 68
+        )
+        self.assertFalse(dry_run["metadata"]["external_source_transfer_gate_blockers"])
+        self.assertFalse(dry_run["metadata"]["ready_for_label_import"])
+        self.assertEqual(dry_run["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(dry_run["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(dry_run["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(dry_run["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(dry_run["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(dry_run["metadata"]["removal_allowed_set_true"])
+        self.assertEqual(dry_run["metadata"]["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            dry_run["metadata"]["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            dry_run["metadata"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(dry_run["metadata"]["external_imported_seed_fingerprint_labels"], [])
+
+        self.assertEqual(
+            dry_run["decision"]["payload_gate_dry_run_status"], "blocked_no_import"
+        )
+        self.assertEqual(
+            dry_run["decision"]["full_label_factory_payload_gate_dry_run_status"],
+            "failed_with_exact_registry_adapter_blocker",
+        )
+        self.assertIn(
+            "external seed-fingerprint payload adapter",
+            dry_run["decision"]["exact_gate_blocker"],
+        )
+        self.assertTrue(
+            any(
+                "full label-factory payload gate passes against the current 682-label registry"
+                in gate
+                for gate in dry_run["policy_preregistration"][
+                    "required_pre_count_gates"
+                ]
+            )
+        )
+        self.assertEqual(
+            dry_run["policy_preregistration"]["import_authorization"],
+            "none_review_only_dry_run",
+        )
+
+        rows = {row["row_id"]: row for row in dry_run["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P0A8Y5",
+                "uniprot:P14532",
+                "uniprot:P39597",
+                "uniprot:P75792",
+            },
+        )
+        self.assertTrue(
+            all(
+                row["predictive_evidence_gate"]["text_or_label_fields_used_for_score"]
+                is False
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["full_label_factory_payload_gate"]["status"]
+                == "failed_exact_adapter_blocker"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in rows.values())
+        )
+        self.assertIn(
+            "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+            rows["uniprot:P0A8Y5"]["remaining_import_blockers"],
+        )
+        self.assertIn(
+            "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+            rows["uniprot:P75792"]["remaining_import_blockers"],
+        )
+
+    def test_metal_review_ready_phosphate_specificity_blocker_is_exact(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json"
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(packet["metadata"]["new_external_rows_frozen"], 0)
+        self.assertTrue(
+            packet["metadata"]["candidate_selection_frozen_before_outcome_scoring"]
+        )
+        self.assertEqual(packet["metadata"]["candidate_count"], 2)
+        self.assertEqual(packet["metadata"]["mechanism_match_review_ready_count"], 2)
+        self.assertEqual(
+            packet["metadata"]["blocked_with_exact_missing_evidence_count"], 2
+        )
+        self.assertEqual(packet["metadata"]["source_free_phosphate_specificity_ready_count"], 0)
+        self.assertEqual(packet["metadata"]["phosphate_like_site_count_total"], 0)
+        self.assertEqual(
+            packet["metadata"]["source_context_counted_as_predictive_count"], 0
+        )
+        self.assertEqual(
+            packet["metadata"]["text_or_label_fields_used_for_predictive_score_count"],
+            0,
+        )
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(packet["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(packet["metadata"]["removal_allowed_set_true"])
+        self.assertEqual(packet["metadata"]["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            packet["metadata"]["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            packet["decision"]["packet_status"],
+            "phosphatase_specific_import_blocked_with_exact_missing_evidence",
+        )
+
+        rows = {row["row_id"]: row for row in packet["rows"]}
+        self.assertEqual(set(rows), {"uniprot:P0A8Y5", "uniprot:P75792"})
+        self.assertTrue(
+            all(
+                row["phosphatase_specific_import_status"]
+                == "blocked_with_exact_missing_evidence"
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["current_geometry_retrieval_score_summary"][
+                    "target_lane_at_or_above_floor"
+                ]
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["source_free_phosphate_specificity_scan"][
+                    "source_free_phosphate_or_substrate_ligand_detected"
+                ]
+                for row in rows.values()
+            )
+        )
+        self.assertIn(
+            "coordinate holo structure or alternate structure with a phosphate-like substrate/product/transition-state analog within the source-free metal active-site radius",
+            rows["uniprot:P0A8Y5"]["exact_missing_evidence_to_resolve"],
+        )
+        self.assertIn(
+            "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+            rows["uniprot:P75792"]["remaining_import_blockers"],
+        )
+
+    def test_metal_phosphatase_phosphate_specificity_blocker_packet(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json"
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(packet["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(packet["metadata"]["candidate_count"], 2)
+        self.assertEqual(packet["metadata"]["structure_scan_count"], 5)
+        self.assertEqual(packet["metadata"]["committed_coordinate_sidecar_count"], 2)
+        self.assertEqual(packet["metadata"]["rcsb_fetch_for_review_scan_not_saved_count"], 3)
+        self.assertEqual(packet["metadata"]["phosphate_like_site_count_total"], 0)
+        self.assertEqual(packet["metadata"]["structures_with_phosphate_like_ligand_count"], 0)
+        self.assertEqual(packet["metadata"]["source_free_phosphate_specificity_ready_count"], 0)
+        self.assertEqual(packet["metadata"]["blocked_with_exact_missing_evidence_count"], 2)
+        self.assertEqual(packet["metadata"]["mechanism_match_review_ready_count"], 2)
+        self.assertEqual(packet["metadata"]["source_context_counted_as_predictive_count"], 0)
+        self.assertEqual(
+            packet["metadata"]["text_or_label_fields_used_for_predictive_score_count"],
+            0,
+        )
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["geometry_superiority_claim"])
+        self.assertEqual(packet["metadata"]["esm_sidecar_available_count"], 0)
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(packet["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(packet["metadata"]["removal_allowed_set_true"])
+        self.assertEqual(packet["metadata"]["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            packet["metadata"]["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            packet["metadata"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(packet["metadata"]["external_imported_seed_fingerprint_labels"], [])
+        self.assertEqual(
+            packet["decision"]["packet_status"],
+            "phosphatase_specific_import_blocked_with_exact_missing_evidence",
+        )
+        self.assertFalse(packet["decision"]["label_import_authorized"])
+        self.assertFalse(packet["decision"]["registry_or_fingerprint_change_authorized"])
+
+        rows = {row["row_id"]: row for row in packet["rows"]}
+        self.assertEqual(set(rows), {"uniprot:P0A8Y5", "uniprot:P75792"})
+        self.assertEqual(
+            rows["uniprot:P75792"]["source_free_phosphate_specificity_scan"][
+                "pdb_ids_scanned"
+            ],
+            ["1RLM", "1RLO", "1RLT", "2HF2"],
+        )
+        self.assertEqual(
+            rows["uniprot:P0A8Y5"]["source_free_phosphate_specificity_scan"][
+                "pdb_ids_scanned"
+            ],
+            ["1RKQ"],
+        )
+        for row in rows.values():
+            self.assertEqual(row["terminal_decision"], "mechanism_match_review_ready")
+            self.assertEqual(
+                row["phosphatase_specific_import_status"],
+                "blocked_with_exact_missing_evidence",
+            )
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(
+                row["source_free_phosphate_specificity_scan"][
+                    "source_free_phosphate_or_substrate_ligand_detected"
+                ]
+            )
+            self.assertEqual(
+                row["source_free_phosphate_specificity_scan"][
+                    "phosphate_like_site_count_total"
+                ],
+                0,
+            )
+            self.assertIn(
+                "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+                row["remaining_import_blockers"],
+            )
+            self.assertTrue(
+                any(
+                    "coordinate holo structure" in missing
+                    for missing in row["exact_missing_evidence_to_resolve"]
+                )
+            )
+            self.assertEqual(
+                row["modern_baseline_comparison"]["superiority_claim"], "none"
+            )
+            self.assertFalse(
+                row["modern_baseline_comparison"]["esm_sidecar"]["available"]
+            )
+            for scan in row["source_free_phosphate_specificity_scan"]["structure_scans"]:
+                self.assertEqual(scan["phosphate_like_site_count"], 0)
+                self.assertFalse(scan["selected_site_phosphate_like_ligand_detected"])
+                self.assertFalse(scan["text_or_label_fields_used_for_predictive_score"])
+
 
 if __name__ == "__main__":
     unittest.main()

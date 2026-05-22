@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 279
-- Measured elapsed time: 8380.6 minutes (139.68 hours)
+- Entries: 281
+- Measured elapsed time: 8633.2 minutes (143.89 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1384.6 measured minutes (23.08 hours)
+- v3: 1637.2 measured minutes (27.29 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3030
-- Evidence references logged: 2455
+- Artifact references logged: 3048
+- Evidence references logged: 2475
 
 ## Recent Entries
-
-### 2026-05-22T01:48:29+00:00 - v3
-
-- Task: Recover second FDR and heme deep packets
-- Time mode: measured
-- Measured minutes: 2.7
-- Started: 2026-05-22T01:45:47Z
-- Ended: 2026-05-22T01:48:29Z
-- Artifacts: artifacts/v3_flavin_dehydrogenase_second_deep_packet_selection_20260521.json, artifacts/v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_flavin_dehydrogenase_targeted_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_packet_selection_20260521.json, artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_targeted_heme_screen_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_peroxidase_targeted_screen_20260521.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: stale lock recovered with coherent dirty second FDR and heme deep-packet work, second FDR seven rows are terminal duplicate/leakage rejections after 343/343 targeted current-FDR pairs, second heme has four terminal duplicate/leakage rows and three exact full-current duplicate-screen blockers after 140/140 targeted current-heme pairs, 819-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, new JSON artifacts parsed
-- Notes: Recovery validation only; no label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite production threshold change or removal_allowed=true occurred.
-
-### 2026-05-22T02:00:30.757526+00:00 - v3
-
-- Task: Second flavin and heme deep packets with full current heme closure
-- Time mode: measured
-- Measured minutes: 86.417
-- Started: 2026-05-22T00:33:36Z
-- Ended: 2026-05-22T02:00:01Z
-- Artifacts: artifacts/v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_full_current_screen_20260521.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_full_current_screen_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
-- Evidence: second FDR targeted screen completed 343/343 pairs and converted seven rows to terminal duplicate/leakage rejections, second heme full current screen completed 2016/2016 pairs with P31545 duplicate hit and P39597/K7N5M8 review-ready mechanism matches, external deep rollup now 71 rows with 63 duplicate rejections five mechanism-match review-ready rows three insufficient-evidence rows zero exact blockers zero import-ready candidates, 820-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, migration dry-run passed removal_allowed=0, 22 new JSON artifacts parsed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T02:11:28+00:00 - v3
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_mechanism_match_review_ready_seed_fingerprint_payload_dry_run_20260522.json, artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: six mechanism-match review-ready rows packaged as draft_review_only_not_imported seed-fingerprint payloads, P14532 UniRef90/50 current-reference screen fetched UniRef50_P14532 and UniRef90_P14532 with 0 current-reference overlaps, all six review-ready rows now have UniRef90/50 no-overlap evidence, import remains blocked by missing external seed-fingerprint policy full label-factory payload gates and human label action, two metal rows still lack source-free phosphate/substrate specificity, 831-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, payload JSON artifacts parsed, no registry or fingerprint diffs, git diff check passed
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T08:48:17.767316+00:00 - v3
+
+- Task: External seed-fingerprint payload gate dry run
+- Time mode: measured
+- Measured minutes: 91.783
+- Started: 2026-05-22T07:16:17Z
+- Ended: 2026-05-22T08:48:04Z
+- Artifacts: artifacts/v3_external_seed_fingerprint_label_factory_payload_gate_check_20260522.json, artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: 832-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, 2 new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs, external seed-fingerprint policy preregistered review-only, label-factory payload gate dry run ran 21 gates and failed exactly applied_label_actions_ready, external transfer gate remained 68/68, zero import-ready and zero countable candidates
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T08:49:45.493927+00:00 - v3
+
+- Task: Seed payload gate and metal phosphate blocker
+- Time mode: measured
+- Measured minutes: 160.8
+- Started: 2026-05-22T06:08:34Z
+- Ended: 2026-05-22T08:49:22Z
+- Artifacts: artifacts/v3_external_seed_fingerprint_label_factory_payload_gate_check_20260522.json, artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json, artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: 833-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, three new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs, seed payload dry run is blocked on applied_label_actions_ready external payload adapter, metal phosphate scan covered five PDB structures with zero phosphate-like ligand contexts
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -343,6 +343,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T05:15:55.239970+00:00: Next main-loop work should not add broad rows; build a no-import seed-fingerprint payload/policy dry run for the six review-ready rows or deepen another existing frozen packet.
 - 2026-05-22T05:23:06.284991+00:00: Next run should preregister external seed-fingerprint counting policy before any full label-factory payload gate dry run or continue frozen-row deepening.
 - 2026-05-22T05:25:41.522048+00:00: Next exact import-gate step is preregistering an external seed-fingerprint counting policy and running a full no-import label-factory payload gate dry run for the six review-ready rows.
+- 2026-05-22T08:48:17.767316+00:00: Next exact work is a current-682 external seed-fingerprint payload adapter/rebaseline and no-import gate rerun; metal rows still need source-free phosphate/substrate specificity.
+- 2026-05-22T08:49:45.493927+00:00: Next exact work is a current-682 external seed-fingerprint payload adapter/rebaseline or a source-free phosphate-pocket extractor/holo-structure search before any metal import claim.
 
 ## Scope Adjustments
 
@@ -507,3 +509,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T05:15:55.239970+00:00: Closed all queued source-free geometry/structure blockers; remaining external deep blockers are import-gate policy/payload only.
 - 2026-05-22T05:23:06.284991+00:00: Converted remaining import-gate blocker surface into a no-import dry run without opening label import.
 - 2026-05-22T05:25:41.522048+00:00: Import-gate readiness advanced without import: UniRef duplicate evidence is now clear for all six review-ready rows, but seed-fingerprint import remains policy/gate blocked.
+- 2026-05-22T08:48:17.767316+00:00: Advanced import-gate readiness for existing review-ready rows without adding external breadth or importing labels.
+- 2026-05-22T08:49:45.493927+00:00: Import-gate readiness advanced without import: seed-fingerprint policy dry run has an exact current-682 adapter blocker and metal phosphatase rows have exact phosphate-specific missing evidence.

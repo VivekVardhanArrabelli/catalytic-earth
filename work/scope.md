@@ -226,6 +226,29 @@ phosphate/substrate specificity. The companion
 `artifacts/v3_external_p14532_uniref_current_reference_screen_20260522.json`
 now gives `P14532` the same UniRef90/50 current-reference no-overlap evidence
 as the prior five rows.
+The 2026-05-22T07:16:17Z main-loop run converts the missing policy/gate step
+into an exact no-import gate blocker. The review-only policy artifact
+`artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json`
+preregisters external seed-fingerprint counting requirements for those six
+existing review-ready rows, but explicitly authorizes no import. A fresh
+label-factory gate dry run in
+`artifacts/v3_external_seed_fingerprint_label_factory_payload_gate_check_20260522.json`
+passes 20/21 gates and fails only `applied_label_actions_ready`; this means the
+next exact experiment is not row sourcing but a current-682 external
+seed-fingerprint payload adapter/rebaseline plus another no-import gate rerun.
+The external-source transfer gate remains green at 68/68, registry invariants
+remain 682 labels with 0 external seed-fingerprint imports, and the two metal
+rows still require source-free phosphate/substrate specificity before any
+phosphatase-specific import claim.
+The 2026-05-22T08:46:13Z follow-up makes that metal blocker exact rather than
+implicit. `artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json`
+scans the selected PDB structures plus prefrozen sampled PDB cross-references
+for `P75792` (`1RLM`, `1RLO`, `1RLT`, `2HF2`) and `P0A8Y5` (`1RKQ`). Across
+five coordinate structures, the source-free scan finds 0 phosphate-like ligand
+sites and 0 phosphate/substrate ligand contexts. Both rows remain
+`mechanism_match_review_ready`, but phosphatase-specific import is blocked
+until a coordinate holo/analog phosphate-like substrate/product structure is
+found or a preregistered source-free phosphate-pocket extractor is tested.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes
