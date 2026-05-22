@@ -1,7 +1,7 @@
 {
   "metadata": {
     "artifact_upload_or_removal_performed": false,
-    "blocked_count": 295,
+    "blocked_count": 270,
     "countable_label_candidate_count": 0,
     "curated_label_registry_edited": false,
     "fingerprint_registry_edited": false,
@@ -11,11 +11,11 @@
       "missing_exact_ca_atom_pair": 23,
       "missing_exact_distance": 23,
       "missing_structure_id": 2,
-      "missing_structure_path": 293
+      "missing_structure_path": 268
     },
     "new_external_rows_frozen": 0,
     "policy": "This queue is a visual expert-review aid only. It imports 0 labels, edits no registries or fingerprints, and does not create countable label candidates.",
-    "pymol_ready_count": 26,
+    "pymol_ready_count": 51,
     "ready_entry_ids": [
       "m_csa:670",
       "m_csa:643",
@@ -42,14 +42,39 @@
       "m_csa:842",
       "m_csa:736",
       "m_csa:687",
+      "m_csa:684",
+      "m_csa:834",
+      "m_csa:925",
+      "m_csa:891",
+      "m_csa:711",
+      "m_csa:984",
+      "m_csa:767",
+      "m_csa:943",
+      "m_csa:787",
+      "m_csa:785",
+      "m_csa:764",
+      "m_csa:726",
+      "m_csa:680",
+      "m_csa:591",
+      "m_csa:784",
+      "m_csa:788",
+      "m_csa:806",
+      "m_csa:534",
+      "m_csa:678",
+      "m_csa:659",
+      "m_csa:761",
+      "m_csa:938",
+      "m_csa:807",
+      "m_csa:731",
+      "m_csa:949",
       "m_csa:939"
     ],
     "ready_for_label_import": false,
     "review_only": true,
     "rows_with_exact_distances": 298,
     "rows_with_exact_residue_atom_pairs": 298,
-    "rows_with_structure_paths": 26,
-    "rows_with_verified_focus_atoms": 26,
+    "rows_with_structure_paths": 51,
+    "rows_with_verified_focus_atoms": 51,
     "source_paths": {
       "expert_review_export": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "geometry_features": "artifacts/v3_geometry_features_1025.json",
@@ -61,140 +86,265 @@
   "pml_script_manifest": {
     "metadata": {
       "method": "mcsa_pymol_script_generation",
-      "ready_rows_seen": 26,
+      "ready_rows_seen": 51,
       "review_only": true,
-      "script_count": 26,
-      "script_dir": "artifacts/review_pymol/mcsa_1025_materialized_20260522"
+      "script_count": 51,
+      "script_dir": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522"
     },
     "rows": [
       {
         "entry_id": "m_csa:670",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_670.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_670.pml",
         "structure_id": "1JXH"
       },
       {
         "entry_id": "m_csa:643",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_643.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_643.pml",
         "structure_id": "1G99"
       },
       {
         "entry_id": "m_csa:756",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_756.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_756.pml",
         "structure_id": "1ZRZ"
       },
       {
         "entry_id": "m_csa:757",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_757.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_757.pml",
         "structure_id": "1STC"
       },
       {
         "entry_id": "m_csa:760",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_760.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_760.pml",
         "structure_id": "1L0O"
       },
       {
         "entry_id": "m_csa:696",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_696.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_696.pml",
         "structure_id": "1DGK"
       },
       {
         "entry_id": "m_csa:654",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_654.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_654.pml",
         "structure_id": "1OJ4"
       },
       {
         "entry_id": "m_csa:663",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_663.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_663.pml",
         "structure_id": "1RK2"
       },
       {
         "entry_id": "m_csa:662",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_662.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_662.pml",
         "structure_id": "1BO1"
       },
       {
         "entry_id": "m_csa:751",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_751.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_751.pml",
         "structure_id": "1TZ3"
       },
       {
         "entry_id": "m_csa:918",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_918.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_918.pml",
         "structure_id": "5CNV"
       },
       {
         "entry_id": "m_csa:553",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_553.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_553.pml",
         "structure_id": "1FDY"
       },
       {
         "entry_id": "m_csa:778",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_778.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_778.pml",
         "structure_id": "1FWK"
       },
       {
         "entry_id": "m_csa:793",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_793.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_793.pml",
         "structure_id": "1QWN"
       },
       {
         "entry_id": "m_csa:792",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_792.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_792.pml",
         "structure_id": "1QFN"
       },
       {
         "entry_id": "m_csa:676",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_676.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_676.pml",
         "structure_id": "1B65"
       },
       {
         "entry_id": "m_csa:947",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_947.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_947.pml",
         "structure_id": "1U1Z"
       },
       {
         "entry_id": "m_csa:995",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_995.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_995.pml",
         "structure_id": "2ET1"
       },
       {
         "entry_id": "m_csa:972",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_972.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_972.pml",
         "structure_id": "2VZ9"
       },
       {
         "entry_id": "m_csa:980",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_980.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_980.pml",
         "structure_id": "1DJ7"
       },
       {
         "entry_id": "m_csa:974",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_974.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_974.pml",
         "structure_id": "4PIV"
       },
       {
         "entry_id": "m_csa:910",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_910.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_910.pml",
         "structure_id": "1STD"
       },
       {
         "entry_id": "m_csa:842",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_842.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_842.pml",
         "structure_id": "1DQR"
       },
       {
         "entry_id": "m_csa:736",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_736.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_736.pml",
         "structure_id": "1X9H"
       },
       {
         "entry_id": "m_csa:687",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_687.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_687.pml",
         "structure_id": "1ROZ"
       },
       {
+        "entry_id": "m_csa:684",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_684.pml",
+        "structure_id": "1QAZ"
+      },
+      {
+        "entry_id": "m_csa:834",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_834.pml",
+        "structure_id": "3UFJ"
+      },
+      {
+        "entry_id": "m_csa:925",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_925.pml",
+        "structure_id": "2BII"
+      },
+      {
+        "entry_id": "m_csa:891",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_891.pml",
+        "structure_id": "1YBV"
+      },
+      {
+        "entry_id": "m_csa:711",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_711.pml",
+        "structure_id": "2ESD"
+      },
+      {
+        "entry_id": "m_csa:984",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_984.pml",
+        "structure_id": "4E5K"
+      },
+      {
+        "entry_id": "m_csa:767",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_767.pml",
+        "structure_id": "1R30"
+      },
+      {
+        "entry_id": "m_csa:943",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_943.pml",
+        "structure_id": "4NJK"
+      },
+      {
+        "entry_id": "m_csa:787",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_787.pml",
+        "structure_id": "1T0U"
+      },
+      {
+        "entry_id": "m_csa:785",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_785.pml",
+        "structure_id": "1PSD"
+      },
+      {
+        "entry_id": "m_csa:764",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_764.pml",
+        "structure_id": "2F61"
+      },
+      {
+        "entry_id": "m_csa:726",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_726.pml",
+        "structure_id": "1OCL"
+      },
+      {
+        "entry_id": "m_csa:680",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_680.pml",
+        "structure_id": "1NN4"
+      },
+      {
+        "entry_id": "m_csa:591",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_591.pml",
+        "structure_id": "1HFS"
+      },
+      {
+        "entry_id": "m_csa:784",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_784.pml",
+        "structure_id": "1W0H"
+      },
+      {
+        "entry_id": "m_csa:788",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_788.pml",
+        "structure_id": "2E2H"
+      },
+      {
+        "entry_id": "m_csa:806",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_806.pml",
+        "structure_id": "1CVR"
+      },
+      {
+        "entry_id": "m_csa:534",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_534.pml",
+        "structure_id": "1VOM"
+      },
+      {
+        "entry_id": "m_csa:678",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_678.pml",
+        "structure_id": "1HT1"
+      },
+      {
+        "entry_id": "m_csa:659",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_659.pml",
+        "structure_id": "1K82"
+      },
+      {
+        "entry_id": "m_csa:761",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_761.pml",
+        "structure_id": "1IU4"
+      },
+      {
+        "entry_id": "m_csa:938",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_938.pml",
+        "structure_id": "3RFA"
+      },
+      {
+        "entry_id": "m_csa:807",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_807.pml",
+        "structure_id": "6U7T"
+      },
+      {
+        "entry_id": "m_csa:731",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_731.pml",
+        "structure_id": "1MT5"
+      },
+      {
+        "entry_id": "m_csa:949",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_949.pml",
+        "structure_id": "4XB6"
+      },
+      {
         "entry_id": "m_csa:939",
-        "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_939.pml",
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_939.pml",
         "structure_id": "3CMM"
       }
     ]
@@ -274,7 +424,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_670.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_670.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -367,7 +517,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_643.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_643.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -456,7 +606,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_756.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_756.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -549,7 +699,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_757.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_757.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -646,7 +796,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_760.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_760.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -739,7 +889,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_696.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_696.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -834,7 +984,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_654.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_654.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -932,7 +1082,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_663.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_663.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1021,7 +1171,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_662.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_662.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1112,7 +1262,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_751.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_751.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1196,7 +1346,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_918.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_918.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1301,7 +1451,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_553.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_553.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1396,7 +1546,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_778.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_778.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1495,7 +1645,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_793.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_793.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1591,7 +1741,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_792.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_792.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1683,7 +1833,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_676.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_676.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1777,7 +1927,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_947.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_947.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1871,7 +2021,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_995.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_995.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -1967,7 +2117,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_972.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_972.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2074,7 +2224,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_980.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_980.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2166,7 +2316,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_974.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_974.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2260,7 +2410,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_910.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_910.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2354,7 +2504,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_842.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_842.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2448,7 +2598,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_736.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_736.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2542,7 +2692,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_687.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_687.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2618,8 +2768,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1QAZ.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -2627,9 +2783,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_684.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2638,12 +2793,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 26,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1QAZ",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1QAZ.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -2707,8 +2862,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3UFJ.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -2716,9 +2877,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_834.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2727,12 +2887,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 27,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold; fewer_than_three_resolved_residues",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "3UFJ",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3UFJ.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -2799,8 +2959,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2BII.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -2808,9 +2974,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_925.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2819,12 +2984,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 28,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "2BII",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2BII.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -2892,8 +3057,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1YBV.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -2901,9 +3072,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_891.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -2912,12 +3082,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 29,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1YBV",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1YBV.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -2985,8 +3155,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2ESD.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -2994,9 +3170,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_711.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3005,12 +3180,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 30,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "2ESD",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2ESD.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3072,8 +3247,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4E5K.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -3081,9 +3262,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_984.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3092,12 +3272,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 31,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "4E5K",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4E5K.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3163,8 +3343,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1R30.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -3172,9 +3358,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_767.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3183,12 +3368,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 32,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1R30",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1R30.cif",
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3251,17 +3436,22 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4NJK.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_943.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3270,12 +3460,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 33,
       "review_reason": "counterevidence_present; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "4NJK",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4NJK.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3341,8 +3531,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1T0U.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -3350,9 +3546,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_787.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3361,12 +3556,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 34,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1T0U",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1T0U.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3430,8 +3625,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1PSD.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -3439,9 +3640,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_785.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3450,12 +3650,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 35,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold; fewer_than_three_resolved_residues",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1PSD",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1PSD.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3521,8 +3721,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2F61.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -3530,9 +3736,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_764.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3541,12 +3746,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 36,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "2F61",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2F61.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3610,8 +3815,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1OCL.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -3619,9 +3830,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_726.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3630,12 +3840,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 37,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1OCL",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1OCL.cif",
       "target_fingerprint_id": "plp_dependent_enzyme",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3699,8 +3909,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1NN4.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -3708,9 +3924,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_680.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3719,12 +3934,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 38,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1NN4",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1NN4.cif",
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3788,16 +4003,21 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HFS.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "review_marked_needs_more_evidence"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_591.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3806,12 +4026,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 39,
       "review_reason": "counterevidence_present; review_marked_needs_more_evidence",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1HFS",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HFS.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3875,17 +4095,22 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1W0H.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_784.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3894,12 +4119,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 40,
       "review_reason": "counterevidence_present; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1W0H",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1W0H.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -3963,16 +4188,21 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2E2H.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "review_marked_needs_more_evidence"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_788.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -3981,12 +4211,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 41,
       "review_reason": "counterevidence_present; review_marked_needs_more_evidence",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "2E2H",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2E2H.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4052,17 +4282,22 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1CVR.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "expected_cofactor_not_local",
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_806.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4071,12 +4306,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 42,
       "review_reason": "expected_cofactor_not_local; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1CVR",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1CVR.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4143,16 +4378,21 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1VOM.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "review_marked_needs_more_evidence"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_534.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4161,12 +4401,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 43,
       "review_reason": "counterevidence_present; review_marked_needs_more_evidence",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1VOM",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1VOM.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4228,8 +4468,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HT1.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -4237,9 +4483,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_678.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4248,12 +4493,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 44,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1HT1",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HT1.cif",
       "target_fingerprint_id": "plp_dependent_enzyme",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4323,8 +4568,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1K82.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -4332,9 +4583,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_659.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4343,12 +4593,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 45,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold; fewer_than_three_resolved_residues",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1K82",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1K82.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4414,17 +4664,22 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1IU4.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "expected_cofactor_absent_from_structure",
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_761.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4433,12 +4688,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 46,
       "review_reason": "expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1IU4",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1IU4.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4502,8 +4757,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3RFA.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -4511,9 +4772,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_938.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4522,12 +4782,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 47,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "3RFA",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3RFA.cif",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4597,8 +4857,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_6U7T.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -4606,9 +4872,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_807.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4617,12 +4882,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 48,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "6U7T",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_6U7T.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4686,8 +4951,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -4695,9 +4966,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_731.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4706,12 +4976,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 49,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "1MT5",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
       "target_fingerprint_id": "plp_dependent_enzyme",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -4775,8 +5045,14 @@
           ]
         }
       },
-      "focus_atom_selection_presence": null,
-      "focus_atom_selection_verified": false,
+      "focus_atom_selection_presence": {
+        "both_present": true,
+        "left_present": true,
+        "match_policy": "structure file must contain the requested atom name, residue name, chain id, and residue number using PDB fixed fields or mmCIF auth/label atom-site fields",
+        "right_present": true,
+        "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4XB6.cif"
+      },
+      "focus_atom_selection_verified": true,
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
@@ -4784,9 +5060,8 @@
         "top1_below_abstention_threshold"
       ],
       "heuristic_threshold_angstrom": null,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
+      "missing_fields": [],
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_949.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",
@@ -4795,12 +5070,12 @@
         "review_debt_summary_path": "artifacts/v3_review_debt_summary_1025_preview.json",
         "review_evidence_gaps_path": "artifacts/v3_review_evidence_gaps_1025_preview.json"
       },
-      "pymol_ready": false,
+      "pymol_ready": true,
       "rank": 50,
       "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence; top1_below_abstention_threshold",
       "source_artifact_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
       "structure_id": "4XB6",
-      "structure_path": null,
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4XB6.cif",
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "threshold_status": "not_available_in_input_artifacts"
     },
@@ -9077,7 +9352,7 @@
       ],
       "heuristic_threshold_angstrom": null,
       "missing_fields": [],
-      "pml_script_path": "artifacts/review_pymol/mcsa_1025_materialized_20260522/m_csa_939.pml",
+      "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_939.pml",
       "provenance": {
         "expert_review_export_path": "artifacts/v3_expert_label_decision_review_export_1000.json",
         "focus_pair_selection_rule": "longest current geometry-feature CA pair among resolved catalytic residues; this is visual-review focus evidence, not a production score",

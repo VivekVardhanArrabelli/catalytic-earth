@@ -330,6 +330,19 @@ The generated script in `artifacts/review_pymol/mcsa_1025/` and the dry-run
 manual decision batch keep `countable_import_ready=false`; any real expert
 decision must still pass the existing expert-review import preview and
 label-factory gates before labels can count.
+`artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json`
+then materializes a frozen 25-row PDB tranche for the same review-only cockpit,
+raising the ready count to 26. The current queue now also verifies that both
+PyMOL focus CA atom selections are present in the committed coordinate files
+before a row is marked ready. The materialized-tranche dry run records 26
+`skipped` manual decisions and 0 import-ready/countable rows; the remaining
+blocker report names the next 25 structure-path candidates plus the exact
+structure-id and atom-pair mapping blockers.
+`artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json`
+continues the same bounded path with a second frozen 25-row PDB tranche. It
+raises `pymol_ready_count` and `rows_with_verified_focus_atoms` to 51, keeps
+the 51-row dry run non-countable, and leaves 270 rows blocked with exact
+structure-path, structure-id, or focus-pair evidence gaps.
 `artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json`
 is the matching no-breadth family-readiness packet from existing evidence. It
 keeps glycoside hydrolase blocked with exact missing evidence: the only

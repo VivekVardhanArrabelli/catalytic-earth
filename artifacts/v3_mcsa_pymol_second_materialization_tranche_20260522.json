@@ -1,0 +1,554 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_pymol_second_materialization_tranche_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "coordinate_output_dir": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T20:31:34Z",
+    "curated_label_registry_edited": false,
+    "failed_count": 0,
+    "fetch_source": "RCSB PDB mmCIF download endpoint",
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "materialized_count": 25,
+    "materialized_entry_ids": [
+      "m_csa:684",
+      "m_csa:834",
+      "m_csa:925",
+      "m_csa:891",
+      "m_csa:711",
+      "m_csa:984",
+      "m_csa:767",
+      "m_csa:943",
+      "m_csa:787",
+      "m_csa:785",
+      "m_csa:764",
+      "m_csa:726",
+      "m_csa:680",
+      "m_csa:591",
+      "m_csa:784",
+      "m_csa:788",
+      "m_csa:806",
+      "m_csa:534",
+      "m_csa:678",
+      "m_csa:659",
+      "m_csa:761",
+      "m_csa:938",
+      "m_csa:807",
+      "m_csa:731",
+      "m_csa:949"
+    ],
+    "materialized_structure_ids": [
+      "1QAZ",
+      "3UFJ",
+      "2BII",
+      "1YBV",
+      "2ESD",
+      "4E5K",
+      "1R30",
+      "4NJK",
+      "1T0U",
+      "1PSD",
+      "2F61",
+      "1OCL",
+      "1NN4",
+      "1HFS",
+      "1W0H",
+      "2E2H",
+      "1CVR",
+      "1VOM",
+      "1HT1",
+      "1K82",
+      "1IU4",
+      "3RFA",
+      "6U7T",
+      "1MT5",
+      "4XB6"
+    ],
+    "method": "mcsa_pymol_second_selected_pdb_coordinate_materialization",
+    "new_external_rows_frozen": 0,
+    "policy": "Second bounded review-only coordinate staging for M-CSA PyMOL inspection; no labels, registries, production scores, upload, removal, or countable imports are authorized.",
+    "ready_for_label_import": false,
+    "removal_allowed": false,
+    "review_only": true,
+    "selected_row_count": 25,
+    "source_selection_artifact": "artifacts/v3_mcsa_pymol_second_materialization_tranche_selection_20260522.json"
+  },
+  "rows": [
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1QAZ.cif",
+      "entry_id": "m_csa:684",
+      "entry_name": "mannuronate-specific alginate lyase",
+      "exact_measured_distance_angstrom": 24.17,
+      "first_line": "data_1QAZ",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1QAZ.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 26,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "1c0c40cece4c75a10afae343f9510f841b9cc1b36c27e4bba1b06f072fc3faf5",
+      "size_bytes": 354407,
+      "structure_id": "1QAZ",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/3UFJ.cif",
+      "entry_id": "m_csa:834",
+      "entry_name": "double-stranded uracil-DNA glycosylase",
+      "exact_measured_distance_angstrom": 10.153,
+      "first_line": "data_3UFJ",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3UFJ.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 27,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "7855e698007294b16074b3d893f529d22ed32b0671bb220eaa3aefb88e06df47",
+      "size_bytes": 549578,
+      "structure_id": "3UFJ",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/2BII.cif",
+      "entry_id": "m_csa:925",
+      "entry_name": "Nitrate reductase [NADH]",
+      "exact_measured_distance_angstrom": 11.928,
+      "first_line": "data_2BII",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2BII.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 28,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "ddf732ca3ae305f004b3dd4f7fd94036034f355a99f77e52a202e375afb7f861",
+      "size_bytes": 860472,
+      "structure_id": "2BII",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1YBV.cif",
+      "entry_id": "m_csa:891",
+      "entry_name": "Tetrahydroxynaphthalene reductase",
+      "exact_measured_distance_angstrom": 16.275,
+      "first_line": "data_1YBV",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1YBV.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 29,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "5f9c881c0d99df5c95663f43e44fde8736bd4cfeb8ddb152dd0f4c7235160caa",
+      "size_bytes": 456437,
+      "structure_id": "1YBV",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/2ESD.cif",
+      "entry_id": "m_csa:711",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
+      "exact_measured_distance_angstrom": 12.719,
+      "first_line": "data_2ESD",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2ESD.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 30,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "a37f948d4cf2fafa7ae5f9b5f53105bb09bd240aa4db6c027061cb7fbd88724b",
+      "size_bytes": 1599885,
+      "structure_id": "2ESD",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/4E5K.cif",
+      "entry_id": "m_csa:984",
+      "entry_name": "phosphonate dehydrogenase",
+      "exact_measured_distance_angstrom": 11.767,
+      "first_line": "data_4E5K",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4E5K.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 31,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "596f75aca37066bacd28c07865960c48535f90c6c897116922ef00d71b678687",
+      "size_bytes": 1986683,
+      "structure_id": "4E5K",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1R30.cif",
+      "entry_id": "m_csa:767",
+      "entry_name": "biotin synthase",
+      "exact_measured_distance_angstrom": 25.157,
+      "first_line": "data_1R30",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1R30.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 32,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "4b0f8160205398d61daaf18a49122f22620a22f8e7b5ea1f448abcc877914042",
+      "size_bytes": 596353,
+      "structure_id": "1R30",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/4NJK.cif",
+      "entry_id": "m_csa:943",
+      "entry_name": "7-carboxy-7-deazaguanine synthase",
+      "exact_measured_distance_angstrom": 22.193,
+      "first_line": "data_4NJK",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4NJK.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 33,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "0d893b118a0aad162244f2fa6e1782a2e8dfabf8a8f4f24817ec8a6307541b8b",
+      "size_bytes": 778550,
+      "structure_id": "4NJK",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1T0U.cif",
+      "entry_id": "m_csa:787",
+      "entry_name": "uridine phosphorylase",
+      "exact_measured_distance_angstrom": 19.225,
+      "first_line": "data_1T0U",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1T0U.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 34,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "283e5dbfb231f0a097210dd061d245b1949a32e038522f2a72509e7159e67cc3",
+      "size_bytes": 424293,
+      "structure_id": "1T0U",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1PSD.cif",
+      "entry_id": "m_csa:785",
+      "entry_name": "phosphoglycerate dehydrogenase",
+      "exact_measured_distance_angstrom": 8.451,
+      "first_line": "data_1PSD",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1PSD.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 35,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "799cd3bcd95d461e344caddda7418db67e675d9e6adceb9f7c10c1eb0ae401b9",
+      "size_bytes": 663397,
+      "structure_id": "1PSD",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/2F61.cif",
+      "entry_id": "m_csa:764",
+      "entry_name": "glucosylceramidase",
+      "exact_measured_distance_angstrom": 18.936,
+      "first_line": "data_2F61",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2F61.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 36,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "0ec57468a3e82657d221f0a68e545aa148ae702796bf7f021aa2a22706f4a50f",
+      "size_bytes": 871034,
+      "structure_id": "2F61",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1OCL.cif",
+      "entry_id": "m_csa:726",
+      "entry_name": "peptide amidase",
+      "exact_measured_distance_angstrom": 15.658,
+      "first_line": "data_1OCL",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1OCL.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 37,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "371671cb301998de5a2ccc2bdd99cc6effb3b48b826379891dcf695ad5eeaeed",
+      "size_bytes": 715828,
+      "structure_id": "1OCL",
+      "target_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1NN4.cif",
+      "entry_id": "m_csa:680",
+      "entry_name": "ribose-5-phosphate isomerase",
+      "exact_measured_distance_angstrom": 14.194,
+      "first_line": "data_1NN4",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1NN4.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 38,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "076188822b9e62c38e20ceae86751a167ff5b40437949a9c6fc31609ec1e6627",
+      "size_bytes": 548489,
+      "structure_id": "1NN4",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1HFS.cif",
+      "entry_id": "m_csa:591",
+      "entry_name": "stromelysin 1",
+      "exact_measured_distance_angstrom": 10.619,
+      "first_line": "data_1HFS",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HFS.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 39,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "8360150c1aed2d76f404b070a60e1670acc012cd99b448277204bd52596618b4",
+      "size_bytes": 221236,
+      "structure_id": "1HFS",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1W0H.cif",
+      "entry_id": "m_csa:784",
+      "entry_name": "3'-5' exoribonuclease 1",
+      "exact_measured_distance_angstrom": 11.073,
+      "first_line": "data_1W0H",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1W0H.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 40,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "98dc5a60f244d9d0e63236a0986339b7d216ee24e9a81bc0facde28b8cd15d7b",
+      "size_bytes": 282187,
+      "structure_id": "1W0H",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/2E2H.cif",
+      "entry_id": "m_csa:788",
+      "entry_name": "DNA-directed RNA polymerase",
+      "exact_measured_distance_angstrom": 17.46,
+      "first_line": "data_2E2H",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2E2H.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 41,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "af6a15fa5d2ff6731a39b1d2b3b371a7bcdde8fa13db318b1253c24cf1d7cf95",
+      "size_bytes": 3295500,
+      "structure_id": "2E2H",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1CVR.cif",
+      "entry_id": "m_csa:806",
+      "entry_name": "gingipain R",
+      "exact_measured_distance_angstrom": 14.617,
+      "first_line": "data_1CVR",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1CVR.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 42,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "aac88d52c083d6971b5308febf9ef48f01ba60567331c0d80efde0eb61b13326",
+      "size_bytes": 446790,
+      "structure_id": "1CVR",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1VOM.cif",
+      "entry_id": "m_csa:534",
+      "entry_name": "myosin ATPase",
+      "exact_measured_distance_angstrom": 14.892,
+      "first_line": "data_1VOM",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1VOM.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 43,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "655352e3ff82dff4edf0926c6897492a51aeb0988d970bf00b6678fafa5a59d4",
+      "size_bytes": 763625,
+      "structure_id": "1VOM",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1HT1.cif",
+      "entry_id": "m_csa:678",
+      "entry_name": "HslU---HslV peptidase",
+      "exact_measured_distance_angstrom": 14.426,
+      "first_line": "data_1HT1",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HT1.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 44,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "d1521a14aa2009cd297bcded3a6ec73120e7eed75a1b3f865de8d0fbf20511ab",
+      "size_bytes": 2484778,
+      "structure_id": "1HT1",
+      "target_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1K82.cif",
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "exact_measured_distance_angstrom": 3.823,
+      "first_line": "data_1K82",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1K82.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 45,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "2fb31e4101bf6f2f3a88ed541f5ea1a37d33276706c97cb65e9037fc41c56b59",
+      "size_bytes": 1287723,
+      "structure_id": "1K82",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1IU4.cif",
+      "entry_id": "m_csa:761",
+      "entry_name": "protein-glutamine gamma-glutamyltransferase (bacterial)",
+      "exact_measured_distance_angstrom": 11.297,
+      "first_line": "data_1IU4",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1IU4.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 46,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "aa54072d9fe9be2812aafc3231ff7a99ac6948cccd0b8cc080704bc3c0e1fbc9",
+      "size_bytes": 1149933,
+      "structure_id": "1IU4",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/3RFA.cif",
+      "entry_id": "m_csa:938",
+      "entry_name": "adenosine C2 methyltransferase (RlmN)",
+      "exact_measured_distance_angstrom": 18.765,
+      "first_line": "data_3RFA",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3RFA.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 47,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "ce1a3b16ebfb161ef14e2602330f33d89d9acb8cc7ead3553fbf6c4e00549fee",
+      "size_bytes": 1131312,
+      "structure_id": "3RFA",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/6U7T.cif",
+      "entry_id": "m_csa:807",
+      "entry_name": "adenine DNA glycosylase",
+      "exact_measured_distance_angstrom": 10.721,
+      "first_line": "data_6U7T",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_6U7T.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 48,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "3769437c1d3191e82c7aa0cf77ecdcfd9f9f2be69b62c34f4d4cfbaea887eedb",
+      "size_bytes": 728124,
+      "structure_id": "6U7T",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/1MT5.cif",
+      "entry_id": "m_csa:731",
+      "entry_name": "fatty acid amide hydrolase",
+      "exact_measured_distance_angstrom": 15.88,
+      "first_line": "data_1MT5",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 49,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "363effb8573293dce572d7e15f3493cffa724cb2ac48dd7d4789581a449eec53",
+      "size_bytes": 6473062,
+      "structure_id": "1MT5",
+      "target_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "coordinate_source_url": "https://files.rcsb.org/download/4XB6.cif",
+      "entry_id": "m_csa:949",
+      "entry_name": "alpha-D-ribose 1-methylphosphonate 5-phosphate C-P-lyase",
+      "exact_measured_distance_angstrom": 35.991,
+      "first_line": "data_4XB6",
+      "local_structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4XB6.cif",
+      "materialization_status": "materialized",
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 50,
+      "selection_reason": "second bounded tranche from the prior remaining-blocker report: highest-priority blocked rows with exact CA pair/distance and missing local structure path",
+      "sha256": "c266108f86bdff798dc8997d8e6407176344eb2d978d802dd3681a202489e62d",
+      "size_bytes": 4494493,
+      "structure_id": "4XB6",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    }
+  ]
+}

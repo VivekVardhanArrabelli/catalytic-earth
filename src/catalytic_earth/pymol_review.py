@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import shlex
 import shutil
 import subprocess
 from collections import Counter
@@ -63,7 +64,10 @@ def build_mcsa_pymol_expert_review_queue(
         structure_id = str(geometry.get("pdb_id") or "") or None
         structure_path = _find_structure_path(structure_id, structure_dirs)
         focus_pair = _select_focus_pair(geometry)
-        missing_fields = _missing_fields(geometry, structure_id, structure_path, focus_pair)
+        atom_presence = _focus_atom_presence(structure_path, focus_pair)
+        missing_fields = _missing_fields(
+            geometry, structure_id, structure_path, focus_pair, atom_presence
+        )
         provenance = {
             "expert_review_export_path": paths.get("expert_review_export"),
             "review_debt_summary_path": paths.get("review_debt_summary"),
@@ -111,6 +115,10 @@ def build_mcsa_pymol_expert_review_queue(
             "heuristic_threshold_angstrom": None,
             "threshold_status": "not_available_in_input_artifacts",
             "focus_atom_pair": focus_pair.get("atom_pair") if focus_pair else None,
+            "focus_atom_selection_verified": atom_presence.get("both_present")
+            if atom_presence
+            else False,
+            "focus_atom_selection_presence": atom_presence or None,
             "pymol_ready": not missing_fields,
             "missing_fields": missing_fields,
             "provenance": provenance,
@@ -152,6 +160,9 @@ def build_mcsa_pymol_expert_review_queue(
                 1
                 for row in rows
                 if isinstance(row.get("exact_measured_distance_angstrom"), (int, float))
+            ),
+            "rows_with_verified_focus_atoms": sum(
+                1 for row in rows if row.get("focus_atom_selection_verified")
             ),
             "pymol_ready_count": len(ready_rows),
             "blocked_count": len(rows) - len(ready_rows),
@@ -419,6 +430,7 @@ def _missing_fields(
     structure_id: str | None,
     structure_path: Path | None,
     focus_pair: dict[str, Any] | None,
+    atom_presence: dict[str, Any] | None = None,
 ) -> list[str]:
     missing: list[str] = []
     if not geometry:
@@ -436,7 +448,137 @@ def _missing_fields(
             for field in ("chain_name", "residue_number", "residue_name", "atom_name"):
                 if residue.get(field) in {None, ""}:
                     missing.append(f"missing_{side}_{field}")
+            if atom_presence and not atom_presence.get(f"{side}_present"):
+                missing.append(f"missing_{side}_structure_atom")
     return sorted(set(missing))
+
+
+def _focus_atom_presence(
+    structure_path: Path | None, focus_pair: dict[str, Any] | None
+) -> dict[str, Any]:
+    if structure_path is None or not focus_pair:
+        return {}
+    atoms = _load_structure_atom_keys(structure_path)
+    presence = {
+        side: _atom_key(focus_pair["atom_pair"][side]) in atoms
+        for side in ("left", "right")
+    }
+    return {
+        "structure_path": str(structure_path),
+        "left_present": presence["left"],
+        "right_present": presence["right"],
+        "both_present": presence["left"] and presence["right"],
+        "match_policy": (
+            "structure file must contain the requested atom name, residue name, "
+            "chain id, and residue number using PDB fixed fields or mmCIF "
+            "auth/label atom-site fields"
+        ),
+    }
+
+
+def _load_structure_atom_keys(path: Path) -> set[tuple[str, str, str, str]]:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    suffix = path.suffix.lower()
+    if suffix in {".pdb", ".ent"}:
+        return _pdb_atom_keys(text)
+    return _mmcif_atom_keys(text)
+
+
+def _atom_key(atom: dict[str, Any]) -> tuple[str, str, str, str]:
+    return (
+        str(atom.get("atom_name") or "").strip().upper(),
+        str(atom.get("residue_name") or "").strip().upper(),
+        str(atom.get("chain_name") or "").strip(),
+        str(atom.get("residue_number") or "").strip(),
+    )
+
+
+def _pdb_atom_keys(text: str) -> set[tuple[str, str, str, str]]:
+    keys: set[tuple[str, str, str, str]] = set()
+    for line in text.splitlines():
+        if not line.startswith(("ATOM  ", "HETATM")):
+            continue
+        atom_name = line[12:16].strip().upper()
+        residue_name = line[17:20].strip().upper()
+        chain_name = line[21:22].strip()
+        residue_number = line[22:26].strip()
+        if atom_name and residue_name and residue_number:
+            keys.add((atom_name, residue_name, chain_name, residue_number))
+    return keys
+
+
+def _mmcif_atom_keys(text: str) -> set[tuple[str, str, str, str]]:
+    keys: set[tuple[str, str, str, str]] = set()
+    lines = text.splitlines()
+    index = 0
+    while index < len(lines):
+        if lines[index].strip() != "loop_":
+            index += 1
+            continue
+        field_index = index + 1
+        fields: list[str] = []
+        while field_index < len(lines) and lines[field_index].startswith("_atom_site."):
+            fields.append(lines[field_index].strip())
+            field_index += 1
+        if not fields:
+            index += 1
+            continue
+        row_index = field_index
+        while row_index < len(lines):
+            line = lines[row_index].strip()
+            if (
+                not line
+                or line.startswith("#")
+                or line == "loop_"
+                or line.startswith("_")
+                or line.startswith("data_")
+            ):
+                break
+            values = _split_cif_row(line)
+            if len(values) >= len(fields):
+                row = dict(zip(fields, values))
+                keys.update(_atom_keys_from_mmcif_row(row))
+            row_index += 1
+        index = row_index
+    return keys
+
+
+def _split_cif_row(line: str) -> list[str]:
+    try:
+        return shlex.split(line)
+    except ValueError:
+        return line.split()
+
+
+def _atom_keys_from_mmcif_row(row: dict[str, str]) -> set[tuple[str, str, str, str]]:
+    atom_names = _clean_cif_values(
+        row.get("_atom_site.label_atom_id"), row.get("_atom_site.auth_atom_id")
+    )
+    residue_names = _clean_cif_values(
+        row.get("_atom_site.label_comp_id"), row.get("_atom_site.auth_comp_id")
+    )
+    chain_names = _clean_cif_values(
+        row.get("_atom_site.auth_asym_id"), row.get("_atom_site.label_asym_id")
+    )
+    residue_numbers = _clean_cif_values(
+        row.get("_atom_site.auth_seq_id"), row.get("_atom_site.label_seq_id")
+    )
+    return {
+        (atom_name.upper(), residue_name.upper(), chain_name, residue_number)
+        for atom_name in atom_names
+        for residue_name in residue_names
+        for chain_name in chain_names
+        for residue_number in residue_numbers
+    }
+
+
+def _clean_cif_values(*values: str | None) -> set[str]:
+    cleaned = {
+        str(value).strip().strip("'\"")
+        for value in values
+        if value not in {None, "", ".", "?"}
+    }
+    return {value for value in cleaned if value}
 
 
 def _review_reason(

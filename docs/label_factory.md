@@ -998,9 +998,15 @@ the prioritized row table is capped.
 review export, review-debt summary, evidence-gap audit, geometry features, and
 committed coordinate sidecars into a visual review queue. It is a review-only
 human cockpit: rows are PyMOL-ready only when a structure path, two mapped CA
-atoms, and an exact measured geometry distance are all present. The current
-1025 queue scans 321 rows, finds one PyMOL-ready row (`m_csa:939`), and marks
-the other 320 rows with exact missing fields. Generated `.pml` scripts and
+atoms, an exact measured geometry distance, and verified focus-atom selections
+in the coordinate file are all present. The original 1025 queue scans 321 rows,
+finds one PyMOL-ready row (`m_csa:939`), and marks the other 320 rows with
+exact missing fields. The materialized-tranche queue
+`artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json`
+adds 25 frozen PDB coordinate sidecars and raises `pymol_ready_count` to 26,
+with `rows_with_verified_focus_atoms=26`. The second materialized-tranche
+queue adds another 25 bounded PDB sidecars and raises both counts to 51.
+Generated `.pml` scripts and
 manual/dry-run decision batches default to `countable_import_ready=false`;
 accepted expert decisions must still enter the existing import preview and
 label-factory gates before any countable registry change.

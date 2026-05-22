@@ -17,7 +17,9 @@ class PyMOLReviewTests(unittest.TestCase):
     def test_queue_builds_ready_and_blocked_rows_without_guessing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             structure_dir = Path(tmp)
-            (structure_dir / "pdb_1ABC.cif").write_text("data_1ABC\n", encoding="utf-8")
+            (structure_dir / "pdb_1ABC.cif").write_text(
+                _structure_cif(), encoding="utf-8"
+            )
             queue = build_mcsa_pymol_expert_review_queue(
                 expert_review_export=_review_export(),
                 review_debt_summary=_review_debt(),
@@ -31,6 +33,7 @@ class PyMOLReviewTests(unittest.TestCase):
         self.assertEqual(queue["metadata"]["pymol_ready_count"], 1)
         ready, blocked = queue["rows"]
         self.assertTrue(ready["pymol_ready"])
+        self.assertTrue(ready["focus_atom_selection_verified"])
         self.assertFalse(ready["countable_import_ready"])
         self.assertEqual(ready["focus_atom_pair"]["left"]["atom_name"], "CA")
         self.assertEqual(ready["exact_measured_distance_angstrom"], 7.2)
@@ -43,7 +46,9 @@ class PyMOLReviewTests(unittest.TestCase):
             root = Path(tmp)
             structure_dir = root / "structures"
             structure_dir.mkdir()
-            (structure_dir / "pdb_1ABC.cif").write_text("data_1ABC\n", encoding="utf-8")
+            (structure_dir / "pdb_1ABC.cif").write_text(
+                _structure_cif(), encoding="utf-8"
+            )
             queue = build_mcsa_pymol_expert_review_queue(
                 expert_review_export=_review_export(max_items=1),
                 review_debt_summary=_review_debt(),
@@ -67,7 +72,9 @@ class PyMOLReviewTests(unittest.TestCase):
             root = Path(tmp)
             structure_dir = root / "structures"
             structure_dir.mkdir()
-            (structure_dir / "pdb_1ABC.cif").write_text("data_1ABC\n", encoding="utf-8")
+            (structure_dir / "pdb_1ABC.cif").write_text(
+                _structure_cif(), encoding="utf-8"
+            )
             queue = build_mcsa_pymol_expert_review_queue(
                 expert_review_export=_review_export(max_items=1),
                 review_debt_summary=_review_debt(),
@@ -99,7 +106,9 @@ class PyMOLReviewTests(unittest.TestCase):
             root = Path(tmp)
             structure_dir = root / "structures"
             structure_dir.mkdir()
-            (structure_dir / "pdb_1ABC.cif").write_text("data_1ABC\n", encoding="utf-8")
+            (structure_dir / "pdb_1ABC.cif").write_text(
+                _structure_cif(), encoding="utf-8"
+            )
             queue = build_mcsa_pymol_expert_review_queue(
                 expert_review_export=_review_export(max_items=1),
                 review_debt_summary=_review_debt(),
@@ -115,6 +124,24 @@ class PyMOLReviewTests(unittest.TestCase):
                     reviewer="tester",
                     pymol_bin="definitely-not-pymol",
                 )
+
+    def test_queue_fails_closed_when_structure_atom_selection_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            structure_dir = Path(tmp)
+            (structure_dir / "pdb_1ABC.cif").write_text("data_1ABC\n", encoding="utf-8")
+            queue = build_mcsa_pymol_expert_review_queue(
+                expert_review_export=_review_export(max_items=1),
+                review_debt_summary=_review_debt(),
+                review_evidence_gaps=_evidence_gaps(),
+                geometry_features=_geometry_features(),
+                structure_dirs=[structure_dir],
+            )
+
+        row = queue["rows"][0]
+        self.assertFalse(row["pymol_ready"])
+        self.assertFalse(row["focus_atom_selection_verified"])
+        self.assertIn("missing_left_structure_atom", row["missing_fields"])
+        self.assertIn("missing_right_structure_atom", row["missing_fields"])
 
 
 def _review_export(max_items: int | None = None) -> dict:
@@ -215,6 +242,30 @@ def _geometry_features() -> dict:
             },
         ],
     }
+
+
+def _structure_cif() -> str:
+    return "\n".join(
+        [
+            "data_1ABC",
+            "loop_",
+            "_atom_site.group_PDB",
+            "_atom_site.id",
+            "_atom_site.type_symbol",
+            "_atom_site.label_atom_id",
+            "_atom_site.label_comp_id",
+            "_atom_site.label_asym_id",
+            "_atom_site.label_seq_id",
+            "_atom_site.auth_atom_id",
+            "_atom_site.auth_comp_id",
+            "_atom_site.auth_asym_id",
+            "_atom_site.auth_seq_id",
+            "ATOM 1 C CA ASP A 10 CA ASP A 10",
+            "ATOM 2 C CA HIS A 20 CA HIS A 20",
+            "#",
+            "",
+        ]
+    )
 
 
 if __name__ == "__main__":

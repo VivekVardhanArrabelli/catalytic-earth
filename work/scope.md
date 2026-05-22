@@ -362,6 +362,21 @@ current queue artifact,
 finds exactly one PyMOL-ready row (`m_csa:939`) from committed coordinates;
 320 rows fail closed with missing structure-path or exact-atom-pair/distance
 fields. The dry-run manual batch validates with 0 countable/import-ready rows.
+The follow-on materialized-tranche queue
+`artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json`
+keeps the same 321-row review surface but stages 25 bounded PDB mmCIF
+sidecars, verifies both focus CA atoms are present in each ready structure,
+and raises `pymol_ready_count` to 26. The tranche remains review-only:
+the 26-row dry run records only skipped manual decisions, the zero-import gate
+passes 6/6 artifacts, and no label registry, fingerprint registry, import
+policy, upload/removal, or `removal_allowed=true` state changed.
+The second bounded tranche
+`artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json`
+stages another 25 PDB mmCIF sidecars and raises the ready/verified-focus-atom
+surface to 51 rows. It remains a human-review packet, not label evidence:
+the second dry run records 51 skipped decisions, the zero-import gate passes
+6/6 artifacts, and the remaining blocker report still names exact evidence
+gaps for the 270 blocked rows.
 The companion family-readiness fallback
 `artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json`
 uses only existing glycoside-control artifacts. It keeps Q6NSJ0 as the single

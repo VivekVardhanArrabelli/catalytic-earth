@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 292
-- Measured elapsed time: 8913.2 minutes (148.55 hours)
+- Entries: 293
+- Measured elapsed time: 8931.4 minutes (148.86 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1914.1 measured minutes (31.90 hours)
+- v3: 1932.3 measured minutes (32.20 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3169
-- Evidence references logged: 2585
+- Artifact references logged: 3187
+- Evidence references logged: 2599
 
 ## Recent Entries
-
-### 2026-05-22T11:35:58.020005+00:00 - v3
-
-- Task: Seven-row seed payload adapter and human-review packet
-- Time mode: measured
-- Measured minutes: 14.55
-- Started: 2026-05-22T11:21:10Z
-- Ended: 2026-05-22T11:35:43Z
-- Artifacts: artifacts/v3_external_seed_fingerprint_applied_labels_1000_currentregistry_payload_adapter.json, artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_check_1000_currentregistry_adapter.json, artifacts/v3_external_seed_fingerprint_seven_row_payload_gate_rerun_no_import_decision_20260522.json, artifacts/v3_external_seed_fingerprint_nonmetal_human_review_packet_20260522.json, artifacts/v3_external_seed_fingerprint_seven_row_post_gate_modern_baseline_benchmark_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: current-682 applied-label adapter produced 682 labels preserving 212 seed_fingerprint and 470 out_of_scope, seven-row no-import label-factory payload gate rerun passed 21/21 gates with 0 blockers, seven-row decision artifact kept 0 import-ready candidates and 0 countable candidates, non-metal human-review packet separated five review-ready rows while excluding two metal phosphate-specificity blockers, post-gate benchmark recorded geometry sequence Foldseek and ESM caveats with no superiority claim, 840-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T13:05:41.322034+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/sdr_active_site.py, tests/test_sdr_active_site.py, artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json, artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json, artifacts/v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json, artifacts/v3_post_nadp_cofactor_blocker_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 875-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, strict SDR NADP pocket proxy uses only coordinate sequence/order residue IDs atom names and distances, proxy resolved O14756 and O75828 so it is pressure evidence not production axis, source request queue names exact missing holo or specificity evidence for O14756 O75828 and C9JRZ8, review-only zero-import gate passed 4/4, 882-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, no registry or fingerprint diffs
 - Notes: Wrapped before 48 minutes because the remaining no-breadth queue is human review or missing NADP holo/specificity evidence; no label import registry edit fingerprint edit artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T20:37:21.159775+00:00 - v3
+
+- Task: PyMOL atom-selection hardening and second review tranche
+- Time mode: measured
+- Measured minutes: 18.167
+- Started: 2026-05-22T20:18:40Z
+- Ended: 2026-05-22T20:36:50Z
+- Artifacts: src/catalytic_earth/pymol_review.py, tests/test_pymol_review.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_materialization_20260522.json, artifacts/v3_mcsa_pymol_second_materialization_tranche_selection_20260522.json, artifacts/v3_mcsa_pymol_second_materialization_tranche_20260522.json, artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json, artifacts/v3_expert_review_decision_batch_pymol_second_materialized_tranche_dry_run_20260522.json, artifacts/v3_expert_review_decision_batch_pymol_second_materialized_tranche_dry_run_validation_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_second_materialization_20260522.json, artifacts/v3_post_mcsa_pymol_second_materialization_review_only_zero_import_gate_20260522.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 885-test unit discovery passed after sync, CLI validate passed with 682 labels and 8 fingerprints, PyMOL queue now verifies focus CA atoms before ready state, first materialized queue remains 26 verified ready rows, second bounded 25-row tranche materialized with 0 fetch failures, latest PyMOL queue has 51 ready rows and 51 verified focus-atom selections, 51-row dry run records skipped decisions only, second zero-import gate passed 6/6, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed against current manifest, JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -355,6 +355,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T18:05:27.783477+00:00: Next action is human accept/reject review or a bounded source-free axis experiment, not label import
 - 2026-05-22T18:35:34.824679+00:00: Next action is human accept/reject review or a future preregistered NAD(P) pocket/holo-structure experiment; do not import labels
 - 2026-05-22T19:42:57.546947+00:00: Next no-breadth work should wait for human action on seven mechanism-match rows or resolve NADP holo/specificity evidence for O14756 O75828 C9JRZ8.
+- 2026-05-22T20:37:21.159775+00:00: If human review is unavailable, continue only bounded PyMOL structure materialization from the remaining blocker report.
 
 ## Scope Adjustments
 
@@ -532,3 +533,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T18:05:27.783477+00:00: No new broad external rows; PyMOL review cockpit and non-ePK family readiness remain review-only
 - 2026-05-22T18:35:34.824679+00:00: No new broad external rows; SDR blocker is exact and external queue is human-review-ready only
 - 2026-05-22T19:42:57.546947+00:00: NADP redox family fallback is now blocked on holo/local NADP evidence or source-free specificity controls, not another broad row freeze.
+- 2026-05-22T20:37:21.159775+00:00: M-CSA PyMOL readiness now has 51 human-review-ready rows; next useful step is human decisions before more machinery.

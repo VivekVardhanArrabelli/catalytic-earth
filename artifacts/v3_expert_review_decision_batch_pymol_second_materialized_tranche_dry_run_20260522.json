@@ -1,0 +1,2447 @@
+{
+  "metadata": {
+    "artifact_upload_or_removal_performed": false,
+    "countable_import_ready_count": 0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "skipped": 51
+    },
+    "dry_run": true,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "input_queue_method": "mcsa_pymol_expert_review_queue",
+    "method": "mcsa_pymol_manual_decision_batch",
+    "new_external_rows_frozen": 0,
+    "no_launch": false,
+    "policy": "Manual PyMOL decisions default to countable_import_ready=false. They must be converted through existing expert-review import previews and label-factory gates before any countable label action.",
+    "pymol_bin": "pymol",
+    "ready_for_label_import": false,
+    "review_item_count": 51,
+    "review_only": true,
+    "reviewed_at": "2026-05-22T20:32:06Z",
+    "reviewer": "automation_dry_run"
+  },
+  "review_items": [
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1JXH",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1JXH.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 15.194,
+        "focus_atom_pair": {
+          "distance_angstrom": 15.194,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "THR",
+            "residue_node_id": "m_csa:670:residue:2",
+            "residue_number": 230,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:670:residue:6",
+            "residue_number": 198,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_670.pml",
+        "review_queue_rank": 1
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1G99",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1G99.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 21.966,
+        "focus_atom_pair": {
+          "distance_angstrom": 21.966,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:643:residue:2",
+            "residue_number": 384,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:643:residue:5",
+            "residue_number": 241,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_643.pml",
+        "review_queue_rank": 2
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:756",
+      "entry_name": "protein kinase C",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1ZRZ",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1ZRZ.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 7.811,
+        "focus_atom_pair": {
+          "distance_angstrom": 7.811,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:756:residue:1",
+            "residue_number": 146,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:756:residue:3",
+            "residue_number": 151,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_756.pml",
+        "review_queue_rank": 3
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1STC",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1STC.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 13.582,
+        "focus_atom_pair": {
+          "distance_angstrom": 13.582,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "E",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:757:residue:2",
+            "residue_number": 184,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "E",
+            "residue_name": "THR",
+            "residue_node_id": "m_csa:757:residue:5",
+            "residue_number": 201,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_757.pml",
+        "review_queue_rank": 4
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1L0O",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1L0O.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 11.655,
+        "focus_atom_pair": {
+          "distance_angstrom": 11.655,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:760:residue:2",
+            "residue_number": 46,
+            "roles": [
+              "activator",
+              "electrostatic stabiliser",
+              "proton acceptor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:760:residue:3",
+            "residue_number": 105,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_760.pml",
+        "review_queue_rank": 5
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1DGK",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1DGK.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 12.497,
+        "focus_atom_pair": {
+          "distance_angstrom": 12.497,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "N",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:696:residue:1",
+            "residue_number": 539,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "N",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:696:residue:3",
+            "residue_number": 657,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_696.pml",
+        "review_queue_rank": 6
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1OJ4",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1OJ4.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 8.985,
+        "focus_atom_pair": {
+          "distance_angstrom": 8.985,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:654:residue:1",
+            "residue_number": 10,
+            "roles": [
+              "electrostatic stabiliser",
+              "hydrogen bond donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:654:residue:2",
+            "residue_number": 141,
+            "roles": [
+              "activator",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_654.pml",
+        "review_queue_rank": 7
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1RK2",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1RK2.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 5.497,
+        "focus_atom_pair": {
+          "distance_angstrom": 5.497,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ALA",
+            "residue_node_id": "m_csa:663:residue:2",
+            "residue_number": 253,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:663:residue:4",
+            "residue_number": 255,
+            "roles": [
+              "electrostatic stabiliser",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_663.pml",
+        "review_queue_rank": 8
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1BO1",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1BO1.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 17.534,
+        "focus_atom_pair": {
+          "distance_angstrom": 17.534,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:662:residue:1",
+            "residue_number": 278,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:662:residue:2",
+            "residue_number": 150,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_662.pml",
+        "review_queue_rank": 9
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1TZ3",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1TZ3.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 5.619,
+        "focus_atom_pair": {
+          "distance_angstrom": 5.619,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:751:residue:1",
+            "residue_number": 272,
+            "roles": [
+              "electrostatic stabiliser",
+              "proton shuttle (general acid/base)"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ALA",
+            "residue_node_id": "m_csa:751:residue:3",
+            "residue_number": 270,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_751.pml",
+        "review_queue_rank": 10
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:918",
+      "entry_name": "ribonucleoside-diphosphate reductase (class I)",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "5CNV",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_5CNV.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 77.359,
+        "focus_atom_pair": {
+          "distance_angstrom": 77.359,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "G",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:918:residue:10",
+            "residue_number": 115,
+            "roles": []
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:918:residue:6",
+            "residue_number": 462,
+            "roles": []
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_918.pml",
+        "review_queue_rank": 11
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1FDY",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1FDY.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 4.714,
+        "focus_atom_pair": {
+          "distance_angstrom": 4.714,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:553:residue:1",
+            "residue_number": 165,
+            "roles": [
+              "covalently attached",
+              "electron pair acceptor",
+              "electron pair donor",
+              "nucleofuge",
+              "nucleophile",
+              "proton acceptor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TYR",
+            "residue_node_id": "m_csa:553:residue:2",
+            "residue_number": 137,
+            "roles": [
+              "proton acceptor",
+              "proton donor",
+              "proton relay"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_553.pml",
+        "review_queue_rank": 12
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:778",
+      "entry_name": "homoserine kinase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1FWK",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1FWK.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 10.841,
+        "focus_atom_pair": {
+          "distance_angstrom": 10.841,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "C",
+            "residue_name": "THR",
+            "residue_node_id": "m_csa:778:residue:1",
+            "residue_number": 179,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "C",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:778:residue:2",
+            "residue_number": 126,
+            "roles": [
+              "metal ligand"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_778.pml",
+        "review_queue_rank": 13
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:793",
+      "entry_name": "mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1QWN",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1QWN.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 13.782,
+        "focus_atom_pair": {
+          "distance_angstrom": 13.782,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:793:residue:3",
+            "residue_number": 471,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:793:residue:5",
+            "residue_number": 341,
+            "roles": [
+              "activator",
+              "increase nucleophilicity",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_793.pml",
+        "review_queue_rank": 14
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:792",
+      "entry_name": "protein disulfide oxidoreductase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1QFN",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1QFN.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 15.374,
+        "focus_atom_pair": {
+          "distance_angstrom": 15.374,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TYR",
+            "residue_node_id": "m_csa:792:residue:5",
+            "residue_number": 72,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:792:residue:7",
+            "residue_number": 10,
+            "roles": [
+              "electrostatic stabiliser",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_792.pml",
+        "review_queue_rank": 15
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:676",
+      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1B65",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1B65.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 9.257,
+        "focus_atom_pair": {
+          "distance_angstrom": 9.257,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:676:residue:2",
+            "residue_number": 289,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:676:residue:6",
+            "residue_number": 218,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_676.pml",
+        "review_queue_rank": 16
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:947",
+      "entry_name": "3-hydroxyacyl-[acyl-carrier-protein] dehydratase FabZ",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1U1Z",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1U1Z.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 13.753,
+        "focus_atom_pair": {
+          "distance_angstrom": 13.753,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:947:residue:1",
+            "residue_number": 83,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ILE",
+            "residue_node_id": "m_csa:947:residue:3",
+            "residue_number": 75,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_947.pml",
+        "review_queue_rank": 17
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:995",
+      "entry_name": "oxalate oxidase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "2ET1",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2ET1.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 16.937,
+        "focus_atom_pair": {
+          "distance_angstrom": 16.937,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:995:residue:4",
+            "residue_number": 90,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "MET",
+            "residue_node_id": "m_csa:995:residue:8",
+            "residue_number": 149,
+            "roles": [
+              "steric role"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_995.pml",
+        "review_queue_rank": 18
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:972",
+      "entry_name": "3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "2VZ9",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_2VZ9.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 14.953,
+        "focus_atom_pair": {
+          "distance_angstrom": 14.953,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:972:residue:1",
+            "residue_number": 1037,
+            "roles": [
+              "electrostatic stabiliser",
+              "hydrogen bond donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LEU",
+            "residue_node_id": "m_csa:972:residue:3",
+            "residue_number": 885,
+            "roles": [
+              "electrostatic stabiliser",
+              "hydrogen bond acceptor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_972.pml",
+        "review_queue_rank": 19
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:980",
+      "entry_name": "ferredoxin:thioredoxin reductase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1DJ7",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1DJ7.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 12.001,
+        "focus_atom_pair": {
+          "distance_angstrom": 12.001,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:980:residue:4",
+            "residue_number": 57,
+            "roles": [
+              "electrofuge",
+              "electrophile",
+              "metal ligand",
+              "nucleofuge",
+              "nucleophile",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:980:residue:6",
+            "residue_number": 76,
+            "roles": [
+              "metal ligand"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_980.pml",
+        "review_queue_rank": 20
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:974",
+      "entry_name": "fatty acid synthase - \u03b2-ketoreductase (KR)",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "4PIV",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_4PIV.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 11.763,
+        "focus_atom_pair": {
+          "distance_angstrom": 11.763,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "SER",
+            "residue_node_id": "m_csa:974:residue:1",
+            "residue_number": 561,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:974:residue:3",
+            "residue_number": 535,
+            "roles": [
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_974.pml",
+        "review_queue_rank": 21
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:910",
+      "entry_name": "scytalone dehydratase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1STD",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1STD.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 19.593,
+        "focus_atom_pair": {
+          "distance_angstrom": 19.593,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TYR",
+            "residue_node_id": "m_csa:910:residue:1",
+            "residue_number": 50,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:910:residue:3",
+            "residue_number": 31,
+            "roles": [
+              "modifies pKa"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_910.pml",
+        "review_queue_rank": 22
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:842",
+      "entry_name": "glucose-6-phosphate isomerase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1DQR",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1DQR.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 18.453,
+        "focus_atom_pair": {
+          "distance_angstrom": 18.453,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:842:residue:3",
+            "residue_number": 216,
+            "roles": [
+              "modifies pKa"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:842:residue:5",
+            "residue_number": 357,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_842.pml",
+        "review_queue_rank": 23
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:736",
+      "entry_name": "mannose-6-phosphate isomerase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1X9H",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1X9H.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 15.903,
+        "focus_atom_pair": {
+          "distance_angstrom": 15.903,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:736:residue:2",
+            "residue_number": 135,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:736:residue:4",
+            "residue_number": 298,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_736.pml",
+        "review_queue_rank": 24
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:687",
+      "entry_name": "deoxyhypusine synthase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1ROZ",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1ROZ.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 40.834,
+        "focus_atom_pair": {
+          "distance_angstrom": 40.834,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:687:residue:2",
+            "residue_number": 288,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:687:residue:3",
+            "residue_number": 137,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_687.pml",
+        "review_queue_rank": 25
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:684",
+      "entry_name": "mannuronate-specific alginate lyase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1QAZ",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1QAZ.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 24.17,
+        "focus_atom_pair": {
+          "distance_angstrom": 24.17,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TYR",
+            "residue_node_id": "m_csa:684:residue:2",
+            "residue_number": 65,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:684:residue:3",
+            "residue_number": 188,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_684.pml",
+        "review_queue_rank": 26
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:834",
+      "entry_name": "double-stranded uracil-DNA glycosylase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "3UFJ",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3UFJ.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 10.153,
+        "focus_atom_pair": {
+          "distance_angstrom": 10.153,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:834:residue:1",
+            "residue_number": 36,
+            "roles": [
+              "electrostatic interaction"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:834:residue:2",
+            "residue_number": 47,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_834.pml",
+        "review_queue_rank": 27
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:925",
+      "entry_name": "Nitrate reductase [NADH]",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "2BII",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2BII.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 11.928,
+        "focus_atom_pair": {
+          "distance_angstrom": 11.928,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:925:residue:1",
+            "residue_number": 211,
+            "roles": [
+              "electrostatic stabiliser",
+              "transition state stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:925:residue:3",
+            "residue_number": 79,
+            "roles": [
+              "metal ligand"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_925.pml",
+        "review_queue_rank": 28
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:891",
+      "entry_name": "Tetrahydroxynaphthalene reductase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1YBV",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1YBV.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 16.275,
+        "focus_atom_pair": {
+          "distance_angstrom": 16.275,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TYR",
+            "residue_node_id": "m_csa:891:residue:1",
+            "residue_number": 223,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:891:residue:4",
+            "residue_number": 182,
+            "roles": [
+              "electrostatic stabiliser",
+              "proton acceptor",
+              "proton donor",
+              "proton relay"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_891.pml",
+        "review_queue_rank": 29
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:711",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "2ESD",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2ESD.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 12.719,
+        "focus_atom_pair": {
+          "distance_angstrom": 12.719,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ALA",
+            "residue_node_id": "m_csa:711:residue:1",
+            "residue_number": 250,
+            "roles": [
+              "activator",
+              "electrostatic stabiliser",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:711:residue:2",
+            "residue_number": 154,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_711.pml",
+        "review_queue_rank": 30
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:984",
+      "entry_name": "phosphonate dehydrogenase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "4E5K",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4E5K.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 11.767,
+        "focus_atom_pair": {
+          "distance_angstrom": 11.767,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "MET",
+            "residue_node_id": "m_csa:984:residue:1",
+            "residue_number": 53,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:984:residue:3",
+            "residue_number": 237,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_984.pml",
+        "review_queue_rank": 31
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:767",
+      "entry_name": "biotin synthase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1R30",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1R30.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 25.157,
+        "focus_atom_pair": {
+          "distance_angstrom": 25.157,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:767:residue:1",
+            "residue_number": 76,
+            "roles": [
+              "electrostatic stabiliser",
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:767:residue:7",
+            "residue_number": 283,
+            "roles": [
+              "alter redox potential",
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_767.pml",
+        "review_queue_rank": 32
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:943",
+      "entry_name": "7-carboxy-7-deazaguanine synthase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "4NJK",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4NJK.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 22.193,
+        "focus_atom_pair": {
+          "distance_angstrom": 22.193,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:943:residue:5",
+            "residue_number": 51,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:943:residue:8",
+            "residue_number": 224,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_943.pml",
+        "review_queue_rank": 33
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:787",
+      "entry_name": "uridine phosphorylase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1T0U",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1T0U.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 19.225,
+        "focus_atom_pair": {
+          "distance_angstrom": 19.225,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:787:residue:3",
+            "residue_number": 80,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:787:residue:4",
+            "residue_number": 223,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_787.pml",
+        "review_queue_rank": 34
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:785",
+      "entry_name": "phosphoglycerate dehydrogenase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1PSD",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1PSD.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 8.451,
+        "focus_atom_pair": {
+          "distance_angstrom": 8.451,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:785:residue:1",
+            "residue_number": 291,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:785:residue:2",
+            "residue_number": 268,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_785.pml",
+        "review_queue_rank": 35
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:764",
+      "entry_name": "glucosylceramidase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "2F61",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2F61.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 18.936,
+        "focus_atom_pair": {
+          "distance_angstrom": 18.936,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:764:residue:1",
+            "residue_number": 370,
+            "roles": []
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:764:residue:2",
+            "residue_number": 235,
+            "roles": [
+              "activator",
+              "increase nucleophilicity",
+              "promote heterolysis",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_764.pml",
+        "review_queue_rank": 36
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:726",
+      "entry_name": "peptide amidase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1OCL",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1OCL.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 15.658,
+        "focus_atom_pair": {
+          "distance_angstrom": 15.658,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:726:residue:10",
+            "residue_number": 153,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:726:residue:4",
+            "residue_number": 62,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_726.pml",
+        "review_queue_rank": 37
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:680",
+      "entry_name": "ribose-5-phosphate isomerase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1NN4",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1NN4.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 14.194,
+        "focus_atom_pair": {
+          "distance_angstrom": 14.194,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "D",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:680:residue:2",
+            "residue_number": 112,
+            "roles": [
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:680:residue:4",
+            "residue_number": 22,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_680.pml",
+        "review_queue_rank": 38
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:591",
+      "entry_name": "stromelysin 1",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1HFS",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HFS.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 10.619,
+        "focus_atom_pair": {
+          "distance_angstrom": 10.619,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:591:residue:3",
+            "residue_number": 124,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:591:residue:4",
+            "residue_number": 115,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_591.pml",
+        "review_queue_rank": 39
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:784",
+      "entry_name": "3'-5' exoribonuclease 1",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1W0H",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1W0H.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 11.073,
+        "focus_atom_pair": {
+          "distance_angstrom": 11.073,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:784:residue:2",
+            "residue_number": 116,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:784:residue:4",
+            "residue_number": 175,
+            "roles": [
+              "electrostatic stabiliser",
+              "proton acceptor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_784.pml",
+        "review_queue_rank": 40
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:788",
+      "entry_name": "DNA-directed RNA polymerase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "2E2H",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_2E2H.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 17.46,
+        "focus_atom_pair": {
+          "distance_angstrom": 17.46,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:788:residue:1",
+            "residue_number": 1085,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:788:residue:2",
+            "residue_number": 485,
+            "roles": [
+              "metal ligand"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_788.pml",
+        "review_queue_rank": 41
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:806",
+      "entry_name": "gingipain R",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1CVR",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1CVR.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 14.617,
+        "focus_atom_pair": {
+          "distance_angstrom": 14.617,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:806:residue:4",
+            "residue_number": 244,
+            "roles": [
+              "nucleofuge",
+              "nucleophile",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:806:residue:5",
+            "residue_number": 152,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_806.pml",
+        "review_queue_rank": 42
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:534",
+      "entry_name": "myosin ATPase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1VOM",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1VOM.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 14.892,
+        "focus_atom_pair": {
+          "distance_angstrom": 14.892,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "THR",
+            "residue_node_id": "m_csa:534:residue:4",
+            "residue_number": 186,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:534:residue:8",
+            "residue_number": 459,
+            "roles": [
+              "electrostatic stabiliser",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_534.pml",
+        "review_queue_rank": 43
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:678",
+      "entry_name": "HslU---HslV peptidase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1HT1",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HT1.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 14.426,
+        "focus_atom_pair": {
+          "distance_angstrom": 14.426,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:678:residue:3",
+            "residue_number": 45,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "SER",
+            "residue_node_id": "m_csa:678:residue:5",
+            "residue_number": 124,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_678.pml",
+        "review_queue_rank": 44
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1K82",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1K82.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 3.823,
+        "focus_atom_pair": {
+          "distance_angstrom": 3.823,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "PRO",
+            "residue_node_id": "m_csa:659:residue:1",
+            "residue_number": 1,
+            "roles": [
+              "covalently attached",
+              "electron pair donor",
+              "nucleophile",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:659:residue:2",
+            "residue_number": 2,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_659.pml",
+        "review_queue_rank": 45
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:761",
+      "entry_name": "protein-glutamine gamma-glutamyltransferase (bacterial)",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1IU4",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1IU4.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 11.297,
+        "focus_atom_pair": {
+          "distance_angstrom": 11.297,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:761:residue:3",
+            "residue_number": 255,
+            "roles": [
+              "electrostatic stabiliser",
+              "hydrogen bond acceptor",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TRP",
+            "residue_node_id": "m_csa:761:residue:4",
+            "residue_number": 272,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_761.pml",
+        "review_queue_rank": 46
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:938",
+      "entry_name": "adenosine C2 methyltransferase (RlmN)",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "3RFA",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_3RFA.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 18.765,
+        "focus_atom_pair": {
+          "distance_angstrom": 18.765,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:938:residue:1",
+            "residue_number": 118,
+            "roles": [
+              "covalent catalysis"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:938:residue:2",
+            "residue_number": 129,
+            "roles": [
+              "metal ligand"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_938.pml",
+        "review_queue_rank": 47
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:807",
+      "entry_name": "adenine DNA glycosylase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "6U7T",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_6U7T.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 10.721,
+        "focus_atom_pair": {
+          "distance_angstrom": 10.721,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:807:residue:1",
+            "residue_number": 43,
+            "roles": [
+              "activator",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:807:residue:3",
+            "residue_number": 144,
+            "roles": [
+              "covalently attached",
+              "nucleofuge",
+              "nucleophile"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_807.pml",
+        "review_queue_rank": 48
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:731",
+      "entry_name": "fatty acid amide hydrolase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "1MT5",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1MT5.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 15.88,
+        "focus_atom_pair": {
+          "distance_angstrom": 15.88,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:731:residue:2",
+            "residue_number": 203,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:731:residue:4",
+            "residue_number": 106,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_731.pml",
+        "review_queue_rank": 49
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:949",
+      "entry_name": "alpha-D-ribose 1-methylphosphonate 5-phosphate C-P-lyase",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "4XB6",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_4XB6.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 35.991,
+        "focus_atom_pair": {
+          "distance_angstrom": 35.991,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "D",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:949:residue:2",
+            "residue_number": 244,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "D",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:949:residue:3",
+            "residue_number": 32,
+            "roles": [
+              "hydrogen radical acceptor",
+              "hydrogen radical donor"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_949.pml",
+        "review_queue_rank": 50
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:939",
+      "entry_name": "E2 ubiquitin-conjugating enzyme",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T20:32:06Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "3CMM",
+      "structure_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3CMM.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 10.587,
+        "focus_atom_pair": {
+          "distance_angstrom": 10.587,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:939:residue:2",
+            "residue_number": 773,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:939:residue:6",
+            "residue_number": 594,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025_second_materialized_20260522/m_csa_939.pml",
+        "review_queue_rank": 99
+      }
+    }
+  ]
+}

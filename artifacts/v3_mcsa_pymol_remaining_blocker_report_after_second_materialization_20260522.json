@@ -301,334 +301,334 @@
     }
   ],
   "metadata": {
-    "artifact_id": "v3_mcsa_pymol_remaining_blocker_report_after_materialization_20260522",
+    "artifact_id": "v3_mcsa_pymol_remaining_blocker_report_after_second_materialization_20260522",
     "artifact_upload_or_removal_performed": false,
-    "blocked_count": 295,
+    "blocked_count": 270,
     "countable_label_candidate_count": 0,
-    "created_at": "2026-05-22T20:27:55Z",
+    "created_at": "2026-05-22T20:32:26Z",
     "curated_label_registry_edited": false,
-    "decision": "continue_bounded_structure_materialization_or_repair_exact_mapping_blockers; no labels or imports authorized",
+    "decision": "human_review_51_ready_rows_or_continue_bounded_structure_materialization; no labels or imports authorized",
     "fingerprint_registry_edited": false,
     "import_ready_candidate_count": 0,
-    "method": "mcsa_pymol_remaining_readiness_blocker_report",
+    "method": "mcsa_pymol_remaining_readiness_blocker_report_after_second_tranche",
     "missing_exact_pair_or_distance_count": 23,
     "missing_field_counts": {
       "missing_exact_ca_atom_pair": 23,
       "missing_exact_distance": 23,
       "missing_structure_id": 2,
-      "missing_structure_path": 293
+      "missing_structure_path": 268
     },
     "missing_structure_id_count": 2,
     "new_external_rows_frozen": 0,
     "next_tranche_candidate_count": 25,
-    "pymol_ready_count": 26,
+    "pymol_ready_count": 51,
     "ready_for_label_import": false,
     "removal_allowed": false,
     "review_only": true,
-    "rows_with_verified_focus_atoms": 26,
-    "source_queue": "artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json",
+    "rows_with_verified_focus_atoms": 51,
+    "source_queue": "artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json",
     "total_review_rows_scanned": 321
   },
   "next_structure_materialization_candidates": [
     {
-      "entry_id": "m_csa:684",
-      "entry_name": "mannuronate-specific alginate lyase",
-      "exact_measured_distance_angstrom": 24.17,
+      "entry_id": "m_csa:748",
+      "entry_name": "D-aminoacyl-tRNA deacylase",
+      "exact_measured_distance_angstrom": 5.476,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 26,
-      "structure_id": "1QAZ",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:834",
-      "entry_name": "double-stranded uracil-DNA glycosylase",
-      "exact_measured_distance_angstrom": 10.153,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 27,
-      "structure_id": "3UFJ",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:925",
-      "entry_name": "Nitrate reductase [NADH]",
-      "exact_measured_distance_angstrom": 11.928,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 28,
-      "structure_id": "2BII",
-      "target_fingerprint_id": "metal_dependent_hydrolase"
-    },
-    {
-      "entry_id": "m_csa:891",
-      "entry_name": "Tetrahydroxynaphthalene reductase",
-      "exact_measured_distance_angstrom": 16.275,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 29,
-      "structure_id": "1YBV",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:711",
-      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
-      "exact_measured_distance_angstrom": 12.719,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 30,
-      "structure_id": "2ESD",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:984",
-      "entry_name": "phosphonate dehydrogenase",
-      "exact_measured_distance_angstrom": 11.767,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 31,
-      "structure_id": "4E5K",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:767",
-      "entry_name": "biotin synthase",
-      "exact_measured_distance_angstrom": 25.157,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 32,
-      "structure_id": "1R30",
+      "rank": 51,
+      "structure_id": "1J7G",
       "target_fingerprint_id": "flavin_dehydrogenase_reductase"
     },
     {
-      "entry_id": "m_csa:943",
-      "entry_name": "7-carboxy-7-deazaguanine synthase",
-      "exact_measured_distance_angstrom": 22.193,
+      "entry_id": "m_csa:952",
+      "entry_name": "phosphohistidine phosphatase",
+      "exact_measured_distance_angstrom": 13.522,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 33,
-      "structure_id": "4NJK",
+      "rank": 52,
+      "structure_id": "2HW4",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:787",
-      "entry_name": "uridine phosphorylase",
-      "exact_measured_distance_angstrom": 19.225,
+      "entry_id": "m_csa:794",
+      "entry_name": "2',3'-cyclic-nucleotide 3'-phosphodiesterase",
+      "exact_measured_distance_angstrom": 16.513,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 34,
-      "structure_id": "1T0U",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:785",
-      "entry_name": "phosphoglycerate dehydrogenase",
-      "exact_measured_distance_angstrom": 8.451,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 35,
-      "structure_id": "1PSD",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:764",
-      "entry_name": "glucosylceramidase",
-      "exact_measured_distance_angstrom": 18.936,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 36,
-      "structure_id": "2F61",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:726",
-      "entry_name": "peptide amidase",
-      "exact_measured_distance_angstrom": 15.658,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 37,
-      "structure_id": "1OCL",
-      "target_fingerprint_id": "plp_dependent_enzyme"
-    },
-    {
-      "entry_id": "m_csa:680",
-      "entry_name": "ribose-5-phosphate isomerase",
-      "exact_measured_distance_angstrom": 14.194,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 38,
-      "structure_id": "1NN4",
-      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
-    },
-    {
-      "entry_id": "m_csa:591",
-      "entry_name": "stromelysin 1",
-      "exact_measured_distance_angstrom": 10.619,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 39,
-      "structure_id": "1HFS",
+      "rank": 53,
+      "structure_id": "1JH6",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:784",
-      "entry_name": "3'-5' exoribonuclease 1",
-      "exact_measured_distance_angstrom": 11.073,
+      "entry_id": "m_csa:673",
+      "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "exact_measured_distance_angstrom": 11.125,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 40,
-      "structure_id": "1W0H",
+      "rank": 54,
+      "structure_id": "1KDG",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:788",
-      "entry_name": "DNA-directed RNA polymerase",
-      "exact_measured_distance_angstrom": 17.46,
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "exact_measured_distance_angstrom": 12.982,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 41,
-      "structure_id": "2E2H",
+      "rank": 55,
+      "structure_id": "1FO6",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:806",
-      "entry_name": "gingipain R",
-      "exact_measured_distance_angstrom": 14.617,
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "exact_measured_distance_angstrom": 17.185,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 42,
-      "structure_id": "1CVR",
+      "rank": 56,
+      "structure_id": "1NWW",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:534",
-      "entry_name": "myosin ATPase",
-      "exact_measured_distance_angstrom": 14.892,
+      "entry_id": "m_csa:725",
+      "entry_name": "aldehyde reductase",
+      "exact_measured_distance_angstrom": 11.803,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 43,
-      "structure_id": "1VOM",
+      "rank": 57,
+      "structure_id": "2ACU",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:678",
-      "entry_name": "HslU---HslV peptidase",
-      "exact_measured_distance_angstrom": 14.426,
+      "entry_id": "m_csa:963",
+      "entry_name": "mannonate dehydratase (uxuA)",
+      "exact_measured_distance_angstrom": 17.366,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 44,
-      "structure_id": "1HT1",
-      "target_fingerprint_id": "plp_dependent_enzyme"
-    },
-    {
-      "entry_id": "m_csa:659",
-      "entry_name": "DNA-formamidopyrimidine glycosylase",
-      "exact_measured_distance_angstrom": 3.823,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 45,
-      "structure_id": "1K82",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
-    },
-    {
-      "entry_id": "m_csa:761",
-      "entry_name": "protein-glutamine gamma-glutamyltransferase (bacterial)",
-      "exact_measured_distance_angstrom": 11.297,
-      "missing_fields": [
-        "missing_structure_path"
-      ],
-      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 46,
-      "structure_id": "1IU4",
+      "rank": 58,
+      "structure_id": "4EAY",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:938",
-      "entry_name": "adenosine C2 methyltransferase (RlmN)",
-      "exact_measured_distance_angstrom": 18.765,
+      "entry_id": "m_csa:976",
+      "entry_name": "\u03b1\u2011glucosidase maltase-glucoamylase",
+      "exact_measured_distance_angstrom": 20.114,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 47,
-      "structure_id": "3RFA",
+      "rank": 59,
+      "structure_id": "2QMJ",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:724",
+      "entry_name": "repressor LexA",
+      "exact_measured_distance_angstrom": 16.208,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 60,
+      "structure_id": "1JHF",
       "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:807",
-      "entry_name": "adenine DNA glycosylase",
-      "exact_measured_distance_angstrom": 10.721,
+      "entry_id": "m_csa:951",
+      "entry_name": "N-sulfoglucosamine sulfohydrolase",
+      "exact_measured_distance_angstrom": 17.326,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 48,
-      "structure_id": "6U7T",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
+      "rank": 61,
+      "structure_id": "4MHX",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "entry_id": "m_csa:731",
-      "entry_name": "fatty acid amide hydrolase",
-      "exact_measured_distance_angstrom": 15.88,
+      "entry_id": "m_csa:880",
+      "entry_name": "mannose-6-phosphate isomerase (type I)",
+      "exact_measured_distance_angstrom": 20.318,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 49,
-      "structure_id": "1MT5",
-      "target_fingerprint_id": "plp_dependent_enzyme"
+      "rank": 62,
+      "structure_id": "1PMI",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
-      "entry_id": "m_csa:949",
-      "entry_name": "alpha-D-ribose 1-methylphosphonate 5-phosphate C-P-lyase",
-      "exact_measured_distance_angstrom": 35.991,
+      "entry_id": "m_csa:847",
+      "entry_name": "epoxide hydrolase",
+      "exact_measured_distance_angstrom": 22.31,
       "missing_fields": [
         "missing_structure_path"
       ],
       "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
-      "rank": 50,
-      "structure_id": "4XB6",
-      "target_fingerprint_id": "heme_peroxidase_oxidase"
+      "rank": 63,
+      "structure_id": "1EHY",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "exact_measured_distance_angstrom": 14.513,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 64,
+      "structure_id": "1BIX",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:741",
+      "entry_name": "histidinol dehydrogenase",
+      "exact_measured_distance_angstrom": 16.249,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 65,
+      "structure_id": "1KAE",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:962",
+      "entry_name": "L-rhamnonate dehydratase",
+      "exact_measured_distance_angstrom": 14.7,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 66,
+      "structure_id": "3D47",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:967",
+      "entry_name": "NADPH-dependent 7-cyano-7-deazaguanine reductase",
+      "exact_measured_distance_angstrom": 15.385,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 67,
+      "structure_id": "3UXJ",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:843",
+      "entry_name": "glucose-6-phosphate dehydrogenase",
+      "exact_measured_distance_angstrom": 8.109,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 68,
+      "structure_id": "1DPG",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:961",
+      "entry_name": "L-fuconate dehydratase",
+      "exact_measured_distance_angstrom": 18.275,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 69,
+      "structure_id": "2HXT",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:982",
+      "entry_name": "GMP reductase",
+      "exact_measured_distance_angstrom": 7.91,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 70,
+      "structure_id": "2BLE",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:559",
+      "entry_name": "cellulase (GH9)",
+      "exact_measured_distance_angstrom": 14.997,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 71,
+      "structure_id": "1JS4",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:653",
+      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "exact_measured_distance_angstrom": 15.838,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 72,
+      "structure_id": "1KZH",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:840",
+      "entry_name": "alpha-2,3-sialyltransferase",
+      "exact_measured_distance_angstrom": 19.531,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 73,
+      "structure_id": "1RO7",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "exact_measured_distance_angstrom": 13.968,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 74,
+      "structure_id": "1PWV",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:960",
+      "entry_name": "mannonate dehydratase",
+      "exact_measured_distance_angstrom": 19.258,
+      "missing_fields": [
+        "missing_structure_path"
+      ],
+      "next_action": "materialize PDB mmCIF into a committed review-only structure directory and rerun the PyMOL queue",
+      "rank": 75,
+      "structure_id": "2QJJ",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
     }
   ],
   "structure_id_mapping_blockers": [

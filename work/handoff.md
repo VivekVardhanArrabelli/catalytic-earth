@@ -50,56 +50,61 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### Immediate Next Target: Expand PyMOL-Ready M-CSA Review Rows
+### Immediate Next Target: Use The 51-Row PyMOL Review Tranche
 
-Do not spend the next main-loop run adding generic unit tests, gate-count
-checks, or review-only machinery around the PyMOL cockpit. The cockpit exists
-and is tested. The scientific blocker it exposed is concrete: 321 M-CSA expert
-review rows were scanned, 298 already have exact residue/atom-pair distance
-evidence, but only 1 row is PyMOL-ready because 318 rows lack local structure
-paths.
+The previous PyMOL materialization target is met. Do not spend the next
+main-loop run adding generic review-only machinery around the cockpit. The
+highest-value next action is a real human/expert accept/reject/skip pass over
+the 51 ready rows, or one more similarly bounded 10-25 row structure
+materialization tranche if human review is still unavailable.
 
-The next win is data/readiness, not more scaffolding:
+If continuing materialization, keep it data/readiness-focused:
 
-1. Select a bounded tranche from the highest-priority M-CSA review-debt rows,
-   preferably 10-25 rows that already have exact residue/atom-pair distances.
-2. Resolve or materialize local structure paths for those rows using existing
-   graph/geometry/PDB/AlphaFold references. Fetch only the needed coordinate
-   files, record SHA-256/provenance, and keep the tranche bounded.
-3. Regenerate the PyMOL queue and scripts so `pymol_ready_count` increases
-   materially beyond 1, or produce an exact blocker artifact explaining why the
-   tranche cannot be materialized.
-4. Do not import labels, edit registries, or claim countable readiness.
-5. Add only targeted tests needed for new structure-resolution code. Do not add
-   tests just to increase counts or decorate an unchanged gate.
+1. Use the remaining blocker report's next-tranche candidates; do not widen to
+   arbitrary M-CSA or external row sourcing.
+2. Fetch only the selected coordinate files, record SHA-256/provenance, and
+   rerun the PyMOL queue.
+3. Require verified focus CA atoms in the committed coordinate file before a
+   row is marked PyMOL-ready.
+4. Do not import labels, edit registries/fingerprints, or claim countable
+   readiness.
+5. Add tests only when they pin readiness semantics or a real failure.
 
-Success criterion for the next useful run: either at least 10 review rows
-become PyMOL-ready, or the repo has a clear materialization blocker report
-naming the missing structure identifiers/mapping failures for the selected
-tranche.
+Success criterion for the next useful run: either human decisions are captured
+for the 51 ready rows as non-countable review evidence, or a new bounded
+tranche increases PyMOL-ready rows while preserving the zero-import gate.
 
-### Ready Now: 26-Row PyMOL Review Tranche
+### Ready Now: 51-Row PyMOL Review Tranche
 
-The PyMOL readiness target has been met. The materialized review queue is:
+The PyMOL readiness target has been met twice. The latest materialized review
+queue is:
 
 ```text
-artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json
+artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json
 ```
 
-It scans the same 321 M-CSA expert-review rows, materializes 25 selected PDB
-mmCIF structures from the frozen rank-ordered tranche, and raises
-`pymol_ready_count` from 1 to 26. The ready rows are `m_csa:670`, `m_csa:643`,
+It scans the same 321 M-CSA expert-review rows, materializes 50 selected PDB
+mmCIF structures from two frozen rank-ordered tranches, and raises
+`pymol_ready_count` from 1 to 51. The queue verifies that both focus CA atom
+selections are present in the structure file before marking a row ready.
+The first 26 ready rows are `m_csa:670`, `m_csa:643`,
 `m_csa:756`, `m_csa:757`, `m_csa:760`, `m_csa:696`, `m_csa:654`, `m_csa:663`,
 `m_csa:662`, `m_csa:751`, `m_csa:918`, `m_csa:553`, `m_csa:778`,
 `m_csa:793`, `m_csa:792`, `m_csa:676`, `m_csa:947`, `m_csa:995`,
 `m_csa:972`, `m_csa:980`, `m_csa:974`, `m_csa:910`, `m_csa:842`,
 `m_csa:736`, `m_csa:687`, and the prior `m_csa:939`.
+The second tranche adds `m_csa:684`, `m_csa:834`, `m_csa:925`, `m_csa:891`,
+`m_csa:711`, `m_csa:984`, `m_csa:767`, `m_csa:943`, `m_csa:787`,
+`m_csa:785`, `m_csa:764`, `m_csa:726`, `m_csa:680`, `m_csa:591`,
+`m_csa:784`, `m_csa:788`, `m_csa:806`, `m_csa:534`, `m_csa:678`,
+`m_csa:659`, `m_csa:761`, `m_csa:938`, `m_csa:807`, `m_csa:731`, and
+`m_csa:949`.
 
 Run the human review loop with:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli launch-mcsa-pymol-review \
-  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json \
+  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json \
   --out artifacts/v3_expert_review_decision_batch_pymol_manual.json \
   --reviewer vivek
 ```
@@ -107,13 +112,16 @@ PYTHONPATH=src python -m catalytic_earth.cli launch-mcsa-pymol-review \
 The generated PyMOL scripts live under:
 
 ```text
-artifacts/review_pymol/mcsa_1025_materialized_20260522/
+artifacts/review_pymol/mcsa_1025_second_materialized_20260522/
 ```
 
 Safety status: this tranche is review-only. It imports 0 labels, creates 0
 countable candidates, edits no registries/fingerprints, and passes the
 review-only zero-import gate in
-`artifacts/v3_post_mcsa_pymol_materialization_review_only_zero_import_gate_20260522.json`.
+`artifacts/v3_post_mcsa_pymol_second_materialization_review_only_zero_import_gate_20260522.json`.
+The remaining blocker report now shows 270 blocked rows: 268 still missing
+structure paths, 2 missing structure IDs, and 23 missing exact focus-pair or
+distance evidence.
 
 ### PyMOL Human-Review Cockpit
 
