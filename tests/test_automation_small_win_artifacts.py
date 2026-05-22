@@ -9087,6 +9087,213 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             rollup["synthesis"]["needs_new_extractor_or_structure_candidate_count"], 0
         )
 
+    def test_third_serine_packet_deepens_remaining_frozen_rows(self) -> None:
+        selection = _load_json(
+            ARTIFACTS / "v3_serine_hydrolase_third_deep_packet_selection_20260522.json"
+        )
+        scores = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json"
+        )
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_third_deep_packet_targeted_current_ser_his_screen_20260522.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_third_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260522.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_third_deep_packet_modern_baseline_benchmark_20260522.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_third_serine_targeted_screen_20260522.json"
+        )
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_import_gate_readiness_check_post_third_serine_20260522.json"
+        )
+
+        self.assertTrue(selection["metadata"]["candidate_selection_before_outcome_scoring"])
+        self.assertEqual(selection["metadata"]["candidate_count"], 6)
+        self.assertEqual(selection["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(
+            {row["accession"] for row in selection["rows"]},
+            {"Q9UL19", "P13001", "A0A0B5LB55", "F7IX06", "Q09LX1", "P15776"},
+        )
+
+        self.assertEqual(
+            scores["metadata"]["source_free_active_site_status_counts"],
+            {
+                "no_source_free_ser_his_acid_triad": 1,
+                "ser_his_acid_triad_resolved": 5,
+            },
+        )
+        self.assertEqual(scores["metadata"]["target_lane_at_or_above_floor_count"], 5)
+        self.assertEqual(scores["metadata"]["text_or_label_fields_used_for_score_count"], 0)
+
+        self.assertEqual(screen["metadata"]["candidate_count"], 5)
+        self.assertEqual(
+            screen["metadata"]["status_counts"],
+            {
+                "current_ser_his_target_duplicate_signal": 4,
+                "current_ser_his_target_screen_clear": 1,
+            },
+        )
+        self.assertFalse(screen["metadata"]["duplicate_clear_claim_permitted"])
+
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 1,
+                "terminal_rejection_duplicate_or_leakage": 4,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 1)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+
+        rows = {row["accession"]: row for row in packet["rows"]}
+        self.assertEqual(
+            rows["Q9UL19"]["terminal_decision"],
+            "terminal_rejection_insufficient_evidence",
+        )
+        self.assertEqual(rows["P15776"]["terminal_decision"], "needs_new_extractor_or_structure")
+        self.assertEqual(
+            rows["P15776"]["exact_blocker_if_not_terminal"],
+            "full_current_countable_duplicate_leakage_screen_missing_for_third_serine_selection",
+        )
+        for accession in ("P13001", "A0A0B5LB55", "F7IX06", "Q09LX1"):
+            self.assertEqual(
+                rows[accession]["terminal_decision"],
+                "terminal_rejection_duplicate_or_leakage",
+            )
+            self.assertGreater(
+                rows[accession]["duplicate_leakage_screen"][
+                    "current_ser_his_high_tm_hit_count"
+                ],
+                0,
+            )
+            self.assertFalse(
+                rows[accession]["current_geometry_retrieval_score_summary"][
+                    "text_or_label_fields_used_for_score"
+                ]
+            )
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertFalse(benchmark["metrics"]["esm_sidecar_available"])
+        self.assertEqual(benchmark["metrics"]["sequence_exact_current_reference_duplicate_count"], 0)
+        self.assertEqual(benchmark["metrics"]["targeted_foldseek_high_tm_candidate_count"], 4)
+
+        self.assertEqual(rollup["metadata"]["candidate_count"], 88)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 6,
+                "needs_new_extractor_or_structure": 1,
+                "terminal_rejection_duplicate_or_leakage": 77,
+                "terminal_rejection_insufficient_evidence": 4,
+            },
+        )
+        self.assertEqual(readiness["metadata"]["import_ready_candidate_count"], 0)
+        self.assertFalse(readiness["metadata"]["ready_for_label_import"])
+        self.assertEqual(readiness["registry_invariants"]["label_count"], 682)
+        self.assertEqual(
+            readiness["registry_invariants"]["external_imported_seed_fingerprint_labels"],
+            [],
+        )
+        self.assertEqual(
+            readiness["registry_invariants"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+
+    def test_third_serine_p15776_full_current_screen_closes_exact_blocker(self) -> None:
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_p15776_full_current_countable_duplicate_screen_20260522.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_serine_hydrolase_third_deep_packet_after_p15776_full_current_modern_baseline_benchmark_20260522.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_third_serine_full_current_20260522.json"
+        )
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_import_gate_readiness_check_post_third_serine_full_current_20260522.json"
+        )
+
+        self.assertEqual(screen["metadata"]["candidate_count"], 1)
+        self.assertEqual(screen["metadata"]["target_subset_count"], 672)
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 0)
+        self.assertEqual(screen["metadata"]["max_current_countable_tm_score"], 0.626)
+        row = screen["rows"][0]
+        self.assertEqual(row["accession"], "P15776")
+        self.assertEqual(row["current_countable_structural_screen_status"], "current_countable_screen_clear")
+        self.assertTrue(row["pair_cache_complete"])
+        self.assertEqual(row["current_countable_high_tm_hit_count"], 0)
+        self.assertEqual(row["foldseek_run_status"], "completed")
+
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 1,
+                "terminal_rejection_duplicate_or_leakage": 4,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+        self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        p15776 = next(row for row in packet["rows"] if row["accession"] == "P15776")
+        self.assertEqual(p15776["terminal_decision"], "mechanism_match_review_ready")
+        self.assertIsNone(p15776["exact_blocker_if_not_terminal"])
+        self.assertEqual(
+            p15776["duplicate_leakage_screen"]["current_countable_structural_screen_status"],
+            "current_countable_screen_clear",
+        )
+
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertTrue(benchmark["metrics"]["full_current_countable_pair_cache_complete"])
+        self.assertEqual(benchmark["metrics"]["full_current_countable_high_tm_candidate_count"], 0)
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 1,
+                "terminal_rejection_duplicate_or_leakage": 4,
+                "terminal_rejection_insufficient_evidence": 1,
+            },
+        )
+
+        self.assertEqual(rollup["metadata"]["candidate_count"], 88)
+        self.assertEqual(rollup["metadata"]["exact_blocker_candidate_count"], 0)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 7,
+                "terminal_rejection_duplicate_or_leakage": 77,
+                "terminal_rejection_insufficient_evidence": 4,
+            },
+        )
+        self.assertEqual(
+            rollup["synthesis"]["needs_new_extractor_or_structure_candidate_count"], 0
+        )
+        self.assertEqual(readiness["metadata"]["import_ready_candidate_count"], 0)
+        self.assertFalse(readiness["metadata"]["ready_for_label_import"])
+        self.assertEqual(readiness["metadata"]["needs_new_extractor_or_structure_count"], 0)
+        self.assertEqual(readiness["registry_invariants"]["label_count"], 682)
+        self.assertEqual(
+            readiness["registry_invariants"]["external_imported_seed_fingerprint_labels"],
+            [],
+        )
+
     def test_external_deep_terminal_import_gate_readiness_stays_closed(self) -> None:
         readiness = _load_json(
             ARTIFACTS

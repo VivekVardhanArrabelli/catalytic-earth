@@ -182,6 +182,54 @@ that no label action occurred because the packet records 0 import-ready rows,
 registry invariants at 682 labels. Confidence is high that source separation is
 preserved because all scan rows set text/name/source predictive usage to false.
 
+As of the 2026-05-22T09:34:39Z main-loop run, the automation deepened the
+remaining already frozen serine-hydrolase rows and closed the only new exact
+blocker. `artifacts/v3_serine_hydrolase_third_deep_packet_selection_20260522.json`
+selects six rows from the 2026-05-21 frozen serine-hydrolase campaign that
+were not in the first two serine deep packets and were not exact
+current-reference sequence duplicates. The selection is frozen before source-
+free geometry or Foldseek outcome scoring, and it adds 0 external rows.
+`artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json`
+uses coordinate-only Ser-His-Asp/Glu triad extraction with EC/name/UniProt
+prose excluded from predictive evidence. Five rows resolve source-free triads;
+`Q9UL19` does not and is terminal
+`terminal_rejection_insufficient_evidence`.
+
+The targeted current-Ser-His screen
+`artifacts/v3_serine_hydrolase_third_deep_packet_targeted_current_ser_his_screen_20260522.json`
+converts four above-floor rows (`P13001`, `A0A0B5LB55`, `F7IX06`, and
+`Q09LX1`) to terminal `terminal_rejection_duplicate_or_leakage`. `P15776`
+clears the 40-structure targeted Ser-His screen, so
+`artifacts/v3_serine_hydrolase_p15776_full_current_countable_duplicate_screen_20260522.json`
+runs the full current-countable duplicate/leakage screen across 672 selected
+current structures. It completes 1,831 query-target rows, finds 0
+`TM >= 0.7` hits, and records nearest max TM `0.626` to `pdb:1EHK`.
+The final packet
+`artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522.json`
+therefore marks `P15776` `mechanism_match_review_ready` for review only.
+The post-third-serine rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_third_serine_full_current_20260522.json`
+indexes 88 deep-packet rows: 77 duplicate/leakage terminal rejections, 7
+mechanism-match review-ready rows, 4 insufficient-evidence terminal
+rejections, 0 exact blockers, 0 import-ready candidates, and 0 countable label
+candidates. The companion benchmark records EC/keyword routing, deterministic
+sequence/k-mer, Foldseek, and missing ESM sidecar caveats and makes no
+superiority claim.
+
+Evidence-based confidence call: confidence is high that the third serine
+packet is source-separated because all source-free score rows set
+`text_or_label_fields_used_for_score=false` and the packet keeps EC/name/source
+context review-only. Confidence is high that `P15776` is review-ready rather
+than import-ready because the full-current screen is complete with no
+`TM >= 0.7` duplicate signal, while the readiness artifact still records 0
+import-ready candidates, 0 countable candidates, no external seed-fingerprint
+imports, and unchanged 682-label registry invariants. Confidence is high that
+the remaining blocker count is 0 for the indexed deep-packet surface because
+the final rollup records `exact_blocker_candidate_count=0`. Final wrap checks
+passed 836-test unit discovery, CLI validation with 682 labels and 8
+fingerprints, compileall, artifact migration dry-run with `removal_allowed=0`,
+new JSON parsing, `git diff --check`, and no registry/fingerprint diffs.
+
 Evidence-based confidence call: confidence is high that the redox geometry
 blockers are closed because all three rows have PDB coordinate sidecars,
 source-free cofactor active-site extraction, and target-lane scores above the

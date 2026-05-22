@@ -229,9 +229,10 @@ seed-fingerprint labels, no in-scope/out-of-scope entry overlap, unchanged
 1,000-slice retained in-scope behavior, and preserved held-out
 sequence-distance metrics.
 
-The current external seed-fingerprint surface remains review-only: six
-mechanism-match rows now have source-free geometry and UniRef90/50
-current-reference no-overlap evidence, but
+The current external seed-fingerprint surface remains review-only. Six
+mechanism-match rows have source-free geometry and UniRef90/50
+current-reference no-overlap evidence in the existing no-import payload dry run,
+but
 `artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json`
 records 0 import-ready rows. Its no-import gate dry run preregisters a
 review-only policy and identifies the exact next blocker: the current
@@ -242,6 +243,11 @@ while two metal rows still need source-free phosphate/substrate specificity.
 scans five selected/PDB-linked coordinate structures for those metal rows and
 finds 0 phosphate-like substrate/product/analog sites, leaving both blocked
 with exact missing evidence.
+`artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522.json`
+adds a seventh review-ready row, `P15776`, after source-free Ser-His-Asp/Glu
+triad geometry and a complete 672-target current-countable Foldseek screen with
+no `TM >= 0.7` hit. It remains review-only and is not in the six-row payload
+dry run.
 
 The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a

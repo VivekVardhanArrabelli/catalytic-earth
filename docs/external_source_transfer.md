@@ -19,9 +19,10 @@ import.
   later explicit Q3LXA3 cycle was the second, and the broader structural
   factory/import gate is the third. Each authorizes exactly one external
   out-of-scope import.
-- The current external deepening surface has six mechanism-match review-ready
-  rows across heme and metal lanes, but none is import-ready. Five were already
-  present before the redox closure:
+- The current external deepening surface has seven mechanism-match review-ready
+  rows across heme, metal, and serine-hydrolase lanes, but none is import-ready.
+  Six are still the rows covered by the existing no-import seed-fingerprint
+  payload dry run. Five were already present before the redox closure:
   `artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json`
   screens those five rows against UniRef90/50 cluster members and all 735
   current countable reference accessions. All five have 0 current-reference
@@ -85,6 +86,18 @@ import.
   either a coordinate holo/analog phosphate-like substrate/product structure
   or a preregistered source-free phosphate-pocket extractor is required before
   any external seed-fingerprint import gate can count them.
+- `artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522.json`
+  deepens the remaining six frozen serine-hydrolase rows without adding
+  external breadth. Source-free coordinate triad scoring resolves five rows;
+  four become terminal `terminal_rejection_duplicate_or_leakage` rows after
+  targeted current-Ser-His Foldseek hits, `Q9UL19` is terminal
+  `terminal_rejection_insufficient_evidence`, and `P15776` becomes
+  `mechanism_match_review_ready` after a complete 672-target
+  current-countable Foldseek screen finds no `TM >= 0.7` hit (nearest `0.626`).
+  The companion benchmark records EC/keyword and deterministic sequence
+  baselines, ESM sidecar absence, and no superiority claim. Import remains
+  closed: `P15776` is review-only and is not part of the six-row no-import seed
+  payload dry run.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

@@ -249,6 +249,18 @@ sites and 0 phosphate/substrate ligand contexts. Both rows remain
 `mechanism_match_review_ready`, but phosphatase-specific import is blocked
 until a coordinate holo/analog phosphate-like substrate/product structure is
 found or a preregistered source-free phosphate-pocket extractor is tested.
+The 2026-05-22T09:34:39Z main-loop follow-up deepens the remaining already
+frozen serine-hydrolase rows. Six rows not covered by the first two serine
+packets are selected before scoring; source-free coordinate triad scoring
+resolves five, targeted current-Ser-His Foldseek converts four to terminal
+duplicate/leakage rejections, and a full 672-target current-countable screen
+converts `P15776` from an exact blocker to `mechanism_match_review_ready`.
+`Q9UL19` is terminal insufficient evidence. The current post-third-serine
+rollup now covers 88 deep-packet rows with 7 mechanism-match review-ready rows,
+77 duplicate/leakage rejections, 4 insufficient-evidence rejections, 0 exact
+blockers, 0 import-ready candidates, and 0 countable candidates. This expands
+the review-ready surface but does not alter the existing six-row seed payload
+dry run or authorize import.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

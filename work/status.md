@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 282
-- Measured elapsed time: 8638.1 minutes (143.97 hours)
+- Entries: 283
+- Measured elapsed time: 8699.0 minutes (144.98 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1642.1 measured minutes (27.37 hours)
+- v3: 1703.0 measured minutes (28.38 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3056
-- Evidence references logged: 2485
+- Artifact references logged: 3074
+- Evidence references logged: 2500
 
 ## Recent Entries
-
-### 2026-05-22T02:17:12+00:00 - v3
-
-- Task: Mechanism-match review-ready import blocker matrix
-- Time mode: measured
-- Measured minutes: 5.733
-- Started: 2026-05-22T02:11:28Z
-- Ended: 2026-05-22T02:17:12Z
-- Artifacts: artifacts/v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: five mechanism-match review-ready rows collected across heme and metal lanes, all five rows remain review-ready only with zero import-ready candidates and zero countable label candidates, matrix preserves 682-label registry invariant and imported external labels exactly P06744 P78549 Q3LXA3, 821-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, new JSON artifacts parsed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T03:34:56.636211+00:00 - v3
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-22T08:51:04Z
 - Artifacts: artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: P0A8Y5 and P75792 phosphate specificity scan covered five coordinate structures, 0 phosphate-like substrate product or analog sites detected, both rows remain blocked_with_exact_missing_evidence, 834-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, 3 new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T10:20:02.906647+00:00 - v3
+
+- Task: Third serine terminal packet and P15776 full-current closure
+- Time mode: measured
+- Measured minutes: 60.9
+- Started: 2026-05-22T09:18:47Z
+- Ended: 2026-05-22T10:19:41Z
+- Artifacts: artifacts/v3_serine_hydrolase_third_deep_packet_selection_20260522.json, artifacts/v3_serine_hydrolase_third_deep_packet_coordinate_materialization_20260522.json, artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json, artifacts/v3_serine_hydrolase_third_deep_packet_targeted_current_ser_his_screen_20260522.json, artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260522.json, artifacts/v3_serine_hydrolase_p15776_full_current_countable_duplicate_screen_20260522.json, artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522.json, artifacts/v3_serine_hydrolase_third_deep_packet_modern_baseline_benchmark_20260522.json, artifacts/v3_serine_hydrolase_third_deep_packet_after_p15776_full_current_modern_baseline_benchmark_20260522.json, artifacts/v3_external_deep_terminal_decision_rollup_post_third_serine_full_current_20260522.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_third_serine_full_current_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 834-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, six remaining frozen serine rows selected with no new external breadth, source-free triad scoring resolved five rows with zero text/label predictive fields, four rows terminal duplicate/leakage after targeted current Ser-His Foldseek hits, P15776 full current-countable screen completed 1831 rows across 672 targets with nearest TM 0.626 and zero TM>=0.7 hits, P15776 converted to mechanism_match_review_ready review-only, final rollup has 88 deep rows with 0 exact blockers 0 import-ready and 0 countable candidates, final 836-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -346,6 +346,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T08:48:17.767316+00:00: Next exact work is a current-682 external seed-fingerprint payload adapter/rebaseline and no-import gate rerun; metal rows still need source-free phosphate/substrate specificity.
 - 2026-05-22T08:49:45.493927+00:00: Next exact work is a current-682 external seed-fingerprint payload adapter/rebaseline or a source-free phosphate-pocket extractor/holo-structure search before any metal import claim.
 - 2026-05-22T08:51:15.302701+00:00: Metal mechanism-match rows need a holo/analog phosphate-like coordinate structure or preregistered phosphate-pocket extractor before phosphatase-specific seed import claims.
+- 2026-05-22T10:20:02.906647+00:00: Next useful work is no-import import-gate readiness for the seven review-ready rows or a bounded full-current/UniRef screen for any remaining review-ready row outside the six-row payload dry run.
 
 ## Scope Adjustments
 
@@ -513,3 +514,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T08:48:17.767316+00:00: Advanced import-gate readiness for existing review-ready rows without adding external breadth or importing labels.
 - 2026-05-22T08:49:45.493927+00:00: Import-gate readiness advanced without import: seed-fingerprint policy dry run has an exact current-682 adapter blocker and metal phosphatase rows have exact phosphate-specific missing evidence.
 - 2026-05-22T08:51:15.302701+00:00: Converted the metal-row phosphate/substrate specificity blocker into an exact source-free evidence packet.
+- 2026-05-22T10:20:02.906647+00:00: Closed the remaining frozen serine-hydrolase rows without adding external breadth; P15776 is review-ready but not import-ready.

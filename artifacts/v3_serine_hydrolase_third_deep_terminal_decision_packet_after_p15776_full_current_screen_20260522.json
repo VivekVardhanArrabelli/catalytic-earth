@@ -1,0 +1,1599 @@
+{
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 6,
+    "candidate_selection_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_selection_20260522.json",
+    "coordinate_materialization_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_coordinate_materialization_20260522.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T09:34:39Z",
+    "curated_label_registry_edited": false,
+    "exact_blocker_candidate_count": 0,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "mechanism_match_review_ready_count": 1,
+    "method": "serine_hydrolase_third_terminal_packet_after_p15776_full_current_screen",
+    "new_external_rows_frozen": 0,
+    "non_needs_review_terminal_count": 6,
+    "p15776_full_current_screen_artifact": "artifacts/v3_serine_hydrolase_p15776_full_current_countable_duplicate_screen_20260522.json",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_free_triad_score_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json",
+    "source_separation_guardrail": "Source-free triad scores use coordinate atoms only; EC/name/UniProt prose stays review-only, and targeted Foldseek is duplicate/leakage evidence only.",
+    "source_terminal_packet_artifact": "artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_targeted_ser_his_screen_20260522.json",
+    "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+    "targeted_current_ser_his_screen_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_targeted_current_ser_his_screen_20260522.json",
+    "terminal_decision_counts": {
+      "mechanism_match_review_ready": 1,
+      "terminal_rejection_duplicate_or_leakage": 4,
+      "terminal_rejection_insufficient_evidence": 1
+    }
+  },
+  "rows": [
+    {
+      "accession": "Q9UL19",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [],
+        "residues": [],
+        "resolved_residue_count": 0,
+        "selected_triad": null,
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "no_source_free_ser_his_acid_triad",
+        "source_free_active_site_status_reason": "No coordinate Ser-His-Asp/Glu triad met the distance cutoffs",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "source_free_ser_his_acid_triad_score_below_floor_or_top1_mismatch"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json",
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": 3,
+        "target_lane_score": 0.0588,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.075
+      },
+      "duplicate_leakage_screen": {
+        "current_countable_structural_screen_status": "not_run_because_source_free_target_lane_below_floor",
+        "evidence_role": "required_import_gate_evidence_not_predictive_mechanism_evidence"
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q9UL19",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_2LKT.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "2LKT",
+          "2MY9",
+          "7ZOT"
+        ],
+        "selected_pdb_id": "2LKT",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "terminal_rejection_insufficient_evidence"
+    },
+    {
+      "accession": "P13001",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": 24.662,
+              "y": 5.778,
+              "z": 11.855
+            },
+            "centroid": {
+              "x": 24.835,
+              "y": 5.567,
+              "z": 12.163
+            },
+            "chain_name": "A",
+            "code": "SER",
+            "resid": "82",
+            "residue_node_id": "A:82:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 3.117,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 27.459,
+              "y": 8.209,
+              "z": 4.558
+            },
+            "centroid": {
+              "x": 27.6,
+              "y": 7.332,
+              "z": 6.214
+            },
+            "chain_name": "A",
+            "code": "HIS",
+            "resid": "235",
+            "residue_node_id": "A:235:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "acid_distance_angstrom": 2.762,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 3.117
+            }
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": 26.96,
+              "y": 5.134,
+              "z": 1.047
+            },
+            "centroid": {
+              "x": 26.539,
+              "y": 4.66,
+              "z": 1.94
+            },
+            "chain_name": "A",
+            "code": "ASP",
+            "resid": "207",
+            "residue_node_id": "A:207:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "distance_angstrom": 2.762,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 5.879,
+          "his_acid_distance_angstrom": 2.762,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "82"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "235"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "207"
+            }
+          ],
+          "ser_his_distance_angstrom": 3.117
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "current_countable_ser_his_structural_duplicate_signal"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9907,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.9907
+      },
+      "duplicate_leakage_screen": {
+        "accession": "P13001",
+        "countable_label_candidate": false,
+        "current_ser_his_high_tm_hit_count": 10,
+        "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+        "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "foldseek_run_error": null,
+        "foldseek_run_status": "completed",
+        "pair_cache_complete": true,
+        "raw_result_row_count": 92,
+        "ready_for_label_import": false,
+        "row_id": "uniprot:P13001",
+        "runtime_seconds": 5.628,
+        "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+        "target_subset_count": 40,
+        "tm_score_threshold": 0.7,
+        "top_current_ser_his_hits": [
+          {
+            "alntmscore": 0.9008,
+            "max_pair_tm_score": 0.8878,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.8878,
+            "raw_query_name": "P13001",
+            "raw_target_name": "pdb_1A7U_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A7U.cif",
+            "target_entry_ids": [
+              "m_csa:248"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1A7U",
+            "target_structure_key": "pdb:1A7U",
+            "ttmscore": 0.8252
+          },
+          {
+            "alntmscore": 0.9,
+            "max_pair_tm_score": 0.887,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.887,
+            "raw_query_name": "P13001",
+            "raw_target_name": "pdb_1ZOI_C",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZOI.cif",
+            "target_entry_ids": [
+              "m_csa:733"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1ZOI",
+            "target_structure_key": "pdb:1ZOI",
+            "ttmscore": 0.8302
+          },
+          {
+            "alntmscore": 0.899,
+            "max_pair_tm_score": 0.886,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.886,
+            "raw_query_name": "P13001",
+            "raw_target_name": "pdb_1A7U_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A7U.cif",
+            "target_entry_ids": [
+              "m_csa:248"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1A7U",
+            "target_structure_key": "pdb:1A7U",
+            "ttmscore": 0.8237
+          },
+          {
+            "alntmscore": 0.898,
+            "max_pair_tm_score": 0.8851,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.8851,
+            "raw_query_name": "P13001",
+            "raw_target_name": "pdb_1ZOI_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZOI.cif",
+            "target_entry_ids": [
+              "m_csa:733"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1ZOI",
+            "target_structure_key": "pdb:1ZOI",
+            "ttmscore": 0.8285
+          },
+          {
+            "alntmscore": 0.8978,
+            "max_pair_tm_score": 0.8817,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.8817,
+            "raw_query_name": "P13001",
+            "raw_target_name": "pdb_1ZOI_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZOI.cif",
+            "target_entry_ids": [
+              "m_csa:733"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1ZOI",
+            "target_structure_key": "pdb:1ZOI",
+            "ttmscore": 0.828
+          }
+        ],
+        "unique_query_target_pair_count": 92
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:P13001",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_1M33.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "1M33"
+        ],
+        "selected_pdb_id": "1M33",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "A0A0B5LB55",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": 4.145,
+              "y": 46.442,
+              "z": 142.332
+            },
+            "centroid": {
+              "x": 3.759,
+              "y": 46.607,
+              "z": 142.25
+            },
+            "chain_name": "D",
+            "code": "SER",
+            "resid": "139",
+            "residue_node_id": "D:139:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 2.534,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 7.853,
+              "y": 43.742,
+              "z": 148.33
+            },
+            "centroid": {
+              "x": 6.404,
+              "y": 44.267,
+              "z": 147.447
+            },
+            "chain_name": "D",
+            "code": "HIS",
+            "resid": "365",
+            "residue_node_id": "D:365:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "acid_distance_angstrom": 2.669,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 2.534
+            }
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": 8.187,
+              "y": 43.153,
+              "z": 142.018
+            },
+            "centroid": {
+              "x": 7.874,
+              "y": 42.798,
+              "z": 142.937
+            },
+            "chain_name": "D",
+            "code": "ASP",
+            "resid": "163",
+            "residue_node_id": "D:163:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "distance_angstrom": 2.669,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 5.203,
+          "his_acid_distance_angstrom": 2.669,
+          "residue_ids": [
+            {
+              "chain_name": "D",
+              "code": "SER",
+              "resid": "139"
+            },
+            {
+              "chain_name": "D",
+              "code": "HIS",
+              "resid": "365"
+            },
+            {
+              "chain_name": "D",
+              "code": "ASP",
+              "resid": "163"
+            }
+          ],
+          "ser_his_distance_angstrom": 2.534
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "current_countable_ser_his_structural_duplicate_signal"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.99,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.99
+      },
+      "duplicate_leakage_screen": {
+        "accession": "A0A0B5LB55",
+        "countable_label_candidate": false,
+        "current_ser_his_high_tm_hit_count": 32,
+        "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+        "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "foldseek_run_error": null,
+        "foldseek_run_status": "completed",
+        "pair_cache_complete": true,
+        "raw_result_row_count": 368,
+        "ready_for_label_import": false,
+        "row_id": "uniprot:A0A0B5LB55",
+        "runtime_seconds": 38.298,
+        "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+        "target_subset_count": 40,
+        "tm_score_threshold": 0.7,
+        "top_current_ser_his_hits": [
+          {
+            "alntmscore": 0.7986,
+            "max_pair_tm_score": 0.7961,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5568,
+            "raw_query_name": "A0A0B5LB55_C",
+            "raw_target_name": "pdb_1C4X",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C4X.cif",
+            "target_entry_ids": [
+              "m_csa:437"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1C4X",
+            "target_structure_key": "pdb:1C4X",
+            "ttmscore": 0.7961
+          },
+          {
+            "alntmscore": 0.7985,
+            "max_pair_tm_score": 0.796,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5567,
+            "raw_query_name": "A0A0B5LB55_A",
+            "raw_target_name": "pdb_1C4X",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C4X.cif",
+            "target_entry_ids": [
+              "m_csa:437"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1C4X",
+            "target_structure_key": "pdb:1C4X",
+            "ttmscore": 0.796
+          },
+          {
+            "alntmscore": 0.7979,
+            "max_pair_tm_score": 0.7953,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5401,
+            "raw_query_name": "A0A0B5LB55_C",
+            "raw_target_name": "pdb_1ZOI_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZOI.cif",
+            "target_entry_ids": [
+              "m_csa:733"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1ZOI",
+            "target_structure_key": "pdb:1ZOI",
+            "ttmscore": 0.7953
+          },
+          {
+            "alntmscore": 0.7976,
+            "max_pair_tm_score": 0.795,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5445,
+            "raw_query_name": "A0A0B5LB55_A",
+            "raw_target_name": "pdb_1A7U_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A7U.cif",
+            "target_entry_ids": [
+              "m_csa:248"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1A7U",
+            "target_structure_key": "pdb:1A7U",
+            "ttmscore": 0.795
+          },
+          {
+            "alntmscore": 0.7972,
+            "max_pair_tm_score": 0.7947,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5596,
+            "raw_query_name": "A0A0B5LB55_B",
+            "raw_target_name": "pdb_1C4X",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1C4X.cif",
+            "target_entry_ids": [
+              "m_csa:437"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1C4X",
+            "target_structure_key": "pdb:1C4X",
+            "ttmscore": 0.7947
+          }
+        ],
+        "unique_query_target_pair_count": 368
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:A0A0B5LB55",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_7DBI.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "7DBI",
+          "7DBL"
+        ],
+        "selected_pdb_id": "7DBI",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "F7IX06",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": 23.136,
+              "y": -7.01,
+              "z": 12.691
+            },
+            "centroid": {
+              "x": 23.247,
+              "y": -7.423,
+              "z": 12.702
+            },
+            "chain_name": "B",
+            "code": "SER",
+            "resid": "169",
+            "residue_node_id": "B:169:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 2.8,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 18.662,
+              "y": -3.142,
+              "z": 18.081
+            },
+            "centroid": {
+              "x": 19.383,
+              "y": -4.692,
+              "z": 17.358
+            },
+            "chain_name": "B",
+            "code": "HIS",
+            "resid": "247",
+            "residue_node_id": "B:247:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "acid_distance_angstrom": 2.809,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 2.8
+            }
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": 21.225,
+              "y": -1.236,
+              "z": 21.337
+            },
+            "centroid": {
+              "x": 21.934,
+              "y": -1.859,
+              "z": 20.672
+            },
+            "chain_name": "B",
+            "code": "ASP",
+            "resid": "215",
+            "residue_node_id": "B:215:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "distance_angstrom": 2.809,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 5.609,
+          "his_acid_distance_angstrom": 2.809,
+          "residue_ids": [
+            {
+              "chain_name": "B",
+              "code": "SER",
+              "resid": "169"
+            },
+            {
+              "chain_name": "B",
+              "code": "HIS",
+              "resid": "247"
+            },
+            {
+              "chain_name": "B",
+              "code": "ASP",
+              "resid": "215"
+            }
+          ],
+          "ser_his_distance_angstrom": 2.8
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "current_countable_ser_his_structural_duplicate_signal"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9697,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.9697
+      },
+      "duplicate_leakage_screen": {
+        "accession": "F7IX06",
+        "countable_label_candidate": false,
+        "current_ser_his_high_tm_hit_count": 17,
+        "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+        "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "foldseek_run_error": null,
+        "foldseek_run_status": "completed",
+        "pair_cache_complete": true,
+        "raw_result_row_count": 184,
+        "ready_for_label_import": false,
+        "row_id": "uniprot:F7IX06",
+        "runtime_seconds": 10.532,
+        "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+        "target_subset_count": 40,
+        "tm_score_threshold": 0.7,
+        "top_current_ser_his_hits": [
+          {
+            "alntmscore": 0.7855,
+            "max_pair_tm_score": 0.7817,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5583,
+            "raw_query_name": "F7IX06_B",
+            "raw_target_name": "pdb_1R4Z_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+            "target_entry_ids": [
+              "m_csa:518"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1R4Z",
+            "target_structure_key": "pdb:1R4Z",
+            "ttmscore": 0.7817
+          },
+          {
+            "alntmscore": 0.7887,
+            "max_pair_tm_score": 0.781,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5575,
+            "raw_query_name": "F7IX06_B",
+            "raw_target_name": "pdb_1R4Z_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+            "target_entry_ids": [
+              "m_csa:518"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1R4Z",
+            "target_structure_key": "pdb:1R4Z",
+            "ttmscore": 0.781
+          },
+          {
+            "alntmscore": 0.7861,
+            "max_pair_tm_score": 0.7784,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5562,
+            "raw_query_name": "F7IX06_A",
+            "raw_target_name": "pdb_1R4Z_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+            "target_entry_ids": [
+              "m_csa:518"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1R4Z",
+            "target_structure_key": "pdb:1R4Z",
+            "ttmscore": 0.7784
+          },
+          {
+            "alntmscore": 0.7812,
+            "max_pair_tm_score": 0.7774,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.5558,
+            "raw_query_name": "F7IX06_A",
+            "raw_target_name": "pdb_1R4Z_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R4Z.cif",
+            "target_entry_ids": [
+              "m_csa:518"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1R4Z",
+            "target_structure_key": "pdb:1R4Z",
+            "ttmscore": 0.7774
+          },
+          {
+            "alntmscore": 0.7748,
+            "max_pair_tm_score": 0.7137,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.7137,
+            "raw_query_name": "F7IX06_B",
+            "raw_target_name": "pdb_1AQL_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AQL.cif",
+            "target_entry_ids": [
+              "m_csa:401"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1AQL",
+            "target_structure_key": "pdb:1AQL",
+            "ttmscore": 0.3795
+          }
+        ],
+        "unique_query_target_pair_count": 184
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:F7IX06",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_3VIS.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "3VIS",
+          "3WYN",
+          "6AID"
+        ],
+        "selected_pdb_id": "3VIS",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q09LX1",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": 18.313,
+              "y": 15.182,
+              "z": 87.191
+            },
+            "centroid": {
+              "x": 18.498,
+              "y": 15.483,
+              "z": 86.582
+            },
+            "chain_name": "B",
+            "code": "SER",
+            "resid": "15",
+            "residue_node_id": "B:15:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 2.827,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": 19.323,
+              "y": 19.105,
+              "z": 80.157
+            },
+            "centroid": {
+              "x": 17.879,
+              "y": 18.998,
+              "z": 81.017
+            },
+            "chain_name": "B",
+            "code": "HIS",
+            "resid": "194",
+            "residue_node_id": "B:194:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "acid_distance_angstrom": 2.703,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 2.827
+            }
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": 16.185,
+              "y": 24.168,
+              "z": 77.799
+            },
+            "centroid": {
+              "x": 16.367,
+              "y": 23.285,
+              "z": 78.705
+            },
+            "chain_name": "B",
+            "code": "ASP",
+            "resid": "191",
+            "residue_node_id": "B:191:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD2",
+              "distance_angstrom": 2.703,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 5.53,
+          "his_acid_distance_angstrom": 2.703,
+          "residue_ids": [
+            {
+              "chain_name": "B",
+              "code": "SER",
+              "resid": "15"
+            },
+            {
+              "chain_name": "B",
+              "code": "HIS",
+              "resid": "194"
+            },
+            {
+              "chain_name": "B",
+              "code": "ASP",
+              "resid": "191"
+            }
+          ],
+          "ser_his_distance_angstrom": 2.827
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [
+        "current_countable_ser_his_structural_duplicate_signal"
+      ],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9755,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.9755
+      },
+      "duplicate_leakage_screen": {
+        "accession": "Q09LX1",
+        "countable_label_candidate": false,
+        "current_ser_his_high_tm_hit_count": 4,
+        "current_ser_his_structural_screen_status": "current_ser_his_target_duplicate_signal",
+        "evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "foldseek_run_error": null,
+        "foldseek_run_status": "completed",
+        "pair_cache_complete": true,
+        "raw_result_row_count": 184,
+        "ready_for_label_import": false,
+        "row_id": "uniprot:Q09LX1",
+        "runtime_seconds": 9.223,
+        "target_subset": "current_countable_ser_his_acid_hydrolase_structures",
+        "target_subset_count": 40,
+        "tm_score_threshold": 0.7,
+        "top_current_ser_his_hits": [
+          {
+            "alntmscore": 0.7803,
+            "max_pair_tm_score": 0.7646,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.7646,
+            "raw_query_name": "Q09LX1_B",
+            "raw_target_name": "pdb_1ESC",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ESC.cif",
+            "target_entry_ids": [
+              "m_csa:556"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1ESC",
+            "target_structure_key": "pdb:1ESC",
+            "ttmscore": 0.5745
+          },
+          {
+            "alntmscore": 0.7974,
+            "max_pair_tm_score": 0.762,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.762,
+            "raw_query_name": "Q09LX1_A",
+            "raw_target_name": "pdb_1ESC",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ESC.cif",
+            "target_entry_ids": [
+              "m_csa:556"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1ESC",
+            "target_structure_key": "pdb:1ESC",
+            "ttmscore": 0.5719
+          },
+          {
+            "alntmscore": 0.7322,
+            "max_pair_tm_score": 0.7027,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.7027,
+            "raw_query_name": "Q09LX1_A",
+            "raw_target_name": "pdb_1PP4_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PP4.cif",
+            "target_entry_ids": [
+              "m_csa:705"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1PP4",
+            "target_structure_key": "pdb:1PP4",
+            "ttmscore": 0.6652
+          },
+          {
+            "alntmscore": 0.7315,
+            "max_pair_tm_score": 0.702,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.702,
+            "raw_query_name": "Q09LX1_A",
+            "raw_target_name": "pdb_1PP4_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PP4.cif",
+            "target_entry_ids": [
+              "m_csa:705"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1PP4",
+            "target_structure_key": "pdb:1PP4",
+            "ttmscore": 0.6646
+          },
+          {
+            "alntmscore": 0.726,
+            "max_pair_tm_score": 0.6998,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.6998,
+            "raw_query_name": "Q09LX1_B",
+            "raw_target_name": "pdb_1PP4_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PP4.cif",
+            "target_entry_ids": [
+              "m_csa:705"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1PP4",
+            "target_structure_key": "pdb:1PP4",
+            "ttmscore": 0.6626
+          }
+        ],
+        "unique_query_target_pair_count": 184
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:Q09LX1",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_3W7V.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "3W7V",
+          "4JHL",
+          "4JJ4",
+          "4JJ6",
+          "4JKO",
+          "4OAO",
+          "4OAP",
+          "5BN1"
+        ],
+        "selected_pdb_id": "3W7V",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P15776",
+      "catalytic_residue_triad_evidence": {
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "ASP"
+        ],
+        "residues": [
+          {
+            "atom_count": 6,
+            "ca": {
+              "x": -4.634,
+              "y": 28.53,
+              "z": 2.097
+            },
+            "centroid": {
+              "x": -5.283,
+              "y": 28.337,
+              "z": 2.254
+            },
+            "chain_name": "A",
+            "code": "SER",
+            "resid": "40",
+            "residue_node_id": "A:40:source_free_ser_his_acid_triad",
+            "roles": [
+              "nucleophile",
+              "covalent catalysis"
+            ],
+            "source_free_evidence": {
+              "distance_angstrom": 3.348,
+              "evidence_type": "serine_to_histidine_distance",
+              "histidine_atom": "NE2",
+              "serine_atom": "OG"
+            }
+          },
+          {
+            "atom_count": 10,
+            "ca": {
+              "x": -11.342,
+              "y": 24.986,
+              "z": 5.194
+            },
+            "centroid": {
+              "x": -10.068,
+              "y": 24.244,
+              "z": 4.507
+            },
+            "chain_name": "A",
+            "code": "HIS",
+            "resid": "329",
+            "residue_node_id": "A:329:source_free_ser_his_acid_triad",
+            "roles": [
+              "general_base",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD1",
+              "acid_distance_angstrom": 2.512,
+              "evidence_type": "histidine_bridge_distance",
+              "histidine_acid_atom": "ND1",
+              "histidine_serine_atom": "NE2",
+              "serine_atom": "OG",
+              "serine_distance_angstrom": 3.348
+            }
+          },
+          {
+            "atom_count": 8,
+            "ca": {
+              "x": -13.546,
+              "y": 20.396,
+              "z": 3.71
+            },
+            "centroid": {
+              "x": -12.355,
+              "y": 20.848,
+              "z": 3.859
+            },
+            "chain_name": "A",
+            "code": "ASP",
+            "resid": "326",
+            "residue_node_id": "A:326:source_free_ser_his_acid_triad",
+            "roles": [
+              "acid_or_orienter",
+              "electrostatic stabiliser"
+            ],
+            "source_free_evidence": {
+              "acid_atom": "OD1",
+              "distance_angstrom": 2.512,
+              "evidence_type": "acid_to_histidine_distance",
+              "histidine_atom": "ND1"
+            }
+          }
+        ],
+        "resolved_residue_count": 3,
+        "selected_triad": {
+          "distance_sum_angstrom": 5.86,
+          "his_acid_distance_angstrom": 2.512,
+          "residue_ids": [
+            {
+              "chain_name": "A",
+              "code": "SER",
+              "resid": "40"
+            },
+            {
+              "chain_name": "A",
+              "code": "HIS",
+              "resid": "329"
+            },
+            {
+              "chain_name": "A",
+              "code": "ASP",
+              "resid": "326"
+            }
+          ],
+          "ser_his_distance_angstrom": 3.348
+        },
+        "source_context_feature_counts": {
+          "active_site_feature_count": 3
+        },
+        "source_context_role": "review_only_context_not_predictive_score_input",
+        "source_free_active_site_status": "ser_his_acid_triad_resolved",
+        "source_free_active_site_status_reason": "Ser-His-Asp/Glu triad distances are resolved from coordinates only",
+        "source_free_coordinate_evidence": true
+      },
+      "countable_label_candidate": false,
+      "counterevidence": [],
+      "current_geometry_retrieval_score_summary": {
+        "abstain_threshold": 0.4115,
+        "geometry_score_status": "source_free_coordinate_triad_scored",
+        "source_free_score_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_source_free_triad_scores_20260522.json",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9374,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.9374
+      },
+      "duplicate_leakage_screen": {
+        "accession": "P15776",
+        "countable_label_candidate": false,
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_structural_screen_status": "current_countable_screen_clear",
+        "evidence_role": "full_current_countable_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+        "foldseek_run_error": null,
+        "foldseek_run_status": "completed",
+        "pair_cache_complete": true,
+        "raw_result_row_count": 1831,
+        "ready_for_label_import": false,
+        "row_id": "uniprot:P15776",
+        "runtime_seconds": 169.281,
+        "target_subset": "all_current_countable_selected_structures",
+        "target_subset_count": 672,
+        "tm_score_threshold": 0.7,
+        "top_current_countable_hits": [
+          {
+            "alntmscore": 0.6575,
+            "max_pair_tm_score": 0.626,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.0775,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1EHK_C",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+            "target_entry_ids": [
+              "m_csa:735"
+            ],
+            "target_fingerprint_ids": [
+              "heme_peroxidase_oxidase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1EHK",
+            "target_structure_key": "pdb:1EHK",
+            "ttmscore": 0.626
+          },
+          {
+            "alntmscore": 0.7008,
+            "max_pair_tm_score": 0.6007,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.0194,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_2PHK_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+            "target_entry_ids": [
+              "m_csa:35"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "2PHK",
+            "target_structure_key": "pdb:2PHK",
+            "ttmscore": 0.6007
+          },
+          {
+            "alntmscore": 0.6531,
+            "max_pair_tm_score": 0.5598,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.0194,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1RTF_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RTF.cif",
+            "target_entry_ids": [
+              "m_csa:798"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1RTF",
+            "target_structure_key": "pdb:1RTF",
+            "ttmscore": 0.5598
+          },
+          {
+            "alntmscore": 0.5607,
+            "max_pair_tm_score": 0.5582,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.2995,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1KSJ_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1KSJ.cif",
+            "target_entry_ids": [
+              "m_csa:628"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "1KSJ",
+            "target_structure_key": "pdb:1KSJ",
+            "ttmscore": 0.5582
+          },
+          {
+            "alntmscore": 0.6631,
+            "max_pair_tm_score": 0.5526,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.0166,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1T7D_D",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1T7D.cif",
+            "target_entry_ids": [
+              "m_csa:635"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "1T7D",
+            "target_structure_key": "pdb:1T7D",
+            "ttmscore": 0.5526
+          },
+          {
+            "alntmscore": 0.6472,
+            "max_pair_tm_score": 0.5393,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.0166,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1IR3_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+            "target_entry_ids": [
+              "m_csa:246"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "1IR3",
+            "target_structure_key": "pdb:1IR3",
+            "ttmscore": 0.5393
+          },
+          {
+            "alntmscore": 0.6115,
+            "max_pair_tm_score": 0.535,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.0215,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1SZD_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1SZD.cif",
+            "target_entry_ids": [
+              "m_csa:240"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "1SZD",
+            "target_structure_key": "pdb:1SZD",
+            "ttmscore": 0.535
+          },
+          {
+            "alntmscore": 0.6161,
+            "max_pair_tm_score": 0.5349,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.3416,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1WAB",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1WAB.cif",
+            "target_entry_ids": [
+              "m_csa:94"
+            ],
+            "target_fingerprint_ids": [
+              "ser_his_acid_hydrolase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_id": "1WAB",
+            "target_structure_key": "pdb:1WAB",
+            "ttmscore": 0.5349
+          },
+          {
+            "alntmscore": 0.5328,
+            "max_pair_tm_score": 0.5303,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.2687,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1GU1_B",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1GU1.cif",
+            "target_entry_ids": [
+              "m_csa:55"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "1GU1",
+            "target_structure_key": "pdb:1GU1",
+            "ttmscore": 0.5303
+          },
+          {
+            "alntmscore": 0.5319,
+            "max_pair_tm_score": 0.5299,
+            "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+            "qtmscore": 0.2679,
+            "raw_query_name": "P15776_A",
+            "raw_target_name": "pdb_1GU1_A",
+            "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1GU1.cif",
+            "target_entry_ids": [
+              "m_csa:55"
+            ],
+            "target_fingerprint_ids": [],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_id": "1GU1",
+            "target_structure_key": "pdb:1GU1",
+            "ttmscore": 0.5299
+          }
+        ],
+        "unique_query_target_pair_count": 1831
+      },
+      "exact_blocker_if_not_terminal": null,
+      "ready_for_label_import": false,
+      "review_only": true,
+      "row_id": "uniprot:P15776",
+      "structure_pdb_evidence_availability": {
+        "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_3CL4.cif",
+        "coordinate_status": "coordinate_sidecar_materialized",
+        "pdb_ids_sample": [
+          "3CL4",
+          "3CL5"
+        ],
+        "selected_pdb_id": "3CL4",
+        "structure_source": "pdb"
+      },
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "mechanism_match_review_ready"
+    }
+  ]
+}

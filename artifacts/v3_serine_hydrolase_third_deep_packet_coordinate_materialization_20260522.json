@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "artifact_id": "v3_serine_hydrolase_third_deep_packet_coordinate_materialization_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 6,
+    "candidate_selection_artifact": "artifacts/v3_serine_hydrolase_third_deep_packet_selection_20260522.json",
+    "coordinate_dir": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522",
+    "created_at": "2026-05-22T09:28:29Z",
+    "curated_label_registry_edited": false,
+    "failed_count": 0,
+    "fingerprint_registry_edited": false,
+    "materialized_count": 6,
+    "method": "serine_hydrolase_third_pdb_coordinate_materialization",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_separation_guardrail": "PDB coordinate materialization only; EC/name/UniProt prose is not predictive evidence."
+  },
+  "rows": [
+    {
+      "accession": "Q9UL19",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_2LKT.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "fetch_error": null,
+      "fetch_url": "https://files.rcsb.org/download/2LKT.cif",
+      "row_id": "uniprot:Q9UL19",
+      "selected_pdb_id": "2LKT",
+      "sha256": "8fecea94ecb2d4ec93aa3d4f2a7c04556737aceb80939eca08cbffa72fc2a8ab",
+      "size_bytes": 3531999,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P13001",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_1M33.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "fetch_error": null,
+      "fetch_url": "https://files.rcsb.org/download/1M33.cif",
+      "row_id": "uniprot:P13001",
+      "selected_pdb_id": "1M33",
+      "sha256": "8cbaca4ca869a89ff565a99dbe32086f2c10582e36ac0306e973336cca7f7cdd",
+      "size_bytes": 315262,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "A0A0B5LB55",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_7DBI.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "fetch_error": null,
+      "fetch_url": "https://files.rcsb.org/download/7DBI.cif",
+      "row_id": "uniprot:A0A0B5LB55",
+      "selected_pdb_id": "7DBI",
+      "sha256": "594746b093a2d8901c7e363909334acef739b03532e267704486a0217fc14bf5",
+      "size_bytes": 1477554,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "F7IX06",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_3VIS.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "fetch_error": null,
+      "fetch_url": "https://files.rcsb.org/download/3VIS.cif",
+      "row_id": "uniprot:F7IX06",
+      "selected_pdb_id": "3VIS",
+      "sha256": "0c6bf491a92ab407ebee976d366accb0935af09aba0b70b952a98e8892322f60",
+      "size_bytes": 852894,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "Q09LX1",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_3W7V.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "fetch_error": null,
+      "fetch_url": "https://files.rcsb.org/download/3W7V.cif",
+      "row_id": "uniprot:Q09LX1",
+      "selected_pdb_id": "3W7V",
+      "sha256": "0a4174230c7b655ebbe048fde6d5ccfc0426f7a3ee0f919821c3adf384d86bc6",
+      "size_bytes": 471363,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    },
+    {
+      "accession": "P15776",
+      "coordinate_path": "artifacts/v3_serine_hydrolase_third_deep_packet_pdb_coordinates_20260522/pdb_3CL4.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "fetch_error": null,
+      "fetch_url": "https://files.rcsb.org/download/3CL4.cif",
+      "row_id": "uniprot:P15776",
+      "selected_pdb_id": "3CL4",
+      "sha256": "a2910fbbb04ad39520ec95fe4809ad41d409d8a7aa895e9c130ba903a22e96c3",
+      "size_bytes": 391186,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase"
+    }
+  ]
+}
