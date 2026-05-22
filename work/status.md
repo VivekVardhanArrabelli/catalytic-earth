@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 274
-- Measured elapsed time: 8246.5 minutes (137.44 hours)
+- Entries: 275
+- Measured elapsed time: 8252.3 minutes (137.54 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1250.5 measured minutes (20.84 hours)
+- v3: 1256.3 measured minutes (20.94 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2980
-- Evidence references logged: 2413
+- Artifact references logged: 2986
+- Evidence references logged: 2422
 
 ## Recent Entries
-
-### 2026-05-21T21:16:37.365926+00:00 - v3
-
-- Task: PLP source-free terminal packet and SDR readiness recheck
-- Time mode: measured
-- Measured minutes: 48.417
-- Started: 2026-05-21T20:27:57Z
-- Ended: 2026-05-21T21:16:22Z
-- Artifacts: src/catalytic_earth/plp_active_site.py, tests/test_plp_active_site.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_plp_aminotransferase_deep_packet_pdb_coordinates_20260521, artifacts/v3_plp_aminotransferase_deep_packet_source_free_active_site_geometry_scores_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_targeted_current_plp_screen_20260521.json, artifacts/v3_plp_aminotransferase_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260521.json, artifacts/v3_plp_aminotransferase_deep_packet_post_source_free_anchor_modern_baseline_benchmark_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_plp_20260521.json, artifacts/v3_sdr_family_readiness_post_plp_terminal_review_packet_20260521.json, artifacts/v3_label_factory_gate_check.json, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/status.md
-- Evidence: 804 unit tests passed, validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed removal_allowed=0, external transfer gate 68/68, PLP extractor reproduces seven sidecar statuses, no registry or fingerprint diffs
-- Notes: Normal locked measured run; no label import, registry edit, fingerprint edit, artifact migration, upload, removal, Git-LFS change, or history rewrite.
 
 ### 2026-05-21T22:15:26.911702+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_duplicate_screen_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/progress_log.jsonl, work/status.md
 - Evidence: observed pushed commit 8744142 already closed the canonical second-heme full-current blocker, independent rerun completed 2016/2016 current-countable pairs for P39597 P31545 and K7N5M8, rerun reproduced the canonical status split: P31545 duplicate/leakage, P39597 and K7N5M8 bounded current-countable duplicate-clear, targeted regression pins the rerun as duplicate/leakage evidence only
 - Notes: Concurrent canonical closure was preserved; no label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite threshold change or removal_allowed=true occurred.
+
+### 2026-05-22T02:17:12+00:00 - v3
+
+- Task: Mechanism-match review-ready import blocker matrix
+- Time mode: measured
+- Measured minutes: 5.733
+- Started: 2026-05-22T02:11:28Z
+- Ended: 2026-05-22T02:17:12Z
+- Artifacts: artifacts/v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: five mechanism-match review-ready rows collected across heme and metal lanes, all five rows remain review-ready only with zero import-ready candidates and zero countable label candidates, matrix preserves 682-label registry invariant and imported external labels exactly P06744 P78549 Q3LXA3, 821-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, new JSON artifacts parsed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -338,6 +338,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T00:21:07.387970+00:00: Continue bounded external terminal-decision deepening and import-gate readiness checks before any new broad mini-campaign.
 - 2026-05-22T01:48:29+00:00: Next main-loop work should close the three second-heme full current-countable duplicate-screen blockers or deepen another existing frozen packet before adding broad rows.
 - 2026-05-22T02:11:28+00:00: Next main-loop work should deepen another existing frozen packet or build import-gate evidence around review-ready rows without adding broad rows.
+- 2026-05-22T02:17:12+00:00: Next main-loop work should deepen another existing frozen packet or choose one review-ready row for explicit UniRef-wide and label-factory payload work.
 
 ## Scope Adjustments
 
@@ -497,3 +498,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T00:21:07.387970+00:00: Closed existing frozen metal and serine blockers without adding broad external rows or opening imports.
 - 2026-05-22T01:48:29+00:00: Recovered dirty work continues existing frozen external deepening with no new external row freeze.
 - 2026-05-22T02:11:28+00:00: Added a supplemental duplicate-screen rerun artifact instead of replacing the canonical terminal packet from the pushed closure commit.
+- 2026-05-22T02:17:12+00:00: Added an import-blocker matrix rather than opening new external breadth.

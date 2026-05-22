@@ -101,6 +101,11 @@ import-readiness artifact
 keeps the label gate closed: registry invariants remain 682 labels, 212
 `seed_fingerprint`, 470 `out_of_scope`, and the only imported external labels
 remain `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`.
+The review-ready import blocker matrix
+`artifacts/v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522.json`
+then collects the five mechanism-match rows and keeps all five explicitly
+blocked from import pending UniRef-wide duplicate evidence and full
+label-factory payload gates.
 
 Evidence-based confidence call: confidence is high that the seven second FDR
 rows are terminal duplicate/leakage rejections because the targeted current-FDR

@@ -1,0 +1,349 @@
+{
+  "decision": {
+    "next_action": "Choose one review-ready row for UniRef-wide duplicate screening and full label-factory payload design only if a label action is explicitly desired; otherwise continue deepening frozen packets.",
+    "status": "blocked_review_ready_only_not_import_ready",
+    "summary": "Five existing mechanism-match review-ready rows have active-site/geometry support but no row has full import-gate evidence."
+  },
+  "invariant_checks": {
+    "all_rows_review_ready_not_import_ready": true,
+    "external_imported_out_of_scope_labels_unchanged": true,
+    "external_imported_seed_fingerprint_labels_absent": true,
+    "out_of_scope_label_count_is_470": true,
+    "registry_label_count_is_682": true,
+    "seed_fingerprint_label_count_is_212": true,
+    "source_context_not_counted_as_predictive_or_import_evidence": true
+  },
+  "metadata": {
+    "artifact_id": "v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 5,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T02:14:59Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "mechanism_match_review_ready_import_blocker_matrix_from_existing_deep_packets",
+    "new_external_rows_frozen": 0,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_terminal_packet_artifacts": [
+      "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json",
+      "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json",
+      "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
+    ],
+    "target_current_fingerprint_lanes": {
+      "heme_peroxidase_oxidase": 3,
+      "metal_dependent_hydrolase": 2
+    },
+    "terminal_decision_filter": "mechanism_match_review_ready"
+  },
+  "registry_invariants": {
+    "external_imported_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_imported_seed_fingerprint_labels": [],
+    "label_count": 682,
+    "label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 212
+    }
+  },
+  "rows": [
+    {
+      "accession": "I2DBY1",
+      "countable_label_candidate": false,
+      "duplicate_leakage_screen_summary": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_target_count": null,
+        "duplicate_clear_established": true,
+        "duplicate_clear_scope": null,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.6871,
+          "max_pair_tm_score": 0.589,
+          "max_pair_tm_score_definition": "max(qtmscore, ttmscore); alntmscore retained separately",
+          "qtmscore": 0.01367,
+          "raw_query_name": "afdb_I2DBY1",
+          "raw_target_name": "pdb_2PHK_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "target_entry_ids": [
+            "m_csa:35"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_id": "2PHK",
+          "target_structure_key": "pdb:2PHK",
+          "ttmscore": 0.589
+        },
+        "pair_cache_complete": true,
+        "screen_artifact": "artifacts/v3_heme_peroxidase_deep_packet_i2dby1_full_current_subchunk_screen_20260521.json"
+      },
+      "import_gate_blockers": [
+        "terminal_decision_is_mechanism_match_review_ready_not_import_ready",
+        "uniref_wide_duplicate_screen_not_attached_to_packet",
+        "full_label_factory_import_payload_not_constructed_or_gated",
+        "hard_negative_inverse_gate_not_applicable_to_mechanism_match_review_ready_row"
+      ],
+      "ready_for_label_import": false,
+      "recommended_next_evidence": [
+        "UniRef-wide duplicate/leakage screen if any label action is proposed",
+        "full label-factory import payload with ontology_version_at_decision before any countable label action",
+        "family-specific source-free substrate/cofactor specificity evidence where required"
+      ],
+      "row_id": "uniprot:I2DBY1",
+      "source_context_policy": "EC, names, keywords, UniProt prose, and source annotations are review context only and are not predictive/import evidence.",
+      "source_free_geometry_summary": {
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.7819,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.7819
+      },
+      "source_terminal_packet_artifact": "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_i2dby1_subchunk_screen_20260521.json",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "mechanism_match_review_ready"
+    },
+    {
+      "accession": "P75792",
+      "countable_label_candidate": false,
+      "duplicate_leakage_screen_summary": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_target_count": 672,
+        "duplicate_clear_established": null,
+        "duplicate_clear_scope": null,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.7998,
+          "evidence_scope": "nonmetal_chunk006_excluding_metal_lane",
+          "max_pair_tm_score": 0.6855,
+          "qtmscore": 0.02592,
+          "raw_query_name": "pdb_1RLM_B",
+          "raw_target_name": "pdb_2PHK_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "target_entry_ids": [
+            "m_csa:35"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_id": "2PHK",
+          "target_structure_key": "pdb:2PHK",
+          "ttmscore": 0.6855
+        },
+        "pair_cache_complete": true,
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json"
+      },
+      "import_gate_blockers": [
+        "terminal_decision_is_mechanism_match_review_ready_not_import_ready",
+        "uniref_wide_duplicate_screen_not_run",
+        "full_label_factory_import_payload_not_constructed_or_gated",
+        "hard_negative_inverse_gate_not_applicable_to_mechanism_match_review_ready_row",
+        "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity"
+      ],
+      "ready_for_label_import": false,
+      "recommended_next_evidence": [
+        "UniRef-wide duplicate/leakage screen if any label action is proposed",
+        "full label-factory import payload with ontology_version_at_decision before any countable label action",
+        "family-specific source-free substrate/cofactor specificity evidence where required"
+      ],
+      "row_id": "uniprot:P75792",
+      "source_context_policy": "EC, names, keywords, UniProt prose, and source annotations are review context only and are not predictive/import evidence.",
+      "source_free_geometry_summary": {
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6758,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.6758
+      },
+      "source_terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision": "mechanism_match_review_ready"
+    },
+    {
+      "accession": "P0A8Y5",
+      "countable_label_candidate": false,
+      "duplicate_leakage_screen_summary": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_target_count": 672,
+        "duplicate_clear_established": null,
+        "duplicate_clear_scope": null,
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "alntmscore": 0.6421,
+          "evidence_scope": "current_metal_dependent_hydrolase_targets",
+          "max_pair_tm_score": 0.6392,
+          "qtmscore": 0.5034,
+          "raw_query_name": "pdb_1RKQ_A",
+          "raw_target_name": "pdb_1L7N_A",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1L7N.cif",
+          "target_entry_ids": [
+            "m_csa:727"
+          ],
+          "target_fingerprint_ids": [
+            "metal_dependent_hydrolase"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_structure_id": "1L7N",
+          "target_structure_key": "pdb:1L7N",
+          "ttmscore": 0.6392
+        },
+        "pair_cache_complete": true,
+        "screen_artifact": "artifacts/v3_metal_phosphatase_remaining_full_current_countable_duplicate_closure_20260521.json"
+      },
+      "import_gate_blockers": [
+        "terminal_decision_is_mechanism_match_review_ready_not_import_ready",
+        "uniref_wide_duplicate_screen_not_run",
+        "full_label_factory_import_payload_not_constructed_or_gated",
+        "hard_negative_inverse_gate_not_applicable_to_mechanism_match_review_ready_row",
+        "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity"
+      ],
+      "ready_for_label_import": false,
+      "recommended_next_evidence": [
+        "UniRef-wide duplicate/leakage screen if any label action is proposed",
+        "full label-factory import payload with ontology_version_at_decision before any countable label action",
+        "family-specific source-free substrate/cofactor specificity evidence where required"
+      ],
+      "row_id": "uniprot:P0A8Y5",
+      "source_context_policy": "EC, names, keywords, UniProt prose, and source annotations are review context only and are not predictive/import evidence.",
+      "source_free_geometry_summary": {
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6774,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.6774
+      },
+      "source_terminal_packet_artifact": "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision": "mechanism_match_review_ready"
+    },
+    {
+      "accession": "P39597",
+      "countable_label_candidate": false,
+      "duplicate_leakage_screen_summary": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_target_count": 672,
+        "duplicate_clear_established": true,
+        "duplicate_clear_scope": "current_countable_selected_structures_only_not_uniref_wide_or_external_cluster_clearance",
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "accession": "P39597",
+          "alntmscore": 0.8316,
+          "chunk_label": "chunk_012",
+          "max_pair_tm_score": 0.693,
+          "qtmscore": 0.0144,
+          "raw_query_name": "afdb_P39597",
+          "raw_target_name": "pdb_1IR3_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "target_entry_ids": [
+            "m_csa:246"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_id": "1IR3",
+          "target_structure_key": "pdb:1IR3",
+          "ttmscore": 0.693
+        },
+        "pair_cache_complete": true,
+        "screen_artifact": "artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json"
+      },
+      "import_gate_blockers": [
+        "terminal_decision_is_mechanism_match_review_ready_not_import_ready",
+        "uniref_wide_duplicate_screen_not_attached_to_packet",
+        "full_label_factory_import_payload_not_constructed_or_gated",
+        "hard_negative_inverse_gate_not_applicable_to_mechanism_match_review_ready_row"
+      ],
+      "ready_for_label_import": false,
+      "recommended_next_evidence": [
+        "UniRef-wide duplicate/leakage screen if any label action is proposed",
+        "full label-factory import payload with ontology_version_at_decision before any countable label action",
+        "family-specific source-free substrate/cofactor specificity evidence where required"
+      ],
+      "row_id": "uniprot:P39597",
+      "source_context_policy": "EC, names, keywords, UniProt prose, and source annotations are review context only and are not predictive/import evidence.",
+      "source_free_geometry_summary": {
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6153,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.6153
+      },
+      "source_terminal_packet_artifact": "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "mechanism_match_review_ready"
+    },
+    {
+      "accession": "K7N5M8",
+      "countable_label_candidate": false,
+      "duplicate_leakage_screen_summary": {
+        "current_countable_high_tm_hit_count": 0,
+        "current_countable_target_count": 672,
+        "duplicate_clear_established": true,
+        "duplicate_clear_scope": "current_countable_selected_structures_only_not_uniref_wide_or_external_cluster_clearance",
+        "evidence_role": "import_gate_evidence_not_predictive_mechanism_evidence",
+        "nearest_current_countable_hit": {
+          "accession": "K7N5M8",
+          "alntmscore": 0.7872,
+          "chunk_label": "chunk_025",
+          "max_pair_tm_score": 0.6747,
+          "qtmscore": 0.015,
+          "raw_query_name": "afdb_K7N5M8",
+          "raw_target_name": "pdb_2PHK_B",
+          "target_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "target_entry_ids": [
+            "m_csa:35"
+          ],
+          "target_fingerprint_ids": [],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_id": "2PHK",
+          "target_structure_key": "pdb:2PHK",
+          "ttmscore": 0.6747
+        },
+        "pair_cache_complete": true,
+        "screen_artifact": "artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json"
+      },
+      "import_gate_blockers": [
+        "terminal_decision_is_mechanism_match_review_ready_not_import_ready",
+        "uniref_wide_duplicate_screen_not_attached_to_packet",
+        "full_label_factory_import_payload_not_constructed_or_gated",
+        "hard_negative_inverse_gate_not_applicable_to_mechanism_match_review_ready_row"
+      ],
+      "ready_for_label_import": false,
+      "recommended_next_evidence": [
+        "UniRef-wide duplicate/leakage screen if any label action is proposed",
+        "full label-factory import payload with ontology_version_at_decision before any countable label action",
+        "family-specific source-free substrate/cofactor specificity evidence where required"
+      ],
+      "row_id": "uniprot:K7N5M8",
+      "source_context_policy": "EC, names, keywords, UniProt prose, and source annotations are review context only and are not predictive/import evidence.",
+      "source_free_geometry_summary": {
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.6899,
+        "text_or_label_fields_used_for_score": false,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.6899
+      },
+      "source_terminal_packet_artifact": "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision": "mechanism_match_review_ready"
+    }
+  ]
+}

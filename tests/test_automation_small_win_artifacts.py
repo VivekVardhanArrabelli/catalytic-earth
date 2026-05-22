@@ -9190,6 +9190,47 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen",
         )
 
+    def test_mechanism_match_review_ready_import_blocker_matrix_stays_review_only(
+        self,
+    ) -> None:
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522.json"
+        )
+
+        self.assertTrue(matrix["metadata"]["review_only"])
+        self.assertEqual(matrix["metadata"]["candidate_count"], 5)
+        self.assertEqual(matrix["metadata"]["new_external_rows_frozen"], 0)
+        self.assertFalse(matrix["metadata"]["ready_for_label_import"])
+        self.assertEqual(matrix["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            matrix["metadata"]["target_current_fingerprint_lanes"],
+            {"heme_peroxidase_oxidase": 3, "metal_dependent_hydrolase": 2},
+        )
+        self.assertEqual(
+            matrix["registry_invariants"]["label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            matrix["registry_invariants"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertTrue(all(matrix["invariant_checks"].values()))
+        self.assertEqual(
+            {row["terminal_decision"] for row in matrix["rows"]},
+            {"mechanism_match_review_ready"},
+        )
+        self.assertTrue(
+            all(
+                "full_label_factory_import_payload_not_constructed_or_gated"
+                in row["import_gate_blockers"]
+                for row in matrix["rows"]
+            )
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in matrix["rows"])
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

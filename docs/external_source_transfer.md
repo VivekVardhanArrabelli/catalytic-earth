@@ -799,6 +799,12 @@ import.
   682-label registry invariant still closed. The independent rerun artifact
   `artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_duplicate_screen_20260521.json`
   preserves the same 3-row status split as duplicate/leakage evidence only.
+- `artifacts/v3_external_mechanism_match_review_ready_import_blocker_matrix_20260522.json`
+  collects the five current `mechanism_match_review_ready` external deep rows
+  across heme and metal lanes. It is review-only, freezes 0 new rows, imports 0
+  labels, and records the exact remaining blockers before any label action:
+  UniRef-wide duplicate evidence plus a full label-factory import payload under
+  the unchanged 682-label, 8-fingerprint baseline.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring
