@@ -1,0 +1,186 @@
+{
+  "baseline_comparison_caveats": {
+    "deterministic_sequence_or_kmer_baseline": {
+      "available_from_prior_packet": true,
+      "caveat": "Prior AKR readiness found near-current-reference representation collisions; this packet does not rerun sequence scoring or claim separation."
+    },
+    "ec_keyword_routing_baseline": {
+      "caveat": "AKR/NADP EC, protein-name, Rhea, InterPro, and UniProt prose are review context only; they are not counted as source-free predictive evidence.",
+      "route": "akr_nadp_redox_review_candidate"
+    },
+    "esm_or_learned_embedding_sidecar": {
+      "available_from_prior_packet": true,
+      "caveat": "Prior ESM neighbor summaries are collision risk context only; no embedding-superiority or production-readiness claim is made here."
+    },
+    "foldseek_sidecar": {
+      "available_for_akr_positive_like_row": false,
+      "caveat": "C9JRZ8 still lacks its own current-countable structural duplicate/leakage screen; metal-phosphatase Q99504 closure is not transferable evidence."
+    },
+    "geometry_superiority_claim": false,
+    "task_definition": "Using only existing artifacts after PLP closure, decide whether the AKR/NADP family is ready for production fingerprint work or one exact review-only experiment."
+  },
+  "decision": {
+    "countable_label_candidate_count": 0,
+    "current_decision": "do_not_promote_production_fingerprint",
+    "decision_rationale": "The only AKR positive-like row remains source-traced and non-terminal; no source-free local NADP/catalytic Tyr-Lys-His axis or AKR-specific duplicate screen exists.",
+    "exact_missing_evidence": [
+      "source_free_local_nadp_ligand_or_proxy_geometry_axis_missing",
+      "source_free_catalytic_tyr_lys_his_environment_policy_missing",
+      "akr_specific_current_countable_duplicate_screen_missing_for_c9jrz8_or_fresh_rows",
+      "terminal_review_decision_not_accepted_for_positive_like_akr_rows",
+      "full_label_factory_gate_not_run"
+    ],
+    "import_ready_candidate_count": 0,
+    "ready_for_label_import": false,
+    "terminal_decision": "needs_new_extractor_or_structure"
+  },
+  "external_deepening_context": {
+    "active_no_breadth_queue_artifact": "artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json",
+    "remaining_mechanism_match_review_ready_rows": 7,
+    "remaining_metal_phosphate_specificity_blocker_rows": 2,
+    "remaining_nonmetal_human_review_rows": 5,
+    "remaining_source_free_geometry_or_structure_blocker_count": 0,
+    "start_new_broad_external_minicampaign": false,
+    "why_family_fallback_is_review_only": "Existing external rows are no longer blocked by source-free geometry extraction except metal phosphate specificity; AKR work should stay as a bounded readiness experiment rather than broad sourcing."
+  },
+  "family_readiness": {
+    "active_site_evidence": {
+      "current_usable_predictive_signal": "none_for_production",
+      "source_active_site_annotations_counted_as_predictive_evidence": false,
+      "source_traced_tyr_axis": {
+        "positions": [
+          49
+        ],
+        "row_id": "uniprot:C9JRZ8",
+        "status": "source_traced_active_site_tyr_present_not_source_free"
+      },
+      "source_free_catalytic_axis_ready": false
+    },
+    "cofactors": {
+      "cofactor_family": "NADP-dependent redox",
+      "direct_local_nadp_ligand_geometry_ready": false,
+      "source_traced_proxy_motif_hits": [
+        {
+          "end": 19,
+          "motif": "VGLG",
+          "motif_type": "n_terminal_xgxg_cofactor_binding_proxy",
+          "row_id": "uniprot:C9JRZ8",
+          "start": 16
+        }
+      ]
+    },
+    "counterfamilies": [
+      "sdr_nad_p_redox_sibling_controls",
+      "flavin_monooxygenase",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase",
+      "plp_dependent_enzyme_nearest_reference_collision",
+      "out_of_scope_current_reference_neighbors"
+    ],
+    "positive_like_rows": [
+      {
+        "accession": "C9JRZ8",
+        "countable_label_candidate": false,
+        "direct_local_nadp_ligand_geometry_ready": false,
+        "normalized_decision_status_after_repair": "needs_review",
+        "ready_for_label_import": false,
+        "row_id": "uniprot:C9JRZ8",
+        "source_confidence": "medium",
+        "source_free_position_policy_ready": false,
+        "source_traced_active_site_tyr_positions": [
+          49
+        ]
+      }
+    ]
+  },
+  "likely_failure_modes": [
+    {
+      "blocks_production": true,
+      "id": "single_source_traced_positive_like_row",
+      "resolution": "freeze a small AKR/SDR/control tranche before any scoring and require at least one source-free positive-like geometry packet."
+    },
+    {
+      "blocks_production": true,
+      "id": "nadp_axis_source_context_dependency",
+      "resolution": "materialize a coordinate or source-free NADP-proxy geometry rule that excludes EC/name/Rhea/InterPro/UniProt prose."
+    },
+    {
+      "blocks_production": true,
+      "id": "catalytic_tyr_axis_annotation_dependency",
+      "resolution": "define a source-free Tyr-Lys-His local-environment policy and test it against SDR and current redox counterfamilies."
+    },
+    {
+      "blocks_production": true,
+      "id": "duplicate_and_counterfamily_controls_missing",
+      "resolution": "run current-countable duplicate/leakage screening and explicit SDR/flavin/heme/PLP/out-of-scope counterfamily controls on the frozen tranche."
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "control_tranche_row_count": 14,
+    "control_tranche_source_free_axis_ready_count": 0,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T15:35:13Z",
+    "curated_label_registry_edited": false,
+    "family_id": "akr_nadp_redox",
+    "family_name": "Aldo-keto reductase NADP-dependent redox",
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "method": "akr_family_readiness_existing_evidence_recheck_after_third_plp_closure",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "positive_like_row_count": 1,
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "registry_invariant_label_count": 682,
+    "registry_invariant_label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 212
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": {
+      "active_no_breadth_queue": "artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json",
+      "akr_recheck_after_q99504": "artifacts/v3_akr_family_readiness_post_q99504_terminal_recheck_20260521.json",
+      "prior_akr_readiness": "artifacts/v3_akr_family_readiness_packet_20260520.json",
+      "sdr_akr_control_tranche_axis_decisions": "artifacts/v3_sdr_akr_nadp_control_tranche_axis_decisions_20260520.json",
+      "sdr_akr_control_tranche_baseline_comparison": "artifacts/v3_sdr_akr_nadp_control_tranche_baseline_comparison_20260520.json"
+    },
+    "source_context_counted_as_predictive_count": 0,
+    "source_free_akr_axis_ready_count": 0,
+    "uses_existing_artifacts_only": true
+  },
+  "next_exact_experiment": {
+    "decision_to_start_now": false,
+    "excluded_predictive_inputs": [
+      "protein names",
+      "EC labels",
+      "Rhea equations",
+      "InterPro/PROSITE prose",
+      "source active-site residue annotations",
+      "UniProt catalytic activity prose"
+    ],
+    "id": "akr_source_free_nadp_tyr_geometry_axis_design_v1_review_only",
+    "required_outputs": [
+      "frozen AKR/SDR/current-redox/out-of-scope control tranche before outcome scoring",
+      "source-free local NADP or NADP-proxy geometry axis",
+      "source-free catalytic Tyr-Lys-His local-environment axis",
+      "current-countable duplicate/leakage screen for any positive-like external rows",
+      "modern baseline comparison against EC/keyword routing, deterministic sequence or k-mer nearest neighbor, and any ESM/Foldseek sidecar available for the same frozen rows"
+    ],
+    "selection_freeze_required_before_scoring": true,
+    "target_row_count": "10-20"
+  },
+  "safety_and_scope": {
+    "artifact_migration_phase_2_or_3_attempted": false,
+    "label_import_attempted": false,
+    "production_fingerprint_added": false,
+    "ready_for_claimed_superiority": false,
+    "registry_edited": false
+  }
+}

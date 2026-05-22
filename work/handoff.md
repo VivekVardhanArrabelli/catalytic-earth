@@ -365,6 +365,99 @@ label import, registry edit, fingerprint edit, threshold change, artifact
 upload/removal, Git-LFS migration, history rewrite, or `removal_allowed=true`
 occurred.
 
+As of the 2026-05-22T15:20:31Z main-loop run, the automation closed the
+remaining non-exact-reference PLP aminotransferase rows from the frozen
+2026-05-21 mini-campaign without adding breadth. The selection artifact
+`artifacts/v3_plp_aminotransferase_third_deep_packet_selection_20260522.json`
+freezes the last four previously unselected non-exact rows (`Q72LL6`,
+`O50131`, `Q8NTR2`, and `P96060`) before source-free geometry or Foldseek
+outcome scoring. The coordinate directory
+`artifacts/v3_plp_aminotransferase_third_deep_packet_pdb_coordinates_20260522`
+materializes the selected PDB structures `2EGY`, `7VNO`, `3PPL`, and `1M32`.
+
+`artifacts/v3_plp_aminotransferase_third_deep_packet_source_free_active_site_geometry_scores_20260522.json`
+uses the coordinate-only PLP extractor with EC/name/UniProt/PLP annotation
+context excluded from predictive evidence. `Q72LL6` and `O50131` resolve
+complete source-free PLP active-site packets and score above the
+`plp_dependent_enzyme` floor (`0.9876` and `0.9833`). `Q8NTR2` and `P96060`
+have PLP-like context but no resolved covalent/modified lysine anchor packet,
+so they are not scored as source-free PLP active sites. The targeted
+current-PLP Foldseek screen
+`artifacts/v3_plp_aminotransferase_third_deep_packet_targeted_current_plp_screen_20260522.json`
+finds current-countable PLP duplicate/leakage signals for the two
+source-free-ready rows (`Q72LL6` nearest TM `0.8649`, `O50131` nearest TM
+`0.9302`). The terminal packet
+`artifacts/v3_plp_aminotransferase_third_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json`
+therefore records two `terminal_rejection_duplicate_or_leakage` rows and two
+`terminal_rejection_insufficient_evidence` rows. The benchmark
+`artifacts/v3_plp_aminotransferase_third_deep_packet_modern_baseline_benchmark_20260522.json`
+keeps EC/keyword and sequence baselines review/duplicate context only,
+records Foldseek/TM as duplicate/leakage evidence only, records ESM sidecar
+absence, and makes no geometry-superiority claim. The rollup
+`artifacts/v3_plp_aminotransferase_deep_terminal_decision_rollup_post_third_plp_20260522.json`
+now covers all 18 non-exact-reference PLP deep rows: 12 duplicate/leakage
+rejections and 6 insufficient-evidence rejections, with 0 import-ready rows and
+0 countable candidates.
+
+Evidence-based confidence call: confidence is high that the remaining PLP
+frozen rows are now terminal for the selected-coordinate surface because the
+third selection artifact covers the only four non-exact rows left after the
+first two packets and the two exact current-reference sequence duplicates.
+Confidence is high that the two above-floor PLP rows are duplicate/leakage
+terminal rejections because both have targeted current-countable PLP Foldseek
+signals above `TM >= 0.7`. Confidence is high that the two non-scored rows are
+insufficient-evidence terminal decisions rather than hard negatives because
+their selected coordinates lack a complete source-free lysine-anchor PLP
+packet. Confidence is high that safety rails remain intact: no label import,
+registry edit, fingerprint edit, threshold change, artifact upload/removal,
+Git-LFS migration, history rewrite, or `removal_allowed=true` occurred.
+
+The companion active queue
+`artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json`
+prevents the next run from reopening broad sourcing by default. It records 0
+remaining source-free geometry/structure blockers, five non-metal
+mechanism-match review-ready rows blocked on human review/explicit label
+action, and two metal review-ready rows blocked on source-free
+phosphate/substrate specificity. It explicitly sets
+`start_new_broad_external_minicampaign=false`, preserves 682 labels with 212
+seed fingerprints and 470 out-of-scope labels, and keeps external imports at
+only `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`.
+
+The no-import human checklist
+`artifacts/v3_external_nonmetal_human_review_acceptance_checklist_post_plp_closure_20260522.json`
+turns the five non-metal mechanism-match rows into explicit row-level
+acceptance criteria. All five already have source-free target-lane geometry
+above floor, current-countable duplicate screening, and UniRef current-reference
+clearance, but the checklist keeps them non-countable and requires expert
+accept/reject/needs-evidence action before any future label path. It preserves
+source separation by rejecting EC/name/UniProt prose or source annotations as
+predictive evidence.
+
+The metal phosphate-specificity preregistration
+`artifacts/v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522.json`
+turns the two remaining metal blockers into one exact review-only experiment.
+It freezes only `P0A8Y5` and `P75792`, allows only coordinate/ligand/residue
+atom data and distances as predictive inputs, and requires a phosphate-like
+ligand or preregistered pocket proxy near the existing source-free metal
+cluster before phosphatase specificity can advance. It does not run the
+extractor, calibrate thresholds, authorize production scoring, or import
+labels.
+
+The fallback family-readiness packet
+`artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
+uses only existing AKR/SDR readiness artifacts plus that no-breadth queue. AKR
+stays review-only and production no-go: one source-traced positive-like row
+(`C9JRZ8`), 0 source-free AKR axis-ready rows, 0 import-ready candidates, and
+0 countable candidates. The exact next experiment, if AKR is reopened, is a
+preregistered source-free NADP/Tyr-Lys-His geometry axis with AKR-specific
+duplicate screening and SDR/flavin/heme/PLP/out-of-scope counterfamily
+controls; it is not started by this packet.
+
+Evidence-based confidence call: confidence is high that the AKR packet is a
+bounded readiness fallback rather than a new sourcing campaign because it
+freezes 0 new rows, uses only prior artifacts, excludes EC/name/prose/source
+annotations from predictive evidence, and keeps `decision_to_start_now=false`.
+
 Evidence-based confidence call: confidence is high that the redox geometry
 blockers are closed because all three rows have PDB coordinate sidecars,
 source-free cofactor active-site extraction, and target-lane scores above the

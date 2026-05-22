@@ -276,6 +276,37 @@ above floor but are terminal duplicate/leakage rejections after targeted
 current-PLP Foldseek signals; three rows are terminal insufficient-evidence
 rejections for the selected coordinates. The PLP rollup now covers 14 deep
 rows with 0 import-ready and 0 countable candidates.
+`artifacts/v3_plp_aminotransferase_third_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json`
+closes the remaining four non-exact-reference PLP rows from the same frozen
+mini-campaign. `Q72LL6` and `O50131` resolve source-free PLP geometry above
+floor but reject as targeted current-PLP duplicate/leakage rows; `Q8NTR2` and
+`P96060` reject for insufficient selected-coordinate evidence because the
+source-free PLP anchor packet is incomplete. The PLP rollup now covers all 18
+non-exact-reference deep rows with 12 duplicate/leakage rejections, 6
+insufficient-evidence rejections, 0 import-ready rows, and 0 countable
+candidates.
+`artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json`
+then records the remaining non-breadth queue: 0 source-free geometry/structure
+blockers, five non-metal mechanism-match rows needing human review/explicit
+label action, and two metal rows needing source-free phosphate/substrate
+specificity evidence.
+`artifacts/v3_external_nonmetal_human_review_acceptance_checklist_post_plp_closure_20260522.json`
+turns the five non-metal rows into an explicit no-import human acceptance
+checklist: accept only if source-free target-lane geometry, current-countable
+duplicate clearance, UniRef current-reference clearance, and expert lane
+agreement all hold; reject for scope mismatch, leakage, or source-prose
+dependence.
+`artifacts/v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522.json`
+does the same narrowing for the two metal rows by preregistering a review-only
+source-free phosphate/substrate-pocket extractor experiment over `P0A8Y5` and
+`P75792`; the rows remain blocked with exact missing evidence until that
+extractor or a holo/analog coordinate structure is materialized and rerun.
+`artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
+then uses only existing AKR/SDR artifacts plus that queue to keep family work
+bounded: AKR remains review-only with one source-traced positive-like row,
+0 source-free AKR axis-ready rows, 0 import-ready rows, and the next exact
+experiment limited to a preregistered NADP/Tyr-Lys-His source-free geometry
+axis with duplicate and counterfamily controls.
 
 The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a

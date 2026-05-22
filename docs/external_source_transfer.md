@@ -152,6 +152,54 @@ import.
   covers 14 deep rows: 10 duplicate/leakage terminal rejections, 4
   insufficient-evidence terminal rejections, 0 import-ready rows, and 0
   countable candidates.
+- `artifacts/v3_plp_aminotransferase_third_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json`
+  closes the remaining four non-exact-reference rows from the same frozen PLP
+  mini-campaign. Selection freezes `Q72LL6`, `O50131`, `Q8NTR2`, and `P96060`
+  before outcome scoring and adds 0 external rows. Two selected coordinates
+  resolve complete source-free PLP active-site packets above floor and then
+  become terminal `terminal_rejection_duplicate_or_leakage` rows after
+  targeted current-PLP Foldseek signals (`Q72LL6` nearest TM `0.8649`,
+  `O50131` nearest TM `0.9302`). Two rows are terminal
+  `terminal_rejection_insufficient_evidence` because their selected
+  coordinates show PLP-like context without a resolved source-free lysine
+  anchor packet. The companion benchmark records EC/keyword, deterministic
+  sequence, Foldseek/TM, and missing ESM caveats with no superiority or import
+  claim. `artifacts/v3_plp_aminotransferase_deep_terminal_decision_rollup_post_third_plp_20260522.json`
+  now covers all 18 non-exact-reference PLP deep rows: 12 duplicate/leakage
+  terminal rejections, 6 insufficient-evidence terminal rejections, 0
+  import-ready rows, and 0 countable candidates.
+- `artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json`
+  converts that state into the active no-breadth queue. There are 0 remaining
+  source-free geometry/structure blockers. The five non-metal mechanism-match
+  rows remain blocked on human review/explicit label action and the fact that
+  `mechanism_match_review_ready` is not import-ready by itself. The two metal
+  rows remain blocked on source-free phosphate/substrate specificity. The
+  artifact explicitly sets `start_new_broad_external_minicampaign=false`.
+- `artifacts/v3_external_nonmetal_human_review_acceptance_checklist_post_plp_closure_20260522.json`
+  turns those five non-metal rows (`I2DBY1`, `K7N5M8`, `P14532`, `P39597`,
+  and `P15776`) into a concise no-import human checklist. Each row already has
+  source-free target-lane geometry above floor, current-countable duplicate
+  screening, and UniRef90/50 current-reference clearance, but the checklist
+  still requires explicit expert accept/reject action and keeps 0 countable
+  candidates. EC/name/UniProt prose and source annotations remain excluded
+  from predictive evidence.
+- `artifacts/v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522.json`
+  converts the two metal-row blockers into one preregistered review-only
+  extractor experiment. The frozen rows are `P0A8Y5` and `P75792`; accepted
+  predictive inputs are only mmCIF coordinates, residue/ligand comp IDs, atom
+  names, and distances. The preregistration requires a phosphate-like ligand or
+  pocket proxy near the source-free metal cluster plus unchanged duplicate and
+  UniRef clearance. It authorizes no production scoring, no import, and no
+  threshold calibration from outcomes.
+- `artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
+  is the follow-on family-readiness fallback from existing evidence only. It
+  does not freeze new rows or start a broad family tranche. AKR/NADP remains a
+  review-only no-go for production fingerprint work: one source-traced
+  positive-like row (`C9JRZ8`), 0 source-free AKR axis-ready rows, 0
+  import-ready rows, and 0 countable candidates. The exact missing evidence is
+  a source-free local NADP or NADP-proxy geometry axis, source-free
+  Tyr-Lys-His local-environment policy, AKR-specific current-countable
+  duplicate screening, terminal review decisions, and full label-factory gates.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact

@@ -1,0 +1,225 @@
+{
+  "baseline_comparisons": {
+    "deterministic_sequence_or_kmer": "available for duplicate/routing diagnostics only; no exact current-reference sequence duplicates among the four selected rows",
+    "ec_keyword_routing": "available for review routing only; not counted as predictive evidence",
+    "esm_or_learned_embedding": "absent for this packet",
+    "foldseek_tm": "targeted current-PLP duplicate/leakage control only; duplicate-clear import claims would require broader screens when relevant"
+  },
+  "caveats": [
+    "No geometry-superiority claim is made.",
+    "EC, keyword, protein name, UniProt prose, and source annotations are review-only context.",
+    "Targeted Foldseek high-TM signals are duplicate/leakage evidence, not positive mechanism evidence.",
+    "No label import, registry edit, threshold change, or fingerprint change is authorized."
+  ],
+  "metadata": {
+    "artifact_id": "v3_plp_aminotransferase_third_deep_packet_modern_baseline_benchmark_20260522",
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 4,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T15:20:31Z",
+    "deterministic_sequence_baseline_available_count": 4,
+    "ec_keyword_routing_available_count": 4,
+    "esm_or_learned_embedding_sidecar_available_count": 0,
+    "foldseek_tm_screen_available_count": 2,
+    "geometry_above_floor_count": 2,
+    "geometry_available_count": 4,
+    "geometry_superiority_claim": false,
+    "import_ready_candidate_count": 0,
+    "method": "plp_third_deep_packet_modern_baseline_benchmark_no_superiority_claim",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_plp_aminotransferase_third_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json",
+      "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json"
+    ],
+    "source_context_counted_as_predictive_count": 0
+  },
+  "metrics": {
+    "countable_label_candidate_fraction": 0.0,
+    "foldseek_high_tm_fraction": 0.5,
+    "geometry_above_floor_fraction": 0.5,
+    "import_ready_fraction": 0.0,
+    "sequence_exact_duplicate_fraction": 0.0
+  },
+  "rows": [
+    {
+      "accession": "Q72LL6",
+      "countable_label_candidate": false,
+      "current_geometry_retrieval_triage": {
+        "available": true,
+        "counted_as_predictive_evidence": true,
+        "source_free": true,
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9876,
+        "text_or_label_fields_used_for_score": false
+      },
+      "deterministic_sequence_or_kmer_baseline": {
+        "artifact": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "exact_current_reference_sequence_match": false,
+        "near_neighbor_alert": false,
+        "role": "duplicate_and_routing_control_only"
+      },
+      "ec_keyword_routing_baseline": {
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "role": "candidate_selection_and_review_context_only"
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false,
+        "caveat": "absent; no learned-representation superiority claim",
+        "sidecar_artifact": null
+      },
+      "foldseek_tm_screen": {
+        "available": true,
+        "duplicate_clear_claim_permitted": false,
+        "high_tm_hit_count": 44,
+        "role": "duplicate/leakage control",
+        "screen_artifact": "artifacts/v3_plp_aminotransferase_third_deep_packet_targeted_current_plp_screen_20260522.json"
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q72LL6",
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "O50131",
+      "countable_label_candidate": false,
+      "current_geometry_retrieval_triage": {
+        "available": true,
+        "counted_as_predictive_evidence": true,
+        "source_free": true,
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.9833,
+        "text_or_label_fields_used_for_score": false
+      },
+      "deterministic_sequence_or_kmer_baseline": {
+        "artifact": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "exact_current_reference_sequence_match": false,
+        "near_neighbor_alert": false,
+        "role": "duplicate_and_routing_control_only"
+      },
+      "ec_keyword_routing_baseline": {
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "role": "candidate_selection_and_review_context_only"
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false,
+        "caveat": "absent; no learned-representation superiority claim",
+        "sidecar_artifact": null
+      },
+      "foldseek_tm_screen": {
+        "available": true,
+        "duplicate_clear_claim_permitted": false,
+        "high_tm_hit_count": 36,
+        "role": "duplicate/leakage control",
+        "screen_artifact": "artifacts/v3_plp_aminotransferase_third_deep_packet_targeted_current_plp_screen_20260522.json"
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:O50131",
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "Q8NTR2",
+      "countable_label_candidate": false,
+      "current_geometry_retrieval_triage": {
+        "available": true,
+        "counted_as_predictive_evidence": true,
+        "source_free": true,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "deterministic_sequence_or_kmer_baseline": {
+        "artifact": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "exact_current_reference_sequence_match": false,
+        "near_neighbor_alert": false,
+        "role": "duplicate_and_routing_control_only"
+      },
+      "ec_keyword_routing_baseline": {
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "role": "candidate_selection_and_review_context_only"
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false,
+        "caveat": "absent; no learned-representation superiority claim",
+        "sidecar_artifact": null
+      },
+      "foldseek_tm_screen": {
+        "available": false,
+        "duplicate_clear_claim_permitted": false,
+        "high_tm_hit_count": 0,
+        "role": "duplicate/leakage control",
+        "screen_artifact": "artifacts/v3_plp_aminotransferase_third_deep_packet_targeted_current_plp_screen_20260522.json"
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q8NTR2",
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "terminal_rejection_insufficient_evidence"
+    },
+    {
+      "accession": "P96060",
+      "countable_label_candidate": false,
+      "current_geometry_retrieval_triage": {
+        "available": true,
+        "counted_as_predictive_evidence": true,
+        "source_free": true,
+        "target_lane_at_or_above_floor": false,
+        "target_lane_rank": null,
+        "target_lane_score": null,
+        "text_or_label_fields_used_for_score": false
+      },
+      "deterministic_sequence_or_kmer_baseline": {
+        "artifact": "artifacts/v3_plp_aminotransferase_minicampaign_sequence_baseline_diagnostic_20260521.json",
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "exact_current_reference_sequence_match": false,
+        "near_neighbor_alert": false,
+        "role": "duplicate_and_routing_control_only"
+      },
+      "ec_keyword_routing_baseline": {
+        "available": true,
+        "counted_as_predictive_evidence": false,
+        "role": "candidate_selection_and_review_context_only"
+      },
+      "esm_or_learned_embedding_sidecar": {
+        "available": false,
+        "caveat": "absent; no learned-representation superiority claim",
+        "sidecar_artifact": null
+      },
+      "foldseek_tm_screen": {
+        "available": false,
+        "duplicate_clear_claim_permitted": false,
+        "high_tm_hit_count": 0,
+        "role": "duplicate/leakage control",
+        "screen_artifact": "artifacts/v3_plp_aminotransferase_third_deep_packet_targeted_current_plp_screen_20260522.json"
+      },
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P96060",
+      "target_current_fingerprint_lane": "plp_dependent_enzyme",
+      "terminal_decision": "terminal_rejection_insufficient_evidence"
+    }
+  ],
+  "task_definition": {
+    "frozen_rows": [
+      "Q72LL6",
+      "O50131",
+      "Q8NTR2",
+      "P96060"
+    ],
+    "objective": "Compare current source-free PLP geometry triage with EC/keyword routing, deterministic 5-mer sequence baseline, targeted Foldseek duplicate screen, and ESM/learned sidecar availability on the same frozen rows.",
+    "target_current_fingerprint_lane": "plp_dependent_enzyme"
+  }
+}

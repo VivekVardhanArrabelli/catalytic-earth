@@ -297,6 +297,43 @@ rollup now covers 14 deep rows with 10 duplicate/leakage rejections, 4
 insufficient-evidence rejections, 0 import-ready candidates, and 0 countable
 candidates. This remains review-only source-separated terminal evidence, not a
 seed-fingerprint import path.
+The 2026-05-22T15:20:31Z main-loop run closes the remaining non-exact PLP
+surface from the same frozen campaign. A third PLP packet selects only
+`Q72LL6`, `O50131`, `Q8NTR2`, and `P96060`, freezes 0 new external rows, and
+keeps EC/name/prose/PLP annotation context out of predictive evidence. Two
+rows resolve source-free PLP geometry above floor but reject on targeted
+current-PLP high-TM duplicate/leakage signals; two rows reject for
+insufficient selected-coordinate evidence because the source-free PLP
+lysine-anchor packet is incomplete. The PLP-specific rollup now covers all 18
+non-exact-reference deep rows with 12 duplicate/leakage rejections, 6
+insufficient-evidence rejections, 0 import-ready candidates, and 0 countable
+candidates. Remaining PLP exact-reference rows (`P12995` and `P19938`) stay
+excluded as sequence duplicates, not future deepening targets.
+The active no-breadth blocker queue is now
+`artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json`:
+0 source-free geometry/structure blockers remain; five non-metal
+mechanism-match rows need human review/explicit label action, and two metal
+rows need phosphate/substrate specificity evidence. Starting another broad
+external mini-campaign is explicitly out of scope for that queue.
+The no-import human checklist
+`artifacts/v3_external_nonmetal_human_review_acceptance_checklist_post_plp_closure_20260522.json`
+is now the narrow next-step artifact for the five non-metal rows. It requires
+explicit expert action and rejects source-prose dependence or scope mismatch;
+it does not authorize label import, countable candidates, registry edits, or
+fingerprint edits.
+The metal-specific next step is similarly bounded:
+`artifacts/v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522.json`
+preregisters a source-free phosphate/substrate-pocket extractor for only
+`P0A8Y5` and `P75792`. It is a review-only experiment design, not a score,
+threshold, import gate, or new external campaign.
+The follow-on AKR fallback packet
+`artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
+uses only existing artifacts and keeps AKR family work review-only. It records
+one source-traced positive-like row, 0 source-free AKR axis-ready rows, 0
+import-ready candidates, and 0 countable candidates. The only named next AKR
+experiment is a preregistered source-free NADP/Tyr-Lys-His geometry-axis
+design with duplicate and counterfamily controls; it is not a production
+fingerprint or label-import path.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

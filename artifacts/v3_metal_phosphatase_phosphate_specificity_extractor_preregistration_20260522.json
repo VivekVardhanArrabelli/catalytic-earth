@@ -1,0 +1,155 @@
+{
+  "decision": {
+    "current_terminal_status": "blocked_with_exact_missing_evidence",
+    "decision_to_run_now": false,
+    "label_import_authorized": false,
+    "next_required_action": "Implement or materialize the preregistered source-free phosphate/substrate-pocket extractor, then rerun the two-row metal blocker packet without EC/name/prose evidence.",
+    "preregistration_status": "ready_for_review_only_extractor_implementation",
+    "production_scoring_authorized": false
+  },
+  "metadata": {
+    "artifact_id": "v3_metal_phosphatase_phosphate_specificity_extractor_preregistration_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 2,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T15:42:49Z",
+    "curated_label_registry_edited": false,
+    "external_imported_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_imported_seed_fingerprint_labels": [],
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "metal_phosphatase_phosphate_specificity_source_free_extractor_preregistration",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "registry_invariant_label_count": 682,
+    "registry_invariant_label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 212
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifacts": [
+      "artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json",
+      "artifacts/v3_external_remaining_blocker_queue_post_third_plp_closure_20260522.json",
+      "artifacts/v3_metal_phosphatase_deep_terminal_decision_packet_remaining_after_source_free_geometry_20260521.json"
+    ],
+    "source_context_counted_as_predictive_count": 0,
+    "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+    "uses_existing_rows_only": true
+  },
+  "preregistered_extractor": {
+    "allowed_predictive_inputs": [
+      "mmCIF atom coordinates",
+      "residue and ligand comp ids",
+      "atom names",
+      "interatomic distances",
+      "chain and residue identifiers required to compute local neighborhoods"
+    ],
+    "candidate_selection_freeze": {
+      "frozen_before_outcome_scoring": true,
+      "row_ids": [
+        "uniprot:P0A8Y5",
+        "uniprot:P75792"
+      ],
+      "selection_source": "existing mechanism_match_review_ready metal rows with source-free metal-hydrolase geometry and no current-countable duplicate signal"
+    },
+    "excluded_predictive_inputs": [
+      "protein names",
+      "EC labels",
+      "UniProt catalytic activity prose",
+      "Rhea reactions",
+      "source annotations",
+      "curated labels",
+      "post-hoc threshold selection"
+    ],
+    "extractor_id": "metal_phosphatase_source_free_phosphate_pocket_v1_review_only",
+    "failure_outcomes": [
+      {
+        "condition": "no phosphate-like ligand or no preregistered pocket proxy can be detected near the metal cluster",
+        "terminal_decision": "needs_new_extractor_or_structure"
+      },
+      {
+        "condition": "detected local chemistry supports a non-hydrolytic transfer or wrong-substrate lane",
+        "terminal_decision": "terminal_rejection_wrong_scope"
+      },
+      {
+        "condition": "new duplicate/leakage signal appears at TM >= 0.7 or current-reference sequence overlap appears",
+        "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+      }
+    ],
+    "phosphate_like_atom_pattern": {
+      "accepted_pattern": "ligand or covalent modification contains a P atom with at least three O neighbors, or an explicitly preregistered phosphate-mimic atom pattern",
+      "reject_if_only_generic_polyol_or_buffer": true
+    },
+    "phosphate_like_ligand_codes_review_only_seed": [
+      "PO4",
+      "SO4",
+      "VO4",
+      "SEP",
+      "TPO",
+      "PTR"
+    ],
+    "positive_requirements_all": [
+      "resolved source-free metal-ligand cluster remains present",
+      "phosphate-like ligand or pocket proxy is within the preregistered active-site radius of the metal cluster",
+      "ligand atom pattern includes a P atom with at least three O neighbors, or an explicitly preregistered phosphate-mimic atom pattern",
+      "nearby polar/basic residues form a source-free pocket compatible with phosphate binding",
+      "no EC/name/UniProt prose/source annotation is used to infer phosphatase specificity",
+      "current-countable duplicate/leakage and UniRef current-reference screens remain clear"
+    ],
+    "review_only_threshold_policy": {
+      "initial_radius_angstrom": 6.0,
+      "no_threshold_calibration_from_outcomes": true,
+      "threshold_change_requires_new_preregistration": true
+    }
+  },
+  "rows": [
+    {
+      "accession": "P0A8Y5",
+      "current_blocker": "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+      "current_terminal_decision": "mechanism_match_review_ready",
+      "duplicate_leakage_status": "bounded_current_countable_no_high_tm_duplicate_signal_detected",
+      "pdb_ids_scanned": [
+        "1RKQ"
+      ],
+      "phosphate_like_site_count_total": 0,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0A8Y5",
+      "selected_coordinate_sidecar": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RKQ.cif",
+      "source_free_metal_geometry_status": "target_lane_rank1_above_floor",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    },
+    {
+      "accession": "P75792",
+      "current_blocker": "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity",
+      "current_terminal_decision": "mechanism_match_review_ready",
+      "duplicate_leakage_status": "bounded_current_countable_no_high_tm_duplicate_signal_detected",
+      "pdb_ids_scanned": [
+        "1RLM",
+        "1RLO",
+        "1RLT",
+        "2HF2"
+      ],
+      "phosphate_like_site_count_total": 0,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P75792",
+      "selected_coordinate_sidecar": "artifacts/v3_metal_phosphatase_deep_packet_remaining_pdb_coordinates_20260521/pdb_1RLM.cif",
+      "source_free_metal_geometry_status": "target_lane_rank1_above_floor",
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase"
+    }
+  ],
+  "safety_and_scope": {
+    "artifact_migration_phase_2_or_3_attempted": false,
+    "label_import_attempted": false,
+    "production_fingerprint_added": false,
+    "registry_edited": false,
+    "review_only_preregistration_not_score_claim": true
+  }
+}
