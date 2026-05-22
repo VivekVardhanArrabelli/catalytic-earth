@@ -12799,6 +12799,230 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertFalse(row["fingerprint_registry_edited"])
             self.assertFalse(row["artifact_upload_or_removal_performed"])
 
+    def test_external_review_ready_terminal_stop_packet_closes_automation_queue(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_external_review_ready_automation_terminal_stop_packet_20260522.json"
+        )
+        gate = _load_json(
+            ARTIFACTS
+            / "v3_external_review_ready_automation_terminal_stop_packet_zero_import_gate_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        families = {
+            row["target_current_fingerprint_lane"]: row
+            for row in packet["family_readiness_packets"]
+        }
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["candidate_count"], 7)
+        self.assertEqual(metadata["family_count"], 3)
+        self.assertEqual(metadata["mechanism_match_review_ready_count"], 7)
+        self.assertEqual(metadata["pending_human_review_count"], 7)
+        self.assertEqual(metadata["automation_actionable_evidence_blocker_count"], 0)
+        self.assertEqual(metadata["source_free_geometry_above_floor_count"], 7)
+        self.assertEqual(metadata["foldseek_current_countable_high_tm_hit_count"], 0)
+        self.assertEqual(metadata["uniref_current_reference_clear_count"], 7)
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertEqual(metadata["esm_or_learned_embedding_sidecar_available_count"], 0)
+        self.assertFalse(metadata["geometry_superiority_claim"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            metadata["registry_invariant_label_type_counts"],
+            {"seed_fingerprint": 212, "out_of_scope": 470},
+        )
+        self.assertEqual(metadata["external_imported_seed_fingerprint_labels"], [])
+
+        self.assertEqual(
+            decision["packet_status"],
+            "automation_terminal_external_review_ready_queue_closed_no_import",
+        )
+        self.assertEqual(
+            decision["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 7,
+                "ambiguous_needs_expert_review": 0,
+                "needs_new_extractor_or_structure": 0,
+                "terminal_rejection_duplicate_or_leakage": 0,
+                "terminal_rejection_wrong_scope": 0,
+                "terminal_rejection_insufficient_evidence": 0,
+            },
+        )
+        self.assertTrue(decision["human_action_required"])
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertFalse(decision["production_fingerprint_promotion_authorized"])
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertIn("explicit_human_expert", decision["exact_blocker"])
+
+        self.assertEqual(
+            set(families),
+            {
+                "heme_peroxidase_oxidase",
+                "metal_dependent_hydrolase",
+                "ser_his_acid_hydrolase",
+            },
+        )
+        self.assertEqual(families["heme_peroxidase_oxidase"]["row_count"], 4)
+        self.assertEqual(families["metal_dependent_hydrolase"]["row_count"], 2)
+        self.assertEqual(families["ser_his_acid_hydrolase"]["row_count"], 1)
+        self.assertEqual(
+            families["metal_dependent_hydrolase"][
+                "metal_phosphate_pocket_proxy_resolved_count"
+            ],
+            2,
+        )
+        for family in families.values():
+            self.assertEqual(
+                family["family_status"],
+                "source_free_mechanism_match_review_ready_pending_human_action",
+            )
+            self.assertEqual(family["terminal_decision"], "mechanism_match_review_ready")
+            self.assertEqual(family["foldseek_current_countable_high_tm_hit_count"], 0)
+            self.assertEqual(family["import_ready_candidate_count"], 0)
+            self.assertEqual(family["countable_label_candidate_count"], 0)
+            self.assertFalse(family["source_context_counted_as_predictive"])
+
+        for row in packet["rows"]:
+            self.assertEqual(row["terminal_decision"], "mechanism_match_review_ready")
+            self.assertEqual(row["human_decision_status"], "pending_human_review")
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["source_context_counted_as_predictive"])
+            self.assertFalse(
+                row["modern_baseline_snapshot"][
+                    "ec_keyword_routing_counted_as_predictive"
+                ]
+            )
+            self.assertFalse(
+                row["modern_baseline_snapshot"][
+                    "deterministic_sequence_or_kmer_counted_as_predictive"
+                ]
+            )
+            self.assertFalse(
+                row["modern_baseline_snapshot"][
+                    "esm_or_learned_embedding_sidecar_available"
+                ]
+            )
+            self.assertFalse(
+                row["modern_baseline_snapshot"]["geometry_superiority_claim_made"]
+            )
+
+        self.assertTrue(gate["metadata"]["valid"])
+        self.assertEqual(gate["metadata"]["artifact_count"], 1)
+        self.assertEqual(gate["metadata"]["valid_artifact_count"], 1)
+        self.assertEqual(gate["metadata"]["blocker_count"], 0)
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(gate["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_non_epk_family_index_post_external_stop_is_no_breadth(self) -> None:
+        index = _load_json(
+            ARTIFACTS
+            / "v3_non_epk_family_readiness_index_post_external_stop_20260522.json"
+        )
+        gate = _load_json(
+            ARTIFACTS / "v3_post_external_stop_review_only_zero_import_gate_20260522.json"
+        )
+
+        metadata = index["metadata"]
+        decision = index["decision"]
+        rows = {row["family_id"]: row for row in index["rows"]}
+        next_items = {
+            row["item"]: row for row in decision["recommended_next_main_loop_items"]
+        }
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["family_count"], 17)
+        self.assertEqual(
+            metadata["family_group_counts"],
+            {
+                "external_mechanism_match_review_ready": 3,
+                "non_atp_non_epk_family_readiness": 6,
+                "atp_phosphoryl_transfer_non_epk": 8,
+            },
+        )
+        self.assertEqual(metadata["human_action_blocked_family_count"], 3)
+        self.assertEqual(metadata["closed_review_only_no_go_family_count"], 8)
+        self.assertEqual(metadata["blocked_with_exact_missing_evidence_family_count"], 5)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["ready_for_production_scoring"])
+        self.assertFalse(metadata["ready_to_expand_positive_fingerprint_universe"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertFalse(decision["production_fingerprint_promotion_authorized"])
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertEqual(
+            next_items["external_mechanism_match_rows"]["status"],
+            "blocked_on_human_accept_reject_or_ambiguous_action",
+        )
+        self.assertEqual(
+            next_items["broad_external_minicampaign"]["status"],
+            "do_not_start_by_default",
+        )
+
+        for family_id in (
+            "askha",
+            "atp_grasp",
+            "dnk",
+            "ghkl",
+            "ghmp",
+            "ndk",
+            "pfka",
+            "pfkb",
+        ):
+            self.assertEqual(rows[family_id]["readiness_status"], "closed_review_only_no_go")
+            self.assertEqual(rows[family_id]["source_free_axis_ready_count"], 0)
+            self.assertFalse(rows[family_id]["ready_for_label_import"])
+            self.assertFalse(rows[family_id]["ready_for_production_scoring"])
+            self.assertFalse(
+                rows[family_id]["ready_to_expand_positive_fingerprint_universe"]
+            )
+
+        for family_id in (
+            "heme_peroxidase_oxidase",
+            "metal_dependent_hydrolase",
+            "ser_his_acid_hydrolase",
+        ):
+            self.assertEqual(
+                rows[family_id]["readiness_status"],
+                "source_free_mechanism_match_review_ready_pending_human_action",
+            )
+            self.assertEqual(
+                rows[family_id]["next_exact_action"],
+                "human_accept_reject_or_ambiguous_action_before_any_label_path",
+            )
+
+        self.assertEqual(rows["sdr_nad_p_redox"]["readiness_status"], "blocked_with_exact_missing_evidence")
+        self.assertEqual(rows["akr_nadp_redox"]["readiness_status"], "needs_new_extractor_or_structure")
+
+        self.assertTrue(gate["metadata"]["valid"])
+        self.assertEqual(gate["metadata"]["artifact_count"], 2)
+        self.assertEqual(gate["metadata"]["valid_artifact_count"], 2)
+        self.assertEqual(gate["metadata"]["blocker_count"], 0)
+        for row in gate["rows"]:
+            self.assertEqual(row["import_ready_candidate_count"], 0)
+            self.assertEqual(row["countable_label_candidate_count"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

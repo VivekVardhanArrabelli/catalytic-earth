@@ -315,6 +315,18 @@ then consolidates all seven review-ready rows, including the two metal rows,
 into one no-import human-review packet with 0 source-free geometry blockers, 0
 metal phosphate-specificity blockers, 0 import-ready candidates, and 0
 countable candidates.
+`artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json`
+now makes that stop condition explicit for the main loop: the heme, metal, and
+serine review-ready families have source-free geometry, current-countable
+duplicate/TM screening, UniRef90/50 current-reference clearance, and a no-import
+gate; all seven remain `mechanism_match_review_ready`, and the exact remaining
+blocker is human accept/reject/ambiguous action rather than more automated row
+sourcing.
+`artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json`
+then rolls that state into the non-ePK family queue with the NAD(P)-redox
+blockers and the closed ATP/phosphoryl-transfer family packets. It covers 17
+review-only families with 0 import-ready candidates, 0 countable candidates, no
+new external rows, and broad external sourcing still off by default.
 `artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
 then uses only existing AKR/SDR artifacts plus that queue to keep family work
 bounded: AKR remains review-only with one source-traced positive-like row,

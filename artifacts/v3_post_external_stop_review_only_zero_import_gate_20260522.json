@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "artifact_count": 2,
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "blocker_count": 0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "review_only_zero_import_artifact_gate",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "valid": true,
+    "valid_artifact_count": 2
+  },
+  "rows": [
+    {
+      "artifact_id": "v3_external_review_ready_automation_terminal_stop_packet_20260522",
+      "artifact_migration_files_edited": false,
+      "artifact_upload_or_removal_performed": false,
+      "blockers": [],
+      "countable_label_candidate_count": 0,
+      "curated_label_registry_edited": false,
+      "fingerprint_registry_edited": false,
+      "import_ready_candidate_count": 0,
+      "method": "external_review_ready_automation_terminal_stop_packet_no_breadth",
+      "new_external_rows_frozen": 0,
+      "path": "artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json",
+      "ready_for_label_import": false,
+      "removal_allowed_set_true": false,
+      "review_only": true,
+      "valid": true
+    },
+    {
+      "artifact_id": "v3_non_epk_family_readiness_index_post_external_stop_20260522",
+      "artifact_migration_files_edited": false,
+      "artifact_upload_or_removal_performed": false,
+      "blockers": [],
+      "countable_label_candidate_count": 0,
+      "curated_label_registry_edited": false,
+      "fingerprint_registry_edited": false,
+      "import_ready_candidate_count": 0,
+      "method": "non_epk_family_readiness_index_after_external_automation_stop",
+      "new_external_rows_frozen": 0,
+      "path": "artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json",
+      "ready_for_label_import": false,
+      "removal_allowed_set_true": false,
+      "review_only": true,
+      "valid": true
+    }
+  ]
+}

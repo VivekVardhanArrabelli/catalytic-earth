@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 293
-- Measured elapsed time: 8931.4 minutes (148.86 hours)
+- Entries: 294
+- Measured elapsed time: 8943.9 minutes (149.07 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1932.3 measured minutes (32.20 hours)
+- v3: 1944.8 measured minutes (32.41 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3187
-- Evidence references logged: 2599
+- Artifact references logged: 3198
+- Evidence references logged: 2612
 
 ## Recent Entries
-
-### 2026-05-22T13:05:41.322034+00:00 - v3
-
-- Task: Second PLP terminal decision packet
-- Time mode: measured
-- Measured minutes: 41.883
-- Started: 2026-05-22T12:23:33Z
-- Ended: 2026-05-22T13:05:26Z
-- Artifacts: artifacts/v3_plp_aminotransferase_second_deep_packet_selection_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_packet_pdb_coordinates_20260522, artifacts/v3_plp_aminotransferase_second_deep_packet_source_free_active_site_geometry_scores_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_packet_targeted_current_plp_screen_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_terminal_decision_packet_after_source_free_anchor_and_targeted_plp_screen_20260522.json, artifacts/v3_plp_aminotransferase_second_deep_packet_modern_baseline_benchmark_20260522.json, artifacts/v3_plp_aminotransferase_deep_terminal_decision_rollup_post_second_plp_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 840-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, seven already frozen PLP rows selected with 0 new external rows, source-free PLP coordinate scoring resolved 4 rows above floor with zero text/label predictive fields, targeted current-PLP Foldseek converted 4 rows to terminal duplicate/leakage rejections, 3 rows terminal insufficient evidence for selected coordinates, PLP rollup now covers 14 deep rows with 10 duplicate/leakage and 4 insufficient-evidence terminal rejections, 842-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard check passed from current manifest, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T13:08:53.551713+00:00 - ops
 
@@ -118,6 +107,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-22T20:36:50Z
 - Artifacts: src/catalytic_earth/pymol_review.py, tests/test_pymol_review.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_materialization_20260522.json, artifacts/v3_mcsa_pymol_second_materialization_tranche_selection_20260522.json, artifacts/v3_mcsa_pymol_second_materialization_tranche_20260522.json, artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json, artifacts/v3_expert_review_decision_batch_pymol_second_materialized_tranche_dry_run_20260522.json, artifacts/v3_expert_review_decision_batch_pymol_second_materialized_tranche_dry_run_validation_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_second_materialization_20260522.json, artifacts/v3_post_mcsa_pymol_second_materialization_review_only_zero_import_gate_20260522.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 885-test unit discovery passed after sync, CLI validate passed with 682 labels and 8 fingerprints, PyMOL queue now verifies focus CA atoms before ready state, first materialized queue remains 26 verified ready rows, second bounded 25-row tranche materialized with 0 fetch failures, latest PyMOL queue has 51 ready rows and 51 verified focus-atom selections, 51-row dry run records skipped decisions only, second zero-import gate passed 6/6, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed against current manifest, JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T21:32:20.016660+00:00 - v3
+
+- Task: External review-ready automation stop and family readiness index
+- Time mode: measured
+- Measured minutes: 12.517
+- Started: 2026-05-22T21:19:37Z
+- Ended: 2026-05-22T21:32:08Z
+- Artifacts: artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json, artifacts/v3_external_review_ready_automation_terminal_stop_packet_zero_import_gate_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json, artifacts/v3_post_external_stop_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 885-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, ePK lane freshness check found current synthesis already includes 5UJ7 and no unsynthesized outputs, seven external mechanism-match rows consolidated as automation-terminal review-ready with human action as exact blocker, non-ePK family index covers 17 review-only families with 0 import-ready and 0 countable candidates, 887-test unit discovery passed, CLI validate passed, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed, JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
@@ -356,6 +356,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T18:35:34.824679+00:00: Next action is human accept/reject review or a future preregistered NAD(P) pocket/holo-structure experiment; do not import labels
 - 2026-05-22T19:42:57.546947+00:00: Next no-breadth work should wait for human action on seven mechanism-match rows or resolve NADP holo/specificity evidence for O14756 O75828 C9JRZ8.
 - 2026-05-22T20:37:21.159775+00:00: If human review is unavailable, continue only bounded PyMOL structure materialization from the remaining blocker report.
+- 2026-05-22T21:32:20.016660+00:00: The no-breadth queue is now human-review blocked rather than source-free geometry or duplicate-screen blocked.
 
 ## Scope Adjustments
 
@@ -534,3 +535,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T18:35:34.824679+00:00: No new broad external rows; SDR blocker is exact and external queue is human-review-ready only
 - 2026-05-22T19:42:57.546947+00:00: NADP redox family fallback is now blocked on holo/local NADP evidence or source-free specificity controls, not another broad row freeze.
 - 2026-05-22T20:37:21.159775+00:00: M-CSA PyMOL readiness now has 51 human-review-ready rows; next useful step is human decisions before more machinery.
+- 2026-05-22T21:32:20.016660+00:00: External review-ready rows should not trigger more automated breadth by default; next action is human review or bounded no-breadth readiness only.

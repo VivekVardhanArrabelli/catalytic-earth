@@ -50,29 +50,53 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### Immediate Next Target: Use The 51-Row PyMOL Review Tranche
+### Immediate Next Target: Human Review Or No-Breadth Readiness
 
-The previous PyMOL materialization target is met. Do not spend the next
-main-loop run adding generic review-only machinery around the cockpit. The
-highest-value next action is a real human/expert accept/reject/skip pass over
-the 51 ready rows, or one more similarly bounded 10-25 row structure
-materialization tranche if human review is still unavailable.
+The external automation queue is now closed for the seven current
+mechanism-match review-ready rows. The latest packet is:
 
-If continuing materialization, keep it data/readiness-focused:
+```text
+artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json
+```
 
-1. Use the remaining blocker report's next-tranche candidates; do not widen to
-   arbitrary M-CSA or external row sourcing.
-2. Fetch only the selected coordinate files, record SHA-256/provenance, and
-   rerun the PyMOL queue.
-3. Require verified focus CA atoms in the committed coordinate file before a
-   row is marked PyMOL-ready.
-4. Do not import labels, edit registries/fingerprints, or claim countable
-   readiness.
-5. Add tests only when they pin readiness semantics or a real failure.
+It consolidates the heme, metal, and serine review-ready families after
+source-free geometry, current-countable duplicate/TM screens, UniRef90/50
+current-reference clearance, and the no-import payload gate. All seven rows
+remain `mechanism_match_review_ready`, 0 are import-ready, 0 are countable
+candidates, no EC/name/prose/source context is counted as predictive, and the
+only remaining blocker for that queue is explicit human accept/reject/ambiguous
+action. The paired zero-import gate is:
 
-Success criterion for the next useful run: either human decisions are captured
-for the 51 ready rows as non-countable review evidence, or a new bounded
-tranche increases PyMOL-ready rows while preserving the zero-import gate.
+```text
+artifacts/v3_external_review_ready_automation_terminal_stop_packet_zero_import_gate_20260522.json
+```
+
+The current non-ePK family queue is:
+
+```text
+artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json
+```
+
+It covers 17 review-only families: 3 external mechanism-match families blocked
+only on human action, 6 existing non-ATP family readiness/blocker packets, and
+8 closed non-ePK ATP/phosphoryl-transfer packets. It records 0 import-ready
+rows, 0 countable candidates, 0 new external rows, and no permission to start a
+broad external mini-campaign.
+
+Do not reopen broad external mini-campaign breadth by default. The next
+highest-value action is human review on the seven external rows or the 51
+PyMOL-ready M-CSA review rows. If human review is unavailable and the main loop
+continues M-CSA readiness, keep it bounded to the remaining blocker report's
+next-tranche candidates, fetch only selected coordinate files, verify focus CA
+atoms in committed coordinates, and preserve the zero-import gate.
+
+Evidence-based confidence call: confidence is high that the external queue is
+now automation-terminal but not import-ready because the packet records 7/7
+source-free geometry-above-floor rows, 7/7 UniRef-clear rows, 0 high-TM
+current-countable duplicate hits, 0 import-ready candidates, 0 countable
+candidates, no registry/fingerprint edits, no artifact upload/removal, no
+`removal_allowed=true`, and a passing focused regression test plus zero-import
+gate.
 
 ### Ready Now: 51-Row PyMOL Review Tranche
 

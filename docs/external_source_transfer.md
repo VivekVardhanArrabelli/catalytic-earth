@@ -214,6 +214,26 @@ import.
   duplicate hits, 2/2 metal pocket proxies resolved, and 0 source-free geometry
   or metal phosphate-specificity blockers. It still authorizes no import,
   registry edit, fingerprint edit, threshold calibration, or production score.
+- `artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json`
+  converts that state into the current automation stop packet. It groups the
+  seven rows by target lane (`heme_peroxidase_oxidase`,
+  `metal_dependent_hydrolase`, and `ser_his_acid_hydrolase`), preserves the
+  modern baseline caveats on the same frozen rows, records 0 automated
+  source-free/duplicate/UniRef/gate blockers, and keeps the exact remaining
+  blocker as explicit human accept/reject/ambiguous action. The paired
+  zero-import gate
+  `artifacts/v3_external_review_ready_automation_terminal_stop_packet_zero_import_gate_20260522.json`
+  passes with 1/1 valid artifact, 0 import-ready candidates, and 0 countable
+  candidates.
+- `artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json`
+  is the current no-breadth family-readiness index. It combines the three
+  external review-ready mechanism lanes, the six existing non-ATP family
+  readiness/blocker packets, and the eight closed non-ePK
+  ATP/phosphoryl-transfer family packets into 17 review-only family rows. It
+  records 3 human-action-blocked external families, 8 closed review-only
+  no-go ATP-family packets, 5 exact-missing-evidence family blockers, 1
+  `needs_new_extractor_or_structure` AKR/NADP row, and 0 import-ready or
+  countable candidates.
 - `artifacts/v3_akr_family_readiness_post_third_plp_no_breadth_packet_20260522.json`
   is the follow-on family-readiness fallback from existing evidence only. It
   does not freeze new rows or start a broad family tranche. AKR/NADP remains a

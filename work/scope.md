@@ -157,6 +157,21 @@ same-chain substrate-role contexts are terminal review-only under the current
 source-free policy; and the 119-row sibling surface remains the future
 scorer-test fixture. ePK is still no-go for production scoring, threshold
 calibration, label import, registry edit, or fingerprint expansion.
+The 2026-05-22T21:19:37Z main-loop run then returns to non-ePK integration and
+closes the seven-row external review-ready queue for automation purposes in
+`artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json`.
+The packet adds no rows and opens no import path: it records 7/7 source-free
+geometry-above-floor rows, 7/7 UniRef-clear rows, 0 high-TM current-countable
+duplicate hits, 0 automated evidence blockers, 0 import-ready rows, and 0
+countable candidates. Its paired zero-import gate passes, and the only exact
+remaining blocker is human accept/reject/ambiguous action; do not treat this as
+permission to start another broad external mini-campaign.
+The same run also refreshes the no-breadth family index in
+`artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json`.
+It combines 3 external review-ready mechanism families, 6 existing non-ATP
+family readiness/blocker packets, and 8 closed non-ePK ATP-family packets into
+17 review-only family rows with 0 import-ready candidates and 0 countable
+candidates.
 Current external-deepening scope: the 2026-05-22 main-loop follow-up continued
 only already frozen 2026-05-21 external rows. It did not add a seventh broad
 mini-campaign or freeze new external breadth. The second flavin
