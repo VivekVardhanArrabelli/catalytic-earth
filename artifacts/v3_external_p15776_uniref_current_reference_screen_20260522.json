@@ -1,0 +1,117 @@
+{
+  "fetch_failures": [],
+  "metadata": {
+    "artifact_id": "v3_external_p15776_uniref_current_reference_screen_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 1,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T10:27:41Z",
+    "curated_label_registry_edited": false,
+    "current_countable_reference_accession_count": 735,
+    "current_countable_reference_entry_count": 682,
+    "external_imported_out_of_scope_labels": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_imported_seed_fingerprint_labels": [],
+    "fetch_failure_count": 0,
+    "fetched_uniref_cluster_count": 2,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "p15776_mechanism_match_review_ready_uniref90_50_current_reference_screen",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "registry_invariant_label_count": 682,
+    "registry_invariant_label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 212
+    },
+    "remaining_import_blocker_counts": {
+      "external_seed_fingerprint_payload_adapter_for_current_682_registry_required": 1,
+      "full_label_factory_payload_gate_not_rerun_for_expanded_seven_row_payload": 1,
+      "human_label_action_not_requested": 1,
+      "mechanism_match_review_ready_is_not_label_import_ready": 1
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_context_counted_as_predictive_count": 0,
+    "source_separation_enforced": true,
+    "source_sequence_clusters_artifact": "artifacts/v3_sequence_cluster_proxy_1000.json",
+    "source_terminal_packet_artifact": "artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522.json",
+    "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+    "uniref_current_reference_clear_count": 1,
+    "uniref_current_reference_incomplete_count": 0,
+    "uniref_current_reference_overlap_holdout_count": 0,
+    "uniref_current_reference_screen_status_counts": {
+      "uniref_current_reference_screen_no_current_reference_overlap": 1
+    }
+  },
+  "rows": [
+    {
+      "accession": "P15776",
+      "candidate_uniref100_ids": [
+        "UniRef100_P15776"
+      ],
+      "candidate_uniref50_ids": [
+        "UniRef50_P15776"
+      ],
+      "candidate_uniref90_ids": [
+        "UniRef90_P15776"
+      ],
+      "candidate_uniref_cluster_ids": [
+        "UniRef50_P15776",
+        "UniRef90_P15776"
+      ],
+      "candidate_uniref_cluster_summaries": [
+        {
+          "accession_count": 444,
+          "cluster_id": "UniRef50_P15776",
+          "current_reference_overlap_count": 0,
+          "entry_type": "UniRef50",
+          "fetch_status": "ok",
+          "member_count": 439,
+          "query_url": "https://rest.uniprot.org/uniref/UniRef50_P15776?format=json",
+          "returned_member_count": 439
+        },
+        {
+          "accession_count": 353,
+          "cluster_id": "UniRef90_P15776",
+          "current_reference_overlap_count": 0,
+          "entry_type": "UniRef90",
+          "fetch_status": "ok",
+          "member_count": 345,
+          "query_url": "https://rest.uniprot.org/uniref/UniRef90_P15776?format=json",
+          "returned_member_count": 345
+        }
+      ],
+      "countable_label_candidate": false,
+      "current_countable_reference_accession_count": 735,
+      "current_countable_reference_entry_count": 682,
+      "overlapping_current_reference_accessions": [],
+      "predictive_evidence_role": "none_uniref_is_duplicate_control_not_positive_mechanism_evidence",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "external_seed_fingerprint_payload_adapter_for_current_682_registry_required",
+        "full_label_factory_payload_gate_not_rerun_for_expanded_seven_row_payload",
+        "human_label_action_not_requested",
+        "mechanism_match_review_ready_is_not_label_import_ready"
+      ],
+      "review_status": "review_only_seed_fingerprint_uniref_clear_not_import_ready",
+      "row_id": "uniprot:P15776",
+      "source_context_counted_as_predictive": false,
+      "source_full_current_countable_screen_artifact": "artifacts/v3_serine_hydrolase_p15776_full_current_countable_duplicate_screen_20260522.json",
+      "source_terminal_packet_artifact": "artifacts/v3_serine_hydrolase_third_deep_terminal_decision_packet_after_p15776_full_current_screen_20260522.json",
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision": "mechanism_match_review_ready",
+      "uniref_current_reference_blockers": [],
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    }
+  ],
+  "warnings": [
+    "UniRef90/50 screening is import-gate duplicate/leakage evidence only, not positive mechanism evidence.",
+    "This artifact clears only the current-reference UniRef overlap blocker for P15776; it does not authorize label import."
+  ]
+}

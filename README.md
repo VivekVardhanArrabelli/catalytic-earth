@@ -247,7 +247,14 @@ with exact missing evidence.
 adds a seventh review-ready row, `P15776`, after source-free Ser-His-Asp/Glu
 triad geometry and a complete 672-target current-countable Foldseek screen with
 no `TM >= 0.7` hit. It remains review-only and is not in the six-row payload
-dry run.
+dry run. The follow-up
+`artifacts/v3_external_p15776_uniref_current_reference_screen_20260522.json`
+clears `P15776` against UniRef90/50 current-reference overlap as duplicate
+control evidence only. `artifacts/v3_external_seed_fingerprint_seven_review_ready_import_gate_readiness_20260522.json`
+then accounts for all seven review-ready rows in one no-import readiness
+packet: 7/7 have source-free geometry and UniRef clearance, 0 are import-ready,
+and the exact next blocker is still the current-682 external seed-fingerprint
+payload adapter/rebaseline plus no-import label-factory gate rerun.
 
 The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a

@@ -230,6 +230,34 @@ passed 836-test unit discovery, CLI validation with 682 labels and 8
 fingerprints, compileall, artifact migration dry-run with `removal_allowed=0`,
 new JSON parsing, `git diff --check`, and no registry/fingerprint diffs.
 
+As of the 2026-05-22T10:29:21Z main-loop follow-up, the automation converted
+the new `P15776` review-ready row into seven-row no-import import-gate
+readiness. `artifacts/v3_external_p15776_uniref_current_reference_screen_20260522.json`
+fetches `UniRef90_P15776` and `UniRef50_P15776`, intersects their member
+accessions against the 735 current countable reference accessions, and finds 0
+overlaps and 0 fetch failures. The evidence role is explicitly duplicate
+control only, not positive mechanism evidence. The new readiness packet
+`artifacts/v3_external_seed_fingerprint_seven_review_ready_import_gate_readiness_20260522.json`
+accounts for all seven `mechanism_match_review_ready` external rows across
+heme, metal, and serine-hydrolase lanes. It records 7/7 source-free geometry
+above floor, 7/7 UniRef90/50 current-reference clearance, 0 import-ready
+candidates, 0 countable candidates, no label or fingerprint edits, and the
+unchanged 682-label registry invariant. The current label-factory payload gate
+still blocks exactly on `applied_label_actions_ready`; the expanded seven-row
+payload gate was not rerun because the current-682 external seed-fingerprint
+payload adapter/rebaseline is still missing. The two metal rows still retain
+the source-free phosphate/substrate specificity blocker before any
+phosphatase-specific import claim.
+
+Evidence-based confidence call: confidence is high that this follow-up only
+advanced gate readiness, not imports, because both new artifacts set
+`ready_for_label_import=false`, `countable_label_candidate_count=0`, no
+external seed-fingerprint labels are present, and the only label-factory
+blocker remains the preregistered adapter/rebaseline gap. Confidence is high
+that the P15776 UniRef screen is source-separated because the artifact records
+UniRef as duplicate/leakage evidence only and keeps EC/name/source context out
+of predictive mechanism evidence.
+
 Evidence-based confidence call: confidence is high that the redox geometry
 blockers are closed because all three rows have PDB coordinate sidecars,
 source-free cofactor active-site extraction, and target-lane scores above the

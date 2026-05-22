@@ -261,6 +261,16 @@ rollup now covers 88 deep-packet rows with 7 mechanism-match review-ready rows,
 blockers, 0 import-ready candidates, and 0 countable candidates. This expands
 the review-ready surface but does not alter the existing six-row seed payload
 dry run or authorize import.
+The 2026-05-22T10:29:21Z main-loop follow-up adds import-gate readiness for
+that seventh row without importing labels. `P15776` now has UniRef90/50
+current-reference clearance with 0 overlaps against the 735 current countable
+reference accessions, and the seven-row readiness packet covers all current
+`mechanism_match_review_ready` rows. It keeps import-ready and countable
+candidates at 0, preserves the 682-label registry invariant, and names the next
+exact blocker as the current-682 external seed-fingerprint payload
+adapter/rebaseline plus no-import label-factory gate rerun. The two metal rows
+still require phosphate/substrate specificity evidence before any
+phosphatase-specific import claim.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

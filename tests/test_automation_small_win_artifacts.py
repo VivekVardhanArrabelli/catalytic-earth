@@ -9294,6 +9294,172 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             [],
         )
 
+    def test_p15776_uniref_and_seven_review_ready_import_readiness_stay_closed(
+        self,
+    ) -> None:
+        p15776_uniref = _load_json(
+            ARTIFACTS / "v3_external_p15776_uniref_current_reference_screen_20260522.json"
+        )
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_external_seed_fingerprint_seven_review_ready_import_gate_readiness_20260522.json"
+        )
+
+        self.assertTrue(p15776_uniref["metadata"]["review_only"])
+        self.assertEqual(p15776_uniref["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(p15776_uniref["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            p15776_uniref["metadata"]["target_current_fingerprint_lane"],
+            "ser_his_acid_hydrolase",
+        )
+        self.assertEqual(
+            p15776_uniref["metadata"]["current_countable_reference_entry_count"],
+            682,
+        )
+        self.assertEqual(
+            p15776_uniref["metadata"]["current_countable_reference_accession_count"],
+            735,
+        )
+        self.assertEqual(p15776_uniref["metadata"]["fetched_uniref_cluster_count"], 2)
+        self.assertEqual(p15776_uniref["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(
+            p15776_uniref["metadata"]["uniref_current_reference_clear_count"], 1
+        )
+        self.assertEqual(
+            p15776_uniref["metadata"][
+                "uniref_current_reference_overlap_holdout_count"
+            ],
+            0,
+        )
+        row = p15776_uniref["rows"][0]
+        self.assertEqual(row["accession"], "P15776")
+        self.assertEqual(
+            row["uniref_current_reference_screen_status"],
+            "uniref_current_reference_screen_no_current_reference_overlap",
+        )
+        self.assertEqual(
+            row["candidate_uniref90_ids"], ["UniRef90_P15776"]
+        )
+        self.assertEqual(
+            row["candidate_uniref50_ids"], ["UniRef50_P15776"]
+        )
+        self.assertFalse(row["overlapping_current_reference_accessions"])
+        self.assertFalse(row["source_context_counted_as_predictive"])
+        self.assertIn(
+            "mechanism_match_review_ready_is_not_label_import_ready",
+            row["remaining_import_blockers"],
+        )
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+
+        self.assertTrue(readiness["metadata"]["review_only"])
+        self.assertEqual(readiness["metadata"]["candidate_count"], 7)
+        self.assertEqual(readiness["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(
+            readiness["metadata"]["target_current_fingerprint_lanes"],
+            {
+                "heme_peroxidase_oxidase": 4,
+                "metal_dependent_hydrolase": 2,
+                "ser_his_acid_hydrolase": 1,
+            },
+        )
+        self.assertEqual(
+            readiness["metadata"]["source_context_counted_as_predictive_count"], 0
+        )
+        self.assertEqual(readiness["metadata"]["source_free_geometry_above_floor_count"], 7)
+        self.assertEqual(readiness["metadata"]["uniref_current_reference_clear_count"], 7)
+        self.assertEqual(readiness["metadata"]["uniref_current_reference_missing_count"], 0)
+        self.assertEqual(readiness["metadata"]["mechanism_match_review_ready_count"], 7)
+        self.assertEqual(readiness["metadata"]["label_factory_payload_gate_count"], 21)
+        self.assertEqual(readiness["metadata"]["label_factory_payload_gate_passed_count"], 20)
+        self.assertEqual(
+            readiness["metadata"]["label_factory_payload_gate_blockers"],
+            ["applied_label_actions_ready"],
+        )
+        self.assertFalse(
+            readiness["metadata"]["label_factory_payload_gate_rerun_for_seven_row_payload"]
+        )
+        self.assertEqual(readiness["metadata"]["external_source_transfer_gate_count"], 68)
+        self.assertEqual(
+            readiness["metadata"]["external_source_transfer_gate_passed_count"], 68
+        )
+        self.assertFalse(readiness["metadata"]["ready_for_label_import"])
+        self.assertEqual(readiness["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(readiness["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(readiness["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(readiness["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(readiness["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(readiness["metadata"]["removal_allowed_set_true"])
+        self.assertEqual(readiness["metadata"]["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            readiness["metadata"]["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            readiness["metadata"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(readiness["metadata"]["external_imported_seed_fingerprint_labels"], [])
+        self.assertEqual(
+            readiness["metadata"]["remaining_import_blocker_counts"][
+                "external_seed_fingerprint_payload_adapter_for_current_682_registry_required"
+            ],
+            7,
+        )
+        self.assertEqual(
+            readiness["metadata"]["remaining_import_blocker_counts"][
+                "source_free_phosphate_or_substrate_ligand_absent_for_phosphatase_specificity"
+            ],
+            2,
+        )
+        self.assertEqual(
+            readiness["decision"]["payload_gate_readiness_status"],
+            "blocked_no_import",
+        )
+        self.assertIn(
+            "P15776 now has UniRef90/50 current-reference clearance",
+            readiness["decision"]["exact_gate_blocker"],
+        )
+        self.assertEqual(
+            readiness["policy_preregistration"]["import_authorization"],
+            "none_review_only_readiness_packet",
+        )
+
+        rows = {row["row_id"]: row for row in readiness["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P0A8Y5",
+                "uniprot:P14532",
+                "uniprot:P15776",
+                "uniprot:P39597",
+                "uniprot:P75792",
+            },
+        )
+        p15776 = rows["uniprot:P15776"]
+        self.assertEqual(
+            p15776["draft_label_payload"]["fingerprint_id_if_ever_imported"],
+            "ser_his_acid_hydrolase",
+        )
+        self.assertEqual(
+            p15776["duplicate_leakage_gate"]["uniref90_50_current_reference_status"],
+            "uniref_current_reference_screen_no_current_reference_overlap",
+        )
+        self.assertEqual(
+            p15776["duplicate_leakage_gate"]["current_countable_high_tm_hit_count"], 0
+        )
+        self.assertFalse(
+            p15776["predictive_evidence_gate"]["text_or_label_fields_used_for_score"]
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in rows.values())
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in rows.values())
+        )
+
     def test_external_deep_terminal_import_gate_readiness_stays_closed(self) -> None:
         readiness = _load_json(
             ARTIFACTS

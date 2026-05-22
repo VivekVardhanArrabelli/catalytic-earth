@@ -98,6 +98,18 @@ import.
   baselines, ESM sidecar absence, and no superiority claim. Import remains
   closed: `P15776` is review-only and is not part of the six-row no-import seed
   payload dry run.
+- `artifacts/v3_external_p15776_uniref_current_reference_screen_20260522.json`
+  closes the matching UniRef90/50 current-reference overlap check for `P15776`.
+  `UniRef90_P15776` and `UniRef50_P15776` have 0 overlaps with the 735
+  current countable reference accessions. The seven-row readiness artifact
+  `artifacts/v3_external_seed_fingerprint_seven_review_ready_import_gate_readiness_20260522.json`
+  now accounts for all seven mechanism-match review-ready rows across heme,
+  metal, and serine-hydrolase lanes: source-free geometry is above floor for
+  7/7, UniRef current-reference clearance is 7/7, import-ready and countable
+  candidates remain 0, and the exact next blocker is still the current-682
+  external seed-fingerprint payload adapter/rebaseline followed by a no-import
+  label-factory payload gate rerun. The two metal rows still carry the
+  phosphate/substrate specificity blocker.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
   was the earlier sequence-only closure packet for the five remaining frozen
   heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact
