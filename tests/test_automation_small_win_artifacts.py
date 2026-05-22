@@ -9530,6 +9530,143 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         )
         self.assertTrue(queue["next_main_loop_recommendation"]["do_not_add_broad_external_rows"])
 
+    def test_redox_third_blocker_terminal_packet_is_source_separated(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_external_redox_third_blocker_modern_baseline_benchmark_20260522.json"
+        )
+        full_current = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_p14532_full_current_countable_duplicate_screen_20260522.json"
+        )
+        queue = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_remaining_blocker_queue_post_redox_third_closure_20260522.json"
+        )
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_import_gate_readiness_check_post_redox_third_closure_20260522.json"
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(packet["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(packet["metadata"]["candidate_count"], 3)
+        self.assertTrue(packet["metadata"]["source_separation_enforced"])
+        self.assertEqual(packet["metadata"]["source_free_active_site_ready_count"], 3)
+        self.assertEqual(packet["metadata"]["target_lane_at_or_above_floor_count"], 3)
+        self.assertEqual(packet["metadata"]["full_current_countable_duplicate_clear_count"], 1)
+        self.assertEqual(packet["metadata"]["targeted_current_lane_high_tm_candidate_count"], 2)
+        self.assertEqual(packet["metadata"]["duplicate_or_leakage_rejection_count"], 2)
+        self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(packet["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(packet["metadata"]["removal_allowed_set_true"])
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 1,
+                "terminal_rejection_duplicate_or_leakage": 2,
+            },
+        )
+
+        rows = {row["row_id"]: row for row in packet["rows"]}
+        self.assertEqual(set(rows), {"uniprot:P14532", "uniprot:P33371", "uniprot:P32340"})
+        self.assertEqual(
+            rows["uniprot:P14532"]["terminal_decision"],
+            "mechanism_match_review_ready",
+        )
+        self.assertIn(
+            "full_label_factory_gate_not_run",
+            rows["uniprot:P14532"]["exact_blocker_if_not_terminal_import_ready"],
+        )
+        self.assertTrue(
+            rows["uniprot:P14532"]["duplicate_leakage_screen"][
+                "full_current_countable"
+            ]["duplicate_clear_established"]
+        )
+        self.assertEqual(
+            rows["uniprot:P33371"]["terminal_decision"],
+            "terminal_rejection_duplicate_or_leakage",
+        )
+        self.assertEqual(
+            rows["uniprot:P32340"]["terminal_decision"],
+            "terminal_rejection_duplicate_or_leakage",
+        )
+        self.assertTrue(
+            all(
+                row["catalytic_residue_metal_or_cofactor_evidence"][
+                    "text_or_label_fields_used_for_score"
+                ]
+                is False
+                for row in rows.values()
+            )
+        )
+        self.assertTrue(
+            all(
+                row["current_geometry_retrieval_score_summary"][
+                    "target_lane_at_or_above_floor"
+                ]
+                for row in rows.values()
+            )
+        )
+        self.assertEqual(
+            {
+                row_id
+                for row_id, row in rows.items()
+                if row["duplicate_leakage_screen"]["targeted_current_lane"]["status"]
+                == "current_lane_structural_duplicate_signal"
+            },
+            {"uniprot:P33371", "uniprot:P32340"},
+        )
+        self.assertTrue(full_current["metadata"]["pair_cache_complete"])
+        self.assertEqual(full_current["metadata"]["unique_query_target_pair_count"], 672)
+        self.assertLess(
+            full_current["metadata"]["max_external_vs_current_countable_tm_score"],
+            0.7,
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metadata"]["superiority_claim_permitted"])
+        self.assertEqual(benchmark["metrics"]["source_free_geometry_scored_count"], 3)
+        self.assertEqual(benchmark["metrics"]["targeted_foldseek_current_lane_high_tm_candidate_count"], 2)
+        self.assertEqual(benchmark["metrics"]["full_current_countable_duplicate_clear_candidate_count"], 1)
+        self.assertEqual(benchmark["metrics"]["deterministic_sequence_exact_duplicate_count"], 0)
+        self.assertTrue(
+            benchmark["baseline_comparisons"]["current_geometry_retrieval"][
+                "available"
+            ]
+        )
+        self.assertTrue(
+            benchmark["baseline_comparisons"]["foldseek_tm_screen"]["available"]
+        )
+        self.assertFalse(
+            benchmark["baseline_comparisons"]["esm_or_learned_embedding_sidecar"][
+                "available"
+            ]
+        )
+        self.assertEqual(
+            queue["metadata"]["source_free_geometry_or_structure_blocker_count"], 0
+        )
+        self.assertEqual(queue["metadata"]["review_ready_import_gate_blocker_count"], 5)
+        self.assertEqual(readiness["metadata"]["registry_invariant_label_count"], 682)
+        self.assertEqual(
+            readiness["metadata"]["registry_invariant_label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            readiness["metadata"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertTrue(all(readiness["invariant_checks"].values()))
+
 
 if __name__ == "__main__":
     unittest.main()

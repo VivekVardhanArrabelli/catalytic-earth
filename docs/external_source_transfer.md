@@ -19,8 +19,9 @@ import.
   later explicit Q3LXA3 cycle was the second, and the broader structural
   factory/import gate is the third. Each authorizes exactly one external
   out-of-scope import.
-- The current external deepening surface has five mechanism-match review-ready
-  rows across heme and metal lanes, but none is import-ready.
+- The current external deepening surface has six mechanism-match review-ready
+  rows across heme and metal lanes, but none is import-ready. Five were already
+  present before the redox closure:
   `artifacts/v3_external_mechanism_match_review_ready_uniref_payload_plan_20260522.json`
   screens those five rows against UniRef90/50 cluster members and all 735
   current countable reference accessions. All five have 0 current-reference
@@ -28,30 +29,40 @@ import.
   full label-factory gates, external seed-fingerprint import policy, and any
   human label action are still absent, and the metal phosphatase rows still lack
   source-free phosphate/substrate specificity.
+- `artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json`
+  closes the three source-free geometry/structure blockers from
+  `artifacts/v3_external_deep_remaining_blocker_queue_20260522.json` without
+  adding external breadth. Experimental PDB coordinates resolve source-free
+  cofactor active-site geometry for all three rows with 0 EC/name/source prose
+  counted as predictive evidence. `P33371` and `P32340` are terminal
+  `terminal_rejection_duplicate_or_leakage` rows after targeted current-FDR
+  high-TM signals. `P14532` is now `mechanism_match_review_ready` after
+  source-free heme geometry scores `0.8605` and a complete 672/672
+  current-countable screen finds no `TM >= 0.7` hit (nearest `0.6413`). The
+  companion benchmark explicitly makes no superiority claim and records ESM
+  sidecar absence. The post-closure queue has 0 source-free geometry/structure
+  blockers; import remains closed by external seed-fingerprint policy,
+  full label-factory payload gates, and human label action.
 - `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
-  closes the five remaining frozen heme-peroxidase rows from the 2026-05-21
-  mini-campaign without adding external breadth. Four rows are exact current-
-  reference sequence duplicates and terminal duplicate/leakage rejections.
-  `P14532` remains blocked with a specific missing-evidence statement:
-  source-free heme geometry and current-countable structural duplicate
-  screening are still absent. The companion benchmark makes no geometry
-  superiority claim because this packet is sequence-duplicate closure evidence.
-- `artifacts/v3_flavin_dehydrogenase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
-  closes the six remaining frozen flavin dehydrogenase/reductase rows from the
-  2026-05-21 mini-campaign without adding external breadth. Four rows are exact
+  was the earlier sequence-only closure packet for the five remaining frozen
+  heme-peroxidase rows from the 2026-05-21 mini-campaign. Four rows are exact
   current-reference sequence duplicates and terminal duplicate/leakage
-  rejections. `P33371` and `P32340` remain blocked with a specific
-  missing-evidence statement: source-free FDR active-site geometry and
-  current-countable structural duplicate screening are still absent. The
-  companion benchmark makes no geometry superiority claim because this packet
-  is sequence-duplicate closure evidence.
+  rejections. It originally left `P14532` blocked on source-free heme geometry
+  plus current-countable structural duplicate screening; the redox closure
+  packet above supersedes that blocker.
+- `artifacts/v3_flavin_dehydrogenase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`
+  was the earlier sequence-only closure packet for the six remaining frozen
+  flavin dehydrogenase/reductase rows from the 2026-05-21 mini-campaign. Four
+  rows are exact current-reference sequence duplicates and terminal
+  duplicate/leakage rejections. It originally left `P33371` and `P32340`
+  blocked on source-free FDR geometry plus structural duplicate screening; the
+  redox closure packet above supersedes those blockers.
 - `artifacts/v3_external_deep_remaining_blocker_queue_20260522.json` is the
-  non-countable follow-up queue for the current external deepening surface. It
-  keeps five mechanism-match rows blocked on explicit label-factory payload
-  policy/gates and keeps `P14532`, `P33371`, and `P32340` blocked on
-  coordinate materialization, source-free geometry, plus current-countable
-  structural duplicate screening. It adds 0 rows, imports 0 labels, and
-  excludes EC/name/source prose from predictive evidence.
+  predecessor non-countable follow-up queue for the redox closure above. It
+  kept five mechanism-match rows behind label-factory payload policy/gates and
+  kept `P14532`, `P33371`, and `P32340` behind coordinate/materialized
+  source-free geometry plus duplicate-screen blockers; the post-redox queue now
+  retains only the five review-ready import-gate blockers.
 - The first read-only external sample has 30 candidates across six query lanes,
   0 fetch failures, and a clean non-countable guardrail audit.
 - The external candidate manifest attaches OOD controls, heuristic-control

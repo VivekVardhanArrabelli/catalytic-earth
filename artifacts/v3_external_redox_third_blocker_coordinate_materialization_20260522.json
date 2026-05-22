@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "artifact_id": "v3_external_redox_third_blocker_coordinate_materialization_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 3,
+    "coordinate_selection_frozen_before_outcome_scoring": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T05:02:24Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "materialized_coordinate_count": 3,
+    "method": "existing_redox_blocker_rows_pdb_coordinate_materialization",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_blocker_queue_artifact": "artifacts/v3_external_deep_remaining_blocker_queue_20260522.json"
+  },
+  "rows": [
+    {
+      "accession": "P14532",
+      "coordinate_path": "artifacts/v3_heme_peroxidase_third_blocker_pdb_coordinates_20260522/pdb_1EB7.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "fetch_status": "materialized",
+      "pdb_cross_references": [
+        "1EB7",
+        "2VHD"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P14532",
+      "selected_before_outcome_scoring": true,
+      "selection_rule": "first_frozen_pdb_cross_reference_with_expected_target_cofactor_ligand_present_before_geometry_or_foldseek_outcome_scoring",
+      "source_free_extractor": "heme",
+      "structure_cofactor_families": [
+        "heme",
+        "metal_ion"
+      ],
+      "structure_id": "1EB7",
+      "structure_ligand_codes": [
+        "CA",
+        "HEC"
+      ],
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase"
+    },
+    {
+      "accession": "P33371",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_third_blocker_pdb_coordinates_20260522/pdb_3W9Z.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "fetch_status": "materialized",
+      "pdb_cross_references": [
+        "3W9Z",
+        "4BF9",
+        "4BFA",
+        "4YCO",
+        "4YCP"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P33371",
+      "selected_before_outcome_scoring": true,
+      "selection_rule": "first_frozen_pdb_cross_reference_with_expected_target_cofactor_ligand_present_before_geometry_or_foldseek_outcome_scoring",
+      "source_free_extractor": "flavin",
+      "structure_cofactor_families": [
+        "flavin"
+      ],
+      "structure_id": "3W9Z",
+      "structure_ligand_codes": [
+        "FMN"
+      ],
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accession": "P32340",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_third_blocker_pdb_coordinates_20260522/pdb_4G6G.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "fetch_status": "materialized",
+      "pdb_cross_references": [
+        "4G6G",
+        "4G6H",
+        "4G73",
+        "4G74",
+        "4G9K",
+        "4GAP",
+        "4GAV",
+        "5YJW"
+      ],
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P32340",
+      "selected_before_outcome_scoring": true,
+      "selection_rule": "first_frozen_pdb_cross_reference_with_expected_target_cofactor_ligand_present_before_geometry_or_foldseek_outcome_scoring",
+      "source_free_extractor": "flavin",
+      "structure_cofactor_families": [
+        "flavin",
+        "metal_ion"
+      ],
+      "structure_id": "4G6G",
+      "structure_ligand_codes": [
+        "FAD",
+        "MG",
+        "TRT"
+      ],
+      "structure_source": "pdb",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+    }
+  ],
+  "warnings": [
+    "PDB coordinates are used as source-free coordinate evidence; EC/name/UniProt prose is excluded from predictive scoring."
+  ]
+}

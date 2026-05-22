@@ -1,0 +1,90 @@
+{
+  "metadata": {
+    "artifact_id": "v3_external_redox_third_blocker_deep_terminal_decision_packet_after_source_free_geometry_and_targeted_lane_screen_20260522",
+    "artifact_status": "superseded_by_full_current_countable_screen_packet_before_commit",
+    "superseded_by": "artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json",
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-22T05:07:34Z",
+    "updated_at": "2026-05-22T05:13:08Z",
+    "method": "compatibility_summary_for_initial_targeted_lane_screen_packet_after_full_current_screen_completed",
+    "review_only": true,
+    "new_external_rows_frozen": 0,
+    "candidate_count": 3,
+    "source_separation_enforced": true,
+    "source_free_active_site_ready_count": 3,
+    "target_lane_at_or_above_floor_count": 3,
+    "targeted_current_lane_high_tm_candidate_count": 2,
+    "full_current_countable_duplicate_clear_count": 1,
+    "duplicate_or_leakage_rejection_count": 2,
+    "exact_blocker_candidate_count": 0,
+    "mechanism_match_review_ready_count": 1,
+    "terminal_decision_counts": {
+      "mechanism_match_review_ready": 1,
+      "terminal_rejection_duplicate_or_leakage": 2
+    },
+    "ready_for_label_import": false,
+    "countable_label_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "note": "The final decision source of truth is the superseding full-current-screen packet; this file is retained only to avoid losing the transient targeted-lane packet path."
+  },
+  "rows": [
+    {
+      "row_id": "uniprot:P14532",
+      "accession": "P14532",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "source_free_active_site_status": null,
+      "target_lane_score": 0.8605,
+      "target_lane_rank": 1,
+      "target_lane_at_or_above_floor": true,
+      "targeted_current_lane_status": "no_current_lane_structural_duplicate_signal",
+      "full_current_countable_status": "no_current_countable_structural_duplicate_signal",
+      "duplicate_clear_established": true,
+      "terminal_decision": "mechanism_match_review_ready",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "exact_blocker_if_not_terminal_import_ready": "review_ready_only_not_import_ready_full_label_factory_gate_not_run_external_seed_fingerprint_policy_absent_and_human_label_action_not_requested"
+    },
+    {
+      "row_id": "uniprot:P33371",
+      "accession": "P33371",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "source_free_active_site_status": null,
+      "target_lane_score": 0.8976,
+      "target_lane_rank": 1,
+      "target_lane_at_or_above_floor": true,
+      "targeted_current_lane_status": "current_lane_structural_duplicate_signal",
+      "full_current_countable_status": "not_required_after_targeted_current_lane_duplicate_signal",
+      "duplicate_clear_established": false,
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "exact_blocker_if_not_terminal_import_ready": null
+    },
+    {
+      "row_id": "uniprot:P32340",
+      "accession": "P32340",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "source_free_active_site_status": null,
+      "target_lane_score": 0.8994,
+      "target_lane_rank": 1,
+      "target_lane_at_or_above_floor": true,
+      "targeted_current_lane_status": "current_lane_structural_duplicate_signal",
+      "full_current_countable_status": "not_required_after_targeted_current_lane_duplicate_signal",
+      "duplicate_clear_established": false,
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "exact_blocker_if_not_terminal_import_ready": null
+    }
+  ],
+  "warnings": [
+    "mechanism_match_review_ready is review-ready only and does not authorize label import",
+    "Foldseek/TM evidence is used only as duplicate/leakage evidence, not positive mechanism evidence",
+    "EC/keyword/protein-name/source prose remains review-only context and is not counted as predictive evidence",
+    "Use the superseded_by artifact for terminal decisions and benchmark references."
+  ]
+}

@@ -1,0 +1,435 @@
+{
+  "chunks": [
+    {
+      "chunk_label": "chunk_000",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 64,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_001",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 54,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_002",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 44,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_003",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 52,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_004",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 60,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_005",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 50,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_006",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 58,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_007",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 50,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_008",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 58,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_009",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 82,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_010",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 55,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_011",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 85,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_012",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 47,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_013",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 69,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_014",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 41,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_015",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 94,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_016",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 72,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_017",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 71,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_018",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 61,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_019",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 55,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_020",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 93,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_021",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 56,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_022",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 70,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_023",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 83,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_024",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 84,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_025",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 58,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_026",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 70,
+      "target_count": 24
+    },
+    {
+      "chunk_label": "chunk_027",
+      "foldseek_error": null,
+      "foldseek_run_status": "completed",
+      "pair_row_count": 95,
+      "target_count": 24
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_heme_peroxidase_p14532_full_current_countable_duplicate_screen_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 1,
+    "coordinate_materialization_artifact": "artifacts/v3_external_redox_third_blocker_coordinate_materialization_20260522.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T05:04:38Z",
+    "curated_label_registry_edited": false,
+    "current_countable_coordinate_dir": "artifacts/v3_foldseek_coordinates_1000",
+    "current_countable_structural_screen_status_counts": {
+      "no_current_countable_structural_duplicate_signal": 1
+    },
+    "current_countable_target_count": 672,
+    "expected_query_target_pair_count": 672,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_available": true,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_chunk_attempt_count": 28,
+    "foldseek_chunk_run_status_counts": {
+      "completed": 28
+    },
+    "foldseek_commands": [
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_000-03b43ed6620e7062/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_000-03b43ed6620e7062/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_000-03b43ed6620e7062/p14532_full_current_chunk_000.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_000-03b43ed6620e7062/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_001-010b9f3415851b74/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_001-010b9f3415851b74/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_001-010b9f3415851b74/p14532_full_current_chunk_001.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_001-010b9f3415851b74/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_002-596d6fa1f63a4c7d/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_002-596d6fa1f63a4c7d/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_002-596d6fa1f63a4c7d/p14532_full_current_chunk_002.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_002-596d6fa1f63a4c7d/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_003-958b0622e5c79d8a/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_003-958b0622e5c79d8a/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_003-958b0622e5c79d8a/p14532_full_current_chunk_003.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_003-958b0622e5c79d8a/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_004-dad936c575306516/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_004-dad936c575306516/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_004-dad936c575306516/p14532_full_current_chunk_004.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_004-dad936c575306516/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_005-a1056415998fcf58/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_005-a1056415998fcf58/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_005-a1056415998fcf58/p14532_full_current_chunk_005.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_005-a1056415998fcf58/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_006-d2e15cd0697186cd/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_006-d2e15cd0697186cd/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_006-d2e15cd0697186cd/p14532_full_current_chunk_006.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_006-d2e15cd0697186cd/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_007-b98af8b7c855568e/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_007-b98af8b7c855568e/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_007-b98af8b7c855568e/p14532_full_current_chunk_007.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_007-b98af8b7c855568e/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_008-00baf11d24224f06/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_008-00baf11d24224f06/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_008-00baf11d24224f06/p14532_full_current_chunk_008.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_008-00baf11d24224f06/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_009-fa6a189ec225913d/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_009-fa6a189ec225913d/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_009-fa6a189ec225913d/p14532_full_current_chunk_009.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_009-fa6a189ec225913d/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_010-ebaa4618f13ac2db/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_010-ebaa4618f13ac2db/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_010-ebaa4618f13ac2db/p14532_full_current_chunk_010.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_010-ebaa4618f13ac2db/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_011-54f3a2de44f9fc17/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_011-54f3a2de44f9fc17/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_011-54f3a2de44f9fc17/p14532_full_current_chunk_011.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_011-54f3a2de44f9fc17/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_012-d1b13c84ed32a457/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_012-d1b13c84ed32a457/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_012-d1b13c84ed32a457/p14532_full_current_chunk_012.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_012-d1b13c84ed32a457/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_013-1848475149cfeecb/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_013-1848475149cfeecb/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_013-1848475149cfeecb/p14532_full_current_chunk_013.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_013-1848475149cfeecb/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_014-2c9f0a3f9b50333f/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_014-2c9f0a3f9b50333f/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_014-2c9f0a3f9b50333f/p14532_full_current_chunk_014.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_014-2c9f0a3f9b50333f/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_015-51f614490d48da78/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_015-51f614490d48da78/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_015-51f614490d48da78/p14532_full_current_chunk_015.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_015-51f614490d48da78/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_016-c708b4c840889281/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_016-c708b4c840889281/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_016-c708b4c840889281/p14532_full_current_chunk_016.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_016-c708b4c840889281/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_017-1977ad4ecead46e1/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_017-1977ad4ecead46e1/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_017-1977ad4ecead46e1/p14532_full_current_chunk_017.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_017-1977ad4ecead46e1/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_018-b0af94df109727ed/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_018-b0af94df109727ed/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_018-b0af94df109727ed/p14532_full_current_chunk_018.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_018-b0af94df109727ed/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_019-48d1a95882122632/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_019-48d1a95882122632/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_019-48d1a95882122632/p14532_full_current_chunk_019.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_019-48d1a95882122632/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_020-8f7b76b2f7cf2f30/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_020-8f7b76b2f7cf2f30/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_020-8f7b76b2f7cf2f30/p14532_full_current_chunk_020.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_020-8f7b76b2f7cf2f30/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_021-09f5af806e052da9/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_021-09f5af806e052da9/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_021-09f5af806e052da9/p14532_full_current_chunk_021.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_021-09f5af806e052da9/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_022-7e03f2ea8fe2abdf/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_022-7e03f2ea8fe2abdf/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_022-7e03f2ea8fe2abdf/p14532_full_current_chunk_022.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_022-7e03f2ea8fe2abdf/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_023-50f06af2ea6911ac/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_023-50f06af2ea6911ac/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_023-50f06af2ea6911ac/p14532_full_current_chunk_023.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_023-50f06af2ea6911ac/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_024-02628e6516458bca/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_024-02628e6516458bca/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_024-02628e6516458bca/p14532_full_current_chunk_024.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_024-02628e6516458bca/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_025-0c89287a89a5ce25/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_025-0c89287a89a5ce25/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_025-0c89287a89a5ce25/p14532_full_current_chunk_025.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_025-0c89287a89a5ce25/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_026-b5b74e8746990291/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_026-b5b74e8746990291/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_026-b5b74e8746990291/p14532_full_current_chunk_026.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_026-b5b74e8746990291/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+      "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-p14532-full-current-chunk_027-02728396a782b638/queries /private/tmp/catalytic-earth-p14532-full-current-chunk_027-02728396a782b638/targets /private/tmp/catalytic-earth-p14532-full-current-chunk_027-02728396a782b638/p14532_full_current_chunk_027.tsv /private/tmp/catalytic-earth-p14532-full-current-chunk_027-02728396a782b638/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1"
+    ],
+    "foldseek_coordinate_readiness_artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "geometry_scores_artifact": "artifacts/v3_external_redox_third_blocker_source_free_geometry_scores_20260522.json",
+    "high_tm_candidate_count": 0,
+    "import_ready_candidate_count": 0,
+    "initial_target_chunk_size": 24,
+    "max_external_vs_current_countable_tm_score": 0.6413,
+    "method": "p14532_full_current_countable_foldseek_duplicate_screen_after_source_free_heme_geometry",
+    "new_external_rows_frozen": 0,
+    "pair_cache_complete": true,
+    "query_target_pair_coverage": 1.0,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_separation_guardrail": "Foldseek/TM evidence is duplicate/leakage gate evidence only; it is not counted as positive mechanism evidence.",
+    "targeted_current_lane_screen_artifact": "artifacts/v3_external_redox_third_blocker_targeted_current_lane_duplicate_screen_20260522.json",
+    "tm_score_threshold": 0.7,
+    "unique_query_target_pair_count": 672
+  },
+  "rows": [
+    {
+      "accession": "P14532",
+      "coordinate_path": "artifacts/v3_heme_peroxidase_third_blocker_pdb_coordinates_20260522/pdb_1EB7.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "current_countable_high_tm_hit_count": 0,
+      "current_countable_hit_count": 672,
+      "current_countable_structural_screen_status": "no_current_countable_structural_duplicate_signal",
+      "current_countable_target_count": 672,
+      "duplicate_clear_established": true,
+      "duplicate_leakage_evidence_role": "full_current_countable_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 672,
+      "nearest_current_countable_hit": {
+        "alntmscore": 0.7696,
+        "chunk_label": "chunk_012",
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+        "current_entry_ids": [
+          "m_csa:246"
+        ],
+        "current_label_types": [
+          "out_of_scope"
+        ],
+        "current_selected_structure_id": "1IR3",
+        "current_selected_structure_key": "pdb:1IR3",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [],
+        "example_current_entry_id": "m_csa:246",
+        "max_pair_tm_score": 0.6413,
+        "qtmscore": 0.01879,
+        "raw_query_name": "pdb_1EB7",
+        "raw_target_name": "pdb_1IR3_B",
+        "ttmscore": 0.6413
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P14532",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "tm_score_threshold": 0.7,
+      "top_current_countable_hits": [
+        {
+          "alntmscore": 0.7696,
+          "chunk_label": "chunk_012",
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IR3.cif",
+          "current_entry_ids": [
+            "m_csa:246"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "1IR3",
+          "current_selected_structure_key": "pdb:1IR3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:246",
+          "max_pair_tm_score": 0.6413,
+          "qtmscore": 0.01879,
+          "raw_query_name": "pdb_1EB7",
+          "raw_target_name": "pdb_1IR3_B",
+          "ttmscore": 0.6413
+        },
+        {
+          "alntmscore": 0.6053,
+          "chunk_label": "chunk_006",
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1DII.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DII.cif",
+          "current_entry_ids": [
+            "m_csa:141"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1DII",
+          "current_selected_structure_key": "pdb:1DII",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:141",
+          "max_pair_tm_score": 0.5813,
+          "qtmscore": 0.1721,
+          "raw_query_name": "pdb_1EB7",
+          "raw_target_name": "pdb_1DII_D",
+          "ttmscore": 0.5813
+        },
+        {
+          "alntmscore": 0.5359,
+          "chunk_label": "chunk_008",
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EHK.cif",
+          "current_entry_ids": [
+            "m_csa:735"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1EHK",
+          "current_selected_structure_key": "pdb:1EHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:735",
+          "max_pair_tm_score": 0.5054,
+          "qtmscore": 0.07158,
+          "raw_query_name": "pdb_1EB7",
+          "raw_target_name": "pdb_1EHK_C",
+          "ttmscore": 0.5054
+        },
+        {
+          "alntmscore": 0.5263,
+          "chunk_label": "chunk_022",
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V54.cif",
+          "current_entry_ids": [
+            "m_csa:124"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1V54",
+          "current_selected_structure_key": "pdb:1V54",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "heme_peroxidase_oxidase"
+          ],
+          "example_current_entry_id": "m_csa:124",
+          "max_pair_tm_score": 0.504,
+          "qtmscore": 0.0984,
+          "raw_query_name": "pdb_1EB7",
+          "raw_target_name": "pdb_1V54_M",
+          "ttmscore": 0.504
+        },
+        {
+          "alntmscore": 0.5827,
+          "chunk_label": "chunk_025",
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PHK.cif",
+          "current_entry_ids": [
+            "m_csa:35"
+          ],
+          "current_label_types": [
+            "out_of_scope"
+          ],
+          "current_selected_structure_id": "2PHK",
+          "current_selected_structure_key": "pdb:2PHK",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [],
+          "example_current_entry_id": "m_csa:35",
+          "max_pair_tm_score": 0.4995,
+          "qtmscore": 0.02162,
+          "raw_query_name": "pdb_1EB7",
+          "raw_target_name": "pdb_2PHK_B",
+          "ttmscore": 0.4995
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "Full current-countable Foldseek/TM evidence is a duplicate/leakage screen only and does not validate enzyme function or authorize import."
+  ]
+}

@@ -180,30 +180,42 @@ countable reference accessions, and all five remain non-countable because full
 label-factory gates, explicit external seed-fingerprint policy, and human label
 action are absent. This removes a bounded current-reference cluster-overlap
 blocker but does not create a label-import path or superiority claim.
-The same run also deepened the five remaining frozen heme rows in
+The same run also produced the earlier sequence-only packet for the five
+remaining frozen heme rows in
 `artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`.
 Four are exact current-reference sequence duplicates and terminal duplicate/
-leakage rejections; `P14532` is a precise
+leakage rejections; `P14532` was a precise
 `needs_new_extractor_or_structure` blocker for source-free heme geometry plus
 current-countable structural duplicate screening. The companion modern-baseline
 artifact records that sequence, not geometry, closed the four duplicates and
 that no ESM/Foldseek sidecar is attached for the remaining blocker.
-The same closure pass deepened the six remaining frozen flavin
+The same closure pass produced the earlier sequence-only packet for the six
+remaining frozen flavin
 dehydrogenase/reductase rows in
 `artifacts/v3_flavin_dehydrogenase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json`.
 Four are exact current-reference sequence duplicates and terminal duplicate/
-leakage rejections; `P33371` and `P32340` are precise
+leakage rejections; `P33371` and `P32340` were precise
 `needs_new_extractor_or_structure` blockers for source-free FDR active-site
 geometry plus current-countable structural duplicate screening. The companion
 modern-baseline artifact records that sequence, not geometry, closed the four
 duplicates and that no ESM/Foldseek sidecar is attached for the remaining
 blockers.
 `artifacts/v3_external_deep_remaining_blocker_queue_20260522.json` turns the
-same outputs into a review-only next-work queue: five mechanism-match rows are
-blocked on label-factory payload policy/gates, while `P14532`, `P33371`, and
-`P32340` are blocked on coordinate materialization, source-free geometry, plus
-current-countable structural duplicate screening. It does not add external
-rows, import labels, or count any candidate.
+same outputs into the predecessor review-only next-work queue: five
+mechanism-match rows were blocked on label-factory payload policy/gates, while
+`P14532`, `P33371`, and `P32340` were blocked on coordinate materialization,
+source-free geometry, plus current-countable structural duplicate screening.
+The 2026-05-22T05:03:37Z recovery run closes those three source-free
+geometry/structure blockers without adding external breadth. Experimental PDB
+coordinates (`1EB7`, `3W9Z`, and `4G6G`) resolve source-free heme/flavin
+active-site geometry for all three rows, with EC/name/UniProt prose excluded
+from predictive scoring. `P33371` and `P32340` are terminal duplicate/leakage
+rejections after targeted current-FDR high-TM hits. `P14532` is now
+`mechanism_match_review_ready` after source-free heme geometry score `0.8605`
+and a complete 672/672 current-countable Foldseek/TM screen with no
+`TM >= 0.7` hit. The post-closure blocker queue has 0 source-free
+geometry/structure blockers; remaining external deep blockers are import-gate
+policy/payload blockers for mechanism-match review-ready rows only.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

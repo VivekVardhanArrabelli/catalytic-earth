@@ -50,6 +50,71 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-22T04:01:49Z main-loop run, the automation closed the
+remaining queued redox source-free geometry/structure blockers without adding
+external mini-campaign breadth. `src/catalytic_earth/redox_active_site.py`
+adds coordinate-only heme/flavin active-site extraction, with focused unit
+coverage in `tests/test_redox_active_site.py`. The new extractor uses only
+mmCIF atom coordinates, residue/ligand comp ids, atom names, and distances;
+EC, protein names, UniProt prose, and curated labels are excluded from
+predictive scoring.
+
+`artifacts/v3_external_redox_third_blocker_coordinate_materialization_20260522.json`
+materializes the frozen PDB structures `1EB7` for `P14532`, `3W9Z` for
+`P33371`, and `4G6G` for `P32340` before outcome scoring. The source-free
+geometry artifact
+`artifacts/v3_external_redox_third_blocker_source_free_geometry_scores_20260522.json`
+resolves all three cofactor active-site packets and top-ranks the intended
+current fingerprint lanes above the `0.4115` floor: `P14532` to
+`heme_peroxidase_oxidase` at `0.8605`, `P33371` to
+`flavin_dehydrogenase_reductase` at `0.8976`, and `P32340` to
+`flavin_dehydrogenase_reductase` at `0.8994`.
+
+The targeted current-lane Foldseek/TM screen
+`artifacts/v3_external_redox_third_blocker_targeted_current_lane_duplicate_screen_20260522.json`
+finds high-TM current-FDR duplicate/leakage signals for `P33371` (`TM 0.7573`)
+and `P32340` (`TM 0.7559`), converting both to terminal
+`terminal_rejection_duplicate_or_leakage`. `P14532` has no targeted heme hit
+above `0.7`, so
+`artifacts/v3_heme_peroxidase_p14532_full_current_countable_duplicate_screen_20260522.json`
+runs the full 672-target current-countable screen and completes 672/672 pairs
+with no high-TM hit; nearest current-countable TM is `0.6413`. The terminal
+packet
+`artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json`
+therefore marks `P14532` `mechanism_match_review_ready` for review only, with
+0 import-ready rows and 0 countable candidates. The companion benchmark records
+EC/keyword routing and sequence k-mer routing as baselines, explicitly records
+ESM sidecar absence, and makes no superiority claim.
+
+`artifacts/v3_external_deep_remaining_blocker_queue_post_redox_third_closure_20260522.json`
+now has 0 source-free geometry/structure blockers. The remaining external deep
+blockers are the five earlier mechanism-match review-ready rows blocked on
+external seed-fingerprint policy, full label-factory payload gates, and human
+label action. The rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_redox_third_closure_20260522.json`
+indexes 82 deep-packet rows: 73 duplicate/leakage terminal rejections, 6
+mechanism-match review-ready rows, 3 insufficient-evidence terminal
+rejections, 0 exact blockers, 0 import-ready rows, and 0 countable candidates.
+The import-readiness check preserves the 682-label registry invariant, 212
+`seed_fingerprint`, 470 `out_of_scope`, 8 production fingerprints, and the
+only external imports remain `uniprot:P06744`, `uniprot:P78549`, and
+`uniprot:Q3LXA3`.
+
+Evidence-based confidence call: confidence is high that the redox geometry
+blockers are closed because all three rows have PDB coordinate sidecars,
+source-free cofactor active-site extraction, and target-lane scores above the
+floor with text/source fields excluded. Confidence is high that `P33371` and
+`P32340` are terminal duplicate/leakage rejections because the targeted
+current-FDR screen completed all 98 query-target pairs and both have
+`TM >= 0.7` current-FDR hits. Confidence is high that `P14532` is
+mechanism-match review-ready, not import-ready, because source-free heme
+geometry is above floor and the full current-countable screen completed all
+672 pairs with no `TM >= 0.7` hit, while external seed-fingerprint policy and
+full label-factory gates are still absent. Confidence is high that no label
+import, registry edit, fingerprint edit, threshold change, artifact
+upload/removal, Git-LFS migration, history rewrite, or `removal_allowed=true`
+occurred.
+
 As of the 2026-05-22T03:17Z main-loop run, the automation kept the main work
 on existing external decisions while doing only a concise ePK lane synthesis.
 `artifacts/v3_epk_post_late_decision_synthesis_20260522.json` integrates the

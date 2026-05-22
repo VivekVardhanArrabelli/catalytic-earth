@@ -1,0 +1,199 @@
+{
+  "baseline_comparisons": {
+    "current_geometry_retrieval": {
+      "available": true,
+      "source_free_geometry_scored_count": 3,
+      "target_lane_at_or_above_floor_count": 3,
+      "top1_fingerprint_counts": {
+        "flavin_dehydrogenase_reductase": 2,
+        "heme_peroxidase_oxidase": 1
+      }
+    },
+    "deterministic_sequence_kmer_nearest_neighbor": {
+      "available": true,
+      "exact_current_reference_duplicate_count": 0,
+      "near_neighbor_alert_count": 0
+    },
+    "ec_keyword_routing": {
+      "available": true,
+      "import_claim_permitted": false,
+      "predictive_evidence": false,
+      "routes_target_lane_count": 3
+    },
+    "esm_or_learned_embedding_sidecar": {
+      "available": false,
+      "status": "not_available_for_this_deep_packet"
+    },
+    "foldseek_tm_screen": {
+      "available": true,
+      "duplicate_leakage_evidence_only": true,
+      "full_current_countable_duplicate_clear_candidate_count": 1,
+      "full_current_countable_screened_candidate_count": 1,
+      "targeted_current_lane_high_tm_candidate_count": 2
+    }
+  },
+  "caveats": [
+    "EC/keyword/protein-name context is review-only and not counted as predictive evidence.",
+    "Geometry adds source-free cofactor active-site evidence beyond EC/sequence on these frozen rows, but this artifact makes no general superiority claim.",
+    "Foldseek/TM evidence is duplicate/leakage evidence only and not positive mechanism evidence.",
+    "No ESM/Foldseek learned-embedding sidecar is available; ESM superiority is not evaluated."
+  ],
+  "metadata": {
+    "artifact_id": "v3_external_redox_third_blocker_modern_baseline_benchmark_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 3,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T05:10:15Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "redox_third_blocker_modern_baseline_comparison_after_source_free_geometry_and_duplicate_screens",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "superiority_claim_permitted": false,
+    "terminal_packet_artifact": "artifacts/v3_external_redox_third_blocker_terminal_decision_packet_after_source_free_geometry_and_screens_20260522.json"
+  },
+  "metrics": {
+    "candidate_count": 3,
+    "deterministic_sequence_exact_duplicate_count": 0,
+    "full_current_countable_duplicate_clear_candidate_count": 1,
+    "full_current_countable_screened_candidate_count": 1,
+    "source_free_geometry_scored_count": 3,
+    "source_free_geometry_target_lane_at_or_above_floor_count": 3,
+    "superiority_claim": false,
+    "targeted_foldseek_current_lane_high_tm_candidate_count": 2,
+    "terminal_decision_counts": {
+      "mechanism_match_review_ready": 1,
+      "terminal_rejection_duplicate_or_leakage": 2
+    }
+  },
+  "rows": [
+    {
+      "accession": "P14532",
+      "deterministic_sequence_kmer_nearest_neighbor": {
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0035,
+        "exact_current_reference_duplicate": false,
+        "nearest_current_reference_id": "ref__P0A794",
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing": {
+        "import_claim": false,
+        "predictive_evidence": false,
+        "primary_ec": null,
+        "status": "routes_to_target_lane_review_context_only",
+        "target_current_fingerprint_lane": "heme_peroxidase_oxidase"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "status": "not_available_for_this_deep_packet"
+      },
+      "foldseek_sidecar": {
+        "available": true,
+        "duplicate_clear_claim_permitted": true,
+        "duplicate_leakage_evidence_only": true,
+        "full_current_countable_status": "no_current_countable_structural_duplicate_signal",
+        "targeted_current_lane_status": "no_current_lane_structural_duplicate_signal"
+      },
+      "geometry_triage": {
+        "abstain_floor": 0.4115,
+        "source_free_active_site_status": "source_free_heme_active_site_resolved",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.8605,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.8605
+      },
+      "row_id": "uniprot:P14532",
+      "superiority_claim_supported": false,
+      "terminal_decision": "mechanism_match_review_ready"
+    },
+    {
+      "accession": "P33371",
+      "deterministic_sequence_kmer_nearest_neighbor": {
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0043,
+        "exact_current_reference_duplicate": false,
+        "nearest_current_reference_id": "ref__P22887",
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing": {
+        "import_claim": false,
+        "predictive_evidence": false,
+        "primary_ec": null,
+        "status": "routes_to_target_lane_review_context_only",
+        "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "status": "not_available_for_this_deep_packet"
+      },
+      "foldseek_sidecar": {
+        "available": true,
+        "duplicate_clear_claim_permitted": false,
+        "duplicate_leakage_evidence_only": true,
+        "full_current_countable_status": "not_required_after_targeted_current_lane_duplicate_signal",
+        "targeted_current_lane_status": "current_lane_structural_duplicate_signal"
+      },
+      "geometry_triage": {
+        "abstain_floor": 0.4115,
+        "source_free_active_site_status": "source_free_flavin_redox_site_resolved",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.8976,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.8976
+      },
+      "row_id": "uniprot:P33371",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    },
+    {
+      "accession": "P32340",
+      "deterministic_sequence_kmer_nearest_neighbor": {
+        "deterministic_5mer_jaccard_to_nearest_current_reference": 0.0034,
+        "exact_current_reference_duplicate": false,
+        "nearest_current_reference_id": "ref__Q9X9P9",
+        "sequence_baseline_signal": "no_sequence_neighbor_alert"
+      },
+      "ec_keyword_routing": {
+        "import_claim": false,
+        "predictive_evidence": false,
+        "primary_ec": null,
+        "status": "routes_to_target_lane_review_context_only",
+        "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase"
+      },
+      "esm_sidecar": {
+        "available": false,
+        "status": "not_available_for_this_deep_packet"
+      },
+      "foldseek_sidecar": {
+        "available": true,
+        "duplicate_clear_claim_permitted": false,
+        "duplicate_leakage_evidence_only": true,
+        "full_current_countable_status": "not_required_after_targeted_current_lane_duplicate_signal",
+        "targeted_current_lane_status": "current_lane_structural_duplicate_signal"
+      },
+      "geometry_triage": {
+        "abstain_floor": 0.4115,
+        "source_free_active_site_status": "source_free_flavin_redox_site_resolved",
+        "target_lane_at_or_above_floor": true,
+        "target_lane_rank": 1,
+        "target_lane_score": 0.8994,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.8994
+      },
+      "row_id": "uniprot:P32340",
+      "superiority_claim_supported": false,
+      "terminal_decision": "terminal_rejection_duplicate_or_leakage"
+    }
+  ],
+  "task_definition": {
+    "frozen_rows": [
+      "uniprot:P14532",
+      "uniprot:P33371",
+      "uniprot:P32340"
+    ],
+    "predictive_evidence_policy": "source-free coordinate active-site geometry only; EC/name/source prose excluded",
+    "target": "resolve exact source-free geometry/structure blockers from the existing external deep blocker queue"
+  }
+}
