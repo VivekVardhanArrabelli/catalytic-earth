@@ -11684,6 +11684,395 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertTrue(row["phosphate_pocket_proxy"]["proxy_detected"])
             self.assertEqual(row["phosphate_pocket_proxy"]["radius_angstrom"], 6.0)
 
+    def test_mcsa_pymol_review_queue_is_review_only_and_fail_closed(self) -> None:
+        queue = _load_json(
+            ARTIFACTS / "v3_mcsa_pymol_expert_review_queue_1025.json"
+        )
+        dry_run = _load_json(
+            ARTIFACTS
+            / "v3_expert_review_decision_batch_pymol_manual_dry_run_20260522.json"
+        )
+        validation = _load_json(
+            ARTIFACTS
+            / "v3_expert_review_decision_batch_pymol_manual_dry_run_validation_20260522.json"
+        )
+
+        metadata = queue["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["method"], "mcsa_pymol_expert_review_queue")
+        self.assertEqual(metadata["total_review_rows_scanned"], 321)
+        self.assertEqual(metadata["pymol_ready_count"], 1)
+        self.assertEqual(metadata["ready_entry_ids"], ["m_csa:939"])
+        self.assertEqual(metadata["rows_with_structure_paths"], 1)
+        self.assertEqual(metadata["missing_field_counts"]["missing_structure_path"], 318)
+        self.assertEqual(queue["pml_script_manifest"]["metadata"]["script_count"], 1)
+
+        ready_rows = [row for row in queue["rows"] if row["pymol_ready"]]
+        self.assertEqual(len(ready_rows), 1)
+        ready = ready_rows[0]
+        self.assertEqual(ready["entry_id"], "m_csa:939")
+        self.assertTrue(ready["structure_path"].endswith("pdb_3CMM.cif"))
+        self.assertEqual(ready["focus_atom_pair"]["left"]["atom_name"], "CA")
+        self.assertEqual(ready["focus_atom_pair"]["right"]["atom_name"], "CA")
+        self.assertFalse(ready["countable_import_ready"])
+        self.assertIn("label_factory_gates_not_run", ready["countable_import_blockers"])
+
+        structure_text = (ROOT / ready["structure_path"]).read_text(encoding="utf-8")
+        for side in ("left", "right"):
+            atom = ready["focus_atom_pair"][side]
+            expected = (
+                f" {atom['residue_name']} {atom['chain_name']} 1 "
+                f"{atom['residue_number']} "
+            )
+            self.assertIn(expected, structure_text)
+            self.assertIn(f" {atom['residue_name']} {atom['chain_name']} CA ", structure_text)
+
+        blocked = [row for row in queue["rows"] if not row["pymol_ready"]]
+        self.assertTrue(blocked)
+        self.assertTrue(
+            all(
+                row["missing_fields"]
+                for row in blocked
+            )
+        )
+
+        self.assertTrue(dry_run["metadata"]["review_only"])
+        self.assertTrue(dry_run["metadata"]["dry_run"])
+        self.assertEqual(dry_run["metadata"]["countable_import_ready_count"], 0)
+        self.assertEqual(dry_run["review_items"][0]["decision"], "skipped")
+        self.assertFalse(dry_run["review_items"][0]["countable_import_ready"])
+        self.assertTrue(validation["metadata"]["valid"])
+        self.assertEqual(validation["metadata"]["countable_import_ready_count"], 0)
+
+    def test_glycoside_hydrolase_post_pymol_packet_stays_blocked(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        control = packet["control_surface"]
+        baseline = packet["modern_baseline_caveats"]
+        row = packet["positive_like_rows"][0]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            decision["family_status"], "blocked_with_exact_missing_evidence"
+        )
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "source-free acidic-dyad local geometry policy frozen before scoring",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertEqual(control["frozen_row_count"], 15)
+        self.assertEqual(control["source_free_glycoside_axis_ready_count"], 0)
+        self.assertEqual(control["terminal_decision_counts"]["needs_review"], 1)
+        self.assertFalse(baseline["ec_keyword_predictive_use_allowed"])
+        self.assertFalse(baseline["geometry_superiority_claim"])
+        self.assertEqual(baseline["mmseqs_current_reference_no_near_duplicate_count"], 5)
+
+        self.assertEqual(row["entry_id"], "uniprot:Q6NSJ0")
+        self.assertEqual(row["terminal_decision"], "needs_review")
+        self.assertEqual(row["inverse_gate_status_against_current_8"], "passed")
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertIn("review_decision_not_terminal", row["remaining_import_blockers"])
+
+    def test_sugar_phosphate_isomerase_post_pymol_packet_stays_blocked(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_sugar_phosphate_isomerase_family_readiness_post_pymol_bridge_packet_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        control = packet["control_surface"]
+        baseline = packet["modern_baseline_caveats"]
+        row = packet["positive_like_rows"][0]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            decision["family_status"], "blocked_with_exact_missing_evidence"
+        )
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "source-free sugar-phosphate pocket or substrate geometry where available",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertEqual(control["frozen_row_count"], 15)
+        self.assertEqual(control["source_free_sugar_phosphate_axis_ready_count"], 0)
+        self.assertFalse(baseline["ec_keyword_predictive_use_allowed"])
+        self.assertFalse(baseline["geometry_superiority_claim"])
+        self.assertEqual(baseline["esm_sidecar_available_row_count"], 0)
+        self.assertEqual(baseline["mmseqs_current_reference_no_near_duplicate_count"], 5)
+
+        self.assertEqual(row["entry_id"], "uniprot:P34949")
+        self.assertEqual(row["terminal_decision"], "needs_review")
+        self.assertTrue(row["flavin_ligand_context_absent"])
+        self.assertTrue(row["flavin_scope_conflict_repaired"])
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertIn("review_decision_not_terminal", row["remaining_import_blockers"])
+
+    def test_schiff_base_lyase_post_pymol_packet_stays_blocked(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_schiff_base_lyase_family_readiness_post_pymol_bridge_packet_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        control = packet["control_surface"]
+        baseline = packet["modern_baseline_caveats"]
+        row = packet["positive_like_rows"][0]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            decision["family_status"], "blocked_with_exact_missing_evidence"
+        )
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "source-free Tyr/Lys or Schiff-base local-geometry axis frozen before scoring",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertEqual(control["frozen_row_count"], 15)
+        self.assertEqual(control["source_free_schiff_base_axis_ready_count"], 0)
+        self.assertFalse(baseline["ec_keyword_predictive_use_allowed"])
+        self.assertFalse(baseline["geometry_superiority_claim"])
+        self.assertEqual(baseline["esm_sidecar_available_row_count"], 1)
+        self.assertEqual(
+            baseline["ec_keyword_false_target_like_control_rows"], ["m_csa:186"]
+        )
+
+        self.assertEqual(row["entry_id"], "uniprot:Q9BXD5")
+        self.assertEqual(row["terminal_decision"], "needs_review")
+        self.assertEqual(
+            row["schiff_base_axis_status"],
+            "source_traced_tyr_lys_pair_present_not_source_free",
+        )
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertIn("review_decision_not_terminal", row["remaining_import_blockers"])
+
+    def test_dna_glycosylase_lyase_post_pymol_packet_stays_blocked(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet_20260522.json"
+        )
+
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        control = packet["control_surface"]
+        baseline = packet["modern_baseline_caveats"]
+        row = packet["positive_like_rows"][0]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertEqual(
+            decision["family_status"], "blocked_with_exact_missing_evidence"
+        )
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertIn(
+            "source-free catalytic Lys and DNA-lyase local-geometry axis frozen before scoring",
+            decision["exact_missing_evidence"],
+        )
+
+        self.assertEqual(control["frozen_row_count"], 11)
+        self.assertEqual(control["source_free_dna_lyase_axis_ready_count"], 0)
+        self.assertFalse(baseline["ec_keyword_predictive_use_allowed"])
+        self.assertFalse(baseline["geometry_superiority_claim"])
+        self.assertEqual(baseline["esm_sidecar_available_row_count"], 1)
+        self.assertEqual(baseline["ec_keyword_false_target_like_control_rows"], [])
+
+        self.assertEqual(row["entry_id"], "uniprot:P06746")
+        self.assertEqual(row["terminal_decision"], "needs_review")
+        self.assertEqual(
+            row["source_traced_axis_status"],
+            "source_traced_catalytic_lys_present_not_source_free_geometry",
+        )
+        self.assertFalse(row["ready_for_label_import"])
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertIn("review_decision_not_terminal", row["remaining_import_blockers"])
+
+    def test_non_epk_family_readiness_index_post_pymol_stays_no_import(self) -> None:
+        index = _load_json(
+            ARTIFACTS
+            / "v3_non_epk_family_readiness_index_post_pymol_bridge_20260522.json"
+        )
+
+        metadata = index["metadata"]
+        decision = index["decision"]
+        policy = index["source_separation_policy"]
+        families = {row["family_id"]: row for row in index["families"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(metadata["production_fingerprint_count"], 8)
+
+        self.assertFalse(decision["label_import_authorized"])
+        self.assertFalse(decision["production_fingerprint_promotion_authorized"])
+        self.assertFalse(decision["start_new_broad_external_minicampaign"])
+        self.assertEqual(decision["import_ready_candidate_count"], 0)
+        self.assertEqual(decision["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            decision["family_status_counts"],
+            {
+                "blocked_with_exact_missing_evidence": 4,
+                "needs_new_extractor_or_structure": 1,
+            },
+        )
+
+        self.assertFalse(policy["ec_keyword_or_name_counted_as_predictive"])
+        self.assertFalse(policy["source_or_uniprot_prose_counted_as_predictive"])
+        self.assertTrue(
+            policy["predictive_import_evidence_separated_from_review_context"]
+        )
+        self.assertEqual(
+            set(families),
+            {
+                "akr_nadp_redox",
+                "glycoside_hydrolase",
+                "sugar_phosphate_isomerase",
+                "schiff_base_lyase",
+                "dna_glycosylase_lyase",
+            },
+        )
+        for row in families.values():
+            self.assertEqual(row["source_free_axis_ready_count"], 0)
+            self.assertEqual(row["import_ready_candidate_count"], 0)
+            self.assertEqual(row["countable_label_candidate_count"], 0)
+
+    def test_external_review_ready_human_action_checklist_stays_review_only(self) -> None:
+        checklist = _load_json(
+            ARTIFACTS
+            / "v3_external_review_ready_human_action_checklist_post_pymol_bridge_20260522.json"
+        )
+
+        metadata = checklist["metadata"]
+        policy = checklist["source_separation_policy"]
+        rows = checklist["rows"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertTrue(metadata["uses_existing_artifacts_only"])
+        self.assertEqual(metadata["new_external_rows_frozen"], 0)
+        self.assertEqual(metadata["candidate_count"], 7)
+        self.assertEqual(metadata["human_action_required_count"], 7)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertEqual(metadata["source_context_counted_as_predictive_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+
+        self.assertFalse(policy["ec_keyword_or_name_counted_as_predictive"])
+        self.assertFalse(policy["source_or_uniprot_prose_counted_as_predictive"])
+        self.assertTrue(
+            policy["predictive_import_evidence_separated_from_review_context"]
+        )
+
+        self.assertEqual(
+            {row["row_id"] for row in rows},
+            {
+                "uniprot:I2DBY1",
+                "uniprot:K7N5M8",
+                "uniprot:P14532",
+                "uniprot:P39597",
+                "uniprot:P15776",
+                "uniprot:P0A8Y5",
+                "uniprot:P75792",
+            },
+        )
+        for row in rows:
+            self.assertEqual(
+                row["terminal_decision_before_human_review"],
+                "mechanism_match_review_ready",
+            )
+            self.assertEqual(
+                row["human_action"], "accept_or_reject_mechanism_match_review_ready"
+            )
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["source_context_counted_as_predictive"])
+            self.assertEqual(
+                row["uniref_current_reference_status"],
+                "uniref_current_reference_screen_no_current_reference_overlap",
+            )
+
+    def test_post_pymol_review_only_zero_import_gate_passes(self) -> None:
+        gate = _load_json(
+            ARTIFACTS / "v3_post_pymol_review_only_zero_import_gate_20260522.json"
+        )
+
+        metadata = gate["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertTrue(metadata["valid"])
+        self.assertEqual(metadata["artifact_count"], 9)
+        self.assertEqual(metadata["valid_artifact_count"], 9)
+        self.assertEqual(metadata["blocker_count"], 0)
+        self.assertFalse(metadata["artifact_migration_files_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        for row in gate["rows"]:
+            self.assertTrue(row["valid"])
+            self.assertTrue(row["review_only"])
+            self.assertFalse(row["ready_for_label_import"])
+            self.assertEqual(row["import_ready_candidate_count"], 0)
+            self.assertEqual(row["countable_label_candidate_count"], 0)
+            self.assertFalse(row["curated_label_registry_edited"])
+            self.assertFalse(row["fingerprint_registry_edited"])
+            self.assertFalse(row["artifact_upload_or_removal_performed"])
+
 
 if __name__ == "__main__":
     unittest.main()

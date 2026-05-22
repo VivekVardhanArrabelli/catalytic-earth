@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 289
-- Measured elapsed time: 8821.8 minutes (147.03 hours)
+- Entries: 290
+- Measured elapsed time: 8871.3 minutes (147.85 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1822.7 measured minutes (30.38 hours)
+- v3: 1872.1 measured minutes (31.20 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3129
-- Evidence references logged: 2554
+- Artifact references logged: 3138
+- Evidence references logged: 2558
 
 ## Recent Entries
-
-### 2026-05-22T08:51:15.302701+00:00 - v3
-
-- Task: Metal phosphate specificity blocker packet
-- Time mode: measured
-- Measured minutes: 4.85
-- Started: 2026-05-22T08:46:13Z
-- Ended: 2026-05-22T08:51:04Z
-- Artifacts: artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: P0A8Y5 and P75792 phosphate specificity scan covered five coordinate structures, 0 phosphate-like substrate product or analog sites detected, both rows remain blocked_with_exact_missing_evidence, 834-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, 3 new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T10:20:02.906647+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json, artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json, artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json, src/catalytic_earth/metal_active_site.py, tests/test_metal_active_site.py, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: 852-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, three new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs, P0A8Y5 and P75792 resolved review-only phosphate-pocket proxies, seven review-ready rows consolidated for human review with 0 import-ready and 0 countable candidates
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T18:05:27.783477+00:00 - v3
+
+- Task: PyMOL cockpit and no-breadth readiness gates
+- Time mode: measured
+- Measured minutes: 49.467
+- Started: 2026-05-22T17:15:38Z
+- Ended: 2026-05-22T18:05:06Z
+- Artifacts: artifacts/v3_mcsa_pymol_expert_review_queue_1025.json, artifacts/v3_expert_review_decision_batch_pymol_manual_dry_run_20260522.json, artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_sugar_phosphate_isomerase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_schiff_base_lyase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_pymol_bridge_20260522.json, artifacts/v3_external_review_ready_human_action_checklist_post_pymol_bridge_20260522.json, artifacts/v3_post_pymol_review_only_zero_import_gate_20260522.json
+- Evidence: 867 unit tests, cli validate 682 labels, artifact migration dry-run removal_allowed=0, review-only zero-import gate 9/9
+- Notes: Registry and fingerprint files unchanged; external imports remain closed.
 
 ## Expectation Updates
 
@@ -352,6 +352,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T13:05:41.322034+00:00: Continue terminal deepening or exact family-readiness packets; remaining PLP breadth should only use already frozen rows.
 - 2026-05-22T13:08:53.551713+00:00: Second PLP packet is ready for review; continue existing frozen-row deepening next.
 - 2026-05-22T15:49:13.822899+00:00: PLP non-exact frozen rows are terminal; AKR remains review-only no-go.
+- 2026-05-22T18:05:27.783477+00:00: Next action is human accept/reject review or a bounded source-free axis experiment, not label import
 
 ## Scope Adjustments
 
@@ -526,3 +527,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T13:08:53.551713+00:00: Final wrap only; no additional external rows or label changes.
 - 2026-05-22T15:49:13.822899+00:00: No new broad external rows; remaining external queue is human review plus metal phosphate specificity.
 - 2026-05-22T16:29:06.133933+00:00: External no-breadth queue is now human-review-only; no new external mini-campaign should start before human action or a new bounded control experiment.
+- 2026-05-22T18:05:27.783477+00:00: No new broad external rows; PyMOL review cockpit and non-ePK family readiness remain review-only

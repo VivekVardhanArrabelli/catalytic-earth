@@ -1,0 +1,108 @@
+{
+  "control_surface": {
+    "current_control_count": 10,
+    "external_candidate_count": 1,
+    "frozen_row_count": 11,
+    "source_free_dna_lyase_axis_ready_count": 0
+  },
+  "decision": {
+    "countable_label_candidate_count": 0,
+    "current_decision": "do_not_promote_production_fingerprint",
+    "exact_missing_evidence": [
+      "source-free catalytic Lys and DNA-lyase local-geometry axis frozen before scoring",
+      "source-free damaged-DNA or 5'-dRP pocket/substrate context where available",
+      "current-countable structural duplicate screen for any external row not already terminally rejected",
+      "terminal human or expert review decision for P06746 if it remains the boundary positive-like row",
+      "full label-factory and external-transfer gates before any countable label change"
+    ],
+    "family_status": "blocked_with_exact_missing_evidence",
+    "import_ready_candidate_count": 0,
+    "label_import_authorized": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false
+  },
+  "human_review_bridge": {
+    "current_mcsa_pymol_cockpit": "artifacts/v3_mcsa_pymol_expert_review_queue_1025.json",
+    "impact_on_this_family_packet": "review_tooling_available_for_m_csa_debt_only; it does not resolve the external P06746 decision",
+    "manual_decision_batch_status": "dry_run_validated_no_countable_import"
+  },
+  "metadata": {
+    "artifact_id": "v3_dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "created_at": "2026-05-22T17:37:10Z",
+    "curated_label_registry_edited": false,
+    "family_id": "dna_glycosylase_lyase",
+    "family_name": "DNA glycosylase/5'-dRP lyase catalytic Lys chemistry",
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "method": "dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "production_fingerprint_count": 8,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "uses_existing_artifacts_only": true
+  },
+  "modern_baseline_caveats": {
+    "ec_keyword_false_target_like_control_rows": [],
+    "ec_keyword_predictive_use_allowed": false,
+    "ec_keyword_route_external_positive_like_row": true,
+    "esm_sidecar_available_row_count": 1,
+    "esm_sidecar_superiority_claim": false,
+    "foldseek_current_countable_sidecar_available": false,
+    "geometry_superiority_claim": false,
+    "kmer_near_neighbor_alert_count": 0,
+    "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal",
+    "superiority_claim_reason": "the frozen control packet is a terminal review surface, not a held-out quantitative task"
+  },
+  "next_exact_experiment": {
+    "decision_to_start_now": false,
+    "experiment_id": "dna_glycosylase_lyase_source_free_axis_and_duplicate_closure_v1_review_only",
+    "forbidden_shortcuts": [
+      "EC labels as predictive evidence",
+      "protein names or UniProt prose as predictive evidence",
+      "Rhea/InterPro/source annotations as positive scoring inputs",
+      "registry edits or label imports before full gates pass"
+    ],
+    "minimum_success_criteria": [
+      "freeze rows before scoring",
+      "materialize source-free catalytic Lys and DNA-lyase local-geometry axes or record exact structure blockers",
+      "complete current-countable structural duplicate screening for candidate rows",
+      "emit terminal decisions with 0 countable/import-ready rows unless all existing gates pass"
+    ]
+  },
+  "positive_like_rows": [
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06746",
+      "ready_for_label_import": false,
+      "remaining_import_blockers": [
+        "broader_duplicate_screening_required",
+        "broader_duplicate_screening_unresolved",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_passed",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "review_decision_not_terminal"
+      ],
+      "sequence_import_safety_status": "bounded_current_reference_no_near_duplicate_signal",
+      "source_active_site_lys_positions": [
+        72
+      ],
+      "source_free_geometry_axis_ready": false,
+      "source_traced_axis_status": "source_traced_catalytic_lys_present_not_source_free_geometry",
+      "terminal_decision": "needs_review"
+    }
+  ],
+  "source_artifacts": {
+    "baseline_comparison": "artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json",
+    "control_tranche_axis_decisions": "artifacts/v3_dna_glycosylase_lyase_control_tranche_axis_decisions_20260520.json",
+    "family_readiness_packet": "artifacts/v3_dna_glycosylase_lyase_readiness_packet_20260520.json",
+    "import_safety_adjudication": "artifacts/v3_external_source_pilot_dna_pol_x_lyase_import_safety_adjudication_1025.json",
+    "preregistration": "artifacts/v3_dna_glycosylase_lyase_control_tranche_preregistration_20260520.json"
+  }
+}

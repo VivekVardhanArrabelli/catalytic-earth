@@ -994,6 +994,42 @@ artifact is provided, the summary records carried versus new review-debt rows
 and full carried/new entry-id lists so preview growth is auditable even when
 the prioritized row table is capped.
 
+`build-mcsa-pymol-review-queue` converts the existing expert-label-decision
+review export, review-debt summary, evidence-gap audit, geometry features, and
+committed coordinate sidecars into a visual review queue. It is a review-only
+human cockpit: rows are PyMOL-ready only when a structure path, two mapped CA
+atoms, and an exact measured geometry distance are all present. The current
+1025 queue scans 321 rows, finds one PyMOL-ready row (`m_csa:939`), and marks
+the other 320 rows with exact missing fields. Generated `.pml` scripts and
+manual/dry-run decision batches default to `countable_import_ready=false`;
+accepted expert decisions must still enter the existing import preview and
+label-factory gates before any countable registry change.
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-mcsa-pymol-review-queue \
+  --write-pml \
+  --out artifacts/v3_mcsa_pymol_expert_review_queue_1025.json \
+  --pml-dir artifacts/review_pymol/mcsa_1025
+
+PYTHONPATH=src python -m catalytic_earth.cli launch-mcsa-pymol-review \
+  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025.json \
+  --out artifacts/v3_expert_review_decision_batch_pymol_manual.json \
+  --no-launch
+```
+
+`validate-review-only-zero-import-artifacts` is a small artifact gate for
+review-only packets produced outside the label registry. It requires every
+listed JSON artifact to explicitly remain review-only, not ready for import,
+0 import-ready candidates, 0 countable candidates, no curated-label or
+fingerprint registry edits, and no artifact upload/removal.
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli validate-review-only-zero-import-artifacts \
+  artifacts/v3_mcsa_pymol_expert_review_queue_1025.json \
+  artifacts/v3_external_review_ready_human_action_checklist_post_pymol_bridge_20260522.json \
+  --out artifacts/v3_post_pymol_review_only_zero_import_gate_20260522.json
+```
+
 `analyze-review-debt-remediation` expands review-debt triage into a
 structure-aware repair plan without making any label countable. It preserves
 every requested debt row, links it to the selected geometry structure, graph

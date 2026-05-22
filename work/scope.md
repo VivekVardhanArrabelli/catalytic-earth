@@ -352,6 +352,48 @@ import-ready candidates, and 0 countable candidates. The only named next AKR
 experiment is a preregistered source-free NADP/Tyr-Lys-His geometry-axis
 design with duplicate and counterfamily controls; it is not a production
 fingerprint or label-import path.
+Current M-CSA human-review tooling scope: the PyMOL cockpit is review-only and
+does not reopen M-CSA-only count growth. `src/catalytic_earth/pymol_review.py`
+and the CLI commands `build-mcsa-pymol-review-queue`,
+`launch-mcsa-pymol-review`, and `validate-mcsa-pymol-review` turn existing
+expert-label-decision review debt into focused visual-inspection packets. The
+current queue artifact,
+`artifacts/v3_mcsa_pymol_expert_review_queue_1025.json`, scans 321 rows and
+finds exactly one PyMOL-ready row (`m_csa:939`) from committed coordinates;
+320 rows fail closed with missing structure-path or exact-atom-pair/distance
+fields. The dry-run manual batch validates with 0 countable/import-ready rows.
+The companion family-readiness fallback
+`artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json`
+uses only existing glycoside-control artifacts. It keeps Q6NSJ0 as the single
+positive-like row, `needs_review`, with inverse-gate evidence below all eight
+current fingerprints but no source-free glycoside axis and no terminal review
+decision. It authorizes 0 imports and 0 countable labels.
+`artifacts/v3_sugar_phosphate_isomerase_family_readiness_post_pymol_bridge_packet_20260522.json`
+uses only the existing sugar-phosphate control artifacts. It keeps P34949 as
+the single positive-like row, `needs_review`, with no source-free
+sugar-phosphate axis-ready rows, no ESM sidecar, no terminal review decision,
+and 0 import-ready or countable candidates.
+`artifacts/v3_schiff_base_lyase_family_readiness_post_pymol_bridge_packet_20260522.json`
+and
+`artifacts/v3_dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet_20260522.json`
+use only existing tranche/readiness artifacts. They keep Q9BXD5 and P06746 as
+single positive-like `needs_review` rows because the relevant Schiff-base and
+DNA-lyase axes are source-traced but not source-free geometry, duplicate
+screening and terminal review remain unresolved, and both packets authorize 0
+imports and 0 countable labels.
+`artifacts/v3_non_epk_family_readiness_index_post_pymol_bridge_20260522.json`
+keeps the resulting five-family surface findable: AKR, glycoside hydrolase,
+sugar-phosphate isomerase, Schiff-base lyase, and DNA glycosylase/lyase all
+remain review-only with 0 source-free axis-ready rows and 0 countable
+candidates.
+`artifacts/v3_external_review_ready_human_action_checklist_post_pymol_bridge_20260522.json`
+keeps the seven external mechanism-match review-ready rows in a concise
+human-action queue. It allows only accept/reject expert action, separates
+source-free evidence from EC/name/source context, and authorizes 0 imports.
+`artifacts/v3_post_pymol_review_only_zero_import_gate_20260522.json` is the
+run-level artifact gate for these outputs: 9/9 new review-only artifacts pass
+with 0 import-ready rows, 0 countable rows, no registry/fingerprint edits, and
+no artifact upload/removal.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

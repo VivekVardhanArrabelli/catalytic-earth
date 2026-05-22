@@ -215,6 +215,13 @@ from .ontology import load_mechanism_ontology
 from .models import RegistryError
 from .performance import write_local_performance_suite
 from .progress import WorkEntry, append_work_entry, write_progress_report
+from .pymol_review import (
+    build_mcsa_pymol_expert_review_queue,
+    launch_mcsa_pymol_review,
+    validate_mcsa_pymol_decision_batch,
+    write_mcsa_pymol_scripts,
+)
+from .review_only_gate import validate_review_only_zero_import_artifacts
 from .source_limits import audit_source_scale_limits
 from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
@@ -4848,6 +4855,80 @@ def cmd_export_label_review(args: argparse.Namespace) -> int:
         "Wrote expert review export to "
         f"{args.out} ({export['metadata']['exported_count']} items)"
     )
+    return 0
+
+
+def cmd_build_mcsa_pymol_review_queue(args: argparse.Namespace) -> int:
+    queue = build_mcsa_pymol_expert_review_queue(
+        expert_review_export=read_json_object(Path(args.expert_review_export)),
+        review_debt_summary=read_json_object(Path(args.review_debt_summary)),
+        review_evidence_gaps=read_json_object(Path(args.review_evidence_gaps)),
+        geometry_features=read_json_object(Path(args.geometry_features)),
+        structure_dirs=[Path(item) for item in args.structure_dir],
+        max_rows=args.max_rows,
+        source_paths={
+            "expert_review_export": args.expert_review_export,
+            "review_debt_summary": args.review_debt_summary,
+            "review_evidence_gaps": args.review_evidence_gaps,
+            "geometry_features": args.geometry_features,
+        },
+    )
+    if args.write_pml:
+        scripts = write_mcsa_pymol_scripts(
+            queue,
+            out_dir=Path(args.pml_dir),
+            max_rows=args.max_pml_rows,
+        )
+        queue["pml_script_manifest"] = scripts
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote M-CSA PyMOL review queue to "
+        f"{args.out} ({queue['metadata']['pymol_ready_count']} ready)"
+    )
+    return 0
+
+
+def cmd_launch_mcsa_pymol_review(args: argparse.Namespace) -> int:
+    queue = read_json_object(Path(args.queue))
+    batch = launch_mcsa_pymol_review(
+        queue=queue,
+        out_path=Path(args.out),
+        reviewer=args.reviewer,
+        dry_run=args.dry_run,
+        no_launch=args.no_launch,
+        max_rows=args.max_rows,
+        start_index=args.start_index,
+        pymol_bin=args.pymol_bin,
+    )
+    print(
+        "Wrote M-CSA PyMOL decision batch to "
+        f"{args.out} ({batch['metadata']['review_item_count']} decisions)"
+    )
+    return 0
+
+
+def cmd_validate_mcsa_pymol_review(args: argparse.Namespace) -> int:
+    validation = validate_mcsa_pymol_decision_batch(read_json_object(Path(args.review)))
+    write_json(Path(args.out), validation)
+    print(
+        "Validated M-CSA PyMOL decision batch "
+        f"({validation['metadata']['review_item_count']} items)"
+    )
+    return 0
+
+
+def cmd_validate_review_only_zero_import_artifacts(args: argparse.Namespace) -> int:
+    validation = validate_review_only_zero_import_artifacts(
+        [Path(path) for path in args.artifacts]
+    )
+    write_json(Path(args.out), validation)
+    print(
+        "Validated review-only zero-import artifacts "
+        f"({validation['metadata']['valid_artifact_count']}/"
+        f"{validation['metadata']['artifact_count']} valid)"
+    )
+    if not validation["metadata"]["valid"]:
+        return 1
     return 0
 
 
@@ -15259,6 +15340,90 @@ def build_parser() -> argparse.ArgumentParser:
     review_export.add_argument("--max-rows", type=int, default=25)
     review_export.add_argument("--out", default="artifacts/v3_expert_review_export.json")
     review_export.set_defaults(func=cmd_export_label_review)
+
+    pymol_queue = subparsers.add_parser(
+        "build-mcsa-pymol-review-queue",
+        help="build a review-only M-CSA active-site PyMOL inspection queue",
+    )
+    pymol_queue.add_argument(
+        "--expert-review-export",
+        default="artifacts/v3_expert_label_decision_review_export_1000.json",
+    )
+    pymol_queue.add_argument(
+        "--review-debt-summary",
+        default="artifacts/v3_review_debt_summary_1025_preview.json",
+    )
+    pymol_queue.add_argument(
+        "--review-evidence-gaps",
+        default="artifacts/v3_review_evidence_gaps_1025_preview.json",
+    )
+    pymol_queue.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    pymol_queue.add_argument(
+        "--structure-dir",
+        action="append",
+        default=["artifacts/v3_foldseek_coordinates_1000"],
+        help="directory containing committed PDB/mmCIF sidecars; repeatable",
+    )
+    pymol_queue.add_argument("--max-rows", type=int, default=None)
+    pymol_queue.add_argument("--write-pml", action="store_true")
+    pymol_queue.add_argument(
+        "--pml-dir",
+        default="artifacts/review_pymol/mcsa_1025",
+    )
+    pymol_queue.add_argument("--max-pml-rows", type=int, default=None)
+    pymol_queue.add_argument(
+        "--out",
+        default="artifacts/v3_mcsa_pymol_expert_review_queue_1025.json",
+    )
+    pymol_queue.set_defaults(func=cmd_build_mcsa_pymol_review_queue)
+
+    pymol_review = subparsers.add_parser(
+        "launch-mcsa-pymol-review",
+        help="run a terminal M-CSA PyMOL review loop or dry-run it without PyMOL",
+    )
+    pymol_review.add_argument(
+        "--queue",
+        default="artifacts/v3_mcsa_pymol_expert_review_queue_1025.json",
+    )
+    pymol_review.add_argument(
+        "--out",
+        default="artifacts/v3_expert_review_decision_batch_pymol_manual.json",
+    )
+    pymol_review.add_argument("--reviewer", default="manual_reviewer")
+    pymol_review.add_argument("--dry-run", action="store_true")
+    pymol_review.add_argument("--no-launch", action="store_true")
+    pymol_review.add_argument("--max-rows", type=int, default=None)
+    pymol_review.add_argument("--start-index", type=int, default=0)
+    pymol_review.add_argument("--pymol-bin", default="pymol")
+    pymol_review.set_defaults(func=cmd_launch_mcsa_pymol_review)
+
+    pymol_validate = subparsers.add_parser(
+        "validate-mcsa-pymol-review",
+        help="validate a review-only M-CSA PyMOL manual decision batch",
+    )
+    pymol_validate.add_argument(
+        "--review",
+        default="artifacts/v3_expert_review_decision_batch_pymol_manual.json",
+    )
+    pymol_validate.add_argument(
+        "--out",
+        default="artifacts/v3_expert_review_decision_batch_pymol_manual_validation.json",
+    )
+    pymol_validate.set_defaults(func=cmd_validate_mcsa_pymol_review)
+
+    review_only_gate = subparsers.add_parser(
+        "validate-review-only-zero-import-artifacts",
+        help="validate review-only artifacts explicitly keep import/countable state closed",
+    )
+    review_only_gate.add_argument("artifacts", nargs="+")
+    review_only_gate.add_argument(
+        "--out",
+        default="artifacts/v3_review_only_zero_import_artifact_gate.json",
+    )
+    review_only_gate.set_defaults(func=cmd_validate_review_only_zero_import_artifacts)
 
     expert_label_decision_export = subparsers.add_parser(
         "build-expert-label-decision-review-export",

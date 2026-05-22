@@ -1,0 +1,145 @@
+{
+  "checklist_policy": {
+    "accept_requires_all": [
+      "source-free target-lane geometry remains above floor and rank 1",
+      "current-countable duplicate/leakage screen remains clear",
+      "UniRef90/50 current-reference screen remains clear",
+      "human reviewer accepts the mechanism lane without relying on EC/name/UniProt prose as predictive evidence",
+      "metal rows retain review-only phosphate-pocket proxy evidence or stronger source-free phosphate/substrate evidence"
+    ],
+    "allowed_terminal_outcomes": [
+      "mechanism_match_review_ready",
+      "ambiguous_needs_expert_review",
+      "terminal_rejection_duplicate_or_leakage",
+      "terminal_rejection_wrong_scope",
+      "terminal_rejection_insufficient_evidence"
+    ],
+    "forbidden_actions": [
+      "label_import",
+      "registry_edit",
+      "fingerprint_edit",
+      "threshold_calibration",
+      "production_scoring"
+    ],
+    "reject_if_any": [
+      "source-free geometry depends on source prose or labels",
+      "current-reference duplicate/leakage evidence appears",
+      "human reviewer identifies wrong mechanism scope",
+      "active-site evidence is insufficient for the claimed lane"
+    ]
+  },
+  "metadata": {
+    "artifact_id": "v3_external_review_ready_human_action_checklist_post_pymol_bridge_20260522",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T17:37:51Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "git_history_edited": false,
+    "human_action_required_count": 7,
+    "import_ready_candidate_count": 0,
+    "method": "external_review_ready_human_action_checklist_post_pymol_bridge",
+    "new_external_rows_frozen": 0,
+    "ontology_version_at_decision": "label_factory_v1_8fp",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "source_artifact": "artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json",
+    "source_context_counted_as_predictive_count": 0,
+    "uses_existing_artifacts_only": true
+  },
+  "rows": [
+    {
+      "accession": "I2DBY1",
+      "countable_label_candidate": false,
+      "human_action": "accept_or_reject_mechanism_match_review_ready",
+      "phosphate_pocket_proxy_status": "not_applicable_nonmetal_lane",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:I2DBY1",
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision_before_human_review": "mechanism_match_review_ready",
+      "uniref_current_reference_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "accession": "K7N5M8",
+      "countable_label_candidate": false,
+      "human_action": "accept_or_reject_mechanism_match_review_ready",
+      "phosphate_pocket_proxy_status": "not_applicable_nonmetal_lane",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:K7N5M8",
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision_before_human_review": "mechanism_match_review_ready",
+      "uniref_current_reference_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "accession": "P14532",
+      "countable_label_candidate": false,
+      "human_action": "accept_or_reject_mechanism_match_review_ready",
+      "phosphate_pocket_proxy_status": "not_applicable_nonmetal_lane",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P14532",
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision_before_human_review": "mechanism_match_review_ready",
+      "uniref_current_reference_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "accession": "P39597",
+      "countable_label_candidate": false,
+      "human_action": "accept_or_reject_mechanism_match_review_ready",
+      "phosphate_pocket_proxy_status": "not_applicable_nonmetal_lane",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P39597",
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "terminal_decision_before_human_review": "mechanism_match_review_ready",
+      "uniref_current_reference_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "accession": "P15776",
+      "countable_label_candidate": false,
+      "human_action": "accept_or_reject_mechanism_match_review_ready",
+      "phosphate_pocket_proxy_status": "not_applicable_nonmetal_lane",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P15776",
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "ser_his_acid_hydrolase",
+      "terminal_decision_before_human_review": "mechanism_match_review_ready",
+      "uniref_current_reference_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "accession": "P0A8Y5",
+      "countable_label_candidate": false,
+      "human_action": "accept_or_reject_mechanism_match_review_ready",
+      "phosphate_pocket_proxy_status": "source_free_phosphate_pocket_proxy_resolved_review_only",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0A8Y5",
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision_before_human_review": "mechanism_match_review_ready",
+      "uniref_current_reference_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "accession": "P75792",
+      "countable_label_candidate": false,
+      "human_action": "accept_or_reject_mechanism_match_review_ready",
+      "phosphate_pocket_proxy_status": "source_free_phosphate_pocket_proxy_resolved_review_only",
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P75792",
+      "source_context_counted_as_predictive": false,
+      "target_current_fingerprint_lane": "metal_dependent_hydrolase",
+      "terminal_decision_before_human_review": "mechanism_match_review_ready",
+      "uniref_current_reference_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    }
+  ],
+  "source_separation_policy": {
+    "ec_keyword_or_name_counted_as_predictive": false,
+    "predictive_import_evidence_separated_from_review_context": true,
+    "source_or_uniprot_prose_counted_as_predictive": false
+  }
+}

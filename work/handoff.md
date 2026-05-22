@@ -50,29 +50,84 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### Queued Human-Review Tooling Request
+### PyMOL Human-Review Cockpit
 
-After any current main-loop dirty work is finished, validated, committed, and
-pushed, implement the M-CSA PyMOL expert-review cockpit described in
-`work/mcsa_pymol_expert_review_cockpit_plan.md` before opening another broad
-external mini-campaign. The intent is to help the human expert inspect pending
-M-CSA review-debt rows in PyMOL, one active-site failure at a time, and write a
-manual decision batch that can later enter the existing expert-review import
-preview path.
+As of the 2026-05-22T17:15:38Z main-loop run, the queued M-CSA PyMOL
+expert-review cockpit described in
+`work/mcsa_pymol_expert_review_cockpit_plan.md` is implemented as review-only
+tooling. `src/catalytic_earth/pymol_review.py` adds bounded queue extraction,
+`.pml` generation, dry-run/no-launch review-loop support, and decision-batch
+validation. The CLI commands are `build-mcsa-pymol-review-queue`,
+`launch-mcsa-pymol-review`, and `validate-mcsa-pymol-review`.
 
-Safety constraints for this request:
+`artifacts/v3_mcsa_pymol_expert_review_queue_1025.json` scans 321 existing
+expert-label-decision review rows against the current review-gap and geometry
+artifacts. It marks only `m_csa:939` PyMOL-ready because that row has a
+committed coordinate sidecar, two mapped CA atoms, and an exact measured
+geometry distance. The other 320 rows fail closed with explicit missing fields
+instead of guessed structures or atom pairs. The generated script lives under
+`artifacts/review_pymol/mcsa_1025/`.
 
-- Do not import labels or mutate `data/registries/curated_mechanism_labels.json`.
-- Do not generate fake residue pairs, atom names, distances, or structures; rows
-  without exact visual evidence must be marked `pymol_ready=false` with explicit
-  missing fields.
-- Do not upload, delete, externalize, Git-LFS-track, or history-rewrite
-  artifacts.
-- Default every manual decision output to `countable_import_ready=false`; later
-  label promotion must still pass existing expert-review and label-factory
-  gates.
-- Implement dry-run/no-launch mode so the tool is testable even if PyMOL is not
-  installed on the automation runner.
+`artifacts/v3_expert_review_decision_batch_pymol_manual_dry_run_20260522.json`
+and its validation artifact prove the terminal loop can run without PyMOL on
+the automation runner. The dry-run decision is `skipped`, and every output row
+has `countable_import_ready=false`. Any real expert decision must still be
+converted through the existing expert-review import preview and label-factory
+gates before it can count.
+
+Evidence-based confidence call: confidence is high that the cockpit is safe
+review-only tooling because the queue and dry-run batch record 0 import-ready
+and 0 countable rows, the code never writes the curated label registry or
+fingerprint registry, tests cover fail-closed missing atom/structure behavior,
+and the generated queue exposes missing evidence instead of filling gaps.
+
+The same run added
+`artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json`
+as a no-breadth family-readiness fallback from existing glycoside-control
+evidence only. It keeps `Q6NSJ0` as the sole positive-like row, still
+`needs_review`: the inverse gate is below all eight current fingerprints, but
+the source-free glycoside axis-ready count is 0, current-countable structural
+duplicate screening and terminal review remain blockers, and import/countable
+candidate counts are 0.
+
+The same no-breadth fallback was also applied to sugar-phosphate isomerase in
+`artifacts/v3_sugar_phosphate_isomerase_family_readiness_post_pymol_bridge_packet_20260522.json`.
+It uses only existing control/readiness artifacts and keeps `P34949` as the
+sole positive-like row, still `needs_review`: source-traced basic-site context
+exists, but no source-free sugar-phosphate axis is ready, no ESM sidecar is
+available, broader duplicate screening and terminal review remain blockers,
+and import/countable candidate counts are 0.
+
+Two additional existing-control family packets were closed in the same
+review-only style:
+`artifacts/v3_schiff_base_lyase_family_readiness_post_pymol_bridge_packet_20260522.json`
+and
+`artifacts/v3_dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet_20260522.json`.
+They add no external breadth and keep `Q9BXD5` and `P06746` as single
+positive-like `needs_review` rows. In both cases the useful evidence is still
+source-traced rather than source-free geometry, broader duplicate screening
+and terminal review are unresolved, and import/countable candidate counts are
+0.
+
+`artifacts/v3_non_epk_family_readiness_index_post_pymol_bridge_20260522.json`
+now indexes AKR, glycoside hydrolase, sugar-phosphate isomerase, Schiff-base
+lyase, and DNA glycosylase/lyase in one review-only surface. The index records
+0 newly frozen external rows, 0 source-free axis-ready family rows, 0
+import-ready candidates, 0 countable candidates, and no permission to start
+another broad external mini-campaign.
+
+`artifacts/v3_external_review_ready_human_action_checklist_post_pymol_bridge_20260522.json`
+also turns the seven already review-ready external mechanism-match rows into a
+single human-action checklist. It preserves the same source separation policy,
+requires an accept/reject expert action before any label path can continue,
+and authorizes 0 imports or countable labels.
+
+The run-level safety gate
+`artifacts/v3_post_pymol_review_only_zero_import_gate_20260522.json` validates
+the nine new review-only outputs as 9/9 closed: 0 import-ready rows, 0
+countable rows, no curated-label or fingerprint registry edits, and no
+artifact upload/removal. The corresponding reusable CLI is
+`validate-review-only-zero-import-artifacts`.
 
 As of the 2026-05-22T04:01:49Z main-loop run, the automation closed the
 remaining queued redox source-free geometry/structure blockers without adding

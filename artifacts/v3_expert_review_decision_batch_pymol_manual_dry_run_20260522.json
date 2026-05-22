@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "artifact_upload_or_removal_performed": false,
+    "countable_import_ready_count": 0,
+    "countable_label_candidate_count": 0,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "skipped": 1
+    },
+    "dry_run": true,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "input_queue_method": "mcsa_pymol_expert_review_queue",
+    "method": "mcsa_pymol_manual_decision_batch",
+    "new_external_rows_frozen": 0,
+    "no_launch": true,
+    "policy": "Manual PyMOL decisions default to countable_import_ready=false. They must be converted through existing expert-review import previews and label-factory gates before any countable label action.",
+    "pymol_bin": "pymol",
+    "ready_for_label_import": false,
+    "review_item_count": 1,
+    "review_only": true,
+    "reviewed_at": "2026-05-22T17:24:05Z",
+    "reviewer": "automation_dry_run"
+  },
+  "review_items": [
+    {
+      "countable_import_blockers": [
+        "manual_visual_review_context_only",
+        "expert_review_import_preview_not_run",
+        "label_factory_gates_not_run"
+      ],
+      "countable_import_ready": false,
+      "decision": "skipped",
+      "dry_run": true,
+      "entry_id": "m_csa:939",
+      "entry_name": "E2 ubiquitin-conjugating enzyme",
+      "expert_note": "dry_run_no_manual_review",
+      "reviewed_at": "2026-05-22T17:24:05Z",
+      "reviewer": "automation_dry_run",
+      "structure_id": "3CMM",
+      "structure_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3CMM.cif",
+      "visual_evidence": {
+        "exact_measured_distance_angstrom": 10.587,
+        "focus_atom_pair": {
+          "distance_angstrom": 10.587,
+          "distance_source_field": "pairwise_distances_angstrom",
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:939:residue:2",
+            "residue_number": 773,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:939:residue:6",
+            "residue_number": 594,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "pml_script_path": "artifacts/review_pymol/mcsa_1025/m_csa_939.pml",
+        "review_queue_rank": 99
+      }
+    }
+  ]
+}
