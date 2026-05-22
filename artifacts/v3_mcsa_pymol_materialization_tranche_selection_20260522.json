@@ -1,0 +1,1148 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_pymol_materialization_tranche_selection_20260522",
+    "artifact_upload_or_removal_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T20:22:03Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "method": "mcsa_pymol_structure_materialization_tranche_selection",
+    "new_external_rows_frozen": 0,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_entry_ids": [
+      "m_csa:670",
+      "m_csa:643",
+      "m_csa:756",
+      "m_csa:757",
+      "m_csa:760",
+      "m_csa:696",
+      "m_csa:654",
+      "m_csa:663",
+      "m_csa:662",
+      "m_csa:751",
+      "m_csa:918",
+      "m_csa:553",
+      "m_csa:778",
+      "m_csa:793",
+      "m_csa:792",
+      "m_csa:676",
+      "m_csa:947",
+      "m_csa:995",
+      "m_csa:972",
+      "m_csa:980",
+      "m_csa:974",
+      "m_csa:910",
+      "m_csa:842",
+      "m_csa:736",
+      "m_csa:687"
+    ],
+    "selected_row_count": 25,
+    "selected_structure_ids": [
+      "1JXH",
+      "1G99",
+      "1ZRZ",
+      "1STC",
+      "1L0O",
+      "1DGK",
+      "1OJ4",
+      "1RK2",
+      "1BO1",
+      "1TZ3",
+      "5CNV",
+      "1FDY",
+      "1FWK",
+      "1QWN",
+      "1QFN",
+      "1B65",
+      "1U1Z",
+      "2ET1",
+      "2VZ9",
+      "1DJ7",
+      "4PIV",
+      "1STD",
+      "1DQR",
+      "1X9H",
+      "1ROZ"
+    ],
+    "selection_policy": "freeze first 25 blocked rows in existing queue rank order that already have exact source-free geometry focus pairs and PDB ids; fetch/materialize only after this artifact exists",
+    "source_queue": "artifacts/v3_mcsa_pymol_expert_review_queue_1025.json"
+  },
+  "rows": [
+    {
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "exact_measured_distance_angstrom": 15.194,
+      "focus_atom_pair": {
+        "distance_angstrom": 15.194,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "THR",
+          "residue_node_id": "m_csa:670:residue:2",
+          "residue_number": 230,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:670:residue:6",
+          "residue_number": 198,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 1,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1JXH",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "exact_measured_distance_angstrom": 21.966,
+      "focus_atom_pair": {
+        "distance_angstrom": 21.966,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:643:residue:2",
+          "residue_number": 384,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ARG",
+          "residue_node_id": "m_csa:643:residue:5",
+          "residue_number": 241,
+          "roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "rank": 2,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1G99",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:756",
+      "entry_name": "protein kinase C",
+      "exact_measured_distance_angstrom": 7.811,
+      "focus_atom_pair": {
+        "distance_angstrom": 7.811,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:756:residue:1",
+          "residue_number": 146,
+          "roles": [
+            "proton shuttle (general acid/base)"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASN",
+          "residue_node_id": "m_csa:756:residue:3",
+          "residue_number": 151,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 3,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1ZRZ",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "exact_measured_distance_angstrom": 13.582,
+      "focus_atom_pair": {
+        "distance_angstrom": 13.582,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "E",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:757:residue:2",
+          "residue_number": 184,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "E",
+          "residue_name": "THR",
+          "residue_node_id": "m_csa:757:residue:5",
+          "residue_number": 201,
+          "roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "target_not_top1"
+      ],
+      "rank": 4,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1STC",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "exact_measured_distance_angstrom": 11.655,
+      "focus_atom_pair": {
+        "distance_angstrom": 11.655,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:760:residue:2",
+          "residue_number": 46,
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "proton acceptor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ARG",
+          "residue_node_id": "m_csa:760:residue:3",
+          "residue_number": 105,
+          "roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 5,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1L0O",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "exact_measured_distance_angstrom": 12.497,
+      "focus_atom_pair": {
+        "distance_angstrom": 12.497,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "N",
+          "residue_name": "ARG",
+          "residue_node_id": "m_csa:696:residue:1",
+          "residue_number": 539,
+          "roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "N",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:696:residue:3",
+          "residue_number": 657,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 6,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1DGK",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "exact_measured_distance_angstrom": 8.985,
+      "focus_atom_pair": {
+        "distance_angstrom": 8.985,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:654:residue:1",
+          "residue_number": 10,
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:654:residue:2",
+          "residue_number": 141,
+          "roles": [
+            "activator",
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 7,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1OJ4",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "exact_measured_distance_angstrom": 5.497,
+      "focus_atom_pair": {
+        "distance_angstrom": 5.497,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ALA",
+          "residue_node_id": "m_csa:663:residue:2",
+          "residue_number": 253,
+          "roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:663:residue:4",
+          "residue_number": 255,
+          "roles": [
+            "electrostatic stabiliser",
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 8,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1RK2",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "exact_measured_distance_angstrom": 17.534,
+      "focus_atom_pair": {
+        "distance_angstrom": 17.534,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:662:residue:1",
+          "residue_number": 278,
+          "roles": [
+            "proton shuttle (general acid/base)"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:662:residue:2",
+          "residue_number": 150,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 9,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1BO1",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "exact_measured_distance_angstrom": 5.619,
+      "focus_atom_pair": {
+        "distance_angstrom": 5.619,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:751:residue:1",
+          "residue_number": 272,
+          "roles": [
+            "electrostatic stabiliser",
+            "proton shuttle (general acid/base)"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ALA",
+          "residue_node_id": "m_csa:751:residue:3",
+          "residue_number": 270,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 10,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1TZ3",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:918",
+      "entry_name": "ribonucleoside-diphosphate reductase (class I)",
+      "exact_measured_distance_angstrom": 77.359,
+      "focus_atom_pair": {
+        "distance_angstrom": 77.359,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "G",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:918:residue:10",
+          "residue_number": 115,
+          "roles": []
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "CYS",
+          "residue_node_id": "m_csa:918:residue:6",
+          "residue_number": 462,
+          "roles": []
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 11,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "5CNV",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "exact_measured_distance_angstrom": 4.714,
+      "focus_atom_pair": {
+        "distance_angstrom": 4.714,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:553:residue:1",
+          "residue_number": 165,
+          "roles": [
+            "covalently attached",
+            "electron pair acceptor",
+            "electron pair donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "TYR",
+          "residue_node_id": "m_csa:553:residue:2",
+          "residue_number": 137,
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "rank": 12,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1FDY",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context",
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:778",
+      "entry_name": "homoserine kinase",
+      "exact_measured_distance_angstrom": 10.841,
+      "focus_atom_pair": {
+        "distance_angstrom": 10.841,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "C",
+          "residue_name": "THR",
+          "residue_node_id": "m_csa:778:residue:1",
+          "residue_number": 179,
+          "roles": [
+            "electrostatic stabiliser",
+            "polar interaction"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "C",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:778:residue:2",
+          "residue_number": 126,
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 13,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1FWK",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "metal_ligand_rich_site_for_ser_his_seed",
+        "metal_supported_site_for_ser_his_seed",
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:793",
+      "entry_name": "mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase",
+      "exact_measured_distance_angstrom": 13.782,
+      "focus_atom_pair": {
+        "distance_angstrom": 13.782,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:793:residue:3",
+          "residue_number": 471,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:793:residue:5",
+          "residue_number": 341,
+          "roles": [
+            "activator",
+            "increase nucleophilicity",
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 14,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1QWN",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:792",
+      "entry_name": "protein disulfide oxidoreductase",
+      "exact_measured_distance_angstrom": 15.374,
+      "focus_atom_pair": {
+        "distance_angstrom": 15.374,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "TYR",
+          "residue_node_id": "m_csa:792:residue:5",
+          "residue_number": 72,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLY",
+          "residue_node_id": "m_csa:792:residue:7",
+          "residue_number": 10,
+          "roles": [
+            "electrostatic stabiliser",
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 15,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1QFN",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:676",
+      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
+      "exact_measured_distance_angstrom": 9.257,
+      "focus_atom_pair": {
+        "distance_angstrom": 9.257,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLY",
+          "residue_node_id": "m_csa:676:residue:2",
+          "residue_number": 289,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASN",
+          "residue_node_id": "m_csa:676:residue:6",
+          "residue_number": 218,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 16,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1B65",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:947",
+      "entry_name": "3-hydroxyacyl-[acyl-carrier-protein] dehydratase FabZ",
+      "exact_measured_distance_angstrom": 13.753,
+      "focus_atom_pair": {
+        "distance_angstrom": 13.753,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:947:residue:1",
+          "residue_number": 83,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ILE",
+          "residue_node_id": "m_csa:947:residue:3",
+          "residue_number": 75,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 17,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1U1Z",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "nonhydrolytic_metal_transfer_ligand_context",
+        "role_inferred_metal_low_pocket_support",
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:995",
+      "entry_name": "oxalate oxidase",
+      "exact_measured_distance_angstrom": 16.937,
+      "focus_atom_pair": {
+        "distance_angstrom": 16.937,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:995:residue:4",
+          "residue_number": 90,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "MET",
+          "residue_node_id": "m_csa:995:residue:8",
+          "residue_number": 149,
+          "roles": [
+            "steric role"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 18,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "2ET1",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:972",
+      "entry_name": "3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase",
+      "exact_measured_distance_angstrom": 14.953,
+      "focus_atom_pair": {
+        "distance_angstrom": 14.953,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:972:residue:1",
+          "residue_number": 1037,
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LEU",
+          "residue_node_id": "m_csa:972:residue:3",
+          "residue_number": 885,
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 19,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "2VZ9",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "fe_s_cluster_context_for_metal_hydrolase",
+        "metal_redox_ligand_context",
+        "role_inferred_metal_aromatic_positive_pocket",
+        "role_inferred_metal_covalent_cleavage_roles"
+      ],
+      "entry_id": "m_csa:980",
+      "entry_name": "ferredoxin:thioredoxin reductase",
+      "exact_measured_distance_angstrom": 12.001,
+      "focus_atom_pair": {
+        "distance_angstrom": 12.001,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "CYS",
+          "residue_node_id": "m_csa:980:residue:4",
+          "residue_number": 57,
+          "roles": [
+            "electrofuge",
+            "electrophile",
+            "metal ligand",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "CYS",
+          "residue_node_id": "m_csa:980:residue:6",
+          "residue_number": 76,
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 20,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1DJ7",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:974",
+      "entry_name": "fatty acid synthase - \u03b2-ketoreductase (KR)",
+      "exact_measured_distance_angstrom": 11.763,
+      "focus_atom_pair": {
+        "distance_angstrom": 11.763,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "SER",
+          "residue_node_id": "m_csa:974:residue:1",
+          "residue_number": 561,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:974:residue:3",
+          "residue_number": 535,
+          "roles": [
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 21,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "4PIV",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:910",
+      "entry_name": "scytalone dehydratase",
+      "exact_measured_distance_angstrom": 19.593,
+      "focus_atom_pair": {
+        "distance_angstrom": 19.593,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "TYR",
+          "residue_node_id": "m_csa:910:residue:1",
+          "residue_number": 50,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:910:residue:3",
+          "residue_number": 31,
+          "roles": [
+            "modifies pKa"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 22,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1STD",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:842",
+      "entry_name": "glucose-6-phosphate isomerase",
+      "exact_measured_distance_angstrom": 18.453,
+      "focus_atom_pair": {
+        "distance_angstrom": 18.453,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:842:residue:3",
+          "residue_number": 216,
+          "roles": [
+            "modifies pKa"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:842:residue:5",
+          "residue_number": 357,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 23,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1DQR",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:736",
+      "entry_name": "mannose-6-phosphate isomerase",
+      "exact_measured_distance_angstrom": 15.903,
+      "focus_atom_pair": {
+        "distance_angstrom": 15.903,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ARG",
+          "residue_node_id": "m_csa:736:residue:2",
+          "residue_number": 135,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:736:residue:4",
+          "residue_number": 298,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 24,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1X9H",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:687",
+      "entry_name": "deoxyhypusine synthase",
+      "exact_measured_distance_angstrom": 40.834,
+      "focus_atom_pair": {
+        "distance_angstrom": 40.834,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:687:residue:2",
+          "residue_number": 288,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:687:residue:3",
+          "residue_number": 137,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "rank": 25,
+      "selection_reason": "highest-priority existing PyMOL queue row with source geometry, exact CA pair/distance, PDB id, and missing local structure path",
+      "structure_id": "1ROZ",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    }
+  ]
+}

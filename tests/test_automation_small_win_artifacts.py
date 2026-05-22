@@ -11744,6 +11744,90 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertTrue(validation["metadata"]["valid"])
         self.assertEqual(validation["metadata"]["countable_import_ready_count"], 0)
 
+    def test_mcsa_pymol_materialized_tranche_expands_ready_rows(self) -> None:
+        selection = _load_json(
+            ARTIFACTS / "v3_mcsa_pymol_materialization_tranche_selection_20260522.json"
+        )
+        materialization = _load_json(
+            ARTIFACTS / "v3_mcsa_pymol_materialization_tranche_20260522.json"
+        )
+        queue = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json"
+        )
+        dry_run = _load_json(
+            ARTIFACTS
+            / "v3_expert_review_decision_batch_pymol_materialized_tranche_dry_run_20260522.json"
+        )
+        validation = _load_json(
+            ARTIFACTS
+            / "v3_expert_review_decision_batch_pymol_materialized_tranche_dry_run_validation_20260522.json"
+        )
+        blockers = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_pymol_remaining_blocker_report_after_materialization_20260522.json"
+        )
+        gate = _load_json(
+            ARTIFACTS
+            / "v3_post_mcsa_pymol_materialization_review_only_zero_import_gate_20260522.json"
+        )
+
+        self.assertEqual(selection["metadata"]["selected_row_count"], 25)
+        self.assertEqual(materialization["metadata"]["materialized_count"], 25)
+        self.assertEqual(materialization["metadata"]["failed_count"], 0)
+        self.assertFalse(materialization["metadata"]["ready_for_label_import"])
+        self.assertFalse(materialization["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(materialization["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(materialization["metadata"]["artifact_upload_or_removal_performed"])
+        self.assertFalse(materialization["metadata"]["removal_allowed"])
+
+        for row in materialization["rows"]:
+            self.assertEqual(row["materialization_status"], "materialized")
+            self.assertEqual(len(row["sha256"]), 64)
+            path = ROOT / row["local_structure_path"]
+            self.assertTrue(path.exists(), row["local_structure_path"])
+            self.assertGreater(row["size_bytes"], 0)
+            self.assertTrue(row["first_line"].startswith("data_"))
+
+        metadata = queue["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["total_review_rows_scanned"], 321)
+        self.assertEqual(metadata["pymol_ready_count"], 26)
+        self.assertEqual(metadata["rows_with_structure_paths"], 26)
+        self.assertEqual(metadata["missing_field_counts"]["missing_structure_path"], 293)
+        self.assertEqual(queue["pml_script_manifest"]["metadata"]["script_count"], 26)
+        self.assertIn("m_csa:939", metadata["ready_entry_ids"])
+        for entry_id in materialization["metadata"]["materialized_entry_ids"]:
+            self.assertIn(entry_id, metadata["ready_entry_ids"])
+
+        self.assertTrue(dry_run["metadata"]["dry_run"])
+        self.assertEqual(dry_run["metadata"]["review_item_count"], 26)
+        self.assertEqual(dry_run["metadata"]["decision_counts"], {"skipped": 26})
+        self.assertEqual(dry_run["metadata"]["countable_import_ready_count"], 0)
+        self.assertTrue(validation["metadata"]["valid"])
+        self.assertEqual(validation["metadata"]["review_item_count"], 26)
+        self.assertEqual(validation["metadata"]["countable_import_ready_count"], 0)
+
+        blocker_metadata = blockers["metadata"]
+        self.assertTrue(blocker_metadata["review_only"])
+        self.assertEqual(blocker_metadata["pymol_ready_count"], 26)
+        self.assertEqual(blocker_metadata["blocked_count"], 295)
+        self.assertEqual(blocker_metadata["next_tranche_candidate_count"], 25)
+        self.assertEqual(blocker_metadata["missing_structure_id_count"], 2)
+        self.assertEqual(blocker_metadata["missing_exact_pair_or_distance_count"], 23)
+        self.assertTrue(blockers["next_structure_materialization_candidates"])
+        self.assertTrue(blockers["structure_id_mapping_blockers"])
+        self.assertTrue(blockers["exact_atom_pair_mapping_blockers_sample"])
+
+        self.assertTrue(gate["metadata"]["valid"])
+        self.assertEqual(gate["metadata"]["artifact_count"], 6)
+        self.assertEqual(gate["metadata"]["valid_artifact_count"], 6)
+        self.assertEqual(gate["metadata"]["blocker_count"], 0)
+        self.assertFalse(gate["metadata"]["ready_for_label_import"])
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(gate["metadata"]["countable_label_candidate_count"], 0)
+
     def test_glycoside_hydrolase_post_pymol_packet_stays_blocked(self) -> None:
         packet = _load_json(
             ARTIFACTS

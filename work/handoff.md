@@ -78,6 +78,43 @@ become PyMOL-ready, or the repo has a clear materialization blocker report
 naming the missing structure identifiers/mapping failures for the selected
 tranche.
 
+### Ready Now: 26-Row PyMOL Review Tranche
+
+The PyMOL readiness target has been met. The materialized review queue is:
+
+```text
+artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json
+```
+
+It scans the same 321 M-CSA expert-review rows, materializes 25 selected PDB
+mmCIF structures from the frozen rank-ordered tranche, and raises
+`pymol_ready_count` from 1 to 26. The ready rows are `m_csa:670`, `m_csa:643`,
+`m_csa:756`, `m_csa:757`, `m_csa:760`, `m_csa:696`, `m_csa:654`, `m_csa:663`,
+`m_csa:662`, `m_csa:751`, `m_csa:918`, `m_csa:553`, `m_csa:778`,
+`m_csa:793`, `m_csa:792`, `m_csa:676`, `m_csa:947`, `m_csa:995`,
+`m_csa:972`, `m_csa:980`, `m_csa:974`, `m_csa:910`, `m_csa:842`,
+`m_csa:736`, `m_csa:687`, and the prior `m_csa:939`.
+
+Run the human review loop with:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli launch-mcsa-pymol-review \
+  --queue artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json \
+  --out artifacts/v3_expert_review_decision_batch_pymol_manual.json \
+  --reviewer vivek
+```
+
+The generated PyMOL scripts live under:
+
+```text
+artifacts/review_pymol/mcsa_1025_materialized_20260522/
+```
+
+Safety status: this tranche is review-only. It imports 0 labels, creates 0
+countable candidates, edits no registries/fingerprints, and passes the
+review-only zero-import gate in
+`artifacts/v3_post_mcsa_pymol_materialization_review_only_zero_import_gate_20260522.json`.
+
 ### PyMOL Human-Review Cockpit
 
 As of the 2026-05-22T17:15:38Z main-loop run, the queued M-CSA PyMOL
