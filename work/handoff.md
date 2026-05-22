@@ -50,6 +50,34 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### Immediate Next Target: Expand PyMOL-Ready M-CSA Review Rows
+
+Do not spend the next main-loop run adding generic unit tests, gate-count
+checks, or review-only machinery around the PyMOL cockpit. The cockpit exists
+and is tested. The scientific blocker it exposed is concrete: 321 M-CSA expert
+review rows were scanned, 298 already have exact residue/atom-pair distance
+evidence, but only 1 row is PyMOL-ready because 318 rows lack local structure
+paths.
+
+The next win is data/readiness, not more scaffolding:
+
+1. Select a bounded tranche from the highest-priority M-CSA review-debt rows,
+   preferably 10-25 rows that already have exact residue/atom-pair distances.
+2. Resolve or materialize local structure paths for those rows using existing
+   graph/geometry/PDB/AlphaFold references. Fetch only the needed coordinate
+   files, record SHA-256/provenance, and keep the tranche bounded.
+3. Regenerate the PyMOL queue and scripts so `pymol_ready_count` increases
+   materially beyond 1, or produce an exact blocker artifact explaining why the
+   tranche cannot be materialized.
+4. Do not import labels, edit registries, or claim countable readiness.
+5. Add only targeted tests needed for new structure-resolution code. Do not add
+   tests just to increase counts or decorate an unchanged gate.
+
+Success criterion for the next useful run: either at least 10 review rows
+become PyMOL-ready, or the repo has a clear materialization blocker report
+naming the missing structure identifiers/mapping failures for the selected
+tranche.
+
 ### PyMOL Human-Review Cockpit
 
 As of the 2026-05-22T17:15:38Z main-loop run, the queued M-CSA PyMOL
