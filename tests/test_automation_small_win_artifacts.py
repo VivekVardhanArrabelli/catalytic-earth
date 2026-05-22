@@ -4915,6 +4915,131 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             },
         )
 
+    def test_heme_peroxidase_second_full_current_screen_closes_exact_blockers(
+        self,
+    ) -> None:
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_after_full_current_modern_baseline_benchmark_20260521.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_second_heme_full_current_screen_20260521.json"
+        )
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_full_current_screen_20260521.json"
+        )
+
+        self.assertTrue(screen["metadata"]["review_only"])
+        self.assertTrue(screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(screen["metadata"]["candidate_count"], 3)
+        self.assertEqual(screen["metadata"]["current_countable_target_count"], 672)
+        self.assertEqual(screen["metadata"]["expected_query_target_pair_count"], 2016)
+        self.assertEqual(screen["metadata"]["unique_query_target_pair_count"], 2016)
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 1)
+        self.assertEqual(
+            screen["metadata"]["current_countable_structural_screen_status_counts"],
+            {
+                "current_countable_structural_duplicate_signal": 1,
+                "no_current_countable_structural_duplicate_signal": 2,
+            },
+        )
+        rows = {row["accession"]: row for row in screen["rows"]}
+        self.assertEqual(set(rows), {"P39597", "P31545", "K7N5M8"})
+        self.assertTrue(rows["P39597"]["duplicate_clear_established"])
+        self.assertTrue(rows["K7N5M8"]["duplicate_clear_established"])
+        self.assertFalse(rows["P31545"]["duplicate_clear_established"])
+        self.assertEqual(rows["P31545"]["current_countable_high_tm_hit_count"], 1)
+        self.assertEqual(
+            rows["P31545"]["nearest_current_countable_hit"]["target_structure_key"],
+            "pdb:1IR3",
+        )
+        self.assertGreaterEqual(
+            rows["P31545"]["nearest_current_countable_hit"]["max_pair_tm_score"],
+            0.7,
+        )
+
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertEqual(packet["metadata"]["exact_blocker_candidate_count"], 0)
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 2,
+                "terminal_rejection_duplicate_or_leakage": 5,
+            },
+        )
+        packet_rows = {row["accession"]: row for row in packet["rows"]}
+        self.assertEqual(
+            {
+                accession
+                for accession, row in packet_rows.items()
+                if row["terminal_decision"] == "mechanism_match_review_ready"
+            },
+            {"P39597", "K7N5M8"},
+        )
+        self.assertEqual(
+            packet_rows["P31545"]["terminal_decision"],
+            "terminal_rejection_duplicate_or_leakage",
+        )
+        self.assertTrue(
+            all(
+                row["exact_blocker_if_not_terminal_import_ready"] is None
+                for row in packet["rows"]
+            )
+        )
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+
+        self.assertEqual(
+            benchmark["metrics"]["full_current_countable_unique_query_target_pair_count"],
+            2016,
+        )
+        self.assertEqual(
+            benchmark["metrics"]["full_current_countable_high_tm_candidate_count"],
+            1,
+        )
+        self.assertEqual(
+            benchmark["metrics"]["full_current_countable_duplicate_clear_candidate_count"],
+            2,
+        )
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+
+        self.assertEqual(rollup["metadata"]["candidate_count"], 71)
+        self.assertEqual(rollup["metadata"]["exact_blocker_candidate_count"], 0)
+        self.assertEqual(rollup["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 5,
+                "terminal_rejection_duplicate_or_leakage": 63,
+                "terminal_rejection_insufficient_evidence": 3,
+            },
+        )
+
+        self.assertTrue(readiness["metadata"]["review_only"])
+        self.assertEqual(readiness["metadata"]["candidate_count"], 71)
+        self.assertEqual(readiness["metadata"]["exact_blocker_candidate_count"], 0)
+        self.assertEqual(readiness["metadata"]["import_ready_candidate_count"], 0)
+        self.assertFalse(readiness["metadata"]["ready_for_label_import"])
+        self.assertTrue(all(readiness["invariant_checks"].values()))
+        self.assertNotIn(
+            "three_second_heme_targeted_clear_rows_need_full_current_countable_duplicate_screen",
+            readiness["import_gate_readiness"]["blockers"],
+        )
+        self.assertTrue(
+            readiness["invariant_checks"][
+                "second_heme_full_current_screen_closed_exact_duplicate_blockers"
+            ]
+        )
+
     def test_flavin_dehydrogenase_minicampaign_stays_review_only(self) -> None:
         freeze = _load_json(
             ARTIFACTS

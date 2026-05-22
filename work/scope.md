@@ -151,14 +151,16 @@ only already frozen 2026-05-21 external rows. It did not add a seventh broad
 mini-campaign or freeze new external breadth. The second flavin
 dehydrogenase/reductase packet is now closed as seven
 `terminal_rejection_duplicate_or_leakage` rows after a complete targeted
-current-FDR screen. The second heme-peroxidase packet is partly closed: four
-rows are terminal duplicate/leakage rejections and three rows have the exact
-blocker
-`full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen`.
-The latest external deep rollup covers 71 rows with 0 import-ready candidates,
-0 countable label candidates, and a closed import gate. Next work should remove
-that exact heme duplicate-screen blocker or deepen another already frozen
-packet, not source more broad rows by default.
+current-FDR screen. The second heme-peroxidase packet is now closed for the
+current selected-structure duplicate-screen scope: five rows are terminal
+duplicate/leakage rejections after targeted-heme plus full-current evidence,
+and two rows (`P39597` and `K7N5M8`) are
+`mechanism_match_review_ready` after source-free heme geometry and a complete
+672-target current-countable no-hit screen. The latest external deep rollup
+covers 71 rows with 0 exact blockers, 0 import-ready candidates, 0 countable
+label candidates, and a closed import gate. Next work should deepen another
+already frozen packet or build import-gate evidence around review-ready rows,
+not source more broad rows by default.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

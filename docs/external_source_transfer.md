@@ -777,19 +777,26 @@ import.
   current-heme screen
   `artifacts/v3_heme_peroxidase_second_deep_packet_targeted_current_heme_screen_20260521.json`
   completes 140/140 query-target pairs against 20 current heme structures:
-  four rows have high-TM current-heme duplicate/leakage signals, while three
-  rows have no targeted-heme hit but still lack full current-countable
-  duplicate clearance. The terminal packet
+  four rows have high-TM current-heme duplicate/leakage signals. The initial
+  terminal packet
   `artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_targeted_heme_screen_20260521.json`
   records four `terminal_rejection_duplicate_or_leakage` rows and three exact
   `needs_new_extractor_or_structure` blockers:
   `full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen`.
-  The post-second-heme rollup and readiness artifacts
-  `artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_peroxidase_targeted_screen_20260521.json`
+  The follow-up full current-countable screen
+  `artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json`
+  closes that blocker for the three targeted-clear rows by covering 2016/2016
+  query-target pairs against 672 unique current-countable selected structures.
+  `P31545` hits current `pdb:1IR3` at `TM 0.7041` and becomes a terminal
+  duplicate/leakage rejection; `P39597` and `K7N5M8` have no `TM >= 0.7` hit
+  and become review-only `mechanism_match_review_ready` rows. The post-full
+  terminal packet, rollup, and readiness artifacts
+  `artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json`,
+  `artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_full_current_screen_20260521.json`,
   and
-  `artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_20260521.json`
-  cover 71 deep rows with 0 import-ready candidates and keep the 682-label
-  registry invariant closed.
+  `artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_full_current_screen_20260521.json`
+  cover 71 deep rows with 0 exact blockers, 0 import-ready candidates, and the
+  682-label registry invariant still closed.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

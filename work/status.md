@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 272
-- Measured elapsed time: 8141.3 minutes (135.69 hours)
+- Entries: 273
+- Measured elapsed time: 8227.8 minutes (137.13 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1145.3 measured minutes (19.09 hours)
+- v3: 1231.8 measured minutes (20.53 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 2965
-- Evidence references logged: 2401
+- Artifact references logged: 2974
+- Evidence references logged: 2409
 
 ## Recent Entries
-
-### 2026-05-21T18:12:47.873454+00:00 - v3
-
-- Task: FMO terminal duplicate closure and P31614 active-site blocker
-- Time mode: measured
-- Measured minutes: 48.133
-- Started: 2026-05-21T17:24:23Z
-- Ended: 2026-05-21T18:12:31Z
-- Artifacts: artifacts/v3_flavin_monooxygenase_deep_packet_chunk003_followup_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_screen_20260521.json, artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json, artifacts/v3_flavin_monooxygenase_deep_packet_chunk004_followup_modern_baseline_benchmark_20260521.json, artifacts/v3_serine_hydrolase_p31614_pdb_active_site_mapping_blocker_20260521.json, artifacts/v3_serine_hydrolase_deep_terminal_decision_packet_after_p31614_active_site_mapping_20260521.json, artifacts/v3_serine_hydrolase_deep_packet_post_p31614_active_site_mapping_modern_baseline_benchmark_20260521.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/scope.md, docs/external_source_transfer.md
-- Evidence: FMO chunk003 completed 16/16 subchunks for O94851 and Q7RTP6 with TM>=0.7 hits to pdb:1DOC, FMO chunk004 produced corroborating high-TM pdb:1EHK signals without duplicate-clear claim, FMO terminal packet now has 7 terminal_rejection_duplicate_or_leakage rows, P31614 PDB active-site mapping found no direct P31614 struct-ref engineered Ser45-to-Ala and missing 342/345 charge relay atoms, P31614 terminal packet remains needs_new_extractor_or_structure with exact coordinate/alignment plus full-current duplicate blocker, 792-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, git diff check passed
-- Notes: No artifact migration Phase 2 or Phase 3 action upload deletion externalization Git-LFS migration history rewrite registry edit label import production fingerprint edit production threshold change or removal_allowed=true occurred.
 
 ### 2026-05-21T19:37:19.047962+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_flavin_dehydrogenase_second_deep_packet_selection_20260521.json, artifacts/v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_flavin_dehydrogenase_targeted_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_packet_selection_20260521.json, artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_targeted_heme_screen_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_peroxidase_targeted_screen_20260521.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: stale lock recovered with coherent dirty second FDR and heme deep-packet work, second FDR seven rows are terminal duplicate/leakage rejections after 343/343 targeted current-FDR pairs, second heme has four terminal duplicate/leakage rows and three exact full-current duplicate-screen blockers after 140/140 targeted current-heme pairs, 819-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, new JSON artifacts parsed
 - Notes: Recovery validation only; no label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite production threshold change or removal_allowed=true occurred.
+
+### 2026-05-22T02:00:30.757526+00:00 - v3
+
+- Task: Second flavin and heme deep packets with full current heme closure
+- Time mode: measured
+- Measured minutes: 86.417
+- Started: 2026-05-22T00:33:36Z
+- Ended: 2026-05-22T02:00:01Z
+- Artifacts: artifacts/v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json, artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json, artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_full_current_screen_20260521.json, artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_full_current_screen_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md
+- Evidence: second FDR targeted screen completed 343/343 pairs and converted seven rows to terminal duplicate/leakage rejections, second heme full current screen completed 2016/2016 pairs with P31545 duplicate hit and P39597/K7N5M8 review-ready mechanism matches, external deep rollup now 71 rows with 63 duplicate rejections five mechanism-match review-ready rows three insufficient-evidence rows zero exact blockers zero import-ready candidates, 820-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, migration dry-run passed removal_allowed=0, 22 new JSON artifacts parsed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 

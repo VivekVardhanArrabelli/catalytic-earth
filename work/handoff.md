@@ -72,23 +72,28 @@ rows: `P11678`, `P39597`, `P31545`, `Q39034`, `K7N5M8`, `Q47KB1`, and
 mapped active/heme-binding feature sets; source-free geometry top-ranked all
 seven to `heme_peroxidase_oxidase` above the `0.4115` floor with 0 text/name
 fields used. The targeted current-heme Foldseek/TM screen completed all 140
-query-target pairs against 20 current heme structures. Four rows (`P11678`,
-`Q39034`, `Q47KB1`, and `P49012`) have high-TM current-heme duplicate signals
-and are terminal `terminal_rejection_duplicate_or_leakage`. Three rows
-(`P39597`, `P31545`, and `K7N5M8`) are `needs_new_extractor_or_structure` with
-the exact blocker
-`full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen`;
-the targeted heme subset is clear for them, but full current-countable
-duplicate/leakage evidence is still missing.
+query-target pairs against 20 current heme structures and converted four rows
+(`P11678`, `Q39034`, `Q47KB1`, and `P49012`) to terminal
+`terminal_rejection_duplicate_or_leakage`. The follow-up full current-countable
+screen
+`artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_screen_20260521.json`
+then closed the exact blocker for the three targeted-clear rows by covering
+2016/2016 query-target pairs against 672 unique staged current-countable
+structures. `P31545` has a high-TM current-countable hit to `pdb:1IR3`
+(`TM 0.7041`) and is a terminal duplicate/leakage rejection. `P39597` and
+`K7N5M8` have no `TM >= 0.7` current-countable hit, with nearest TMs `0.6930`
+and `0.6747`; the updated terminal packet
+`artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json`
+marks them `mechanism_match_review_ready` for review only.
 
 The latest rollup
-`artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_peroxidase_targeted_screen_20260521.json`
-now indexes 71 deep-packet rows with 62 duplicate/leakage terminal rejections,
-three mechanism-match-review-ready rows, three insufficient-evidence terminal
-rejections, three exact `needs_new_extractor_or_structure` blockers, 0
-import-ready candidates, and 0 countable label candidates. The post-second-heme
+`artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_full_current_screen_20260521.json`
+now indexes 71 deep-packet rows with 63 duplicate/leakage terminal rejections,
+five mechanism-match-review-ready rows, three insufficient-evidence terminal
+rejections, 0 exact `needs_new_extractor_or_structure` blockers, 0 import-ready
+candidates, and 0 countable label candidates. The post-full-current
 import-readiness artifact
-`artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_20260521.json`
+`artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_full_current_screen_20260521.json`
 keeps the label gate closed: registry invariants remain 682 labels, 212
 `seed_fingerprint`, 470 `out_of_scope`, and the only imported external labels
 remain `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`.
@@ -97,15 +102,18 @@ Evidence-based confidence call: confidence is high that the seven second FDR
 rows are terminal duplicate/leakage rejections because the targeted current-FDR
 screen is complete and every row has a `TM >= 0.7` current-lane hit. Confidence
 is high that the four second-heme duplicate rows are terminal rejections for
-the same targeted-lane reason. Confidence is medium, not high, that the three
-remaining heme rows are mechanism matches because their source-free heme
-geometry is above floor but duplicate-clear evidence is only targeted-heme
-clear, not full current-countable clear. Confidence is high that no label
+the same targeted-lane reason. Confidence is high that `P31545` is a terminal
+duplicate/leakage rejection because the full current-countable screen found a
+`TM >= 0.7` hit. Confidence is medium-high, not import-ready, that `P39597`
+and `K7N5M8` are mechanism-match review-ready because source-free heme geometry
+is above floor and full current-countable duplicate screening is bounded-clear,
+but no UniRef-wide or full label-factory gate evidence has run. Confidence is
+high that no label
 import, registry edit, fingerprint edit, threshold change, artifact
 upload/removal, Git-LFS migration, history rewrite, or `removal_allowed=true`
-occurred. Next work should run the exact full current-countable duplicate
-screen for `P39597`, `P31545`, and `K7N5M8` or continue another already frozen
-deep packet; do not add broad external row breadth by default.
+occurred. Next work should continue another already frozen deep packet or build
+import-gate evidence around review-ready rows; do not add broad external row
+breadth by default.
 
 As of the 2026-05-21T23:32:51Z main-loop run, the remaining frozen
 metal-phosphatase blockers are closed with source-free coordinate evidence and
