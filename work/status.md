@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 281
-- Measured elapsed time: 8633.2 minutes (143.89 hours)
+- Entries: 282
+- Measured elapsed time: 8638.1 minutes (143.97 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1637.2 measured minutes (27.29 hours)
+- v3: 1642.1 measured minutes (27.37 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3048
-- Evidence references logged: 2475
+- Artifact references logged: 3056
+- Evidence references logged: 2485
 
 ## Recent Entries
-
-### 2026-05-22T02:11:28+00:00 - v3
-
-- Task: Independent second heme full-current rerun reconciliation
-- Time mode: measured
-- Measured minutes: 18.767
-- Started: 2026-05-22T01:52:42Z
-- Ended: 2026-05-22T02:11:28Z
-- Artifacts: artifacts/v3_heme_peroxidase_second_deep_packet_full_current_countable_duplicate_screen_20260521.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: observed pushed commit 8744142 already closed the canonical second-heme full-current blocker, independent rerun completed 2016/2016 current-countable pairs for P39597 P31545 and K7N5M8, rerun reproduced the canonical status split: P31545 duplicate/leakage, P39597 and K7N5M8 bounded current-countable duplicate-clear, targeted regression pins the rerun as duplicate/leakage evidence only
-- Notes: Concurrent canonical closure was preserved; no label import registry edit fingerprint edit artifact upload/removal Git-LFS migration history rewrite threshold change or removal_allowed=true occurred.
 
 ### 2026-05-22T02:17:12+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_external_seed_fingerprint_label_factory_payload_gate_check_20260522.json, artifacts/v3_external_seed_fingerprint_policy_preregistration_and_payload_gate_dry_run_20260522.json, artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json, tests/test_automation_small_win_artifacts.py, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: 833-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, compileall passed, three new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs, seed payload dry run is blocked on applied_label_actions_ready external payload adapter, metal phosphate scan covered five PDB structures with zero phosphate-like ligand contexts
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload removal Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-22T08:51:15.302701+00:00 - v3
+
+- Task: Metal phosphate specificity blocker packet
+- Time mode: measured
+- Measured minutes: 4.85
+- Started: 2026-05-22T08:46:13Z
+- Ended: 2026-05-22T08:51:04Z
+- Artifacts: artifacts/v3_external_metal_phosphatase_review_ready_phosphate_specificity_blocker_packet_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: P0A8Y5 and P75792 phosphate specificity scan covered five coordinate structures, 0 phosphate-like substrate product or analog sites detected, both rows remain blocked_with_exact_missing_evidence, 834-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, 3 new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -345,6 +345,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T05:25:41.522048+00:00: Next exact import-gate step is preregistering an external seed-fingerprint counting policy and running a full no-import label-factory payload gate dry run for the six review-ready rows.
 - 2026-05-22T08:48:17.767316+00:00: Next exact work is a current-682 external seed-fingerprint payload adapter/rebaseline and no-import gate rerun; metal rows still need source-free phosphate/substrate specificity.
 - 2026-05-22T08:49:45.493927+00:00: Next exact work is a current-682 external seed-fingerprint payload adapter/rebaseline or a source-free phosphate-pocket extractor/holo-structure search before any metal import claim.
+- 2026-05-22T08:51:15.302701+00:00: Metal mechanism-match rows need a holo/analog phosphate-like coordinate structure or preregistered phosphate-pocket extractor before phosphatase-specific seed import claims.
 
 ## Scope Adjustments
 
@@ -511,3 +512,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T05:25:41.522048+00:00: Import-gate readiness advanced without import: UniRef duplicate evidence is now clear for all six review-ready rows, but seed-fingerprint import remains policy/gate blocked.
 - 2026-05-22T08:48:17.767316+00:00: Advanced import-gate readiness for existing review-ready rows without adding external breadth or importing labels.
 - 2026-05-22T08:49:45.493927+00:00: Import-gate readiness advanced without import: seed-fingerprint policy dry run has an exact current-682 adapter blocker and metal phosphatase rows have exact phosphate-specific missing evidence.
+- 2026-05-22T08:51:15.302701+00:00: Converted the metal-row phosphate/substrate specificity blocker into an exact source-free evidence packet.
