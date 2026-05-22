@@ -1,0 +1,1146 @@
+{
+  "metadata": {
+    "artifact_id": "v3_flavin_dehydrogenase_second_deep_packet_targeted_current_fdr_screen_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_selection_20260521.json",
+    "coordinate_materialization_artifact": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_coordinate_materialization_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T00:46:13Z",
+    "curated_label_registry_edited": false,
+    "current_fdr_target_coordinate_count": 49,
+    "duplicate_clear_claim_permitted": false,
+    "expected_query_target_pair_count": 343,
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_available": true,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-fdr-second-targeted-current-screen-c3dd7cce3d808c0b/queries /private/tmp/catalytic-earth-fdr-second-targeted-current-screen-c3dd7cce3d808c0b/current_fdr_targets /private/tmp/catalytic-earth-fdr-second-targeted-current-screen-c3dd7cce3d808c0b/second_fdr_vs_current_fdr_tm_scores.tsv /private/tmp/catalytic-earth-fdr-second-targeted-current-screen-c3dd7cce3d808c0b/tmp --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --max-seqs 100000 -e inf --threads 1 -v 1",
+    "foldseek_coordinate_readiness_artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    "foldseek_error": null,
+    "foldseek_reporting_mode": "second_fdr_queries_vs_current_countable_flavin_dehydrogenase_reductase_targets_exhaustive_exact_tmscore",
+    "foldseek_run_status": "completed",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "geometry_scores_artifact": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_geometry_scores_20260521.json",
+    "high_tm_candidate_count": 7,
+    "max_external_vs_current_fdr_tm_score": 0.9667,
+    "method": "flavin_dehydrogenase_second_deep_packet_targeted_current_fdr_screen",
+    "pair_cache_complete": true,
+    "query_target_pair_coverage": 1.0,
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "screened_candidate_count": 7,
+    "source_separation_guardrail": "Foldseek/TM evidence is targeted current-lane duplicate/leakage evidence only and is not counted as positive mechanism evidence.",
+    "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+    "targeted_current_fdr_screen_status_counts": {
+      "current_fdr_structural_duplicate_signal": 7
+    },
+    "threads": 1,
+    "tm_score_threshold": 0.7,
+    "unique_query_target_pair_count": 343
+  },
+  "rows": [
+    {
+      "accession": "P77258",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_structural_coordinates_20260521/afdb_P77258.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 49,
+      "foldseek_run_status": "completed",
+      "nearest_current_fdr_hit": {
+        "alntmscore": 0.9453,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+        "current_entry_ids": [
+          "m_csa:697"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "2HSA",
+        "current_selected_structure_key": "pdb:2HSA",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:697",
+        "max_pair_tm_score": 0.9352,
+        "qtmscore": 0.9352,
+        "raw_query_name": "afdb_P77258",
+        "raw_target_name": "pdb_2HSA_A",
+        "ttmscore": 0.9086
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P77258",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "targeted_current_fdr_high_tm_hit_count": 4,
+      "targeted_current_fdr_hit_count": 49,
+      "targeted_current_fdr_screen_status": "current_fdr_structural_duplicate_signal",
+      "tm_score_threshold": 0.7,
+      "top_current_fdr_hits": [
+        {
+          "alntmscore": 0.9453,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+          "current_entry_ids": [
+            "m_csa:697"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2HSA",
+          "current_selected_structure_key": "pdb:2HSA",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:697",
+          "max_pair_tm_score": 0.9352,
+          "qtmscore": 0.9352,
+          "raw_query_name": "afdb_P77258",
+          "raw_target_name": "pdb_2HSA_A",
+          "ttmscore": 0.9086
+        },
+        {
+          "alntmscore": 0.9151,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1OYA.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OYA.cif",
+          "current_entry_ids": [
+            "m_csa:319"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1OYA",
+          "current_selected_structure_key": "pdb:1OYA",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:319",
+          "max_pair_tm_score": 0.9127,
+          "qtmscore": 0.9127,
+          "raw_query_name": "afdb_P77258",
+          "raw_target_name": "pdb_1OYA",
+          "ttmscore": 0.8373
+        },
+        {
+          "alntmscore": 0.845,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_entry_ids": [
+            "m_csa:114"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2TMD",
+          "current_selected_structure_key": "pdb:2TMD",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:114",
+          "max_pair_tm_score": 0.8429,
+          "qtmscore": 0.8429,
+          "raw_query_name": "afdb_P77258",
+          "raw_target_name": "pdb_2TMD_B",
+          "ttmscore": 0.4383
+        },
+        {
+          "alntmscore": 0.8394,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+          "current_entry_ids": [
+            "m_csa:108"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1PS9",
+          "current_selected_structure_key": "pdb:1PS9",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:108",
+          "max_pair_tm_score": 0.8351,
+          "qtmscore": 0.8351,
+          "raw_query_name": "afdb_P77258",
+          "raw_target_name": "pdb_1PS9",
+          "ttmscore": 0.469
+        },
+        {
+          "alntmscore": 0.6401,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZP3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZP3.cif",
+          "current_entry_ids": [
+            "m_csa:120"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1ZP3",
+          "current_selected_structure_key": "pdb:1ZP3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:120",
+          "max_pair_tm_score": 0.6381,
+          "qtmscore": 0.4888,
+          "raw_query_name": "afdb_P77258",
+          "raw_target_name": "pdb_1ZP3_C",
+          "ttmscore": 0.6381
+        }
+      ]
+    },
+    {
+      "accession": "P41407",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_structural_coordinates_20260521/afdb_P41407.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 49,
+      "foldseek_run_status": "completed",
+      "nearest_current_fdr_hit": {
+        "alntmscore": 0.7887,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+        "current_entry_ids": [
+          "m_csa:3"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1D4A",
+        "current_selected_structure_key": "pdb:1D4A",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:3",
+        "max_pair_tm_score": 0.7852,
+        "qtmscore": 0.7852,
+        "raw_query_name": "afdb_P41407",
+        "raw_target_name": "pdb_1D4A_D",
+        "ttmscore": 0.5976
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P41407",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "targeted_current_fdr_high_tm_hit_count": 1,
+      "targeted_current_fdr_hit_count": 49,
+      "targeted_current_fdr_screen_status": "current_fdr_structural_duplicate_signal",
+      "tm_score_threshold": 0.7,
+      "top_current_fdr_hits": [
+        {
+          "alntmscore": 0.7887,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+          "current_entry_ids": [
+            "m_csa:3"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1D4A",
+          "current_selected_structure_key": "pdb:1D4A",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:3",
+          "max_pair_tm_score": 0.7852,
+          "qtmscore": 0.7852,
+          "raw_query_name": "afdb_P41407",
+          "raw_target_name": "pdb_1D4A_D",
+          "ttmscore": 0.5976
+        },
+        {
+          "alntmscore": 0.8196,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1YCF.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YCF.cif",
+          "current_entry_ids": [
+            "m_csa:497"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1YCF",
+          "current_selected_structure_key": "pdb:1YCF",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:497",
+          "max_pair_tm_score": 0.5992,
+          "qtmscore": 0.5992,
+          "raw_query_name": "afdb_P41407",
+          "raw_target_name": "pdb_1YCF_B",
+          "ttmscore": 0.321
+        },
+        {
+          "alntmscore": 0.7379,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1AMO.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AMO.cif",
+          "current_entry_ids": [
+            "m_csa:117"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1AMO",
+          "current_selected_structure_key": "pdb:1AMO",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:117",
+          "max_pair_tm_score": 0.5765,
+          "qtmscore": 0.5765,
+          "raw_query_name": "afdb_P41407",
+          "raw_target_name": "pdb_1AMO_B",
+          "ttmscore": 0.2171
+        },
+        {
+          "alntmscore": 0.5159,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_3EY9.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3EY9.cif",
+          "current_entry_ids": [
+            "m_csa:275"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "3EY9",
+          "current_selected_structure_key": "pdb:3EY9",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:275",
+          "max_pair_tm_score": 0.4372,
+          "qtmscore": 0.4372,
+          "raw_query_name": "afdb_P41407",
+          "raw_target_name": "pdb_3EY9_B",
+          "ttmscore": 0.1856
+        },
+        {
+          "alntmscore": 0.4378,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2GMH.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2GMH.cif",
+          "current_entry_ids": [
+            "m_csa:281"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2GMH",
+          "current_selected_structure_key": "pdb:2GMH",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:281",
+          "max_pair_tm_score": 0.4361,
+          "qtmscore": 0.4361,
+          "raw_query_name": "afdb_P41407",
+          "raw_target_name": "pdb_2GMH_B",
+          "ttmscore": 0.1794
+        }
+      ]
+    },
+    {
+      "accession": "Q8LAH7",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_structural_coordinates_20260521/afdb_Q8LAH7.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 49,
+      "foldseek_run_status": "completed",
+      "nearest_current_fdr_hit": {
+        "alntmscore": 0.9608,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+        "current_entry_ids": [
+          "m_csa:697"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "2HSA",
+        "current_selected_structure_key": "pdb:2HSA",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:697",
+        "max_pair_tm_score": 0.9281,
+        "qtmscore": 0.9281,
+        "raw_query_name": "afdb_Q8LAH7",
+        "raw_target_name": "pdb_2HSA_A",
+        "ttmscore": 0.9184
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q8LAH7",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "targeted_current_fdr_high_tm_hit_count": 4,
+      "targeted_current_fdr_hit_count": 49,
+      "targeted_current_fdr_screen_status": "current_fdr_structural_duplicate_signal",
+      "tm_score_threshold": 0.7,
+      "top_current_fdr_hits": [
+        {
+          "alntmscore": 0.9608,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+          "current_entry_ids": [
+            "m_csa:697"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2HSA",
+          "current_selected_structure_key": "pdb:2HSA",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:697",
+          "max_pair_tm_score": 0.9281,
+          "qtmscore": 0.9281,
+          "raw_query_name": "afdb_Q8LAH7",
+          "raw_target_name": "pdb_2HSA_A",
+          "ttmscore": 0.9184
+        },
+        {
+          "alntmscore": 0.9304,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1OYA.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OYA.cif",
+          "current_entry_ids": [
+            "m_csa:319"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1OYA",
+          "current_selected_structure_key": "pdb:1OYA",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:319",
+          "max_pair_tm_score": 0.9135,
+          "qtmscore": 0.9135,
+          "raw_query_name": "afdb_Q8LAH7",
+          "raw_target_name": "pdb_1OYA",
+          "ttmscore": 0.8536
+        },
+        {
+          "alntmscore": 0.8507,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_entry_ids": [
+            "m_csa:114"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2TMD",
+          "current_selected_structure_key": "pdb:2TMD",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:114",
+          "max_pair_tm_score": 0.8423,
+          "qtmscore": 0.8423,
+          "raw_query_name": "afdb_Q8LAH7",
+          "raw_target_name": "pdb_2TMD_B",
+          "ttmscore": 0.448
+        },
+        {
+          "alntmscore": 0.8523,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+          "current_entry_ids": [
+            "m_csa:108"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1PS9",
+          "current_selected_structure_key": "pdb:1PS9",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:108",
+          "max_pair_tm_score": 0.8352,
+          "qtmscore": 0.8352,
+          "raw_query_name": "afdb_Q8LAH7",
+          "raw_target_name": "pdb_1PS9",
+          "ttmscore": 0.4782
+        },
+        {
+          "alntmscore": 0.6328,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZP3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZP3.cif",
+          "current_entry_ids": [
+            "m_csa:120"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1ZP3",
+          "current_selected_structure_key": "pdb:1ZP3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:120",
+          "max_pair_tm_score": 0.6308,
+          "qtmscore": 0.4764,
+          "raw_query_name": "afdb_Q8LAH7",
+          "raw_target_name": "pdb_1ZP3_C",
+          "ttmscore": 0.6308
+        }
+      ]
+    },
+    {
+      "accession": "P0AEN1",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_structural_coordinates_20260521/afdb_P0AEN1.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 49,
+      "foldseek_run_status": "completed",
+      "nearest_current_fdr_hit": {
+        "alntmscore": 0.8523,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1FNB.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FNB.cif",
+        "current_entry_ids": [
+          "m_csa:506"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1FNB",
+        "current_selected_structure_key": "pdb:1FNB",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:506",
+        "max_pair_tm_score": 0.8457,
+        "qtmscore": 0.8457,
+        "raw_query_name": "afdb_P0AEN1",
+        "raw_target_name": "pdb_1FNB",
+        "ttmscore": 0.6789
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P0AEN1",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "targeted_current_fdr_high_tm_hit_count": 3,
+      "targeted_current_fdr_hit_count": 49,
+      "targeted_current_fdr_screen_status": "current_fdr_structural_duplicate_signal",
+      "tm_score_threshold": 0.7,
+      "top_current_fdr_hits": [
+        {
+          "alntmscore": 0.8523,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1FNB.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FNB.cif",
+          "current_entry_ids": [
+            "m_csa:506"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1FNB",
+          "current_selected_structure_key": "pdb:1FNB",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:506",
+          "max_pair_tm_score": 0.8457,
+          "qtmscore": 0.8457,
+          "raw_query_name": "afdb_P0AEN1",
+          "raw_target_name": "pdb_1FNB",
+          "ttmscore": 0.6789
+        },
+        {
+          "alntmscore": 0.8449,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1AMO.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AMO.cif",
+          "current_entry_ids": [
+            "m_csa:117"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1AMO",
+          "current_selected_structure_key": "pdb:1AMO",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:117",
+          "max_pair_tm_score": 0.8416,
+          "qtmscore": 0.8416,
+          "raw_query_name": "afdb_P0AEN1",
+          "raw_target_name": "pdb_1AMO_A",
+          "ttmscore": 0.3481
+        },
+        {
+          "alntmscore": 0.8403,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1NDH.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1NDH.cif",
+          "current_entry_ids": [
+            "m_csa:862"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1NDH",
+          "current_selected_structure_key": "pdb:1NDH",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:862",
+          "max_pair_tm_score": 0.8213,
+          "qtmscore": 0.8213,
+          "raw_query_name": "afdb_P0AEN1",
+          "raw_target_name": "pdb_1NDH",
+          "ttmscore": 0.7206
+        },
+        {
+          "alntmscore": 0.4492,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_entry_ids": [
+            "m_csa:114"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2TMD",
+          "current_selected_structure_key": "pdb:2TMD",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:114",
+          "max_pair_tm_score": 0.4452,
+          "qtmscore": 0.4452,
+          "raw_query_name": "afdb_P0AEN1",
+          "raw_target_name": "pdb_2TMD_A",
+          "ttmscore": 0.1764
+        },
+        {
+          "alntmscore": 0.4506,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1FCB.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FCB.cif",
+          "current_entry_ids": [
+            "m_csa:102"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1FCB",
+          "current_selected_structure_key": "pdb:1FCB",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:102",
+          "max_pair_tm_score": 0.4378,
+          "qtmscore": 0.4378,
+          "raw_query_name": "afdb_P0AEN1",
+          "raw_target_name": "pdb_1FCB_A",
+          "ttmscore": 0.2437
+        }
+      ]
+    },
+    {
+      "accession": "Q07923",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_structural_coordinates_20260521/afdb_Q07923.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 49,
+      "foldseek_run_status": "completed",
+      "nearest_current_fdr_hit": {
+        "alntmscore": 0.7472,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+        "current_entry_ids": [
+          "m_csa:3"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1D4A",
+        "current_selected_structure_key": "pdb:1D4A",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:3",
+        "max_pair_tm_score": 0.7209,
+        "qtmscore": 0.7209,
+        "raw_query_name": "afdb_Q07923",
+        "raw_target_name": "pdb_1D4A_B",
+        "ttmscore": 0.5305
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q07923",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "targeted_current_fdr_high_tm_hit_count": 1,
+      "targeted_current_fdr_hit_count": 49,
+      "targeted_current_fdr_screen_status": "current_fdr_structural_duplicate_signal",
+      "tm_score_threshold": 0.7,
+      "top_current_fdr_hits": [
+        {
+          "alntmscore": 0.7472,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+          "current_entry_ids": [
+            "m_csa:3"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1D4A",
+          "current_selected_structure_key": "pdb:1D4A",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:3",
+          "max_pair_tm_score": 0.7209,
+          "qtmscore": 0.7209,
+          "raw_query_name": "afdb_Q07923",
+          "raw_target_name": "pdb_1D4A_B",
+          "ttmscore": 0.5305
+        },
+        {
+          "alntmscore": 0.7688,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1YCF.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YCF.cif",
+          "current_entry_ids": [
+            "m_csa:497"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1YCF",
+          "current_selected_structure_key": "pdb:1YCF",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:497",
+          "max_pair_tm_score": 0.6143,
+          "qtmscore": 0.6143,
+          "raw_query_name": "afdb_Q07923",
+          "raw_target_name": "pdb_1YCF_B",
+          "ttmscore": 0.3204
+        },
+        {
+          "alntmscore": 0.6673,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1AMO.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AMO.cif",
+          "current_entry_ids": [
+            "m_csa:117"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1AMO",
+          "current_selected_structure_key": "pdb:1AMO",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:117",
+          "max_pair_tm_score": 0.5658,
+          "qtmscore": 0.5658,
+          "raw_query_name": "afdb_Q07923",
+          "raw_target_name": "pdb_1AMO_A",
+          "ttmscore": 0.2102
+        },
+        {
+          "alntmscore": 0.4633,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1JNR.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1JNR.cif",
+          "current_entry_ids": [
+            "m_csa:123"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1JNR",
+          "current_selected_structure_key": "pdb:1JNR",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:123",
+          "max_pair_tm_score": 0.4614,
+          "qtmscore": 0.4614,
+          "raw_query_name": "afdb_Q07923",
+          "raw_target_name": "pdb_1JNR_A",
+          "ttmscore": 0.1684
+        },
+        {
+          "alntmscore": 0.4949,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_entry_ids": [
+            "m_csa:114"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2TMD",
+          "current_selected_structure_key": "pdb:2TMD",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:114",
+          "max_pair_tm_score": 0.4565,
+          "qtmscore": 0.4565,
+          "raw_query_name": "afdb_Q07923",
+          "raw_target_name": "pdb_2TMD_A",
+          "ttmscore": 0.1558
+        }
+      ]
+    },
+    {
+      "accession": "P21375",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_structural_coordinates_20260521/afdb_P21375.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 49,
+      "foldseek_run_status": "completed",
+      "nearest_current_fdr_hit": {
+        "alntmscore": 0.9584,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1QJD.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QJD.cif",
+        "current_entry_ids": [
+          "m_csa:20"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "1QJD",
+        "current_selected_structure_key": "pdb:1QJD",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:20",
+        "max_pair_tm_score": 0.8503,
+        "qtmscore": 0.8503,
+        "raw_query_name": "afdb_P21375",
+        "raw_target_name": "pdb_1QJD",
+        "ttmscore": 0.7523
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:P21375",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "targeted_current_fdr_high_tm_hit_count": 3,
+      "targeted_current_fdr_hit_count": 49,
+      "targeted_current_fdr_screen_status": "current_fdr_structural_duplicate_signal",
+      "tm_score_threshold": 0.7,
+      "top_current_fdr_hits": [
+        {
+          "alntmscore": 0.9584,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1QJD.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QJD.cif",
+          "current_entry_ids": [
+            "m_csa:20"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1QJD",
+          "current_selected_structure_key": "pdb:1QJD",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:20",
+          "max_pair_tm_score": 0.8503,
+          "qtmscore": 0.8503,
+          "raw_query_name": "afdb_P21375",
+          "raw_target_name": "pdb_1QJD",
+          "ttmscore": 0.7523
+        },
+        {
+          "alntmscore": 0.8555,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1YQ4.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YQ4.cif",
+          "current_entry_ids": [
+            "m_csa:294"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1YQ4",
+          "current_selected_structure_key": "pdb:1YQ4",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:294",
+          "max_pair_tm_score": 0.7165,
+          "qtmscore": 0.7165,
+          "raw_query_name": "afdb_P21375",
+          "raw_target_name": "pdb_1YQ4_A",
+          "ttmscore": 0.5895
+        },
+        {
+          "alntmscore": 0.8806,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1KNP.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1KNP.cif",
+          "current_entry_ids": [
+            "m_csa:739"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1KNP",
+          "current_selected_structure_key": "pdb:1KNP",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:739",
+          "max_pair_tm_score": 0.714,
+          "qtmscore": 0.714,
+          "raw_query_name": "afdb_P21375",
+          "raw_target_name": "pdb_1KNP",
+          "ttmscore": 0.6779
+        },
+        {
+          "alntmscore": 0.7288,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1JNR.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1JNR.cif",
+          "current_entry_ids": [
+            "m_csa:123"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1JNR",
+          "current_selected_structure_key": "pdb:1JNR",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:123",
+          "max_pair_tm_score": 0.6577,
+          "qtmscore": 0.6577,
+          "raw_query_name": "afdb_P21375",
+          "raw_target_name": "pdb_1JNR_A",
+          "ttmscore": 0.524
+        },
+        {
+          "alntmscore": 0.6142,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1TDE.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1TDE.cif",
+          "current_entry_ids": [
+            "m_csa:381"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1TDE",
+          "current_selected_structure_key": "pdb:1TDE",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:381",
+          "max_pair_tm_score": 0.601,
+          "qtmscore": 0.401,
+          "raw_query_name": "afdb_P21375",
+          "raw_target_name": "pdb_1TDE",
+          "ttmscore": 0.601
+        }
+      ]
+    },
+    {
+      "accession": "Q9FUP0",
+      "coordinate_path": "artifacts/v3_flavin_dehydrogenase_second_deep_packet_structural_coordinates_20260521/afdb_Q9FUP0.cif",
+      "coordinate_status": "coordinate_sidecar_materialized",
+      "countable_label_candidate": false,
+      "duplicate_leakage_evidence_role": "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence",
+      "expected_query_target_pair_count": 49,
+      "foldseek_run_status": "completed",
+      "nearest_current_fdr_hit": {
+        "alntmscore": 0.9693,
+        "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+        "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+        "current_entry_ids": [
+          "m_csa:697"
+        ],
+        "current_label_types": [
+          "seed_fingerprint"
+        ],
+        "current_selected_structure_id": "2HSA",
+        "current_selected_structure_key": "pdb:2HSA",
+        "current_selected_structure_source": "pdb",
+        "current_target_fingerprint_ids": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "example_current_entry_id": "m_csa:697",
+        "max_pair_tm_score": 0.9667,
+        "qtmscore": 0.925,
+        "raw_query_name": "afdb_Q9FUP0",
+        "raw_target_name": "pdb_2HSA_B",
+        "ttmscore": 0.9667
+      },
+      "pair_cache_complete": true,
+      "ready_for_label_import": false,
+      "row_id": "uniprot:Q9FUP0",
+      "target_current_fingerprint_lane": "flavin_dehydrogenase_reductase",
+      "targeted_current_fdr_high_tm_hit_count": 4,
+      "targeted_current_fdr_hit_count": 49,
+      "targeted_current_fdr_screen_status": "current_fdr_structural_duplicate_signal",
+      "tm_score_threshold": 0.7,
+      "top_current_fdr_hits": [
+        {
+          "alntmscore": 0.9693,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2HSA.cif",
+          "current_entry_ids": [
+            "m_csa:697"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2HSA",
+          "current_selected_structure_key": "pdb:2HSA",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:697",
+          "max_pair_tm_score": 0.9667,
+          "qtmscore": 0.925,
+          "raw_query_name": "afdb_Q9FUP0",
+          "raw_target_name": "pdb_2HSA_B",
+          "ttmscore": 0.9667
+        },
+        {
+          "alntmscore": 0.8943,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1OYA.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OYA.cif",
+          "current_entry_ids": [
+            "m_csa:319"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1OYA",
+          "current_selected_structure_key": "pdb:1OYA",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:319",
+          "max_pair_tm_score": 0.8727,
+          "qtmscore": 0.8727,
+          "raw_query_name": "afdb_Q9FUP0",
+          "raw_target_name": "pdb_1OYA",
+          "ttmscore": 0.8559
+        },
+        {
+          "alntmscore": 0.8143,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TMD.cif",
+          "current_entry_ids": [
+            "m_csa:114"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "2TMD",
+          "current_selected_structure_key": "pdb:2TMD",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:114",
+          "max_pair_tm_score": 0.7953,
+          "qtmscore": 0.7953,
+          "raw_query_name": "afdb_Q9FUP0",
+          "raw_target_name": "pdb_2TMD_B",
+          "ttmscore": 0.4441
+        },
+        {
+          "alntmscore": 0.8091,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PS9.cif",
+          "current_entry_ids": [
+            "m_csa:108"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1PS9",
+          "current_selected_structure_key": "pdb:1PS9",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:108",
+          "max_pair_tm_score": 0.7917,
+          "qtmscore": 0.7917,
+          "raw_query_name": "afdb_Q9FUP0",
+          "raw_target_name": "pdb_1PS9",
+          "ttmscore": 0.4752
+        },
+        {
+          "alntmscore": 0.6396,
+          "current_coordinate_key": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZP3.cif",
+          "current_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZP3.cif",
+          "current_entry_ids": [
+            "m_csa:120"
+          ],
+          "current_label_types": [
+            "seed_fingerprint"
+          ],
+          "current_selected_structure_id": "1ZP3",
+          "current_selected_structure_key": "pdb:1ZP3",
+          "current_selected_structure_source": "pdb",
+          "current_target_fingerprint_ids": [
+            "flavin_dehydrogenase_reductase"
+          ],
+          "example_current_entry_id": "m_csa:120",
+          "max_pair_tm_score": 0.6376,
+          "qtmscore": 0.4619,
+          "raw_query_name": "afdb_Q9FUP0",
+          "raw_target_name": "pdb_1ZP3_C",
+          "ttmscore": 0.6376
+        }
+      ]
+    }
+  ]
+}

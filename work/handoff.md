@@ -50,6 +50,63 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+As of the 2026-05-22T00:57Z main-loop run, the external deepening ladder
+continued on already frozen rows only. No new external mini-campaign rows were
+frozen. The second flavin dehydrogenase/reductase packet selected seven
+previously unselected non-exact-reference rows from the existing 2026-05-21
+campaign: `P77258`, `P41407`, `Q8LAH7`, `P0AEN1`, `Q07923`, `P21375`, and
+`Q9FUP0`. Coordinates were materialized for all seven, active/binding-site
+features mapped for five, and the source-free geometry score artifact used 0
+EC/name/label/prose fields. A targeted current
+`flavin_dehydrogenase_reductase` Foldseek/TM screen completed all 343
+query-target pairs against 49 current FDR structures and found a `TM >= 0.7`
+current-FDR structural duplicate signal for every row. The terminal packet
+`artifacts/v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json`
+therefore converts all seven to `terminal_rejection_duplicate_or_leakage`, with
+0 import-ready rows, 0 countable rows, and no duplicate-clear or superiority
+claim.
+
+The same run then deepened a second heme-peroxidase packet from already frozen
+rows: `P11678`, `P39597`, `P31545`, `Q39034`, `K7N5M8`, `Q47KB1`, and
+`P49012`. All seven AlphaFold coordinates were materialized and all seven
+mapped active/heme-binding feature sets; source-free geometry top-ranked all
+seven to `heme_peroxidase_oxidase` above the `0.4115` floor with 0 text/name
+fields used. The targeted current-heme Foldseek/TM screen completed all 140
+query-target pairs against 20 current heme structures. Four rows (`P11678`,
+`Q39034`, `Q47KB1`, and `P49012`) have high-TM current-heme duplicate signals
+and are terminal `terminal_rejection_duplicate_or_leakage`. Three rows
+(`P39597`, `P31545`, and `K7N5M8`) are `needs_new_extractor_or_structure` with
+the exact blocker
+`full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen`;
+the targeted heme subset is clear for them, but full current-countable
+duplicate/leakage evidence is still missing.
+
+The latest rollup
+`artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_peroxidase_targeted_screen_20260521.json`
+now indexes 71 deep-packet rows with 62 duplicate/leakage terminal rejections,
+three mechanism-match-review-ready rows, three insufficient-evidence terminal
+rejections, three exact `needs_new_extractor_or_structure` blockers, 0
+import-ready candidates, and 0 countable label candidates. The post-second-heme
+import-readiness artifact
+`artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_20260521.json`
+keeps the label gate closed: registry invariants remain 682 labels, 212
+`seed_fingerprint`, 470 `out_of_scope`, and the only imported external labels
+remain `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`.
+
+Evidence-based confidence call: confidence is high that the seven second FDR
+rows are terminal duplicate/leakage rejections because the targeted current-FDR
+screen is complete and every row has a `TM >= 0.7` current-lane hit. Confidence
+is high that the four second-heme duplicate rows are terminal rejections for
+the same targeted-lane reason. Confidence is medium, not high, that the three
+remaining heme rows are mechanism matches because their source-free heme
+geometry is above floor but duplicate-clear evidence is only targeted-heme
+clear, not full current-countable clear. Confidence is high that no label
+import, registry edit, fingerprint edit, threshold change, artifact
+upload/removal, Git-LFS migration, history rewrite, or `removal_allowed=true`
+occurred. Next work should run the exact full current-countable duplicate
+screen for `P39597`, `P31545`, and `K7N5M8` or continue another already frozen
+deep packet; do not add broad external row breadth by default.
+
 As of the 2026-05-21T23:32:51Z main-loop run, the remaining frozen
 metal-phosphatase blockers are closed with source-free coordinate evidence and
 the next serine-hydrolase ladder item has moved from generic review to terminal

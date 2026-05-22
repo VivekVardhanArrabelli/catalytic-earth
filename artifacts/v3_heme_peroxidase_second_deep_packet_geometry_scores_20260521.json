@@ -1,0 +1,4962 @@
+{
+  "blockers": [
+    "targeted_current_heme_duplicate_screen_not_run",
+    "terminal_decision_packet_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "artifact_id": "v3_heme_peroxidase_second_deep_packet_geometry_scores_20260521",
+    "artifact_upload_or_removal_performed": false,
+    "automation_id": "catalytic-earth-work-loop",
+    "candidate_count": 7,
+    "candidate_selection_artifact": "artifacts/v3_heme_peroxidase_second_deep_packet_selection_20260521.json",
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-22T00:53:08Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "method": "heme_peroxidase_second_deep_packet_geometry_scores_review_only",
+    "ready_for_label_import": false,
+    "ready_for_production_scoring": false,
+    "ready_to_expand_positive_fingerprint_universe": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "structural_duplicate_screened_count": 0,
+    "structure_mapping_artifact": "artifacts/v3_heme_peroxidase_second_deep_packet_structure_mapping_20260521.json",
+    "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+    "target_lane_at_or_above_floor_count": 7,
+    "text_or_label_fields_used_for_score_count": 0,
+    "top1_fingerprint_counts": {
+      "heme_peroxidase_oxidase": 7
+    },
+    "top_k": 8
+  },
+  "results": [
+    {
+      "accession": "P11678",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 9,
+      "row_id": "uniprot:P11678",
+      "status": "ok",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor": true,
+      "target_lane_rank": 1,
+      "target_lane_score": 0.7138,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.7138,
+      "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "PHE"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.7138,
+          "substrate_pocket_score": 0.2533,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "residue_roles"
+              ],
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "review_context_fields": [],
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "ser_his_seed_missing_triad_coherence"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "SER"
+              ],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3875,
+          "substrate_pocket_score": 0.7666,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3586,
+          "substrate_pocket_score": 0.1561,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "SER",
+                "THR"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLU",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "PHE"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3425,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "review_context_fields": [],
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_plp_ligand_without_lysine_anchor"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.2473,
+          "substrate_pocket_score": 0.22,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 2
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "ligand_context"
+              ],
+              "reason": "nad_only_or_nonflavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "SER",
+                "THR"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1537,
+          "substrate_pocket_score": 0.4916,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.25,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.25,
+              "reason": "absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_cobalamin_context",
+              "review_context_fields": [],
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_cobalamin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "cobalamin_radical_rearrangement",
+          "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "cobalamin_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "Tyr/Asp/Glu/Arg",
+              "required_role": "radical_stabilizer",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS",
+                "SER",
+                "THR"
+              ],
+              "required_residue": "polar_or_charged_residue",
+              "required_role": "substrate_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.1227,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8227,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 36,
+            "max": 23.013,
+            "median": 10.837,
+            "min": 3.83
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.0,
+          "role_match_fraction": 0.0,
+          "score": 0.0868,
+          "substrate_pocket_score": 0.14,
+          "text_or_label_fields_used_for_score": false
+        }
+      ]
+    },
+    {
+      "accession": "P39597",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 2,
+      "row_id": "uniprot:P39597",
+      "status": "ok",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor": true,
+      "target_lane_rank": 1,
+      "target_lane_score": 0.6153,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.6153,
+      "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.6153,
+          "substrate_pocket_score": 0.2417,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3474,
+          "substrate_pocket_score": 0.1931,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.2844,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "residue_roles"
+              ],
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "review_context_fields": [],
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "ser_his_seed_missing_triad_coherence"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1687,
+          "substrate_pocket_score": 0.8907,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 2
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "ligand_context"
+              ],
+              "reason": "nad_only_or_nonflavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1473,
+          "substrate_pocket_score": 0.532,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "review_context_fields": [],
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_plp_ligand_without_lysine_anchor"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1219,
+          "substrate_pocket_score": 0.25,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.25,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.25,
+              "reason": "absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_cobalamin_context",
+              "review_context_fields": [],
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_cobalamin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "cobalamin_radical_rearrangement",
+          "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "cobalamin_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG"
+              ],
+              "required_residue": "Tyr/Asp/Glu/Arg",
+              "required_role": "radical_stabilizer",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "polar_or_charged_residue",
+              "required_role": "substrate_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.1185,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6134,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 14.185,
+            "median": 14.185,
+            "min": 14.185
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.0,
+          "role_match_fraction": 0.0,
+          "score": 0.0632,
+          "substrate_pocket_score": 0.0944,
+          "text_or_label_fields_used_for_score": false
+        }
+      ]
+    },
+    {
+      "accession": "P31545",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 3,
+      "row_id": "uniprot:P31545",
+      "status": "ok",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor": true,
+      "target_lane_rank": 1,
+      "target_lane_score": 0.6143,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.6143,
+      "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.6143,
+          "substrate_pocket_score": 0.2408,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3412,
+          "substrate_pocket_score": 0.1582,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.2839,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "residue_roles"
+              ],
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "review_context_fields": [],
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "ser_his_seed_missing_triad_coherence"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1727,
+          "substrate_pocket_score": 0.9511,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 2
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "ligand_context"
+              ],
+              "reason": "nad_only_or_nonflavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1438,
+          "substrate_pocket_score": 0.4984,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "review_context_fields": [],
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_plp_ligand_without_lysine_anchor"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1184,
+          "substrate_pocket_score": 0.2163,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.25,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.25,
+              "reason": "absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_cobalamin_context",
+              "review_context_fields": [],
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_cobalamin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "cobalamin_radical_rearrangement",
+          "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "cobalamin_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG"
+              ],
+              "required_residue": "Tyr/Asp/Glu/Arg",
+              "required_role": "radical_stabilizer",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "polar_or_charged_residue",
+              "required_role": "substrate_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.1183,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6024,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 3,
+            "max": 17.503,
+            "median": 14.362,
+            "min": 8.981
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.0,
+          "role_match_fraction": 0.0,
+          "score": 0.0673,
+          "substrate_pocket_score": 0.1275,
+          "text_or_label_fields_used_for_score": false
+        }
+      ]
+    },
+    {
+      "accession": "Q39034",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 13,
+      "row_id": "uniprot:Q39034",
+      "status": "ok",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor": true,
+      "target_lane_rank": 1,
+      "target_lane_score": 0.6778,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.6778,
+      "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.6778,
+          "substrate_pocket_score": 0.2354,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "residue_roles"
+              ],
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "review_context_fields": [],
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "ser_his_seed_missing_triad_coherence"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "SER"
+              ],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3784,
+          "substrate_pocket_score": 0.8652,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3303,
+          "substrate_pocket_score": 0.1896,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "SER",
+                "THR",
+                "THR",
+                "THR"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3225,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "review_context_fields": [],
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_plp_ligand_without_lysine_anchor"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "GLY",
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.2292,
+          "substrate_pocket_score": 0.2417,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 2
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "ligand_context"
+              ],
+              "reason": "nad_only_or_nonflavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "SER",
+                "THR",
+                "THR",
+                "THR"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1351,
+          "substrate_pocket_score": 0.5065,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.25,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.25,
+              "reason": "absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_cobalamin_context",
+              "review_context_fields": [],
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_cobalamin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "cobalamin_radical_rearrangement",
+          "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "cobalamin_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Tyr/Asp/Glu/Arg",
+              "required_role": "radical_stabilizer",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS",
+                "SER",
+                "THR",
+                "THR",
+                "THR"
+              ],
+              "required_residue": "polar_or_charged_residue",
+              "required_role": "substrate_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.1144,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4061,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 78,
+            "max": 31.855,
+            "median": 17.502,
+            "min": 3.838
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.0,
+          "role_match_fraction": 0.0,
+          "score": 0.0511,
+          "substrate_pocket_score": 0.124,
+          "text_or_label_fields_used_for_score": false
+        }
+      ]
+    },
+    {
+      "accession": "K7N5M8",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 5,
+      "row_id": "uniprot:K7N5M8",
+      "status": "ok",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor": true,
+      "target_lane_rank": 1,
+      "target_lane_score": 0.6899,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.6899,
+      "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.6899,
+          "substrate_pocket_score": 0.2247,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3386,
+          "substrate_pocket_score": 0.1535,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLU",
+                "GLU",
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3307,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "residue_roles"
+              ],
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "review_context_fields": [],
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "ser_his_seed_missing_triad_coherence"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.2666,
+          "substrate_pocket_score": 0.9306,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "review_context_fields": [],
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_plp_ligand_without_lysine_anchor"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.1639,
+          "substrate_pocket_score": 0.2014,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 2
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "ligand_context"
+              ],
+              "reason": "nad_only_or_nonflavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1437,
+          "substrate_pocket_score": 0.5109,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.25,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.25,
+              "reason": "absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_cobalamin_context",
+              "review_context_fields": [],
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_cobalamin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "cobalamin_radical_rearrangement",
+          "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "cobalamin_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "Tyr/Asp/Glu/Arg",
+              "required_role": "radical_stabilizer",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "polar_or_charged_residue",
+              "required_role": "substrate_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.1178,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5777,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 10,
+            "max": 36.636,
+            "median": 14.758,
+            "min": 7.995
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.0,
+          "role_match_fraction": 0.0,
+          "score": 0.0638,
+          "substrate_pocket_score": 0.1169,
+          "text_or_label_fields_used_for_score": false
+        }
+      ]
+    },
+    {
+      "accession": "Q47KB1",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 2,
+      "row_id": "uniprot:Q47KB1",
+      "status": "ok",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor": true,
+      "target_lane_rank": 1,
+      "target_lane_score": 0.6991,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.6991,
+      "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.6991,
+          "substrate_pocket_score": 0.1957,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3546,
+          "substrate_pocket_score": 0.17,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3389,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "residue_roles"
+              ],
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "review_context_fields": [],
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "ser_his_seed_missing_triad_coherence"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.2721,
+          "substrate_pocket_score": 0.9143,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "review_context_fields": [],
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_plp_ligand_without_lysine_anchor"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.1757,
+          "substrate_pocket_score": 0.2429,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 2
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "ligand_context"
+              ],
+              "reason": "nad_only_or_nonflavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1476,
+          "substrate_pocket_score": 0.4635,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.25,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.25,
+              "reason": "absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_cobalamin_context",
+              "review_context_fields": [],
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_cobalamin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "cobalamin_radical_rearrangement",
+          "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "cobalamin_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP"
+              ],
+              "required_residue": "Tyr/Asp/Glu/Arg",
+              "required_role": "radical_stabilizer",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "polar_or_charged_residue",
+              "required_role": "substrate_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.1212,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7471,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 1,
+            "max": 12.046,
+            "median": 12.046,
+            "min": 12.046
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.0,
+          "role_match_fraction": 0.0,
+          "score": 0.0726,
+          "substrate_pocket_score": 0.0857,
+          "text_or_label_fields_used_for_score": false
+        }
+      ]
+    },
+    {
+      "accession": "P49012",
+      "countable_label_candidate": false,
+      "ready_for_label_import": false,
+      "resolved_residue_count": 11,
+      "row_id": "uniprot:P49012",
+      "status": "ok",
+      "target_current_fingerprint_lane": "heme_peroxidase_oxidase",
+      "target_lane_at_or_above_floor": true,
+      "target_lane_rank": 1,
+      "target_lane_score": 0.6841,
+      "text_or_label_fields_used_for_score": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.6841,
+      "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.6841,
+          "substrate_pocket_score": 0.2657,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "residue_roles"
+              ],
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "review_context_fields": [],
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "ser_his_seed_missing_triad_coherence"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "SER",
+                "SER"
+              ],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3859,
+          "substrate_pocket_score": 0.9551,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3255,
+          "substrate_pocket_score": 0.1467,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "SER",
+                "SER",
+                "THR"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3235,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "review_context_fields": [],
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_plp_ligand_without_lysine_anchor"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "GLY",
+                "SER",
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.2279,
+          "substrate_pocket_score": 0.2152,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 2
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_flavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "ligand_context"
+              ],
+              "reason": "nad_only_or_nonflavin_context",
+              "review_context_fields": [],
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_flavin_context",
+            "nad_only_or_nonflavin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_flavin_context",
+              "nad_only_or_nonflavin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "SER",
+                "SER",
+                "THR"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1322,
+          "substrate_pocket_score": 0.4633,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 1
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": true,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 0.25,
+          "counterevidence_penalty_details": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_role": "predictive_safety_counterevidence",
+              "penalty": 0.25,
+              "reason": "absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_hits": [
+            {
+              "counterevidence_category": "structure_local_evidence_counterevidence",
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "predictive_safety_counterevidence",
+              "external_orphan_safety_evidence": true,
+              "leakage_flags": [],
+              "legacy_evidence_role": "counterevidence_only_not_predictive_evidence",
+              "orphan_discovery_claim_status": "valid_predictive_safety_evidence",
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "predictive_safety_evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "reason": "absent_cobalamin_context",
+              "review_context_fields": [],
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons": [
+            "absent_cobalamin_context"
+          ],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": [
+              "absent_cobalamin_context"
+            ]
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "cobalamin_radical_rearrangement",
+          "fingerprint_name": "Adenosylcobalamin radical rearrangement",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "cobalamin_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Tyr/Asp/Glu/Arg",
+              "required_role": "radical_stabilizer",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS",
+                "SER",
+                "SER",
+                "THR"
+              ],
+              "required_residue": "polar_or_charged_residue",
+              "required_role": "substrate_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.1148,
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.4275,
+          "counterevidence_category_counts": {
+            "mechanism_text_review_context_counterevidence": 0,
+            "structure_local_evidence_counterevidence": 0
+          },
+          "counterevidence_external_orphan_safety": {
+            "predictive_safety_counterevidence_required": false,
+            "review_context_only_counterevidence_not_required": false,
+            "review_context_only_not_valid_for_orphan_discovery_claims": false
+          },
+          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
+          "counterevidence_predictive_safety_reasons": [],
+          "counterevidence_reasons": [],
+          "counterevidence_reasons_by_category": {
+            "mechanism_text_review_context_counterevidence": [],
+            "structure_local_evidence_counterevidence": []
+          },
+          "counterevidence_review_context_only_reasons": [],
+          "distance_summary": {
+            "count": 55,
+            "max": 31.362,
+            "median": 17.16,
+            "min": 3.857
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [],
+          "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
+          "residue_match_fraction": 0.0,
+          "role_match_fraction": 0.0,
+          "score": 0.0565,
+          "substrate_pocket_score": 0.1483,
+          "text_or_label_fields_used_for_score": false
+        }
+      ]
+    }
+  ]
+}

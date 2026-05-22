@@ -146,6 +146,19 @@ pinned as the context-v4-only split counterexample, records policy v9's exact
 review-only control surface for future scorer tests. The conclusion is still
 no production ePK scoring, no label import, no registry/fingerprint edit, and
 no main-loop ePK default.
+Current external-deepening scope: the 2026-05-22 main-loop follow-up continued
+only already frozen 2026-05-21 external rows. It did not add a seventh broad
+mini-campaign or freeze new external breadth. The second flavin
+dehydrogenase/reductase packet is now closed as seven
+`terminal_rejection_duplicate_or_leakage` rows after a complete targeted
+current-FDR screen. The second heme-peroxidase packet is partly closed: four
+rows are terminal duplicate/leakage rejections and three rows have the exact
+blocker
+`full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen`.
+The latest external deep rollup covers 71 rows with 0 import-ready candidates,
+0 countable label candidates, and a closed import gate. Next work should remove
+that exact heme duplicate-screen blocker or deepen another already frozen
+packet, not source more broad rows by default.
 Current metal-phosphatase deepening scope: the first 2026-05-21 external
 deep packet is review-only blocker evidence, not a new import path.
 `artifacts/v3_metal_phosphatase_deep_packet_selection_20260521.json` freezes

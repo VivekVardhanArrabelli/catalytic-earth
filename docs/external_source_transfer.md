@@ -756,6 +756,40 @@ import.
   `artifacts/v3_heme_peroxidase_deep_packet_post_i2dby1_subchunk_modern_baseline_benchmark_20260521.json`
   keeps EC/keyword and deterministic sequence baselines diagnostic only, records
   ESM as unavailable, and makes no superiority or import claim.
+- `artifacts/v3_flavin_dehydrogenase_second_deep_packet_selection_20260521.json`
+  starts a second flavin dehydrogenase/reductase deep packet from seven
+  previously unselected rows in the already frozen campaign, with no new broad
+  external row freeze. Coordinates materialize for all seven; source-free
+  geometry uses 0 EC/name/label/prose fields and records 0 target-lane
+  above-floor rows. The targeted current-FDR screen
+  `artifacts/v3_flavin_dehydrogenase_second_deep_packet_targeted_current_fdr_screen_20260521.json`
+  completes 343/343 query-target pairs against 49 current FDR structures and
+  finds high-TM current-lane duplicate/leakage signals for every row. The
+  terminal packet
+  `artifacts/v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json`
+  records seven `terminal_rejection_duplicate_or_leakage` rows, 0 import-ready
+  rows, 0 countable candidates, and no superiority claim.
+- `artifacts/v3_heme_peroxidase_second_deep_packet_selection_20260521.json`
+  starts a second heme-peroxidase deep packet from seven existing frozen rows.
+  All seven coordinates and active/heme-binding feature mappings are available,
+  and source-free geometry top-ranks all seven to `heme_peroxidase_oxidase`
+  above the `0.4115` floor with 0 text/name fields used. The targeted
+  current-heme screen
+  `artifacts/v3_heme_peroxidase_second_deep_packet_targeted_current_heme_screen_20260521.json`
+  completes 140/140 query-target pairs against 20 current heme structures:
+  four rows have high-TM current-heme duplicate/leakage signals, while three
+  rows have no targeted-heme hit but still lack full current-countable
+  duplicate clearance. The terminal packet
+  `artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_targeted_heme_screen_20260521.json`
+  records four `terminal_rejection_duplicate_or_leakage` rows and three exact
+  `needs_new_extractor_or_structure` blockers:
+  `full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen`.
+  The post-second-heme rollup and readiness artifacts
+  `artifacts/v3_external_deep_terminal_decision_rollup_post_second_heme_peroxidase_targeted_screen_20260521.json`
+  and
+  `artifacts/v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_20260521.json`
+  cover 71 deep rows with 0 import-ready candidates and keep the 682-label
+  registry invariant closed.
 - `artifacts/v3_prospective_external_methyltransferase_minicampaign_freeze_20260520.json`
   freezes that different surface: 20 Swiss-Prot EC 2.1.1.x methyltransferase
   rows selected before outcome scoring from a live UniProt query, requiring

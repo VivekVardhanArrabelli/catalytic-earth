@@ -4463,6 +4463,149 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "not_available_for_this_deep_packet",
         )
 
+    def test_flavin_dehydrogenase_second_packet_targeted_fdr_screen_rejects_leakage(
+        self,
+    ) -> None:
+        selection = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_second_deep_packet_selection_20260521.json"
+        )
+        coordinates = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_second_deep_packet_coordinate_materialization_20260521.json"
+        )
+        mapping = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_second_deep_packet_structure_mapping_20260521.json"
+        )
+        scores = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_second_deep_packet_geometry_scores_20260521.json"
+        )
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_second_deep_packet_targeted_current_fdr_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_second_deep_terminal_decision_packet_after_targeted_fdr_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_flavin_dehydrogenase_second_deep_packet_after_targeted_fdr_modern_baseline_benchmark_20260521.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_second_flavin_dehydrogenase_targeted_screen_20260521.json"
+        )
+
+        self.assertTrue(selection["metadata"]["review_only"])
+        self.assertTrue(
+            selection["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(selection["metadata"]["candidate_count"], 7)
+        self.assertEqual(
+            {row["accession"] for row in selection["rows"]},
+            {"P77258", "P41407", "Q8LAH7", "P0AEN1", "Q07923", "P21375", "Q9FUP0"},
+        )
+        self.assertEqual(selection["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(
+            selection["metadata"]["target_current_fingerprint_lane"],
+            "flavin_dehydrogenase_reductase",
+        )
+        self.assertFalse(selection["metadata"]["ready_for_label_import"])
+
+        self.assertEqual(
+            coordinates["metadata"]["coordinate_materialized_or_reused_count"], 7
+        )
+        self.assertEqual(coordinates["metadata"]["fetch_failure_count"], 0)
+        self.assertTrue(
+            all(row["coordinate_digest_sha256"] for row in coordinates["rows"])
+        )
+        self.assertEqual(mapping["metadata"]["feature_fetch_failure_count"], 0)
+        self.assertEqual(mapping["metadata"]["mapped_candidate_count"], 5)
+        self.assertTrue(
+            all(
+                entry["source_context_not_counted_as_predictive_score"]
+                for entry in mapping["entries"]
+            )
+        )
+
+        self.assertEqual(scores["metadata"]["text_or_label_fields_used_for_score_count"], 0)
+        self.assertEqual(scores["metadata"]["target_lane_at_or_above_floor_count"], 0)
+        self.assertFalse(scores["metadata"]["ready_for_label_import"])
+
+        self.assertTrue(screen["metadata"]["review_only"])
+        self.assertTrue(screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(screen["metadata"]["current_fdr_target_coordinate_count"], 49)
+        self.assertEqual(screen["metadata"]["unique_query_target_pair_count"], 343)
+        self.assertEqual(screen["metadata"]["expected_query_target_pair_count"], 343)
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 7)
+        self.assertFalse(screen["metadata"]["duplicate_clear_claim_permitted"])
+        self.assertEqual(
+            screen["metadata"]["targeted_current_fdr_screen_status_counts"],
+            {"current_fdr_structural_duplicate_signal": 7},
+        )
+        self.assertTrue(
+            all(
+                row["targeted_current_fdr_high_tm_hit_count"] >= 1
+                for row in screen["rows"]
+            )
+        )
+
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(packet["metadata"]["non_needs_review_terminal_count"], 7)
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertTrue(packet["metadata"]["source_separation_enforced"])
+        self.assertTrue(
+            all(
+                row["terminal_decision"] == "terminal_rejection_duplicate_or_leakage"
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["evidence_role"]
+                == "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence"
+                for row in packet["rows"]
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["predictive_evidence"][
+                    "ec_keyword_protein_name_counted_as_predictive_evidence"
+                ]
+                for row in packet["rows"]
+            )
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {"terminal_rejection_duplicate_or_leakage": 7},
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+
+        self.assertEqual(rollup["metadata"]["candidate_count"], 64)
+        self.assertEqual(rollup["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(rollup["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 3,
+                "terminal_rejection_duplicate_or_leakage": 58,
+                "terminal_rejection_insufficient_evidence": 3,
+            },
+        )
+
     def test_heme_peroxidase_deep_packet_records_geometry_and_duplicate_blockers(
         self,
     ) -> None:
@@ -4624,6 +4767,152 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(
             benchmark["metrics"]["esm_sidecar_status"],
             "not_available_for_this_deep_packet",
+        )
+
+    def test_heme_peroxidase_second_packet_targeted_heme_screen_records_terminals_and_blockers(
+        self,
+    ) -> None:
+        selection = _load_json(
+            ARTIFACTS / "v3_heme_peroxidase_second_deep_packet_selection_20260521.json"
+        )
+        coordinates = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_coordinate_materialization_20260521.json"
+        )
+        mapping = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_structure_mapping_20260521.json"
+        )
+        scores = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_geometry_scores_20260521.json"
+        )
+        screen = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_targeted_current_heme_screen_20260521.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_terminal_decision_packet_after_targeted_heme_screen_20260521.json"
+        )
+        benchmark = _load_json(
+            ARTIFACTS
+            / "v3_heme_peroxidase_second_deep_packet_after_targeted_heme_modern_baseline_benchmark_20260521.json"
+        )
+        rollup = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_decision_rollup_post_second_heme_peroxidase_targeted_screen_20260521.json"
+        )
+
+        self.assertTrue(selection["metadata"]["review_only"])
+        self.assertTrue(
+            selection["metadata"]["candidate_selection_before_outcome_scoring"]
+        )
+        self.assertEqual(selection["metadata"]["candidate_count"], 7)
+        self.assertEqual(selection["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(
+            {row["accession"] for row in selection["rows"]},
+            {"P11678", "P39597", "P31545", "Q39034", "K7N5M8", "Q47KB1", "P49012"},
+        )
+
+        self.assertEqual(
+            coordinates["metadata"]["coordinate_materialized_or_reused_count"], 7
+        )
+        self.assertEqual(coordinates["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(mapping["metadata"]["mapped_candidate_count"], 7)
+        self.assertEqual(mapping["metadata"]["status_counts"], {"ok": 7})
+        self.assertTrue(
+            all(
+                entry["source_context_not_counted_as_predictive_score"]
+                for entry in mapping["entries"]
+            )
+        )
+
+        self.assertEqual(
+            scores["metadata"]["top1_fingerprint_counts"],
+            {"heme_peroxidase_oxidase": 7},
+        )
+        self.assertEqual(scores["metadata"]["target_lane_at_or_above_floor_count"], 7)
+        self.assertEqual(scores["metadata"]["text_or_label_fields_used_for_score_count"], 0)
+
+        self.assertTrue(screen["metadata"]["pair_cache_complete"])
+        self.assertEqual(screen["metadata"]["current_heme_target_coordinate_count"], 20)
+        self.assertEqual(screen["metadata"]["unique_query_target_pair_count"], 140)
+        self.assertEqual(screen["metadata"]["expected_query_target_pair_count"], 140)
+        self.assertEqual(screen["metadata"]["high_tm_candidate_count"], 4)
+        self.assertFalse(screen["metadata"]["duplicate_clear_claim_permitted"])
+        self.assertEqual(
+            screen["metadata"]["targeted_current_heme_screen_status_counts"],
+            {
+                "current_heme_structural_duplicate_signal": 4,
+                "no_current_heme_structural_duplicate_signal": 3,
+            },
+        )
+
+        self.assertEqual(
+            packet["metadata"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 3,
+                "terminal_rejection_duplicate_or_leakage": 4,
+            },
+        )
+        self.assertEqual(packet["metadata"]["non_needs_review_terminal_count"], 4)
+        self.assertEqual(packet["metadata"]["import_ready_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertTrue(packet["metadata"]["source_separation_enforced"])
+        duplicate_rows = [
+            row
+            for row in packet["rows"]
+            if row["terminal_decision"] == "terminal_rejection_duplicate_or_leakage"
+        ]
+        blocker_rows = [
+            row
+            for row in packet["rows"]
+            if row["terminal_decision"] == "needs_new_extractor_or_structure"
+        ]
+        self.assertEqual(len(duplicate_rows), 4)
+        self.assertEqual(len(blocker_rows), 3)
+        self.assertTrue(
+            all(
+                row["duplicate_leakage_screen"]["evidence_role"]
+                == "targeted_import_gate_duplicate_leakage_evidence_not_predictive_mechanism_evidence"
+                for row in packet["rows"]
+            )
+        )
+        self.assertEqual(
+            {
+                row["exact_blocker_if_not_terminal_import_ready"]
+                for row in blocker_rows
+            },
+            {"full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen"},
+        )
+
+        self.assertTrue(benchmark["metadata"]["review_only"])
+        self.assertFalse(benchmark["metrics"]["superiority_claim"])
+        self.assertEqual(
+            benchmark["metrics"]["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 3,
+                "terminal_rejection_duplicate_or_leakage": 4,
+            },
+        )
+        self.assertEqual(
+            benchmark["metrics"]["esm_sidecar_status"],
+            "not_available_for_this_deep_packet",
+        )
+
+        self.assertEqual(rollup["metadata"]["candidate_count"], 71)
+        self.assertEqual(rollup["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(rollup["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(rollup["metadata"]["exact_blocker_candidate_count"], 3)
+        self.assertEqual(
+            rollup["metadata"]["terminal_decision_counts"],
+            {
+                "mechanism_match_review_ready": 3,
+                "needs_new_extractor_or_structure": 3,
+                "terminal_rejection_duplicate_or_leakage": 62,
+                "terminal_rejection_insufficient_evidence": 3,
+            },
         )
 
     def test_flavin_dehydrogenase_minicampaign_stays_review_only(self) -> None:
@@ -8688,6 +8977,68 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             readiness["import_gate_readiness"][
                 "mechanism_match_review_ready_is_not_import_ready"
             ]
+        )
+
+    def test_external_deep_terminal_import_gate_readiness_post_second_heme_stays_closed(
+        self,
+    ) -> None:
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_external_deep_terminal_import_gate_readiness_check_post_second_heme_20260521.json"
+        )
+
+        self.assertTrue(readiness["metadata"]["review_only"])
+        self.assertFalse(readiness["metadata"]["ready_for_label_import"])
+        self.assertFalse(readiness["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(readiness["metadata"]["fingerprint_registry_edited"])
+        self.assertEqual(readiness["metadata"]["candidate_count"], 71)
+        self.assertEqual(readiness["metadata"]["deep_packet_count"], 11)
+        self.assertEqual(readiness["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(readiness["metadata"]["new_external_rows_frozen"], 0)
+        self.assertEqual(readiness["metadata"]["exact_blocker_candidate_count"], 3)
+        self.assertEqual(
+            readiness["metadata"]["needs_new_extractor_or_structure_candidate_count"],
+            3,
+        )
+        self.assertEqual(
+            readiness["registry_invariants"]["label_type_counts"],
+            {"out_of_scope": 470, "seed_fingerprint": 212},
+        )
+        self.assertEqual(
+            readiness["registry_invariants"]["external_imported_out_of_scope_labels"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            readiness["registry_invariants"]["external_imported_seed_fingerprint_labels"],
+            [],
+        )
+        self.assertTrue(all(readiness["invariant_checks"].values()))
+        self.assertEqual(
+            readiness["import_gate_readiness"]["status"],
+            "blocked_no_import_ready_candidates",
+        )
+        self.assertEqual(
+            readiness["import_gate_readiness"]["decision"],
+            "do_not_import_any_current_deep_packet_candidate",
+        )
+        self.assertIn(
+            "three_second_heme_targeted_clear_rows_need_full_current_countable_duplicate_screen",
+            readiness["import_gate_readiness"]["blockers"],
+        )
+        second_heme = {
+            row["lane_id"]: row for row in readiness["lane_summaries"]
+        }["heme_peroxidase_oxidase_second_selection_after_targeted_heme_screen"]
+        self.assertEqual(
+            second_heme["terminal_decision_counts"],
+            {
+                "needs_new_extractor_or_structure": 3,
+                "terminal_rejection_duplicate_or_leakage": 4,
+            },
+        )
+        self.assertEqual(second_heme["exact_blocker_candidate_count"], 3)
+        self.assertEqual(
+            second_heme["exact_blocker"],
+            "full_current_countable_duplicate_screen_missing_after_targeted_current_heme_screen",
         )
 
 
