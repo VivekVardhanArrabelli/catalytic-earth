@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 298
-- Measured elapsed time: 9057.4 minutes (150.96 hours)
+- Entries: 299
+- Measured elapsed time: 9061.4 minutes (151.02 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2048.1 measured minutes (34.13 hours)
+- v3: 2052.0 measured minutes (34.20 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3252
-- Evidence references logged: 2659
+- Artifact references logged: 3255
+- Evidence references logged: 2665
 
 ## Recent Entries
-
-### 2026-05-22T18:35:34.824679+00:00 - v3
-
-- Task: SDR source-free axis blocker and external human decision template
-- Time mode: measured
-- Measured minutes: 17.717
-- Started: 2026-05-22T18:17:37Z
-- Ended: 2026-05-22T18:35:20Z
-- Artifacts: src/catalytic_earth/sdr_active_site.py, tests/test_sdr_active_site.py, artifacts/v3_sdr_source_free_axis_probe_post_pymol_20260522.json, artifacts/v3_sdr_source_free_axis_probe_modern_baseline_benchmark_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_sdr_axis_probe_20260522.json, artifacts/v3_external_review_ready_human_decision_batch_template_post_sdr_20260522.json, artifacts/v3_external_review_ready_human_decision_batch_template_validation_post_sdr_20260522.json, artifacts/v3_post_sdr_axis_probe_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 867-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, SDR probe used 14 frozen rows and 0 new external rows, 12 of 14 rows had committed coordinates, 5 rows resolved source-free Tyr-Lys geometry, 0 rows had NADP-like ligand sites, 2 non-SDR controls had motif-only geometry, external human template keeps 7 rows pending review and no import, 875-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, review-only zero-import gate passed 5/5, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: Wrapped early because unblocked no-breadth queue is now human review or missing NAD(P) holo/proxy evidence. No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T19:42:57.546947+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, artifacts/v3_mcsa_positive_clean9_import_preview_20260523.json, artifacts/v3_mcsa_positive_clean9_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_clean9_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_holo_override_import_preview_20260523.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_gate_preview_plan_20260523.json, artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_probe_20260523.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: startup 895-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, clean9 gate passed 21 of 21 checks, batch acceptance imported exactly nine clean M-CSA labels, canonical registry validated at 691 labels and 8 fingerprints, holo override preview kept three rows separate with 0 hard negatives and 0 near misses, m_csa771 2D0D review resolved catalytic Ser103 without import, nucleotide-product stress probe stayed review-only, 899-test unit discovery passed, compileall passed, artifact migration dry-run passed removal_allowed=0, git diff check passed
 - Notes: No artifact upload/removal externalization Git-LFS migration history rewrite fingerprint edit threshold lowering or removal_allowed=true occurred; pre-existing untracked CIF files were left untouched.
+
+### 2026-05-23T20:13:13.233624+00:00 - v3
+
+- Task: Post-clean9 M-CSA tranche state verification
+- Time mode: measured
+- Measured minutes: 3.933
+- Started: 2026-05-23T20:09:07Z
+- Ended: 2026-05-23T20:13:03Z
+- Artifacts: work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: git fetch and pull confirmed origin/main already up to date, requested clean9 import artifact already records canonical 682 to 691 import, 899-test unit discovery passed, current CLI validate passed with 691 labels and 8 fingerprints, remaining holo override and m_csa771 rows require explicit accept decisions before import, pre-existing untracked CIF files left untouched
+- Notes: Verification-only run; no registry fingerprint artifact migration upload removal externalization Git-LFS migration history rewrite threshold change or removal_allowed=true action occurred.
 
 ## Expectation Updates
 
@@ -359,6 +359,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T21:32:20.016660+00:00: The no-breadth queue is now human-review blocked rather than source-free geometry or duplicate-screen blocked.
 - 2026-05-23T18:03:35.801938+00:00: Next external-deepening work should resume with metal phosphatase only if new human action or source-free coordinate evidence is available; otherwise the queue is human/evidence blocked.
 - 2026-05-23T19:56:43.019061+00:00: Do not return to broad external breadth until post-clean9 M-CSA hold decisions are either accepted through gates or explicitly deferred.
+- 2026-05-23T20:13:13.233624+00:00: Next M-CSA automation needs explicit post-preview accept decisions for held override or m_csa771 rows before more gated imports.
 
 ## Scope Adjustments
 
@@ -541,3 +542,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T23:08:25.796026+00:00: Final wrap only; no label import registry edit artifact removal or new external breadth.
 - 2026-05-23T18:03:35.801938+00:00: Closed the M-CSA 22-row positive follow-up as review-only import-readiness/blocker evidence without mutating canonical registries.
 - 2026-05-23T19:56:43.019061+00:00: M-CSA clean9 is imported; next M-CSA work is explicit accept decisions for held override and m_csa771 previews before any more imports.
+- 2026-05-23T20:13:13.233624+00:00: No new M-CSA import work was opened because the requested tranche is already canonical and remaining rows are human-decision blocked.

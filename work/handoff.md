@@ -50,6 +50,27 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-23T20:09Z Verification: Requested M-CSA Tranche Already Landed
+
+The 2026-05-23T20:09:07Z automation start found `origin/main` already at the
+post-clean9 state described below. The requested mechanical tranche was not
+rerun: `artifacts/v3_mcsa_positive_clean9_import_preview_20260523.json`
+already records the gated canonical import of exactly `m_csa:599`,
+`m_csa:623`, `m_csa:636`, `m_csa:706`, `m_csa:812`, `m_csa:865`,
+`m_csa:892`, `m_csa:917`, and `m_csa:998`, and CLI validation confirms
+691 curated labels and 8 production fingerprints. The three imported external
+out-of-scope labels remain exactly
+`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`; external
+seed-fingerprint imports remain 0.
+
+Evidence-based confidence call: confidence is high that no additional
+automated label import is authorized from the current repo state. The clean9
+import has already passed its gate stack and is canonical; the holo override
+preview for `m_csa:577`, `m_csa:641`, and `m_csa:897`, plus the `m_csa:771`
+`2D0D` noncanonical review, remain non-imported because they need explicit
+post-preview accept decisions and full dedicated gates. The caveat rows
+`m_csa:777`, `m_csa:784`, and `m_csa:904` remain held.
+
 ### Immediate Next Target: Post-Clean9 M-CSA Holds
 
 The Vivek-reviewed 22-row M-CSA positive follow-up has one gated canonical
