@@ -1,37 +1,46 @@
 {
   "followup_resolutions": {
     "m_csa:657": {
-      "finding": "1HR6 local Zn is on the beta-subunit active site. Label-chain B His51/His55/Glu131 coordinate Zn at ~2.0-2.2 A; selected scored residues are in the same beta-subunit active-site context.",
-      "status": "resolved_to_accept_label"
+      "finding": "Zn is present in 1HR6 but expert ledger treats cofactor-not-local at scored residue site as unresolved geometric/locality evidence.",
+      "status": "corrected_to_hold_for_geometry_or_conformation_review"
+    },
+    "m_csa:737": {
+      "finding": "Dual PLP+AdoCbl schema decision remains unresolved.",
+      "status": "held_for_target_schema_review"
     },
     "m_csa:771": {
-      "finding": "M-CSA mechanism requires catalytic Ser103/Asp224/His252; selected structure records catalytic Ser103 as Ala103 and the scored Ser34 is oxyanion-hole support.",
+      "finding": "Catalytic Ser mapping remains unresolved.",
       "status": "held_for_residue_mapping_review"
     },
     "m_csa:777": {
-      "finding": "top1_score 0.5307 is greater than global abstain_threshold 0.4115; top1_below_abstention_threshold is treated as stale/inconsistent pending pipeline cleanup.",
-      "status": "resolved_to_accept_label_with_caveat"
+      "finding": "PLP evidence supports target, but threshold flag semantics remain explicitly open before countable import.",
+      "status": "confirm_with_caveat_with_open_question"
+    },
+    "m_csa:836": {
+      "finding": "No biological metal in selected 1AVQ is the primary actionable issue; 29.544 A distance retained as secondary apo/open-conformation symptom.",
+      "status": "corrected_to_hold_for_holo_alternate_only"
     },
     "m_csa:998": {
-      "finding": "Author TYR363 in chain A/B corresponds to label/PDB TYR341; M-CSA structure position is TYR341, min Tyr-to-Zn distance 4.552 A.",
-      "status": "resolved_to_accept_label"
+      "finding": "Tyr/Zn context is consistent, but Tyr identity/numbering remains explicitly open before countable import.",
+      "status": "confirm_promote_with_open_question"
     }
   },
   "metadata": {
-    "accept_label_count": 13,
+    "accept_label_count": 12,
+    "corrected_at": "2026-05-23T16:49:51Z",
+    "correction_reason": "Corrected expert ledger: m_csa:836 belongs to hold-apo only; m_csa:657 belongs to hold-geometry/cofactor-not-local; 12 promote candidates and 10 holds total.",
     "countable_import_ready_count": 0,
     "countable_imports_performed": false,
     "curated_label_registry_edited": false,
     "decision_counts": {
-      "accept_label": 13,
-      "mark_needs_more_evidence": 9
+      "accept_label": 12,
+      "mark_needs_more_evidence": 10
     },
     "decision_entry_ids": {
       "accept_label": [
         "m_csa:599",
         "m_csa:623",
         "m_csa:636",
-        "m_csa:657",
         "m_csa:706",
         "m_csa:777",
         "m_csa:784",
@@ -46,6 +55,7 @@
         "m_csa:577",
         "m_csa:611",
         "m_csa:641",
+        "m_csa:657",
         "m_csa:737",
         "m_csa:771",
         "m_csa:836",
@@ -55,17 +65,16 @@
       ]
     },
     "expert_review_signoff_method": "Vivek-directed external expert pass over the 22 positive PyMOL geometry packet; user requested decisions recorded on Vivek name.",
-    "hold_count": 9,
+    "hold_count": 10,
     "label_registry_changed": false,
     "method": "mcsa_positive_vivek_expert_decision_batch",
     "policy": "This artifact records expert decisions only. Accepted rows are promotion candidates, not canonical labels, until import preview, label-factory gates, and batch acceptance pass.",
     "ready_for_label_import": false,
     "resolution_bucket_counts": {
-      "confirm_promote": 10,
+      "confirm_promote": 9,
       "confirm_with_caveat_promote": 3,
-      "hold_for_geometry_or_conformation_review": 2,
-      "hold_for_holo_alternate": 4,
-      "hold_for_holo_alternate_and_geometry_review": 1,
+      "hold_for_geometry_or_conformation_review": 3,
+      "hold_for_holo_alternate": 5,
       "hold_for_residue_mapping_review": 1,
       "hold_for_target_schema_review": 1
     },
@@ -74,7 +83,6 @@
         "m_csa:599",
         "m_csa:623",
         "m_csa:636",
-        "m_csa:657",
         "m_csa:706",
         "m_csa:812",
         "m_csa:865",
@@ -89,16 +97,15 @@
       ],
       "hold_for_geometry_or_conformation_review": [
         "m_csa:611",
+        "m_csa:657",
         "m_csa:1001"
       ],
       "hold_for_holo_alternate": [
         "m_csa:577",
         "m_csa:641",
+        "m_csa:836",
         "m_csa:897",
         "m_csa:996"
-      ],
-      "hold_for_holo_alternate_and_geometry_review": [
-        "m_csa:836"
       ],
       "hold_for_residue_mapping_review": [
         "m_csa:771"
@@ -108,13 +115,19 @@
       ]
     },
     "review_item_count": 22,
-    "reviewed_at": "2026-05-23T16:45:37Z",
+    "reviewed_at": "2026-05-23T16:49:51Z",
     "reviewer": "vivek",
     "schema_version": "mcsa_positive_vivek_expert_decision_batch.v1",
     "source_ai_assisted_review_batch": "/tmp/mcsa_ai_review_all/decisions_ai_assisted_visual_structured_298_reaudited_bulk_r_safe.json",
     "source_flagged_structure_checks": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_flagged_structure_checks_7_20260523.json",
     "source_positive_expert_packet": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_positive_expert_packet_22_20260523.json",
     "source_visual_pack": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523"
+  },
+  "open_questions": {
+    "m_csa:737": "Resolve dual-cofactor target schema: cobalamin_radical_rearrangement vs coupled PLP-cobalamin family.",
+    "m_csa:771": "Resolve CumD PDB-to-UniProt catalytic Ser mapping.",
+    "m_csa:777": "Confirm threshold flag semantics before countable import.",
+    "m_csa:998": "Confirm HDAC6 Tyr identity/numbering before countable import."
   },
   "review_items": [
     {
@@ -128,7 +141,7 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.4288,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_alternate_structure_mapping",
@@ -292,7 +305,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.8182,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -488,7 +501,7 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.5782,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_geometry_or_conformation_review",
@@ -647,7 +660,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.5927,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -802,7 +815,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.5993,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -1015,7 +1028,7 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.4261,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_alternate_structure_mapping",
@@ -1162,25 +1175,25 @@
     },
     {
       "countable_import_blockers": [
-        "expert_decision_recorded_but_import_preview_not_run",
-        "label_factory_gates_not_run",
-        "batch_acceptance_not_run"
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_geometry_or_conformation_review",
+        "cofactor_not_local_geometry_review"
       ],
       "countable_import_ready": false,
       "current_label": null,
       "decision": {
-        "action": "accept_label",
+        "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.5822,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
-        "label_type": "seed_fingerprint",
-        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
-        "rationale": "Confirmed metal-dependent hydrolase after local-metal check: 1HR6 contains Zn on the beta-subunit active site; label-chain B His51/His55/Glu131 coordinate Zn at ~2.0-2.2 A. The prior expected_cofactor_not_local flag is consistent with auth/label numbering and multimer mapping friction, not absent local Zn evidence.",
-        "resolution_bucket": "confirm_promote",
+        "label_type": null,
+        "local_evidence_resolution": "requires_geometry_or_conformation_review",
+        "rationale": "Hold: MPP chemistry is metal-dependent hydrolase and Zn is present in 1HR6, but the expert call keeps this as cofactor-not-local/geometric-locality debt for the scored residue site. Treat parallel to 611 and 1001: family likely correct, local geometric evidence not yet countable.",
+        "resolution_bucket": "hold_for_geometry_or_conformation_review",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
-        "tier": "silver"
+        "tier": null
       },
       "entry_id": "m_csa:657",
       "entry_name": "mitochondrial processing peptidase",
@@ -1330,7 +1343,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.5879,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -1484,11 +1497,11 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.6323,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "cobalamin_radical_rearrangement",
         "label_type": null,
         "local_evidence_resolution": "requires_target_schema_review",
-        "rationale": "Hold: beta-lysine aminomutase is a true PLP+AdoCbl dual-cofactor case; heuristic top1 PLP conflicts with target cobalamin_radical_rearrangement. Needs target-schema decision: cobalamin_radical_rearrangement vs coupled PLP-cobalamin family.",
+        "rationale": "Hold: beta-lysine aminomutase schema decision remains open. It is a true PLP+AdoCbl dual-cofactor case; decide cobalamin_radical_rearrangement vs coupled PLP-cobalamin family.",
         "resolution_bucket": "hold_for_target_schema_review",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -1668,11 +1681,11 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.4385,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_residue_mapping_review",
-        "rationale": "Hold: CumD mechanism requires Ser103/Asp224/His252 triad; selected structure maps catalytic Ser103 to Ala103 while scored Ser34 is oxyanion-hole support, not the catalytic nucleophile. Needs residue-mapping/target review.",
+        "rationale": "Hold: CumD residue mapping remains open. Mechanism requires Ser103/Asp224/His252; selected structure records catalytic Ser103 as Ala103 while scored Ser34 is oxyanion-hole support.",
         "resolution_bucket": "hold_for_residue_mapping_review",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -1812,7 +1825,8 @@
       "countable_import_blockers": [
         "expert_decision_recorded_but_import_preview_not_run",
         "label_factory_gates_not_run",
-        "batch_acceptance_not_run"
+        "batch_acceptance_not_run",
+        "expert_open_question_requires_gate_or_manual_resolution_before_counting"
       ],
       "countable_import_ready": false,
       "current_label": null,
@@ -1820,11 +1834,11 @@
         "action": "accept_label",
         "confidence": "medium",
         "evidence_score": 0.5307,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "plp_dependent_enzyme",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence_with_caveat",
-        "rationale": "Confirmed with caveat: top1_score 0.5307 exceeds abstention threshold 0.4115 and LLP/internal PLP aldimine is present; the top1_below_abstention_threshold gap flag is inconsistent/stale and should be retired before counting.",
+        "rationale": "Confirmed with caveat: LLP/internal PLP aldimine is present and score is above the global abstention threshold, but threshold flag semantics remain an open question to verify before countable import.",
         "resolution_bucket": "confirm_with_caveat_promote",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -1971,7 +1985,7 @@
         "action": "accept_label",
         "confidence": "medium",
         "evidence_score": 0.4082,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence_with_caveat",
@@ -2136,7 +2150,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.5958,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -2286,7 +2300,8 @@
     {
       "countable_import_blockers": [
         "held_by_expert_review_resolution_bucket",
-        "hold_for_holo_alternate_and_geometry_review"
+        "hold_for_holo_alternate",
+        "apo_selected_structure_primary_issue"
       ],
       "countable_import_ready": false,
       "current_label": null,
@@ -2294,12 +2309,12 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.58,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_alternate_structure_mapping",
-        "rationale": "Hold: selected 1AVQ has no metals and the scored ASP111/GLU95 pair is 29.544 A apart; needs holo alternate plus geometry/domain-context review.",
-        "resolution_bucket": "hold_for_holo_alternate_and_geometry_review",
+        "rationale": "Hold: selected 1AVQ has no biological metals. The 29.544 A scored distance is recorded as a likely secondary symptom of apo/open conformation, not a separate geometry bucket. Run holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
         "tier": null
@@ -2448,7 +2463,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.6238,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "plp_dependent_enzyme",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -2598,7 +2613,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.6657,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "flavin_dehydrogenase_reductase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -2768,7 +2783,7 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.429,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_alternate_structure_mapping",
@@ -2925,7 +2940,7 @@
         "action": "accept_label",
         "confidence": "medium",
         "evidence_score": 0.405,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence_with_caveat",
@@ -3092,7 +3107,7 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.5852,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
@@ -3304,7 +3319,7 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.6061,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_alternate_structure_mapping",
@@ -3451,7 +3466,8 @@
       "countable_import_blockers": [
         "expert_decision_recorded_but_import_preview_not_run",
         "label_factory_gates_not_run",
-        "batch_acceptance_not_run"
+        "batch_acceptance_not_run",
+        "expert_open_question_requires_gate_or_manual_resolution_before_counting"
       ],
       "countable_import_ready": false,
       "current_label": null,
@@ -3459,11 +3475,11 @@
         "action": "accept_label",
         "confidence": "high",
         "evidence_score": 0.5889,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
-        "rationale": "Confirmed metal-dependent hydrolase after numbering check: M-CSA structure Tyr341 is author Tyr363 in 5G0I, and that Tyr is within 4.552 A of Zn; Zn and catalytic Tyr context verified.",
+        "rationale": "Confirmed, with open verification note: HDAC6 Zn/Tyr context is consistent, but the expert ledger keeps Tyr identity as an open question to verify before countable import.",
         "resolution_bucket": "confirm_promote",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -3678,7 +3694,7 @@
         "action": "mark_needs_more_evidence",
         "confidence": "high",
         "evidence_score": 0.571,
-        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_geometry_or_conformation_review",
