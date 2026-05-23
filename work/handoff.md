@@ -50,7 +50,55 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### Immediate Next Target: Human Review Or No-Breadth Readiness
+### Immediate Next Target: Post-M-CSA External Ladder
+
+The Vivek-reviewed 22-row M-CSA positive follow-up is closed for automation
+purposes, still review-only, and not imported. The accepted import-readiness
+preview is:
+
+```text
+artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json
+```
+
+It preserves 12 accepted rows. Nine are mechanically ready for a future gated
+dry-run import preview (`m_csa:599`, `m_csa:623`, `m_csa:636`, `m_csa:706`,
+`m_csa:812`, `m_csa:865`, `m_csa:892`, `m_csa:917`, `m_csa:998`), and three
+remain caveat-blocked (`m_csa:777`, `m_csa:784`, `m_csa:904`). For `m_csa:777`,
+do not use the older 1000-entry score: the current 1025 score is 0.4107, below
+the 0.4115 abstain threshold.
+
+The hold follow-up artifacts are:
+
+```text
+artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json
+artifacts/v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json
+artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json
+artifacts/v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json
+artifacts/v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.json
+```
+
+The bounded apo scan identifies candidate selected-PDB replacements for
+`m_csa:577` (`1AWB`), `m_csa:641` (`1J7N`), and `m_csa:897` (`1H56`), while
+`m_csa:836` and `m_csa:996` stay blocked by non-local structure-wide metal
+hits. The geometry packet keeps `m_csa:657` held because Zn is local to
+beta-subunit Glu131 but not both scored residues as direct metal ligands;
+`m_csa:611` and `m_csa:1001` remain held on conformation/oligomeric
+role-pair locality. `m_csa:771` remains held unless catalytic Ser103 is
+resolved, with `2D0D` as the only checked alternate containing Ser103.
+`m_csa:737` remains a schema decision gap for coupled PLP-cobalamin
+aminomutase chemistry; do not create a production fingerprint from it.
+
+Evidence-based confidence call: confidence is high that the M-CSA follow-up is
+closed but not import-ready because the new artifacts preserve the reviewed
+ledger, mark 9/12 accepted rows mechanically ready and 3/12 caveat-blocked,
+resolve or precisely block all five apo holds, all three geometry holds, the
+`m_csa:771` residue-mapping hold, and the `m_csa:737` schema hold, pass a 6/6
+review-only zero-import gate, and leave curated labels and production
+fingerprints untouched. The next automation work should return to the external
+decision-deepening ladder if human review is unavailable: metal phosphatase
+first, then serine hydrolase, then flavin/heme, then PLP.
+
+### External Queue: Human Review Or No-Breadth Readiness
 
 The external automation queue is now closed for the seven current
 mechanism-match review-ready rows. The latest packet is:

@@ -1,0 +1,771 @@
+{
+  "decision": {
+    "artifact_status": "bounded_holo_alternate_plan_no_registry_edit",
+    "blocked_entry_ids": [
+      "m_csa:836",
+      "m_csa:996"
+    ],
+    "blocked_no_local_remapped_holo_alternate_count": 2,
+    "canonical_selected_pdb_override_authorized": false,
+    "hold_apo_row_count": 5,
+    "label_import_authorized": false,
+    "replacement_candidate_entry_ids": [
+      "m_csa:577",
+      "m_csa:641",
+      "m_csa:897"
+    ],
+    "selected_pdb_replacement_candidate_count": 3
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "blocked_no_local_remapped_holo_alternate_count": 2,
+    "bounded_scan_fetch_failure_count": 0,
+    "canonical_countable_label_count_invariant": 682,
+    "countable_import_ready_count": 0,
+    "countable_imports_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T17:56:54Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "hold_apo_row_count": 5,
+    "import_ready_candidate_count": 0,
+    "label_registry_changed": false,
+    "method": "mcsa_positive_hold_apo_holo_override_plan",
+    "new_external_rows_frozen": 0,
+    "production_fingerprint_edited": false,
+    "production_fingerprint_universe_count_invariant": 8,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "schema_version": "mcsa_positive_hold_apo_holo_override_plan.v1",
+    "selected_pdb_replacement_candidate_count": 3,
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json",
+      "artifacts/v3_selected_pdb_override_plan_700.json"
+    ]
+  },
+  "rows": [
+    {
+      "all_candidate_structures_scanned": true,
+      "bounded_scan_status": "selected_pdb_replacement_candidate_identified",
+      "candidate_pdb_count": 13,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "exact_blocker": null,
+      "existing_selected_pdb_override_plan_700": {
+        "apply_status": "ready_to_apply",
+        "countable_label_candidate": false,
+        "current_selected_pdb_id": "1IMA",
+        "entry_id": "m_csa:577",
+        "entry_name": "inositol-phosphate phosphatase",
+        "expected_cofactor_families": [
+          "metal_ion"
+        ],
+        "local_expected_family_hits": [
+          "metal_ion"
+        ],
+        "local_ligand_codes": [
+          "CA",
+          "IPD"
+        ],
+        "override_pdb_id": "1AWB",
+        "rationale": "Selected PDB 1IMA is apo for expected cofactor family ['metal_ion'] at active site. Alternate 1AWB carries local expected_family_hits=['metal_ion'] with 6 usable residue positions via selected_position_remap mapping. Recommend swapping the canonical reference structure to 1AWB and regenerating geometry features for this entry.",
+        "recommended_pdb_id": "1AWB",
+        "residue_position_remap_basis": "same_chain_residue_id",
+        "residue_position_remap_warnings": [],
+        "residue_position_source": "selected_position_remap",
+        "residue_positions": [
+          {
+            "chain_name": "A",
+            "code": "ILE",
+            "pdb_id": "1AWB",
+            "resid": "92",
+            "residue_node_id": "m_csa:577:residue:1",
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "ASP",
+            "pdb_id": "1AWB",
+            "resid": "90",
+            "residue_node_id": "m_csa:577:residue:2",
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "ASP",
+            "pdb_id": "1AWB",
+            "resid": "220",
+            "residue_node_id": "m_csa:577:residue:3",
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "ASP",
+            "pdb_id": "1AWB",
+            "resid": "93",
+            "residue_node_id": "m_csa:577:residue:4",
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "GLU",
+            "pdb_id": "1AWB",
+            "resid": "70",
+            "residue_node_id": "m_csa:577:residue:5",
+            "roles": [
+              "metal ligand",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "THR",
+            "pdb_id": "1AWB",
+            "resid": "95",
+            "residue_node_id": "m_csa:577:residue:6",
+            "roles": [
+              "hydrogen bond acceptor"
+            ]
+          }
+        ],
+        "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+        "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json"
+      },
+      "expert_hold_reason": "Hold: chemistry is metal-dependent hydrolase, but selected 1IMA has Gd inhibitor context rather than biological Mg; needs holo alternate scan/override before countable import.",
+      "local_holo_candidate_count": 8,
+      "local_holo_candidates": [
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "CA",
+            "IPD"
+          ],
+          "pdb_id": "1AWB",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "CL",
+            "MN"
+          ],
+          "pdb_id": "1IMC",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "MN",
+            "PO4"
+          ],
+          "pdb_id": "1IMD",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "CA"
+          ],
+          "pdb_id": "1IME",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "GOL",
+            "MG",
+            "PO4"
+          ],
+          "pdb_id": "4AS4",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "GOL",
+            "L69",
+            "MN"
+          ],
+          "pdb_id": "6GIU",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "GOL",
+            "MES",
+            "MN"
+          ],
+          "pdb_id": "6GJ0",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "GOL",
+            "MN",
+            "NA",
+            "SO4"
+          ],
+          "pdb_id": "6ZK0",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        }
+      ],
+      "next_action": "build_noncanonical_selected_pdb_override_preview_then_rerun_geometry_and_factory_gates",
+      "ready_for_label_import": false,
+      "recommended_replacement_pdb": "1AWB",
+      "replacement_basis": "existing_700_override_plan_plus_20260523_rescan",
+      "selected_pdb": "1IMA",
+      "source_gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "source_remediation_bucket": "alternate_pdb_ligand_scan",
+      "target_fingerprint": "metal_dependent_hydrolase"
+    },
+    {
+      "all_candidate_structures_scanned": true,
+      "bounded_scan_status": "selected_pdb_replacement_candidate_identified",
+      "candidate_pdb_count": 32,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "exact_blocker": null,
+      "existing_selected_pdb_override_plan_700": {
+        "apply_status": "ready_to_apply",
+        "countable_label_candidate": false,
+        "current_selected_pdb_id": "1PWV",
+        "entry_id": "m_csa:641",
+        "entry_name": "anthrax lethal factor endopeptidase",
+        "expected_cofactor_families": [
+          "metal_ion"
+        ],
+        "local_expected_family_hits": [
+          "metal_ion"
+        ],
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "override_pdb_id": "1J7N",
+        "rationale": "Selected PDB 1PWV is apo for expected cofactor family ['metal_ion'] at active site. Alternate 1J7N carries local expected_family_hits=['metal_ion'] with 5 usable residue positions via selected_position_remap mapping. Recommend swapping the canonical reference structure to 1J7N and regenerating geometry features for this entry.",
+        "recommended_pdb_id": "1J7N",
+        "residue_position_remap_basis": "same_chain_residue_id",
+        "residue_position_remap_warnings": [],
+        "residue_position_source": "selected_position_remap",
+        "residue_positions": [
+          {
+            "chain_name": "A",
+            "code": "HIS",
+            "pdb_id": "1J7N",
+            "resid": "690",
+            "residue_node_id": "m_csa:641:residue:1",
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "HIS",
+            "pdb_id": "1J7N",
+            "resid": "686",
+            "residue_node_id": "m_csa:641:residue:2",
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "GLU",
+            "pdb_id": "1J7N",
+            "resid": "735",
+            "residue_node_id": "m_csa:641:residue:3",
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "GLU",
+            "pdb_id": "1J7N",
+            "resid": "687",
+            "residue_node_id": "m_csa:641:residue:4",
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "TYR",
+            "pdb_id": "1J7N",
+            "resid": "728",
+            "residue_node_id": "m_csa:641:residue:5",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        ],
+        "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+        "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json"
+      },
+      "expert_hold_reason": "Hold: chemistry is metal-dependent hydrolase, but selected 1PWV has no biological metal; needs holo alternate scan/override before countable import.",
+      "local_holo_candidate_count": 20,
+      "local_holo_candidates": [
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "ZN"
+          ],
+          "pdb_id": "1J7N",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "NSC",
+            "ZN"
+          ],
+          "pdb_id": "1PWP",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "SD2",
+            "ZN"
+          ],
+          "pdb_id": "1PWQ",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "915",
+            "ZN"
+          ],
+          "pdb_id": "1YQY",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "MFM",
+            "ZN"
+          ],
+          "pdb_id": "1ZXV",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "0LX",
+            "ZN"
+          ],
+          "pdb_id": "4DV8",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "ZN"
+          ],
+          "pdb_id": "4PKQ",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "2ZL",
+            "GOL",
+            "ZN"
+          ],
+          "pdb_id": "4PKR",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "30H",
+            "ZN"
+          ],
+          "pdb_id": "4PKS",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "30O",
+            "ZN"
+          ],
+          "pdb_id": "4PKT",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "30P",
+            "ZN"
+          ],
+          "pdb_id": "4PKU",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "30R",
+            "ZN"
+          ],
+          "pdb_id": "4PKV",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "GM6",
+            "GOL",
+            "ZN"
+          ],
+          "pdb_id": "4PKW",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "407",
+            "EDO",
+            "ZN"
+          ],
+          "pdb_id": "4WF6",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "41R",
+            "ZN"
+          ],
+          "pdb_id": "4XM6",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "41S",
+            "ZN"
+          ],
+          "pdb_id": "4XM7",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "41T",
+            "ZN"
+          ],
+          "pdb_id": "4XM8",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "56Q",
+            "ZN"
+          ],
+          "pdb_id": "5D1S",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "56R",
+            "ZN"
+          ],
+          "pdb_id": "5D1T",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "56P",
+            "ZN"
+          ],
+          "pdb_id": "5D1U",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        }
+      ],
+      "next_action": "build_noncanonical_selected_pdb_override_preview_then_rerun_geometry_and_factory_gates",
+      "ready_for_label_import": false,
+      "recommended_replacement_pdb": "1J7N",
+      "replacement_basis": "existing_700_override_plan_plus_20260523_rescan",
+      "selected_pdb": "1PWV",
+      "source_gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "source_remediation_bucket": "alternate_pdb_ligand_scan",
+      "target_fingerprint": "metal_dependent_hydrolase"
+    },
+    {
+      "all_candidate_structures_scanned": true,
+      "bounded_scan_status": "blocked_no_local_remapped_holo_alternate",
+      "candidate_pdb_count": 5,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:836",
+      "entry_name": "exodeoxyribonuclease (lambda-induced)",
+      "exact_blocker": "alternate PDBs 3SLP/3SM4/4WUZ contain metal ions structure-wide, but none has usable active-site residue remap/local metal support.",
+      "existing_selected_pdb_override_plan_700": null,
+      "expert_hold_reason": "Hold: selected 1AVQ has no biological metals. The 29.544 A scored distance is recorded as a likely secondary symptom of apo/open conformation, not a separate geometry bucket. Run holo alternate scan/override before countable import.",
+      "local_holo_candidate_count": 0,
+      "local_holo_candidates": [],
+      "next_action": "request_explicit_alternate_residue_mapping_or curated structure positions before override",
+      "ready_for_label_import": false,
+      "recommended_replacement_pdb": null,
+      "replacement_basis": null,
+      "selected_pdb": "1AVQ",
+      "source_gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "source_remediation_bucket": "alternate_pdb_ligand_scan",
+      "target_fingerprint": "metal_dependent_hydrolase"
+    },
+    {
+      "all_candidate_structures_scanned": true,
+      "bounded_scan_status": "selected_pdb_replacement_candidate_identified",
+      "candidate_pdb_count": 10,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "exact_blocker": null,
+      "existing_selected_pdb_override_plan_700": null,
+      "expert_hold_reason": "Hold: PvuII is a two-Mg metal-dependent hydrolase/nuclease, but selected 1PVI has no metals; needs holo alternate scan/override before countable import.",
+      "local_holo_candidate_count": 2,
+      "local_holo_candidates": [
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "CA"
+          ],
+          "pdb_id": "1F0O",
+          "remapped_residue_position_count": 3,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        },
+        {
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "MG"
+          ],
+          "pdb_id": "1H56",
+          "remapped_residue_position_count": 3,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        }
+      ],
+      "next_action": "build_noncanonical_selected_pdb_override_preview_then_rerun_geometry_and_factory_gates",
+      "ready_for_label_import": false,
+      "recommended_replacement_pdb": "1H56",
+      "replacement_basis": "20260523_bounded_scan_prefer_mg_local_holo_candidate",
+      "selected_pdb": "1PVI",
+      "source_gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "source_remediation_bucket": "alternate_pdb_ligand_scan",
+      "target_fingerprint": "metal_dependent_hydrolase"
+    },
+    {
+      "all_candidate_structures_scanned": true,
+      "bounded_scan_status": "blocked_no_local_remapped_holo_alternate",
+      "candidate_pdb_count": 2,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:996",
+      "entry_name": "Peptidoglycan-N-acetylglucosamine deacetylase Bc1960",
+      "exact_blocker": "alternate PDB 5O6Y contains Zn structure-wide, but current residue remap fails, so local active-site Zn support is absent.",
+      "existing_selected_pdb_override_plan_700": null,
+      "expert_hold_reason": "Hold: chemistry supports metal-dependent hydrolase/deacetylase, but selected 4L1G has no Zn; needs holo alternate scan/override before countable import.",
+      "local_holo_candidate_count": 0,
+      "local_holo_candidates": [],
+      "next_action": "request_explicit_alternate_residue_mapping_or curated structure positions before override",
+      "ready_for_label_import": false,
+      "recommended_replacement_pdb": null,
+      "replacement_basis": null,
+      "selected_pdb": "4L1G",
+      "source_gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "source_remediation_bucket": "alternate_pdb_ligand_scan",
+      "target_fingerprint": "metal_dependent_hydrolase"
+    }
+  ]
+}

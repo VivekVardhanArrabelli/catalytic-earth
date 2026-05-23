@@ -1,0 +1,197 @@
+{
+  "decision": {
+    "artifact_status": "geometry_rows_resolved_to_hold_or_exact_next_action",
+    "geometry_hold_row_count": 3,
+    "held_entry_ids": [
+      "m_csa:611",
+      "m_csa:657",
+      "m_csa:1001"
+    ],
+    "label_import_authorized": false,
+    "promoted_entry_count": 0
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "canonical_countable_label_count_invariant": 682,
+    "countable_import_ready_count": 0,
+    "countable_imports_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T17:56:54Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "geometry_hold_row_count": 3,
+    "held_entry_ids": [
+      "m_csa:611",
+      "m_csa:657",
+      "m_csa:1001"
+    ],
+    "import_ready_candidate_count": 0,
+    "label_registry_changed": false,
+    "method": "mcsa_positive_hold_geometry_locality_resolution",
+    "new_external_rows_frozen": 0,
+    "production_fingerprint_edited": false,
+    "production_fingerprint_universe_count_invariant": 8,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "schema_version": "mcsa_positive_hold_geometry_locality_resolution.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_positive_expert_packet_22_20260523.json",
+      "artifacts/v3_mcsa_flagged_structure_checks_7_20260523.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json"
+    ]
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "current_1025_score": 0.5782,
+      "entry_id": "m_csa:611",
+      "entry_name": "5'-nucleotidase (bacterial)",
+      "exact_reason": "Selected 1USH has local Zn within the active-site evidence surface, but the scored Arg375/His217 focus pair is 40.164 A apart; current artifacts do not identify a closed-conformation alternate with explicit residue mapping.",
+      "flagged_structure_check": null,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "ZN",
+          "family": "metal_ion",
+          "instance_count": 2,
+          "min_distance_to_active_site": 3.63
+        }
+      ],
+      "measured_focus_distance_angstrom": 40.164,
+      "nearest_expected_ligand_distance_angstrom": 3.63,
+      "next_action": "closed_conformation_alternate_scan_or_explicit_loose_conformation_acceptance_note",
+      "ready_for_label_import": false,
+      "resolution_status": "kept_hold_open_or_loose_conformation",
+      "selected_active_site_has_expected_family": true,
+      "selected_pdb": "1USH",
+      "selected_structure_has_expected_family": true,
+      "target_fingerprint": "metal_dependent_hydrolase"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "current_1025_score": 0.5822,
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "exact_reason": "Zn is local to beta-subunit active-site Glu131, but scored Glu54 is nearby catalytic acid/base rather than a direct metal ligand; keep as cofactor-locality/geometric hold.",
+      "flagged_structure_check": null,
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [
+        {
+          "code": "ZN",
+          "family": "metal_ion",
+          "instance_count": 4,
+          "min_distance_to_active_site": 6.287
+        }
+      ],
+      "measured_focus_distance_angstrom": 13.228,
+      "nearest_expected_ligand_distance_angstrom": 6.287,
+      "next_action": "do_not_import_until scorer/label policy allows acid-base-plus-metal-locality pattern or alternate evidence shows direct geometry for both scored residues",
+      "ready_for_label_import": false,
+      "resolution_status": "resolved_hold_cofactor_locality_not_both_scored_residues_direct_ligands",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb": "1HR6",
+      "selected_structure_has_expected_family": true,
+      "target_fingerprint": "metal_dependent_hydrolase"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "current_1025_score": 0.571,
+      "entry_id": "m_csa:1001",
+      "entry_name": "Prolidase (Xaa-Pro dipeptidase)",
+      "exact_reason": "Selected 5M4G contains four Mn ions and local metal context, but the scored Asp271/Arg393 focus pair is 30.173 A apart; current evidence supports metal presence but not the scored pair geometry/oligomer context needed for import.",
+      "flagged_structure_check": {
+        "enzyme": "Prolidase (Xaa-Pro dipeptidase)",
+        "m_csa_id": "m_csa:1001",
+        "metals_sel": [
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          }
+        ],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "mn_ion_count": 4,
+        "mn_ions": [
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          }
+        ],
+        "requested_check": "prolidase count Mn ions",
+        "selected_pdb": "5M4G",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_5M4G.cif"
+      },
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "MN",
+          "family": "metal_ion",
+          "instance_count": 4,
+          "min_distance_to_active_site": 4.779
+        }
+      ],
+      "measured_focus_distance_angstrom": 30.173,
+      "nearest_expected_ligand_distance_angstrom": 4.779,
+      "next_action": "oligomer_context_review_or_alternate_focus_pair_mapping_before_import_preview",
+      "ready_for_label_import": false,
+      "resolution_status": "kept_hold_oligomer_or_role_pair_geometry",
+      "selected_active_site_has_expected_family": true,
+      "selected_pdb": "5M4G",
+      "selected_structure_has_expected_family": true,
+      "target_fingerprint": "metal_dependent_hydrolase"
+    }
+  ]
+}

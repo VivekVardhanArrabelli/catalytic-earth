@@ -1,0 +1,463 @@
+{
+  "decision": {
+    "accepted_candidate_count": 12,
+    "artifact_status": "review_only_import_preview_readiness_no_registry_edit",
+    "blocked_by_acceptance_caveat_count": 3,
+    "blocked_by_caveat_entry_ids": [
+      "m_csa:777",
+      "m_csa:784",
+      "m_csa:904"
+    ],
+    "canonical_registry_edit_authorized": false,
+    "label_import_authorized": false,
+    "mechanically_can_enter_import_preview_now_count": 9,
+    "ready_entry_ids": [
+      "m_csa:599",
+      "m_csa:623",
+      "m_csa:636",
+      "m_csa:706",
+      "m_csa:812",
+      "m_csa:865",
+      "m_csa:892",
+      "m_csa:917",
+      "m_csa:998"
+    ]
+  },
+  "metadata": {
+    "accepted_candidate_count": 12,
+    "artifact_id": "v3_mcsa_positive_accepted_import_gate_readiness_12_20260523",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "blocked_by_acceptance_caveat_count": 3,
+    "canonical_countable_label_count_invariant": 682,
+    "countable_import_ready_count": 0,
+    "countable_imports_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T17:56:54Z",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "label_registry_changed": false,
+    "mechanically_can_enter_import_preview_now_count": 9,
+    "method": "mcsa_positive_accepted_import_gate_readiness_preview",
+    "new_external_rows_frozen": 0,
+    "production_fingerprint_edited": false,
+    "production_fingerprint_universe_count_invariant": 8,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "row_entry_ids": [
+      "m_csa:599",
+      "m_csa:623",
+      "m_csa:636",
+      "m_csa:706",
+      "m_csa:777",
+      "m_csa:784",
+      "m_csa:812",
+      "m_csa:865",
+      "m_csa:892",
+      "m_csa:904",
+      "m_csa:917",
+      "m_csa:998"
+    ],
+    "schema_version": "mcsa_positive_accepted_import_gate_readiness_preview.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523_validation.json",
+      "artifacts/v3_mcsa_positive_expert_packet_22_20260523.json",
+      "artifacts/v3_mcsa_positive_open_question_resolution_4_20260523.json"
+    ]
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.8182,
+      "entry_id": "m_csa:599",
+      "entry_name": "dipeptidase E",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed Ser-His-Glu serine hydrolase triad; structure check finds Glu in the acid slot near the Ser-His triad; no metal required for target fingerprint.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "1FY2",
+      "target_fingerprint": "ser_his_acid_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.5927,
+      "entry_id": "m_csa:623",
+      "entry_name": "neprilysin",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed metal-dependent hydrolase; selected structure contains Zn and M-CSA annotated residues support neprilysin metalloprotease chemistry.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "1R1J",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.5993,
+      "entry_id": "m_csa:636",
+      "entry_name": "cytosine deaminase (yeast)",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed metal-dependent hydrolase/deaminase; Zn is coordinated by His62/Cys91/Cys94 in the selected structure, and the scored His62 is a metal coordinator.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "1UAQ",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.5879,
+      "entry_id": "m_csa:706",
+      "entry_name": "D-Ala-D-Ala dipeptidase",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed metal-dependent hydrolase; selected structure contains Zn and M-CSA mechanism assigns Glu181 as the general base.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "1R44",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_with_caveat_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [
+        "current_1025_score_below_abstention_threshold",
+        "prior_1000_score_must_not_be_used_for_1025_gate"
+      ],
+      "confidence": "medium",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.4107,
+      "entry_id": "m_csa:777",
+      "entry_name": "aspartate transaminase",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed PLP chemistry but current 1025 retrieval score is 0.4107, just below the 0.4115 abstention threshold. The earlier 0.5307 value was from an older/non-preview 1000 export. Keep as scientific accept-with-caveat, but do not count without rescore or explicit gate override.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "blocked_by_acceptance_caveat_before_import_preview",
+      "mechanically_can_enter_import_preview_now": false,
+      "prior_score_excluded_from_1025_gate": 0.5307,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": false,
+      "selected_pdb": "1AAM",
+      "target_fingerprint": "plp_dependent_enzyme",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_with_caveat_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [
+        "current_1025_score_below_abstention_threshold",
+        "counterevidence_requires_explicit_gate_override"
+      ],
+      "confidence": "medium",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "current_1025_score": 0.4082,
+      "entry_id": "m_csa:784",
+      "entry_name": "3'-5' exoribonuclease 1",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed with caveat: top1 score 0.4082 is just below the 0.4115 abstention floor and AMP triggered nucleotide-transfer counterevidence, but the M-CSA mechanism is exonuclease phosphodiester hydrolysis with Mg; AMP is product/context, not transfer substrate.",
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "blocked_by_acceptance_caveat_before_import_preview",
+      "mechanically_can_enter_import_preview_now": false,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": false,
+      "selected_pdb": "1W0H",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.5958,
+      "entry_id": "m_csa:812",
+      "entry_name": "5'-nucleotidase (mitochondrial)",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed metal-dependent hydrolase; selected structure contains Mg and M-CSA residues/mechanism support 5-prime nucleotidase chemistry.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "1Q91",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.6238,
+      "entry_id": "m_csa:865",
+      "entry_name": "cysteine synthase",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed PLP-dependent enzyme; selected structure contains PLP/LLP context and M-CSA mechanism supports Lys-mediated PLP chemistry.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "1OAS",
+      "target_fingerprint": "plp_dependent_enzyme",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.6657,
+      "entry_id": "m_csa:892",
+      "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed flavin dehydrogenase/reductase; FMN is present in the selected structure and mechanism is FMN-mediated hydride transfer.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "2DOR",
+      "target_fingerprint": "flavin_dehydrogenase_reductase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_with_caveat_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [
+        "current_1025_score_below_abstention_threshold",
+        "counterevidence_requires_explicit_gate_override"
+      ],
+      "confidence": "medium",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "current_1025_score": 0.405,
+      "entry_id": "m_csa:904",
+      "entry_name": "3'(2'),5'-bisphosphate nucleotidase",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed with caveat: AMP/product context appears to trigger nucleotide-transfer counterevidence, but M-CSA mechanism and Mg context support metal-dependent hydrolysis for BPNT.",
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "blocked_by_acceptance_caveat_before_import_preview",
+      "mechanically_can_enter_import_preview_now": false,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": false,
+      "selected_pdb": "1QGX",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.5852,
+      "entry_id": "m_csa:917",
+      "entry_name": "methionyl aminopeptidase",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed metal-dependent hydrolase/aminopeptidase; selected structure contains Co ions at the catalytic metal sites.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "1XGM",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "accepted_resolution_bucket": "confirm_promote",
+      "canonical_import_blockers_still_required": [
+        "review_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run",
+        "canonical_registry_edit_not_authorized"
+      ],
+      "caveat_blockers": [],
+      "confidence": "high",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "current_1025_score": 0.5889,
+      "entry_id": "m_csa:998",
+      "entry_name": "histone deacetylase 6 enzyme (HDAC6)",
+      "expert_action": "accept_label",
+      "expert_rationale": "Confirmed metal-dependent hydrolase. M-CSA Tyr363 maps to 5G0I label/PDB Tyr341 (auth Tyr363), resolving the Tyr identity question; Tyr745 is the homologous second-domain Tyr, not the scored M-CSA residue.",
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "label_type": "seed_fingerprint",
+      "mechanical_status": "ready_for_dry_run_import_preview",
+      "mechanically_can_enter_import_preview_now": true,
+      "prior_score_excluded_from_1025_gate": null,
+      "ready_for_label_import": false,
+      "score_clears_current_threshold": true,
+      "selected_pdb": "5G0I",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "tier": "silver"
+    }
+  ]
+}

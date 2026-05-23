@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 296
-- Measured elapsed time: 8991.3 minutes (149.85 hours)
+- Entries: 297
+- Measured elapsed time: 9009.3 minutes (150.16 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1981.9 measured minutes (33.03 hours)
+- v3: 1999.9 measured minutes (33.33 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3224
-- Evidence references logged: 2632
+- Artifact references logged: 3238
+- Evidence references logged: 2647
 
 ## Recent Entries
-
-### 2026-05-22T16:29:06.133933+00:00 - v3
-
-- Task: Metal phosphate pocket proxy and seven-row human review packet
-- Time mode: measured
-- Measured minutes: 15.267
-- Started: 2026-05-22T16:13:35Z
-- Ended: 2026-05-22T16:28:51Z
-- Artifacts: artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json, artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json, artifacts/v3_external_seed_fingerprint_all_review_ready_human_packet_after_metal_proxy_20260522.json, src/catalytic_earth/metal_active_site.py, tests/test_metal_active_site.py, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: 852-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed with removal_allowed=0, three new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs, P0A8Y5 and P75792 resolved review-only phosphate-pocket proxies, seven review-ready rows consolidated for human review with 0 import-ready and 0 countable candidates
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T18:05:27.783477+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/pymol_review.py, tests/test_pymol_review.py, artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json, artifacts/v3_artifact_storage_inventory_1025.json, work/progress_log.jsonl, work/status.md
 - Evidence: normalized newly materialized PyMOL mmCIF sidecars for diff-check-safe committed review artifacts, materialization SHA-256 rows match local normalized coordinate files, 893-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, git diff check passed, no registry or fingerprint diffs
 - Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-23T18:03:35.801938+00:00 - v3
+
+- Task: M-CSA positive follow-up gates
+- Time mode: measured
+- Measured minutes: 18.05
+- Started: 2026-05-23T17:45:32Z
+- Ended: 2026-05-23T18:03:35Z
+- Artifacts: artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json, artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json, artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json, artifacts/v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json, artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json, artifacts/v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json, artifacts/v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 893-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, 12 accepted M-CSA rows split into 9 mechanically ready and 3 caveat-blocked review-only rows, bounded hold-apo scan covered 62 structures with 0 fetch failures and exact replacement candidates for m_csa:577 m_csa:641 and m_csa:897, m_csa:836 and m_csa:996 remain blocked by structure-wide metal hits without usable local active-site remaps, m_csa:657 preserved as hold-geometry; m_csa:611 and m_csa:1001 remain exact conformation/locality holds, m_csa:771 remains held with 2D0D as the only checked alternate containing catalytic Ser103, m_csa:737 remains a coupled PLP-cobalamin schema gap with no production fingerprint authorization, review-only zero-import gate passed 6/6, 895-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
+- Notes: Wrapped before 48 minutes because the prioritized M-CSA follow-up is closed and the next external ladder step is blocked on human action or missing exact source-free evidence. No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ## Expectation Updates
 
@@ -357,6 +357,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T19:42:57.546947+00:00: Next no-breadth work should wait for human action on seven mechanism-match rows or resolve NADP holo/specificity evidence for O14756 O75828 C9JRZ8.
 - 2026-05-22T20:37:21.159775+00:00: If human review is unavailable, continue only bounded PyMOL structure materialization from the remaining blocker report.
 - 2026-05-22T21:32:20.016660+00:00: The no-breadth queue is now human-review blocked rather than source-free geometry or duplicate-screen blocked.
+- 2026-05-23T18:03:35.801938+00:00: Next external-deepening work should resume with metal phosphatase only if new human action or source-free coordinate evidence is available; otherwise the queue is human/evidence blocked.
 
 ## Scope Adjustments
 
@@ -537,3 +538,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T20:37:21.159775+00:00: M-CSA PyMOL readiness now has 51 human-review-ready rows; next useful step is human decisions before more machinery.
 - 2026-05-22T21:32:20.016660+00:00: External review-ready rows should not trigger more automated breadth by default; next action is human review or bounded no-breadth readiness only.
 - 2026-05-22T23:08:25.796026+00:00: Final wrap only; no label import registry edit artifact removal or new external breadth.
+- 2026-05-23T18:03:35.801938+00:00: Closed the M-CSA 22-row positive follow-up as review-only import-readiness/blocker evidence without mutating canonical registries.

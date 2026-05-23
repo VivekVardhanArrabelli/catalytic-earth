@@ -1,0 +1,94 @@
+{
+  "decision": {
+    "artifact_status": "schema_gap_held_no_production_fingerprint",
+    "current_target_fingerprint": "cobalamin_radical_rearrangement",
+    "do_not_create_production_fingerprint": true,
+    "entry_id": "m_csa:737",
+    "label_import_authorized": false,
+    "production_fingerprint_promotion_authorized": false,
+    "recommended_schema_direction": "draft coupled PLP-cobalamin aminomutase family only if a future explicit ontology/fingerprint gate is opened",
+    "schema_decision": "keep_held_as_dual_plp_adenosylcobalamin_schema_gap"
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_schema_decision_note_m_csa_737_20260523",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "canonical_countable_label_count_invariant": 682,
+    "countable_import_ready_count": 0,
+    "countable_imports_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T17:56:54Z",
+    "curated_label_registry_edited": false,
+    "entry_id": "m_csa:737",
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "label_registry_changed": false,
+    "method": "mcsa_positive_target_schema_decision_note",
+    "new_external_rows_frozen": 0,
+    "production_fingerprint_edited": false,
+    "production_fingerprint_universe_count_invariant": 8,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "schema_hold_count": 1,
+    "schema_version": "mcsa_positive_target_schema_decision_note.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_positive_expert_packet_22_20260523.json",
+      "artifacts/v3_mcsa_flagged_structure_checks_7_20260523.json"
+    ]
+  },
+  "rows": [
+    {
+      "canonical_registry_edit_authorized": false,
+      "countable_label_candidate": false,
+      "current_decision": "hold_target_schema_review",
+      "current_target_fingerprint": "cobalamin_radical_rearrangement",
+      "entry_id": "m_csa:737",
+      "entry_name": "beta-lysine 5,6-aminomutase",
+      "future_gate_requirements": [
+        "explicit schema owner decision: current cobalamin family vs new coupled PLP-cobalamin family",
+        "draft fingerprint/ontology spec if a new family is chosen",
+        "external hard-negative and sibling-family re-audit before any countable import",
+        "label-factory gate and batch-acceptance rerun"
+      ],
+      "not_counted_as": "plain cobalamin_radical_rearrangement seed label under current gates",
+      "observed_cofactor_context": {
+        "b12_flagged_structure_check": {
+          "b12_ligands": [
+            {
+              "chain": "B",
+              "resi": "800",
+              "resn": "B12"
+            }
+          ],
+          "enzyme": "beta-lysine 5,6-aminomutase",
+          "m_csa_id": "m_csa:737",
+          "metals_sel": [
+            {
+              "chain": "B",
+              "element": "CO",
+              "resi": "800",
+              "resn": "B12"
+            }
+          ],
+          "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+          "requested_check": "beta-lysine 5,6-aminomutase adenosylcobalamin check",
+          "selected_pdb": "1XRS",
+          "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1XRS.cif"
+        },
+        "cofactors_required": [
+          "adenosylcobalamin"
+        ],
+        "hetatms_in_structure": [
+          "5AD",
+          "B12",
+          "PLP"
+        ]
+      },
+      "ready_for_label_import": false,
+      "schema_issue": "beta-lysine aminomutase is a true PLP plus adenosylcobalamin dual-cofactor mechanism; the current 8-fingerprint universe does not represent the coupled PLP-cobalamin family explicitly.",
+      "selected_pdb": "1XRS"
+    }
+  ]
+}

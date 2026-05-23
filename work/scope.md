@@ -185,6 +185,24 @@ upload/removal, or external row sourcing path. The remaining blocker report now
 names 23 blocked rows, 0 next structure-materialization candidates, no
 structure-path blocker, 23 exact focus-pair/distance repair gaps, and 2
 structure-ID mapping gaps within that same blocked set.
+The 2026-05-23T17:45:32Z main-loop follow-up consumes the Vivek-reviewed
+22-row M-CSA positive decision artifacts without editing canonical registries.
+The accepted import-readiness preview has 12 accepted rows, of which 9 can
+proceed mechanically in a future gated dry run and 3 remain caveat-blocked:
+`m_csa:777` is scientifically accepted but below the current 1025 abstain
+threshold, while `m_csa:784` and `m_csa:904` still need their stated caveat
+resolution before import. The five apo holds are no longer open-ended:
+`m_csa:577`, `m_csa:641`, and `m_csa:897` have bounded holo override
+candidates (`1AWB`, `1J7N`, and `1H56`), while `m_csa:836` and `m_csa:996`
+remain blocked by structure-wide metal hits without usable local active-site
+remaps. Geometry holds are also bounded: `m_csa:657` is resolved to keep held
+because Zn is local to beta-subunit Glu131 but not both scored residues as
+direct ligands; `m_csa:611` and `m_csa:1001` remain held on loose
+conformation/oligomeric role-pair locality. `m_csa:771` remains held unless the
+Ser103 mapping can move to the candidate `2D0D`, and `m_csa:737` remains a
+schema gap for coupled PLP-adenosylcobalamin aminomutase chemistry rather than
+a production fingerprint addition. The paired zero-import gate validates the
+six follow-up artifacts as review-only and opens no label import path.
 Current external-deepening scope: the 2026-05-22 main-loop follow-up continued
 only already frozen 2026-05-21 external rows. It did not add a seventh broad
 mini-campaign or freeze new external breadth. The second flavin

@@ -1,0 +1,514 @@
+{
+  "decision": {
+    "alternate_structure_candidate_with_ser103": [
+      "2D0D"
+    ],
+    "artifact_status": "alternate_structure_request_identified_no_import",
+    "current_selected_pdb": "1UK7",
+    "current_selected_pdb_blocker": "M-CSA catalytic Ser103 maps to Ala103 in 1UK7; scored Ser34 is oxyanion-hole/electrostatic support, not the catalytic nucleophile.",
+    "entry_id": "m_csa:771",
+    "label_import_authorized": false,
+    "promote_now": false,
+    "recommended_next_action": "stage 2D0D as noncanonical alternate-structure request and rerun active-site mapping/geometry before any import preview"
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523",
+    "artifact_migration_files_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "candidate_pdbs_checked_count": 10,
+    "candidate_pdbs_with_ser103_count": 1,
+    "canonical_countable_label_count_invariant": 682,
+    "countable_import_ready_count": 0,
+    "countable_imports_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T17:56:54Z",
+    "curated_label_registry_edited": false,
+    "entry_id": "m_csa:771",
+    "fingerprint_registry_edited": false,
+    "import_ready_candidate_count": 0,
+    "label_registry_changed": false,
+    "method": "mcsa_positive_residue_mapping_resolution_plan",
+    "new_external_rows_frozen": 0,
+    "production_fingerprint_edited": false,
+    "production_fingerprint_universe_count_invariant": 8,
+    "ready_for_label_import": false,
+    "recommended_alternate_structure_request": "2D0D",
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "schema_version": "mcsa_positive_residue_mapping_resolution_plan.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_positive_expert_packet_22_20260523.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json",
+      "artifacts/v1_graph_1025.json"
+    ]
+  },
+  "rows": [
+    {
+      "candidate_pdbs_checked": [
+        "1UK7",
+        "1IUN",
+        "1IUO",
+        "1IUP",
+        "1UK6",
+        "1UK8",
+        "1UK9",
+        "1UKA",
+        "1UKB",
+        "2D0D"
+      ],
+      "candidate_pdbs_with_ser103": [
+        "2D0D"
+      ],
+      "canonical_registry_edit_authorized": false,
+      "coordinate_identity_checks": [
+        {
+          "pdb_id": "1UK7",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1IUN",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            },
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "B",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "B",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "B",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "B",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "B",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1IUO",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1IUP",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1UK6",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1UK8",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1UK9",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1UKA",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "1UKB",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 5,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "ALA"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        },
+        {
+          "pdb_id": "2D0D",
+          "residues_at_requested_positions": [
+            {
+              "atom_count": 6,
+              "auth_seq_id": "103",
+              "chain": "A",
+              "label_seq_id": "103",
+              "residue_name": "SER"
+            },
+            {
+              "atom_count": 11,
+              "auth_seq_id": "104",
+              "chain": "A",
+              "label_seq_id": "104",
+              "residue_name": "PHE"
+            },
+            {
+              "atom_count": 8,
+              "auth_seq_id": "224",
+              "chain": "A",
+              "label_seq_id": "224",
+              "residue_name": "ASP"
+            },
+            {
+              "atom_count": 10,
+              "auth_seq_id": "252",
+              "chain": "A",
+              "label_seq_id": "252",
+              "residue_name": "HIS"
+            },
+            {
+              "atom_count": 6,
+              "auth_seq_id": "34",
+              "chain": "A",
+              "label_seq_id": "34",
+              "residue_name": "SER"
+            }
+          ]
+        }
+      ],
+      "countable_label_candidate": false,
+      "current_selected_pdb": "1UK7",
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "next_action": "materialize/review 2D0D residue mapping and rerun geometry/import-preview gates as review-only evidence",
+      "ready_for_label_import": false,
+      "recommended_alternate_structure_request": "2D0D",
+      "required_catalytic_nucleophile_resolution": "Ser103 must be present and mapped with His252/Asp224 context before import",
+      "scored_ser34_role": "electrostatic stabiliser / oxyanion-hole support, not catalytic nucleophile",
+      "selected_pdb_mapping_blocker": "catalytic Ser103 is Ala103 in selected coordinates",
+      "target_fingerprint": "ser_his_acid_hydrolase"
+    }
+  ]
+}

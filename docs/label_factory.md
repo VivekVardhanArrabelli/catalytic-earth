@@ -1162,6 +1162,33 @@ selected graph slice, residue node ids not present in that graph slice, or a
 That closes the silent selected-PDB artifact mismatch surface before any
 override geometry is written.
 
+The 2026-05-23 M-CSA positive-review follow-up keeps this path review-only.
+`artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json`
+records 12 accepted Vivek-reviewed positive candidates, but only 9 are
+mechanically ready for a future import-preview dry run; the three
+accept-with-caveat rows (`m_csa:777`, `m_csa:784`, and `m_csa:904`) remain
+blocked before preview because current 1,025 scores are below the `0.4115`
+floor and/or counterevidence requires an explicit gate override. For
+`m_csa:777`, the accepted scientific decision explicitly preserves the current
+1,025 score `0.4107` and excludes the older `0.5307` score from 1,025 gates.
+The bounded hold-apo scan
+`artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json`
+scans 62 candidate structures with 0 fetch failures. Its override plan
+identifies `1AWB`, `1J7N`, and `1H56` as review-only replacement candidates
+for `m_csa:577`, `m_csa:641`, and `m_csa:897`, while `m_csa:836` and
+`m_csa:996` remain blocked by structure-wide metal hits without local
+active-site residue remaps. Geometry holds remain explicit: `m_csa:657` is
+held because Zn is local to Glu131 but not both scored residues as direct
+metal ligands; `m_csa:611` is held for open/loose conformation with a 40.164
+Angstrom scored pair; and `m_csa:1001` is held for oligomer/role-pair
+geometry despite local Mn context. `m_csa:771` now has a review-only alternate
+request (`2D0D`) because it is the only checked structure with Ser103 rather
+than Ala103, but no promotion occurs until mapping, geometry, and gates rerun.
+`m_csa:737` remains a held dual PLP-cobalamin schema gap with no production
+fingerprint or ontology edit. The zero-import gate
+`artifacts/v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.json`
+passes for all six follow-up artifacts.
+
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
   --remediation artifacts/v3_review_debt_remediation_700.json \

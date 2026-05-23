@@ -373,6 +373,28 @@ candidates and only 23 exact mapping blockers left, with no remaining
 structure-path blocker.
 The closure zero-import gate passes with 0 import-ready and 0 countable
 candidates.
+`artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json`
+then converts the Vivek-reviewed 22-row positive packet into a review-only
+import-readiness preview without editing registries. Of the 12 accepted rows,
+9 can proceed mechanically to a future dry-run import preview
+(`m_csa:599`, `m_csa:623`, `m_csa:636`, `m_csa:706`, `m_csa:812`,
+`m_csa:865`, `m_csa:892`, `m_csa:917`, and `m_csa:998`) and 3 remain
+caveat-blocked (`m_csa:777`, `m_csa:784`, and `m_csa:904`). `m_csa:777`
+preserves the current 1,025 score of `0.4107`, below the `0.4115` abstention
+threshold; the older `0.5307` score is explicitly excluded from 1,025 gates.
+The held positive rows now have bounded follow-up artifacts:
+`artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json`
+identifies holo replacement candidates for `m_csa:577` (`1AWB`),
+`m_csa:641` (`1J7N`), and `m_csa:897` (`1H56`) while leaving `m_csa:836`
+and `m_csa:996` blocked on missing local residue-remap support;
+`artifacts/v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json`
+keeps `m_csa:611`, `m_csa:657`, and `m_csa:1001` held with exact locality or
+conformation reasons; `artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json`
+identifies `2D0D` as the only checked alternate with catalytic Ser103; and
+`artifacts/v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json`
+keeps beta-lysine aminomutase as a dual PLP-cobalamin schema gap. The paired
+zero-import gate validates all six follow-up artifacts with 0 import-ready and
+0 countable candidates.
 `artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json`
 is the matching no-breadth family-readiness packet from existing evidence. It
 keeps glycoside hydrolase blocked with exact missing evidence: the only

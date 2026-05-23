@@ -13206,6 +13206,136 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertEqual(row["import_ready_candidate_count"], 0)
             self.assertEqual(row["countable_label_candidate_count"], 0)
 
+    def test_mcsa_positive_accepted_import_readiness_preserves_caveats(self) -> None:
+        readiness = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json"
+        )
+
+        metadata = readiness["metadata"]
+        decision = readiness["decision"]
+        rows = {row["entry_id"]: row for row in readiness["rows"]}
+
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(metadata["accepted_candidate_count"], 12)
+        self.assertEqual(metadata["mechanically_can_enter_import_preview_now_count"], 9)
+        self.assertEqual(metadata["blocked_by_acceptance_caveat_count"], 3)
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["canonical_countable_label_count_invariant"], 682)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+
+        self.assertEqual(
+            decision["ready_entry_ids"],
+            [
+                "m_csa:599",
+                "m_csa:623",
+                "m_csa:636",
+                "m_csa:706",
+                "m_csa:812",
+                "m_csa:865",
+                "m_csa:892",
+                "m_csa:917",
+                "m_csa:998",
+            ],
+        )
+        self.assertEqual(
+            decision["blocked_by_caveat_entry_ids"],
+            ["m_csa:777", "m_csa:784", "m_csa:904"],
+        )
+        self.assertFalse(rows["m_csa:777"]["mechanically_can_enter_import_preview_now"])
+        self.assertEqual(rows["m_csa:777"]["current_1025_score"], 0.4107)
+        self.assertEqual(rows["m_csa:777"]["prior_score_excluded_from_1025_gate"], 0.5307)
+        self.assertIn(
+            "prior_1000_score_must_not_be_used_for_1025_gate",
+            rows["m_csa:777"]["caveat_blockers"],
+        )
+        self.assertFalse(rows["m_csa:784"]["score_clears_current_threshold"])
+        self.assertFalse(rows["m_csa:904"]["score_clears_current_threshold"])
+
+    def test_mcsa_positive_followup_artifacts_resolve_or_block_holds(self) -> None:
+        apo_scan = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json"
+        )
+        apo_plan = _load_json(
+            ARTIFACTS / "v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json"
+        )
+        geometry = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json"
+        )
+        residue = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json"
+        )
+        schema = _load_json(
+            ARTIFACTS / "v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json"
+        )
+        gate = _load_json(
+            ARTIFACTS
+            / "v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.json"
+        )
+
+        self.assertTrue(apo_scan["metadata"]["review_only"])
+        self.assertEqual(apo_scan["metadata"]["scanned_structure_count"], 62)
+        self.assertEqual(apo_scan["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(
+            apo_scan["metadata"]["local_expected_family_hit_entry_ids"],
+            ["m_csa:577", "m_csa:641", "m_csa:897"],
+        )
+
+        plan_rows = {row["entry_id"]: row for row in apo_plan["rows"]}
+        self.assertEqual(apo_plan["decision"]["selected_pdb_replacement_candidate_count"], 3)
+        self.assertEqual(apo_plan["decision"]["blocked_no_local_remapped_holo_alternate_count"], 2)
+        self.assertEqual(plan_rows["m_csa:577"]["recommended_replacement_pdb"], "1AWB")
+        self.assertEqual(plan_rows["m_csa:641"]["recommended_replacement_pdb"], "1J7N")
+        self.assertEqual(plan_rows["m_csa:897"]["recommended_replacement_pdb"], "1H56")
+        self.assertIsNone(plan_rows["m_csa:836"]["recommended_replacement_pdb"])
+        self.assertIn("3SLP/3SM4/4WUZ", plan_rows["m_csa:836"]["exact_blocker"])
+        self.assertIsNone(plan_rows["m_csa:996"]["recommended_replacement_pdb"])
+        self.assertIn("5O6Y", plan_rows["m_csa:996"]["exact_blocker"])
+
+        geometry_rows = {row["entry_id"]: row for row in geometry["rows"]}
+        self.assertEqual(
+            geometry_rows["m_csa:657"]["resolution_status"],
+            "resolved_hold_cofactor_locality_not_both_scored_residues_direct_ligands",
+        )
+        self.assertIn("Glu131", geometry_rows["m_csa:657"]["exact_reason"])
+        self.assertEqual(
+            geometry_rows["m_csa:611"]["resolution_status"],
+            "kept_hold_open_or_loose_conformation",
+        )
+        self.assertEqual(
+            geometry_rows["m_csa:1001"]["resolution_status"],
+            "kept_hold_oligomer_or_role_pair_geometry",
+        )
+
+        self.assertEqual(
+            residue["decision"]["alternate_structure_candidate_with_ser103"],
+            ["2D0D"],
+        )
+        self.assertEqual(
+            residue["rows"][0]["recommended_alternate_structure_request"],
+            "2D0D",
+        )
+        self.assertFalse(residue["decision"]["promote_now"])
+
+        self.assertEqual(
+            schema["decision"]["schema_decision"],
+            "keep_held_as_dual_plp_adenosylcobalamin_schema_gap",
+        )
+        self.assertTrue(schema["decision"]["do_not_create_production_fingerprint"])
+        self.assertFalse(schema["decision"]["production_fingerprint_promotion_authorized"])
+
+        self.assertTrue(gate["metadata"]["valid"])
+        self.assertEqual(gate["metadata"]["artifact_count"], 6)
+        self.assertEqual(gate["metadata"]["valid_artifact_count"], 6)
+        self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 0)
+        self.assertEqual(gate["metadata"]["countable_label_candidate_count"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()
