@@ -185,24 +185,36 @@ upload/removal, or external row sourcing path. The remaining blocker report now
 names 23 blocked rows, 0 next structure-materialization candidates, no
 structure-path blocker, 23 exact focus-pair/distance repair gaps, and 2
 structure-ID mapping gaps within that same blocked set.
-The 2026-05-23T17:45:32Z main-loop follow-up consumes the Vivek-reviewed
-22-row M-CSA positive decision artifacts without editing canonical registries.
-The accepted import-readiness preview has 12 accepted rows, of which 9 can
-proceed mechanically in a future gated dry run and 3 remain caveat-blocked:
+The 2026-05-23T19:08:15Z main-loop follow-up consumes the Vivek-reviewed
+22-row M-CSA positive decision artifacts through the next mechanical tranche.
+The clean import-preview and gate path imports exactly 9 accepted rows into the
+canonical registry: `m_csa:599`, `m_csa:623`, `m_csa:636`, `m_csa:706`,
+`m_csa:812`, `m_csa:865`, `m_csa:892`, `m_csa:917`, and `m_csa:998`.
+The canonical registry is now 691 labels: 221 seed-fingerprint positives and
+470 out-of-scope labels. The three imported external out-of-scope labels remain
+unchanged and external seed-fingerprint imports remain 0. The accepted
+import-readiness preview still has 12 accepted rows, of which 3 remain
+caveat-blocked:
 `m_csa:777` is scientifically accepted but below the current 1025 abstain
 threshold, while `m_csa:784` and `m_csa:904` still need their stated caveat
-resolution before import. The five apo holds are no longer open-ended:
+resolution before import. A review-only nucleotide-product stress probe now
+separates AMP product hydrolysis contexts (`m_csa:784`, `m_csa:904`) from true
+transfer controls (`m_csa:603`, `m_csa:640`, `m_csa:647`) without activating a
+production scoring rule. The five apo holds are no longer open-ended:
 `m_csa:577`, `m_csa:641`, and `m_csa:897` have bounded holo override
 candidates (`1AWB`, `1J7N`, and `1H56`), while `m_csa:836` and `m_csa:996`
 remain blocked by structure-wide metal hits without usable local active-site
-remaps. Geometry holds are also bounded: `m_csa:657` is resolved to keep held
-because Zn is local to beta-subunit Glu131 but not both scored residues as
-direct ligands; `m_csa:611` and `m_csa:1001` remain held on loose
-conformation/oligomeric role-pair locality. `m_csa:771` remains held unless the
-Ser103 mapping can move to the candidate `2D0D`, and `m_csa:737` remains a
-schema gap for coupled PLP-adenosylcobalamin aminomutase chemistry rather than
-a production fingerprint addition. The paired zero-import gate validates the
-six follow-up artifacts as review-only and opens no label import path.
+remaps. The three concrete holo overrides pass a post-clean9 geometry preview
+with 0 hard negatives and 0 near misses but remain non-imported pending
+post-override expert accept decisions and separate gates. Geometry holds are
+also bounded: `m_csa:657` is resolved to keep held because Zn is local to
+beta-subunit Glu131 but not both scored residues as direct ligands;
+`m_csa:611` and `m_csa:1001` remain held on loose conformation/oligomeric
+role-pair locality. `m_csa:771` alternate `2D0D` now resolves catalytic Ser103
+as the M-CSA nucleophile and scores as `ser_his_acid_hydrolase`, but remains
+held pending an explicit noncanonical accept decision and full gates.
+`m_csa:737` remains a schema gap for coupled PLP-adenosylcobalamin aminomutase
+chemistry rather than a production fingerprint addition.
 Current external-deepening scope: the 2026-05-22 main-loop follow-up continued
 only already frozen 2026-05-21 external rows. It did not add a seventh broad
 mini-campaign or freeze new external breadth. The second flavin

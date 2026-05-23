@@ -1,0 +1,138 @@
+{
+  "decision": {
+    "keep_held_pending_explicit_alternate_structure_acceptance": true,
+    "label_import_authorized_now": false,
+    "next_required_step": "expert_accept_decision_on_noncanonical_2d0d_alternate_then_dedicated_gate_preview",
+    "ser103_resolved": true
+  },
+  "metadata": {
+    "alternate_pdb_id": "2D0D",
+    "artifact_id": "v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_registry_import_performed": false,
+    "catalytic_ser103_maps_to_m_csa_nucleophile": true,
+    "catalytic_ser103_present": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T19:33:11Z",
+    "curated_label_registry_edited_by_this_artifact": false,
+    "current_selected_pdb_id": "1UK7",
+    "entry_id": "m_csa:771",
+    "fingerprint_registry_edited": false,
+    "method": "mcsa_positive_m_csa771_2d0d_noncanonical_alternate_review",
+    "noncanonical_alternate_structure_review": true,
+    "post_clean9_registry_label_count": 691,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "schema_version": "mcsa_positive_m_csa771_2d0d_noncanonical_review.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_selected_pdb_review_plan_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_label_eval_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_hard_negative_controls_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_in_scope_failure_analysis_post_clean9_691_1025.json"
+    ]
+  },
+  "rows": [
+    {
+      "actual_label_imported_to_canonical_registry": false,
+      "alternate_pdb_id": "2D0D",
+      "catalytic_ser103_evidence": {
+        "chain_name": "A",
+        "code": "SER",
+        "maps_to_catalytic_nucleophile": true,
+        "present": true,
+        "resid": "103",
+        "residue_node_id": "m_csa:771:residue:4",
+        "roles": [
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ]
+      },
+      "current_selected_pdb_id": "1UK7",
+      "eligibility_blockers": [
+        "requires explicit noncanonical alternate-structure expert accept decision",
+        "requires dedicated countable import preview and full label-factory batch acceptance"
+      ],
+      "eligible_for_actual_label_import": false,
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "evidence_pointers": {
+        "geometry_feature_row": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json#entries.entry_id=m_csa:771",
+        "retrieval_row": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:771",
+        "selected_pdb_review_plan": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_selected_pdb_review_plan_1025.json"
+      },
+      "geometry_status": "ok",
+      "local_ligand_codes": [
+        "CL"
+      ],
+      "missing_positions": 0,
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "SER",
+          "pdb_id": "2D0D",
+          "resid": "34",
+          "residue_node_id": "m_csa:771:residue:1",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "PHE",
+          "pdb_id": "2D0D",
+          "resid": "104",
+          "residue_node_id": "m_csa:771:residue:2",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "2D0D",
+          "resid": "224",
+          "residue_node_id": "m_csa:771:residue:3",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "SER",
+          "pdb_id": "2D0D",
+          "resid": "103",
+          "residue_node_id": "m_csa:771:residue:4",
+          "roles": [
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "2D0D",
+          "resid": "252",
+          "residue_node_id": "m_csa:771:residue:5",
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "target_fingerprint_preview": "ser_his_acid_hydrolase",
+      "top1_counterevidence_reasons": [],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8933,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.3586
+    }
+  ]
+}

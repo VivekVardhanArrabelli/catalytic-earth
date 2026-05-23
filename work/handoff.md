@@ -18,7 +18,7 @@ slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-682 countable labels. Review-state registries preserve pending
+691 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -50,22 +50,37 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### Immediate Next Target: Post-M-CSA External Ladder
+### Immediate Next Target: Post-Clean9 M-CSA Holds
 
-The Vivek-reviewed 22-row M-CSA positive follow-up is closed for automation
-purposes, still review-only, and not imported. The accepted import-readiness
-preview is:
+The Vivek-reviewed 22-row M-CSA positive follow-up has one gated canonical
+import completed. The clean import summary is:
+
+```text
+artifacts/v3_mcsa_positive_clean9_import_preview_20260523.json
+```
+
+Exactly nine clean rows were imported into
+`data/registries/curated_mechanism_labels.json`: `m_csa:599`, `m_csa:623`,
+`m_csa:636`, `m_csa:706`, `m_csa:812`, `m_csa:865`, `m_csa:892`,
+`m_csa:917`, and `m_csa:998`. The registry moved 682 -> 691 labels, with
+221 seed-fingerprint labels and 470 out-of-scope labels. The imported external
+out-of-scope labels remain exactly `uniprot:P06744`, `uniprot:P78549`, and
+`uniprot:Q3LXA3`; external seed-fingerprint imports remain 0; the production
+fingerprint universe remains 8.
+
+The original accepted import-readiness preview remains source evidence only:
 
 ```text
 artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json
 ```
 
-It preserves 12 accepted rows. Nine are mechanically ready for a future gated
-dry-run import preview (`m_csa:599`, `m_csa:623`, `m_csa:636`, `m_csa:706`,
-`m_csa:812`, `m_csa:865`, `m_csa:892`, `m_csa:917`, `m_csa:998`), and three
-remain caveat-blocked (`m_csa:777`, `m_csa:784`, `m_csa:904`). For `m_csa:777`,
-do not use the older 1000-entry score: the current 1025 score is 0.4107, below
-the 0.4115 abstain threshold.
+It preserves 12 accepted rows and still marks the three accept-with-caveat rows
+as blocked: `m_csa:777`, `m_csa:784`, and `m_csa:904`. For `m_csa:777`, do not
+use the older 1000-entry score: the current 1025 score is 0.4107, below the
+0.4115 abstain threshold. For `m_csa:784` and `m_csa:904`, the new
+review-only nucleotide-product stress probe distinguishes AMP product
+hydrolysis from true transfer controls, but it is not a production scoring rule
+and does not unblock either row.
 
 The hold follow-up artifacts are:
 
@@ -80,23 +95,38 @@ artifacts/v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.j
 The bounded apo scan identifies candidate selected-PDB replacements for
 `m_csa:577` (`1AWB`), `m_csa:641` (`1J7N`), and `m_csa:897` (`1H56`), while
 `m_csa:836` and `m_csa:996` stay blocked by non-local structure-wide metal
-hits. The geometry packet keeps `m_csa:657` held because Zn is local to
-beta-subunit Glu131 but not both scored residues as direct metal ligands;
-`m_csa:611` and `m_csa:1001` remain held on conformation/oligomeric
-role-pair locality. `m_csa:771` remains held unless catalytic Ser103 is
-resolved, with `2D0D` as the only checked alternate containing Ser103.
-`m_csa:737` remains a schema decision gap for coupled PLP-cobalamin
-aminomutase chemistry; do not create a production fingerprint from it.
+hits. `artifacts/v3_mcsa_positive_holo_override_import_preview_20260523.json`
+reruns those three concrete overrides against the post-clean9 691-label
+registry and keeps them separate from the clean9 import: all three top1 as
+`metal_dependent_hydrolase`, with 0 hard negatives, 0 near misses, 0
+out-of-scope false non-abstentions, and 0 actionable in-scope failures, but 0
+import-ready candidates until a post-override expert accept decision and
+dedicated gates exist.
 
-Evidence-based confidence call: confidence is high that the M-CSA follow-up is
-closed but not import-ready because the new artifacts preserve the reviewed
-ledger, mark 9/12 accepted rows mechanically ready and 3/12 caveat-blocked,
-resolve or precisely block all five apo holds, all three geometry holds, the
-`m_csa:771` residue-mapping hold, and the `m_csa:737` schema hold, pass a 6/6
-review-only zero-import gate, and leave curated labels and production
-fingerprints untouched. The next automation work should return to the external
-decision-deepening ladder if human review is unavailable: metal phosphatase
-first, then serine hydrolase, then flavin/heme, then PLP.
+The geometry packet keeps `m_csa:657` held because Zn is local to beta-subunit
+Glu131 but not both scored residues as direct metal ligands; `m_csa:611` and
+`m_csa:1001` remain held on conformation/oligomeric role-pair locality.
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523.json`
+confirms `m_csa:771` alternate PDB `2D0D` contains catalytic Ser103 and maps it
+to the M-CSA nucleophile role; the paired gate-preview plan keeps it non-imported
+until an explicit noncanonical alternate accept decision and full gates rerun.
+`m_csa:737` remains a schema decision gap for coupled PLP-cobalamin aminomutase
+chemistry; do not create a production fingerprint from it.
+
+Evidence-based confidence call: confidence is high that the clean9 canonical
+import is valid because the derived gate stack passes 21/21 label-factory
+checks, the batch acceptance artifact is accepted for exactly nine new labels,
+hard negatives and near misses are 0, out-of-scope false non-abstentions are 0,
+and the registry validates at 691 labels with 8 fingerprints. Confidence is
+medium-high that the next M-CSA work should be post-clean9 holds, not external
+breadth: the holo overrides and `m_csa:771` are geometry/gate-preview ready but
+still need explicit expert accept artifacts before any import. The caveat rows
+`m_csa:777`, `m_csa:784`, and `m_csa:904` remain held.
+
+Wrap validation for the 2026-05-23T19:08:15Z run passed: targeted artifact
+tests, 899-test full unit discovery, `compileall`, CLI `validate` at 691 labels
+and 8 fingerprints, artifact-migration dry run with `removal_allowed=0`, JSON
+parsing for new summary artifacts, and `git diff --check`.
 
 ### External Queue: Human Review Or No-Breadth Readiness
 

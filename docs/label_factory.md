@@ -1162,15 +1162,27 @@ selected graph slice, residue node ids not present in that graph slice, or a
 That closes the silent selected-PDB artifact mismatch surface before any
 override geometry is written.
 
-The 2026-05-23 M-CSA positive-review follow-up keeps this path review-only.
+The 2026-05-23 M-CSA positive-review follow-up first kept this path review-only
+and then admitted only the clean nine-row tranche after the derived gates
+passed.
 `artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json`
-records 12 accepted Vivek-reviewed positive candidates, but only 9 are
-mechanically ready for a future import-preview dry run; the three
+records 12 accepted Vivek-reviewed positive candidates, but only 9 were
+mechanically ready for import-preview; the three
 accept-with-caveat rows (`m_csa:777`, `m_csa:784`, and `m_csa:904`) remain
 blocked before preview because current 1,025 scores are below the `0.4115`
 floor and/or counterevidence requires an explicit gate override. For
 `m_csa:777`, the accepted scientific decision explicitly preserves the current
 1,025 score `0.4107` and excludes the older `0.5307` score from 1,025 gates.
+`artifacts/v3_mcsa_positive_clean9_import_preview_20260523.json` records the
+separate clean import path for exactly `m_csa:599`, `m_csa:623`, `m_csa:636`,
+`m_csa:706`, `m_csa:812`, `m_csa:865`, `m_csa:892`, `m_csa:917`, and
+`m_csa:998`. Its full gate stack passes 21/21 label-factory checks, 0 hard
+negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable
+in-scope failures, and 0 accepted review-gap or reaction/substrate-mismatch
+rows, so the canonical label registry moves from 682 to 691 labels. The current
+registry has 221 seed-fingerprint labels, 470 out-of-scope labels, 9
+expert-reviewed silver labels, and the same three imported external
+out-of-scope hard negatives; external seed-fingerprint imports remain 0.
 The bounded hold-apo scan
 `artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json`
 scans 62 candidate structures with 0 fetch failures. Its override plan
@@ -1181,13 +1193,25 @@ active-site residue remaps. Geometry holds remain explicit: `m_csa:657` is
 held because Zn is local to Glu131 but not both scored residues as direct
 metal ligands; `m_csa:611` is held for open/loose conformation with a 40.164
 Angstrom scored pair; and `m_csa:1001` is held for oligomer/role-pair
-geometry despite local Mn context. `m_csa:771` now has a review-only alternate
-request (`2D0D`) because it is the only checked structure with Ser103 rather
-than Ala103, but no promotion occurs until mapping, geometry, and gates rerun.
+geometry despite local Mn context. The separate selected-PDB override preview
+`artifacts/v3_mcsa_positive_holo_override_import_preview_20260523.json`
+re-scores `m_csa:577 -> 1AWB`, `m_csa:641 -> 1J7N`, and `m_csa:897 -> 1H56`
+against the post-clean9 691-label registry and keeps them non-imported pending
+a post-override expert accept decision plus dedicated gates. `m_csa:771` now
+has a review-only alternate request (`2D0D`) because it is the only checked
+structure with Ser103 rather than Ala103; the noncanonical review artifact
+confirms Ser103 maps to the M-CSA nucleophile and top1
+`ser_his_acid_hydrolase` scores `0.8933`, but no promotion occurs until an
+explicit alternate-structure accept decision and full gates rerun.
 `m_csa:737` remains a held dual PLP-cobalamin schema gap with no production
 fingerprint or ontology edit. The zero-import gate
 `artifacts/v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.json`
 passes for all six follow-up artifacts.
+A review-only nucleotide-product stress probe
+`artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_probe_20260523.json`
+distinguishes AMP product hydrolysis contexts (`m_csa:784`, `m_csa:904`) from
+true transfer controls (`m_csa:603`, `m_csa:640`, `m_csa:647`) without
+activating a production counterevidence change or unblocking either caveat row.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
@@ -1606,26 +1630,29 @@ Current 1,000-queue gate state:
 - 430 expert-review items are exported from the 1,000 post-batch review queue.
 - The 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775, 800, 825, and
   850, 875, 900, 925, 950, 975, and 1,000 decision batches accepted 204 new
-  countable M-CSA labels beyond the 475-entry source slice. The canonical
-  registry now contains 682 bronze automation-curated labels: 679 accepted
-  M-CSA labels plus three external out-of-scope hard negatives. The
-  review-state registry keeps pending `needs_expert_review` placeholders
-  separate from the countable benchmark.
+  countable M-CSA labels beyond the 475-entry source slice. The 2026-05-23
+  clean9 M-CSA tranche accepts 9 more expert-reviewed silver M-CSA labels. The
+  canonical registry now contains 691 labels: 688 accepted M-CSA labels plus
+  three external out-of-scope hard negatives. The review-state registry keeps
+  pending `needs_expert_review` placeholders separate from the countable
+  benchmark.
 - The 1,000 batch is now accepted for its 4 clean countable labels:
   `m_csa:978`, `m_csa:988`, `m_csa:990`, and `m_csa:994`.
   `artifacts/v3_accepted_review_debt_deferral_audit_1000.json` explicitly
   defers all 326 review-state rows, including the 21 new 1,000-preview
-  review-debt rows, with 0 countable candidates. The accepted M-CSA surface has
-  679 labels and the 1,000 gate passes 21/21; the canonical registry now has
-  682 labels after three external out-of-scope hard-negative imports.
+  review-debt rows, with 0 countable candidates. The accepted M-CSA surface had
+  679 labels and the 1,000 gate passed 21/21; after the clean9 import and three
+  external out-of-scope hard-negative imports, the canonical registry now has
+  691 labels.
 
 Current 1,025-preview state:
 
 - `artifacts/v3_label_factory_gate_check_1025_preview.json` passes 21/21
   checks, preserving the label-quality gates.
 - `artifacts/v3_label_batch_acceptance_check_1025_preview.json` is not
-  accepted for M-CSA counting because it adds 0 clean labels; the canonical
-  registry remains at 682 countable labels after the three separate external
+  accepted for M-CSA counting because it adds 0 clean labels; before the later
+  clean9 tranche, the canonical registry remained at 682 countable labels after
+  the three separate external
   hard-negative imports.
 - `artifacts/v3_review_debt_summary_1025_preview.json` records 329 review-debt
   rows with 3 new rows: `m_csa:1003`, `m_csa:1004`, and `m_csa:1005`.

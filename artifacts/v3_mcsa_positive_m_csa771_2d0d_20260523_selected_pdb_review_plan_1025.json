@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "alternate_pdb_id": "2D0D",
+    "artifact_upload_or_removal_performed": false,
+    "catalytic_nucleophile_residue_node_id": "m_csa:771:residue:4",
+    "catalytic_ser103_present": true,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T19:21:51Z",
+    "curated_label_registry_edited": false,
+    "current_selected_pdb_id": "1UK7",
+    "entry_id": "m_csa:771",
+    "fingerprint_registry_edited": false,
+    "method": "mcsa_positive_m_csa771_2d0d_selected_pdb_review_plan",
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "schema_version": "mcsa_positive_m_csa771_2d0d_selected_pdb_review_plan.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json",
+      "artifacts/v1_graph_1025.json"
+    ]
+  },
+  "rows": [
+    {
+      "apply_status": "ready_to_apply",
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1UK7",
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "expected_cofactor_families": [],
+      "override_pdb_id": "2D0D",
+      "rationale": "2D0D is the only checked alternate with Ser at catalytic position 103; remap residue:4 from selected Ala103 to alternate Ser103 for noncanonical review.",
+      "recommended_pdb_id": "2D0D",
+      "residue_position_remap_basis": "same_chain_residue_id_with_catalytic_identity_repair",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap_identity_checked",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "SER",
+          "pdb_id": "2D0D",
+          "resid": "34",
+          "residue_node_id": "m_csa:771:residue:1",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "PHE",
+          "pdb_id": "2D0D",
+          "resid": "104",
+          "residue_node_id": "m_csa:771:residue:2",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "2D0D",
+          "resid": "224",
+          "residue_node_id": "m_csa:771:residue:3",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "SER",
+          "pdb_id": "2D0D",
+          "resid": "103",
+          "residue_node_id": "m_csa:771:residue:4",
+          "roles": [
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "2D0D",
+          "resid": "252",
+          "residue_node_id": "m_csa:771:residue:5",
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      ],
+      "source_resolution": "artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json"
+    }
+  ]
+}

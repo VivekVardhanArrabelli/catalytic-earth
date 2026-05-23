@@ -1,0 +1,211 @@
+{
+  "decision": {
+    "next_required_step": "freeze production-admissible rule with broader controls before changing geometry retrieval counterevidence or importing labels",
+    "reason_not_unblocked": "candidate rule is a review-only stress probe and has not been wired into production scoring or rerun through full gates",
+    "unblock_m_csa_784_now": false,
+    "unblock_m_csa_904_now": false
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_nucleotide_product_counterevidence_rule_probe_20260523",
+    "artifact_upload_or_removal_performed": false,
+    "candidate_rule_general_not_candidate_specific": true,
+    "candidate_rule_summary": "Treat AMP/ADP/GMP/GDP/IMP/IDP as possible product or partial-product context only when hydrolytic nuclease/phosphatase/nucleotidase/water-attack text is present and true transfer terms or gamma/alpha-transfer nucleotide analogs are absent; retain nucleotide-transfer counterevidence for ATP/GTP/gamma phosphate/alpha phosphate/kinase/ligase/synthase/nucleotidyltransferase contexts.",
+    "canonical_registry_import_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T19:43:47Z",
+    "curated_label_registry_edited_by_this_artifact": false,
+    "fingerprint_registry_edited": false,
+    "method": "nucleotide_product_counterevidence_rule_stress_probe_review_only",
+    "product_context_exception_candidate_count": 2,
+    "product_context_exception_candidate_entry_ids": [
+      "m_csa:784",
+      "m_csa:904"
+    ],
+    "production_rule_activated": false,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "retain_counterevidence_control_count": 3,
+    "retain_counterevidence_control_entry_ids": [
+      "m_csa:603",
+      "m_csa:640",
+      "m_csa:647"
+    ],
+    "schema_version": "mcsa_positive_nucleotide_product_counterevidence_rule_probe.v1",
+    "source_artifacts": [
+      "artifacts/v3_geometry_retrieval_1025.json",
+      "artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json",
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json"
+    ],
+    "stress_panel_entry_ids": [
+      "m_csa:784",
+      "m_csa:904",
+      "m_csa:603",
+      "m_csa:640",
+      "m_csa:647"
+    ]
+  },
+  "rows": [
+    {
+      "contains_current_nucleotide_transfer_counterevidence": true,
+      "countable_label_candidate": false,
+      "current_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:784",
+      "entry_name": "3'-5' exoribonuclease 1",
+      "gamma_or_transfer_nucleotide_codes": [],
+      "ligand_codes": [
+        "MSE",
+        "AMP",
+        "MG"
+      ],
+      "matched_hydrolysis_product_context_terms": [
+        "activated water",
+        "nuclease",
+        "phosphodiester bond",
+        "water molecule"
+      ],
+      "matched_true_transfer_context_terms": [],
+      "nucleotide_ligand_codes": [
+        "AMP"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "AMP"
+      ],
+      "ready_for_label_import": false,
+      "selected_pdb": "1W0H",
+      "stress_panel_expected_decision": "product_context_exception_candidate",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score_current": 0.4082,
+      "would_suppress_nucleotide_transfer_counterevidence_under_candidate_rule": true
+    },
+    {
+      "contains_current_nucleotide_transfer_counterevidence": true,
+      "countable_label_candidate": false,
+      "current_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:904",
+      "entry_name": "3'(2'),5'-bisphosphate nucleotidase",
+      "gamma_or_transfer_nucleotide_codes": [],
+      "ligand_codes": [
+        "PO4",
+        "MG",
+        "AMP",
+        "SO4"
+      ],
+      "matched_hydrolysis_product_context_terms": [
+        "nucleotidase",
+        "water molecule"
+      ],
+      "matched_true_transfer_context_terms": [],
+      "nucleotide_ligand_codes": [
+        "AMP"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "AMP"
+      ],
+      "ready_for_label_import": false,
+      "selected_pdb": "1QGX",
+      "stress_panel_expected_decision": "product_context_exception_candidate",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score_current": 0.405,
+      "would_suppress_nucleotide_transfer_counterevidence_under_candidate_rule": true
+    },
+    {
+      "contains_current_nucleotide_transfer_counterevidence": true,
+      "countable_label_candidate": false,
+      "current_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "gamma_or_transfer_nucleotide_codes": [],
+      "ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "matched_hydrolysis_product_context_terms": [],
+      "matched_true_transfer_context_terms": [
+        "kinase",
+        "terminal phosphate of atp"
+      ],
+      "nucleotide_ligand_codes": [
+        "ADP"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "selected_pdb": "1JM6",
+      "stress_panel_expected_decision": "retain_nucleotide_transfer_counterevidence",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score_current": 0.4004,
+      "would_suppress_nucleotide_transfer_counterevidence_under_candidate_rule": false
+    },
+    {
+      "contains_current_nucleotide_transfer_counterevidence": true,
+      "countable_label_candidate": false,
+      "current_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "gamma_or_transfer_nucleotide_codes": [],
+      "ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "matched_hydrolysis_product_context_terms": [],
+      "matched_true_transfer_context_terms": [
+        "gamma phosphate",
+        "kinase"
+      ],
+      "nucleotide_ligand_codes": [
+        "ADP"
+      ],
+      "product_or_partial_nucleotide_codes": [
+        "ADP"
+      ],
+      "ready_for_label_import": false,
+      "selected_pdb": "1L8T",
+      "stress_panel_expected_decision": "retain_nucleotide_transfer_counterevidence",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score_current": 0.4066,
+      "would_suppress_nucleotide_transfer_counterevidence_under_candidate_rule": false
+    },
+    {
+      "contains_current_nucleotide_transfer_counterevidence": true,
+      "countable_label_candidate": false,
+      "current_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:647",
+      "entry_name": "kanamycin nucleotidyltransferase",
+      "gamma_or_transfer_nucleotide_codes": [
+        "APC"
+      ],
+      "ligand_codes": [
+        "MG",
+        "APC"
+      ],
+      "matched_hydrolysis_product_context_terms": [],
+      "matched_true_transfer_context_terms": [
+        " ntp",
+        "alpha phosphate",
+        "nucleotidyltransferase"
+      ],
+      "nucleotide_ligand_codes": [
+        "APC"
+      ],
+      "product_or_partial_nucleotide_codes": [],
+      "ready_for_label_import": false,
+      "selected_pdb": "1KNY",
+      "stress_panel_expected_decision": "retain_nucleotide_transfer_counterevidence",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score_current": 0.3976,
+      "would_suppress_nucleotide_transfer_counterevidence_under_candidate_rule": false
+    }
+  ]
+}

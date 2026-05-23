@@ -1,0 +1,314 @@
+{
+  "decision": {
+    "do_not_mix_with_clean9_import": true,
+    "gate_preview_passed_for_selected_pdb_geometry": true,
+    "label_import_authorized_now": false,
+    "next_required_step": "post_override_expert_accept_decision_and_dedicated_import_gate"
+  },
+  "metadata": {
+    "actionable_in_scope_failure_count": 0,
+    "artifact_id": "v3_mcsa_positive_holo_override_import_preview_20260523",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_registry_import_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T19:33:11Z",
+    "curated_label_registry_edited_by_this_artifact": false,
+    "evidence_limited_abstention_count": 4,
+    "exact_entry_ids": [
+      "m_csa:577",
+      "m_csa:641",
+      "m_csa:897"
+    ],
+    "fingerprint_registry_edited": false,
+    "geometry_reused_entry_count": 999,
+    "hard_negative_count": 0,
+    "import_ready_candidate_count": 0,
+    "method": "mcsa_positive_selected_pdb_override_gate_preview",
+    "near_miss_count": 0,
+    "out_of_scope_false_non_abstentions": 0,
+    "post_clean9_registry_label_count": 691,
+    "preserved_blocked_hold_apo_entry_ids": [
+      "m_csa:836",
+      "m_csa:996"
+    ],
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "schema_version": "mcsa_positive_holo_override_import_preview.v1",
+    "selected_pdb_override_applied_count": 3,
+    "selected_pdb_override_applied_entry_ids": [
+      "m_csa:577",
+      "m_csa:641",
+      "m_csa:897"
+    ],
+    "separate_from_clean9_import": true,
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json"
+    ]
+  },
+  "rows": [
+    {
+      "actual_label_imported_to_canonical_registry": false,
+      "cofactor_evidence_level": "ligand_supported",
+      "current_selected_pdb_id": "1IMA",
+      "eligibility_blockers": [
+        "requires explicit post-override expert accept decision artifact",
+        "requires dedicated countable import preview and label-factory batch acceptance separate from clean9"
+      ],
+      "eligible_for_actual_label_import": false,
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "evidence_pointers": {
+        "geometry_feature_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json#entries.entry_id=m_csa:577",
+        "override_plan_row": "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json#rows.entry_id=m_csa:577",
+        "post_clean9_eval": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+        "post_clean9_hard_negatives": "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+        "post_clean9_in_scope_failures": "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+        "retrieval_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:577"
+      },
+      "geometry_factory_preview_passed": true,
+      "geometry_status": "ok",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "IPD",
+        "CA"
+      ],
+      "missing_positions": 0,
+      "override_pdb_id": "1AWB",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ILE",
+          "pdb_id": "1AWB",
+          "resid": "92",
+          "residue_node_id": "m_csa:577:residue:1",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "90",
+          "residue_node_id": "m_csa:577:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "220",
+          "residue_node_id": "m_csa:577:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "93",
+          "residue_node_id": "m_csa:577:residue:4",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1AWB",
+          "resid": "70",
+          "residue_node_id": "m_csa:577:residue:5",
+          "roles": [
+            "metal ligand",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "THR",
+          "pdb_id": "1AWB",
+          "resid": "95",
+          "residue_node_id": "m_csa:577:residue:6",
+          "roles": [
+            "hydrogen bond acceptor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 6,
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "target_label_type": "seed_fingerprint",
+      "top1_counterevidence_reasons": [],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5962
+    },
+    {
+      "actual_label_imported_to_canonical_registry": false,
+      "cofactor_evidence_level": "ligand_supported",
+      "current_selected_pdb_id": "1PWV",
+      "eligibility_blockers": [
+        "requires explicit post-override expert accept decision artifact",
+        "requires dedicated countable import preview and label-factory batch acceptance separate from clean9"
+      ],
+      "eligible_for_actual_label_import": false,
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "evidence_pointers": {
+        "geometry_feature_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json#entries.entry_id=m_csa:641",
+        "override_plan_row": "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json#rows.entry_id=m_csa:641",
+        "post_clean9_eval": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+        "post_clean9_hard_negatives": "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+        "post_clean9_in_scope_failures": "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+        "retrieval_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:641"
+      },
+      "geometry_factory_preview_passed": true,
+      "geometry_status": "ok",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ZN"
+      ],
+      "missing_positions": 0,
+      "override_pdb_id": "1J7N",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "1J7N",
+          "resid": "690",
+          "residue_node_id": "m_csa:641:residue:1",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "1J7N",
+          "resid": "686",
+          "residue_node_id": "m_csa:641:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1J7N",
+          "resid": "735",
+          "residue_node_id": "m_csa:641:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1J7N",
+          "resid": "687",
+          "residue_node_id": "m_csa:641:residue:4",
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "TYR",
+          "pdb_id": "1J7N",
+          "resid": "728",
+          "residue_node_id": "m_csa:641:residue:5",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "target_label_type": "seed_fingerprint",
+      "top1_counterevidence_reasons": [],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.594
+    },
+    {
+      "actual_label_imported_to_canonical_registry": false,
+      "cofactor_evidence_level": "ligand_supported",
+      "current_selected_pdb_id": "1PVI",
+      "eligibility_blockers": [
+        "requires explicit post-override expert accept decision artifact",
+        "requires dedicated countable import preview and label-factory batch acceptance separate from clean9"
+      ],
+      "eligible_for_actual_label_import": false,
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "evidence_pointers": {
+        "geometry_feature_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json#entries.entry_id=m_csa:897",
+        "override_plan_row": "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json#rows.entry_id=m_csa:897",
+        "post_clean9_eval": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+        "post_clean9_hard_negatives": "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+        "post_clean9_in_scope_failures": "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+        "retrieval_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:897"
+      },
+      "geometry_factory_preview_passed": true,
+      "geometry_status": "ok",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "MG"
+      ],
+      "missing_positions": 0,
+      "override_pdb_id": "1H56",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "LYS",
+          "pdb_id": "1H56",
+          "resid": "70",
+          "residue_node_id": "m_csa:897:residue:1",
+          "roles": [
+            "proton shuttle (general acid/base)"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1H56",
+          "resid": "58",
+          "residue_node_id": "m_csa:897:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1H56",
+          "resid": "68",
+          "residue_node_id": "m_csa:897:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "resolved_residue_count": 3,
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "target_label_type": "seed_fingerprint",
+      "top1_counterevidence_reasons": [],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.59
+    }
+  ]
+}

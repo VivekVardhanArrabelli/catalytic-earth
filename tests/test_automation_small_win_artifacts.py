@@ -5725,8 +5725,8 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         for label in labels:
             by_type[label["label_type"]] = by_type.get(label["label_type"], 0) + 1
 
-        self.assertEqual(len(labels), 682)
-        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 212})
+        self.assertEqual(len(labels), 691)
+        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 221})
 
         labels_by_entry = {label["entry_id"]: label for label in labels}
         self.assertEqual(
@@ -5745,6 +5745,24 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 label["ontology_version_at_decision"],
                 "label_factory_v1_8fp",
             )
+
+        imported_clean9 = {
+            "m_csa:599": "ser_his_acid_hydrolase",
+            "m_csa:623": "metal_dependent_hydrolase",
+            "m_csa:636": "metal_dependent_hydrolase",
+            "m_csa:706": "metal_dependent_hydrolase",
+            "m_csa:812": "metal_dependent_hydrolase",
+            "m_csa:865": "plp_dependent_enzyme",
+            "m_csa:892": "flavin_dehydrogenase_reductase",
+            "m_csa:917": "metal_dependent_hydrolase",
+            "m_csa:998": "metal_dependent_hydrolase",
+        }
+        for entry_id, fingerprint_id in imported_clean9.items():
+            label = labels_by_entry[entry_id]
+            self.assertEqual(label["label_type"], "seed_fingerprint")
+            self.assertEqual(label["fingerprint_id"], fingerprint_id)
+            self.assertEqual(label["tier"], "silver")
+            self.assertEqual(label["review_status"], "expert_reviewed")
 
     def test_epk_dirty_sibling_followup_synthesis_stays_review_only(self) -> None:
         synthesis = _load_json(
@@ -13335,6 +13353,185 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(gate["metadata"]["valid_artifact_count"], 6)
         self.assertEqual(gate["metadata"]["import_ready_candidate_count"], 0)
         self.assertEqual(gate["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_mcsa_positive_clean9_import_preview_records_gated_import(self) -> None:
+        preview = _load_json(
+            ARTIFACTS / "v3_mcsa_positive_clean9_import_preview_20260523.json"
+        )
+
+        metadata = preview["metadata"]
+        decision = preview["decision"]
+        rows = {row["entry_id"]: row for row in preview["rows"]}
+
+        expected_ids = [
+            "m_csa:599",
+            "m_csa:623",
+            "m_csa:636",
+            "m_csa:706",
+            "m_csa:812",
+            "m_csa:865",
+            "m_csa:892",
+            "m_csa:917",
+            "m_csa:998",
+        ]
+        self.assertEqual(metadata["exact_entry_ids"], expected_ids)
+        self.assertEqual(metadata["baseline_countable_label_count"], 682)
+        self.assertEqual(metadata["preview_countable_label_count"], 691)
+        self.assertEqual(metadata["canonical_countable_label_count_after_import"], 691)
+        self.assertEqual(metadata["actual_label_count_delta"], 9)
+        self.assertTrue(metadata["canonical_registry_import_performed"])
+        self.assertTrue(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["external_seed_fingerprint_label_count"], 0)
+        self.assertEqual(metadata["production_fingerprint_universe_count"], 8)
+        self.assertEqual(metadata["gate_summary"]["label_factory_passed_gate_count"], 21)
+        self.assertEqual(metadata["gate_summary"]["label_factory_gate_count"], 21)
+        self.assertEqual(metadata["gate_summary"]["hard_negative_count"], 0)
+        self.assertEqual(metadata["gate_summary"]["near_miss_count"], 0)
+        self.assertEqual(metadata["gate_summary"]["out_of_scope_false_non_abstentions"], 0)
+
+        self.assertTrue(decision["ready_for_label_import"])
+        self.assertTrue(decision["label_import_authorized_by_gates"])
+        self.assertEqual(decision["label_import_executed_for_exact_entry_ids"], expected_ids)
+        self.assertEqual(set(rows), set(expected_ids))
+        for row in rows.values():
+            self.assertTrue(row["eligible_for_actual_label_import"])
+            self.assertTrue(row["actual_label_imported_to_canonical_registry"])
+            self.assertTrue(row["preview_label_matches_canonical_label"])
+
+    def test_mcsa_positive_holo_override_preview_stays_separate(self) -> None:
+        preview = _load_json(
+            ARTIFACTS / "v3_mcsa_positive_holo_override_import_preview_20260523.json"
+        )
+
+        metadata = preview["metadata"]
+        decision = preview["decision"]
+        rows = {row["entry_id"]: row for row in preview["rows"]}
+
+        self.assertEqual(metadata["post_clean9_registry_label_count"], 691)
+        self.assertEqual(
+            metadata["exact_entry_ids"],
+            ["m_csa:577", "m_csa:641", "m_csa:897"],
+        )
+        self.assertTrue(metadata["separate_from_clean9_import"])
+        self.assertEqual(metadata["selected_pdb_override_applied_count"], 3)
+        self.assertEqual(metadata["hard_negative_count"], 0)
+        self.assertEqual(metadata["near_miss_count"], 0)
+        self.assertEqual(metadata["out_of_scope_false_non_abstentions"], 0)
+        self.assertEqual(metadata["actionable_in_scope_failure_count"], 0)
+        self.assertEqual(metadata["import_ready_candidate_count"], 0)
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(
+            metadata["preserved_blocked_hold_apo_entry_ids"],
+            ["m_csa:836", "m_csa:996"],
+        )
+
+        self.assertTrue(decision["gate_preview_passed_for_selected_pdb_geometry"])
+        self.assertFalse(decision["label_import_authorized_now"])
+        self.assertTrue(decision["do_not_mix_with_clean9_import"])
+        self.assertEqual(rows["m_csa:577"]["override_pdb_id"], "1AWB")
+        self.assertEqual(rows["m_csa:641"]["override_pdb_id"], "1J7N")
+        self.assertEqual(rows["m_csa:897"]["override_pdb_id"], "1H56")
+        for row in rows.values():
+            self.assertEqual(row["top1_fingerprint_id"], "metal_dependent_hydrolase")
+            self.assertGreaterEqual(row["top1_score"], 0.59)
+            self.assertFalse(row["eligible_for_actual_label_import"])
+            self.assertFalse(row["actual_label_imported_to_canonical_registry"])
+
+    def test_mcsa771_2d0d_review_resolves_ser103_without_import(self) -> None:
+        review = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523.json"
+        )
+        plan = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_m_csa771_2d0d_gate_preview_plan_20260523.json"
+        )
+
+        metadata = review["metadata"]
+        row = review["rows"][0]
+        ser103 = row["catalytic_ser103_evidence"]
+
+        self.assertEqual(metadata["entry_id"], "m_csa:771")
+        self.assertEqual(metadata["alternate_pdb_id"], "2D0D")
+        self.assertTrue(metadata["catalytic_ser103_present"])
+        self.assertTrue(metadata["catalytic_ser103_maps_to_m_csa_nucleophile"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(row["target_fingerprint_preview"], "ser_his_acid_hydrolase")
+        self.assertEqual(row["top1_score"], 0.8933)
+        self.assertEqual(ser103["code"], "SER")
+        self.assertEqual(ser103["resid"], "103")
+        self.assertIn("nucleophile", ser103["roles"])
+        self.assertTrue(ser103["maps_to_catalytic_nucleophile"])
+        self.assertFalse(row["eligible_for_actual_label_import"])
+
+        self.assertTrue(plan["decision"]["gate_preview_passed_for_noncanonical_geometry"])
+        self.assertTrue(plan["decision"]["do_not_import_in_same_step"])
+        self.assertFalse(plan["decision"]["label_import_authorized_now"])
+        self.assertEqual(plan["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(plan["metadata"]["near_miss_count"], 0)
+        self.assertEqual(plan["metadata"]["out_of_scope_false_non_abstentions"], 0)
+        self.assertEqual(plan["metadata"]["actionable_in_scope_failure_count"], 0)
+
+    def test_nucleotide_product_counterevidence_probe_is_general_review_only(
+        self,
+    ) -> None:
+        probe = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_nucleotide_product_counterevidence_rule_probe_20260523.json"
+        )
+
+        metadata = probe["metadata"]
+        decision = probe["decision"]
+        rows = {row["entry_id"]: row for row in probe["rows"]}
+
+        self.assertTrue(metadata["candidate_rule_general_not_candidate_specific"])
+        self.assertFalse(metadata["production_rule_activated"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            metadata["product_context_exception_candidate_entry_ids"],
+            ["m_csa:784", "m_csa:904"],
+        )
+        self.assertEqual(
+            metadata["retain_counterevidence_control_entry_ids"],
+            ["m_csa:603", "m_csa:640", "m_csa:647"],
+        )
+        self.assertFalse(decision["unblock_m_csa_784_now"])
+        self.assertFalse(decision["unblock_m_csa_904_now"])
+
+        for entry_id in ("m_csa:784", "m_csa:904"):
+            row = rows[entry_id]
+            self.assertEqual(
+                row["stress_panel_expected_decision"],
+                "product_context_exception_candidate",
+            )
+            self.assertTrue(
+                row[
+                    "would_suppress_nucleotide_transfer_counterevidence_under_candidate_rule"
+                ]
+            )
+            self.assertIn("AMP", row["product_or_partial_nucleotide_codes"])
+            self.assertEqual(row["gamma_or_transfer_nucleotide_codes"], [])
+
+        for entry_id in ("m_csa:603", "m_csa:640", "m_csa:647"):
+            row = rows[entry_id]
+            self.assertEqual(
+                row["stress_panel_expected_decision"],
+                "retain_nucleotide_transfer_counterevidence",
+            )
+            self.assertFalse(
+                row[
+                    "would_suppress_nucleotide_transfer_counterevidence_under_candidate_rule"
+                ]
+            )
 
 
 if __name__ == "__main__":

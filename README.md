@@ -53,8 +53,8 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 682 entries: 679 accepted M-CSA labels through
-   the 1,000-entry candidate queue plus three factory-gated external
+8. Curated mechanism labels for 691 entries: 688 accepted M-CSA labels through
+   the clean M-CSA positive-review import tranche plus three factory-gated external
    out-of-scope hard negatives (`uniprot:P06744`, `uniprot:P78549`, and
    `uniprot:Q3LXA3`).
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
@@ -229,8 +229,8 @@ The explicit later single-import cycle imported `uniprot:Q3LXA3` under the same
 current-ontology out-of-scope criteria, and the broader structural surface now
 imports `uniprot:P06744` after terminal review, duplicate controls, UniRef
 current-reference screening, all-8 inverse-gate scoring, label-factory gates,
-and external-transfer gates pass. A regression test now pins the post-import
-invariants: 682 total labels, 470 out-of-scope labels, 212
+and external-transfer gates pass. A regression test now pins the post-clean9
+post-import invariants: 691 total labels, 470 out-of-scope labels, 221
 seed-fingerprint labels, no in-scope/out-of-scope entry overlap, unchanged
 1,000-slice retained in-scope behavior, and preserved held-out
 sequence-distance metrics.
@@ -395,6 +395,23 @@ identifies `2D0D` as the only checked alternate with catalytic Ser103; and
 keeps beta-lysine aminomutase as a dual PLP-cobalamin schema gap. The paired
 zero-import gate validates all six follow-up artifacts with 0 import-ready and
 0 countable candidates.
+`artifacts/v3_mcsa_positive_clean9_import_preview_20260523.json` then records
+the gated import of exactly those 9 clean rows into the canonical registry:
+`m_csa:599`, `m_csa:623`, `m_csa:636`, `m_csa:706`, `m_csa:812`,
+`m_csa:865`, `m_csa:892`, `m_csa:917`, and `m_csa:998`. The registry moves
+from 682 to 691 labels, with 221 seed-fingerprint labels and 470 out-of-scope
+labels; the three external out-of-scope labels remain unchanged and external
+seed-fingerprint imports remain 0. The separate selected-PDB override preview
+`artifacts/v3_mcsa_positive_holo_override_import_preview_20260523.json`
+confirms `m_csa:577 -> 1AWB`, `m_csa:641 -> 1J7N`, and `m_csa:897 -> 1H56`
+with 0 hard negatives or near misses, but keeps them non-imported pending a
+dedicated post-override expert accept decision and separate gates. `m_csa:771`
+has a noncanonical 2D0D review artifact showing catalytic Ser103 maps to the
+M-CSA nucleophile, but it also remains held pending an explicit alternate
+accept decision and full gates. A review-only nucleotide-product stress probe
+separates AMP product hydrolysis contexts (`m_csa:784`, `m_csa:904`) from true
+transfer controls (`m_csa:603`, `m_csa:640`, `m_csa:647`) without activating a
+production scoring rule.
 `artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json`
 is the matching no-breadth family-readiness packet from existing evidence. It
 keeps glycoside hydrolase blocked with exact missing evidence: the only
@@ -853,8 +870,10 @@ out-of-scope inverse gate passes with top1 `metal_dependent_hydrolase` score
 accepts it as out-of-scope pending factory gates, and
 `artifacts/v3_external_hard_negative_broader_structural_factory_import_gate_1025.json`
 then imports exactly `uniprot:P06744` while treating prior external labels as
-lineage. The canonical registry now has 682 labels: 212 seed fingerprints and
-470 out-of-scope labels.
+lineage. At that point the canonical registry had 682 labels: 212 seed
+fingerprints and 470 out-of-scope labels. The later M-CSA clean9 import moves
+the current canonical registry to 691 labels: 221 seed fingerprints and 470
+out-of-scope labels.
 `artifacts/v3_external_hard_negative_post_p06744_sourcing_1025.json` opens the
 next review-only source surface after that import without authorizing count
 growth. It excludes the prior imported/deferred/rejected rows, selects six

@@ -1,0 +1,260 @@
+{
+  "metadata": {
+    "artifact_upload_or_removal_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T19:20:35Z",
+    "curated_label_registry_edited": false,
+    "entry_ids": [
+      "m_csa:577",
+      "m_csa:641",
+      "m_csa:897"
+    ],
+    "fingerprint_registry_edited": false,
+    "method": "mcsa_positive_holo_selected_pdb_override_plan",
+    "override_pdb_by_entry": {
+      "m_csa:577": "1AWB",
+      "m_csa:641": "1J7N",
+      "m_csa:897": "1H56"
+    },
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "schema_version": "mcsa_positive_holo_selected_pdb_override_plan.v1",
+    "selected_pdb_override_candidate_count": 3,
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "artifacts/v3_selected_pdb_override_plan_700.json",
+      "artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json"
+    ]
+  },
+  "rows": [
+    {
+      "apply_status": "ready_to_apply",
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1IMA",
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_expected_family_hits": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "CA",
+        "IPD"
+      ],
+      "override_pdb_id": "1AWB",
+      "rationale": "Selected PDB 1IMA is apo for expected cofactor family ['metal_ion'] at active site. Alternate 1AWB carries local expected_family_hits=['metal_ion'] with 6 usable residue positions via selected_position_remap mapping. Recommend swapping the canonical reference structure to 1AWB and regenerating geometry features for this entry.",
+      "recommended_pdb_id": "1AWB",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ILE",
+          "pdb_id": "1AWB",
+          "resid": "92",
+          "residue_node_id": "m_csa:577:residue:1",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "90",
+          "residue_node_id": "m_csa:577:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "220",
+          "residue_node_id": "m_csa:577:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "93",
+          "residue_node_id": "m_csa:577:residue:4",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1AWB",
+          "resid": "70",
+          "residue_node_id": "m_csa:577:residue:5",
+          "roles": [
+            "metal ligand",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "THR",
+          "pdb_id": "1AWB",
+          "resid": "95",
+          "residue_node_id": "m_csa:577:residue:6",
+          "roles": [
+            "hydrogen bond acceptor"
+          ]
+        }
+      ],
+      "source_20260523_bounded_scan_status": "selected_pdb_replacement_candidate_identified",
+      "source_20260523_holo_plan": "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "source_20260523_recommended_replacement_pdb": "1AWB",
+      "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+      "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json"
+    },
+    {
+      "apply_status": "ready_to_apply",
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1PWV",
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_expected_family_hits": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ZN"
+      ],
+      "override_pdb_id": "1J7N",
+      "rationale": "Selected PDB 1PWV is apo for expected cofactor family ['metal_ion'] at active site. Alternate 1J7N carries local expected_family_hits=['metal_ion'] with 5 usable residue positions via selected_position_remap mapping. Recommend swapping the canonical reference structure to 1J7N and regenerating geometry features for this entry.",
+      "recommended_pdb_id": "1J7N",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "1J7N",
+          "resid": "690",
+          "residue_node_id": "m_csa:641:residue:1",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "1J7N",
+          "resid": "686",
+          "residue_node_id": "m_csa:641:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1J7N",
+          "resid": "735",
+          "residue_node_id": "m_csa:641:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1J7N",
+          "resid": "687",
+          "residue_node_id": "m_csa:641:residue:4",
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "TYR",
+          "pdb_id": "1J7N",
+          "resid": "728",
+          "residue_node_id": "m_csa:641:residue:5",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      ],
+      "source_20260523_bounded_scan_status": "selected_pdb_replacement_candidate_identified",
+      "source_20260523_holo_plan": "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "source_20260523_recommended_replacement_pdb": "1J7N",
+      "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+      "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json"
+    },
+    {
+      "apply_status": "ready_to_apply",
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1PVI",
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_expected_family_hits": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "MG"
+      ],
+      "override_pdb_id": "1H56",
+      "rationale": "Selected PDB 1PVI is apo for the expected metal-dependent nuclease site. The 2026-05-23 bounded scan identifies 1H56 as a local Mg holo candidate with three same-chain residue-id remapped catalytic positions.",
+      "recommended_pdb_id": "1H56",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "LYS",
+          "pdb_id": "1H56",
+          "resid": "70",
+          "residue_node_id": "m_csa:897:residue:1",
+          "roles": [
+            "proton shuttle (general acid/base)"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1H56",
+          "resid": "58",
+          "residue_node_id": "m_csa:897:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1H56",
+          "resid": "68",
+          "residue_node_id": "m_csa:897:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "source_20260523_holo_plan": "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "source_remediation": "artifacts/v3_review_debt_remediation_1025_preview_all.json",
+      "source_scan": "artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json"
+    }
+  ]
+}

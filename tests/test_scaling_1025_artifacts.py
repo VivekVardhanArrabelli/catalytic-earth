@@ -4846,8 +4846,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "label_factory_v1_8fp",
             )
 
-        self.assertEqual(label_summary["label_count"], 682)
-        self.assertEqual(label_summary["by_type"]["seed_fingerprint"], 212)
+        self.assertEqual(label_summary["label_count"], 691)
+        self.assertEqual(label_summary["by_type"]["seed_fingerprint"], 221)
         self.assertEqual(label_summary["by_type"]["out_of_scope"], 470)
         seed_entry_ids = {
             label["entry_id"]

@@ -1,0 +1,66 @@
+{
+  "decision": {
+    "do_not_import_in_same_step": true,
+    "gate_preview_passed_for_noncanonical_geometry": true,
+    "label_import_authorized_now": false,
+    "next_required_step": "dedicated expert-decision artifact for m_csa:771 followed by countable import preview, factory gate, batch acceptance, tests, and validate"
+  },
+  "metadata": {
+    "actionable_in_scope_failure_count": 0,
+    "artifact_id": "v3_mcsa_positive_m_csa771_2d0d_gate_preview_plan_20260523",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_registry_import_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-23T19:33:11Z",
+    "curated_label_registry_edited_by_this_artifact": false,
+    "entry_id": "m_csa:771",
+    "evidence_limited_abstention_count": 4,
+    "fingerprint_registry_edited": false,
+    "hard_negative_count": 0,
+    "import_ready_candidate_count": 0,
+    "method": "mcsa_positive_m_csa771_2d0d_gate_preview_plan",
+    "near_miss_count": 0,
+    "out_of_scope_false_non_abstentions": 0,
+    "post_clean9_registry_label_count": 691,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "schema_version": "mcsa_positive_m_csa771_2d0d_gate_preview_plan.v1",
+    "selected_pdb_override_applied_count": 1,
+    "selected_pdb_override_applied_entry_ids": [
+      "m_csa:771"
+    ],
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_selected_pdb_review_plan_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_label_eval_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_hard_negative_controls_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523.json"
+    ]
+  },
+  "planned_gate_inputs": {
+    "geometry_features": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json",
+    "geometry_retrieval": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json",
+    "post_clean9_eval": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_label_eval_post_clean9_691_1025.json",
+    "post_clean9_hard_negatives": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_hard_negative_controls_post_clean9_691_1025.json",
+    "post_clean9_in_scope_failures": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+    "review_decision_artifact_needed": "future explicit m_csa:771 noncanonical alternate accept decision"
+  },
+  "rows": [
+    {
+      "alternate_pdb_id": "2D0D",
+      "catalytic_ser103_maps_to_m_csa_nucleophile": true,
+      "catalytic_ser103_present": true,
+      "entry_id": "m_csa:771",
+      "geometry_preview_ready": true,
+      "import_blockers": [
+        "explicit noncanonical alternate-structure expert accept decision not yet created",
+        "dedicated m_csa:771 label-factory gate and batch acceptance not yet run"
+      ],
+      "target_fingerprint_preview": "ser_his_acid_hydrolase",
+      "top1_score": 0.8933
+    }
+  ]
+}

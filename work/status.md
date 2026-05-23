@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 297
-- Measured elapsed time: 9009.3 minutes (150.16 hours)
+- Entries: 298
+- Measured elapsed time: 9057.4 minutes (150.96 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 1999.9 measured minutes (33.33 hours)
+- v3: 2048.1 measured minutes (34.13 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3238
-- Evidence references logged: 2647
+- Artifact references logged: 3252
+- Evidence references logged: 2659
 
 ## Recent Entries
-
-### 2026-05-22T18:05:27.783477+00:00 - v3
-
-- Task: PyMOL cockpit and no-breadth readiness gates
-- Time mode: measured
-- Measured minutes: 49.467
-- Started: 2026-05-22T17:15:38Z
-- Ended: 2026-05-22T18:05:06Z
-- Artifacts: artifacts/v3_mcsa_pymol_expert_review_queue_1025.json, artifacts/v3_expert_review_decision_batch_pymol_manual_dry_run_20260522.json, artifacts/v3_glycoside_hydrolase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_sugar_phosphate_isomerase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_schiff_base_lyase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_dna_glycosylase_lyase_family_readiness_post_pymol_bridge_packet_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_pymol_bridge_20260522.json, artifacts/v3_external_review_ready_human_action_checklist_post_pymol_bridge_20260522.json, artifacts/v3_post_pymol_review_only_zero_import_gate_20260522.json
-- Evidence: 867 unit tests, cli validate 682 labels, artifact migration dry-run removal_allowed=0, review-only zero-import gate 9/9
-- Notes: Registry and fingerprint files unchanged; external imports remain closed.
 
 ### 2026-05-22T18:35:34.824679+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json, artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json, artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json, artifacts/v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json, artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json, artifacts/v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json, artifacts/v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 893-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, 12 accepted M-CSA rows split into 9 mechanically ready and 3 caveat-blocked review-only rows, bounded hold-apo scan covered 62 structures with 0 fetch failures and exact replacement candidates for m_csa:577 m_csa:641 and m_csa:897, m_csa:836 and m_csa:996 remain blocked by structure-wide metal hits without usable local active-site remaps, m_csa:657 preserved as hold-geometry; m_csa:611 and m_csa:1001 remain exact conformation/locality holds, m_csa:771 remains held with 2D0D as the only checked alternate containing catalytic Ser103, m_csa:737 remains a coupled PLP-cobalamin schema gap with no production fingerprint authorization, review-only zero-import gate passed 6/6, 895-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
 - Notes: Wrapped before 48 minutes because the prioritized M-CSA follow-up is closed and the next external ladder step is blocked on human action or missing exact source-free evidence. No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
+
+### 2026-05-23T19:56:43.019061+00:00 - v3
+
+- Task: M-CSA clean9 gated import and hold previews
+- Time mode: measured
+- Measured minutes: 48.117
+- Started: 2026-05-23T19:08:15Z
+- Ended: 2026-05-23T19:56:22Z
+- Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, artifacts/v3_mcsa_positive_clean9_import_preview_20260523.json, artifacts/v3_mcsa_positive_clean9_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_clean9_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_holo_override_import_preview_20260523.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_gate_preview_plan_20260523.json, artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_probe_20260523.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: startup 895-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, clean9 gate passed 21 of 21 checks, batch acceptance imported exactly nine clean M-CSA labels, canonical registry validated at 691 labels and 8 fingerprints, holo override preview kept three rows separate with 0 hard negatives and 0 near misses, m_csa771 2D0D review resolved catalytic Ser103 without import, nucleotide-product stress probe stayed review-only, 899-test unit discovery passed, compileall passed, artifact migration dry-run passed removal_allowed=0, git diff check passed
+- Notes: No artifact upload/removal externalization Git-LFS migration history rewrite fingerprint edit threshold lowering or removal_allowed=true occurred; pre-existing untracked CIF files were left untouched.
 
 ## Expectation Updates
 
@@ -358,6 +358,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T20:37:21.159775+00:00: If human review is unavailable, continue only bounded PyMOL structure materialization from the remaining blocker report.
 - 2026-05-22T21:32:20.016660+00:00: The no-breadth queue is now human-review blocked rather than source-free geometry or duplicate-screen blocked.
 - 2026-05-23T18:03:35.801938+00:00: Next external-deepening work should resume with metal phosphatase only if new human action or source-free coordinate evidence is available; otherwise the queue is human/evidence blocked.
+- 2026-05-23T19:56:43.019061+00:00: Do not return to broad external breadth until post-clean9 M-CSA hold decisions are either accepted through gates or explicitly deferred.
 
 ## Scope Adjustments
 
@@ -539,3 +540,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-22T21:32:20.016660+00:00: External review-ready rows should not trigger more automated breadth by default; next action is human review or bounded no-breadth readiness only.
 - 2026-05-22T23:08:25.796026+00:00: Final wrap only; no label import registry edit artifact removal or new external breadth.
 - 2026-05-23T18:03:35.801938+00:00: Closed the M-CSA 22-row positive follow-up as review-only import-readiness/blocker evidence without mutating canonical registries.
+- 2026-05-23T19:56:43.019061+00:00: M-CSA clean9 is imported; next M-CSA work is explicit accept decisions for held override and m_csa771 previews before any more imports.
