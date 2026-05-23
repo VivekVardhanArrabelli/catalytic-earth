@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "countable_imports_performed": false,
+    "created_at": "2026-05-23T17:21:36Z",
+    "label_registry_changed": false,
+    "method": "mcsa_positive_open_question_resolution",
+    "ready_for_label_import": false,
+    "reviewer": "vivek",
+    "schema_version": "mcsa_positive_open_question_resolution.v1",
+    "source_decision_batch": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+    "source_expert_packet": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_positive_expert_packet_22_20260523.json"
+  },
+  "resolutions": {
+    "m_csa:657": {
+      "decision_effect": "retain mark_needs_more_evidence in hold_for_geometry_or_conformation_review.",
+      "evidence": {
+        "other_local_ligands": [
+          "label B His51/auth B His70 NE2-Zn 2.065 A",
+          "label B His55/auth B His74 NE2-Zn 2.045 A"
+        ],
+        "scored_left": "label chain B Glu131 == auth chain B Glu150; OE2-Zn min distance 2.171 A; CA-Zn min distance 6.321 A",
+        "scored_right": "label chain B Glu54 == auth chain B Glu73; OE2-Zn min distance 4.323 A; CA-Zn min distance 7.257 A",
+        "zinc_site": "auth chain B ZN501"
+      },
+      "finding": "Zn is local to the beta-subunit active site and directly coordinates the scored metal-ligand Glu131 under label numbering, but the second scored residue Glu54 is a nearby catalytic acid/base rather than a direct metal ligand. Keep hold-geometry/cofactor-locality debt for gate purposes.",
+      "question": "Confirm Zn position relative to scored residues in chain B.",
+      "status": "resolved_hold_geometry"
+    },
+    "m_csa:771": {
+      "decision_effect": "retain mark_needs_more_evidence in hold_for_residue_mapping_review.",
+      "evidence": {
+        "mcsa_catalytic_triad": [
+          "Ser103",
+          "Asp224",
+          "His252"
+        ],
+        "scored_asp": "Asp224, triad acid residue",
+        "scored_ser": "Ser34, role electrostatic stabiliser/oxyanion-hole support",
+        "selected_structure_issue": "M-CSA structure position for catalytic Ser103 is code Ala at 1uk7 chain A residue 103"
+      },
+      "finding": "M-CSA mechanism requires catalytic Ser103/Asp224/His252, but selected PDB 1UK7 records the catalytic Ser103 structure position as Ala103; the scored Ser34 is an electrostatic/oxyanion-hole residue, not the catalytic nucleophile. Keep held for residue/target review.",
+      "question": "Resolve PDB-to-UniProt residue mapping for catalytic Ser.",
+      "status": "resolved_hold_residue_mapping"
+    },
+    "m_csa:777": {
+      "decision_effect": "retain scientific accept-with-caveat, but add mechanical blocker: current_1025_score_below_abstention_threshold_requires_rescore_or_explicit_gate_override.",
+      "evidence": {
+        "current_1025_abstain_threshold": 0.4115,
+        "current_1025_top1_score": 0.4107,
+        "current_gap_reason_supported": "top1_below_abstention_threshold",
+        "current_margin": -0.0008,
+        "prior_1000_top1_score": 0.5307
+      },
+      "finding": "There is no separate PLP-family threshold in the current artifacts; the active threshold field is abstain_threshold=0.4115. Current 1025 artifacts score m_csa:777 at 0.4107, which is 0.0008 below threshold. The 0.5307 value came from the older/non-preview 1000 export and should not be used for current 1025 gate decisions.",
+      "question": "Confirm threshold semantics: is 0.5307 above or below the PLP-family abstention threshold?",
+      "status": "resolved_current_score_below_threshold"
+    },
+    "m_csa:998": {
+      "decision_effect": "remove_open_question; retain accept_label candidate, still not countable until gates run.",
+      "evidence": {
+        "mcsa_sequence_position": "Tyr363",
+        "mcsa_structure_position": "5g0i chain A Tyr341",
+        "min_tyr363_to_zn_distance_angstrom": 4.552,
+        "mmcif_mapping": "label A/341 TYR == auth A/363 TYR",
+        "tyr745_context": "label A/723 TYR == auth A/745 TYR, min Zn distance 4.635 A; homologous second-domain Tyr, not the scored M-CSA Tyr341."
+      },
+      "finding": "M-CSA sequence Tyr363 maps to structure/mmCIF label Tyr341 in 5G0I chain A. The apparent Tyr363 vs Tyr341 difference is auth_seq_id versus label_seq_id numbering. Tyr745 is a second-domain homologous catalytic Tyr, not the scored M-CSA residue.",
+      "question": "Confirm Tyr341 is the M-CSA-annotated catalytic Tyr, not Tyr363/745.",
+      "status": "resolved_confirmed"
+    }
+  }
+}

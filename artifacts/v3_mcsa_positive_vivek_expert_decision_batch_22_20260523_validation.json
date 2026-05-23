@@ -10,6 +10,7 @@
     "error_count": 0,
     "label_registry_changed": false,
     "method": "mcsa_positive_vivek_expert_decision_batch_validation",
+    "open_question_resolution_artifact": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_positive_open_question_resolution_4_20260523.json",
     "policy": "Validation checks corrected decision artifact shape/counts only; it intentionally does not promote labels.",
     "ready_for_label_import": false,
     "resolution_bucket_counts": {
@@ -22,6 +23,6 @@
     },
     "review_item_count": 22,
     "valid": true,
-    "validated_at": "2026-05-23T16:49:51Z"
+    "validated_at": "2026-05-23T17:21:36Z"
   }
 }

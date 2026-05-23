@@ -27,8 +27,8 @@
   },
   "metadata": {
     "accept_label_count": 12,
-    "corrected_at": "2026-05-23T16:49:51Z",
-    "correction_reason": "Corrected expert ledger: m_csa:836 belongs to hold-apo only; m_csa:657 belongs to hold-geometry/cofactor-not-local; 12 promote candidates and 10 holds total.",
+    "corrected_at": "2026-05-23T17:21:36Z",
+    "correction_reason": "Resolved four open review questions; updated m_csa:777 score provenance to current 1025 artifacts and cleared HDAC6 Tyr numbering ambiguity.",
     "countable_import_ready_count": 0,
     "countable_imports_performed": false,
     "curated_label_registry_edited": false,
@@ -120,14 +120,18 @@
     "schema_version": "mcsa_positive_vivek_expert_decision_batch.v1",
     "source_ai_assisted_review_batch": "/tmp/mcsa_ai_review_all/decisions_ai_assisted_visual_structured_298_reaudited_bulk_r_safe.json",
     "source_flagged_structure_checks": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_flagged_structure_checks_7_20260523.json",
+    "source_open_question_resolution": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_positive_open_question_resolution_4_20260523.json",
     "source_positive_expert_packet": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_positive_expert_packet_22_20260523.json",
     "source_visual_pack": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523"
   },
   "open_questions": {
     "m_csa:737": "Resolve dual-cofactor target schema: cobalamin_radical_rearrangement vs coupled PLP-cobalamin family.",
-    "m_csa:771": "Resolve CumD PDB-to-UniProt catalytic Ser mapping.",
-    "m_csa:777": "Confirm threshold flag semantics before countable import.",
-    "m_csa:998": "Confirm HDAC6 Tyr identity/numbering before countable import."
+    "m_csa:771": "Resolve by alternate residue mapping or alternate structure; current selected 1UK7 has catalytic Ser103 represented as Ala103."
+  },
+  "resolved_open_questions": {
+    "m_csa:657": "Resolved to hold-geometry: Zn is local to active-site Glu131 but not both scored residues as direct metal ligands.",
+    "m_csa:777": "Resolved to mechanical blocker: current 1025 score is 0.4107 below 0.4115; prior 0.5307 was older source.",
+    "m_csa:998": "Resolved: Tyr341 label/PDB is auth Tyr363 and is the M-CSA-annotated catalytic Tyr."
   },
   "review_items": [
     {
@@ -1189,7 +1193,7 @@
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_geometry_or_conformation_review",
-        "rationale": "Hold: MPP chemistry is metal-dependent hydrolase and Zn is present in 1HR6, but the expert call keeps this as cofactor-not-local/geometric-locality debt for the scored residue site. Treat parallel to 611 and 1001: family likely correct, local geometric evidence not yet countable.",
+        "rationale": "Hold: Zn is local to the beta-subunit active site and directly coordinates scored Glu131 (label numbering), while scored Glu54 is nearby catalytic acid/base rather than direct metal ligand. Keep as cofactor-locality/geometric hold before countable import.",
         "resolution_bucket": "hold_for_geometry_or_conformation_review",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -1284,6 +1288,21 @@
         ],
         "selected_pdb": "1HR6",
         "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "open_question_resolution": {
+        "decision_effect": "retain mark_needs_more_evidence in hold_for_geometry_or_conformation_review.",
+        "evidence": {
+          "other_local_ligands": [
+            "label B His51/auth B His70 NE2-Zn 2.065 A",
+            "label B His55/auth B His74 NE2-Zn 2.045 A"
+          ],
+          "scored_left": "label chain B Glu131 == auth chain B Glu150; OE2-Zn min distance 2.171 A; CA-Zn min distance 6.321 A",
+          "scored_right": "label chain B Glu54 == auth chain B Glu73; OE2-Zn min distance 4.323 A; CA-Zn min distance 7.257 A",
+          "zinc_site": "auth chain B ZN501"
+        },
+        "finding": "Zn is local to the beta-subunit active site and directly coordinates the scored metal-ligand Glu131 under label numbering, but the second scored residue Glu54 is a nearby catalytic acid/base rather than a direct metal ligand. Keep hold-geometry/cofactor-locality debt for gate purposes.",
+        "question": "Confirm Zn position relative to scored residues in chain B.",
+        "status": "resolved_hold_geometry"
       },
       "source_review_item": {
         "source_countable_import_ready": false,
@@ -1685,7 +1704,7 @@
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": null,
         "local_evidence_resolution": "requires_residue_mapping_review",
-        "rationale": "Hold: CumD residue mapping remains open. Mechanism requires Ser103/Asp224/His252; selected structure records catalytic Ser103 as Ala103 while scored Ser34 is oxyanion-hole support.",
+        "rationale": "Hold: selected PDB maps catalytic Ser103 to Ala103; scored Ser34 is oxyanion-hole/electrostatic support, not the catalytic nucleophile. Requires residue mapping or alternate structure before countable import.",
         "resolution_bucket": "hold_for_residue_mapping_review",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -1774,6 +1793,22 @@
         "selected_pdb": "1UK7",
         "target_fingerprint": "ser_his_acid_hydrolase"
       },
+      "open_question_resolution": {
+        "decision_effect": "retain mark_needs_more_evidence in hold_for_residue_mapping_review.",
+        "evidence": {
+          "mcsa_catalytic_triad": [
+            "Ser103",
+            "Asp224",
+            "His252"
+          ],
+          "scored_asp": "Asp224, triad acid residue",
+          "scored_ser": "Ser34, role electrostatic stabiliser/oxyanion-hole support",
+          "selected_structure_issue": "M-CSA structure position for catalytic Ser103 is code Ala at 1uk7 chain A residue 103"
+        },
+        "finding": "M-CSA mechanism requires catalytic Ser103/Asp224/His252, but selected PDB 1UK7 records the catalytic Ser103 structure position as Ala103; the scored Ser34 is an electrostatic/oxyanion-hole residue, not the catalytic nucleophile. Keep held for residue/target review.",
+        "question": "Resolve PDB-to-UniProt residue mapping for catalytic Ser.",
+        "status": "resolved_hold_residue_mapping"
+      },
       "source_review_item": {
         "source_countable_import_ready": false,
         "source_decision": "accepted",
@@ -1823,10 +1858,10 @@
     },
     {
       "countable_import_blockers": [
-        "expert_decision_recorded_but_import_preview_not_run",
-        "label_factory_gates_not_run",
         "batch_acceptance_not_run",
-        "expert_open_question_requires_gate_or_manual_resolution_before_counting"
+        "current_1025_score_below_abstention_threshold_requires_rescore_or_explicit_gate_override",
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run"
       ],
       "countable_import_ready": false,
       "current_label": null,
@@ -1838,7 +1873,7 @@
         "fingerprint_id": "plp_dependent_enzyme",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence_with_caveat",
-        "rationale": "Confirmed with caveat: LLP/internal PLP aldimine is present and score is above the global abstention threshold, but threshold flag semantics remain an open question to verify before countable import.",
+        "rationale": "Confirmed PLP chemistry but current 1025 retrieval score is 0.4107, just below the 0.4115 abstention threshold. The earlier 0.5307 value was from an older/non-preview 1000 export. Keep as scientific accept-with-caveat, but do not count without rescore or explicit gate override.",
         "resolution_bucket": "confirm_with_caveat_promote",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -1861,10 +1896,11 @@
           "LLP",
           "SO4"
         ],
-        "heuristic_score": 0.5307,
+        "heuristic_score": 0.4107,
         "measured_distance_angstrom": 9.998,
         "mechanism_summary": "The reaction follows a ping-pong mechanism.   \r\n\r\nIn the enzyme, PLP is anchored to the protein at Lys258 with its pyridoxal moiety in the reactive bipolar ionic form. In the first step, the cofactor PLP is transferred from Lys 258 to the aspartate alpha amino group. The alpha-amino group of the aspartate attacks the PLP C4' from the front side in a direction perpendicular to the plane of the pyridine ring. The attraction of opposite charges on the substrate N atom and O3' of the coenzyme brings about a 90 degrees rotation of the 2 C-N bonds around C4-C4' which brings Lys258 behind the plane of the pyridine ring and hence Lys258 can be released. Trp 140 sterically constraining the PLP to allow the attack of aspartate.<br/>The deprotonation of the alpha-carbon of aspartate gives rise to the quinonoid intermediate, which is stabilised by the electron link of the protonated pyridine ring. Asp223 facilitates the deprotonation by stabilising the positive charge at N1 of PLP with a salt bridge and hence enhancing the electron withdrawing capacity of the amino acid substrate. Lys 258 acts as a base here. Lys258 then protonates C4' from the si side, giving rise to keimine intermediate. It then deprotonates a water molecule to allow its nucleophilic attack on the alpha-carbon. The tetrahedral intermediate dissociates into PMP and oxo-acid product. Subsequent reversal of the reaction steps described occurs except with the carboxyl group of the alpha keto-glutarate acting as the nucleophile leading to the formation of glutamate and the completion of the reaction cycle.",
         "metal_hetatms_in_structure": [],
+        "prior_heuristic_score": 0.5307,
         "scored_residues": [
           {
             "atom_name": "CA",
@@ -1927,6 +1963,19 @@
         ],
         "selected_pdb": "1AAM",
         "target_fingerprint": "plp_dependent_enzyme"
+      },
+      "open_question_resolution": {
+        "decision_effect": "retain scientific accept-with-caveat, but add mechanical blocker: current_1025_score_below_abstention_threshold_requires_rescore_or_explicit_gate_override.",
+        "evidence": {
+          "current_1025_abstain_threshold": 0.4115,
+          "current_1025_top1_score": 0.4107,
+          "current_gap_reason_supported": "top1_below_abstention_threshold",
+          "current_margin": -0.0008,
+          "prior_1000_top1_score": 0.5307
+        },
+        "finding": "There is no separate PLP-family threshold in the current artifacts; the active threshold field is abstain_threshold=0.4115. Current 1025 artifacts score m_csa:777 at 0.4107, which is 0.0008 below threshold. The 0.5307 value came from the older/non-preview 1000 export and should not be used for current 1025 gate decisions.",
+        "question": "Confirm threshold semantics: is 0.5307 above or below the PLP-family abstention threshold?",
+        "status": "resolved_current_score_below_threshold"
       },
       "source_review_item": {
         "source_countable_import_ready": false,
@@ -3464,10 +3513,9 @@
     },
     {
       "countable_import_blockers": [
-        "expert_decision_recorded_but_import_preview_not_run",
-        "label_factory_gates_not_run",
         "batch_acceptance_not_run",
-        "expert_open_question_requires_gate_or_manual_resolution_before_counting"
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run"
       ],
       "countable_import_ready": false,
       "current_label": null,
@@ -3479,7 +3527,7 @@
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "seed_fingerprint",
         "local_evidence_resolution": "confirms_local_mechanistic_evidence",
-        "rationale": "Confirmed, with open verification note: HDAC6 Zn/Tyr context is consistent, but the expert ledger keeps Tyr identity as an open question to verify before countable import.",
+        "rationale": "Confirmed metal-dependent hydrolase. M-CSA Tyr363 maps to 5G0I label/PDB Tyr341 (auth Tyr363), resolving the Tyr identity question; Tyr745 is the homologous second-domain Tyr, not the scored M-CSA residue.",
         "resolution_bucket": "confirm_promote",
         "review_status": "expert_reviewed",
         "reviewer": "vivek",
@@ -3637,6 +3685,19 @@
             "resn": "TYR"
           }
         ]
+      },
+      "open_question_resolution": {
+        "decision_effect": "remove_open_question; retain accept_label candidate, still not countable until gates run.",
+        "evidence": {
+          "mcsa_sequence_position": "Tyr363",
+          "mcsa_structure_position": "5g0i chain A Tyr341",
+          "min_tyr363_to_zn_distance_angstrom": 4.552,
+          "mmcif_mapping": "label A/341 TYR == auth A/363 TYR",
+          "tyr745_context": "label A/723 TYR == auth A/745 TYR, min Zn distance 4.635 A; homologous second-domain Tyr, not the scored M-CSA Tyr341."
+        },
+        "finding": "M-CSA sequence Tyr363 maps to structure/mmCIF label Tyr341 in 5G0I chain A. The apparent Tyr363 vs Tyr341 difference is auth_seq_id versus label_seq_id numbering. Tyr745 is a second-domain homologous catalytic Tyr, not the scored M-CSA residue.",
+        "question": "Confirm Tyr341 is the M-CSA-annotated catalytic Tyr, not Tyr363/745.",
+        "status": "resolved_confirmed"
       },
       "source_review_item": {
         "source_countable_import_ready": false,

@@ -31,7 +31,7 @@
         "MSE"
       ],
       "heuristic_score": 0.4082,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.354,
@@ -142,7 +142,7 @@
       ],
       "hetatms_in_structure": [],
       "heuristic_score": 0.4261,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.3571,
@@ -256,7 +256,7 @@
         "SO4"
       ],
       "heuristic_score": 0.405,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "flavin_dehydrogenase_reductase",
       "heuristic_top2_score": 0.28,
@@ -370,7 +370,7 @@
         "IPD"
       ],
       "heuristic_score": 0.4288,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "flavin_dehydrogenase_reductase",
       "heuristic_top2_score": 0.281,
@@ -476,7 +476,7 @@
         "BUA"
       ],
       "heuristic_score": 0.4385,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "ser_his_acid_hydrolase",
       "heuristic_top2_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_score": 0.3591,
@@ -584,7 +584,7 @@
       ],
       "hetatms_in_structure": [],
       "heuristic_score": 0.429,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "flavin_dehydrogenase_reductase",
       "heuristic_top2_score": 0.233,
@@ -688,8 +688,8 @@
         "LLP",
         "SO4"
       ],
-      "heuristic_score": 0.5307,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score": 0.4107,
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "plp_dependent_enzyme",
       "heuristic_top2_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_score": 0.3684,
@@ -698,6 +698,8 @@
       "measured_distance_angstrom": 9.998,
       "mechanism_summary": "The reaction follows a ping-pong mechanism.   \r\n\r\nIn the enzyme, PLP is anchored to the protein at Lys258 with its pyridoxal moiety in the reactive bipolar ionic form. In the first step, the cofactor PLP is transferred from Lys 258 to the aspartate alpha amino group. The alpha-amino group of the aspartate attacks the PLP C4' from the front side in a direction perpendicular to the plane of the pyridine ring. The attraction of opposite charges on the substrate N atom and O3' of the coenzyme brings about a 90 degrees rotation of the 2 C-N bonds around C4-C4' which brings Lys258 behind the plane of the pyridine ring and hence Lys258 can be released. Trp 140 sterically constraining the PLP to allow the attack of aspartate.<br/>The deprotonation of the alpha-carbon of aspartate gives rise to the quinonoid intermediate, which is stabilised by the electron link of the protonated pyridine ring. Asp223 facilitates the deprotonation by stabilising the positive charge at N1 of PLP with a salt bridge and hence enhancing the electron withdrawing capacity of the amino acid substrate. Lys 258 acts as a base here. Lys258 then protonates C4' from the si side, giving rise to keimine intermediate. It then deprotonates a water molecule to allow its nucleophilic attack on the alpha-carbon. The tetrahedral intermediate dissociates into PMP and oxo-acid product. Subsequent reversal of the reaction steps described occurs except with the carboxyl group of the alpha keto-glutarate acting as the nucleophile leading to the formation of glutamate and the completion of the reaction cycle.",
       "metal_hetatms_in_structure": [],
+      "prior_heuristic_score": 0.5307,
+      "prior_heuristic_score_source": "queue_context.top1_score",
       "pymol_script": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/pml/m_csa_777.pml",
       "reference_uniprot_ids": [
         "P00509"
@@ -768,7 +770,15 @@
       "selected_pdb": "1AAM",
       "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1AAM.cif",
       "target_fingerprint": "plp_dependent_enzyme",
-      "target_fingerprint_name": "Pyridoxal phosphate dependent enzyme"
+      "target_fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+      "threshold_resolution": {
+        "abstain_threshold": 0.4115,
+        "current_top1_score": 0.4107,
+        "interpretation": "The earlier 0.5307 value came from v3_expert_label_decision_review_export_1000.json; current 1025 artifacts use 0.4107, below 0.4115.",
+        "margin": -0.0008,
+        "prior_conflicting_score": 0.5307,
+        "status": "current_1025_score_below_global_abstention_threshold"
+      }
     },
     {
       "abstain_threshold": 0.4115,
@@ -797,7 +807,7 @@
         "PO4"
       ],
       "heuristic_score": 0.58,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "flavin_dehydrogenase_reductase",
       "heuristic_top2_score": 0.2673,
@@ -905,7 +915,7 @@
         "OH"
       ],
       "heuristic_score": 0.571,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.3333,
@@ -1008,7 +1018,7 @@
         "CD"
       ],
       "heuristic_score": 0.8182,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "ser_his_acid_hydrolase",
       "heuristic_top2_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_score": 0.3766,
@@ -1118,7 +1128,7 @@
         "ZN"
       ],
       "heuristic_score": 0.5782,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.3382,
@@ -1230,7 +1240,7 @@
         "ZN"
       ],
       "heuristic_score": 0.5822,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.345,
@@ -1340,7 +1350,7 @@
         "CO"
       ],
       "heuristic_score": 0.5852,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.353,
@@ -1448,7 +1458,7 @@
         "ZN"
       ],
       "heuristic_score": 0.5879,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.3528,
@@ -1561,7 +1571,7 @@
         "ZN"
       ],
       "heuristic_score": 0.5889,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.3533,
@@ -1673,7 +1683,7 @@
         "ZN"
       ],
       "heuristic_score": 0.5927,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.3014,
@@ -1782,7 +1792,7 @@
         "ZN"
       ],
       "heuristic_score": 0.5993,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "ser_his_acid_hydrolase",
       "heuristic_top2_score": 0.4065,
@@ -1890,8 +1900,8 @@
         "B12",
         "PLP"
       ],
-      "heuristic_score": 0.6323,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score": 0.5923,
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "plp_dependent_enzyme",
       "heuristic_top2_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_score": 0.3622,
@@ -1902,6 +1912,8 @@
       "metal_hetatms_in_structure": [
         "B12"
       ],
+      "prior_heuristic_score": 0.6323,
+      "prior_heuristic_score_source": "queue_context.top1_score",
       "pymol_script": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/pml/m_csa_737.pml",
       "reference_uniprot_ids": [
         "E3PRJ5",
@@ -2006,7 +2018,7 @@
         "SO4"
       ],
       "heuristic_score": 0.6061,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "heme_peroxidase_oxidase",
       "heuristic_top2_score": 0.3568,
@@ -2114,7 +2126,7 @@
         "PO4"
       ],
       "heuristic_score": 0.5958,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "metal_dependent_hydrolase",
       "heuristic_top2_fingerprint": "ser_his_acid_hydrolase",
       "heuristic_top2_score": 0.3223,
@@ -2220,8 +2232,8 @@
       "hetatms_in_structure": [
         "PLP"
       ],
-      "heuristic_score": 0.6238,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score": 0.5038,
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "plp_dependent_enzyme",
       "heuristic_top2_fingerprint": "ser_his_acid_hydrolase",
       "heuristic_top2_score": 0.2695,
@@ -2230,6 +2242,8 @@
       "measured_distance_angstrom": 13.464,
       "mechanism_summary": "O-Acetylserine sulfhydrylase (OASS)1 catalyses the PLP-dependent replacement of the beta-acetoxy of OAS by inorganic bisulfide to generate l-cysteine. Steady-state kinetic studies indicate that the kinetic mechanism of OASS-A is ping-pong or double displacement. The first half of the reaction results in the conversion of the internal Schiff base and OAS to acetate and an external Schiff base with alpha-aminoacrylate. The second half of the reaction involves the reaction of the alpha-aminoacrylate intermediate with inorganic sulfide to regenerate the internal Schiff base and give the second product, l-cysteine. It has been suggested that the central alpha,beta-elimination proceeds via an anti-E2 mechanism",
       "metal_hetatms_in_structure": [],
+      "prior_heuristic_score": 0.6238,
+      "prior_heuristic_score_source": "queue_context.top1_score",
       "pymol_script": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/pml/m_csa_865.pml",
       "reference_uniprot_ids": [
         "P0A1E3"
@@ -2327,7 +2341,7 @@
         "ORO"
       ],
       "heuristic_score": 0.6657,
-      "heuristic_score_kind": "queue_context.top1_score",
+      "heuristic_score_kind": "current_1025.queue_context.top1_score",
       "heuristic_top1_fingerprint": "flavin_dehydrogenase_reductase",
       "heuristic_top2_fingerprint": "flavin_monooxygenase",
       "heuristic_top2_score": 0.4321,
@@ -2410,6 +2424,8 @@
     }
   ],
   "metadata": {
+    "corrected_at": "2026-05-23T17:21:36Z",
+    "correction_reason": "Updated heuristic_score fields to current 1025 expert-label export; m_csa:777 current score is 0.4107 below 0.4115, not 0.5307.",
     "countable_imports_performed": false,
     "created_at": "2026-05-23T16:02:05.307130+00:00",
     "label_registry_changed": false,
