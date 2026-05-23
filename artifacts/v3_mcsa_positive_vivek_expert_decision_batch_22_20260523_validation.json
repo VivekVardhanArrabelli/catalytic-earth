@@ -1,0 +1,28 @@
+{
+  "errors": [],
+  "metadata": {
+    "countable_import_ready_count": 0,
+    "countable_imports_performed": false,
+    "decision_counts": {
+      "accept_label": 13,
+      "mark_needs_more_evidence": 9
+    },
+    "error_count": 0,
+    "label_registry_changed": false,
+    "method": "mcsa_positive_vivek_expert_decision_batch_validation",
+    "policy": "Validation checks decision artifact shape and counts only; it intentionally does not promote labels.",
+    "ready_for_label_import": false,
+    "resolution_bucket_counts": {
+      "confirm_promote": 10,
+      "confirm_with_caveat_promote": 3,
+      "hold_for_geometry_or_conformation_review": 2,
+      "hold_for_holo_alternate": 4,
+      "hold_for_holo_alternate_and_geometry_review": 1,
+      "hold_for_residue_mapping_review": 1,
+      "hold_for_target_schema_review": 1
+    },
+    "review_item_count": 22,
+    "valid": true,
+    "validated_at": "2026-05-23T16:45:37Z"
+  }
+}

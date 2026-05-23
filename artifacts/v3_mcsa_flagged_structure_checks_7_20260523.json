@@ -1,0 +1,347 @@
+{
+  "checks": [
+    {
+      "enzyme": "histone deacetylase 6 enzyme (HDAC6)",
+      "m_csa_id": "m_csa:998",
+      "metals_sel": [
+        {
+          "chain": "A",
+          "element": "ZN",
+          "resi": "1802",
+          "resn": "ZN"
+        },
+        {
+          "chain": "A",
+          "element": "ZN",
+          "resi": "1803",
+          "resn": "ZN"
+        },
+        {
+          "chain": "B",
+          "element": "ZN",
+          "resi": "1802",
+          "resn": "ZN"
+        },
+        {
+          "chain": "B",
+          "element": "ZN",
+          "resi": "1803",
+          "resn": "ZN"
+        }
+      ],
+      "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+      "requested_check": "HDAC6 Tyr positioning relative to metal",
+      "selected_pdb": "5G0I",
+      "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_5G0I.cif",
+      "tyr_near_metal_within_6_angstrom": [
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "363",
+          "resn": "TYR"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "745",
+          "resn": "TYR"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "B",
+          "resi": "363",
+          "resn": "TYR"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "B",
+          "resi": "745",
+          "resn": "TYR"
+        }
+      ]
+    },
+    {
+      "coord_residues_within_3p5_angstrom_of_metal": [
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "62",
+          "resn": "HIS"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "91",
+          "resn": "CYS"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "94",
+          "resn": "CYS"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "B",
+          "resi": "62",
+          "resn": "HIS"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "B",
+          "resi": "91",
+          "resn": "CYS"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "B",
+          "resi": "94",
+          "resn": "CYS"
+        }
+      ],
+      "enzyme": "cytosine deaminase (yeast)",
+      "m_csa_id": "m_csa:636",
+      "metals_sel": [
+        {
+          "chain": "A",
+          "element": "ZN",
+          "resi": "200",
+          "resn": "ZN"
+        },
+        {
+          "chain": "B",
+          "element": "ZN",
+          "resi": "200",
+          "resn": "ZN"
+        }
+      ],
+      "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+      "requested_check": "cytosine deaminase metal coordination residues within 3.5A",
+      "selected_pdb": "1UAQ",
+      "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1UAQ.cif"
+    },
+    {
+      "enzyme": "Prolidase (Xaa-Pro dipeptidase)",
+      "m_csa_id": "m_csa:1001",
+      "metals_sel": [
+        {
+          "chain": "A",
+          "element": "MN",
+          "resi": "499",
+          "resn": "MN"
+        },
+        {
+          "chain": "A",
+          "element": "MN",
+          "resi": "500",
+          "resn": "MN"
+        },
+        {
+          "chain": "B",
+          "element": "MN",
+          "resi": "499",
+          "resn": "MN"
+        },
+        {
+          "chain": "B",
+          "element": "MN",
+          "resi": "500",
+          "resn": "MN"
+        }
+      ],
+      "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+      "mn_ion_count": 4,
+      "mn_ions": [
+        {
+          "chain": "A",
+          "element": "MN",
+          "resi": "499",
+          "resn": "MN"
+        },
+        {
+          "chain": "A",
+          "element": "MN",
+          "resi": "500",
+          "resn": "MN"
+        },
+        {
+          "chain": "B",
+          "element": "MN",
+          "resi": "499",
+          "resn": "MN"
+        },
+        {
+          "chain": "B",
+          "element": "MN",
+          "resi": "500",
+          "resn": "MN"
+        }
+      ],
+      "requested_check": "prolidase count Mn ions",
+      "selected_pdb": "5M4G",
+      "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_5M4G.cif"
+    },
+    {
+      "enzyme": "methionyl aminopeptidase",
+      "identified_metals": [
+        {
+          "chain": "A",
+          "element": "CO",
+          "resi": "296",
+          "resn": "CO"
+        },
+        {
+          "chain": "A",
+          "element": "CO",
+          "resi": "297",
+          "resn": "CO"
+        },
+        {
+          "chain": "B",
+          "element": "CO",
+          "resi": "296",
+          "resn": "CO"
+        },
+        {
+          "chain": "B",
+          "element": "CO",
+          "resi": "297",
+          "resn": "CO"
+        }
+      ],
+      "m_csa_id": "m_csa:917",
+      "metals_sel": [
+        {
+          "chain": "A",
+          "element": "CO",
+          "resi": "296",
+          "resn": "CO"
+        },
+        {
+          "chain": "A",
+          "element": "CO",
+          "resi": "297",
+          "resn": "CO"
+        },
+        {
+          "chain": "B",
+          "element": "CO",
+          "resi": "296",
+          "resn": "CO"
+        },
+        {
+          "chain": "B",
+          "element": "CO",
+          "resi": "297",
+          "resn": "CO"
+        }
+      ],
+      "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+      "requested_check": "methionyl aminopeptidase identify metal in structure",
+      "selected_pdb": "1XGM",
+      "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1XGM.cif"
+    },
+    {
+      "enzyme": "dipeptidase E",
+      "m_csa_id": "m_csa:599",
+      "metals_sel": [],
+      "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+      "requested_check": "dipeptidase E confirm Glu in Asp/Glu acid slot near Ser-His triad",
+      "selected_pdb": "1FY2",
+      "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1FY2.cif",
+      "triad_acid_residues_within_6_angstrom_of_triad_ser": [
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "135",
+          "resn": "ASP"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "18",
+          "resn": "GLU"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "192",
+          "resn": "GLU"
+        }
+      ],
+      "triad_ser_residues_within_6_angstrom_of_his": [
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "120",
+          "resn": "SER"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "7",
+          "resn": "SER"
+        },
+        {
+          "ca_atom_present": true,
+          "chain": "A",
+          "resi": "9",
+          "resn": "SER"
+        }
+      ]
+    },
+    {
+      "b12_ligands": [
+        {
+          "chain": "B",
+          "resi": "800",
+          "resn": "B12"
+        }
+      ],
+      "enzyme": "beta-lysine 5,6-aminomutase",
+      "m_csa_id": "m_csa:737",
+      "metals_sel": [
+        {
+          "chain": "B",
+          "element": "CO",
+          "resi": "800",
+          "resn": "B12"
+        }
+      ],
+      "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+      "requested_check": "beta-lysine 5,6-aminomutase adenosylcobalamin check",
+      "selected_pdb": "1XRS",
+      "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1XRS.cif"
+    },
+    {
+      "enzyme": "dihydroorotate dehydrogenase (fumarate)",
+      "flavin_ligands": [
+        {
+          "chain": "A",
+          "resi": "312",
+          "resn": "FMN"
+        },
+        {
+          "chain": "B",
+          "resi": "312",
+          "resn": "FMN"
+        }
+      ],
+      "m_csa_id": "m_csa:892",
+      "metals_sel": [],
+      "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+      "requested_check": "DHODH FMN/FAD/RBF flavin check",
+      "selected_pdb": "2DOR",
+      "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_2DOR.cif"
+    }
+  ],
+  "metadata": {
+    "countable_imports_performed": false,
+    "created_at": "2026-05-23T16:02:05.323374+00:00",
+    "label_registry_changed": false,
+    "row_count": 7,
+    "schema_version": "mcsa_flagged_structure_checks.v1",
+    "source_positive_packet": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/positive_labels_expert_packet_22.json",
+    "special_pml_dir": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/pml/special_checks"
+  }
+}

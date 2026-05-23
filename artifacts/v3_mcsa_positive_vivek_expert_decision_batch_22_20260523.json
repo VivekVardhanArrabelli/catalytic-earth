@@ -1,0 +1,3886 @@
+{
+  "followup_resolutions": {
+    "m_csa:657": {
+      "finding": "1HR6 local Zn is on the beta-subunit active site. Label-chain B His51/His55/Glu131 coordinate Zn at ~2.0-2.2 A; selected scored residues are in the same beta-subunit active-site context.",
+      "status": "resolved_to_accept_label"
+    },
+    "m_csa:771": {
+      "finding": "M-CSA mechanism requires catalytic Ser103/Asp224/His252; selected structure records catalytic Ser103 as Ala103 and the scored Ser34 is oxyanion-hole support.",
+      "status": "held_for_residue_mapping_review"
+    },
+    "m_csa:777": {
+      "finding": "top1_score 0.5307 is greater than global abstain_threshold 0.4115; top1_below_abstention_threshold is treated as stale/inconsistent pending pipeline cleanup.",
+      "status": "resolved_to_accept_label_with_caveat"
+    },
+    "m_csa:998": {
+      "finding": "Author TYR363 in chain A/B corresponds to label/PDB TYR341; M-CSA structure position is TYR341, min Tyr-to-Zn distance 4.552 A.",
+      "status": "resolved_to_accept_label"
+    }
+  },
+  "metadata": {
+    "accept_label_count": 13,
+    "countable_import_ready_count": 0,
+    "countable_imports_performed": false,
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "accept_label": 13,
+      "mark_needs_more_evidence": 9
+    },
+    "decision_entry_ids": {
+      "accept_label": [
+        "m_csa:599",
+        "m_csa:623",
+        "m_csa:636",
+        "m_csa:657",
+        "m_csa:706",
+        "m_csa:777",
+        "m_csa:784",
+        "m_csa:812",
+        "m_csa:865",
+        "m_csa:892",
+        "m_csa:904",
+        "m_csa:917",
+        "m_csa:998"
+      ],
+      "mark_needs_more_evidence": [
+        "m_csa:577",
+        "m_csa:611",
+        "m_csa:641",
+        "m_csa:737",
+        "m_csa:771",
+        "m_csa:836",
+        "m_csa:897",
+        "m_csa:996",
+        "m_csa:1001"
+      ]
+    },
+    "expert_review_signoff_method": "Vivek-directed external expert pass over the 22 positive PyMOL geometry packet; user requested decisions recorded on Vivek name.",
+    "hold_count": 9,
+    "label_registry_changed": false,
+    "method": "mcsa_positive_vivek_expert_decision_batch",
+    "policy": "This artifact records expert decisions only. Accepted rows are promotion candidates, not canonical labels, until import preview, label-factory gates, and batch acceptance pass.",
+    "ready_for_label_import": false,
+    "resolution_bucket_counts": {
+      "confirm_promote": 10,
+      "confirm_with_caveat_promote": 3,
+      "hold_for_geometry_or_conformation_review": 2,
+      "hold_for_holo_alternate": 4,
+      "hold_for_holo_alternate_and_geometry_review": 1,
+      "hold_for_residue_mapping_review": 1,
+      "hold_for_target_schema_review": 1
+    },
+    "resolution_bucket_entry_ids": {
+      "confirm_promote": [
+        "m_csa:599",
+        "m_csa:623",
+        "m_csa:636",
+        "m_csa:657",
+        "m_csa:706",
+        "m_csa:812",
+        "m_csa:865",
+        "m_csa:892",
+        "m_csa:917",
+        "m_csa:998"
+      ],
+      "confirm_with_caveat_promote": [
+        "m_csa:777",
+        "m_csa:784",
+        "m_csa:904"
+      ],
+      "hold_for_geometry_or_conformation_review": [
+        "m_csa:611",
+        "m_csa:1001"
+      ],
+      "hold_for_holo_alternate": [
+        "m_csa:577",
+        "m_csa:641",
+        "m_csa:897",
+        "m_csa:996"
+      ],
+      "hold_for_holo_alternate_and_geometry_review": [
+        "m_csa:836"
+      ],
+      "hold_for_residue_mapping_review": [
+        "m_csa:771"
+      ],
+      "hold_for_target_schema_review": [
+        "m_csa:737"
+      ]
+    },
+    "review_item_count": 22,
+    "reviewed_at": "2026-05-23T16:45:37Z",
+    "reviewer": "vivek",
+    "schema_version": "mcsa_positive_vivek_expert_decision_batch.v1",
+    "source_ai_assisted_review_batch": "/tmp/mcsa_ai_review_all/decisions_ai_assisted_visual_structured_298_reaudited_bulk_r_safe.json",
+    "source_flagged_structure_checks": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_flagged_structure_checks_7_20260523.json",
+    "source_positive_expert_packet": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/artifacts/v3_mcsa_positive_expert_packet_22_20260523.json",
+    "source_visual_pack": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523"
+  },
+  "review_items": [
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_holo_alternate"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.4288,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: chemistry is metal-dependent hydrolase, but selected 1IMA has Gd inhibitor context rather than biological Mg; needs holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "ec": "3.1.3.25",
+        "gap_reasons": [
+          "counterevidence_present",
+          "expected_cofactor_absent_from_structure",
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "GD",
+          "IPD"
+        ],
+        "heuristic_score": 0.4288,
+        "measured_distance_angstrom": 11.644,
+        "mechanism_summary": "Two Mg(II) ions bind to the enzyme. A water bound to Mg(II),  aided by the phosphoryl group of the reactant forms an attacking nucleophilic hydroxide ion to cleave the phosphate-inositolate bond. Subsequent proton transfer steps occur to eliminate the products, myo-inositol and an inorganic phosphate enabling the active site to be ready for another round of catalysis. It has been observed Lithium is a powerful inhibitor of the enzyme due to binding to where one of the magnesium ions usually is found, preventing the phosphate group from leaving.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand, proton acceptor, proton donor",
+            "mcsa_roles": [
+              "metal ligand",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Glu",
+                "is_reference": true,
+                "resid": 70,
+                "uniprot_id": "P29218"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1ima",
+              "resid": 70
+            },
+            "pos": 70,
+            "residue_node_id": "m_csa:577:residue:5",
+            "resn": "GLU",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "hydrogen bond acceptor",
+            "mcsa_roles": [
+              "hydrogen bond acceptor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Thr",
+                "is_reference": true,
+                "resid": 95,
+                "uniprot_id": "P29218"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Thr",
+              "is_reference": true,
+              "pdb_id": "1ima",
+              "resid": 95
+            },
+            "pos": 95,
+            "residue_node_id": "m_csa:577:residue:6",
+            "resn": "THR",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1IMA",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [
+            "role_inferred_metal_low_pocket_support"
+          ],
+          "gap_reasons": [
+            "counterevidence_present",
+            "expected_cofactor_absent_from_structure",
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 11.644,
+          "focus_atom_pair": {
+            "distance_angstrom": 11.644,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "GLU",
+              "residue_node_id": "m_csa:577:residue:5",
+              "residue_number": 70,
+              "roles": [
+                "metal ligand",
+                "proton acceptor",
+                "proton donor"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "THR",
+              "residue_node_id": "m_csa:577:residue:6",
+              "residue_number": 95,
+              "roles": [
+                "hydrogen bond acceptor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_577.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_577.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.8182,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed Ser-His-Glu serine hydrolase triad; structure check finds Glu in the acid slot near the Ser-His triad; no metal required for target fingerprint.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:599",
+      "entry_name": "dipeptidase E",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [],
+        "counterevidence_reasons": [],
+        "ec": "3.4.13.21",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "CD"
+        ],
+        "heuristic_score": 0.8182,
+        "measured_distance_angstrom": 14.462,
+        "mechanism_summary": "Nucleophilic attack by activated Ser120 on peptide bond. Protonation of leaving group by His157. Transition state stabilisation by oxyanion hole (Ala121 and Gly88 main chain amides); hydrolysis of acyl enzyme intermediate by His157 activated water molecule.",
+        "metal_hetatms_in_structure": [
+          "CD"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Gly",
+                "is_reference": true,
+                "resid": 88,
+                "uniprot_id": "P36936"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "1fy2",
+              "resid": 88
+            },
+            "pos": 88,
+            "residue_node_id": "m_csa:599:residue:1",
+            "resn": "GLY",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Glu",
+                "is_reference": true,
+                "resid": 192,
+                "uniprot_id": "P36936"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1fy2",
+              "resid": 192
+            },
+            "pos": 192,
+            "residue_node_id": "m_csa:599:residue:2",
+            "resn": "GLU",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1FY2",
+        "target_fingerprint": "ser_his_acid_hydrolase"
+      },
+      "flagged_structure_check": {
+        "enzyme": "dipeptidase E",
+        "m_csa_id": "m_csa:599",
+        "metals_sel": [],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "requested_check": "dipeptidase E confirm Glu in Asp/Glu acid slot near Ser-His triad",
+        "selected_pdb": "1FY2",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1FY2.cif",
+        "triad_acid_residues_within_6_angstrom_of_triad_ser": [
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "135",
+            "resn": "ASP"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "18",
+            "resn": "GLU"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "192",
+            "resn": "GLU"
+          }
+        ],
+        "triad_ser_residues_within_6_angstrom_of_his": [
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "120",
+            "resn": "SER"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "7",
+            "resn": "SER"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "9",
+            "resn": "SER"
+          }
+        ]
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 14.462,
+          "focus_atom_pair": {
+            "distance_angstrom": 14.462,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "GLY",
+              "residue_node_id": "m_csa:599:residue:1",
+              "residue_number": 88,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "GLU",
+              "residue_node_id": "m_csa:599:residue:2",
+              "residue_number": 192,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_599.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_599.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_geometry_or_conformation_review"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.5782,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_geometry_or_conformation_review",
+        "rationale": "Hold: score is high but ARG375/HIS217 are 40.164 A apart, consistent with open-domain 5-prime nucleotidase conformation; needs closed-conformation alternate or explicit loose-conformation note.",
+        "resolution_bucket": "hold_for_geometry_or_conformation_review",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:611",
+      "entry_name": "5'-nucleotidase (bacterial)",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.1.3.5",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "CO3",
+          "SO4",
+          "ZN"
+        ],
+        "heuristic_score": 0.5782,
+        "measured_distance_angstrom": 40.164,
+        "mechanism_summary": "5'-nucleotidase catalyses the hydrolytic cleavage of 5'-mononucleotides to nucleoside and phosphate by nucleophilic attack of a water molecule on the phosphorous. A water ligand is coordinated to the di-zinc centre. The phosphate group of the substrate binds with one oxygen atom to a metal ion. The metal-bound water attacks the phosphorous nucleophilically, with the proton transferred to His 117. The pentahedral transition state is stabilised by both metal ions, Asn 116, Arg 375, Arg 379, Arg 410 and His 117. After expulsion of the leaving group the tetrahedral phosphate ion remains bound to the dimetal centre.",
+        "metal_hetatms_in_structure": [
+          "ZN"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser, increase acidity, increase electrophilicity",
+            "mcsa_roles": [
+              "electrostatic stabiliser",
+              "increase acidity",
+              "increase electrophilicity"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Arg",
+                "is_reference": true,
+                "resid": 375,
+                "uniprot_id": "P07024"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1ush",
+              "resid": 375
+            },
+            "pos": 375,
+            "residue_node_id": "m_csa:611:residue:11",
+            "resn": "ARG",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 217,
+                "uniprot_id": "P07024"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1ush",
+              "resid": 217
+            },
+            "pos": 217,
+            "residue_node_id": "m_csa:611:residue:4",
+            "resn": "HIS",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1USH",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 40.164,
+          "focus_atom_pair": {
+            "distance_angstrom": 40.164,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ARG",
+              "residue_node_id": "m_csa:611:residue:11",
+              "residue_number": 375,
+              "roles": [
+                "electrostatic stabiliser",
+                "increase acidity",
+                "increase electrophilicity"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:611:residue:4",
+              "residue_number": 217,
+              "roles": [
+                "metal ligand"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_611.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_611.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.5927,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed metal-dependent hydrolase; selected structure contains Zn and M-CSA annotated residues support neprilysin metalloprotease chemistry.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:623",
+      "entry_name": "neprilysin",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.4.24.11",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "NAG",
+          "OIR",
+          "ZN"
+        ],
+        "heuristic_score": 0.5927,
+        "measured_distance_angstrom": 15.438,
+        "mechanism_summary": "The Zinc ion and the catalytic residue Glu 584 act together to activate a water molecule for nucleophilic attack on the peptide substrate. This forms an oxyanion intermediate, stabilised by His 711 in a hydrogen bond network involving Asp 650 and Arg 717. Subsequent collapse of the intermediate results in cleavage of the peptide bond and release of the products.",
+        "metal_hetatms_in_structure": [
+          "ZN"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 588,
+                "uniprot_id": "P08473"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1r1j",
+              "resid": 534
+            },
+            "pos": 534,
+            "residue_node_id": "m_csa:623:residue:1",
+            "resn": "HIS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Arg",
+                "is_reference": true,
+                "resid": 718,
+                "uniprot_id": "P08473"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1r1j",
+              "resid": 664
+            },
+            "pos": 664,
+            "residue_node_id": "m_csa:623:residue:7",
+            "resn": "ARG",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1R1J",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 15.438,
+          "focus_atom_pair": {
+            "distance_angstrom": 15.438,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:623:residue:1",
+              "residue_number": 534,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ARG",
+              "residue_node_id": "m_csa:623:residue:7",
+              "residue_number": 664,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_623.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_623.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.5993,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed metal-dependent hydrolase/deaminase; Zn is coordinated by His62/Cys91/Cys94 in the selected structure, and the scored His62 is a metal coordinator.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:636",
+      "entry_name": "cytosine deaminase (yeast)",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.5.4.1",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "DUC",
+          "ZN"
+        ],
+        "heuristic_score": 0.5993,
+        "measured_distance_angstrom": 11.674,
+        "mechanism_summary": "The key catalytic residues are Glu 64 and a zinc ion. Glu 64 first deprotonates the zinc-bound water molecule and protonates N3 of cytosine, thus activating both nucleophile and electrophile. Attack by the water molecule on C4 then generates a tetrahedral intermediate. Generation of the tetrahedral intermediate is thought to occur in this stepwise fashion since calculations suggest that a concerted mechanism would have a much higher energy barrier. Collapse of the tetrahedral intermediate involves deprotonation of the zinc-bound C4 hydroxyl followed by cleavage of the C4-N bond with concerted protonation of the departing amino group by Glu 64. <br/>The produced uracil is still coordinated to the zinc by O4. Calculations suggest that the energy barrier for cleavage of this bond is surprisingly high, so it is proposed that freeing of the uracil from the active site involves a gem-diol intermediate and oxygen-exchange. Formation of the gem-diol intermediate involves attack by a water molecule on C4, with concomitant deprotonation of this water molecule by Glu 64. Protonation of the the C4-O-Zn oxygen by Glu 64 is followed by cleavage of the C4-OHZn bond with simulataneous deprotonation of C4-OH by Glu 64.",
+        "metal_hetatms_in_structure": [
+          "ZN"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 62,
+                "uniprot_id": "Q12178"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1uaq",
+              "resid": 62
+            },
+            "pos": 62,
+            "residue_node_id": "m_csa:636:residue:2",
+            "resn": "HIS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Ser",
+                "is_reference": true,
+                "resid": 89,
+                "uniprot_id": "Q12178"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1uaq",
+              "resid": 89
+            },
+            "pos": 89,
+            "residue_node_id": "m_csa:636:residue:6",
+            "resn": "SER",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1UAQ",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "flagged_structure_check": {
+        "coord_residues_within_3p5_angstrom_of_metal": [
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "62",
+            "resn": "HIS"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "91",
+            "resn": "CYS"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "94",
+            "resn": "CYS"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "B",
+            "resi": "62",
+            "resn": "HIS"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "B",
+            "resi": "91",
+            "resn": "CYS"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "B",
+            "resi": "94",
+            "resn": "CYS"
+          }
+        ],
+        "enzyme": "cytosine deaminase (yeast)",
+        "m_csa_id": "m_csa:636",
+        "metals_sel": [
+          {
+            "chain": "A",
+            "element": "ZN",
+            "resi": "200",
+            "resn": "ZN"
+          },
+          {
+            "chain": "B",
+            "element": "ZN",
+            "resi": "200",
+            "resn": "ZN"
+          }
+        ],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "requested_check": "cytosine deaminase metal coordination residues within 3.5A",
+        "selected_pdb": "1UAQ",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1UAQ.cif"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 11.674,
+          "focus_atom_pair": {
+            "distance_angstrom": 11.674,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:636:residue:2",
+              "residue_number": 62,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "SER",
+              "residue_node_id": "m_csa:636:residue:6",
+              "residue_number": 89,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_636.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_636.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_holo_alternate"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.4261,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: chemistry is metal-dependent hydrolase, but selected 1PWV has no biological metal; needs holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "ec": "3.4.24.83",
+        "gap_reasons": [
+          "counterevidence_present",
+          "expected_cofactor_absent_from_structure",
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [],
+        "heuristic_score": 0.4261,
+        "measured_distance_angstrom": 13.968,
+        "mechanism_summary": "The active site is centred around a structural zinc cation coordinated by a strictly conserved HExxH+E motif. The zinc ion is directly coordinated by the two histidines of the motif (His719 and His723) , by Glu 735 and by a water molecule. Glu 687 acts as a general base to activate the water molecule for nucleophilic attack by deprotonation and also by further polarization by Zn2+. The activated water can then attack the carbonyl of the peptide bond and form the tetrahedral intermediate which is stabilised by hydrogen bonding with Tyr728 and coordination to Zn2+ which together serve as an oxyanion hole. The oxyanion can the initiate an elimination to start the collapse of the intermediate and the cleavage of the peptide bond. The kinetically favoured products of this reaction are the carboxyanion and the amine cation, thus in a final step the N-terminal amine deprotonates the C-terminal carboxyacid.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 723,
+                "uniprot_id": "P15917"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1pwv",
+              "resid": 690
+            },
+            "pos": 690,
+            "residue_node_id": "m_csa:641:residue:1",
+            "resn": "HIS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Tyr",
+                "is_reference": true,
+                "resid": 761,
+                "uniprot_id": "P15917"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1pwv",
+              "resid": 728
+            },
+            "pos": 728,
+            "residue_node_id": "m_csa:641:residue:5",
+            "resn": "TYR",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1PWV",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [
+            "role_inferred_metal_low_pocket_support"
+          ],
+          "gap_reasons": [
+            "counterevidence_present",
+            "expected_cofactor_absent_from_structure",
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 13.968,
+          "focus_atom_pair": {
+            "distance_angstrom": 13.968,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:641:residue:1",
+              "residue_number": 690,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "TYR",
+              "residue_node_id": "m_csa:641:residue:5",
+              "residue_number": 728,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_641.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_641.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.5822,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed metal-dependent hydrolase after local-metal check: 1HR6 contains Zn on the beta-subunit active site; label-chain B His51/His55/Glu131 coordinate Zn at ~2.0-2.2 A. The prior expected_cofactor_not_local flag is consistent with auth/label numbering and multimer mapping friction, not absent local Zn evidence.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.4.24.64",
+        "gap_reasons": [
+          "expected_cofactor_not_local",
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "EPE",
+          "ZN"
+        ],
+        "heuristic_score": 0.5822,
+        "measured_distance_angstrom": 13.228,
+        "mechanism_summary": "The mechanism of mitochondrial processing peptidase occurs in a thermolysin-like general-base-type mechanism. The zinc ion co-ordinates water which is displaced in substrate coordination towards Glu beta-73 which acts via general base catalysis to activate the water oxygen for nucleophilic attack on the carbonyl carbon of the scissile bond. The zinc ion also has a role in activating the water molecule by coordinating the oxygen. The pentacoordinate intermediate is formed and the proton accepted by Glu beta-73 in activating water is then transferred to the leaving nitrogen to facilitate collapse of the intermediate. A second proton transfer then occurs to shuttle a proton from the hydrated peptide to the leaving nitrogen.",
+        "metal_hetatms_in_structure": [
+          "ZN"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "B",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Glu",
+                "is_reference": true,
+                "resid": 150,
+                "uniprot_id": "P10507"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "B",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1hr6",
+              "resid": 131
+            },
+            "pos": 131,
+            "residue_node_id": "m_csa:657:residue:3",
+            "resn": "GLU",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "B",
+            "mcsa_role": "proton acceptor, proton donor",
+            "mcsa_roles": [
+              "proton acceptor",
+              "proton donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Glu",
+                "is_reference": true,
+                "resid": 73,
+                "uniprot_id": "P10507"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "B",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1hr6",
+              "resid": 54
+            },
+            "pos": 54,
+            "residue_node_id": "m_csa:657:residue:5",
+            "resn": "GLU",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1HR6",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "expected_cofactor_not_local",
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "expected_cofactor_not_local; review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 13.228,
+          "focus_atom_pair": {
+            "distance_angstrom": 13.228,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "B",
+              "residue_name": "GLU",
+              "residue_node_id": "m_csa:657:residue:3",
+              "residue_number": 131,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "B",
+              "residue_name": "GLU",
+              "residue_node_id": "m_csa:657:residue:5",
+              "residue_number": 54,
+              "roles": [
+                "proton acceptor",
+                "proton donor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_657.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_657.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.5879,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed metal-dependent hydrolase; selected structure contains Zn and M-CSA mechanism assigns Glu181 as the general base.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:706",
+      "entry_name": "D-Ala-D-Ala dipeptidase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.4.13.22",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "ZN"
+        ],
+        "heuristic_score": 0.5879,
+        "measured_distance_angstrom": 16.539,
+        "mechanism_summary": "An incoming peptide displaces a zinc-bound water molecule towards Glu181, giving a six-coordinated metal ion. The nucleophilic hydroxide is generated by zinc and Glu181 from the water molecule, and the nucleophile attacks the polarised carbonyl to form a tetrahedral intermediate. This forms a bidentate complex with the zinc and is stabilised further by interactions with Arg71. It is likely that Glu181 donates a proton to the scissile nitrogen, completing the reaction and yielding D-ala, although it is possible that the source of the proton may be from the nucleophile or another active site residue.",
+        "metal_hetatms_in_structure": [
+          "ZN"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Arg",
+                "is_reference": true,
+                "resid": 71,
+                "uniprot_id": "Q06241"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1r44",
+              "resid": 71
+            },
+            "pos": 71,
+            "residue_node_id": "m_csa:706:residue:4",
+            "resn": "ARG",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "proton acceptor, proton donor",
+            "mcsa_roles": [
+              "proton acceptor",
+              "proton donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Glu",
+                "is_reference": true,
+                "resid": 181,
+                "uniprot_id": "Q06241"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1r44",
+              "resid": 181
+            },
+            "pos": 181,
+            "residue_node_id": "m_csa:706:residue:5",
+            "resn": "GLU",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1R44",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 16.539,
+          "focus_atom_pair": {
+            "distance_angstrom": 16.539,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ARG",
+              "residue_node_id": "m_csa:706:residue:4",
+              "residue_number": 71,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "GLU",
+              "residue_node_id": "m_csa:706:residue:5",
+              "residue_number": 181,
+              "roles": [
+                "proton acceptor",
+                "proton donor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_706.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_706.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_target_schema_review"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.6323,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "cobalamin_radical_rearrangement",
+        "label_type": null,
+        "local_evidence_resolution": "requires_target_schema_review",
+        "rationale": "Hold: beta-lysine aminomutase is a true PLP+AdoCbl dual-cofactor case; heuristic top1 PLP conflicts with target cobalamin_radical_rearrangement. Needs target-schema decision: cobalamin_radical_rearrangement vs coupled PLP-cobalamin family.",
+        "resolution_bucket": "hold_for_target_schema_review",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:737",
+      "entry_name": "beta-lysine 5,6-aminomutase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "adenosylcobalamin"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "5.4.3.3",
+        "gap_reasons": [
+          "expected_cofactor_not_local",
+          "review_marked_needs_more_evidence",
+          "target_not_top1"
+        ],
+        "hetatms_in_structure": [
+          "5AD",
+          "B12",
+          "PLP"
+        ],
+        "heuristic_score": 0.6323,
+        "measured_distance_angstrom": 20.47,
+        "mechanism_summary": "The substrate Lys displaces Lys 144 from PLP with a standard transaldimination reaction. Adenosylcobalamin (AdoCbl) homolytically cleaves to form Ado-CH2 radical. Ado-CH2 radical accepts a proton and an electron from the substrate Lys delta carbon. A three membered ring is formed between the delta and epsilon carbons and the nitrogen of the substrate Lys, breaking the double bond, leaving just a single bond between the substrate N and PLP C atoms, and a radical PLP. The double bond between the nitrogen of the substrate Lys and the carbon of PLP is reformed, homolytically cleaving the N-C-epsilon bond of the substrate Lys. Ado-CH3 then donates a proton and an electron back to the product, reforming the Ado-CH2 radical. Lys 144 then nucleophilically attacks PLP, to displace the product with a standard transaldimination reaction.",
+        "metal_hetatms_in_structure": [
+          "B12"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "B",
+            "mcsa_role": "electron pair acceptor, electron pair donor, nucleofuge, nucleophile",
+            "mcsa_roles": [
+              "electron pair acceptor",
+              "electron pair donor",
+              "nucleofuge",
+              "nucleophile"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Lys",
+                "is_reference": true,
+                "resid": 144,
+                "uniprot_id": "E3PRJ4"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "B",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1xrs",
+              "resid": 144
+            },
+            "pos": 144,
+            "residue_node_id": "m_csa:737:residue:1",
+            "resn": "LYS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "promote homolysis",
+            "mcsa_roles": [
+              "promote homolysis"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Lys",
+                "is_reference": true,
+                "resid": 373,
+                "uniprot_id": "E3PRJ5"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1xrs",
+              "resid": 370
+            },
+            "pos": 370,
+            "residue_node_id": "m_csa:737:residue:3",
+            "resn": "LYS",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1XRS",
+        "target_fingerprint": "cobalamin_radical_rearrangement"
+      },
+      "flagged_structure_check": {
+        "b12_ligands": [
+          {
+            "chain": "B",
+            "resi": "800",
+            "resn": "B12"
+          }
+        ],
+        "enzyme": "beta-lysine 5,6-aminomutase",
+        "m_csa_id": "m_csa:737",
+        "metals_sel": [
+          {
+            "chain": "B",
+            "element": "CO",
+            "resi": "800",
+            "resn": "B12"
+          }
+        ],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "requested_check": "beta-lysine 5,6-aminomutase adenosylcobalamin check",
+        "selected_pdb": "1XRS",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1XRS.cif"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "expected_cofactor_not_local",
+            "review_marked_needs_more_evidence",
+            "target_not_top1"
+          ],
+          "review_reason": "expected_cofactor_not_local; review_marked_needs_more_evidence; target_not_top1"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 20.47,
+          "focus_atom_pair": {
+            "distance_angstrom": 20.47,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "B",
+              "residue_name": "LYS",
+              "residue_node_id": "m_csa:737:residue:1",
+              "residue_number": 144,
+              "roles": [
+                "electron pair acceptor",
+                "electron pair donor",
+                "nucleofuge",
+                "nucleophile"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "LYS",
+              "residue_node_id": "m_csa:737:residue:3",
+              "residue_number": 370,
+              "roles": [
+                "promote homolysis"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_737.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_737.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_residue_mapping_review"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.4385,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_residue_mapping_review",
+        "rationale": "Hold: CumD mechanism requires Ser103/Asp224/His252 triad; selected structure maps catalytic Ser103 to Ala103 while scored Ser34 is oxyanion-hole support, not the catalytic nucleophile. Needs residue-mapping/target review.",
+        "resolution_bucket": "hold_for_residue_mapping_review",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [],
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "ec": "3.7.1.9",
+        "gap_reasons": [
+          "counterevidence_present",
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "BUA"
+        ],
+        "heuristic_score": 0.4385,
+        "measured_distance_angstrom": 15.052,
+        "mechanism_summary": "The active site of CumD contains the Ser103, Asp 224, His 252 catalytic triad. His 252 initially deprotonates a hydroxyl which results in the ketonization of the substrate as the keto form is more stable in the active site. His 252 is then deprotonated by the C=C so that the His can then deprotonates Ser 103 which activates it to nucleophilically attack the carbonyl bond to produce the oxyanion intermediate which is tsablised by the backbone amides of Ser 34 and Ala 103. The oxyanion initiates the first cleavage which releases the 2-oxopent-4-enoate which is then protonated His 252. His 252 then abstracts a proton from water so that it can nucleophilically attack the acyl-enzyme to form the second oxyanion intermediate which will then collapse result in the cleavage of the ester bond and the release of Ser 103 and formate.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Ser",
+                "is_reference": true,
+                "resid": 34,
+                "uniprot_id": "P96965"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1uk7",
+              "resid": 34
+            },
+            "pos": 34,
+            "residue_node_id": "m_csa:771:residue:1",
+            "resn": "SER",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 224,
+                "uniprot_id": "P96965"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1uk7",
+              "resid": 224
+            },
+            "pos": 224,
+            "residue_node_id": "m_csa:771:residue:3",
+            "resn": "ASP",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1UK7",
+        "target_fingerprint": "ser_his_acid_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [
+            "ser_his_seed_missing_triad_coherence"
+          ],
+          "gap_reasons": [
+            "counterevidence_present",
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "counterevidence_present; review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 15.052,
+          "focus_atom_pair": {
+            "distance_angstrom": 15.052,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "SER",
+              "residue_node_id": "m_csa:771:residue:1",
+              "residue_number": 34,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:771:residue:3",
+              "residue_number": 224,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_771.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_771.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.5307,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence_with_caveat",
+        "rationale": "Confirmed with caveat: top1_score 0.5307 exceeds abstention threshold 0.4115 and LLP/internal PLP aldimine is present; the top1_below_abstention_threshold gap flag is inconsistent/stale and should be retired before counting.",
+        "resolution_bucket": "confirm_with_caveat_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:777",
+      "entry_name": "aspartate transaminase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "pyridoxal phosphate"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "2.6.1.1",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence",
+          "top1_below_abstention_threshold"
+        ],
+        "hetatms_in_structure": [
+          "LLP",
+          "SO4"
+        ],
+        "heuristic_score": 0.5307,
+        "measured_distance_angstrom": 9.998,
+        "mechanism_summary": "The reaction follows a ping-pong mechanism.   \r\n\r\nIn the enzyme, PLP is anchored to the protein at Lys258 with its pyridoxal moiety in the reactive bipolar ionic form. In the first step, the cofactor PLP is transferred from Lys 258 to the aspartate alpha amino group. The alpha-amino group of the aspartate attacks the PLP C4' from the front side in a direction perpendicular to the plane of the pyridine ring. The attraction of opposite charges on the substrate N atom and O3' of the coenzyme brings about a 90 degrees rotation of the 2 C-N bonds around C4-C4' which brings Lys258 behind the plane of the pyridine ring and hence Lys258 can be released. Trp 140 sterically constraining the PLP to allow the attack of aspartate.<br/>The deprotonation of the alpha-carbon of aspartate gives rise to the quinonoid intermediate, which is stabilised by the electron link of the protonated pyridine ring. Asp223 facilitates the deprotonation by stabilising the positive charge at N1 of PLP with a salt bridge and hence enhancing the electron withdrawing capacity of the amino acid substrate. Lys 258 acts as a base here. Lys258 then protonates C4' from the si side, giving rise to keimine intermediate. It then deprotonates a water molecule to allow its nucleophilic attack on the alpha-carbon. The tetrahedral intermediate dissociates into PMP and oxo-acid product. Subsequent reversal of the reaction steps described occurs except with the carboxyl group of the alpha keto-glutarate acting as the nucleophile leading to the formation of glutamate and the completion of the reaction cycle.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "proton shuttle (general acid/base)",
+            "mcsa_roles": [
+              "proton shuttle (general acid/base)"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 211,
+                "uniprot_id": "P00509"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1aam",
+              "resid": 211
+            },
+            "pos": 211,
+            "residue_node_id": "m_csa:777:residue:1",
+            "resn": "ASP",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "steric role",
+            "mcsa_roles": [
+              "steric role"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Trp",
+                "is_reference": true,
+                "resid": 130,
+                "uniprot_id": "P00509"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Trp",
+              "is_reference": true,
+              "pdb_id": "1aam",
+              "resid": 130
+            },
+            "pos": 130,
+            "residue_node_id": "m_csa:777:residue:3",
+            "resn": "TRP",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1AAM",
+        "target_fingerprint": "plp_dependent_enzyme"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence",
+            "top1_below_abstention_threshold"
+          ],
+          "review_reason": "review_marked_needs_more_evidence; top1_below_abstention_threshold; fewer_than_three_resolved_residues"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 9.998,
+          "focus_atom_pair": {
+            "distance_angstrom": 9.998,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:777:residue:1",
+              "residue_number": 211,
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "TRP",
+              "residue_node_id": "m_csa:777:residue:3",
+              "residue_number": 130,
+              "roles": [
+                "steric role"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_777.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_777.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.4082,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence_with_caveat",
+        "rationale": "Confirmed with caveat: top1 score 0.4082 is just below the 0.4115 abstention floor and AMP triggered nucleotide-transfer counterevidence, but the M-CSA mechanism is exonuclease phosphodiester hydrolysis with Mg; AMP is product/context, not transfer substrate.",
+        "resolution_bucket": "confirm_with_caveat_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:784",
+      "entry_name": "3'-5' exoribonuclease 1",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "ec": "3.1.-.-",
+        "gap_reasons": [
+          "counterevidence_present",
+          "review_marked_needs_more_evidence",
+          "top1_below_abstention_threshold"
+        ],
+        "hetatms_in_structure": [
+          "AMP",
+          "MG",
+          "MSE"
+        ],
+        "heuristic_score": 0.4082,
+        "measured_distance_angstrom": 11.073,
+        "mechanism_summary": "His 293 acts as a general base by deprotonating a water molecule, activating it for nucleophilic attack.\r\n The activated water molecule nucleophilically attacks the last phosphorus atom, breaking the phosphodiester bond of the terminal residue of the oligonucleotide chain.\r\n A negatively charged, pentacoordinate intermediate is formed, which is stabilised by the MgA ion.\r\n Glu 136 deprotonates the O atom of the intermediate, collapsing it to form the products.",
+        "metal_hetatms_in_structure": [
+          "MG"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 234,
+                "uniprot_id": "Q8IV48"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1w0h",
+              "resid": 116
+            },
+            "pos": 116,
+            "residue_node_id": "m_csa:784:residue:2",
+            "resn": "ASP",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser, proton acceptor",
+            "mcsa_roles": [
+              "electrostatic stabiliser",
+              "proton acceptor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 293,
+                "uniprot_id": "Q8IV48"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1w0h",
+              "resid": 175
+            },
+            "pos": 175,
+            "residue_node_id": "m_csa:784:residue:4",
+            "resn": "HIS",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1W0H",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [
+            "nucleotide_transfer_ligand_context"
+          ],
+          "gap_reasons": [
+            "counterevidence_present",
+            "review_marked_needs_more_evidence",
+            "top1_below_abstention_threshold"
+          ],
+          "review_reason": "counterevidence_present; review_marked_needs_more_evidence; top1_below_abstention_threshold"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 11.073,
+          "focus_atom_pair": {
+            "distance_angstrom": 11.073,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:784:residue:2",
+              "residue_number": 116,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:784:residue:4",
+              "residue_number": 175,
+              "roles": [
+                "electrostatic stabiliser",
+                "proton acceptor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_784.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_784.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.5958,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed metal-dependent hydrolase; selected structure contains Mg and M-CSA residues/mechanism support 5-prime nucleotidase chemistry.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:812",
+      "entry_name": "5'-nucleotidase (mitochondrial)",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.1.3.5",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "DPB",
+          "MG",
+          "PO4"
+        ],
+        "heuristic_score": 0.5958,
+        "measured_distance_angstrom": 8.109,
+        "mechanism_summary": "A mechanism is proposed based on crystal structure. Asp41 nucleophilically attacks the phosphate to form a phosphoenzyme intermediate. Asp43 is positioned to firstly serve as an acid, promoting the protonation of the leaving deoxyribose moiety and then serves as a base to activate the water nucleophile which hydrolyse the covalent enzyme-substrate intermediate.",
+        "metal_hetatms_in_structure": [
+          "MG"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 176,
+                "uniprot_id": "Q9NPB1"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1q91",
+              "resid": 145
+            },
+            "pos": 145,
+            "residue_node_id": "m_csa:812:residue:1",
+            "resn": "ASP",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "increase nucleophilicity, proton acceptor, proton donor",
+            "mcsa_roles": [
+              "increase nucleophilicity",
+              "proton acceptor",
+              "proton donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 43,
+                "uniprot_id": "Q9NPB1"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1q91",
+              "resid": 12
+            },
+            "pos": 12,
+            "residue_node_id": "m_csa:812:residue:4",
+            "resn": "ASP",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1Q91",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 8.109,
+          "focus_atom_pair": {
+            "distance_angstrom": 8.109,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:812:residue:1",
+              "residue_number": 145,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:812:residue:4",
+              "residue_number": 12,
+              "roles": [
+                "increase nucleophilicity",
+                "proton acceptor",
+                "proton donor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_812.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_812.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_holo_alternate_and_geometry_review"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.58,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: selected 1AVQ has no metals and the scored ASP111/GLU95 pair is 29.544 A apart; needs holo alternate plus geometry/domain-context review.",
+        "resolution_bucket": "hold_for_holo_alternate_and_geometry_review",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:836",
+      "entry_name": "exodeoxyribonuclease (lambda-induced)",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.1.11.3",
+        "gap_reasons": [
+          "expected_cofactor_absent_from_structure",
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "ACT",
+          "PO4"
+        ],
+        "heuristic_score": 0.58,
+        "measured_distance_angstrom": 29.544,
+        "mechanism_summary": "In this associative mechanism Glu129 activates a water molecule for nucleophilic attack on the scissile phosphate. A penta-covalent intermediate is formed which collapses to form the products and restore the enzyme to its native state.\r\nSee other mechanism for the references.\nThe three-metal mechanism of EcoRV is the most likely mechanism for lambda-exonuclease.\r\nThis is a dissociative hydrolysis mechanism where the O-P bond is broken before the nucleophilic of water upon the phosphate. The dissociation of the O-P bond is facilitated by protonation from a magnesium activated water molecule. And the nucleophilic attack is facilitated by Glu129 deprotonating a second water promoting the attack.\nThis is another dissociative mechanism where the first step is identical to the first proposal. These mechanisms differ because in this proposal Lys131 acts as a proton relay to activate the water molecule for nucleophilic attack. \r\nSee first mechanism for the references.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 109,
+                "uniprot_id": "P03697"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1avq",
+              "resid": 111
+            },
+            "pos": 111,
+            "residue_node_id": "m_csa:836:residue:1",
+            "resn": "ASP",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Glu",
+                "is_reference": true,
+                "resid": 93,
+                "uniprot_id": "P03697"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1avq",
+              "resid": 95
+            },
+            "pos": 95,
+            "residue_node_id": "m_csa:836:residue:3",
+            "resn": "GLU",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1AVQ",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "expected_cofactor_absent_from_structure",
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "expected_cofactor_absent_from_structure; review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 29.544,
+          "focus_atom_pair": {
+            "distance_angstrom": 29.544,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:836:residue:1",
+              "residue_number": 111,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "GLU",
+              "residue_node_id": "m_csa:836:residue:3",
+              "residue_number": 95,
+              "roles": [
+                "metal ligand"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_836.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_836.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.6238,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed PLP-dependent enzyme; selected structure contains PLP/LLP context and M-CSA mechanism supports Lys-mediated PLP chemistry.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:865",
+      "entry_name": "cysteine synthase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "pyridoxal phosphate"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "2.5.1.47",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "PLP"
+        ],
+        "heuristic_score": 0.6238,
+        "measured_distance_angstrom": 13.464,
+        "mechanism_summary": "O-Acetylserine sulfhydrylase (OASS)1 catalyses the PLP-dependent replacement of the beta-acetoxy of OAS by inorganic bisulfide to generate l-cysteine. Steady-state kinetic studies indicate that the kinetic mechanism of OASS-A is ping-pong or double displacement. The first half of the reaction results in the conversion of the internal Schiff base and OAS to acetate and an external Schiff base with alpha-aminoacrylate. The second half of the reaction involves the reaction of the alpha-aminoacrylate intermediate with inorganic sulfide to regenerate the internal Schiff base and give the second product, l-cysteine. It has been suggested that the central alpha,beta-elimination proceeds via an anti-E2 mechanism",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "covalent catalysis, proton shuttle (general acid/base)",
+            "mcsa_roles": [
+              "covalent catalysis",
+              "proton shuttle (general acid/base)"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Lys",
+                "is_reference": true,
+                "resid": 42,
+                "uniprot_id": "P0A1E3"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1oas",
+              "resid": 41
+            },
+            "pos": 41,
+            "residue_node_id": "m_csa:865:residue:1",
+            "resn": "LYS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Ser",
+                "is_reference": true,
+                "resid": 273,
+                "uniprot_id": "P0A1E3"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1oas",
+              "resid": 272
+            },
+            "pos": 272,
+            "residue_node_id": "m_csa:865:residue:2",
+            "resn": "SER",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1OAS",
+        "target_fingerprint": "plp_dependent_enzyme"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence; fewer_than_three_resolved_residues"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 13.464,
+          "focus_atom_pair": {
+            "distance_angstrom": 13.464,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "LYS",
+              "residue_node_id": "m_csa:865:residue:1",
+              "residue_number": 41,
+              "roles": [
+                "covalent catalysis",
+                "proton shuttle (general acid/base)"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "SER",
+              "residue_node_id": "m_csa:865:residue:2",
+              "residue_number": 272,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_865.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_865.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.6657,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed flavin dehydrogenase/reductase; FMN is present in the selected structure and mechanism is FMN-mediated hydride transfer.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:892",
+      "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "FAD",
+          "FMN"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "1.3.98.1",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "FMN",
+          "ORO"
+        ],
+        "heuristic_score": 0.6657,
+        "measured_distance_angstrom": 11.869,
+        "mechanism_summary": "Kinetic investigations supported a one-site ping-pong mechanism and showed the second half-reaction to be the rate-limiting step for DHODA. In the first half-reaction, a hydride is transferred from dihydroorotate to FMN, giving orotate and FMNH2(reduced form). In the second half-reaction, the FMN is regenerated using molecular oxygen and producing hydrogen peroxide.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Lys",
+                "is_reference": true,
+                "resid": 43,
+                "uniprot_id": "A2RJT9"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "2dor",
+              "resid": 43
+            },
+            "pos": 43,
+            "residue_node_id": "m_csa:892:residue:1",
+            "resn": "LYS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "proton shuttle (general acid/base)",
+            "mcsa_roles": [
+              "proton shuttle (general acid/base)"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Cys",
+                "is_reference": true,
+                "resid": 130,
+                "uniprot_id": "A2RJT9"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "2dor",
+              "resid": 130
+            },
+            "pos": 130,
+            "residue_node_id": "m_csa:892:residue:2",
+            "resn": "CYS",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "2DOR",
+        "target_fingerprint": "flavin_dehydrogenase_reductase"
+      },
+      "flagged_structure_check": {
+        "enzyme": "dihydroorotate dehydrogenase (fumarate)",
+        "flavin_ligands": [
+          {
+            "chain": "A",
+            "resi": "312",
+            "resn": "FMN"
+          },
+          {
+            "chain": "B",
+            "resi": "312",
+            "resn": "FMN"
+          }
+        ],
+        "m_csa_id": "m_csa:892",
+        "metals_sel": [],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "requested_check": "DHODH FMN/FAD/RBF flavin check",
+        "selected_pdb": "2DOR",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_2DOR.cif"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence; fewer_than_three_resolved_residues"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 11.869,
+          "focus_atom_pair": {
+            "distance_angstrom": 11.869,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "LYS",
+              "residue_node_id": "m_csa:892:residue:1",
+              "residue_number": 43,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "CYS",
+              "residue_node_id": "m_csa:892:residue:2",
+              "residue_number": 130,
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_892.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_892.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_holo_alternate"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.429,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: PvuII is a two-Mg metal-dependent hydrolase/nuclease, but selected 1PVI has no metals; needs holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "ec": "3.1.21.4",
+        "gap_reasons": [
+          "counterevidence_present",
+          "expected_cofactor_absent_from_structure",
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [],
+        "heuristic_score": 0.429,
+        "measured_distance_angstrom": 9.672,
+        "mechanism_summary": "This restriction enzyme functions with two metal ions. Mg(II) ion at site 1 could help to activate the attacking water molecule, a Mg(II) at site 2 helps to stabilise the negative charge on the 3' oxyanion leaving group, and both ions are involved in stabilising the pentacovalent transition state. Lys70 is thought to act as a general acid/base.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "proton shuttle (general acid/base)",
+            "mcsa_roles": [
+              "proton shuttle (general acid/base)"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Lys",
+                "is_reference": true,
+                "resid": 70,
+                "uniprot_id": "P23657"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1pvi",
+              "resid": 70
+            },
+            "pos": 70,
+            "residue_node_id": "m_csa:897:residue:1",
+            "resn": "LYS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 58,
+                "uniprot_id": "P23657"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1pvi",
+              "resid": 58
+            },
+            "pos": 58,
+            "residue_node_id": "m_csa:897:residue:2",
+            "resn": "ASP",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1PVI",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [
+            "role_inferred_metal_low_pocket_support"
+          ],
+          "gap_reasons": [
+            "counterevidence_present",
+            "expected_cofactor_absent_from_structure",
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "counterevidence_present; expected_cofactor_absent_from_structure; review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 9.672,
+          "focus_atom_pair": {
+            "distance_angstrom": 9.672,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "LYS",
+              "residue_node_id": "m_csa:897:residue:1",
+              "residue_number": 70,
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:897:residue:2",
+              "residue_number": 58,
+              "roles": [
+                "metal ligand"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_897.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_897.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.405,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence_with_caveat",
+        "rationale": "Confirmed with caveat: AMP/product context appears to trigger nucleotide-transfer counterevidence, but M-CSA mechanism and Mg context support metal-dependent hydrolysis for BPNT.",
+        "resolution_bucket": "confirm_with_caveat_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:904",
+      "entry_name": "3'(2'),5'-bisphosphate nucleotidase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "ec": "3.1.3.7",
+        "gap_reasons": [
+          "counterevidence_present",
+          "review_marked_needs_more_evidence",
+          "top1_below_abstention_threshold"
+        ],
+        "hetatms_in_structure": [
+          "AMP",
+          "BME",
+          "MG",
+          "PO4",
+          "SO4"
+        ],
+        "heuristic_score": 0.405,
+        "measured_distance_angstrom": 14.055,
+        "mechanism_summary": "A water molecule bound to the first site magnesium ion is activated through a proton relay with Asp49 and Thr147. It then attacks the 3'-phosphate group, eliminating the product phosphate and a negatively charged intermediate which subsequently is reprotonated from bulk solvent via a proton relay involving the second ribose hydroxyl group and a water bound to  the second magnesium site.",
+        "metal_hetatms_in_structure": [
+          "MG"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "proton acceptor, proton donor",
+            "mcsa_roles": [
+              "proton acceptor",
+              "proton donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 49,
+                "uniprot_id": "P32179"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1qgx",
+              "resid": 49
+            },
+            "pos": 49,
+            "residue_node_id": "m_csa:904:residue:5",
+            "resn": "ASP",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 294,
+                "uniprot_id": "P32179"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1qgx",
+              "resid": 294
+            },
+            "pos": 294,
+            "residue_node_id": "m_csa:904:residue:7",
+            "resn": "ASP",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1QGX",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [
+            "nucleotide_transfer_ligand_context"
+          ],
+          "gap_reasons": [
+            "counterevidence_present",
+            "review_marked_needs_more_evidence",
+            "top1_below_abstention_threshold"
+          ],
+          "review_reason": "counterevidence_present; review_marked_needs_more_evidence; top1_below_abstention_threshold"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 14.055,
+          "focus_atom_pair": {
+            "distance_angstrom": 14.055,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:904:residue:5",
+              "residue_number": 49,
+              "roles": [
+                "proton acceptor",
+                "proton donor"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:904:residue:7",
+              "residue_number": 294,
+              "roles": [
+                "metal ligand"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_904.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_904.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.5852,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed metal-dependent hydrolase/aminopeptidase; selected structure contains Co ions at the catalytic metal sites.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:917",
+      "entry_name": "methionyl aminopeptidase",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.4.11.18",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "CO"
+        ],
+        "heuristic_score": 0.5852,
+        "measured_distance_angstrom": 14.412,
+        "mechanism_summary": "Water is polarised by coordinating to Zinc which is a strong Lewis acid as a result Glu 187 can more easily abstract a proton from the activated water molecule. The activated hydroxide can then nucleophilically attack the carbon of the scissille peptide bond and produce an oxyanion intermediate which is stabilised by coordination to zinc and hydrogen bonding to His 161. The oxyanion will then initiate an elimination which results in the cleavage of the peptide bond releasing the terminal Methionine. The N-terminal product then accepts a proton from Glu 187.",
+        "metal_hetatms_in_structure": [
+          "CO"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 82,
+                "uniprot_id": "P56218"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1xgm",
+              "resid": 82
+            },
+            "pos": 82,
+            "residue_node_id": "m_csa:917:residue:1",
+            "resn": "ASP",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "electrostatic stabiliser",
+            "mcsa_roles": [
+              "electrostatic stabiliser"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 161,
+                "uniprot_id": "P56218"
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1xgm",
+              "resid": 161
+            },
+            "pos": 161,
+            "residue_node_id": "m_csa:917:residue:5",
+            "resn": "HIS",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "1XGM",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "flagged_structure_check": {
+        "enzyme": "methionyl aminopeptidase",
+        "identified_metals": [
+          {
+            "chain": "A",
+            "element": "CO",
+            "resi": "296",
+            "resn": "CO"
+          },
+          {
+            "chain": "A",
+            "element": "CO",
+            "resi": "297",
+            "resn": "CO"
+          },
+          {
+            "chain": "B",
+            "element": "CO",
+            "resi": "296",
+            "resn": "CO"
+          },
+          {
+            "chain": "B",
+            "element": "CO",
+            "resi": "297",
+            "resn": "CO"
+          }
+        ],
+        "m_csa_id": "m_csa:917",
+        "metals_sel": [
+          {
+            "chain": "A",
+            "element": "CO",
+            "resi": "296",
+            "resn": "CO"
+          },
+          {
+            "chain": "A",
+            "element": "CO",
+            "resi": "297",
+            "resn": "CO"
+          },
+          {
+            "chain": "B",
+            "element": "CO",
+            "resi": "296",
+            "resn": "CO"
+          },
+          {
+            "chain": "B",
+            "element": "CO",
+            "resi": "297",
+            "resn": "CO"
+          }
+        ],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "requested_check": "methionyl aminopeptidase identify metal in structure",
+        "selected_pdb": "1XGM",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_1XGM.cif"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 14.412,
+          "focus_atom_pair": {
+            "distance_angstrom": 14.412,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:917:residue:1",
+              "residue_number": 82,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:917:residue:5",
+              "residue_number": 161,
+              "roles": [
+                "electrostatic stabiliser"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_917.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_917.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_holo_alternate"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.6061,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: chemistry supports metal-dependent hydrolase/deacetylase, but selected 4L1G has no Zn; needs holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:996",
+      "entry_name": "Peptidoglycan-N-acetylglucosamine deacetylase Bc1960",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.5.1.104",
+        "gap_reasons": [
+          "expected_cofactor_absent_from_structure",
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "ACT",
+          "PXU",
+          "SO4"
+        ],
+        "heuristic_score": 0.6061,
+        "measured_distance_angstrom": 13.094,
+        "mechanism_summary": "In this reaction Asp80 firstly deprotonates a water molecule coordinated to the Zn<sup>2+</sup> ion which is coordinated to the active site by His131, His135 and Asp81. This creates a hydroxide which is stabilised by Hyp171 through a bridging water molecule. The hydroxide is a strong nucleophile and as such attacks the carbonyl carbon of the substrate. A tetrahedral intermediate is formed and stabilised by the carbonyl oxygen coordinating Zn<sup>2+</sup>. The overall substrate is further stabilised by the hydoxyl group of Hyp171. His225 then proceeds to protonate the substrates nitrogen bound to the attacked carbonyl carbon releasing the acetate leaving group.",
+        "metal_hetatms_in_structure": [],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "C",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 143,
+                "uniprot_id": ""
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "C",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "4l1g",
+              "resid": 135
+            },
+            "pos": 135,
+            "residue_node_id": "m_csa:996:residue:2",
+            "resn": "HIS",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "C",
+            "mcsa_role": "proton donor",
+            "mcsa_roles": [
+              "proton donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "His",
+                "is_reference": true,
+                "resid": 233,
+                "uniprot_id": ""
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "C",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "4l1g",
+              "resid": 225
+            },
+            "pos": 225,
+            "residue_node_id": "m_csa:996:residue:4",
+            "resn": "HIS",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "4L1G",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "expected_cofactor_absent_from_structure",
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "expected_cofactor_absent_from_structure; review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 13.094,
+          "focus_atom_pair": {
+            "distance_angstrom": 13.094,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "C",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:996:residue:2",
+              "residue_number": 135,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "C",
+              "residue_name": "HIS",
+              "residue_node_id": "m_csa:996:residue:4",
+              "residue_number": 225,
+              "roles": [
+                "proton donor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_996.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_996.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "expert_decision_recorded_but_import_preview_not_run",
+        "label_factory_gates_not_run",
+        "batch_acceptance_not_run"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.5889,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        "rationale": "Confirmed metal-dependent hydrolase after numbering check: M-CSA structure Tyr341 is author Tyr363 in 5G0I, and that Tyr is within 4.552 A of Zn; Zn and catalytic Tyr context verified.",
+        "resolution_bucket": "confirm_promote",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:998",
+      "entry_name": "histone deacetylase 6 enzyme (HDAC6)",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.5.1.98",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "CL",
+          "EDO",
+          "K",
+          "N4R",
+          "ZN"
+        ],
+        "heuristic_score": 0.5889,
+        "measured_distance_angstrom": 16.492,
+        "mechanism_summary": "In this mechanism proposed for both the CD1 and CD2 domains of HDAC6, a hydrogen bond network activates a water molecule for nucleophilic attack on the amide carbon of the substrate, forming a tetrahedral intermediate. A proton from the protonated imidazole ring of His193 is transferred to the nitrogen of the substrate, forming acetic acid and eliminating the deacylated Lys product. Entry of a water molecule and substrate molecule into the active site regenerates the enzyme for another turnover. DFT-based computations show the rate-limiting step of the reaction is the nucleophilic attack of the catalytic water for peptide bond hydrolysis in both the CD1 and CD2 domains.",
+        "metal_hetatms_in_structure": [
+          "K",
+          "ZN"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "hydrogen bond donor",
+            "mcsa_roles": [
+              "hydrogen bond donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Tyr",
+                "is_reference": true,
+                "resid": 363,
+                "uniprot_id": ""
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "5g0i",
+              "resid": 341
+            },
+            "pos": 341,
+            "residue_node_id": "m_csa:998:residue:1",
+            "resn": "TYR",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "hydrogen bond donor, proton acceptor",
+            "mcsa_roles": [
+              "hydrogen bond donor",
+              "proton acceptor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 228,
+                "uniprot_id": ""
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "5g0i",
+              "resid": 206
+            },
+            "pos": 206,
+            "residue_node_id": "m_csa:998:residue:4",
+            "resn": "ASP",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "5G0I",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "flagged_structure_check": {
+        "enzyme": "histone deacetylase 6 enzyme (HDAC6)",
+        "m_csa_id": "m_csa:998",
+        "metals_sel": [
+          {
+            "chain": "A",
+            "element": "ZN",
+            "resi": "1802",
+            "resn": "ZN"
+          },
+          {
+            "chain": "A",
+            "element": "ZN",
+            "resi": "1803",
+            "resn": "ZN"
+          },
+          {
+            "chain": "B",
+            "element": "ZN",
+            "resi": "1802",
+            "resn": "ZN"
+          },
+          {
+            "chain": "B",
+            "element": "ZN",
+            "resi": "1803",
+            "resn": "ZN"
+          }
+        ],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "requested_check": "HDAC6 Tyr positioning relative to metal",
+        "selected_pdb": "5G0I",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_5G0I.cif",
+        "tyr_near_metal_within_6_angstrom": [
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "363",
+            "resn": "TYR"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "A",
+            "resi": "745",
+            "resn": "TYR"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "B",
+            "resi": "363",
+            "resn": "TYR"
+          },
+          {
+            "ca_atom_present": true,
+            "chain": "B",
+            "resi": "745",
+            "resn": "TYR"
+          }
+        ]
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 16.492,
+          "focus_atom_pair": {
+            "distance_angstrom": 16.492,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "TYR",
+              "residue_node_id": "m_csa:998:residue:1",
+              "residue_number": 341,
+              "roles": [
+                "hydrogen bond donor"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:998:residue:4",
+              "residue_number": 206,
+              "roles": [
+                "hydrogen bond donor",
+                "proton acceptor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_998.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_998.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    },
+    {
+      "countable_import_blockers": [
+        "held_by_expert_review_resolution_bucket",
+        "hold_for_geometry_or_conformation_review"
+      ],
+      "countable_import_ready": false,
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.571,
+        "expert_review_timestamp_utc": "2026-05-23T16:45:37Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_geometry_or_conformation_review",
+        "rationale": "Hold: 4 Mn ions are present and two-Mn prolidase chemistry is intact, but the scored ASP271/ARG393 pair is 30.173 A apart; needs geometry/oligomer-context review before countable import.",
+        "resolution_bucket": "hold_for_geometry_or_conformation_review",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "entry_id": "m_csa:1001",
+      "entry_name": "Prolidase (Xaa-Pro dipeptidase)",
+      "expert_packet_context": {
+        "abstain_threshold": 0.4115,
+        "cofactors_required": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "counterevidence_reasons": [],
+        "ec": "3.4.13.9",
+        "gap_reasons": [
+          "review_marked_needs_more_evidence"
+        ],
+        "hetatms_in_structure": [
+          "GOL",
+          "MN",
+          "OH"
+        ],
+        "heuristic_score": 0.571,
+        "measured_distance_angstrom": 30.173,
+        "mechanism_summary": "A water molecule bound in the active site between the two Mn2+ ions is activated by the abstraction of a proton resulting in the OH- bridged structure. The substrate GlyPro is then bound and His255 moves toward the active site to coordinate the carboxylate group of the substrate. The amide nitrogen and the carbonyl oxygen of the scissile bond of GlyPro are both coordinated by Mn2+ ions facilitating the build-up of a partial positive charge at the carbon atom. The nucleophilic attack of the hydroxide ion results in the formation of a (hypothetical) tetrahedral intermediate. Subsequently, proton transfer and rearrangement of the electrons lead to the breaking of the scissile peptide bond. After the products have left, the productive state of the enzyme is reformed by taking up a water molecule from bulk solvent.",
+        "metal_hetatms_in_structure": [
+          "MN"
+        ],
+        "scored_residues": [
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "metal ligand",
+            "mcsa_roles": [
+              "metal ligand"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 276,
+                "uniprot_id": ""
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "5m4g",
+              "resid": 271
+            },
+            "pos": 271,
+            "residue_node_id": "m_csa:1001:residue:2",
+            "resn": "ASP",
+            "side": "left",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          },
+          {
+            "atom_name": "CA",
+            "chain": "A",
+            "mcsa_role": "hydrogen bond donor",
+            "mcsa_roles": [
+              "hydrogen bond donor"
+            ],
+            "mcsa_sequence_positions": [
+              {
+                "code": "Arg",
+                "is_reference": true,
+                "resid": 398,
+                "uniprot_id": ""
+              }
+            ],
+            "mcsa_structure_position": {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "5m4g",
+              "resid": 393
+            },
+            "pos": 393,
+            "residue_node_id": "m_csa:1001:residue:7",
+            "resn": "ARG",
+            "side": "right",
+            "step": null,
+            "step_status": "not_available_in_current_mcsa_sample"
+          }
+        ],
+        "selected_pdb": "5M4G",
+        "target_fingerprint": "metal_dependent_hydrolase"
+      },
+      "flagged_structure_check": {
+        "enzyme": "Prolidase (Xaa-Pro dipeptidase)",
+        "m_csa_id": "m_csa:1001",
+        "metals_sel": [
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          }
+        ],
+        "method": "local mmCIF atom-site coordinate evaluation mirroring requested PyMOL selections",
+        "mn_ion_count": 4,
+        "mn_ions": [
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "A",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "499",
+            "resn": "MN"
+          },
+          {
+            "chain": "B",
+            "element": "MN",
+            "resi": "500",
+            "resn": "MN"
+          }
+        ],
+        "requested_check": "prolidase count Mn ions",
+        "selected_pdb": "5M4G",
+        "structure_cif": "/Users/vivekvardhanarrabelli/Documents/mcsa_positive_pymol_geometry_review_20260523/structures/pdb_5M4G.cif"
+      },
+      "source_review_item": {
+        "source_countable_import_ready": false,
+        "source_decision": "accepted",
+        "source_review_context": {
+          "counterevidence_reasons": [],
+          "gap_reasons": [
+            "review_marked_needs_more_evidence"
+          ],
+          "review_reason": "review_marked_needs_more_evidence"
+        },
+        "source_reviewer": "codex_ai_visual_mcsa_review",
+        "source_visual_evidence": {
+          "exact_measured_distance_angstrom": 30.173,
+          "focus_atom_pair": {
+            "distance_angstrom": 30.173,
+            "distance_source_field": "pairwise_distances_angstrom",
+            "left": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ASP",
+              "residue_node_id": "m_csa:1001:residue:2",
+              "residue_number": 271,
+              "roles": [
+                "metal ligand"
+              ]
+            },
+            "right": {
+              "atom_name": "CA",
+              "chain_name": "A",
+              "residue_name": "ARG",
+              "residue_node_id": "m_csa:1001:residue:7",
+              "residue_number": 393,
+              "roles": [
+                "hydrogen bond donor"
+              ]
+            }
+          },
+          "pml_script_path": "/tmp/mcsa_ai_review_all/render_pml_pseudo/m_csa_1001.pml",
+          "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_1001.png",
+          "render_status": "rendered",
+          "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+        }
+      }
+    }
+  ]
+}
