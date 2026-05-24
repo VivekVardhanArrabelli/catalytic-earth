@@ -1,0 +1,147 @@
+{
+  "decision": {
+    "accept_decisions_recorded": true,
+    "do_not_mix_with_clean9_holo_or_caveat_rows": true,
+    "human_confirmation_required_before_dedicated_gate": false,
+    "label_import_authorized_by_this_artifact_alone": false,
+    "requires_dedicated_import_preview_and_full_label_factory_gate_stack": true
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_m_csa771_2d0d_accept_decision_20260523",
+    "artifact_upload_or_removal_performed": false,
+    "baseline_canonical_countable_label_count": 694,
+    "created_at": "2026-05-24T02:58:37Z",
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "accept_label": 1
+    },
+    "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_residue_mapping_hold_condition_and_derived_2d0d_evidence",
+    "exact_entry_ids": [
+      "m_csa:771"
+    ],
+    "expected_preview_countable_label_count_if_gates_pass": 695,
+    "fingerprint_registry_edited": false,
+    "method": "mcsa_positive_m_csa771_2d0d_post_preview_accept_decision",
+    "not_new_human_expert_review": true,
+    "post_preview_human_confirmation_required_before_dedicated_gate": false,
+    "prior_human_review_source": "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+    "ready_for_dedicated_import_gate": true,
+    "removal_allowed_set_true": false,
+    "review_only_source_artifacts_mutated": false,
+    "schema_version": "mcsa_positive_m_csa771_2d0d_accept_decision.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_gate_preview_plan_20260523.json"
+    ]
+  },
+  "review_items": [
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_residue_mapping_hold_condition",
+        "evidence_score": 0.8933,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "noncanonical_2d0d_alternate_resolves_catalytic_ser103_mapping_blocker",
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "post_preview_human_confirmation_required_before_gate": false,
+        "prior_human_review_action": "mark_needs_more_evidence",
+        "prior_human_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "prior_human_reviewer": "vivek",
+        "rationale": "Automation-assisted post-preview accept for m_csa:771: Vivek's 2026-05-23 review classified the target as ser_his_acid_hydrolase but held the row because selected PDB 1UK7 maps catalytic Ser103 to Ala103 and therefore lacked the catalytic nucleophile. The noncanonical alternate review applies 2D0D, confirms Ser103 is present and maps to M-CSA residue:4 nucleophile/proton donor-acceptor roles, resolves 5 catalytic residue positions, scores top1 ser_his_acid_hydrolase at 0.8933, and records no top1 counterevidence, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures in the dedicated preview plan. This is not a new human post-alternate decision; it is an automation-assisted acceptance of the exact residue-mapping hold condition using the prior Vivek review plus derived 2D0D evidence.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_post_preview_synthesis_from_prior_vivek_review",
+        "selected_pdb_override": {
+          "catalytic_ser103_maps_to_m_csa_nucleophile": true,
+          "catalytic_ser103_present": true,
+          "from_pdb_id": "1UK7",
+          "missing_positions": 0,
+          "resolved_residue_count": 5,
+          "to_pdb_id": "2D0D"
+        },
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "noncanonical_alternate_preview_context": {
+        "alternate_pdb_id": "2D0D",
+        "catalytic_ser103_evidence": {
+          "chain_name": "A",
+          "code": "SER",
+          "maps_to_catalytic_nucleophile": true,
+          "present": true,
+          "resid": "103",
+          "residue_node_id": "m_csa:771:residue:4",
+          "roles": [
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "current_selected_pdb_id": "1UK7",
+        "evidence_pointers": {
+          "geometry_feature_row": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json#entries.entry_id=m_csa:771",
+          "retrieval_row": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:771",
+          "selected_pdb_review_plan": "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_selected_pdb_review_plan_1025.json"
+        },
+        "target_fingerprint": "ser_his_acid_hydrolase",
+        "top1_counterevidence_reasons": [],
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8933,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3586
+      },
+      "prior_vivek_review_decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.4385,
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_residue_mapping_review",
+        "rationale": "Hold: selected PDB maps catalytic Ser103 to Ala103; scored Ser34 is oxyanion-hole/electrostatic support, not the catalytic nucleophile. Requires residue mapping or alternate structure before countable import.",
+        "resolution_bucket": "hold_for_residue_mapping_review",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:771",
+        "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+        "label_state": "unlabeled",
+        "rank": 1,
+        "readiness_blockers": [],
+        "recommended_action": "post_noncanonical_alternate_accept_after_prior_vivek_hold_condition_resolved",
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8933
+      },
+      "rank": 1
+    }
+  ],
+  "rows": [
+    {
+      "alternate_pdb_id": "2D0D",
+      "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_residue_mapping_hold_condition",
+      "eligible_for_dedicated_import_gate": true,
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "gate_preview_passed_for_noncanonical_geometry": true,
+      "human_confirmation_required_before_dedicated_gate": false,
+      "not_new_human_expert_review": true,
+      "post_preview_accept_decision": "accept_label",
+      "prior_vivek_review_action": "mark_needs_more_evidence",
+      "target_fingerprint": "ser_his_acid_hydrolase",
+      "top1_counterevidence_reasons": [],
+      "top1_score": 0.8933
+    }
+  ]
+}

@@ -50,6 +50,50 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-23T21:55Z Import Previews: Holo Overrides And m_csa:771 Gate-Clean
+
+An overlapping import-preview run produced the dedicated holo override preview
+artifact set:
+
+```text
+artifacts/v3_mcsa_positive_holo_override_accept3_20260523_*_import_preview_1025.json
+```
+
+The preview adds exactly `m_csa:577`, `m_csa:641`, and `m_csa:897` in the
+preview registry (`691 -> 694`) as automation-curated bronze
+`metal_dependent_hydrolase` labels. The direct safety signals are clean:
+accepted new label count 3, no accepted review gaps, no reaction/substrate
+mismatches, no hard negatives, no near misses, no out-of-scope false
+non-abstentions, and no actionable in-scope failures.
+
+The final generated gate artifacts are clean: `label_factory_gate_check` has no
+blockers, and `label_batch_acceptance_check` has `accepted_for_counting=true`,
+`factory_gate_ready=true`, `baseline_label_count=691`,
+`countable_label_count=694`, and `accepted_new_label_count=3`.
+
+The same overlapping work also emitted a `m_csa:771` import-preview set:
+
+```text
+artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_*_import_preview_1025.json
+artifacts/v3_mcsa_positive_m_csa771_2d0d_accept_decision_20260523.json
+```
+
+This was generated after the holo preview state was materialized, so it is a
+stacked clean preview (`691 -> 694 -> 695`), not a standalone `m_csa:771`
+preview from the canonical 691 registry. The authoritative human decision is
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json`.
+The final generated `m_csa:771` gate artifacts are clean:
+`label_factory_gate_check` has no blockers, and `label_batch_acceptance_check`
+has `accepted_for_counting=true`, `factory_gate_ready=true`,
+`baseline_label_count=694`, `countable_label_count=695`, and
+`accepted_new_label_count=1`.
+
+Canonical labels still remain at 691 in this commit. The next canonical movement
+should be performed as an explicit import step: first import the gate-clean holo
+override packet (`691 -> 694`), then import the gate-clean `m_csa:771` packet
+(`694 -> 695`), then regenerate `v3_label_summary.json`, run CLI validate,
+targeted regression tests, and full label-factory checks.
+
 ### 2026-05-24T02:50Z Agent Output: Holo Overrides Ready For Dedicated Gates
 
 The prior automation left a post-preview accept-decision artifact for the three
