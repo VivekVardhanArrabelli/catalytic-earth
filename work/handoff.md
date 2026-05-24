@@ -50,6 +50,52 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T00:10Z Human Direction: Triage Remaining Review Holds Before Manual Review
+
+Vivek approved moving the remaining review/on-hold rows into an audited
+batching workflow rather than reviewing every row manually. The user referred
+to this as the "remaining 66"; no literal 66-row artifact name is currently
+known. Next agent must first identify the exact intended row set from current
+review-debt artifacts and report if the count differs.
+
+Primary source candidates:
+
+```text
+artifacts/v3_review_debt_summary_1025_preview.json
+artifacts/v3_review_evidence_gaps_1025_preview.json
+artifacts/v3_review_debt_remediation_1025_preview_all.json
+artifacts/v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524.json
+artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json
+artifacts/v3_expert_guidance_amp_nontransfer_and_coupled_plp_cobalamin_20260524.json
+```
+
+Do **not** manually review all rows and do **not** import labels in this triage
+step. Build a compact triage matrix with one row per candidate and these
+fields: `entry_id`, source artifact, current status, blocker bucket, confidence,
+evidence_for, evidence_against, forbidden/review-only evidence, required human
+or expert action, expected import potential, sample-review priority, and
+`would_unblock_if`.
+
+Required buckets:
+
+```text
+clean_likely_positive
+residue_mapping_issue
+apo_or_holo_missing_cofactor
+loose_open_or_interdomain_geometry
+amp_or_nucleotide_nontransfer_context
+coupled_or_missing_schema_family
+wrong_fingerprint_or_future_ontology_family
+true_reject
+already_terminal_no_go
+already_imported_or_resolved
+```
+
+The purpose is quality control at scale: agents classify all rows, humans
+review clean-likely positives, low-confidence rows, and a small representative
+sample from each blocker bucket. Preserve all blocked/rejected decision signal
+for future learned representations.
+
 ### 2026-05-24T00:00Z Expert Guidance: AMP Non-Transfer And Coupled PLP-Cobalamin
 
 Vivek relayed external expert guidance that should be treated as new review
