@@ -1,3 +1,5 @@
+import hashlib
+import csv
 import json
 from collections import Counter
 from pathlib import Path
@@ -7071,6 +7073,859 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertTrue(row["evidence_for_summary"])
             self.assertTrue(row["evidence_against_summary"])
             self.assertTrue(row["visual_focus"])
+
+    def test_mcsa_ai_visual_review_support_index_links_current_surface(
+        self,
+    ) -> None:
+        source = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json"
+        )
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+        )
+        template = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json"
+        )
+        workqueue = _load_json(
+            ARTIFACTS / "v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json"
+        )
+        worksheet_path = (
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv"
+        )
+        with worksheet_path.open("r", encoding="utf-8", newline="") as handle:
+            worksheet_rows = list(csv.DictReader(handle, delimiter="\t"))
+        index = _load_json(
+            ARTIFACTS / "v3_mcsa_ai_visual_review_support_index_20260524.json"
+        )
+
+        metadata = index["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+
+        source_counts = Counter(row["decision"] for row in source["review_items"])
+        self.assertEqual(
+            dict(source_counts),
+            {"accepted": 22, "rejected": 210, "needs_more_evidence": 66},
+        )
+        self.assertEqual(metadata["source_universe_row_count"], 298)
+        self.assertEqual(metadata["accepted_review_signal_count"], 22)
+        self.assertEqual(metadata["rejected_current_target_count"], 210)
+        self.assertEqual(metadata["unresolved_review_hold_count"], 66)
+        self.assertEqual(metadata["exact40_review_count"], 40)
+        self.assertEqual(metadata["clean10_fast_path_count"], 10)
+        self.assertEqual(metadata["nonclean30_strategy_count"], 30)
+        self.assertEqual(metadata["deferred_hold_outside_exact40_count"], 26)
+        self.assertEqual(metadata["deferred26_after_exact40_backlog_count"], 26)
+        self.assertEqual(metadata["exact40_review_workqueue_worksheet_count"], 40)
+        self.assertEqual(metadata["exact40_review_compact_worksheet_count"], 40)
+        self.assertEqual(metadata["deferred26_after_exact40_worksheet_count"], 26)
+        self.assertEqual(metadata["review_surface_readme_count"], 1)
+        self.assertEqual(index["source_universe"]["decision_counts"], source_counts)
+
+        exact40 = matrix["recommended_human_review_plan"][
+            "unique_recommended_review_ids"
+        ]
+        clean10 = matrix["recommended_human_review_plan"][
+            "review_all_clean_likely_positive_ids"
+        ]
+        navigation = index["review_navigation"]
+        self.assertEqual(
+            navigation["recommended_order"],
+            [
+                "exact40_review_workqueue",
+                "exact40_review_workqueue_worksheet",
+                "exact40_review_compact_worksheet",
+                "clean10_fast_review_cards",
+                "nonclean30_strategy",
+                "exact40_decision_template",
+                "deferred_holds_outside_exact40",
+                "deferred26_after_exact40_backlog",
+                "deferred26_after_exact40_worksheet",
+            ],
+        )
+        self.assertEqual(
+            navigation["exact40_review_workqueue"]["entry_ids"],
+            exact40,
+        )
+        self.assertEqual(
+            navigation["exact40_review_workqueue"]["blank_decision_count"],
+            40,
+        )
+        self.assertEqual(
+            navigation["exact40_review_workqueue"]["clean10_fast_path_count"],
+            10,
+        )
+        self.assertEqual(
+            navigation["exact40_review_workqueue"]["nonclean30_strategy_count"],
+            30,
+        )
+        self.assertEqual(
+            navigation["exact40_review_workqueue_worksheet"]["entry_ids"],
+            exact40,
+        )
+        self.assertEqual(
+            navigation["exact40_review_workqueue_worksheet"]["blank_decision_count"],
+            40,
+        )
+        self.assertEqual(
+            navigation["exact40_review_workqueue_worksheet"]["guardrail"],
+            "review_only_not_import_ready_no_automation_decision",
+        )
+        self.assertEqual([row["entry_id"] for row in worksheet_rows], exact40)
+        self.assertEqual(
+            navigation["clean10_fast_review_cards"]["entry_ids"],
+            clean10,
+        )
+        self.assertEqual(
+            navigation["nonclean30_strategy"]["entry_ids"],
+            [entry_id for entry_id in exact40 if entry_id not in set(clean10)],
+        )
+        self.assertEqual(
+            navigation["exact40_decision_template"]["entry_ids"],
+            exact40,
+        )
+        self.assertEqual(
+            navigation["exact40_decision_template"]["blank_decision_count"],
+            40,
+        )
+        self.assertEqual(
+            [row["decision"] for row in template["rows"]],
+            [None] * 40,
+        )
+        self.assertEqual(workqueue["metadata"]["row_count"], 40)
+        self.assertEqual(
+            workqueue["metadata"]["schema_version"],
+            "mcsa_ai_visual_exact40_review_workqueue.v1",
+        )
+        self.assertEqual(workqueue["metadata"]["blank_decision_count"], 40)
+        self.assertEqual(workqueue["metadata"]["pymol_script_exists_count"], 10)
+        self.assertEqual(
+            [row["entry_id"] for row in workqueue["rows"]],
+            exact40,
+        )
+        self.assertEqual(
+            [row["decision_template_current_decision"] for row in workqueue["rows"]],
+            [None] * 40,
+        )
+        self.assertEqual(
+            [row["decision_template_expert_note"] for row in workqueue["rows"]],
+            [""] * 40,
+        )
+        self.assertEqual(
+            workqueue["summary_counts"]["by_recommended_workflow"],
+            {
+                "clean10_fast_visual_review": 10,
+                "expert_biochemistry_boundary_review": 10,
+                "structure_or_pymol_geometry_resolution": 5,
+                "structure_or_holo_alternate_resolution": 5,
+                "future_family_or_schema_route_review": 5,
+                "reject_confirmation_review": 5,
+            },
+        )
+        self.assertEqual(
+            workqueue["summary_counts"]["by_workqueue_phase"],
+            {"clean10_fast_path": 10, "nonclean30_strategy": 30},
+        )
+        self.assertEqual(
+            [row["recommended_workflow"] for row in workqueue["rows"][:10]],
+            ["clean10_fast_visual_review"] * 10,
+        )
+        self.assertTrue(
+            all(
+                row["decision_status"] == "blank_no_decision_made"
+                for row in workqueue["rows"]
+            )
+        )
+        self.assertEqual(
+            navigation["deferred_holds_outside_exact40"]["by_blocker_bucket"],
+            {
+                "apo_or_holo_missing_cofactor": 9,
+                "true_reject": 4,
+                "wrong_fingerprint_or_future_ontology_family": 13,
+            },
+        )
+        self.assertEqual(
+            navigation["deferred_holds_outside_exact40"]["by_confidence"],
+            {"high": 4, "medium": 22},
+        )
+        deferred_matrix_rows = [
+            row for row in matrix["rows"] if row["entry_id"] not in set(exact40)
+        ]
+        deferred = navigation["deferred_holds_outside_exact40"]
+        self.assertEqual(
+            deferred["entry_ids"],
+            [row["entry_id"] for row in deferred_matrix_rows],
+        )
+        self.assertEqual(len(deferred["rows"]), 26)
+        self.assertFalse(set(deferred["entry_ids"]).intersection(exact40))
+        self.assertFalse(set(deferred["entry_ids"]).intersection(clean10))
+        self.assertEqual(
+            deferred["by_defer_lane"],
+            {
+                "defer_future_family_or_schema_route": 13,
+                "defer_holo_or_local_cofactor_evidence": 9,
+                "defer_reject_confirmation_after_representative_review": 4,
+            },
+        )
+        for row in deferred["rows"]:
+            self.assertEqual(row["current_decision"], "needs_more_evidence")
+            self.assertEqual(row["decision_status"], "blank_no_decision_made")
+            self.assertFalse(row["exact40_member"])
+            self.assertFalse(row["clean10_member"])
+            self.assertNotEqual(row["confidence"], "low")
+            self.assertNotEqual(row["blocker_bucket"], "clean_likely_positive")
+            self.assertTrue(row["representative_exact40_ids_for_bucket"])
+            self.assertTrue(row["defer_reason"])
+            self.assertTrue(row["open_after"])
+            self.assertTrue(row["safe_next_action_if_reopened"])
+
+        learning = index["learning_navigation"]
+        self.assertEqual(
+            learning["learning_signal_manifest"]["partition_counts"],
+            {
+                "current_target_hard_negative": 210,
+                "positive_review_signal_review_only": 22,
+                "unresolved_review_hold": 66,
+            },
+        )
+        self.assertEqual(
+            learning["rejected_signal_taxonomy"]["negative_scope"],
+            "hard_negative_for_current_target_only",
+        )
+        self.assertIn(
+            "decision_signal",
+            learning["learning_signal_manifest"]["forbidden_for_prediction_fields"],
+        )
+
+        self.assertEqual(
+            metadata["schema_version"], "mcsa_ai_visual_review_support_index.v1"
+        )
+        next_actions = index["next_recommended_actions"]
+        self.assertEqual(
+            [row["action"] for row in next_actions],
+            [
+                "human_review_clean10_first",
+                "human_review_nonclean30_by_strategy_workflow",
+                "automation_may_only_maintain_review_support_consistency",
+            ],
+        )
+        self.assertEqual(
+            [row["requires_human_decision"] for row in next_actions],
+            [True, True, False],
+        )
+        self.assertEqual(
+            [row["blocked_while_vivek_away"] for row in next_actions],
+            [True, True, False],
+        )
+
+        consistency = index["cross_artifact_consistency"]
+        for key, value in consistency.items():
+            if key.endswith("_count"):
+                self.assertGreaterEqual(value, 0)
+            else:
+                self.assertTrue(value, key)
+        self.assertEqual(consistency["deferred_holds_outside_exact40_count"], 26)
+        self.assertEqual(consistency["clean10_pymol_script_existing_count"], 10)
+        self.assertEqual(consistency["exact40_structure_path_exists_count"], 40)
+        self.assertEqual(consistency["blank_template_decision_count"], 40)
+        self.assertEqual(consistency["workqueue_blank_decision_count"], 40)
+        self.assertEqual(consistency["workqueue_pymol_script_existing_count"], 10)
+        self.assertTrue(consistency["workqueue_matches_exact40_template"])
+        self.assertTrue(consistency["deferred26_backlog_matches_deferred_holds"])
+        self.assertTrue(consistency["workqueue_worksheet_matches_workqueue"])
+        self.assertEqual(consistency["workqueue_worksheet_blank_decision_count"], 40)
+        self.assertEqual(consistency["workqueue_worksheet_guardrail_count"], 40)
+        self.assertTrue(consistency["exact40_compact_worksheet_matches_workqueue"])
+        self.assertEqual(
+            consistency["exact40_compact_worksheet_blank_decision_count"], 40
+        )
+        self.assertEqual(consistency["exact40_compact_worksheet_guardrail_count"], 40)
+        self.assertTrue(consistency["deferred26_worksheet_matches_backlog"])
+        self.assertEqual(consistency["deferred26_worksheet_blank_decision_count"], 26)
+        self.assertEqual(consistency["deferred26_worksheet_guardrail_count"], 26)
+        self.assertTrue(consistency["review_surface_readme_exists"])
+
+        artifact_paths = metadata["source_artifacts"].values()
+        for artifact_path in artifact_paths:
+            self.assertTrue((ROOT / artifact_path).exists(), artifact_path)
+        for catalog_row in index["artifact_catalog"]:
+            self.assertTrue((ROOT / catalog_row["path"]).exists())
+            self.assertTrue(catalog_row["do_not_use_for"])
+
+        self.assertIn("do_not_import_labels", index["forbidden_operations"])
+        self.assertIn("do_not_run_label_import_previews", index["forbidden_operations"])
+        self.assertIn(
+            "do_not_make_biological_accept_reject_calls_without_human_decision",
+            index["forbidden_operations"],
+        )
+
+    def test_mcsa_ai_visual_review_surface_readme_points_at_safe_artifacts(
+        self,
+    ) -> None:
+        readme_path = (
+            ARTIFACTS / "v3_mcsa_ai_visual_review_surface_readme_20260524.md"
+        )
+        text = readme_path.read_text(encoding="utf-8")
+
+        for snippet in [
+            "298 rows",
+            "22 accepted review signals",
+            "210 current-target-only",
+            "66 unresolved",
+            "40 rows, all with blank decisions",
+            "10 clean-likely-positive",
+            "26 rows outside exact40",
+            "695 curated labels",
+            "8 production",
+            "does not authorize label imports",
+            "v3_mcsa_ai_visual_review_support_index_20260524.json",
+            "v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv",
+            "v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv",
+        ]:
+            self.assertIn(snippet, text)
+
+    def test_mcsa_ai_visual_exact40_workqueue_worksheet_is_blank_review_only(
+        self,
+    ) -> None:
+        workqueue = _load_json(
+            ARTIFACTS / "v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json"
+        )
+        worksheet_path = (
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv"
+        )
+        compact_worksheet_path = (
+            ARTIFACTS / "v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv"
+        )
+        with worksheet_path.open("r", encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle, delimiter="\t"))
+        with compact_worksheet_path.open(
+            "r", encoding="utf-8", newline=""
+        ) as handle:
+            compact_rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        self.assertEqual(len(rows), 40)
+        self.assertEqual(
+            [row["entry_id"] for row in rows],
+            [row["entry_id"] for row in workqueue["rows"]],
+        )
+        self.assertEqual(
+            Counter(row["queue_lane"] for row in rows),
+            Counter(workqueue["summary_counts"]["by_queue_lane"]),
+        )
+        self.assertEqual(
+            Counter(row["workqueue_phase"] for row in rows),
+            Counter({"clean10_fast_path": 10, "nonclean30_strategy": 30}),
+        )
+        self.assertEqual([row["decision"] for row in rows], [""] * 40)
+        self.assertEqual([row["reviewer"] for row in rows], [""] * 40)
+        self.assertEqual([row["reviewed_at"] for row in rows], [""] * 40)
+        self.assertEqual([row["expert_note"] for row in rows], [""] * 40)
+        self.assertEqual([row["confidence_override"] for row in rows], [""] * 40)
+        self.assertEqual(
+            Counter(row["pymol_script_exists"] for row in rows),
+            Counter({"true": 10, "false": 30}),
+        )
+        self.assertEqual(
+            Counter(row["review_only_guardrail"] for row in rows),
+            Counter({"review_only_not_import_ready_no_automation_decision": 40}),
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in compact_rows],
+            [row["entry_id"] for row in workqueue["rows"]],
+        )
+        self.assertEqual([row["decision"] for row in compact_rows], [""] * 40)
+        self.assertEqual(
+            Counter(row["no_import_guard"] for row in compact_rows),
+            Counter(
+                {
+                    "review_only_no_label_import_no_import_preview_no_registry_or_fingerprint_edit": 40
+                }
+            ),
+        )
+        for row in rows:
+            self.assertEqual(
+                row["allowed_decisions"],
+                "accepted|rejected|needs_more_evidence|route_future_family",
+            )
+            self.assertTrue(row["primary_next_action"])
+            self.assertTrue(row["required_human_or_expert_action"])
+
+    def test_mcsa_ai_visual_deferred26_worksheet_waits_for_exact40(
+        self,
+    ) -> None:
+        backlog = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json"
+        )
+        worksheet_path = (
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv"
+        )
+        with worksheet_path.open("r", encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        self.assertEqual(len(rows), 26)
+        self.assertEqual(
+            [row["entry_id"] for row in rows],
+            [row["entry_id"] for row in backlog["rows"]],
+        )
+        self.assertEqual(
+            Counter(row["review_timing"] for row in rows),
+            Counter({"review_after_exact40_packet_or_new_bounded_plan": 26}),
+        )
+        self.assertEqual(
+            Counter(row["blocker_bucket"] for row in rows),
+            Counter(backlog["summary_counts"]["by_blocker_bucket"]),
+        )
+        self.assertEqual([row["decision"] for row in rows], [""] * 26)
+        self.assertEqual([row["reviewer"] for row in rows], [""] * 26)
+        self.assertEqual([row["reviewed_at"] for row in rows], [""] * 26)
+        self.assertEqual([row["expert_note"] for row in rows], [""] * 26)
+        self.assertEqual(
+            Counter(row["review_only_guardrail"] for row in rows),
+            Counter({"deferred_review_only_after_exact40_not_import_ready": 26}),
+        )
+        for row in rows:
+            self.assertEqual(
+                row["allowed_future_reviewer_decisions"],
+                "accepted|rejected|needs_more_evidence|route_future_family",
+            )
+            self.assertTrue(row["next_review_only_action"])
+            self.assertTrue(row["required_human_or_expert_action"])
+
+    def test_mcsa_ai_visual_deferred26_backlog_waits_for_exact40(
+        self,
+    ) -> None:
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+        )
+        backlog = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json"
+        )
+        worksheet_path = (
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv"
+        )
+        with worksheet_path.open("r", encoding="utf-8", newline="") as handle:
+            worksheet_rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        exact40 = set(
+            matrix["recommended_human_review_plan"]["unique_recommended_review_ids"]
+        )
+        deferred_matrix_rows = [
+            row for row in matrix["rows"] if row["entry_id"] not in exact40
+        ]
+        deferred_ids = [row["entry_id"] for row in deferred_matrix_rows]
+
+        metadata = backlog["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["source_universe_row_count"], 298)
+        self.assertEqual(metadata["triage_matrix_row_count"], 66)
+        self.assertEqual(metadata["exact40_excluded_review_packet_count"], 40)
+        self.assertEqual(metadata["deferred_backlog_row_count"], 26)
+        self.assertEqual(
+            metadata["schema_version"],
+            "mcsa_ai_visual_deferred26_after_exact40_backlog.v1",
+        )
+
+        rows = backlog["rows"]
+        self.assertEqual(len(rows), 26)
+        self.assertEqual([row["entry_id"] for row in rows], deferred_ids)
+        self.assertEqual(len(worksheet_rows), 26)
+        self.assertEqual([row["entry_id"] for row in worksheet_rows], deferred_ids)
+        self.assertFalse(exact40.intersection(row["entry_id"] for row in rows))
+        self.assertEqual(
+            Counter(row["current_decision"] for row in rows),
+            Counter({"needs_more_evidence": 26}),
+        )
+        self.assertEqual(
+            Counter(row["decision_status"] for row in rows),
+            Counter({"deferred_no_decision_made": 26}),
+        )
+        self.assertEqual(
+            Counter(row["review_timing"] for row in rows),
+            Counter({"review_after_exact40_packet_or_new_bounded_plan": 26}),
+        )
+
+        self.assertEqual(
+            backlog["summary_counts"]["by_blocker_bucket"],
+            {
+                "apo_or_holo_missing_cofactor": 9,
+                "true_reject": 4,
+                "wrong_fingerprint_or_future_ontology_family": 13,
+            },
+        )
+        self.assertEqual(
+            backlog["summary_counts"]["by_confidence"],
+            {"high": 4, "medium": 22},
+        )
+        self.assertEqual(
+            backlog["summary_counts"]["by_expected_import_potential"],
+            {
+                "low_for_current_fingerprint_possible_future_ontology_signal": 13,
+                "medium_if_local_holo_or_cofactor_evidence_is_found": 9,
+                "none_for_current_fingerprint": 4,
+            },
+        )
+        self.assertEqual(
+            backlog["summary_counts"]["by_sample_review_priority"],
+            {"low": 17, "medium": 9},
+        )
+
+        contract = backlog["backlog_contract"]
+        self.assertIn("makes no biological accept/reject calls", contract["decision_rule"])
+        self.assertIn("after the exact40 packet", contract["review_timing_rule"])
+        self.assertIn("Do not import labels", contract["no_import_rule"])
+        self.assertEqual(
+            contract["allowed_future_reviewer_decisions"],
+            ["accepted", "rejected", "needs_more_evidence", "route_future_family"],
+        )
+
+        for row in rows:
+            self.assertEqual(row["current_decision"], "needs_more_evidence")
+            self.assertEqual(row["why_deferred"], "outside_exact40_recommended_human_review_plan_current_run")
+            self.assertTrue(row["required_human_or_expert_action"])
+            self.assertTrue(row["next_review_only_action"])
+            self.assertTrue(row["would_unblock_if"])
+            self.assertTrue(row["evidence_for_summary"])
+            self.assertTrue(row["evidence_against_summary"])
+            self.assertEqual(
+                row["allowed_future_reviewer_decisions"],
+                ["accepted", "rejected", "needs_more_evidence", "route_future_family"],
+            )
+        for row in worksheet_rows:
+            self.assertEqual(row["decision"], "")
+            self.assertEqual(row["reviewer"], "")
+            self.assertEqual(row["reviewed_at"], "")
+            self.assertEqual(row["expert_note"], "")
+            self.assertEqual(
+                row["review_only_guardrail"],
+                "deferred_review_only_after_exact40_not_import_ready",
+            )
+
+        worksheet_path = (
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv"
+        )
+        with worksheet_path.open("r", encoding="utf-8", newline="") as handle:
+            worksheet_rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        self.assertEqual(len(worksheet_rows), 26)
+        self.assertEqual([row["entry_id"] for row in worksheet_rows], deferred_ids)
+        self.assertEqual(
+            Counter(row["review_timing"] for row in worksheet_rows),
+            Counter({"review_after_exact40_packet_or_new_bounded_plan": 26}),
+        )
+        self.assertEqual(
+            Counter(row["blocker_bucket"] for row in worksheet_rows),
+            Counter(
+                {
+                    "apo_or_holo_missing_cofactor": 9,
+                    "true_reject": 4,
+                    "wrong_fingerprint_or_future_ontology_family": 13,
+                }
+            ),
+        )
+        for row in worksheet_rows:
+            self.assertEqual(row["decision"], "")
+            self.assertEqual(row["reviewer"], "")
+            self.assertEqual(row["reviewed_at"], "")
+            self.assertEqual(row["expert_note"], "")
+            self.assertEqual(
+                row["allowed_future_reviewer_decisions"],
+                "accepted|rejected|needs_more_evidence|route_future_family",
+            )
+            self.assertEqual(
+                row["review_only_guardrail"],
+                "deferred_review_only_after_exact40_not_import_ready",
+            )
+
+    def test_mcsa_ai_visual_exact40_workqueue_keeps_decisions_blank(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json"
+        )
+        clean_cards = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_clean10_fast_review_cards_20260524.json"
+        )
+        nonclean = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json"
+        )
+        template = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json"
+        )
+        workqueue = _load_json(
+            ARTIFACTS / "v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json"
+        )
+
+        metadata = workqueue["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["row_count"], 40)
+        self.assertEqual(metadata["clean10_fast_path_count"], 10)
+        self.assertEqual(metadata["nonclean30_strategy_count"], 30)
+        self.assertEqual(metadata["blank_decision_count"], 40)
+        self.assertEqual(metadata["pymol_script_exists_count"], 10)
+        self.assertEqual(metadata["structure_path_exists_count"], 40)
+
+        rows = workqueue["rows"]
+        packet_ids = [row["entry_id"] for row in packet["rows"]]
+        clean_ids = [row["entry_id"] for row in clean_cards["cards"]]
+        nonclean_ids = [row["entry_id"] for row in nonclean["rows"]]
+        self.assertEqual(len(rows), 40)
+        self.assertEqual([row["entry_id"] for row in rows], packet_ids)
+        self.assertEqual([row["entry_id"] for row in rows[:10]], clean_ids)
+        self.assertEqual([row["entry_id"] for row in rows[10:]], nonclean_ids)
+        self.assertEqual(
+            [row["decision"] for row in template["rows"]],
+            [None] * 40,
+        )
+
+        self.assertEqual(
+            workqueue["summary_counts"]["by_workqueue_phase"],
+            {"clean10_fast_path": 10, "nonclean30_strategy": 30},
+        )
+        self.assertEqual(
+            workqueue["summary_counts"]["by_decision_status"],
+            {"blank_no_decision_made": 40},
+        )
+        self.assertEqual(
+            workqueue["summary_counts"]["by_recommended_workflow"],
+            {
+                "clean10_fast_visual_review": 10,
+                "expert_biochemistry_boundary_review": 10,
+                "future_family_or_schema_route_review": 5,
+                "reject_confirmation_review": 5,
+                "structure_or_holo_alternate_resolution": 5,
+                "structure_or_pymol_geometry_resolution": 5,
+            },
+        )
+
+        contract = workqueue["review_contract"]
+        self.assertIn("every decision field remains blank", contract["decision_rule"])
+        self.assertIn("Do not import labels", contract["no_import_rule"])
+        self.assertEqual(
+            contract["allowed_decisions"],
+            ["accepted", "rejected", "needs_more_evidence", "route_future_family"],
+        )
+
+        for artifact_key, artifact_path in metadata["source_artifacts"].items():
+            path = ROOT / artifact_path
+            self.assertTrue(path.exists(), artifact_path)
+            with path.open("rb") as handle:
+                digest = hashlib.sha256(handle.read()).hexdigest()
+            self.assertEqual(digest, metadata["source_sha256"][artifact_key])
+
+        for row in rows:
+            self.assertEqual(row["current_decision"], "needs_more_evidence")
+            self.assertEqual(row["decision_status"], "blank_no_decision_made")
+            self.assertIsNone(row["decision_template_current_decision"])
+            self.assertEqual(row["decision_template_expert_note"], "")
+            self.assertEqual(
+                row["allowed_decisions"],
+                ["accepted", "rejected", "needs_more_evidence", "route_future_family"],
+            )
+            self.assertTrue(row["primary_next_action"])
+            self.assertTrue(row["required_human_or_expert_action"])
+            self.assertTrue(row["reviewer_question"])
+            self.assertTrue(row["would_unblock_if"])
+
+    def test_mcsa_ai_visual_exact40_review_worksheet_is_blank_tsv(
+        self,
+    ) -> None:
+        workqueue = _load_json(
+            ARTIFACTS / "v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json"
+        )
+        worksheet_path = (
+            ARTIFACTS / "v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv"
+        )
+
+        with worksheet_path.open("r", encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        expected_columns = [
+            "workqueue_order",
+            "workqueue_phase",
+            "entry_id",
+            "entry_name",
+            "target_fingerprint_id",
+            "structure_id",
+            "structure_path",
+            "pymol_script_path",
+            "recommended_workflow",
+            "blocker_bucket",
+            "confidence",
+            "current_decision",
+            "decision",
+            "reviewer",
+            "reviewed_at",
+            "expert_note",
+            "confidence_override",
+            "reviewer_question",
+            "primary_next_action",
+            "allowed_decisions",
+            "stop_conditions",
+            "no_import_guard",
+        ]
+        self.assertEqual(rows[0].keys(), dict.fromkeys(expected_columns).keys())
+        self.assertEqual(len(rows), 40)
+        self.assertEqual(
+            [row["entry_id"] for row in rows],
+            [row["entry_id"] for row in workqueue["rows"]],
+        )
+        self.assertEqual(
+            Counter(row["workqueue_phase"] for row in rows),
+            Counter({"clean10_fast_path": 10, "nonclean30_strategy": 30}),
+        )
+        self.assertEqual(
+            Counter(row["recommended_workflow"] for row in rows),
+            Counter(workqueue["summary_counts"]["by_recommended_workflow"]),
+        )
+
+        blank_columns = [
+            "decision",
+            "reviewer",
+            "reviewed_at",
+            "expert_note",
+            "confidence_override",
+        ]
+        for row in rows:
+            for column in blank_columns:
+                self.assertEqual(row[column], "")
+            self.assertEqual(row["current_decision"], "needs_more_evidence")
+            self.assertEqual(
+                row["allowed_decisions"],
+                "accepted | rejected | needs_more_evidence | route_future_family",
+            )
+            self.assertEqual(
+                row["no_import_guard"],
+                "review_only_no_label_import_no_import_preview_no_registry_or_fingerprint_edit",
+            )
+            self.assertTrue(row["reviewer_question"])
+            self.assertTrue(row["primary_next_action"])
+
+        self.assertEqual(
+            sum(1 for row in rows if row["pymol_script_path"]),
+            10,
+        )
+
+        rich_worksheet_path = (
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv"
+        )
+        with rich_worksheet_path.open("r", encoding="utf-8", newline="") as handle:
+            rich_rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        rich_expected_columns = [
+            "workqueue_order",
+            "queue_lane",
+            "workqueue_phase",
+            "decision_template_row",
+            "entry_id",
+            "entry_name",
+            "target_fingerprint_id",
+            "structure_id",
+            "structure_path",
+            "structure_path_exists",
+            "pymol_script_path",
+            "pymol_script_exists",
+            "confidence",
+            "blocker_bucket",
+            "sample_review_priority",
+            "reviewer_question",
+            "primary_next_action",
+            "required_human_or_expert_action",
+            "would_unblock_if",
+            "decision",
+            "reviewer",
+            "reviewed_at",
+            "expert_note",
+            "confidence_override",
+            "allowed_decisions",
+            "review_only_guardrail",
+        ]
+        self.assertEqual(
+            rich_rows[0].keys(),
+            dict.fromkeys(rich_expected_columns).keys(),
+        )
+        self.assertEqual(len(rich_rows), 40)
+        self.assertEqual(
+            [row["entry_id"] for row in rich_rows],
+            [row["entry_id"] for row in workqueue["rows"]],
+        )
+        self.assertEqual(
+            Counter(row["queue_lane"] for row in rich_rows),
+            Counter(workqueue["summary_counts"]["by_recommended_workflow"]),
+        )
+        self.assertEqual(
+            Counter(row["workqueue_phase"] for row in rich_rows),
+            Counter({"clean10_fast_path": 10, "nonclean30_strategy": 30}),
+        )
+        for row in rich_rows:
+            for column in blank_columns:
+                self.assertEqual(row[column], "")
+            self.assertEqual(
+                row["allowed_decisions"],
+                "accepted|rejected|needs_more_evidence|route_future_family",
+            )
+            self.assertEqual(
+                row["review_only_guardrail"],
+                "review_only_not_import_ready_no_automation_decision",
+            )
+            self.assertTrue(row["reviewer_question"])
+            self.assertTrue(row["primary_next_action"])
+            self.assertTrue(row["required_human_or_expert_action"])
+
+        self.assertEqual(
+            sum(1 for row in rich_rows if row["pymol_script_exists"] == "true"),
+            10,
+        )
 
     def test_structure_id_mapping_probe_finds_one_repair_candidate_only(self) -> None:
         probe = _load_json(

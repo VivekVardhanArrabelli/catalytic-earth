@@ -112,6 +112,16 @@ The repository currently contains:
     known producer rows, 40 explicitly unavailable producer rows, 0
     unknown-blocking producer rows, 0 migration-ready rows, and 0
     removal-authorized rows. See `docs/artifact_storage.md`.
+14. A review-only M-CSA AI-visual support surface for the fixed 298-row source
+    universe: 22 accepted review signals, 210 current-target hard negatives,
+    and 66 unresolved review holds. The navigation entry point is
+    `artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json`, which
+    links the exact-66 triage matrix, exact-40 human packet, clean-10 fast
+    review cards, exact-40 workqueue plus TSV worksheet, blank decision
+    template, PyMOL index, learning-signal manifest, rejected-signal taxonomy,
+    non-clean strategy, deferred-26 after-exact40 backlog plus TSV worksheet,
+    and a compact review-surface README without making decisions or authorizing
+    imports.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

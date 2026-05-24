@@ -1,0 +1,2071 @@
+{
+  "backlog_contract": {
+    "allowed_future_reviewer_decisions": [
+      "accepted",
+      "rejected",
+      "needs_more_evidence",
+      "route_future_family"
+    ],
+    "decision_rule": "Rows remain needs_more_evidence; this artifact makes no biological accept/reject calls and does not pre-fill decisions.",
+    "no_import_rule": "Do not import labels or run import previews from this artifact.",
+    "review_timing_rule": "Use only after the exact40 packet is reviewed or a new bounded plan explicitly promotes deferred rows.",
+    "scope": "Review-only backlog for the 26 unresolved M-CSA AI-visual holds outside the exact40 human packet.",
+    "source_artifact_rule": "Derived only from the immutable 66-row triage matrix."
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 695,
+    "canonical_registry_import_performed": false,
+    "created_at": "2026-05-24T18:36:13Z",
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "deferred_backlog_row_count": 26,
+    "exact40_excluded_review_packet_count": 40,
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "review_only_source_artifacts_mutated": false,
+    "schema_version": "mcsa_ai_visual_deferred26_after_exact40_backlog.v1",
+    "source_artifacts": {
+      "triage_matrix_66": "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+    },
+    "source_sha256": {
+      "triage_matrix_66": "66b53ff95fbcc1b548649f659fad807534d17dc8c128f2e2db918fb21104ff60"
+    },
+    "source_universe_decision_counts": {
+      "accepted": 22,
+      "needs_more_evidence": 66,
+      "rejected": 210
+    },
+    "source_universe_row_count": 298,
+    "triage_matrix_row_count": 66
+  },
+  "recommended_after_exact40_order": [
+    "apo_or_holo_missing_cofactor",
+    "wrong_fingerprint_or_future_ontology_family",
+    "true_reject"
+  ],
+  "rows": [
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 1,
+      "entry_id": "m_csa:732",
+      "entry_name": "dCTP deaminase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=7.047",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.5.4.13; residue_count=5",
+        "target_score=0.365 with top1=metal_dependent_hydrolase:0.365",
+        "cofactor_coverage=expected_structure_only; local=[]; structure=['metal_ion']",
+        "remediation_bucket=local_mapping_or_structure_selection_review; priority_score=5.25"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 109,
+      "structure_id": "1XS1",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 13.724,
+        "focus_pair": {
+          "distance_angstrom": 13.724,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:732:residue:2",
+            "residue_number": 126,
+            "roles": [
+              "steric role"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "C",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:732:residue:5",
+            "residue_number": 115,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_732.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 2,
+      "entry_id": "m_csa:558",
+      "entry_name": "non-specific acid phosphatases (class A)",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.3.2; residue_count=4",
+        "target_score=0.3703 with top1=metal_dependent_hydrolase:0.3703",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 110,
+      "structure_id": "1D2T",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 10.252,
+        "focus_pair": {
+          "distance_angstrom": 10.252,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:558:residue:1",
+            "residue_number": 150,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:558:residue:4",
+            "residue_number": 193,
+            "roles": [
+              "enhance reactivity"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_558.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 3,
+      "entry_id": "m_csa:931",
+      "entry_name": "aminoacyl-tRNA hydrolase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.1.29; residue_count=4",
+        "target_score=0.3559 with top1=metal_dependent_hydrolase:0.3559",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 130,
+      "structure_id": "2PTH",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 13.862,
+        "focus_pair": {
+          "distance_angstrom": 13.862,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:931:residue:1",
+            "residue_number": 68,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:931:residue:3",
+            "residue_number": 93,
+            "roles": [
+              "electrostatic stabiliser",
+              "modifies pKa"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_931.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 4,
+      "entry_id": "m_csa:906",
+      "entry_name": "gelatinase A",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,expected_cofactor_not_local,review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=6.055",
+        "selected active site lacks the expected cofactor family"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as metal_dependent_hydrolase. M-CSA has partial metal/hydrolytic support, but class/name evidence is not specific enough for an AI-only acceptance; likely route or review target is future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.24.24; residue_count=4",
+        "target_score=0.4265 with top1=metal_dependent_hydrolase:0.4265",
+        "cofactor_coverage=expected_structure_only; local=[]; structure=['metal_ion']",
+        "remediation_bucket=local_mapping_or_structure_selection_review; priority_score=5.5"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 133,
+      "structure_id": "1QIB",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 10.635,
+        "focus_pair": {
+          "distance_angstrom": 10.635,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:906:residue:1",
+            "residue_number": 125,
+            "roles": [
+              "metal ligand"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:906:residue:4",
+            "residue_number": 116,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_906.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 5,
+      "entry_id": "m_csa:763",
+      "entry_name": "picornain 3C",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=ser_his_acid_hydrolase; EC=3.4.22.28; residue_count=4",
+        "target_score=0.3991 with top1=ser_his_acid_hydrolase:0.3991",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 146,
+      "structure_id": "2BHG",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 9.608,
+        "focus_pair": {
+          "distance_angstrom": 9.608,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:763:residue:2",
+            "residue_number": 85,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ALA",
+            "residue_node_id": "m_csa:763:residue:3",
+            "residue_number": 164,
+            "roles": [
+              "covalent catalysis"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_763.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 6,
+      "entry_id": "m_csa:674",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.5.1.77; residue_count=3",
+        "target_score=0.3718 with top1=metal_dependent_hydrolase:0.3718",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 147,
+      "structure_id": "1UF7",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 9.683,
+        "focus_pair": {
+          "distance_angstrom": 9.683,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:674:residue:1",
+            "residue_number": 46,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "LYS",
+            "residue_node_id": "m_csa:674:residue:2",
+            "residue_number": 126,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_674.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 7,
+      "entry_id": "m_csa:820",
+      "entry_name": "Ulp1 peptidase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.22.68; residue_count=5",
+        "target_score=0.3857 with top1=metal_dependent_hydrolase:0.3857",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 153,
+      "structure_id": "2BKR",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 15.507,
+        "focus_pair": {
+          "distance_angstrom": 15.507,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:820:residue:1",
+            "residue_number": 119,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TRP",
+            "residue_node_id": "m_csa:820:residue:3",
+            "residue_number": 26,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_820.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 8,
+      "entry_id": "m_csa:805",
+      "entry_name": "staphopain",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=transferase/thioester-transfer family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as transferase/thioester-transfer family.",
+        "Target=ser_his_acid_hydrolase; EC=3.4.22.28; residue_count=5",
+        "target_score=0.3808 with top1=ser_his_acid_hydrolase:0.3808",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 157,
+      "structure_id": "1X9Y",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 11.614,
+        "focus_pair": {
+          "distance_angstrom": 11.614,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLN",
+            "residue_node_id": "m_csa:805:residue:2",
+            "residue_number": 203,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:805:residue:4",
+            "residue_number": 306,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_805.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 9,
+      "entry_id": "m_csa:624",
+      "entry_name": "bleomycin hydrolase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.22.40; residue_count=5",
+        "target_score=0.3788 with top1=metal_dependent_hydrolase:0.3788",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 161,
+      "structure_id": "1GCB",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 11.7,
+        "focus_pair": {
+          "distance_angstrom": 11.7,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLN",
+            "residue_node_id": "m_csa:624:residue:3",
+            "residue_number": 67,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:624:residue:4",
+            "residue_number": 369,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_624.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 10,
+      "entry_id": "m_csa:830",
+      "entry_name": "ubiquitinyl hydrolase 1 (peptidase C30 type)",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.19.12; residue_count=4",
+        "target_score=0.386 with top1=metal_dependent_hydrolase:0.386",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 164,
+      "structure_id": "2BX4",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 12.802,
+        "focus_pair": {
+          "distance_angstrom": 12.802,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:830:residue:2",
+            "residue_number": 143,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:830:residue:4",
+            "residue_number": 41,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_830.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 11,
+      "entry_id": "m_csa:971",
+      "entry_name": "2'-hydroxybiphenyl-2-sulfinate desulfinase",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "wide visual focus CA-pair distance=19.035 A"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.13.1.3; residue_count=5",
+        "target_score=0.367 with top1=ser_his_acid_hydrolase:0.367",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 166,
+      "structure_id": "2DE2",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 19.035,
+        "focus_pair": {
+          "distance_angstrom": 19.035,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:971:residue:2",
+            "residue_number": 60,
+            "roles": [
+              "electrostatic stabiliser",
+              "hydrogen bond acceptor",
+              "hydrogen bond donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:971:residue:3",
+            "residue_number": 73,
+            "roles": [
+              "electrostatic stabiliser",
+              "hydrogen bond acceptor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_971.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 12,
+      "entry_id": "m_csa:746",
+      "entry_name": "L-peptidase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.22.46; residue_count=5",
+        "target_score=0.377 with top1=metal_dependent_hydrolase:0.377",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 168,
+      "structure_id": "1QOL",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 11.452,
+        "focus_pair": {
+          "distance_angstrom": 11.452,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:746:residue:1",
+            "residue_number": 18,
+            "roles": [
+              "electrostatic stabiliser",
+              "polar interaction"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:746:residue:4",
+            "residue_number": 120,
+            "roles": [
+              "hydrogen bond acceptor",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_746.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 13,
+      "entry_id": "m_csa:810",
+      "entry_name": "fructose-2,6-bisphosphate 2-phosphatase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=37.165",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.3.46; residue_count=6",
+        "target_score=0.371 with top1=metal_dependent_hydrolase:0.371",
+        "cofactor_coverage=expected_structure_only; local=[]; structure=['metal_ion']",
+        "remediation_bucket=local_mapping_or_structure_selection_review; priority_score=5.25"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 177,
+      "structure_id": "2BIF",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 13.239,
+        "focus_pair": {
+          "distance_angstrom": 13.239,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:810:residue:1",
+            "residue_number": 263,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:810:residue:4",
+            "residue_number": 326,
+            "roles": [
+              "activator",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_810.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 14,
+      "entry_id": "m_csa:964",
+      "entry_name": "intracellular protease",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=ser_his_acid_hydrolase; EC=3.4.22.-; residue_count=6",
+        "target_score=0.3698 with top1=ser_his_acid_hydrolase:0.3698",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 178,
+      "structure_id": "1G2I",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 12.931,
+        "focus_pair": {
+          "distance_angstrom": 12.931,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "C",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:964:residue:1",
+            "residue_number": 74,
+            "roles": [
+              "electrostatic stabiliser",
+              "modifies pKa"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLY",
+            "residue_node_id": "m_csa:964:residue:6",
+            "residue_number": 70,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_964.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 15,
+      "entry_id": "m_csa:789",
+      "entry_name": "ubiquitinyl hydrolase 1 (peptidase C19 type)",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.19.12; residue_count=4",
+        "target_score=0.3803 with top1=metal_dependent_hydrolase:0.3803",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 180,
+      "structure_id": "1NBF",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 11.166,
+        "focus_pair": {
+          "distance_angstrom": 11.166,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:789:residue:1",
+            "residue_number": 11,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:789:residue:3",
+            "residue_number": 257,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_789.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 16,
+      "entry_id": "m_csa:782",
+      "entry_name": "D-stereospecific aminopeptidase (peptidase S12 family)",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.11.19; residue_count=5",
+        "target_score=0.3766 with top1=metal_dependent_hydrolase:0.3766",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=external_cofactor_source_review; priority_score=5.75"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 189,
+      "structure_id": "1EI5",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 13.3,
+        "focus_pair": {
+          "distance_angstrom": 13.3,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASN",
+            "residue_node_id": "m_csa:782:residue:2",
+            "residue_number": 155,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:782:residue:3",
+            "residue_number": 287,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_782.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 17,
+      "entry_id": "m_csa:681",
+      "entry_name": "pectinesterase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.1.11; residue_count=5",
+        "target_score=0.3747 with top1=metal_dependent_hydrolase:0.3747",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=external_cofactor_source_review; priority_score=5.75"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 196,
+      "structure_id": "1GQ8",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 16.324,
+        "focus_pair": {
+          "distance_angstrom": 16.324,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:681:residue:1",
+            "residue_number": 225,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLN",
+            "residue_node_id": "m_csa:681:residue:2",
+            "residue_number": 113,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_681.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 18,
+      "entry_id": "m_csa:747",
+      "entry_name": "gamma-glutamyl hydrolase",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=transferase/thioester-transfer family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as transferase/thioester-transfer family.",
+        "Target=ser_his_acid_hydrolase; EC=3.4.19.9; residue_count=3",
+        "target_score=0.3732 with top1=ser_his_acid_hydrolase:0.3732",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 197,
+      "structure_id": "1L9X",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 11.072,
+        "focus_pair": {
+          "distance_angstrom": 11.072,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:747:residue:1",
+            "residue_number": 243,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "B",
+            "residue_name": "CYS",
+            "residue_node_id": "m_csa:747:residue:2",
+            "residue_number": 131,
+            "roles": [
+              "nucleofuge",
+              "nucleophile",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_747.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 19,
+      "entry_id": "m_csa:529",
+      "entry_name": "phospholipase A2 (group group IVA)",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=49.722",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.1.4; residue_count=5",
+        "target_score=0.3707 with top1=metal_dependent_hydrolase:0.3707",
+        "cofactor_coverage=expected_structure_only; local=[]; structure=['metal_ion']",
+        "remediation_bucket=local_mapping_or_structure_selection_review; priority_score=5.25"
+      ],
+      "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_search_local_holo_or_cofactor_evidence",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "medium",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 199,
+      "structure_id": "1CJY",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 15.972,
+        "focus_pair": {
+          "distance_angstrom": 15.972,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ARG",
+            "residue_node_id": "m_csa:529:residue:1",
+            "residue_number": 200,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:529:residue:5",
+            "residue_number": 549,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_529.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 20,
+      "entry_id": "m_csa:905",
+      "entry_name": "glucan 1,4-alpha-maltohydrolase",
+      "evidence_against_summary": [
+        "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=glycoside hydrolase family",
+        "nearest_expected_ligand_distance_angstrom=10.984",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to glycoside hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.2.1.133; residue_count=3",
+        "target_score=0.3595 with top1=metal_dependent_hydrolase:0.3595",
+        "cofactor_coverage=expected_structure_only; local=[]; structure=['metal_ion']",
+        "remediation_bucket=local_mapping_or_structure_selection_review; priority_score=5.25"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 216,
+      "structure_id": "1QHO",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 12.038,
+        "focus_pair": {
+          "distance_angstrom": 12.038,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:905:residue:1",
+            "residue_number": 228,
+            "roles": [
+              "covalent catalysis"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:905:residue:3",
+            "residue_number": 329,
+            "roles": [
+              "transition state stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_905.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 21,
+      "entry_id": "m_csa:924",
+      "entry_name": "licheninase (glycosyl hydrolase 16 family)",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=glycoside hydrolase family",
+        "nearest_expected_ligand_distance_angstrom=20.268",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to glycoside hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.2.1.73; residue_count=2",
+        "target_score=0.2063 with top1=metal_dependent_hydrolase:0.2063",
+        "cofactor_coverage=expected_structure_only; local=[]; structure=['metal_ion']",
+        "remediation_bucket=local_mapping_or_structure_selection_review; priority_score=7.25"
+      ],
+      "expected_import_potential": "none_for_current_fingerprint",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_confirm_current_target_rejection_boundary",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 236,
+      "structure_id": "2AYH",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 12.083,
+        "focus_pair": {
+          "distance_angstrom": 12.083,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:924:residue:1",
+            "residue_number": 105,
+            "roles": [
+              "covalent catalysis"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:924:residue:2",
+            "residue_number": 109,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_924.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 22,
+      "entry_id": "m_csa:790",
+      "entry_name": "glucan 1,3-beta-glucosidase",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.2.1.58; residue_count=2",
+        "target_score=0.2065 with top1=metal_dependent_hydrolase:0.2065",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=7.75"
+      ],
+      "expected_import_potential": "none_for_current_fingerprint",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_confirm_current_target_rejection_boundary",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 237,
+      "structure_id": "1EX1",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 12.839,
+        "focus_pair": {
+          "distance_angstrom": 12.839,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:790:residue:1",
+            "residue_number": 285,
+            "roles": [
+              "electrostatic stabiliser",
+              "proton shuttle (general acid/base)"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:790:residue:2",
+            "residue_number": 491,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_790.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 23,
+      "entry_id": "m_csa:921",
+      "entry_name": "lysozyme (glycosyl hydrolase 24 family)",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=glycoside hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to glycoside hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.2.1.17; residue_count=2",
+        "target_score=0.2086 with top1=metal_dependent_hydrolase:0.2086",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=7.75"
+      ],
+      "expected_import_potential": "none_for_current_fingerprint",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_confirm_current_target_rejection_boundary",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 238,
+      "structure_id": "206L",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 9.336,
+        "focus_pair": {
+          "distance_angstrom": 9.336,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "ASP",
+            "residue_node_id": "m_csa:921:residue:1",
+            "residue_number": 20,
+            "roles": [
+              "covalent catalysis"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:921:residue:2",
+            "residue_number": 11,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_921.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 24,
+      "entry_id": "m_csa:877",
+      "entry_name": "6-phospho-beta-galactosidase",
+      "evidence_against_summary": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for_summary": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under Ser-His target. Original note: Rejected as ser_his_acid_hydrolase. M-CSA mechanism does not support the current ser_his_acid_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.2.1.85; residue_count=2",
+        "target_score=0.2093 with top1=ser_his_acid_hydrolase:0.2093",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_import_potential": "none_for_current_fingerprint",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_confirm_current_target_rejection_boundary",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 241,
+      "structure_id": "1PBG",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 10.345,
+        "focus_pair": {
+          "distance_angstrom": 10.345,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:877:residue:1",
+            "residue_number": 160,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLU",
+            "residue_node_id": "m_csa:877:residue:2",
+            "residue_number": 375,
+            "roles": [
+              "covalent catalysis"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_877.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 25,
+      "entry_id": "m_csa:814",
+      "entry_name": "cathepsin S",
+      "evidence_against_summary": [
+        "gap_reasons=review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=ser_his_acid_hydrolase; EC=3.4.22.27; residue_count=5",
+        "target_score=0.6879 with top1=ser_his_acid_hydrolase:0.6879",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_label_decision; priority_score=1.0"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 263,
+      "structure_id": "1GLO",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 11.561,
+        "focus_pair": {
+          "distance_angstrom": 11.561,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:814:residue:1",
+            "residue_number": 164,
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "GLN",
+            "residue_node_id": "m_csa:814:residue:2",
+            "residue_number": 19,
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_814.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_future_reviewer_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "deferred_no_decision_made",
+      "deferred_order": 26,
+      "entry_id": "m_csa:598",
+      "entry_name": "streptopain",
+      "evidence_against_summary": [
+        "gap_reasons=review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family"
+      ],
+      "evidence_for_summary": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.4.22.10; residue_count=4",
+        "target_score=0.6004 with top1=ser_his_acid_hydrolase:0.6004",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_label_decision; priority_score=1.0"
+      ],
+      "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+      "forbidden_or_review_only_evidence": [
+        "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+        "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+        "Recommended future family or lane is not a production fingerprint edit.",
+        "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+      ],
+      "next_review_only_action": "after_exact40_review_only_if_needed_preserve_as_future_family_or_schema_signal",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_timing": "review_after_exact40_packet_or_new_bounded_plan",
+      "sample_review_priority": "low",
+      "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "source_review_row_index": 283,
+      "structure_id": "1DKI",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "visual_evidence_summary": {
+        "exact_measured_distance_angstrom": 9.593,
+        "focus_pair": {
+          "distance_angstrom": 9.593,
+          "left": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "TRP",
+            "residue_node_id": "m_csa:598:residue:1",
+            "residue_number": 330,
+            "roles": []
+          },
+          "right": {
+            "atom_name": "CA",
+            "chain_name": "A",
+            "residue_name": "HIS",
+            "residue_node_id": "m_csa:598:residue:3",
+            "residue_number": 313,
+            "roles": [
+              "proton shuttle (general acid/base)"
+            ]
+          }
+        },
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_598.png",
+        "render_status": "rendered",
+        "visual_confirmation": "PyMOL pseudoatom focus render generated from geometry-feature CA coordinates and inspected via contact sheets."
+      },
+      "why_deferred": "outside_exact40_recommended_human_review_plan_current_run",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    }
+  ],
+  "summary_counts": {
+    "by_blocker_bucket": {
+      "apo_or_holo_missing_cofactor": 9,
+      "true_reject": 4,
+      "wrong_fingerprint_or_future_ontology_family": 13
+    },
+    "by_confidence": {
+      "high": 4,
+      "medium": 22
+    },
+    "by_expected_import_potential": {
+      "low_for_current_fingerprint_possible_future_ontology_signal": 13,
+      "medium_if_local_holo_or_cofactor_evidence_is_found": 9,
+      "none_for_current_fingerprint": 4
+    },
+    "by_sample_review_priority": {
+      "low": 17,
+      "medium": 9
+    }
+  }
+}

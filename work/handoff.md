@@ -50,6 +50,88 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T18:13Z Run Target Selected: M-CSA Review Workqueue Surface
+
+STARTED_AT for this run: `2026-05-24T18:13:28Z`. Automation memory was checked
+first; no memory file existed at run start. Stale lock records for non-live
+PIDs were found during the run, and status/process/recent file state was
+inspected before replacement. `git fetch origin` and
+`git pull --ff-only origin main` completed with the checkout already up to date
+at `92f8aa134409993a28a7b6cd69117956d8de1318`. SSH safety was verified:
+`origin` is `git@github.com:VivekVardhanArrabelli/catalytic-earth.git`,
+`core.sshCommand` points to
+`/Users/vivekvardhanarrabelli/.ssh/catalytic_earth_deploy_ed25519`,
+`git ls-remote origin HEAD` returned `92f8aa134409993a28a7b6cd69117956d8de1318`,
+and `git push --dry-run origin main` returned `Everything up-to-date`.
+Startup validation passed before implementation: 917 unit tests and
+`PYTHONPATH=src python -m catalytic_earth.cli validate` at 12 source records,
+8 mechanism fingerprints, 15 ontology families, and 695 curated mechanism
+labels. The only unrelated dirty files remain the pre-existing root-level
+untracked CIF files (`6MO.cif`, `IOD.cif`, `NA.cif`, `O.cif`, `UNL.cif`).
+
+Chosen bounded value-add: finish a review-only M-CSA AI-visual support surface
+that turns the already-built exact-66, exact-40, clean-10, learning-signal,
+rejected-taxonomy, and non-clean strategy artifacts into a practical review
+workqueue. This was the highest-value safe target because the science support
+artifacts already existed, while Vivek's next bottleneck is operational:
+finding the right row, seeing the PyMOL/strategy context, and keeping all
+decisions blank until human review. Confidence call: high, because every output
+is a deterministic join or projection over immutable review-only artifacts and
+does not import labels, run import previews, edit registries/fingerprints,
+change scoring, or make biological accept/reject calls.
+
+Completed safe outputs:
+
+```text
+artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json
+artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json
+artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv
+artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv
+artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json
+artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv
+artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md
+tests/test_automation_small_win_artifacts.py
+README.md
+docs/label_factory.md
+```
+
+Count verification: the fixed AI-visual universe remains exactly 298 rows =
+22 accepted review signals, 210 current-target-only rejects, and 66 unresolved
+`needs_more_evidence` holds. The support surface preserves exact40=40,
+clean10=10, nonclean30=30, deferred26=26, 40 blank exact-40 decisions, 10
+clean-row PyMOL script pointers, and 40 existing exact-40 structure paths. The
+deferred26 backlog remains outside exact40 and is grouped as 9
+apo/holo-local-cofactor deferrals, 13 future-family/schema deferrals, and 4
+reject-confirmation deferrals. The exact40 and deferred TSV worksheets keep
+all decision/reviewer/date columns blank and include no-import guardrails.
+
+Verification run:
+
+```text
+python -m json.tool artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json
+python -m json.tool artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json
+python -m json.tool artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json
+PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_review_support_index_links_current_surface tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_review_surface_readme_points_at_safe_artifacts tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_exact40_workqueue_worksheet_is_blank_review_only tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_deferred26_worksheet_waits_for_exact40 tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_deferred26_backlog_waits_for_exact40 tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_exact40_workqueue_keeps_decisions_blank tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_exact40_review_worksheet_is_blank_tsv
+PYTHONPATH=src python -m unittest discover -s tests
+PYTHONPATH=src python -m catalytic_earth.cli validate
+python -m compileall -q src tests
+git diff --check
+git diff -- data/registries data/fingerprints src/catalytic_earth
+```
+
+Results: full unit discovery passed with 924 tests; CLI validate reported 12
+source records, 8 mechanism fingerprints, 15 ontology families, and 695
+curated mechanism labels. `git diff -- data/registries data/fingerprints
+src/catalytic_earth` was empty. No label import, import preview, curated label
+edit, registry/fingerprint edit, production scoring/threshold change, source
+artifact mutation, migration, upload/removal, LFS/history rewrite, or
+`removal_allowed=true` action occurred.
+
+Next recommended target: do not expand M-CSA review scope while Vivek is away.
+If another no-human run is needed, limit it to read-only consistency checks,
+documentation links, or leakage-safe learned-representation manifests over this
+fixed 298-row surface.
+
 ### 2026-05-24T10:06Z Run Target Selected: AI-Visual Learning Signal Manifest
 
 STARTED_AT for this run: `2026-05-24T10:06:00Z`. The automation lock was

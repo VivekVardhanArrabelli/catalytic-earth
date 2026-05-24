@@ -1236,6 +1236,24 @@ candidates and 33 retain-counterevidence transfer controls, so no production
 rule, threshold change, import gate, or label import is authorized for
 `m_csa:784` or `m_csa:904`.
 
+The current M-CSA AI-assisted visual review support surface is indexed in
+`artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json`. The index is
+review-only navigation over the fixed 298-row source universe: 22 accepted
+review signals, 210 current-target-only rejects, and 66 unresolved
+`needs_more_evidence` holds. It links the exact-66 triage matrix, exact40 and
+clean10 review packets, exact40 review workqueue and TSV worksheet, blank
+decision template, clean10 PyMOL index/cards, learning manifest,
+rejected-signal taxonomy, and non-clean exact40 strategy. It also records the
+26 unresolved holds intentionally outside exact40, grouped as 9 apo/holo or
+local-cofactor evidence
+deferrals, 13 future-family/schema route deferrals, and 4 reject-confirmation
+deferrals, with a deferred TSV worksheet for later sorting after exact40 is
+complete. A compact orientation note is available at
+`artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md`. The index,
+workqueue, worksheets, and README do not authorize label imports, import
+previews, registry edits, fingerprint edits, production scoring changes, or
+automated accept/reject decisions.
+
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
   --remediation artifacts/v3_review_debt_remediation_700.json \

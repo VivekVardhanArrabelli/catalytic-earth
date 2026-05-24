@@ -1,0 +1,2091 @@
+{
+  "artifact_catalog": [
+    {
+      "artifact_key": "source_decisions_298",
+      "do_not_use_for": [
+        "new human decisions",
+        "label import",
+        "prediction features containing review-derived fields"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "role": "fixed AI-assisted visual review source universe",
+      "row_count": 298,
+      "row_set": "all_298_source_rows",
+      "use_next": "Treat only as immutable provenance for support artifacts."
+    },
+    {
+      "artifact_key": "review_surface_readme",
+      "do_not_use_for": [
+        "label import",
+        "automated decisions",
+        "registry or fingerprint changes"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md",
+      "role": "human-readable orientation README for the current review surface",
+      "row_count": 1,
+      "row_set": "review_surface_orientation",
+      "use_next": "Read first when orienting to the exact40 and deferred26 review support artifacts."
+    },
+    {
+      "artifact_key": "triage_matrix_66",
+      "do_not_use_for": [
+        "automatic accept/reject decisions",
+        "label import"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json",
+      "role": "unresolved review-hold triage matrix",
+      "row_count": 66,
+      "row_set": "66_needs_more_evidence_rows",
+      "use_next": "Use as the authoritative source for hold buckets, exact40 membership, and deferred hold context."
+    },
+    {
+      "artifact_key": "exact40_review_packet",
+      "do_not_use_for": [
+        "default accepts",
+        "automated rejection"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json",
+      "role": "bounded human review packet",
+      "row_count": 40,
+      "row_set": "40_recommended_human_review_rows",
+      "use_next": "Review these rows only when a human fills the separate template."
+    },
+    {
+      "artifact_key": "clean10_review_first_packet",
+      "do_not_use_for": [
+        "pre-filled decisions",
+        "label import"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json",
+      "role": "review-first clean-likely-positive packet",
+      "row_count": 10,
+      "row_set": "10_clean_likely_positive_rows",
+      "use_next": "Use only as the compact first-pass row packet; decisions still stay blank until human review."
+    },
+    {
+      "artifact_key": "clean10_pymol_index",
+      "do_not_use_for": [
+        "automated visual decisions",
+        "structure materialization expansion"
+      ],
+      "path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/index.json",
+      "role": "local PyMOL script index for clean10 rows",
+      "row_count": 10,
+      "row_set": "10_clean_likely_positive_rows",
+      "use_next": "Open local PyMOL scripts for human visual inspection of clean10 rows."
+    },
+    {
+      "artifact_key": "clean10_fast_review_cards",
+      "do_not_use_for": [
+        "pre-filled template decisions",
+        "import readiness"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_clean10_fast_review_cards_20260524.json",
+      "role": "first-pass clean-likely-positive review cards",
+      "row_count": 10,
+      "row_set": "10_clean_likely_positive_rows",
+      "use_next": "Start here for the fastest human review path."
+    },
+    {
+      "artifact_key": "nonclean30_strategy",
+      "do_not_use_for": [
+        "row-level biological decisions",
+        "training labels"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+      "role": "workflow sorting for harder exact40 rows",
+      "row_count": 30,
+      "row_set": "exact40_minus_clean10",
+      "use_next": "Use workflow buckets to route harder rows to structure, expert, schema, or reject-confirmation review."
+    },
+    {
+      "artifact_key": "exact40_decision_template",
+      "do_not_use_for": [
+        "automation-filled decisions",
+        "bulk import"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json",
+      "role": "blank human decision template",
+      "row_count": 40,
+      "row_set": "40_recommended_human_review_rows",
+      "use_next": "Fill only by human reviewer action with the allowed decision vocabulary."
+    },
+    {
+      "artifact_key": "learning_signal_manifest_298",
+      "do_not_use_for": [
+        "countable training labels",
+        "features that include review-derived fields"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_learning_signal_manifest_20260524.json",
+      "role": "leakage-aware review signal manifest",
+      "row_count": 298,
+      "row_set": "all_298_source_rows",
+      "use_next": "Use as a review-derived signal map after dropping forbidden fields."
+    },
+    {
+      "artifact_key": "rejected_signal_taxonomy_210",
+      "do_not_use_for": [
+        "global negatives",
+        "future-family positive seeds"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_rejected_signal_taxonomy_20260524.json",
+      "role": "current-target hard-negative taxonomy",
+      "row_count": 210,
+      "row_set": "210_rejected_current_target_rows",
+      "use_next": "Mine as current-target-only hard negatives and future-family route signal."
+    },
+    {
+      "artifact_key": "exact40_review_workqueue",
+      "do_not_use_for": [
+        "pre-filled decisions",
+        "label import",
+        "prediction features containing review workflow fields"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json",
+      "role": "one-stop exact40 human review workqueue",
+      "row_count": 40,
+      "row_set": "40_recommended_human_review_rows",
+      "use_next": "Open this first to route exact40 rows while keeping decisions blank until human review."
+    },
+    {
+      "artifact_key": "exact40_review_workqueue_worksheet",
+      "do_not_use_for": [
+        "automated decisions",
+        "label import",
+        "import preview input without later dedicated gate"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv",
+      "role": "spreadsheet-friendly exact40 review worksheet projection",
+      "row_count": 40,
+      "row_set": "40_recommended_human_review_rows",
+      "use_next": "Open as a tabular helper for human review; keep decision fields blank until Vivek reviews."
+    },
+    {
+      "artifact_key": "exact40_review_compact_worksheet",
+      "do_not_use_for": [
+        "automated decisions",
+        "label import",
+        "import previews without later dedicated gate"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv",
+      "role": "compact exact40 review worksheet projection",
+      "row_count": 40,
+      "row_set": "40_recommended_human_review_rows",
+      "use_next": "Use as a compact TSV helper; the richer workqueue worksheet remains the preferred tabular view."
+    },
+    {
+      "artifact_key": "deferred26_after_exact40_backlog",
+      "do_not_use_for": [
+        "immediate exact40 decisions",
+        "label import",
+        "automated accept/reject calls"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json",
+      "role": "deferred review backlog after exact40",
+      "row_count": 26,
+      "row_set": "66_needs_more_evidence_minus_exact40",
+      "use_next": "Use only after the exact40 packet is reviewed or a new bounded plan promotes deferred rows."
+    },
+    {
+      "artifact_key": "deferred26_after_exact40_worksheet",
+      "do_not_use_for": [
+        "immediate exact40 decisions",
+        "label import",
+        "automated accept/reject calls"
+      ],
+      "path": "artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv",
+      "role": "spreadsheet-friendly deferred26 after-exact40 worksheet projection",
+      "row_count": 26,
+      "row_set": "66_needs_more_evidence_minus_exact40",
+      "use_next": "Use only after exact40 review; do not promote these rows automatically."
+    }
+  ],
+  "cross_artifact_consistency": {
+    "blank_template_decision_count": 40,
+    "clean10_card_pymol_script_existing_count": 10,
+    "clean10_cards_match_clean_packet": true,
+    "clean10_is_exact40_prefix": true,
+    "clean10_pymol_script_existing_count": 10,
+    "decision_template_matches_exact40": true,
+    "deferred26_backlog_matches_deferred_holds": true,
+    "deferred26_worksheet_blank_decision_count": 26,
+    "deferred26_worksheet_guardrail_count": 26,
+    "deferred26_worksheet_matches_backlog": true,
+    "deferred_holds_bucket_representatives_in_exact40": true,
+    "deferred_holds_exclude_clean10": true,
+    "deferred_holds_exclude_low_confidence": true,
+    "deferred_holds_outside_exact40_count": 26,
+    "exact40_compact_worksheet_blank_decision_count": 40,
+    "exact40_compact_worksheet_guardrail_count": 40,
+    "exact40_compact_worksheet_matches_workqueue": true,
+    "exact40_matches_triage_plan": true,
+    "exact40_structure_path_exists_count": 40,
+    "learning_manifest_matches_source_order": true,
+    "nonclean30_is_exact40_minus_clean10": true,
+    "review_surface_readme_exists": true,
+    "taxonomy_matches_rejected_source_order": true,
+    "triage66_matches_source_needs_more_evidence": true,
+    "workqueue_blank_decision_count": 40,
+    "workqueue_clean10_prefix": true,
+    "workqueue_matches_exact40_template": true,
+    "workqueue_nonclean30_suffix": true,
+    "workqueue_pymol_script_existing_count": 10,
+    "workqueue_worksheet_blank_decision_count": 40,
+    "workqueue_worksheet_guardrail_count": 40,
+    "workqueue_worksheet_matches_workqueue": true
+  },
+  "forbidden_operations": [
+    "do_not_import_labels",
+    "do_not_run_label_import_previews",
+    "do_not_edit_curated_mechanism_labels_json",
+    "do_not_edit_production_fingerprints",
+    "do_not_change_scoring_or_thresholds",
+    "do_not_mutate_source_artifacts",
+    "do_not_set_removal_allowed_true",
+    "do_not_upload_remove_externalize_lfs_or_rewrite_artifacts",
+    "do_not_make_biological_accept_reject_calls_without_human_decision"
+  ],
+  "index_contract": {
+    "allowed_human_template_decisions": [
+      "accepted",
+      "rejected",
+      "needs_more_evidence",
+      "route_future_family"
+    ],
+    "decision_rule": "This index makes no biological accept/reject calls and does not pre-fill reviewer decisions.",
+    "no_import_rule": "Do not import labels or run import previews from this artifact.",
+    "prediction_leakage_rule": "Review decisions, routes, notes, and partition labels are navigation/safety metadata, not model features.",
+    "scope": "Review-only navigation over already-created M-CSA AI-assisted visual support artifacts.",
+    "source_artifact_rule": "All source artifacts are treated as immutable inputs; this index is derived only."
+  },
+  "learning_navigation": {
+    "hold_triage_matrix": {
+      "blocker_bucket_counts": {
+        "already_imported_or_resolved": 0,
+        "already_terminal_no_go": 0,
+        "amp_or_nucleotide_nontransfer_context": 5,
+        "apo_or_holo_missing_cofactor": 14,
+        "clean_likely_positive": 10,
+        "coupled_or_missing_schema_family": 0,
+        "loose_open_or_interdomain_geometry": 4,
+        "needs_expert_biochemistry_review": 5,
+        "needs_manual_visual_review": 1,
+        "residue_mapping_issue": 0,
+        "true_reject": 9,
+        "wrong_fingerprint_or_future_ontology_family": 18
+      },
+      "confidence_counts": {
+        "high": 20,
+        "low": 6,
+        "medium": 40
+      },
+      "path": "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json",
+      "row_count": 66
+    },
+    "learning_signal_manifest": {
+      "allowed_join_fields": [
+        "entry_id",
+        "structure_id",
+        "structure_path",
+        "target_fingerprint_id_as_query_condition_only"
+      ],
+      "current_target_training_use_counts": {
+        "exclude_pending_human_review": 66,
+        "hard_negative_for_current_target_only": 210,
+        "positive_review_signal_not_countable_label": 22
+      },
+      "forbidden_for_prediction_fields": [
+        "decision_signal",
+        "learning_signal_partition",
+        "current_target_training_use",
+        "countable_training_label",
+        "future_family_route",
+        "future_family_route_class",
+        "current_target_rejected_not_global_negative",
+        "unresolved_review_hold_context",
+        "review_signal_reason_codes",
+        "leakage_control",
+        "expert_note",
+        "reviewer",
+        "reviewed_at",
+        "review_context",
+        "routing_evidence",
+        "countable_import_ready",
+        "countable_import_blockers",
+        "human_review_required_before_countable_import",
+        "triage_matrix.evidence_for",
+        "triage_matrix.evidence_against",
+        "triage_matrix.counterevidence",
+        "triage_matrix.required_human_or_expert_action",
+        "triage_matrix.would_unblock_if",
+        "exact40_packet.review_group",
+        "exact40_packet.allowed_reviewer_actions",
+        "exact40_decision_template.decision"
+      ],
+      "partition_counts": {
+        "current_target_hard_negative": 210,
+        "positive_review_signal_review_only": 22,
+        "unresolved_review_hold": 66
+      },
+      "path": "artifacts/v3_mcsa_ai_visual_learning_signal_manifest_20260524.json",
+      "row_count": 298
+    },
+    "rejected_signal_taxonomy": {
+      "future_family_route_bucket_counts": {
+        "cys_his_asp_protease_route": 3,
+        "glycoside_hydrolase_route": 14,
+        "heme_peroxide_chemistry_route": 3,
+        "isomerase_mutase_route": 12,
+        "lyase_dehydratase_or_schiff_base_route": 19,
+        "oxidoreductase_redox_route": 34,
+        "phosphoryl_transfer_kinase_route": 36,
+        "plp_dependent_route": 2,
+        "transferase_thioester_route": 31,
+        "unrepresented_future_family_route": 56
+      },
+      "negative_scope": "hard_negative_for_current_target_only",
+      "path": "artifacts/v3_mcsa_ai_visual_rejected_signal_taxonomy_20260524.json",
+      "row_count": 210,
+      "target_fingerprint_counts": {
+        "cobalamin_radical_rearrangement": 1,
+        "flavin_dehydrogenase_reductase": 17,
+        "flavin_monooxygenase": 9,
+        "heme_peroxidase_oxidase": 28,
+        "metal_dependent_hydrolase": 138,
+        "plp_dependent_enzyme": 5,
+        "ser_his_acid_hydrolase": 12
+      }
+    }
+  },
+  "metadata": {
+    "accepted_review_signal_count": 22,
+    "artifact_id": "v3_mcsa_ai_visual_review_support_index_20260524",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 695,
+    "canonical_registry_import_performed": false,
+    "clean10_fast_path_count": 10,
+    "created_at": "2026-05-24T18:36:06Z",
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "deferred26_after_exact40_backlog_count": 26,
+    "deferred26_after_exact40_worksheet_count": 26,
+    "deferred_hold_outside_exact40_count": 26,
+    "exact40_review_compact_worksheet_count": 40,
+    "exact40_review_count": 40,
+    "exact40_review_workqueue_worksheet_count": 40,
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "nonclean30_strategy_count": 30,
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "rejected_current_target_count": 210,
+    "related_review_output_sha256": {
+      "deferred26_after_exact40_backlog": "c72bade164e9ee0c3aa710129021b8a7508cd3f9a5ebfda0f6e2cfc3946f52df",
+      "deferred26_after_exact40_worksheet": "cd814ef06e788bd510ebe94018c9b24d4a6110df67e9b2542f390db88af6ae95",
+      "exact40_review_compact_worksheet": "a9725aed24aaf2e9fbfd35d9818a7870c2213c532726d6d80b33843506fd3da2",
+      "exact40_review_workqueue": "1c75d54e2ce030f8265bc87d3819a71192f582f40ee5ae5f75da8f0110440e15",
+      "exact40_review_workqueue_worksheet": "dfcdde1e035a1463c3c40a6485e63edf0802d57c8ddce268dce2d3db3fd1cdb6",
+      "exact40_review_worksheet_tsv": "a9725aed24aaf2e9fbfd35d9818a7870c2213c532726d6d80b33843506fd3da2",
+      "review_surface_readme": "50f81d2dbf3176837f1985806860790013a7e17c524b43859db3570bef14dc01"
+    },
+    "related_review_outputs": {
+      "deferred26_after_exact40_backlog": "artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json",
+      "deferred26_after_exact40_worksheet": "artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv",
+      "exact40_review_compact_worksheet": "artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv",
+      "exact40_review_workqueue": "artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json",
+      "exact40_review_workqueue_worksheet": "artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv",
+      "review_surface_readme": "artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md"
+    },
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "review_only_source_artifacts_mutated": false,
+    "review_surface_readme_count": 1,
+    "schema_version": "mcsa_ai_visual_review_support_index.v1",
+    "source_artifacts": {
+      "clean10_fast_review_cards": "artifacts/v3_mcsa_ai_visual_clean10_fast_review_cards_20260524.json",
+      "clean10_pymol_index": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/index.json",
+      "clean10_review_first_packet": "artifacts/v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json",
+      "exact40_decision_template": "artifacts/v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json",
+      "exact40_review_packet": "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json",
+      "learning_signal_manifest_298": "artifacts/v3_mcsa_ai_visual_learning_signal_manifest_20260524.json",
+      "nonclean30_strategy": "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+      "rejected_signal_taxonomy_210": "artifacts/v3_mcsa_ai_visual_rejected_signal_taxonomy_20260524.json",
+      "source_decisions_298": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+      "triage_matrix_66": "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+    },
+    "source_sha256": {
+      "clean10_fast_review_cards": "3e4709715ad5fc4153551a2d3bb382dbe114acb982ecf578cea1e11c857c7b04",
+      "clean10_pymol_index": "74d99762e4e05e9c8775fd3a7622ff4e82a427307892bdcbad08d780d9d87b3b",
+      "clean10_review_first_packet": "23c7d0becf8d1829493e48ffddd0c41ede6103e8af27a897c4356725388f3dbc",
+      "deferred26_after_exact40_backlog": "c72bade164e9ee0c3aa710129021b8a7508cd3f9a5ebfda0f6e2cfc3946f52df",
+      "exact40_decision_template": "dac121696f81e863275688c992dbabd6b7be4da7061c165748ce304299b25394",
+      "exact40_review_packet": "55e053c9fcf6d3a918a4ed652f67b01aa95cc02ff25b1d975e6e9906396cd2f4",
+      "exact40_review_workqueue": "3bf13bb549fd3bf52075efff314c539838b60ff8cbca99be1fa8fc4d33c47a2f",
+      "learning_signal_manifest_298": "e1797fb2a62bb4e3d5377bb9ebae9163a1c6693f2d236b2021ede1c1369839a8",
+      "nonclean30_strategy": "427744aff898e75d847eaa6a287aaf584082322abdab8c247318faf158107e59",
+      "rejected_signal_taxonomy_210": "c34187dd1a7ce04b3ad4589fc6b599659776aa4e57ce2c0dc8f565afbab7cf8a",
+      "source_decisions_298": "82b264b9bb5a2270f47742591ecdd320e629e267596d6720f527f393cf8dcfb5",
+      "triage_matrix_66": "66b53ff95fbcc1b548649f659fad807534d17dc8c128f2e2db918fb21104ff60"
+    },
+    "source_universe_row_count": 298,
+    "unresolved_review_hold_count": 66
+  },
+  "next_recommended_actions": [
+    {
+      "action": "human_review_clean10_first",
+      "artifact_key": "clean10_fast_review_cards",
+      "blocked_while_vivek_away": true,
+      "do_not_do": [
+        "do_not_prefill_template_decisions",
+        "do_not_import_labels",
+        "do_not_run_import_preview"
+      ],
+      "expected_output": "human-filled decisions for reviewed clean10 rows in the blank exact40 template",
+      "priority": 1,
+      "requires_human_decision": true
+    },
+    {
+      "action": "human_review_nonclean30_by_strategy_workflow",
+      "artifact_key": "nonclean30_strategy",
+      "blocked_while_vivek_away": true,
+      "do_not_do": [
+        "do_not_auto_reject_true_reject_representatives",
+        "do_not_create_future_fingerprint_labels",
+        "do_not_change_ontology_or_scoring"
+      ],
+      "expected_output": "human or expert disposition for harder exact40 rows after clean10 review",
+      "priority": 2,
+      "requires_human_decision": true
+    },
+    {
+      "action": "automation_may_only_maintain_review_support_consistency",
+      "artifact_key": "review_support_index",
+      "blocked_while_vivek_away": false,
+      "do_not_do": [
+        "do_not_expand_beyond_fixed_298_source_universe",
+        "do_not_mutate_source_artifacts",
+        "do_not_change_curated_labels_fingerprints_or_thresholds"
+      ],
+      "expected_output": "read-only consistency tests, documentation links, or leakage-safe manifests",
+      "priority": 3,
+      "requires_human_decision": false
+    }
+  ],
+  "review_navigation": {
+    "clean10_fast_review_cards": {
+      "all_pymol_scripts_exist": true,
+      "all_structure_paths_exist": true,
+      "blank_decision_count": 10,
+      "entry_ids": [
+        "m_csa:954",
+        "m_csa:661",
+        "m_csa:710",
+        "m_csa:791",
+        "m_csa:626",
+        "m_csa:720",
+        "m_csa:596",
+        "m_csa:668",
+        "m_csa:838",
+        "m_csa:955"
+      ],
+      "next_use": "Use these cards as the first human-review pass; do not infer decisions from their order.",
+      "path": "artifacts/v3_mcsa_ai_visual_clean10_fast_review_cards_20260524.json",
+      "row_count": 10
+    },
+    "deferred26_after_exact40_backlog": {
+      "by_blocker_bucket": {
+        "apo_or_holo_missing_cofactor": 9,
+        "true_reject": 4,
+        "wrong_fingerprint_or_future_ontology_family": 13
+      },
+      "by_confidence": {
+        "high": 4,
+        "medium": 22
+      },
+      "entry_ids": [
+        "m_csa:732",
+        "m_csa:558",
+        "m_csa:931",
+        "m_csa:906",
+        "m_csa:763",
+        "m_csa:674",
+        "m_csa:820",
+        "m_csa:805",
+        "m_csa:624",
+        "m_csa:830",
+        "m_csa:971",
+        "m_csa:746",
+        "m_csa:810",
+        "m_csa:964",
+        "m_csa:789",
+        "m_csa:782",
+        "m_csa:681",
+        "m_csa:747",
+        "m_csa:529",
+        "m_csa:905",
+        "m_csa:924",
+        "m_csa:790",
+        "m_csa:921",
+        "m_csa:877",
+        "m_csa:814",
+        "m_csa:598"
+      ],
+      "next_use": "Use only after exact40 review; it makes no decisions and preserves all rows as needs_more_evidence.",
+      "path": "artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json",
+      "row_count": 26
+    },
+    "deferred26_after_exact40_worksheet": {
+      "blank_decision_count": 26,
+      "by_blocker_bucket": {
+        "apo_or_holo_missing_cofactor": 9,
+        "true_reject": 4,
+        "wrong_fingerprint_or_future_ontology_family": 13
+      },
+      "by_review_timing": {
+        "review_after_exact40_packet_or_new_bounded_plan": 26
+      },
+      "entry_ids": [
+        "m_csa:732",
+        "m_csa:558",
+        "m_csa:931",
+        "m_csa:906",
+        "m_csa:763",
+        "m_csa:674",
+        "m_csa:820",
+        "m_csa:805",
+        "m_csa:624",
+        "m_csa:830",
+        "m_csa:971",
+        "m_csa:746",
+        "m_csa:810",
+        "m_csa:964",
+        "m_csa:789",
+        "m_csa:782",
+        "m_csa:681",
+        "m_csa:747",
+        "m_csa:529",
+        "m_csa:905",
+        "m_csa:924",
+        "m_csa:790",
+        "m_csa:921",
+        "m_csa:877",
+        "m_csa:814",
+        "m_csa:598"
+      ],
+      "guardrail": "deferred_review_only_after_exact40_not_import_ready",
+      "next_use": "Open only after exact40 review or a new bounded plan promotes these rows.",
+      "path": "artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv",
+      "row_count": 26
+    },
+    "deferred_holds_outside_exact40": {
+      "by_blocker_bucket": {
+        "apo_or_holo_missing_cofactor": 9,
+        "true_reject": 4,
+        "wrong_fingerprint_or_future_ontology_family": 13
+      },
+      "by_confidence": {
+        "high": 4,
+        "medium": 22
+      },
+      "by_defer_lane": {
+        "defer_future_family_or_schema_route": 13,
+        "defer_holo_or_local_cofactor_evidence": 9,
+        "defer_reject_confirmation_after_representative_review": 4
+      },
+      "defer_rule": "These rows remain needs_more_evidence holds outside exact40 because exact40 already contains clean rows, all low-confidence rows, and representative rows for each populated blocker bucket.",
+      "entry_ids": [
+        "m_csa:732",
+        "m_csa:558",
+        "m_csa:931",
+        "m_csa:906",
+        "m_csa:763",
+        "m_csa:674",
+        "m_csa:820",
+        "m_csa:805",
+        "m_csa:624",
+        "m_csa:830",
+        "m_csa:971",
+        "m_csa:746",
+        "m_csa:810",
+        "m_csa:964",
+        "m_csa:789",
+        "m_csa:782",
+        "m_csa:681",
+        "m_csa:747",
+        "m_csa:529",
+        "m_csa:905",
+        "m_csa:924",
+        "m_csa:790",
+        "m_csa:921",
+        "m_csa:877",
+        "m_csa:814",
+        "m_csa:598"
+      ],
+      "next_use": "Leave these holds unresolved until the exact40 packet is reviewed or a new bounded plan is created.",
+      "representative_exact40_ids_by_blocker_bucket": {
+        "apo_or_holo_missing_cofactor": [
+          "m_csa:952",
+          "m_csa:794",
+          "m_csa:671",
+          "m_csa:644",
+          "m_csa:832"
+        ],
+        "true_reject": [
+          "m_csa:841",
+          "m_csa:658",
+          "m_csa:827",
+          "m_csa:774",
+          "m_csa:831"
+        ],
+        "wrong_fingerprint_or_future_ontology_family": [
+          "m_csa:793",
+          "m_csa:755",
+          "m_csa:817",
+          "m_csa:597",
+          "m_csa:729"
+        ]
+      },
+      "row_count": 26,
+      "rows": [
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 1,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:732",
+          "entry_name": "dCTP deaminase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.5.4.13; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 109,
+          "structure_id": "1XS1",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 2,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:558",
+          "entry_name": "non-specific acid phosphatases (class A)",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.1.3.2; residue_count=4"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 110,
+          "structure_id": "1D2T",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 3,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:931",
+          "entry_name": "aminoacyl-tRNA hydrolase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.1.1.29; residue_count=4"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 130,
+          "structure_id": "2PTH",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 4,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:906",
+          "entry_name": "gelatinase A",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,expected_cofactor_not_local,review_marked_needs_more_evidence",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as metal_dependent_hydrolase. M-CSA has partial metal/hydrolytic support, but class/name evidence is not specific enough for an AI-only acceptance; likely route or review target is future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.4.24.24; residue_count=4"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 133,
+          "structure_id": "1QIB",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 5,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:763",
+          "entry_name": "picornain 3C",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=ser_his_acid_hydrolase; EC=3.4.22.28; residue_count=4"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 146,
+          "structure_id": "2BHG",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 6,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:674",
+          "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.5.1.77; residue_count=3"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 147,
+          "structure_id": "1UF7",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 7,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:820",
+          "entry_name": "Ulp1 peptidase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.4.22.68; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 153,
+          "structure_id": "2BKR",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 8,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:805",
+          "entry_name": "staphopain",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=transferase/thioester-transfer family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as transferase/thioester-transfer family.",
+            "Target=ser_his_acid_hydrolase; EC=3.4.22.28; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 157,
+          "structure_id": "1X9Y",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 9,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:624",
+          "entry_name": "bleomycin hydrolase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.4.22.40; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 161,
+          "structure_id": "1GCB",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 10,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:830",
+          "entry_name": "ubiquitinyl hydrolase 1 (peptidase C30 type)",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.4.19.12; residue_count=4"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 164,
+          "structure_id": "2BX4",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 11,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:971",
+          "entry_name": "2'-hydroxybiphenyl-2-sulfinate desulfinase",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+            "Target=ser_his_acid_hydrolase; EC=3.13.1.3; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 166,
+          "structure_id": "2DE2",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 12,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:746",
+          "entry_name": "L-peptidase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.4.22.46; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 168,
+          "structure_id": "1QOL",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 13,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:810",
+          "entry_name": "fructose-2,6-bisphosphate 2-phosphatase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.1.3.46; residue_count=6"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 177,
+          "structure_id": "2BIF",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 14,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:964",
+          "entry_name": "intracellular protease",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=ser_his_acid_hydrolase; EC=3.4.22.-; residue_count=6"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 178,
+          "structure_id": "1G2I",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 15,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:789",
+          "entry_name": "ubiquitinyl hydrolase 1 (peptidase C19 type)",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.4.19.12; residue_count=4"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 180,
+          "structure_id": "1NBF",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 16,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:782",
+          "entry_name": "D-stereospecific aminopeptidase (peptidase S12 family)",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.4.11.19; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 189,
+          "structure_id": "1EI5",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 17,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:681",
+          "entry_name": "pectinesterase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.1.1.11; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 196,
+          "structure_id": "1GQ8",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 18,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:747",
+          "entry_name": "gamma-glutamyl hydrolase",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=transferase/thioester-transfer family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as transferase/thioester-transfer family.",
+            "Target=ser_his_acid_hydrolase; EC=3.4.19.9; residue_count=3"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 197,
+          "structure_id": "1L9X",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "apo_or_holo_missing_cofactor",
+          "bucket_defer_rationale": "Review exact40 holo/cofactor representatives first; reopen these rows only if a reusable local-evidence pattern emerges.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_holo_or_local_cofactor_evidence",
+          "defer_order": 19,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:529",
+          "entry_name": "phospholipase A2 (group group IVA)",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.1.1.4; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "medium_if_local_holo_or_cofactor_evidence_is_found",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:952",
+            "m_csa:794",
+            "m_csa:671",
+            "m_csa:644",
+            "m_csa:832"
+          ],
+          "safe_next_action_if_reopened": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+          "sample_review_priority": "medium",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 199,
+          "structure_id": "1CJY",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 20,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:905",
+          "entry_name": "glucan 1,4-alpha-maltohydrolase",
+          "evidence_against_summary": [
+            "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=glycoside hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to glycoside hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.2.1.133; residue_count=3"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 216,
+          "structure_id": "1QHO",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "true_reject",
+          "bucket_defer_rationale": "Review exact40 reject-confirmation representatives first; this bucket name is triage-only and not a final rejection decision.",
+          "clean10_member": false,
+          "confidence": "high",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_reject_confirmation_after_representative_review",
+          "defer_order": 21,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:924",
+          "entry_name": "licheninase (glycosyl hydrolase 16 family)",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=glycoside hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to glycoside hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.2.1.73; residue_count=2"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "none_for_current_fingerprint",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:841",
+            "m_csa:658",
+            "m_csa:827",
+            "m_csa:774",
+            "m_csa:831"
+          ],
+          "safe_next_action_if_reopened": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 236,
+          "structure_id": "2AYH",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+        },
+        {
+          "blocker_bucket": "true_reject",
+          "bucket_defer_rationale": "Review exact40 reject-confirmation representatives first; this bucket name is triage-only and not a final rejection decision.",
+          "clean10_member": false,
+          "confidence": "high",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_reject_confirmation_after_representative_review",
+          "defer_order": 22,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:790",
+          "entry_name": "glucan 1,3-beta-glucosidase",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=metal_dependent_hydrolase; EC=3.2.1.58; residue_count=2"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "none_for_current_fingerprint",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:841",
+            "m_csa:658",
+            "m_csa:827",
+            "m_csa:774",
+            "m_csa:831"
+          ],
+          "safe_next_action_if_reopened": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 237,
+          "structure_id": "1EX1",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+        },
+        {
+          "blocker_bucket": "true_reject",
+          "bucket_defer_rationale": "Review exact40 reject-confirmation representatives first; this bucket name is triage-only and not a final rejection decision.",
+          "clean10_member": false,
+          "confidence": "high",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_reject_confirmation_after_representative_review",
+          "defer_order": 23,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:921",
+          "entry_name": "lysozyme (glycosyl hydrolase 24 family)",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=glycoside hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to glycoside hydrolase family.",
+            "Target=metal_dependent_hydrolase; EC=3.2.1.17; residue_count=2"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "none_for_current_fingerprint",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:841",
+            "m_csa:658",
+            "m_csa:827",
+            "m_csa:774",
+            "m_csa:831"
+          ],
+          "safe_next_action_if_reopened": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 238,
+          "structure_id": "206L",
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+        },
+        {
+          "blocker_bucket": "true_reject",
+          "bucket_defer_rationale": "Review exact40 reject-confirmation representatives first; this bucket name is triage-only and not a final rejection decision.",
+          "clean10_member": false,
+          "confidence": "high",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_reject_confirmation_after_representative_review",
+          "defer_order": 24,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:877",
+          "entry_name": "6-phospho-beta-galactosidase",
+          "evidence_against_summary": [
+            "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under Ser-His target. Original note: Rejected as ser_his_acid_hydrolase. M-CSA mechanism does not support the current ser_his_acid_hydrolase target; route to future unrepresented mechanism family.",
+            "Target=ser_his_acid_hydrolase; EC=3.2.1.85; residue_count=2"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "none_for_current_fingerprint",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:841",
+            "m_csa:658",
+            "m_csa:827",
+            "m_csa:774",
+            "m_csa:831"
+          ],
+          "safe_next_action_if_reopened": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 241,
+          "structure_id": "1PBG",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 25,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:814",
+          "entry_name": "cathepsin S",
+          "evidence_against_summary": [
+            "gap_reasons=review_marked_needs_more_evidence",
+            "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as cysteine protease Cys-His-Asp hydrolase family.",
+            "Target=ser_his_acid_hydrolase; EC=3.4.22.27; residue_count=5"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 263,
+          "structure_id": "1GLO",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        },
+        {
+          "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+          "bucket_defer_rationale": "Review exact40 future-family/schema representatives first; keep these rows outside current-target decisions until the route is clear.",
+          "clean10_member": false,
+          "confidence": "medium",
+          "current_decision": "needs_more_evidence",
+          "decision_status": "blank_no_decision_made",
+          "defer_lane": "defer_future_family_or_schema_route",
+          "defer_order": 26,
+          "defer_reason": "Not selected for exact40 because it is neither clean_likely_positive nor low-confidence, and its blocker bucket already has representative exact40 rows.",
+          "entry_id": "m_csa:598",
+          "entry_name": "streptopain",
+          "evidence_against_summary": [
+            "gap_reasons=review_marked_needs_more_evidence",
+            "recommended_future_family_or_lane=future unrepresented mechanism family"
+          ],
+          "evidence_for_summary": [
+            "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+            "Target=ser_his_acid_hydrolase; EC=3.4.22.10; residue_count=4"
+          ],
+          "exact40_member": false,
+          "expected_import_potential": "low_for_current_fingerprint_possible_future_ontology_signal",
+          "forbidden_or_review_only_evidence": [
+            "AI-assisted visual/contact-sheet review is review-only and is not human approval.",
+            "Entry name, EC numbers, M-CSA prose, and route labels are triage context, not standalone predictive import evidence.",
+            "Recommended future family or lane is not a production fingerprint edit.",
+            "No label import, import preview, production scoring change, or fingerprint edit is authorized by this matrix."
+          ],
+          "open_after": "Complete the exact40 representative rows for this blocker bucket, then create a new bounded review plan if the pattern is still unresolved.",
+          "representative_exact40_ids_for_bucket": [
+            "m_csa:793",
+            "m_csa:755",
+            "m_csa:817",
+            "m_csa:597",
+            "m_csa:729"
+          ],
+          "safe_next_action_if_reopened": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+          "sample_review_priority": "low",
+          "source_artifact": "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json",
+          "source_review_row_index": 283,
+          "structure_id": "1DKI",
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+        }
+      ]
+    },
+    "exact40_decision_template": {
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "blank_decision_count": 40,
+      "entry_ids": [
+        "m_csa:954",
+        "m_csa:661",
+        "m_csa:710",
+        "m_csa:791",
+        "m_csa:626",
+        "m_csa:720",
+        "m_csa:596",
+        "m_csa:668",
+        "m_csa:838",
+        "m_csa:955",
+        "m_csa:591",
+        "m_csa:951",
+        "m_csa:986",
+        "m_csa:927",
+        "m_csa:650",
+        "m_csa:886",
+        "m_csa:952",
+        "m_csa:794",
+        "m_csa:671",
+        "m_csa:644",
+        "m_csa:832",
+        "m_csa:976",
+        "m_csa:847",
+        "m_csa:642",
+        "m_csa:844",
+        "m_csa:751",
+        "m_csa:564",
+        "m_csa:833",
+        "m_csa:780",
+        "m_csa:656",
+        "m_csa:793",
+        "m_csa:755",
+        "m_csa:817",
+        "m_csa:597",
+        "m_csa:729",
+        "m_csa:841",
+        "m_csa:658",
+        "m_csa:827",
+        "m_csa:774",
+        "m_csa:831"
+      ],
+      "next_use": "Only Vivek or an explicit human reviewer should fill these blank decisions.",
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json",
+      "row_count": 40
+    },
+    "exact40_review_compact_worksheet": {
+      "blank_decision_count": 40,
+      "by_workqueue_phase": {
+        "clean10_fast_path": 10,
+        "nonclean30_strategy": 30
+      },
+      "entry_ids": [
+        "m_csa:954",
+        "m_csa:661",
+        "m_csa:710",
+        "m_csa:791",
+        "m_csa:626",
+        "m_csa:720",
+        "m_csa:596",
+        "m_csa:668",
+        "m_csa:838",
+        "m_csa:955",
+        "m_csa:591",
+        "m_csa:951",
+        "m_csa:986",
+        "m_csa:927",
+        "m_csa:650",
+        "m_csa:886",
+        "m_csa:952",
+        "m_csa:794",
+        "m_csa:671",
+        "m_csa:644",
+        "m_csa:832",
+        "m_csa:976",
+        "m_csa:847",
+        "m_csa:642",
+        "m_csa:844",
+        "m_csa:751",
+        "m_csa:564",
+        "m_csa:833",
+        "m_csa:780",
+        "m_csa:656",
+        "m_csa:793",
+        "m_csa:755",
+        "m_csa:817",
+        "m_csa:597",
+        "m_csa:729",
+        "m_csa:841",
+        "m_csa:658",
+        "m_csa:827",
+        "m_csa:774",
+        "m_csa:831"
+      ],
+      "guardrail": "review_only_no_label_import_no_import_preview_no_registry_or_fingerprint_edit",
+      "next_use": "Compact TSV projection recovered with the review-support draft; use the richer workqueue worksheet when possible.",
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv",
+      "row_count": 40
+    },
+    "exact40_review_workqueue": {
+      "blank_decision_count": 40,
+      "clean10_fast_path_count": 10,
+      "entry_ids": [
+        "m_csa:954",
+        "m_csa:661",
+        "m_csa:710",
+        "m_csa:791",
+        "m_csa:626",
+        "m_csa:720",
+        "m_csa:596",
+        "m_csa:668",
+        "m_csa:838",
+        "m_csa:955",
+        "m_csa:591",
+        "m_csa:951",
+        "m_csa:986",
+        "m_csa:927",
+        "m_csa:650",
+        "m_csa:886",
+        "m_csa:952",
+        "m_csa:794",
+        "m_csa:671",
+        "m_csa:644",
+        "m_csa:832",
+        "m_csa:976",
+        "m_csa:847",
+        "m_csa:642",
+        "m_csa:844",
+        "m_csa:751",
+        "m_csa:564",
+        "m_csa:833",
+        "m_csa:780",
+        "m_csa:656",
+        "m_csa:793",
+        "m_csa:755",
+        "m_csa:817",
+        "m_csa:597",
+        "m_csa:729",
+        "m_csa:841",
+        "m_csa:658",
+        "m_csa:827",
+        "m_csa:774",
+        "m_csa:831"
+      ],
+      "next_use": "Use as the one-stop exact40 queue; fill decisions only in the human template after review.",
+      "nonclean30_strategy_count": 30,
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json",
+      "pymol_script_existing_count": 10,
+      "row_count": 40
+    },
+    "exact40_review_workqueue_worksheet": {
+      "blank_decision_count": 40,
+      "by_queue_lane": {
+        "clean10_fast_visual_review": 10,
+        "expert_biochemistry_boundary_review": 10,
+        "future_family_or_schema_route_review": 5,
+        "reject_confirmation_review": 5,
+        "structure_or_holo_alternate_resolution": 5,
+        "structure_or_pymol_geometry_resolution": 5
+      },
+      "clean10_fast_path_count": 10,
+      "entry_ids": [
+        "m_csa:954",
+        "m_csa:661",
+        "m_csa:710",
+        "m_csa:791",
+        "m_csa:626",
+        "m_csa:720",
+        "m_csa:596",
+        "m_csa:668",
+        "m_csa:838",
+        "m_csa:955",
+        "m_csa:591",
+        "m_csa:951",
+        "m_csa:986",
+        "m_csa:927",
+        "m_csa:650",
+        "m_csa:886",
+        "m_csa:952",
+        "m_csa:794",
+        "m_csa:671",
+        "m_csa:644",
+        "m_csa:832",
+        "m_csa:976",
+        "m_csa:847",
+        "m_csa:642",
+        "m_csa:844",
+        "m_csa:751",
+        "m_csa:564",
+        "m_csa:833",
+        "m_csa:780",
+        "m_csa:656",
+        "m_csa:793",
+        "m_csa:755",
+        "m_csa:817",
+        "m_csa:597",
+        "m_csa:729",
+        "m_csa:841",
+        "m_csa:658",
+        "m_csa:827",
+        "m_csa:774",
+        "m_csa:831"
+      ],
+      "guardrail": "review_only_not_import_ready_no_automation_decision",
+      "next_use": "Open as a spreadsheet-friendly view of exact40; blank decision columns are for human review only.",
+      "nonclean30_strategy_count": 30,
+      "path": "artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv",
+      "row_count": 40
+    },
+    "nonclean30_strategy": {
+      "entry_ids": [
+        "m_csa:591",
+        "m_csa:951",
+        "m_csa:986",
+        "m_csa:927",
+        "m_csa:650",
+        "m_csa:886",
+        "m_csa:952",
+        "m_csa:794",
+        "m_csa:671",
+        "m_csa:644",
+        "m_csa:832",
+        "m_csa:976",
+        "m_csa:847",
+        "m_csa:642",
+        "m_csa:844",
+        "m_csa:751",
+        "m_csa:564",
+        "m_csa:833",
+        "m_csa:780",
+        "m_csa:656",
+        "m_csa:793",
+        "m_csa:755",
+        "m_csa:817",
+        "m_csa:597",
+        "m_csa:729",
+        "m_csa:841",
+        "m_csa:658",
+        "m_csa:827",
+        "m_csa:774",
+        "m_csa:831"
+      ],
+      "next_use": "Route rows by workflow before filling any decision template fields.",
+      "path": "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+      "row_count": 30,
+      "workflow_counts": {
+        "expert_biochemistry_boundary_review": 10,
+        "future_family_or_schema_route_review": 5,
+        "reject_confirmation_review": 5,
+        "structure_or_holo_alternate_resolution": 5,
+        "structure_or_pymol_geometry_resolution": 5
+      }
+    },
+    "recommended_order": [
+      "exact40_review_workqueue",
+      "exact40_review_workqueue_worksheet",
+      "exact40_review_compact_worksheet",
+      "clean10_fast_review_cards",
+      "nonclean30_strategy",
+      "exact40_decision_template",
+      "deferred_holds_outside_exact40",
+      "deferred26_after_exact40_backlog",
+      "deferred26_after_exact40_worksheet"
+    ]
+  },
+  "source_universe": {
+    "accepted_signal": {
+      "count": 22,
+      "status": "review signal only; no new imports authorized by this index"
+    },
+    "decision_counts": {
+      "accepted": 22,
+      "needs_more_evidence": 66,
+      "rejected": 210
+    },
+    "fixed_source_rule": "The active M-CSA AI-visual universe is exactly these 298 rows, not broad 1025 review debt.",
+    "rejected_signal": {
+      "count": 210,
+      "status": "current-target hard negatives only; never global negatives"
+    },
+    "review_hold_signal": {
+      "count": 66,
+      "status": "unresolved holds requiring human or expert action before any later gate"
+    },
+    "row_count": 298
+  }
+}

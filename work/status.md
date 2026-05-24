@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 303
-- Measured elapsed time: 9146.7 minutes (152.44 hours)
+- Entries: 304
+- Measured elapsed time: 9187.3 minutes (153.12 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2137.3 measured minutes (35.62 hours)
+- v3: 2177.9 measured minutes (36.30 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3292
-- Evidence references logged: 2713
+- Artifact references logged: 3305
+- Evidence references logged: 2720
 
 ## Recent Entries
-
-### 2026-05-22T23:08:25.796026+00:00 - ops
-
-- Task: Final validation for PyMOL queue closure
-- Time mode: measured
-- Measured minutes: 10.25
-- Started: 2026-05-22T22:58:15Z
-- Ended: 2026-05-22T23:08:30Z
-- Artifacts: src/catalytic_earth/pymol_review.py, tests/test_pymol_review.py, artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json, artifacts/v3_artifact_storage_inventory_1025.json, work/progress_log.jsonl, work/status.md
-- Evidence: normalized newly materialized PyMOL mmCIF sidecars for diff-check-safe committed review artifacts, materialization SHA-256 rows match local normalized coordinate files, 893-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, artifact migration dry-run passed with removal_allowed=0, git diff check passed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-23T18:03:35.801938+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md
 - Evidence: startup 911-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, source integrity verified at 298 rows with accepted 22 rejected 210 needs_more_evidence 66, manifest exact target matched the 66 source rows in order, accepted and rejected source rows excluded with zero overlap, triage matrix bucket counts sum to 66 and confidence counts sum to 66, human review plan estimates maximum 40 rows, targeted exact-66 artifact test passed, final 912-test unit discovery passed, compileall passed, CLI validate passed with 695 labels and 8 fingerprints, git diff check passed
 - Notes: No label import import preview registry edit fingerprint edit production scoring change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred; pre-existing untracked CIF files left untouched.
+
+### 2026-05-24T18:47:30.176583+00:00 - v3
+
+- Task: M-CSA AI-visual review support surface
+- Time mode: measured
+- Measured minutes: 40.633
+- Started: 2026-05-24T18:06:32Z
+- Ended: 2026-05-24T18:47:10Z
+- Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: fixed 298-row source universe preserved as 22 accepted review signals plus 210 current-target rejects plus 66 unresolved holds, exact40 workqueue has 40 blank-decision rows split into 10 clean fast-path and 30 non-clean strategy rows, deferred26 backlog remains outside exact40 with 9 cofactor deferrals plus 13 future-family/schema deferrals plus 4 reject-confirmation deferrals, TSV worksheets keep decision reviewer date note columns blank, targeted review-support tests passed and full 924-test unit discovery passed, CLI validate passed at 695 curated labels and 8 production fingerprints, compileall JSON TSV and git diff guards passed with no registry fingerprint or scoring diff
+- Notes: Pre-existing root-level CIF files were left untouched; no upload removal migration LFS history rewrite or removal_allowed=true action occurred.
 
 ## Expectation Updates
 
@@ -363,6 +363,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T03:55:03.938943+00:00: Do not repeat the nine-row M-CSA blocker loop without new evidence, production-rule work, or an explicit schema/fingerprint task.
 - 2026-05-24T04:58:59.872641+00:00: Next run should build a one-row derived review-only repair rerun for m_csa:946 using 5XD7 and keep m_csa:930 blocked until Q9ZFQ5 evidence exists.
 - 2026-05-24T05:54:43.004965+00:00: Next automation should support human review of the 40-row subset before any later dedicated gate or import-preview work.
+- 2026-05-24T18:47:30.176583+00:00: Next substantive step is human review of clean10 then exact40; while Vivek is away only maintain consistency or docs around the fixed 298-row support surface.
 
 ## Scope Adjustments
 
@@ -549,3 +550,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T03:55:03.938943+00:00: Closed the current-evidence loop for the nine remaining Vivek-reviewed M-CSA follow-up blockers without importing labels.
 - 2026-05-24T04:58:59.872641+00:00: Decision-trace signal is now reusable and the exact-mapping blocker class has a one-row actionable repair target without reopening the terminal nine holds.
 - 2026-05-24T05:54:43.004965+00:00: Built only the exact pinned 66-row needs_more_evidence matrix and kept broad 1025 review debt enrichment-only.
+- 2026-05-24T18:47:30.176583+00:00: Added review-only navigation and worksheets without label import import previews registry edits fingerprint edits scoring changes or source artifact mutation.
