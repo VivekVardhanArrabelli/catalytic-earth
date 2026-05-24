@@ -50,6 +50,25 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-23T22:05Z Canonical Import: Three Holo Overrides Landed
+
+The gate-clean holo override packet has been applied to the canonical registry:
+`m_csa:577`, `m_csa:641`, and `m_csa:897` are now countable
+`metal_dependent_hydrolase` labels. Canonical label count is now 694. This is
+the expected movement from the accepted holo override preview and uses the
+committed gate packet:
+
+```text
+artifacts/v3_mcsa_positive_holo_override_accept3_20260523_*_import_preview_1025.json
+```
+
+`m_csa:771` is **not** imported yet. Its stacked preview gate is clean from the
+694-label baseline, but the canonical registry still lacks `m_csa:771`. Next
+agent should import exactly `m_csa:771` from
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json`
+or the corresponding clean preview packet, then verify the expected movement
+`694 -> 695`.
+
 ### 2026-05-23T21:55Z Import Previews: Holo Overrides And m_csa:771 Gate-Clean
 
 An overlapping import-preview run produced the dedicated holo override preview
