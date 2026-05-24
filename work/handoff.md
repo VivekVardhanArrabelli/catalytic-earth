@@ -50,6 +50,64 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T08:52Z Exact 40 Packet Reverified From origin/main
+
+STARTED_AT for this run: `2026-05-24T08:48:55Z`. The automation lock was
+acquired after removing this run's initial stale self-lock record with status
+inspection. `git fetch origin` and `git pull --ff-only origin main` completed,
+and the checkout was already up to date at
+`eadfc50 Record exact40 packet verification handoff`. SSH safety was verified:
+`origin` uses `git@github.com:VivekVardhanArrabelli/catalytic-earth.git`,
+`core.sshCommand` points to
+`/Users/vivekvardhanarrabelli/.ssh/catalytic_earth_deploy_ed25519`,
+`git ls-remote origin HEAD` returned `eadfc5091456c16f777613f98e210e6056ae498d`,
+and `git push --dry-run origin main` returned `Everything up-to-date`. The only
+pre-existing dirty worktree entries remain untracked root-level CIF files
+(`6MO.cif`, `IOD.cif`, `NA.cif`, `O.cif`, `UNL.cif`), left untouched.
+
+Required review-only outputs are still present and unchanged in the latest
+pushed state:
+
+```text
+artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json
+artifacts/v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json
+artifacts/v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json
+artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/index.json
+artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/open_clean10_pymol.sh
+```
+
+Count and contract verification: the requested exact 40 IDs match
+`recommended_human_review_plan.unique_recommended_review_ids` in
+`artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json` exactly
+and in order; the exact-40 packet has 40 rows; the clean-first packet has the
+10 clean-likely-positive rows; the blank human decision template has 40 rows;
+and the PyMOL index has 10 clean-row scripts with zero missing local structure
+paths. The exact-40 regression test and a one-off contract check both passed.
+All rows remain review-only with explicit allowed reviewer actions and no
+default accept decisions.
+
+Verification run:
+
+```text
+PYTHONPATH=src python -m unittest discover -s tests
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_exact40_ai_visual_human_review_packets_are_review_only
+one-off exact40 artifact contract check
+```
+
+Results: 913 unit tests passed; targeted exact-40 test passed; validate
+reported 12 source records, 8 mechanism fingerprints, 15 ontology families,
+and 695 curated mechanism labels. No label import, import preview, source
+artifact mutation, decision artifact mutation, registry edit, production
+fingerprint edit, production scoring change, upload/removal/migration, LFS,
+history rewrite, broad structure materialization, or `removal_allowed=true`
+action was performed. Confidence call: high that the exact-40 review packet,
+clean-10 fast packet, blank decision template, and clean-10 PyMOL index remain
+pinned to the completed 66-row triage matrix without altering countable science
+state. Next action for Vivek: review the clean-10 packet first, then fill the
+exact-40 decision template only with `accepted`, `rejected`,
+`needs_more_evidence`, or `route_future_family`.
+
 ### 2026-05-24T07:52Z Exact 40 Packet Verified From Latest Pushed State
 
 STARTED_AT for this run: `2026-05-24T07:47:56Z`. The automation lock was
