@@ -6328,6 +6328,156 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertTrue(row["forbidden_or_review_only_evidence"])
             self.assertTrue(row["would_unblock_if"])
 
+    def test_exact_66_ai_visual_triage_matrix_pins_review_hold_rows(self) -> None:
+        source = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json"
+        )
+        manifest = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_66_source_manifest_20260524.json"
+        )
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+        )
+
+        source_counts = {}
+        for item in source["review_items"]:
+            source_counts[item["decision"]] = source_counts.get(item["decision"], 0) + 1
+        expected_counts = {"accepted": 22, "rejected": 210, "needs_more_evidence": 66}
+        self.assertEqual(len(source["review_items"]), 298)
+        self.assertEqual(source_counts, expected_counts)
+        self.assertEqual(manifest["decision_counts"], expected_counts)
+        self.assertEqual(manifest["exact_next_target"]["row_count"], 66)
+
+        rows = matrix["rows"]
+        self.assertEqual(len(rows), 66)
+        target_ids = [row["entry_id"] for row in rows]
+        self.assertEqual(target_ids, manifest["exact_next_target"]["ids"])
+
+        accepted_ids = {
+            row["entry_id"]
+            for row in source["review_items"]
+            if row["decision"] == "accepted"
+        }
+        rejected_ids = {
+            row["entry_id"]
+            for row in source["review_items"]
+            if row["decision"] == "rejected"
+        }
+        self.assertFalse(accepted_ids.intersection(target_ids))
+        self.assertFalse(rejected_ids.intersection(target_ids))
+
+        metadata = matrix["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+
+        integrity = matrix["source_integrity"]
+        self.assertEqual(integrity["source_total_rows"], 298)
+        self.assertEqual(integrity["source_decision_counts"], expected_counts)
+        self.assertEqual(integrity["target_row_count"], 66)
+        self.assertEqual(integrity["accepted_source_rows_excluded_count"], 22)
+        self.assertEqual(integrity["rejected_source_rows_excluded_count"], 210)
+        self.assertEqual(integrity["accepted_target_overlap"], [])
+        self.assertEqual(integrity["rejected_target_overlap"], [])
+        self.assertEqual(integrity["post_clean9_trace_overlap"], [])
+        self.assertEqual(integrity["terminal_exact_mapping_overlap"], [])
+        self.assertTrue(integrity["broad_review_debt_used_only_for_enrichment"])
+
+        required_fields = set(matrix["triage_contract"]["required_row_fields"])
+        allowed_buckets = set(matrix["triage_contract"]["allowed_blocker_buckets"])
+        by_bucket = {bucket: 0 for bucket in allowed_buckets}
+        by_confidence = {"high": 0, "medium": 0, "low": 0}
+        for row in rows:
+            self.assertTrue(required_fields.issubset(row))
+            self.assertEqual(row["current_decision"], "needs_more_evidence")
+            self.assertIn(row["blocker_bucket"], allowed_buckets)
+            self.assertIn(row["confidence"], by_confidence)
+            self.assertTrue(row["preserve_for_learning"])
+            self.assertTrue(row["evidence_for"])
+            self.assertTrue(row["evidence_against"])
+            self.assertTrue(row["visual_evidence_summary"])
+            self.assertTrue(row["forbidden_or_review_only_evidence"])
+            self.assertTrue(row["required_human_or_expert_action"])
+            self.assertTrue(row["expected_import_potential"])
+            self.assertTrue(row["would_unblock_if"])
+            by_bucket[row["blocker_bucket"]] += 1
+            by_confidence[row["confidence"]] += 1
+
+        self.assertEqual(
+            matrix["summary_counts"]["by_bucket"],
+            {
+                "clean_likely_positive": 10,
+                "residue_mapping_issue": 0,
+                "apo_or_holo_missing_cofactor": 14,
+                "loose_open_or_interdomain_geometry": 4,
+                "amp_or_nucleotide_nontransfer_context": 5,
+                "coupled_or_missing_schema_family": 0,
+                "wrong_fingerprint_or_future_ontology_family": 18,
+                "true_reject": 9,
+                "needs_manual_visual_review": 1,
+                "needs_expert_biochemistry_review": 5,
+                "already_terminal_no_go": 0,
+                "already_imported_or_resolved": 0,
+            },
+        )
+        self.assertEqual(
+            matrix["summary_counts"]["by_confidence_tier"],
+            {"high": 20, "medium": 40, "low": 6},
+        )
+        self.assertEqual(
+            sum(matrix["summary_counts"]["by_bucket"].values()),
+            66,
+        )
+        self.assertEqual(
+            sum(matrix["summary_counts"]["by_confidence_tier"].values()),
+            66,
+        )
+
+        plan = matrix["recommended_human_review_plan"]
+        clean_ids = [
+            row["entry_id"]
+            for row in rows
+            if row["blocker_bucket"] == "clean_likely_positive"
+        ]
+        low_confidence_ids = [
+            row["entry_id"] for row in rows if row["confidence"] == "low"
+        ]
+        self.assertEqual(plan["review_all_clean_likely_positive_ids"], clean_ids)
+        self.assertEqual(plan["review_all_low_confidence_ids"], low_confidence_ids)
+        self.assertEqual(
+            len(set(plan["unique_recommended_review_ids"])),
+            plan["estimated_maximum_human_rows_to_review"],
+        )
+        self.assertEqual(plan["estimated_maximum_human_rows_to_review"], 40)
+        for entry_id in clean_ids + low_confidence_ids:
+            self.assertIn(entry_id, plan["unique_recommended_review_ids"])
+
+        reps_by_bucket = plan["representative_ids_by_blocker_bucket"]
+        for bucket, bucket_count in by_bucket.items():
+            reps = reps_by_bucket[bucket]
+            self.assertTrue(set(reps).issubset(target_ids))
+            if bucket_count == 0:
+                self.assertEqual(reps, [])
+            elif bucket == "clean_likely_positive":
+                self.assertEqual(reps, clean_ids)
+            elif bucket_count == 1:
+                self.assertEqual(len(reps), 1)
+            else:
+                self.assertGreaterEqual(len(reps), 2)
+                self.assertLessEqual(len(reps), 5)
+
     def test_structure_id_mapping_probe_finds_one_repair_candidate_only(self) -> None:
         probe = _load_json(
             ARTIFACTS

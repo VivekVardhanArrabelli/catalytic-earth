@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 302
-- Measured elapsed time: 9134.3 minutes (152.24 hours)
+- Entries: 303
+- Measured elapsed time: 9146.7 minutes (152.44 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2124.9 measured minutes (35.41 hours)
+- v3: 2137.3 measured minutes (35.62 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3289
-- Evidence references logged: 2701
+- Artifact references logged: 3292
+- Evidence references logged: 2713
 
 ## Recent Entries
-
-### 2026-05-22T22:58:31.171771+00:00 - v3
-
-- Task: Drain M-CSA PyMOL materializable review queue
-- Time mode: measured
-- Measured minutes: 37.117
-- Started: 2026-05-22T22:21:08Z
-- Ended: 2026-05-22T22:58:15Z
-- Artifacts: src/catalytic_earth/pymol_review.py, src/catalytic_earth/cli.py, src/catalytic_earth/artifact_storage.py, tests/test_pymol_review.py, tests/test_artifact_storage.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_mcsa_pymol_all_materializable_structure_path_closure_20260522.json, artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json, artifacts/v3_post_mcsa_pymol_all_materializable_closure_review_only_zero_import_gate_20260522.json, artifacts/v3_artifact_storage_inventory_1025.json, artifacts/v3_artifact_producer_consumer_manifest_1025.json, artifacts/v3_artifact_migration_execution_1025.json, artifacts/v3_artifact_admission_guard_1025.json, README.md, docs/label_factory.md, docs/artifact_storage.md, work/handoff.md, work/scope.md, work/status.md
-- Evidence: startup 887-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, reusable PyMOL materialization CLI selected frozen tranches before download, 317 selected/review-context mmCIF sidecars materialized with 0 failures, final queue has 298 PyMOL-ready rows and 298 verified focus CA atom selections, 298-row dry-run decision batch stays non-countable, final blocker report has 0 next structure-materialization candidates and 23 exact mapping blockers, review-only zero-import gates passed, storage inventory refreshed to 113 large rows with 0 unknown-blocking producers and removal_allowed=0, compileall passed, 893-test unit discovery passed, CLI validate passed, artifact migration dry-run with local files passed
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred. Stopped expansion because the structure-materializable PyMOL queue is drained; remaining rows need mapping repair or human review.
 
 ### 2026-05-22T23:08:25.796026+00:00 - ops
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json, artifacts/v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524.json, artifacts/v3_mcsa_pymol_structure_id_mapping_repair_probe_m_csa930_946_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/progress_log.jsonl, work/status.md
 - Evidence: startup 908-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, post-clean9 22-row decision trace preserves 13 imported rows and 9 terminal blockers with 0 new import eligibility, 23-row PyMOL exact CA atom-pair distance mapping tranche made terminal current-evidence no-go, m_csa946 RCSB 5XD7 maps H2IFX0 all six requested residues and yields 18.663 A longest CA pair, m_csa930 2PIA maps P33164 not requested Q9ZFQ5 so remains blocked, 911-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed in tmp, git diff check passed
 - Notes: No label import registry edit fingerprint edit production scoring change threshold change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred; pre-existing untracked CIF files left untouched.
+
+### 2026-05-24T05:54:43.004965+00:00 - v3
+
+- Task: Exact 66 M-CSA AI-visual review-hold triage matrix
+- Time mode: measured
+- Measured minutes: 12.433
+- Started: 2026-05-24T05:42:02Z
+- Ended: 2026-05-24T05:54:28Z
+- Artifacts: artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md
+- Evidence: startup 911-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, source integrity verified at 298 rows with accepted 22 rejected 210 needs_more_evidence 66, manifest exact target matched the 66 source rows in order, accepted and rejected source rows excluded with zero overlap, triage matrix bucket counts sum to 66 and confidence counts sum to 66, human review plan estimates maximum 40 rows, targeted exact-66 artifact test passed, final 912-test unit discovery passed, compileall passed, CLI validate passed with 695 labels and 8 fingerprints, git diff check passed
+- Notes: No label import import preview registry edit fingerprint edit production scoring change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred; pre-existing untracked CIF files left untouched.
 
 ## Expectation Updates
 
@@ -362,6 +362,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-23T20:13:13.233624+00:00: Next M-CSA automation needs explicit post-preview accept decisions for held override or m_csa771 rows before more gated imports.
 - 2026-05-24T03:55:03.938943+00:00: Do not repeat the nine-row M-CSA blocker loop without new evidence, production-rule work, or an explicit schema/fingerprint task.
 - 2026-05-24T04:58:59.872641+00:00: Next run should build a one-row derived review-only repair rerun for m_csa:946 using 5XD7 and keep m_csa:930 blocked until Q9ZFQ5 evidence exists.
+- 2026-05-24T05:54:43.004965+00:00: Next automation should support human review of the 40-row subset before any later dedicated gate or import-preview work.
 
 ## Scope Adjustments
 
@@ -547,3 +548,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-23T20:13:13.233624+00:00: No new M-CSA import work was opened because the requested tranche is already canonical and remaining rows are human-decision blocked.
 - 2026-05-24T03:55:03.938943+00:00: Closed the current-evidence loop for the nine remaining Vivek-reviewed M-CSA follow-up blockers without importing labels.
 - 2026-05-24T04:58:59.872641+00:00: Decision-trace signal is now reusable and the exact-mapping blocker class has a one-row actionable repair target without reopening the terminal nine holds.
+- 2026-05-24T05:54:43.004965+00:00: Built only the exact pinned 66-row needs_more_evidence matrix and kept broad 1025 review debt enrichment-only.

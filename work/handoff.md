@@ -50,6 +50,53 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T05:50Z Exact 66 AI-Visual Review-Hold Triage Matrix Built
+
+The exact pinned M-CSA AI-assisted visual review-hold tranche is now captured in
+`artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json`.
+Source integrity was verified against the reaudited 298-row source: 22
+accepted, 210 rejected, and exactly 66 `needs_more_evidence` rows. The matrix
+contains exactly those 66 rows in source order. The 22 accepted rows and 210
+safe bulk rejects are explicitly excluded, with zero accepted/rejected overlap;
+the post-clean9 decision trace and exact-mapping terminal no-go artifacts also
+have zero overlap with this target set.
+
+Bucket counts in the 66-row matrix:
+
+```text
+clean_likely_positive: 10
+apo_or_holo_missing_cofactor: 14
+loose_open_or_interdomain_geometry: 4
+amp_or_nucleotide_nontransfer_context: 5
+wrong_fingerprint_or_future_ontology_family: 18
+true_reject: 9
+needs_manual_visual_review: 1
+needs_expert_biochemistry_review: 5
+residue_mapping_issue: 0
+coupled_or_missing_schema_family: 0
+already_terminal_no_go: 0
+already_imported_or_resolved: 0
+```
+
+Confidence tiers: 20 high, 40 medium, and 6 low. The recommended human review
+plan has an estimated maximum of 40 unique rows: all clean-likely positives
+(`m_csa:954`, `m_csa:661`, `m_csa:710`, `m_csa:791`, `m_csa:626`,
+`m_csa:720`, `m_csa:596`, `m_csa:668`, `m_csa:838`, `m_csa:955`), all
+low-confidence rows (`m_csa:591`, `m_csa:951`, `m_csa:986`, `m_csa:927`,
+`m_csa:650`, `m_csa:886`), and 2-5 representative rows per populated blocker
+bucket, with the single manual-review row included as its one-row bucket.
+
+No labels were imported, no import previews were run, no registry or production
+fingerprint changed, no source review artifact was mutated, and no upload,
+removal, migration, LFS tracking, history rewrite, or `removal_allowed=true`
+operation occurred. Confidence call: high that the row universe is exact and
+the accepted/rejected source rows are excluded; medium-high that the blocker
+buckets are useful for batching human review because they are derived from the
+reaudited visual decision notes plus enrichment-only review-debt evidence.
+Exact next automation target: support or consume human review of the 40-row
+recommended subset, then only after explicit human decisions consider dedicated
+gate/import-preview work for rows accepted by that review.
+
 ### 2026-05-24T00:10Z Human Direction: Exact 66 Review-Hold Triage Before Manual Review
 
 Vivek approved moving the remaining review/on-hold rows into an audited
