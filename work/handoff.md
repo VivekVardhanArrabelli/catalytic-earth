@@ -50,6 +50,53 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T07:52Z Exact 40 Packet Verified From Latest Pushed State
+
+STARTED_AT for this run: `2026-05-24T07:47:56Z`. The automation lock was
+acquired, `origin/main` was fetched and fast-forward checked, and the checkout
+was already up to date at `feca197 Build exact40 M-CSA human review packet`.
+The only pre-existing dirty worktree entries were untracked root-level CIF files
+(`6MO.cif`, `IOD.cif`, `NA.cif`, `O.cif`, `UNL.cif`); they were left untouched.
+
+Required review-only outputs are present in the latest pushed state:
+
+```text
+artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json
+artifacts/v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json
+artifacts/v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json
+artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/index.json
+artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/open_clean10_pymol.sh
+```
+
+Count and contract verification: the exact 40 IDs still match
+`recommended_human_review_plan.unique_recommended_review_ids` in
+`artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json` exactly
+and in order; the exact-40 packet has 40 rows; the clean-first packet has the
+10 clean-likely-positive rows; the blank human decision template has 40 rows;
+and the PyMOL index has 10 clean-row scripts with zero missing local structure
+paths. All packet rows retain explicit reviewer actions, concise reviewer
+questions, and review-only/no-default-accept semantics. No labels were
+imported, no import preview was run, no source artifact or decision artifact was
+mutated, and no registry, production fingerprint, scoring, upload/removal,
+migration, LFS, history, or `removal_allowed=true` action was performed.
+
+Verification run:
+
+```text
+PYTHONPATH=src python -m unittest discover -s tests
+PYTHONPATH=src python -m catalytic_earth.cli validate
+one-off exact40 artifact contract check
+```
+
+Results: 913 unit tests passed; validate reported 12 source records, 8
+mechanism fingerprints, 15 ontology families, and 695 curated mechanism
+labels. Confidence call: high that the exact-40 review packet, clean-10 fast
+packet, blank decision template, and clean-10 PyMOL index are pinned to the
+completed 66-row triage matrix and did not alter countable science state. Next
+action for Vivek: review the clean-10 packet first, then populate the exact-40
+decision template only with `accepted`, `rejected`, `needs_more_evidence`, or
+`route_future_family`.
+
 ### 2026-05-24T06:56Z Exact 40 Human Review Packet Built
 
 STARTED_AT for this run: `2026-05-24T06:45:50Z`. The exact requested 40 IDs
