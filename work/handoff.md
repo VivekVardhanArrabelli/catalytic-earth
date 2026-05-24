@@ -52,7 +52,7 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ### 2026-05-24T18:13Z Run Target Selected: M-CSA Review Workqueue Surface
 
-STARTED_AT for this run: `2026-05-24T18:13:28Z`. Automation memory was checked
+STARTED_AT for this run: `2026-05-24T18:05:54Z`. Automation memory was checked
 first; no memory file existed at run start. Stale lock records for non-live
 PIDs were found during the run, and status/process/recent file state was
 inspected before replacement. `git fetch origin` and
@@ -91,6 +91,7 @@ artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json
 artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv
 artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md
 tests/test_automation_small_win_artifacts.py
+src/catalytic_earth/generalization.py
 README.md
 docs/label_factory.md
 ```
@@ -112,20 +113,35 @@ python -m json.tool artifacts/v3_mcsa_ai_visual_review_support_index_20260524.js
 python -m json.tool artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json
 python -m json.tool artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json
 PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_review_support_index_links_current_surface tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_review_surface_readme_points_at_safe_artifacts tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_exact40_workqueue_worksheet_is_blank_review_only tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_deferred26_worksheet_waits_for_exact40 tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_deferred26_backlog_waits_for_exact40 tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_exact40_workqueue_keeps_decisions_blank tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_exact40_review_worksheet_is_blank_tsv
+PYTHONPATH=src python -m unittest tests.test_generalization.SequenceDistanceHoldoutTests.test_mmseqs_holdout_clusters_whole_sequence_units
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
 python -m compileall -q src tests
 git diff --check
-git diff -- data/registries data/fingerprints src/catalytic_earth
+git diff -- data/registries data/fingerprints
 ```
 
 Results: full unit discovery passed with 924 tests; CLI validate reported 12
 source records, 8 mechanism fingerprints, 15 ontology families, and 695
-curated mechanism labels. `git diff -- data/registries data/fingerprints
-src/catalytic_earth` was empty. No label import, import preview, curated label
-edit, registry/fingerprint edit, production scoring/threshold change, source
-artifact mutation, migration, upload/removal, LFS/history rewrite, or
-`removal_allowed=true` action occurred.
+curated mechanism labels. The final full-suite rerun initially exposed an
+order-dependent MMseqs temp-directory collision; `generalization.py` now uses
+unique `/private/tmp` workdirs for MMseqs clustering/search, and the targeted
+MMseqs test plus the full 924-test suite pass after that isolation fix. The
+protected registry/fingerprint diff was empty. No label import, import preview,
+curated label edit, registry/fingerprint edit, production scoring/threshold
+change, source artifact mutation, migration, upload/removal, LFS/history
+rewrite, or `removal_allowed=true` action occurred. Disk had 24 GiB free at
+wrap. The pre-existing root-level untracked CIF files (`6MO.cif`, `IOD.cif`,
+`NA.cif`, `O.cif`, `UNL.cif`) remain untouched and outside scope.
+
+Final follow-up before release: `src/catalytic_earth/generalization.py` now
+uses unique `/private/tmp` MMseqs working directories via `tempfile.mkdtemp`
+instead of deleting/reusing digest-stable paths. This is temp-directory
+collision hardening only; it does not change label state, thresholds, scoring
+semantics, fingerprints, or ontology semantics. Verification for the follow-up:
+`PYTHONPATH=src python -m unittest tests.test_generalization`,
+`PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
+and `git diff -- data/registries data/fingerprints` all passed.
 
 Next recommended target: do not expand M-CSA review scope while Vivek is away.
 If another no-human run is needed, limit it to read-only consistency checks,

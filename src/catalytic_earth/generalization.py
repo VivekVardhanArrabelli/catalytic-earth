@@ -5,6 +5,7 @@ import re
 import shlex
 import shutil
 import subprocess
+import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Callable
@@ -4782,10 +4783,12 @@ def _real_sequence_identity_split(
         )
 
     digest = _sequence_records_digest(collected["records_by_id"])
-    workdir = Path("/private/tmp") / f"catalytic-earth-mmseqs-{slice_id}-{digest}"
-    if workdir.exists():
-        shutil.rmtree(workdir)
-    workdir.mkdir(parents=True, exist_ok=True)
+    workdir = Path(
+        tempfile.mkdtemp(
+            prefix=f"catalytic-earth-mmseqs-{slice_id}-{digest}-",
+            dir="/private/tmp",
+        )
+    )
     commands: list[str] = []
     try:
         input_fasta = workdir / "input.fasta"
@@ -4857,6 +4860,8 @@ def _real_sequence_identity_split(
             limitation=f"MMseqs2 clustering failed: {exc}",
             collected=collected,
         )
+    finally:
+        shutil.rmtree(workdir, ignore_errors=True)
 
 
 def _proxy_real_split_metadata(
@@ -5362,10 +5367,12 @@ def _compute_mmseqs_train_test_identity(
             "backend_commands": prior_commands,
         }
     digest = _sequence_records_digest(records_by_id) + "-" + _ids_digest(heldout_entry_ids)
-    workdir = Path("/private/tmp") / f"catalytic-earth-mmseqs-search-{slice_id}-{digest}"
-    if workdir.exists():
-        shutil.rmtree(workdir)
-    workdir.mkdir(parents=True, exist_ok=True)
+    workdir = Path(
+        tempfile.mkdtemp(
+            prefix=f"catalytic-earth-mmseqs-search-{slice_id}-{digest}-",
+            dir="/private/tmp",
+        )
+    )
     commands = list(prior_commands)
     try:
         heldout_fasta = workdir / "heldout.fasta"
@@ -5429,6 +5436,8 @@ def _compute_mmseqs_train_test_identity(
             "limitations": [f"MMseqs2 train/test identity search failed: {exc}"],
             "backend_commands": commands,
         }
+    finally:
+        shutil.rmtree(workdir, ignore_errors=True)
 
 
 def _sequence_identity_target_achieved(

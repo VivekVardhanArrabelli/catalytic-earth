@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 306
-- Measured elapsed time: 9265.6 minutes (154.43 hours)
+- Entries: 309
+- Measured elapsed time: 9318.5 minutes (155.31 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -14,11 +14,11 @@ Generated from `work/progress_log.jsonl`.
 - external-transfer-spof-hardening: 246.7 measured minutes (4.11 hours)
 - infrastructure: 106.2 measured minutes (1.77 hours)
 - leakage-risk closure: 11.8 measured minutes (0.20 hours)
-- ops: 124.6 measured minutes (2.08 hours)
+- ops: 130.6 measured minutes (2.18 hours)
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2256.2 measured minutes (37.60 hours)
+- v3: 2303.1 measured minutes (38.39 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,43 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3331
-- Evidence references logged: 2739
+- Artifact references logged: 3352
+- Evidence references logged: 2759
 
 ## Recent Entries
-
-### 2026-05-23T20:13:13.233624+00:00 - v3
-
-- Task: Post-clean9 M-CSA tranche state verification
-- Time mode: measured
-- Measured minutes: 3.933
-- Started: 2026-05-23T20:09:07Z
-- Ended: 2026-05-23T20:13:03Z
-- Artifacts: work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: git fetch and pull confirmed origin/main already up to date, requested clean9 import artifact already records canonical 682 to 691 import, 899-test unit discovery passed, current CLI validate passed with 691 labels and 8 fingerprints, remaining holo override and m_csa771 rows require explicit accept decisions before import, pre-existing untracked CIF files left untouched
-- Notes: Verification-only run; no registry fingerprint artifact migration upload removal externalization Git-LFS migration history rewrite threshold change or removal_allowed=true action occurred.
-
-### 2026-05-24T03:19:08.116370+00:00 - v3
-
-- Task: Post-clean9 M-CSA hold imports and AMP-product stress panel
-- Time mode: measured
-- Measured minutes: 40.233
-- Started: 2026-05-24T02:38:54Z
-- Ended: 2026-05-24T03:19:08Z
-- Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, artifacts/v3_mcsa_positive_holo_override_accept_decision_3_20260523.json, artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json, artifacts/v3_mcsa_positive_post_clean9_followup_import_summary_20260524.json, artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json, README.md, docs/label_factory.md, work/handoff.md, tests/test_automation_small_win_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, tests/test_scaling_1025_artifacts.py, tests/test_source_only_contract.py
-- Evidence: startup unittest discovery passed at 899 tests and CLI validate passed with 691 labels, holo override accept3 gate passed 21 of 21 with exactly m_csa:577 m_csa:641 m_csa:897 imported, canonical registry moved 691 to 694 then validated, m_csa771 Vivek 2D0D gate passed 21 of 21 with exactly m_csa:771 imported, canonical registry moved 694 to 695 then validated, AMP product stress panel stayed review-only with 2 product candidates and 33 transfer controls, 902-test unit discovery passed, compileall passed, CLI validate passed with 695 labels, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed, no fingerprint registry edit threshold change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true
-- Notes: Pre-existing untracked CIF files were left untouched; the earlier overlapping preview state is superseded by the gate-backed 695-label canonical import.
-
-### 2026-05-24T03:55:03.938943+00:00 - v3
-
-- Task: Remaining M-CSA terminal blocker decisions
-- Time mode: measured
-- Measured minutes: 14.833
-- Started: 2026-05-24T03:39:58Z
-- Ended: 2026-05-24T03:54:48Z
-- Artifacts: artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json, artifacts/v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json, artifacts/v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json, artifacts/v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524.json, artifacts/v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json, artifacts/v3_mcsa_positive_remaining_9_terminal_blocker_summary_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md
-- Evidence: startup 902-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, loose/inter-domain/cofactor-locality policy decided with 0 import-gate eligible rows, apo/holo m_csa:836 and m_csa:996 terminally still blocked by no local remapped holo evidence, AMP-product m_csa:784 and m_csa:904 terminally still blocked because review-only stress panel has 2 positives and no tested production rule, m_csa:777 terminally still blocked at 0.4107 below the 0.4115 floor without stronger PLP evidence, m_csa:737 routed to review-only coupled PLP-adenosylcobalamin family proposal with no production fingerprint edit, 908-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, git diff check passed
-- Notes: No label import, registry edit, fingerprint edit, production scoring change, threshold lowering, artifact upload/removal, externalization, Git-LFS migration, history rewrite, or removal_allowed=true occurred. Pre-existing untracked CIF files were left untouched.
 
 ### 2026-05-24T04:58:59.872641+00:00 - v3
 
@@ -119,6 +86,39 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
 - Evidence: fixed 298-row AI-visual universe preserved as 22 accepted review signals plus 210 current-target rejects plus 66 unresolved holds, exact40 workqueue has 40 blank decisions 10 clean fast-path rows 30 nonclean strategy rows 10 clean PyMOL scripts and 40 structure paths, deferred26 backlog remains outside exact40 with 9 cofactor deferrals 13 future-family schema deferrals and 4 reject-confirmation deferrals, seven targeted M-CSA support tests passed, full 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, JSON and TSV checks passed, git diff checks passed with no registry fingerprint or src diffs
 - Notes: No label import import preview curated label edit fingerprint edit production scoring or threshold change source artifact mutation migration upload removal LFS history rewrite or removal_allowed=true occurred; pre-existing root-level CIF files left untouched.
+
+### 2026-05-24T18:52:17.683600+00:00 - ops
+
+- Task: Post-status validation for M-CSA review support surface
+- Time mode: measured
+- Measured minutes: 4.833
+- Started: 2026-05-24T18:47:10Z
+- Ended: 2026-05-24T18:52:00Z
+- Artifacts: work/progress_log.jsonl, work/status.md, work/handoff.md
+- Evidence: post-status full 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall JSON git diff and registry fingerprint scoring guards passed, targeted MMseqs test passed when rerun after an intermittent full-suite failure
+- Notes: Recorded after regenerating status and rerunning full discovery; M-CSA support artifacts remain review-only.
+
+### 2026-05-24T18:53:06.309748+00:00 - v3
+
+- Task: M-CSA review workqueue support surface
+- Time mode: measured
+- Measured minutes: 46.933
+- Started: 2026-05-24T18:05:54Z
+- Ended: 2026-05-24T18:52:50Z
+- Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 917-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, review support index pins fixed 298 row universe, exact40 workqueue has 40 blank decisions and clean10 plus nonclean30 routing, deferred26 backlog and worksheet preserve rows outside exact40, targeted M-CSA review-support tests passed, final 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, JSON and TSV checks passed, git diff check passed, no registry fingerprint or source code diff
+- Notes: No label import import preview registry edit fingerprint edit scoring change source artifact mutation upload removal migration LFS history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched.
+
+### 2026-05-24T18:53:19.546556+00:00 - ops
+
+- Task: MMseqs temp-directory collision hardening
+- Time mode: measured
+- Measured minutes: 1.167
+- Started: 2026-05-24T18:52:00Z
+- Ended: 2026-05-24T18:53:10Z
+- Artifacts: src/catalytic_earth/generalization.py, artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: tests.test_generalization passed with 29 tests, CLI validate passed with 695 labels and 8 fingerprints, compileall and git diff guards passed, no registry or fingerprint diff
+- Notes: Follow-up to intermittent full-suite MMseqs failure; review-support outputs remain unchanged except related-output hash refresh.
 
 ## Expectation Updates
 
@@ -365,6 +365,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T05:54:43.004965+00:00: Next automation should support human review of the 40-row subset before any later dedicated gate or import-preview work.
 - 2026-05-24T18:47:30.176583+00:00: Next substantive step is human review of clean10 then exact40; while Vivek is away only maintain consistency or docs around the fixed 298-row support surface.
 - 2026-05-24T18:49:21.274042+00:00: Do not make M-CSA review decisions while Vivek is away; next safe work should only maintain review-support consistency or documentation until human review happens.
+- 2026-05-24T18:53:06.309748+00:00: Next no-human run should only maintain review-support consistency or leakage-safe manifests; human review starts with clean10.
 
 ## Scope Adjustments
 
@@ -552,3 +553,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T04:58:59.872641+00:00: Decision-trace signal is now reusable and the exact-mapping blocker class has a one-row actionable repair target without reopening the terminal nine holds.
 - 2026-05-24T05:54:43.004965+00:00: Built only the exact pinned 66-row needs_more_evidence matrix and kept broad 1025 review debt enrichment-only.
 - 2026-05-24T18:47:30.176583+00:00: Added review-only navigation and worksheets without label import import previews registry edits fingerprint edits scoring changes or source artifact mutation.
+- 2026-05-24T18:53:06.309748+00:00: Review-support surface is now a navigation layer only; no M-CSA decisions or imports were opened while Vivek is away.
+- 2026-05-24T18:53:19.546556+00:00: Hardened only temporary MMseqs workdir handling to avoid concurrent digest-path collisions; no scoring threshold ontology label or fingerprint semantics changed.
