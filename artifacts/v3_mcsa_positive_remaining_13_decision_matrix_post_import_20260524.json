@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524",
+    "schema_version": "mcsa_positive_remaining_13_decision_matrix_post_import.v1",
+    "created_at": "2026-05-24T03:11:20Z",
+    "method": "remaining_13_post_clean9_decision_matrix_after_dedicated_imports",
+    "canonical_label_count": 695,
+    "imported_in_this_run_count": 4,
+    "blocked_remaining_count": 9,
+    "canonical_registry_import_performed": true,
+    "fingerprint_registry_edited": false,
+    "production_counterevidence_rule_activated": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_post_clean9_followup_import_summary_20260524.json",
+      "artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json",
+      "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "artifacts/v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json",
+      "artifacts/v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json"
+    ]
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:577",
+      "lane": "holo_override",
+      "status": "imported",
+      "next_action": "1AWB holo override accepted by automation-assisted post-preview decision; dedicated 21/21 gates passed; canonical import done.",
+      "canonical_label_present": true
+    },
+    {
+      "entry_id": "m_csa:641",
+      "lane": "holo_override",
+      "status": "imported",
+      "next_action": "1J7N holo override accepted by automation-assisted post-preview decision; dedicated 21/21 gates passed; canonical import done.",
+      "canonical_label_present": true
+    },
+    {
+      "entry_id": "m_csa:897",
+      "lane": "holo_override",
+      "status": "imported",
+      "next_action": "1H56 holo override accepted by automation-assisted post-preview decision; dedicated 21/21 gates passed; canonical import done.",
+      "canonical_label_present": true
+    },
+    {
+      "entry_id": "m_csa:771",
+      "lane": "noncanonical_alternate",
+      "status": "imported",
+      "next_action": "2D0D accepted from explicit Vivek PyMOL review; dedicated 21/21 gates passed; canonical import done.",
+      "canonical_label_present": true
+    },
+    {
+      "entry_id": "m_csa:777",
+      "lane": "caveat",
+      "status": "blocked",
+      "next_action": "Do not lower PLP threshold; remains held until stronger PLP-local evidence clears the established floor.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:784",
+      "lane": "amp_product_caveat",
+      "status": "blocked",
+      "next_action": "AMP product exception remains review-only; stress panel has only two positives and no production rule/tests/gates.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:904",
+      "lane": "amp_product_caveat",
+      "status": "blocked",
+      "next_action": "AMP product exception remains review-only; stress panel has only two positives and no production rule/tests/gates.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:836",
+      "lane": "hold_apo",
+      "status": "blocked",
+      "next_action": "Keep blocked unless a new local remapped holo evidence artifact removes the apo/holo blocker.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:996",
+      "lane": "hold_apo",
+      "status": "blocked",
+      "next_action": "Keep blocked unless a new local remapped holo evidence artifact removes the apo/holo blocker.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:611",
+      "lane": "geometry_conformation",
+      "status": "blocked",
+      "next_action": "Requires policy decision on loose/inter-domain/cofactor-locality admissibility before promotion.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:657",
+      "lane": "geometry_conformation",
+      "status": "blocked",
+      "next_action": "Requires policy decision on loose/inter-domain/cofactor-locality admissibility before promotion.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:1001",
+      "lane": "geometry_conformation",
+      "status": "blocked",
+      "next_action": "Requires policy decision on loose/inter-domain/cofactor-locality admissibility before promotion.",
+      "canonical_label_present": false
+    },
+    {
+      "entry_id": "m_csa:737",
+      "lane": "schema_gap",
+      "status": "blocked",
+      "next_action": "Coupled PLP + adenosylcobalamin chemistry remains schema-held; no production fingerprint created.",
+      "canonical_label_present": false
+    }
+  ]
+}

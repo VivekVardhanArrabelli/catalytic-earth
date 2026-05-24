@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "artifact_count": 3,
+    "countable_import_safe": true,
+    "method": "review_only_import_safety_audit",
+    "review_only_artifact_count": 3,
+    "total_new_countable_label_count": 0,
+    "unsafe_artifact_count": 0,
+    "unsafe_artifacts": []
+  },
+  "rows": [
+    {
+      "artifact": "v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_reaction_substrate_mismatch_review_export_import_preview_1025.json",
+      "baseline_label_count": 695,
+      "countable_import_label_count": 695,
+      "countable_import_safe": true,
+      "decision_counts": {},
+      "method": "reaction_substrate_mismatch_review_export",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": true
+      },
+      "review_only_rule": "review-only artifacts must not add benchmark labels through countable import",
+      "source_method": null
+    },
+    {
+      "artifact": "v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_expert_label_decision_review_export_import_preview_1025.json",
+      "baseline_label_count": 695,
+      "countable_import_label_count": 695,
+      "countable_import_safe": true,
+      "decision_counts": {
+        "no_decision": 311
+      },
+      "method": "expert_label_decision_review_export",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": true,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": "review-only artifacts must not add benchmark labels through countable import",
+      "source_method": "active_learning_label_review_queue"
+    },
+    {
+      "artifact": "v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_expert_label_decision_local_evidence_review_export_import_preview_1025.json",
+      "baseline_label_count": 695,
+      "countable_import_label_count": 695,
+      "countable_import_safe": true,
+      "decision_counts": {
+        "no_decision": 88
+      },
+      "method": "expert_label_decision_local_evidence_review_export",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "external_source_review_only": false,
+        "local_evidence_gap_review_only": true,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": "review-only artifacts must not add benchmark labels through countable import",
+      "source_method": "expert_label_decision_local_evidence_gap_audit"
+    }
+  ]
+}

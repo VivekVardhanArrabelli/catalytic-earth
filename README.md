@@ -53,10 +53,11 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 691 entries: 688 accepted M-CSA labels through
-   the clean M-CSA positive-review import tranche plus three factory-gated external
-   out-of-scope hard negatives (`uniprot:P06744`, `uniprot:P78549`, and
-   `uniprot:Q3LXA3`).
+8. Curated mechanism labels for 695 entries: 692 accepted M-CSA labels through
+   the clean M-CSA positive-review import tranche plus the post-clean9
+   holo-override and `m_csa:771` dedicated gates, plus three factory-gated
+   external out-of-scope hard negatives (`uniprot:P06744`, `uniprot:P78549`,
+   and `uniprot:Q3LXA3`). External seed-fingerprint imports remain 0.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
     selection, in-scope failure analysis, cofactor coverage analysis,
@@ -73,9 +74,10 @@ The repository currently contains:
     versioned declarative counterevidence policy with leakage provenance, and a
     typed label-factory gate input contract.
 12. A provenance-bearing selected-PDB override path for review-debt structure
-    single points of failure. The first override plan applies holo-preference
-    repairs for `m_csa:577` and `m_csa:641`, skips `m_csa:592` as a
-    reaction-mismatch policy case, and keeps all rows non-countable.
+    single points of failure. The post-clean9 dedicated holo gate imported
+    `m_csa:577`, `m_csa:641`, and `m_csa:897` only after the override accept
+    artifact, 21/21 label-factory gates, and batch acceptance passed. The
+    path still keeps unrelated override rows non-countable.
 13. Artifact-storage guardrails that inventory generated artifacts before any
     migration or pruning. `artifacts/v3_artifact_storage_inventory_1025.json`
     records paths, sizes, SHA-256 hashes, storage categories, and preservation

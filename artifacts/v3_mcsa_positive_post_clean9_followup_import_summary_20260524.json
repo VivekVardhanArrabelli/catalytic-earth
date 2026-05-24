@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_post_clean9_followup_import_summary_20260524",
+    "schema_version": "mcsa_positive_post_clean9_followup_import_summary.v1",
+    "created_at": "2026-05-24T03:11:20Z",
+    "method": "post_clean9_m_csa_positive_followup_import_summary",
+    "baseline_clean9_label_count": 691,
+    "post_holo_label_count": 694,
+    "final_label_count": 695,
+    "m_csa_label_count": 692,
+    "external_out_of_scope_entry_ids": [
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_seed_fingerprint_import_count": 0,
+    "fingerprint_count": 8,
+    "canonical_registry_import_performed": true,
+    "fingerprint_registry_edited": false,
+    "review_only_source_artifacts_mutated": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "import_batches": [
+    {
+      "batch_id": "holo_override_accept3",
+      "imported_entry_ids": [
+        "m_csa:577",
+        "m_csa:641",
+        "m_csa:897"
+      ],
+      "baseline_label_count": 691,
+      "countable_label_count": 694,
+      "gate_passed_count": 21,
+      "gate_count": 21,
+      "factory_gate_ready": true,
+      "batch_accepted_for_counting": true,
+      "accepted_new_label_count": 3,
+      "accepted_new_label_entry_ids": [
+        "m_csa:577",
+        "m_csa:641",
+        "m_csa:897"
+      ],
+      "decision_source": "automation-assisted post-preview accept based on prior Vivek hold condition plus holo evidence; not new human post-override review",
+      "source_artifacts": [
+        "artifacts/v3_mcsa_positive_holo_override_accept_decision_3_20260523.json",
+        "artifacts/v3_mcsa_positive_holo_override_accept3_20260523_review_decision_import_preview_1025.json",
+        "artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_factory_gate_check_import_preview_1025.json",
+        "artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_batch_acceptance_check_import_preview_1025.json"
+      ]
+    },
+    {
+      "batch_id": "m_csa771_2d0d_vivek",
+      "imported_entry_ids": [
+        "m_csa:771"
+      ],
+      "baseline_label_count": 694,
+      "countable_label_count": 695,
+      "gate_passed_count": 21,
+      "gate_count": 21,
+      "factory_gate_ready": true,
+      "batch_accepted_for_counting": true,
+      "accepted_new_label_count": 1,
+      "accepted_new_label_entry_ids": [
+        "m_csa:771"
+      ],
+      "decision_source": "explicit Vivek PyMOL accept decision for noncanonical alternate 2D0D, then dedicated gates",
+      "source_artifacts": [
+        "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json",
+        "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_review_decision_import_preview_1025.json",
+        "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_factory_gate_check_import_preview_1025.json",
+        "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_batch_acceptance_check_import_preview_1025.json"
+      ]
+    }
+  ],
+  "post_import_label_summary": {
+    "by_confidence": {
+      "high": 88,
+      "low": 36,
+      "medium": 571
+    },
+    "by_fingerprint": {
+      "cobalamin_radical_rearrangement": 3,
+      "flavin_dehydrogenase_reductase": 50,
+      "flavin_monooxygenase": 2,
+      "heme_peroxidase_oxidase": 20,
+      "metal_dependent_hydrolase": 76,
+      "plp_dependent_enzyme": 31,
+      "radical_sam_enzyme": 1,
+      "ser_his_acid_hydrolase": 42
+    },
+    "by_ontology_version_at_decision": {
+      "label_factory_v1_8fp": 695
+    },
+    "by_review_status": {
+      "automation_curated": 685,
+      "expert_reviewed": 10
+    },
+    "by_tier": {
+      "bronze": 685,
+      "silver": 10
+    },
+    "by_type": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 225
+    },
+    "label_count": 695,
+    "mean_evidence_score": 0.6481
+  },
+  "remaining_rule_investigation": {
+    "amp_product_counterevidence_rule_promotion_ready": false,
+    "stress_panel_artifact": "artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json",
+    "product_context_exception_candidate_count": 2,
+    "retain_counterevidence_control_count": 33,
+    "blockers": [
+      "fewer_than_three_product_context_exception_positives",
+      "no_independent_product_phosphatase_positive_beyond_existing_nucleotidase_surface",
+      "all_product_exception_candidates_remain_below_abstain_floor_without_ungated_scoring_change",
+      "production_rule_not_implemented_or_unit_tested_in_this_run",
+      "no_dedicated_import_gate_for_m_csa_784_or_m_csa_904_after_rule_activation"
+    ]
+  }
+}

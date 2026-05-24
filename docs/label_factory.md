@@ -1179,10 +1179,27 @@ separate clean import path for exactly `m_csa:599`, `m_csa:623`, `m_csa:636`,
 `m_csa:998`. Its full gate stack passes 21/21 label-factory checks, 0 hard
 negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable
 in-scope failures, and 0 accepted review-gap or reaction/substrate-mismatch
-rows, so the canonical label registry moves from 682 to 691 labels. The current
-registry has 221 seed-fingerprint labels, 470 out-of-scope labels, 9
-expert-reviewed silver labels, and the same three imported external
-out-of-scope hard negatives; external seed-fingerprint imports remain 0.
+rows, so the canonical label registry moves from 682 to 691 labels.
+
+The post-clean9 hold run then keeps the three holo overrides and `m_csa:771`
+separate from clean9. The holo accept artifact
+`artifacts/v3_mcsa_positive_holo_override_accept_decision_3_20260523.json`
+is automation-assisted post-preview synthesis, not new human post-override
+review, and admits only `m_csa:577 -> 1AWB`, `m_csa:641 -> 1J7N`, and
+`m_csa:897 -> 1H56` to dedicated gates. The
+`v3_mcsa_positive_holo_override_accept3_20260523_*_import_preview_1025.json`
+gate stack passes 21/21 checks and batch acceptance with exactly those three
+new labels, moving the canonical registry from 691 to 694. The noncanonical
+alternate path uses the explicit Vivek PyMOL decision
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json`;
+the derived
+`v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_*_import_preview_1025.json`
+gate stack passes 21/21 checks and batch acceptance with exactly `m_csa:771`,
+moving the canonical registry from 694 to 695. The current registry has 225
+seed-fingerprint labels, 470 out-of-scope labels, 10 expert-reviewed silver
+labels, the same three imported external out-of-scope hard negatives, and 0
+external seed-fingerprint imports. The post-import summary is
+`artifacts/v3_mcsa_positive_post_clean9_followup_import_summary_20260524.json`.
 The bounded hold-apo scan
 `artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json`
 scans 62 candidate structures with 0 fetch failures. Its override plan
@@ -1212,6 +1229,12 @@ A review-only nucleotide-product stress probe
 distinguishes AMP product hydrolysis contexts (`m_csa:784`, `m_csa:904`) from
 true transfer controls (`m_csa:603`, `m_csa:640`, `m_csa:647`) without
 activating a production counterevidence change or unblocking either caveat row.
+The expanded follow-up stress panel
+`artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json`
+keeps that decision closed: it finds only two product-context exception
+candidates and 33 retain-counterevidence transfer controls, so no production
+rule, threshold change, import gate, or label import is authorized for
+`m_csa:784` or `m_csa:904`.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \

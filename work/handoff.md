@@ -18,7 +18,7 @@ slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-691 countable labels. Review-state registries preserve pending
+695 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -49,6 +49,47 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-05-24T03:15Z Canonical Import: Holo Overrides Plus m_csa:771 Landed
+
+The post-clean9 follow-up import is complete and pushed through dedicated
+artifacts, not the clean9 path. Canonical labels now validate at 695 with 8
+production fingerprints. Imported this run:
+
+```text
+m_csa:577, m_csa:641, m_csa:897, m_csa:771
+```
+
+The holo override batch used the automation-assisted accept artifact
+`artifacts/v3_mcsa_positive_holo_override_accept_decision_3_20260523.json`
+plus the dedicated
+`artifacts/v3_mcsa_positive_holo_override_accept3_20260523_*_import_preview_1025.json`
+gate stack. It passed 21/21 gates and batch acceptance with exactly three new
+labels (`691 -> 694`). The `m_csa:771` batch used Vivek's explicit PyMOL
+decision in
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json`
+plus the dedicated
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_*_import_preview_1025.json`
+gate stack. It passed 21/21 gates and batch acceptance with exactly one new
+label (`694 -> 695`).
+
+The AMP-product counterevidence rule remains review-only. The expanded stress
+panel
+`artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json`
+has 2 product-context exception candidates and 33 retain-counterevidence
+transfer controls, but blocks production activation because the positive side
+is too small, both exception candidates remain below the abstention floor
+without an ungated scoring change, and no production rule/tests/gates were
+activated. Confidence call: high that the canonical import state is coherent
+and gate-backed; medium-high that `m_csa:784`/`m_csa:904` should remain blocked
+until additional product-context positives and tested production code exist.
+
+The compact post-import matrix is
+`artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json`.
+It records four imported rows and nine still-blocked holds. Do not promote
+`m_csa:777`, `m_csa:784`, `m_csa:904`, `m_csa:836`, `m_csa:996`, `m_csa:611`,
+`m_csa:657`, `m_csa:1001`, or `m_csa:737` without a new explicit blocker-
+removal artifact and dedicated gates.
 
 ### 2026-05-23T22:05Z Canonical Import: Three Holo Overrides Landed
 

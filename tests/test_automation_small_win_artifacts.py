@@ -5725,8 +5725,8 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         for label in labels:
             by_type[label["label_type"]] = by_type.get(label["label_type"], 0) + 1
 
-        self.assertEqual(len(labels), 691)
-        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 221})
+        self.assertEqual(len(labels), 695)
+        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 225})
 
         labels_by_entry = {label["entry_id"]: label for label in labels}
         self.assertEqual(
@@ -5763,6 +5763,96 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertEqual(label["fingerprint_id"], fingerprint_id)
             self.assertEqual(label["tier"], "silver")
             self.assertEqual(label["review_status"], "expert_reviewed")
+
+        imported_post_clean9 = {
+            "m_csa:577": ("metal_dependent_hydrolase", "bronze", "automation_curated"),
+            "m_csa:641": ("metal_dependent_hydrolase", "bronze", "automation_curated"),
+            "m_csa:771": ("ser_his_acid_hydrolase", "silver", "expert_reviewed"),
+            "m_csa:897": ("metal_dependent_hydrolase", "bronze", "automation_curated"),
+        }
+        for entry_id, (fingerprint_id, tier, review_status) in imported_post_clean9.items():
+            label = labels_by_entry[entry_id]
+            self.assertEqual(label["label_type"], "seed_fingerprint")
+            self.assertEqual(label["fingerprint_id"], fingerprint_id)
+            self.assertEqual(label["tier"], tier)
+            self.assertEqual(label["review_status"], review_status)
+
+    def test_post_clean9_followup_summary_pins_exact_import_boundaries(
+        self,
+    ) -> None:
+        summary = _load_json(
+            ARTIFACTS / "v3_mcsa_positive_post_clean9_followup_import_summary_20260524.json"
+        )
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json"
+        )
+        stress = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json"
+        )
+
+        metadata = summary["metadata"]
+        self.assertEqual(metadata["baseline_clean9_label_count"], 691)
+        self.assertEqual(metadata["post_holo_label_count"], 694)
+        self.assertEqual(metadata["final_label_count"], 695)
+        self.assertEqual(metadata["m_csa_label_count"], 692)
+        self.assertEqual(metadata["external_seed_fingerprint_import_count"], 0)
+        self.assertEqual(
+            metadata["external_out_of_scope_entry_ids"],
+            ["uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        batches = {batch["batch_id"]: batch for batch in summary["import_batches"]}
+        self.assertEqual(
+            batches["holo_override_accept3"]["accepted_new_label_entry_ids"],
+            ["m_csa:577", "m_csa:641", "m_csa:897"],
+        )
+        self.assertEqual(
+            batches["m_csa771_2d0d_vivek"]["accepted_new_label_entry_ids"],
+            ["m_csa:771"],
+        )
+        for batch in batches.values():
+            self.assertTrue(batch["factory_gate_ready"])
+            self.assertTrue(batch["batch_accepted_for_counting"])
+            self.assertEqual(batch["gate_passed_count"], 21)
+            self.assertEqual(batch["gate_count"], 21)
+            self.assertEqual(
+                batch["accepted_new_label_count"],
+                len(batch["accepted_new_label_entry_ids"]),
+            )
+
+        stress_metadata = stress["metadata"]
+        self.assertFalse(stress_metadata["production_rule_activated"])
+        self.assertFalse(stress_metadata["production_scoring_changed"])
+        self.assertFalse(stress_metadata["rule_promotion_ready"])
+        self.assertEqual(stress_metadata["product_context_exception_candidate_count"], 2)
+        self.assertEqual(stress_metadata["retain_counterevidence_control_count"], 33)
+        self.assertIn(
+            "production_rule_not_implemented_or_unit_tested_in_this_run",
+            stress_metadata["rule_promotion_blockers"],
+        )
+
+        statuses = {row["entry_id"]: row for row in matrix["rows"]}
+        for entry_id in ("m_csa:577", "m_csa:641", "m_csa:771", "m_csa:897"):
+            self.assertEqual(statuses[entry_id]["status"], "imported")
+            self.assertTrue(statuses[entry_id]["canonical_label_present"])
+        for entry_id in (
+            "m_csa:777",
+            "m_csa:784",
+            "m_csa:904",
+            "m_csa:836",
+            "m_csa:996",
+            "m_csa:611",
+            "m_csa:657",
+            "m_csa:1001",
+            "m_csa:737",
+        ):
+            self.assertEqual(statuses[entry_id]["status"], "blocked")
+            self.assertFalse(statuses[entry_id]["canonical_label_present"])
 
     def test_epk_dirty_sibling_followup_synthesis_stays_review_only(self) -> None:
         synthesis = _load_json(

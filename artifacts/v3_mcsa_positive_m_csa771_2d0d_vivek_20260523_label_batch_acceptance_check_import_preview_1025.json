@@ -1,0 +1,152 @@
+{
+  "blockers": [],
+  "gates": {
+    "accepted_labels_added": true,
+    "accepted_labels_have_no_reaction_substrate_mismatches": true,
+    "accepted_labels_have_no_review_evidence_gaps": true,
+    "countable_registry_preserves_baseline": true,
+    "factory_gate_ready": true,
+    "no_pending_review_in_countable": true,
+    "zero_actionable_in_scope_failures": true,
+    "zero_hard_negatives": true,
+    "zero_near_misses": true,
+    "zero_out_of_scope_false_non_abstentions": true
+  },
+  "metadata": {
+    "accepted_for_counting": true,
+    "accepted_new_label_count": 1,
+    "accepted_new_label_entry_ids": [
+      "m_csa:771"
+    ],
+    "accepted_reaction_substrate_mismatch_count": 0,
+    "accepted_reaction_substrate_mismatch_entry_ids": [],
+    "accepted_review_gap_count": 0,
+    "accepted_review_gap_entry_ids": [],
+    "actionable_in_scope_failure_count": 0,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "evaluation": "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_geometry_label_eval_import_preview_1025.json",
+        "hard_negatives": "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_hard_negative_controls_import_preview_1025.json",
+        "in_scope_failures": "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_in_scope_failure_analysis_import_preview_1025.json",
+        "label_factory_gate": "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_factory_gate_check_import_preview_1025.json",
+        "review_evidence_gaps": "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_review_evidence_gaps_import_preview_1025.json",
+        "review_state_labels": "artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_imported_labels_import_preview_1025.json"
+      },
+      "artifact_slice_ids": {
+        "evaluation": 1025,
+        "hard_negatives": 1025,
+        "in_scope_failures": 1025,
+        "label_factory_gate": 1025,
+        "labels": 1025,
+        "review_evidence_gaps": 1025,
+        "review_state_labels": 1025
+      },
+      "blocker_removed": "artifact_graph_consistency_for_label_batch_acceptance",
+      "exempted_artifacts": {},
+      "method": "label_batch_acceptance_cli_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "payload_digests": {
+        "evaluation": "8b8371e3a1549ef4",
+        "hard_negatives": "0a1bf40118adc596",
+        "in_scope_failures": "392dc60c0a33e951",
+        "label_factory_gate": "ecc9c3d94fa1a301",
+        "review_evidence_gaps": "f1a87182a99f5027"
+      },
+      "payload_methods": {
+        "evaluation": "geometry_retrieval_against_curated_seed_labels",
+        "hard_negatives": "geometry_hard_negative_control_selection",
+        "in_scope_failures": "in_scope_geometry_failure_analysis",
+        "label_factory_gate": "label_factory_gate_check",
+        "review_evidence_gaps": "review_evidence_gap_analysis"
+      },
+      "payload_slice_ids": {
+        "label_factory_gate": {
+          "metadata.artifact_lineage.slice_id": 1025
+        }
+      },
+      "slice_id": 1025
+    },
+    "baseline_label_count": 694,
+    "countable_label_count": 695,
+    "evidence_limited_abstention_count": 4,
+    "factory_gate_ready": true,
+    "hard_negative_count": 0,
+    "method": "label_batch_acceptance_check",
+    "near_miss_count": 0,
+    "out_of_scope_false_non_abstentions": 0,
+    "pending_review_count": 316,
+    "review_state_label_count": 1006,
+    "review_state_rule": "pending-review labels remain in the review-state registry but are not copied into the countable benchmark registry"
+  },
+  "summaries": {
+    "countable": {
+      "by_confidence": {
+        "high": 88,
+        "low": 36,
+        "medium": 571
+      },
+      "by_fingerprint": {
+        "cobalamin_radical_rearrangement": 3,
+        "flavin_dehydrogenase_reductase": 50,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 20,
+        "metal_dependent_hydrolase": 76,
+        "plp_dependent_enzyme": 31,
+        "radical_sam_enzyme": 1,
+        "ser_his_acid_hydrolase": 42
+      },
+      "by_ontology_version_at_decision": {
+        "label_factory_v1_8fp": 695
+      },
+      "by_review_status": {
+        "automation_curated": 685,
+        "expert_reviewed": 10
+      },
+      "by_tier": {
+        "bronze": 685,
+        "silver": 10
+      },
+      "by_type": {
+        "out_of_scope": 470,
+        "seed_fingerprint": 225
+      },
+      "label_count": 695,
+      "mean_evidence_score": 0.6481
+    },
+    "review_state": {
+      "by_confidence": {
+        "high": 88,
+        "low": 36,
+        "medium": 882
+      },
+      "by_fingerprint": {
+        "cobalamin_radical_rearrangement": 5,
+        "flavin_dehydrogenase_reductase": 52,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 20,
+        "metal_dependent_hydrolase": 123,
+        "plp_dependent_enzyme": 33,
+        "radical_sam_enzyme": 1,
+        "ser_his_acid_hydrolase": 45
+      },
+      "by_ontology_version_at_decision": {
+        "label_factory_v1_8fp": 1006
+      },
+      "by_review_status": {
+        "automation_curated": 680,
+        "expert_reviewed": 10,
+        "needs_expert_review": 316
+      },
+      "by_tier": {
+        "bronze": 996,
+        "silver": 10
+      },
+      "by_type": {
+        "out_of_scope": 725,
+        "seed_fingerprint": 281
+      },
+      "label_count": 1006,
+      "mean_evidence_score": 0.6178
+    }
+  }
+}
