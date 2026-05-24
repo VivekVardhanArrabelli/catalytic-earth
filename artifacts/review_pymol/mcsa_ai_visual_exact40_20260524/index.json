@@ -1,0 +1,484 @@
+{
+  "metadata": {
+    "artifact_id": "mcsa_ai_visual_exact40_20260524_clean10_pymol_review_index",
+    "schema_version": "mcsa_ai_visual_clean10_pymol_review_index.v1",
+    "created_at": "2026-05-24T06:51:31Z",
+    "review_only": true,
+    "ready_for_label_import": false,
+    "source_exact40_packet": "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json",
+    "source_clean10_packet": "artifacts/v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json",
+    "clean_likely_positive_row_count": 10,
+    "pymol_script_count": 10,
+    "missing_structure_path_count": 0,
+    "missing_structure_paths": [],
+    "local_structures_only_no_downloads": true
+  },
+  "rows": [
+    {
+      "review_order": 1,
+      "entry_id": "m_csa:954",
+      "entry_name": "isotuberculosinol synthase",
+      "structure_id": "3WQL",
+      "structure_path": "artifacts/v3_mcsa_pymol_tenth_materialized_coordinates_20260522/pdb_3WQL.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_954.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_954.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 16.976,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:954:residue:1",
+          "residue_number": 34,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "TYR",
+          "residue_node_id": "m_csa:954:residue:3",
+          "residue_number": 90,
+          "roles": [
+            "activator",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "label": "ASP34:B:CA (metal ligand) to TYR90:B:CA (activator/proton acceptor/proton donor) at 16.976 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_954.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 2,
+      "entry_id": "m_csa:661",
+      "entry_name": "arylsulfatase",
+      "structure_id": "1HDH",
+      "structure_path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_1HDH.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_661.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_661.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 17.772,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:661:residue:10",
+          "residue_number": 375,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:661:residue:5",
+          "residue_number": 113,
+          "roles": [
+            "electrostatic stabiliser",
+            "increase electrophilicity"
+          ]
+        },
+        "label": "LYS375:A:CA (electrostatic stabiliser) to LYS113:A:CA (electrostatic stabiliser/increase electrophilicity) at 17.772 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_661.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 3,
+      "entry_id": "m_csa:710",
+      "entry_name": "cytosine deaminase (bacterial)",
+      "structure_id": "1RA0",
+      "structure_path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_1RA0.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_710.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_710.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 15.358,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:710:residue:3",
+          "residue_number": 67,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:710:residue:5",
+          "residue_number": 221,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "label": "HIS67:A:CA (metal ligand) to GLU221:A:CA (proton acceptor/proton donor) at 15.358 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_710.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 4,
+      "entry_id": "m_csa:791",
+      "entry_name": "colicin-E9",
+      "structure_id": "1FR2",
+      "structure_path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_1FR2.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_791.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_791.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 19.64,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "ARG",
+          "residue_node_id": "m_csa:791:residue:4",
+          "residue_number": 96,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "ARG",
+          "residue_node_id": "m_csa:791:residue:7",
+          "residue_number": 5,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "label": "ARG96:B:CA (electrostatic stabiliser) to ARG5:B:CA (electrostatic stabiliser) at 19.64 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_791.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 5,
+      "entry_id": "m_csa:626",
+      "entry_name": "bontoxilysin",
+      "structure_id": "1EPW",
+      "structure_path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_1EPW.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_626.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_626.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 17.957,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:626:residue:2",
+          "residue_number": 233,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ARG",
+          "residue_node_id": "m_csa:626:residue:5",
+          "residue_number": 369,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "label": "HIS233:A:CA (metal ligand) to ARG369:A:CA (electrostatic stabiliser) at 17.957 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_626.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 6,
+      "entry_id": "m_csa:720",
+      "entry_name": "creatininase",
+      "structure_id": "1J2U",
+      "structure_path": "artifacts/v3_mcsa_pymol_twelfth_materialized_coordinates_20260522/pdb_1J2U.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_720.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_720.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 15.535,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:720:residue:5",
+          "residue_number": 183,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:720:residue:6",
+          "residue_number": 122,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "label": "GLU183:A:CA (metal ligand) to GLU122:A:CA (electrostatic stabiliser) at 15.535 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_720.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 7,
+      "entry_id": "m_csa:596",
+      "entry_name": "deuterolysin",
+      "structure_id": "1EB6",
+      "structure_path": "artifacts/v3_mcsa_pymol_twelfth_materialized_coordinates_20260522/pdb_1EB6.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_596.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_596.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 17.532,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:596:residue:3",
+          "residue_number": 143,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "TYR",
+          "residue_node_id": "m_csa:596:residue:4",
+          "residue_number": 106,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "label": "ASP143:A:CA (metal ligand) to TYR106:A:CA (electrostatic stabiliser) at 17.532 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_596.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 8,
+      "entry_id": "m_csa:668",
+      "entry_name": "leishmanolysin",
+      "structure_id": "1LML",
+      "structure_path": "artifacts/v3_mcsa_pymol_twelfth_materialized_coordinates_20260522/pdb_1LML.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_668.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_668.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 10.9,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:668:residue:3",
+          "residue_number": 235,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:668:residue:4",
+          "residue_number": 166,
+          "roles": [
+            "proton shuttle (general acid/base)"
+          ]
+        },
+        "label": "HIS235:A:CA (metal ligand) to GLU166:A:CA (proton shuttle (general acid/base)) at 10.9 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_668.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 9,
+      "entry_id": "m_csa:838",
+      "entry_name": "Colicin-E7",
+      "structure_id": "1ZNV",
+      "structure_path": "artifacts/v3_mcsa_pymol_twelfth_materialized_coordinates_20260522/pdb_1ZNV.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_838.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_838.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 10.544,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "HIS",
+          "residue_node_id": "m_csa:838:residue:1",
+          "residue_number": 131,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "GLU",
+          "residue_node_id": "m_csa:838:residue:5",
+          "residue_number": 103,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "label": "HIS131:B:CA (metal ligand) to GLU103:B:CA (proton acceptor/proton donor) at 10.544 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_838.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    },
+    {
+      "review_order": 10,
+      "entry_id": "m_csa:955",
+      "entry_name": "tuberculosinol synthase",
+      "structure_id": "3WQL",
+      "structure_path": "artifacts/v3_mcsa_pymol_tenth_materialized_coordinates_20260522/pdb_3WQL.cif",
+      "structure_path_exists": true,
+      "pml_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_955.pml",
+      "pymol_command": "pymol artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_955.pml",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "visual_focus": {
+        "distance_angstrom": 13.995,
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "TYR",
+          "residue_node_id": "m_csa:955:residue:1",
+          "residue_number": 51,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "B",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:955:residue:2",
+          "residue_number": 34,
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        "label": "TYR51:B:CA (proton acceptor/proton donor) to ASP34:B:CA (metal ligand) at 13.995 A",
+        "render_status": "rendered",
+        "render_png_path": "/tmp/mcsa_ai_review_all/renders_pseudo/m_csa_955.png"
+      },
+      "reviewer_question": "Does the local structure and M-CSA mechanism support accepting metal_dependent_hydrolase, pending later gates?",
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "required_human_or_expert_action": "Human visual and biochemical accept-or-hold review; if accepted, use a later dedicated label-factory gate and import preview."
+    }
+  ]
+}

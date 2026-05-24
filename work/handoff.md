@@ -50,6 +50,52 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T06:56Z Exact 40 Human Review Packet Built
+
+STARTED_AT for this run: `2026-05-24T06:45:50Z`. The exact requested 40 IDs
+were verified to match
+`recommended_human_review_plan.unique_recommended_review_ids` in
+`artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json` exactly
+and in order. No discrepancy note was needed.
+
+New review-only outputs:
+
+```text
+artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json
+artifacts/v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json
+artifacts/v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json
+artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/index.json
+artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/open_clean10_pymol.sh
+```
+
+Counts verified: exact-40 packet has 40 rows; clean-first packet has the 10
+clean-likely-positive rows; blank human decision template has 40 rows; the
+local PyMOL index has 10 clean-row scripts and zero missing local structure
+paths. All rows remain review-only with no default accept decisions, no label
+import, no import preview, no registry edit, no production fingerprint edit, no
+production scoring change, and no upload/removal/migration action. Canonical
+validation remains 695 curated labels and eight production fingerprints.
+
+Verification run:
+
+```text
+PYTHONPATH=src python -m unittest discover -s tests
+PYTHONPATH=src python -m catalytic_earth.cli validate
+```
+
+Results: 913 unit tests passed; validate reported 12 source records, 8
+mechanism fingerprints, 15 ontology families, and 695 curated mechanism
+labels.
+
+Confidence call: high that the exact-40 packet is pinned to the completed
+66-row triage plan and that it did not mutate source, label, registry,
+fingerprint, or scoring state. Medium-high that the clean-10 PyMOL scripts are
+usable first-pass reviewer aids because they reuse already-local structure
+paths and the prior visual focus pairs; they should still be treated only as
+review aids. Next action for Vivek: review the clean-10 packet first, then fill
+the blank exact-40 decision template with `accepted`, `rejected`,
+`needs_more_evidence`, or `route_future_family`.
+
 ### 2026-05-24T05:50Z Exact 66 AI-Visual Review-Hold Triage Matrix Built
 
 The exact pinned M-CSA AI-assisted visual review-hold tranche is now captured in

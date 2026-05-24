@@ -6478,6 +6478,140 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 self.assertGreaterEqual(len(reps), 2)
                 self.assertLessEqual(len(reps), 5)
 
+    def test_exact40_ai_visual_human_review_packets_are_review_only(self) -> None:
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+        )
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json"
+        )
+        clean = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json"
+        )
+        template = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json"
+        )
+        pymol_index = _load_json(
+            ARTIFACTS
+            / "review_pymol"
+            / "mcsa_ai_visual_exact40_20260524"
+            / "index.json"
+        )
+
+        exact40 = matrix["recommended_human_review_plan"][
+            "unique_recommended_review_ids"
+        ]
+        clean10 = matrix["recommended_human_review_plan"][
+            "review_all_clean_likely_positive_ids"
+        ]
+        required_row_fields = {
+            "entry_id",
+            "entry_name",
+            "structure_id",
+            "structure_path",
+            "target_fingerprint_id",
+            "blocker_bucket",
+            "confidence",
+            "sample_review_priority",
+            "expected_import_potential",
+            "current_decision",
+            "source_review_row_index",
+            "source_artifact",
+            "original_expert_note",
+            "routing_evidence",
+            "visual_evidence",
+            "mcsa_structured_evidence",
+            "evidence_for",
+            "evidence_against",
+            "counterevidence",
+            "required_human_or_expert_action",
+            "forbidden_or_review_only_evidence",
+            "would_unblock_if",
+            "allowed_reviewer_actions",
+            "reviewer_question",
+        }
+        base_actions = {
+            "accept_current_target",
+            "reject_current_target",
+            "needs_more_evidence",
+            "route_future_family",
+        }
+
+        self.assertEqual(len(exact40), 40)
+        self.assertEqual(packet["metadata"]["row_count"], 40)
+        self.assertEqual([row["entry_id"] for row in packet["rows"]], exact40)
+        self.assertTrue(packet["metadata"]["review_only"])
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        self.assertFalse(packet["metadata"]["default_accept_decisions"])
+        self.assertFalse(packet["metadata"]["dedicated_import_preview_run"])
+        self.assertFalse(packet["metadata"]["curated_label_registry_edited"])
+        self.assertFalse(packet["metadata"]["fingerprint_registry_edited"])
+        self.assertFalse(packet["metadata"]["production_scoring_changed"])
+        self.assertEqual(packet["metadata"]["canonical_label_count_invariant"], 695)
+        self.assertEqual(
+            packet["metadata"]["production_fingerprint_universe_count_invariant"],
+            8,
+        )
+        self.assertEqual(
+            packet["metadata"]["source_universe_counts"],
+            {"accepted": 22, "rejected": 210, "needs_more_evidence": 66},
+        )
+
+        special_by_bucket = {
+            "clean_likely_positive": "inspect_pymol",
+            "needs_manual_visual_review": "inspect_pymol",
+            "needs_expert_biochemistry_review": "expert_biochemistry_needed",
+            "apo_or_holo_missing_cofactor": "find_holo_alternate",
+            "loose_open_or_interdomain_geometry": "inspect_pymol",
+            "amp_or_nucleotide_nontransfer_context": "expert_biochemistry_needed",
+            "wrong_fingerprint_or_future_ontology_family": "schema_needed",
+            "true_reject": "keep_review_only",
+        }
+        for row in packet["rows"]:
+            self.assertTrue(required_row_fields.issubset(row))
+            self.assertTrue(base_actions.issubset(row["allowed_reviewer_actions"]))
+            self.assertIn(
+                special_by_bucket[row["blocker_bucket"]],
+                row["allowed_reviewer_actions"],
+            )
+            self.assertTrue(row["reviewer_question"])
+            self.assertEqual(row["current_decision"], "needs_more_evidence")
+
+        self.assertEqual(clean["metadata"]["row_count"], 10)
+        self.assertEqual([row["entry_id"] for row in clean["rows"]], clean10)
+        self.assertEqual(clean10, exact40[:10])
+        self.assertFalse(clean["metadata"]["default_accept_decisions"])
+        self.assertTrue(
+            all(
+                row["blocker_bucket"] == "clean_likely_positive"
+                for row in clean["rows"]
+            )
+        )
+
+        self.assertEqual(template["metadata"]["row_count"], 40)
+        self.assertEqual([row["entry_id"] for row in template["rows"]], exact40)
+        self.assertEqual(
+            template["metadata"]["allowed_decisions"],
+            ["accepted", "rejected", "needs_more_evidence", "route_future_family"],
+        )
+        for row in template["rows"]:
+            self.assertIsNone(row["decision"])
+            self.assertIsNone(row["reviewer"])
+            self.assertIsNone(row["reviewed_at"])
+            self.assertEqual(row["expert_note"], "")
+            self.assertIsNone(row["confidence_override"])
+
+        self.assertEqual(pymol_index["metadata"]["clean_likely_positive_row_count"], 10)
+        self.assertEqual(pymol_index["metadata"]["pymol_script_count"], 10)
+        self.assertEqual(pymol_index["metadata"]["missing_structure_path_count"], 0)
+        self.assertEqual([row["entry_id"] for row in pymol_index["rows"]], clean10)
+        for row in pymol_index["rows"]:
+            self.assertTrue((ROOT / row["pml_script_path"]).exists())
+
     def test_structure_id_mapping_probe_finds_one_repair_candidate_only(self) -> None:
         probe = _load_json(
             ARTIFACTS

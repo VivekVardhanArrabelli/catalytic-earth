@@ -1,0 +1,822 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_exact40_human_decision_template_20260524",
+    "schema_version": "mcsa_ai_visual_exact40_human_decision_template.v1",
+    "created_at": "2026-05-24T06:51:31Z",
+    "review_only_blank_template": true,
+    "ready_for_label_import": false,
+    "default_accept_decisions": false,
+    "row_count": 40,
+    "allowed_decisions": [
+      "accepted",
+      "rejected",
+      "needs_more_evidence",
+      "route_future_family"
+    ],
+    "source_exact40_packet": "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json",
+    "source_triage_matrix": "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json",
+    "human_review_required_before_any_import_gate": true
+  },
+  "rows": [
+    {
+      "review_order": 1,
+      "entry_id": "m_csa:954",
+      "entry_name": "isotuberculosinol synthase",
+      "structure_id": "3WQL",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 247,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 2,
+      "entry_id": "m_csa:661",
+      "entry_name": "arylsulfatase",
+      "structure_id": "1HDH",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 259,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 3,
+      "entry_id": "m_csa:710",
+      "entry_name": "cytosine deaminase (bacterial)",
+      "structure_id": "1RA0",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 264,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 4,
+      "entry_id": "m_csa:791",
+      "entry_name": "colicin-E9",
+      "structure_id": "1FR2",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 273,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 5,
+      "entry_id": "m_csa:626",
+      "entry_name": "bontoxilysin",
+      "structure_id": "1EPW",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 274,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 6,
+      "entry_id": "m_csa:720",
+      "entry_name": "creatininase",
+      "structure_id": "1J2U",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 277,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 7,
+      "entry_id": "m_csa:596",
+      "entry_name": "deuterolysin",
+      "structure_id": "1EB6",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 279,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 8,
+      "entry_id": "m_csa:668",
+      "entry_name": "leishmanolysin",
+      "structure_id": "1LML",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 288,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 9,
+      "entry_id": "m_csa:838",
+      "entry_name": "Colicin-E7",
+      "structure_id": "1ZNV",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 289,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 10,
+      "entry_id": "m_csa:955",
+      "entry_name": "tuberculosinol synthase",
+      "structure_id": "3WQL",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "clean_likely_positive",
+      "source_review_row_index": 293,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 11,
+      "entry_id": "m_csa:591",
+      "entry_name": "stromelysin 1",
+      "structure_id": "1HFS",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "source_review_row_index": 38,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 12,
+      "entry_id": "m_csa:951",
+      "entry_name": "N-sulfoglucosamine sulfohydrolase",
+      "structure_id": "4MHX",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "source_review_row_index": 60,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 13,
+      "entry_id": "m_csa:986",
+      "entry_name": "Thiosulfate dehydrogenase",
+      "structure_id": "4V2K",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "source_review_row_index": 179,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 14,
+      "entry_id": "m_csa:927",
+      "entry_name": "type II site-specific deoxyribonuclease FokI",
+      "structure_id": "2FOK",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "source_review_row_index": 181,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 15,
+      "entry_id": "m_csa:650",
+      "entry_name": "phospholipase A1",
+      "structure_id": "1QD6",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "blocker_bucket": "needs_manual_visual_review",
+      "source_review_row_index": 251,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 16,
+      "entry_id": "m_csa:886",
+      "entry_name": "threonine ammonia-lyase (biosynthetic)",
+      "structure_id": "1TDJ",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "source_review_row_index": 294,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 17,
+      "entry_id": "m_csa:952",
+      "entry_name": "phosphohistidine phosphatase",
+      "structure_id": "2HW4",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "source_review_row_index": 51,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 18,
+      "entry_id": "m_csa:794",
+      "entry_name": "2',3'-cyclic-nucleotide 3'-phosphodiesterase",
+      "structure_id": "1JH6",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "source_review_row_index": 52,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 19,
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "structure_id": "1FO6",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "source_review_row_index": 54,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 20,
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "structure_id": "1NWW",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "source_review_row_index": 55,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 21,
+      "entry_id": "m_csa:832",
+      "entry_name": "rRNA endonuclease",
+      "structure_id": "1DE3",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "source_review_row_index": 95,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 22,
+      "entry_id": "m_csa:976",
+      "entry_name": "α‑glucosidase maltase-glucoamylase",
+      "structure_id": "2QMJ",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "source_review_row_index": 58,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 23,
+      "entry_id": "m_csa:847",
+      "entry_name": "epoxide hydrolase",
+      "structure_id": "1EHY",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "source_review_row_index": 62,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 24,
+      "entry_id": "m_csa:642",
+      "entry_name": "vesicle-fusing ATPase",
+      "structure_id": "1NSF",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "source_review_row_index": 122,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 25,
+      "entry_id": "m_csa:844",
+      "entry_name": "dUTP diphosphatase",
+      "structure_id": "1DUP",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "source_review_row_index": 187,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 26,
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "structure_id": "1TZ3",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "source_review_row_index": 9,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 27,
+      "entry_id": "m_csa:564",
+      "entry_name": "ribonuclease V",
+      "structure_id": "1A4Y",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "source_review_row_index": 87,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 28,
+      "entry_id": "m_csa:833",
+      "entry_name": "DNA helicase",
+      "structure_id": "1QHG",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "source_review_row_index": 135,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 29,
+      "entry_id": "m_csa:780",
+      "entry_name": "DNA helicase",
+      "structure_id": "1HQC",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "source_review_row_index": 167,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 30,
+      "entry_id": "m_csa:656",
+      "entry_name": "adenosinetriphosphatase",
+      "structure_id": "1KAZ",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "source_review_row_index": 218,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 31,
+      "entry_id": "m_csa:793",
+      "entry_name": "mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase",
+      "structure_id": "1QWN",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "source_review_row_index": 13,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 32,
+      "entry_id": "m_csa:755",
+      "entry_name": "lysophospholipase",
+      "structure_id": "1J00",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "source_review_row_index": 83,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 33,
+      "entry_id": "m_csa:817",
+      "entry_name": "chitinase (GH18, class II)",
+      "structure_id": "1ITX",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "source_review_row_index": 85,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 34,
+      "entry_id": "m_csa:597",
+      "entry_name": "ubiquitinyl hydrolase 1 (peptidase C12 type)",
+      "structure_id": "1UCH",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "source_review_row_index": 102,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 35,
+      "entry_id": "m_csa:729",
+      "entry_name": "protein-glutamate methylesterase (CheD)",
+      "structure_id": "2F9Z",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "source_review_row_index": 128,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 36,
+      "entry_id": "m_csa:841",
+      "entry_name": "penicillin amidase (peptidase S45 family)",
+      "structure_id": "1PNL",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "blocker_bucket": "true_reject",
+      "source_review_row_index": 171,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 37,
+      "entry_id": "m_csa:658",
+      "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
+      "structure_id": "1FHL",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "blocker_bucket": "true_reject",
+      "source_review_row_index": 190,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 38,
+      "entry_id": "m_csa:827",
+      "entry_name": "fructan beta-fructosidase",
+      "structure_id": "1Y9M",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "blocker_bucket": "true_reject",
+      "source_review_row_index": 228,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 39,
+      "entry_id": "m_csa:774",
+      "entry_name": "lysozyme (glycosyl hydrolase 25 family)",
+      "structure_id": "1OBA",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "blocker_bucket": "true_reject",
+      "source_review_row_index": 229,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    },
+    {
+      "review_order": 40,
+      "entry_id": "m_csa:831",
+      "entry_name": "glucan 1,3-beta-glucosidase",
+      "structure_id": "1CZ1",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "blocker_bucket": "true_reject",
+      "source_review_row_index": 231,
+      "allowed_decisions": [
+        "accepted",
+        "rejected",
+        "needs_more_evidence",
+        "route_future_family"
+      ],
+      "decision": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "expert_note": "",
+      "confidence_override": null
+    }
+  ]
+}

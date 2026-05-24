@@ -1,0 +1,19 @@
+# Review-only PyMOL focus script for m_csa:596
+# deuterolysin; target=metal_dependent_hydrolase
+load "artifacts/v3_mcsa_pymol_twelfth_materialized_coordinates_20260522/pdb_1EB6.cif", m_csa_596
+hide everything, m_csa_596
+show cartoon, m_csa_596
+color gray70, m_csa_596
+set cartoon_transparency, 0.78, m_csa_596
+select m_csa_596_left, m_csa_596 and chain A and resi 143 and resn ASP
+select m_csa_596_right, m_csa_596 and chain A and resi 106 and resn TYR
+show sticks, m_csa_596_left or m_csa_596_right
+show spheres, (m_csa_596_left or m_csa_596_right) and name CA
+color tv_red, m_csa_596_left
+color tv_blue, m_csa_596_right
+distance m_csa_596_distance, (m_csa_596 and chain A and resi 143 and resn ASP and name CA), (m_csa_596 and chain A and resi 106 and resn TYR and name CA)
+label m_csa_596_distance, "17.532 A"
+zoom m_csa_596_left or m_csa_596_right, 8
+set dash_width, 3
+set label_size, 18
+set sphere_scale, 0.32
