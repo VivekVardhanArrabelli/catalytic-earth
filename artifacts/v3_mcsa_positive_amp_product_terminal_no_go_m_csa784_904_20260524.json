@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524",
+    "schema_version": "mcsa_positive_amp_product_terminal_no_go.v1",
+    "created_at": "2026-05-24T03:46:49Z",
+    "method": "amp_product_counterevidence_terminal_current_evidence_decision",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json",
+      "artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json",
+      "artifacts/v3_geometry_retrieval_1025.json"
+    ],
+    "canonical_label_count_invariant": 695,
+    "production_fingerprint_universe_count_invariant": 8,
+    "rows_evaluated_count": 2,
+    "product_context_exception_candidate_count": 2,
+    "retain_counterevidence_control_count": 33,
+    "production_rule_activated": false,
+    "production_scoring_changed": false,
+    "production_rule_implemented_or_unit_tested": false,
+    "dedicated_import_preview_run": false,
+    "import_gate_eligible_count": 0,
+    "still_blocked_count": 2,
+    "terminal_no_go_for_current_evidence": true,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "decision": {
+    "blocker_class": "amp_product_context_counterevidence",
+    "previous_status": "m_csa:784 and m_csa:904 were blocked because AMP product or partial-product context still triggered nucleotide-transfer counterevidence and both rows scored below the 0.4115 floor.",
+    "new_status": "terminal_current_evidence_still_blocked",
+    "decision_summary": "The review-only stress panel has only two product-context exception positives and thirty-three retain-counterevidence transfer controls. That is insufficient to activate a general production rule, both exception candidates remain below the abstention floor without an ungated scoring change, and no production code, unit tests, or dedicated gates were added. No import is authorized.",
+    "canonical_count_movement": "695 -> 695",
+    "rule_promotion_decision": "no_go_current_evidence",
+    "rule_promotion_blockers": [
+      "fewer_than_three_product_context_exception_positives",
+      "no_independent_product_phosphatase_positive_beyond_existing_nucleotidase_surface",
+      "all_product_exception_candidates_remain_below_abstain_floor_without_ungated_scoring_change",
+      "production_rule_not_implemented_or_unit_tested",
+      "no_dedicated_import_gate_for_m_csa_784_or_m_csa_904_after_rule_activation"
+    ],
+    "future_reopen_conditions": [
+      "at least one additional independent product AMP/NMP hydrolase, nuclease, or phosphatase positive",
+      "a general production counterevidence exception implemented in code and covered by unit tests",
+      "dedicated label-factory gates for only the rows eligible under the tested rule"
+    ],
+    "next_blocker_class": "PLP threshold/local evidence for m_csa:777"
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:784",
+      "entry_name": "3'-5' exoribonuclease 1",
+      "selected_pdb": "1W0H",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "top1_score_current": 0.4082,
+      "abstain_threshold": 0.4115,
+      "score_clears_current_threshold": false,
+      "current_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "ligand_codes": [
+        "AMP",
+        "MG",
+        "MSE"
+      ],
+      "candidate_rule_expected_decision": "product_context_exception_candidate",
+      "production_rule_activated": false,
+      "current_status": "still_blocked",
+      "import_gate_eligible": false,
+      "terminal_current_evidence_no_go": true,
+      "exact_blocker": "AMP product-context exception is review-only, the current top1 score is 0.4082 below the 0.4115 floor, and no tested production counterevidence rule exists."
+    },
+    {
+      "entry_id": "m_csa:904",
+      "entry_name": "3'(2'),5'-bisphosphate nucleotidase",
+      "selected_pdb": "1QGX",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "top1_score_current": 0.405,
+      "abstain_threshold": 0.4115,
+      "score_clears_current_threshold": false,
+      "current_counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "ligand_codes": [
+        "AMP",
+        "BME",
+        "MG",
+        "PO4",
+        "SO4"
+      ],
+      "candidate_rule_expected_decision": "product_context_exception_candidate",
+      "production_rule_activated": false,
+      "current_status": "still_blocked",
+      "import_gate_eligible": false,
+      "terminal_current_evidence_no_go": true,
+      "exact_blocker": "AMP product-context exception is review-only, the current top1 score is 0.4050 below the 0.4115 floor, and no tested production counterevidence rule exists."
+    }
+  ]
+}

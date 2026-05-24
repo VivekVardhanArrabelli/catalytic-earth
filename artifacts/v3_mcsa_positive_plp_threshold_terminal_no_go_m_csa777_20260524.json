@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524",
+    "schema_version": "mcsa_positive_plp_threshold_terminal_no_go.v1",
+    "created_at": "2026-05-24T03:48:12Z",
+    "method": "plp_threshold_local_evidence_terminal_current_evidence_decision",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json",
+      "artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json",
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json",
+      "artifacts/v3_geometry_retrieval_1025.json"
+    ],
+    "canonical_label_count_invariant": 695,
+    "production_fingerprint_universe_count_invariant": 8,
+    "rows_evaluated_count": 1,
+    "stronger_local_plp_evidence_found": false,
+    "threshold_lowered": false,
+    "explicit_gate_override_used": false,
+    "dedicated_import_preview_run": false,
+    "import_gate_eligible_count": 0,
+    "still_blocked_count": 1,
+    "terminal_no_go_for_current_evidence": true,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "decision": {
+    "blocker_class": "plp_threshold_local_evidence",
+    "previous_status": "m_csa:777 was scientifically accepted with caveat, but current 1025 import-readiness evidence records top1 score 0.4107 below the 0.4115 abstention threshold.",
+    "new_status": "terminal_current_evidence_still_blocked",
+    "decision_summary": "Local PLP/LLP context is already present in selected 1AAM, but no new stronger local PLP evidence in the latest pushed repo state resolves the current gate blocker. The authoritative 22-row import-readiness artifact keeps the current 1025 score at 0.4107, marks the prior 0.5307 score as older/non-preview evidence that must not be used, and records top1_below_abstention_threshold. The row remains blocked without threshold lowering or an explicit tested gate override.",
+    "canonical_count_movement": "695 -> 695",
+    "future_reopen_conditions": [
+      "new scored local PLP evidence or remapped structure evidence that clears the established 0.4115 floor under production scoring",
+      "or a general, tested gate override policy that is not candidate-specific and passes dedicated label-factory gates"
+    ],
+    "next_blocker_class": "coupled PLP plus adenosylcobalamin schema decision for m_csa:737"
+  },
+  "row": {
+    "entry_id": "m_csa:777",
+    "entry_name": "aspartate transaminase",
+    "target_fingerprint": "plp_dependent_enzyme",
+    "selected_pdb": "1AAM",
+    "current_status": "still_blocked",
+    "terminal_current_evidence_no_go": true,
+    "import_gate_eligible": false,
+    "expert_action": "accept_label_with_caveat",
+    "current_1025_score_for_import_gate": 0.4107,
+    "abstain_threshold": 0.4115,
+    "margin_to_threshold": -0.0008,
+    "prior_score_excluded_from_1025_gate": 0.5307,
+    "score_clears_current_threshold": false,
+    "selected_active_site_has_expected_family": true,
+    "expected_cofactor_families": [
+      "plp"
+    ],
+    "local_cofactor_families": [
+      "plp"
+    ],
+    "matching_structure_ligands": [
+      {
+        "code": "LLP",
+        "family": "plp",
+        "instance_count": 1,
+        "min_distance_to_active_site": 4.885
+      }
+    ],
+    "resolved_residue_count": 2,
+    "missing_positions": 1,
+    "exact_blocker": "Current import-readiness evidence is 0.0008 below the established abstention floor; local LLP evidence is already counted and does not by itself authorize a candidate-specific threshold relaxation.",
+    "do_not_repeat": [
+      "do not use the older 0.5307 non-preview score as the current 1025 gate score",
+      "do not lower the 0.4115 threshold by 0.001 to import this row",
+      "do not run a dedicated import preview until new scored evidence or a general tested override exists"
+    ]
+  }
+}

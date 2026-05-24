@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524",
+    "schema_version": "mcsa_positive_loose_cofactor_locality_policy_decision.v1",
+    "created_at": "2026-05-24T03:43:17Z",
+    "method": "loose_interdomain_cofactor_locality_policy_decision",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json",
+      "artifacts/v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json",
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json"
+    ],
+    "canonical_label_count_invariant": 695,
+    "production_fingerprint_universe_count_invariant": 8,
+    "rows_evaluated_count": 3,
+    "policy_class_decided": true,
+    "import_gate_eligible_count": 0,
+    "still_blocked_count": 3,
+    "dedicated_import_preview_run": false,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "terminal_no_go_for_current_evidence": true
+  },
+  "decision": {
+    "blocker_class": "loose_interdomain_cofactor_locality",
+    "previous_status": "m_csa:611, m_csa:657, and m_csa:1001 were blocked because high metal-dependent-hydrolase retrieval scores were paired with loose conformation, inter-domain or oligomeric role-pair distance, or cofactor-locality uncertainty.",
+    "policy_decision": "conditionally_countable_but_current_rows_still_blocked",
+    "can_loose_interdomain_or_cofactor_locality_exemplars_ever_be_countable": true,
+    "policy_rule_id": "metal_hydrolase_loose_interdomain_cofactor_locality_policy_v1_20260524",
+    "policy_summary": "Loose active-site geometry, inter-domain role pairs, oligomeric role pairs, and cofactor-locality exceptions may become countable only when explicit structural evidence shows that the catalytic residues, expected cofactor, and relevant water or substrate-ligand context form one active catalytic unit in the selected biological assembly or a remapped alternate structure. High retrieval score, mechanism text, structure-wide cofactor presence, or one local cofactor contact alone is insufficient.",
+    "minimum_structural_evidence_for_future_counting": [
+      "all scored and catalytically necessary M-CSA residues must have residue-level mappings in the selected structure, biological assembly, or a named remapped alternate",
+      "the expected cofactor must be local to the active-site residue set by atom-level evidence, not only present structure-wide",
+      "metal-ligand roles must have direct coordinating-atom evidence or an explicit curated remap to direct metal-ligand residues",
+      "acid/base-plus-metal-locality cases can count only when the acid/base residue is atom-level local to the same metal/water/substrate pocket as the direct metal-ligand residues",
+      "if a scored focus pair is far apart because of open conformation, domain motion, or oligomeric context, a closed-conformation alternate, biological-assembly mapping, or explicit role-pair locality evidence must show the pair participates in the same catalytic unit",
+      "the row must then pass a dedicated import preview, full label-factory gates, and batch acceptance for only the eligible row set"
+    ],
+    "not_allowed_as_counting_evidence": [
+      "mechanism text alone",
+      "entry name, EC, Rhea, or source annotation alone",
+      "structure-wide metal or cofactor hits without local active-site support",
+      "high current retrieval score when the relevant active-site roles remain spatially unresolved",
+      "ad hoc threshold lowering or candidate-specific scoring exceptions"
+    ],
+    "dedicated_import_preview_not_run_reason": "No evaluated row is import-gate eligible under the v1 policy and current evidence. The canonical count remains 695 -> 695."
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:611",
+      "entry_name": "5'-nucleotidase (bacterial)",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "selected_pdb": "1USH",
+      "policy_class": "loose_open_conformation",
+      "countable_under_policy_if_evidence_is_supplied": true,
+      "current_status": "still_blocked",
+      "import_gate_eligible": false,
+      "terminal_current_evidence_no_go": true,
+      "current_1025_score": 0.5782,
+      "abstain_threshold": 0.4115,
+      "selected_active_site_has_expected_family": true,
+      "nearest_expected_ligand_distance_angstrom": 3.63,
+      "measured_focus_distance_angstrom": 40.164,
+      "key_current_evidence": [
+        "selected 1USH has two local Zn ions within the active-site evidence surface",
+        "Vivek hold rationale records Arg375/His217 focus-pair separation of 40.164 A, consistent with open-domain 5'-nucleotidase conformation",
+        "the 1025 remediation artifact has no residue-mapped alternate among 1HO5, 1HP1, 1HPU, 1OI8, 1OID, 1OIE, 2USH, and 4WWL"
+      ],
+      "missing_evidence_before_import_gate": [
+        "closed-conformation alternate with explicit residue mapping",
+        "or explicit biological/structural note that the far Arg375/His217 role pair is valid for the same catalytic unit despite the selected open conformation"
+      ],
+      "next_action": "do_not_repeat_policy_review; reopen only with closed-conformation remap or explicit loose-conformation acceptance evidence"
+    },
+    {
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "selected_pdb": "1HR6",
+      "policy_class": "acid_base_plus_metal_cofactor_locality",
+      "countable_under_policy_if_evidence_is_supplied": true,
+      "current_status": "still_blocked",
+      "import_gate_eligible": false,
+      "terminal_current_evidence_no_go": true,
+      "current_1025_score": 0.5822,
+      "abstain_threshold": 0.4115,
+      "selected_active_site_has_expected_family": false,
+      "nearest_expected_ligand_distance_angstrom": 6.287,
+      "measured_focus_distance_angstrom": 13.228,
+      "key_current_evidence": [
+        "Vivek open-question resolution confirms Glu131 OE2 to Zn at 2.171 A and local Zn ligation by His51 and His55",
+        "the second scored residue Glu54 is a nearby catalytic acid/base with OE2 to Zn at 4.323 A, not a direct metal ligand",
+        "the 1025 remediation artifact still marks expected_cofactor_not_local and selected_active_site_has_expected_family=false"
+      ],
+      "missing_evidence_before_import_gate": [
+        "tested production/local-evidence rule that represents acid/base-plus-metal-locality as a general metal-hydrolase pattern",
+        "or alternate structural evidence showing both scored residues satisfy the direct/local geometry expected by current gates"
+      ],
+      "next_action": "do_not_import from current evidence; future work must implement and test a general acid-base-plus-metal-locality rule before any dedicated gate"
+    },
+    {
+      "entry_id": "m_csa:1001",
+      "entry_name": "Prolidase (Xaa-Pro dipeptidase)",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "selected_pdb": "5M4G",
+      "policy_class": "oligomeric_or_role_pair_locality",
+      "countable_under_policy_if_evidence_is_supplied": true,
+      "current_status": "still_blocked",
+      "import_gate_eligible": false,
+      "terminal_current_evidence_no_go": true,
+      "current_1025_score": 0.571,
+      "abstain_threshold": 0.4115,
+      "selected_active_site_has_expected_family": true,
+      "nearest_expected_ligand_distance_angstrom": 4.779,
+      "measured_focus_distance_angstrom": 30.173,
+      "key_current_evidence": [
+        "selected 5M4G contains four Mn ions and local metal context",
+        "Vivek hold rationale records Asp271/Arg393 focus-pair separation of 30.173 A",
+        "the 1025 remediation artifact has no residue-mapped alternate among twenty listed prolidase candidate structures"
+      ],
+      "missing_evidence_before_import_gate": [
+        "biological-assembly or oligomer-context mapping showing the distant role pair belongs to the same catalytic unit",
+        "or alternate focus-pair/remapped structure evidence that resolves the metal-ligand and hydrogen-bond donor roles locally"
+      ],
+      "next_action": "do_not_repeat policy review; reopen only with assembly-resolved active-site mapping or alternate remap evidence"
+    }
+  ]
+}

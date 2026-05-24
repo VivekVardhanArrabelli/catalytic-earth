@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524",
+    "schema_version": "mcsa_positive_apo_holo_terminal_no_go.v1",
+    "created_at": "2026-05-24T03:45:49Z",
+    "method": "apo_holo_blocker_terminal_current_evidence_search",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json",
+      "artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json",
+      "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json",
+      "artifacts/v3_explicit_alternate_residue_position_requests_1025.json"
+    ],
+    "canonical_label_count_invariant": 695,
+    "production_fingerprint_universe_count_invariant": 8,
+    "rows_evaluated_count": 2,
+    "local_remapped_holo_evidence_found_count": 0,
+    "selected_pdb_override_evidence_artifact_created": false,
+    "dedicated_import_preview_run": false,
+    "import_gate_eligible_count": 0,
+    "still_blocked_count": 2,
+    "terminal_no_go_for_current_evidence": true,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "decision": {
+    "blocker_class": "apo_holo_selected_structure",
+    "previous_status": "m_csa:836 and m_csa:996 were blocked because selected structures lack biological metal and previously scanned alternates had only structure-wide metal hits without usable active-site remaps.",
+    "new_status": "terminal_current_evidence_still_blocked",
+    "decision_summary": "The latest pushed repo state contains no new selected-PDB override evidence for either row. Existing bounded scans already cover all candidate PDB ids available in the 1025 remediation surface. Metal-containing alternates remain non-local because residue remapping is absent or failed, so no row is import-gate eligible and no dedicated import preview was run.",
+    "canonical_count_movement": "695 -> 695",
+    "next_blocker_class": "AMP product-context counterevidence for m_csa:784 and m_csa:904"
+  },
+  "search_scope": {
+    "repo_state": "origin/main after 2026-05-24T03:40Z fetch and ff-only pull",
+    "search_actions": [
+      "read post-import remaining decision matrix for apo/holo rows",
+      "read bounded apo alternate scan rows for m_csa:836 and m_csa:996",
+      "read holo override plan rows for exact blockers",
+      "read 1025 remediation rows for candidate PDB and residue-position availability",
+      "searched current artifacts/work/tests for m_csa:836, m_csa:996, 3SLP, 3SM4, 4WUZ, and 5O6Y"
+    ],
+    "new_override_artifact_found": false,
+    "new_local_remapped_holo_candidate_found": false
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:836",
+      "entry_name": "exodeoxyribonuclease (lambda-induced)",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "selected_pdb": "1AVQ",
+      "current_1025_score": 0.58,
+      "current_status": "still_blocked",
+      "terminal_current_evidence_no_go": true,
+      "import_gate_eligible": false,
+      "candidate_pdb_ids_scanned": [
+        "1AVQ",
+        "3SLP",
+        "3SM4",
+        "4WUZ",
+        "6M9K"
+      ],
+      "metal_containing_alternate_pdb_ids": [
+        "3SLP",
+        "3SM4",
+        "4WUZ"
+      ],
+      "candidate_pdb_with_residue_positions_count": 1,
+      "alternate_pdb_with_remapped_positions_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "selected_structure_has_expected_family": false,
+      "selected_active_site_has_expected_family": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "exact_blocker": "3SLP, 3SM4, and 4WUZ contain metal ions structure-wide, but none has usable alternate residue positions or a conservative residue remap, so no local active-site metal support exists.",
+      "future_reopen_condition": "explicit alternate residue mapping or curated structure positions for a metal-containing alternate that place the expected metal family local to the catalytic residue set"
+    },
+    {
+      "entry_id": "m_csa:996",
+      "entry_name": "Peptidoglycan-N-acetylglucosamine deacetylase Bc1960",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "selected_pdb": "4L1G",
+      "current_1025_score": 0.6061,
+      "current_status": "still_blocked",
+      "terminal_current_evidence_no_go": true,
+      "import_gate_eligible": false,
+      "candidate_pdb_ids_scanned": [
+        "4L1G",
+        "5O6Y"
+      ],
+      "metal_containing_alternate_pdb_ids": [
+        "5O6Y"
+      ],
+      "candidate_pdb_with_residue_positions_count": 1,
+      "alternate_pdb_with_remapped_positions_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "selected_structure_has_expected_family": false,
+      "selected_active_site_has_expected_family": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "exact_blocker": "5O6Y contains Zn structure-wide, but residue remap fails and the current selected 4L1G active site has no expected metal family.",
+      "future_reopen_condition": "explicit 5O6Y residue mapping or another curated holo structure with local Zn support for the catalytic residue set"
+    }
+  ]
+}

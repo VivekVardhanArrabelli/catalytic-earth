@@ -5854,6 +5854,298 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertEqual(statuses[entry_id]["status"], "blocked")
             self.assertFalse(statuses[entry_id]["canonical_label_present"])
 
+    def test_loose_cofactor_locality_policy_decision_is_terminal_no_go(
+        self,
+    ) -> None:
+        policy = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json"
+        )
+        metadata = policy["metadata"]
+        decision = policy["decision"]
+
+        self.assertTrue(metadata["policy_class_decided"])
+        self.assertTrue(metadata["terminal_no_go_for_current_evidence"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertEqual(metadata["still_blocked_count"], 3)
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            decision["policy_decision"],
+            "conditionally_countable_but_current_rows_still_blocked",
+        )
+        self.assertTrue(
+            decision[
+                "can_loose_interdomain_or_cofactor_locality_exemplars_ever_be_countable"
+            ]
+        )
+        self.assertIn(
+            "dedicated import preview",
+            " ".join(decision["minimum_structural_evidence_for_future_counting"]),
+        )
+        self.assertIn(
+            "structure-wide metal or cofactor hits without local active-site support",
+            decision["not_allowed_as_counting_evidence"],
+        )
+
+        rows = {row["entry_id"]: row for row in policy["rows"]}
+        self.assertEqual(set(rows), {"m_csa:611", "m_csa:657", "m_csa:1001"})
+        self.assertEqual(rows["m_csa:611"]["policy_class"], "loose_open_conformation")
+        self.assertEqual(
+            rows["m_csa:657"]["policy_class"],
+            "acid_base_plus_metal_cofactor_locality",
+        )
+        self.assertEqual(
+            rows["m_csa:1001"]["policy_class"],
+            "oligomeric_or_role_pair_locality",
+        )
+        for row in rows.values():
+            self.assertEqual(row["current_status"], "still_blocked")
+            self.assertFalse(row["import_gate_eligible"])
+            self.assertTrue(row["terminal_current_evidence_no_go"])
+            self.assertTrue(row["countable_under_policy_if_evidence_is_supplied"])
+
+    def test_apo_holo_terminal_no_go_keeps_current_rows_blocked(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json"
+        )
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+
+        self.assertTrue(metadata["terminal_no_go_for_current_evidence"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["local_remapped_holo_evidence_found_count"], 0)
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertEqual(metadata["still_blocked_count"], 2)
+        self.assertFalse(metadata["selected_pdb_override_evidence_artifact_created"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            decision["new_status"],
+            "terminal_current_evidence_still_blocked",
+        )
+        self.assertEqual(decision["canonical_count_movement"], "695 -> 695")
+        self.assertFalse(packet["search_scope"]["new_override_artifact_found"])
+        self.assertFalse(
+            packet["search_scope"]["new_local_remapped_holo_candidate_found"]
+        )
+
+        rows = {row["entry_id"]: row for row in packet["rows"]}
+        self.assertEqual(set(rows), {"m_csa:836", "m_csa:996"})
+        self.assertEqual(
+            rows["m_csa:836"]["metal_containing_alternate_pdb_ids"],
+            ["3SLP", "3SM4", "4WUZ"],
+        )
+        self.assertEqual(
+            rows["m_csa:996"]["metal_containing_alternate_pdb_ids"],
+            ["5O6Y"],
+        )
+        for row in rows.values():
+            self.assertEqual(row["current_status"], "still_blocked")
+            self.assertFalse(row["import_gate_eligible"])
+            self.assertTrue(row["terminal_current_evidence_no_go"])
+            self.assertEqual(row["alternate_pdb_with_remapped_positions_count"], 0)
+            self.assertFalse(row["selected_active_site_has_expected_family"])
+
+    def test_amp_product_terminal_no_go_keeps_rule_review_only(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json"
+        )
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+
+        self.assertTrue(metadata["terminal_no_go_for_current_evidence"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["product_context_exception_candidate_count"], 2)
+        self.assertEqual(metadata["retain_counterevidence_control_count"], 33)
+        self.assertFalse(metadata["production_rule_activated"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["production_rule_implemented_or_unit_tested"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertEqual(metadata["still_blocked_count"], 2)
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        self.assertEqual(
+            decision["new_status"],
+            "terminal_current_evidence_still_blocked",
+        )
+        self.assertEqual(decision["rule_promotion_decision"], "no_go_current_evidence")
+        self.assertIn(
+            "production_rule_not_implemented_or_unit_tested",
+            decision["rule_promotion_blockers"],
+        )
+        self.assertEqual(decision["canonical_count_movement"], "695 -> 695")
+
+        rows = {row["entry_id"]: row for row in packet["rows"]}
+        self.assertEqual(set(rows), {"m_csa:784", "m_csa:904"})
+        self.assertEqual(rows["m_csa:784"]["top1_score_current"], 0.4082)
+        self.assertEqual(rows["m_csa:904"]["top1_score_current"], 0.405)
+        for row in rows.values():
+            self.assertEqual(row["current_status"], "still_blocked")
+            self.assertFalse(row["score_clears_current_threshold"])
+            self.assertFalse(row["production_rule_activated"])
+            self.assertFalse(row["import_gate_eligible"])
+            self.assertTrue(row["terminal_current_evidence_no_go"])
+
+    def test_plp_threshold_terminal_no_go_does_not_lower_threshold(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524.json"
+        )
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        row = packet["row"]
+
+        self.assertTrue(metadata["terminal_no_go_for_current_evidence"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertFalse(metadata["stronger_local_plp_evidence_found"])
+        self.assertFalse(metadata["threshold_lowered"])
+        self.assertFalse(metadata["explicit_gate_override_used"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertEqual(metadata["still_blocked_count"], 1)
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        self.assertEqual(
+            decision["new_status"],
+            "terminal_current_evidence_still_blocked",
+        )
+        self.assertEqual(decision["canonical_count_movement"], "695 -> 695")
+        self.assertEqual(row["entry_id"], "m_csa:777")
+        self.assertEqual(row["current_1025_score_for_import_gate"], 0.4107)
+        self.assertEqual(row["abstain_threshold"], 0.4115)
+        self.assertEqual(row["margin_to_threshold"], -0.0008)
+        self.assertEqual(row["prior_score_excluded_from_1025_gate"], 0.5307)
+        self.assertFalse(row["score_clears_current_threshold"])
+        self.assertTrue(row["selected_active_site_has_expected_family"])
+        self.assertEqual(row["matching_structure_ligands"][0]["code"], "LLP")
+        self.assertEqual(row["missing_positions"], 1)
+        self.assertFalse(row["import_gate_eligible"])
+        self.assertTrue(row["terminal_current_evidence_no_go"])
+        self.assertIn(
+            "do not lower the 0.4115 threshold by 0.001 to import this row",
+            row["do_not_repeat"],
+        )
+
+    def test_m_csa737_schema_decision_is_review_only_family_proposal(self) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json"
+        )
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+        row = packet["row"]
+
+        self.assertTrue(metadata["schema_decision_recorded"])
+        self.assertTrue(metadata["review_only_new_family_proposed"])
+        self.assertTrue(metadata["terminal_no_go_for_current_production_universe"])
+        self.assertFalse(metadata["multi_target_countable_label_proposed"])
+        self.assertFalse(metadata["production_fingerprint_promotion_authorized"])
+        self.assertFalse(metadata["production_fingerprint_registry_edited"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertEqual(metadata["still_blocked_count"], 1)
+
+        self.assertEqual(
+            decision["schema_decision"],
+            "review_only_new_coupled_cofactor_family_proposal",
+        )
+        self.assertEqual(
+            decision["proposed_review_only_family_id"],
+            "coupled_plp_adenosylcobalamin_aminomutase",
+        )
+        self.assertEqual(
+            decision["production_decision"],
+            "no_import_no_fingerprint_edit_current_run",
+        )
+        self.assertEqual(decision["canonical_count_movement"], "695 -> 695")
+
+        self.assertEqual(row["entry_id"], "m_csa:737")
+        self.assertEqual(row["current_status"], "still_blocked")
+        self.assertFalse(row["import_gate_eligible"])
+        self.assertTrue(row["terminal_current_production_universe_no_go"])
+        self.assertEqual(row["current_target_fingerprint"], "cobalamin_radical_rearrangement")
+        self.assertEqual(
+            set(row["observed_cofactor_context"]["hetatms_in_structure"]),
+            {"5AD", "B12", "PLP"},
+        )
+        self.assertIn("plain_cobalamin_radical_rearrangement", row["not_counted_as"])
+        self.assertIn("plain_plp_dependent_enzyme", row["not_counted_as"])
+
+    def test_remaining_nine_terminal_blocker_summary_has_no_import_path(self) -> None:
+        summary = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_remaining_9_terminal_blocker_summary_20260524.json"
+        )
+        metadata = summary["metadata"]
+        decision = summary["decision"]
+
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["m_csa_countable_label_count_invariant"], 692)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["remaining_rows_evaluated_count"], 9)
+        self.assertEqual(metadata["terminal_current_evidence_blocked_count"], 9)
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertEqual(metadata["dedicated_import_previews_run_count"], 0)
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(
+            decision["new_status"],
+            "all_nine_have_terminal_current_evidence_no_go_artifacts",
+        )
+        self.assertEqual(decision["canonical_count_movement"], "695 -> 695")
+        self.assertEqual(
+            decision["import_decision"],
+            "no_rows_imported_no_dedicated_import_preview_run",
+        )
+
+        rows = {row["entry_id"]: row for row in summary["rows"]}
+        self.assertEqual(
+            set(rows),
+            {
+                "m_csa:611",
+                "m_csa:657",
+                "m_csa:1001",
+                "m_csa:836",
+                "m_csa:996",
+                "m_csa:784",
+                "m_csa:904",
+                "m_csa:777",
+                "m_csa:737",
+            },
+        )
+        for row in rows.values():
+            self.assertFalse(row["import_gate_eligible"])
+            self.assertTrue(row["terminal_artifact"].startswith("artifacts/v3_mcsa_positive_"))
+            self.assertIn("still_blocked_terminal", row["new_status"])
+
     def test_epk_dirty_sibling_followup_synthesis_stays_review_only(self) -> None:
         synthesis = _load_json(
             ARTIFACTS / "v3_epk_dirty_sibling_followup_synthesis_20260521.json"

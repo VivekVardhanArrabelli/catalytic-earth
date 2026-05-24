@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_remaining_9_terminal_blocker_summary_20260524",
+    "schema_version": "mcsa_positive_remaining_9_terminal_blocker_summary.v1",
+    "created_at": "2026-05-24T03:52:02Z",
+    "method": "remaining_nine_terminal_blocker_rollup_after_class_decisions",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json",
+      "artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json",
+      "artifacts/v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json",
+      "artifacts/v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json",
+      "artifacts/v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524.json",
+      "artifacts/v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json"
+    ],
+    "canonical_label_count_invariant": 695,
+    "m_csa_countable_label_count_invariant": 692,
+    "production_fingerprint_universe_count_invariant": 8,
+    "remaining_rows_evaluated_count": 9,
+    "terminal_current_evidence_blocked_count": 9,
+    "import_gate_eligible_count": 0,
+    "dedicated_import_previews_run_count": 0,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "decision": {
+    "previous_status": "After the post-clean9 imports, nine Vivek-reviewed M-CSA positive follow-up rows remained blocked.",
+    "new_status": "all_nine_have_terminal_current_evidence_no_go_artifacts",
+    "canonical_count_movement": "695 -> 695",
+    "import_decision": "no_rows_imported_no_dedicated_import_preview_run",
+    "next_blocker_class": "none in the specified nine-row M-CSA follow-up; future work requires new evidence, production-rule work, or an explicit schema/fingerprint task rather than repeating this loop",
+    "confidence_call": "High confidence that the current repo state should not import any of the nine rows: every class now has an immutable artifact with exact blockers, no row is gate-eligible, canonical labels still validate at 695, and the production fingerprint universe remains 8."
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:611",
+      "blocker_class": "loose_interdomain_cofactor_locality",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "closed-conformation remap or explicit loose-conformation acceptance evidence"
+    },
+    {
+      "entry_id": "m_csa:657",
+      "blocker_class": "loose_interdomain_cofactor_locality",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "general tested acid-base-plus-metal-locality rule or alternate direct/local geometry evidence"
+    },
+    {
+      "entry_id": "m_csa:1001",
+      "blocker_class": "loose_interdomain_cofactor_locality",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "assembly-resolved active-site mapping or alternate remap evidence"
+    },
+    {
+      "entry_id": "m_csa:836",
+      "blocker_class": "apo_holo_selected_structure",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "explicit alternate residue mapping or curated positions for a metal-containing alternate"
+    },
+    {
+      "entry_id": "m_csa:996",
+      "blocker_class": "apo_holo_selected_structure",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "explicit 5O6Y residue mapping or another curated holo structure with local Zn support"
+    },
+    {
+      "entry_id": "m_csa:784",
+      "blocker_class": "amp_product_context_counterevidence",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "additional independent product-context positive plus general tested production rule and dedicated gates"
+    },
+    {
+      "entry_id": "m_csa:904",
+      "blocker_class": "amp_product_context_counterevidence",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "additional independent product-context positive plus general tested production rule and dedicated gates"
+    },
+    {
+      "entry_id": "m_csa:777",
+      "blocker_class": "plp_threshold_local_evidence",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524.json",
+      "new_status": "still_blocked_terminal_current_evidence",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "new scored local PLP evidence that clears 0.4115 or a general tested gate override"
+    },
+    {
+      "entry_id": "m_csa:737",
+      "blocker_class": "coupled_plp_adenosylcobalamin_schema",
+      "terminal_artifact": "artifacts/v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json",
+      "new_status": "still_blocked_terminal_current_production_universe",
+      "import_gate_eligible": false,
+      "exact_next_reopen_condition": "explicit coupled-family schema/fingerprint task with controls and gates"
+    }
+  ]
+}

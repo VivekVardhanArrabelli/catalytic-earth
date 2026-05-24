@@ -50,6 +50,48 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T03:52Z Terminal Decisions: Remaining Nine M-CSA Holds
+
+The remaining nine blocked rows from the Vivek-reviewed M-CSA positive
+follow-up were processed by blocker class from the 695-label baseline. No
+labels were imported, no import previews were run, no production scoring or
+fingerprint registry changed, and canonical labels remain 695 with 8
+production fingerprints.
+
+New terminal/current-evidence artifacts:
+
+```text
+artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json
+artifacts/v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json
+artifacts/v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json
+artifacts/v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524.json
+artifacts/v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json
+artifacts/v3_mcsa_positive_remaining_9_terminal_blocker_summary_20260524.json
+```
+
+Previous status: `m_csa:611`, `m_csa:657`, `m_csa:1001`, `m_csa:836`,
+`m_csa:996`, `m_csa:784`, `m_csa:904`, `m_csa:777`, and `m_csa:737` were
+blocked holds requiring new explicit artifacts before any import. New status:
+all nine are still blocked, but the current loop is terminal for current
+evidence. Rows changed: none in the canonical registry. Rows still blocked:
+all nine. The loose/inter-domain/cofactor-locality policy now says these cases
+can be countable only with explicit structural evidence that residues, cofactor,
+and water/substrate context form one active catalytic unit; the three current
+rows do not meet that bar. The apo/holo rows still lack local remapped holo
+evidence. The AMP-product rows still lack enough positives plus a tested
+production rule. `m_csa:777` remains 0.0008 below the 0.4115 threshold without
+new scored PLP evidence. `m_csa:737` now has a review-only coupled
+PLP-adenosylcobalamin aminomutase family proposal, not a production fingerprint
+or countable multi-target label.
+
+Wrap validation passed: 908-test unit discovery, CLI validate at 695 labels and
+8 fingerprints, compileall, artifact-migration dry run with `removal_allowed=0`,
+JSON parsing for the new artifacts, and `git diff --check`. Confidence call:
+high that the remaining-nine loop should not be repeated from current evidence.
+Exact next blocker: none in the specified nine-row M-CSA follow-up; future work
+requires new structure evidence, production-rule work, or an explicit
+schema/fingerprint task.
+
 ### 2026-05-24T03:15Z Canonical Import: Holo Overrides Plus m_csa:771 Landed
 
 The post-clean9 follow-up import is complete and pushed through dedicated

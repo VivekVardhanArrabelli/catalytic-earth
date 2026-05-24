@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 300
-- Measured elapsed time: 9101.6 minutes (151.69 hours)
+- Entries: 301
+- Measured elapsed time: 9116.4 minutes (151.94 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2092.2 measured minutes (34.87 hours)
+- v3: 2107.1 measured minutes (35.12 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3274
-- Evidence references logged: 2677
+- Artifact references logged: 3282
+- Evidence references logged: 2689
 
 ## Recent Entries
-
-### 2026-05-22T20:37:21.159775+00:00 - v3
-
-- Task: PyMOL atom-selection hardening and second review tranche
-- Time mode: measured
-- Measured minutes: 18.167
-- Started: 2026-05-22T20:18:40Z
-- Ended: 2026-05-22T20:36:50Z
-- Artifacts: src/catalytic_earth/pymol_review.py, tests/test_pymol_review.py, tests/test_automation_small_win_artifacts.py, artifacts/v3_mcsa_pymol_expert_review_queue_1025_materialized_tranche_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_materialization_20260522.json, artifacts/v3_mcsa_pymol_second_materialization_tranche_selection_20260522.json, artifacts/v3_mcsa_pymol_second_materialization_tranche_20260522.json, artifacts/v3_mcsa_pymol_expert_review_queue_1025_second_materialized_tranche_20260522.json, artifacts/v3_expert_review_decision_batch_pymol_second_materialized_tranche_dry_run_20260522.json, artifacts/v3_expert_review_decision_batch_pymol_second_materialized_tranche_dry_run_validation_20260522.json, artifacts/v3_mcsa_pymol_remaining_blocker_report_after_second_materialization_20260522.json, artifacts/v3_post_mcsa_pymol_second_materialization_review_only_zero_import_gate_20260522.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 885-test unit discovery passed after sync, CLI validate passed with 682 labels and 8 fingerprints, PyMOL queue now verifies focus CA atoms before ready state, first materialized queue remains 26 verified ready rows, second bounded 25-row tranche materialized with 0 fetch failures, latest PyMOL queue has 51 ready rows and 51 verified focus-atom selections, 51-row dry run records skipped decisions only, second zero-import gate passed 6/6, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed against current manifest, JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T21:32:20.016660+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, artifacts/v3_mcsa_positive_holo_override_accept_decision_3_20260523.json, artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json, artifacts/v3_mcsa_positive_post_clean9_followup_import_summary_20260524.json, artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json, README.md, docs/label_factory.md, work/handoff.md, tests/test_automation_small_win_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, tests/test_scaling_1025_artifacts.py, tests/test_source_only_contract.py
 - Evidence: startup unittest discovery passed at 899 tests and CLI validate passed with 691 labels, holo override accept3 gate passed 21 of 21 with exactly m_csa:577 m_csa:641 m_csa:897 imported, canonical registry moved 691 to 694 then validated, m_csa771 Vivek 2D0D gate passed 21 of 21 with exactly m_csa:771 imported, canonical registry moved 694 to 695 then validated, AMP product stress panel stayed review-only with 2 product candidates and 33 transfer controls, 902-test unit discovery passed, compileall passed, CLI validate passed with 695 labels, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed, no fingerprint registry edit threshold change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true
 - Notes: Pre-existing untracked CIF files were left untouched; the earlier overlapping preview state is superseded by the gate-backed 695-label canonical import.
+
+### 2026-05-24T03:55:03.938943+00:00 - v3
+
+- Task: Remaining M-CSA terminal blocker decisions
+- Time mode: measured
+- Measured minutes: 14.833
+- Started: 2026-05-24T03:39:58Z
+- Ended: 2026-05-24T03:54:48Z
+- Artifacts: artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json, artifacts/v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json, artifacts/v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json, artifacts/v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524.json, artifacts/v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json, artifacts/v3_mcsa_positive_remaining_9_terminal_blocker_summary_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md
+- Evidence: startup 902-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, loose/inter-domain/cofactor-locality policy decided with 0 import-gate eligible rows, apo/holo m_csa:836 and m_csa:996 terminally still blocked by no local remapped holo evidence, AMP-product m_csa:784 and m_csa:904 terminally still blocked because review-only stress panel has 2 positives and no tested production rule, m_csa:777 terminally still blocked at 0.4107 below the 0.4115 floor without stronger PLP evidence, m_csa:737 routed to review-only coupled PLP-adenosylcobalamin family proposal with no production fingerprint edit, 908-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, git diff check passed
+- Notes: No label import, registry edit, fingerprint edit, production scoring change, threshold lowering, artifact upload/removal, externalization, Git-LFS migration, history rewrite, or removal_allowed=true occurred. Pre-existing untracked CIF files were left untouched.
 
 ## Expectation Updates
 
@@ -360,6 +360,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-23T18:03:35.801938+00:00: Next external-deepening work should resume with metal phosphatase only if new human action or source-free coordinate evidence is available; otherwise the queue is human/evidence blocked.
 - 2026-05-23T19:56:43.019061+00:00: Do not return to broad external breadth until post-clean9 M-CSA hold decisions are either accepted through gates or explicitly deferred.
 - 2026-05-23T20:13:13.233624+00:00: Next M-CSA automation needs explicit post-preview accept decisions for held override or m_csa771 rows before more gated imports.
+- 2026-05-24T03:55:03.938943+00:00: Do not repeat the nine-row M-CSA blocker loop without new evidence, production-rule work, or an explicit schema/fingerprint task.
 
 ## Scope Adjustments
 
@@ -543,3 +544,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-23T18:03:35.801938+00:00: Closed the M-CSA 22-row positive follow-up as review-only import-readiness/blocker evidence without mutating canonical registries.
 - 2026-05-23T19:56:43.019061+00:00: M-CSA clean9 is imported; next M-CSA work is explicit accept decisions for held override and m_csa771 previews before any more imports.
 - 2026-05-23T20:13:13.233624+00:00: No new M-CSA import work was opened because the requested tranche is already canonical and remaining rows are human-decision blocked.
+- 2026-05-24T03:55:03.938943+00:00: Closed the current-evidence loop for the nine remaining Vivek-reviewed M-CSA follow-up blockers without importing labels.

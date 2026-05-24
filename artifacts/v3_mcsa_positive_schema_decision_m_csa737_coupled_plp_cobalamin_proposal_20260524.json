@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524",
+    "schema_version": "mcsa_positive_schema_decision_coupled_cofactor_proposal.v1",
+    "created_at": "2026-05-24T03:49:17Z",
+    "method": "coupled_plp_adenosylcobalamin_schema_decision_review_only",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json",
+      "artifacts/v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json",
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_flagged_structure_checks_7_20260523.json"
+    ],
+    "canonical_label_count_invariant": 695,
+    "production_fingerprint_universe_count_invariant": 8,
+    "rows_evaluated_count": 1,
+    "schema_decision_recorded": true,
+    "review_only_new_family_proposed": true,
+    "multi_target_countable_label_proposed": false,
+    "production_fingerprint_promotion_authorized": false,
+    "production_fingerprint_registry_edited": false,
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "import_gate_eligible_count": 0,
+    "still_blocked_count": 1,
+    "terminal_no_go_for_current_production_universe": true,
+    "canonical_registry_import_performed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "decision": {
+    "blocker_class": "coupled_plp_adenosylcobalamin_schema",
+    "previous_status": "m_csa:737 was blocked because beta-lysine 5,6-aminomutase uses coupled PLP and adenosylcobalamin chemistry that does not fit a plain cobalamin_radical_rearrangement label under the current 8-fingerprint universe.",
+    "schema_decision": "review_only_new_coupled_cofactor_family_proposal",
+    "proposed_review_only_family_id": "coupled_plp_adenosylcobalamin_aminomutase",
+    "proposed_family_scope": "Aminomutase or related rearrangement chemistry where PLP substrate aldimine chemistry and adenosylcobalamin radical chemistry are both mechanistically required in one catalytic cycle.",
+    "rejected_current_options": [
+      {
+        "option": "force_plain_cobalamin_radical_rearrangement_label",
+        "reason": "would erase the required PLP transaldimination/substrate-imine axis and over-broaden the current cobalamin fingerprint"
+      },
+      {
+        "option": "force_plain_plp_dependent_enzyme_label",
+        "reason": "would erase the required adenosylcobalamin radical rearrangement axis"
+      },
+      {
+        "option": "countable_multi_target_label_now",
+        "reason": "the current label registry and gates are built around one production fingerprint per seed-fingerprint label; multi-target counting would need a separate schema and leakage/benchmark audit"
+      }
+    ],
+    "production_decision": "no_import_no_fingerprint_edit_current_run",
+    "canonical_count_movement": "695 -> 695",
+    "future_gate_requirements": [
+      "draft ontology and fingerprint specification for coupled PLP-adenosylcobalamin aminomutase chemistry",
+      "independent positive exemplars beyond m_csa:737 before threshold or production scoring",
+      "PLP-only and cobalamin-only sibling-family controls",
+      "external hard-negative and current-reference re-audit under the expanded universe",
+      "production scorer implementation and unit tests if the family is promoted beyond review-only",
+      "dedicated label-factory gate and batch acceptance for any eligible rows"
+    ],
+    "next_blocker_class": "none in the specified 9-row M-CSA follow-up; do not repeat without new evidence or an explicit schema/fingerprint task"
+  },
+  "row": {
+    "entry_id": "m_csa:737",
+    "entry_name": "beta-lysine 5,6-aminomutase",
+    "selected_pdb": "1XRS",
+    "current_status": "still_blocked",
+    "terminal_current_production_universe_no_go": true,
+    "import_gate_eligible": false,
+    "current_target_fingerprint": "cobalamin_radical_rearrangement",
+    "not_counted_as": [
+      "plain_cobalamin_radical_rearrangement",
+      "plain_plp_dependent_enzyme",
+      "multi_target_seed_label"
+    ],
+    "observed_cofactor_context": {
+      "hetatms_in_structure": [
+        "5AD",
+        "B12",
+        "PLP"
+      ],
+      "b12_ligands": [
+        {
+          "chain": "B",
+          "resi": "800",
+          "resn": "B12"
+        }
+      ],
+      "cofactors_required": [
+        "adenosylcobalamin",
+        "PLP"
+      ]
+    },
+    "schema_issue": "Current production fingerprints represent PLP-dependent enzymes and cobalamin radical rearrangements separately, but this row requires a coupled PLP plus adenosylcobalamin aminomutase family to avoid misleading single-fingerprint counting.",
+    "exact_blocker": "No production coupled-cofactor family, multi-target label schema, scorer, controls, or dedicated gates exist in the current 8-fingerprint universe.",
+    "future_reopen_condition": "explicit future schema/fingerprint task that starts from the review-only coupled-family proposal and satisfies the listed future gates"
+  }
+}
