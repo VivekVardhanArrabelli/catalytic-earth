@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 304
-- Measured elapsed time: 9187.3 minutes (153.12 hours)
+- Entries: 305
+- Measured elapsed time: 9222.3 minutes (153.71 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2177.9 measured minutes (36.30 hours)
+- v3: 2212.9 measured minutes (36.88 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3305
-- Evidence references logged: 2720
+- Artifact references logged: 3318
+- Evidence references logged: 2731
 
 ## Recent Entries
-
-### 2026-05-23T18:03:35.801938+00:00 - v3
-
-- Task: M-CSA positive follow-up gates
-- Time mode: measured
-- Measured minutes: 18.05
-- Started: 2026-05-23T17:45:32Z
-- Ended: 2026-05-23T18:03:35Z
-- Artifacts: artifacts/v3_mcsa_positive_accepted_import_gate_readiness_12_20260523.json, artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json, artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json, artifacts/v3_mcsa_positive_hold_geometry_locality_resolution_3_20260523.json, artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json, artifacts/v3_mcsa_positive_schema_decision_note_m_csa_737_20260523.json, artifacts/v3_post_mcsa_positive_followup_review_only_zero_import_gate_20260523.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 893-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, 12 accepted M-CSA rows split into 9 mechanically ready and 3 caveat-blocked review-only rows, bounded hold-apo scan covered 62 structures with 0 fetch failures and exact replacement candidates for m_csa:577 m_csa:641 and m_csa:897, m_csa:836 and m_csa:996 remain blocked by structure-wide metal hits without usable local active-site remaps, m_csa:657 preserved as hold-geometry; m_csa:611 and m_csa:1001 remain exact conformation/locality holds, m_csa:771 remains held with 2D0D as the only checked alternate containing catalytic Ser103, m_csa:737 remains a coupled PLP-cobalamin schema gap with no production fingerprint authorization, review-only zero-import gate passed 6/6, 895-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, new JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: Wrapped before 48 minutes because the prioritized M-CSA follow-up is closed and the next external ladder step is blocked on human action or missing exact source-free evidence. No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-23T19:56:43.019061+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
 - Evidence: fixed 298-row source universe preserved as 22 accepted review signals plus 210 current-target rejects plus 66 unresolved holds, exact40 workqueue has 40 blank-decision rows split into 10 clean fast-path and 30 non-clean strategy rows, deferred26 backlog remains outside exact40 with 9 cofactor deferrals plus 13 future-family/schema deferrals plus 4 reject-confirmation deferrals, TSV worksheets keep decision reviewer date note columns blank, targeted review-support tests passed and full 924-test unit discovery passed, CLI validate passed at 695 curated labels and 8 production fingerprints, compileall JSON TSV and git diff guards passed with no registry fingerprint or scoring diff
 - Notes: Pre-existing root-level CIF files were left untouched; no upload removal migration LFS history rewrite or removal_allowed=true action occurred.
+
+### 2026-05-24T18:48:42.697558+00:00 - v3
+
+- Task: M-CSA AI-visual review workqueue support surface
+- Time mode: measured
+- Measured minutes: 35.0
+- Started: 2026-05-24T18:13:28Z
+- Ended: 2026-05-24T18:48:28Z
+- Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 917-test unit discovery passed, startup CLI validate passed with 695 curated labels and 8 production fingerprints, review support index preserves 298 source rows with 22 accepted 210 rejected 66 holds, exact40 workqueue and worksheets preserve 40 blank decisions 10 clean rows and 30 nonclean rows, deferred26 backlog and worksheet preserve 26 needs_more_evidence rows outside exact40, 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, JSON and TSV parse checks passed, git diff check passed, no registry fingerprint scoring or source diffs
+- Notes: Wrapped before 48 minutes because bounded safe review-support work was exhausted; the next meaningful action is human exact40 review. No label import, import preview, registry edit, fingerprint edit, scoring change, artifact upload/removal, migration, history rewrite, or removal_allowed=true occurred; pre-existing root-level CIF files were left untouched.
 
 ## Expectation Updates
 
